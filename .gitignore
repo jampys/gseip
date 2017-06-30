@@ -1,0 +1,4 @@
+#ignora el directorio bd
+#bd/
+#ignora el directorio .idea
+.idea/
