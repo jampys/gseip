@@ -111,7 +111,7 @@ class Cliente
 
     public static function getClientes() {
 			$stmt=new sQuery();
-            $stmt->dpPrepare("select * from clientes");
+            $stmt->dpPrepare("select id, nombre, apellido, DATE_FORMAT(fecha_nac,  '%d/%m/%Y') as fecha_nac, peso from clientes");
             $stmt->dpExecute();
             return $stmt->dpFetchAll(); // retorna todos los clientes
 		}
@@ -121,7 +121,7 @@ class Cliente
 		if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select * from clientes where id = :nro";
+            $query="select id, nombre, apellido, DATE_FORMAT(fecha_nac,  '%d/%m/%Y') as fecha_nac, peso from clientes where id = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
@@ -170,7 +170,7 @@ class Cliente
 	public function updateCliente(){	// actualiza el cliente cargado en los atributos
 
         $stmt=new sQuery();
-        $query="update clientes set nombre= :nombre, apellido= :apellido, fecha_nac= :fecha, peso= :peso where id = :id";
+        $query="update clientes set nombre= :nombre, apellido= :apellido, fecha_nac= STR_TO_DATE(:fecha, '%d/%m/%Y'), peso= :peso where id = :id";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':apellido', $this->getApellido());
@@ -184,7 +184,7 @@ class Cliente
 	private function insertCliente(){	// inserta el cliente cargado en los atributos
 
         $stmt=new sQuery();
-        $query="insert into clientes( nombre, apellido, fecha_nac,peso)values(:nombre, :apellido, :fecha, :peso)";
+        $query="insert into clientes( nombre, apellido, fecha_nac,peso)values(:nombre, :apellido, STR_TO_DATE(:fecha, '%d/%m/%Y'), :peso)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':apellido', $this->getApellido());
