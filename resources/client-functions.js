@@ -67,7 +67,7 @@ $(document).ready(function(){
                     $("#myElem").html('Error al guardar el cliente').addClass('alert alert-danger').show();
                 }
                 setTimeout(function() { $("#myElem").hide();
-                    $('#popupbox').dialog('close');}, 5000);
+                    $('#popupbox').dialog('close');}, 2000);
 
             });
 
@@ -82,41 +82,6 @@ $(document).ready(function(){
         $('#popupbox').dialog('close');
     });
 
-
-
-    $('#confirm').dialog({
-        autoOpen: false,
-        //modal: true,
-        buttons: /*{
-         Yes: function () {
-         //doFunctionForYes();
-         $.fn.borrar($('#confirm').data('id'));
-         $(this).dialog("close");
-         },
-         No: function () {
-         //doFunctionForNo();
-         $(this).dialog("close");
-         }
-         }*/
-            [
-                {
-                    text: "Aceptar",
-                    click: function() {
-                        $.fn.borrar($('#confirm').data('id'));
-                        $(this).dialog("close");
-                    },
-                    "class":"ui-button-danger"
-                },
-                {
-                    text: "Cancelar",
-                    click: function() {
-                        $(this).dialog("close");
-                    },
-                    "class":"ui-button-danger"
-                }
-
-            ]
-    });
 
 
     /*$(document).on('click', '.delete', function(){
@@ -134,51 +99,32 @@ $(document).ready(function(){
 
 
     $(document).on('click', '.delete', function(){
-        //obtengo el id que guardamos en data-id
-
         //$('#confirm').dialog('open');
         $("#confirm").data('id', $(this).attr('data-id')).dialog("open");
-        //return false;
-
-        /*var id=$(this).attr('data-id');
-         //preparo los parametros
-         params={};
-         params.id=id;
-         params.action="deleteClient";
-         $('#popupbox').load('index.php', params,function(){
-         $('#content').load('index.php',{action:"refreshGrid"});
-         })*/
-        //$('#confirm').dialog('open');
-        /*var $form = $(this).closest('form');
-         e.preventDefault();
-         $('#confirm').modal({
-         backdrop: 'static',
-         keyboard: false
-         })
-         .one('click', '#delete', function(e) {
-         $form.trigger('submit');
-         });*/
-
-        $.fn.borrar = function(id) {
-            alert(id);
-            //alert('hello world');
-            //return this;
-            /*var id=$(this).attr('data-id');
-
-             //preparo los parametros
-             params={};
-             params.id=id;
-             params.action="deleteClient";
-             $('#popupbox').load('index.php', params,function(){
-             $('#content').load('index.php',{action:"refreshGrid"});
-             })*/
-        };
-
-
-
-
-
+        return false;
     });
+
+
+    $.fn.borrar = function(id) {
+        //alert(id);
+        //preparo los parametros
+        params={};
+        params.id=id;
+        params.action="deleteClient";
+
+        $.post('index.php',params,function(data, status, xhr){
+            if(data >=0){
+                $("#myElemento").html('Cliente eliminado con exito').addClass('alert alert-success').show();
+                $('#content').load('index.php',{action:"refreshGrid"});
+            }else{
+                $("#myElemento").html('Error al eliminar el cliente').addClass('alert alert-danger').show();
+            }
+            setTimeout(function() { $("#myElemento").hide();
+                $('#confirm').dialog('close');}, 2000);
+
+        });
+
+    };
 
 });
 

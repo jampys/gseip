@@ -4,10 +4,10 @@ class Conexion  // se declara una clase para hacer la conexion con la base de da
 	var $con;
     function __construct(){
 		// se definen los datos del servidor de base de datos
-        $servername = "localhost"; //host
+        $servername = "10.15.34.57"; //host
         $username = "root"; //usuario
-        $password = "admin"; //password
-        $dbname = "seip"; //base de datos
+        $password = ""; //password
+        $dbname = "gestion"; //base de datos
 
         try{
             //crea la conexion pasandole el servidor , usuario y clave

@@ -65,7 +65,9 @@ switch ($action)
     case 'deleteClient':
         $id=intval($_POST['id']);
         $client=new Cliente($id);
-        $client->delete();
+        //$client->delete();
+        $rta = $client->delete();
+        print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
     default :
