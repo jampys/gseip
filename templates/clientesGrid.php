@@ -63,8 +63,8 @@
                     <td><?php echo $cliente['apellido'];?></td>
                     <td><?php echo $cliente['fecha_nac'];?></td>
                     <td><?php echo $cliente['peso'];?></td>
-                    <td><a class="edit" href="javascript:void(0);" data-id="<?php echo $cliente['id'];?>">Editar</a></td>
-                    <td><a class="delete" href="javascript:void(0);" data-id="<?php echo $cliente['id'];?>">Borrar</a></td>
+                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $cliente['id'];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $cliente['id'];?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

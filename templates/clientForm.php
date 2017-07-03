@@ -16,6 +16,12 @@
         });
 
 
+        $('#fecha').datepicker({
+            inline: true
+            ,dateFormat:"dd/mm/yy"
+        });
+
+
     });
 
 </script>
