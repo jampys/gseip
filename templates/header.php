@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">SEIP</a>
+                <a class="navbar-brand" href="index.php">SEIP</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
@@ -21,7 +21,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown Example
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">HTML</a></li>
+                            <li><a href="index.php?action=clientes&operation=index">Clientes</a></li>
                             <li><a href="#">CSS</a></li>
                             <li><a href="#">JavaScript</a></li>
                         </ul>
@@ -33,8 +33,8 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
+                    <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
                 </ul>
             </div>
         </div>

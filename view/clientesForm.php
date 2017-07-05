@@ -40,7 +40,7 @@
     </div>
     <div class="form-group">
         <label for="fecha">Fecha</label>
-        <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->client->getFecha() ?>">(dd/mm/yyyy)
+        <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->client->getFecha() ?>">
     </div>
     <div class="form-group">
         <label for="peso">Peso</label>

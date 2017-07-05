@@ -1,83 +1,72 @@
-﻿
 <?php
-/**
- * Autor: Lucas Forchino
- * Web: http://www.tutorialjquery.com
- *
- */
-include_once ("clase.php");// incluyo las clases a ser usadas
-$action='index';
-if(isset($_POST['action']))
-{$action=$_POST['action'];}
+/*
+session_start();
+require_once("lib/config1.php");
+require_once("model/seguridadModel.php");
+
+if(isset($_SESSION["ses_id"])){
 
 
-$view= new stdClass(); // creo una clase standard para contener la vista
-$view->disableLayout=false;// marca si usa o no el layout , si no lo usa imprime directamente el template
+    if(!empty($_REQUEST["accion"])){
+        $accion=$_REQUEST["accion"];
+    }
+
+    if(is_file("controller/".$accion."Controller.php")){
+        require_once("controller/".$accion."Controller.php");
+    }else
+    {
+        require_once("controller/errorController.php");
+    }
 
 
-$view->controller='client';
-
-// para no utilizar un framework y simplificar las cosas uso este switch, la idea
-// es que puedan apreciar facilmente cuales son las operaciones que se realizan
-switch ($action)
+}else
 {
-    case 'index':
-        $view->clientes=Cliente::getClientes(); // tree todos los clientes
-        $view->contentTemplate="templates/clientesGrid.php"; // seteo el template que se va a mostrar
-        break;
-    case 'refreshGrid':
-        $view->disableLayout=true; // no usa el layout
-        $view->clientes=Cliente::getClientes();
-        $view->contentTemplate="templates/clientesGrid.php"; // seteo el template que se va a mostrar
-        break;
-    case 'saveClient':
-        // limpio todos los valores antes de guardarlos
-        // por ls dudas venga algo raro
-        $id=intval($_POST['id']);
-        $nombre=cleanString($_POST['nombre']);
-        $apellido=cleanString($_POST['apellido']);
-        $fecha=cleanString($_POST['fecha']);
-        $peso=cleanString($_POST['peso']);
-        $cliente=new Cliente($id);
-        $cliente->setNombre($nombre);
-        $cliente->setApellido($apellido);
-        $cliente->setFecha($fecha);
-        $cliente->setPeso($peso);
-        //$cliente->save();
-        //break;
-        $rta = $cliente->save();
-        print_r(json_encode($rta));
-        //exit;
-        break;
-    case 'newClient':
-        $view->client=new Cliente();
-        $view->label='Nuevo Cliente';
-        $view->disableLayout=true;
-        $view->contentTemplate="templates/clientForm.php"; // seteo el template que se va a mostrar
-        break;
-    case 'editClient':
-        $editId=intval($_POST['id']);
-        $view->label='Editar Cliente';
-        $view->client=new Cliente($editId);
-        $view->disableLayout=true;
-        $view->contentTemplate="templates/clientForm.php"; // seteo el template que se va a mostrar
-        break;
-    case 'deleteClient':
-        $id=intval($_POST['id']);
-        $client=new Cliente($id);
-        //$client->delete();
-        $rta = $client->delete();
-        print_r(json_encode($rta));
-        die; // no quiero mostrar nada cuando borra , solo devuelve el control.
-        break;
-    default :
+    if($_GET["accion"]=="error"){
+        require_once("controller/errorController.php");
+    }
+    else{
+        require_once("controller/loginController.php");
+    }
+
 }
 
-// si esta deshabilitado el layout solo imprime el template
-if ($view->disableLayout==true)
-{include_once ($view->contentTemplate);}
-else
-{include_once ('templates/layout.php');} // el layout incluye el template adentro
+require_once("view/layout.php");
 
+*/
+session_start();
+require_once("config/config.php");
+
+
+
+//require_once("controller/clientesController.php");
+
+
+if(isset($_SESSION["id_usuario"])){
+
+
+    if(!empty($_REQUEST["action"])){
+        $action = $_REQUEST["action"];
+    }else{
+        $action = 'index';
+    }
+
+    if(is_file("controller/".$action."Controller.php")){
+        require_once("controller/".$action."Controller.php");
+    }else
+    {
+        //require_once("controller/errorController.php");
+    }
+
+
+}else
+{
+    if($_GET["accion"]=="error"){
+        //require_once("controller/errorController.php");
+    }
+    else{
+        require_once("controller/loginController.php");
+    }
+
+}
 
 ?>
