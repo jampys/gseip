@@ -1,6 +1,6 @@
 <header>
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -12,13 +12,13 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <!--<li class="active"><a href="#">Home</a></li>-->
                     <li><a href="#">Page 1</a></li>
                     <li><a href="#">Page 2</a></li>
                     <li><a href="#">Page 3</a></li>
 
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown Example
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administración
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="index.php?action=clientes&operation=index">Clientes</a></li>

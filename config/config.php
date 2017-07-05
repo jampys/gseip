@@ -102,4 +102,7 @@ class sQuery   // se declara una clase para poder ejecutar las consultas, esta c
 
 }
 
+
+$view= new stdClass();
+
 ?>

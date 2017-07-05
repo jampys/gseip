@@ -24,8 +24,9 @@
 
                     $.post('index.php',params,function(data, status, xhr){
                         alert(data);
-                        if(data >=0){
-                            $("#myElem").html('Acceso con exito').addClass('alert alert-success').show();
+                        if(data >=1){
+                            //Accede al sistema
+                            //$("#myElem").html('Acceso con exito').addClass('alert alert-success').show();
                             //$('#content').load('index.php',{action:"index"});
                             /*params={};
                             params.action="index";
@@ -33,12 +34,16 @@
                                 alert(data);
                             });*/
                             window.location.href = "index.php?action=index";
-                        }else{
-                            $("#myElem").html('Error al guardar el cliente').addClass('alert alert-danger').show();
+                        }else if (data == 0){
+                            $("#myElem").html('Usuario inhabilitado').addClass('alert alert-danger').show();
+                            setTimeout(function() { $("#myElem").hide();
+                                                  }, 2000);
+                        }else if (data == -1){
+                            $("#myElem").html('Usuario o contraseña invalidos').addClass('alert alert-danger').show();
+                            setTimeout(function() { $("#myElem").hide();
+                            }, 2000);
                         }
-                        setTimeout(function() { $("#myElem").hide();
-                                                //$('#popupbox').dialog('close');
-                                              }, 2000);
+
 
                     });
 

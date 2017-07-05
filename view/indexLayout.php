@@ -21,7 +21,7 @@
 
 
 </head>
-<body style="padding-top: 0px">
+<body>
 
 <?php require_once('templates/header.php'); ?>
 
@@ -32,8 +32,7 @@
     <div class="row">
 
         <div id="content" class="col-md-8 col-md-offset-2">
-            <?php //include_once ($view->contentTemplate); // incluyo el template que corresponda ?>
-            ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+            <?php //include_once ($view->contentTemplate);  ?>
         </div>
 
     </div>

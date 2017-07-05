@@ -7,7 +7,7 @@ if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
 
 
-$view= new stdClass(); // creo una clase standard para contener la vista
+//$view= new stdClass(); // creo una clase standard para contener la vista
 $view->disableLayout=false;// marca si usa o no el layout , si no lo usa imprime directamente el template
 
 

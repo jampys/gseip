@@ -1,28 +1,23 @@
 <?php
 
-//Se usa request (en vez de get o post) porque al loguearse usa post pero al salir usa get.
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
 
-require_once("model/loginModel.php");
-//require_once("model/empleadoModel.php");
-//require_once("model/seguridadModel.php");
-$view->u=new Login();
+require_once("model/usuariosModel.php");
+$view->u=new Usuario();
 
 switch($operation){
 
     case 'login':
 
-        //$id=array();
 
         if (isset($_POST['usuario']) && isset($_POST['contraseña']) ){
 
             $id=$view->u->isAValidUser($_POST['usuario'],$_POST['contraseña']);
 
-
             if($id>=1){
-                $_SESSION["id_usuario"]=$id;
-                $_SESSION["usuario"]=$_POST['usuario'];
+                $_SESSION["id_usuario"] = $view->u->getIdUsuario(); //$id;
+                $_SESSION["usuario"] = $view->u->getIdUsuario(); //$_POST['usuario'];
                 /*if($id[5]!=1) { //si se ha limpiado el password  hay que cambiarlo...
                     $_SESSION["id_usuario"] = $id[0];
                     $_SESSION["usuario"] = $id[1];
@@ -143,7 +138,6 @@ switch($operation){
 
 
     case 'salir':
-        //$view->u->salir();
         session_destroy();
         //$view->content="view/login.php";
         //header("Location: index.php");

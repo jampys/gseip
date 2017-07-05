@@ -25,7 +25,8 @@
                 //preparo los parametros
                 params={};
                 params.id=id;
-                params.action="editClient";
+                params.action = "clientes";
+                params.operation = "editClient";
                 $('#popupbox').load('index.php', params,function(){
                     $('#popupbox').dialog({title:"Editar cliente"}).dialog('open');
                 })
@@ -38,7 +39,8 @@
 
             $(document).on('click', '#new', function(){
                 params={};
-                params.action="newClient";
+                params.action = "clientes";
+                params.operation="newClient";
                 $('#popupbox').load('index.php', params,function(){
                     $('#popupbox').dialog({title:"Nuevo cliente"}).dialog('open');
                 })
@@ -48,7 +50,8 @@
             $(document).on('click', '#submit',function(){
                 if ($("#client").valid()){
                     var params={};
-                    params.action='saveClient';
+                    params.action = 'clientes';
+                    params.operation = 'saveClient';
                     params.id=$('#id').val();
                     params.nombre=$('#nombre').val();
                     params.apellido=$('#apellido').val();
@@ -61,7 +64,7 @@
                         //alert(rta);
                         if(data >=0){
                             $("#myElem").html('Cliente guardado con exito').addClass('alert alert-success').show();
-                            $('#content').load('index.php',{action:"refreshGrid"});
+                            $('#content').load('index.php',{action:"clientes", operation:"refreshGrid"});
                         }else{
                             $("#myElem").html('Error al guardar el cliente').addClass('alert alert-danger').show();
                         }
@@ -109,12 +112,13 @@
                 //preparo los parametros
                 params={};
                 params.id=id;
-                params.action="deleteClient";
+                params.action = "clientes";
+                params.operation = "deleteClient";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
                         $("#myElemento").html('Cliente eliminado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"refreshGrid"});
+                        $('#content').load('index.php',{action:"clientes", operation: "refreshGrid"});
                     }else{
                         $("#myElemento").html('Error al eliminar el cliente').addClass('alert alert-danger').show();
                     }
