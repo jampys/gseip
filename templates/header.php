@@ -22,7 +22,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="index.php?action=clientes&operation=index">Clientes</a></li>
-                            <li><a href="#">CSS</a></li>
+                            <li><a href="index.php?action=empleados">Empleados</a></li>
                             <li><a href="#">JavaScript</a></li>
                         </ul>
                     </li>

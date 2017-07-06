@@ -37,37 +37,28 @@
 
 </script>
 
-    <h3><strong>Clientes</strong></h3>
+    <h3><strong>Empleados</strong></h3>
 
     <div class="table-responsive">
 
         <div class="btn-group pull-right">
-            <!--<button type="button" class="btn btn-primary btn-sm">Primary</button>-->
-            <input id="new" class="btn btn-primary btn-sm" type="button" value="Nuevo Cliente">
+            <button class="btn btn-primary btn-sm" type="button" id="new" >Nuevo Empleado</button>
         </div>
         <br/>
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Peso</th>
-                <th>Editar</th>
-                <th>Borrar</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($view->clientes as $cliente):  // uso la otra sintaxis de php para templates ?>
+            <?php foreach ($view->empleados as $empleado): ?>
                 <tr>
-                    <td><?php echo $cliente['id'];?></td>
-                    <td><?php echo $cliente['nombre'];?></td>
-                    <td><?php echo $cliente['apellido'];?></td>
-                    <td><?php echo $cliente['fecha_nac'];?></td>
-                    <td><?php echo $cliente['peso'];?></td>
-                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $cliente['id'];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $cliente['id'];?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                    <td><?php echo $empleado['nombre'];?></td>
+                    <td><?php echo $empleado['apellido'];?></td>
+                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
