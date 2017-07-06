@@ -33,18 +33,21 @@ switch ($operation)
         print_r(json_encode($rta));
         exit;
         break;
-    case 'newClient':
-        $view->client=new Cliente();
-        $view->label='Nuevo Cliente';
+    case 'newEmpleado':
+        //$view->client=new Cliente();
+        $view->label='Nuevo Empleado';
         $view->disableLayout=true;
-        $view->contentTemplate="view/clientesForm.php"; // seteo el template que se va a mostrar
+        $view->contentTemplate="view/empleadosForm.php"; // seteo el template que se va a mostrar
+        //include_once('view/empleadosForm.php');
+        //exit;
         break;
-    case 'editClient':
-        $editId=intval($_POST['id']);
-        $view->label='Editar Cliente';
-        $view->client=new Cliente($editId);
+
+    case 'editEmpleado':
+        //$editId=intval($_POST['id']);
+        $view->label='Editar Empleado';
+        //$view->client=new Cliente($editId);
         $view->disableLayout=true;
-        $view->contentTemplate="view/clientesForm.php"; // seteo el template que se va a mostrar
+        $view->contentTemplate="view/EmpleadosForm.php"; // seteo el template que se va a mostrar
         break;
     case 'deleteClient':
         $id=intval($_POST['id']);
@@ -61,11 +64,10 @@ switch ($operation)
         break;
 }
 
-// si esta deshabilitado el layout solo imprime el template
 if ($view->disableLayout==true) {
     include_once ($view->contentTemplate);}
 else {
-    include_once('view/EmpleadosLayout.php');
+    include_once('view/empleadosLayout.php');
 }
 
 

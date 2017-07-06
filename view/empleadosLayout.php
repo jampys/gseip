@@ -25,10 +25,10 @@
                 //preparo los parametros
                 params={};
                 params.id=id;
-                params.action = "clientes";
+                params.action = "empleados";
                 params.operation = "editClient";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#popupbox').dialog({title:"Editar cliente"}).dialog('open');
+                $('#content').load('index.php', params,function(){
+                    //$('#popupbox').dialog({title:"Editar cliente"}).dialog('open');
                 })
 
             });
@@ -39,10 +39,10 @@
 
             $(document).on('click', '#new', function(){
                 params={};
-                params.action = "clientes";
-                params.operation="newClient";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#popupbox').dialog({title:"Nuevo cliente"}).dialog('open');
+                params.action = "empleados";
+                params.operation="newEmpleado";
+                $('#content').load('index.php', params,function(){
+                   //$('#popupbox').dialog({title:"Nuevo empleado"}).dialog('open');
                 })
             });
 
@@ -146,7 +146,7 @@
     <div class="container">
         <br/>
 
-        <div id="popupbox"></div>
+        <!--<div id="popupbox"></div>-->
 
         <div class="row">
 
