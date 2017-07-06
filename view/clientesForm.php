@@ -48,8 +48,8 @@
         <input class="form-control" type="text" name="peso" id="peso" value = "<?php print $view->client->getPeso() ?>">
     </div>
     <div class="form-group">
-        <input class="btn btn-primary btn-sm" id="cancel" type="button" value ="Cancelar" />
-        <input class="btn btn-primary btn-sm" id="submit" type="submit" name="submit" value ="Guardar" />
+        <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
+        <button class="btn btn-primary btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
     </div>
 </form>
 

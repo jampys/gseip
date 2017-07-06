@@ -33,8 +33,7 @@
 
 </script>
 
-
-    <h2>Clientes</h2>
+    <h3><strong>Clientes</strong></h3>
 
     <div class="table-responsive">
 

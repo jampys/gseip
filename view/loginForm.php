@@ -10,7 +10,7 @@
     </div>
 
     <div class="form-group">
-        <input class="btn btn-primary btn-sm" id="ingresar" type="submit" name="ingresar" value ="Ingresar" />
+        <button class="btn btn-primary btn-sm btn-block" id="ingresar" name="ingresar" type="submit"><span class="glyphicon glyphicon-log-in"></span> Ingresar</button>
     </div>
 </form>
 

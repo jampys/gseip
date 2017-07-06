@@ -34,7 +34,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
-                    <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
+                    <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
                 </ul>
             </div>
         </div>

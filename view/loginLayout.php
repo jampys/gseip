@@ -23,7 +23,7 @@
                     params.contraseña=$('#contraseña').val();
 
                     $.post('index.php',params,function(data, status, xhr){
-                        alert(data);
+                        //alert(data);
                         if(data >=1){
                             //Accede al sistema
                             //$("#myElem").html('Acceso con exito').addClass('alert alert-success').show();
