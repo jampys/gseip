@@ -3,6 +3,17 @@
 
     $(document).ready(function(){
 
+        $('#client').validate({
+            rules: {
+                nombre: {
+                    required: true
+                }
+            },
+            messages:{
+                nombre: "Ingrese su nombre"
+            }
+        });
+
 
     });
 

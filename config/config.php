@@ -12,7 +12,7 @@ class Conexion  // se declara una clase para hacer la conexion con la base de da
 
         try{
             //crea la conexion pasandole el servidor , usuario y clave
-            $conect = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conect = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $conect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->con=$conect;
             return $this->con;
