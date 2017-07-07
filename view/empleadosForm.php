@@ -22,19 +22,24 @@
 
 <h3><strong><?php echo $view->label ?></strong></h3>
 
-<form name ="client" id="client" method="POST" action="index.php">
+<form class="form-horizontal" name ="client" id="client" method="POST" action="index.php">
     <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
 
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php //print $view->client->getNombre() ?>">
+    <div class="form-group required">
+        <label for="nombre" class="col-md-2 control-label">Nombre</label>
+        <div class="col-md-10">
+            <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php //print $view->client->getNombre() ?>">
+        </div>
     </div>
-    <br>
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input class="form-control" type="text" name="apellido" id="apellido" placeholder="apellido" value = "<?php //print $view->client->getApellido() ?>">
+
+    <div class="form-group required">
+        <label for="apellido" class="col-md-2 control-label">Apellido</label>
+        <div class="col-md-10">
+            <input class="form-control" type="text" name="apellido" id="apellido" placeholder="Apellido" value = "<?php //print $view->client->getApellido() ?>">
+        </div>
     </div>
-    <br>
+
+
     <div class="form-group">
             <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
             <button class="btn btn-primary btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>

@@ -1,14 +1,16 @@
 <?php
 
+$GLOBALS['ini'] = parse_ini_file('app.ini');
+
 class Conexion  // se declara una clase para hacer la conexion con la base de datos
 {
     var $con;
     function __construct(){
         // se definen los datos del servidor de base de datos
-        $servername = "10.15.34.57"; //host
-        $username = "root"; //usuario
-        $password = ""; //password
-        $dbname = "gestion"; //base de datos
+        $servername = $GLOBALS['ini']['db_server'];
+        $username = $GLOBALS['ini']['db_user'];
+        $password = $GLOBALS['ini']['db_password'];
+        $dbname = $GLOBALS['ini']['db_name'];
 
         try{
             //crea la conexion pasandole el servidor , usuario y clave

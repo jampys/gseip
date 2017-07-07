@@ -3,14 +3,14 @@
 $(document).ready(function(){ //cuando el html fue cargado iniciar
 
 
-    // override jquery validate plugin defaults
-    // https://stackoverflow.com/questions/18754020/bootstrap-3-with-jquery-validation-plugin
     $.validator.setDefaults({
         highlight: function(element) {
-            $(element).closest('.form-group').addClass('has-error');
+            //$(element).closest('.form-group').addClass('has-error');
+            $(element).closest('.form-group').removeClass('has-success has-feedback').addClass('has-error has-feedback');
         },
         unhighlight: function(element) {
-            $(element).closest('.form-group').removeClass('has-error');
+            //$(element).closest('.form-group').removeClass('has-error');
+            $(element).closest('.form-group').removeClass('has-error has-feedback').addClass('has-success has-feedback');
         },
         errorElement: 'span',
         errorClass: 'help-block',
@@ -22,7 +22,6 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             }
         }
     });
-
 
 
 
