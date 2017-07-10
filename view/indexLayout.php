@@ -19,8 +19,8 @@
 
 
 
-
 </head>
+
 <body>
 
 <?php require_once('templates/header.php'); ?>
@@ -29,12 +29,8 @@
 <div class="container">
 
 
-    <div class="row">
-
-        <div id="content" class="col-md-8 col-md-offset-2">
-            <?php //include_once ($view->contentTemplate);  ?>
-        </div>
-
+    <div id="content" class="row">
+        <?php //include_once ($view->contentTemplate);  ?>
     </div>
 
 </div>

@@ -137,8 +137,8 @@
 
 
 </head>
-<body style="padding-top: 0px">
-    <!--<div id ="block"></div>-->
+<body>
+
 
     <?php require_once('templates/header.php'); ?>
 
@@ -146,17 +146,13 @@
     <div class="container">
         <br/>
 
-        <div id="popupbox"></div>
-
-        <div class="row">
-
-            <div id="content" class="col-md-8 col-md-offset-2">
-                <?php include_once ($view->contentTemplate); // incluyo el template que corresponda ?>
-            </div>
-
+        <div id="container" class="row">
+            <?php include_once ($view->contentTemplate);  ?>
         </div>
 
     </div>
+
+    <div id="popupbox"></div>
 
 
 
