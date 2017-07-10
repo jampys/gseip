@@ -37,6 +37,10 @@
 
 </script>
 
+<div class="col-md-2"></div>
+
+<div class="col-md-8">
+
     <h3><strong>Empleados</strong></h3>
 
     <div class="table-responsive">
@@ -68,17 +72,21 @@
 
     </div>
 
+</div>
+
+<div class="col-md-2"></div>
+
 
 <div id="confirm">
     <div class="modal-body">
         ¿Desea eliminar el cliente?
     </div>
+</div>
 
     <!--<button type="button" class="btn btn-primary" id="delete">Delete</button>
     <button type="button" class="btn btn-primary">Cancel</button>-->
 
-    <div id="myElemento" style="display:none">
-
+<div id="myElemento" style="display:none">
 
 </div>
 
