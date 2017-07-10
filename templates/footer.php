@@ -1,4 +1,4 @@
-<footer>
+<!--<footer>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid text-center">
@@ -6,4 +6,11 @@
         </div>
     </nav>
 
+</footer>-->
+
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Copyright &copy; SEIP SRL 2017 Todos los derechos reservados</p>
+    </div>
 </footer>
