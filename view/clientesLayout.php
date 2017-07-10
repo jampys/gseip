@@ -144,7 +144,6 @@
 
 
     <div class="container">
-        <br/>
 
         <div id="container" class="row">
             <?php include_once ($view->contentTemplate);  ?>
