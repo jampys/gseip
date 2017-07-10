@@ -1,3 +1,9 @@
+
+<div class="col-md-4"></div>
+
+
+<div class="col-md-4">
+
 <form name ="client" id="client" method="POST" action="index.php">
 
     <div class="form-group">
@@ -6,7 +12,7 @@
     </div>
     <div class="form-group">
         <label for="contraseña">Contraseña</label>
-        <input class="form-control" type="text" name="contraseña" id="contraseña" placeholder="Contraseña   " >
+        <input class="form-control" type="password" name="contraseña" id="contraseña" placeholder="Contraseña" >
     </div>
 
     <div class="form-group">
@@ -14,6 +20,8 @@
     </div>
 </form>
 
-<div id="myElem" style="display:none">
-
 </div>
+
+
+<div class="col-md-4"></div>
+

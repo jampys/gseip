@@ -64,25 +64,17 @@
 
 
 </head>
-<body style="padding-top: 0px">
+<body>
+
 
 
 <div class="container">
 
 
-    <div class="row" style="margin-top: 50px">
-
-        <div id="content" class="col-md-4 col-md-offset-4">
-            <?php include_once ($view->contentTemplate); // incluyo el template que corresponda ?>
-        </div>
-
+    <div id="content" class="row">
+        <?php include_once ($view->contentTemplate);  ?>
     </div>
 
-</div>
-
-
-
-<?php require_once('templates/footer.php'); ?>
 
 </div>
 
