@@ -145,7 +145,7 @@
 
     <div class="container">
 
-        <div id="container" class="row">
+        <div id="content" class="row">
             <?php include_once ($view->contentTemplate);  ?>
         </div>
 
