@@ -93,12 +93,15 @@
 
     <!--<button type="button" class="btn btn-primary" id="delete">Delete</button>
     <button type="button" class="btn btn-primary">Cancel</button>-->
+
+    <div id="myElemento" style="display:none">
+
+    </div>
+    
 </div>
 
 
-<div id="myElemento" style="display:none">
 
-</div>
 
 
 

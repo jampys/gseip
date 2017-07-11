@@ -128,7 +128,7 @@
                         $("#myElemento").html('Error al eliminar el cliente').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElemento").hide();
-                                            $('#confirm').dialog('close');
+                                            //$('#confirm').dialog('close');
                                           }, 2000);
 
                 });
