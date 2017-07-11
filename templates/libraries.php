@@ -30,6 +30,18 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
+    <script type="text/javascript">
+        var datepicker = $.fn.datepicker.noConflict(); // return $.fn.datepicker to previously assigned value
+        $.fn.bootstrapDP = datepicker;                 // give $().bootstrapDP the bootstrap-datepicker functionality
+    </script>
+
+
+
+    <!-- bootstrap-datepicker-->
+    <link type="text/css" href="bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
+    <script src="bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
+
 
     <!-- librerias css propias -->
     <link rel="stylesheet" href="resources/css/dario.css">

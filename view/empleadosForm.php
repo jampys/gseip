@@ -48,7 +48,7 @@
 
     <div class="form-group">
             <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
-            <button class="btn btn-primary btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
+            <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
 
     </div>
 

@@ -122,7 +122,7 @@
                             click: function() {
                                 $(this).dialog("close");
                             },
-                            class:"btn btn-danger"
+                            class:"btn btn-default"
                         }
 
                     ]

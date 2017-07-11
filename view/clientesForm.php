@@ -23,8 +23,10 @@
 
 
         $('#fecha').datepicker({
-            inline: true
-            ,dateFormat:"dd/mm/yy"
+            //inline: true
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
         });
 
 
@@ -60,8 +62,15 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="fecha">Fecha</label>
-                        <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->client->getFecha() ?>">
-                        <p class="help-block"> dd/mm/yyyy </p>
+
+                        <!--<input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->client->getFecha() ?>">
+                        <p class="help-block"> dd/mm/yyyy </p>-->
+                        <div class="input-group date">
+                            <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->client->getFecha() ?>">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="peso">Peso</label>
@@ -85,7 +94,7 @@
                 <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>-->
                 <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
-                <button class="btn btn-primary btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
 
             </div>
         </div>
