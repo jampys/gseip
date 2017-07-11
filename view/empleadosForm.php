@@ -20,6 +20,12 @@
 </script>
 
 
+<div class="col-md-3"></div>
+
+
+
+<div class="col-md-6">
+
 <h3><strong><?php echo $view->label ?></strong></h3>
 
 <form class="form-horizontal" name ="client" id="client" method="POST" action="index.php">
@@ -52,6 +58,13 @@
 <div id="myElem" style="display:none">
 
 </div>
+
+</div>
+
+
+
+
+<div class="col-md-3"></div>
 
 
 
