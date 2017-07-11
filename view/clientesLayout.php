@@ -12,9 +12,9 @@
 
         $(document).ready(function(){
 
-            $('#popupbox').dialog({
+            /*$('#popupbox').dialog({
                 autoOpen:false
-            });
+            });*/
 
 
             //añado la posibilidad de editar al presionar sobre edit
@@ -28,7 +28,8 @@
                 params.action = "clientes";
                 params.operation = "editClient";
                 $('#popupbox').load('index.php', params,function(){
-                    $('#popupbox').dialog({title:"Editar cliente"}).dialog('open');
+                    //$('#popupbox').dialog({title:"Editar cliente"}).dialog('open');
+                    $('#myModal').modal();
                 })
 
             });
@@ -42,7 +43,8 @@
                 params.action = "clientes";
                 params.operation="newClient";
                 $('#popupbox').load('index.php', params,function(){
-                    $('#popupbox').dialog({title:"Nuevo cliente"}).dialog('open');
+                    //$('#popupbox').dialog({title:"Nuevo cliente"}).dialog('open');
+                    $('#myModal').modal();
                 })
             });
 
@@ -69,7 +71,9 @@
                             $("#myElem").html('Error al guardar el cliente').addClass('alert alert-danger').show();
                         }
                         setTimeout(function() { $("#myElem").hide();
-                            $('#popupbox').dialog('close');}, 2000);
+                                                //$('#popupbox').dialog('close');
+                                                $('#myModal').modal('hide');
+                                              }, 2000);
 
                     });
 
@@ -81,7 +85,8 @@
             // boton cancelar, uso live en lugar de bind para que tome cualquier boton
             // nuevo que pueda aparecer
             $(document).on('click', '#cancel',function(){
-                $('#popupbox').dialog('close');
+                //$('#popupbox').dialog('close');
+                $('#myModal').modal('hide');
             });
 
 
@@ -123,7 +128,8 @@
                         $("#myElemento").html('Error al eliminar el cliente').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElemento").hide();
-                        $('#confirm').dialog('close');}, 2000);
+                                            $('#confirm').dialog('close');
+                                          }, 2000);
 
                 });
 
