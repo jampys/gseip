@@ -105,9 +105,28 @@
              });*/
 
 
+
             $(document).on('click', '.delete', function(){
-                //$('#confirm').dialog('open');
-                $("#confirm").data('id', $(this).attr('data-id')).dialog("open");
+                var id = $(this).attr('data-id');
+                $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
+                    buttons: [
+                        {
+                            text: "Aceptar",
+                            click: function() {
+                                $.fn.borrar(id);
+                            },
+                            class:"btn btn-danger"
+                        },
+                        {
+                            text: "Cancelar",
+                            click: function() {
+                                $(this).dialog("close");
+                            },
+                            class:"btn btn-danger"
+                        }
+
+                    ]
+                }).dialog('open');
                 return false;
             });
 
@@ -128,7 +147,7 @@
                         $("#myElemento").html('Error al eliminar el cliente').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElemento").hide();
-                                            //$('#confirm').dialog('close');
+                                            $('#confirm').dialog('close');
                                           }, 2000);
 
                 });
