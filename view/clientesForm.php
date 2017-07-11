@@ -54,11 +54,11 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->client->getNombre() ?>">
+                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->client->getNombre() ?>" placeholder="Nombre">
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="apellido">Apellido</label>
-                        <input class="form-control" type="text" name="apellido" id="apellido"value = "<?php print $view->client->getApellido() ?>">
+                        <input class="form-control" type="text" name="apellido" id="apellido"value = "<?php print $view->client->getApellido() ?>" placeholder="Apellido">
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="fecha">Fecha</label>
@@ -66,7 +66,7 @@
                         <!--<input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->client->getFecha() ?>">
                         <p class="help-block"> dd/mm/yyyy </p>-->
                         <div class="input-group date">
-                            <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->client->getFecha() ?>">
+                            <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->client->getFecha() ?>" placeholder="Fecha">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="peso">Peso</label>
-                        <input class="form-control" type="text" name="peso" id="peso" value = "<?php print $view->client->getPeso() ?>">
+                        <input class="form-control" type="text" name="peso" id="peso" value = "<?php print $view->client->getPeso() ?>" placeholder="Peso">
                     </div>
                     <!--<div class="form-group">
                         <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>

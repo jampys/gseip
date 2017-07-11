@@ -1,3 +1,8 @@
+<!-- estas librerias se encontraban referenciadas en libraries.php pero fueron excluidas por generar conflico
+     con bootstrap
+-->
+
+
 <!-- jquery ui bootstrap -->
 <!-- Le styles -->
 <link rel="stylesheet" href="jquery-ui-bootstrap/assets/css/bootstrap.min.css">
