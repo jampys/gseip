@@ -50,3 +50,10 @@ body > .container {
 code {
     font-size: 80%;
 }
+
+
+
+/* configuracion personalizada de dataTables */
+.dataTables_wrapper { font-size: 13px } /*tamaño del header y paginacion abajo */
+table.dataTable td { font-size: 13px }
+table.dataTable th { font-size: 14px }
