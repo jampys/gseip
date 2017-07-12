@@ -57,3 +57,18 @@ code {
 .dataTables_wrapper { font-size: 13px } /*tamaño del header y paginacion abajo */
 table.dataTable td { font-size: 13px }
 table.dataTable th { font-size: 14px }
+
+
+
+
+/* configuracion personalizada de bootstrap-datepicker */
+ .datepicker-days tbody tr td,
+ .datepicker-days tbody tr th,
+ .datepicker-days tfoot tr td,
+ .datepicker-days tfoot tr th,
+ .datepicker-days thead tr td,
+ .datepicker-days thead tr th {
+     font-size: 13px;
+     padding: 2px;
+     width: 20px;
+     height: 20px}
