@@ -14,6 +14,13 @@
             }
         });
 
+        $('#fecha_nacimiento').datepicker({
+            //inline: true
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
+
 
     });
 
@@ -32,21 +39,85 @@
     <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
 
     <div class="form-group required">
-        <label for="nombre" class="col-md-2 control-label">Nombre</label>
-        <div class="col-md-10">
+        <label for="nombre" class="col-md-4 control-label">Nombre</label>
+        <div class="col-md-8">
             <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php //print $view->client->getNombre() ?>">
         </div>
     </div>
 
     <div class="form-group required">
-        <label for="apellido" class="col-md-2 control-label">Apellido</label>
-        <div class="col-md-10">
+        <label for="apellido" class="col-md-4 control-label">Apellido</label>
+        <div class="col-md-8">
             <input class="form-control" type="text" name="apellido" id="apellido" placeholder="Apellido" value = "<?php //print $view->client->getApellido() ?>">
         </div>
     </div>
 
+    <div class="form-group required">
+        <label for="documento" class="col-md-4 control-label">Nro.documento</label>
+        <div class="col-md-8">
+            <input class="form-control" type="text" name="documento" id="documento" placeholder="Nro. documento" value = "<?php //print $view->client->getApellido() ?>">
+        </div>
+    </div>
 
-    <div class="form-group">
+    <div class="form-group required">
+        <label for="cuil" class="col-md-4 control-label">CUIL</label>
+        <div class="col-md-8">
+            <input class="form-control" type="text" name="cuil" id="cuil" placeholder="CUIL" value = "<?php //print $view->client->getApellido() ?>">
+        </div>
+    </div>
+
+    <div class="form-group required">
+        <label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>
+        <div class="col-md-8">
+            <div class="input-group date">
+                <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php //print $view->client->getFecha() ?>" placeholder="Fecha nacimiento">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group required">
+        <label class="col-md-4 control-label" for="fecha">Fecha alta</label>
+        <div class="col-md-8">
+            <div class="input-group date">
+                <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php //print $view->client->getFecha() ?>" placeholder="Fecha alta">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group required">
+        <label class="col-md-4 control-label" for="fecha">Fecha baja</label>
+        <div class="col-md-8">
+            <div class="input-group date">
+                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php //print $view->client->getFecha() ?>" placeholder="Fecha baja">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group required">
+        <label for="domicilio" class="col-md-4 control-label">Domicilio</label>
+        <div class="col-md-8">
+            <input class="form-control" type="text" name="domicilio" id="domicilio" placeholder="Domicilio" value = "<?php //print $view->client->getApellido() ?>">
+        </div>
+    </div>
+
+    <div class="form-group required">
+        <label for="telefono" class="col-md-4 control-label">Teléfono</label>
+        <div class="col-md-8">
+            <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Teléfono" value = "<?php //print $view->client->getApellido() ?>">
+        </div>
+    </div>
+
+
+    <div class="button-group pull-right">
             <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
             <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
 
