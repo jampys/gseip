@@ -116,6 +116,13 @@
         </div>
     </div>
 
+    <div class="form-group required">
+        <label for="email" class="col-md-4 control-label">Email</label>
+        <div class="col-md-8">
+            <input class="form-control" type="text" name="email" id="email" placeholder="Email" value = "<?php //print $view->client->getApellido() ?>">
+        </div>
+    </div>
+
 
     <div class="button-group pull-right">
             <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
