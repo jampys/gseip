@@ -24,6 +24,14 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
     });
 
 
+    /* para dataTables: elimina el estado de una tabla ("stateSave": true) al salir de la pantalla */
+    $(document).on("click", "#myNavbar ul li a", function(){
+        //$('#example').DataTable().state.clear();
+        $('table.dataTable').DataTable().state.clear();
+    });
+
+
+
 
 
 

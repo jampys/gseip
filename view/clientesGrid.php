@@ -7,6 +7,7 @@
             /*language: {
                 url: 'dataTables/Spanish.json'
             }*/
+            "stateSave": true
         });
 
 
