@@ -56,7 +56,7 @@
                 <form name ="client" id="client" method="POST" action="index.php">
                     <input type="hidden" name="id" id="id" value="<?php print $view->client->getId() ?>">
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->client->getNombre() ?>" placeholder="Nombre">
                     </div>

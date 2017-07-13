@@ -5,10 +5,21 @@
 }*/
 
 
+/* Agrega asterisco al lado del label en los campos requeridos */
 .form-group.required .control-label:after {
     content:"*";
-    color:red;
+    color: #d9534f!important;
 }
+
+/* modifica estilo a color rojo del tooltip de jquery-validate.bootstrap-tooltip, ya que por defecto es de color negro */
+.has-error .tooltip.top .tooltip-inner {
+    background-color: #d9534f!important;
+}
+.has-error .tooltip.top .tooltip-arrow {
+    border-top-color: #d9534f!important;
+}
+
+
 
 
 /* Sticky footer styles
@@ -29,11 +40,6 @@ body {
     height: 60px;
     background-color: #f5f5f5;
 }
-
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
 
 body > .container {
     padding: 60px 15px 0;
@@ -72,3 +78,8 @@ table.dataTable th { font-size: 14px }
      padding: 2px;
      width: 20px;
      height: 20px}
+
+
+
+
+
