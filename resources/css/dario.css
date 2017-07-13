@@ -8,16 +8,16 @@
 /* Agrega asterisco al lado del label en los campos requeridos */
 .form-group.required .control-label:after {
     content:"*";
-    color: #d9534f!important;
+    color: #a94442;
 }
 
-/* modifica estilo a color rojo del tooltip de jquery-validate.bootstrap-tooltip, ya que por defecto es de color negro
+/* modifica estilo a color rojo del tooltip de jquery-validate.bootstrap-tooltip, ya que por defecto es de color negro */
 .has-error .tooltip.top .tooltip-inner {
-    background-color: #d9534f!important;
+    background-color: #a94442;
 }
 .has-error .tooltip.top .tooltip-arrow {
-    border-top-color: #d9534f!important;
-}*/
+    border-top-color: #a94442;
+}
 
 
 

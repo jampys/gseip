@@ -3,15 +3,14 @@
 $(document).ready(function(){ //cuando el html fue cargado iniciar
 
 
+    /* para el plug-in jquery validation: cuando se produce un error, agrega la clase de bootstrap has-error para pintar el borde del input  y el label de rojo */
     $.validator.setDefaults({
         highlight: function(element) {
-            //$(element).closest('.form-group').addClass('has-error');
-            $(element).closest('.form-group').removeClass('has-success has-feedback').addClass('has-error has-feedback');
+            $(element).closest('.form-group').addClass('has-error');
         },
         unhighlight: function(element) {
-            //$(element).closest('.form-group').removeClass('has-error');
-            $(element).closest('.form-group').removeClass('has-error has-feedback').addClass('has-success has-feedback');
-        },
+            $(element).closest('.form-group').removeClass('has-error');
+        }/*,
         errorElement: 'span',
         errorClass: 'help-block',
         errorPlacement: function(error, element) {
@@ -20,7 +19,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             } else {
                 error.insertAfter(element);
             }
-        }
+        }*/
     });
 
 
