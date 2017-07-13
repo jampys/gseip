@@ -11,13 +11,13 @@
     color: #d9534f!important;
 }
 
-/* modifica estilo a color rojo del tooltip de jquery-validate.bootstrap-tooltip, ya que por defecto es de color negro */
+/* modifica estilo a color rojo del tooltip de jquery-validate.bootstrap-tooltip, ya que por defecto es de color negro
 .has-error .tooltip.top .tooltip-inner {
     background-color: #d9534f!important;
 }
 .has-error .tooltip.top .tooltip-arrow {
     border-top-color: #d9534f!important;
-}
+}*/
 
 
 

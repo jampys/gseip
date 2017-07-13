@@ -12,15 +12,16 @@
 
         $('#client').validate({
             rules: {
-                nombre: {
-                    required: true
-                }
+                nombre: {required: true},
+                apellido: {required: true}
             },
             messages:{
-                nombre: "Ingrese su nombre"
+                nombre: "Ingrese su nombre",
+                apellido: "Ingrese su apellido"
             },
             tooltip_options: {
-                nombre: {trigger:'focus'}
+                nombre: {trigger:'focus'},
+                apellido: {trigger:'focus'}
 
             }
         });
@@ -60,7 +61,7 @@
                         <label class="control-label" for="nombre">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->client->getNombre() ?>" placeholder="Nombre">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label" for="apellido">Apellido</label>
                         <input class="form-control" type="text" name="apellido" id="apellido"value = "<?php print $view->client->getApellido() ?>" placeholder="Apellido">
                     </div>

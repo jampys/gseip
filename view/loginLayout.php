@@ -14,7 +14,7 @@
 
 
             $(document).on('click', '#ingresar',function(){
-                //if ($("#client").valid()){
+                if ($("#login_form").valid()){
                     //alert('ingresar');
                     var params={};
                     params.action='login';
@@ -47,7 +47,7 @@
 
                     });
 
-                //}
+                }
                 return false;
             });
 
