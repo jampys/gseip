@@ -5,12 +5,17 @@
 
         $('#client').validate({
             rules: {
-                nombre: {
-                    required: true
-                }
+                nombre: {required: true},
+                apellido: {required: true}
             },
             messages:{
-                nombre: "Ingrese su nombre"
+                nombre: "Ingrese su nombre",
+                apellido: "Ingrese su apellido"
+            },
+            tooltip_options: {
+                nombre: {trigger:'focus'},
+                apellido: {trigger:'focus'}
+
             }
         });
 
