@@ -1,3 +1,9 @@
+<style>
+    #brand-image{
+        height: 120%;
+    }
+</style>
+
 <header>
 
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -8,7 +14,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">SEIP</a>
+                <a class="navbar-brand" href="index.php">
+                    <img id="brand-image" src="resources/img/seip140x40.png">
+                </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">

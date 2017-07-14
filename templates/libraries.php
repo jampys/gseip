@@ -1,7 +1,9 @@
 
-    <title>SEIP</title>
+    <title>Gestión SEIP</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="shortcut icon" href="resources/img/seip_favicon50x50.png">
 
 <!-- incluyo la libreria jQuery -->
     <script src="dataTables/js/jquery-1.12.4.js" type="text/javascript"></script>
