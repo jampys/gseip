@@ -1,3 +1,12 @@
+<style>
+    #brand-image{
+        height: 120%;
+    }
+
+</style>
+
+
+
 <script type="text/javascript">
 
 
@@ -35,6 +44,19 @@
 
 
 <div class="col-md-4">
+
+
+        <nav class="navbar navbar-default col-md-12">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.php" style="padding-left: 0">
+                        <img id="brand-image" src="resources/img/seip140x40.png">
+                    </a>
+                </div>
+
+        </nav>
+
+
+
 
 <form name ="login_form" id="login_form" method="POST" action="index.php">
 
