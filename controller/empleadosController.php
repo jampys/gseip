@@ -43,9 +43,9 @@ switch ($operation)
         break;
 
     case 'editEmpleado':
-        //$editId=intval($_POST['id']);
+        $editId=intval($_POST['id']);
         $view->label='Editar Empleado';
-        //$view->client=new Cliente($editId);
+        $view->empleado = new Empleado($editId);
         $view->disableLayout=true;
         $view->contentTemplate="view/EmpleadosForm.php"; // seteo el template que se va a mostrar
         break;

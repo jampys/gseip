@@ -38,9 +38,9 @@
 
 </script>
 
-<div class="col-md-2"></div>
+<div class="col-md-1"></div>
 
-<div class="col-md-8">
+<div class="col-md-10">
 
     <h3><strong>Empleados</strong></h3>
 
@@ -53,19 +53,27 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>Nombre</th>
+                <th>Leg.</th>
                 <th>Apellido</th>
+                <th>Nombre</th>
+                <th>CUIL</th>
+                <th>Fecha alta</th>
+                <th>Fecha baja</th>
+                <th>Lugar res.</th>
                 <th>Editar</th>
-                <th>Eliminar</th>
             </tr>
             </thead>
             <tbody>
             <?php foreach ($view->empleados as $empleado): ?>
                 <tr>
-                    <td><?php echo $empleado['nombre'];?></td>
+                    <td><?php echo $empleado['legajo'];?></td>
                     <td><?php echo $empleado['apellido'];?></td>
+                    <td><?php echo $empleado['nombre'];?></td>
+                    <td><?php echo $empleado['cuil'];?></td>
+                    <td><?php echo $empleado['fecha_alta'];?></td>
+                    <td><?php echo $empleado['fecha_baja'];?></td>
+                    <td><?php echo $empleado['lugar_residencia'];?></td>
                     <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -75,7 +83,7 @@
 
 </div>
 
-<div class="col-md-2"></div>
+<div class="col-md-1"></div>
 
 
 <div id="confirm">

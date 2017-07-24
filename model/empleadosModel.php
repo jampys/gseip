@@ -129,29 +129,38 @@ class Empleado
 
     public static function getEmpleados() {
 			$stmt=new sQuery();
-            //$query="select id, nombre, apellido, DATE_FORMAT(fecha_nac,  '%d/%m/%Y') as fecha_nac, peso from clientes";
-            $query="select * from empleados";
+            $query = "select id_empleado, apellido, nombre, documento, cuil,
+                      DATE_FORMAT(fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
+                      DATE_FORMAT(fecha_alta,  '%d/%m/%Y') as fecha_alta,
+                      DATE_FORMAT(fecha_baja,  '%d/%m/%Y') as fecha_baja,
+                      domicilio, telefono, email, tipo,
+                      lr.ciudad as lugar_residencia,
+                      lugar_trabajo,
+                      sexo, nacionalidad, estado_civil, CPA, legajo
+                      from empleados em, localidades lr
+                      where em.lugar_residencia = lr.id_localidad";
             $stmt->dpPrepare($query);
             $stmt->dpExecute();
             return $stmt->dpFetchAll();
 		}
 
-	function Cliente($nro=0){ // declara el constructor, si trae el numero de cliente lo busca , si no, trae todos los clientes
+	function Empleado($id_empleado=0){ // declara el constructor, si trae el numero de cliente lo busca , si no, trae todos los clientes
 
-		if ($nro!=0){
+		if ($id_empleado!=0){
 
             $stmt=new sQuery();
-            $query="select id, nombre, apellido, DATE_FORMAT(fecha_nac,  '%d/%m/%Y') as fecha_nac, peso from clientes where id = :nro";
+            $query="select legajo, nombre, apellido, DATE_FORMAT(fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento
+                    from empleados where id_empleado = :id_empleado";
             $stmt->dpPrepare($query);
-            $stmt->dpBind(':nro', $nro);
+            $stmt->dpBind(':id_empleado', $id_empleado);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setID($rows[0]['id']);
+            $this->setIdEmpleado($rows[0]['id_empleado']);
             $this->setNombre($rows[0]['nombre']);
             $this->setApellido($rows[0]['apellido']);
-            $this->setFecha($rows[0]['fecha_nac']);
-            $this->setPeso($rows[0]['peso']);
+            $this->setFechaNacimiento($rows[0]['fecha_nacimiento']);
+
 		}
 	}
 		

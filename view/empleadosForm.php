@@ -41,26 +41,26 @@
 <h3><strong><?php echo $view->label ?></strong></h3>
 
 <form class="form-horizontal" name ="client" id="client" method="POST" action="index.php">
-    <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
+    <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
 
     <div class="form-group required">
         <label for="nombre" class="col-md-4 control-label">Nombre</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php //print $view->client->getNombre() ?>">
+            <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->empleado->getNombre() ?>">
         </div>
     </div>
 
     <div class="form-group required">
         <label for="apellido" class="col-md-4 control-label">Apellido</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="apellido" id="apellido" placeholder="Apellido" value = "<?php //print $view->client->getApellido() ?>">
+            <input class="form-control" type="text" name="apellido" id="apellido" placeholder="Apellido" value = "<?php print $view->empleado->getApellido() ?>">
         </div>
     </div>
 
     <div class="form-group required">
         <label for="documento" class="col-md-4 control-label">Nro.documento</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="documento" id="documento" placeholder="Nro. documento" value = "<?php //print $view->client->getApellido() ?>">
+            <input class="form-control" type="text" name="documento" id="documento" placeholder="Nro. documento" value = "<?php print $view->empleado->getDocumento() ?>">
         </div>
     </div>
 

@@ -26,7 +26,7 @@
                 params={};
                 params.id=id;
                 params.action = "empleados";
-                params.operation = "editClient";
+                params.operation = "editEmpleado";
                 $('#content').load('index.php', params,function(){
                     //$('#popupbox').dialog({title:"Editar cliente"}).dialog('open');
                 })
