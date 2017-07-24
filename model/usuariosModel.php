@@ -35,7 +35,7 @@ class Usuario{
 
 
         $stmt=new sQuery();
-        $query="select * from sec_usuarios where usuario = :usuario and password = :password";
+        $query="select * from sec_usuarios where usuario = :usuario and password = md5(:password)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':usuario', $usuario);
         $stmt->dpBind(':password', $password);
