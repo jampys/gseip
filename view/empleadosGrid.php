@@ -44,12 +44,12 @@
 
     <h3><strong>Empleados</strong></h3>
 
+    <div style="text-align: right; margin-bottom: 10px">
+        <button class="btn btn-primary btn-sm" type="button" id="new" >Nuevo Empleado</button>
+    </div>
+
     <div class="table-responsive">
 
-        <div class="btn-group pull-right">
-            <button class="btn btn-primary btn-sm" type="button" id="new" >Nuevo Empleado</button>
-        </div>
-        <br/>
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>

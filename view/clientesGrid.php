@@ -28,13 +28,12 @@
 
     <h3><strong>Clientes</strong></h3>
 
+    <div style="text-align: right; margin-bottom: 10px">
+        <button  id="new" type="button" class="btn btn-primary btn-sm">Nuevo Cliente</button>
+    </div>
+
     <div class="table-responsive">
 
-        <div class="btn-group pull-right">
-            <!--<button type="button" class="btn btn-primary btn-sm">Primary</button>-->
-            <input id="new" class="btn btn-primary btn-sm" type="button" value="Nuevo Cliente">
-        </div>
-        <br/>
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
