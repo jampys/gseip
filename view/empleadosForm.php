@@ -44,6 +44,13 @@
     <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
 
     <div class="form-group required">
+        <label for="legajo" class="col-md-4 control-label">Legajo</label>
+        <div class="col-md-8">
+            <input class="form-control" type="text" name="legajo" id="legajo" placeholder="Legajo" value = "<?php print $view->empleado->getLegajo() ?>">
+        </div>
+    </div>
+
+    <div class="form-group required">
         <label for="nombre" class="col-md-4 control-label">Nombre</label>
         <div class="col-md-8">
             <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->empleado->getNombre() ?>">
@@ -67,7 +74,7 @@
     <div class="form-group required">
         <label for="cuil" class="col-md-4 control-label">CUIL</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="cuil" id="cuil" placeholder="CUIL" value = "<?php //print $view->client->getApellido() ?>">
+            <input class="form-control" type="text" name="cuil" id="cuil" placeholder="CUIL" value = "<?php print $view->empleado->getCuil() ?>">
         </div>
     </div>
 
@@ -75,7 +82,7 @@
         <label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>
         <div class="col-md-8">
             <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php //print $view->client->getFecha() ?>" placeholder="Fecha nacimiento">
+                <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php print $view->empleado->getFechaNacimiento() ?>" placeholder="Fecha nacimiento">
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -87,7 +94,7 @@
         <label class="col-md-4 control-label" for="fecha">Fecha alta</label>
         <div class="col-md-8">
             <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php //print $view->client->getFecha() ?>" placeholder="Fecha alta">
+                <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print $view->empleado->getFechaAlta() ?>" placeholder="Fecha alta">
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -95,11 +102,11 @@
         </div>
     </div>
 
-    <div class="form-group required">
+    <div class="form-group">
         <label class="col-md-4 control-label" for="fecha">Fecha baja</label>
         <div class="col-md-8">
             <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php //print $view->client->getFecha() ?>" placeholder="Fecha baja">
+                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->empleado->getFechaBaja() ?>" placeholder="Fecha baja">
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -110,23 +117,70 @@
     <div class="form-group required">
         <label for="domicilio" class="col-md-4 control-label">Domicilio</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="domicilio" id="domicilio" placeholder="Domicilio" value = "<?php //print $view->client->getApellido() ?>">
+            <input class="form-control" type="text" name="domicilio" id="domicilio" placeholder="Domicilio" value = "<?php print $view->empleado->getDomicilio() ?>">
         </div>
     </div>
+
+
+    <div class="form-group required">
+        <label for="localidad" class="col-md-4 control-label">Localidad:</label>
+        <div class="col-md-8">
+        <select class="form-control" id="localidad" name="localidad">
+            <option value="" disabled selected>Seleccione la localidad</option>
+            <?php foreach ($view->localidades as $loc){
+                ?>
+                <option value="<?php echo $loc['id_localidad']; ?>"
+                               <?php echo ($loc['id_localidad'] == $view->empleado->getLugarResidencia())? 'selected' :'' ?>
+                                >
+                               <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
+                </option>
+            <?php  } ?>
+        </select>
+            </div>
+    </div>
+
+
+
 
     <div class="form-group required">
         <label for="telefono" class="col-md-4 control-label">Teléfono</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Teléfono" value = "<?php //print $view->client->getApellido() ?>">
+            <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Teléfono" value = "<?php print $view->empleado->getTelefono() ?>">
         </div>
     </div>
 
     <div class="form-group required">
         <label for="email" class="col-md-4 control-label">Email</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="email" id="email" placeholder="Email" value = "<?php //print $view->client->getApellido() ?>">
+            <input class="form-control" type="text" name="email" id="email" placeholder="Email" value = "<?php print $view->empleado->getEmail() ?>">
         </div>
     </div>
+
+
+
+    <div class="form-group required">
+        <label for="sexo" class="col-md-4 control-label">Sexo:</label>
+        <div class="col-md-8">
+
+            <?php foreach($view->sexos as $val){ ?>
+                <label class="radio-inline">
+                    <input type="radio" name="sexo"
+                        <?php echo ($val == $view->empleado->getSexo())? 'checked' :'' ?>
+                    ><?php echo $val ?>
+                </label>
+            <?php } ?>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
 
 
     <div class="button-group pull-right">

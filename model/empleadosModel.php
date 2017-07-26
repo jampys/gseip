@@ -4,6 +4,7 @@
 class Empleado
 {
     private $id_empleado;
+    private $legajo;
     private $apellido;
 	private $nombre;
 	private $documento;
@@ -25,6 +26,9 @@ class Empleado
     //GETTERS
     function getIdEmpleado()
     { return $this->id_empleado;}
+
+    function getLegajo()
+    { return $this->legajo;}
 
     function getApellido()
     { return $this->apellido;}
@@ -78,6 +82,9 @@ class Empleado
     function setIdEmpleado($val)
     { $this->id_empleado=$val;}
 
+    function setLegajo($val)
+    { $this->legajo=$val;}
+
     function setApellido($val)
     { $this->apellido=$val;}
 
@@ -129,14 +136,14 @@ class Empleado
 
     public static function getEmpleados() {
 			$stmt=new sQuery();
-            $query = "select id_empleado, apellido, nombre, documento, cuil,
+            $query = "select id_empleado, legajo, apellido, nombre, documento, cuil,
                       DATE_FORMAT(fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
                       DATE_FORMAT(fecha_alta,  '%d/%m/%Y') as fecha_alta,
                       DATE_FORMAT(fecha_baja,  '%d/%m/%Y') as fecha_baja,
                       domicilio, telefono, email, tipo,
                       lr.ciudad as lugar_residencia,
                       lugar_trabajo,
-                      sexo, nacionalidad, estado_civil, CPA, legajo
+                      sexo, nacionalidad, estado_civil, CPA
                       from empleados em, localidades lr
                       where em.lugar_residencia = lr.id_localidad";
             $stmt->dpPrepare($query);
@@ -144,12 +151,18 @@ class Empleado
             return $stmt->dpFetchAll();
 		}
 
-	function Empleado($id_empleado=0){ // declara el constructor, si trae el numero de cliente lo busca , si no, trae todos los clientes
+	function Empleado($id_empleado = 0){ //constructor, si trae el numero de cliente lo busca , si no, trae todos los clientes
 
-		if ($id_empleado!=0){
+		if ($id_empleado!= 0){
 
             $stmt=new sQuery();
-            $query="select legajo, nombre, apellido, DATE_FORMAT(fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento
+            $query="select id_empleado, legajo, apellido, nombre, documento, cuil,
+                    DATE_FORMAT(fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
+                    DATE_FORMAT(fecha_alta,  '%d/%m/%Y') as fecha_alta,
+                    DATE_FORMAT(fecha_baja,  '%d/%m/%Y') as fecha_baja,
+                    domicilio, telefono, email, tipo,
+                    lugar_residencia,
+                    sexo
                     from empleados where id_empleado = :id_empleado";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':id_empleado', $id_empleado);
@@ -157,9 +170,22 @@ class Empleado
             $rows = $stmt ->dpFetchAll();
 
             $this->setIdEmpleado($rows[0]['id_empleado']);
-            $this->setNombre($rows[0]['nombre']);
+            $this->setLegajo($rows[0]['legajo']);
             $this->setApellido($rows[0]['apellido']);
+            $this->setNombre($rows[0]['nombre']);
+            $this->setDocumento($rows[0]['documento']);
+            $this->setCuil($rows[0]['cuil']);
             $this->setFechaNacimiento($rows[0]['fecha_nacimiento']);
+            $this->setFechaAlta($rows[0]['fecha_alta']);
+            $this->setFechaBaja($rows[0]['fecha_baja']);
+            $this->setDomicilio($rows[0]['domicilio']);
+            $this->setTelefono($rows[0]['telefono']);
+            $this->setEmail($rows[0]['email']);
+
+            $this->setLugarResidencia($rows[0]['lugar_residencia']);
+            $this->setSexo($rows[0]['sexo']);
+
+
 
 		}
 	}
@@ -208,14 +234,12 @@ class Empleado
         $stmt->dpBind(':id', $this->getID());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}	
+	}
+
+
+
+
 	
 }
-function cleanString($string)
-{
-    $string=trim($string);
-    $string=mysql_escape_string($string);
-	$string=htmlspecialchars($string);
-	
-    return $string;
-}
+
+

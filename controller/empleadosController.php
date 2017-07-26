@@ -1,6 +1,8 @@
 ﻿<?php
 
 include_once("model/empleadosModel.php");
+include_once("model/localidadesModel.php");
+
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
 
@@ -34,18 +36,18 @@ switch ($operation)
         exit;
         break;
     case 'newEmpleado':
-        //$view->client=new Cliente();
+        $view->empleado = new Empleado();
         $view->label='Nuevo Empleado';
         $view->disableLayout=true;
         $view->contentTemplate="view/empleadosForm.php"; // seteo el template que se va a mostrar
-        //include_once('view/empleadosForm.php');
-        //exit;
         break;
 
     case 'editEmpleado':
         $editId=intval($_POST['id']);
         $view->label='Editar Empleado';
         $view->empleado = new Empleado($editId);
+        $view->localidades = Localidad::getLocalidades();
+        $view->sexos = Soporte::get_enum_values('empleados', 'sexo');
         $view->disableLayout=true;
         $view->contentTemplate="view/EmpleadosForm.php"; // seteo el template que se va a mostrar
         break;
