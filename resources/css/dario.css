@@ -80,6 +80,13 @@ table.dataTable th { font-size: 14px }
      height: 20px}
 
 
+/* form container */
+.dpForm-container{
+    border-radius: 10px;
+    /*color: #777;*/
+    background-color: #F8F8F8;
 
+
+}
 
 

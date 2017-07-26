@@ -36,7 +36,7 @@
 
 
 
-<div class="col-md-6">
+<div class="col-md-6 dpForm-container">
 
 <h3><strong><?php echo $view->label ?></strong></h3>
 
