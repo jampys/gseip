@@ -48,32 +48,46 @@
 
 
             $(document).on('click', '#submit',function(){
-                if ($("#client").valid()){
+                //if ($("#client").valid()){
                     var params={};
-                    params.action = 'clientes';
-                    params.operation = 'saveClient';
-                    params.id=$('#id').val();
-                    params.nombre=$('#nombre').val();
+                    params.action = 'empleados';
+                    params.operation = 'saveEmpleado';
+                    params.id_empleado=$('#id_empleado').val();
+                    params.legajo=$('#legajo').val();
                     params.apellido=$('#apellido').val();
-                    params.fecha=$('#fecha').val();
-                    params.peso=$('#peso').val();
+                    params.nombre=$('#nombre').val();
+                    params.documento=$('#documento').val();
+                    params.cuil=$('#cuil').val();
+                    params.fecha_nacimiento=$('#fecha_nacimiento').val();
+                    params.fecha_alta=$('#fecha_alta').val();
+                    params.fecha_baja=$('#fecha_baja').val();
+                    params.domicilio=$('#domicilio').val();
+                    params.lugar_residencia=$('#lugar_residencia').val();
+                    params.telefono=$('#telefono').val();
+                    params.email=$('#email').val();
+                    params.sexo=$('input[name=sexo]:checked').val();
+                    params.nacionalidad=$('#nacionalidad').val();
+                    params.estado_civil=$('#estado_civil').val();
+
                     $.post('index.php',params,function(data, status, xhr){
 
                         //alert(data);
                         //var rta= parseInt(data.charAt(3));
                         //alert(rta);
                         if(data >=0){
-                            $("#myElem").html('Cliente guardado con exito').addClass('alert alert-success').show();
-                            $('#content').load('index.php',{action:"clientes", operation:"refreshGrid"});
+                            $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+
                         }else{
-                            $("#myElem").html('Error al guardar el cliente').addClass('alert alert-danger').show();
+                            $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                         }
                         setTimeout(function() { $("#myElem").hide();
-                            $('#popupbox').dialog('close');}, 2000);
+                                                //$('#popupbox').dialog('close');
+                                                $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
+                                              }, 2000);
 
                     });
 
-                }
+                //}
                 return false;
             });
 
@@ -84,20 +98,6 @@
                 $('#popupbox').dialog('close');
             });
 
-
-
-            /*$(document).on('click', '.delete', function(){
-             //obtengo el id que guardamos en data-id
-             var id=$(this).attr('data-id');
-             //preparo los parametros
-             params={};
-             params.id=id;
-             params.action="deleteClient";
-             $('#popupbox').load('index.php', params,function(){
-             $('#content').load('index.php',{action:"refreshGrid"});
-             })
-
-             });*/
 
 
             $(document).on('click', '.delete', function(){

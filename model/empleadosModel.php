@@ -162,7 +162,7 @@ class Empleado
                     DATE_FORMAT(fecha_baja,  '%d/%m/%Y') as fecha_baja,
                     domicilio, telefono, email, tipo,
                     lugar_residencia,
-                    sexo
+                    sexo, nacionalidad, estado_civil
                     from empleados where id_empleado = :id_empleado";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':id_empleado', $id_empleado);
@@ -181,11 +181,10 @@ class Empleado
             $this->setDomicilio($rows[0]['domicilio']);
             $this->setTelefono($rows[0]['telefono']);
             $this->setEmail($rows[0]['email']);
-
             $this->setLugarResidencia($rows[0]['lugar_residencia']);
             $this->setSexo($rows[0]['sexo']);
-
-
+            $this->setNacionalidad($rows[0]['nacionalidad']);
+            $this->setEstadoCivil($rows[0]['estado_civil']);
 
 		}
 	}
@@ -193,36 +192,79 @@ class Empleado
 
 
     function save(){
-        if($this->id)
-        {$rta = $this->updateCliente();}
+        if($this->id_empleado)
+        {$rta = $this->updateEmpleado();}
         else
-        {$rta =$this->insertCliente();}
+        {$rta =$this->insertEmpleado();}
         return $rta;
     }
 
-	public function updateCliente(){	// actualiza el cliente cargado en los atributos
+	public function updateEmpleado(){
 
         $stmt=new sQuery();
-        $query="update clientes set nombre= :nombre, apellido= :apellido, fecha_nac= STR_TO_DATE(:fecha, '%d/%m/%Y'), peso= :peso where id = :id";
+        $query="update empleados set legajo = :legajo, apellido=:apellido, nombre=:nombre, documento=:documento, cuil=:cuil,
+                fecha_nacimiento= STR_TO_DATE(:fecha_nacimiento, '%d/%m/%Y'),
+                fecha_alta= STR_TO_DATE(:fecha_alta, '%d/%m/%Y'),
+                fecha_baja= STR_TO_DATE(:fecha_baja, '%d/%m/%Y'),
+                domicilio =:domicilio, lugar_residencia=:lugar_residencia, telefono=:telefono, email=:email,
+                sexo=:sexo, nacionalidad=:nacionalidad, estado_civil=:estado_civil
+                where id_empleado = :id_empleado";
+
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
+
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':legajo', $this->getLegajo());
         $stmt->dpBind(':apellido', $this->getApellido());
-        $stmt->dpBind(':fecha', $this->getFecha());
-        $stmt->dpBind(':peso', $this->getPeso());
-        $stmt->dpBind(':id', $this->getID());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':documento', $this->getDocumento());
+        $stmt->dpBind(':cuil', $this->getCuil());
+        $stmt->dpBind(':fecha_nacimiento', $this->getFechaNacimiento());
+        $stmt->dpBind(':fecha_alta', $this->getFechaAlta());
+        $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
+        $stmt->dpBind(':domicilio', $this->getDomicilio());
+        $stmt->dpBind(':lugar_residencia', $this->getLugarResidencia());
+        $stmt->dpBind(':telefono', $this->getTelefono());
+        $stmt->dpBind(':email', $this->getEmail());
+        $stmt->dpBind(':sexo', $this->getSexo());
+        $stmt->dpBind(':nacionalidad', $this->getNacionalidad());
+        $stmt->dpBind(':estado_civil', $this->getEstadoCivil());
+
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 	}
 
-	private function insertCliente(){	// inserta el cliente cargado en los atributos
+	private function insertEmpleado(){
 
         $stmt=new sQuery();
-        $query="insert into clientes( nombre, apellido, fecha_nac,peso)values(:nombre, :apellido, STR_TO_DATE(:fecha, '%d/%m/%Y'), :peso)";
+        $query="insert into empleados(legajo, apellido, nombre, documento, cuil, fecha_nacimiento, fecha_alta, fecha_baja, domicilio, lugar_residencia, telefono, email, sexo, nacionalidad, estado_civil)
+                values(:legajo, :apellido, :nombre, :documento, :cuil,
+                        STR_TO_DATE(:fecha_nacimiento, '%d/%m/%Y'),
+                        STR_TO_DATE(:fecha_alta, '%d/%m/%Y'),
+                        STR_TO_DATE(:fecha_baja, '%d/%m/%Y'),
+                        :domicilio,
+                        :lugar_residencia,
+                        :telefono,
+                        :email,
+                        :sexo, :nacionalidad, :estado_civil
+
+                      )";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':legajo', $this->getLegajo());
         $stmt->dpBind(':apellido', $this->getApellido());
-        $stmt->dpBind(':fecha', $this->getFecha());
-        $stmt->dpBind(':peso', $this->getPeso());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':documento', $this->getDocumento());
+        $stmt->dpBind(':cuil', $this->getCuil());
+        $stmt->dpBind(':fecha_nacimiento', $this->getFechaNacimiento());
+        $stmt->dpBind(':fecha_alta', $this->getFechaAlta());
+        $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
+        $stmt->dpBind(':domicilio', $this->getDomicilio());
+        $stmt->dpBind(':lugar_residencia', $this->getLugarResidencia());
+        $stmt->dpBind(':telefono', $this->getTelefono());
+        $stmt->dpBind(':email', $this->getEmail());
+        $stmt->dpBind(':sexo', $this->getSexo());
+        $stmt->dpBind(':nacionalidad', $this->getNacionalidad());
+        $stmt->dpBind(':estado_civil', $this->getEstadoCivil());
+
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 	}

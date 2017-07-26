@@ -26,6 +26,20 @@
             todayHighlight: true
         });
 
+        $('#fecha_alta').datepicker({
+            //inline: true
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
+
+        $('#fecha_baja').datepicker({
+            //inline: true
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
+
 
     });
 
@@ -51,16 +65,16 @@
     </div>
 
     <div class="form-group required">
-        <label for="nombre" class="col-md-4 control-label">Nombre</label>
+        <label for="apellido" class="col-md-4 control-label">Apellido</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->empleado->getNombre() ?>">
+            <input class="form-control" type="text" name="apellido" id="apellido" placeholder="Apellido" value = "<?php print $view->empleado->getApellido() ?>">
         </div>
     </div>
 
     <div class="form-group required">
-        <label for="apellido" class="col-md-4 control-label">Apellido</label>
+        <label for="nombre" class="col-md-4 control-label">Nombre</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="apellido" id="apellido" placeholder="Apellido" value = "<?php print $view->empleado->getApellido() ?>">
+            <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->empleado->getNombre() ?>">
         </div>
     </div>
 
@@ -123,9 +137,9 @@
 
 
     <div class="form-group required">
-        <label for="localidad" class="col-md-4 control-label">Localidad:</label>
+        <label for="lugar_residencia" class="col-md-4 control-label">Localidad:</label>
         <div class="col-md-8">
-        <select class="form-control" id="localidad" name="localidad">
+        <select class="form-control" id="lugar_residencia" name="lugar_residencia">
             <option value="" disabled selected>Seleccione la localidad</option>
             <?php foreach ($view->localidades as $loc){
                 ?>
@@ -138,8 +152,6 @@
         </select>
             </div>
     </div>
-
-
 
 
     <div class="form-group required">
@@ -157,14 +169,13 @@
     </div>
 
 
-
     <div class="form-group required">
         <label for="sexo" class="col-md-4 control-label">Sexo:</label>
         <div class="col-md-8">
 
             <?php foreach($view->sexos as $val){ ?>
                 <label class="radio-inline">
-                    <input type="radio" name="sexo"
+                    <input type="radio" name="sexo" value="<?php echo $val ?>"
                         <?php echo ($val == $view->empleado->getSexo())? 'checked' :'' ?>
                     ><?php echo $val ?>
                 </label>
@@ -175,26 +186,60 @@
     </div>
 
 
+    <div class="form-group required">
+        <label for="nacionalidad" class="col-md-4 control-label">Nacionalidad:</label>
+        <div class="col-md-8">
+            <select class="form-control" id="nacionalidad" name="nacionalidad">
+                <option value="" disabled selected>Seleccione la nacionalidad</option>
+                <?php foreach ($view->nacionalidades as $nac){
+                    ?>
+                    <option value="<?php echo $nac; ?>"
+                        <?php echo ($nac == $view->empleado->getNacionalidad())? 'selected' :'' ?>
+                        >
+                        <?php echo $nac; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group required">
+        <label for="estado_civil" class="col-md-4 control-label">Estado civil:</label>
+        <div class="col-md-8">
+            <select class="form-control" id="estado_civil" name="estado_civil">
+                <option value="" disabled selected>Seleccione el estado civil</option>
+                <?php foreach ($view->estados_civiles as $ec){
+                    ?>
+                    <option value="<?php echo $ec; ?>"
+                        <?php echo ($ec == $view->empleado->getEstadoCivil())? 'selected' :'' ?>
+                        >
+                        <?php echo $ec; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+    </div>
 
 
 
 
 
 
+
+    <div id="myElem" style="display:none">
+
+    </div>
 
 
     <div class="button-group pull-right">
             <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
             <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
-
     </div>
 
 </form>
 
 
-<div id="myElem" style="display:none">
 
-</div>
 
 </div>
 

@@ -12,45 +12,63 @@ $view->disableLayout=false;// marca si usa o no el layout , si no lo usa imprime
 switch ($operation)
 {
     case 'refreshGrid':
-        $view->disableLayout=true; // no usa el layout
-        $view->clientes=Cliente::getClientes();
-        $view->contentTemplate="view/clientesGrid.php"; // seteo el template que se va a mostrar
+        $view->disableLayout=true;
+        $view->empleados = Empleado::getEmpleados();
+        $view->contentTemplate="view/empleadosGrid.php";
         break;
-    case 'saveClient':
-        // limpio todos los valores antes de guardarlos
-        // por ls dudas venga algo raro
-        $id=intval($_POST['id']);
-        $nombre=cleanString($_POST['nombre']);
-        $apellido=cleanString($_POST['apellido']);
-        $fecha=cleanString($_POST['fecha']);
-        $peso=cleanString($_POST['peso']);
-        $cliente=new Cliente($id);
-        $cliente->setNombre($nombre);
-        $cliente->setApellido($apellido);
-        $cliente->setFecha($fecha);
-        $cliente->setPeso($peso);
+
+    case 'saveEmpleado':
+        $empleado = new Empleado($_POST['id_empleado']);
+        $empleado->setLegajo($_POST['legajo']);
+        $empleado->setApellido($_POST['apellido']);
+        $empleado->setNombre($_POST['nombre']);
+        $empleado->setDocumento($_POST['documento']);
+        $empleado->setCuil($_POST['cuil']);
+        $empleado->setFechaNacimiento($_POST['fecha_nacimiento']);
+        $empleado->setFechaAlta($_POST['fecha_alta']);
+        $empleado->setFechaBaja($_POST['fecha_baja']);
+        $empleado->setDomicilio($_POST['domicilio']);
+        $empleado->setLugarResidencia($_POST['lugar_residencia']);
+        $empleado->setTelefono($_POST['telefono']);
+        $empleado->setEmail($_POST['email']);
+        $empleado->setSexo($_POST['sexo']);
+        $empleado->setNacionalidad($_POST['nacionalidad']);
+        $empleado->setEstadoCivil($_POST['estado_civil']);
+
+
         //$cliente->save();
         //break;
-        $rta = $cliente->save();
+        $rta = $empleado->save();
         print_r(json_encode($rta));
         exit;
         break;
+
     case 'newEmpleado':
         $view->empleado = new Empleado();
         $view->label='Nuevo Empleado';
+
+        $view->localidades = Localidad::getLocalidades();
+        $view->sexos = Soporte::get_enum_values('empleados', 'sexo');
+        $view->estados_civiles = Soporte::get_enum_values('empleados', 'estado_civil');
+        $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
+
         $view->disableLayout=true;
-        $view->contentTemplate="view/empleadosForm.php"; // seteo el template que se va a mostrar
+        $view->contentTemplate="view/empleadosForm.php";
         break;
 
     case 'editEmpleado':
-        $editId=intval($_POST['id']);
         $view->label='Editar Empleado';
-        $view->empleado = new Empleado($editId);
+        $view->empleado = new Empleado($_POST['id']);
+
         $view->localidades = Localidad::getLocalidades();
         $view->sexos = Soporte::get_enum_values('empleados', 'sexo');
+        $view->estados_civiles = Soporte::get_enum_values('empleados', 'estado_civil');
+        $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
+
         $view->disableLayout=true;
-        $view->contentTemplate="view/EmpleadosForm.php"; // seteo el template que se va a mostrar
+        $view->contentTemplate="view/EmpleadosForm.php";
         break;
+
     case 'deleteClient':
         $id=intval($_POST['id']);
         $client=new Cliente($id);
