@@ -5,42 +5,25 @@ include_once("config/soporte.php");
 include_once("model/empleadosModel.php");
 include_once("model/localidadesModel.php");
 
-print_r(Empleado::getSexos());
+
+
+$stmt=new sQuery();
+$query = "SHOW COLUMNS FROM empleados WHERE Field = 'sexo'";
+$stmt->dpPrepare($query);
+$stmt->dpExecute();
+$p = $stmt->dpFetchAll();
+
+
+
+
+
+$type = $p[0]['Default'];
+preg_match("/^enum\(\'(.*)\'\)$/", $type, $matches);
+$vals = explode("','", $matches[1]);
+print_r( $type);
 
 
 ?>
-
-
-<select>
-    <?
-
-    $enumList = explode(",", str_replace("'", "", substr(Empleado::getSexos()['COLUMN_TYPE'], 5, (strlen(Empleado::getSexos()['COLUMN_TYPE'])-6))));
-
-    foreach($enumList as $value){
-        echo "<option value=\"$value\">$value</option>";
-    }
-    ?>
-</select>
-
-
-
-
-<hr/>
-
-<?php
-
-$vals = Soporte::get_enum_values('empleados', 'sexo');
-
-foreach($vals as $val){
-    echo $val;
-}
-
-?>
-
-<hr/>
-
-
-
 
 
 

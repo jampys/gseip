@@ -16,7 +16,8 @@
                 fecha_nacimiento: {required: true},
                 fecha_alta: {required: true},
                 domicilio: {required: true},
-                lugar_residencia: {required: true}
+                lugar_residencia: {required: true},
+                sexo: {required: true}
             },
             messages:{
                 legajo: {required: "Ingrese el legajo",
@@ -30,12 +31,11 @@
                 fecha_nacimiento: "Ingrese la fecha de nacimiento",
                 fecha_alta: "Ingrese la fecha de alta",
                 domicilio: "Ingrese el domicilio",
-                lugar_residencia: "Seleccione la localidad"
+                lugar_residencia: "Seleccione la localidad",
+                sexo: "Seleccione el sexo"
             }
             /*,tooltip_options: {
-                nombre: {trigger:'focus'},
-                apellido: {trigger:'focus'}
-
+                //nombre: {trigger:'focus'},
             }*/
         });
 
