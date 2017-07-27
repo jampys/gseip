@@ -15,13 +15,13 @@ class Empleado
 	private $domicilio;
 	private $telefono;
     private $email;
-
     private $lugar_residencia;
     private $lugar_trabajo;
     private $sexo;
     private $nacionalidad;
     private $estado_civil;
     private $cpa;
+    private $tipo;
 
     //GETTERS
     function getIdEmpleado()
@@ -78,6 +78,9 @@ class Empleado
     function getCpa()
     { return $this->cpa;}
 
+    function getTipo()
+    { return $this->tipo;}
+
     //SETTERS
     function setIdEmpleado($val)
     { $this->id_empleado=$val;}
@@ -133,6 +136,9 @@ class Empleado
     function setCpa($val)
     { $this->cpa=$val;}
 
+    function setTipo($val)
+    { $this->tipo=$val;}
+
 
     public static function getEmpleados() {
 			$stmt=new sQuery();
@@ -143,7 +149,7 @@ class Empleado
                       domicilio, telefono, email, tipo,
                       lr.ciudad as lugar_residencia,
                       lugar_trabajo,
-                      sexo, nacionalidad, estado_civil, CPA
+                      sexo, nacionalidad, estado_civil, CPA, tipo
                       from empleados em, localidades lr
                       where em.lugar_residencia = lr.id_localidad";
             $stmt->dpPrepare($query);
@@ -151,7 +157,7 @@ class Empleado
             return $stmt->dpFetchAll();
 		}
 
-	function Empleado($id_empleado = 0){ //constructor, si trae el numero de cliente lo busca , si no, trae todos los clientes
+	function Empleado($id_empleado = 0){ //constructor
 
 		if ($id_empleado!= 0){
 
@@ -185,6 +191,7 @@ class Empleado
             $this->setSexo($rows[0]['sexo']);
             $this->setNacionalidad($rows[0]['nacionalidad']);
             $this->setEstadoCivil($rows[0]['estado_civil']);
+            $this->setTipo($rows[0]['tipo']);
 
 		}
 	}

@@ -59,7 +59,7 @@
                 <th>CUIL</th>
                 <th>Fecha alta</th>
                 <th>Fecha baja</th>
-                <th>Lugar res.</th>
+                <th>Lugar residencia</th>
                 <th>Editar</th>
             </tr>
             </thead>

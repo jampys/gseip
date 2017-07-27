@@ -112,6 +112,24 @@
         </div>
     </div>
 
+
+    <div class="form-group required">
+        <label for="tipo" class="col-md-4 control-label">Tipo:</label>
+        <div class="col-md-8">
+            <select class="form-control" id="tipo" name="tipo">
+                <option value="" disabled selected>Seleccione el tipo</option>
+                <?php foreach ($view->tipos['enum'] as $tip){
+                    ?>
+                    <option value="<?php echo $tip; ?>"
+                        <?php echo ($tip == $view->empleado->getTipo() OR ($tip == $view->tipos['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
+                        >
+                        <?php echo $tip; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+    </div>
+
     <div class="form-group required">
         <label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>
         <div class="col-md-8">
@@ -123,6 +141,7 @@
             </div>
         </div>
     </div>
+
 
     <div class="form-group required">
         <label class="col-md-4 control-label" for="fecha">Fecha alta</label>
@@ -174,14 +193,14 @@
     </div>
 
 
-    <div class="form-group required">
+    <div class="form-group">
         <label for="telefono" class="col-md-4 control-label">Teléfono</label>
         <div class="col-md-8">
             <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Teléfono" value = "<?php print $view->empleado->getTelefono() ?>">
         </div>
     </div>
 
-    <div class="form-group required">
+    <div class="form-group">
         <label for="email" class="col-md-4 control-label">Email</label>
         <div class="col-md-8">
             <input class="form-control" type="text" name="email" id="email" placeholder="Email" value = "<?php print $view->empleado->getEmail() ?>">

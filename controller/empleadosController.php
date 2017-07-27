@@ -51,6 +51,7 @@ switch ($operation)
         $view->sexos = Soporte::get_enum_values('empleados', 'sexo');
         $view->estados_civiles = Soporte::get_enum_values('empleados', 'estado_civil');
         $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
+        $view->tipos = Soporte::get_enum_values('empleados', 'tipo');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/empleadosForm.php";
@@ -64,6 +65,7 @@ switch ($operation)
         $view->sexos = Soporte::get_enum_values('empleados', 'sexo');
         $view->estados_civiles = Soporte::get_enum_values('empleados', 'estado_civil');
         $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
+        $view->tipos = Soporte::get_enum_values('empleados', 'tipo');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/EmpleadosForm.php";
