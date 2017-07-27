@@ -6,7 +6,7 @@ include_once("model/localidadesModel.php");
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
 
-$view->disableLayout=false;// marca si usa o no el layout , si no lo usa imprime directamente el template
+$view->disableLayout=false;
 
 
 switch ($operation)

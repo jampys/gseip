@@ -48,7 +48,7 @@
 
 
             $(document).on('click', '#submit',function(){
-                //if ($("#client").valid()){
+                if ($("#empleado-form").valid()){
                     var params={};
                     params.action = 'empleados';
                     params.operation = 'saveEmpleado';
@@ -87,15 +87,15 @@
 
                     });
 
-                //}
+                }
                 return false;
             });
 
 
-            // boton cancelar, uso live en lugar de bind para que tome cualquier boton
-            // nuevo que pueda aparecer
+
             $(document).on('click', '#cancel',function(){
-                $('#popupbox').dialog('close');
+                //$('#popupbox').dialog('close');
+                $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
             });
 
 

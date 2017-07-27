@@ -3,20 +3,40 @@
 
     $(document).ready(function(){
 
-        $('#client').validate({
+        $('#empleado-form').validate({
             rules: {
+                legajo: {required: true,
+                         digits: true},
                 nombre: {required: true},
-                apellido: {required: true}
+                apellido: {required: true},
+                documento: {required: true,
+                            digits: true},
+                cuil: {required: true,
+                        digits: true},
+                fecha_nacimiento: {required: true},
+                fecha_alta: {required: true},
+                domicilio: {required: true},
+                lugar_residencia: {required: true}
             },
             messages:{
-                nombre: "Ingrese su nombre",
-                apellido: "Ingrese su apellido"
-            },
-            tooltip_options: {
+                legajo: {required: "Ingrese el legajo",
+                         digits: "Ingrese solo números"},
+                nombre: "Ingrese el nombre",
+                apellido: "Ingrese el apellido",
+                documento: {required: "Ingrese el Nro. documento",
+                            digits: "Ingrese solo números"},
+                cuil: {required: "Ingrese el CUIL",
+                       digits: "Ingrese solo números"},
+                fecha_nacimiento: "Ingrese la fecha de nacimiento",
+                fecha_alta: "Ingrese la fecha de alta",
+                domicilio: "Ingrese el domicilio",
+                lugar_residencia: "Seleccione la localidad"
+            }
+            /*,tooltip_options: {
                 nombre: {trigger:'focus'},
                 apellido: {trigger:'focus'}
 
-            }
+            }*/
         });
 
         $('#fecha_nacimiento').datepicker({
@@ -54,7 +74,7 @@
 
 <h3><strong><?php echo $view->label ?></strong></h3>
 
-<form class="form-horizontal" name ="client" id="client" method="POST" action="index.php">
+<form class="form-horizontal" name ="empleado-form" id="empleado-form" method="POST" action="index.php">
     <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
 
     <div class="form-group required">
