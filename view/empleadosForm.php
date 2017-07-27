@@ -193,10 +193,10 @@
         <label for="sexo" class="col-md-4 control-label">Sexo:</label>
         <div class="col-md-8">
 
-            <?php foreach($view->sexos as $val){ ?>
+            <?php foreach($view->sexos['enum'] as $val){ ?>
                 <label class="radio-inline">
                     <input type="radio" name="sexo" value="<?php echo $val ?>"
-                        <?php echo ($val == $view->empleado->getSexo())? 'checked' :'' ?>
+                        <?php echo ($val == $view->empleado->getSexo() OR ($val == $view->sexos['default'] AND !$view->empleado->getIdEmpleado()))? 'checked' :'' ?>
                     ><?php echo $val ?>
                 </label>
             <?php } ?>
@@ -211,10 +211,10 @@
         <div class="col-md-8">
             <select class="form-control" id="nacionalidad" name="nacionalidad">
                 <option value="" disabled selected>Seleccione la nacionalidad</option>
-                <?php foreach ($view->nacionalidades as $nac){
+                <?php foreach ($view->nacionalidades['enum'] as $nac){
                     ?>
                     <option value="<?php echo $nac; ?>"
-                        <?php echo ($nac == $view->empleado->getNacionalidad())? 'selected' :'' ?>
+                        <?php echo ($nac == $view->empleado->getNacionalidad() OR ($nac == $view->nacionalidades['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
                         >
                         <?php echo $nac; ?>
                     </option>
@@ -228,10 +228,10 @@
         <div class="col-md-8">
             <select class="form-control" id="estado_civil" name="estado_civil">
                 <option value="" disabled selected>Seleccione el estado civil</option>
-                <?php foreach ($view->estados_civiles as $ec){
+                <?php foreach ($view->estados_civiles['enum'] as $ec){
                     ?>
                     <option value="<?php echo $ec; ?>"
-                        <?php echo ($ec == $view->empleado->getEstadoCivil())? 'selected' :'' ?>
+                        <?php echo ($ec == $view->empleado->getEstadoCivil() OR ($ec == $view->estados_civiles['default'] AND !$view->empleado->getIdEmpleado())  )? 'selected' :'' ?>
                         >
                         <?php echo $ec; ?>
                     </option>

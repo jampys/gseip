@@ -17,10 +17,15 @@ $p = $stmt->dpFetchAll();
 
 
 
-$type = $p[0]['Default'];
+$type = $p[0]['Type'];
 preg_match("/^enum\(\'(.*)\'\)$/", $type, $matches);
-$vals = explode("','", $matches[1]);
-print_r( $type);
+//$vals = explode("','", $matches[1]);
+//print_r( $type);
+
+$vals=array();
+$vals[0]= explode("','", $matches[1]);
+$vals[1] = $p[0]['Default'];
+print_r( $vals[1]);
 
 
 ?>
