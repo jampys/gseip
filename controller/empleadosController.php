@@ -34,6 +34,7 @@ switch ($operation)
         $empleado->setSexo($_POST['sexo']);
         $empleado->setNacionalidad($_POST['nacionalidad']);
         $empleado->setEstadoCivil($_POST['estado_civil']);
+        $empleado->setEmpresa($_POST['empresa']);
 
 
         //$cliente->save();
@@ -51,7 +52,7 @@ switch ($operation)
         $view->sexos = Soporte::get_enum_values('empleados', 'sexo');
         $view->estados_civiles = Soporte::get_enum_values('empleados', 'estado_civil');
         $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
-        $view->tipos = Soporte::get_enum_values('empleados', 'tipo');
+        $view->empresas = Soporte::get_enum_values('empleados', 'empresa');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/empleadosForm.php";
@@ -65,7 +66,7 @@ switch ($operation)
         $view->sexos = Soporte::get_enum_values('empleados', 'sexo');
         $view->estados_civiles = Soporte::get_enum_values('empleados', 'estado_civil');
         $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
-        $view->tipos = Soporte::get_enum_values('empleados', 'tipo');
+        $view->empresas = Soporte::get_enum_values('empleados', 'empresa');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/EmpleadosForm.php";

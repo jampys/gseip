@@ -21,7 +21,7 @@ class Empleado
     private $nacionalidad;
     private $estado_civil;
     private $cpa;
-    private $tipo;
+    private $empresa;
 
     //GETTERS
     function getIdEmpleado()
@@ -78,8 +78,8 @@ class Empleado
     function getCpa()
     { return $this->cpa;}
 
-    function getTipo()
-    { return $this->tipo;}
+    function getEmpresa()
+    { return $this->empresa;}
 
     //SETTERS
     function setIdEmpleado($val)
@@ -136,8 +136,8 @@ class Empleado
     function setCpa($val)
     { $this->cpa=$val;}
 
-    function setTipo($val)
-    { $this->tipo=$val;}
+    function setEmpresa($val)
+    { $this->empresa=$val;}
 
 
     public static function getEmpleados() {
@@ -146,10 +146,10 @@ class Empleado
                       DATE_FORMAT(fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
                       DATE_FORMAT(fecha_alta,  '%d/%m/%Y') as fecha_alta,
                       DATE_FORMAT(fecha_baja,  '%d/%m/%Y') as fecha_baja,
-                      domicilio, telefono, email, tipo,
+                      domicilio, telefono, email, empresa,
                       lr.ciudad as lugar_residencia,
                       lugar_trabajo,
-                      sexo, nacionalidad, estado_civil, CPA, tipo
+                      sexo, nacionalidad, estado_civil, CPA
                       from empleados em, localidades lr
                       where em.lugar_residencia = lr.id_localidad";
             $stmt->dpPrepare($query);
@@ -166,7 +166,7 @@ class Empleado
                     DATE_FORMAT(fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
                     DATE_FORMAT(fecha_alta,  '%d/%m/%Y') as fecha_alta,
                     DATE_FORMAT(fecha_baja,  '%d/%m/%Y') as fecha_baja,
-                    domicilio, telefono, email, tipo,
+                    domicilio, telefono, email, empresa,
                     lugar_residencia,
                     sexo, nacionalidad, estado_civil
                     from empleados where id_empleado = :id_empleado";
@@ -191,7 +191,7 @@ class Empleado
             $this->setSexo($rows[0]['sexo']);
             $this->setNacionalidad($rows[0]['nacionalidad']);
             $this->setEstadoCivil($rows[0]['estado_civil']);
-            $this->setTipo($rows[0]['tipo']);
+            $this->setEmpresa($rows[0]['empresa']);
 
 		}
 	}
@@ -214,7 +214,7 @@ class Empleado
                 fecha_alta= STR_TO_DATE(:fecha_alta, '%d/%m/%Y'),
                 fecha_baja= STR_TO_DATE(:fecha_baja, '%d/%m/%Y'),
                 domicilio =:domicilio, lugar_residencia=:lugar_residencia, telefono=:telefono, email=:email,
-                sexo=:sexo, nacionalidad=:nacionalidad, estado_civil=:estado_civil
+                sexo=:sexo, nacionalidad=:nacionalidad, estado_civil=:estado_civil, empresa=:empresa
                 where id_empleado = :id_empleado";
 
         $stmt->dpPrepare($query);
@@ -235,6 +235,7 @@ class Empleado
         $stmt->dpBind(':sexo', $this->getSexo());
         $stmt->dpBind(':nacionalidad', $this->getNacionalidad());
         $stmt->dpBind(':estado_civil', $this->getEstadoCivil());
+        $stmt->dpBind(':empresa', $this->getEmpresa());
 
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -243,7 +244,7 @@ class Empleado
 	private function insertEmpleado(){
 
         $stmt=new sQuery();
-        $query="insert into empleados(legajo, apellido, nombre, documento, cuil, fecha_nacimiento, fecha_alta, fecha_baja, domicilio, lugar_residencia, telefono, email, sexo, nacionalidad, estado_civil)
+        $query="insert into empleados(legajo, apellido, nombre, documento, cuil, fecha_nacimiento, fecha_alta, fecha_baja, domicilio, lugar_residencia, telefono, email, sexo, nacionalidad, estado_civil, tipo)
                 values(:legajo, :apellido, :nombre, :documento, :cuil,
                         STR_TO_DATE(:fecha_nacimiento, '%d/%m/%Y'),
                         STR_TO_DATE(:fecha_alta, '%d/%m/%Y'),
@@ -252,7 +253,7 @@ class Empleado
                         :lugar_residencia,
                         :telefono,
                         :email,
-                        :sexo, :nacionalidad, :estado_civil
+                        :sexo, :nacionalidad, :estado_civil, :empresa
 
                       )";
         $stmt->dpPrepare($query);
@@ -271,6 +272,7 @@ class Empleado
         $stmt->dpBind(':sexo', $this->getSexo());
         $stmt->dpBind(':nacionalidad', $this->getNacionalidad());
         $stmt->dpBind(':estado_civil', $this->getEstadoCivil());
+        $stmt->dpBind(':empresa', $this->getEmpresa());
 
         $stmt->dpExecute();
         return $stmt->dpGetAffect();

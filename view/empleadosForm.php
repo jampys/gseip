@@ -114,16 +114,16 @@
 
 
     <div class="form-group required">
-        <label for="tipo" class="col-md-4 control-label">Tipo:</label>
+        <label for="tipo" class="col-md-4 control-label">Empresa</label>
         <div class="col-md-8">
-            <select class="form-control" id="tipo" name="tipo">
-                <option value="" disabled selected>Seleccione el tipo</option>
-                <?php foreach ($view->tipos['enum'] as $tip){
+            <select class="form-control" id="empresa" name="empresa">
+                <option value="" disabled selected>Seleccione la empresa</option>
+                <?php foreach ($view->empresas['enum'] as $emp){
                     ?>
-                    <option value="<?php echo $tip; ?>"
-                        <?php echo ($tip == $view->empleado->getTipo() OR ($tip == $view->tipos['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
+                    <option value="<?php echo $emp; ?>"
+                        <?php echo ($emp == $view->empleado->getEmpresa() OR ($emp == $view->empresas['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
                         >
-                        <?php echo $tip; ?>
+                        <?php echo $emp; ?>
                     </option>
                 <?php  } ?>
             </select>
@@ -176,7 +176,7 @@
 
 
     <div class="form-group required">
-        <label for="lugar_residencia" class="col-md-4 control-label">Localidad:</label>
+        <label for="lugar_residencia" class="col-md-4 control-label">Localidad</label>
         <div class="col-md-8">
         <select class="form-control" id="lugar_residencia" name="lugar_residencia">
             <option value="" disabled selected>Seleccione la localidad</option>
@@ -209,7 +209,7 @@
 
 
     <div class="form-group required">
-        <label for="sexo" class="col-md-4 control-label">Sexo:</label>
+        <label for="sexo" class="col-md-4 control-label">Sexo</label>
         <div class="col-md-8">
 
             <?php foreach($view->sexos['enum'] as $val){ ?>
@@ -226,7 +226,7 @@
 
 
     <div class="form-group required">
-        <label for="nacionalidad" class="col-md-4 control-label">Nacionalidad:</label>
+        <label for="nacionalidad" class="col-md-4 control-label">Nacionalidad</label>
         <div class="col-md-8">
             <select class="form-control" id="nacionalidad" name="nacionalidad">
                 <option value="" disabled selected>Seleccione la nacionalidad</option>
@@ -243,7 +243,7 @@
     </div>
 
     <div class="form-group required">
-        <label for="estado_civil" class="col-md-4 control-label">Estado civil:</label>
+        <label for="estado_civil" class="col-md-4 control-label">Estado civil</label>
         <div class="col-md-8">
             <select class="form-control" id="estado_civil" name="estado_civil">
                 <option value="" disabled selected>Seleccione el estado civil</option>

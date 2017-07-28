@@ -68,6 +68,7 @@
                     params.sexo=$('input[name=sexo]:checked').val();
                     params.nacionalidad=$('#nacionalidad').val();
                     params.estado_civil=$('#estado_civil').val();
+                    params.empresa=$('#empresa').val();
 
                     $.post('index.php',params,function(data, status, xhr){
 
