@@ -70,7 +70,7 @@
 
 
 
-<div class="col-md-6 dpForm-container">
+<div class="col-md-6 dpForm-container clearfix">
 
 <h3><strong><?php echo $view->label ?></strong></h3>
 
