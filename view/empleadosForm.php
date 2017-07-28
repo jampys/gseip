@@ -72,7 +72,8 @@
 
 <div class="col-md-6 dpForm-container clearfix">
 
-<h3><strong><?php echo $view->label ?></strong></h3>
+<h3><?php echo $view->label ?></h3>
+<hr/>
 
 <form class="form-horizontal" name ="empleado-form" id="empleado-form" method="POST" action="index.php">
     <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
@@ -269,7 +270,7 @@
 
     </div>
 
-
+    <hr/>
     <div class="button-group pull-right">
             <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
             <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>

@@ -42,7 +42,7 @@
 
 <div class="col-md-10">
 
-    <h3><strong>Empleados</strong></h3>
+    <h3>Empleados</h3>
 
     <div style="text-align: right; margin-bottom: 10px">
         <button class="btn btn-primary btn-sm" type="button" id="new" >Nuevo Empleado</button>

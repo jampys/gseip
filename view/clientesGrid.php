@@ -26,7 +26,7 @@
 
 <div class="col-md-8">
 
-    <h3><strong>Clientes</strong></h3>
+    <h3>Clientes</h3>
 
     <div style="text-align: right; margin-bottom: 10px">
         <button  id="new" type="button" class="btn btn-primary btn-sm">Nuevo Cliente</button>
