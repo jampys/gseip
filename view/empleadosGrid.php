@@ -43,6 +43,7 @@
 <div class="col-md-10">
 
     <h3>Empleados</h3>
+    <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
         <button class="btn btn-primary btn-sm" type="button" id="new" >Nuevo Empleado</button>
