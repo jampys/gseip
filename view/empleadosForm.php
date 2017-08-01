@@ -169,9 +169,9 @@
     </div>
 
     <div class="form-group required">
-        <label for="domicilio" class="col-md-4 control-label">Domicilio</label>
+        <label for="domicilio" class="col-md-4 control-label">Dirección</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="domicilio" id="domicilio" placeholder="Domicilio" value = "<?php print $view->empleado->getDomicilio() ?>">
+            <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Dirección" value = "<?php print $view->empleado->getDireccion() ?>">
         </div>
     </div>
 
@@ -179,12 +179,12 @@
     <div class="form-group required">
         <label for="lugar_residencia" class="col-md-4 control-label">Localidad</label>
         <div class="col-md-8">
-        <select class="form-control" id="lugar_residencia" name="lugar_residencia">
+        <select class="form-control" id="localidad" name="localidad">
             <option value="" disabled selected>Seleccione la localidad</option>
             <?php foreach ($view->localidades as $loc){
                 ?>
                 <option value="<?php echo $loc['id_localidad']; ?>"
-                               <?php echo ($loc['id_localidad'] == $view->empleado->getLugarResidencia())? 'selected' :'' ?>
+                               <?php echo ($loc['id_localidad'] == $view->empleado->getIdLocalidad())? 'selected' :'' ?>
                                 >
                                <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
                 </option>

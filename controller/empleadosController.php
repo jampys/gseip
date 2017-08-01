@@ -27,8 +27,8 @@ switch ($operation)
         $empleado->setFechaNacimiento($_POST['fecha_nacimiento']);
         $empleado->setFechaAlta($_POST['fecha_alta']);
         $empleado->setFechaBaja($_POST['fecha_baja']);
-        $empleado->setDomicilio($_POST['domicilio']);
-        $empleado->setLugarResidencia($_POST['lugar_residencia']);
+        $empleado->setDireccion($_POST['direccion']);
+        $empleado->setIdLocalidad($_POST['localidad']);
         $empleado->setTelefono($_POST['telefono']);
         $empleado->setEmail($_POST['email']);
         $empleado->setSexo($_POST['sexo']);

@@ -61,8 +61,8 @@
                     params.fecha_nacimiento=$('#fecha_nacimiento').val();
                     params.fecha_alta=$('#fecha_alta').val();
                     params.fecha_baja=$('#fecha_baja').val();
-                    params.domicilio=$('#domicilio').val();
-                    params.lugar_residencia=$('#lugar_residencia').val();
+                    params.direccion=$('#direccion').val();
+                    params.localidad=$('#localidad').val();
                     params.telefono=$('#telefono').val();
                     params.email=$('#email').val();
                     params.sexo=$('input[name=sexo]:checked').val();
@@ -72,7 +72,7 @@
 
                     $.post('index.php',params,function(data, status, xhr){
 
-                        //alert(data);
+                        alert(data);
                         //var rta= parseInt(data.charAt(3));
                         //alert(rta);
                         if(data >=0){

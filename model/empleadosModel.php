@@ -12,11 +12,10 @@ class Empleado
 	private $fecha_nacimiento;
     private $fecha_alta;
     private $fecha_baja;
-	private $domicilio;
+	private $direccion;
 	private $telefono;
     private $email;
-    private $lugar_residencia;
-    private $lugar_trabajo;
+    private $id_localidad;
     private $sexo;
     private $nacionalidad;
     private $estado_civil;
@@ -51,8 +50,8 @@ class Empleado
     function getFechaBaja()
     { return $this->fecha_baja;}
 
-    function getDomicilio()
-    { return $this->domicilio;}
+    function getDireccion()
+    { return $this->direccion;}
 
     function getTelefono()
     { return $this->telefono;}
@@ -60,11 +59,8 @@ class Empleado
     function getEmail()
     { return $this->email;}
 
-    function getLugarResidencia()
-    { return $this->lugar_residencia;}
-
-    function getLugarTrabajo()
-    { return $this->lugar_trabajo;}
+    function getIdLocalidad()
+    { return $this->id_localidad;}
 
     function getSexo()
     { return $this->sexo;}
@@ -109,8 +105,8 @@ class Empleado
     function setFechaBaja($val)
     { $this->fecha_baja=$val;}
 
-    function setDomicilio($val)
-    { $this->domicilio=$val;}
+    function setDireccion($val)
+    { $this->direccion=$val;}
 
     function setTelefono($val)
     { $this->telefono=$val;}
@@ -118,11 +114,8 @@ class Empleado
     function setEmail($val)
     { $this->email=$val;}
 
-    function setLugarResidencia($val)
-    { $this->lugar_residencia=$val;}
-
-    function setLugarTrabajo($val)
-    { $this->lugar_trabajo=$val;}
+    function setIdLocalidad($val)
+    { $this->id_localidad=$val;}
 
     function setSexo($val)
     { $this->sexo=$val;}
@@ -142,16 +135,17 @@ class Empleado
 
     public static function getEmpleados() {
 			$stmt=new sQuery();
-            $query = "select id_empleado, legajo, apellido, nombre, documento, cuil,
-                      DATE_FORMAT(fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
-                      DATE_FORMAT(fecha_alta,  '%d/%m/%Y') as fecha_alta,
-                      DATE_FORMAT(fecha_baja,  '%d/%m/%Y') as fecha_baja,
-                      domicilio, telefono, email, empresa,
-                      lr.ciudad as lugar_residencia,
-                      lugar_trabajo,
-                      sexo, nacionalidad, estado_civil, CPA
-                      from empleados em, localidades lr
-                      where em.lugar_residencia = lr.id_localidad";
+            $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
+                      DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
+                      DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
+                      DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
+                      em.telefono, em.email, em.empresa,
+                      em.sexo, em.nacionalidad, em.estado_civil, em.CPA,
+                      loc.ciudad
+                      from empleados em, domicilios_particulares dp, localidades loc
+                      where em.id_empleado = dp.id_empleado
+                      and dp.fecha_hasta is null
+                      and dp.id_localidad = loc.id_localidad";
             $stmt->dpPrepare($query);
             $stmt->dpExecute();
             return $stmt->dpFetchAll();
@@ -162,14 +156,17 @@ class Empleado
 		if ($id_empleado!= 0){
 
             $stmt=new sQuery();
-            $query="select id_empleado, legajo, apellido, nombre, documento, cuil,
-                    DATE_FORMAT(fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
-                    DATE_FORMAT(fecha_alta,  '%d/%m/%Y') as fecha_alta,
-                    DATE_FORMAT(fecha_baja,  '%d/%m/%Y') as fecha_baja,
-                    domicilio, telefono, email, empresa,
-                    lugar_residencia,
-                    sexo, nacionalidad, estado_civil
-                    from empleados where id_empleado = :id_empleado";
+            $query="select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
+                    DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
+                    DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
+                    DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
+                    em.telefono, em.email, em.empresa,
+                    em.sexo, em.nacionalidad, em.estado_civil,
+                    dp.direccion, dp.id_localidad
+                    from empleados em, domicilios_particulares dp
+                    where em.id_empleado = dp.id_empleado
+                    and dp.fecha_hasta is null
+                    and em.id_empleado = :id_empleado";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':id_empleado', $id_empleado);
             $stmt->dpExecute();
@@ -184,10 +181,10 @@ class Empleado
             $this->setFechaNacimiento($rows[0]['fecha_nacimiento']);
             $this->setFechaAlta($rows[0]['fecha_alta']);
             $this->setFechaBaja($rows[0]['fecha_baja']);
-            $this->setDomicilio($rows[0]['domicilio']);
+            $this->setDireccion($rows[0]['direccion']);
             $this->setTelefono($rows[0]['telefono']);
             $this->setEmail($rows[0]['email']);
-            $this->setLugarResidencia($rows[0]['lugar_residencia']);
+            $this->setIdLocalidad($rows[0]['id_localidad']);
             $this->setSexo($rows[0]['sexo']);
             $this->setNacionalidad($rows[0]['nacionalidad']);
             $this->setEstadoCivil($rows[0]['estado_civil']);
@@ -209,13 +206,31 @@ class Empleado
 	public function updateEmpleado(){
 
         $stmt=new sQuery();
-        $query="update empleados set legajo = :legajo, apellido=:apellido, nombre=:nombre, documento=:documento, cuil=:cuil,
+        /*$query="update empleados set legajo = :legajo, apellido=:apellido, nombre=:nombre, documento=:documento, cuil=:cuil,
                 fecha_nacimiento= STR_TO_DATE(:fecha_nacimiento, '%d/%m/%Y'),
                 fecha_alta= STR_TO_DATE(:fecha_alta, '%d/%m/%Y'),
                 fecha_baja= STR_TO_DATE(:fecha_baja, '%d/%m/%Y'),
                 domicilio =:domicilio, lugar_residencia=:lugar_residencia, telefono=:telefono, email=:email,
                 sexo=:sexo, nacionalidad=:nacionalidad, estado_civil=:estado_civil, empresa=:empresa
-                where id_empleado = :id_empleado";
+                where id_empleado = :id_empleado";*/
+
+        $query = 'CALL sp_updateEmpleados(:id_empleado,
+                                        :legajo,
+                                        :apellido,
+                                        :nombre,
+                                        :documento,
+                                        :cuil,
+                                        :fecha_nacimiento,
+                                        :fecha_alta,
+                                        :fecha_baja,
+                                        :telefono,
+                                        :email,
+                                        :sexo,
+                                        :nacionalidad,
+                                        :estado_civil,
+                                        :empresa,
+                                        @flag
+                                    )';
 
         $stmt->dpPrepare($query);
 
@@ -228,8 +243,8 @@ class Empleado
         $stmt->dpBind(':fecha_nacimiento', $this->getFechaNacimiento());
         $stmt->dpBind(':fecha_alta', $this->getFechaAlta());
         $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
-        $stmt->dpBind(':domicilio', $this->getDomicilio());
-        $stmt->dpBind(':lugar_residencia', $this->getLugarResidencia());
+        //$stmt->dpBind(':domicilio', $this->getDomicilio());
+        //$stmt->dpBind(':lugar_residencia', $this->getLugarResidencia());
         $stmt->dpBind(':telefono', $this->getTelefono());
         $stmt->dpBind(':email', $this->getEmail());
         $stmt->dpBind(':sexo', $this->getSexo());
@@ -238,7 +253,19 @@ class Empleado
         $stmt->dpBind(':empresa', $this->getEmpresa());
 
         $stmt->dpExecute();
-        return $stmt->dpGetAffect();
+        //return $stmt->dpGetAffect();
+        //return 1;
+
+        $query = "select @flag as flag";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        $flag = $stmt->dpFetchAll();
+
+        if ($flag) {
+            return $flag[0]['flag'];
+        }
+
+
 	}
 
 	private function insertEmpleado(){
