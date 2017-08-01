@@ -229,6 +229,8 @@ class Empleado
                                         :nacionalidad,
                                         :estado_civil,
                                         :empresa,
+                                        :direccion,
+                                        :id_localidad,
                                         @flag
                                     )';
 
@@ -243,28 +245,23 @@ class Empleado
         $stmt->dpBind(':fecha_nacimiento', $this->getFechaNacimiento());
         $stmt->dpBind(':fecha_alta', $this->getFechaAlta());
         $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
-        //$stmt->dpBind(':domicilio', $this->getDomicilio());
-        //$stmt->dpBind(':lugar_residencia', $this->getLugarResidencia());
         $stmt->dpBind(':telefono', $this->getTelefono());
         $stmt->dpBind(':email', $this->getEmail());
         $stmt->dpBind(':sexo', $this->getSexo());
         $stmt->dpBind(':nacionalidad', $this->getNacionalidad());
         $stmt->dpBind(':estado_civil', $this->getEstadoCivil());
         $stmt->dpBind(':empresa', $this->getEmpresa());
+        $stmt->dpBind(':direccion', $this->getDireccion());
+        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
 
         $stmt->dpExecute();
-        //return $stmt->dpGetAffect();
-        //return 1;
 
+        $stmt->dpCloseCursor();
         $query = "select @flag as flag";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         $flag = $stmt->dpFetchAll();
-
-        if ($flag) {
-            return $flag[0]['flag'];
-        }
-
+        return ($flag)? intval($flag[0]['flag']) : 0;
 
 	}
 

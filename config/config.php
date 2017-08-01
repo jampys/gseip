@@ -100,6 +100,11 @@ class sQuery   // se declara una clase para poder ejecutar las consultas, esta c
         return $this->st->rowCount();
     }
 
+    function dpCloseCursor(){ // devuelve las cantidad de filas afectadas
+        return $this->st->closeCursor();
+    }
+
+
 
 
 }

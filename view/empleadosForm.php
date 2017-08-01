@@ -168,6 +168,20 @@
         </div>
     </div>
 
+    <div class="panel panel-default">
+        <div class="panel-heading">Panel with panel-default class</div>
+        <div class="panel-body">
+
+            <div class="form-group required">
+                <label for="domicilio" class="col-md-4 control-label">Dirección</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Dirección" value = "<?php print $view->empleado->getDireccion() ?>">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <div class="form-group required">
         <label for="domicilio" class="col-md-4 control-label">Dirección</label>
         <div class="col-md-8">
