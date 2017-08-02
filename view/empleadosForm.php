@@ -206,13 +206,14 @@
         <div class="col-md-offset-4 col-md-8">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" id="cambio_domicilio" name="cambio_domicilio"> <a href="#" data-toggle="tooltip" title="Registra el cambio de domicilio y conserva el anterior como historico">Cambio de domicilio</a>
+                    <input type="checkbox" id="cambio_domicilio" name="cambio_domicilio" <?php echo (!$view->empleado->getIdEmpleado())? 'disabled' :'' ?> > <a href="#" data-toggle="tooltip" title="Registra el cambio de domicilio y conserva el anterior como historico">Cambio de domicilio</a>
                 </label>
             </div>
         </div>
     </div>
 
 
+    <?php if($view->domicilios){  ?>
     <div class="table-responsive">
         <table class="table table-condensed dataTable table-hover">
             <thead>
@@ -224,21 +225,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>las playas 2562 b juniors</td>
-                <td>9000 Comodoro Rivadavia chubut</td>
-                <td>12/08/2014</td>
-                <td>15/09/2016</td>
-            </tr>
-            <tr>
-                <td>las playas 2562 b juniors</td>
-                <td>9000 Comodoro Rivadavia chubut</td>
-                <td>12/08/2014</td>
-                <td>15/09/2016</td>
-            </tr>
+            <?php foreach ($view->domicilios as $dom):  ?>
+                <tr>
+                    <td><?php echo $dom['direccion'];?></td>
+                    <td><?php echo $dom['CP'].' '.$dom['ciudad'].' '.$dom['provincia'];?></td>
+                    <td><?php echo $dom['fecha_desde'];?></td>
+                    <td><?php echo $dom['fecha_hasta'];?></td>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>
+
+    <?php } ?>
 
 
     <hr/>

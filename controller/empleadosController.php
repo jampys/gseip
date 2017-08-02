@@ -67,6 +67,8 @@ switch ($operation)
         $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
         $view->empresas = Soporte::get_enum_values('empleados', 'empresa');
 
+        $view->domicilios = $view->empleado->getDomiciliosByEmpleado();
+
         $view->disableLayout=true;
         $view->contentTemplate="view/EmpleadosForm.php";
         break;
