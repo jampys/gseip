@@ -26,7 +26,7 @@
 
 <div class="col-md-8">
 
-    <h3>Clientes</h3>
+    <h4>Clientes</h4>
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">

@@ -42,7 +42,7 @@
 
 <div class="col-md-10">
 
-    <h3>Empleados</h3>
+    <h4>Empleados</h4>
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">

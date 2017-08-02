@@ -3,6 +3,8 @@
 
     $(document).ready(function(){
 
+        $('[data-toggle="tooltip"]').tooltip();
+
         $('#empleado-form').validate({
             rules: {
                 legajo: {required: true,
@@ -68,14 +70,18 @@
 
 <div class="col-md-3"></div>
 
+<div class="col-md-6">
 
 
-<div class="col-md-6 dpForm-container clearfix">
+<div class="panel panel-default ">
+    <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
 
-<h3><?php echo $view->label ?></h3>
-<hr/>
+    <div class="panel-body">
 
-<form class="form-horizontal" name ="empleado-form" id="empleado-form" method="POST" action="index.php">
+
+
+
+    <form class="form-horizontal" name ="empleado-form" id="empleado-form" method="POST" action="index.php">
     <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
 
     <div class="form-group required">
@@ -168,20 +174,9 @@
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">Panel with panel-default class</div>
-        <div class="panel-body">
 
-            <div class="form-group required">
-                <label for="domicilio" class="col-md-4 control-label">Dirección</label>
-                <div class="col-md-8">
-                    <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Dirección" value = "<?php print $view->empleado->getDireccion() ?>">
-                </div>
-            </div>
 
-        </div>
-    </div>
-
+    <hr/>
     <div class="form-group required">
         <label for="domicilio" class="col-md-4 control-label">Dirección</label>
         <div class="col-md-8">
@@ -189,23 +184,79 @@
         </div>
     </div>
 
-
     <div class="form-group required">
         <label for="lugar_residencia" class="col-md-4 control-label">Localidad</label>
         <div class="col-md-8">
-        <select class="form-control" id="localidad" name="localidad">
-            <option value="" disabled selected>Seleccione la localidad</option>
-            <?php foreach ($view->localidades as $loc){
-                ?>
-                <option value="<?php echo $loc['id_localidad']; ?>"
-                               <?php echo ($loc['id_localidad'] == $view->empleado->getIdLocalidad())? 'selected' :'' ?>
-                                >
-                               <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
-                </option>
-            <?php  } ?>
-        </select>
-            </div>
+            <select class="form-control" id="localidad" name="localidad">
+                <option value="" disabled selected>Seleccione la localidad</option>
+                <?php foreach ($view->localidades as $loc){
+                    ?>
+                    <option value="<?php echo $loc['id_localidad']; ?>"
+                        <?php echo ($loc['id_localidad'] == $view->empleado->getIdLocalidad())? 'selected' :'' ?>
+                        >
+                        <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
     </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-8">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> <a href="#" data-toggle="tooltip" title="Registra el cambio de domicilio y conserva el anterior como historico">Cambio de domicilio</a>
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table table-condensed dataTable table-hover">
+            <thead>
+            <tr>
+                <th>Direccion</th>
+                <th>Localidad</th>
+                <th>F. Desde</th>
+                <th>F. Hasta</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>las playas 2562 b juniors</td>
+                <td>9000 Comodoro Rivadavia chubut</td>
+                <td>12/08/2014</td>
+                <td>15/09/2016</td>
+            </tr>
+            <tr>
+                <td>las playas 2562 b juniors</td>
+                <td>9000 Comodoro Rivadavia chubut</td>
+                <td>12/08/2014</td>
+                <td>15/09/2016</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <hr/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <div class="form-group">
@@ -231,7 +282,7 @@
                 <label class="radio-inline">
                     <input type="radio" name="sexo" value="<?php echo $val ?>"
                         <?php echo ($val == $view->empleado->getSexo() OR ($val == $view->sexos['default'] AND !$view->empleado->getIdEmpleado()))? 'checked' :'' ?>
-                    ><?php echo $val ?>
+                        ><?php echo $val ?>
                 </label>
             <?php } ?>
 
@@ -276,26 +327,53 @@
 
 
 
+    <div id="myElem" style="display:none"></div>
 
 
+    </form>
 
-
-    <div id="myElem" style="display:none">
 
     </div>
 
-    <hr/>
-    <div class="button-group pull-right">
+
+
+    <div class="panel-footer clearfix">
+        <div class="button-group pull-right">
             <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
             <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
+        </div>
     </div>
 
-</form>
+
+
+
+
+
+
 
 
 
 
 </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

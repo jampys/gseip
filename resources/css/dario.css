@@ -80,13 +80,12 @@ table.dataTable th { font-size: 14px }
      height: 20px}
 
 
-/* form container */
-.dpForm-container{
+/* form container: no se usa mas, se reemplaza por bootstrap panel */
+/*.dpForm-container{
     border-radius: 10px;
-    /*color: #777;*/
     background-color: #F8F8F8;
     padding-bottom: 10px;
-}
+}*/
 
 
 /* Estilo hr de las grillas */
