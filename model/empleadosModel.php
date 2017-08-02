@@ -195,15 +195,15 @@ class Empleado
 		
 
 
-    function save(){
+    function save($cambio_domicilio){
         if($this->id_empleado)
-        {$rta = $this->updateEmpleado();}
+        {$rta = $this->updateEmpleado($cambio_domicilio);}
         else
         {$rta =$this->insertEmpleado();}
         return $rta;
     }
 
-	public function updateEmpleado(){
+	public function updateEmpleado($cambio_domicilio){
 
         $stmt=new sQuery();
         /*$query="update empleados set legajo = :legajo, apellido=:apellido, nombre=:nombre, documento=:documento, cuil=:cuil,
@@ -231,6 +231,7 @@ class Empleado
                                         :empresa,
                                         :direccion,
                                         :id_localidad,
+                                        :cambio_domicilio,
                                         @flag
                                     )';
 
@@ -253,6 +254,7 @@ class Empleado
         $stmt->dpBind(':empresa', $this->getEmpresa());
         $stmt->dpBind(':direccion', $this->getDireccion());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
+        $stmt->dpBind(':cambio_domicilio', $cambio_domicilio);
 
         $stmt->dpExecute();
 
@@ -302,19 +304,7 @@ class Empleado
         return $stmt->dpGetAffect();
 	}
 
-	function delete(){	// elimina el cliente
-        $stmt=new sQuery();
-        $query="delete from clientes where id= :id";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getID());
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-	}
 
-
-
-
-	
 }
 
 

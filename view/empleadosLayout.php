@@ -69,6 +69,8 @@
                     params.nacionalidad=$('#nacionalidad').val();
                     params.estado_civil=$('#estado_civil').val();
                     params.empresa=$('#empresa').val();
+                    params.cambio_domicilio = $('#cambio_domicilio').prop('checked')? 1:0;
+                    //alert(params.cambio_domicilio);
 
                     $.post('index.php',params,function(data, status, xhr){
 

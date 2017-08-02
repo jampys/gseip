@@ -36,10 +36,9 @@ switch ($operation)
         $empleado->setEstadoCivil($_POST['estado_civil']);
         $empleado->setEmpresa($_POST['empresa']);
 
-
         //$cliente->save();
         //break;
-        $rta = $empleado->save();
+        $rta = $empleado->save($_POST['cambio_domicilio']);
         print_r(json_encode($rta));
         exit;
         break;

@@ -206,7 +206,7 @@
         <div class="col-md-offset-4 col-md-8">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox"> <a href="#" data-toggle="tooltip" title="Registra el cambio de domicilio y conserva el anterior como historico">Cambio de domicilio</a>
+                    <input type="checkbox" id="cambio_domicilio" name="cambio_domicilio"> <a href="#" data-toggle="tooltip" title="Registra el cambio de domicilio y conserva el anterior como historico">Cambio de domicilio</a>
                 </label>
             </div>
         </div>
