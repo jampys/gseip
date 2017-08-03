@@ -218,7 +218,7 @@
         <table class="table table-condensed dataTable table-hover">
             <thead>
             <tr>
-                <th>Direccion</th>
+                <th>Dirección</th>
                 <th>Localidad</th>
                 <th>F. Desde</th>
                 <th>F. Hasta</th>

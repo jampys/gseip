@@ -73,14 +73,6 @@ switch ($operation)
         $view->contentTemplate="view/EmpleadosForm.php";
         break;
 
-    case 'deleteClient':
-        $id=intval($_POST['id']);
-        $client=new Cliente($id);
-        //$client->delete();
-        $rta = $client->delete();
-        print_r(json_encode($rta));
-        die; // no quiero mostrar nada cuando borra , solo devuelve el control.
-        break;
 
     default :
         $view->empleados=Empleado::getEmpleados();
