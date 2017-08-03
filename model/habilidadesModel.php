@@ -6,6 +6,7 @@ class Habilidad
 	private $id_habilidad;
 	private $codigo;
 	private $nombre;
+    private $tipo;
 
 
     // GETTERS
@@ -18,6 +19,9 @@ class Habilidad
     function getNombre()
     { return $this->nombre;}
 
+    function getTipo()
+    { return $this->tipo;}
+
 
     //SETTERS
     function setIdHabilidad($val)
@@ -28,6 +32,10 @@ class Habilidad
 
     function setNombre($val)
     { $this->nombre=$val;}
+
+    function setTipo($val)
+    { $this->tipo=$val;}
+
 
     function __construct($nro=0){ //constructor
 
@@ -42,6 +50,7 @@ class Habilidad
             $this->setIdHabilidad($rows[0]['id_habilidad']);
             $this->setCodigo($rows[0]['codigo']);
             $this->setNombre($rows[0]['nombre']);
+            $this->setTipo($rows[0]['tipo']);
         }
     }
 
@@ -65,10 +74,12 @@ class Habilidad
 
 	public function updateHabilidad(){
         $stmt=new sQuery();
-        $query="update habilidades set codigo =:codigo, nombre =:nombre where id_habilidad =:id_habilidad";
+        $query="update habilidades set codigo =:codigo, nombre =:nombre, tipo =:tipo
+                where id_habilidad =:id_habilidad";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':codigo', $this->getCodigo());
         $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':tipo', $this->getTipo());
         $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -76,19 +87,21 @@ class Habilidad
 
 	private function insertHabilidad(){
         $stmt=new sQuery();
-        $query="insert into habilidades(codigo, nombre)values(:codigo, :nombre)";
+        $query="insert into habilidades(codigo, nombre, tipo)
+                values(:codigo, :nombre, :tipo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':codigo', $this->getCodigo());
         $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':tipo', $this->getTipo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 	}
 
-	function delete(){
+	function deleteHabilidad(){
         $stmt=new sQuery();
-        $query="delete from habilidades where id_habilidad = :id";
+        $query="delete from habilidades where id_habilidad =:id_habilidad";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getID());
+        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 	}	

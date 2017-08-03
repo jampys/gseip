@@ -46,6 +46,7 @@
                     params.id_habilidad=$('#id_habilidad').val();
                     params.codigo=$('#codigo').val();
                     params.nombre=$('#nombre').val();
+                    params.tipo=$('#tipo').val();
                     $.post('index.php',params,function(data, status, xhr){
 
                         //alert(data);
@@ -72,20 +73,6 @@
                 $('#myModal').modal('hide');
             });
 
-
-
-            /*$(document).on('click', '.delete', function(){
-             //obtengo el id que guardamos en data-id
-             var id=$(this).attr('data-id');
-             //preparo los parametros
-             params={};
-             params.id=id;
-             params.action="deleteClient";
-             $('#popupbox').load('index.php', params,function(){
-             $('#content').load('index.php',{action:"refreshGrid"});
-             })
-
-             });*/
 
 
 
@@ -118,16 +105,16 @@
                 //alert(id);
                 //preparo los parametros
                 params={};
-                params.id=id;
-                params.action = "clientes";
-                params.operation = "deleteClient";
+                params.id_habilidad = id;
+                params.action = "habilidades";
+                params.operation = "deleteHabilidad";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Cliente eliminado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"clientes", operation: "refreshGrid"});
+                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
+                        $('#content').load('index.php',{action:"habilidades", operation: "refreshGrid"});
                     }else{
-                        $("#myElemento").html('Error al eliminar el cliente').addClass('alert alert-danger').show();
+                        $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElemento").hide();
                                             $('#confirm').dialog('close');

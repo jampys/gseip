@@ -12,11 +12,19 @@
 
         $('#habilidad').validate({
             rules: {
-                codigo: {required: true},
+                codigo: {
+                        required: true,
+                        digits: true,
+                        maxlength: 3
+                },
                 nombre: {required: true}
             },
             messages:{
-                codigo: "Ingrese el código",
+                codigo: {
+                    required: "Ingrese el código",
+                    digits: "Ingrese solo números",
+                    maxlength: "Máximo 3 dígitos"
+                },
                 nombre: "Ingrese el nombre"
             }
 
@@ -34,7 +42,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -55,6 +63,22 @@
                         <label class="control-label" for="nombre">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php print $view->habilidad->getNombre() ?>" placeholder="Nombre">
                     </div>
+
+                    <div class="form-group required">
+                        <label class="control-label" for="tipo" >Tipo</label>
+                        <select class="form-control" id="tipo" name="tipo">
+                            <option value="" disabled selected>Seleccione el tipo</option>
+                            <?php foreach ($view->tipos['enum'] as $tipo){
+                                ?>
+                                <option value="<?php echo $tipo; ?>"
+                                    <?php echo ($tipo == $view->habilidad->getTipo() OR ($tipo == $view->tipos['default'] AND !$view->habilidad->getIdHabilidad()) )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $tipo; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
 
                 </form>
 

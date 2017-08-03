@@ -21,6 +21,7 @@ switch ($operation)
         $habilidad = new Habilidad($_POST['id_habilidad']);
         $habilidad->setCodigo($_POST['codigo']);
         $habilidad->setNombre($_POST['nombre']);
+        $habilidad->setTipo($_POST['tipo']);
 
         $rta = $habilidad->save();
         print_r(json_encode($rta));
@@ -30,6 +31,9 @@ switch ($operation)
     case 'newHabilidad':
         $view->habilidad = new Habilidad();
         $view->label='Nueva Habilidad';
+
+        $view->tipos = Soporte::get_enum_values('habilidades', 'tipo');
+
         $view->disableLayout=true;
         $view->contentTemplate="view/habilidadesForm.php";
         break;
@@ -37,15 +41,16 @@ switch ($operation)
     case 'editHabilidad':
         $view->label='Editar Habilidad';
         $view->habilidad = new Habilidad($_POST['id_habilidad']);
+
+        $view->tipos = Soporte::get_enum_values('habilidades', 'tipo');
+
         $view->disableLayout=true;
         $view->contentTemplate="view/habilidadesForm.php";
         break;
 
     case 'deleteHabilidad':
-        $id=intval($_POST['id']);
-        $client=new Cliente($id);
-        //$client->delete();
-        $rta = $client->delete();
+        $habilidad = new Habilidad($_POST['id_habilidad']);
+        $rta = $habilidad->deleteHabilidad();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
