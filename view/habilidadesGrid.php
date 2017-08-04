@@ -38,8 +38,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>codigo</th>
+                <th>Código</th>
                 <th>Nombre</th>
                 <th>Tipo</th>
                 <th>Editar</th>
@@ -49,7 +48,6 @@
             <tbody>
             <?php foreach ($view->habilidades as $habilidad):   ?>
                 <tr>
-                    <td><?php echo $habilidad['id_habilidad'];?></td>
                     <td><?php echo $habilidad['codigo'];?></td>
                     <td><?php echo $habilidad['nombre'];?></td>
                     <td><?php echo $habilidad['tipo'];?></td>

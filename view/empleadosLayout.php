@@ -74,7 +74,7 @@
 
                     $.post('index.php',params,function(data, status, xhr){
 
-                        alert(xhr.responseText);
+                        //alert(xhr.responseText);
                         //var rta= parseInt(data.charAt(3));
                         //alert(rta);
                         if(data >=0){
