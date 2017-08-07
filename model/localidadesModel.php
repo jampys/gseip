@@ -2,11 +2,43 @@
 
 class Localidad
 {
-    private $nombre;
-    private $apellido;
-    private $fecha;
-    private $peso;
-    private $id;
+    private $id_localidad;
+    private $ciudad;
+    private $cp;
+    private $provincia;
+    private $pais;
+
+    // GETTERS
+    function getIdLocalidad()
+    { return $this->id_localidad;}
+
+    function getCiudad()
+    { return $this->ciudad;}
+
+    function getCp()
+    { return $this->cp;}
+
+    function getProvincia()
+    { return $this->provincia;}
+
+    function getPais()
+    { return $this->pais;}
+
+    // SETTERS
+    function setIdLocalidad($val)
+    { $this->id_localidad=$val;}
+
+    function setCiudad($val)
+    { $this->ciudad=$val;}
+
+    function setCp($val)
+    {  $this->cp=$val;}
+
+    function setProvincia($val)
+    {  $this->provincia=$val;}
+
+    function setPais($val)
+    {  $this->pais=$val;}
 
     public static function getLocalidades() {
         $stmt=new sQuery();
@@ -14,38 +46,6 @@ class Localidad
         $stmt->dpExecute();
         return $stmt->dpFetchAll(); // retorna todas las localidades
     }
-
-
-
-    // metodos que devuelven valores
-    function getID()
-    { return $this->id;}
-    function getNombre()
-    { return $this->nombre;}
-    function getApellido()
-    { return $this->apellido;}
-    function getFecha()
-    { return $this->fecha;}
-    function getPeso()
-    { return $this->peso;}
-
-    // metodos que setean los valores
-    function setID($val)
-    { $this->id=$val;}
-    function setNombre($val)
-    { $this->nombre=$val;}
-    function setApellido($val)
-    {  $this->apellido=$val;}
-    function setFecha($val)
-    {  $this->fecha=$val;}
-    function setPeso($val)
-    {  $this->peso=$val;}
-
-
-
-
-
-
 
 
 

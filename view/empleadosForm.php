@@ -48,6 +48,8 @@
                 fecha_alta: {required: true},
                 domicilio: {required: true},
                 lugar_residencia: {required: true},
+                telefono: {digits: true},
+                email: {email: true},
                 sexo: {required: true}
             },
             messages:{
@@ -69,6 +71,8 @@
                 fecha_alta: "Ingrese la fecha de alta",
                 domicilio: "Ingrese el domicilio",
                 lugar_residencia: "Seleccione la localidad",
+                telefono: {digits: "Ingrese solo números"},
+                email: {email: "Ingrese una dirección de email válida"},
                 sexo: "Seleccione el sexo"
             }
             /*,tooltip_options: {
