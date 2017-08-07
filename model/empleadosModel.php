@@ -1,19 +1,18 @@
-﻿<?php
-
+<?php
 
 class Empleado
 {
     private $id_empleado;
     private $legajo;
     private $apellido;
-	private $nombre;
-	private $documento;
+    private $nombre;
+    private $documento;
     private $cuil;
-	private $fecha_nacimiento;
+    private $fecha_nacimiento;
     private $fecha_alta;
     private $fecha_baja;
-	private $direccion;
-	private $telefono;
+    private $direccion;
+    private $telefono;
     private $email;
     private $id_localidad;
     private $sexo;
@@ -134,9 +133,9 @@ class Empleado
 
 
 
-	function Empleado($id_empleado = 0){ //constructor
+    function Empleado($id_empleado = 0){ //constructor
 
-		if ($id_empleado!= 0){
+        if ($id_empleado!= 0){
 
             $stmt=new sQuery();
             $query="select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
@@ -173,8 +172,8 @@ class Empleado
             $this->setEstadoCivil($rows[0]['estado_civil']);
             $this->setEmpresa($rows[0]['empresa']);
 
-		}
-	}
+        }
+    }
 
 
     public static function getEmpleados() {
@@ -216,7 +215,7 @@ class Empleado
     }
 
 
-		
+
 
 
     function save($cambio_domicilio){
@@ -227,7 +226,7 @@ class Empleado
         return $rta;
     }
 
-	public function updateEmpleado($cambio_domicilio){
+    public function updateEmpleado($cambio_domicilio){
 
         $stmt=new sQuery();
         /*$query="update empleados set legajo = :legajo, apellido=:apellido, nombre=:nombre, documento=:documento, cuil=:cuil,
@@ -289,9 +288,9 @@ class Empleado
         $flag = $stmt->dpFetchAll();
         return ($flag)? intval($flag[0]['flag']) : 0;
 
-	}
+    }
 
-	private function insertEmpleado(){
+    private function insertEmpleado(){
 
         /*$stmt=new sQuery();
         $query="insert into empleados(legajo, apellido, nombre, documento, cuil, fecha_nacimiento, fecha_alta, fecha_baja, domicilio, lugar_residencia, telefono, email, sexo, nacionalidad, estado_civil, tipo)
@@ -378,9 +377,38 @@ class Empleado
         $flag = $stmt->dpFetchAll();
         return ($flag)? intval($flag[0]['flag']) : 0;
 
-	}
+    }
+
+
+
+    public function checkEmpleadoCuil($cuil) {
+        $stmt=new sQuery();
+        $query = "select * from empleados
+                  where cuil =:cuil and fecha_baja is null";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':cuil', $cuil);
+        $stmt->dpExecute();
+
+        //$stmt->dpFetchAll();
+        return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }
+
+    public function checkEmpleadoLegajo($legajo) {
+        $stmt=new sQuery();
+        $query = "select * from empleados
+                  where legajo = lpad(:legajo, 4, 0)";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':legajo', $legajo);
+        $stmt->dpExecute();
+
+        return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }
+
+
+
+
 
 
 }
 
-
+?>

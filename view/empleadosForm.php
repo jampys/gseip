@@ -7,14 +7,43 @@
 
         $('#empleado-form').validate({
             rules: {
-                legajo: {required: true,
-                         digits: true},
+                legajo: {
+                    required: true,
+                    digits: true,
+                    remote: {
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            action: "empleados",
+                            operation: "checkEmpleadoLegajo",
+                            legajo: function(){ return $('#legajo').val();}}
+                    }
+                },
                 nombre: {required: true},
                 apellido: {required: true},
                 documento: {required: true,
                             digits: true},
-                cuil: {required: true,
-                        digits: true},
+                cuil: {
+                    required: true,
+                    digits: true,
+                    remote: {
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            action: "empleados",
+                            operation: "checkEmpleadoCuil",
+                            cuil: function(){ return $('#cuil').val();}}
+                        /*success: function(data, textStatus, jqXHR) {
+                            console.log(textStatus, jqXHR, data);
+                        },
+                        error: function(data, textStatus, errorThrown) {
+                            console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                        }*/
+
+                    }
+                },
                 fecha_nacimiento: {required: true},
                 fecha_alta: {required: true},
                 domicilio: {required: true},
@@ -22,14 +51,20 @@
                 sexo: {required: true}
             },
             messages:{
-                legajo: {required: "Ingrese el legajo",
-                         digits: "Ingrese solo números"},
+                legajo: {
+                    required: "Ingrese el legajo",
+                    digits: "Ingrese solo números",
+                    remote: "El legajo ingresado ya existe"
+                },
                 nombre: "Ingrese el nombre",
                 apellido: "Ingrese el apellido",
                 documento: {required: "Ingrese el Nro. documento",
                             digits: "Ingrese solo números"},
-                cuil: {required: "Ingrese el CUIL",
-                       digits: "Ingrese solo números"},
+                cuil: {
+                    required: "Ingrese el CUIL",
+                    digits: "Ingrese solo números",
+                    remote: "El CUIL ingresado ya existe"
+                },
                 fecha_nacimiento: "Ingrese la fecha de nacimiento",
                 fecha_alta: "Ingrese la fecha de alta",
                 domicilio: "Ingrese el domicilio",

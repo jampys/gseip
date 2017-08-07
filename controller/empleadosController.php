@@ -73,6 +73,20 @@ switch ($operation)
         $view->contentTemplate="view/EmpleadosForm.php";
         break;
 
+    case 'checkEmpleadoCuil':
+        $view->empleado = new Empleado();
+        $rta = $view->empleado->checkEmpleadoCuil($_POST['cuil']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
+    case 'checkEmpleadoLegajo':
+        $view->empleado = new Empleado();
+        $rta = $view->empleado->checkEmpleadoLegajo($_POST['legajo']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
 
     default :
         $view->empleados=Empleado::getEmpleados();
