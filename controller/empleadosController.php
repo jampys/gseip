@@ -87,6 +87,13 @@ switch ($operation)
         exit;
         break;
 
+    case 'autocompletarEmpleadosByCuil':
+        $view->empleado = new Empleado();
+        $rta=$view->empleado->autocompletarEmpleadosByCuil($_POST['term']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
 
     default :
         $view->empleados=Empleado::getEmpleados();

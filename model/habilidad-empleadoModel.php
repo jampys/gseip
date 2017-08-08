@@ -1,40 +1,20 @@
 ﻿<?php
 
 
-class Habilidad
+class HabilidadEmpleado
 {
 	private $id_habilidad;
-	private $codigo;
-	private $nombre;
-    private $tipo;
-
 
     // GETTERS
     function getIdHabilidad()
     { return $this->id_habilidad;}
 
-    function getCodigo()
-    { return $this->codigo;}
-
-    function getNombre()
-    { return $this->nombre;}
-
-    function getTipo()
-    { return $this->tipo;}
 
 
     //SETTERS
     function setIdHabilidad($val)
     { $this->id_habilidad=$val;}
 
-    function setCodigo($val)
-    {  $this->codigo=$val;}
-
-    function setNombre($val)
-    { $this->nombre=$val;}
-
-    function setTipo($val)
-    { $this->tipo=$val;}
 
 
     function __construct($nro=0){ //constructor
@@ -55,12 +35,26 @@ class Habilidad
     }
 
 
-    public static function getHabilidades() {
+    public static function getHabilidadEmpleado($cuil, $id_habilidad) {
 			$stmt=new sQuery();
-            $stmt->dpPrepare("select * from habilidades");
+            $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.cuil,
+		hab.id_habilidad, hab.nombre as habilidad,
+		DATE_FORMAT(he.fecha_desde,  '%d/%m/%Y') as fecha_desde
+from habilidad_empleado he, habilidades hab, empleados em
+where he.id_empleado = em.id_empleado
+and he.id_habilidad = hab.id_habilidad
+and em.cuil = ifnull(:cuil, em.cuil)
+and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
+
+            $stmt->dpPrepare($query);
+            $stmt->dpBind(':cuil', $cuil);
+            $stmt->dpBind(':id_habilidad', $id_habilidad);
             $stmt->dpExecute();
             return $stmt->dpFetchAll();
 		}
+
+
+
 
 
     function save(){

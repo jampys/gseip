@@ -405,6 +405,20 @@ class Empleado
     }
 
 
+    public function autocompletarEmpleadosByCuil($term) {
+        //Devuelve los empleados activos e inactivos agrupaddos por Cuil
+        $stmt=new sQuery();
+        $query = "select *
+                  from empleados
+                  where apellido like '%$term%'
+                  or nombre like '%$term%'
+                  group by cuil";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
 
 
 

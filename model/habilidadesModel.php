@@ -1,11 +1,11 @@
-﻿<?php
+<?php
 
 
 class Habilidad
 {
-	private $id_habilidad;
-	private $codigo;
-	private $nombre;
+    private $id_habilidad;
+    private $codigo;
+    private $nombre;
     private $tipo;
 
 
@@ -56,11 +56,11 @@ class Habilidad
 
 
     public static function getHabilidades() {
-			$stmt=new sQuery();
-            $stmt->dpPrepare("select * from habilidades");
-            $stmt->dpExecute();
-            return $stmt->dpFetchAll();
-		}
+        $stmt=new sQuery();
+        $stmt->dpPrepare("select * from habilidades");
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
 
 
     function save(){
@@ -72,7 +72,7 @@ class Habilidad
     }
 
 
-	public function updateHabilidad(){
+    public function updateHabilidad(){
         $stmt=new sQuery();
         $query="update habilidades set codigo =:codigo, nombre =:nombre, tipo =:tipo
                 where id_habilidad =:id_habilidad";
@@ -83,9 +83,9 @@ class Habilidad
         $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}
+    }
 
-	private function insertHabilidad(){
+    private function insertHabilidad(){
         $stmt=new sQuery();
         $query="insert into habilidades(codigo, nombre, tipo)
                 values(:codigo, :nombre, :tipo)";
@@ -95,15 +95,30 @@ class Habilidad
         $stmt->dpBind(':tipo', $this->getTipo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}
+    }
 
-	function deleteHabilidad(){
+    function deleteHabilidad(){
         $stmt=new sQuery();
         $query="delete from habilidades where id_habilidad =:id_habilidad";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}	
-	
+    }
+
+
+    public function autocompletarHabilidades($term) {
+        $stmt=new sQuery();
+        $query = "select *
+                  from habilidades
+                  where nombre like '%$term%'";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
 }
+
+
+?>

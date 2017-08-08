@@ -1,6 +1,6 @@
 ﻿<?php
 
-include_once("model/habilidadesModel.php");
+include_once("model/habilidad-empleadoModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -11,10 +11,14 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'buscar':
         $view->disableLayout=true;
-        $view->habilidades = Habilidad::getHabilidades();
-        $view->contentTemplate="view/empleado-habilidadGrid.php";
+
+        $cuil = ($_POST['cuil']!='')? $_POST['cuil'] : null;
+        $id_habilidad = ($_POST['id_habilidad']!='')? $_POST['id_habilidad'] : null;
+
+        $view->habilidadEmpleado = HabilidadEmpleado::getHabilidadEmpleado($cuil, $id_habilidad);
+        $view->contentTemplate="view/habilidad-empleadoGrid.php";
         break;
 
     case 'saveHabilidad':
@@ -57,7 +61,7 @@ switch ($operation)
 
     default :
         //$view->habilidades = Habilidad::getHabilidades();
-        $view->contentTemplate="view/empleado-habilidadGrid.php";
+        $view->contentTemplate="view/habilidad-empleadoGrid.php";
         break;
 }
 
@@ -65,7 +69,7 @@ switch ($operation)
 if ($view->disableLayout==true) {
     include_once ($view->contentTemplate);}
 else {
-    include_once('view/empleado-habilidadLayout.php');
+    include_once('view/habilidad-empleadoLayout.php');
 }
 
 

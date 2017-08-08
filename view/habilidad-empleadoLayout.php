@@ -14,16 +14,123 @@
 
 
             $(document).on('click', '#search', function(){
-                alert('presiono en buscar');
-                //var id = $(this).attr('data-id');
-                //preparo los parametros
-                //params={};
-                //params.id_habilidad = id;
-                //params.action = "habilidades";
-                //params.operation = "editHabilidad";
-                $('#content').load('index.php',{action:"empleado-habilidad", operation:"refreshGrid"});
+
+
+                if ($("#search_form").valid()){
+
+                    //alert('presiono en buscar');
+                    //var id = $(this).attr('data-id');
+                    //preparo los parametros
+                    params={};
+                    params.cuil = $("#cuil").val();
+                    params.id_habilidad = $("#id_habilidad").val();
+                    params.action = "habilidad-empleado";
+                    params.operation = "buscar";
+                    //alert(params.cuil);
+                    //alert(params.id_habilidad);
+                    $('#content').load('index.php', params);
+
+                }
+
 
             });
+
+
+
+            $("#search_empleado").autocomplete({
+                source: function( request, response ) {
+                    $.ajax({
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: { "term": request.term, "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
+                        success: function(data) {
+                            response($.map(data, function(item) {
+                                return {
+                                    label: item.apellido+" "+item.nombre,
+                                    id: item.cuil
+
+                                };
+                            }));
+                        }
+
+                    });
+                },
+                minLength: 2,
+                change: function(event, ui) {
+                    $('#cuil').val(ui.item? ui.item.id : '');
+                    $('#search_empleado').val(ui.item.label);
+                }
+            });
+
+
+            $("#search_habilidad").autocomplete({
+                source: function( request, response ) {
+                    $.ajax({
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: { "term": request.term, "action":"habilidades", "operation":"autocompletarHabilidades"},
+                        success: function(data) {
+                            response($.map(data, function(item) {
+                                return {
+                                    label: item.nombre,
+                                    id: item.id_habilidad
+
+                                };
+                            }));
+                        },
+                        error: function(data, textStatus, errorThrown) {
+                            console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                        }
+
+
+                    });
+                },
+                minLength: 2,
+                change: function(event, ui) {
+                    $('#id_habilidad').val(ui.item? ui.item.id : '');
+                    $('#search_habilidad').val(ui.item.label);
+                }
+            });
+
+
+
+            $('#search_form').validate({
+                ignore:"",
+                rules: {
+                    cuil: {
+                        required: function(item){return $('#search_empleado').val().length > 0;}
+                    },
+                    id_habilidad: {
+                        required: function(item){return $('#search_habilidad').val().length > 0;}
+                    }
+
+                },
+                messages:{
+                    cuil: "Seleccione un empleado sugerido",
+                    id_habilidad: "Seleccione una habilidad sugerida"
+                }
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             $(document).on('click', '.edit', function(){
@@ -160,24 +267,26 @@
         <div class="row">
 
 
-            <div class="col-md-2"></div>
-            
-            <div class="col-md-8">
+            <div class="col-md-1"></div>
+
+            <div class="col-md-10">
 
                 <h4>Empleados - Habilidades</h4>
                 <hr class="hr-primary"/>
 
                 <div class="clearfix">
-                    <form>
+                    <form id="search_form" name="search_form">
                         <div class="form-group col-md-4">
                             <label for="search_empleado" class="control-label">Empleado</label>
                             <input type="text" class="form-control" id="search_empleado" placeholder="Empleado">
+                            <input type="hidden" name="cuil" id="cuil"/>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                             <label for="search_habilidad" class="control-label">Habilidad</label>
                             <input type="text" class="form-control" id="search_habilidad" placeholder="Habilidad">
+                            <input type="hidden" name="id_habilidad" id="id_habilidad"/>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
                         </div>
@@ -188,7 +297,7 @@
             </div>
 
 
-            <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
 
         </div>
         <br/>
