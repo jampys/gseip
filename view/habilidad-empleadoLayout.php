@@ -99,17 +99,21 @@
             $('#search_form').validate({
                 ignore:"",
                 rules: {
-                    cuil: {
-                        required: function(item){return $('#search_empleado').val().length > 0;}
+                    search_empleado: {
+                        digits: function(item){return ($('#search_empleado').val().length > 0 && $('#cuil').val().length == 0); }
                     },
-                    id_habilidad: {
+                    search_habilidad: {
                         required: function(item){return $('#search_habilidad').val().length > 0;}
                     }
 
                 },
                 messages:{
-                    cuil: "Seleccione un empleado sugerido",
-                    id_habilidad: "Seleccione una habilidad sugerida"
+                    search_empleado: "Seleccione un empleado sugerido",
+                    search_habilidad: "Seleccione una habilidad sugerida"
+                },
+                tooltip_options: {
+                    search_empleado: {placement:'bottom'},
+                    example5: {placement:'right',html:true}
                 }
 
             });
