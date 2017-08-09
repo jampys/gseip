@@ -110,11 +110,11 @@
                 messages:{
                     search_empleado: "Seleccione un empleado sugerido",
                     search_habilidad: "Seleccione una habilidad sugerida"
-                },
-                tooltip_options: {
+                }
+                /*tooltip_options: {
                     search_empleado: {placement:'bottom'},
                     example5: {placement:'right',html:true}
-                }
+                }*/
 
             });
 

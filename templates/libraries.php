@@ -17,6 +17,7 @@
 
     <!-- incluyo la libreria jQuery validation -->
     <script type="text/javascript" src="validation/jquery.validate.js"></script>
+    <script type="text/javascript" src="validation/additional-methods.js"></script>
     <script type="text/javascript" src="validation/jquery-validate.bootstrap-tooltip.js"></script>
 
 
