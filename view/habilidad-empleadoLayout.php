@@ -278,12 +278,12 @@
                     <form id="search_form" name="search_form">
                         <div class="form-group col-md-4">
                             <label for="search_empleado" class="control-label">Empleado</label>
-                            <input type="text" class="form-control" id="search_empleado" placeholder="Empleado">
+                            <input type="text" class="form-control" id="search_empleado" name="search_empleado" placeholder="Empleado">
                             <input type="hidden" name="cuil" id="cuil"/>
                         </div>
                         <div class="form-group col-md-5">
                             <label for="search_habilidad" class="control-label">Habilidad</label>
-                            <input type="text" class="form-control" id="search_habilidad" placeholder="Habilidad">
+                            <input type="text" class="form-control" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
                             <input type="hidden" name="id_habilidad" id="id_habilidad"/>
                         </div>
                         <div class="form-group col-md-2">
