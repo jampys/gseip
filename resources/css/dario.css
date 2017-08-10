@@ -98,3 +98,9 @@ table.dataTable th { font-size: 14px }
 }
 
 
+/* OJO soluciona el problema con el autocompletar que no muestra los resultados */
+.ui-front {
+    z-index: 1500 !important;
+}
+
+

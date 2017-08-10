@@ -36,8 +36,8 @@
             },
             minLength: 2,
             change: function(event, ui) {
-                //$('#cuilx').val(ui.item? ui.item.id : '');
-                //$('#search_empleadox').val(ui.item.label);
+                $('#cuilx').val(ui.item? ui.item.id : '');
+                $('#search_empleadox').val(ui.item.label);
             }
         });
 
