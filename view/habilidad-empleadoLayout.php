@@ -100,10 +100,18 @@
                 ignore:"",
                 rules: {
                     search_empleado: {
-                        digits: function(item){return ($('#search_empleado').val().length > 0 && $('#cuil').val().length == 0); }
+                        //digits: function(item){return ($('#search_empleado').val().length > 0 && $('#cuil').val().length == 0); }
+                        require_from_group: {
+                            param: [2, ".empleado-group"],
+                            depends: function(element) { return $('#search_empleado').val().length > 0;}
+                        }
                     },
                     search_habilidad: {
-                        required: function(item){return $('#search_habilidad').val().length > 0;}
+                        //required: function(item){return $('#search_habilidad').val().length > 0;}
+                        require_from_group: {
+                            param: [2, ".habilidad-group"],
+                            depends: function(element) { return $('#search_habilidad').val().length > 0;}
+                        }
                     }
 
                 },
@@ -282,13 +290,13 @@
                     <form id="search_form" name="search_form">
                         <div class="form-group col-md-4">
                             <label for="search_empleado" class="control-label">Empleado</label>
-                            <input type="text" class="form-control" id="search_empleado" name="search_empleado" placeholder="Empleado">
-                            <input type="hidden" name="cuil" id="cuil"/>
+                            <input type="text" class="form-control empleado-group" id="search_empleado" name="search_empleado" placeholder="Empleado">
+                            <input type="hidden" name="cuil" id="cuil" class="empleado-group"/>
                         </div>
                         <div class="form-group col-md-5">
                             <label for="search_habilidad" class="control-label">Habilidad</label>
-                            <input type="text" class="form-control" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
-                            <input type="hidden" name="id_habilidad" id="id_habilidad"/>
+                            <input type="text" class="form-control habilidad-group" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
+                            <input type="hidden" name="id_habilidad" id="id_habilidad" class="habilidad-group"/>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
