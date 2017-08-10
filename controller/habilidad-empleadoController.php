@@ -11,7 +11,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'buscar':
+    case 'buscar': //ok
         $view->disableLayout=true;
 
         $cuil = ($_POST['cuil']!='')? $_POST['cuil'] : null;
@@ -32,14 +32,14 @@ switch ($operation)
         exit;
         break;
 
-    case 'newHabilidad':
-        $view->habilidad = new Habilidad();
-        $view->label='Nueva Habilidad';
+    case 'new': //ok
+        //$view->habilidad = new Habilidad();
+        $view->label='Agregar habilidades';
 
-        $view->tipos = Soporte::get_enum_values('habilidades', 'tipo');
+        //$view->tipos = Soporte::get_enum_values('habilidades', 'tipo');
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/habilidadesForm.php";
+        $view->contentTemplate="view/habilidad-empleadoForm.php";
         break;
 
     case 'editHabilidad':

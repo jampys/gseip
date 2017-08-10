@@ -162,8 +162,8 @@
 
             $(document).on('click', '#new', function(){
                 params={};
-                params.action = "habilidades";
-                params.operation="newHabilidad";
+                params.action = "habilidad-empleado";
+                params.operation="new";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
@@ -293,7 +293,7 @@
                             <input type="text" class="form-control empleado-group" id="search_empleado" name="search_empleado" placeholder="Empleado">
                             <input type="hidden" name="cuil" id="cuil" class="empleado-group"/>
                         </div>
-                        <div class="form-group col-md-5">
+                        <div class="form-group col-md-4">
                             <label for="search_habilidad" class="control-label">Habilidad</label>
                             <input type="text" class="form-control habilidad-group" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
                             <input type="hidden" name="id_habilidad" id="id_habilidad" class="habilidad-group"/>
@@ -301,6 +301,10 @@
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="search">&nbsp;</label>
+                            <button type="button" class="form-control btn btn-primary btn-sm" id="new">Agregar</button>
                         </div>
                     </form>
                 </div>
