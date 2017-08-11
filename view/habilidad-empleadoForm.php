@@ -66,6 +66,8 @@
                     '</tr>');
                 }
 
+                $("#myModal #search_empleado").val('');
+
             }
         });
 
@@ -116,6 +118,8 @@
                     '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                     '</tr>');
                 }
+
+                $("#myModal #search_habilidad").val('');
             }
         });
 

@@ -283,7 +283,7 @@
 
             <div class="col-md-10">
 
-                <h4>Empleados - Habilidades</h4>
+                <h4>Habilidades - Empleados</h4>
                 <hr class="hr-primary"/>
 
                 <div class="clearfix">
