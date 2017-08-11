@@ -3,6 +3,8 @@
 
     $(document).ready(function(){
 
+        var jsonEmpleados = [];
+
 
         $('#myModal').modal({
             backdrop: 'static',
@@ -21,8 +23,13 @@
                     success: function(data) {
                         response($.map(data, function(item) {
                             return {
-                                label: item.apellido+" "+item.nombre,
-                                id: item.cuil
+                                apellido: item.apellido,
+                                nombre: item.nombre,
+                                legajo: item.legajo,
+                                id: item.cuil,
+                                id_empleado: item.id_empleado,
+                                label: item.apellido+' '+item.nombre
+
 
                             };
                         }));
@@ -36,9 +43,68 @@
             },
             minLength: 2,
             change: function(event, ui) {
-                $('#cuilx').val(ui.item? ui.item.id : '');
-                $('#search_empleadox').val(ui.item.label);
+
+                //$('#empleados-table tbody tr').each(function(){ $(this).remove(); });
+
+
+                item = {};
+                item.apellido = ui.item.apellido;
+                item.nombre = ui.item.nombre;
+                item.legajo = ui.item.legajo;
+                item.cuil = ui.item.cuil;
+                item.id_empleado = ui.item.id_empleado;
+
+
+
+                if(jsonEmpleados[item.id_empleado]) {
+                    //alert('el elemento existe');
+                }
+                else {
+                    jsonEmpleados[item.id_empleado] =item;
+
+                    $('#empleados-table tbody').append('<tr>' +
+                    '<td>'+item.legajo+'</td>' +
+                    '<td>'+item.apellido+'</td>' +
+                    '<td>'+item.nombre+'</td>' +
+                    '<td class="text-center"><a class="eliminar" href="#" data-id='+item.id_empleado+'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                    '</tr>');
+                }
+
+                /*for(var i in jsonEmpleados){
+                    $('#empleados-table tbody').append('<tr>' +
+                    '<td>'+jsonEmpleados[i].legajo+'</td>' +
+                    '<td>'+jsonEmpleados[i].apellido+'</td>' +
+                    '<td>'+jsonEmpleados[i].nombre+'</td>' +
+                    '<td class="text-center"><a class="eliminar" href="#" data-id='+jsonEmpleados[i].id_empleado+'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                    '</tr>');
+                }*/
+
+
+
+
+
             }
+        });
+
+
+
+
+        $(document).on("click",".eliminar",function(e){
+            var index =  $(this).attr('data-id');
+            //alert(index);
+            $(this).closest('tr').remove(); //elimina la fila
+
+
+
+            //jsonObj.splice(index, 1);
+            delete jsonEmpleados[index];
+
+
+
+
+
+            e.preventDefault(); //para evitar que suba el foco al eliminar un plan
+
         });
 
 
@@ -73,53 +139,28 @@
 
                             <form id="search_formx" name="search_formx">
 
-                                <div class="form-group col-md-10">
+                                <div class="form-group col-md-12">
                                     <label for="search_empleadox" class="control-label">Empleado</label>
                                     <input type="text" class="form-control" id="search_empleadox" name="search_empleadox" placeholder="Empleado">
                                     <input type="hidden" name="cuilx" id="cuilx" />
                                 </div>
 
-                                <div class="form-group col-md-2">
-                                    <label for="search">&nbsp;</label>
-                                    <button type="button" class="form-control btn btn-primary btn-sm" id="new-empleadox">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                    </button>
-                                </div>
-
                             </form>
-
-
                             <br/>
 
-
-
-
-                                <table class="table table-condensed dataTable table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Leg.</th>
-                                        <th>Apellido</th>
-                                        <th>Nombre</th>
-                                        <th>Eliminar</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php //foreach ($view->domicilios as $dom):  ?>
-                                        <tr>
-                                            <td><?php //echo $dom['direccion'];?></td>
-                                            <td><?php //echo $dom['CP'].' '.$dom['ciudad'].' '.$dom['provincia'];?></td>
-                                            <td><?php //echo $dom['fecha_desde'];?></td>
-                                            <td><?php //echo $dom['fecha_hasta'];?></td>
-                                        </tr>
-                                    <?php //endforeach; ?>
-                                    </tbody>
-                                </table>
-
-
-
-
-
-
+                            <table class="table table-condensed dataTable table-hover" id="empleados-table">
+                                <thead>
+                                <tr>
+                                    <th>Leg.</th>
+                                    <th>Apellido</th>
+                                    <th>Nombre</th>
+                                    <th class="text-center">Eliminar</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- se genera dinamicamente con javascript -->
+                                </tbody>
+                            </table>
 
 
 
@@ -127,6 +168,7 @@
 
 
                         <div class="col-md-6">
+
 
                         </div>
 
