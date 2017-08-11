@@ -4,6 +4,7 @@
     $(document).ready(function(){
 
         var jsonEmpleados = [];
+        var jsonHabilidades = [];
 
 
         $('#myModal').modal({
@@ -13,7 +14,7 @@
 
 
 
-        $("#search_empleadox").autocomplete({
+        $("#myModal #search_empleado").autocomplete({
             source: function( request, response ) {
                 $.ajax({
                     url: "index.php",
@@ -70,13 +71,74 @@
 
 
 
+        $("#myModal #search_habilidad").autocomplete({
+            source: function( request, response ) {
+                $.ajax({
+                    url: "index.php",
+                    type: "post",
+                    dataType: "json",
+                    data: { "term": request.term, "action":"habilidades", "operation":"autocompletarHabilidades"},
+                    success: function(data) {
+                        response($.map(data, function(item) {
+                            return {
+                                label: item.nombre,
+                                id_habilidad: item.id_habilidad
+
+                            };
+                        }));
+                    },
+                    error: function(data, textStatus, errorThrown) {
+                        console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    }
+
+
+                });
+            },
+            minLength: 2,
+            change: function(event, ui) {
+                //$('#id_habilidad').val(ui.item? ui.item.id : '');
+                //$('#search_habilidad').val(ui.item.label);
+
+
+                item = {};
+                item.nombre = ui.item.label;
+                item.id_habilidad = ui.item.id_habilidad;
+
+                if(jsonHabilidades[item.id_habilidad]) {
+                    //alert('el elemento existe');
+                }
+                else {
+                    jsonHabilidades[item.id_habilidad] =item;
+
+                    $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
+                    '<td>'+item.nombre+'</td>' +
+                    '<td></td>' +
+                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                    '</tr>');
+                }
+            }
+        });
+
+
+
+
 
         $(document).on("click", "#empleados-table .delete", function(e){
             var index =  $(this).closest('tr').attr('data-id');
             //alert(index);
             $(this).closest('tr').remove(); //elimina la fila de la tabla
             delete jsonEmpleados[index]; //elimina el elemento del array
-            e.preventDefault(); //para evitar que suba el foco al eliminar un plan
+            e.preventDefault(); //para evitar que suba el foco al eliminar un elemento
+
+        });
+
+
+        $(document).on("click", "#habilidades-table .delete", function(e){
+            var index =  $(this).closest('tr').attr('data-id');
+            //alert(index);
+            $(this).closest('tr').remove(); //elimina la fila de la tabla
+            delete jsonHabilidades[index]; //elimina el elemento del array
+            e.preventDefault(); //para evitar que suba el foco al eliminar un elemento
 
         });
 
@@ -110,12 +172,11 @@
 
                         <div class="col-md-6">
 
-                            <form id="search_formx" name="search_formx">
+                            <form>
 
                                 <div class="form-group col-md-12">
-                                    <label for="search_empleadox" class="control-label">Empleado</label>
-                                    <input type="text" class="form-control" id="search_empleadox" name="search_empleadox" placeholder="Empleado">
-                                    <input type="hidden" name="cuilx" id="cuilx" />
+                                    <label for="search_empleado" class="control-label">Empleado</label>
+                                    <input type="text" class="form-control" id="search_empleado" name="search_empleado" placeholder="Empleado">
                                 </div>
 
                             </form>
@@ -141,6 +202,30 @@
 
 
                         <div class="col-md-6">
+
+
+                            <form>
+
+                                <div class="form-group col-md-12">
+                                    <label for="search_habilidad" class="control-label">Habilidad</label>
+                                    <input type="text" class="form-control" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
+                                </div>
+
+                            </form>
+                            <br/>
+
+                            <table class="table table-condensed dataTable table-hover" id="habilidades-table">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Puntos</th>
+                                    <th class="text-center">Eliminar</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- se genera dinamicamente con javascript -->
+                                </tbody>
+                            </table>
 
 
                         </div>
