@@ -44,9 +44,6 @@
             minLength: 2,
             change: function(event, ui) {
 
-                //$('#empleados-table tbody tr').each(function(){ $(this).remove(); });
-
-
                 item = {};
                 item.apellido = ui.item.apellido;
                 item.nombre = ui.item.nombre;
@@ -54,34 +51,19 @@
                 item.cuil = ui.item.cuil;
                 item.id_empleado = ui.item.id_empleado;
 
-
-
                 if(jsonEmpleados[item.id_empleado]) {
                     //alert('el elemento existe');
                 }
                 else {
                     jsonEmpleados[item.id_empleado] =item;
 
-                    $('#empleados-table tbody').append('<tr>' +
+                    $('#empleados-table tbody').append('<tr data-id='+item.id_empleado+'>' +
                     '<td>'+item.legajo+'</td>' +
                     '<td>'+item.apellido+'</td>' +
                     '<td>'+item.nombre+'</td>' +
-                    '<td class="text-center"><a class="eliminar" href="#" data-id='+item.id_empleado+'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                     '</tr>');
                 }
-
-                /*for(var i in jsonEmpleados){
-                    $('#empleados-table tbody').append('<tr>' +
-                    '<td>'+jsonEmpleados[i].legajo+'</td>' +
-                    '<td>'+jsonEmpleados[i].apellido+'</td>' +
-                    '<td>'+jsonEmpleados[i].nombre+'</td>' +
-                    '<td class="text-center"><a class="eliminar" href="#" data-id='+jsonEmpleados[i].id_empleado+'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
-                    '</tr>');
-                }*/
-
-
-
-
 
             }
         });
@@ -89,20 +71,11 @@
 
 
 
-        $(document).on("click",".eliminar",function(e){
-            var index =  $(this).attr('data-id');
+        $(document).on("click", "#empleados-table .delete", function(e){
+            var index =  $(this).closest('tr').attr('data-id');
             //alert(index);
-            $(this).closest('tr').remove(); //elimina la fila
-
-
-
-            //jsonObj.splice(index, 1);
-            delete jsonEmpleados[index];
-
-
-
-
-
+            $(this).closest('tr').remove(); //elimina la fila de la tabla
+            delete jsonEmpleados[index]; //elimina el elemento del array
             e.preventDefault(); //para evitar que suba el foco al eliminar un plan
 
         });

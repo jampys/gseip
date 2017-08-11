@@ -208,7 +208,7 @@
 
 
 
-            $(document).on('click', '.delete', function(){
+            $(document).on('click', '#example .delete', function(){
                 var id = $(this).attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
