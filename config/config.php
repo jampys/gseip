@@ -31,10 +31,7 @@ class Conexion  // se declara una clase para hacer la conexion con la base de da
     {
         return $this->con;
     }
-    function Close()  // cierra la conexion
-    {
-        mysql_close($this->con);
-    }
+
 
 }
 
@@ -42,34 +39,17 @@ class Conexion  // se declara una clase para hacer la conexion con la base de da
 
 class sQuery   // se declara una clase para poder ejecutar las consultas, esta clase llama a la clase anterior
 {
-    var $con;
-    var $consulta;
-    var $resultados;
+    static $con;
+    //var $consulta;
+    //var $resultados;
     var $st;
 
     function __construct(){  // constructor, solo crea una conexion usando la clase "Conexion"
         $c = new Conexion();
-        $this->con = $c->getConexion();
+        self::$con = $c->getConexion();
         $this->st=new PDOStatement();
     }
 
-    /*function executeQuery($cons)  // metodo que ejecuta una consulta y la guarda en el atributo $pconsulta
-    {
-        $this->consulta= mysql_query($cons,$this->coneccion->getConexion());
-        return $this->consulta;
-    }*/
-
-    /*function getResults()   // retorna la consulta en forma de result.
-    {return $this->consulta;}*/
-
-    function Close()		// cierra la conexion
-    {$this->coneccion->Close();}
-
-    function Clean() // libera la consulta
-    {mysql_free_result($this->consulta);}
-
-    //function getResultados() // debuelve la cantidad de registros encontrados
-    //{return mysql_affected_rows($this->coneccion->getConexion()) ;}
 
     function dpFetchAll(){
         $rows=array();
@@ -85,7 +65,7 @@ class sQuery   // se declara una clase para poder ejecutar las consultas, esta c
 
 
     function dpPrepare($query){
-        $this->st = $this->con->prepare($query);
+        $this->st = self::$con->prepare($query);
     }
 
     function dpBind($a, $b){
@@ -100,8 +80,16 @@ class sQuery   // se declara una clase para poder ejecutar las consultas, esta c
         return $this->st->rowCount();
     }
 
-    function dpCloseCursor(){ // devuelve las cantidad de filas afectadas
+    function dpCloseCursor(){ // se usa para los SP
         return $this->st->closeCursor();
+    }
+
+    public static function dpBeginTransaction(){ //comenzar una transaccion
+        self::$con->beginTransaction();
+    }
+
+    function dpCommit   (){ //finalizar una transaccion y commit
+        self::$con->commit();
     }
 
 
