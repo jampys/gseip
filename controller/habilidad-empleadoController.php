@@ -21,25 +21,40 @@ switch ($operation)
         $view->contentTemplate="view/habilidad-empleadoGrid.php";
         break;
 
-    case 'saveHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
+    case 'new': //ok
+        $view->label='Agregar habilidades';
+        $view->disableLayout=true;
+        $view->contentTemplate="view/habilidad-empleadoForm.php";
+        break;
+
+    case 'save': //ok
+        /*$habilidad = new Habilidad($_POST['id_habilidad']);
         $habilidad->setCodigo($_POST['codigo']);
         $habilidad->setNombre($_POST['nombre']);
         $habilidad->setTipo($_POST['tipo']);
 
         $rta = $habilidad->save();
-        print_r(json_encode($rta));
+        print_r(json_encode($rta));*/
+
+        sQuery::dpBeginTransaction();
+
+        try{
+
+            //bucle con inserts
+
+            sQuery::dpCommit();
+            print_r(json_encode(1)); //Devuelve el resultado a la vista
+
+        }
+        catch(Exception $e){
+
+            //echo $e->getMessage();
+            sQuery::dpRollback();
+            print_r(json_encode(-1));
+        }
+
+
         exit;
-        break;
-
-    case 'new': //ok
-        //$view->habilidad = new Habilidad();
-        $view->label='Agregar habilidades';
-
-        //$view->tipos = Soporte::get_enum_values('habilidades', 'tipo');
-
-        $view->disableLayout=true;
-        $view->contentTemplate="view/habilidad-empleadoForm.php";
         break;
 
     case 'editHabilidad':

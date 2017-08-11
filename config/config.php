@@ -88,8 +88,12 @@ class sQuery   // se declara una clase para poder ejecutar las consultas, esta c
         self::$con->beginTransaction();
     }
 
-    function dpCommit   (){ //finalizar una transaccion y commit
+    public static function dpCommit(){ //commit
         self::$con->commit();
+    }
+
+    public static function dpRollback(){ //rollback
+        self::$con->rollBack();
     }
 
 

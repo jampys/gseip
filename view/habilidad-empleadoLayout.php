@@ -170,37 +170,7 @@
             });
 
 
-            $(document).on('click', '#submit',function(){
-                if ($("#habilidad").valid()){
-                    var params={};
-                    params.action = 'habilidades';
-                    params.operation = 'saveHabilidad';
-                    params.id_habilidad=$('#id_habilidad').val();
-                    params.codigo=$('#codigo').val();
-                    params.nombre=$('#nombre').val();
-                    params.tipo=$('#tipo').val();
-                    $.post('index.php',params,function(data, status, xhr){
-
-                        //alert(data);
-                        //var rta= parseInt(data.charAt(3));
-                        //alert(rta);
-                        if(data >=0){
-                            $("#myElem").html('Habilidad guardada con exito').addClass('alert alert-success').show();
-                            $('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
-                        }else{
-                            $("#myElem").html('Error al guardar la habilidad').addClass('alert alert-danger').show();
-                        }
-                        setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
-                                              }, 2000);
-
-                    });
-
-                }
-                return false;
-            });
-
-
+         
             $(document).on('click', '#cancel',function(){
                 $('#myModal').modal('hide');
             });

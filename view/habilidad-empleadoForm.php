@@ -147,6 +147,38 @@
         });
 
 
+        $(document).on('click', '#myModal #submit',function(){
+            //alert(Object.keys(jsonEmpleados).length);
+            if (Object.keys(jsonEmpleados).length > 0 && Object.keys(jsonHabilidades).length > 0){
+                var params={};
+                params.action = 'habilidad-empleado';
+                params.operation = 'save';
+
+                params.vEmpleados = JSON.stringify(jsonEmpleados);
+                params.vHabilidades = JSON.stringify(jsonHabilidades);
+
+                $.post('index.php',params,function(data, status, xhr){
+
+                    alert(data);
+                    //var rta= parseInt(data.charAt(3));
+                    //alert(rta);
+                    if(data >=0){
+                        $("#myElem").html('Habilidades empleados guardadas con exito').addClass('alert alert-success').show();
+                        $('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
+                    }else{
+                        $("#myElem").html('Error al guardar las habilidades empleados').addClass('alert alert-danger').show();
+                    }
+                    setTimeout(function() { $("#myElem").hide();
+                        $('#myModal').modal('hide');
+                    }, 2000);
+
+                });
+
+            }
+            return false;
+        });
+
+
 
 
 
