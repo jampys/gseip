@@ -85,6 +85,7 @@ class sQuery   // se declara una clase para poder ejecutar las consultas, esta c
     }
 
     public static function dpBeginTransaction(){ //comenzar una transaccion
+        new sQuery();
         self::$con->beginTransaction();
     }
 

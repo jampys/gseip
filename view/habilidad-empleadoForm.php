@@ -164,7 +164,7 @@
                     //alert(rta);
                     if(data >=0){
                         $("#myElem").html('Habilidades empleados guardadas con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
+                        //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                     }else{
                         $("#myElem").html('Error al guardar las habilidades empleados').addClass('alert alert-danger').show();
                     }

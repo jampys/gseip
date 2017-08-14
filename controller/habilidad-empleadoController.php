@@ -36,6 +36,7 @@ switch ($operation)
         $rta = $habilidad->save();
         print_r(json_encode($rta));*/
 
+
         sQuery::dpBeginTransaction();
 
         try{
