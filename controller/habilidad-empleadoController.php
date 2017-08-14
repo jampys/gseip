@@ -44,21 +44,35 @@ switch ($operation)
 
             //bucle con inserts
             $vEmpleados = json_decode($_POST["vEmpleados"], true);
-            $vHabilidades = json_decode($_POST["vHabilidades"]);
+            $vHabilidades = json_decode($_POST["vHabilidades"], true);
 
-            //$c = new HabilidadEmpleado();
-            //$c->insertHabilidadEmpleado();
-            echo sizeof($vEmpleados);
+            //print_r($vEmpleados);
+
+            foreach ($vEmpleados as $vE) {
+                foreach ($vHabilidades as $vH) {
+
+                    $c = new HabilidadEmpleado();
+                    $c->setIdHabilidad($vH['id_habilidad']);
+                    $c->setIdEmpleado($vE['id_empleado']);
+                    $c->insertHabilidadEmpleado();
+                    //echo $vE['id_empleado'];
+                    //echo $vH['id_habilidad'];
+
+                }
+
+            }
+
+            //echo sizeof($vHabilidades);
 
             sQuery::dpCommit();
-            //print_r(json_encode(1)); //Devuelve el resultado a la vista
+            print_r(json_encode(1)); //Devuelve el resultado a la vista
 
         }
         catch(Exception $e){
 
             //echo $e->getMessage();
             sQuery::dpRollback();
-            //print_r(json_encode(-1));
+            print_r(json_encode(-1));
         }
 
 

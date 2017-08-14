@@ -154,8 +154,18 @@
                 params.action = 'habilidad-empleado';
                 params.operation = 'insert';
 
-                params.vEmpleados = JSON.stringify(jsonEmpleados);
-                params.vHabilidades = JSON.stringify(jsonHabilidades);
+
+                var jsonEmpleadosIx = [];
+                for ( var item in jsonEmpleados ){
+                    jsonEmpleadosIx.push( jsonEmpleados[ item ] );
+                }
+                var jsonHabilidadesIx = [];
+                for ( var item in jsonHabilidades ){
+                    jsonHabilidadesIx.push( jsonHabilidades[ item ] );
+                }
+
+                params.vEmpleados = JSON.stringify(jsonEmpleadosIx);
+                params.vHabilidades = JSON.stringify(jsonHabilidadesIx);
 
                 $.post('index.php',params,function(data, status, xhr){
 
