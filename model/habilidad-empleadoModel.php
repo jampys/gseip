@@ -100,17 +100,34 @@ and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
 	}
 
 	public function insertHabilidadEmpleado(){
-        $stmt=new sQuery();
-        /*$query="insert into habilidades(codigo, nombre, tipo)
-                values(:codigo, :nombre, :tipo)";*/
+        /*$stmt=new sQuery();
         $query="insert into habilidad_empleado(id_habilidad, id_empleado, fecha_desde)
                 values(:id_habilidad, :id_empleado, '2015-02-02')";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        //$stmt->dpBind(':tipo', $this->getTipo());
+        $stmt->dpExecute();*/
+
+        $stmt=new sQuery();
+        $query = 'CALL sp_insertHabilidadEmpleado(
+                                                    :id_habilidad,
+                                                    :id_empleado,
+                                                    @flag
+                                                  )';
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpExecute();
-        //return $stmt->dpGetAffect();
+
+        $stmt->dpCloseCursor();
+        $query = "select @flag as flag";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        $flag = $stmt->dpFetchAll();
+        return ($flag)? intval($flag[0]['flag']) : 0;
+
+
 	}
 
 
