@@ -99,7 +99,7 @@ class sQuery   // se declara una clase para poder ejecutar las consultas, esta c
         self::$con->rollBack();
     }
 
-    function chupala(){ // devuelve el id de la conexion
+    function dpGetConnectionId(){ // devuelve el id de la conexion
         return self::$con->query('SELECT CONNECTION_ID()')->fetch(PDO::FETCH_ASSOC);
     }
 

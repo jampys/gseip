@@ -29,59 +29,58 @@ switch ($operation)
 
     case 'insert': //ok
 
+        /*$habilidad = new Habilidad($_POST['id_habilidad']);
+                $habilidad->setCodigo($_POST['codigo']);
+                $habilidad->setNombre($_POST['nombre']);
+                $habilidad->setTipo($_POST['tipo']);
 
-        try {
-
-            sQuery::dpBeginTransaction();
-
-            $stmt=new sQuery();
-            $query="insert into clientes( nombre, apellido, fecha_nac,peso)values(:nombre, :apellido, STR_TO_DATE(:fecha, '%d/%m/%Y'), :peso)";
-            $stmt->dpPrepare($query);
-            $stmt->dpBind(':nombre', 'TOPO');
-            $stmt->dpBind(':apellido', 'LOCO');
-            $stmt->dpBind(':fecha', '01/01/2015');
-            $stmt->dpBind(':peso', '75');
-            $stmt->dpExecute();
-            print_r($stmt->chupala());
+                $rta = $habilidad->save();
+                print_r(json_encode($rta));*/
 
 
+        sQuery::dpBeginTransaction();
 
-            $stmt=new sQuery();
-            $query="insert into clientes( nombre, apellido, fecha_nac,peso)values(:nombre, :apellido, STR_TO_DATE(:fecha, '%d/%m/%Y'), :peso)";
-            $stmt->dpPrepare($query);
-            $stmt->dpBind(':nombre', 'TAPA');
-            $stmt->dpBind(':apellido', 'LOCA');
-            $stmt->dpBind(':fecha', '01/01/2015');
-            $stmt->dpBind(':peso', '75');
-            $stmt->dpExecute();
-            print_r($stmt->chupala());
+        try{
+
+            //bucle con inserts
+            $vEmpleados = json_decode($_POST["vEmpleados"], true);
+            $vHabilidades = json_decode($_POST["vHabilidades"]);
+
+            //$c = new HabilidadEmpleado();
+            //$c->insertHabilidadEmpleado();
+            echo sizeof($vEmpleados);
 
             sQuery::dpCommit();
+            //print_r(json_encode(1)); //Devuelve el resultado a la vista
 
-        } catch(PDOException $e) {
+        }
+        catch(Exception $e){
 
+            //echo $e->getMessage();
             sQuery::dpRollback();
-
-
+            //print_r(json_encode(-1));
         }
 
 
+        exit;
+        break;
+
 
     case 'editHabilidad':
-        $view->label='Editar Habilidad';
+        /*$view->label='Editar Habilidad';
         $view->habilidad = new Habilidad($_POST['id_habilidad']);
 
         $view->tipos = Soporte::get_enum_values('habilidades', 'tipo');
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/habilidadesForm.php";
+        $view->contentTemplate="view/habilidadesForm.php";*/
         break;
 
     case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
+        /*$habilidad = new Habilidad($_POST['id_habilidad']);
         $rta = $habilidad->deleteHabilidad();
         print_r(json_encode($rta));
-        die; // no quiero mostrar nada cuando borra , solo devuelve el control.
+        die; */
         break;
 
     default :

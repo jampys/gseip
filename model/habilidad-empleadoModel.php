@@ -101,17 +101,14 @@ and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
 
 	public function insertHabilidadEmpleado(){
         $stmt=new sQuery();
-        /*$query="insert into habilidades(codigo, nombre, tipo)
-                values(:codigo, :nombre, :tipo)";*/
-        $query="insert into habilidad_empleado(id_habilidad, id_empleado, fecha_desde)
-                values(45, 154, '2015-02-02')";
+        $query="insert into clientes( nombre, apellido, fecha_nac,peso)values(:nombre, :apellido, STR_TO_DATE(:fecha, '%d/%m/%Y'), :peso)";
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':codigo', $this->getCodigo());
-        //$stmt->dpBind(':nombre', $this->getNombre());
-        //$stmt->dpBind(':tipo', $this->getTipo());
+        $stmt->dpBind(':nombre', 'TOPO');
+        $stmt->dpBind(':apellido', 'LOCO');
+        $stmt->dpBind(':fecha', '01/01/2015');
+        $stmt->dpBind(':peso', '75');
         $stmt->dpExecute();
-        //return $stmt->dpGetAffect();
-        return $stmt->chupala();
+        //print_r($stmt->dpGetConnectionId());
 	}
 
 
