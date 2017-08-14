@@ -34,7 +34,7 @@ require_once("view/layout.php");
 
 */
 session_start();
-require_once("config/config.php");
+require_once("config/config.php.old");
 require_once("config/soporte.php");
 
 

@@ -27,36 +27,45 @@ switch ($operation)
         $view->contentTemplate="view/habilidad-empleadoForm.php";
         break;
 
-    case 'save': //ok
-        /*$habilidad = new Habilidad($_POST['id_habilidad']);
-        $habilidad->setCodigo($_POST['codigo']);
-        $habilidad->setNombre($_POST['nombre']);
-        $habilidad->setTipo($_POST['tipo']);
-
-        $rta = $habilidad->save();
-        print_r(json_encode($rta));*/
+    case 'insert': //ok
 
 
-        sQuery::dpBeginTransaction();
+        try {
 
-        try{
+            sQuery::dpBeginTransaction();
 
-            //bucle con inserts
+            $stmt=new sQuery();
+            $query="insert into clientes( nombre, apellido, fecha_nac,peso)values(:nombre, :apellido, STR_TO_DATE(:fecha, '%d/%m/%Y'), :peso)";
+            $stmt->dpPrepare($query);
+            $stmt->dpBind(':nombre', 'TOPO');
+            $stmt->dpBind(':apellido', 'LOCO');
+            $stmt->dpBind(':fecha', '01/01/2015');
+            $stmt->dpBind(':peso', '75');
+            $stmt->dpExecute();
+            print_r($stmt->chupala());
+
+
+
+            $stmt=new sQuery();
+            $query="insert into clientes( nombre, apellido, fecha_nac,peso)values(:nombre, :apellido, STR_TO_DATE(:fecha, '%d/%m/%Y'), :peso)";
+            $stmt->dpPrepare($query);
+            $stmt->dpBind(':nombre', 'TAPA');
+            $stmt->dpBind(':apellido', 'LOCA');
+            $stmt->dpBind(':fecha', '01/01/2015');
+            $stmt->dpBind(':peso', '75');
+            $stmt->dpExecute();
+            print_r($stmt->chupala());
 
             sQuery::dpCommit();
-            print_r(json_encode(1)); //Devuelve el resultado a la vista
 
-        }
-        catch(Exception $e){
+        } catch(PDOException $e) {
 
-            //echo $e->getMessage();
             sQuery::dpRollback();
-            print_r(json_encode(-1));
+
+
         }
 
 
-        exit;
-        break;
 
     case 'editHabilidad':
         $view->label='Editar Habilidad';

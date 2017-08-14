@@ -4,33 +4,37 @@ $GLOBALS['ini'] = parse_ini_file('app.ini');
 
 class Conexion  // se declara una clase para hacer la conexion con la base de datos
 {
-    var $con;
-    function __construct(){
-        // se definen los datos del servidor de base de datos
-        $servername = $GLOBALS['ini']['db_server'];
-        $username = $GLOBALS['ini']['db_user'];
-        $password = $GLOBALS['ini']['db_password'];
-        $dbname = $GLOBALS['ini']['db_name'];
+    private static $con = NULL;
 
-        try{
-            //crea la conexion pasandole el servidor , usuario y clave
-            $conect = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-            $conect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->con=$conect;
-            return $this->con;
+    public static function getInstance() { // Método singleton
+        if (is_null(self::$con)) {
+            //self::$con = new Conexion();
 
+            // se definen los datos del servidor de base de datos
+            $servername = $GLOBALS['ini']['db_server'];
+            $username = $GLOBALS['ini']['db_user'];
+            $password = $GLOBALS['ini']['db_password'];
+            $dbname = $GLOBALS['ini']['db_name'];
 
-        }catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            try{
+                self::$con = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                self::$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            }catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+
         }
 
+        return self::$con;
     }
 
 
-    function getConexion() // devuelve la conexion
-    {
-        return $this->con;
-    }
+    // Constructor privado, previene la creación de objetos vía new
+    private function __construct() { }
+
+    // Clone no permitido
+    public function __clone() { }
 
 
 }
@@ -39,14 +43,11 @@ class Conexion  // se declara una clase para hacer la conexion con la base de da
 
 class sQuery   // se declara una clase para poder ejecutar las consultas, esta clase llama a la clase anterior
 {
-    static $con;
-    //var $consulta;
-    //var $resultados;
+    public static $con;
     var $st;
 
     function __construct(){  // constructor, solo crea una conexion usando la clase "Conexion"
-        $c = new Conexion();
-        self::$con = $c->getConexion();
+        self::$con = Conexion::getInstance();
         $this->st=new PDOStatement();
     }
 
@@ -80,27 +81,31 @@ class sQuery   // se declara una clase para poder ejecutar las consultas, esta c
         return $this->st->rowCount();
     }
 
-    function dpCloseCursor(){ // se usa para los SP
+    function dpCloseCursor(){ // devuelve las cantidad de filas afectadas
         return $this->st->closeCursor();
     }
 
-    public static function dpBeginTransaction(){ //comenzar una transaccion
-        new sQuery();
+    public static function dpBeginTransaction(){
+        //new sQuery();
+        self::$con = Conexion::getInstance();
         self::$con->beginTransaction();
     }
 
-    public static function dpCommit(){ //commit
+    public static function dpCommit(){
         self::$con->commit();
     }
-
-    public static function dpRollback(){ //rollback
+	
+	public static function dpRollback(){
         self::$con->rollBack();
     }
 
-
+    function chupala(){ // devuelve el id de la conexion
+        return self::$con->query('SELECT CONNECTION_ID()')->fetch(PDO::FETCH_ASSOC);
+    }
 
 
 }
+
 
 
 $view= new stdClass();

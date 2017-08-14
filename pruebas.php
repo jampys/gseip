@@ -1,6 +1,6 @@
 <?php
 
-include_once("config/config.php");
+include_once("config/config.php.old");
 include_once("config/soporte.php");
 include_once("model/empleadosModel.php");
 include_once("model/localidadesModel.php");

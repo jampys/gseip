@@ -152,7 +152,7 @@
             if (Object.keys(jsonEmpleados).length > 0 && Object.keys(jsonHabilidades).length > 0){
                 var params={};
                 params.action = 'habilidad-empleado';
-                params.operation = 'save';
+                params.operation = 'insert';
 
                 params.vEmpleados = JSON.stringify(jsonEmpleados);
                 params.vHabilidades = JSON.stringify(jsonHabilidades);
