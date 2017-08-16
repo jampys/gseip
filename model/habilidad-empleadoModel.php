@@ -57,7 +57,7 @@ class HabilidadEmpleado
 
     public static function getHabilidadEmpleado($cuil, $id_habilidad) { //ok
 			$stmt=new sQuery();
-            $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.cuil,
+            $query = "select id_habilidad_empleado, em.id_empleado, em.legajo, em.apellido, em.nombre, em.cuil,
 		hab.id_habilidad, hab.nombre as habilidad,
 		DATE_FORMAT(he.fecha_desde,  '%d/%m/%Y') as fecha_desde
 from habilidad_empleado he, habilidades hab, empleados em
@@ -99,7 +99,7 @@ and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
         return $stmt->dpGetAffect();
 	}
 
-	public function insertHabilidadEmpleado(){
+	public function insertHabilidadEmpleado(){ //ok
         /*$stmt=new sQuery();
         $query="insert into habilidad_empleado(id_habilidad, id_empleado, fecha_desde)
                 values(:id_habilidad, :id_empleado, '2015-02-02')";
@@ -131,11 +131,12 @@ and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
 	}
 
 
-	function deleteHabilidad(){
+	function deleteHabilidadEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="delete from habilidades where id_habilidad =:id_habilidad";
+        $query="delete from habilidad_empleado
+                where id_habilidad_empleado =:id_habilidad_empleado";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':id_habilidad_empleado', $this->getIdHabilidadEmpleado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 	}	

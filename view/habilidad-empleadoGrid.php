@@ -54,21 +54,19 @@
 
             <?php if($view->habilidadEmpleado) {
                         foreach ($view->habilidadEmpleado as $he):   ?>
-                            <tr>
+                            <tr data-id="<?php echo $he['id_habilidad_empleado']; ?>" >
                                 <td><?php echo $he['legajo']; ?></td>
                                 <td><?php echo $he['apellido']; ?></td>
                                 <td><?php echo $he['nombre']; ?></td>
                                 <td><?php echo $he['cuil']; ?></td>
                                 <td><?php echo $he['habilidad']; ?></td>
                                 <td><?php echo $he['fecha_desde']; ?></td>
-                                <td class="text-center"><a class="edit" href="javascript:void(0);"
-                                                           data-id="<?php echo $he['id_habilidad']; ?>"><span
-                                                           class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                <td class="text-center"><a class="edit" href="javascript:void(0);">
+                                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                         </a>
                                 </td>
-                                <td class="text-center"><a class="delete" href="javascript:void(0);"
-                                                           data-id="<?php echo $he['id_habilidad']; ?>"><span
-                                                           class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <td class="text-center"><a class="delete" href="javascript:void(0);">
+                                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                                         </a>
                                 </td>
                             </tr>
@@ -86,7 +84,7 @@
 
 <div id="confirm">
     <div class="modal-body">
-        ¿Desea eliminar la habillidad?
+        ¿Desea eliminar la habillidad al empleado?
     </div>
 
     <div id="myElemento" style="display:none">

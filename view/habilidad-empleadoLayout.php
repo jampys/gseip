@@ -13,11 +13,9 @@
         $(document).ready(function(){
 
 
-            $(document).on('click', '#search', function(){
+            $(document).on('click', '#search', function(){ //ok
 
-
-                if ($("#search_form").valid()){
-
+                if ($("#search_form").valid()){ //ok
                     //alert('presiono en buscar');
                     //var id = $(this).attr('data-id');
                     //preparo los parametros
@@ -37,7 +35,7 @@
 
 
 
-            $("#search_empleado").autocomplete({
+            $("#search_empleado").autocomplete({ //ok
                 source: function( request, response ) {
                     $.ajax({
                         url: "index.php",
@@ -64,7 +62,7 @@
             });
 
 
-            $("#search_habilidad").autocomplete({
+            $("#search_habilidad").autocomplete({ //ok
                 source: function( request, response ) {
                     $.ajax({
                         url: "index.php",
@@ -96,7 +94,7 @@
 
 
 
-            $('#search_form').validate({
+            $('#search_form').validate({ //ok
                 ignore:"",
                 rules: {
                     search_empleado: {
@@ -119,29 +117,8 @@
                     search_empleado: "Seleccione un empleado sugerido",
                     search_habilidad: "Seleccione una habilidad sugerida"
                 }
-                /*tooltip_options: {
-                    search_empleado: {placement:'bottom'},
-                    example5: {placement:'right',html:true}
-                }*/
 
             });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -160,7 +137,7 @@
 
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "habilidad-empleado";
                 params.operation="new";
@@ -178,8 +155,8 @@
 
 
 
-            $(document).on('click', '#example .delete', function(){
-                var id = $(this).attr('data-id');
+            $(document).on('click', '#example .delete', function(){ //ok
+                var id = $(this).closest('tr').attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
                         {
@@ -203,18 +180,18 @@
             });
 
 
-            $.fn.borrar = function(id) {
+            $.fn.borrar = function(id) { //ok
                 //alert(id);
                 //preparo los parametros
                 params={};
-                params.id_habilidad = id;
-                params.action = "habilidades";
-                params.operation = "deleteHabilidad";
+                params.id_habilidad_empleado = id;
+                params.action = "habilidad-empleado";
+                params.operation = "deleteHabilidadEmpleado";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
                         $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"habilidades", operation: "refreshGrid"});
+                        $('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
                     }else{
                         $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
                     }
