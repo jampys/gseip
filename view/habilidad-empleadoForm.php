@@ -147,7 +147,7 @@
         });
 
 
-        $(document).on('click', '#myModal #submit',function(){
+        $(document).one('click', '#myModal #submit',function(){
             //alert(Object.keys(jsonEmpleados).length);
             if (Object.keys(jsonEmpleados).length > 0 && Object.keys(jsonHabilidades).length > 0){
                 var params={};
