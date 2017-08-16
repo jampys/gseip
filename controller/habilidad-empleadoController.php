@@ -40,11 +40,11 @@ switch ($operation)
 
             foreach ($vEmpleados as $vE) {
                 foreach ($vHabilidades as $vH) {
-                    /*$c = new HabilidadEmpleado();
+                    $c = new HabilidadEmpleado();
                     $c->setIdHabilidad($vH['id_habilidad']);
                     $c->setIdEmpleado($vE['id_empleado']);
-                    if($c->insertHabilidadEmpleado() < 0) $flag = -1;*/  //si falla algun insert $flag = -1
-                    echo "id_empleado: ".$vE['id_empleado']." - id_habilidad: ".$vH['id_habilidad'];
+                    if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
+                    //echo "id_empleado: ".$vE['id_empleado']." - id_habilidad: ".$vH['id_habilidad'];
                 }
 
             }
