@@ -47,7 +47,7 @@
                     params.nombre=$('#nombre').val();
                     params.descripcion=$('#descripcion').val();
                     params.codigo=$('#codigo').val();
-                    params.codigo_superior=$('#codigo_superior').val();
+                    params.codigo_superior=$('#superior').val();
                     $.post('index.php',params,function(data, status, xhr){
 
                         //alert(data);
@@ -70,7 +70,7 @@
             });
 
 
-            $(document).on('click', '#cancel',function(){
+            $(document).on('click', '#cancel',function(){ //ok
                 $('#myModal').modal('hide');
             });
 
@@ -106,16 +106,16 @@
                 //alert(id);
                 //preparo los parametros
                 params={};
-                params.id_habilidad = id;
-                params.action = "habilidades";
-                params.operation = "deleteHabilidad";
+                params.id_puesto = id;
+                params.action = "puestos";
+                params.operation = "deletePuesto";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"habilidades", operation: "refreshGrid"});
+                        $("#myElemento").html('Puesto eliminado con exito').addClass('alert alert-success').show();
+                        $('#content').load('index.php',{action:"puestos", operation: "refreshGrid"});
                     }else{
-                        $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
+                        $("#myElemento").html('Error al eliminar el puesto').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElemento").hide();
                                             $('#confirm').dialog('close');

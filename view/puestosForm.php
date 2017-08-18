@@ -64,9 +64,9 @@
                         <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php print $view->puesto->getNombre() ?>" placeholder="Nombre">
                     </div>
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label class="control-label" for="superior" >Puesto superior</label>
-                        <select class="form-control" id="tipo" name="tipo">
+                        <select class="form-control" id="superior" name="superior">
                             <option value="" disabled selected>Seleccione el puesto superior</option>
                             <?php foreach ($view->superior as $sup){
                                 ?>
@@ -82,9 +82,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="descripcion">Descripción</label>
-                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="3">
-                            <?php print $view->puesto->getDescripcion(); ?>
-                        </textarea>
+                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="2"><?php print $view->puesto->getDescripcion(); ?></textarea>
                     </div>
 
 

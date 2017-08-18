@@ -100,24 +100,25 @@ left join puestos su on pu.codigo_superior = su.codigo";
         return $stmt->dpGetAffect();
 	}
 
-	private function insertPuesto(){
+	private function insertPuesto(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into clientes( nombre, apellido, fecha_nac,peso)values(:nombre, :apellido, STR_TO_DATE(:fecha, '%d/%m/%Y'), :peso)";
+        $query="insert into puestos(nombre, descripcion, codigo, codigo_superior)
+                values(:nombre, :descripcion, :codigo, :codigo_superior)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':apellido', $this->getApellido());
-        $stmt->dpBind(':fecha', $this->getFecha());
-        $stmt->dpBind(':peso', $this->getPeso());
+        $stmt->dpBind(':descripcion', $this->getDescripcion());
+        $stmt->dpBind(':codigo', $this->getCodigo());
+        $stmt->dpBind(':codigo_superior', $this->getCodigoSuperior());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 	}
 
-	function delete(){
+	function deletePuesto(){ //ok
         $stmt=new sQuery();
-        $query="delete from clientes where id= :id";
+        $query="delete from puestos where id_puesto= :id";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getID());
+        $stmt->dpBind(':id', $this->getIdPuesto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 	}	

@@ -49,11 +49,11 @@ switch ($operation)
         $view->contentTemplate="view/puestosForm.php";
         break;
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
+    case 'deletePuesto': //ok
+        $puesto = new Puesto($_POST['id_puesto']);
+        $rta = $puesto->deletePuesto();
         print_r(json_encode($rta));
-        die; // no quiero mostrar nada cuando borra , solo devuelve el control.
+        die;
         break;
 
     default : //ok
