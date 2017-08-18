@@ -14,7 +14,7 @@
 
 
 
-        $("#myModal #search_empleado").autocomplete({
+        $("#myModal #search_empleado").autocomplete({ //ok
             source: function( request, response ) {
                 $.ajax({
                     url: "index.php",
@@ -73,7 +73,7 @@
 
 
 
-        $("#myModal #search_habilidad").autocomplete({
+        $("#myModal #search_habilidad").autocomplete({ //ok
             source: function( request, response ) {
                 $.ajax({
                     url: "index.php",
@@ -98,9 +98,6 @@
             },
             minLength: 2,
             change: function(event, ui) {
-                //$('#id_habilidad').val(ui.item? ui.item.id : '');
-                //$('#search_habilidad').val(ui.item.label);
-
 
                 item = {};
                 item.nombre = ui.item.label;
@@ -125,9 +122,7 @@
 
 
 
-
-
-        $(document).on("click", "#empleados-table .delete", function(e){
+        $(document).on("click", "#empleados-table .delete", function(e){ //ok
             var index =  $(this).closest('tr').attr('data-id');
             //alert(index);
             $(this).closest('tr').remove(); //elimina la fila de la tabla
@@ -137,7 +132,7 @@
         });
 
 
-        $(document).on("click", "#habilidades-table .delete", function(e){
+        $(document).on("click", "#habilidades-table .delete", function(e){ //ok
             var index =  $(this).closest('tr').attr('data-id');
             //alert(index);
             $(this).closest('tr').remove(); //elimina la fila de la tabla
@@ -147,7 +142,7 @@
         });
 
 
-        $(document).one('click', '#myModal #submit',function(){
+        $(document).one('click', '#myModal #submit',function(){ //ok
             //alert(Object.keys(jsonEmpleados).length);
             if (Object.keys(jsonEmpleados).length > 0 && Object.keys(jsonHabilidades).length > 0){
                 var params={};
@@ -179,8 +174,8 @@
                         $("#myElem").html('Error al guardar las habilidades empleados').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElem").hide();
-                        $('#myModal').modal('hide');
-                    }, 2000);
+                                            $('#myModal').modal('hide');
+                                        }, 2000);
 
                 });
 

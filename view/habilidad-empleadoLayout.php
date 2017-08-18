@@ -148,7 +148,7 @@
 
 
          
-            $(document).on('click', '#cancel',function(){
+            $(document).on('click', '#cancel',function(){ //ok
                 $('#myModal').modal('hide');
             });
 
