@@ -22,7 +22,7 @@ switch ($operation)
         $puesto->setNombre($_POST['nombre']);
         $puesto->setDescripcion($_POST['descripcion']);
         $puesto->setCodigo($_POST['codigo']);
-        $puesto->setCodigoSuperior($_POST['codigo_superior']);
+        $puesto->setCodigoSuperior(($_POST['codigo_superior'])? $_POST['codigo_superior'] : null);
 
         $rta = $puesto->save();
         print_r(json_encode($rta));
