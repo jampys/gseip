@@ -32,7 +32,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="index.php?action=habilidades">Habilidades</a></li>
                             <li><a href="index.php?action=habilidad-empleado">Habilidades - Empleados</a></li>
-                            <li><a href="#">Puestos</a></li>
+                            <li><a href="index.php?action=puestos">Puestos</a></li>
                             <li><a href="#">Something else here</a></li>
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">NAV HEADER</li>
