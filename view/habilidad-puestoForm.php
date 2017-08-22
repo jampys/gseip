@@ -25,7 +25,7 @@
                         response($.map(data, function(item) {
                             return {
                                 codigo: item.codigo,
-                                id: item.id_puesto,
+                                id_puesto: item.id_puesto,
                                 label: item.nombre
 
 
@@ -44,7 +44,7 @@
 
                 item = {};
                 item.codigo = ui.item.codigo;
-                item.id_puesto = ui.item.id;
+                item.id_puesto = ui.item.id_puesto;
                 item.nombre = ui.item.label;
 
                 if(jsonPuestos[item.id_puesto]) {
