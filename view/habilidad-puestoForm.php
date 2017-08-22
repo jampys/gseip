@@ -108,14 +108,15 @@
                     $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
                     '<td>'+item.nombre+'</td>' +
                     '<td>' +
-                    '<select class="form-control" id="coca" name="coca">'+
-                    $.each(arr, function(i, item) {
-                        $("#coca").append('<option value="">6</option>');
-                    })+
+                    '<select class="form-control" id="requerida" name="requerida">'+
                     '</select>'+
                     '</td>'+
                     '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                     '</tr>');
+
+                    $.each(arr, function(i, item) {
+                        $("#requerida").append('<option value="">6</option>');
+                    });
                 }
 
                 $("#myModal #search_habilidad").val('');
