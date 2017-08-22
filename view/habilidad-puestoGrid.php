@@ -38,13 +38,11 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>Leg.</th>
-                <th>Apellido</th>
-                <th>Nombre</th>
-                <th>CUIL</th>
+                <th>Cod.</th>
+                <th>Puesto</th>
 
                 <th>Habilidad</th>
-                <th>F. desde</th>
+                <th>Requerida</th>
 
                 <th>Editar</th>
                 <th>Borrar</th>
@@ -52,15 +50,13 @@
             </thead>
             <tbody>
 
-            <?php if($view->habilidadEmpleado) {
-                        foreach ($view->habilidadEmpleado as $he):   ?>
-                            <tr data-id="<?php echo $he['id_habilidad_empleado']; ?>" >
-                                <td><?php echo $he['legajo']; ?></td>
-                                <td><?php echo $he['apellido']; ?></td>
-                                <td><?php echo $he['nombre']; ?></td>
-                                <td><?php echo $he['cuil']; ?></td>
-                                <td><?php echo $he['habilidad']; ?></td>
-                                <td><?php echo $he['fecha_desde']; ?></td>
+            <?php if($view->habilidadPuesto) {
+                        foreach ($view->habilidadPuesto as $hp):   ?>
+                            <tr data-id="<?php echo $hp['id_habilidad_puesto']; ?>" >
+                                <td><?php echo $hp['codigo']; ?></td>
+                                <td><?php echo $hp['puesto']; ?></td>
+                                <td><?php echo $hp['habilidad']; ?></td>
+                                <td><?php echo $hp['requerida']; ?></td>
                                 <td class="text-center"><a class="edit" href="javascript:void(0);">
                                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                         </a>

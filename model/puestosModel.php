@@ -1,13 +1,13 @@
-﻿<?php
+<?php
 
 
 class Puesto
 {
-	private $id_puesto;
-	private $nombre;
-	private $descripcion;
-	private $codigo;
-	private $codigo_superior;
+    private $id_puesto;
+    private $nombre;
+    private $descripcion;
+    private $codigo;
+    private $codigo_superior;
 
     // GETTERS
     function getIdPuesto()
@@ -43,18 +43,18 @@ class Puesto
 
 
     public static function getPuestos() { //ok
-			$stmt=new sQuery();
-            $query="select pu.id_puesto, pu.nombre, pu.descripcion, pu.codigo, pu.codigo_superior, su.nombre as nombre_superior
+        $stmt=new sQuery();
+        $query="select pu.id_puesto, pu.nombre, pu.descripcion, pu.codigo, pu.codigo_superior, su.nombre as nombre_superior
                     from puestos pu
                     left join puestos su on pu.codigo_superior = su.codigo";
-            $stmt->dpPrepare($query);
-            $stmt->dpExecute();
-            return $stmt->dpFetchAll();
-		}
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
 
-	function __construct($nro=0){ //constructor ok
+    function __construct($nro=0){ //constructor ok
 
-		if ($nro!=0){
+        if ($nro!=0){
 
             $stmt=new sQuery();
             $query="select * from puestos where id_puesto = :nro";
@@ -68,9 +68,9 @@ class Puesto
             $this->setDescripcion($rows[0]['descripcion']);
             $this->setCodigo($rows[0]['codigo']);
             $this->setCodigoSuperior($rows[0]['codigo_superior']);
-		}
-	}
-		
+        }
+    }
+
 
 
     function save(){ //ok
@@ -81,7 +81,7 @@ class Puesto
         return $rta;
     }
 
-	public function updatePuesto(){ //ok
+    public function updatePuesto(){ //ok
 
         $stmt=new sQuery();
         $query="update puestos set
@@ -98,9 +98,9 @@ class Puesto
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}
+    }
 
-	private function insertPuesto(){ //ok
+    private function insertPuesto(){ //ok
 
         $stmt=new sQuery();
         $query="insert into puestos(nombre, descripcion, codigo, codigo_superior)
@@ -112,16 +112,16 @@ class Puesto
         $stmt->dpBind(':codigo_superior', $this->getCodigoSuperior());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}
+    }
 
-	function deletePuesto(){ //ok
+    function deletePuesto(){ //ok
         $stmt=new sQuery();
         $query="delete from puestos where id_puesto= :id";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id', $this->getIdPuesto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}
+    }
 
 
     public function autocompletarPuestos($term) { //ok
@@ -133,5 +133,9 @@ class Puesto
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
-	
+
 }
+
+
+
+?>

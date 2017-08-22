@@ -1,6 +1,6 @@
 ﻿<?php
 
-include_once("model/habilidad-empleadoModel.php");
+include_once("model/habilidad-puestoModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -11,20 +11,20 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'buscar':
+    case 'buscar': //ok
         $view->disableLayout=true;
 
-        $cuil = ($_POST['cuil']!='')? $_POST['cuil'] : null;
+        $id_puesto = ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null;
         $id_habilidad = ($_POST['id_habilidad']!='')? $_POST['id_habilidad'] : null;
 
-        $view->habilidadEmpleado = HabilidadEmpleado::getHabilidadEmpleado($cuil, $id_habilidad);
-        $view->contentTemplate="view/habilidad-empleadoGrid.php";
+        $view->habilidadPuesto = HabilidadPuesto::getHabilidadPuesto($id_puesto, $id_habilidad);
+        $view->contentTemplate="view/habilidad-puestoGrid.php";
         break;
 
     case 'new':
         $view->label='Agregar habilidades';
         $view->disableLayout=true;
-        $view->contentTemplate="view/habilidad-empleadoForm.php";
+        $view->contentTemplate="view/habilidad-puestoForm.php";
         break;
 
     case 'insert':

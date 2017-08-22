@@ -55,19 +55,19 @@ class HabilidadPuesto
     }
 
 
-    public static function getHabilidadEmpleado($cuil, $id_habilidad) {
+    public static function getHabilidadPuesto($id_puesto, $id_habilidad) { //ok
 			$stmt=new sQuery();
-            $query = "select id_habilidad_empleado, em.id_empleado, em.legajo, em.apellido, em.nombre, em.cuil,
-		hab.id_habilidad, hab.nombre as habilidad,
-		DATE_FORMAT(he.fecha_desde,  '%d/%m/%Y') as fecha_desde
-from habilidad_empleado he, habilidades hab, empleados em
-where he.id_empleado = em.id_empleado
-and he.id_habilidad = hab.id_habilidad
-and em.cuil = ifnull(:cuil, em.cuil)
-and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
+            $query = "select hp.id_habilidad_puesto, pu.id_puesto, pu.nombre as puesto, pu.codigo,
+		              hab.id_habilidad, hab.nombre as habilidad,
+		              hp.requerida
+                      from habilidad_puesto hp, habilidades hab, puestos pu
+                      where hp.id_puesto = pu.id_puesto
+                      and hp.id_habilidad = hab.id_habilidad
+                      and pu.id_puesto = ifnull(:id_puesto, pu.id_puesto)
+                      and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
 
             $stmt->dpPrepare($query);
-            $stmt->dpBind(':cuil', $cuil);
+            $stmt->dpBind(':id_puesto', $id_puesto);
             $stmt->dpBind(':id_habilidad', $id_habilidad);
             $stmt->dpExecute();
             return $stmt->dpFetchAll();

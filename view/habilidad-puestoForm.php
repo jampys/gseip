@@ -3,7 +3,7 @@
 
     $(document).ready(function(){
 
-        var jsonEmpleados = [];
+        var jsonPuestos = [];
         var jsonHabilidades = [];
 
 
@@ -14,22 +14,19 @@
 
 
 
-        $("#myModal #search_empleado").autocomplete({
+        $("#myModal #search_puesto").autocomplete({ //ok
             source: function( request, response ) {
                 $.ajax({
                     url: "index.php",
                     type: "post",
                     dataType: "json",
-                    data: { "term": request.term, "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
+                    data: { "term": request.term, "action":"puestos", "operation":"autocompletarPuestos"},
                     success: function(data) {
                         response($.map(data, function(item) {
                             return {
-                                apellido: item.apellido,
-                                nombre: item.nombre,
-                                legajo: item.legajo,
-                                id: item.cuil,
-                                id_empleado: item.id_empleado,
-                                label: item.apellido+' '+item.nombre
+                                codigo: item.codigo,
+                                id: item.id_puesto,
+                                label: item.nombre
 
 
                             };
@@ -46,27 +43,24 @@
             change: function(event, ui) {
 
                 item = {};
-                item.apellido = ui.item.apellido;
-                item.nombre = ui.item.nombre;
-                item.legajo = ui.item.legajo;
-                item.cuil = ui.item.cuil;
-                item.id_empleado = ui.item.id_empleado;
+                item.codigo = ui.item.codigo;
+                item.id_puesto = ui.item.id;
+                item.nombre = ui.item.label;
 
-                if(jsonEmpleados[item.id_empleado]) {
+                if(jsonPuestos[item.id_puesto]) {
                     //alert('el elemento existe');
                 }
                 else {
-                    jsonEmpleados[item.id_empleado] =item;
+                    jsonPuestos[item.id_puesto] =item;
 
-                    $('#empleados-table tbody').append('<tr data-id='+item.id_empleado+'>' +
-                    '<td>'+item.legajo+'</td>' +
-                    '<td>'+item.apellido+'</td>' +
+                    $('#puestos-table tbody').append('<tr data-id='+item.id_puesto+'>' +
+                    '<td>'+item.codigo+'</td>' +
                     '<td>'+item.nombre+'</td>' +
                     '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                     '</tr>');
                 }
 
-                $("#myModal #search_empleado").val('');
+                $("#myModal #search_puesto").val('');
 
             }
         });
@@ -216,18 +210,17 @@
                             <form>
 
                                 <div class="form-group col-md-12">
-                                    <label for="search_empleado" class="control-label">Empleado</label>
-                                    <input type="text" class="form-control" id="search_empleado" name="search_empleado" placeholder="Empleado">
+                                    <label for="search_puesto" class="control-label">Puesto</label>
+                                    <input type="text" class="form-control" id="search_puesto" name="search_puesto" placeholder="Puesto">
                                 </div>
 
                             </form>
                             <br/>
 
-                            <table class="table table-condensed dataTable table-hover" id="empleados-table">
+                            <table class="table table-condensed dataTable table-hover" id="puestos-table">
                                 <thead>
                                 <tr>
-                                    <th>Leg.</th>
-                                    <th>Apellido</th>
+                                    <th>Cod.</th>
                                     <th>Nombre</th>
                                     <th class="text-center">Eliminar</th>
                                 </tr>

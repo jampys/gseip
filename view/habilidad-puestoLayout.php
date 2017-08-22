@@ -13,16 +13,16 @@
         $(document).ready(function(){
 
 
-            $(document).on('click', '#search', function(){
+            $(document).on('click', '#search', function(){ //ok
 
                 if ($("#search_form").valid()){ //ok
                     //alert('presiono en buscar');
                     //var id = $(this).attr('data-id');
                     //preparo los parametros
                     params={};
-                    params.cuil = $("#cuil").val();
+                    params.id_puesto = $("#id_puesto").val();
                     params.id_habilidad = $("#id_habilidad").val();
-                    params.action = "habilidad-empleado";
+                    params.action = "habilidad-puesto";
                     params.operation = "buscar";
                     //alert(params.cuil);
                     //alert(params.id_habilidad);
@@ -35,7 +35,7 @@
 
 
 
-            $("#search_puesto").autocomplete({
+            $("#search_puesto").autocomplete({ //ok
                 source: function( request, response ) {
                     $.ajax({
                         url: "index.php",
@@ -62,7 +62,7 @@
             });
 
 
-            $("#search_habilidad").autocomplete({
+            $("#search_habilidad").autocomplete({ //ok
                 source: function( request, response ) {
                     $.ajax({
                         url: "index.php",
@@ -94,18 +94,16 @@
 
 
 
-            $('#search_form').validate({
+            $('#search_form').validate({ //ok
                 ignore:"",
                 rules: {
-                    search_empleado: {
-                        //digits: function(item){return ($('#search_empleado').val().length > 0 && $('#cuil').val().length == 0); }
+                    search_puesto: {
                         require_from_group: {
-                            param: [2, ".empleado-group"],
-                            depends: function(element) { return $('#search_empleado').val().length > 0;}
+                            param: [2, ".puesto-group"],
+                            depends: function(element) { return $('#search_puesto').val().length > 0;}
                         }
                     },
                     search_habilidad: {
-                        //required: function(item){return $('#search_habilidad').val().length > 0;}
                         require_from_group: {
                             param: [2, ".habilidad-group"],
                             depends: function(element) { return $('#search_habilidad').val().length > 0;}
@@ -114,7 +112,7 @@
 
                 },
                 messages:{
-                    search_empleado: "Seleccione un empleado sugerido",
+                    search_puesto: "Seleccione un puesto sugerido",
                     search_habilidad: "Seleccione una habilidad sugerida"
                 }
 
@@ -137,9 +135,9 @@
 
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
-                params.action = "habilidad-empleado";
+                params.action = "habilidad-puesto";
                 params.operation="new";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
@@ -148,7 +146,7 @@
 
 
          
-            $(document).on('click', '#cancel',function(){
+            $(document).on('click', '#cancel',function(){ //ok
                 $('#myModal').modal('hide');
             });
 
