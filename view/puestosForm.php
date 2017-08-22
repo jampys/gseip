@@ -10,7 +10,7 @@
         });
 
 
-        $('#habilidad').validate({
+        $('#puesto').validate({ //ok
             rules: {
                 codigo: {
                         required: true,
@@ -80,7 +80,7 @@
                     </div>
 
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label class="control-label" for="descripcion">Descripción</label>
                         <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="2"><?php print $view->puesto->getDescripcion(); ?></textarea>
                     </div>

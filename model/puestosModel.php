@@ -45,8 +45,8 @@ class Puesto
     public static function getPuestos() { //ok
 			$stmt=new sQuery();
             $query="select pu.id_puesto, pu.nombre, pu.descripcion, pu.codigo, pu.codigo_superior, su.nombre as nombre_superior
-from puestos pu
-left join puestos su on pu.codigo_superior = su.codigo";
+                    from puestos pu
+                    left join puestos su on pu.codigo_superior = su.codigo";
             $stmt->dpPrepare($query);
             $stmt->dpExecute();
             return $stmt->dpFetchAll();

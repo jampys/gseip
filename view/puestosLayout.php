@@ -38,8 +38,8 @@
             });
 
 
-            $(document).on('click', '#submit',function(){
-                //if ($("#puesto").valid()){
+            $(document).on('click', '#submit',function(){ //ok
+                if ($("#puesto").valid()){
                     var params={};
                     params.action = 'puestos';
                     params.operation = 'savePuesto';
@@ -66,7 +66,7 @@
 
                     });
 
-                //}
+                }
                 return false;
             });
 
@@ -78,7 +78,7 @@
 
 
 
-            $(document).on('click', '.delete', function(){
+            $(document).on('click', '.delete', function(){ //ok
                 var id = $(this).attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
@@ -103,7 +103,7 @@
             });
 
 
-            $.fn.borrar = function(id) {
+            $.fn.borrar = function(id) { //ok
                 //alert(id);
                 //preparo los parametros
                 params={};
