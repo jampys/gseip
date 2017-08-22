@@ -116,17 +116,17 @@
 
 
 
-        $(document).on("click", "#empleados-table .delete", function(e){
+        $(document).on("click", "#puestos-table .delete", function(e){ //ok
             var index =  $(this).closest('tr').attr('data-id');
             //alert(index);
             $(this).closest('tr').remove(); //elimina la fila de la tabla
-            delete jsonEmpleados[index]; //elimina el elemento del array
+            delete jsonPuestos[index]; //elimina el elemento del array
             e.preventDefault(); //para evitar que suba el foco al eliminar un elemento
 
         });
 
 
-        $(document).on("click", "#habilidades-table .delete", function(e){
+        $(document).on("click", "#habilidades-table .delete", function(e){ //ok
             var index =  $(this).closest('tr').attr('data-id');
             //alert(index);
             $(this).closest('tr').remove(); //elimina la fila de la tabla
@@ -252,7 +252,7 @@
                                 <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Puntos</th>
+                                    <th>Requerida</th>
                                     <th class="text-center">Eliminar</th>
                                 </tr>
                                 </thead>
