@@ -121,6 +121,17 @@ class Puesto
         $stmt->dpBind(':id', $this->getIdPuesto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}	
+	}
+
+
+    public function autocompletarPuestos($term) { //ok
+        $stmt=new sQuery();
+        $query = "select *
+                  from puestos
+                  where nombre like '%$term%'";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
 	
 }

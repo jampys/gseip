@@ -56,6 +56,13 @@ switch ($operation)
         die;
         break;
 
+    case 'autocompletarPuestos':
+        $view->puesto = new Puesto();
+        $rta=$view->puesto->autocompletarPuestos($_POST['term']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
     default : //ok
         $view->puestos = Puesto::getPuestos();
         $view->contentTemplate="view/puestosGrid.php";

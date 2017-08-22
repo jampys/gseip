@@ -33,7 +33,7 @@
                             <li><a href="index.php?action=habilidades">Habilidades</a></li>
                             <li><a href="index.php?action=habilidad-empleado">Habilidades - Empleados</a></li>
                             <li><a href="index.php?action=puestos">Puestos</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><a href="index.php?action=habilidad-puesto">Habilidades - Puestos</a></li>
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">NAV HEADER</li>
                             <li><a href="#">Separated link</a></li>
