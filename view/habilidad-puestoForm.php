@@ -103,9 +103,17 @@
                 else {
                     jsonHabilidades[item.id_habilidad] =item;
 
+                    var arr = [ "one", "two", "three", "four", "five" ];
+
                     $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
                     '<td>'+item.nombre+'</td>' +
-                    '<td></td>' +
+                    '<td>' +
+                    '<select class="form-control" id="coca" name="coca">'+
+                    $.each(arr, function(i, item) {
+                        $("#coca").append('<option value="">6</option>');
+                    })+
+                    '</select>'+
+                    '</td>'+
                     '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                     '</tr>');
                 }
