@@ -7,44 +7,20 @@
         var jsonHabilidades = [];
         var jsonRequerida = [];
 
-
-
-        $.post('index.php',{"action": "habilidad-puesto", "operation": "select_requerida"},function(data, status, xhr){
-            //alert(xhr);
-            alert(JSON.parse(data));
-
-            //$.each(data['enum'], function(indice, val){
-            //});
-
-        });
-
-
-
-
         $.ajax({
             url:"index.php",
             type:"post",
             data:{"action": "habilidad-puesto", "operation": "select_requerida"},
-            //contentType:"application/x-www-form-urlencoded",
             dataType:"json",//xml,html,script,json
             success: function(data, textStatus, jqXHR) {
-                console.log(textStatus, jqXHR, data);
-            },
-            error: function(data, textStatus, errorThrown) {
-                //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                alert(data);
+                jsonRequerida.default= data['default'];
+                $.each( data['enum'], function( index, value ){
+                    jsonRequerida.push(value);
+                });
+                //alert(jsonRequerida.default);
+                //alert(jsonRequerida[0]);
             }
-
-            //ifModified:false,
-            //processData:true,
-            //timeout:3000000,
-            //crossdomain:true
-
         });
-
-
-
-
 
 
 
@@ -144,8 +120,6 @@
                 else {
                     jsonHabilidades[item.id_habilidad] =item;
 
-                    var arr = [ "one", "two", "three", "four", "five" ];
-
                     $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
                     '<td>'+item.nombre+'</td>' +
                     '<td>' +
@@ -155,8 +129,8 @@
                     '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                     '</tr>');
 
-                    $.each(arr, function(i, itemx) {
-                        $("#requerida-"+item.id_habilidad+"").append('<option value="">6</option>');
+                    $.each(jsonRequerida, function(i, itemx) {
+                        $("#requerida-"+item.id_habilidad+"").append('<option value="'+jsonRequerida[i]+'">'+jsonRequerida[i]+'</option>');
                     });
                 }
 
