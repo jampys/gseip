@@ -190,7 +190,7 @@
                 }
 
                 params.vPuestos = JSON.stringify(jsonPuestosIx);
-                params.vHabilidades = JSON.stringify(jsonPuestosIx);
+                params.vHabilidades = JSON.stringify(jsonHabilidadesIx);
 
                 $.post('index.php',params,function(data, status, xhr){
 
