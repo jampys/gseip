@@ -123,7 +123,7 @@
                     $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
                     '<td>'+item.nombre+'</td>' +
                     '<td>' +
-                    '<select class="form-control" id="requerida-'+item.id_habilidad+'" name="requerida-'+item.id_habilidad+'">'+
+                    '<select class="form-control select_requerida" id="requerida-'+item.id_habilidad+'" name="requerida-'+item.id_habilidad+'">'+
                     '</select>'+
                     '</td>'+
                     '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
@@ -132,10 +132,20 @@
                     $.each(jsonRequerida, function(i, itemx) {
                         $("#requerida-"+item.id_habilidad+"").append('<option value="'+jsonRequerida[i]+'">'+jsonRequerida[i]+'</option>');
                     });
+                    $("#requerida-"+item.id_habilidad+"").val(jsonRequerida.default);
+
                 }
 
                 $("#myModal #search_habilidad").val('');
             }
+        });
+
+
+        $(document).on("change", ".select_requerida", function(e){ //ok
+            //alert('ahhhhh');
+            var id = $(this).closest('tr').attr('id_habilidad');
+            alert(id);
+
         });
 
 
