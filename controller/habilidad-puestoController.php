@@ -21,7 +21,7 @@ switch ($operation)
         $view->contentTemplate="view/habilidad-puestoGrid.php";
         break;
 
-    case 'new':
+    case 'new': //ok
         $view->label='Agregar habilidades';
         $view->disableLayout=true;
         $view->contentTemplate="view/habilidad-puestoForm.php";
