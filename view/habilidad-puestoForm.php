@@ -11,12 +11,41 @@
 
         $.post('index.php',{"action": "habilidad-puesto", "operation": "select_requerida"},function(data, status, xhr){
             //alert(xhr);
-            //alert(data);
+            alert(JSON.parse(data));
 
             //$.each(data['enum'], function(indice, val){
             //});
 
         });
+
+
+
+
+        $.ajax({
+            url:"index.php",
+            type:"post",
+            data:{"action": "habilidad-puesto", "operation": "select_requerida"},
+            //contentType:"application/x-www-form-urlencoded",
+            dataType:"json",//xml,html,script,json
+            success: function(data, textStatus, jqXHR) {
+                console.log(textStatus, jqXHR, data);
+            },
+            error: function(data, textStatus, errorThrown) {
+                //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                alert(data);
+            }
+
+            //ifModified:false,
+            //processData:true,
+            //timeout:3000000,
+            //crossdomain:true
+
+        });
+
+
+
+
+
 
 
         $('#myModal').modal({
