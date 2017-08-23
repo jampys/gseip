@@ -98,25 +98,19 @@ class HabilidadPuesto
         return $stmt->dpGetAffect();
     }
 
-    public function insertHabilidadEmpleado(){
-        /*$stmt=new sQuery();
-        $query="insert into habilidad_empleado(id_habilidad, id_empleado, fecha_desde)
-                values(:id_habilidad, :id_empleado, '2015-02-02')";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpExecute();*/
+
+    public function insertHabilidadPuesto(){ //ok
 
         $stmt=new sQuery();
-        $query = 'CALL sp_insertHabilidadEmpleado(
+        $query = 'CALL sp_insertHabilidadPuesto(
                                                     :id_habilidad,
-                                                    :id_empleado,
+                                                    :id_puesto,
                                                     @flag
                                                   )';
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();

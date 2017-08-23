@@ -28,31 +28,30 @@ switch ($operation)
         break;
 
     case 'select_requerida': //carga en el formulario el combo de requerida
-        //$rta = "culo";
         $view->requerida = Soporte::get_enum_values('habilidad_puesto', 'requerida');
         //print_r(json_encode($view->requerida));
         print_r(json_encode(array('enum'=>$view->requerida['enum'], 'default'=>$view->requerida['default'])));
         exit;
         break;
 
-    case 'insert':
+    case 'insert': //ok
         $flag=1;
 
         sQuery::dpBeginTransaction();
 
         try{
 
-            $vEmpleados = json_decode($_POST["vEmpleados"], true);
+            $vPuestos = json_decode($_POST["vPuestos"], true);
             $vHabilidades = json_decode($_POST["vHabilidades"], true);
             //print_r($vHabilidades);
 
-            foreach ($vEmpleados as $vE) {
+            foreach ($vPuestos as $vP) {
                 foreach ($vHabilidades as $vH) {
-                    $c = new HabilidadEmpleado();
+                    $c = new HabilidadPuesto();
                     $c->setIdHabilidad($vH['id_habilidad']);
-                    $c->setIdEmpleado($vE['id_empleado']);
-                    if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
-                    //echo "id_empleado: ".$vE['id_empleado']." - id_habilidad: ".$vH['id_habilidad'];
+                    $c->setIdPuesto($vP['id_puesto']);
+                    if($c->insertHabilidadPuesto() < 0) $flag = -1;  //si falla algun insert $flag = -1
+                    //echo "id_puesto: ".$vP['id_puesto']." - id_habilidad: ".$vH['id_habilidad'];
                 }
 
             }

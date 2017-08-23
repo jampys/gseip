@@ -113,6 +113,7 @@
                 item = {};
                 item.nombre = ui.item.label;
                 item.id_habilidad = ui.item.id_habilidad;
+                item.requerida = jsonRequerida.default;
 
                 if(jsonHabilidades[item.id_habilidad]) {
                     //alert('el elemento existe');
@@ -142,9 +143,10 @@
 
 
         $(document).on("change", ".select_requerida", function(e){ //ok
-            //alert('ahhhhh');
-            var id = $(this).closest('tr').attr('id_habilidad');
-            alert(id);
+            var id = $(this).closest('tr').attr('data-id');
+            //alert(id);
+            jsonHabilidades[id].requerida = $(this).val();
+            alert(jsonHabilidades[id].requerida);
 
         });
 
@@ -170,36 +172,36 @@
         });
 
 
-        $(document).one('click', '#myModal #submit',function(){
+        $(document).one('click', '#myModal #submit',function(){ //ok
             //alert(Object.keys(jsonEmpleados).length);
-            if (Object.keys(jsonEmpleados).length > 0 && Object.keys(jsonHabilidades).length > 0){
+            if (Object.keys(jsonPuestos).length > 0 && Object.keys(jsonHabilidades).length > 0){
                 var params={};
-                params.action = 'habilidad-empleado';
+                params.action = 'habilidad-puesto';
                 params.operation = 'insert';
 
 
-                var jsonEmpleadosIx = [];
-                for ( var item in jsonEmpleados ){
-                    jsonEmpleadosIx.push( jsonEmpleados[ item ] );
+                var jsonPuestosIx = [];
+                for ( var item in jsonPuestos ){
+                    jsonPuestosIx.push( jsonPuestos[ item ] );
                 }
                 var jsonHabilidadesIx = [];
                 for ( var item in jsonHabilidades ){
                     jsonHabilidadesIx.push( jsonHabilidades[ item ] );
                 }
 
-                params.vEmpleados = JSON.stringify(jsonEmpleadosIx);
-                params.vHabilidades = JSON.stringify(jsonHabilidadesIx);
+                params.vPuestos = JSON.stringify(jsonPuestosIx);
+                params.vHabilidades = JSON.stringify(jsonPuestosIx);
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    //alert(data);
+                    alert(data);
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
-                        $("#myElem").html('Habilidades empleados guardadas con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Habilidades puestos guardadas con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                     }else{
-                        $("#myElem").html('Error al guardar las habilidades empleados').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar las habilidades puestos').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElem").hide();
                                             $('#myModal').modal('hide');
