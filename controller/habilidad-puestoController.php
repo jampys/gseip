@@ -27,6 +27,14 @@ switch ($operation)
         $view->contentTemplate="view/habilidad-puestoForm.php";
         break;
 
+    case 'select_requerida': //carga en el formulario el combo de requerida
+        //$rta = "culo";
+        $view->requerida = Soporte::get_enum_values('habilidad_puesto', 'requerida');
+        //print_r(json_encode($view->requerida));
+        print_r(json_encode(array('enum'=>$view->requerida['enum'], 'default'=>$view->requerida['default'])));
+        exit;
+        break;
+
     case 'insert':
         $flag=1;
 

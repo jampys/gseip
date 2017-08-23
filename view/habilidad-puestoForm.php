@@ -5,6 +5,18 @@
 
         var jsonPuestos = [];
         var jsonHabilidades = [];
+        var jsonRequerida = [];
+
+
+
+        $.post('index.php',{"action": "habilidad-puesto", "operation": "select_requerida"},function(data, status, xhr){
+            //alert(xhr);
+            //alert(data);
+
+            //$.each(data['enum'], function(indice, val){
+            //});
+
+        });
 
 
         $('#myModal').modal({
