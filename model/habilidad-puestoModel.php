@@ -74,8 +74,6 @@ class HabilidadPuesto
 
 
 
-
-
     /*function save(){
         if($this->id_habilidad)
         {$rta = $this->updateHabilidad();}

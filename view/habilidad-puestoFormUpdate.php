@@ -22,13 +22,12 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(data);
                 //var rta= parseInt(data.charAt(3));
-                //alert(rta);
                 if(data >=0){
-                    $("#myElem").html('Habilidades puestos guardadas con exito').addClass('alert alert-success').show();
+                    $("#myElem").html('Habilidad del puesto puesto guardada con exito').addClass('alert alert-success').show();
                     //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                     $("#search").trigger("click");
                 }else{
-                    $("#myElem").html('Error al guardar las habilidades puestos').addClass('alert alert-danger').show();
+                    $("#myElem").html('Error al guardar la habilidad del puesto').addClass('alert alert-danger').show();
                 }
                 setTimeout(function() { $("#myElem").hide();
                     $('#myModalUpdate').modal('hide');
@@ -74,7 +73,7 @@
                         <input class="form-control" type="text" name="habilidad" id="habilidad" value = "<?php print $view->habilidadPuesto[0]['habilidad'] ?>" disabled>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label" for="tipo" >Requerida</label>
                         <select class="form-control" id="requerida" name="requerida">
                             <?php foreach ($view->requerida['enum'] as $req){
@@ -90,18 +89,18 @@
 
                 </form>
 
-                <div id="myElem" style="display:none">
 
-                </div>
+                <div id="myElem" style="display:none"></div>
 
 
             </div>
+
 
             <div class="modal-footer">
                 <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
                 <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
-
             </div>
+
         </div>
     </div>
 </div>

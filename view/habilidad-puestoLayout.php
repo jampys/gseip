@@ -18,7 +18,6 @@
                 if ($("#search_form").valid()){ //ok
                     //alert('presiono en buscar');
                     //var id = $(this).attr('data-id');
-                    //preparo los parametros
                     params={};
                     params.id_puesto = $("#id_puesto").val();
                     params.id_habilidad = $("#id_habilidad").val();
@@ -27,9 +26,7 @@
                     //alert(params.cuil);
                     //alert(params.id_habilidad);
                     $('#content').load('index.php', params);
-
                 }
-
 
             });
 
@@ -151,7 +148,6 @@
             $(document).on('click', '#cancel',function(){ //ok
                 $('#myModal').modal('hide');
             });
-
 
 
 

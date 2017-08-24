@@ -24,7 +24,7 @@ switch ($operation)
     case 'new': //ok
         $view->label='Agregar habilidades';
         $view->disableLayout=true;
-        $view->contentTemplate="view/habilidad-puestoForm.php";
+        $view->contentTemplate="view/habilidad-puestoFormInsert.php";
         break;
 
     case 'select_requerida': //carga en el formulario el combo de requerida
@@ -80,7 +80,7 @@ switch ($operation)
         $view->requerida = Soporte::get_enum_values('habilidad_puesto', 'requerida');
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/habilidad-puestoUpdateForm.php";
+        $view->contentTemplate="view/habilidad-puestoFormUpdate.php";
         break;
 
 
