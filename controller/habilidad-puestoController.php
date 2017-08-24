@@ -83,9 +83,9 @@ switch ($operation)
         $view->contentTemplate="view/habilidadesForm.php";*/
         break;
 
-    case 'deleteHabilidadEmpleado':
-        $habilidad_empleado = new HabilidadEmpleado($_POST['id_habilidad_empleado']);
-        $rta = $habilidad_empleado->deleteHabilidadEmpleado();
+    case 'deleteHabilidadPuesto': //ok
+        $habilidad_puesto = new HabilidadPuesto($_POST['id_habilidad_puesto']);
+        $rta = $habilidad_puesto->deleteHabilidadPuesto();
         print_r(json_encode($rta));
         die;
         break;

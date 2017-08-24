@@ -153,7 +153,7 @@
 
 
 
-            $(document).on('click', '#example .delete', function(){
+            $(document).on('click', '#example .delete', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
@@ -182,14 +182,14 @@
                 //alert(id);
                 //preparo los parametros
                 params={};
-                params.id_habilidad_empleado = id;
-                params.action = "habilidad-empleado";
-                params.operation = "deleteHabilidadEmpleado";
+                params.id_habilidad_puesto = id;
+                params.action = "habilidad-puesto";
+                params.operation = "deleteHabilidadPuesto";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
                         $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
+                        $('#content').load('index.php',{action:"habilidad-puesto", operation: "buscar", id_puesto: $("#id_puesto").val(), id_habilidad: $("#id_habilidad").val()});
                     }else{
                         $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
                     }

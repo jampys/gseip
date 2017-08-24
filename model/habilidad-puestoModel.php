@@ -124,12 +124,12 @@ class HabilidadPuesto
     }
 
 
-    function deleteHabilidadEmpleado(){
+    function deleteHabilidadPuesto(){ //ok
         $stmt=new sQuery();
-        $query="delete from habilidad_empleado
-                where id_habilidad_empleado =:id_habilidad_empleado";
+        $query="delete from habilidad_puesto
+                where id_habilidad_puesto =:id_habilidad_puesto";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad_empleado', $this->getIdHabilidadEmpleado());
+        $stmt->dpBind(':id_habilidad_puesto', $this->getIdHabilidadPuesto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
