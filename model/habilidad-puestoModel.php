@@ -76,13 +76,13 @@ class HabilidadPuesto
 
 
 
-    function save(){ //no se usa
+    /*function save(){
         if($this->id_habilidad)
         {$rta = $this->updateHabilidad();}
         else
         {$rta =$this->insertHabilidad();}
         return $rta;
-    }
+    }*/
 
 
     public function updateHabilidadPuesto(){ //ok
@@ -91,6 +91,7 @@ class HabilidadPuesto
                 where id_habilidad_puesto =:id_habilidad_puesto";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_habilidad_puesto', $this->getIdHabilidadPuesto());
+        $stmt->dpBind(':requerida', $this->getRequerida());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

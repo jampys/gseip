@@ -13,35 +13,30 @@
 
         $(document).one('click', '#myModalUpdate #submit',function(){ //ok
 
-            alert('presiono update');
-
             var params={};
             params.action = 'habilidad-puesto';
             params.operation = 'saveHabilidadPuesto';
-            params.id_habilidad_puesto=$('#id').val();
+            params.id_habilidad_puesto = $('#id').val();
+            params.requerida = $('#requerida').val();
 
             $.post('index.php',params,function(data, status, xhr){
-
                 //alert(data);
                 //var rta= parseInt(data.charAt(3));
                 //alert(rta);
                 if(data >=0){
                     $("#myElem").html('Habilidades puestos guardadas con exito').addClass('alert alert-success').show();
                     //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
+                    $("#search").trigger("click");
                 }else{
                     $("#myElem").html('Error al guardar las habilidades puestos').addClass('alert alert-danger').show();
                 }
                 setTimeout(function() { $("#myElem").hide();
-                    $('#myModal').modal('hide');
+                    $('#myModalUpdate').modal('hide');
                 }, 2000);
 
             });
 
-
             return false;
-
-
-
 
         });
 

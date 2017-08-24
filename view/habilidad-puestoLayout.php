@@ -123,7 +123,6 @@
             $(document).on('click', '.edit', function(){ //ok
                 var id_habilidad = $(this).closest('tr').attr('id_habilidad');
                 var id_puesto = $(this).closest('tr').attr('id_puesto');
-                //preparo los parametros
                 params={};
                 params.id_habilidad = id_habilidad;
                 params.id_puesto = id_puesto;
