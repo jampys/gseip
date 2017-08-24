@@ -120,15 +120,18 @@
 
 
 
-            $(document).on('click', '.edit', function(){
-                var id = $(this).attr('data-id');
+            $(document).on('click', '.edit', function(){ //ok
+                var id_habilidad = $(this).closest('tr').attr('id_habilidad');
+                var id_puesto = $(this).closest('tr').attr('id_puesto');
                 //preparo los parametros
                 params={};
-                params.id_habilidad = id;
-                params.action = "habilidades";
-                params.operation = "editHabilidad";
+                params.id_habilidad = id_habilidad;
+                params.id_puesto = id_puesto;
+                //alert(id_puesto);
+                params.action = "habilidad-puesto";
+                params.operation = "editHabilidadPuesto";
                 $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
+                    $('#myModalUpdate').modal();
                 })
 
             });

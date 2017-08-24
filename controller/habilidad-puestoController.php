@@ -74,14 +74,24 @@ switch ($operation)
         break;
 
 
-    case 'editHabilidad':
-        /*$view->label='Editar Habilidad';
-        $view->habilidad = new Habilidad($_POST['id_habilidad']);
-
-        $view->tipos = Soporte::get_enum_values('habilidades', 'tipo');
+    case 'editHabilidadPuesto': //ok
+        $view->label='Editar Habilidad Puesto';
+        $view->habilidadPuesto = HabilidadPuesto::getHabilidadPuesto($_POST['id_puesto'], $_POST['id_habilidad']);
+        $view->requerida = Soporte::get_enum_values('habilidad_puesto', 'requerida');
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/habilidadesForm.php";*/
+        $view->contentTemplate="view/habilidad-puestoUpdateForm.php";
+        break;
+
+
+    case 'saveHabilidadPuesto': //ok //guarda una habilidad-puesto editada
+
+        $view->habilidadPuesto = new HabilidadPuesto($_POST['id_habilidad_puesto']);
+        $view->habilidadPuesto->setRequerida($_POST['requerida']);
+
+        $rta = $view->habilidadPuesto->updateHabilidadPuesto();
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'deleteHabilidadPuesto': //ok

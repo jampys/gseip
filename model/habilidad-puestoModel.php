@@ -76,7 +76,7 @@ class HabilidadPuesto
 
 
 
-    function save(){
+    function save(){ //no se usa
         if($this->id_habilidad)
         {$rta = $this->updateHabilidad();}
         else
@@ -85,15 +85,12 @@ class HabilidadPuesto
     }
 
 
-    public function updateHabilidad(){
+    public function updateHabilidadPuesto(){ //ok
         $stmt=new sQuery();
-        $query="update habilidades set codigo =:codigo, nombre =:nombre, tipo =:tipo
-                where id_habilidad =:id_habilidad";
+        $query="update habilidad_puesto set requerida =:requerida
+                where id_habilidad_puesto =:id_habilidad_puesto";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':tipo', $this->getTipo());
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':id_habilidad_puesto', $this->getIdHabilidadPuesto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
