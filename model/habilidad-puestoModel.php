@@ -105,12 +105,14 @@ class HabilidadPuesto
         $query = 'CALL sp_insertHabilidadPuesto(
                                                     :id_habilidad,
                                                     :id_puesto,
+                                                    :requerida,
                                                     @flag
                                                   )';
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':requerida', $this->getRequerida());
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();

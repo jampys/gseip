@@ -146,7 +146,7 @@
             var id = $(this).closest('tr').attr('data-id');
             //alert(id);
             jsonHabilidades[id].requerida = $(this).val();
-            alert(jsonHabilidades[id].requerida);
+            //alert(jsonHabilidades[id].requerida);
 
         });
 
@@ -194,7 +194,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    alert(data);
+                    //alert(data);
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){

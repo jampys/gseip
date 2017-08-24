@@ -189,7 +189,8 @@
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
                         $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"habilidad-puesto", operation: "buscar", id_puesto: $("#id_puesto").val(), id_habilidad: $("#id_habilidad").val()});
+                        //$('#content').load('index.php',{action:"habilidad-puesto", operation: "buscar", id_puesto: $("#id_puesto").val(), id_habilidad: $("#id_habilidad").val()});
+                        $("#search").trigger("click");
                     }else{
                         $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
                     }

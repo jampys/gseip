@@ -50,6 +50,7 @@ switch ($operation)
                     $c = new HabilidadPuesto();
                     $c->setIdHabilidad($vH['id_habilidad']);
                     $c->setIdPuesto($vP['id_puesto']);
+                    $c->setRequerida($vH['requerida']);
                     if($c->insertHabilidadPuesto() < 0) $flag = -1;  //si falla algun insert $flag = -1
                     //echo "id_puesto: ".$vP['id_puesto']." - id_habilidad: ".$vH['id_habilidad'];
                 }
