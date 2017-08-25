@@ -23,7 +23,7 @@
                     <!--<li class="active"><a href="#">Home</a></li>-->
                     <li><a href="index.php?action=clientes&operation=index">Clientes</a></li>
                     <li><a href="index.php?action=empleados">Empleados</a></li>
-                    <li><a href="#">Page 3</a></li>
+                    <li><a href="index.php?action=contratos">Contratos</a></li>
 
 
 
