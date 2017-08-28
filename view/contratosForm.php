@@ -5,79 +5,32 @@
 
         $('[data-toggle="tooltip"]').tooltip();
 
-        $('#empleado-form').validate({
+        $('#contrato-form').validate({ //ok
             rules: {
-                legajo: {
+                nro_contrato: {
                     required: true,
-                    digits: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "empleados",
-                            operation: "checkEmpleadoLegajo",
-                            legajo: function(){ return $('#legajo').val();}}
+                    digits: true},
+                compania: {required: true},
+                responsable: {
+                    require_from_group: {
+                        param: [2, ".responsable-group"],
+                        depends: function(element) { return $('#responsable').val().length > 0;}
                     }
                 },
-                nombre: {required: true},
-                apellido: {required: true},
-                documento: {required: true,
-                            digits: true},
-                cuil: {
-                    required: true,
-                    digits: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "empleados",
-                            operation: "checkEmpleadoCuil",
-                            cuil: function(){ return $('#cuil').val();}}
-                        /*success: function(data, textStatus, jqXHR) {
-                            console.log(textStatus, jqXHR, data);
-                        },
-                        error: function(data, textStatus, errorThrown) {
-                            console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                        }*/
-
-                    }
-                },
-                fecha_nacimiento: {required: true},
-                fecha_alta: {required: true},
-                domicilio: {required: true},
-                lugar_residencia: {required: true},
-                telefono: {digits: true},
-                email: {email: true},
-                sexo: {required: true}
+                fecha_desde: {required: true},
+                fecha_hasta: {required: true}
             },
             messages:{
-                legajo: {
-                    required: "Ingrese el legajo",
-                    digits: "Ingrese solo números",
-                    remote: "El legajo ingresado ya existe"
+                nro_contrato: {
+                    required: "Ingrese nro. de contrato",
+                    digits: "Ingrese solo números"
                 },
-                nombre: "Ingrese el nombre",
-                apellido: "Ingrese el apellido",
-                documento: {required: "Ingrese el Nro. documento",
-                            digits: "Ingrese solo números"},
-                cuil: {
-                    required: "Ingrese el CUIL",
-                    digits: "Ingrese solo números",
-                    remote: "El CUIL ingresado ya existe"
-                },
-                fecha_nacimiento: "Ingrese la fecha de nacimiento",
-                fecha_alta: "Ingrese la fecha de alta",
-                domicilio: "Ingrese el domicilio",
-                lugar_residencia: "Seleccione la localidad",
-                telefono: {digits: "Ingrese solo números"},
-                email: {email: "Ingrese una dirección de email válida"},
-                sexo: "Seleccione el sexo"
+                compania: "Ingrese la compañía",
+                responsable: "Seleccione un empleado sugerido",
+                fecha_desde: "Seleccione la fecha desde",
+                fecha_hasta: "Seleccione la fecha hasta"
             }
-            /*,tooltip_options: {
-                //nombre: {trigger:'focus'},
-            }*/
+
         });
 
 
@@ -111,7 +64,7 @@
 
 
 
-        $('#fecha_desde').datepicker({
+        $('#fecha_desde').datepicker({ //ok
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
@@ -120,7 +73,7 @@
                 $('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', '');
         });
 
-        $('#fecha_hasta').datepicker({
+        $('#fecha_hasta').datepicker({ //ok
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
@@ -182,13 +135,13 @@
     <div class="form-group required">
         <label for="responsable" class="col-md-4 control-label">Responsable</label>
         <div class="col-md-8">
-            <input type="text" class="form-control empleado-group" id="responsable" name="responsable" placeholder="Responsable" value ="<?php print $view->responsable; ?>">
-            <input type="hidden" name="id_empleado" id="id_empleado" class="empleado-group" value = "<?php print $view->contrato->getResponsable() ?>" >
+            <input type="text" class="form-control responsable-group" id="responsable" name="responsable" placeholder="Responsable" value ="<?php print $view->responsable; ?>">
+            <input type="hidden" name="id_empleado" id="id_empleado" class="responsable-group" value = "<?php print $view->contrato->getResponsable() ?>" >
         </div>
     </div>
 
 
-        <div class="form-group">
+        <div class="form-group required">
             <label class="col-md-4 control-label" for="fecha">Desde / hasta</label>
             <div class="col-md-8">
 
@@ -202,12 +155,20 @@
         </div>
 
 
+
     <hr/>
 
+        <!--<h4>Empleados</h4>
+        <div style="text-align: right; margin-bottom: 10px">
+            <button class="btn btn-primary btn-sm" type="button" id="new" >Agregar</button>
+        </div>-->
+
+        <div class="bg-info clearfix">
+            <button class="btn btn-secondary float-left">Example Button floated left</button>
+            <button class="btn btn-secondary float-right">Example Button floated right</button>
+        </div>
 
 
-
-    <?php if($view->domicilios){  ?>
     <div class="table-responsive">
         <table class="table table-condensed dataTable table-hover">
             <thead>
@@ -219,19 +180,11 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($view->domicilios as $dom):  ?>
-                <tr>
-                    <td><?php echo $dom['direccion'];?></td>
-                    <td><?php echo $dom['CP'].' '.$dom['ciudad'].' '.$dom['provincia'];?></td>
-                    <td><?php echo $dom['fecha_desde'];?></td>
-                    <td><?php echo $dom['fecha_hasta'];?></td>
-                </tr>
-            <?php endforeach; ?>
+            <!-- se genera dinamicamente desde javascript -->
             </tbody>
         </table>
     </div>
 
-    <?php } ?>
 
 
     <hr/>

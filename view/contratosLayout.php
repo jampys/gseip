@@ -46,7 +46,7 @@
 
 
             $(document).on('click', '#submit',function(){
-                if ($("#empleado-form").valid()){
+                if ($("#contrato-form").valid()){
                     var params={};
                     params.action = 'empleados';
                     params.operation = 'saveEmpleado';
