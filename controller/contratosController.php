@@ -3,6 +3,7 @@
 include_once("model/contratosModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/companiasModel.php");
+include_once("model/empleadosModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -59,9 +60,11 @@ switch ($operation)
         break;
 
     case 'editContrato': //ok
-
         $view->label='Editar Contrato';
         $view->contrato = new Contrato($_POST['id']);
+
+        $view->empleado = new Empleado($view->contrato->getResponsable());
+        $view->responsable = $view->empleado->getApellido()." ".$view->empleado->getNombre();
 
         $view->localidades = Localidad::getLocalidades();
         $view->companias = Compania::getCompanias();

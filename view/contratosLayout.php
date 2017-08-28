@@ -24,7 +24,9 @@
                 params.action = "contratos";
                 params.operation = "editContrato";
                 $('#content').load('index.php', params,function(){
-                    //$('#popupbox').dialog({title:"Editar cliente"}).dialog('open');
+
+                    //alert('ahhhhhh');
+                    //$('#responsable').autocomplete("search", "jul");
                 })
 
             });

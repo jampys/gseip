@@ -55,10 +55,11 @@ class Contrato
         if ($id_contrato!= 0){
 
             $stmt=new sQuery();
-            $query="select id_contrato, nro_contrato,
+            $query="select co.id_contrato, co.nro_contrato,
                     DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                     DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                    re.apellido, re.nombre, cia.razon_social
+                    re.apellido, re.nombre, cia.razon_social,
+                    co.responsable
                     from contratos co, empleados re, companias cia
                     where co.responsable = re.id_empleado
                     and co.id_compania = cia.id_compania
