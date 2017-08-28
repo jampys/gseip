@@ -112,18 +112,24 @@
 
 
         $('#fecha_desde').datepicker({
-            //inline: true
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
+        }).on('changeDate', function (selected) {
+                var minDate = new Date(selected.date.valueOf());
+                $('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', '');
         });
 
         $('#fecha_hasta').datepicker({
-            //inline: true
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
-        });
+        }).on('changeDate', function (selected) {
+                var maxDate = new Date(selected.date.valueOf());
+                $('#fecha_desde').datepicker('setEndDate', maxDate).datepicker('update', '');;
+            });
+
+
 
 
 
@@ -182,12 +188,8 @@
     </div>
 
 
-
-
-
-
         <div class="form-group">
-            <label class="col-md-4 control-label" for="fecha">Fecha hasta</label>
+            <label class="col-md-4 control-label" for="fecha">Desde / hasta</label>
             <div class="col-md-8">
 
                 <div class="input-group input-daterange">
@@ -200,11 +202,8 @@
         </div>
 
 
-
-
-
-
     <hr/>
+
 
 
 
