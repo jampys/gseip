@@ -70,7 +70,7 @@
             todayHighlight: true
         }).on('changeDate', function (selected) {
                 var minDate = new Date(selected.date.valueOf());
-                $('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', '');
+                $('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', minDate);
         });
 
         $('#fecha_hasta').datepicker({ //ok
@@ -79,7 +79,7 @@
             todayHighlight: true
         }).on('changeDate', function (selected) {
                 var maxDate = new Date(selected.date.valueOf());
-                $('#fecha_desde').datepicker('setEndDate', maxDate).datepicker('update', '');;
+                $('#fecha_desde').datepicker('setEndDate', maxDate);
             });
 
 
@@ -158,14 +158,10 @@
 
     <hr/>
 
-        <!--<h4>Empleados</h4>
-        <div style="text-align: right; margin-bottom: 10px">
-            <button class="btn btn-primary btn-sm" type="button" id="new" >Agregar</button>
-        </div>-->
 
-        <div class="bg-info clearfix">
-            <button class="btn btn-secondary float-left">Example Button floated left</button>
-            <button class="btn btn-secondary float-right">Example Button floated right</button>
+        <div class="clearfix">
+            <h4 class="pull-left">Empleados</h4>
+            <button class="btn btn-primary btn-sm pull-right" id="new" >Agregar</button>
         </div>
 
 
