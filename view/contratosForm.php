@@ -126,6 +126,7 @@
         });
 
 
+
     });
 
 </script>
@@ -181,29 +182,25 @@
     </div>
 
 
-    <div class="form-group required">
-        <label class="col-md-4 control-label" for="fecha">Fecha desde</label>
-        <div class="col-md-8">
-            <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato->getFechaDesde() ?>" placeholder="Fecha desde">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="fecha">Fecha hasta</label>
-        <div class="col-md-8">
-            <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato->getFechaHasta() ?>" placeholder="Fecha hasta">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
+
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="fecha">Fecha hasta</label>
+            <div class="col-md-8">
+
+                <div class="input-group input-daterange">
+                    <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato->getFechaDesde() ?>" placeholder="Fecha desde">
+                    <div class="input-group-addon">a</div>
+                    <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato->getFechaHasta() ?>" placeholder="Fecha hasta">
                 </div>
+
             </div>
         </div>
-    </div>
+
+
+
 
 
 
