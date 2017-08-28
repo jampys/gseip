@@ -2,6 +2,7 @@
 
 include_once("model/contratosModel.php");
 include_once("model/localidadesModel.php");
+include_once("model/companiasModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -62,7 +63,9 @@ switch ($operation)
         $view->label='Editar Contrato';
         $view->contrato = new Contrato($_POST['id']);
 
-        //$view->localidades = Localidad::getLocalidades();
+        $view->localidades = Localidad::getLocalidades();
+        $view->companias = Compania::getCompanias();
+
         //$view->sexos = Soporte::get_enum_values('empleados', 'sexo');
         //$view->estados_civiles = Soporte::get_enum_values('empleados', 'estado_civil');
         //$view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');

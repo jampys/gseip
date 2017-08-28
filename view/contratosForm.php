@@ -80,6 +80,36 @@
             }*/
         });
 
+
+
+        $("#responsable").autocomplete({ //ok
+            source: function( request, response ) {
+                $.ajax({
+                    url: "index.php",
+                    type: "post",
+                    dataType: "json",
+                    data: { "term": request.term, "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
+                    success: function(data) {
+                        response($.map(data, function(item) {
+                            return {
+                                label: item.apellido+" "+item.nombre,
+                                id: item.cuil
+
+                            };
+                        }));
+                    }
+
+                });
+            },
+            minLength: 2,
+            change: function(event, ui) {
+                $('#id_empleado').val(ui.item? ui.item.id : '');
+                $('#responsable').val(ui.item.label);
+            }
+        });
+
+
+
         $('#fecha_nacimiento').datepicker({
             //inline: true
             format:"dd/mm/yyyy",
@@ -131,25 +161,32 @@
     </div>
 
     <div class="form-group required">
-        <label for="apellido" class="col-md-4 control-label">Apellido</label>
+        <label for="compania" class="col-md-4 control-label">Compañía</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="apellido" id="apellido" placeholder="Apellido" value = "<?php print $view->empleado->getApellido() ?>">
+            <select class="form-control" id="localidad" name="localidad">
+                <option value="" disabled >Seleccione la compañía</option>
+                <?php foreach ($view->companias as $cia){
+                    ?>
+                    <option value="<?php echo $cia['id_compania']; ?>"
+                        <?php echo ($cia['id_compania'] == $view->contrato->getIdCompania())? 'selected' :'' ?>
+                        >
+                        <?php echo $cia['razon_social'];?>
+                    </option>
+                <?php  } ?>
+            </select>
         </div>
     </div>
 
+
     <div class="form-group required">
-        <label for="nombre" class="col-md-4 control-label">Nombre</label>
+        <label for="responsable" class="col-md-4 control-label">Responsable</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->empleado->getNombre() ?>">
+            <input type="text" class="form-control empleado-group" id="responsable" name="responsable" placeholder="Responsable">
+            <input type="hidden" name="id_empleado" id="id_empleado" class="empleado-group"/>
         </div>
     </div>
 
-    <div class="form-group required">
-        <label for="documento" class="col-md-4 control-label">Nro.documento</label>
-        <div class="col-md-8">
-            <input class="form-control" type="text" name="documento" id="documento" placeholder="Nro. documento" value = "<?php print $view->empleado->getDocumento() ?>">
-        </div>
-    </div>
+
 
     <div class="form-group required">
         <label for="cuil" class="col-md-4 control-label">CUIL</label>
