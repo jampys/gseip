@@ -30,12 +30,12 @@
             });
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "contratos";
                 params.operation="newContrato";
                 $('#content').load('index.php', params,function(){
-                   //$('#popupbox').dialog({title:"Nuevo empleado"}).dialog('open');
+
                 })
             });
 

@@ -44,7 +44,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newContrato':
+    case 'newContrato': //ok
         $view->label='Nuevo Contrato';
         $view->contrato = new Contrato();
         $view->responsable = $view->contrato->getResponsable()->getApellido()." ".$view->contrato->getResponsable()->getNombre();
@@ -65,28 +65,6 @@ switch ($operation)
         $view->disableLayout=true;
         $view->contentTemplate="view/ContratosForm.php";
         break;
-
-    case 'checkEmpleadoCuil':
-        $view->empleado = new Empleado();
-        $rta = $view->empleado->checkEmpleadoCuil($_POST['cuil']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'checkEmpleadoLegajo':
-        $view->empleado = new Empleado();
-        $rta = $view->empleado->checkEmpleadoLegajo($_POST['legajo']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'autocompletarEmpleadosByCuil':
-        $view->empleado = new Empleado();
-        $rta=$view->empleado->autocompletarEmpleadosByCuil($_POST['term']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
 
     default : //ok
         $view->contratos = Contrato::getContratos();

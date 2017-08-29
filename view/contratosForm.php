@@ -117,7 +117,7 @@
         <label for="compania" class="col-md-4 control-label">Compañía</label>
         <div class="col-md-8">
             <select class="form-control" id="localidad" name="localidad">
-                <option value="" disabled >Seleccione la compañía</option>
+                <option value="">Seleccione la compañía</option>
                 <?php foreach ($view->companias as $cia){
                     ?>
                     <option value="<?php echo $cia['id_compania']; ?>"

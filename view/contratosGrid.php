@@ -85,12 +85,11 @@
 
 <div id="confirm">
     <div class="modal-body">
-        ¿Desea eliminar el cliente?
+        ¿Desea eliminar el contrato?
     </div>
 </div>
 
-    <!--<button type="button" class="btn btn-primary" id="delete">Delete</button>
-    <button type="button" class="btn btn-primary">Cancel</button>-->
+
 
 <div id="myElemento" style="display:none">
 

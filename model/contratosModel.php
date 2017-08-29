@@ -31,8 +31,9 @@ class Contrato
     function getIdCompania()
     { return $this->id_compania;}
 
-    function getResponsable()
-    { return $this->responsable;}
+    function getResponsable(){
+        return ($this->responsable)? $this->responsable : new Empleado() ;
+    }
 
 
     //SETTERS
@@ -65,7 +66,7 @@ class Contrato
                     DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                     DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                     re.apellido, re.nombre, cia.razon_social,
-                    co.id_responsable
+                    co.id_responsable, co.id_compania
                     from contratos co, empleados re, companias cia
                     where co.id_responsable = re.id_empleado
                     and co.id_compania = cia.id_compania
