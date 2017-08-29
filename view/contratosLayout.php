@@ -25,14 +25,9 @@
                 params.operation = "editContrato";
                 $('#content').load('index.php', params,function(){
 
-                    //alert('ahhhhhh');
-                    //$('#responsable').autocomplete("search", "jul");
                 })
 
             });
-
-
-
 
 
             $(document).on('click', '#new', function(){

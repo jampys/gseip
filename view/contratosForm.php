@@ -135,7 +135,7 @@
         <label for="responsable" class="col-md-4 control-label">Responsable</label>
         <div class="col-md-8">
             <input type="text" class="form-control responsable-group" id="responsable" name="responsable" placeholder="Responsable" value ="<?php print $view->responsable; ?>">
-            <input type="hidden" name="id_empleado" id="id_empleado" class="responsable-group" value = "<?php print $view->contrato->getResponsable() ?>" >
+            <input type="hidden" name="id_empleado" id="id_empleado" class="responsable-group" value = "<?php print $view->contrato->getIdResponsable() ?>" >
         </div>
     </div>
 

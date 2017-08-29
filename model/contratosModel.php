@@ -1,4 +1,5 @@
 <?php
+include_once("empleadosModel.php");
 
 class Contrato
 {
@@ -6,8 +7,10 @@ class Contrato
     private $nro_contrato;
     private $fecha_desde;
     private $fecha_hasta;
-    private $responsable;
+    private $id_responsable;
     private $id_compania;
+
+    private $responsable;
 
     //GETTERS
     function getIdContrato()
@@ -22,11 +25,14 @@ class Contrato
     function getFechaHasta()
     { return $this->fecha_hasta;}
 
-    function getResponsable()
-    { return $this->responsable;}
+    function getIdResponsable()
+    { return $this->id_responsable;}
 
     function getIdCompania()
     { return $this->id_compania;}
+
+    function getResponsable()
+    { return $this->responsable;}
 
 
     //SETTERS
@@ -42,8 +48,8 @@ class Contrato
     function setFechaHasta($val)
     { $this->fecha_hasta=$val;}
 
-    function setResponsable($val)
-    { $this->responsable=$val;}
+    function setIdResponsable($val)
+    { $this->id_responsable=$val;}
 
     function setIdCompania($val)
     { $this->id_compania=$val;}
@@ -59,9 +65,9 @@ class Contrato
                     DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                     DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                     re.apellido, re.nombre, cia.razon_social,
-                    co.responsable
+                    co.id_responsable
                     from contratos co, empleados re, companias cia
-                    where co.responsable = re.id_empleado
+                    where co.id_responsable = re.id_empleado
                     and co.id_compania = cia.id_compania
                     and co.id_contrato = :id_contrato";
             $stmt->dpPrepare($query);
@@ -73,8 +79,10 @@ class Contrato
             $this->setNroContrato($rows[0]['nro_contrato']);
             $this->setFechaDesde($rows[0]['fecha_desde']);
             $this->setFechaHasta($rows[0]['fecha_hasta']);
-            $this->setResponsable($rows[0]['responsable']);
+            $this->setIdResponsable($rows[0]['id_responsable']);
             $this->setIdCompania($rows[0]['id_compania']);
+
+            $this->responsable = new Empleado($rows[0]['id_responsable']);
 
         }
     }
@@ -88,7 +96,7 @@ class Contrato
                   CONCAT(apellido, ' ', nombre) as responsable,
                   cia.razon_social as compania
                   from contratos co, empleados re, companias cia
-                  where co.responsable = re.id_empleado
+                  where co.id_responsable = re.id_empleado
                   and co.id_compania = cia.id_compania";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
