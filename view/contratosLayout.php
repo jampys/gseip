@@ -32,8 +32,8 @@
 
             $(document).on('click', '#new', function(){
                 params={};
-                params.action = "empleados";
-                params.operation="newEmpleado";
+                params.action = "contratos";
+                params.operation="newContrato";
                 $('#content').load('index.php', params,function(){
                    //$('#popupbox').dialog({title:"Nuevo empleado"}).dialog('open');
                 })

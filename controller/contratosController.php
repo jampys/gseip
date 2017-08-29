@@ -44,35 +44,23 @@ switch ($operation)
         exit;
         break;
 
-    case 'newEmpleado':
-        $view->empleado = new Empleado();
-        $view->label='Nuevo Empleado';
-
+    case 'newContrato':
+        $view->label='Nuevo Contrato';
+        $view->contrato = new Contrato();
+        $view->responsable = $view->contrato->getResponsable()->getApellido()." ".$view->contrato->getResponsable()->getNombre();
         $view->localidades = Localidad::getLocalidades();
-        $view->sexos = Soporte::get_enum_values('empleados', 'sexo');
-        $view->estados_civiles = Soporte::get_enum_values('empleados', 'estado_civil');
-        $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
-        $view->empresas = Soporte::get_enum_values('empleados', 'empresa');
+        $view->companias = Compania::getCompanias();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/empleadosForm.php";
+        $view->contentTemplate="view/contratosForm.php";
         break;
 
     case 'editContrato': //ok
         $view->label='Editar Contrato';
         $view->contrato = new Contrato($_POST['id']);
-
         $view->responsable = $view->contrato->getResponsable()->getApellido()." ".$view->contrato->getResponsable()->getNombre();
-
         $view->localidades = Localidad::getLocalidades();
         $view->companias = Compania::getCompanias();
-
-        //$view->sexos = Soporte::get_enum_values('empleados', 'sexo');
-        //$view->estados_civiles = Soporte::get_enum_values('empleados', 'estado_civil');
-        //$view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
-        //$view->empresas = Soporte::get_enum_values('empleados', 'empresa');
-
-        //$view->domicilios = $view->empleado->getDomiciliosByEmpleado();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/ContratosForm.php";
