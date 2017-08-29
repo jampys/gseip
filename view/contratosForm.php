@@ -63,24 +63,23 @@
 
 
 
-
-        $('#fecha_desde').datepicker({ //ok
+        $('.input-daterange').datepicker({ //ok
+            //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
-        }).on('changeDate', function (selected) {
-                var minDate = new Date(selected.date.valueOf());
-                $('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', minDate);
         });
 
-        $('#fecha_hasta').datepicker({ //ok
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        }).on('changeDate', function (selected) {
-                var maxDate = new Date(selected.date.valueOf());
-                $('#fecha_desde').datepicker('setEndDate', maxDate);
-            });
+        $('#fecha_desde').datepicker().on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#fecha_hasta').datepicker('setStartDate', minDate);
+                //$('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', minDate);
+        });
+
+        $('#fecha_hasta').datepicker().on('changeDate', function (selected) {
+            var maxDate = new Date(selected.date.valueOf());
+            $('#fecha_desde').datepicker('setEndDate', maxDate);
+        });
 
 
 
