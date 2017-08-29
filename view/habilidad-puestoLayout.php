@@ -118,12 +118,9 @@
 
 
             $(document).on('click', '.edit', function(){ //ok
-                var id_habilidad = $(this).closest('tr').attr('id_habilidad');
-                var id_puesto = $(this).closest('tr').attr('id_puesto');
+                var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_habilidad = id_habilidad;
-                params.id_puesto = id_puesto;
-                //alert(id_puesto);
+                params.id_habilidad_puesto = id;
                 params.action = "habilidad-puesto";
                 params.operation = "editHabilidadPuesto";
                 $('#popupbox').load('index.php', params,function(){

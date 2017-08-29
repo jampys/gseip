@@ -61,16 +61,16 @@
 
 
                 <form name ="habilidad-puesto" id="habilidad-puesto" method="POST" action="index.php">
-                    <input type="hidden" name="id" id="id" value="<?php print $view->habilidadPuesto[0]['id_habilidad_puesto'] ?>">
+                    <input type="hidden" name="id" id="id" value="<?php print $view->habilidadPuesto->getIdHabilidadPuesto(); ?>">
 
                     <div class="form-group">
                         <label class="control-label" for="puesto">Puesto</label>
-                        <input class="form-control" type="text" name="puesto" id="puesto" value = "<?php print $view->habilidadPuesto[0]['puesto'] ?>" disabled>
+                        <input class="form-control" type="text" name="puesto" id="puesto" value = "<?php print $view->habilidadPuesto->getPuesto()->getNombre(); ?>" disabled>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="habilidad">Habilidad</label>
-                        <input class="form-control" type="text" name="habilidad" id="habilidad" value = "<?php print $view->habilidadPuesto[0]['habilidad'] ?>" disabled>
+                        <input class="form-control" type="text" name="habilidad" id="habilidad" value = "<?php print $view->habilidadPuesto->getHabilidad()->getNombre(); ?>" disabled>
                     </div>
 
                     <div class="form-group required">
@@ -79,7 +79,7 @@
                             <?php foreach ($view->requerida['enum'] as $req){
                                 ?>
                                 <option value="<?php echo $req; ?>"
-                                    <?php echo ($req == $view->habilidadPuesto[0]['requerida'])? 'selected' :'' ?>
+                                    <?php echo ($req == $view->habilidadPuesto->getRequerida())? 'selected' :'' ?>
                                     >
                                     <?php echo $req; ?>
                                 </option>

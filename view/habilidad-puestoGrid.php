@@ -52,10 +52,7 @@
 
             <?php if($view->habilidadPuesto) {
                         foreach ($view->habilidadPuesto as $hp):   ?>
-                            <tr data-id="<?php echo $hp['id_habilidad_puesto']; ?>"
-                                id_habilidad="<?php echo $hp['id_habilidad']; ?>"
-                                id_puesto="<?php echo $hp['id_puesto']; ?>"
-                                >
+                            <tr data-id="<?php echo $hp['id_habilidad_puesto']; ?>" >
                                 <td><?php echo $hp['codigo']; ?></td>
                                 <td><?php echo $hp['puesto']; ?></td>
                                 <td><?php echo $hp['habilidad']; ?></td>

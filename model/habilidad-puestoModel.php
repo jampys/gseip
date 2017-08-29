@@ -1,4 +1,6 @@
 <?php
+include_once("puestosModel.php");
+include_once("habilidadesModel.php");
 
 class HabilidadPuesto
 {
@@ -6,6 +8,9 @@ class HabilidadPuesto
     private $id_habilidad;
     private $id_puesto;
     private $requerida;
+
+    private $puesto;
+    private $habilidad;
 
     // GETTERS
     function getIdHabilidadPuesto()
@@ -19,6 +24,12 @@ class HabilidadPuesto
 
     function getRequerida()
     { return $this->requerida;}
+
+    function getPuesto()
+    { return $this->puesto;}
+
+    function getHabilidad()
+    { return $this->habilidad;}
 
 
     //SETTERS
@@ -50,6 +61,9 @@ class HabilidadPuesto
             $this->setIdHabilidad($rows[0]['id_habilidad']);
             $this->setIdPuesto($rows[0]['id_puesto']);
             $this->setRequerida($rows[0]['requerida']);
+
+            $this->puesto = new Puesto($rows[0]['id_puesto']);
+            $this->habilidad = new Habilidad($rows[0]['id_habilidad']);
         }
     }
 

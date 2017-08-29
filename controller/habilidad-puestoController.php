@@ -76,7 +76,7 @@ switch ($operation)
 
     case 'editHabilidadPuesto': //ok
         $view->label='Editar Habilidad Puesto';
-        $view->habilidadPuesto = HabilidadPuesto::getHabilidadPuesto($_POST['id_puesto'], $_POST['id_habilidad']);
+        $view->habilidadPuesto = new HabilidadPuesto($_POST['id_habilidad_puesto']);
         $view->requerida = Soporte::get_enum_values('habilidad_puesto', 'requerida');
 
         $view->disableLayout=true;
