@@ -40,30 +40,18 @@
             });
 
 
-            $(document).on('click', '#submit',function(){
+            $(document).on('click', '#submit',function(){ //ok
                 if ($("#contrato-form").valid()){
                     var params={};
-                    params.action = 'empleados';
-                    params.operation = 'saveEmpleado';
-                    params.id_empleado=$('#id_empleado').val();
-                    params.legajo=$('#legajo').val();
-                    params.apellido=$('#apellido').val();
-                    params.nombre=$('#nombre').val();
-                    params.documento=$('#documento').val();
-                    params.cuil=$('#cuil').val();
-                    params.fecha_nacimiento=$('#fecha_nacimiento').val();
-                    params.fecha_alta=$('#fecha_alta').val();
-                    params.fecha_baja=$('#fecha_baja').val();
-                    params.direccion=$('#direccion').val();
-                    params.localidad=$('#localidad').val();
-                    params.telefono=$('#telefono').val();
-                    params.email=$('#email').val();
-                    params.sexo=$('input[name=sexo]:checked').val();
-                    params.nacionalidad=$('#nacionalidad').val();
-                    params.estado_civil=$('#estado_civil').val();
-                    params.empresa=$('#empresa').val();
-                    params.cambio_domicilio = $('#cambio_domicilio').prop('checked')? 1:0;
-                    //alert(params.cambio_domicilio);
+                    params.action = 'contratos';
+                    params.operation = 'saveContrato';
+                    params.id_contrato=$('#id_contrato').val();
+                    params.nro_contrato=$('#nro_contrato').val();
+                    params.fecha_desde=$('#fecha_desde').val();
+                    params.fecha_hasta=$('#fecha_hasta').val();
+                    params.id_responsable=$('#id_responsable').val();
+                    params.id_compania=$('#compania').val();
+                    //alert(params.id_compania);
 
                     $.post('index.php',params,function(data, status, xhr){
 
@@ -71,14 +59,14 @@
                         //var rta= parseInt(data.charAt(3));
                         //alert(rta);
                         if(data >=0){
-                            $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                            $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
 
                         }else{
-                            $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                            $("#myElem").html('Error al guardar el contrato').addClass('alert alert-danger').show();
                         }
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#popupbox').dialog('close');
-                                                $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
+                                                $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
                                               }, 2000);
 
                     });
@@ -89,9 +77,9 @@
 
 
 
-            $(document).on('click', '#cancel',function(){
+            $(document).on('click', '#cancel',function(){ //ok
                 //$('#popupbox').dialog('close');
-                $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
+                $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
             });
 
 

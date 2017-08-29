@@ -12,34 +12,22 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $view->empleados = Empleado::getEmpleados();
-        $view->contentTemplate="view/empleadosGrid.php";
+        $view->contratos = Contrato::getContratos();
+        $view->contentTemplate="view/contratosGrid.php";
         break;
 
-    case 'saveEmpleado':
-        $empleado = new Empleado($_POST['id_empleado']);
-        $empleado->setLegajo($_POST['legajo']);
-        $empleado->setApellido($_POST['apellido']);
-        $empleado->setNombre($_POST['nombre']);
-        $empleado->setDocumento($_POST['documento']);
-        $empleado->setCuil($_POST['cuil']);
-        $empleado->setFechaNacimiento($_POST['fecha_nacimiento']);
-        $empleado->setFechaAlta($_POST['fecha_alta']);
-        $empleado->setFechaBaja($_POST['fecha_baja']);
-        $empleado->setDireccion($_POST['direccion']);
-        $empleado->setIdLocalidad($_POST['localidad']);
-        $empleado->setTelefono($_POST['telefono']);
-        $empleado->setEmail($_POST['email']);
-        $empleado->setSexo($_POST['sexo']);
-        $empleado->setNacionalidad($_POST['nacionalidad']);
-        $empleado->setEstadoCivil($_POST['estado_civil']);
-        $empleado->setEmpresa($_POST['empresa']);
+    case 'saveContrato': //ok
+        $contrato = new Contrato($_POST['id_contrato']);
 
-        //$cliente->save();
-        //break;
-        $rta = $empleado->save($_POST['cambio_domicilio']);
+        $contrato->setNroContrato($_POST['nro_contrato']);
+        $contrato->setFechaDesde($_POST['fecha_desde']);
+        $contrato->setFechaHasta($_POST['fecha_hasta']);
+        $contrato->setIdResponsable($_POST['id_responsable']);
+        $contrato->setIdCompania($_POST['id_compania']);
+
+        $rta = $contrato->save();
         print_r(json_encode($rta));
         exit;
         break;

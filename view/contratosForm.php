@@ -46,7 +46,7 @@
                         response($.map(data, function(item) {
                             return {
                                 label: item.apellido+" "+item.nombre,
-                                id: item.cuil
+                                id: item.id_empleado
 
                             };
                         }));
@@ -56,7 +56,7 @@
             },
             minLength: 2,
             change: function(event, ui) {
-                $('#id_empleado').val(ui.item? ui.item.id : '');
+                $('#id_responsable').val(ui.item? ui.item.id : '');
                 $('#responsable').val(ui.item.label);
             }
         });
@@ -70,13 +70,13 @@
             todayHighlight: true
         });
 
-        $('#fecha_desde').datepicker().on('changeDate', function (selected) {
+        $('#fecha_desde').datepicker().on('changeDate', function (selected) { //ok
             var minDate = new Date(selected.date.valueOf());
             $('#fecha_hasta').datepicker('setStartDate', minDate);
                 //$('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', minDate);
         });
 
-        $('#fecha_hasta').datepicker().on('changeDate', function (selected) {
+        $('#fecha_hasta').datepicker().on('changeDate', function (selected) { //ok
             var maxDate = new Date(selected.date.valueOf());
             $('#fecha_desde').datepicker('setEndDate', maxDate);
         });
@@ -116,7 +116,7 @@
     <div class="form-group required">
         <label for="compania" class="col-md-4 control-label">Compañía</label>
         <div class="col-md-8">
-            <select class="form-control" id="localidad" name="localidad">
+            <select class="form-control" id="compania" name="compania">
                 <option value="">Seleccione la compañía</option>
                 <?php foreach ($view->companias as $cia){
                     ?>
@@ -135,7 +135,7 @@
         <label for="responsable" class="col-md-4 control-label">Responsable</label>
         <div class="col-md-8">
             <input type="text" class="form-control responsable-group" id="responsable" name="responsable" placeholder="Responsable" value ="<?php print $view->responsable; ?>">
-            <input type="hidden" name="id_empleado" id="id_empleado" class="responsable-group" value = "<?php print $view->contrato->getIdResponsable() ?>" >
+            <input type="hidden" name="id_responsable" id="id_responsable" class="responsable-group" value = "<?php print $view->contrato->getIdResponsable() ?>" >
         </div>
     </div>
 
