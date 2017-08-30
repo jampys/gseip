@@ -82,6 +82,21 @@
         });
 
 
+        $(document).on('click', '#myModal #submit',function(){ //ok
+            //if ($("#contrato-form").valid()){
+
+                alert("agrego al empleado");
+
+
+
+            //}
+            return false;
+        });
+
+
+
+
+
 
 
 
@@ -95,7 +110,7 @@
 <div class="col-md-6">
 
 
-<div class="panel panel-default ">
+<div class="panel panel-default" id="contrato">
     <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
 
     <div class="panel-body">
@@ -160,7 +175,7 @@
 
         <div class="clearfix">
             <h4 class="pull-left">Empleados</h4>
-            <button class="btn btn-primary btn-sm pull-right" id="new" >Agregar</button>
+            <button class="btn btn-primary btn-sm pull-right" id="add-empleado" >Agregar</button>
         </div>
 
 

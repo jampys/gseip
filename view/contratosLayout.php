@@ -40,7 +40,7 @@
             });
 
 
-            $(document).on('click', '#submit',function(){ //ok
+            $(document).on('click', '#contrato #submit',function(){ //ok
                 if ($("#contrato-form").valid()){
                     var params={};
                     params.action = 'contratos';
@@ -77,7 +77,7 @@
 
 
 
-            $(document).on('click', '#cancel',function(){ //ok
+            $(document).on('click', '#contrato #cancel',function(){ //ok
                 //$('#popupbox').dialog('close');
                 $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
             });
@@ -114,6 +114,22 @@
             };
 
 
+            $(document).on('click', '#add-empleado', function(e){ //ok
+                params={};
+                params.action = "contratos";
+                params.operation="addEmpleado";
+                $('#popupbox1').load('index.php', params,function(){
+                    $('#myModal').modal();
+                    //alert('add empleado');
+                });
+                //e.preventDefault();
+                return false;
+            });
+
+
+
+
+
 
 
 
@@ -137,6 +153,8 @@
         </div>
 
     </div>
+
+    <div id="popupbox1"></div>
 
 
 

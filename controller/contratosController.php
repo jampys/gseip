@@ -3,6 +3,7 @@
 include_once("model/contratosModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/companiasModel.php");
+include_once("model/puestosModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -52,6 +53,16 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->contentTemplate="view/ContratosForm.php";
+        break;
+
+    case 'addEmpleado':
+        //$view->client=new Cliente();
+        $view->label='Agregar Empleado';
+        $view->disableLayout=true;
+
+        $view->superior = Puesto::getPuestos();
+
+        $view->contentTemplate="view/contratosFormAddEmpleado.php";
         break;
 
     default : //ok
