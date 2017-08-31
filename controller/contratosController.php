@@ -56,7 +56,7 @@ switch ($operation)
         $view->contentTemplate="view/ContratosForm.php";
         break;
 
-    case 'editContratoEmpleado': //ok 
+    case 'editContratoEmpleado': //ok
         $view->contratoEmpleado = ContratoEmpleado::getContratoEmpleado($_POST['id_contrato']);
         print_r(json_encode($view->contratoEmpleado));
         exit;

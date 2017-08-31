@@ -125,15 +125,16 @@
 
 
         $(document).on('click', '#myModal #submit',function(){ //ok
-            //if ($("#contrato-form").valid()){
+            //Aqui se ingresa luego de insertar o actualizar un empleado
 
+            //if ($("#contrato-form").valid()){
             item = {};
             item.id_empleado = $('#id_empleado').val();
             item.empleado = $('#empleado').val();
             item.puesto = $("#puesto option:selected").text();
             //alert(item.puesto);
 
-            if(jsonEmpleados[id]) {
+            if(jsonEmpleados[item.id_empleado]) {
                 alert('el elemento existe');
             }
             else {
@@ -142,9 +143,6 @@
             }
 
             $.cargarTablaEmpleados();
-
-
-
 
             //}
             return false;
