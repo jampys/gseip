@@ -15,6 +15,7 @@
                 $('#empleados-table tbody').append('<tr data-id='+jsonEmpleados[i].id_empleado+'>' +
                 '<td>'+jsonEmpleados[i].empleado+'</td>' +
                 '<td>'+jsonEmpleados[i].puesto+'</td>' +
+                '<td class="text-center"><a class="update-empleado" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
                 '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                 '</tr>');
 
@@ -238,10 +239,10 @@
         <table class="table table-condensed dataTable table-hover">
             <thead>
             <tr>
-                <th>Dirección</th>
-                <th>Localidad</th>
-                <th>F. Desde</th>
-                <th>F. Hasta</th>
+                <th>Empleado</th>
+                <th>Puesto</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
             </thead>
             <tbody>
