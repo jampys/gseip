@@ -1,48 +1,47 @@
-﻿<?php
-
+<?php
 class ContratoEmpleado
 {
-	private $id_empleado_contrato;
-	private $id_empleado;
-	private $id_contrato;
-	private $id_puesto;
-	private $fecha_desde;
+    private $id_empleado_contrato;
+    private $id_empleado;
+    private $id_contrato;
+    private $id_puesto;
+    private $fecha_desde;
     private $fecha_hasta;
 
     //GETTERS
-	function getIdEmpleadoContrato()
-	 { return $this->id_empleado_contrato;}
+    function getIdEmpleadoContrato()
+    { return $this->id_empleado_contrato;}
 
-	function getIdEmpleado()
-	 { return $this->id_empleado;}
+    function getIdEmpleado()
+    { return $this->id_empleado;}
 
-	function getIdContrato()
-	 { return $this->id_contrato;}
+    function getIdContrato()
+    { return $this->id_contrato;}
 
-	function getIdPuesto()
-	 { return $this->id_puesto;}
+    function getIdPuesto()
+    { return $this->id_puesto;}
 
-	function getFechaDesde()
-	 { return $this->fecha_desde;}
+    function getFechaDesde()
+    { return $this->fecha_desde;}
 
     function getFechaHasta()
     { return $this->fecha_hasta;}
-	 
-	//SETTERS
+
+    //SETTERS
     function setIdEmpleadoContrato($val)
     { $this->id_empleado_contrato=$val;}
 
-	function setIdEmpleado($val)
-	 { $this->id_empleado=$val;}
+    function setIdEmpleado($val)
+    { $this->id_empleado=$val;}
 
-	function setIdContrato($val)
-	 {  $this->id_contrato=$val;}
+    function setIdContrato($val)
+    {  $this->id_contrato=$val;}
 
-	function setIdPuesto($val)
-	 {  $this->id_puesto=$val;}
+    function setIdPuesto($val)
+    {  $this->id_puesto=$val;}
 
-	function setFechaDesde($val)
-	 {  $this->fecha_desde=$val;}
+    function setFechaDesde($val)
+    {  $this->fecha_desde=$val;}
 
     function setFechaHasta($val)
     {  $this->fecha_hasta=$val;}
@@ -76,7 +75,7 @@ class ContratoEmpleado
         $query = "select ec.id_empleado_contrato, ec.id_empleado, ec.id_contrato, ec.id_puesto,
 DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
 DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-em.apellido, em.nombre,
+CONCAT (em.apellido, ' ', em.nombre) as empleado,
 pu.nombre as puesto
 from empleado_contrato ec, empleados em, puestos pu
 where ec.id_empleado = em.id_empleado
@@ -96,7 +95,7 @@ and ec.id_contrato = :id_contrato";
         return $rta;
     }
 
-	public function updateCliente(){
+    public function updateCliente(){
 
         $stmt=new sQuery();
         $query="update clientes set nombre= :nombre, apellido= :apellido, fecha_nac= STR_TO_DATE(:fecha, '%d/%m/%Y'), peso= :peso where id = :id";
@@ -108,9 +107,9 @@ and ec.id_contrato = :id_contrato";
         $stmt->dpBind(':id', $this->getID());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}
+    }
 
-	private function insertCliente(){
+    private function insertCliente(){
 
         $stmt=new sQuery();
         $query="insert into clientes( nombre, apellido, fecha_nac,peso)values(:nombre, :apellido, STR_TO_DATE(:fecha, '%d/%m/%Y'), :peso)";
@@ -121,15 +120,17 @@ and ec.id_contrato = :id_contrato";
         $stmt->dpBind(':peso', $this->getPeso());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}
+    }
 
-	function delete(){
+    function delete(){
         $stmt=new sQuery();
         $query="delete from clientes where id= :id";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id', $this->getID());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}	
-	
+    }
+
 }
+
+?>

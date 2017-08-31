@@ -1,9 +1,26 @@
 ﻿<script type="text/javascript">
 
 
+
+
     $(document).ready(function(){
 
         var jsonEmpleados = [];
+
+
+        $.cargarTablaEmpleados=function(){
+
+            for (var i in jsonEmpleados) {
+
+                $('#empleados-table tbody').append('<tr data-id='+jsonEmpleados[i].id_empleado+'>' +
+                '<td>'+jsonEmpleados[i].empleado+'</td>' +
+                '<td>'+jsonEmpleados[i].puesto+'</td>' +
+                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                '</tr>');
+
+            }
+
+        };
 
 
 
@@ -12,20 +29,19 @@
             url:"index.php",
             type:"post",
             data:{"action": "contratos", "operation": "editContratoEmpleado", "id_contrato": $('#id_contrato').val()},
-            //contentType:"application/x-www-form-urlencoded",
             dataType:"json",//xml,html,script,json
             success: function(data, textStatus, jqXHR) {
-                console.log(textStatus, jqXHR, data);
-            },
-            error: function(data, textStatus, errorThrown) {
-                console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                //alert(data);
+
+                $.each(data, function(indice, val){ //carga el array de empleados
+                    var id = data[indice]['id_empleado'];
+                    jsonEmpleados[id] = data[indice];
+
+                });
+
+                $.cargarTablaEmpleados();
             }
 
         });
-
-
-
 
 
 
@@ -125,18 +141,7 @@
                 alert('agregado con exito');
             }
 
-            for (var i in jsonEmpleados) {
-                //alert(jsonEmpleados[i].nombre);
-
-
-
-            $('#empleados-table tbody').append('<tr data-id='+jsonEmpleados[i].id_empleado+'>' +
-            '<td>'+jsonEmpleados[i].empleado+'</td>' +
-            '<td>'+jsonEmpleados[i].puesto+'</td>' +
-            '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
-            '</tr>');
-
-            }
+            $.cargarTablaEmpleados();
 
 
 
