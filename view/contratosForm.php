@@ -3,6 +3,8 @@
 
     $(document).ready(function(){
 
+        var jsonEmpleados = [];
+
         $('[data-toggle="tooltip"]').tooltip();
 
         $('#contrato-form').validate({ //ok
@@ -85,7 +87,33 @@
         $(document).on('click', '#myModal #submit',function(){ //ok
             //if ($("#contrato-form").valid()){
 
-                alert("agrego al empleado");
+            item = {};
+            item.id_empleado = $('#id_empleado').val();
+            item.empleado = $('#empleado').val();
+            item.puesto = $("#puesto option:selected").text();
+            //alert(item.puesto);
+
+            if(jsonEmpleados[id]) {
+                alert('el elemento existe');
+            }
+            else {
+                jsonEmpleados[item.id_empleado] = item;
+                alert('agregado con exito');
+            }
+
+            for (var i in jsonEmpleados) {
+                //alert(jsonEmpleados[i].nombre);
+
+
+
+            $('#empleados-table tbody').append('<tr data-id='+jsonEmpleados[i].id_empleado+'>' +
+            '<td>'+jsonEmpleados[i].empleado+'</td>' +
+            '<td>'+jsonEmpleados[i].puesto+'</td>' +
+            '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+            '</tr>');
+
+            }
+
 
 
 
@@ -179,7 +207,7 @@
         </div>
 
 
-    <div class="table-responsive">
+    <div class="table-responsive" id="empleados-table">
         <table class="table table-condensed dataTable table-hover">
             <thead>
             <tr>

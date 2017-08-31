@@ -56,7 +56,7 @@
                         response($.map(data, function(item) {
                             return {
                                 label: item.apellido+" "+item.nombre,
-                                id: item.cuil
+                                id: item.id_empleado
 
                             };
                         }));
@@ -101,15 +101,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="superior" >Puesto superior</label>
-                        <select class="form-control" id="superior" name="superior">
-                            <option value="" disabled selected>Seleccione el puesto superior</option>
-                            <?php foreach ($view->superior as $sup){
+                        <label class="control-label" for="puesto" >Puesto</label>
+                        <select class="form-control" id="puesto" name="puesto">
+                            <option value="" disabled selected>Seleccione el puesto</option>
+                            <?php foreach ($view->puesto as $pu){
                                 ?>
-                                <option value="<?php echo $sup['codigo']; ?>"
+                                <option value="<?php echo $pu['codigo']; ?>"
                                     <?php //echo ($sup['codigo'] == $view->puesto->getCodigoSuperior())? 'selected' :'' ?>
                                     >
-                                    <?php echo $sup['nombre']; ?>
+                                    <?php echo $pu['nombre']; ?>
                                 </option>
                             <?php  } ?>
                         </select>

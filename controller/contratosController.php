@@ -1,6 +1,7 @@
 ﻿<?php
 
 include_once("model/contratosModel.php");
+include_once("model/contrato-empleadoModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/companiasModel.php");
 include_once("model/puestosModel.php");
@@ -51,6 +52,10 @@ switch ($operation)
         $view->localidades = Localidad::getLocalidades();
         $view->companias = Compania::getCompanias();
 
+        $view->ce = new ContratoEmpleado();
+        $view->ce->setIdContrato($view->contrato);
+        $view->contratoEmpleado = $view->ce->getContratoEmpleado();
+
         $view->disableLayout=true;
         $view->contentTemplate="view/ContratosForm.php";
         break;
@@ -60,7 +65,7 @@ switch ($operation)
         $view->label='Agregar Empleado';
         $view->disableLayout=true;
 
-        $view->superior = Puesto::getPuestos();
+        $view->puesto = Puesto::getPuestos();
 
         $view->contentTemplate="view/contratosFormAddEmpleado.php";
         break;
