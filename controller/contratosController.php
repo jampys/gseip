@@ -52,12 +52,16 @@ switch ($operation)
         $view->localidades = Localidad::getLocalidades();
         $view->companias = Compania::getCompanias();
 
-        $view->ce = new ContratoEmpleado();
-        $view->ce->setIdContrato($view->contrato);
-        $view->contratoEmpleado = $view->ce->getContratoEmpleado();
-
         $view->disableLayout=true;
         $view->contentTemplate="view/ContratosForm.php";
+        break;
+
+    case 'editContratoEmpleado':
+
+        $view->contratoEmpleado = ContratoEmpleado::getContratoEmpleado($_POST['id_contrato']);
+        //$rta = $view->empleado->checkEmpleadoCuil($_POST['cuil']);
+        print_r(json_encode($view->contratoEmpleado));
+        exit;
         break;
 
     case 'addEmpleado':

@@ -71,7 +71,7 @@ class ContratoEmpleado
     }
 
     //Devuelve todos los empleados de un determinado contrato
-    public function getContratoEmpleado() { //ok
+    public static function getContratoEmpleado($id_contrato) { //ok
         $stmt=new sQuery();
         $query = "select ec.id_empleado_contrato, ec.id_empleado, ec.id_contrato, ec.id_puesto,
 DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
@@ -83,7 +83,7 @@ where ec.id_empleado = em.id_empleado
 and ec.id_puesto = pu.id_puesto
 and ec.id_contrato = :id_contrato";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
