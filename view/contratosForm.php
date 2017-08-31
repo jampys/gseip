@@ -7,19 +7,26 @@
 
 
 
-        params={};
-        params.id_contrato = $('#id_contrato').val();
-        params.action = "contratos";
-        params.operation = "editContratoEmpleado";
-        $.post('index.php',params,function(data, status, xhr){
 
-            /*$.each(data, function(indice, val){
-                alert(data[indice]['id_contrato']);
-            });*/
-
-            alert(data);
+        $.ajax({
+            url:"index.php",
+            type:"post",
+            data:{"action": "contratos", "operation": "editContratoEmpleado", "id_contrato": $('#id_contrato').val()},
+            //contentType:"application/x-www-form-urlencoded",
+            dataType:"json",//xml,html,script,json
+            success: function(data, textStatus, jqXHR) {
+                console.log(textStatus, jqXHR, data);
+            },
+            error: function(data, textStatus, errorThrown) {
+                console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                //alert(data);
+            }
 
         });
+
+
+
+
 
 
         $('[data-toggle="tooltip"]').tooltip();
