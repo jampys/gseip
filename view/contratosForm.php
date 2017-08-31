@@ -5,6 +5,23 @@
 
         var jsonEmpleados = [];
 
+
+
+        params={};
+        params.id_contrato = $('#id_contrato').val();
+        params.action = "contratos";
+        params.operation = "editContratoEmpleado";
+        $.post('index.php',params,function(data, status, xhr){
+
+            /*$.each(data, function(indice, val){
+                alert(data[indice]['id_contrato']);
+            });*/
+
+            alert(data);
+
+        });
+
+
         $('[data-toggle="tooltip"]').tooltip();
 
         $('#contrato-form').validate({ //ok
