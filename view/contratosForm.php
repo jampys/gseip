@@ -10,6 +10,8 @@
 
         $.cargarTablaEmpleados=function(){
 
+            $('#empleados-table tbody tr').remove();
+
             for (var i in jsonEmpleados) {
 
                 $('#empleados-table tbody').append('<tr id_empleado='+jsonEmpleados[i].id_empleado+'>' +
@@ -167,9 +169,12 @@
             item.id_empleado = $('#id_empleado').val();
             item.empleado = $('#empleado').val();
             item.puesto = $("#puesto option:selected").text();
-            //alert(item.puesto);
+            item.id_puesto = $("#puesto").val();
+            item.fecha_desde = $('#myModal #fecha_desde').val();
+            item.fecha_hasta = $('#myModal #fecha_hasta').val();
 
-            if(jsonEmpleados[item.id_empleado]) {
+
+            if(jsonEmpleados[item.id_empleado]) { //si ya existe, lo actualiza
                 alert('el elemento existe');
             }
             else {
