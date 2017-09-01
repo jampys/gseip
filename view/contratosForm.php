@@ -12,7 +12,7 @@
 
             for (var i in jsonEmpleados) {
 
-                $('#empleados-table tbody').append('<tr data-id='+jsonEmpleados[i].id_empleado+'>' +
+                $('#empleados-table tbody').append('<tr id_empleado='+jsonEmpleados[i].id_empleado+'>' +
                 '<td>'+jsonEmpleados[i].empleado+'</td>' +
                 '<td>'+jsonEmpleados[i].puesto+'</td>' +
                 '<td class="text-center"><a class="update-empleado" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
@@ -122,6 +122,39 @@
         $('#fecha_hasta').datepicker().on('changeDate', function (selected) { //ok
             var maxDate = new Date(selected.date.valueOf());
             $('#fecha_desde').datepicker('setEndDate', maxDate);
+        });
+
+
+
+        $('#contrato').on('click', '#add-empleado', function(e){ //ok
+            //alert('insertar empleado');
+            params={};
+            params.action = "contratos";
+            params.operation="addEmpleado";
+            $('#popupbox1').load('index.php', params,function(){
+                $('#myModal').modal();
+                //alert('add empleado');
+            });
+            return false;
+        });
+
+        $('#contrato').on('click', '.update-empleado', function(e){ //ok
+            //alert('actualizar empleado');
+            var id = $(this).closest('tr').attr('id_empleado');
+            //alert(id);
+            params={};
+            params.action = "contratos";
+            params.operation="addEmpleado";
+            $('#popupbox1').load('index.php', params,function(){
+                $('#myModal').modal();
+                $('#empleado').val(jsonEmpleados[id].empleado);
+                $('#id_empleado').val(jsonEmpleados[id].id_empleado);
+                //$('#puesto').val(jsonEmpleados[id].puesto);
+
+
+
+            });
+            return false;
         });
 
 

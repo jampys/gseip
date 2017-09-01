@@ -114,35 +114,6 @@
             };
 
 
-            $(document).on('click', '#add-empleado', function(e){ //ok
-                params={};
-                params.action = "contratos";
-                params.operation="addEmpleado";
-                $('#popupbox1').load('index.php', params,function(){
-                    $('#myModal').modal();
-                    //alert('add empleado');
-                });
-                //e.preventDefault();
-                return false;
-            });
-
-            $(document).on('click', '.update-empleado', function(e){ //ok
-                alert('actualizar empleado');
-                params={};
-                params.action = "contratos";
-                params.operation="addEmpleado";
-                $('#popupbox1').load('index.php', params,function(){
-                    $('#myModal').modal();
-                    //alert('add empleado');
-
-                    
-                });
-                return false;
-            });
-
-
-
-
 
 
 
