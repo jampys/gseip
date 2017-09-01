@@ -176,6 +176,7 @@
                 jsonEmpleados[id].puesto = $("#puesto option:selected").text();
                 jsonEmpleados[id].fecha_desde = $('#myModal #fecha_desde').val();
                 jsonEmpleados[id].fecha_hasta = $('#myModal #fecha_hasta').val();
+
                 if(!jsonEmpleados[id].id_empleado_contrato){ //si no esta en la BD
                     jsonEmpleados[id].operacion = 'insert';
                 }else{ //si esta en la BD, lo marca para eliminar
