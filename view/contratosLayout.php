@@ -134,6 +134,8 @@
                 $('#popupbox1').load('index.php', params,function(){
                     $('#myModal').modal();
                     //alert('add empleado');
+
+                    
                 });
                 return false;
             });
