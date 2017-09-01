@@ -106,7 +106,7 @@
                             <option value="" disabled selected>Seleccione el puesto</option>
                             <?php foreach ($view->puesto as $pu){
                                 ?>
-                                <option value="<?php echo $pu['codigo']; ?>"
+                                <option value="<?php echo $pu['id_puesto']; ?>"
                                     <?php //echo ($sup['codigo'] == $view->puesto->getCodigoSuperior())? 'selected' :'' ?>
                                     >
                                     <?php echo $pu['nombre']; ?>

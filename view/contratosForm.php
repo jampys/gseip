@@ -149,7 +149,9 @@
                 $('#myModal').modal();
                 $('#empleado').val(jsonEmpleados[id].empleado);
                 $('#id_empleado').val(jsonEmpleados[id].id_empleado);
-                //$('#puesto').val(jsonEmpleados[id].puesto);
+                $('#puesto').val(jsonEmpleados[id].id_puesto);
+                //$('#fecha_desde').val(jsonEmpleados[id].fecha_desde);
+                //$('#fecha_hasta').val(jsonEmpleados[id].fecha_hasta);
 
 
 
