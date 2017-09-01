@@ -14,18 +14,21 @@
 
             for (var i in jsonEmpleados) {
 
+                if (jsonEmpleados[i].operacion == 'delete') { //para no mostrar los eliminados
+                    continue;
+                }
+
                 $('#empleados-table tbody').append('<tr id_empleado='+jsonEmpleados[i].id_empleado+'>' +
-                '<td>'+jsonEmpleados[i].empleado+'</td>' +
+                //'<td>'+jsonEmpleados[i].empleado+'</td>' +
+                '<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
                 '<td>'+jsonEmpleados[i].puesto+'</td>' +
                 '<td class="text-center"><a class="update-empleado" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
-                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="delete-empleado" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                 '</tr>');
 
             }
 
         };
-
-
 
 
         $.ajax({
@@ -163,28 +166,57 @@
 
         $(document).on('click', '#myModal #submit',function(){ //ok
             //Aqui se ingresa luego de insertar o actualizar un empleado
-
             //if ($("#contrato-form").valid()){
-            item = {};
-            item.id_empleado = $('#id_empleado').val();
-            item.empleado = $('#empleado').val();
-            item.puesto = $("#puesto option:selected").text();
-            item.id_puesto = $("#puesto").val();
-            item.fecha_desde = $('#myModal #fecha_desde').val();
-            item.fecha_hasta = $('#myModal #fecha_hasta').val();
 
+            var id = $('#id_empleado').val();
 
-            if(jsonEmpleados[item.id_empleado]) { //si ya existe, lo actualiza
-                alert('el elemento existe');
+            if(jsonEmpleados[id]) { //si ya existe en el array, lo actualiza
+                //alert('el elemento existe');
+                jsonEmpleados[id].id_puesto = $("#puesto").val();
+                jsonEmpleados[id].puesto = $("#puesto option:selected").text();
+                jsonEmpleados[id].fecha_desde = $('#myModal #fecha_desde').val();
+                jsonEmpleados[id].fecha_hasta = $('#myModal #fecha_hasta').val();
+                if(!jsonEmpleados[id].id_empleado_contrato){ //si no esta en la BD
+                    jsonEmpleados[id].operacion = 'insert';
+                }else{ //si esta en la BD, lo marca para eliminar
+                    jsonEmpleados[id].operacion = 'update';
+                }
+
             }
-            else {
-                jsonEmpleados[item.id_empleado] = item;
-                alert('agregado con exito');
+            else { // si no existe en el array, lo inserta
+                item = {};
+                item.id_empleado = id;
+                item.empleado = $('#empleado').val();
+                item.puesto = $("#puesto option:selected").text();
+                item.id_puesto = $("#puesto").val();
+                item.fecha_desde = $('#myModal #fecha_desde').val();
+                item.fecha_hasta = $('#myModal #fecha_hasta').val();
+                item.operacion = 'insert';
+                jsonEmpleados[id] = item;
+                //alert('agregado con exito');
             }
 
             $.cargarTablaEmpleados();
 
             //}
+            return false;
+        });
+
+
+        $('#contrato').on('click', '.delete-empleado', function(e){ //ok
+            //alert('actualizar empleado');
+            var id = $(this).closest('tr').attr('id_empleado');
+            //alert(jsonEmpleados[id].id_empleado_contrato);
+
+            if(!jsonEmpleados[id].id_empleado_contrato){ //si no esta en la BD
+                //alert('ahhhhh');
+                delete jsonEmpleados[id]; //lo elimina del array
+            }else{ //si esta en la BD, lo marca para eliminar
+                jsonEmpleados[id].operacion = 'delete';
+            }
+
+
+            $.cargarTablaEmpleados();
             return false;
         });
 
