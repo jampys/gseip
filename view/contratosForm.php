@@ -166,7 +166,7 @@
 
         $(document).on('click', '#myModal #submit',function(){ //ok
             //Aqui se ingresa luego de insertar o actualizar un empleado
-            //if ($("#contrato-form").valid()){
+            if ($("#addEmpleado-form").valid()){
 
             var id = $('#id_empleado').val();
 
@@ -199,7 +199,7 @@
 
             $.cargarTablaEmpleados();
 
-            //}
+            }
             return false;
         });
 

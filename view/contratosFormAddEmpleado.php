@@ -10,19 +10,14 @@
         });
 
 
-        $('#client').validate({
+        $('#addEmpleado-form').validate({
             rules: {
-                nombre: {required: true},
-                apellido: {required: true}
+                puesto: {required: true},
+                fecha_desde: {required: true}
             },
             messages:{
-                nombre: "Ingrese su nombre",
-                apellido: "Ingrese su apellido"
-            },
-            tooltip_options: {
-                nombre: {trigger:'focus'},
-                apellido: {trigger:'focus'}
-
+                puesto: "Seleccione un puesto",
+                fecha_desde: "Seleccione la fecha desde"
             }
         });
 
