@@ -36,6 +36,7 @@
                 $.each(data, function(indice, val){ //carga el array de empleados
                     var id = data[indice]['id_empleado'];
                     jsonEmpleados[id] = data[indice];
+                    //alert(jsonEmpleados[id].fecha_desde);
 
                 });
 
@@ -150,10 +151,8 @@
                 $('#empleado').val(jsonEmpleados[id].empleado);
                 $('#id_empleado').val(jsonEmpleados[id].id_empleado);
                 $('#puesto').val(jsonEmpleados[id].id_puesto);
-                //$('#fecha_desde').val(jsonEmpleados[id].fecha_desde);
-                //$('#fecha_hasta').val(jsonEmpleados[id].fecha_hasta);
-
-
+                $('#myModal #fecha_desde').datepicker('update', jsonEmpleados[id].fecha_desde );
+                $('#myModal #fecha_hasta').datepicker('update', jsonEmpleados[id].fecha_hasta );
 
             });
             return false;
