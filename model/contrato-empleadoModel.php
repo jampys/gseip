@@ -64,6 +64,7 @@ class ContratoEmpleado
             $this->setIdEmpleadoContrato($rows[0]['id_empleado_contrato']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
             $this->setIdContrato($rows[0]['id_contrato']);
+            $this->setIdPuesto($rows[0]['id_puesto']);
             $this->setFechaDesde($rows[0]['fecha_desde']);
             $this->setFechaHasta($rows[0]['fecha_hasta']);
         }
@@ -73,60 +74,62 @@ class ContratoEmpleado
     public static function getContratoEmpleado($id_contrato) { //ok
         $stmt=new sQuery();
         $query = "select ec.id_empleado_contrato, ec.id_empleado, ec.id_contrato, ec.id_puesto,
-DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-CONCAT (em.apellido, ' ', em.nombre) as empleado,
-pu.nombre as puesto
-from empleado_contrato ec, empleados em, puestos pu
-where ec.id_empleado = em.id_empleado
-and ec.id_puesto = pu.id_puesto
-and ec.id_contrato = :id_contrato";
+                  DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                  CONCAT (em.apellido, ' ', em.nombre) as empleado,
+                  pu.nombre as puesto
+                  from empleado_contrato ec, empleados em, puestos pu
+                  where ec.id_empleado = em.id_empleado
+                  and ec.id_puesto = pu.id_puesto
+                  and ec.id_contrato = :id_contrato";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
-    function save(){
-        if($this->id)
-        {$rta = $this->updateCliente();}
-        else
-        {$rta =$this->insertCliente();}
-        return $rta;
-    }
 
-    public function updateCliente(){
+
+    public function updateEmpleadoContrato(){ //ok
 
         $stmt=new sQuery();
-        $query="update clientes set nombre= :nombre, apellido= :apellido, fecha_nac= STR_TO_DATE(:fecha, '%d/%m/%Y'), peso= :peso where id = :id";
+        $query="update empleado_contrato
+                set id_puesto= :id_puesto,
+                fecha_desde= STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
+                fecha_hasta= STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
+                where id_empleado_contrato = :id_empleado_contrato";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':apellido', $this->getApellido());
-        $stmt->dpBind(':fecha', $this->getFecha());
-        $stmt->dpBind(':peso', $this->getPeso());
-        $stmt->dpBind(':id', $this->getID());
+        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
+        $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
+        $stmt->dpBind(':id_empleado_contrato', $this->getIdEmpleadoContrato());
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+
+    }
+
+    public function insertEmpleadoContrato(){ //ok
+
+        $stmt=new sQuery();
+        $query="insert into empleado_contrato(id_empleado, id_contrato, id_puesto, fecha_desde, fecha_hasta)
+                values(:id_empleado, :id_contrato, :id_puesto,
+                STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
+                STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
+        $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
-    private function insertCliente(){
-
+    public function deleteEmpleadoContrato(){ //ok
         $stmt=new sQuery();
-        $query="insert into clientes( nombre, apellido, fecha_nac,peso)values(:nombre, :apellido, STR_TO_DATE(:fecha, '%d/%m/%Y'), :peso)";
+        $query="delete from empleado_contrato where id_empleado_contrato= :id_empleado_contrato";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':apellido', $this->getApellido());
-        $stmt->dpBind(':fecha', $this->getFecha());
-        $stmt->dpBind(':peso', $this->getPeso());
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-    }
-
-    function delete(){
-        $stmt=new sQuery();
-        $query="delete from clientes where id= :id";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getID());
+        $stmt->dpBind(':id_empleado_contrato', $this->getIdEmpleadoContrato());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
