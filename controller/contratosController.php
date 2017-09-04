@@ -47,10 +47,10 @@ switch ($operation)
             if($contrato->save() < 0) $flag = -1;
 
             //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
-            $id = (!$contrato->getIdContrato())? sQuery::dpLastInsertId(): $contrato->getIdContrato();
+            $id_contrato = (!$contrato->getIdContrato())? sQuery::dpLastInsertId(): $contrato->getIdContrato();
 
             $vEmpleados = json_decode($_POST["vEmpleados"], true);
-            print_r($vEmpleados);
+            //print_r($vEmpleados);
 
             foreach ($vEmpleados as $vE) {
 
@@ -58,7 +58,23 @@ switch ($operation)
                 //$c->setIdHabilidad($vH['id_habilidad']);
                 //$c->setIdEmpleado($vE['id_empleado']);
                 //if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
-                echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
+
+                //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
+                $empleado_contrato = new ContratoEmpleado();
+                $empleado_contrato->setIdEmpleadoContrato($vE['id_empleado_contrato']);
+                $empleado_contrato->setIdEmpleado($vE['id_empleado']);
+                $empleado_contrato->setIdContrato($id_contrato);
+                $empleado_contrato->setIdPuesto($vE['id_puesto']);
+                $empleado_contrato->setFechaDesde($vE['fecha_desde']);
+                $empleado_contrato->setFechaHasta($vE['fecha_hasta']);
+
+                //echo 'id empleado contrato: '.$vE['id_empleado_contrato'].'---';
+
+                //echo $vE['operacion'];
+                if($vE['operacion']=='insert') {if($empleado_contrato->insertEmpleadoContrato() < 0) $flag = -1;}
+                else if( $vE['operacion']=='update') {if($empleado_contrato->updateEmpleadoContrato() < 0) $flag = -1;}
+                else if( $vE['operacion']=='delete') {if($empleado_contrato->deleteEmpleadoContrato() < 0) $flag = -1;}
+
 
             }
 
