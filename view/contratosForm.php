@@ -134,7 +134,7 @@
 
         //guuardar contrato
         $('#contrato').on('click', '#submit',function(){ //ok
-            alert('guardar contrato');
+            //alert('guardar contrato');
             if ($("#contrato-form").valid()){
                 var params={};
                 params.action = 'contratos';
@@ -147,11 +147,18 @@
                 params.id_compania=$('#compania').val();
                 //alert(params.id_compania);
 
+                var jsonEmpleadosIx = [];
+                for ( var item in jsonEmpleados ){
+                    jsonEmpleadosIx.push( jsonEmpleados[ item ] );
+                }
+                params.vEmpleados = JSON.stringify(jsonEmpleadosIx);
+
+
                 $.post('index.php',params,function(data, status, xhr){
 
                     //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
-                    //alert(rta);
+                    alert(xhr.responseText);
                     if(data >=0){
                         $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
 

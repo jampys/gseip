@@ -21,18 +21,64 @@ switch ($operation)
         break;
 
     case 'saveContrato': //ok
-        $contrato = new Contrato($_POST['id_contrato']);
-
+        /*$contrato = new Contrato($_POST['id_contrato']);
         $contrato->setNroContrato($_POST['nro_contrato']);
         $contrato->setFechaDesde($_POST['fecha_desde']);
         $contrato->setFechaHasta($_POST['fecha_hasta']);
         $contrato->setIdResponsable($_POST['id_responsable']);
         $contrato->setIdCompania($_POST['id_compania']);
-
         $rta = $contrato->save();
         print_r(json_encode($rta));
         exit;
+        break;*/
+
+        $flag=1;
+
+        sQuery::dpBeginTransaction();
+
+        try{
+
+            $contrato = new Contrato($_POST['id_contrato']);
+            $contrato->setNroContrato($_POST['nro_contrato']);
+            $contrato->setFechaDesde($_POST['fecha_desde']);
+            $contrato->setFechaHasta($_POST['fecha_hasta']);
+            $contrato->setIdResponsable($_POST['id_responsable']);
+            $contrato->setIdCompania($_POST['id_compania']);
+            if($contrato->save() < 0) $flag = -1;
+
+            //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
+            $id = (!$contrato->getIdContrato())? sQuery::dpLastInsertId(): $contrato->getIdContrato();
+
+            $vEmpleados = json_decode($_POST["vEmpleados"], true);
+            print_r($vEmpleados);
+
+            foreach ($vEmpleados as $vE) {
+
+                //$c = new HabilidadEmpleado();
+                //$c->setIdHabilidad($vH['id_habilidad']);
+                //$c->setIdEmpleado($vE['id_empleado']);
+                //if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
+                echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
+
+            }
+
+            //Devuelve el resultado a la vista
+            if($flag > 0) sQuery::dpCommit();
+            else sQuery::dpRollback();
+
+            print_r(json_encode($flag));
+
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+            sQuery::dpRollback();
+            print_r(json_encode($flag));
+        }
+
+        exit;
         break;
+
+
 
     case 'newContrato': //ok
         $view->label='Nuevo Contrato';

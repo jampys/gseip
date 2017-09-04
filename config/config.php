@@ -103,6 +103,10 @@ class sQuery   // se declara una clase para poder ejecutar las consultas, esta c
         return self::$con->query('SELECT CONNECTION_ID()')->fetch(PDO::FETCH_ASSOC);
     }
 
+    public static function dpLastInsertId(){
+        return intval(self::$con->lastInsertId());
+    }
+
 
 }
 
