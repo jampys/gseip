@@ -40,50 +40,6 @@
             });
 
 
-            $(document).on('click', '#contrato #submit',function(){ //ok
-                if ($("#contrato-form").valid()){
-                    var params={};
-                    params.action = 'contratos';
-                    params.operation = 'saveContrato';
-                    params.id_contrato=$('#id_contrato').val();
-                    params.nro_contrato=$('#nro_contrato').val();
-                    params.fecha_desde=$('#fecha_desde').val();
-                    params.fecha_hasta=$('#fecha_hasta').val();
-                    params.id_responsable=$('#id_responsable').val();
-                    params.id_compania=$('#compania').val();
-                    //alert(params.id_compania);
-
-                    $.post('index.php',params,function(data, status, xhr){
-
-                        //alert(xhr.responseText);
-                        //var rta= parseInt(data.charAt(3));
-                        //alert(rta);
-                        if(data >=0){
-                            $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
-
-                        }else{
-                            $("#myElem").html('Error al guardar el contrato').addClass('alert alert-danger').show();
-                        }
-                        setTimeout(function() { $("#myElem").hide();
-                                                //$('#popupbox').dialog('close');
-                                                $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
-                                              }, 2000);
-
-                    });
-
-                }
-                return false;
-            });
-
-
-
-            $(document).on('click', '#contrato #cancel',function(){ //ok
-                //$('#popupbox').dialog('close');
-                $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
-            });
-
-
-
             $(document).on('click', '.delete', function(){
                 //$('#confirm').dialog('open');
                 $("#confirm").data('id', $(this).attr('data-id')).dialog("open");

@@ -132,6 +132,52 @@
 
 
 
+        //guuardar contrato
+        $('#contrato').on('click', '#submit',function(){ //ok
+            alert('guardar contrato');
+            if ($("#contrato-form").valid()){
+                var params={};
+                params.action = 'contratos';
+                params.operation = 'saveContrato';
+                params.id_contrato=$('#id_contrato').val();
+                params.nro_contrato=$('#nro_contrato').val();
+                params.fecha_desde=$('#fecha_desde').val();
+                params.fecha_hasta=$('#fecha_hasta').val();
+                params.id_responsable=$('#id_responsable').val();
+                params.id_compania=$('#compania').val();
+                //alert(params.id_compania);
+
+                $.post('index.php',params,function(data, status, xhr){
+
+                    //alert(xhr.responseText);
+                    //var rta= parseInt(data.charAt(3));
+                    //alert(rta);
+                    if(data >=0){
+                        $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
+
+                    }else{
+                        $("#myElem").html('Error al guardar el contrato').addClass('alert alert-danger').show();
+                    }
+                    setTimeout(function() { $("#myElem").hide();
+                        //$('#popupbox').dialog('close');
+                        $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
+                    }, 2000);
+
+                });
+
+            }
+            return false;
+        });
+
+
+
+        $('#contrato').on('click', '#cancel',function(){ //ok
+            //$('#popupbox').dialog('close');
+            $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
+        });
+
+
+        //Abre modal para agregar nuevo empleado al contrato
         $('#contrato').on('click', '#add-empleado', function(e){ //ok
             //alert('insertar empleado');
             params={};
@@ -144,6 +190,7 @@
             return false;
         });
 
+        //Abre modal para actualizar datos del empleado en contrato
         $('#contrato').on('click', '.update-empleado', function(e){ //ok
             //alert('actualizar empleado');
             var id = $(this).closest('tr').attr('id_empleado');
@@ -163,9 +210,9 @@
             return false;
         });
 
-
+        //Guarda los cambios luego de insertar o actualizar un empleado del contrato
         $(document).on('click', '#myModal #submit',function(){ //ok
-            //Aqui se ingresa luego de insertar o actualizar un empleado
+
             if ($("#addEmpleado-form").valid()){
 
             var id = $('#id_empleado').val();
@@ -203,7 +250,7 @@
             return false;
         });
 
-
+        //Elimina un empleado del contrato
         $('#contrato').on('click', '.delete-empleado', function(e){ //ok
             //alert('actualizar empleado');
             var id = $(this).closest('tr').attr('id_empleado');
