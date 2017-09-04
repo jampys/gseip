@@ -60,7 +60,7 @@
                 });
             },
             minLength: 2,
-            change: function(event, ui) {
+            select: function(event, ui) {
                 $('#id_empleado').val(ui.item? ui.item.id : '');
                 $('#empleado').val(ui.item.label);
             }

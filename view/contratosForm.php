@@ -104,7 +104,7 @@
                 });
             },
             minLength: 2,
-            change: function(event, ui) {
+            select: function(event, ui) {
                 $('#id_responsable').val(ui.item? ui.item.id : '');
                 $('#responsable').val(ui.item.label);
             }
