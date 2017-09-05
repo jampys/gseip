@@ -15,7 +15,7 @@
                 codigo: {
                         required: true,
                         digits: true,
-                        maxlength: 3
+                        maxlength: 6
                 },
                 nombre: {required: true}
             },
@@ -23,7 +23,7 @@
                 codigo: {
                     required: "Ingrese el código",
                     digits: "Ingrese solo números",
-                    maxlength: "Máximo 3 dígitos"
+                    maxlength: "Máximo 6 dígitos"
                 },
                 nombre: "Ingrese el nombre"
             }
