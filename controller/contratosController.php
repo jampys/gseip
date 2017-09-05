@@ -124,14 +124,12 @@ switch ($operation)
         exit;
         break;
 
-    case 'addEmpleado':
-        //$view->client=new Cliente();
-        $view->label='Agregar Empleado';
+    case 'loadEmpleado': //ok //abre la ventana modal para agregar y editar un empleado del contrato
+        $view->label='Empleado';
         $view->disableLayout=true;
-
         $view->puesto = Puesto::getPuestos();
 
-        $view->contentTemplate="view/contratosFormAddEmpleado.php";
+        $view->contentTemplate="view/contratosFormEmpleado.php";
         break;
 
     default : //ok

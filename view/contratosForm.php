@@ -19,8 +19,8 @@
                 }
 
                 $('#empleados-table tbody').append('<tr id_empleado='+jsonEmpleados[i].id_empleado+'>' +
-                //'<td>'+jsonEmpleados[i].empleado+'</td>' +
-                '<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
+                '<td>'+jsonEmpleados[i].empleado+'</td>' +
+                //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
                 '<td>'+jsonEmpleados[i].puesto+'</td>' +
                 '<td class="text-center"><a class="update-empleado" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
                 '<td class="text-center"><a class="delete-empleado" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
@@ -107,7 +107,8 @@
             select: function(event, ui) {
                 $('#id_responsable').val(ui.item? ui.item.id : '');
                 $('#responsable').val(ui.item.label);
-            }
+            },
+            search: function(event, ui) { $('#id_responsable').val(''); }
         });
 
 
@@ -132,7 +133,7 @@
 
 
 
-        //guuardar contrato
+        //guardar contrato
         $('#contrato').on('click', '#submit',function(){ //ok
             //alert('guardar contrato');
             if ($("#contrato-form").valid()){
@@ -158,7 +159,6 @@
 
                     //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
-                    alert(xhr.responseText);
                     if(data >=0){
                         $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
 
@@ -166,9 +166,8 @@
                         $("#myElem").html('Error al guardar el contrato').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElem").hide();
-                        //$('#popupbox').dialog('close');
-                        $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
-                    }, 2000);
+                                            $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
+                                          }, 2000);
 
                 });
 
@@ -189,7 +188,7 @@
             //alert('insertar empleado');
             params={};
             params.action = "contratos";
-            params.operation="addEmpleado";
+            params.operation="loadEmpleado";
             $('#popupbox1').load('index.php', params,function(){
                 $('#myModal').modal();
                 //alert('add empleado');
@@ -204,7 +203,7 @@
             //alert(id);
             params={};
             params.action = "contratos";
-            params.operation="addEmpleado";
+            params.operation="loadEmpleado";
             $('#popupbox1').load('index.php', params,function(){
                 $('#myModal').modal();
                 $('#empleado').val(jsonEmpleados[id].empleado);
@@ -220,7 +219,7 @@
         //Guarda los cambios luego de insertar o actualizar un empleado del contrato
         $(document).on('click', '#myModal #submit',function(){ //ok
 
-            if ($("#addEmpleado-form").valid()){
+            if ($("#empleado-form").valid()){
 
             var id = $('#id_empleado').val();
 

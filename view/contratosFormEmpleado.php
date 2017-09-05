@@ -10,7 +10,7 @@
         });
 
 
-        $('#addEmpleado-form').validate({
+        $('#empleado-form').validate({
             rules: {
                 puesto: {required: true},
                 fecha_desde: {required: true}
@@ -63,7 +63,8 @@
             select: function(event, ui) {
                 $('#id_empleado').val(ui.item? ui.item.id : '');
                 $('#empleado').val(ui.item.label);
-            }
+            },
+            search: function(event, ui) { $('#id_empleado').val(''); }
         });
 
 
@@ -86,7 +87,7 @@
             <div class="modal-body">
 
 
-                <form name ="addEmpleado-form" id="addEmpleado-form" method="POST" action="index.php">
+                <form name ="empleado-form" id="empleado-form" method="POST" action="index.php">
                     <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
 
                     <div class="form-group required">
