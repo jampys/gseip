@@ -52,10 +52,11 @@
                     });
                 },
                 minLength: 2,
-                change: function(event, ui) {
+                select: function(event, ui) {
                     $('#id_puesto').val(ui.item? ui.item.id : '');
                     $('#search_puesto').val(ui.item.label);
-                }
+                },
+                search: function(event, ui) { $('#id_puesto').val(''); }
             });
 
 
@@ -83,10 +84,11 @@
                     });
                 },
                 minLength: 2,
-                change: function(event, ui) {
+                select: function(event, ui) {
                     $('#id_habilidad').val(ui.item? ui.item.id : '');
                     $('#search_habilidad').val(ui.item.label);
-                }
+                },
+                search: function(event, ui) { $('#id_habilidad').val(''); }
             });
 
 

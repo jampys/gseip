@@ -55,10 +55,11 @@
                     });
                 },
                 minLength: 2,
-                change: function(event, ui) {
+                select: function(event, ui) {
                     $('#cuil').val(ui.item? ui.item.id : '');
                     $('#search_empleado').val(ui.item.label);
-                }
+                },
+                search: function(event, ui) { $('#cuil').val(''); }
             });
 
 
@@ -86,10 +87,11 @@
                     });
                 },
                 minLength: 2,
-                change: function(event, ui) {
+                select: function(event, ui) {
                     $('#id_habilidad').val(ui.item? ui.item.id : '');
                     $('#search_habilidad').val(ui.item.label);
-                }
+                },
+                search: function(event, ui) { $('#id_habilidad').val(''); }
             });
 
 
