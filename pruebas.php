@@ -30,5 +30,12 @@ print_r( $vals[1]);
 
 ?>
 
+<hr/>
+
+<?php
+
+print_r( Soporte::getPeriodos(2015, 2017));
+?>
+
 
 

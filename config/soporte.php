@@ -33,6 +33,15 @@ class Soporte{
         return date('Y');
     }
 
+    public static function getPeriodos($start, $end){
+        $periodos = array();
+
+        for($p = $start; $p <= $end; $p++){
+            $periodos[] = $p;
+        }
+        return $periodos;
+    }
+
 
 
 

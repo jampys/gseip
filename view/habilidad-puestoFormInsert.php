@@ -245,13 +245,12 @@
                     <div class="form-group col-md-2">
 
                         <select class="form-control" id="periodo" name="periodo">
-                            <option value="">Todos</option>
                             <?php foreach ($view->periodos as $pe){
                                 ?>
-                                <option value="<?php echo $pe['periodo']; ?>"
-                                    <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
+                                <option value="<?php echo $pe; ?>"
+                                    <?php echo ($pe == $view->periodo_actual   )? 'selected' :'' ?>
                                     >
-                                    <?php echo $pe['periodo']; ?>
+                                    <?php echo $pe; ?>
                                 </option>
                             <?php  } ?>
                         </select>
