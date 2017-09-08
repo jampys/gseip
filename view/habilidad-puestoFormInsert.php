@@ -124,7 +124,7 @@
                     $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
                     '<td>'+item.nombre+'</td>' +
                     '<td>' +
-                    '<select class="form-control select_requerida" id="requerida-'+item.id_habilidad+'" name="requerida-'+item.id_habilidad+'">'+
+                    '<select class="form-control input-sm select_requerida" id="requerida-'+item.id_habilidad+'" name="requerida-'+item.id_habilidad+'">'+
                     '</select>'+
                     '</td>'+
                     '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
@@ -178,10 +178,8 @@
                 var params={};
                 params.action = 'habilidad-puesto';
                 params.operation = 'insert';
-                params.periodo = $('#periodo').val();
-
+                params.periodo = $('#myModal #periodo').val();
                 //alert(params.periodo);
-
 
                 var jsonPuestosIx = [];
                 for ( var item in jsonPuestos ){
