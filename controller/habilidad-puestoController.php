@@ -16,8 +16,9 @@ switch ($operation)
 
         $id_puesto = ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null;
         $id_habilidad = ($_POST['id_habilidad']!='')? $_POST['id_habilidad'] : null;
+        $periodo = ($_POST['periodo']!='')? $_POST['periodo'] : null;
 
-        $view->habilidadPuesto = HabilidadPuesto::getHabilidadPuesto($id_puesto, $id_habilidad);
+        $view->habilidadPuesto = HabilidadPuesto::getHabilidadPuesto($id_puesto, $id_habilidad, $periodo);
         $view->contentTemplate="view/habilidad-puestoGrid.php";
         break;
 

@@ -21,6 +21,7 @@
                     params={};
                     params.id_puesto = $("#id_puesto").val();
                     params.id_habilidad = $("#id_habilidad").val();
+                    params.periodo = $("#periodo").val();
                     params.action = "habilidad-puesto";
                     params.operation = "buscar";
                     //alert(params.cuil);
@@ -236,7 +237,7 @@
                             <label for="periodo" class="control-label">Periodo</label>
 
                                 <select class="form-control" id="periodo" name="periodo">
-                                    <option value="" disabled selected>Periodo</option>
+                                    <option value="">Todos</option>
                                     <?php foreach ($view->periodos as $pe){
                                         ?>
                                         <option value="<?php echo $pe['periodo']; ?>"

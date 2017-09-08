@@ -8,6 +8,7 @@ class HabilidadPuesto
     private $id_habilidad;
     private $id_puesto;
     private $requerida;
+    private $periodo;
 
     private $puesto;
     private $habilidad;
@@ -24,6 +25,9 @@ class HabilidadPuesto
 
     function getRequerida()
     { return $this->requerida;}
+
+    function getPeriodo()
+    { return $this->periodo;}
 
     function getPuesto()
     { return $this->puesto;}
@@ -44,6 +48,9 @@ class HabilidadPuesto
 
     function setRequerida($val)
     { $this->requerida=$val;}
+
+    function setPeriodo($val)
+    { $this->periodo=$val;}
 
 
 
@@ -68,7 +75,7 @@ class HabilidadPuesto
     }
 
 
-    public static function getHabilidadPuesto($id_puesto, $id_habilidad) { //ok
+    public static function getHabilidadPuesto($id_puesto, $id_habilidad, $periodo) { //ok
         $stmt=new sQuery();
         $query = "select hp.id_habilidad_puesto, pu.id_puesto, pu.nombre as puesto, pu.codigo,
 		              hab.id_habilidad, hab.nombre as habilidad,
@@ -77,11 +84,13 @@ class HabilidadPuesto
                       where hp.id_puesto = pu.id_puesto
                       and hp.id_habilidad = hab.id_habilidad
                       and pu.id_puesto = ifnull(:id_puesto, pu.id_puesto)
-                      and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
+                      and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)
+                      and hp.periodo = ifnull(:periodo, hp.periodo)";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_puesto', $id_puesto);
         $stmt->dpBind(':id_habilidad', $id_habilidad);
+        $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
