@@ -30,10 +30,12 @@ class Soporte{
     }
 
     public static function getPeriodoActual(){
+        //devuelve el periodo actual
         return date('Y');
     }
 
     public static function getPeriodos($start, $end){
+        //devuelve todos los periodos, entre 2 periodos dados
         $periodos = array();
 
         for($p = $start; $p <= $end; $p++){
