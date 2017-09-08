@@ -102,7 +102,9 @@ switch ($operation)
         break;
 
     default : //ok
-        //$view->habilidades = Habilidad::getHabilidades();
+        $view->periodos = HabilidadPuesto::getPeriodos();
+        $view->periodo_actual = Soporte::getPeriodoActual();
+
         $view->contentTemplate="view/habilidad-puestoGrid.php";
         break;
 }

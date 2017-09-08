@@ -29,6 +29,10 @@ class Soporte{
 
     }
 
+    public static function getPeriodoActual(){
+        return date('Y');
+    }
+
 
 
 

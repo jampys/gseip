@@ -146,6 +146,17 @@ class HabilidadPuesto
         return $stmt->dpGetAffect();
     }
 
+
+    public static function getPeriodos() { //ok
+        $stmt=new sQuery();
+        $query = "select periodo
+                  from habilidad_puesto
+                  group by periodo";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
 }
 
 ?>

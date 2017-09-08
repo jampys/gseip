@@ -231,11 +231,30 @@
 
                 <div class="clearfix">
                     <form id="search_form" name="search_form">
+
+                        <div class="form-group col-md-2">
+                            <label for="periodo" class="control-label">Periodo</label>
+
+                                <select class="form-control" id="periodo" name="periodo">
+                                    <option value="" disabled selected>Periodo</option>
+                                    <?php foreach ($view->periodos as $pe){
+                                        ?>
+                                        <option value="<?php echo $pe['periodo']; ?>"
+                                            <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
+                                            >
+                                            <?php echo $pe['periodo']; ?>
+                                        </option>
+                                    <?php  } ?>
+                                </select>
+
+                        </div>
+
                         <div class="form-group col-md-4">
                             <label for="search_puesto" class="control-label">Puesto</label>
                             <input type="text" class="form-control puesto-group" id="search_puesto" name="search_puesto" placeholder="Puesto">
                             <input type="hidden" name="id_puesto" id="id_puesto" class="puesto-group"/>
                         </div>
+
                         <div class="form-group col-md-4">
                             <label for="search_habilidad" class="control-label">Habilidad</label>
                             <input type="text" class="form-control habilidad-group" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
@@ -255,6 +274,7 @@
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </div>
+
                     </form>
                 </div>
 
