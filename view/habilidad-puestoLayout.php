@@ -241,13 +241,19 @@
                             <input type="text" class="form-control habilidad-group" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
                             <input type="hidden" name="id_habilidad" id="id_habilidad" class="habilidad-group"/>
                         </div>
-                        <div class="form-group col-md-2">
+
+                        <div class="form-group col-md-1">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
+                            <button type="button" class="form-control btn btn-primary btn-sm" id="search">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
                         </div>
-                        <div class="form-group col-md-2">
+
+                        <div class="form-group col-md-1">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary btn-sm" id="new">Agregar</button>
+                            <button type="button" class="form-control btn btn-primary btn-sm" id="new">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
                         </div>
                     </form>
                 </div>
