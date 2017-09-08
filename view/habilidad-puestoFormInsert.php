@@ -240,7 +240,34 @@
             <div class="modal-body">
 
 
-                    <div class="row">
+                <div class="row">
+
+                    <div class="form-group col-md-2">
+
+                        <select class="form-control" id="periodo" name="periodo">
+                            <option value="">Todos</option>
+                            <?php foreach ($view->periodos as $pe){
+                                ?>
+                                <option value="<?php echo $pe['periodo']; ?>"
+                                    <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $pe['periodo']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-10"></div>
+
+                </div>
+
+
+
+
+
+
+                <div class="row">
 
                         <div class="col-md-6">
 
