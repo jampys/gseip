@@ -178,6 +178,9 @@
                 var params={};
                 params.action = 'habilidad-puesto';
                 params.operation = 'insert';
+                params.periodo = $('#periodo').val();
+
+                //alert(params.periodo);
 
 
                 var jsonPuestosIx = [];
@@ -194,7 +197,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    //alert(data);
+                    //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){

@@ -68,6 +68,7 @@ class HabilidadPuesto
             $this->setIdHabilidad($rows[0]['id_habilidad']);
             $this->setIdPuesto($rows[0]['id_puesto']);
             $this->setRequerida($rows[0]['requerida']);
+            $this->setPeriodo($rows[0]['periodo']);
 
             $this->puesto = new Puesto($rows[0]['id_puesto']);
             $this->habilidad = new Habilidad($rows[0]['id_habilidad']);
@@ -125,6 +126,7 @@ class HabilidadPuesto
                                                     :id_habilidad,
                                                     :id_puesto,
                                                     :requerida,
+                                                    :periodo,
                                                     @flag
                                                   )';
 
@@ -132,6 +134,7 @@ class HabilidadPuesto
         $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpBind(':requerida', $this->getRequerida());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();
