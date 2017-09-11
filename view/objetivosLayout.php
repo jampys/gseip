@@ -70,14 +70,14 @@
             });
 
 
-            $(document).on('click', '#cancel',function(){
+            $(document).on('click', '#cancel',function(){ //ok
                 $('#myModal').modal('hide');
             });
 
 
 
 
-            $(document).on('click', '.delete', function(){
+            $(document).on('click', '.delete', function(){ //ok
                 var id = $(this).attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
@@ -102,20 +102,20 @@
             });
 
 
-            $.fn.borrar = function(id) {
+            $.fn.borrar = function(id) { //ok
                 //alert(id);
                 //preparo los parametros
                 params={};
-                params.id_puesto = id;
-                params.action = "puestos";
-                params.operation = "deletePuesto";
+                params.id_objetivo = id;
+                params.action = "objetivos";
+                params.operation = "deleteObjetivo";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Puesto eliminado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"puestos", operation: "refreshGrid"});
+                        $("#myElemento").html('Objetivo eliminado con exito').addClass('alert alert-success').show();
+                        $('#content').load('index.php',{action:"objetivos", operation: "refreshGrid"});
                     }else{
-                        $("#myElemento").html('Error al eliminar el puesto').addClass('alert alert-danger').show();
+                        $("#myElemento").html('Error al eliminar el objetivo').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElemento").hide();
                                             $('#confirm').dialog('close');

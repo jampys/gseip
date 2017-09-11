@@ -52,16 +52,27 @@
 
 
                 <form name ="objetivo" id="objetivo" method="POST" action="index.php">
-                    <input type="hidden" name="id_puesto" id="id_puesto" value="<?php print $view->objetivo->getIdObjetivo() ?>">
+                    <input type="hidden" name="id_objetivo" id="id_objetivo" value="<?php print $view->objetivo->getIdObjetivo() ?>">
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php print $view->objetivo->getNombre() ?>" placeholder="Nombre">
                     </div>
 
+
                     <div class="form-group required">
-                        <label class="control-label" for="tipo">Tipo</label>
-                        <input class="form-control" type="text" name="tipo" id="tipo" value = "<?php print $view->objetivo->getTipo() ?>" placeholder="Tipo">
+                        <label for="tipo" class="control-label">Tipo</label>
+                            <select class="form-control" id="tipo" name="tipo">
+                                <option value="" disabled selected>Seleccione el tipo</option>
+                                <?php foreach ($view->tipos['enum'] as $tipo){
+                                    ?>
+                                    <option value="<?php echo $tipo; ?>"
+                                        <?php echo ($tipo == $view->objetivo->getTipo() )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $tipo; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
                     </div>
 
 
@@ -69,7 +80,7 @@
                     <div class="form-group">
                         <label class="control-label" for="superior" >Objetivo superior</label>
                         <select class="form-control" id="superior" name="superior">
-                            <option value="" disabled selected>Seleccione el objetivo superior</option>
+                            <option value="">Seleccione el objetivo superior</option>
                             <?php foreach ($view->superior as $sup){
                                 ?>
                                 <option value="<?php echo $sup['id_objetivo']; ?>"

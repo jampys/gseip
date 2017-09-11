@@ -91,25 +91,24 @@ class Objetivo
         return $stmt->dpGetAffect();
     }
 
-    private function insertObjetivo(){
+    private function insertObjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into puestos(nombre, descripcion, codigo, codigo_superior)
-                values(:nombre, :descripcion, :codigo, :codigo_superior)";
+        $query="insert into objetivos(nombre, tipo, objetivo_superior)
+                values(:nombre, :tipo, :objetivo_superior)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':codigo_superior', $this->getCodigoSuperior());
+        $stmt->dpBind(':tipo', $this->getTipo());
+        $stmt->dpBind(':objetivo_superior', $this->getObjetivoSuperior());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
-    function deleteObjetivo(){
+    function deleteObjetivo(){ //ok
         $stmt=new sQuery();
-        $query="delete from puestos where id_puesto= :id";
+        $query="delete from objetivos where id_objetivo= :id";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getIdPuesto());
+        $stmt->dpBind(':id', $this->getIdObjetivo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

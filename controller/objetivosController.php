@@ -13,15 +13,15 @@ switch ($operation)
 {
     case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $view->puestos = Objetivo::getObjetivos();
+        $view->objetivos = Objetivo::getObjetivos();
         $view->contentTemplate="view/objetivosGrid.php";
         break;
 
     case 'saveObjetivo': //ok
-        $puesto = new Objetivo($_POST['id_objetivo']);
-        $puesto->setNombre($_POST['nombre']);
-        $puesto->setTipo($_POST['tipo']);
-        $puesto->setObjetivoSuperior(($_POST['objetivo_superior'])? $_POST['objetivo_superior'] : null);
+        $objetivo = new Objetivo($_POST['id_objetivo']);
+        $objetivo->setNombre($_POST['nombre']);
+        $objetivo->setTipo($_POST['tipo']);
+        $objetivo->setObjetivoSuperior(($_POST['objetivo_superior'])? $_POST['objetivo_superior'] : null);
 
         $rta = $objetivo->save();
         print_r(json_encode($rta));
@@ -33,6 +33,7 @@ switch ($operation)
         $view->label='Nuevo objetivo';
 
         $view->superior = Objetivo::getObjetivos();
+        $view->tipos = Soporte::get_enum_values('objetivos', 'tipo');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivosForm.php";
@@ -43,14 +44,15 @@ switch ($operation)
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
 
         $view->superior = Objetivo::getObjetivos();
+        $view->tipos = Soporte::get_enum_values('objetivos', 'tipo');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivosForm.php";
         break;
 
-    case 'deletePuesto':
-        $puesto = new Puesto($_POST['id_puesto']);
-        $rta = $puesto->deletePuesto();
+    case 'deleteObjetivo': //ok
+        $objetivo = new Objetivo($_POST['id_objetivo']);
+        $rta = $objetivo->deleteObjetivo();
         print_r(json_encode($rta));
         die;
         break;
