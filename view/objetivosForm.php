@@ -51,7 +51,7 @@
             <div class="modal-body">
 
 
-                <form name ="puesto" id="puesto" method="POST" action="index.php">
+                <form name ="objetivo" id="objetivo" method="POST" action="index.php">
                     <input type="hidden" name="id_puesto" id="id_puesto" value="<?php print $view->objetivo->getIdObjetivo() ?>">
 
                     <div class="form-group required">

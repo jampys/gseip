@@ -28,7 +28,7 @@
 
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "objetivos";
                 params.operation="newObjetivo";
@@ -38,16 +38,15 @@
             });
 
 
-            $(document).on('click', '#submit',function(){
-                if ($("#puesto").valid()){
+            $(document).on('click', '#submit',function(){ //ok
+                //if ($("#objetivo").valid()){
                     var params={};
-                    params.action = 'puestos';
-                    params.operation = 'savePuesto';
-                    params.id_puesto=$('#id_puesto').val();
+                    params.action = 'objetivos';
+                    params.operation = 'saveObjetivo';
+                    params.id_objetivo=$('#id_objetivo').val();
                     params.nombre=$('#nombre').val();
-                    params.descripcion=$('#descripcion').val();
-                    params.codigo=$('#codigo').val();
-                    params.codigo_superior=$('#superior').val();
+                    params.tipo=$('#tipo').val();
+                    params.objetivo_superior=$('#superior').val();
                     //alert(params.codigo_superior);
                     $.post('index.php',params,function(data, status, xhr){
 
@@ -55,10 +54,10 @@
                         //var rta= parseInt(data.charAt(3));
                         //alert(rta);
                         if(data >=0){
-                            $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
-                            $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
+                            $("#myElem").html('Objetivo guardado con exito').addClass('alert alert-success').show();
+                            $('#content').load('index.php',{action:"objetivos", operation:"refreshGrid"});
                         }else{
-                            $("#myElem").html('Error al guardar el puesto').addClass('alert alert-danger').show();
+                            $("#myElem").html('Error al guardar el objetivo').addClass('alert alert-danger').show();
                         }
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
@@ -66,7 +65,7 @@
 
                     });
 
-                }
+                //}
                 return false;
             });
 

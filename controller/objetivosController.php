@@ -11,20 +11,19 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $view->puestos = Puesto::getPuestos();
-        $view->contentTemplate="view/puestosGrid.php";
+        $view->puestos = Objetivo::getObjetivos();
+        $view->contentTemplate="view/objetivosGrid.php";
         break;
 
-    case 'savePuesto':
-        $puesto = new Puesto($_POST['id_puesto']);
+    case 'saveObjetivo': //ok
+        $puesto = new Objetivo($_POST['id_objetivo']);
         $puesto->setNombre($_POST['nombre']);
-        $puesto->setDescripcion($_POST['descripcion']);
-        $puesto->setCodigo($_POST['codigo']);
-        $puesto->setCodigoSuperior(($_POST['codigo_superior'])? $_POST['codigo_superior'] : null);
+        $puesto->setTipo($_POST['tipo']);
+        $puesto->setObjetivoSuperior(($_POST['objetivo_superior'])? $_POST['objetivo_superior'] : null);
 
-        $rta = $puesto->save();
+        $rta = $objetivo->save();
         print_r(json_encode($rta));
         exit;
         break;

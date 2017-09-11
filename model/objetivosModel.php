@@ -66,34 +66,32 @@ class Objetivo
 
 
 
-    function save(){
-        if($this->id_puesto)
-        {$rta = $this->updatePuesto();}
+    function save(){ //ok
+        if($this->id_objetivo)
+        {$rta = $this->updateObjetivo();}
         else
-        {$rta =$this->insertPuesto();}
+        {$rta =$this->insertObjetivo();}
         return $rta;
     }
 
-    public function updatePuesto(){
+    public function updateObjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="update puestos set
+        $query="update objetivos set
                 nombre= :nombre,
-                descripcion= :descripcion,
-                codigo= :codigo,
-                codigo_superior= :codigo_superior
-                where id_puesto = :id_puesto";
+                tipo= :tipo,
+                objetivo_superior= :objetivo_superior
+                where id_objetivo = :id_objetivo";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':codigo_superior', $this->getCodigoSuperior());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':tipo', $this->getTipo());
+        $stmt->dpBind(':objetivo_superior', $this->getObjetivoSuperior());
+        $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
-    private function insertPuesto(){
+    private function insertObjetivo(){
 
         $stmt=new sQuery();
         $query="insert into puestos(nombre, descripcion, codigo, codigo_superior)
@@ -107,7 +105,7 @@ class Objetivo
         return $stmt->dpGetAffect();
     }
 
-    function deletePuesto(){
+    function deleteObjetivo(){
         $stmt=new sQuery();
         $query="delete from puestos where id_puesto= :id";
         $stmt->dpPrepare($query);
