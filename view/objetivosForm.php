@@ -52,41 +52,34 @@
 
 
                 <form name ="puesto" id="puesto" method="POST" action="index.php">
-                    <input type="hidden" name="id_puesto" id="id_puesto" value="<?php print $view->puesto->getIdPuesto() ?>">
-
-                    <div class="form-group required">
-                        <label class="control-label" for="codigo">Código</label>
-                        <input class="form-control" type="text" name="codigo" id="codigo" value = "<?php print $view->puesto->getCodigo() ?>" placeholder="Código">
-                    </div>
+                    <input type="hidden" name="id_puesto" id="id_puesto" value="<?php print $view->objetivo->getIdObjetivo() ?>">
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php print $view->puesto->getNombre() ?>" placeholder="Nombre">
+                        <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php print $view->objetivo->getNombre() ?>" placeholder="Nombre">
                     </div>
 
+                    <div class="form-group required">
+                        <label class="control-label" for="tipo">Tipo</label>
+                        <input class="form-control" type="text" name="tipo" id="tipo" value = "<?php print $view->objetivo->getTipo() ?>" placeholder="Tipo">
+                    </div>
+
+
+
                     <div class="form-group">
-                        <label class="control-label" for="superior" >Puesto superior</label>
+                        <label class="control-label" for="superior" >Objetivo superior</label>
                         <select class="form-control" id="superior" name="superior">
-                            <option value="" disabled selected>Seleccione el puesto superior</option>
+                            <option value="" disabled selected>Seleccione el objetivo superior</option>
                             <?php foreach ($view->superior as $sup){
                                 ?>
-                                <option value="<?php echo $sup['codigo']; ?>"
-                                    <?php echo ($sup['codigo'] == $view->puesto->getCodigoSuperior())? 'selected' :'' ?>
+                                <option value="<?php echo $sup['id_objetivo']; ?>"
+                                    <?php echo ($sup['id_objetivo'] == $view->objetivo->getObjetivoSuperior())? 'selected' :'' ?>
                                     >
                                     <?php echo $sup['nombre']; ?>
                                 </option>
                             <?php  } ?>
                         </select>
                     </div>
-
-
-                    <div class="form-group">
-                        <label class="control-label" for="descripcion">Descripción</label>
-                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="2"><?php print $view->puesto->getDescripcion(); ?></textarea>
-                    </div>
-
-
-
 
 
                 </form>

@@ -13,13 +13,13 @@
         $(document).ready(function(){
 
 
-            $(document).on('click', '.edit', function(){
+            $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_puesto = id;
-                params.action = "puestos";
-                params.operation = "editPuesto";
+                params.id_objetivo = id;
+                params.action = "objetivos";
+                params.operation = "editObjetivo";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
@@ -30,8 +30,8 @@
 
             $(document).on('click', '#new', function(){
                 params={};
-                params.action = "puestos";
-                params.operation="newPuesto";
+                params.action = "objetivos";
+                params.operation="newObjetivo";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
@@ -103,7 +103,7 @@
             });
 
 
-            $.fn.borrar = function(id) { 
+            $.fn.borrar = function(id) {
                 //alert(id);
                 //preparo los parametros
                 params={};

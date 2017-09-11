@@ -29,24 +29,24 @@ switch ($operation)
         exit;
         break;
 
-    case 'newPuesto':
-        $view->puesto = new Puesto();
-        $view->label='Nuevo Puesto de trabajo';
+    case 'newObjetivo': //ok
+        $view->objetivo = new Objetivo();
+        $view->label='Nuevo objetivo';
 
-        $view->superior = Puesto::getPuestos();
+        $view->superior = Objetivo::getObjetivos();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/puestosForm.php";
+        $view->contentTemplate="view/objetivosForm.php";
         break;
 
-    case 'editPuesto':
-        $view->label='Editar Puesto de trabajo';
-        $view->puesto = new Puesto($_POST['id_puesto']);
+    case 'editObjetivo': //ok
+        $view->label='Editar Objetivo';
+        $view->objetivo = new Objetivo($_POST['id_objetivo']);
 
-        $view->superior = Puesto::getPuestos();
+        $view->superior = Objetivo::getObjetivos();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/puestosForm.php";
+        $view->contentTemplate="view/objetivosForm.php";
         break;
 
     case 'deletePuesto':
@@ -63,17 +63,17 @@ switch ($operation)
         exit;
         break;
 
-    default :
-        $view->puestos = Puesto::getPuestos();
-        $view->contentTemplate="view/puestosGrid.php";
+    default : //ok
+        $view->objetivos = Objetivo::getObjetivos();
+        $view->contentTemplate="view/objetivosGrid.php";
         break;
 }
 
 
-if ($view->disableLayout==true) {
+if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);}
 else {
-    include_once('view/puestosLayout.php');
+    include_once('view/objetivosLayout.php');
 }
 
 

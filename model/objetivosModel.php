@@ -1,73 +1,66 @@
 <?php
 
 
-class Puesto
+class Objetivo
 {
-    private $id_puesto;
+    private $id_objetivo;
     private $nombre;
-    private $descripcion;
-    private $codigo;
-    private $codigo_superior;
+    private $tipo;
+    private $objetivo_superior;
 
     // GETTERS
-    function getIdPuesto()
-    { return $this->id_puesto;}
+    function getIdObjetivo()
+    { return $this->id_objetivo;}
 
     function getNombre()
     { return $this->nombre;}
 
-    function getDescripcion()
-    { return $this->descripcion;}
+    function getTipo()
+    { return $this->tipo;}
 
-    function getCodigo()
-    { return $this->codigo;}
+    function getObjetivoSuperior()
+    { return $this->objetivo_superior;}
 
-    function getCodigoSuperior()
-    { return $this->codigo_superior;}
 
     //SETTERS
-    function setIdPuesto($val)
-    { $this->id_puesto=$val;}
+    function setIdObjetivo($val)
+    { $this->id_objetivo=$val;}
 
     function setNombre($val)
     { $this->nombre=$val;}
 
-    function setDescripcion($val)
-    { $this->descripcion=$val;}
+    function setTipo($val)
+    { $this->tipo=$val;}
 
-    function setCodigo($val)
-    {  $this->codigo=$val;}
-
-    function setCodigoSuperior($val)
-    {  $this->codigo_superior=$val;}
+    function setObjetivoSuperior($val)
+    {  $this->objetivo_superior=$val;}
 
 
-    public static function getPuestos() {
+    public static function getObjetivos() { //ok
         $stmt=new sQuery();
-        $query="select pu.id_puesto, pu.nombre, pu.descripcion, pu.codigo, pu.codigo_superior, su.nombre as nombre_superior
-                    from puestos pu
-                    left join puestos su on pu.codigo_superior = su.codigo";
+        $query="select ob.id_objetivo, ob.nombre, ob.tipo, su.nombre as objetivo_superior
+                    from objetivos ob
+                    left join objetivos su on ob.objetivo_superior = su.id_objetivo";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor ok
 
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select * from puestos where id_puesto = :nro";
+            $query="select * from objetivos where id_objetivo = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdPuesto($rows[0]['id_puesto']);
+            $this->setIdObjetivo($rows[0]['id_objetivo']);
             $this->setNombre($rows[0]['nombre']);
-            $this->setDescripcion($rows[0]['descripcion']);
-            $this->setCodigo($rows[0]['codigo']);
-            $this->setCodigoSuperior($rows[0]['codigo_superior']);
+            $this->setTipo($rows[0]['tipo']);
+            $this->setObjetivoSuperior($rows[0]['objetivo_superior']);
         }
     }
 
