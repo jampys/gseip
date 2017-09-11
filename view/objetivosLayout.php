@@ -39,7 +39,7 @@
 
 
             $(document).on('click', '#submit',function(){ //ok
-                //if ($("#objetivo").valid()){
+                if ($("#objetivo").valid()){
                     var params={};
                     params.action = 'objetivos';
                     params.operation = 'saveObjetivo';
@@ -65,7 +65,7 @@
 
                     });
 
-                //}
+                }
                 return false;
             });
 

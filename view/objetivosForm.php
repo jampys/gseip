@@ -10,22 +10,16 @@
         });
 
 
-        $('#puesto').validate({
+        $('#objetivo').validate({
             rules: {
-                codigo: {
-                        required: true,
-                        digits: true,
-                        maxlength: 6
-                },
-                nombre: {required: true}
+                nombre: {required: true},
+                tipo: {required: true},
+                superior: {required: true}
             },
             messages:{
-                codigo: {
-                    required: "Ingrese el código",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                },
-                nombre: "Ingrese el nombre"
+                nombre: "Ingrese el nombre",
+                tipo: "Seleccione el tipo",
+                superior: "Seleccione el objetivo de nivel superior"
             }
 
         });
