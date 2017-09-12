@@ -61,17 +61,14 @@
 
 
                 <form name ="habilidad-puesto" id="habilidad-puesto" method="POST" action="index.php">
-                    <input type="hidden" name="id" id="id" value="<?php print $view->habilidadPuesto->getIdHabilidadPuesto(); ?>">
+                    <input type="hidden" name="id" id="id" value="<?php //print $view->habilidadPuesto->getIdHabilidadPuesto(); ?>">
 
                     <div class="form-group">
-                        <label class="control-label" for="puesto">Puesto</label>
-                        <input class="form-control" type="text" name="puesto" id="puesto" value = "<?php print $view->habilidadPuesto->getPuesto()->getNombre(); ?>" disabled>
+                        <label class="control-label" for="objetivo">Objetivo</label>
+                        <input class="form-control" type="text" name="objetivo" id="objetivo" value = "<?php //print $view->habilidadPuesto->getPuesto()->getNombre(); ?>" disabled>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="habilidad">Habilidad</label>
-                        <input class="form-control" type="text" name="habilidad" id="habilidad" value = "<?php print $view->habilidadPuesto->getHabilidad()->getNombre(); ?>" disabled>
-                    </div>
+
 
                     <div class="form-group required">
                         <label class="control-label" for="tipo" >Requerida</label>

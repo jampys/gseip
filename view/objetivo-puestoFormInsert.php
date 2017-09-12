@@ -4,31 +4,7 @@
     $(document).ready(function(){
 
         var jsonPuestos = [];
-        var jsonHabilidades = [];
-        var jsonRequerida = [];
-
-        $.ajax({
-            url:"index.php",
-            type:"post",
-            data:{"action": "habilidad-puesto", "operation": "select_requerida"},
-            dataType:"json",//xml,html,script,json
-            success: function(data, textStatus, jqXHR) {
-                jsonRequerida.default= data['default'];
-                $.each( data['enum'], function( index, value ){
-                    jsonRequerida.push(value);
-                });
-                //alert(jsonRequerida.default);
-                //alert(jsonRequerida[0]);
-            }
-        });
-
-
-
-        $('#myModal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });
-
+        var jsonObjetivos = [];
 
 
         $("#objetivo-puesto #search_puesto").autocomplete({ //ok
@@ -77,14 +53,14 @@
                     '</tr>');
                 }
 
-                $("#myModal #search_puesto").val('');
+                $("#objetivo-puesto #search_puesto").val('');
 
             }
         });
 
 
 
-        $("#objetivo-puesto #search_objetivo").autocomplete({
+        $("#objetivo-puesto #search_objetivo").autocomplete({ //ok
             source: function( request, response ) {
                 $.ajax({
                     url: "index.php",
@@ -110,10 +86,33 @@
             minLength: 2,
             change: function(event, ui) {
 
+
+
+
+                //Abre modal para agregar nuevo empleado al contrato
+                    //alert('abrir modal objetivo');
+                    params={};
+                    params.action = "objetivo-puesto";
+                    params.operation="loadObjetivo";
+                    $('#popupbox').load('index.php', params,function(){
+                        $('#myModalUpdate').modal();
+                        //alert('add empleado');
+                    });
+                    return false;
+
+
+
+
+
+
+
+
+
+
                 item = {};
                 item.nombre = ui.item.label;
                 item.id_habilidad = ui.item.id_habilidad;
-                item.requerida = jsonRequerida.default;
+                //item.requerida = jsonRequerida.default;
 
                 if(jsonHabilidades[item.id_habilidad]) {
                     //alert('el elemento existe');
@@ -130,10 +129,7 @@
                     '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                     '</tr>');
 
-                    $.each(jsonRequerida, function(i, itemx) {
-                        $("#requerida-"+item.id_habilidad+"").append('<option value="'+jsonRequerida[i]+'">'+jsonRequerida[i]+'</option>');
-                    });
-                    $("#requerida-"+item.id_habilidad+"").val(jsonRequerida.default);
+
 
                 }
 
@@ -261,7 +257,23 @@
 
                     </div>
 
-                    <div class="col-md-10"></div>
+                    <div class="form-group col-md-3">
+
+                        <select class="form-control" id="contrato" name="contrato">
+                            <option value="">Todos</option>
+                            <?php foreach ($view->contratos as $con){
+                                ?>
+                                <option value="<?php echo $con['id_contrato']; ?>"
+                                    <?php //echo ($pe == $view->periodo_actual   )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $con['nro_contrato'].' - '.$con['compania']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-7"></div>
 
                 </div>
 

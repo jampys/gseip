@@ -1,6 +1,7 @@
 ﻿<?php
 
 include_once("model/objetivo-puestoModel.php");
+include_once("model/contratosModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -27,9 +28,18 @@ switch ($operation)
 
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->periodos = Soporte::getPeriodos($view->periodo_actual, $view->periodo_actual + 1); //periodo actual y el siguiente
+        $view->contratos = Contrato::getContratos();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivo-puestoFormInsert.php";
+        break;
+
+    case 'loadObjetivo': //ok //abre la ventana modal para agregar y editar un objetivo
+        $view->label='Objetivo';
+        $view->disableLayout=true;
+        //$view->puesto = Puesto::getPuestos();
+
+        $view->contentTemplate="view/objetivo-puestoFormUpdate.php";
         break;
 
     case 'select_requerida': //carga en el formulario el combo de requerida
