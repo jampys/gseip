@@ -114,10 +114,10 @@ class Objetivo
     }
 
 
-    public function autocompletarPuestos($term) {
+    public function autocompletarObjetivos($term) { //ok
         $stmt=new sQuery();
         $query = "select *
-                  from puestos
+                  from objetivos
                   where nombre like '%$term%'";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();

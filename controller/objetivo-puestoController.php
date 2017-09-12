@@ -1,0 +1,125 @@
+﻿<?php
+
+include_once("model/objetivo-puestoModel.php");
+
+if(isset($_REQUEST['operation']))
+{$operation=$_REQUEST['operation'];}
+
+
+$view->disableLayout=false;
+
+
+switch ($operation)
+{
+    case 'buscar':
+        $view->disableLayout=true;
+
+        $id_puesto = ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null;
+        $id_habilidad = ($_POST['id_habilidad']!='')? $_POST['id_habilidad'] : null;
+        $periodo = ($_POST['periodo']!='')? $_POST['periodo'] : null;
+
+        $view->habilidadPuesto = HabilidadPuesto::getHabilidadPuesto($id_puesto, $id_habilidad, $periodo);
+        $view->contentTemplate="view/habilidad-puestoGrid.php";
+        break;
+
+    case 'new':
+        $view->label='Agregar habilidades';
+
+        $view->periodo_actual = Soporte::getPeriodoActual();
+        $view->periodos = Soporte::getPeriodos($view->periodo_actual, $view->periodo_actual + 1); //periodo actual y el siguiente
+
+        $view->disableLayout=true;
+        $view->contentTemplate="view/habilidad-puestoFormInsert.php";
+        break;
+
+    case 'select_requerida': //carga en el formulario el combo de requerida
+        $view->requerida = Soporte::get_enum_values('habilidad_puesto', 'requerida');
+        //print_r(json_encode($view->requerida));
+        print_r(json_encode(array('enum'=>$view->requerida['enum'], 'default'=>$view->requerida['default'])));
+        exit;
+        break;
+
+    case 'insert':
+        $flag=1;
+
+        sQuery::dpBeginTransaction();
+
+        try{
+
+            $vPuestos = json_decode($_POST["vPuestos"], true);
+            $vHabilidades = json_decode($_POST["vHabilidades"], true);
+            //print_r($vHabilidades);
+
+            foreach ($vPuestos as $vP) {
+                foreach ($vHabilidades as $vH) {
+                    $c = new HabilidadPuesto();
+                    $c->setIdHabilidad($vH['id_habilidad']);
+                    $c->setIdPuesto($vP['id_puesto']);
+                    $c->setRequerida($vH['requerida']);
+                    $c->setPeriodo($_POST["periodo"]);
+                    if($c->insertHabilidadPuesto() < 0) $flag = -1;  //si falla algun insert $flag = -1
+                    //echo "id_puesto: ".$vP['id_puesto']." - id_habilidad: ".$vH['id_habilidad'];
+                }
+
+            }
+
+            //Devuelve el resultado a la vista
+            if($flag > 0) sQuery::dpCommit();
+            else sQuery::dpRollback();
+
+            print_r(json_encode($flag));
+
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+            sQuery::dpRollback();
+            print_r(json_encode($flag));
+        }
+
+        exit;
+        break;
+
+
+    case 'editHabilidadPuesto':
+        $view->label='Editar Habilidad Puesto';
+        $view->habilidadPuesto = new HabilidadPuesto($_POST['id_habilidad_puesto']);
+        $view->requerida = Soporte::get_enum_values('habilidad_puesto', 'requerida');
+
+        $view->disableLayout=true;
+        $view->contentTemplate="view/habilidad-puestoFormUpdate.php";
+        break;
+
+
+    case 'saveHabilidadPuesto':  //guarda una habilidad-puesto editada
+
+        $view->habilidadPuesto = new HabilidadPuesto($_POST['id_habilidad_puesto']);
+        $view->habilidadPuesto->setRequerida($_POST['requerida']);
+
+        $rta = $view->habilidadPuesto->updateHabilidadPuesto();
+        print_r(json_encode($rta));
+        exit;
+        break;
+
+    case 'deleteHabilidadPuesto':
+        $habilidad_puesto = new HabilidadPuesto($_POST['id_habilidad_puesto']);
+        $rta = $habilidad_puesto->deleteHabilidadPuesto();
+        print_r(json_encode($rta));
+        die;
+        break;
+
+    default : //ok
+        $view->periodos = ObjetivoPuesto::getPeriodos();
+        $view->periodo_actual = Soporte::getPeriodoActual();
+        $view->contentTemplate="view/objetivo-puestoGrid.php";
+        break;
+}
+
+
+if ($view->disableLayout==true) { //ok
+    include_once ($view->contentTemplate);}
+else {
+    include_once('view/objetivo-puestoLayout.php');
+}
+
+
+?>

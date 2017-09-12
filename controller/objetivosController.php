@@ -57,9 +57,9 @@ switch ($operation)
         die;
         break;
 
-    case 'autocompletarPuestos':
-        $view->puesto = new Puesto();
-        $rta=$view->puesto->autocompletarPuestos($_POST['term']);
+    case 'autocompletarObjetivos': //ok
+        $view->objetivo = new Objetivo();
+        $rta=$view->objetivo->autocompletarObjetivos($_POST['term']);
         print_r(json_encode($rta));
         exit;
         break;
