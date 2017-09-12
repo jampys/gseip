@@ -22,8 +22,8 @@ switch ($operation)
         $view->contentTemplate="view/objetivo-puestoGrid.php";
         break;
 
-    case 'new':
-        $view->label='Agregar habilidades';
+    case 'new': //ok
+        $view->label='Agregar objetivos';
 
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->periodos = Soporte::getPeriodos($view->periodo_actual, $view->periodo_actual + 1); //periodo actual y el siguiente

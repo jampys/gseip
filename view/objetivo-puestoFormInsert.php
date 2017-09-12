@@ -31,7 +31,7 @@
 
 
 
-        $("#myModal #search_puesto").autocomplete({
+        $("#objetivo-puesto #search_puesto").autocomplete({ //ok
             source: function( request, response ) {
                 $.ajax({
                     url: "index.php",
@@ -84,18 +84,18 @@
 
 
 
-        $("#myModal #search_habilidad").autocomplete({
+        $("#objetivo-puesto #search_objetivo").autocomplete({
             source: function( request, response ) {
                 $.ajax({
                     url: "index.php",
                     type: "post",
                     dataType: "json",
-                    data: { "term": request.term, "action":"habilidades", "operation":"autocompletarHabilidades"},
+                    data: { "term": request.term, "action":"objetivos", "operation":"autocompletarObjetivos"},
                     success: function(data) {
                         response($.map(data, function(item) {
                             return {
                                 label: item.nombre,
-                                id_habilidad: item.id_habilidad
+                                id_objetivo: item.id_objetivo
 
                             };
                         }));
@@ -236,7 +236,7 @@
 <div class="col-md-10">
 
 
-    <div class="panel panel-default" id="contrato">
+    <div class="panel panel-default" id="objetivo-puesto">
         <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
 
         <div class="panel-body">
@@ -305,8 +305,8 @@
                             <form>
 
                                 <div class="form-group col-md-12">
-                                    <label for="search_habilidad" class="control-label">Habilidad</label>
-                                    <input type="text" class="form-control" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
+                                    <label for="search_objetivo" class="control-label">Objetivo</label>
+                                    <input type="text" class="form-control" id="search_objetivo" name="search_objetivo" placeholder="Objetivo">
                                 </div>
 
                             </form>
