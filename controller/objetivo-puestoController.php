@@ -11,15 +11,15 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'buscar':
+    case 'buscar': //ok
         $view->disableLayout=true;
 
         $id_puesto = ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null;
-        $id_habilidad = ($_POST['id_habilidad']!='')? $_POST['id_habilidad'] : null;
+        $id_objetivo = ($_POST['id_objetivo']!='')? $_POST['id_objetivo'] : null;
         $periodo = ($_POST['periodo']!='')? $_POST['periodo'] : null;
 
-        $view->habilidadPuesto = HabilidadPuesto::getHabilidadPuesto($id_puesto, $id_habilidad, $periodo);
-        $view->contentTemplate="view/habilidad-puestoGrid.php";
+        $view->objetivoPuesto = ObjetivoPuesto::getObjetivoPuesto($id_puesto, $id_objetivo, $periodo);
+        $view->contentTemplate="view/objetivo-puestoGrid.php";
         break;
 
     case 'new':
@@ -29,7 +29,7 @@ switch ($operation)
         $view->periodos = Soporte::getPeriodos($view->periodo_actual, $view->periodo_actual + 1); //periodo actual y el siguiente
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/habilidad-puestoFormInsert.php";
+        $view->contentTemplate="view/objetivo-puestoFormInsert.php";
         break;
 
     case 'select_requerida': //carga en el formulario el combo de requerida

@@ -13,16 +13,16 @@
         $(document).ready(function(){
 
 
-            $(document).on('click', '#search', function(){
+            $(document).on('click', '#search', function(){ //ok
 
-                if ($("#search_form").valid()){ //ok
+                if ($("#search_form").valid()){
                     //alert('presiono en buscar');
                     //var id = $(this).attr('data-id');
                     params={};
                     params.id_puesto = $("#id_puesto").val();
-                    params.id_habilidad = $("#id_habilidad").val();
+                    params.id_objetivo = $("#id_objetivo").val();
                     params.periodo = $("#periodo").val();
-                    params.action = "habilidad-puesto";
+                    params.action = "objetivo-puesto";
                     params.operation = "buscar";
                     //alert(params.cuil);
                     //alert(params.id_habilidad);
@@ -61,18 +61,18 @@
             });
 
 
-            $("#search_habilidad").autocomplete({
+            $("#search_objetivo").autocomplete({ //ok
                 source: function( request, response ) {
                     $.ajax({
                         url: "index.php",
                         type: "post",
                         dataType: "json",
-                        data: { "term": request.term, "action":"habilidades", "operation":"autocompletarHabilidades"},
+                        data: { "term": request.term, "action":"objetivos", "operation":"autocompletarObjetivos"},
                         success: function(data) {
                             response($.map(data, function(item) {
                                 return {
                                     label: item.nombre,
-                                    id: item.id_habilidad
+                                    id: item.id_objetivo
 
                                 };
                             }));
@@ -86,15 +86,15 @@
                 },
                 minLength: 2,
                 select: function(event, ui) {
-                    $('#id_habilidad').val(ui.item? ui.item.id : '');
-                    $('#search_habilidad').val(ui.item.label);
+                    $('#id_objetivo').val(ui.item? ui.item.id : '');
+                    $('#search_objetivo').val(ui.item.label);
                 },
-                search: function(event, ui) { $('#id_habilidad').val(''); }
+                search: function(event, ui) { $('#id_objetivo').val(''); }
             });
 
 
 
-            $('#search_form').validate({
+            $('#search_form').validate({ //ok
                 ignore:"",
                 rules: {
                     search_puesto: {
@@ -103,17 +103,17 @@
                             depends: function(element) { return $('#search_puesto').val().length > 0;}
                         }
                     },
-                    search_habilidad: {
+                    search_objetivo: {
                         require_from_group: {
-                            param: [2, ".habilidad-group"],
-                            depends: function(element) { return $('#search_habilidad').val().length > 0;}
+                            param: [2, ".objetivo-group"],
+                            depends: function(element) { return $('#search_objetivo').val().length > 0;}
                         }
                     }
 
                 },
                 messages:{
                     search_puesto: "Seleccione un puesto sugerido",
-                    search_habilidad: "Seleccione una habilidad sugerida"
+                    search_objetivo: "Seleccione un objetivo sugerido"
                 }
 
             });
@@ -134,13 +134,14 @@
 
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
+                alert('nuevossssss');
                 params={};
-                params.action = "habilidad-puesto";
+                params.action = "objetivo-puesto";
                 params.operation="new";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                })
+                $('#content').load('index.php', params,function(){
+
+                });
             });
 
 
@@ -257,9 +258,9 @@
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="search_habilidad" class="control-label">Habilidad</label>
-                            <input type="text" class="form-control habilidad-group" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
-                            <input type="hidden" name="id_habilidad" id="id_habilidad" class="habilidad-group"/>
+                            <label for="search_objetivo" class="control-label">Objetivo</label>
+                            <input type="text" class="form-control objetivo-group" id="search_objetivo" name="search_objetivo" placeholder="Objetivo">
+                            <input type="hidden" name="id_objetivo" id="id_objetivo" class="objetivo-group"/>
                         </div>
 
                         <div class="form-group col-md-1">

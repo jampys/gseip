@@ -76,21 +76,21 @@ class ObjetivoPuesto
     }
 
 
-    public static function getHabilidadPuesto($id_puesto, $id_habilidad, $periodo) {
+    public static function getObjetivoPuesto($id_puesto, $id_objetivo, $periodo) { //ok
         $stmt=new sQuery();
-        $query = "select hp.id_habilidad_puesto, pu.id_puesto, pu.nombre as puesto, pu.codigo,
-		              hab.id_habilidad, hab.nombre as habilidad,
-		              hp.requerida
-                      from habilidad_puesto hp, habilidades hab, puestos pu
-                      where hp.id_puesto = pu.id_puesto
-                      and hp.id_habilidad = hab.id_habilidad
+        $query = "select op.id_objetivo_puesto, pu.id_puesto, pu.nombre as puesto,
+                      ob.id_objetivo, ob.nombre as objetivo,
+                      op.periodo, op.id_contrato, op.valor, op.unidad
+                      from objetivo_puesto op, objetivos ob, puestos pu
+                      where op.id_puesto = pu.id_puesto
+                      and op.id_objetivo = ob.id_objetivo
                       and pu.id_puesto = ifnull(:id_puesto, pu.id_puesto)
-                      and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)
-                      and hp.periodo = ifnull(:periodo, hp.periodo)";
+                      and ob.id_objetivo = ifnull(:id_objetivo, ob.id_objetivo)
+                      and op.periodo = ifnull(:periodo, op.periodo)";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_puesto', $id_puesto);
-        $stmt->dpBind(':id_habilidad', $id_habilidad);
+        $stmt->dpBind(':id_objetivo', $id_objetivo);
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
