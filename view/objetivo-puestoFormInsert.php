@@ -7,6 +7,26 @@
         var jsonObjetivos = [];
 
 
+        $.cargarTablaObjetivos=function(){
+            //alert('cargar tabla objetivos');
+
+            $('#objetivos-table tbody tr').remove();
+
+            for (var i in jsonObjetivos) {
+
+
+                $('#objetivos-table tbody').append('<tr id_objetivo='+jsonObjetivos[i].id_objetivo+'>' +
+                '<td>'+jsonObjetivos[i].objetivo+'</td>' +
+                    //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
+                '<td class="text-center"><a class="update-empleado" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="delete-empleado" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                '</tr>');
+
+            }
+
+        };
+
+
         $("#objetivo-puesto #search_puesto").autocomplete({ //ok
             source: function( request, response ) {
                 $.ajax({
@@ -86,56 +106,60 @@
             minLength: 2,
             change: function(event, ui) {
 
-
-
-
                 //Abre modal para agregar nuevo empleado al contrato
-                    //alert('abrir modal objetivo');
                     params={};
                     params.action = "objetivo-puesto";
                     params.operation="loadObjetivo";
                     $('#popupbox').load('index.php', params,function(){
                         $('#myModalUpdate').modal();
-                        //alert('add empleado');
+                        //$('#myModalUpdate #objetivo').val($('#search_objetivo').val());
+                        $('#myModalUpdate #objetivo').val($('#objetivo-puesto #search_objetivo').val());
+                        $('#myModalUpdate #id_objetivo').val($('#objetivo-puesto #id_objetivo').val());
                     });
                     return false;
 
 
 
-
-
-
-
-
-
-
-                item = {};
-                item.nombre = ui.item.label;
-                item.id_habilidad = ui.item.id_habilidad;
-                //item.requerida = jsonRequerida.default;
-
-                if(jsonHabilidades[item.id_habilidad]) {
-                    //alert('el elemento existe');
-                }
-                else {
-                    jsonHabilidades[item.id_habilidad] =item;
-
-                    $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
-                    '<td>'+item.nombre+'</td>' +
-                    '<td>' +
-                    '<select class="form-control input-sm select_requerida" id="requerida-'+item.id_habilidad+'" name="requerida-'+item.id_habilidad+'">'+
-                    '</select>'+
-                    '</td>'+
-                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
-                    '</tr>');
-
-
-
-                }
-
-                $("#myModal #search_habilidad").val('');
+                $("#myModalUpdate #search_objetivo").val('');
             }
         });
+
+
+
+
+
+        //Guarda los cambios luego de insertar o actualizar un empleado del contrato
+        $(document).on('click', '#myModalUpdate #submit',function(){ //ok
+
+            //if ($("#empleado-form").valid()){
+
+                var id = $('#id_objetivo').val();
+
+                if(jsonObjetivos[id]) { //si ya existe en el array, lo actualiza
+                    //alert('el elemento existe');
+                    //jsonEmpleados[id].id_puesto = $("#puesto").val();
+                    //jsonEmpleados[id].puesto = $("#puesto option:selected").text();
+
+                }
+                else { // si no existe en el array, lo inserta
+                    item = {};
+                    item.id_objetivo = id;
+                    item.objetivo = $('#objetivo').val();
+                    item.operacion = 'insert';
+                    jsonObjetivos[id] = item;
+                    //alert('agregado con exito');
+                }
+
+                $.cargarTablaObjetivos();
+
+            //}
+            return false;
+        });
+
+
+
+
+
 
 
         $(document).on("change", ".select_requerida", function(e){
@@ -324,11 +348,11 @@
                             </form>
                             <br/>
 
-                            <table class="table table-condensed dataTable table-hover" id="habilidades-table">
+                            <table class="table table-condensed dataTable table-hover" id="objetivos-table">
                                 <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Requerida</th>
+                                    <th class="text-center">Editar</th>
                                     <th class="text-center">Eliminar</th>
                                 </tr>
                                 </thead>

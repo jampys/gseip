@@ -10,8 +10,8 @@
         });
 
 
-
-        $(document).one('click', '#myModalUpdate #submit',function(){
+        //se va a utilizar para editar un objetivo desde la grilla principal
+        /*$(document).one('click', '#submit',function(){
 
             var params={};
             params.action = 'habilidad-puesto';
@@ -20,11 +20,8 @@
             params.requerida = $('#requerida').val();
 
             $.post('index.php',params,function(data, status, xhr){
-                //alert(data);
-                //var rta= parseInt(data.charAt(3));
                 if(data >=0){
                     $("#myElem").html('Habilidad del puesto puesto guardada con exito').addClass('alert alert-success').show();
-                    //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                     $("#search").trigger("click");
                 }else{
                     $("#myElem").html('Error al guardar la habilidad del puesto').addClass('alert alert-danger').show();
@@ -37,7 +34,7 @@
 
             return false;
 
-        });
+        });*/
 
 
 
@@ -61,7 +58,7 @@
 
 
                 <form name ="habilidad-puesto" id="habilidad-puesto" method="POST" action="index.php">
-                    <input type="hidden" name="id" id="id" value="<?php //print $view->habilidadPuesto->getIdHabilidadPuesto(); ?>">
+                    <input type="hidden" name="id_objetivo" id="id_objetivo" value="<?php //print $view->habilidadPuesto->getIdHabilidadPuesto(); ?>">
 
                     <div class="form-group">
                         <label class="control-label" for="objetivo">Objetivo</label>
