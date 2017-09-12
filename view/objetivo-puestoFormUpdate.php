@@ -65,21 +65,11 @@
                         <input class="form-control" type="text" name="objetivo" id="objetivo" value = "<?php //print $view->habilidadPuesto->getPuesto()->getNombre(); ?>" disabled>
                     </div>
 
-
-
-                    <div class="form-group required">
-                        <label class="control-label" for="tipo" >Requerida</label>
-                        <select class="form-control" id="requerida" name="requerida">
-                            <?php foreach ($view->requerida['enum'] as $req){
-                                ?>
-                                <option value="<?php echo $req; ?>"
-                                    <?php echo ($req == $view->habilidadPuesto->getRequerida())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $req; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                    <div class="form-group">
+                        <label class="control-label" for="valor">Valor</label>
+                        <input class="form-control" type="text" name="valor" id="valor" value = "<?php //print $view->habilidadPuesto->getPuesto()->getNombre(); ?>" >
                     </div>
+
 
                 </form>
 
@@ -91,7 +81,7 @@
 
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
+                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit" data-dismiss="modal">Guardar</button>
                 <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
             </div>
 
