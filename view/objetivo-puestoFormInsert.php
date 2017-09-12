@@ -112,15 +112,19 @@
                     params.operation="loadObjetivo";
                     $('#popupbox').load('index.php', params,function(){
                         $('#myModalUpdate').modal();
-                        //$('#myModalUpdate #objetivo').val($('#search_objetivo').val());
-                        $('#myModalUpdate #objetivo').val($('#objetivo-puesto #search_objetivo').val());
-                        $('#myModalUpdate #id_objetivo').val($('#objetivo-puesto #id_objetivo').val());
+                        //$('#myModalUpdate #objetivo').val($('#objetivo-puesto #search_objetivo').val());
+                        //$('#myModalUpdate #id_objetivo').val($('#objetivo-puesto #id_objetivo').val());
+                        $('#myModalUpdate #objetivo').val(ui.item.label);
+                        $('#myModalUpdate #id_objetivo').val(ui.item.id_objetivo);
+
+
+
                     });
                     return false;
 
 
 
-                $("#myModalUpdate #search_objetivo").val('');
+                $("#objetivo-puesto #search_objetivo").val('');
             }
         });
 
@@ -130,13 +134,14 @@
 
         //Guarda los cambios luego de insertar o actualizar un empleado del contrato
         $(document).on('click', '#myModalUpdate #submit',function(){ //ok
+            //alert($('#myModalUpdate #id_objetivo').val());
 
             //if ($("#empleado-form").valid()){
 
-                var id = $('#id_objetivo').val();
+                var id = $('#myModalUpdate #id_objetivo').val();
 
                 if(jsonObjetivos[id]) { //si ya existe en el array, lo actualiza
-                    //alert('el elemento existe');
+                    alert('el elemento ya existe');
                     //jsonEmpleados[id].id_puesto = $("#puesto").val();
                     //jsonEmpleados[id].puesto = $("#puesto option:selected").text();
 
@@ -144,10 +149,10 @@
                 else { // si no existe en el array, lo inserta
                     item = {};
                     item.id_objetivo = id;
-                    item.objetivo = $('#objetivo').val();
+                    item.objetivo = $('#myModalUpdate #objetivo').val()
                     item.operacion = 'insert';
                     jsonObjetivos[id] = item;
-                    //alert('agregado con exito');
+                    alert('agregado con exito');
                 }
 
                 $.cargarTablaObjetivos();
