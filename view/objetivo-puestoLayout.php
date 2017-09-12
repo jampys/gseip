@@ -135,13 +135,10 @@
 
 
             $(document).on('click', '#new', function(){ //ok
-                alert('nuevossssss');
                 params={};
                 params.action = "objetivo-puesto";
                 params.operation="new";
-                $('#content').load('index.php', params,function(){
-
-                });
+                $('#content').load('index.php', params,function(){});
             });
 
 

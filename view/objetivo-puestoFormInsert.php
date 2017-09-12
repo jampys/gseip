@@ -230,15 +230,18 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?php echo $view->label ?></h4>
-            </div>
-            <div class="modal-body">
+<div class="col-md-1"></div>
+
+
+<div class="col-md-10">
+
+
+    <div class="panel panel-default" id="contrato">
+        <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
+
+        <div class="panel-body">
+
+
 
 
                 <div class="row">
@@ -261,9 +264,6 @@
                     <div class="col-md-10"></div>
 
                 </div>
-
-
-
 
 
 
@@ -336,24 +336,39 @@
 
 
 
-
-
-
-
-
-
                 <div id="myElem" style="display:none"></div>
 
-            </div>
 
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
-                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
-            </div>
 
-        </div>
+
+
+</div>
+
+
+
+<div class="panel-footer clearfix">
+    <div class="button-group pull-right">
+        <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
+        <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
     </div>
 </div>
+
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+<div class="col-md-1"></div>
+
+
 
 
 
