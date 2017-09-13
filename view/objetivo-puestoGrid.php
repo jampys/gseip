@@ -57,7 +57,7 @@
                                 <td><?php echo $op['puesto']; ?></td>
                                 <td><?php echo $op['objetivo']; ?></td>
                                 <td><?php echo $op['periodo']; ?></td>
-                                <td><?php echo $op['contrato']; ?></td>
+                                <td><?php echo $op['compania']; ?></td>
                                 <td><?php echo $op['valor']; ?></td>
                                 <td><?php echo $op['unidad']; ?></td>
                                 <td class="text-center"><a class="edit" href="javascript:void(0);">

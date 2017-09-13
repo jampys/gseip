@@ -210,7 +210,7 @@
                 params.operation = 'insert';
                 params.periodo = $('#objetivo-puesto #periodo').val();
                 params.id_contrato = $('#objetivo-puesto #contrato').val();
-                //alert(params.periodo);
+                //alert(params.id_contrato);
 
                 var jsonPuestosIx = [];
                 for ( var item in jsonPuestos ){
@@ -226,19 +226,19 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    alert(xhr.responseText);
+                    //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
                         $("#myElem").html('Objetivos puestos guardados con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
-                        $("#search").trigger("click");
                     }else{
                         $("#myElem").html('Error al guardar los objetivos puestos').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElem").hide();
-                                            $('#myModal').modal('hide');
-                                        }, 2000);
+                                            //$('#content').load('index.php',{action:"objetivo-puesto", operation:"refreshGrid"});
+                                            $("#search").trigger("click");
+                                            }, 2000);
 
                 });
 

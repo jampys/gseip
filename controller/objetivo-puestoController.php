@@ -63,6 +63,7 @@ switch ($operation)
                     $c->setValor($vO['valor']);
                     if($c->insertObjetivoPuesto() < 0) $flag = -1;  //si falla algun insert $flag = -1
                     //echo "id_puesto: ".$vP['id_puesto']." - id_objetivo: ".$vO['id_objetivo'];
+                    //echo "id_contrato: ".$_POST["id_contrato"];
                 }
 
             }
