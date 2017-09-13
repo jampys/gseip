@@ -85,13 +85,12 @@ switch ($operation)
         break;
 
 
-    case 'editHabilidadPuesto':
-        $view->label='Editar Habilidad Puesto';
-        $view->habilidadPuesto = new HabilidadPuesto($_POST['id_habilidad_puesto']);
-        $view->requerida = Soporte::get_enum_values('habilidad_puesto', 'requerida');
+    case 'editObjetivoPuesto': //ok
+        $view->label='Editar Objetivo Puesto';
+        $view->objetivoPuesto = new ObjetivoPuesto($_POST['id_objetivo_puesto']);
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/habilidad-puestoFormUpdate.php";
+        $view->contentTemplate="view/objetivo-puestoFormUpdate.php";
         break;
 
 

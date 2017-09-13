@@ -120,12 +120,12 @@
 
 
 
-            $(document).on('click', '.edit', function(){
+            $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_habilidad_puesto = id;
-                params.action = "habilidad-puesto";
-                params.operation = "editHabilidadPuesto";
+                params.id_objetivo_puesto = id;
+                params.action = "objetivo-puesto";
+                params.operation = "editObjetivoPuesto";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModalUpdate').modal();
                 })
@@ -139,12 +139,6 @@
                 params.action = "objetivo-puesto";
                 params.operation="new";
                 $('#content').load('index.php', params,function(){});
-            });
-
-
-         
-            $(document).on('click', '#cancel',function(){
-                $('#myModal').modal('hide');
             });
 
 
