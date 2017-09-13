@@ -94,12 +94,12 @@ switch ($operation)
         break;
 
 
-    case 'saveHabilidadPuesto':  //guarda una habilidad-puesto editada
+    case 'saveObjetivoPuesto': //ok  //guarda un objetivo-puesto editada
 
-        $view->habilidadPuesto = new HabilidadPuesto($_POST['id_habilidad_puesto']);
-        $view->habilidadPuesto->setRequerida($_POST['requerida']);
+        $view->objetivoPuesto = new ObjetivoPuesto($_POST['id_objetivo_puesto']);
+        $view->objetivoPuesto->setValor($_POST['valor']);
 
-        $rta = $view->habilidadPuesto->updateHabilidadPuesto();
+        $rta = $view->objetivoPuesto->updateObjetivoPuesto();
         print_r(json_encode($rta));
         exit;
         break;

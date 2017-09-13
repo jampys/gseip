@@ -121,13 +121,13 @@ class ObjetivoPuesto
     }*/
 
 
-    public function updateHabilidadPuesto(){
+    public function updateObjetivoPuesto(){ //ok
         $stmt=new sQuery();
-        $query="update habilidad_puesto set requerida =:requerida
-                where id_habilidad_puesto =:id_habilidad_puesto";
+        $query="update objetivo_puesto set valor =:valor
+                where id_objetivo_puesto =:id_objetivo_puesto";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad_puesto', $this->getIdHabilidadPuesto());
-        $stmt->dpBind(':requerida', $this->getRequerida());
+        $stmt->dpBind(':id_objetivo_puesto', $this->getIdObjetivoPuesto());
+        $stmt->dpBind(':valor', $this->getValor());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

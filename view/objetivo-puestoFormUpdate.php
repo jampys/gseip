@@ -11,30 +11,44 @@
 
 
         //se va a utilizar para editar un objetivo desde la grilla principal
-        /*$(document).one('click', '#submit',function(){
+        $(document).one('click', '#submit',function(){
 
-            var params={};
-            params.action = 'habilidad-puesto';
-            params.operation = 'saveHabilidadPuesto';
-            params.id_habilidad_puesto = $('#id').val();
-            params.requerida = $('#requerida').val();
+            if($('#id_objetivo_puesto').val()){
 
-            $.post('index.php',params,function(data, status, xhr){
-                if(data >=0){
-                    $("#myElem").html('Habilidad del puesto puesto guardada con exito').addClass('alert alert-success').show();
-                    $("#search").trigger("click");
-                }else{
-                    $("#myElem").html('Error al guardar la habilidad del puesto').addClass('alert alert-danger').show();
-                }
-                setTimeout(function() { $("#myElem").hide();
-                    $('#myModalUpdate').modal('hide');
-                }, 2000);
+                //alert($('#id_objetivo_puesto').val());
 
-            });
+                var params={};
+                params.action = 'objetivo-puesto';
+                params.operation = 'saveObjetivoPuesto';
+                params.id_objetivo_puesto = $('#id_objetivo_puesto').val();
+                params.valor = $('#valor').val();
 
-            return false;
+                $.post('index.php',params,function(data, status, xhr){
+                    //alert(xhr.responseText);
+                    if(data >=0){
+                        $("#myElem").html('Objetivo del puesto puesto guardado con exito').addClass('alert alert-success').show();
+                        $("#search").trigger("click");
+                    }else{
+                        $("#myElem").html('Error al guardar el objetivo del puesto').addClass('alert alert-danger').show();
+                    }
+                    setTimeout(function() { $("#myElem").hide();
+                                            $('#myModalUpdate').modal('hide');
+                                            }, 2000);
 
-        });*/
+                });
+
+                return false;
+
+
+
+            }
+
+
+
+        });
+
+
+
 
 
 
@@ -58,16 +72,17 @@
 
 
                 <form name ="habilidad-puesto" id="habilidad-puesto" method="POST" action="index.php">
-                    <input type="hidden" name="id_objetivo" id="id_objetivo" value="<?php //print $view->habilidadPuesto->getIdHabilidadPuesto(); ?>">
+                    <input type="hidden" name="id_objetivo" id="id_objetivo" value="<?php //print $view->objetivoPuesto->getIdObjetivo(); ?>">
+                    <input type="hidden" name="id_objetivo_puesto" id="id_objetivo_puesto" value="<?php print ($view->objetivoPuesto)? $view->objetivoPuesto->getIdObjetivoPuesto() : ''; ?>">
 
                     <div class="form-group">
                         <label class="control-label" for="objetivo">Objetivo</label>
-                        <input class="form-control" type="text" name="objetivo" id="objetivo" value = "<?php //print $view->habilidadPuesto->getPuesto()->getNombre(); ?>" disabled>
+                        <input class="form-control" type="text" name="objetivo" id="objetivo" value = "<?php print ($view->objetivoPuesto)? $view->objetivoPuesto->getObjetivo()->getNombre() : ''; ?>" disabled>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="valor">Valor</label>
-                        <input class="form-control" type="text" name="valor" id="valor" value = "<?php //print $view->habilidadPuesto->getPuesto()->getNombre(); ?>" >
+                        <input class="form-control" type="text" name="valor" id="valor" value = "<?php print ($view->objetivoPuesto)? $view->objetivoPuesto->getValor() : ''; ?>" >
                     </div>
 
 
