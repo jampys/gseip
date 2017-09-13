@@ -93,11 +93,11 @@ class ObjetivoPuesto
                       ob.nombre as objetivo,
                       op.periodo, op.id_contrato, op.valor, op.unidad,
                       cia.razon_social as compania
-                      from objetivo_puesto op, objetivos ob, puestos pu, contratos co, companias cia
-                      where op.id_puesto = pu.id_puesto
-                      and op.id_objetivo = ob.id_objetivo
-                      and op.id_contrato = co.id_contrato
-                      and co.id_compania = cia.id_compania
+                      from objetivo_puesto op
+                      join objetivos ob on op.id_objetivo = ob.id_objetivo
+                      join puestos pu on op.id_puesto = pu.id_puesto
+                      left join contratos co on op.id_contrato = co.id_contrato
+                      left join companias cia on co.id_compania = cia.id_compania
                       and pu.id_puesto = ifnull(:id_puesto, pu.id_puesto)
                       and ob.id_objetivo = ifnull(:id_objetivo, ob.id_objetivo)
                       and op.periodo = ifnull(:periodo, op.periodo)";
