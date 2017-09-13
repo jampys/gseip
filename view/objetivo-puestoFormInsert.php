@@ -157,6 +157,7 @@
                 }
 
                 $.cargarTablaObjetivos();
+                $('#myModalUpdate').modal('hide');
 
             //}
             return false;
@@ -176,7 +177,6 @@
                 $('#myModalUpdate #id_objetivo').val(jsonObjetivos[id].id_objetivo);
                 $('#myModalUpdate #objetivo').val(jsonObjetivos[id].objetivo);
                 $('#myModalUpdate #valor').val(jsonObjetivos[id].valor);
-
 
             });
             return false;
