@@ -42,13 +42,6 @@ switch ($operation)
         $view->contentTemplate="view/objetivo-puestoFormUpdate.php";
         break;
 
-    case 'select_requerida': //carga en el formulario el combo de requerida
-        $view->requerida = Soporte::get_enum_values('habilidad_puesto', 'requerida');
-        //print_r(json_encode($view->requerida));
-        print_r(json_encode(array('enum'=>$view->requerida['enum'], 'default'=>$view->requerida['default'])));
-        exit;
-        break;
-
     case 'insert':
         $flag=1;
 

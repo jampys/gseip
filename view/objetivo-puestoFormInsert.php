@@ -18,8 +18,8 @@
                 $('#objetivos-table tbody').append('<tr id_objetivo='+jsonObjetivos[i].id_objetivo+'>' +
                 '<td>'+jsonObjetivos[i].objetivo+'</td>' +
                     //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
-                '<td class="text-center"><a class="update-objetivo" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
-                '<td class="text-center"><a class="delete-objetivo" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="update" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                 '</tr>');
 
             }
@@ -164,7 +164,7 @@
 
 
         //Abre modal para actualizar el objetivo
-        $('#objetivo-puesto').on('click', '.update-objetivo', function(e){ //ok
+        $('#objetivos-table').on('click', '.update', function(e){ //ok
             //alert('actualizar objetivo');
             var id = $(this).closest('tr').attr('id_objetivo');
             //alert(id);
@@ -184,48 +184,45 @@
 
 
 
-
-
-        $(document).on("click", "#puestos-table .delete", function(e){
+        $('#puestos-table').on('click',  '.delete', function(e){ //ok
             var index =  $(this).closest('tr').attr('data-id');
             //alert(index);
             $(this).closest('tr').remove(); //elimina la fila de la tabla
             delete jsonPuestos[index]; //elimina el elemento del array
             e.preventDefault(); //para evitar que suba el foco al eliminar un elemento
-
         });
 
 
-        $(document).on("click", "#habilidades-table .delete", function(e){
-            var index =  $(this).closest('tr').attr('data-id');
+        $('#objetivos-table').on('click',  '.delete', function(e){ //ok
+            var index =  $(this).closest('tr').attr('id_objetivo');
             //alert(index);
             $(this).closest('tr').remove(); //elimina la fila de la tabla
-            delete jsonHabilidades[index]; //elimina el elemento del array
+            delete jsonObjetivos[index]; //elimina el elemento del array
             e.preventDefault(); //para evitar que suba el foco al eliminar un elemento
-
         });
 
 
-        $(document).one('click', '#myModal #submit',function(){
-            //alert(Object.keys(jsonEmpleados).length);
-            if (Object.keys(jsonPuestos).length > 0 && Object.keys(jsonHabilidades).length > 0){
+        $('#objetivo-puesto').on('click', '#submit',function(){
+            //alert(Object.keys(jsonPuestos).length);
+            if (Object.keys(jsonPuestos).length > 0 && Object.keys(jsonObjetivos).length > 0){
                 var params={};
-                params.action = 'habilidad-puesto';
+                params.action = 'objetivo-puesto';
                 params.operation = 'insert';
-                params.periodo = $('#myModal #periodo').val();
+                params.periodo = $('#objetivo-puesto #periodo').val();
+                params.id_contrato = $('#objetivo-puesto #contrato').val();
                 //alert(params.periodo);
 
                 var jsonPuestosIx = [];
                 for ( var item in jsonPuestos ){
                     jsonPuestosIx.push( jsonPuestos[ item ] );
                 }
-                var jsonHabilidadesIx = [];
-                for ( var item in jsonHabilidades ){
-                    jsonHabilidadesIx.push( jsonHabilidades[ item ] );
+                var jsonObjetivosIx = [];
+                for ( var item in jsonObjetivos ){
+                    jsonObjetivosIx.push( jsonObjetivos[ item ] );
                 }
 
                 params.vPuestos = JSON.stringify(jsonPuestosIx);
-                params.vHabilidades = JSON.stringify(jsonHabilidadesIx);
+                params.vHabilidades = JSON.stringify(jsonObjetivosIx);
 
                 $.post('index.php',params,function(data, status, xhr){
 
@@ -233,11 +230,11 @@
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
-                        $("#myElem").html('Habilidades puestos guardadas con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Objetivos puestos guardados con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                         $("#search").trigger("click");
                     }else{
-                        $("#myElem").html('Error al guardar las habilidades puestos').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar los objetivos puestos').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElem").hide();
                                             $('#myModal').modal('hide');
