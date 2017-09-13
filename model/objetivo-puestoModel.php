@@ -4,74 +4,83 @@ include_once("objetivosModel.php");
 
 class ObjetivoPuesto
 {
-    private $id_habilidad_puesto;
-    private $id_habilidad;
+    private $id_objetivo_puesto;
+    private $id_objetivo;
     private $id_puesto;
-    private $requerida;
     private $periodo;
+    private $id_contrato;
+    private $valor;
 
     private $puesto;
-    private $habilidad;
+    private $objetivo;
 
     // GETTERS
-    function getIdHabilidadPuesto()
-    { return $this->id_habilidad_puesto;}
+    function getIdObjetivoPuesto()
+    { return $this->id_objetivo_puesto;}
 
-    function getIdHabilidad()
-    { return $this->id_habilidad;}
+    function getIdObjetivo()
+    { return $this->id_objetivo;}
 
     function getIdPuesto()
     { return $this->id_puesto;}
 
-    function getRequerida()
-    { return $this->requerida;}
-
     function getPeriodo()
     { return $this->periodo;}
+
+    function getIdContrato()
+    { return $this->id_contrato;}
+
+    function getValor()
+    { return $this->valor;}
+
 
     function getPuesto()
     { return $this->puesto;}
 
-    function getHabilidad()
-    { return $this->habilidad;}
+    function getObjetivo()
+    { return $this->objetivo;}
 
 
     //SETTERS
-    function setIdHabilidadPuesto($val)
-    { $this->id_habilidad_puesto=$val;}
+    function setIdObjetivoPuesto($val)
+    { $this->id_objetivo_puesto=$val;}
 
-    function setIdHabilidad($val)
-    { $this->id_habilidad=$val;}
+    function setIdObjetivo($val)
+    { $this->id_objetivo=$val;}
 
     function setIdPuesto($val)
     { $this->id_puesto=$val;}
 
-    function setRequerida($val)
-    { $this->requerida=$val;}
-
     function setPeriodo($val)
     { $this->periodo=$val;}
 
+    function setIdContrato($val)
+    { $this->id_contrato=$val;}
+
+    function setValor($val)
+    { $this->valor=$val;}
 
 
-    function __construct($nro=0){ //constructor
+
+    function __construct($nro=0){ //constructor ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query="select * from habilidad_puesto where id_habilidad_puesto = :nro";
+            $query="select * from objetivo_puesto where id_objetivo_puesto = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdHabilidadPuesto($rows[0]['id_habilidad_puesto']);
-            $this->setIdHabilidad($rows[0]['id_habilidad']);
+            $this->setIdObjetivoPuesto($rows[0]['id_objetivo_puesto']);
+            $this->setIdObjetivo($rows[0]['id_objetivo']);
             $this->setIdPuesto($rows[0]['id_puesto']);
-            $this->setRequerida($rows[0]['requerida']);
             $this->setPeriodo($rows[0]['periodo']);
+            $this->setIdContrato($rows[0]['id_contrato']);
+            $this->setValor($rows[0]['valor']);
 
             $this->puesto = new Puesto($rows[0]['id_puesto']);
-            $this->habilidad = new Habilidad($rows[0]['id_habilidad']);
+            $this->objetivo = new Objetivo($rows[0]['id_objetivo']);
         }
     }
 
@@ -119,22 +128,24 @@ class ObjetivoPuesto
     }
 
 
-    public function insertHabilidadPuesto(){
+    public function insertObjetivoPuesto(){ //ok
 
         $stmt=new sQuery();
-        $query = 'CALL sp_insertHabilidadPuesto(
-                                                    :id_habilidad,
+        $query = 'CALL sp_insertObjetivoPuesto(
+                                                    :id_objetivo,
                                                     :id_puesto,
-                                                    :requerida,
                                                     :periodo,
+                                                    :id_contrato,
+                                                    :valor,
                                                     @flag
                                                   )';
 
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
-        $stmt->dpBind(':requerida', $this->getRequerida());
         $stmt->dpBind(':periodo', $this->getPeriodo());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':valor', $this->getValor());
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();

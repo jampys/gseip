@@ -42,7 +42,7 @@ switch ($operation)
         $view->contentTemplate="view/objetivo-puestoFormUpdate.php";
         break;
 
-    case 'insert':
+    case 'insert': //ok
         $flag=1;
 
         sQuery::dpBeginTransaction();
@@ -50,18 +50,19 @@ switch ($operation)
         try{
 
             $vPuestos = json_decode($_POST["vPuestos"], true);
-            $vHabilidades = json_decode($_POST["vHabilidades"], true);
-            //print_r($vHabilidades);
+            $vObjetivos = json_decode($_POST["vObjetivos"], true);
+            //print_r($vObjetivos);
 
             foreach ($vPuestos as $vP) {
-                foreach ($vHabilidades as $vH) {
-                    $c = new HabilidadPuesto();
-                    $c->setIdHabilidad($vH['id_habilidad']);
+                foreach ($vObjetivos as $vO) {
+                    $c = new ObjetivoPuesto();
+                    $c->setIdObjetivo($vO['id_objetivo']);
                     $c->setIdPuesto($vP['id_puesto']);
-                    $c->setRequerida($vH['requerida']);
                     $c->setPeriodo($_POST["periodo"]);
-                    if($c->insertHabilidadPuesto() < 0) $flag = -1;  //si falla algun insert $flag = -1
-                    //echo "id_puesto: ".$vP['id_puesto']." - id_habilidad: ".$vH['id_habilidad'];
+                    $c->setIdContrato($_POST["id_contrato"]);
+                    $c->setValor($vO['valor']);
+                    if($c->insertObjetivoPuesto() < 0) $flag = -1;  //si falla algun insert $flag = -1
+                    //echo "id_puesto: ".$vP['id_puesto']." - id_objetivo: ".$vO['id_objetivo'];
                 }
 
             }
