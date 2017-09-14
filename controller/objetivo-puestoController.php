@@ -34,13 +34,6 @@ switch ($operation)
         $view->contentTemplate="view/objetivo-puestoFormInsert.php";
         break;
 
-    case 'loadObjetivo': //ok //abre la ventana modal para agregar y editar un objetivo
-        $view->label='Objetivo';
-        $view->disableLayout=true;
-        //$view->puesto = Puesto::getPuestos();
-
-        $view->contentTemplate="view/objetivo-puestoFormUpdate.php";
-        break;
 
     case 'insert': //ok
         $flag=1;
@@ -85,9 +78,9 @@ switch ($operation)
         break;
 
 
-    case 'editObjetivoPuesto': //ok
+    case 'editObjetivoPuesto': //ok //abre modal para editar un objetivo-puesto
         $view->label='Editar Objetivo Puesto';
-        $view->objetivoPuesto = new ObjetivoPuesto($_POST['id_objetivo_puesto']);
+        if (isset($_POST['id_objetivo_puesto'])) $view->objetivoPuesto = new ObjetivoPuesto($_POST['id_objetivo_puesto']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivo-puestoFormUpdate.php";

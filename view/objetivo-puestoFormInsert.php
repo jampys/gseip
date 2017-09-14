@@ -109,7 +109,7 @@
                 //Abre modal para agregar nuevo empleado al contrato
                     params={};
                     params.action = "objetivo-puesto";
-                    params.operation="loadObjetivo";
+                    params.operation="editObjetivoPuesto";
                     $('#popupbox').load('index.php', params,function(){
                         $('#myModalUpdate').modal();
                         //$('#myModalUpdate #objetivo').val($('#objetivo-puesto #search_objetivo').val());
@@ -171,7 +171,7 @@
             //alert(id);
             params={};
             params.action = "objetivo-puesto";
-            params.operation="loadObjetivo";
+            params.operation="editObjetivoPuesto";
             $('#popupbox').load('index.php', params,function(){
                 $('#myModalUpdate').modal();
                 $('#myModalUpdate #id_objetivo').val(jsonObjetivos[id].id_objetivo);
