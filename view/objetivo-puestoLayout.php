@@ -177,7 +177,7 @@
                 params.operation = "deleteObjetivoPuesto";
 
                 $.post('index.php',params,function(data, status, xhr){
-                    if(data >=0){
+                    if(data >0){
                         $("#myElemento").html('Objetivo eliminado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidad-puesto", operation: "buscar", id_puesto: $("#id_puesto").val(), id_habilidad: $("#id_habilidad").val()});
                         $("#search").trigger("click");
