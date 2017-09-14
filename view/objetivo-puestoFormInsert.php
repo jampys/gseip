@@ -91,7 +91,8 @@
                         response($.map(data, function(item) {
                             return {
                                 label: item.nombre,
-                                id_objetivo: item.id_objetivo
+                                id_objetivo: item.id_objetivo,
+                                id_objetivo_puesto: item.id_objetivo_puesto
 
                             };
                         }));
@@ -112,21 +113,27 @@
                     params.operation="editObjetivoPuesto";
                     $('#popupbox').load('index.php', params,function(){
                         $('#myModalUpdate').modal();
-                        //$('#myModalUpdate #objetivo').val($('#objetivo-puesto #search_objetivo').val());
-                        //$('#myModalUpdate #id_objetivo').val($('#objetivo-puesto #id_objetivo').val());
                         $('#myModalUpdate #objetivo').val(ui.item.label);
                         $('#myModalUpdate #id_objetivo').val(ui.item.id_objetivo);
 
-
-
                     });
-                    return false;
 
+                $('#objetivo-puesto #search_objetivo').val('');
+                return false;
 
-
-                $("#objetivo-puesto #search_objetivo").val('');
             }
-        });
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+
+                var mlabel = (item.id_objetivo_puesto)? 'label-success': 'label-info';
+                var mMessage = (item.id_objetivo_puesto)? 'clonar': 'nuevo';
+
+                return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append('<a>' + item.label + ' <span class="label '+mlabel+'">'+mMessage+'</span></a>')
+                    .appendTo(ul);
+            };
+
+
 
 
 

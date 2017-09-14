@@ -116,9 +116,17 @@ class Objetivo
 
     public function autocompletarObjetivos($term) { //ok
         $stmt=new sQuery();
-        $query = "select *
+        /*$query = "select *
                   from objetivos
-                  where nombre like '%$term%'";
+                  where nombre like '%$term%'";*/
+        $query = "select id_objetivo_puesto, op.id_objetivo, ob.nombre, id_contrato, periodo
+from objetivo_puesto op, objetivos ob
+where op.id_objetivo = ob.id_objetivo
+and nombre like '%$term%'
+UNION
+select null, id_objetivo, nombre, null, null
+from objetivos
+where nombre like '%$term%'";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
