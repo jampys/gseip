@@ -97,9 +97,9 @@ switch ($operation)
         exit;
         break;
 
-    case 'deleteHabilidadPuesto':
-        $habilidad_puesto = new HabilidadPuesto($_POST['id_habilidad_puesto']);
-        $rta = $habilidad_puesto->deleteHabilidadPuesto();
+    case 'deleteObjetivoPuesto': //ok
+        $objetivo_puesto = new ObjetivoPuesto($_POST['id_objetivo_puesto']);
+        $rta = $objetivo_puesto->deleteObjetivoPuesto();
         print_r(json_encode($rta));
         die;
         break;

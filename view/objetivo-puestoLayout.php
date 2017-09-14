@@ -172,17 +172,17 @@
                 //alert(id);
                 //preparo los parametros
                 params={};
-                params.id_habilidad_puesto = id;
-                params.action = "habilidad-puesto";
-                params.operation = "deleteHabilidadPuesto";
+                params.id_objetivo_puesto = id;
+                params.action = "objetivo-puesto";
+                params.operation = "deleteObjetivoPuesto";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
+                        $("#myElemento").html('Objetivo eliminado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidad-puesto", operation: "buscar", id_puesto: $("#id_puesto").val(), id_habilidad: $("#id_habilidad").val()});
                         $("#search").trigger("click");
                     }else{
-                        $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
+                        $("#myElemento").html('Error al eliminar el objetivo').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElemento").hide();
                                             $('#confirm').dialog('close');

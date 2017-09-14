@@ -202,7 +202,7 @@
         });
 
 
-        $('#objetivo-puesto').on('click', '#submit',function(){
+        $('#objetivo-puesto').on('click', '#submit',function(){ //ok
             //alert(Object.keys(jsonPuestos).length);
             if (Object.keys(jsonPuestos).length > 0 && Object.keys(jsonObjetivos).length > 0){
                 var params={};
@@ -244,6 +244,12 @@
 
             }
             return false;
+        });
+
+
+        $('#objetivo-puesto').on('click', '#cancel',function(){
+            $("#search").trigger("click");
+
         });
 
 

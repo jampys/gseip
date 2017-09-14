@@ -164,12 +164,12 @@ class ObjetivoPuesto
     }
 
 
-    function deleteHabilidadPuesto(){
+    function deleteObjetivoPuesto(){ //ok
         $stmt=new sQuery();
-        $query="delete from habilidad_puesto
-                where id_habilidad_puesto =:id_habilidad_puesto";
+        $query="delete from objetivo_puesto
+                where id_objetivo_puesto =:id_objetivo_puesto";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad_puesto', $this->getIdHabilidadPuesto());
+        $stmt->dpBind(':id_objetivo_puesto', $this->getIdObjetivoPuesto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
