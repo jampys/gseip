@@ -90,9 +90,11 @@
                     success: function(data) {
                         response($.map(data, function(item) {
                             return {
-                                label: item.nombre,
+                                label: (!item.id_objetivo_puesto)? item.nombre : item.nombre+' '+item.periodo,
+                                objetivo: item.nombre,
                                 id_objetivo: item.id_objetivo,
-                                id_objetivo_puesto: item.id_objetivo_puesto
+                                id_objetivo_puesto: item.id_objetivo_puesto,
+                                valor: item.valor
 
                             };
                         }));
@@ -100,7 +102,6 @@
                     error: function(data, textStatus, errorThrown) {
                         console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
                     }
-
 
                 });
             },
@@ -113,8 +114,17 @@
                     params.operation="editObjetivoPuesto";
                     $('#popupbox').load('index.php', params,function(){
                         $('#myModalUpdate').modal();
-                        $('#myModalUpdate #objetivo').val(ui.item.label);
+                        $('#myModalUpdate #objetivo').val(ui.item.objetivo);
                         $('#myModalUpdate #id_objetivo').val(ui.item.id_objetivo);
+
+                        if(ui.item.id_objetivo_puesto){
+
+                            $('#myModalUpdate #valor').val(ui.item.valor);
+
+
+                        }
+
+
 
                     });
 
