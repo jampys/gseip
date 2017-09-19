@@ -48,6 +48,7 @@
                     params.descripcion=$('#descripcion').val();
                     params.codigo=$('#codigo').val();
                     params.codigo_superior=$('#superior').val();
+                    params.id_area=$('#id_area').val();
                     //alert(params.codigo_superior);
                     $.post('index.php',params,function(data, status, xhr){
 

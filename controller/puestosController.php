@@ -1,6 +1,7 @@
 ﻿<?php
 
 include_once("model/puestosModel.php");
+include_once("model/areasModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -23,6 +24,7 @@ switch ($operation)
         $puesto->setDescripcion($_POST['descripcion']);
         $puesto->setCodigo($_POST['codigo']);
         $puesto->setCodigoSuperior(($_POST['codigo_superior'])? $_POST['codigo_superior'] : null);
+        $puesto->setIdArea($_POST['id_area']);
 
         $rta = $puesto->save();
         print_r(json_encode($rta));
@@ -34,6 +36,7 @@ switch ($operation)
         $view->label='Nuevo Puesto de trabajo';
 
         $view->superior = Puesto::getPuestos();
+        $view->areas = Area::getAreas();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/puestosForm.php";
@@ -44,6 +47,7 @@ switch ($operation)
         $view->puesto = new Puesto($_POST['id_puesto']);
 
         $view->superior = Puesto::getPuestos();
+        $view->areas = Area::getAreas();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/puestosForm.php";

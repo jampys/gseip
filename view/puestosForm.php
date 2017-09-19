@@ -65,6 +65,21 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="control-label" for="id_area" >Área</label>
+                        <select class="form-control" id="id_area" name="id_area">
+                            <option value="" disabled selected>Seleccione el area</option>
+                            <?php foreach ($view->areas as $area){
+                                ?>
+                                <option value="<?php echo $area['id_area']; ?>"
+                                    <?php echo ($area['id_area'] == $view->puesto->getIdArea())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $area['nombre']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label class="control-label" for="superior" >Puesto superior</label>
                         <select class="form-control" id="superior" name="superior">
                             <option value="" disabled selected>Seleccione el puesto superior</option>

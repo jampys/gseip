@@ -8,6 +8,7 @@ class Puesto
     private $descripcion;
     private $codigo;
     private $codigo_superior;
+    private $id_area;
 
     // GETTERS
     function getIdPuesto()
@@ -25,6 +26,9 @@ class Puesto
     function getCodigoSuperior()
     { return $this->codigo_superior;}
 
+    function getIdArea()
+    { return $this->id_area;}
+
     //SETTERS
     function setIdPuesto($val)
     { $this->id_puesto=$val;}
@@ -41,12 +45,18 @@ class Puesto
     function setCodigoSuperior($val)
     {  $this->codigo_superior=$val;}
 
+    function setIdArea($val)
+    {  $this->id_area=$val;}
+
 
     public static function getPuestos() { //ok
         $stmt=new sQuery();
-        $query="select pu.id_puesto, pu.nombre, pu.descripcion, pu.codigo, pu.codigo_superior, su.nombre as nombre_superior
+        $query="select pu.id_puesto, pu.nombre, pu.descripcion, pu.codigo, pu.codigo_superior,
+                    su.nombre as nombre_superior, ar.nombre as area
                     from puestos pu
-                    left join puestos su on pu.codigo_superior = su.codigo";
+                    left join puestos su on pu.codigo_superior = su.codigo
+                    left join areas ar on pu.id_area = ar.id_area";
+
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
@@ -68,6 +78,7 @@ class Puesto
             $this->setDescripcion($rows[0]['descripcion']);
             $this->setCodigo($rows[0]['codigo']);
             $this->setCodigoSuperior($rows[0]['codigo_superior']);
+            $this->setIdArea($rows[0]['id_area']);
         }
     }
 
@@ -88,13 +99,15 @@ class Puesto
                 nombre= :nombre,
                 descripcion= :descripcion,
                 codigo= :codigo,
-                codigo_superior= :codigo_superior
+                codigo_superior= :codigo_superior,
+                id_area= :id_area
                 where id_puesto = :id_puesto";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
         $stmt->dpBind(':codigo', $this->getCodigo());
         $stmt->dpBind(':codigo_superior', $this->getCodigoSuperior());
+        $stmt->dpBind(':id_area', $this->getIdArea());
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -103,13 +116,14 @@ class Puesto
     private function insertPuesto(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into puestos(nombre, descripcion, codigo, codigo_superior)
-                values(:nombre, :descripcion, :codigo, :codigo_superior)";
+        $query="insert into puestos(nombre, descripcion, codigo, codigo_superior, id_area)
+                values(:nombre, :descripcion, :codigo, :codigo_superior, :id_area)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
         $stmt->dpBind(':codigo', $this->getCodigo());
         $stmt->dpBind(':codigo_superior', $this->getCodigoSuperior());
+        $stmt->dpBind(':id_area', $this->getIdArea());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

@@ -40,6 +40,7 @@
             <tr>
                 <th>Código</th>
                 <th>Nombre</th>
+                <th>Área</th>
                 <th>puesto superior</th>
                 <th>Editar</th>
                 <th>Borrar</th>
@@ -50,6 +51,7 @@
                 <tr>
                     <td><?php echo $puesto['codigo'];?></td>
                     <td><?php echo $puesto['nombre'];?></td>
+                    <td><?php echo $puesto['area'];?></td>
                     <td><?php echo $puesto['nombre_superior'];?></td>
                     <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
                     <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
