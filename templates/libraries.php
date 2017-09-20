@@ -28,6 +28,7 @@
     <!--<script src="dataTables/js/jquery-1.12.4.js" type="text/javascript"></script>-->
     <script src="dataTables/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="dataTables/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script src="dataTables/ellipsis.js" type="text/javascript"></script>
 
 
 
