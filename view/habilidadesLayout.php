@@ -46,7 +46,6 @@
                     params.id_habilidad=$('#id_habilidad').val();
                     params.codigo=$('#codigo').val();
                     params.nombre=$('#nombre').val();
-                    params.tipo=$('#tipo').val();
                     $.post('index.php',params,function(data, status, xhr){
 
                         //alert(data);

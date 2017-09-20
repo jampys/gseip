@@ -64,21 +64,6 @@
                         <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php print $view->habilidad->getNombre() ?>" placeholder="Nombre">
                     </div>
 
-                    <div class="form-group required">
-                        <label class="control-label" for="tipo" >Tipo</label>
-                        <select class="form-control" id="tipo" name="tipo">
-                            <option value="" disabled selected>Seleccione el tipo</option>
-                            <?php foreach ($view->tipos['enum'] as $tipo){
-                                ?>
-                                <option value="<?php echo $tipo; ?>"
-                                    <?php echo ($tipo == $view->habilidad->getTipo() OR ($tipo == $view->tipos['default'] AND !$view->habilidad->getIdHabilidad()) )? 'selected' :'' ?>
-                                    >
-                                    <?php echo $tipo; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
 
                 </form>
 

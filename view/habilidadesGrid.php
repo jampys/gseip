@@ -40,7 +40,6 @@
             <tr>
                 <th>Código</th>
                 <th>Nombre</th>
-                <th>Tipo</th>
                 <th>Editar</th>
                 <th>Borrar</th>
             </tr>
@@ -50,7 +49,6 @@
                 <tr>
                     <td><?php echo $habilidad['codigo'];?></td>
                     <td><?php echo $habilidad['nombre'];?></td>
-                    <td><?php echo $habilidad['tipo'];?></td>
                     <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $habilidad['id_habilidad'];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
                     <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $habilidad['id_habilidad'];?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                 </tr>
