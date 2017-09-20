@@ -9,6 +9,7 @@ class Puesto
     private $codigo;
     private $codigo_superior;
     private $id_area;
+    private $id_nivel_competencia;
 
     // GETTERS
     function getIdPuesto()
@@ -29,6 +30,9 @@ class Puesto
     function getIdArea()
     { return $this->id_area;}
 
+    function getIdNivelCompetencia()
+    { return $this->id_nivel_competencia;}
+
     //SETTERS
     function setIdPuesto($val)
     { $this->id_puesto=$val;}
@@ -48,14 +52,18 @@ class Puesto
     function setIdArea($val)
     {  $this->id_area=$val;}
 
+    function setIdNivelCompetencia($val)
+    {  $this->id_nivel_competencia=$val;}
+
 
     public static function getPuestos() { //ok
         $stmt=new sQuery();
         $query="select pu.id_puesto, pu.nombre, pu.descripcion, pu.codigo, pu.codigo_superior,
-                    su.nombre as nombre_superior, ar.nombre as area
+                    su.nombre as nombre_superior, ar.nombre as area, nc.nombre as nivel_competencia
                     from puestos pu
                     left join puestos su on pu.codigo_superior = su.codigo
-                    left join areas ar on pu.id_area = ar.id_area";
+                    left join areas ar on pu.id_area = ar.id_area
+                    left join competencias_niveles nc on pu.id_nivel_competencia = nc.id_nivel_competencia";
 
         $stmt->dpPrepare($query);
         $stmt->dpExecute();

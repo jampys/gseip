@@ -22,9 +22,9 @@
 </script>
 
 
-<div class="col-md-2"></div>
+<div class="col-md-1"></div>
 
-<div class="col-md-8">
+<div class="col-md-10">
 
     <h4>Puestos de trabajo</h4>
     <hr class="hr-primary"/>
@@ -38,9 +38,10 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>Código</th>
+                <th>Cod.</th>
                 <th>Nombre</th>
                 <th>Área</th>
+                <th>Nivel competencia</th>
                 <th>puesto superior</th>
                 <th>Editar</th>
                 <th>Borrar</th>
@@ -52,6 +53,7 @@
                     <td><?php echo $puesto['codigo'];?></td>
                     <td><?php echo $puesto['nombre'];?></td>
                     <td><?php echo $puesto['area'];?></td>
+                    <td><?php echo $puesto['nivel_competencia'];?></td>
                     <td><?php echo $puesto['nombre_superior'];?></td>
                     <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
                     <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
@@ -64,7 +66,7 @@
 
 </div>
 
-<div class="col-md-2"></div>
+<div class="col-md-1"></div>
 
 
 

@@ -2,6 +2,7 @@
 
 include_once("model/puestosModel.php");
 include_once("model/areasModel.php");
+include_once("model/competenciasNivelesModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -37,6 +38,7 @@ switch ($operation)
 
         $view->superior = Puesto::getPuestos();
         $view->areas = Area::getAreas();
+        $view->nivelesCompetencias = CompetenciasNiveles::getNivelesCompetencias();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/puestosForm.php";

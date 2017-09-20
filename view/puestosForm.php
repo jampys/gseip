@@ -80,6 +80,21 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="control-label" for="id_nivel_competencia" >Nivel de competencia</label>
+                        <select class="form-control" id="id_nivel_competencia" name="id_nivel_competencia">
+                            <option value="" disabled selected>Seleccione el nivel de competencia</option>
+                            <?php foreach ($view->nivelesCompetencias as $nc){
+                                ?>
+                                <option value="<?php echo $nc['id_nivel_competencia']; ?>"
+                                    <?php echo ($nc['id_nivel_competencia'] == $view->puesto->getIdNivelCompetencia())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $nc['nombre']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label class="control-label" for="superior" >Puesto superior</label>
                         <select class="form-control" id="superior" name="superior">
                             <option value="" disabled selected>Seleccione el puesto superior</option>
