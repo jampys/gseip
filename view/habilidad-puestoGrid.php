@@ -80,7 +80,7 @@
 
 <div id="confirm">
     <div class="modal-body">
-        ¿Desea eliminar la habillidad al puesto?
+        ¿Desea eliminar la habillidad del puesto?
     </div>
 
     <div id="myElemento" style="display:none">

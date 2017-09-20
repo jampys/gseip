@@ -16,18 +16,13 @@ switch ($operation)
 
         $id_puesto = ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null;
         $id_habilidad = ($_POST['id_habilidad']!='')? $_POST['id_habilidad'] : null;
-        $periodo = ($_POST['periodo']!='')? $_POST['periodo'] : null;
 
-        $view->habilidadPuesto = HabilidadPuesto::getHabilidadPuesto($id_puesto, $id_habilidad, $periodo);
+        $view->habilidadPuesto = HabilidadPuesto::getHabilidadPuesto($id_puesto, $id_habilidad);
         $view->contentTemplate="view/habilidad-puestoGrid.php";
         break;
 
     case 'new': //ok
         $view->label='Agregar habilidades';
-
-        $view->periodo_actual = Soporte::getPeriodoActual();
-        $view->periodos = Soporte::getPeriodos($view->periodo_actual, $view->periodo_actual + 1); //periodo actual y el siguiente
-
         $view->disableLayout=true;
         $view->contentTemplate="view/habilidad-puestoFormInsert.php";
         break;
@@ -56,7 +51,6 @@ switch ($operation)
                     $c->setIdHabilidad($vH['id_habilidad']);
                     $c->setIdPuesto($vP['id_puesto']);
                     $c->setRequerida($vH['requerida']);
-                    $c->setPeriodo($_POST["periodo"]);
                     if($c->insertHabilidadPuesto() < 0) $flag = -1;  //si falla algun insert $flag = -1
                     //echo "id_puesto: ".$vP['id_puesto']." - id_habilidad: ".$vH['id_habilidad'];
                 }
@@ -108,9 +102,6 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->periodos = HabilidadPuesto::getPeriodos();
-        $view->periodo_actual = Soporte::getPeriodoActual();
-
         $view->contentTemplate="view/habilidad-puestoGrid.php";
         break;
 }

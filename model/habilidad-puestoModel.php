@@ -8,7 +8,6 @@ class HabilidadPuesto
     private $id_habilidad;
     private $id_puesto;
     private $requerida;
-    private $periodo;
 
     private $puesto;
     private $habilidad;
@@ -25,9 +24,6 @@ class HabilidadPuesto
 
     function getRequerida()
     { return $this->requerida;}
-
-    function getPeriodo()
-    { return $this->periodo;}
 
     function getPuesto()
     { return $this->puesto;}
@@ -49,9 +45,6 @@ class HabilidadPuesto
     function setRequerida($val)
     { $this->requerida=$val;}
 
-    function setPeriodo($val)
-    { $this->periodo=$val;}
-
 
 
     function __construct($nro=0){ //constructor ok
@@ -68,7 +61,6 @@ class HabilidadPuesto
             $this->setIdHabilidad($rows[0]['id_habilidad']);
             $this->setIdPuesto($rows[0]['id_puesto']);
             $this->setRequerida($rows[0]['requerida']);
-            $this->setPeriodo($rows[0]['periodo']);
 
             $this->puesto = new Puesto($rows[0]['id_puesto']);
             $this->habilidad = new Habilidad($rows[0]['id_habilidad']);
@@ -76,7 +68,7 @@ class HabilidadPuesto
     }
 
 
-    public static function getHabilidadPuesto($id_puesto, $id_habilidad, $periodo) { //ok
+    public static function getHabilidadPuesto($id_puesto, $id_habilidad) { //ok
         $stmt=new sQuery();
         $query = "select hp.id_habilidad_puesto, pu.id_puesto, pu.nombre as puesto, pu.codigo,
 		              hab.id_habilidad, hab.nombre as habilidad,
@@ -86,12 +78,11 @@ class HabilidadPuesto
                       and hp.id_habilidad = hab.id_habilidad
                       and pu.id_puesto = ifnull(:id_puesto, pu.id_puesto)
                       and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)
-                      and hp.periodo = ifnull(:periodo, hp.periodo)";
+                      and hp.fecha_hasta is null";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_puesto', $id_puesto);
         $stmt->dpBind(':id_habilidad', $id_habilidad);
-        $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
@@ -126,7 +117,6 @@ class HabilidadPuesto
                                                     :id_habilidad,
                                                     :id_puesto,
                                                     :requerida,
-                                                    :periodo,
                                                     @flag
                                                   )';
 
@@ -134,7 +124,6 @@ class HabilidadPuesto
         $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpBind(':requerida', $this->getRequerida());
-        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();
@@ -150,7 +139,7 @@ class HabilidadPuesto
 
     function deleteHabilidadPuesto(){ //ok
         $stmt=new sQuery();
-        $query="delete from habilidad_puesto
+        $query="update habilidad_puesto set fecha_hasta = date(sysdate())
                 where id_habilidad_puesto =:id_habilidad_puesto";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_habilidad_puesto', $this->getIdHabilidadPuesto());
@@ -159,15 +148,7 @@ class HabilidadPuesto
     }
 
 
-    public static function getPeriodos() { //ok
-        $stmt=new sQuery();
-        $query = "select periodo
-                  from habilidad_puesto
-                  group by periodo";
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
+
 
 }
 

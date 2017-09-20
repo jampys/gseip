@@ -21,7 +21,6 @@
                     params={};
                     params.id_puesto = $("#id_puesto").val();
                     params.id_habilidad = $("#id_habilidad").val();
-                    params.periodo = $("#periodo").val();
                     params.action = "habilidad-puesto";
                     params.operation = "buscar";
                     //alert(params.cuil);
@@ -232,23 +231,6 @@
 
                 <div class="clearfix">
                     <form id="search_form" name="search_form">
-
-                        <div class="form-group col-md-2">
-                            <label for="periodo" class="control-label">Periodo</label>
-
-                                <select class="form-control" id="periodo" name="periodo">
-                                    <option value="">Todos</option>
-                                    <?php foreach ($view->periodos as $pe){
-                                        ?>
-                                        <option value="<?php echo $pe['periodo']; ?>"
-                                            <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
-                                            >
-                                            <?php echo $pe['periodo']; ?>
-                                        </option>
-                                    <?php  } ?>
-                                </select>
-
-                        </div>
 
                         <div class="form-group col-md-4">
                             <label for="search_puesto" class="control-label">Puesto</label>

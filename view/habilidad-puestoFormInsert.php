@@ -178,8 +178,6 @@
                 var params={};
                 params.action = 'habilidad-puesto';
                 params.operation = 'insert';
-                params.periodo = $('#myModal #periodo').val();
-                //alert(params.periodo);
 
                 var jsonPuestosIx = [];
                 for ( var item in jsonPuestos ){
@@ -199,11 +197,11 @@
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
-                        $("#myElem").html('Habilidades puestos guardadas con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Habilidades de los puestos guardadas con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                         $("#search").trigger("click");
                     }else{
-                        $("#myElem").html('Error al guardar las habilidades puestos').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar las habilidades de los puestos').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElem").hide();
                                             $('#myModal').modal('hide');
@@ -239,32 +237,6 @@
                 <h4 class="modal-title" id="myModalLabel"><?php echo $view->label ?></h4>
             </div>
             <div class="modal-body">
-
-
-                <div class="row">
-
-                    <div class="form-group col-md-2">
-
-                        <select class="form-control" id="periodo" name="periodo">
-                            <?php foreach ($view->periodos as $pe){
-                                ?>
-                                <option value="<?php echo $pe; ?>"
-                                    <?php echo ($pe == $view->periodo_actual   )? 'selected' :'' ?>
-                                    >
-                                    <?php echo $pe; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-
-                    </div>
-
-                    <div class="col-md-10"></div>
-
-                </div>
-
-
-
-
 
 
                 <div class="row">
