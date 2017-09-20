@@ -95,13 +95,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="superior" >Puesto superior</label>
-                        <select class="form-control" id="superior" name="superior">
+                        <label class="control-label" for="id_puesto_superior" >Puesto superior</label>
+                        <select class="form-control" id="id_puesto_superior" name="id_puesto_superior">
                             <option value="" disabled selected>Seleccione el puesto superior</option>
-                            <?php foreach ($view->superior as $sup){
+                            <?php foreach ($view->puesto_superior as $sup){
                                 ?>
-                                <option value="<?php echo $sup['codigo']; ?>"
-                                    <?php echo ($sup['codigo'] == $view->puesto->getCodigoSuperior())? 'selected' :'' ?>
+                                <option value="<?php echo $sup['id_puesto']; ?>"
+                                    <?php echo ($sup['id_puesto'] == $view->puesto->getIdPuestoSuperior())? 'selected' :'' ?>
                                     >
                                     <?php echo $sup['nombre']; ?>
                                 </option>

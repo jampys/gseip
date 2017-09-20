@@ -24,8 +24,9 @@ switch ($operation)
         $puesto->setNombre($_POST['nombre']);
         $puesto->setDescripcion($_POST['descripcion']);
         $puesto->setCodigo($_POST['codigo']);
-        $puesto->setCodigoSuperior(($_POST['codigo_superior'])? $_POST['codigo_superior'] : null);
+        $puesto->setIdPuestoSuperior(($_POST['id_puesto_superior'])? $_POST['id_puesto_superior'] : null);
         $puesto->setIdArea($_POST['id_area']);
+        $puesto->setIdNivelCompetencia($_POST['id_nivel_competencia']);
 
         $rta = $puesto->save();
         print_r(json_encode($rta));
@@ -36,7 +37,7 @@ switch ($operation)
         $view->puesto = new Puesto();
         $view->label='Nuevo Puesto de trabajo';
 
-        $view->superior = Puesto::getPuestos();
+        $view->puesto_superior = Puesto::getPuestos();
         $view->areas = Area::getAreas();
         $view->nivelesCompetencias = CompetenciasNiveles::getNivelesCompetencias();
 
@@ -48,8 +49,9 @@ switch ($operation)
         $view->label='Editar Puesto de trabajo';
         $view->puesto = new Puesto($_POST['id_puesto']);
 
-        $view->superior = Puesto::getPuestos();
+        $view->puesto_superior = Puesto::getPuestos();
         $view->areas = Area::getAreas();
+        $view->nivelesCompetencias = CompetenciasNiveles::getNivelesCompetencias();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/puestosForm.php";

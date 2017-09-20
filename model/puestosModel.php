@@ -7,7 +7,7 @@ class Puesto
     private $nombre;
     private $descripcion;
     private $codigo;
-    private $codigo_superior;
+    private $id_puesto_superior;
     private $id_area;
     private $id_nivel_competencia;
 
@@ -24,8 +24,8 @@ class Puesto
     function getCodigo()
     { return $this->codigo;}
 
-    function getCodigoSuperior()
-    { return $this->codigo_superior;}
+    function getIdPuestoSuperior()
+    { return $this->id_puesto_superior;}
 
     function getIdArea()
     { return $this->id_area;}
@@ -46,8 +46,8 @@ class Puesto
     function setCodigo($val)
     {  $this->codigo=$val;}
 
-    function setCodigoSuperior($val)
-    {  $this->codigo_superior=$val;}
+    function setIdPuestoSuperior($val)
+    {  $this->id_puesto_superior=$val;}
 
     function setIdArea($val)
     {  $this->id_area=$val;}
@@ -58,10 +58,10 @@ class Puesto
 
     public static function getPuestos() { //ok
         $stmt=new sQuery();
-        $query="select pu.id_puesto, pu.nombre, pu.descripcion, pu.codigo, pu.codigo_superior,
+        $query="select pu.id_puesto, pu.nombre, pu.descripcion, pu.codigo,
                     su.nombre as nombre_superior, ar.nombre as area, nc.nombre as nivel_competencia
                     from puestos pu
-                    left join puestos su on pu.codigo_superior = su.codigo
+                    left join puestos su on pu.id_puesto_superior = su.id_puesto
                     left join areas ar on pu.id_area = ar.id_area
                     left join competencias_niveles nc on pu.id_nivel_competencia = nc.id_nivel_competencia";
 
@@ -85,8 +85,9 @@ class Puesto
             $this->setNombre($rows[0]['nombre']);
             $this->setDescripcion($rows[0]['descripcion']);
             $this->setCodigo($rows[0]['codigo']);
-            $this->setCodigoSuperior($rows[0]['codigo_superior']);
+            $this->setIdPuestoSuperior($rows[0]['id_puesto_superior']);
             $this->setIdArea($rows[0]['id_area']);
+            $this->setIdNivelCompetencia($rows[0]['id_nivel_competencia']);
         }
     }
 
@@ -107,15 +108,17 @@ class Puesto
                 nombre= :nombre,
                 descripcion= :descripcion,
                 codigo= :codigo,
-                codigo_superior= :codigo_superior,
-                id_area= :id_area
+                id_puesto_superior= :id_puesto_superior,
+                id_area= :id_area,
+                id_nivel_competencia= :id_nivel_competencia
                 where id_puesto = :id_puesto";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
         $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':codigo_superior', $this->getCodigoSuperior());
+        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
         $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -124,14 +127,15 @@ class Puesto
     private function insertPuesto(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into puestos(nombre, descripcion, codigo, codigo_superior, id_area)
-                values(:nombre, :descripcion, :codigo, :codigo_superior, :id_area)";
+        $query="insert into puestos(nombre, descripcion, codigo, id_puesto_superior, id_area, id_nivel_competencia)
+                values(:nombre, :descripcion, :codigo, :id_puesto_superior, :id_area, :id_nivel_competencia)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
         $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':codigo_superior', $this->getCodigoSuperior());
+        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
         $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

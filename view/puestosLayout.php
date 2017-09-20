@@ -47,9 +47,10 @@
                     params.nombre=$('#nombre').val();
                     params.descripcion=$('#descripcion').val();
                     params.codigo=$('#codigo').val();
-                    params.codigo_superior=$('#superior').val();
+                    params.id_puesto_superior=$('#id_puesto_superior').val();
                     params.id_area=$('#id_area').val();
-                    //alert(params.codigo_superior);
+                    params.id_nivel_competencia=$('#id_nivel_competencia').val();
+                    //alert(params.id_puesto_superior);
                     $.post('index.php',params,function(data, status, xhr){
 
                         //alert(data);
