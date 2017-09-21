@@ -44,8 +44,8 @@
                 params={};
                 params.action = "objetivos";
                 params.operation="newObjetivo";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
+                $('#content').load('index.php', params,function(){
+                    //$('#myModal').modal();
                 })
             });
 

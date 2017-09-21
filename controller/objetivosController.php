@@ -34,8 +34,8 @@ switch ($operation)
         $view->objetivo = new Objetivo();
         $view->label='Nuevo objetivo';
 
-        $view->superior = Objetivo::getObjetivos();
-        $view->tipos = Soporte::get_enum_values('objetivos', 'tipo');
+        //$view->superior = Objetivo::getObjetivos();
+        //$view->tipos = Soporte::get_enum_values('objetivos', 'tipo');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivosForm.php";
