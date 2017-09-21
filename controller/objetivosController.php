@@ -11,13 +11,15 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid': //ok
+    case 'refreshGrid':
         $view->disableLayout=true;
-        $view->objetivos = Objetivo::getObjetivos();
+        //$view->periodos = Objetivo::getPeriodos();
+        $periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
+        $view->objetivos = Objetivo::getObjetivos($periodo);
         $view->contentTemplate="view/objetivosGrid.php";
         break;
 
-    case 'saveObjetivo': //ok
+    case 'saveObjetivo':
         $objetivo = new Objetivo($_POST['id_objetivo']);
         $objetivo->setNombre($_POST['nombre']);
         $objetivo->setTipo($_POST['tipo']);
@@ -28,7 +30,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newObjetivo': //ok
+    case 'newObjetivo':
         $view->objetivo = new Objetivo();
         $view->label='Nuevo objetivo';
 
@@ -39,7 +41,7 @@ switch ($operation)
         $view->contentTemplate="view/objetivosForm.php";
         break;
 
-    case 'editObjetivo': //ok
+    case 'editObjetivo':
         $view->label='Editar Objetivo';
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
 
@@ -50,14 +52,14 @@ switch ($operation)
         $view->contentTemplate="view/objetivosForm.php";
         break;
 
-    case 'deleteObjetivo': //ok
+    case 'deleteObjetivo':
         $objetivo = new Objetivo($_POST['id_objetivo']);
         $rta = $objetivo->deleteObjetivo();
         print_r(json_encode($rta));
         die;
         break;
 
-    case 'autocompletarObjetivos': //ok
+    case 'autocompletarObjetivos':
         $view->objetivo = new Objetivo();
         $rta=$view->objetivo->autocompletarObjetivos($_POST['term']);
         print_r(json_encode($rta));
@@ -65,7 +67,9 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->objetivos = Objetivo::getObjetivos();
+        $view->periodos = Objetivo::getPeriodos();
+        $view->periodo_actual = Soporte::getPeriodoActual();
+        $view->objetivos = Objetivo::getObjetivos($view->periodo_actual);
         $view->contentTemplate="view/objetivosGrid.php";
         break;
 }

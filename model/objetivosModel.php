@@ -36,18 +36,20 @@ class Objetivo
     {  $this->objetivo_superior=$val;}
 
 
-    public static function getObjetivos() { //ok
+    public static function getObjetivos($periodo) { //ok
         $stmt=new sQuery();
-        /*$query="select ob.id_objetivo, ob.nombre, ob.tipo, su.nombre as objetivo_superior
-                    from objetivos ob
-                    left join objetivos su on ob.objetivo_superior = su.id_objetivo";*/
-        $query="select * from objetivos";
+        $query="select ob.*, ar.nombre as area, pro.nombre as proceso
+from objetivos ob
+left join areas ar on ob.id_area = ar.id_area
+left join procesos pro on pro.id_proceso = ob.id_proceso
+where ob.periodo = :periodo";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
-    function __construct($nro=0){ //constructor ok
+    function __construct($nro=0){ //constructor
 
         if ($nro!=0){
 
@@ -67,7 +69,7 @@ class Objetivo
 
 
 
-    function save(){ //ok
+    function save(){
         if($this->id_objetivo)
         {$rta = $this->updateObjetivo();}
         else
@@ -75,7 +77,7 @@ class Objetivo
         return $rta;
     }
 
-    public function updateObjetivo(){ //ok
+    public function updateObjetivo(){
 
         $stmt=new sQuery();
         $query="update objetivos set
@@ -92,7 +94,7 @@ class Objetivo
         return $stmt->dpGetAffect();
     }
 
-    private function insertObjetivo(){ //ok
+    private function insertObjetivo(){
 
         $stmt=new sQuery();
         $query="insert into objetivos(nombre, tipo, objetivo_superior)
@@ -105,7 +107,7 @@ class Objetivo
         return $stmt->dpGetAffect();
     }
 
-    function deleteObjetivo(){ //ok
+    function deleteObjetivo(){
         $stmt=new sQuery();
         $query="delete from objetivos where id_objetivo= :id";
         $stmt->dpPrepare($query);
@@ -114,8 +116,18 @@ class Objetivo
         return $stmt->dpGetAffect();
     }
 
+    public static function getPeriodos() {
+        $stmt=new sQuery();
+        $query = "select periodo
+                  from objetivos
+                  group by periodo";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
 
-    public function autocompletarObjetivos($term) { //ok
+
+    public function autocompletarObjetivos($term) {
         $stmt=new sQuery();
         /*$query = "select *
                   from objetivos

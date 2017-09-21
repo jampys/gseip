@@ -33,8 +33,8 @@
             <thead>
             <tr>
                 <th>Nombre</th>
-                <th>objetivo superior</th>
-                <th>Tipo</th>
+                <th>Proceso</th>
+                <th>Area</th>
                 <th>Editar</th>
                 <th>Borrar</th>
             </tr>
@@ -43,8 +43,8 @@
             <?php foreach ($view->objetivos as $objetivo):   ?>
                 <tr>
                     <td><?php echo $objetivo['nombre'];?></td>
-                    <td><?php echo $objetivo['objetivo_superior'];?></td>
-                    <td><?php echo $objetivo['tipo'];?></td>
+                    <td><?php echo $objetivo['proceso'];?></td>
+                    <td><?php echo $objetivo['area'];?></td>
                     <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $objetivo['id_objetivo'];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
                     <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $objetivo['id_objetivo'];?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                 </tr>

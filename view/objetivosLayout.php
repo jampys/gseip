@@ -12,8 +12,20 @@
 
         $(document).ready(function(){
 
+            //Al cambiar el periodo
+            $(document).on('change', '#periodo', function(){
+                //alert('cambio el periodo');
+                //preparo los parametros
+                params={};
+                params.periodo = $('#periodo').val();
+                params.action = "objetivos";
+                params.operation = "refreshGrid";
+                $('#content').load('index.php', params,function(){})
 
-            $(document).on('click', '.edit', function(){ //ok
+            });
+
+
+            $(document).on('click', '.edit', function(){
                 var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
@@ -28,7 +40,7 @@
 
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){
                 params={};
                 params.action = "objetivos";
                 params.operation="newObjetivo";
@@ -38,7 +50,7 @@
             });
 
 
-            $(document).on('click', '#submit',function(){ //ok
+            $(document).on('click', '#submit',function(){
                 if ($("#objetivo").valid()){
                     var params={};
                     params.action = 'objetivos';
@@ -70,14 +82,14 @@
             });
 
 
-            $(document).on('click', '#cancel',function(){ //ok
+            $(document).on('click', '#cancel',function(){
                 $('#myModal').modal('hide');
             });
 
 
 
 
-            $(document).on('click', '.delete', function(){ //ok
+            $(document).on('click', '.delete', function(){
                 var id = $(this).attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
@@ -102,7 +114,7 @@
             });
 
 
-            $.fn.borrar = function(id) { //ok
+            $.fn.borrar = function(id) {
                 //alert(id);
                 //preparo los parametros
                 params={};
