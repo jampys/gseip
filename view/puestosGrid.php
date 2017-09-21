@@ -7,11 +7,11 @@
             /*language: {
                 url: 'dataTables/Spanish.json'
             }*/
-            "stateSave": true,
-            columnDefs: [
+            "stateSave": true
+            /*columnDefs: [
                         {targets: 1, render: $.fn.dataTable.render.ellipsis( 20)}
 
-                        ]
+                        ]*/
         });
 
 
