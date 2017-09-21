@@ -22,16 +22,10 @@
 </script>
 
 
-<div class="col-md-2"></div>
+<div class="col-md-1"></div>
 
-<div class="col-md-8">
+<div class="col-md-10">
 
-    <h4>Objetivos</h4>
-    <hr class="hr-primary"/>
-
-    <div style="text-align: right; margin-bottom: 10px">
-        <button  id="new" type="button" class="btn btn-primary btn-sm">Nuevo objetivo</button>
-    </div>
 
     <div class="table-responsive">
 
@@ -62,7 +56,7 @@
 
 </div>
 
-<div class="col-md-2"></div>
+<div class="col-md-1"></div>
 
 
 

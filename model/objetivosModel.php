@@ -38,9 +38,10 @@ class Objetivo
 
     public static function getObjetivos() { //ok
         $stmt=new sQuery();
-        $query="select ob.id_objetivo, ob.nombre, ob.tipo, su.nombre as objetivo_superior
+        /*$query="select ob.id_objetivo, ob.nombre, ob.tipo, su.nombre as objetivo_superior
                     from objetivos ob
-                    left join objetivos su on ob.objetivo_superior = su.id_objetivo";
+                    left join objetivos su on ob.objetivo_superior = su.id_objetivo";*/
+        $query="select * from objetivos";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();

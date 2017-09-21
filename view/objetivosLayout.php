@@ -141,6 +141,72 @@
 
     <div class="container">
 
+
+
+
+
+        <br/>
+        <div class="row">
+
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-10">
+
+                <h4>Objetivos</h4>
+                <hr class="hr-primary"/>
+
+                <div class="clearfix">
+                    <form id="search_form" name="search_form">
+
+                        <div class="form-group col-md-2">
+                            <label for="periodo" class="control-label">Periodo</label>
+
+                            <select class="form-control" id="periodo" name="periodo">
+                                <option value="">Todos</option>
+                                <?php foreach ($view->periodos as $pe){
+                                    ?>
+                                    <option value="<?php echo $pe['periodo']; ?>"
+                                        <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $pe['periodo']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group col-md-8"></div>
+
+
+                        <div class="form-group col-md-2">
+                            <label for="search">&nbsp;</label>
+                            <button  id="new" type="button" class="form-control btn btn-primary btn-sm">Nuevo objetivo</button>
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+            </div>
+
+
+            <div class="col-md-1"></div>
+
+        </div>
+        <br/>
+
+
+
+
+
+
+
+
+
+
         <div id="content" class="row">
             <?php include_once ($view->contentTemplate);  ?>
         </div>

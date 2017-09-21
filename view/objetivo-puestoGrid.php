@@ -31,8 +31,6 @@
 
 
 
-
-
     <div class="table-responsive">
 
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
