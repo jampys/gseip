@@ -32,20 +32,20 @@
                 params.id_objetivo = id;
                 params.action = "objetivos";
                 params.operation = "editObjetivo";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
+                $('#content').load('index.php', params,function(){
+                    $('#search_panel').hide();
                 })
 
             });
 
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "objetivos";
                 params.operation="newObjetivo";
                 $('#content').load('index.php', params,function(){
-                    //$('#myModal').modal();
+                    $('#search_panel').hide();
                 })
             });
 
@@ -82,8 +82,14 @@
             });
 
 
-            $(document).on('click', '#cancel',function(){
-                $('#myModal').modal('hide');
+            $(document).on('click', '#cancel',function(){ //ok
+                params={};
+                params.action = "objetivos";
+                params.operation = "refreshGrid";
+                $('#content').load('index.php', params, function(){
+                    $('#search_panel').show();
+                });
+
             });
 
 
@@ -157,8 +163,9 @@
 
 
 
-        <br/>
-        <div class="row">
+
+        <div class="row" id="search_panel">
+            <br/>
 
 
             <div class="col-md-1"></div>
@@ -207,8 +214,9 @@
 
             <div class="col-md-1"></div>
 
+            <br/>
         </div>
-        <br/>
+
 
 
 

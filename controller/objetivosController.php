@@ -44,10 +44,6 @@ switch ($operation)
     case 'editObjetivo':
         $view->label='Editar Objetivo';
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
-
-        $view->superior = Objetivo::getObjetivos();
-        $view->tipos = Soporte::get_enum_values('objetivos', 'tipo');
-
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivosForm.php";
         break;
