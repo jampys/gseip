@@ -1,6 +1,9 @@
 ﻿<?php
 
 include_once("model/objetivosModel.php");
+include_once("model/procesosModel.php");
+include_once("model/areasModel.php");
+include_once("model/contratosModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -34,8 +37,12 @@ switch ($operation)
         $view->objetivo = new Objetivo();
         $view->label='Nuevo objetivo';
 
-        //$view->superior = Objetivo::getObjetivos();
-        //$view->tipos = Soporte::get_enum_values('objetivos', 'tipo');
+        $view->periodos = Objetivo::getPeriodos();
+        $view->periodo_actual = Soporte::getPeriodoActual();
+        $view->procesos = Proceso::getProcesos();
+        $view->areas = Area::getAreas();
+        $view->contratos = Contrato::getContratos();
+        $view->frecuencias = Soporte::get_enum_values('objetivos', 'frecuencia');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivosForm.php";
@@ -44,6 +51,10 @@ switch ($operation)
     case 'editObjetivo':
         $view->label='Editar Objetivo';
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
+
+        $view->periodos = Objetivo::getPeriodos();
+        $view->periodo_actual = Soporte::getPeriodoActual();
+
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivosForm.php";
         break;
@@ -55,7 +66,7 @@ switch ($operation)
         die;
         break;
 
-    case 'autocompletarObjetivos':
+    case 'autocompletarObjetivos': //ok
         $view->objetivo = new Objetivo();
         $rta=$view->objetivo->autocompletarObjetivos($_POST['term']);
         print_r(json_encode($rta));

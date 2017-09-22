@@ -116,7 +116,7 @@ where ob.periodo = :periodo";
         return $stmt->dpGetAffect();
     }
 
-    public static function getPeriodos() {
+    public static function getPeriodos() { //ok
         $stmt=new sQuery();
         $query = "select periodo
                   from objetivos
@@ -127,19 +127,18 @@ where ob.periodo = :periodo";
     }
 
 
-    public function autocompletarObjetivos($term) {
+    public function autocompletarObjetivos($term) { //ok
         $stmt=new sQuery();
-        /*$query = "select *
-                  from objetivos
-                  where nombre like '%$term%'";*/
-        $query = "select id_objetivo_puesto, op.id_objetivo, ob.nombre, id_contrato, periodo, op.valor
+        /*$query = "select id_objetivo_puesto, op.id_objetivo, ob.nombre, id_contrato, periodo, op.valor
 from objetivo_puesto op, objetivos ob
 where op.id_objetivo = ob.id_objetivo
 and nombre like '%$term%'
 UNION
 select null, id_objetivo, nombre, null, null, null
 from objetivos
-where nombre like '%$term%'";
+where nombre like '%$term%'";*/
+        $query = "select * from objetivos
+                  where nombre like '%$term%'";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
