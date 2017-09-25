@@ -96,8 +96,13 @@
                                 label: (!item.id_objetivo_puesto)? item.nombre : item.nombre+' '+item.periodo,
                                 objetivo: item.nombre,
                                 id_objetivo: item.id_objetivo,
-                                id_objetivo_puesto: item.id_objetivo_puesto,
-                                valor: item.valor
+                                id_proceso: item.id_proceso,
+                                id_area: item.id_area,
+                                id_contrato: item.id_contrato,
+                                meta: item.meta,
+                                actividades: item.actividades,
+                                indicador: item.indicador,
+                                frecuencia: item.frecuencia
 
                             };
                         }));
@@ -111,27 +116,14 @@
             minLength: 2,
             change: function(event, ui) {
 
-                //Abre modal para agregar nuevo empleado al contrato
-                params={};
-                params.action = "objetivo-puesto";
-                params.operation="editObjetivoPuesto";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModalUpdate').modal();
-                    $('#myModalUpdate #objetivo').val(ui.item.objetivo);
-                    $('#myModalUpdate #id_objetivo').val(ui.item.id_objetivo);
+                $('#id_proceso').val(ui.item.id_proceso);
+                $('#id_area').val(ui.item.id_area);
+                $('#id_contrato').val(ui.item.id_contrato);
+                $('#meta').val(ui.item.meta);
+                $('#actividades').val(ui.item.actividades);
+                $('#indicador').val(ui.item.indicador);
+                $('#frecuencia').val(ui.item.frecuencia);
 
-                    if(ui.item.id_objetivo_puesto){
-
-                        $('#myModalUpdate #valor').val(ui.item.valor);
-
-
-                    }
-
-
-
-                });
-
-                $('#objetivo-puesto #search_objetivo').val('');
                 return false;
 
             }
@@ -274,7 +266,7 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="actividades">Actividades</label>
         <div class="col-md-8">
-            <textarea class="form-control" name="actividades" id="actividades" placeholder="Actividades" rows="2"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+            <textarea class="form-control" name="actividades" id="actividades" placeholder="Actividades" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
         </div>
     </div>
 
@@ -321,6 +313,38 @@
             <input type="hidden" name="id_responsable_seguimiento" id="id_responsable_seguimiento" class="responsable-seguimiento-group" value = "<?php //print $view->contrato->getIdResponsable() ?>" >
         </div>
     </div>
+
+
+
+
+    <hr/>
+
+
+    <div class="clearfix">
+        <h4 class="pull-left">Sub-objetivos</h4>
+        <button class="btn btn-primary btn-sm pull-right" id="add-empleado" >Agregar</button>
+    </div>
+
+
+    <div class="table-responsive" id="empleados-table">
+        <table class="table table-condensed dataTable table-hover">
+            <thead>
+            <tr>
+                <th>Empleado</th>
+                <th>Puesto</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- se genera dinamicamente desde javascript -->
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <hr/>
 
 
 
