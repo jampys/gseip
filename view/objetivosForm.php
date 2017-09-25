@@ -139,6 +139,19 @@
         };
 
 
+        //Abre modal para agregar nuevo subobjetivo al objetivo
+        $('#objetivo').on('click', '#add-subobjetivo', function(e){
+            alert('popup para agregar subobjetivo');
+            params={};
+            params.action = "contratos";
+            params.operation="loadEmpleado";
+            $('#popupbox').load('index.php', params,function(){
+                $('#myModal').modal();
+            });
+            return false;
+        });
+
+
 
 
 
@@ -156,7 +169,7 @@
 <div class="col-md-8">
 
 
-<div class="panel panel-default ">
+<div class="panel panel-default" id="objetivo">
 <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
 
 <div class="panel-body">
@@ -322,7 +335,7 @@
 
     <div class="clearfix">
         <h4 class="pull-left">Sub-objetivos</h4>
-        <button class="btn btn-primary btn-sm pull-right" id="add-empleado" >Agregar</button>
+        <button class="btn btn-primary btn-sm pull-right" id="add-subobjetivo">Agregar</button>
     </div>
 
 
