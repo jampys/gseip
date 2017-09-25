@@ -21,7 +21,6 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <!--<li class="active"><a href="#">Home</a></li>-->
-                    <li><a href="index.php?action=clientes&operation=index">Clientes</a></li>
                     <li><a href="index.php?action=empleados">Empleados</a></li>
                     <li><a href="index.php?action=contratos">Contratos</a></li>
 
@@ -31,11 +30,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="index.php?action=habilidades">Habilidades</a></li>
-                            <li><a href="index.php?action=habilidad-empleado">Habilidades - Empleados</a></li>
+                            <li><a href="index.php?action=habilidad-empleado">Habilidades por Empleado</a></li>
                             <li><a href="index.php?action=puestos">Puestos</a></li>
-                            <li><a href="index.php?action=habilidad-puesto">Habilidades - Puestos</a></li>
+                            <li><a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></li>
                             <li><a href="index.php?action=objetivos">Objetivos</a></li>
-                            <li><a href="index.php?action=objetivo-puesto">Objetivos - Puestos</a></li>
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">NAV HEADER</li>
                             <li><a href="#">Separated link</a></li>

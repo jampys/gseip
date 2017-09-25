@@ -226,7 +226,7 @@
 
             <div class="col-md-10">
 
-                <h4>Habilidades - Puestos</h4>
+                <h4>Habilidades por puesto</h4>
                 <hr class="hr-primary"/>
 
                 <div class="clearfix">
