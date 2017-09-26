@@ -16,9 +16,9 @@
                 }
 
                 $('#subobjetivos-table tbody').append('<tr id_objetivo_sub='+jsonSubobjetivos[i].id_objetivo_sub+'>' +
-                '<td>'+jsonSubobjetivos[i].empleado+'</td>' +
+                '<td>'+jsonSubobjetivos[i].nombre+'</td>' +
                     //'<td>'+jsonSubobjetivos[i].empleado+' '+jsonSubobjetivos[i].operacion+'</td>' +
-                '<td>'+jsonSubobjetivos[i].puesto+'</td>' +
+                '<td>'+jsonSubobjetivos[i].area+'</td>' +
                 '<td class="text-center"><a class="update-empleado" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
                 '<td class="text-center"><a class="delete-empleado" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                 '</tr>');
@@ -236,8 +236,8 @@
 
 
         //Abre modal para agregar nuevo subobjetivo al objetivo
-        $('#objetivo').on('click', '#add-subobjetivo', function(e){
-            alert('popup para agregar subobjetivo');
+        $('#objetivo').on('click', '#add-subobjetivo', function(e){ //ok
+            //alert('popup para agregar subobjetivo');
             params={};
             params.action = "objetivos";
             params.operation="loadSubObjetivo";
@@ -252,20 +252,19 @@
 
         //Guarda los cambios luego de insertar o actualizar un subobjetivo del objetivo
         $(document).on('click', '#myModal #submit',function(){
-            alert('guardar el subobjetivo');
+            //alert('guardar el subobjetivo');
 
             if ($("#subobjetivo-form").valid()){
 
-                var id = $('#id_empleado').val();
+                var id = $('#myModal #id_area').val();
 
                 if(jsonSubobjetivos[id]) { //si ya existe en el array, lo actualiza
                     //alert('el elemento existe');
-                    jsonSubobjetivos[id].id_puesto = $("#puesto").val();
-                    jsonSubobjetivos[id].puesto = $("#puesto option:selected").text();
-                    jsonSubobjetivos[id].fecha_desde = $('#myModal #fecha_desde').val();
-                    jsonSubobjetivos[id].fecha_hasta = $('#myModal #fecha_hasta').val();
+                    jsonSubobjetivos[id].id_area = $('#myModal #id_area').val();
+                    jsonSubobjetivos[id].area = $('#myModal #id_area option:selected').text();
+                    jsonSubobjetivos[id].nombre = $('#myModal #nombre').val();
 
-                    if(!jsonSubobjetivos[id].id_empleado_contrato){ //si no esta en la BD
+                    if(!jsonSubobjetivos[id].id_objetivo_sub){ //si no esta en la BD
                         jsonSubobjetivos[id].operacion = 'insert';
                     }else{ //si esta en la BD, lo marca para eliminar
                         jsonSubobjetivos[id].operacion = 'update';
@@ -274,12 +273,9 @@
                 }
                 else { // si no existe en el array, lo inserta
                     item = {};
-                    item.id_empleado = id;
-                    item.empleado = $('#empleado').val();
-                    item.puesto = $("#puesto option:selected").text();
-                    item.id_puesto = $("#puesto").val();
-                    item.fecha_desde = $('#myModal #fecha_desde').val();
-                    item.fecha_hasta = $('#myModal #fecha_hasta').val();
+                    item.id_area = id;
+                    item.area = $('#myModal #id_area option:selected').text();
+                    item.nombre = $('#myModal #nombre').val();
                     item.operacion = 'insert';
                     jsonSubobjetivos[id] = item;
                     //alert('agregado con exito');
@@ -502,8 +498,8 @@
         <table class="table table-condensed dataTable table-hover">
             <thead>
             <tr>
-                <th>Empleado</th>
-                <th>Puesto</th>
+                <th>Nombre</th>
+                <th>Área</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
