@@ -15,7 +15,7 @@
                     continue;
                 }
 
-                $('#subobjetivos-table tbody').append('<tr id_empleado='+jsonSubobjetivos[i].id_empleado+'>' +
+                $('#subobjetivos-table tbody').append('<tr id_objetivo_sub='+jsonSubobjetivos[i].id_objetivo_sub+'>' +
                 '<td>'+jsonSubobjetivos[i].empleado+'</td>' +
                     //'<td>'+jsonSubobjetivos[i].empleado+' '+jsonSubobjetivos[i].operacion+'</td>' +
                 '<td>'+jsonSubobjetivos[i].puesto+'</td>' +
@@ -237,7 +237,7 @@
 
         //Abre modal para agregar nuevo subobjetivo al objetivo
         $('#objetivo').on('click', '#add-subobjetivo', function(e){
-            //alert('popup para agregar subobjetivo');
+            alert('popup para agregar subobjetivo');
             params={};
             params.action = "objetivos";
             params.operation="loadSubObjetivo";

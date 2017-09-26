@@ -12,9 +12,9 @@
 
         $(document).ready(function(){
 
-            $('#popupbox').dialog({
+            /*$('#popupbox').dialog({
                 autoOpen:false
-            });
+            });*/
 
             //Al cambiar el periodo
             $(document).on('change', '#periodo', function(){
