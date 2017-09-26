@@ -73,6 +73,14 @@ switch ($operation)
         exit;
         break;
 
+    case 'loadSubObjetivo': //ok //abre la ventana modal para agregar y editar un subobjetivo del objetivo
+        $view->label='Sub objetivo';
+        $view->disableLayout=true;
+        //$view->puesto = Puesto::getPuestos();
+
+        $view->contentTemplate="view/objetivosFormSubObjetivo.php";
+        break;
+
     default : //ok
         $view->periodos = Objetivo::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();

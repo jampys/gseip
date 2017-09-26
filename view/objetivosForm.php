@@ -3,14 +3,7 @@
 
     $(document).ready(function(){
 
-
-        $('#myModal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });
-
-
-        $('#objetivo').validate({
+        $('#objetivo-form').validate({
             rules: {
                 nombre: {required: true},
                 tipo: {required: true},
@@ -143,8 +136,8 @@
         $('#objetivo').on('click', '#add-subobjetivo', function(e){
             alert('popup para agregar subobjetivo');
             params={};
-            params.action = "contratos";
-            params.operation="loadEmpleado";
+            params.action = "objetivos";
+            params.operation="loadSubObjetivo";
             $('#popupbox').load('index.php', params,function(){
                 $('#myModal').modal();
             });
