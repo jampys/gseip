@@ -12,6 +12,10 @@
 
         $(document).ready(function(){
 
+            $('#popupbox').dialog({
+                autoOpen:false
+            });
+
             //Al cambiar el periodo
             $(document).on('change', '#periodo', function(){
                 //alert('cambio el periodo');
@@ -49,52 +53,7 @@
                 })
             });
 
-
-            $(document).on('click', '#submit',function(){
-                if ($("#objetivo").valid()){
-                    var params={};
-                    params.action = 'objetivos';
-                    params.operation = 'saveObjetivo';
-                    params.id_objetivo=$('#id_objetivo').val();
-                    params.nombre=$('#nombre').val();
-                    params.tipo=$('#tipo').val();
-                    params.objetivo_superior=$('#superior').val();
-                    //alert(params.codigo_superior);
-                    $.post('index.php',params,function(data, status, xhr){
-
-                        //alert(data);
-                        //var rta= parseInt(data.charAt(3));
-                        //alert(rta);
-                        if(data >=0){
-                            $("#myElem").html('Objetivo guardado con exito').addClass('alert alert-success').show();
-                            $('#content').load('index.php',{action:"objetivos", operation:"refreshGrid"});
-                        }else{
-                            $("#myElem").html('Error al guardar el objetivo').addClass('alert alert-danger').show();
-                        }
-                        setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
-                                              }, 2000);
-
-                    });
-
-                }
-                return false;
-            });
-
-
-            $(document).on('click', '#cancel',function(){ //ok
-                params={};
-                params.action = "objetivos";
-                params.operation = "refreshGrid";
-                $('#content').load('index.php', params, function(){
-                    $('#search_panel').show();
-                });
-
-            });
-
-
-
-
+            
             $(document).on('click', '.delete', function(){
                 var id = $(this).attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre

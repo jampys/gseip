@@ -224,9 +224,14 @@
 
 
 
-        $('#contrato').on('click', '#cancel',function(){
-            //$('#popupbox').dialog('close');
-            $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
+        $('#contrato').on('click', '#cancel',function(){ //ok
+            params={};
+            params.action = "objetivos";
+            params.operation = "refreshGrid";
+            $('#content').load('index.php', params, function(){
+                $('#search_panel').show();
+            });
+
         });
 
 
