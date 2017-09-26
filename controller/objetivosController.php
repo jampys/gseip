@@ -76,7 +76,7 @@ switch ($operation)
     case 'loadSubObjetivo': //ok //abre la ventana modal para agregar y editar un subobjetivo del objetivo
         $view->label='Sub objetivo';
         $view->disableLayout=true;
-        //$view->puesto = Puesto::getPuestos();
+        $view->areas = Area::getAreas();
 
         $view->contentTemplate="view/objetivosFormSubObjetivo.php";
         break;
