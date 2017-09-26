@@ -301,7 +301,7 @@
             }
 
 
-            $.cargarTablaEmpleados();
+            $.cargarTablaSubobjetivos();
             return false;
         });
 
