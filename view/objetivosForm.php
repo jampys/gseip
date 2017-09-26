@@ -224,7 +224,7 @@
 
 
 
-        $('#contrato').on('click', '#cancel',function(){ //ok
+        $('#objetivo').on('click', '#cancel',function(){ //ok
             params={};
             params.action = "objetivos";
             params.operation = "refreshGrid";
@@ -251,7 +251,7 @@
 
 
         //Guarda los cambios luego de insertar o actualizar un subobjetivo del objetivo
-        $(document).on('click', '#myModal #submit',function(){
+        $(document).on('click', '#myModal #submit',function(){ //ok
             //alert('guardar el subobjetivo');
 
             if ($("#subobjetivo-form").valid()){

@@ -4,13 +4,13 @@
     $(document).ready(function(){
 
 
-        $('#myModal').modal({
+        $('#myModal').modal({ //ok
             backdrop: 'static',
             keyboard: false
         });
 
 
-        $('#subobjetivo-form').validate({
+        $('#subobjetivo-form').validate({ //ok
             rules: {
                 nombre: {required: true},
                 id_area: {required: true}

@@ -70,7 +70,7 @@ switch ($operation)
         $view->domicilios = $view->empleado->getDomiciliosByEmpleado();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/EmpleadosForm.php";
+        $view->contentTemplate="view/empleadosForm.php";
         break;
 
     case 'checkEmpleadoCuil':
