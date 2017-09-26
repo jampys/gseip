@@ -286,6 +286,7 @@
             return false;
         });
 
+
         //Elimina un empleado del contrato
         $('#contrato').on('click', '.delete-empleado', function(e){
             //alert('actualizar empleado');

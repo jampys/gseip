@@ -16,7 +16,7 @@
                 id_area: {required: true}
             },
             messages:{
-                puesto: "Ingrese el nombre",
+                nombre: "Ingrese el nombre",
                 id_area: "Seleccione un área"
             }
         });
