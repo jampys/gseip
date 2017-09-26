@@ -47,7 +47,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nobre" placeholder="Nombre">
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
                     </div>
 
                     <div class="form-group">
