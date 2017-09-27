@@ -15,12 +15,12 @@
                     continue;
                 }
 
-                $('#subobjetivos-table tbody').append('<tr id_objetivo_sub='+jsonSubobjetivos[i].id_objetivo_sub+'>' +
+                $('#subobjetivos-table tbody').append('<tr id_area='+jsonSubobjetivos[i].id_area+'>' +
                 '<td>'+jsonSubobjetivos[i].nombre+'</td>' +
                     //'<td>'+jsonSubobjetivos[i].empleado+' '+jsonSubobjetivos[i].operacion+'</td>' +
                 '<td>'+jsonSubobjetivos[i].area+'</td>' +
-                '<td class="text-center"><a class="update-empleado" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
-                '<td class="text-center"><a class="delete-empleado" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="update-subobjetivo" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="delete-subobjetivo" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                 '</tr>');
 
             }
@@ -258,6 +258,24 @@
             params.operation="loadSubObjetivo";
             $('#popupbox').load('index.php', params,function(){
                 $('#myModal').modal();
+            });
+            return false;
+        });
+
+
+        //Abre modal para actualizar datos del subobjetivo del objetivo
+        $('#objetivo').on('click', '.update-subobjetivo', function(e){ //ok
+            //alert('actualizar empleado');
+            var id = $(this).closest('tr').attr('id_area');
+            //alert(id);
+            params={};
+            params.action = "objetivos";
+            params.operation="loadSubObjetivo";
+            $('#popupbox').load('index.php', params,function(){
+                $('#myModal').modal();
+                $('#myModal #nombre').val(jsonSubobjetivos[id].nombre);
+                $('#myModal #id_area').val(jsonSubobjetivos[id].id_area);
+
             });
             return false;
         });
