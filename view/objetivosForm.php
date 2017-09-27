@@ -513,10 +513,10 @@
         <table class="table table-condensed dataTable table-hover">
             <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Área</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th class="col-md-6">Nombre</th>
+                <th class="col-md-4">Área</th>
+                <th class="col-md-1">Editar</th>
+                <th class="col-md-1">Eliminar</th>
             </tr>
             </thead>
             <tbody>

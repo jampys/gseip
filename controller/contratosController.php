@@ -115,7 +115,7 @@ switch ($operation)
         $view->companias = Compania::getCompanias();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/ContratosForm.php";
+        $view->contentTemplate="view/contratosForm.php";
         break;
 
     case 'editContratoEmpleado': //ok
