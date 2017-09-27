@@ -23,14 +23,67 @@ switch ($operation)
         $view->contentTemplate="view/objetivosGrid.php";
         break;
 
-    case 'saveObjetivo':
-        $objetivo = new Objetivo($_POST['id_objetivo']);
-        $objetivo->setNombre($_POST['nombre']);
-        $objetivo->setTipo($_POST['tipo']);
-        $objetivo->setObjetivoSuperior(($_POST['objetivo_superior'])? $_POST['objetivo_superior'] : null);
 
-        $rta = $objetivo->save();
-        print_r(json_encode($rta));
+    case 'saveObjetivo':
+        $flag=1;
+
+        sQuery::dpBeginTransaction();
+
+        try{
+
+            $objetivo = new Objetivo($_POST['id_objetivo']);
+            $objetivo->setNroContrato($_POST['nro_contrato']);
+            $contrato->setFechaDesde($_POST['fecha_desde']);
+            $contrato->setFechaHasta($_POST['fecha_hasta']);
+            $contrato->setIdResponsable($_POST['id_responsable']);
+            $contrato->setIdCompania($_POST['id_compania']);
+            if($contrato->save() < 0) $flag = -1;
+
+            //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
+            $id_contrato = (!$contrato->getIdContrato())? sQuery::dpLastInsertId(): $contrato->getIdContrato();
+
+            $vEmpleados = json_decode($_POST["vEmpleados"], true);
+            //print_r($vEmpleados);
+
+            foreach ($vEmpleados as $vE) {
+
+                //$c = new HabilidadEmpleado();
+                //$c->setIdHabilidad($vH['id_habilidad']);
+                //$c->setIdEmpleado($vE['id_empleado']);
+                //if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
+
+                //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
+                $empleado_contrato = new ContratoEmpleado();
+                $empleado_contrato->setIdEmpleadoContrato($vE['id_empleado_contrato']);
+                $empleado_contrato->setIdEmpleado($vE['id_empleado']);
+                $empleado_contrato->setIdContrato($id_contrato);
+                $empleado_contrato->setIdPuesto($vE['id_puesto']);
+                $empleado_contrato->setFechaDesde($vE['fecha_desde']);
+                $empleado_contrato->setFechaHasta($vE['fecha_hasta']);
+
+                //echo 'id empleado contrato: '.$vE['id_empleado_contrato'].'---';
+
+                //echo $vE['operacion'];
+                if($vE['operacion']=='insert') {if($empleado_contrato->insertEmpleadoContrato() < 0) $flag = -1;}
+                else if( $vE['operacion']=='update') {if($empleado_contrato->updateEmpleadoContrato() < 0) $flag = -1;}
+                else if( $vE['operacion']=='delete') {if($empleado_contrato->deleteEmpleadoContrato() < 0) $flag = -1;}
+
+
+            }
+
+            //Devuelve el resultado a la vista
+            if($flag > 0) sQuery::dpCommit();
+            else sQuery::dpRollback();
+
+            print_r(json_encode($flag));
+
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+            sQuery::dpRollback();
+            print_r(json_encode($flag));
+        }
+
         exit;
         break;
 

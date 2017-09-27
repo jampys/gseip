@@ -4,22 +4,55 @@
 class Objetivo
 {
     private $id_objetivo;
+    private $periodo;
     private $nombre;
-    private $tipo;
-    private $objetivo_superior;
+    private $id_proceso;
+    private $id_area;
+    private $id_contrato;
+    private $meta;
+    private $actividades;
+    private $indicador;
+    private $frecuencia;
+    private $id_responsable_ejecucion;
+    private $id_responsable_seguimiento;
+
 
     // GETTERS
     function getIdObjetivo()
     { return $this->id_objetivo;}
 
+    function getPeriodo()
+    { return $this->periodo;}
+
     function getNombre()
     { return $this->nombre;}
 
-    function getTipo()
-    { return $this->tipo;}
+    function getIdProceso()
+    { return $this->id_proceso;}
 
-    function getObjetivoSuperior()
-    { return $this->objetivo_superior;}
+    function getIdArea()
+    { return $this->id_area;}
+
+    function getIdContrato()
+    { return $this->id_contrato;}
+
+    function getMeta()
+    { return $this->meta;}
+
+    function getActividades()
+    { return $this->actividades;}
+
+    function getIndicador()
+    { return $this->indicador;}
+
+    function getFrecuencia()
+    { return $this->frecuencia;}
+
+    function getIdResponsableEjecucion()
+    { return $this->id_responsable_ejecucion;}
+
+    function getIdResponsableSeguimiento()
+    { return $this->id_responsable_seguimiento;}
 
 
     //SETTERS

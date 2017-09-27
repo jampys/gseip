@@ -57,9 +57,10 @@ class Subobjetivo
     //Devuelve todos los subobjetivos de un determinado objetivo
     public static function getSubobjetivos($id_objetivo) { //ok
         $stmt=new sQuery();
-        $query = "select *
-                  from objetivos_sub
-                  where id_objetivo = :id_objetivo";
+        $query = "select os.*, ar.nombre as area
+                  from objetivos_sub os, areas ar
+                  where os.id_area = ar.id_area
+                  and id_objetivo = :id_objetivo";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_objetivo', $id_objetivo);
         $stmt->dpExecute();

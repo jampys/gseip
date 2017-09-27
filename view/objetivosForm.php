@@ -28,7 +28,7 @@
         };
 
 
-        $.ajax({
+        $.ajax({ //ok
             url:"index.php",
             type:"post",
             data:{"action": "objetivos", "operation": "editObjetivoSubobjetivos", "id_objetivo": $('#id_objetivo').val()},
@@ -321,13 +321,13 @@
         });
 
 
-        //Elimina un empleado del contrato
-        $('#contrato').on('click', '.delete-empleado', function(e){
+        //Elimina un subobjetivo del objetivo
+        $('#objetivo').on('click', '.delete-subobjetivo', function(e){ //ok
             //alert('actualizar empleado');
-            var id = $(this).closest('tr').attr('id_empleado');
+            var id = $(this).closest('tr').attr('id_area');
             //alert(jsonSubobjetivos[id].id_empleado_contrato);
 
-            if(!jsonSubobjetivos[id].id_empleado_contrato){ //si no esta en la BD
+            if(!jsonSubobjetivos[id].id_objetivo_sub){ //si no esta en la BD
                 //alert('ahhhhh');
                 delete jsonSubobjetivos[id]; //lo elimina del array
             }else{ //si esta en la BD, lo marca para eliminar
