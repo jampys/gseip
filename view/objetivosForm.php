@@ -31,12 +31,12 @@
         $.ajax({
             url:"index.php",
             type:"post",
-            data:{"action": "contratos", "operation": "editContratoEmpleado", "id_contrato": $('#id_contrato').val()},
+            data:{"action": "objetivos", "operation": "editObjetivoSubobjetivos", "id_objetivo": $('#id_objetivo').val()},
             dataType:"json",//xml,html,script,json
             success: function(data, textStatus, jqXHR) {
 
-                $.each(data, function(indice, val){ //carga el array de empleados
-                    var id = data[indice]['id_empleado'];
+                $.each(data, function(indice, val){ //carga el array de subobjetivos
+                    var id = data[indice]['id_area'];
                     jsonSubobjetivos[id] = data[indice];
                     //alert(jsonSubobjetivos[id].fecha_desde);
 

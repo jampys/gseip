@@ -4,6 +4,7 @@ include_once("model/objetivosModel.php");
 include_once("model/procesosModel.php");
 include_once("model/areasModel.php");
 include_once("model/contratosModel.php");
+include_once("model/subobjetivosModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -48,7 +49,7 @@ switch ($operation)
         $view->contentTemplate="view/objetivosForm.php";
         break;
 
-    case 'editObjetivo':
+    case 'editObjetivo': //ok
         $view->label='Editar Objetivo';
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
 
@@ -57,6 +58,13 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivosForm.php";
+        break;
+
+
+    case 'editObjetivoSubobjetivos': //ok
+        $view->subobjetivos = Subobjetivo::getSubobjetivos($_POST['id_objetivo']);
+        print_r(json_encode($view->subobjetivos));
+        exit;
         break;
 
     case 'deleteObjetivo':
