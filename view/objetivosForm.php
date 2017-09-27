@@ -53,13 +53,28 @@
         $('#objetivo-form').validate({
             rules: {
                 nombre: {required: true},
-                tipo: {required: true},
-                superior: {required: true}
+                id_proceso: {
+                    required: function(element) { return ( $('#id_area').val().length == 0 && $('#id_proceso').val().length == 0 )
+                                                            ||
+                                                            ($('#id_area').val().length > 0 && $('#id_proceso').val().length > 0 )
+                    }
+
+                },
+                id_area: {
+                    required: function(element) { return ( $('#id_area').val().length == 0 && $('#id_proceso').val().length == 0 )
+                                                            ||
+                                                            ($('#id_area').val().length > 0 && $('#id_proceso').val().length > 0 )
+                    }
+
+                }
+
             },
             messages:{
                 nombre: "Ingrese el nombre",
-                tipo: "Seleccione el tipo",
-                superior: "Seleccione el objetivo de nivel superior"
+                id_proceso: "Seleccione un proceso o un área",
+                id_area: "Seleccione un proceso o un área"
+
+
             }
 
         });
@@ -180,10 +195,10 @@
 
 
 
-        //guardar contrato
-        $('#contrato').on('click', '#submit',function(){
+        //guardar objetivo
+        $('#objetivo').on('click', '#submit',function(){
             //alert('guardar contrato');
-            if ($("#contrato-form").valid()){
+            if ($("#objetivo-form").valid()){
                 var params={};
                 params.action = 'contratos';
                 params.operation = 'saveContrato';
