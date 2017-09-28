@@ -214,22 +214,29 @@
                 for ( var item in jsonSubobjetivos ){
                     jsonSubobjetivosIx.push( jsonSubobjetivos[ item ] );
                 }
-                params.vEmpleados = JSON.stringify(jsonSubobjetivosIx);
+                params.vSubobjetivos = JSON.stringify(jsonSubobjetivosIx);
 
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    //alert(xhr.responseText);
+                    alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     if(data >=0){
-                        $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Objetivo guardado con exito').addClass('alert alert-success').show();
 
                     }else{
-                        $("#myElem").html('Error al guardar el contrato').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar el objetivo').addClass('alert alert-danger').show();
                     }
-                    setTimeout(function() { $("#myElem").hide();
-                        $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
-                    }, 2000);
+                    setTimeout(function() {
+                        $("#myElem").hide();
+                        //$('#content').load('index.php',{action:"objetivos", operation:"refreshGrid"});
+                        params={};
+                        params.action = "objetivos";
+                        params.operation = "refreshGrid";
+                        $('#content').load('index.php', params, function(){
+                            $('#search_panel').show();
+                        });
+                                            }, 2000);
 
                 });
 

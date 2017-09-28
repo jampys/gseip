@@ -32,18 +32,25 @@ switch ($operation)
         try{
 
             $objetivo = new Objetivo($_POST['id_objetivo']);
-            $objetivo->setNroContrato($_POST['nro_contrato']);
-            $contrato->setFechaDesde($_POST['fecha_desde']);
-            $contrato->setFechaHasta($_POST['fecha_hasta']);
-            $contrato->setIdResponsable($_POST['id_responsable']);
-            $contrato->setIdCompania($_POST['id_compania']);
-            if($contrato->save() < 0) $flag = -1;
+            $objetivo->setPeriodo($_POST['periodo']);
+            $objetivo->setNombre($_POST['nombre']);
+            $objetivo->setIdProceso($_POST['id_proceso']);
+            $objetivo->setIdArea($_POST['id_area']);
+            $objetivo->setIdContrato($_POST['id_contrato']);
+            $objetivo->setMeta($_POST['meta']);
+            $objetivo->setActividades($_POST['actividades']);
+            $objetivo->setIndicador($_POST['indicador']);
+            $objetivo->setFrecuencia($_POST['frecuencia']);
+            $objetivo->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
+            $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
+
+            if($objetivo->save() < 0) $flag = -1;
 
             //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
-            $id_contrato = (!$contrato->getIdContrato())? sQuery::dpLastInsertId(): $contrato->getIdContrato();
+            $id_objetivo = (!$objetivo->getIdObjetivo())? sQuery::dpLastInsertId(): $objetivo->getIdObjetivo();
 
-            $vEmpleados = json_decode($_POST["vEmpleados"], true);
-            //print_r($vEmpleados);
+            $vSubobjetivos = json_decode($_POST["vSubobjetivos"], true);
+            print_r($vSubobjetivos);
 
             foreach ($vEmpleados as $vE) {
 
