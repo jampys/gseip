@@ -34,9 +34,9 @@ switch ($operation)
             $objetivo = new Objetivo($_POST['id_objetivo']);
             $objetivo->setPeriodo($_POST['periodo']);
             $objetivo->setNombre($_POST['nombre']);
-            $objetivo->setIdProceso($_POST['id_proceso']);
-            $objetivo->setIdArea($_POST['id_area']);
-            $objetivo->setIdContrato($_POST['id_contrato']);
+            $objetivo->setIdProceso(($_POST['id_proceso'])? $_POST['id_proceso'] : null);
+            $objetivo->setIdArea(($_POST['id_area'])? $_POST['id_area'] : null);
+            $objetivo->setIdContrato(($_POST['id_contrato'])? $_POST['id_contrato'] : null);
             $objetivo->setMeta($_POST['meta']);
             $objetivo->setActividades($_POST['actividades']);
             $objetivo->setIndicador($_POST['indicador']);
@@ -52,7 +52,7 @@ switch ($operation)
             $vSubobjetivos = json_decode($_POST["vSubobjetivos"], true);
             print_r($vSubobjetivos);
 
-            
+
 
             //Devuelve el resultado a la vista
             if($flag > 0) sQuery::dpCommit();
