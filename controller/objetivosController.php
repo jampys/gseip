@@ -98,6 +98,9 @@ switch ($operation)
         $view->contratos = Contrato::getContratos();
         $view->frecuencias = Soporte::get_enum_values('objetivos', 'frecuencia');
 
+        $view->responsable_ejecucion = $view->objetivo->getResponsableEjecucion()->getApellido()." ".$view->objetivo->getResponsableEjecucion()->getNombre();
+        $view->responsable_seguimiento = $view->objetivo->getResponsableSeguimiento()->getApellido()." ".$view->objetivo->getResponsableSeguimiento()->getNombre();
+
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivosForm.php";
         break;
@@ -113,6 +116,9 @@ switch ($operation)
         $view->areas = Area::getAreas();
         $view->contratos = Contrato::getContratos();
         $view->frecuencias = Soporte::get_enum_values('objetivos', 'frecuencia');
+
+        $view->responsable_ejecucion = $view->objetivo->getResponsableEjecucion()->getApellido()." ".$view->objetivo->getResponsableEjecucion()->getNombre();
+        $view->responsable_seguimiento = $view->objetivo->getResponsableSeguimiento()->getApellido()." ".$view->objetivo->getResponsableSeguimiento()->getNombre();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivosForm.php";

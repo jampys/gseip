@@ -1,4 +1,5 @@
 <?php
+include_once("empleadosModel.php");
 
 
 class Objetivo
@@ -15,6 +16,9 @@ class Objetivo
     private $frecuencia;
     private $id_responsable_ejecucion;
     private $id_responsable_seguimiento;
+
+    private $responsable_ejecucion;
+    private $responsable_seguimiento;
 
 
     // GETTERS
@@ -53,6 +57,14 @@ class Objetivo
 
     function getIdResponsableSeguimiento()
     { return $this->id_responsable_seguimiento;}
+
+    function getResponsableEjecucion(){
+        return ($this->responsable_ejecucion)? $this->responsable_ejecucion : new Empleado() ;
+    }
+
+    function getResponsableSeguimiento(){
+        return ($this->responsable_seguimiento)? $this->responsable_seguimiento : new Empleado() ;
+    }
 
 
     //SETTERS
@@ -131,6 +143,9 @@ where ob.periodo = :periodo";
             $this->setFrecuencia($rows[0]['frecuencia']);
             $this->setIdResponsableEjecucion($rows[0]['id_responsable_ejecucion']);
             $this->setIdResponsableSeguimiento($rows[0]['id_responsable_seguimiento']);
+
+            $this->responsable_ejecucion = new Empleado($rows[0]['id_responsable_ejecucion']);
+            $this->responsable_seguimiento = new Empleado($rows[0]['id_responsable_seguimiento']);
         }
     }
 

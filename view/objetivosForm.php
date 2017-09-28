@@ -502,8 +502,8 @@
     <div class="form-group required">
         <label for="responsable_ejecucion" class="col-md-4 control-label">Responsable ejecución</label>
         <div class="col-md-8">
-            <input type="text" class="form-control responsable-ejecucion-group" id="responsable_ejecucion" name="responsable_ejecucion" placeholder="Responsable ejecución" value ="<?php //print $view->responsable; ?>">
-            <input type="hidden" name="id_responsable_ejecucion" id="id_responsable_ejecucion" class="responsable-ejecucion-group" value = "<?php //print $view->contrato->getIdResponsable() ?>" >
+            <input type="text" class="form-control responsable-ejecucion-group" id="responsable_ejecucion" name="responsable_ejecucion" placeholder="Responsable ejecución" value ="<?php print $view->responsable_ejecucion; ?>">
+            <input type="hidden" name="id_responsable_ejecucion" id="id_responsable_ejecucion" class="responsable-ejecucion-group" value = "<?php print $view->objetivo->getIdResponsableEjecucion() ?>" >
         </div>
     </div>
 
@@ -511,8 +511,8 @@
     <div class="form-group required">
         <label for="responsable_seguimiento" class="col-md-4 control-label">Responsable seguimiento</label>
         <div class="col-md-8">
-            <input type="text" class="form-control responsable-seguimiento-group" id="responsable_seguimiento" name="responsable_seguimiento" placeholder="Responsable seguimiento" value ="<?php //print $view->responsable; ?>">
-            <input type="hidden" name="id_responsable_seguimiento" id="id_responsable_seguimiento" class="responsable-seguimiento-group" value = "<?php //print $view->contrato->getIdResponsable() ?>" >
+            <input type="text" class="form-control responsable-seguimiento-group" id="responsable_seguimiento" name="responsable_seguimiento" placeholder="Responsable seguimiento" value ="<?php print $view->responsable_seguimiento; ?>">
+            <input type="hidden" name="id_responsable_seguimiento" id="id_responsable_seguimiento" class="responsable-seguimiento-group" value = "<?php print $view->objetivo->getIdResponsableSeguimiento() ?>" >
         </div>
     </div>
 
