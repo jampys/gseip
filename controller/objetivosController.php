@@ -52,31 +52,7 @@ switch ($operation)
             $vSubobjetivos = json_decode($_POST["vSubobjetivos"], true);
             print_r($vSubobjetivos);
 
-            foreach ($vEmpleados as $vE) {
-
-                //$c = new HabilidadEmpleado();
-                //$c->setIdHabilidad($vH['id_habilidad']);
-                //$c->setIdEmpleado($vE['id_empleado']);
-                //if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
-
-                //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
-                $empleado_contrato = new ContratoEmpleado();
-                $empleado_contrato->setIdEmpleadoContrato($vE['id_empleado_contrato']);
-                $empleado_contrato->setIdEmpleado($vE['id_empleado']);
-                $empleado_contrato->setIdContrato($id_contrato);
-                $empleado_contrato->setIdPuesto($vE['id_puesto']);
-                $empleado_contrato->setFechaDesde($vE['fecha_desde']);
-                $empleado_contrato->setFechaHasta($vE['fecha_hasta']);
-
-                //echo 'id empleado contrato: '.$vE['id_empleado_contrato'].'---';
-
-                //echo $vE['operacion'];
-                if($vE['operacion']=='insert') {if($empleado_contrato->insertEmpleadoContrato() < 0) $flag = -1;}
-                else if( $vE['operacion']=='update') {if($empleado_contrato->updateEmpleadoContrato() < 0) $flag = -1;}
-                else if( $vE['operacion']=='delete') {if($empleado_contrato->deleteEmpleadoContrato() < 0) $flag = -1;}
-
-
-            }
+            
 
             //Devuelve el resultado a la vista
             if($flag > 0) sQuery::dpCommit();

@@ -151,7 +151,7 @@ where ob.periodo = :periodo";
 
 
 
-    function save(){
+    function save(){ //ok
         if($this->id_objetivo)
         {$rta = $this->updateObjetivo();}
         else
@@ -164,13 +164,13 @@ where ob.periodo = :periodo";
         $stmt=new sQuery();
         $query="update objetivos set
                 nombre= :nombre,
-                tipo= :tipo,
-                objetivo_superior= :objetivo_superior
+                id_proceso= :id_proceso,
+                id_area= :id_area
                 where id_objetivo = :id_objetivo";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':tipo', $this->getTipo());
-        $stmt->dpBind(':objetivo_superior', $this->getObjetivoSuperior());
+        $stmt->dpBind(':id_proceso', $this->getIdProceso());
+        $stmt->dpBind(':id_area', $this->getIdArea());
         $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
