@@ -200,14 +200,21 @@
             //alert('guardar contrato');
             if ($("#objetivo-form").valid()){
                 var params={};
-                params.action = 'contratos';
+                params.action = 'objetivos';
                 params.operation = 'saveContrato';
+                params.id_objetivo=$('#id_objetivo').val();
+                params.periodo=$('#periodo').val();
+                params.nombre=$('#nombre').val();
+                params.id_proceso=$('#id_proceso').val();
+                params.id_area=$('#id_area').val();
                 params.id_contrato=$('#id_contrato').val();
-                params.nro_contrato=$('#nro_contrato').val();
-                params.fecha_desde=$('#fecha_desde').val();
-                params.fecha_hasta=$('#fecha_hasta').val();
-                params.id_responsable=$('#id_responsable').val();
-                params.id_compania=$('#compania').val();
+                params.meta=$('#meta').val();
+                params.actividades=$('#actividades').val();
+                params.indicador=$('#indicador').val();
+                params.frecuencia=$('#frecuencia').val();
+                params.id_responsable_ejecucion=$('#id_responsable_ejecucion').val();
+                params.id_responsable_seguimiento=$('#id_responsable_seguimiento').val();
+
                 //alert(params.id_compania);
 
                 var jsonSubobjetivosIx = [];
