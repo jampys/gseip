@@ -406,7 +406,7 @@
                 <?php foreach ($view->procesos as $pro){
                     ?>
                     <option value="<?php echo $pro['id_proceso']; ?>"
-                        <?php //echo ($pro['id_proceso'] == $view->objetivo->getIdProceso() )? 'selected' :'' ?>
+                        <?php echo ($pro['id_proceso'] == $view->objetivo->getIdProceso() )? 'selected' :'' ?>
                         >
                         <?php echo $pro['nombre']; ?>
                     </option>
@@ -426,7 +426,7 @@
                 <?php foreach ($view->areas as $ar){
                     ?>
                     <option value="<?php echo $ar['id_area']; ?>"
-                        <?php //echo ($pro['id_proceso'] == $view->objetivo->getIdProceso() )? 'selected' :'' ?>
+                        <?php echo ($ar['id_area'] == $view->objetivo->getIdArea() )? 'selected' :'' ?>
                         >
                         <?php echo $ar['nombre']; ?>
                     </option>
@@ -446,7 +446,7 @@
                 <?php foreach ($view->contratos as $con){
                     ?>
                     <option value="<?php echo $con['id_contrato']; ?>"
-                        <?php //echo ($pro['id_proceso'] == $view->objetivo->getIdProceso() )? 'selected' :'' ?>
+                        <?php echo ($con['id_contrato'] == $view->objetivo->getIdContrato() )? 'selected' :'' ?>
                         >
                         <?php echo $con['compania']; ?>
                     </option>
@@ -460,7 +460,7 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="descripcion">Meta</label>
             <div class="col-md-8">
-                <textarea class="form-control" name="meta" id="meta" placeholder="Meta" rows="2"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+                <textarea class="form-control" name="meta" id="meta" placeholder="Meta" rows="2"><?php print $view->objetivo->getMeta(); ?></textarea>
             </div>
     </div>
 
@@ -468,14 +468,14 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="actividades">Actividades</label>
         <div class="col-md-8">
-            <textarea class="form-control" name="actividades" id="actividades" placeholder="Actividades" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+            <textarea class="form-control" name="actividades" id="actividades" placeholder="Actividades" rows="3"><?php print $view->objetivo->getActividades(); ?></textarea>
         </div>
     </div>
 
     <div class="form-group required">
         <label for="indicador" class="col-md-4 control-label">Indicador</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="indicador" id="indicador" placeholder="Indicador" value = "<?php //print $view->objetivo->getNombre() ?>">
+            <input class="form-control" type="text" name="indicador" id="indicador" placeholder="Indicador" value = "<?php print $view->objetivo->getIndicador() ?>">
         </div>
     </div>
 
@@ -488,7 +488,7 @@
                 <?php foreach ($view->frecuencias['enum'] as $fre){
                     ?>
                     <option value="<?php echo $fre; ?>"
-                        <?php //echo ($nac == $view->empleado->getNacionalidad() OR ($nac == $view->nacionalidades['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
+                        <?php echo ($fre == $view->objetivo->getFrecuencia() OR ($fre == $view->frecuencias['default'] AND !$view->objetivo->getIdObjetivo()) )? 'selected' :'' ?>
                         >
                         <?php echo $fre; ?>
                     </option>

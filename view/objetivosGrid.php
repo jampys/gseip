@@ -34,7 +34,8 @@
             <tr>
                 <th>Nombre</th>
                 <th>Proceso</th>
-                <th>Area</th>
+                <th>Área</th>
+                <th>Contrato</th>
                 <th>Editar</th>
                 <th>Borrar</th>
             </tr>
@@ -45,6 +46,7 @@
                     <td><?php echo $objetivo['nombre'];?></td>
                     <td><?php echo $objetivo['proceso'];?></td>
                     <td><?php echo $objetivo['area'];?></td>
+                    <td><?php echo $objetivo['contrato'];?></td>
                     <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $objetivo['id_objetivo'];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
                     <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $objetivo['id_objetivo'];?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                 </tr>

@@ -87,7 +87,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newObjetivo':
+    case 'newObjetivo': //ok
         $view->objetivo = new Objetivo();
         $view->label='Nuevo objetivo';
 
@@ -103,11 +103,16 @@ switch ($operation)
         break;
 
     case 'editObjetivo': //ok
-        $view->label='Editar Objetivo';
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
+        $view->label='Editar Objetivo';
+
 
         $view->periodos = Objetivo::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
+        $view->procesos = Proceso::getProcesos();
+        $view->areas = Area::getAreas();
+        $view->contratos = Contrato::getContratos();
+        $view->frecuencias = Soporte::get_enum_values('objetivos', 'frecuencia');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivosForm.php";
