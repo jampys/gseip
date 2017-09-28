@@ -201,7 +201,7 @@
             if ($("#objetivo-form").valid()){
                 var params={};
                 params.action = 'objetivos';
-                params.operation = 'saveContrato';
+                params.operation = 'saveObjetivo';
                 params.id_objetivo=$('#id_objetivo').val();
                 params.periodo=$('#periodo').val();
                 params.nombre=$('#nombre').val();
