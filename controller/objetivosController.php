@@ -50,7 +50,30 @@ switch ($operation)
             $id_objetivo = (!$objetivo->getIdObjetivo())? sQuery::dpLastInsertId(): $objetivo->getIdObjetivo();
 
             $vSubobjetivos = json_decode($_POST["vSubobjetivos"], true);
-            print_r($vSubobjetivos);
+            //print_r($vSubobjetivos);
+
+            foreach ($vSubobjetivos as $vS) {
+
+                //$c = new HabilidadEmpleado();
+                //$c->setIdHabilidad($vH['id_habilidad']);
+                //$c->setIdEmpleado($vE['id_empleado']);
+                //if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
+                //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
+                $subobjetivo = new Subobjetivo();
+                $subobjetivo->setIdObjetivoSub($vS['id_objetivo_sub']);
+                $subobjetivo->setNombre($vS['nombre']);
+                $subobjetivo->setIdObjetivo($id_objetivo);
+                $subobjetivo->setIdArea($vS['id_area']);
+
+                //echo 'id objetivo sub: '.$vS['id_objetivo_sub'].'---';
+
+                echo $vS['operacion'];
+                if($vS['operacion']=='insert') {if($subobjetivo->insertSubobjetivo() < 0) $flag = -1;}
+                else if( $vS['operacion']=='update') {if($subobjetivo->updateSubobjetivo() < 0) $flag = -1;}
+                else if( $vS['operacion']=='delete') {if($subobjetivo->deleteSubobjetivo() < 0) $flag = -1;}
+
+
+            }
 
 
 

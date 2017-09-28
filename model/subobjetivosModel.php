@@ -69,42 +69,38 @@ class Subobjetivo
 
 
 
-    public function updateEmpleadoContrato(){
+    public function updateSubobjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="update empleado_contrato
-                set id_puesto= :id_puesto,
-                fecha_desde= STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
-                fecha_hasta= STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
-                where id_empleado_contrato = :id_empleado_contrato";
+        $query="update objetivos_sub
+                set nombre= :nombre,
+                id_objetivo= :id_objetivo,
+                id_area= :id_area
+                where id_objetivo_sub = :id_objetivo_sub";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
-        $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
-        $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
-        $stmt->dpBind(':id_empleado_contrato', $this->getIdEmpleadoContrato());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
+        $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_objetivo_sub', $this->getIdObjetivoSub());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    public function insertEmpleadoContrato(){
+    public function insertSubobjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into empleado_contrato(id_empleado, id_contrato, id_puesto, fecha_desde, fecha_hasta)
-                values(:id_empleado, :id_contrato, :id_puesto,
-                STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
-                STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))";
+        $query="insert into objetivos_sub(nombre, id_objetivo, id_area)
+                values(:nombre, :id_objetivo, :id_area)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
-        $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
-        $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
+        $stmt->dpBind(':id_area', $this->getIdArea());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
-    public function deleteEmpleadoContrato(){
+    public function deleteSubobjetivo(){
         $stmt=new sQuery();
         $query="delete from empleado_contrato where id_empleado_contrato= :id_empleado_contrato";
         $stmt->dpPrepare($query);
