@@ -226,7 +226,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    alert(xhr.responseText);
+                    //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     if(data >=0){
                         $("#myElem").html('Objetivo guardado con exito').addClass('alert alert-success').show();
@@ -321,7 +321,7 @@
                 }
                 else { // si no existe en el array, lo inserta
                     item = {};
-                    item.id_area = id;
+                    item.id_area = $('#myModal #id_area').val();
                     item.area = $('#myModal #id_area option:selected').text();
                     item.nombre = $('#myModal #nombre').val();
                     item.operacion = 'insert';
