@@ -15,7 +15,7 @@
                     continue;
                 }
 
-                $('#subobjetivos-table tbody').append('<tr id_area='+jsonSubobjetivos[i].id_area+'>' +
+                $('#subobjetivos-table tbody').append('<tr indice='+jsonSubobjetivos[i].indice+'>' +
                 '<td>'+jsonSubobjetivos[i].nombre+'</td>' +
                     //'<td>'+jsonSubobjetivos[i].empleado+' '+jsonSubobjetivos[i].operacion+'</td>' +
                 '<td>'+jsonSubobjetivos[i].area+'</td>' +
@@ -36,9 +36,9 @@
             success: function(data, textStatus, jqXHR) {
 
                 $.each(data, function(indice, val){ //carga el array de subobjetivos
-                    var id = data[indice]['id_area'];
-                    jsonSubobjetivos[id] = data[indice];
-                    //alert(jsonSubobjetivos[id].fecha_desde);
+                    //var id = data[indice]['id_area'];
+                    jsonSubobjetivos[indice] = data[indice];
+                    jsonSubobjetivos[indice].indice = indice;
 
                 });
 
@@ -266,13 +266,14 @@
         //Abre modal para actualizar datos del subobjetivo del objetivo
         $('#objetivo').on('click', '.update-subobjetivo', function(e){ //ok
             //alert('actualizar empleado');
-            var id = $(this).closest('tr').attr('id_area');
+            var id = $(this).closest('tr').attr('indice');
             //alert(id);
             params={};
             params.action = "objetivos";
             params.operation="loadSubObjetivo";
             $('#popupbox').load('index.php', params,function(){
                 $('#myModal').modal();
+                $('#myModal #id').val(jsonSubobjetivos[id].indice);
                 $('#myModal #nombre').val(jsonSubobjetivos[id].nombre);
                 $('#myModal #id_area').val(jsonSubobjetivos[id].id_area);
 
@@ -289,7 +290,7 @@
 
             if ($("#subobjetivo-form").valid()){
 
-                var id = $('#myModal #id_area').val();
+                var id = $('#myModal #id').val();
 
                 if(jsonSubobjetivos[id]) { //si ya existe en el array, lo actualiza
                     //alert('el elemento existe');
