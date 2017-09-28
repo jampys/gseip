@@ -159,32 +159,56 @@ where ob.periodo = :periodo";
         return $rta;
     }
 
-    public function updateObjetivo(){
+    public function updateObjetivo(){ //ok
 
         $stmt=new sQuery();
         $query="update objetivos set
+                periodo= :periodo,
                 nombre= :nombre,
                 id_proceso= :id_proceso,
-                id_area= :id_area
+                id_area= :id_area,
+                id_contrato= :id_contrato,
+                meta= :meta,
+                actividades= :actividades,
+                indicador= :indicador,
+                frecuencia= :frecuencia,
+                id_responsable_ejecucion= :id_responsable_ejecucion,
+                id_responsable_seguimiento= :id_responsable_seguimiento
                 where id_objetivo = :id_objetivo";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':id_proceso', $this->getIdProceso());
         $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':meta', $this->getMeta());
+        $stmt->dpBind(':actividades', $this->getActividades());
+        $stmt->dpBind(':indicador', $this->getIndicador());
+        $stmt->dpBind(':frecuencia', $this->getFrecuencia());
+        $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
+        $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
         $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
-    private function insertObjetivo(){
+    private function insertObjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into objetivos(nombre, tipo, objetivo_superior)
-                values(:nombre, :tipo, :objetivo_superior)";
+        $query="insert into objetivos(periodo, nombre, id_proceso, id_area, id_contrato, meta, actividades, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento)
+                values(:periodo, :nombre, :id_proceso, :id_area, :id_contrato, :meta, :actividades, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento)";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':tipo', $this->getTipo());
-        $stmt->dpBind(':objetivo_superior', $this->getObjetivoSuperior());
+        $stmt->dpBind(':id_proceso', $this->getIdProceso());
+        $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':meta', $this->getMeta());
+        $stmt->dpBind(':actividades', $this->getActividades());
+        $stmt->dpBind(':indicador', $this->getIndicador());
+        $stmt->dpBind(':frecuencia', $this->getFrecuencia());
+        $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
+        $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
