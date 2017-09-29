@@ -56,19 +56,39 @@
                 id_proceso: {
                     XOR_with: [
                         '#id_area',
-                        'Seleccione un proceso ó un área'
+                        'Seleccione un proceso o un área'
                     ]
                 },
                 id_area: {
                     XOR_with: [
                         '#id_proceso',
-                        'Seleccione un proceso ó un área'
+                        'Seleccione un proceso o un área'
                     ]
 
+                },
+                meta: {required: true},
+                actividades: {required: true},
+                indicador: {required: true},
+                responsable_ejecucion: {
+                    require_from_group: {
+                        param: [2, ".responsable-ejecucion-group"],
+                        depends: function(element) { return $('#responsable_ejecucion').val().length > 0;}
+                    }
+                },
+                responsable_seguimiento: {
+                    require_from_group: {
+                        param: [2, ".responsable-seguimiento-group"],
+                        depends: function(element) { return $('#responsable_seguimiento').val().length > 0;}
+                    }
                 }
             },
             messages:{
-                nombre: "Ingrese el nombre"
+                nombre: "Ingrese el nombre",
+                meta: "Ingrese la meta",
+                actividades: "Ingrese las actividades",
+                indicador: "Ingrese el indicador",
+                responsable_ejecucion: "Seleccione un responsable ejecución sugerido",
+                responsable_seguimiento: "Seleccione un responsable seguimiento sugerido"
             }
 
         });
