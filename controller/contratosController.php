@@ -5,6 +5,7 @@ include_once("model/contrato-empleadoModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/companiasModel.php");
 include_once("model/puestosModel.php");
+include_once("model/procesosModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -128,6 +129,7 @@ switch ($operation)
         $view->label='Empleado';
         $view->disableLayout=true;
         $view->puesto = Puesto::getPuestos();
+        $view->procesos = Proceso::getProcesos();
 
         $view->contentTemplate="view/contratosFormEmpleado.php";
         break;

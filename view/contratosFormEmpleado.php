@@ -112,6 +112,22 @@
                     </div>
 
 
+                    <div class="form-group required">
+                        <label class="control-label" for="id_proceso" >Proceso</label>
+                        <select multiple class="form-control" id="id_proceso" name="id_proceso">
+                            <option value="" disabled selected>Seleccione un proceso</option>
+                            <?php foreach ($view->procesos as $pro){
+                                ?>
+                                <option value="<?php echo $pro['id_proceso']; ?>"
+                                    <?php //echo ($pro['id_proceso'] == $view->objetivo->getIdProceso() )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $pro['nombre']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
 
                     <div class="form-group required">
                         <label class="control-label" for="empleado">Desde / hasta</label>
