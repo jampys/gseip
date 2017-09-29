@@ -168,7 +168,7 @@
         <label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>
         <div class="col-md-8">
             <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php print $view->empleado->getFechaNacimiento() ?>" placeholder="Fecha nacimiento">
+                <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA">
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -181,7 +181,7 @@
         <label class="col-md-4 control-label" for="fecha">Fecha alta</label>
         <div class="col-md-8">
             <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print $view->empleado->getFechaAlta() ?>" placeholder="Fecha alta">
+                <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print $view->empleado->getFechaAlta() ?>" placeholder="DD/MM/AAAA">
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -193,7 +193,7 @@
         <label class="col-md-4 control-label" for="fecha">Fecha baja</label>
         <div class="col-md-8">
             <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->empleado->getFechaBaja() ?>" placeholder="Fecha baja">
+                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->empleado->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
