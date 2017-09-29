@@ -31,6 +31,21 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
 
 
 
+    /* reglas propias para jquery validation */
+
+    function XOR_value_validator(value, el, args) {
+        var otherValue = $(args[0]).val();
+        return (value && !otherValue) || (!value && otherValue);
+    }
+
+    jQuery.validator.addMethod(
+        'XOR_with',
+        XOR_value_validator,
+        jQuery.validator.format('{1}')
+    );
+
+
+
 
 
 

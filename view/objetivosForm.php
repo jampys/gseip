@@ -54,27 +54,21 @@
             rules: {
                 nombre: {required: true},
                 id_proceso: {
-                    required: function(element) { return ( $('#id_area').val().length == 0 && $('#id_proceso').val().length == 0 )
-                                                            ||
-                                                            ($('#id_area').val().length > 0 && $('#id_proceso').val().length > 0 )
-                    }
-
+                    XOR_with: [
+                        '#id_area',
+                        'Seleccione un proceso ó un área'
+                    ]
                 },
                 id_area: {
-                    required: function(element) { return ( $('#id_area').val().length == 0 && $('#id_proceso').val().length == 0 )
-                                                            ||
-                                                            ($('#id_area').val().length > 0 && $('#id_proceso').val().length > 0 )
-                    }
+                    XOR_with: [
+                        '#id_proceso',
+                        'Seleccione un proceso ó un área'
+                    ]
 
                 }
-
             },
             messages:{
-                nombre: "Ingrese el nombre",
-                id_proceso: "Seleccione un proceso o un área",
-                id_area: "Seleccione un proceso o un área"
-
-
+                nombre: "Ingrese el nombre"
             }
 
         });
