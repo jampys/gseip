@@ -6,6 +6,7 @@ include_once("model/localidadesModel.php");
 include_once("model/companiasModel.php");
 include_once("model/puestosModel.php");
 include_once("model/procesosModel.php");
+include_once("model/contrato-empleado-procesoModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -61,6 +62,7 @@ switch ($operation)
                 //if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
 
                 //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
+                echo "id_contrato :".$id." - procesos: ".$vE['id_proceso'];
                 $empleado_contrato = new ContratoEmpleado();
                 $empleado_contrato->setIdEmpleadoContrato($vE['id_empleado_contrato']);
                 $empleado_contrato->setIdEmpleado($vE['id_empleado']);
@@ -72,7 +74,18 @@ switch ($operation)
                 //echo 'id empleado contrato: '.$vE['id_empleado_contrato'].'---';
 
                 //echo $vE['operacion'];
-                if($vE['operacion']=='insert') {if($empleado_contrato->insertEmpleadoContrato() < 0) $flag = -1;}
+                if($vE['operacion']=='insert') {
+                    $empleado_contrato->insertEmpleadoContrato();
+                    $id_empleado_contrato = sQuery::dpLastInsertId();
+                    foreach($vE['id_proceso'] as $p){
+                        //echo $p." ";
+                        $contrato_empleado_proceso = new ContratoEmpleadoProceso();
+                        $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
+                        $contrato_empleado_proceso->setIdProceso($p);
+                        $contrato_empleado_proceso->contratoEmpleadoProceso($vE['operacion']);
+                    }
+
+                }
                 else if( $vE['operacion']=='update') {if($empleado_contrato->updateEmpleadoContrato() < 0) $flag = -1;}
                 else if( $vE['operacion']=='delete') {if($empleado_contrato->deleteEmpleadoContrato() < 0) $flag = -1;}
 

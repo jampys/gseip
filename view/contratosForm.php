@@ -157,7 +157,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    //alert(xhr.responseText);
+                    alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     if(data >=0){
                         $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
@@ -209,6 +209,7 @@
                 $('#empleado').val(jsonEmpleados[id].empleado);
                 $('#id_empleado').val(jsonEmpleados[id].id_empleado);
                 $('#puesto').val(jsonEmpleados[id].id_puesto);
+                $('#id_proceso').val(jsonEmpleados[id].id_proceso);
                 $('#myModal #fecha_desde').datepicker('update', jsonEmpleados[id].fecha_desde );
                 $('#myModal #fecha_hasta').datepicker('update', jsonEmpleados[id].fecha_hasta );
 
@@ -226,6 +227,7 @@
             if(jsonEmpleados[id]) { //si ya existe en el array, lo actualiza
                 //alert('el elemento existe');
                 jsonEmpleados[id].id_puesto = $("#puesto").val();
+                jsonEmpleados[id].id_proceso = $("#id_proceso").val();
                 jsonEmpleados[id].puesto = $("#puesto option:selected").text();
                 jsonEmpleados[id].fecha_desde = $('#myModal #fecha_desde').val();
                 jsonEmpleados[id].fecha_hasta = $('#myModal #fecha_hasta').val();
@@ -243,6 +245,7 @@
                 item.empleado = $('#empleado').val();
                 item.puesto = $("#puesto option:selected").text();
                 item.id_puesto = $("#puesto").val();
+                item.id_proceso = $("#id_proceso").val();
                 item.fecha_desde = $('#myModal #fecha_desde').val();
                 item.fecha_hasta = $('#myModal #fecha_hasta').val();
                 item.operacion = 'insert';
