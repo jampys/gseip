@@ -17,7 +17,9 @@
                         digits: true,
                         maxlength: 6
                 },
-                nombre: {required: true}
+                nombre: {required: true},
+                id_area: {required: true},
+                id_nivel_competencia: {required: true}
             },
             messages:{
                 codigo: {
@@ -25,7 +27,9 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 },
-                nombre: "Ingrese el nombre"
+                nombre: "Ingrese el nombre",
+                id_area: "Seleccione un área",
+                id_nivel_competencia: "Seleccione un nivel de competencia"
             }
 
         });
@@ -64,7 +68,7 @@
                         <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php print $view->puesto->getNombre() ?>" placeholder="Nombre">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label" for="id_area" >Área</label>
                         <select class="form-control" id="id_area" name="id_area">
                             <option value="" disabled selected>Seleccione el area</option>
@@ -79,7 +83,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label" for="id_nivel_competencia" >Nivel de competencia</label>
                         <select class="form-control" id="id_nivel_competencia" name="id_nivel_competencia">
                             <option value="" disabled selected>Seleccione el nivel de competencia</option>
