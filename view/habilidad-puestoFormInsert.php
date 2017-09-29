@@ -256,9 +256,9 @@
                             <table class="table table-condensed dataTable table-hover" id="puestos-table">
                                 <thead>
                                 <tr>
-                                    <th>Cod.</th>
-                                    <th>Nombre</th>
-                                    <th class="text-center">Eliminar</th>
+                                    <th class="col-md-1">Cod.</th>
+                                    <th class="col-md-10">Nombre</th>
+                                    <th class="col-md-1 text-center">Eliminar</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -287,9 +287,9 @@
                             <table class="table table-condensed dataTable table-hover" id="habilidades-table">
                                 <thead>
                                 <tr>
-                                    <th>Nombre</th>
-                                    <th>Requerida</th>
-                                    <th class="text-center">Eliminar</th>
+                                    <th class="col-md-9">Nombre</th>
+                                    <th class="col-md-2">Requerida</th>
+                                    <th class="col-md-1 text-center">Eliminar</th>
                                 </tr>
                                 </thead>
                                 <tbody>

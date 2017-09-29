@@ -227,10 +227,10 @@
                             <table class="table table-condensed dataTable table-hover" id="empleados-table">
                                 <thead>
                                 <tr>
-                                    <th>Leg.</th>
-                                    <th>Apellido</th>
-                                    <th>Nombre</th>
-                                    <th class="text-center">Eliminar</th>
+                                    <th class="col-md-1">Leg.</th>
+                                    <th class="col-md-5">Apellido</th>
+                                    <th class="col-md-5">Nombre</th>
+                                    <th class="col-md-1 text-center">Eliminar</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -259,9 +259,9 @@
                             <table class="table table-condensed dataTable table-hover" id="habilidades-table">
                                 <thead>
                                 <tr>
-                                    <th>Nombre</th>
-                                    <th>Puntos</th>
-                                    <th class="text-center">Eliminar</th>
+                                    <th class="col-md-9">Nombre</th>
+                                    <th class="col-md-2">Puntos</th>
+                                    <th class="col-md-1 text-center">Eliminar</th>
                                 </tr>
                                 </thead>
                                 <tbody>
