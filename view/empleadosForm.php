@@ -242,7 +242,7 @@
 
     <?php if($view->domicilios){  ?>
     <div class="table-responsive">
-        <table class="table table-condensed dataTable table-hover">
+        <table class="table table-condensed dpTable table-hover">
             <thead>
             <tr>
                 <th>Dirección</th>

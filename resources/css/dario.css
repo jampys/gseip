@@ -104,3 +104,7 @@ table.dataTable th { font-size: 14px }
 }
 
 
+/* estilo personalizado para tablas */
+table.dpTable td { font-size: 13px }
+table.dpTable th { font-size: 14px }
+

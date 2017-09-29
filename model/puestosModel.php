@@ -63,7 +63,8 @@ class Puesto
                     from puestos pu
                     left join puestos su on pu.id_puesto_superior = su.id_puesto
                     left join areas ar on pu.id_area = ar.id_area
-                    left join competencias_niveles nc on pu.id_nivel_competencia = nc.id_nivel_competencia";
+                    left join competencias_niveles nc on pu.id_nivel_competencia = nc.id_nivel_competencia
+                    order by pu.nombre asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpExecute();

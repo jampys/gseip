@@ -96,7 +96,7 @@
                         <input type="hidden" name="id_empleado" id="id_empleado" class="empleado-group"/>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label" for="puesto" >Puesto</label>
                         <select class="form-control" id="puesto" name="puesto">
                             <option value="" disabled selected>Seleccione el puesto</option>

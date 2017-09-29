@@ -313,7 +313,7 @@
         <label for="compania" class="col-md-4 control-label">Compañía</label>
         <div class="col-md-8">
             <select class="form-control" id="compania" name="compania">
-                <option value="">Seleccione la compañía</option>
+                <option value="" disabled selected>Seleccione la compañía</option>
                 <?php foreach ($view->companias as $cia){
                     ?>
                     <option value="<?php echo $cia['id_compania']; ?>"
@@ -361,13 +361,13 @@
 
 
     <div class="table-responsive" id="empleados-table">
-        <table class="table table-condensed dataTable table-hover">
+        <table class="table table-condensed dpTable table-hover">
             <thead>
             <tr>
-                <th>Empleado</th>
-                <th>Puesto</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th class="col-md-6">Empleado</th>
+                <th class="col-md-4">Puesto</th>
+                <th class="col-md-1">Editar</th>
+                <th class="col-md-1">Eliminar</th>
             </tr>
             </thead>
             <tbody>
