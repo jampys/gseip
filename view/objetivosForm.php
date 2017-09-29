@@ -430,7 +430,7 @@
         <div class="col-md-8">
 
             <select class="form-control" id="id_proceso" name="id_proceso">
-                    <option value=""></option>
+                <option value="" disabled selected>Seleccione un proceso</option>
                 <?php foreach ($view->procesos as $pro){
                     ?>
                     <option value="<?php echo $pro['id_proceso']; ?>"
@@ -450,7 +450,7 @@
         <div class="col-md-8">
 
             <select class="form-control" id="id_area" name="id_area">
-                <option value=""></option>
+                <option value="" disabled selected>Seleccione un área</option>
                 <?php foreach ($view->areas as $ar){
                     ?>
                     <option value="<?php echo $ar['id_area']; ?>"
@@ -470,13 +470,13 @@
         <div class="col-md-8">
 
             <select class="form-control" id="id_contrato" name="id_contrato">
-                <option value=""></option>
+                <option value="" disabled selected>Seleccione un contrato</option>
                 <?php foreach ($view->contratos as $con){
                     ?>
                     <option value="<?php echo $con['id_contrato']; ?>"
                         <?php echo ($con['id_contrato'] == $view->objetivo->getIdContrato() )? 'selected' :'' ?>
                         >
-                        <?php echo $con['compania']; ?>
+                        <?php echo $con['nro_contrato']." ".$con['compania']; ?>
                     </option>
                 <?php  } ?>
             </select>
