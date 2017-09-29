@@ -80,26 +80,14 @@
             }*/
         });
 
-        $('#fecha_nacimiento').datepicker({
+
+        $('.input-group.date').datepicker({
             //inline: true
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
         });
 
-        $('#fecha_alta').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });
-
-        $('#fecha_baja').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });
 
 
     });
