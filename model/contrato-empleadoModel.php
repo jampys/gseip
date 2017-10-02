@@ -1,4 +1,6 @@
 <?php
+include_once("model/contrato-empleado-procesoModel.php");
+
 class ContratoEmpleado
 {
     private $id_empleado_contrato;
@@ -7,6 +9,8 @@ class ContratoEmpleado
     private $id_puesto;
     private $fecha_desde;
     private $fecha_hasta;
+
+    private $procesos;
 
     //GETTERS
     function getIdEmpleadoContrato()
@@ -26,6 +30,10 @@ class ContratoEmpleado
 
     function getFechaHasta()
     { return $this->fecha_hasta;}
+
+    function getProcesos(){
+        return $this->procesos;
+    }
 
     //SETTERS
     function setIdEmpleadoContrato($val)
@@ -67,12 +75,15 @@ class ContratoEmpleado
             $this->setIdPuesto($rows[0]['id_puesto']);
             $this->setFechaDesde($rows[0]['fecha_desde']);
             $this->setFechaHasta($rows[0]['fecha_hasta']);
+
+            $this->procesos = array();
+            $this->procesos = ContratoEmpleadoProceso::getContratoEmpleadoProceso($this->getIdEmpleadoContrato());
         }
     }
 
     //Devuelve todos los empleados de un determinado contrato
     public static function getContratoEmpleado($id_contrato) { //ok
-        $stmt=new sQuery();
+        /*$stmt=new sQuery();
         $query = "select ec.id_empleado_contrato, ec.id_empleado, ec.id_contrato, ec.id_puesto,
                   DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
@@ -85,7 +96,38 @@ class ContratoEmpleado
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
-        return $stmt->dpFetchAll();
+        return $stmt->dpFetchAll();*/
+
+        $detalle = array();
+
+        $stmt=new sQuery();
+        //$query="select * from empleado_contrato where id_contrato = :id_contrato";
+        $query = "select ec.id_empleado_contrato, ec.id_empleado, ec.id_contrato, ec.id_puesto,
+                  DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                  CONCAT (em.apellido, ' ', em.nombre) as empleado,
+                  pu.nombre as puesto
+                  from empleado_contrato ec, empleados em, puestos pu
+                  where ec.id_empleado = em.id_empleado
+                  and ec.id_puesto = pu.id_puesto
+                  and ec.id_contrato = :id_contrato";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        $rows = $stmt ->dpFetchAll();
+
+        foreach($rows as $row){
+            //$this->detalle[$row['id_detail']] = $row['detail_1']; //clave - valor
+            $unEmpleado = new ContratoEmpleado($row['id_empleado_contrato']); //clave - valor
+            $detalle[] = array('id_empleado'=>$row['id_empleado'],
+                                'empleado'=>$row['empleado'],
+                                'id_contrato'=>$row['id_contrato'],
+                                'id_proceso'=>$unEmpleado->getProcesos()
+                                );
+        }
+
+        return $detalle;
+
     }
 
 

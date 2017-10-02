@@ -46,7 +46,7 @@ class ContratoEmpleadoProceso
     }
 
     //Devuelve todos los procesos de un determinado empleado-contrato
-    public static function getContratoEmpleado($id_contrato_empleado) { //ok
+    public static function getContratoEmpleadoProceso($id_contrato_empleado) { //ok
         $stmt=new sQuery();
         $query = "select *
                   from empleado_contrato_proceso ecp

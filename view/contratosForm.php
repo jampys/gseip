@@ -38,11 +38,14 @@
             dataType:"json",//xml,html,script,json
             success: function(data, textStatus, jqXHR) {
 
+                //alert(jqXHR.responseText);
+
                 $.each(data, function(indice, val){ //carga el array de empleados
+
+                    alert(data[indice]['id_proceso']);
                     var id = data[indice]['id_empleado'];
                     jsonEmpleados[id] = data[indice];
                     //alert(jsonEmpleados[id].fecha_desde);
-
                 });
 
                 $.cargarTablaEmpleados();
