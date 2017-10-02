@@ -50,6 +50,7 @@
                     });
                     //alert(arr);
                     jsonEmpleados[id]['id_proceso'] = arr;
+                    jsonEmpleados[id]['pinchila'] = arr;
 
                 });
 
@@ -232,6 +233,15 @@
 
             var id = $('#id_empleado').val();
 
+                var difference = $(jsonEmpleados[id]['pinchila']).not(jsonEmpleados[id]['id_proceso']).get();
+                $.each(difference, function(index, value) {
+                    difference[index] = value * -1;
+                });
+                //alert(difference);
+                var arr3 = $.merge( difference, $("#id_proceso").val() );
+                alert(difference);
+
+
             if(jsonEmpleados[id]) { //si ya existe en el array, lo actualiza
                 //alert('el elemento existe');
                 jsonEmpleados[id].id_puesto = $("#puesto").val();
@@ -260,6 +270,8 @@
                 jsonEmpleados[id] = item;
                 //alert('agregado con exito');
             }
+
+
 
             $.cargarTablaEmpleados();
 
