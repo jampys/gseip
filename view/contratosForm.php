@@ -38,24 +38,17 @@
             dataType:"json",//xml,html,script,json
             success: function(data, textStatus, jqXHR) {
 
-                //alert(jqXHR.responseText);
-
                 $.each(data, function(indice, val){ //carga el array de empleados
 
                     //alert(data[indice]['id_proceso']);
                     var id = data[indice]['id_empleado'];
                     jsonEmpleados[id] = data[indice];
-                    //alert(jsonEmpleados[id].fecha_desde);
-
-                    //jsonEmpleados[id]['id_proceso'] = data[indice]['id_proceso'][1];
 
                     var arr = [];
                     $.each(data[indice]['id_proceso'], function(i, v){
-                        //alert(data[indice]['id_proceso'][i][1]);
-                        arr.push(data[indice]['id_proceso'][i][1]);
+                        arr.push(data[indice]['id_proceso'][i]['id_proceso']);
                     });
-
-                    alert(arr);
+                    //alert(arr);
                     jsonEmpleados[id]['id_proceso'] = arr;
 
                 });

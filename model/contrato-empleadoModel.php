@@ -101,7 +101,6 @@ class ContratoEmpleado
         $detalle = array();
 
         $stmt=new sQuery();
-        //$query="select * from empleado_contrato where id_contrato = :id_contrato";
         $query = "select ec.id_empleado_contrato, ec.id_empleado, ec.id_contrato, ec.id_puesto,
                   DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
@@ -116,12 +115,17 @@ class ContratoEmpleado
         $stmt->dpExecute();
         $rows = $stmt ->dpFetchAll();
 
+        //Se debe formatear de esta manera para poder enviar un array de objetos a javascript
         foreach($rows as $row){
-            //$this->detalle[$row['id_detail']] = $row['detail_1']; //clave - valor
-            $unEmpleado = new ContratoEmpleado($row['id_empleado_contrato']); //clave - valor
-            $detalle[] = array('id_empleado'=>$row['id_empleado'],
-                                'empleado'=>$row['empleado'],
+            $unEmpleado = new ContratoEmpleado($row['id_empleado_contrato']);
+            $detalle[] = array( 'id_empleado_contrato'=>$row['id_empleado_contrato'],
+                                'id_empleado'=>$row['id_empleado'],
                                 'id_contrato'=>$row['id_contrato'],
+                                'id_puesto'=>$row['id_puesto'],
+                                'fecha_desde'=>$row['fecha_desde'],
+                                'fecha_hasta'=>$row['fecha_hasta'],
+                                'empleado'=>$row['empleado'],
+                                'puesto'=>$row['puesto'],
                                 'id_proceso'=>$unEmpleado->getProcesos()
                                 );
         }
