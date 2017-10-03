@@ -86,7 +86,18 @@ switch ($operation)
                     }
 
                 }
-                else if( $vE['operacion']=='update') {if($empleado_contrato->updateEmpleadoContrato() < 0) $flag = -1;}
+                else if( $vE['operacion']=='update') {
+                    $empleado_contrato->updateEmpleadoContrato();
+                    $id_empleado_contrato = $empleado_contrato->getIdEmpleadoContrato();
+                    foreach($vE['id_proceso'] as $p){
+                        echo $p." ";
+                        $contrato_empleado_proceso = new ContratoEmpleadoProceso();
+                        $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
+                        $contrato_empleado_proceso->setIdProceso($p);
+                        $contrato_empleado_proceso->contratoEmpleadoProceso();
+                    }
+
+                }
                 else if( $vE['operacion']=='delete') {if($empleado_contrato->deleteEmpleadoContrato() < 0) $flag = -1;}
 
 
