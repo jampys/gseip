@@ -62,7 +62,7 @@ switch ($operation)
                 //if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
 
                 //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
-                echo "id_contrato :".$id." - procesos: ".$vE['id_proceso'];
+                //echo "id_contrato :".$id." - procesos: ".$vE['id_proceso'];
                 $empleado_contrato = new ContratoEmpleado();
                 $empleado_contrato->setIdEmpleadoContrato($vE['id_empleado_contrato']);
                 $empleado_contrato->setIdEmpleado($vE['id_empleado']);
@@ -91,10 +91,11 @@ switch ($operation)
                     $id_empleado_contrato = $empleado_contrato->getIdEmpleadoContrato();
                     foreach($vE['id_proceso'] as $p){
                         //echo $p." ";
-                        $contrato_empleado_proceso = new ContratoEmpleadoProceso();
-                        $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
-                        $contrato_empleado_proceso->setIdProceso($p);
+                        $contrato_empleado_proceso = new ContratoEmpleadoProceso($id_empleado_contrato);
+                        //$contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
+                        //$contrato_empleado_proceso->setIdProceso($p);
                         $contrato_empleado_proceso->contratoEmpleadoProceso();
+                        echo 'operacion: '.$vE['operacion'].' - id_empleado_contrato: '.$contrato_empleado_proceso->getIdEmpleadoContrato().' - id_proceso: '.$contrato_empleado_proceso->getIdProceso();
                     }
 
                 }
