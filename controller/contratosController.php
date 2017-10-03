@@ -91,11 +91,11 @@ switch ($operation)
                     $id_empleado_contrato = $empleado_contrato->getIdEmpleadoContrato();
                     foreach($vE['id_proceso'] as $p){
                         //echo $p." ";
-                        $contrato_empleado_proceso = new ContratoEmpleadoProceso($id_empleado_contrato);
-                        //$contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
-                        //$contrato_empleado_proceso->setIdProceso($p);
+                        $contrato_empleado_proceso = new ContratoEmpleadoProceso();
+                        $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
+                        $contrato_empleado_proceso->setIdProceso($p);
                         $contrato_empleado_proceso->contratoEmpleadoProceso();
-                        echo 'operacion: '.$vE['operacion'].' - id_empleado_contrato: '.$contrato_empleado_proceso->getIdEmpleadoContrato().' - id_proceso: '.$contrato_empleado_proceso->getIdProceso();
+                        //echo 'operacion: '.$vE['operacion'].' - id_empleado_contrato: '.$contrato_empleado_proceso->getIdEmpleadoContrato().' - id_proceso: '.$contrato_empleado_proceso->getIdProceso();
                     }
 
                 }
