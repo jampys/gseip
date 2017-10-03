@@ -82,7 +82,7 @@ switch ($operation)
                         $contrato_empleado_proceso = new ContratoEmpleadoProceso();
                         $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
                         $contrato_empleado_proceso->setIdProceso($p);
-                        $contrato_empleado_proceso->contratoEmpleadoProceso($vE['operacion']);
+                        $contrato_empleado_proceso->contratoEmpleadoProceso();
                     }
 
                 }

@@ -58,18 +58,18 @@ class ContratoEmpleadoProceso
     }
 
 
-    public function contratoEmpleadoProceso($operacion){ //ok
+    public function contratoEmpleadoProceso(){ //ok
 
         $stmt=new sQuery();
         $query = 'CALL sp_contratoEmpleadoProceso(
-                                                    :operacion,
                                                     :id_empleado_contrato,
+                                                    :id_proceso,
                                                     @flag
                                                   )';
 
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':operacion', $operacion);
         $stmt->dpBind(':id_empleado_contrato', $this->getIdEmpleadoContrato());
+        $stmt->dpBind(':id_proceso', $this->getIdProceso());
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();
