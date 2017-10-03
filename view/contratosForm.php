@@ -166,7 +166,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    alert(xhr.responseText);
+                    //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     if(data >=0){
                         $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
@@ -272,8 +272,7 @@
                 //alert('agregado con exito');
             }
 
-
-                alert(jsonEmpleados[id].id_proceso);
+                //alert(jsonEmpleados[id].id_proceso);
 
 
             $.cargarTablaEmpleados();

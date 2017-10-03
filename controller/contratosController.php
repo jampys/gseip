@@ -90,7 +90,7 @@ switch ($operation)
                     $empleado_contrato->updateEmpleadoContrato();
                     $id_empleado_contrato = $empleado_contrato->getIdEmpleadoContrato();
                     foreach($vE['id_proceso'] as $p){
-                        echo $p." ";
+                        //echo $p." ";
                         $contrato_empleado_proceso = new ContratoEmpleadoProceso();
                         $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
                         $contrato_empleado_proceso->setIdProceso($p);
