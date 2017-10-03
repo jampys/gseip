@@ -50,7 +50,7 @@
                     });
                     //alert(arr);
                     jsonEmpleados[id]['id_proceso'] = arr;
-                    jsonEmpleados[id]['pinchila'] = arr;
+                    jsonEmpleados[id]['id_proceso_old'] = arr;
 
                 });
 
@@ -233,27 +233,28 @@
 
             var id = $('#id_empleado').val();
 
-                var difference = $(jsonEmpleados[id]['pinchila']).not(jsonEmpleados[id]['id_proceso']).get();
-                $.each(difference, function(index, value) {
-                    difference[index] = value * -1;
-                });
-                //alert(difference);
-                var arr3 = $.merge( difference, $("#id_proceso").val() );
-                alert(difference);
-
-
             if(jsonEmpleados[id]) { //si ya existe en el array, lo actualiza
                 //alert('el elemento existe');
                 jsonEmpleados[id].id_puesto = $("#puesto").val();
-                jsonEmpleados[id].id_proceso = $("#id_proceso").val();
+                //jsonEmpleados[id].id_proceso = $("#id_proceso").val();
                 jsonEmpleados[id].puesto = $("#puesto option:selected").text();
                 jsonEmpleados[id].fecha_desde = $('#myModal #fecha_desde').val();
                 jsonEmpleados[id].fecha_hasta = $('#myModal #fecha_hasta').val();
 
                 if(!jsonEmpleados[id].id_empleado_contrato){ //si no esta en la BD
                     jsonEmpleados[id].operacion = 'insert';
-                }else{ //si esta en la BD, lo marca para eliminar
+                    jsonEmpleados[id].id_proceso = $("#id_proceso").val();
+                }else{ //si esta en la BD, es un update
                     jsonEmpleados[id].operacion = 'update';
+
+                    var aDelete = $(jsonEmpleados[id]['id_proceso_old']).not($("#id_proceso").val()).get();
+                    $.each(aDelete, function(index, value) {
+                        aDelete[index] = value * -1;
+                    });
+                    //aMerge: tiene en negativo los que hay que eliminar (delete), y en positivo los que se mantienen o hay que agregar (insert)
+                    var aMerge = $.merge( $("#id_proceso").val(), aDelete );
+                    jsonEmpleados[id].id_proceso = aMerge;
+
                 }
 
             }
@@ -271,6 +272,8 @@
                 //alert('agregado con exito');
             }
 
+
+                alert(jsonEmpleados[id].id_proceso);
 
 
             $.cargarTablaEmpleados();
