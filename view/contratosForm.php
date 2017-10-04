@@ -226,6 +226,10 @@
             return false;
         });
 
+
+        //Cada vez que carga este documento, elimina el los eventos click de #myModal #submit. No hubo otra manera de eliminar la repeticion de evento...
+        $(document).off('click', '#myModal #submit'); //ok
+
         //Guarda los cambios luego de insertar o actualizar un empleado del contrato
         $(document).on('click', '#myModal #submit',function(){ //ok
 
