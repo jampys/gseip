@@ -71,14 +71,14 @@
                 indicador: {required: true},
                 responsable_ejecucion: {
                     require_from_group: {
-                        param: [2, ".responsable-ejecucion-group"],
-                        depends: function(element) { return $('#responsable_ejecucion').val().length > 0;}
+                        param: [2, ".responsable-ejecucion-group"]
+                        //depends: function(element) { return $('#responsable_ejecucion').val().length > 0;}
                     }
                 },
                 responsable_seguimiento: {
                     require_from_group: {
-                        param: [2, ".responsable-seguimiento-group"],
-                        depends: function(element) { return $('#responsable_seguimiento').val().length > 0;}
+                        param: [2, ".responsable-seguimiento-group"]
+                        //depends: function(element) { return $('#responsable_seguimiento').val().length > 0;}
                     }
                 }
             },

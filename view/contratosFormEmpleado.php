@@ -12,10 +12,17 @@
 
         $('#empleado-form').validate({
             rules: {
+                empleado: {
+                    require_from_group: {
+                        param: [2, ".empleado-group"]
+                        //depends: function(element) { return $('#empleado').val().length > 0;}
+                    }
+                },
                 puesto: {required: true},
                 fecha_desde: {required: true}
             },
             messages:{
+                empleado: "Seleccione un empleado sugerido",
                 puesto: "Seleccione un puesto",
                 fecha_desde: "Seleccione la fecha desde"
             }

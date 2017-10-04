@@ -71,8 +71,8 @@
                 compania: {required: true},
                 responsable: {
                     require_from_group: {
-                        param: [2, ".responsable-group"],
-                        depends: function(element) { return $('#responsable').val().length > 0;}
+                        param: [2, ".responsable-group"]
+                        //depends: function(element) { return $('#responsable').val().length > 0;}
                     }
                 },
                 fecha_desde: {required: true},
