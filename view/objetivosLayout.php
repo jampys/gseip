@@ -17,7 +17,7 @@
             });*/
 
             //Al cambiar el periodo
-            $(document).on('change', '#periodo', function(){
+            $('#search_panel').on('change', '#periodo', function(){
                 //alert('cambio el periodo');
                 //preparo los parametros
                 params={};
