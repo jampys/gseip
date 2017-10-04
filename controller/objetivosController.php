@@ -67,7 +67,7 @@ switch ($operation)
 
                 //echo 'id objetivo sub: '.$vS['id_objetivo_sub'].'---';
 
-                echo $vS['operacion'];
+                //echo $vS['operacion'];
                 if($vS['operacion']=='insert') {if($subobjetivo->insertSubobjetivo() < 0) $flag = -1;}
                 else if( $vS['operacion']=='update') {if($subobjetivo->updateSubobjetivo() < 0) $flag = -1;}
                 else if( $vS['operacion']=='delete') {if($subobjetivo->deleteSubobjetivo() < 0) $flag = -1;}
