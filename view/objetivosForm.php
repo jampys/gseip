@@ -557,7 +557,7 @@
 
 
     <div class="table-responsive" id="subobjetivos-table">
-        <table class="table table-condensed dataTable table-hover">
+        <table class="table table-condensed dpTable table-hover">
             <thead>
             <tr>
                 <th class="col-md-6">Nombre</th>
