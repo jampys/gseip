@@ -320,7 +320,7 @@
             if ($("#subobjetivo-form").valid()){
 
                 var id = $('#myModal #id').val();
-                alert('el id es '+id);
+                //alert('el id es '+id);
 
                 if(jsonSubobjetivos[id]) { //si ya existe en el array, lo actualiza
                     //alert('el elemento existe');
