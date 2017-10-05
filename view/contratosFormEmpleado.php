@@ -121,8 +121,13 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="id_proceso" >Proceso</label>
+
+                        <div class="alert alert-info fade in">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <span class="glyphicon glyphicon-tags" ></span>&nbsp  Mantenga presionada la tecla <strong>Ctrl</strong> para seleccionar dos o mas procesos.
+                        </div>
+
                         <select multiple class="form-control" id="id_proceso" name="id_proceso">
-                            <option value="" disabled selected>Seleccione un proceso</option>
                             <?php foreach ($view->procesos as $pro){
                                 ?>
                                 <option value="<?php echo $pro['id_proceso']; ?>"
