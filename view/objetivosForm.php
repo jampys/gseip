@@ -355,7 +355,7 @@
         //Elimina un subobjetivo del objetivo
         $('#objetivo').on('click', '.delete-subobjetivo', function(e){ //ok
             //alert('actualizar empleado');
-            var id = $(this).closest('tr').attr('id_area');
+            var id = $(this).closest('tr').attr('indice');
             //alert(jsonSubobjetivos[id].id_empleado_contrato);
 
             if(!jsonSubobjetivos[id].id_objetivo_sub){ //si no esta en la BD

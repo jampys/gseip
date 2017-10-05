@@ -100,11 +100,11 @@ class Subobjetivo
         return $stmt->dpGetAffect();
     }
 
-    public function deleteSubobjetivo(){
+    public function deleteSubobjetivo(){ //ok
         $stmt=new sQuery();
-        $query="delete from empleado_contrato where id_empleado_contrato= :id_empleado_contrato";
+        $query="delete from objetivos_sub where id_objetivo_sub= :id_objetivo_sub";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado_contrato', $this->getIdEmpleadoContrato());
+        $stmt->dpBind(':id_objetivo_sub', $this->getIdObjetivoSub());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
