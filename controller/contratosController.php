@@ -99,7 +99,10 @@ switch ($operation)
                     }
 
                 }
-                else if( $vE['operacion']=='delete') {if($empleado_contrato->deleteEmpleadoContrato() < 0) $flag = -1;}
+                else if( $vE['operacion']=='delete') {
+                    //Elimina en cascada los registros hijos de la tabla empleado_contrato_proceso
+                    if($empleado_contrato->deleteEmpleadoContrato() < 0) $flag = -1;
+                }
 
 
             }
