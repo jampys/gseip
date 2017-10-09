@@ -346,7 +346,8 @@
                 }
 
                 $.cargarTablaSubobjetivos();
-
+                $('#myModal').modal('hide');
+                
             }
             return false;
         });

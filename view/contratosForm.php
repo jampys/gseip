@@ -280,6 +280,7 @@
 
 
             $.cargarTablaEmpleados();
+            $('#myModal').modal('hide');
 
             }
             return false;

@@ -161,7 +161,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit" data-dismiss="modal">Aceptar</button>
+                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Aceptar</button>
                 <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
             </div>
 
