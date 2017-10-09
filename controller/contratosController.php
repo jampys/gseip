@@ -82,7 +82,7 @@ switch ($operation)
                         $contrato_empleado_proceso = new ContratoEmpleadoProceso();
                         $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
                         $contrato_empleado_proceso->setIdProceso($p);
-                        $contrato_empleado_proceso->contratoEmpleadoProceso();
+                        if($contrato_empleado_proceso->contratoEmpleadoProceso()<0) $flag = -1;
                     }
 
                 }
@@ -94,7 +94,7 @@ switch ($operation)
                         $contrato_empleado_proceso = new ContratoEmpleadoProceso();
                         $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
                         $contrato_empleado_proceso->setIdProceso($p);
-                        $contrato_empleado_proceso->contratoEmpleadoProceso();
+                        if($contrato_empleado_proceso->contratoEmpleadoProceso()<0) $flag = -1;
                         //echo 'operacion: '.$vE['operacion'].' - id_empleado_contrato: '.$contrato_empleado_proceso->getIdEmpleadoContrato().' - id_proceso: '.$contrato_empleado_proceso->getIdProceso();
                     }
 
