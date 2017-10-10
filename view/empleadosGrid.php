@@ -74,7 +74,7 @@
                     <td><?php echo $empleado['fecha_alta'];?></td>
                     <td><?php echo $empleado['fecha_baja'];?></td>
                     <td><?php echo $empleado['ciudad'];?></td>
-                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

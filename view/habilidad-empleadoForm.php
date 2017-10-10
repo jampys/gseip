@@ -62,7 +62,7 @@
                     '<td>'+item.legajo+'</td>' +
                     '<td>'+item.apellido+'</td>' +
                     '<td>'+item.nombre+'</td>' +
-                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
                     '</tr>');
                 }
 
@@ -112,7 +112,7 @@
                     $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
                     '<td>'+item.nombre+'</td>' +
                     '<td></td>' +
-                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
                     '</tr>');
                 }
 

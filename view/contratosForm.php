@@ -22,8 +22,8 @@
                 '<td>'+jsonEmpleados[i].empleado+'</td>' +
                 //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
                 '<td>'+jsonEmpleados[i].puesto+'</td>' +
-                '<td class="text-center"><a class="update-empleado" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
-                '<td class="text-center"><a class="delete-empleado" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="update-empleado" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="delete-empleado" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
                 '</tr>');
 
             }

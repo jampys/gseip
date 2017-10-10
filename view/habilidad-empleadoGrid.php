@@ -62,11 +62,11 @@
                                 <td><?php echo $he['habilidad']; ?></td>
                                 <td><?php echo $he['fecha_desde']; ?></td>
                                 <td class="text-center"><a class="edit" href="javascript:void(0);">
-                                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                         </a>
                                 </td>
                                 <td class="text-center"><a class="delete" href="javascript:void(0);">
-                                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                                         </a>
                                 </td>
                             </tr>

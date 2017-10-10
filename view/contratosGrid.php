@@ -70,7 +70,7 @@
                     <td><?php echo $contrato['responsable'];?></td>
                     <td><?php echo $contrato['fecha_desde'];?></td>
                     <td><?php echo $contrato['fecha_hasta'];?></td>
-                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

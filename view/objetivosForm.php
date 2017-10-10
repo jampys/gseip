@@ -19,8 +19,8 @@
                 '<td>'+jsonSubobjetivos[i].nombre+'</td>' +
                     //'<td>'+jsonSubobjetivos[i].empleado+' '+jsonSubobjetivos[i].operacion+'</td>' +
                 '<td>'+jsonSubobjetivos[i].area+'</td>' +
-                '<td class="text-center"><a class="update-subobjetivo" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>' +
-                '<td class="text-center"><a class="delete-subobjetivo" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="update-subobjetivo" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="delete-subobjetivo" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
                 '</tr>');
 
             }
