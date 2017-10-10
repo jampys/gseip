@@ -36,7 +36,7 @@
                             <li><a href="index.php?action=objetivos">Objetivos</a></li>
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">NAV HEADER</li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a href="index.php?action=evaluaciones">Evaluaciones</a></li>
                             <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
