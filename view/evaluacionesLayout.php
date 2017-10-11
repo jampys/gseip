@@ -17,9 +17,8 @@
             });*/
 
             //Al cambiar el periodo
-            $('#search_panel').on('change', '#periodo', function(){
+            $('#search_panel').on('change', '#periodo', function(){ //ok
                 //alert('cambio el periodo');
-                //preparo los parametros
                 params={};
                 params.periodo = $('#periodo').val();
                 params.action = "evaluaciones";
@@ -29,31 +28,22 @@
             });
 
 
-            $(document).on('click', '.edit', function(){
+            $(document).on('click', '.loadEac', function(){
                 var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_objetivo = id;
-                params.action = "objetivos";
-                params.operation = "editObjetivo";
-                $('#content').load('index.php', params,function(){
-                    $('#search_panel').hide();
+                params.id_habilidad = id;
+                params.periodo=$('#periodo').val();
+                params.action = "evaluaciones";
+                params.operation = "loadEac";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#modalEac').modal();
                 })
 
             });
 
 
 
-            $(document).on('click', '#new', function(){
-                params={};
-                params.action = "objetivos";
-                params.operation="newObjetivo";
-                $('#content').load('index.php', params,function(){
-                    $('#search_panel').hide();
-                })
-            });
-
-            
             $(document).on('click', '.delete', function(){
                 var id = $(this).attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre

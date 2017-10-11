@@ -1,6 +1,7 @@
 ﻿<?php
 
 include_once("model/evaluacionesModel.php");
+include_once("model/evaluacionesCompetenciasModel.php");
 //include_once("model/procesosModel.php");
 //include_once("model/areasModel.php");
 //include_once("model/contratosModel.php");
@@ -93,41 +94,14 @@ switch ($operation)
         exit;
         break;
 
-    case 'newObjetivo':
-        $view->objetivo = new Objetivo();
-        $view->label='Nuevo objetivo';
 
-        $view->periodos = Objetivo::getPeriodos();
-        $view->periodo_actual = Soporte::getPeriodoActual();
-        $view->procesos = Proceso::getProcesos();
-        $view->areas = Area::getAreas();
-        $view->contratos = Contrato::getContratos();
-        $view->frecuencias = Soporte::get_enum_values('objetivos', 'frecuencia');
 
-        $view->responsable_ejecucion = $view->objetivo->getResponsableEjecucion()->getApellido()." ".$view->objetivo->getResponsableEjecucion()->getNombre();
-        $view->responsable_seguimiento = $view->objetivo->getResponsableSeguimiento()->getApellido()." ".$view->objetivo->getResponsableSeguimiento()->getNombre();
+    case 'loadEac': //Abre el formulario de evaluacion anual de competecias
+        $view->label='Evaluacion de competencias';
+        //$view->habilidad = new Habilidad($_POST['id_habilidad']);
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/objetivosForm.php";
-        break;
-
-    case 'editObjetivo':
-        $view->objetivo = new Objetivo($_POST['id_objetivo']);
-        $view->label='Editar Objetivo';
-
-
-        $view->periodos = Objetivo::getPeriodos();
-        $view->periodo_actual = Soporte::getPeriodoActual();
-        $view->procesos = Proceso::getProcesos();
-        $view->areas = Area::getAreas();
-        $view->contratos = Contrato::getContratos();
-        $view->frecuencias = Soporte::get_enum_values('objetivos', 'frecuencia');
-
-        $view->responsable_ejecucion = $view->objetivo->getResponsableEjecucion()->getApellido()." ".$view->objetivo->getResponsableEjecucion()->getNombre();
-        $view->responsable_seguimiento = $view->objetivo->getResponsableSeguimiento()->getApellido()." ".$view->objetivo->getResponsableSeguimiento()->getNombre();
-
-        $view->disableLayout=true;
-        $view->contentTemplate="view/objetivosForm.php";
+        $view->contentTemplate="view/evaluaciones-eacForm.php";
         break;
 
 
