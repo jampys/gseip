@@ -15,12 +15,12 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
-        //$view->periodos = Objetivo::getPeriodos();
+        //$view->periodos = Evaluacion::getPeriodos();
         $periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
-        $view->objetivos = Objetivo::getObjetivos($periodo);
-        $view->contentTemplate="view/objetivosGrid.php";
+        $view->evaluaciones = Evaluacion::getEvaluaciones($periodo);
+        $view->contentTemplate="view/evaluacionesGrid.php";
         break;
 
 

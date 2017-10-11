@@ -22,7 +22,7 @@
                 //preparo los parametros
                 params={};
                 params.periodo = $('#periodo').val();
-                params.action = "objetivos";
+                params.action = "evaluaciones";
                 params.operation = "refreshGrid";
                 $('#content').load('index.php', params,function(){})
 

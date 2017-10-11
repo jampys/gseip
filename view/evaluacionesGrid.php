@@ -42,15 +42,15 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($view->evaluaciones as $objetivo):   ?>
+            <?php foreach ($view->evaluaciones as $evaluacion):   ?>
                 <tr>
-                    <td><?php echo $objetivo['apellido'];?></td>
-                    <td><?php echo $objetivo['nombre'];?></td>
-                    <td><?php echo $objetivo['id_contrato'];?></td>
-                    <td><?php echo $objetivo['id_puesto'];?></td>
-                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $objetivo['id_objetivo'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $objetivo['id_objetivo'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $objetivo['id_objetivo'];?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+                    <td><?php echo $evaluacion['apellido'];?></td>
+                    <td><?php echo $evaluacion['nombre'];?></td>
+                    <td><?php echo $evaluacion['id_contrato'];?></td>
+                    <td><?php echo $evaluacion['id_puesto'];?></td>
+                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $evaluacion['id_evaluacion_competencia'];?>"><span class="glyphicon glyphicon-edit <?php echo (!$evaluacion['id_evaluacion_competencia'])? 'text-danger': '';  ?>" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $evaluacion['id_evaluacion_objetivo'];?>"><span class="glyphicon glyphicon-edit <?php echo (!$evaluacion['id_evaluacion_objetivo'])? 'text-danger': '';  ?>" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $evaluacion['id_evaluacion'];?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
