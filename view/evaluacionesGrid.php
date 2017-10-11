@@ -43,14 +43,17 @@
             </thead>
             <tbody>
             <?php foreach ($view->evaluaciones as $evaluacion):   ?>
-                <tr >
+                <tr id_evaluacion_competencia="<?php echo $evaluacion['id_evaluacion_competencia'];?>"
+                    id_evaluacion_objetivo="<?php echo $evaluacion['id_evaluacion_objetivo'];?>"
+                    id_empleado="<?php echo $evaluacion['id_empleado'];?>"
+                    >
                     <td><?php echo $evaluacion['apellido'];?></td>
                     <td><?php echo $evaluacion['nombre'];?></td>
                     <td><?php echo $evaluacion['contrato'];?></td>
                     <td><?php echo $evaluacion['puesto'];?></td>
-                    <td class="text-center"><a class="loadEac" href="javascript:void(0);" data-id="<?php echo $evaluacion['id_evaluacion_competencia'];?>"><span class="glyphicon glyphicon-edit <?php echo (!$evaluacion['id_evaluacion_competencia'])? 'text-danger': '';  ?>" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="loadEao" href="javascript:void(0);" data-id="<?php echo $evaluacion['id_evaluacion_objetivo'];?>"><span class="glyphicon glyphicon-edit <?php echo (!$evaluacion['id_evaluacion_objetivo'])? 'text-danger': '';  ?>" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $evaluacion['id_evaluacion'];?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="loadEac" href="javascript:void(0);" ><span class="glyphicon glyphicon-edit <?php echo (!$evaluacion['id_evaluacion_competencia'])? 'text-danger': '';  ?>" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="loadEao" href="javascript:void(0);" ><span class="glyphicon glyphicon-edit <?php echo (!$evaluacion['id_evaluacion_objetivo'])? 'text-danger': '';  ?>" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="delete" href="javascript:void(0);" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

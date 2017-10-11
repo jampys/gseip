@@ -65,7 +65,7 @@ class EvaluacionCompetencia
     { $this->periodo=$val;}
 
 
-    public static function getEvaluacionesCompetencias($id_empleado, $periodo) { //ok
+    public static function getCompetencias($id_empleado, $periodo) { //ok
         $stmt=new sQuery();
         $query="select cnc.id_nivel_competencia, co.id_competencia, co.nombre,
 eac_ec.id_evaluacion_competencia, eac_pu.nro_orden
@@ -85,32 +85,26 @@ where em.id_empleado = :id_empleado";
         return $stmt->dpFetchAll();
     }
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select * from objetivos where id_objetivo = :nro";
+            $query="select * from eac_evaluacion_competencia where id_evaluacion_competencia = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdObjetivo($rows[0]['id_objetivo']);
+            $this->setIdEvaluacionCompetencia($rows[0]['id_evaluacion_competencia']);
+            $this->setIdCompetencia($rows[0]['id_competencia']);
+            $this->setIdPuntaje($rows[0]['id_puntaje']);
+            $this->setFecha($rows[0]['fecha']);
+            $this->setIdEvaluador($rows[0]['id_evaluador']);
+            $this->setIdEmpleado($rows[0]['id_empleado']);
+            $this->setIdPlanEvaluacion($rows[0]['id_plan_evaluacion']);
             $this->setPeriodo($rows[0]['periodo']);
-            $this->setNombre($rows[0]['nombre']);
-            $this->setIdProceso($rows[0]['id_proceso']);
-            $this->setIdArea($rows[0]['id_area']);
-            $this->setIdContrato($rows[0]['id_contrato']);
-            $this->setMeta($rows[0]['meta']);
-            $this->setActividades($rows[0]['actividades']);
-            $this->setIndicador($rows[0]['indicador']);
-            $this->setFrecuencia($rows[0]['frecuencia']);
-            $this->setIdResponsableEjecucion($rows[0]['id_responsable_ejecucion']);
-            $this->setIdResponsableSeguimiento($rows[0]['id_responsable_seguimiento']);
 
-            $this->responsable_ejecucion = new Empleado($rows[0]['id_responsable_ejecucion']);
-            $this->responsable_seguimiento = new Empleado($rows[0]['id_responsable_seguimiento']);
         }
     }
 
@@ -188,24 +182,16 @@ where em.id_empleado = :id_empleado";
     }
 
 
-
-
-    public function autocompletarObjetivos($term) {
+    public static function getPuntajes() { //ok
         $stmt=new sQuery();
-        /*$query = "select id_objetivo_puesto, op.id_objetivo, ob.nombre, id_contrato, periodo, op.valor
-from objetivo_puesto op, objetivos ob
-where op.id_objetivo = ob.id_objetivo
-and nombre like '%$term%'
-UNION
-select null, id_objetivo, nombre, null, null, null
-from objetivos
-where nombre like '%$term%'";*/
-        $query = "select * from objetivos
-                  where nombre like '%$term%'";
+        $query="select *
+                from eac_puntajes";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
+
+
 
 }
 

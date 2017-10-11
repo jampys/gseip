@@ -52,19 +52,41 @@
 
 
                 <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
-                    <input type="hidden" name="id_habilidad" id="id_habilidad" value="<?php //print $view->habilidad->getIdHabilidad() ?>">
+                    <input type="hidden" name="id_evaluacion_competencia" id="id_evaluacion_competencia" value="<?php print $view->evaluacion_competencia->getIdEvaluacionCompetencia() ?>">
+                    <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->evaluacion_competencia->getIdEmpleado() ?>">
+
 
                     <!--<div class="form-group required">
-                        <label class="control-label" for="codigo">Código</label>
-                        <input class="form-control" type="text" name="codigo" id="codigo" value = "<?php //print $view->habilidad->getCodigo() ?>" placeholder="Código">
-                    </div>-->
-
-                    <div class="form-group required">
                         <label for="nro_contrato" class="col-md-4 control-label">Nro. Contrato</label>
                         <div class="col-md-8">
                             <input class="form-control" type="text" name="nro_contrato" id="nro_contrato" placeholder="Nro. Contrato" value = "<?php //print $view->contrato->getNroContrato() ?>">
                         </div>
-                    </div>
+                    </div>-->
+
+
+                    <?php foreach ($view->competencias as $com){
+                        ?>
+
+
+                        <div class="form-group required">
+                            <label for="compania" class="col-md-4 control-label"><?php echo $com['nombre']; ?> </label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="compania" name="compania">
+                                    <option value="" disabled selected>Seleccione el puntaje</option>
+                                    <?php foreach ($view->puntajes as $p){ ?>
+                                        <option value="<?php echo $p['id_puntaje']; ?>"
+                                            <?php echo ($view->evaluacion_competencia->getIdEvaluacionCompetencia() && $com['nro_orden'] == $p['nro_orden'])? 'selected' :'' ?>
+                                            >
+                                            <?php echo $p['nro_orden'];?>
+                                        </option>
+                                    <?php  } ?>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                    <?php  } ?>
 
 
 

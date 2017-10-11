@@ -29,13 +29,14 @@
 
 
             $(document).on('click', '.loadEac', function(){
-                var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_habilidad = id;
-                params.periodo=$('#periodo').val();
+                params.id_evaluacion_competencia = $(this).closest('tr').attr('id_evaluacion_competencia');
+                params.id_empleado = $(this).closest('tr').attr('id_empleado');
+                params.periodo = $('#periodo').val();
                 params.action = "evaluaciones";
                 params.operation = "loadEac";
+                //alert(params.periodo);
                 $('#popupbox').load('index.php', params,function(){
                     $('#modalEac').modal();
                 })
