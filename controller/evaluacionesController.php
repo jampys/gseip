@@ -57,25 +57,24 @@ switch ($operation)
             $vCompetencias = json_decode($_POST["vCompetencias"], true);
             print_r($vCompetencias);
 
-            foreach ($vSubobjetivos as $vS) {
+            foreach ($vCompetencias as $vC) {
 
                 //$c = new HabilidadEmpleado();
                 //$c->setIdHabilidad($vH['id_habilidad']);
                 //$c->setIdEmpleado($vE['id_empleado']);
                 //if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
                 //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
-                $subobjetivo = new Subobjetivo();
-                $subobjetivo->setIdObjetivoSub($vS['id_objetivo_sub']);
-                $subobjetivo->setNombre($vS['nombre']);
-                $subobjetivo->setIdObjetivo($id_objetivo);
-                $subobjetivo->setIdArea($vS['id_area']);
+                $evaluacion_competencia = new EvaluacionCompetencia();
+                $evaluacion_competencia->setIdEvaluacionCompetencia($vC['id_evaluacion_competencia']);
+                $evaluacion_competencia->setIdCompetencia($vC['id_competencia']);
+                $evaluacion_competencia->setIdPuntaje($vC['id_puntaje']);
+                $evaluacion_competencia->setIdEmpleado($vC['id_empleado']);
+                $evaluacion_competencia->setPeriodo($vC['periodo']);
 
                 //echo 'id objetivo sub: '.$vS['id_objetivo_sub'].'---';
 
                 //echo $vS['operacion'];
-                if($vS['operacion']=='insert') {if($subobjetivo->insertSubobjetivo() < 0) $flag = -1;}
-                else if( $vS['operacion']=='update') {if($subobjetivo->updateSubobjetivo() < 0) $flag = -1;}
-                else if( $vS['operacion']=='delete') {if($subobjetivo->deleteSubobjetivo() < 0) $flag = -1;}
+                if($evaluacion_competencia->save() < 0) $flag = -1;
 
 
             }

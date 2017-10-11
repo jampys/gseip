@@ -110,48 +110,29 @@ where em.id_empleado = :id_empleado";
 
 
 
-    function save(){
-        if($this->id_objetivo)
-        {$rta = $this->updateObjetivo();}
+    function save(){ //ok
+        if($this->id_evaluacion_competencia)
+        {$rta = $this->updateEvaluacionCompetencia();}
         else
-        {$rta =$this->insertObjetivo();}
+        {$rta =$this->insertEvaluacionCompetencia();}
         return $rta;
     }
 
-    public function updateObjetivo(){
+
+    public function updateEvaluacionCompetencia(){ //ok
 
         $stmt=new sQuery();
-        $query="update objetivos set
-                periodo= :periodo,
-                nombre= :nombre,
-                id_proceso= :id_proceso,
-                id_area= :id_area,
-                id_contrato= :id_contrato,
-                meta= :meta,
-                actividades= :actividades,
-                indicador= :indicador,
-                frecuencia= :frecuencia,
-                id_responsable_ejecucion= :id_responsable_ejecucion,
-                id_responsable_seguimiento= :id_responsable_seguimiento
-                where id_objetivo = :id_objetivo";
+        $query="update eac_evaluacion_competencia set
+                id_puntaje= :id_puntaje
+                where id_evaluacion_competencia = :id_evaluacion_competencia";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':periodo', $this->getPeriodo());
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':id_proceso', $this->getIdProceso());
-        $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
-        $stmt->dpBind(':meta', $this->getMeta());
-        $stmt->dpBind(':actividades', $this->getActividades());
-        $stmt->dpBind(':indicador', $this->getIndicador());
-        $stmt->dpBind(':frecuencia', $this->getFrecuencia());
-        $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
-        $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
-        $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
+        $stmt->dpBind(':id_puntaje', $this->getIdPuntaje());
+        $stmt->dpBind(':id_evaluacion_competencia', $this->getIdEvaluacionCompetencia());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
-    private function insertObjetivo(){
+    private function insertEvaluacionCompetencia(){
 
         $stmt=new sQuery();
         $query="insert into objetivos(periodo, nombre, id_proceso, id_area, id_contrato, meta, actividades, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento)
