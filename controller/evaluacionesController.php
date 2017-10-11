@@ -25,12 +25,14 @@ switch ($operation)
         break;
 
 
-    case 'saveObjetivo':
+    case 'saveEac': //Guarda una evaluacion de competencias
         $flag=1;
 
         sQuery::dpBeginTransaction();
 
         try{
+
+            /*
 
             $objetivo = new Objetivo($_POST['id_objetivo']);
             $objetivo->setPeriodo($_POST['periodo']);
@@ -50,8 +52,10 @@ switch ($operation)
             //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
             $id_objetivo = (!$objetivo->getIdObjetivo())? sQuery::dpLastInsertId(): $objetivo->getIdObjetivo();
 
-            $vSubobjetivos = json_decode($_POST["vSubobjetivos"], true);
-            //print_r($vSubobjetivos);
+            */
+
+            $vCompetencias = json_decode($_POST["vCompetencias"], true);
+            print_r($vCompetencias);
 
             foreach ($vSubobjetivos as $vS) {
 
@@ -108,12 +112,6 @@ switch ($operation)
         $view->contentTemplate="view/evaluaciones-eacForm.php";
         break;
 
-
-    case 'editObjetivoSubobjetivos':
-        $view->subobjetivos = Subobjetivo::getSubobjetivos($_POST['id_objetivo']);
-        print_r(json_encode($view->subobjetivos));
-        exit;
-        break;
 
     case 'deleteObjetivo':
         $objetivo = new Objetivo($_POST['id_objetivo']);

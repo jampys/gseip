@@ -12,9 +12,6 @@
 
         $(document).ready(function(){
 
-            /*$('#popupbox').dialog({
-                autoOpen:false
-            });*/
 
             //Al cambiar el periodo
             $('#search_panel').on('change', '#periodo', function(){ //ok
@@ -28,8 +25,8 @@
             });
 
 
-            $(document).on('click', '.loadEac', function(){
-                //preparo los parametros
+            //Al presionar en editar una evaluacion de competencias
+            $(document).on('click', '.loadEac', function(){ //ok
                 params={};
                 params.id_evaluacion_competencia = $(this).closest('tr').attr('id_evaluacion_competencia');
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
@@ -42,6 +39,7 @@
                 })
 
             });
+
 
 
 
