@@ -6,8 +6,10 @@
         $('.selectpicker').selectpicker({
             //style: 'btn-info'
             //size: 4
-            multipleSeparator: '-'
+            multipleSeparator: '-',
+            showTick: true
         });
+        
 
 
         $('#myModal').modal({
