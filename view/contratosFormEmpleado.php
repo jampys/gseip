@@ -3,6 +3,11 @@
 
     $(document).ready(function(){
 
+        $('.selectpicker').selectpicker({
+
+        });
+
+
         $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -104,7 +109,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="puesto" >Puesto</label>
-                        <select class="form-control" id="puesto" name="puesto">
+                        <select class="form-control selectpicker" id="puesto" name="puesto" data-live-search="true" data-size="5">
                             <option value="" disabled selected>Seleccione el puesto</option>
                             <?php foreach ($view->puesto as $pu){
                                 ?>

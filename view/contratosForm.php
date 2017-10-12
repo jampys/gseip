@@ -222,6 +222,8 @@
                 $('#myModal #fecha_desde').datepicker('update', jsonEmpleados[id].fecha_desde );
                 $('#myModal #fecha_hasta').datepicker('update', jsonEmpleados[id].fecha_hasta );
 
+                $('.selectpicker').selectpicker('refresh');
+
             });
             return false;
         });
