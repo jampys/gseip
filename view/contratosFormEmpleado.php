@@ -131,7 +131,7 @@
                             <span class="glyphicon glyphicon-tags" ></span>&nbsp  Mantenga presionada la tecla <strong>Ctrl</strong> para seleccionar dos o mas procesos.
                         </div>
 
-                        <select multiple class="form-control" id="id_proceso" name="id_proceso" >
+                        <select multiple class="form-control selectpicker" id="id_proceso" name="id_proceso" multiple data-selected-text-format="count" >
                             <?php foreach ($view->procesos as $pro){
                                 ?>
                                 <option value="<?php echo $pro['id_proceso']; ?>">
