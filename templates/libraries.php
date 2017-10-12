@@ -50,6 +50,12 @@
     <script src="bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
 
 
+    <!-- bootstrap-select-->
+    <link rel="stylesheet" href="bootstrap-select/dist/css/bootstrap-select.min.css">
+    <script src="bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="bootstrap-select/dist/js/i18n/defaults-ar_AR.min.js"></script>
+
+
     <!-- librerias css propias -->
     <link rel="stylesheet" href="resources/css/dario.css">
 
