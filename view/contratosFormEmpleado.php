@@ -109,8 +109,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="puesto" >Puesto</label>
-                        <select class="form-control selectpicker" id="puesto" name="puesto" data-live-search="true" data-size="5">
-                            <option value="" disabled selected>Seleccione el puesto</option>
+                        <select class="form-control selectpicker" id="puesto" name="puesto" data-live-search="true" data-size="5" title="Seleccione el puesto">
                             <?php foreach ($view->puesto as $pu){
                                 ?>
                                 <option value="<?php echo $pu['id_puesto']; ?>"
@@ -128,7 +127,7 @@
 
                         <div class="alert alert-info fade in">
                             <a href="#" class="close" data-dismiss="alert">&times;</a>
-                            <span class="glyphicon glyphicon-tags" ></span>&nbsp  Mantenga presionada la tecla <strong>Ctrl</strong> para seleccionar dos o mas procesos.
+                            <span class="glyphicon glyphicon-tags" ></span>&nbsp  Puede seleccionar mas de un proceso.
                         </div>
 
                         <select multiple class="form-control selectpicker" id="id_proceso" name="id_proceso" multiple data-selected-text-format="count" data-live-search="true" data-size="5" >

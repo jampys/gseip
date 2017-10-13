@@ -5,6 +5,14 @@
 
     $(document).ready(function(){
 
+        $('.selectpicker').selectpicker({
+            //propiedades del selectpicker
+
+        }).change(function(){
+            $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
+                             // elimine el mensaje de requerido de jquery validation
+        });
+
         var jsonEmpleados = [];
 
 
@@ -344,8 +352,7 @@
     <div class="form-group required">
         <label for="compania" class="col-md-4 control-label">Compañía</label>
         <div class="col-md-8">
-            <select class="form-control" id="compania" name="compania">
-                <option value="" disabled selected>Seleccione la compañía</option>
+            <select class="form-control selectpicker show-tick" id="compania" name="compania" title="Seleccione la compañía">
                 <?php foreach ($view->companias as $cia){
                     ?>
                     <option value="<?php echo $cia['id_compania']; ?>"
