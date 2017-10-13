@@ -3,6 +3,8 @@
 
     $(document).ready(function(){
 
+        $('.selectpicker').selectpicker({}); //Necesario para que funcione el plug-in bootstrap-select
+
         $('[data-toggle="tooltip"]').tooltip();
 
         $('#empleado-form').validate({
@@ -150,7 +152,7 @@
     <div class="form-group required">
         <label for="tipo" class="col-md-4 control-label">Empresa</label>
         <div class="col-md-8">
-            <select class="form-control" id="empresa" name="empresa">
+            <select class="form-control selectpicker show-tick" id="empresa" name="empresa">
                 <option value="" disabled selected>Seleccione la empresa</option>
                 <?php foreach ($view->empresas['enum'] as $emp){
                     ?>
