@@ -152,8 +152,7 @@
     <div class="form-group required">
         <label for="tipo" class="col-md-4 control-label">Empresa</label>
         <div class="col-md-8">
-            <select class="form-control selectpicker show-tick" id="empresa" name="empresa">
-                <option value="" disabled selected>Seleccione la empresa</option>
+            <select class="form-control selectpicker show-tick" id="empresa" name="empresa" title="Seleccione la empresa">
                 <?php foreach ($view->empresas['enum'] as $emp){
                     ?>
                     <option value="<?php echo $emp; ?>"
@@ -216,8 +215,7 @@
     <div class="form-group required">
         <label for="lugar_residencia" class="col-md-4 control-label">Localidad</label>
         <div class="col-md-8">
-            <select class="form-control" id="localidad" name="localidad">
-                <option value="" disabled selected>Seleccione la localidad</option>
+            <select class="form-control selectpicker show-tick" id="localidad" name="localidad" title="Seleccione la localidad" data-live-search="true" data-size="5">
                 <?php foreach ($view->localidades as $loc){
                     ?>
                     <option value="<?php echo $loc['id_localidad']; ?>"
@@ -322,8 +320,7 @@
     <div class="form-group required">
         <label for="nacionalidad" class="col-md-4 control-label">Nacionalidad</label>
         <div class="col-md-8">
-            <select class="form-control" id="nacionalidad" name="nacionalidad">
-                <option value="" disabled selected>Seleccione la nacionalidad</option>
+            <select class="form-control selectpicker show-tick" id="nacionalidad" name="nacionalidad" title="Seleccione la nacionalidad">
                 <?php foreach ($view->nacionalidades['enum'] as $nac){
                     ?>
                     <option value="<?php echo $nac; ?>"
@@ -339,8 +336,7 @@
     <div class="form-group required">
         <label for="estado_civil" class="col-md-4 control-label">Estado civil</label>
         <div class="col-md-8">
-            <select class="form-control" id="estado_civil" name="estado_civil">
-                <option value="" disabled selected>Seleccione el estado civil</option>
+            <select class="form-control selectpicker show-tick" id="estado_civil" name="estado_civil" title="Seleccione el estado civil">
                 <?php foreach ($view->estados_civiles['enum'] as $ec){
                     ?>
                     <option value="<?php echo $ec; ?>"
