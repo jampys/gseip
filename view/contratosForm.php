@@ -227,8 +227,8 @@
                 $('#id_empleado').val(jsonEmpleados[id].id_empleado);
                 $('#puesto').val(jsonEmpleados[id].id_puesto);
                 $('#id_proceso').val(jsonEmpleados[id].id_proceso);
-                $('#myModal #fecha_desde').datepicker('update', jsonEmpleados[id].fecha_desde );
-                $('#myModal #fecha_hasta').datepicker('update', jsonEmpleados[id].fecha_hasta );
+                $('#myModal #fecha_desde').datepicker('setDate', jsonEmpleados[id].fecha_desde );
+                $('#myModal #fecha_hasta').datepicker('setDate', jsonEmpleados[id].fecha_hasta );
 
                 $('.selectpicker').selectpicker('refresh');
 
