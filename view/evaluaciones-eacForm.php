@@ -184,7 +184,7 @@
                                 ?>
 
                                 <div class="form-group required">
-                                    <label for="" class="col-md-6 control-label"><?php echo $com['nombre']; ?> </label>
+                                    <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><span class="glyphicon glyphicon-info-sign"></span></a> </label>
                                     <div class="col-md-6">
                                         <select class="form-control select_puntaje" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" >
                                             <option value="" disabled selected>Seleccione el puntaje</option>
