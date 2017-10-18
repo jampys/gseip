@@ -81,6 +81,18 @@
 
         });
 
+
+
+        $(document).on("click", ".help_puntaje", function(e){
+            //alert($(this).attr('class'));
+            //alert( $('#1').val());
+            alert($(this).closest('div').css({'background-color' : 'red'}));
+
+
+        });
+
+
+
         // Al presionar alguno de los select de puntajes
         $(document).on("change", ".select_puntaje", function(e){
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
@@ -184,7 +196,7 @@
                                 ?>
 
                                 <div class="form-group required">
-                                    <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><span class="glyphicon glyphicon-info-sign"></span></a> </label>
+                                    <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><span class="glyphicon glyphicon-info-sign help_puntaje"></span></a> </label>
                                     <div class="col-md-6">
                                         <select class="form-control select_puntaje" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" >
                                             <option value="" disabled selected>Seleccione el puntaje</option>
