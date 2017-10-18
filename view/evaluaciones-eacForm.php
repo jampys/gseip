@@ -1,4 +1,15 @@
-﻿<script type="text/javascript">
+﻿<style>
+
+    .alert{
+        overflow-y:scroll;
+        width:100%;
+        height: 50%;
+    }
+
+
+</style>
+
+<script type="text/javascript">
 
 
     $(document).ready(function(){
@@ -112,7 +123,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modalEac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -121,54 +132,81 @@
             <div class="modal-body">
 
 
-                <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
-                    <input type="hidden" name="id_evaluacion_competencia" id="id_evaluacion_competencia" value="<?php print $view->evaluacion_competencia->getIdEvaluacionCompetencia() ?>">
-                    <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->evaluacion_competencia->getIdEmpleado() ?>">
+                <div class="row">
 
 
-                    <!--<div class="form-group required">
-                        <label for="nro_contrato" class="col-md-4 control-label">Nro. Contrato</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="text" name="nro_contrato" id="nro_contrato" placeholder="Nro. Contrato" value = "<?php //print $view->contrato->getNroContrato() ?>">
+                    <div class="col-md-7">
+
+                        <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
+                            <input type="hidden" name="id_evaluacion_competencia" id="id_evaluacion_competencia" value="<?php print $view->evaluacion_competencia->getIdEvaluacionCompetencia() ?>">
+                            <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->evaluacion_competencia->getIdEmpleado() ?>">
+
+
+                            <?php foreach ($view->competencias as $com){
+                                ?>
+
+                                <div class="form-group required">
+                                    <label for="" class="col-md-6 control-label"><?php echo $com['nombre']; ?> </label>
+                                    <div class="col-md-6">
+                                        <select class="form-control select_puntaje" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" >
+                                            <option value="" disabled selected>Seleccione el puntaje</option>
+                                            <?php foreach ($view->puntajes as $p){ ?>
+                                                <option value="<?php echo $p['id_puntaje']; ?>"
+                                                    <?php echo ($view->evaluacion_competencia->getIdEvaluacionCompetencia() && $com['nro_orden'] == $p['nro_orden'])? 'selected' :'' ?>
+                                                    >
+                                                    <?php echo $p['nro_orden'];?>
+                                                </option>
+                                            <?php  } ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                            <?php  } ?>
+
+
+                        </form>
+
+
+                    </div>
+
+
+                    <div class="col-md-5">
+
+
+                        <div class="alert alert-info fade in">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <span class="glyphicon glyphicon-tags" ></span>&nbsp Panel Content
+                            Puede seleccionar mas de un proceso porque la seleccion es posible que sea
+                            dificiel de soportar y es por eso.
+                            Que los costos financieros sean contra indicados.
+                            El vocero del gobierno de Emmanuel Macron, Christophe Castane, y el líder de Francia Insumisa, Jean-Luc Melenchon, estaban entre los objetivos del grupo. Todos los detenidos tienen entre 17 y 25 años y están siendo investigados por la justicia.
+                            También es una composición de caracteres imprimibles (con grafema) generados por un algoritmo de cifrado que, aunque no tienen sentido para cualquier persona, sí puede ser descifrado por su destinatario original. En otras palabras, un texto es un entramado de signos con una intención comunicativa que adquiere sentido en determinado contexto.
+
+                            Las ideas esenciales que comunica un texto están contenidas en lo que se suele denominar «macroproposiciones», unidades estru
                         </div>
-                    </div>-->
-
-
-                    <?php foreach ($view->competencias as $com){
-                        ?>
-
-
-                        <div class="form-group required">
-                            <label for="" class="col-md-4 control-label"><?php echo $com['nombre']; ?> </label>
-                            <div class="col-md-8">
-                                <select class="form-control select_puntaje" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" >
-                                    <option value="" disabled selected>Seleccione el puntaje</option>
-                                    <?php foreach ($view->puntajes as $p){ ?>
-                                        <option value="<?php echo $p['id_puntaje']; ?>"
-                                            <?php echo ($view->evaluacion_competencia->getIdEvaluacionCompetencia() && $com['nro_orden'] == $p['nro_orden'])? 'selected' :'' ?>
-                                            >
-                                            <?php echo $p['nro_orden'];?>
-                                        </option>
-                                    <?php  } ?>
-                                </select>
-                            </div>
-                        </div>
-
-
-
-                    <?php  } ?>
 
 
 
 
-                </form>
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div> <!-- row -->
 
 
                 <div id="myElem" style="display:none"></div>
 
 
-
-            </div>
+            </div> <!-- modal body -->
 
             <div class="modal-footer">
                 <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
