@@ -111,6 +111,12 @@ switch ($operation)
         $view->contentTemplate="view/evaluaciones-eacForm.php";
         break;
 
+    case 'loadEac_help':
+        $view->puntaje_competencia = EvaluacionCompetencia::getPuntajeCompetencia();
+        print_r(json_encode($view->puntaje_competencia));
+        exit;
+        break;
+
 
     case 'deleteObjetivo':
         $objetivo = new Objetivo($_POST['id_objetivo']);

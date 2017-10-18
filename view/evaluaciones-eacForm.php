@@ -15,6 +15,44 @@
     $(document).ready(function(){
 
         var jsonCompetencias = [];
+        var jsonCompetenciasHelp =[];
+
+
+
+        $.ajax({
+            url:"index.php",
+            type:"post",
+            data:{"action": "evaluaciones", "operation": "loadEac_help"},
+            dataType:"json",//xml,html,script,json
+            success: function(data, textStatus, jqXHR) {
+
+                $.each(data, function(indice, val){ //carga el array de empleados
+
+                    /*var id = data[indice]['id_competencia'];
+                    item = {};
+                    item.id_competencia = id;
+                    item.id_puntaje = data[indice]['id_puntaje'];
+                    item.descripcion = data[indice]['descripcion'];
+
+                    if(!jsonCompetenciasHelp[id]) {jsonCompetenciasHelp[id]= item; }
+                    else {
+                        jsonCompetenciasHelp[id].id_puntaje += item.id_puntaje;
+                    }*/
+
+                    jsonCompetenciasHelp = data[indice];
+
+
+                });
+
+                //alert(jsonCompetenciasHelp[1].id_puntaje);
+
+            }
+
+        });
+
+
+
+
 
 
         $('#modalEac').modal({

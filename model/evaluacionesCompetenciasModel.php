@@ -173,6 +173,18 @@ where em.id_empleado = :id_empleado";
     }
 
 
+    public static function getPuntajeCompetencia() {
+        $stmt=new sQuery();
+        $query="select *
+from
+eac_puntaje_competencia
+order by id_competencia, id_puntaje asc";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
 
 }
 
