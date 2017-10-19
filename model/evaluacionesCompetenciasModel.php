@@ -65,6 +65,20 @@ class EvaluacionCompetencia
     { $this->periodo=$val;}
 
 
+    public static function getEvaluacionesCompetencias($id_empleado, $periodo) { //ok
+        $stmt=new sQuery();
+        $query="select *
+from eac_evaluacion_competencia
+where id_empleado = :id_empleado
+and periodo = :periodo";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':periodo', $periodo);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
     public static function getCompetencias($id_empleado, $periodo) { //ok
         $stmt=new sQuery();
         $query="select cnc.id_nivel_competencia, co.id_competencia, co.nombre,
