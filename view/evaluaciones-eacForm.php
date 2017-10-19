@@ -134,7 +134,7 @@
         //Al guardar una evaluacion de competencias
         $('#modalEac').on('click', '#submit',function(){
             alert('guardar evaluacion desempeño');
-            if ($("#eac-form").valid()){
+            //if ($("#eac-form").valid()){
                 var params={};
                 params.action = 'evaluaciones';
                 params.operation = 'saveEac';
@@ -169,7 +169,7 @@
 
                 });
 
-            }
+            //}
             return false;
         });
 
