@@ -108,14 +108,16 @@
         // Al presionar alguno de los select de puntajes
         //$(document).change(".select_puntaje", function(e){
         $('#modalEac').on('change', ".selectpicker", function(e){
-            alert($(this).val());
+            //alert($(this).val());
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
             //item.id_evaluacion_competencia = $('#id_evaluacion_competencia').val();
+            item.id_evaluacion_competencia = $(this).attr('id_evaluacion_competencia');
             item.id_competencia = $(this).attr('id');
             item.id_puntaje = $(this).val();
             item.id_empleado = $('#id_empleado').val();
             item.periodo = $('#periodo').val();
+            //alert(item.id_evaluacion_competencia);
 
             if(jsonCompetencias[item.id_competencia]) {
                 jsonCompetencias[item.id_competencia].id_puntaje =item.id_puntaje;
@@ -165,6 +167,7 @@
                     }
                     setTimeout(function() { $("#myElem").hide();
                                             $('#content').load('index.php',{action:"evaluaciones", operation:"refreshGrid"});
+                                            $('#modalEac').modal('hide');
                     }, 2000);
 
                 });
@@ -212,7 +215,7 @@
                                 <div class="form-group required">
                                     <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><span class="glyphicon glyphicon-info-sign help_puntaje"></span></a> </label>
                                     <div class="col-md-6">
-                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" >
+                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>"  >
                                             <option value="" disabled selected>Seleccione el puntaje</option>
                                             <?php foreach ($view->puntajes as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje']; ?>"
