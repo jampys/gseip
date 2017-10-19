@@ -76,20 +76,20 @@
 
         $(document).on("click", ".help_puntaje", function(e){
 
-            $('#chucaro').parent().css("max-height", $("#chupala").height()); //el div padre de #chucaro
-            $('#chucaro').html('').scrollTop();
+            $('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
+            $('#help-box').html('').scrollTop();
 
             var id = $(this).closest('.form-group').find('select').attr('id');
             var label = $(this).closest('.form-group').find('label').text();
 
-            $('#chucaro').append('<p><span class="glyphicon glyphicon-tags"></span>&nbsp'+label+'</p>');
+            $('#help-box').append('<p><span class="glyphicon glyphicon-tags"></span>&nbsp'+label+'</p>');
 
             $.each(jsonCompetenciasHelp, function(indice, val){ //carga el array de empleados
 
                 if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
-                    $('#chucaro').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp');
-                    $('#chucaro').append('<strong>'+jsonCompetenciasHelp[indice]['id_puntaje']+'</strong>');
-                    $('#chucaro').append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
+                    $('#help-box').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp');
+                    $('#help-box').append('<strong>'+jsonCompetenciasHelp[indice]['id_puntaje']+'</strong>');
+                    $('#help-box').append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
                 }
 
 
@@ -106,18 +106,14 @@
 
 
         // Al presionar alguno de los select de puntajes
-        //$(document).change(".select_puntaje", function(e){
         $('#modalEac').on('change', ".selectpicker", function(e){
-            //alert($(this).val());
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
-            //item.id_evaluacion_competencia = $('#id_evaluacion_competencia').val();
             item.id_evaluacion_competencia = $(this).attr('id_evaluacion_competencia');
             item.id_competencia = $(this).attr('id');
             item.id_puntaje = $(this).val();
             item.id_empleado = $('#id_empleado').val();
             item.periodo = $('#periodo').val();
-            //alert(item.id_evaluacion_competencia);
 
             if(jsonCompetencias[item.id_competencia]) {
                 jsonCompetencias[item.id_competencia].id_puntaje =item.id_puntaje;
@@ -126,7 +122,6 @@
             else { //si no existe, lo agrega
                 jsonCompetencias[item.id_competencia] =item;
                 //alert('el elemento No existe '+jsonCompetencias[item.id_competencia].id_puntaje);
-
             }
 
         });
@@ -135,7 +130,7 @@
 
         //Al guardar una evaluacion de competencias
         $('#modalEac').on('click', '#submit',function(){
-            alert('guardar evaluacion desempeño');
+            //alert('guardar evaluacion desempeño');
             //if ($("#eac-form").valid()){
                 var params={};
                 params.action = 'evaluaciones';
@@ -148,10 +143,7 @@
                 params.id_compania=$('#compania').val();
                 alert(params.id_compania); */
 
-                var jsonCompetenciasIx = [];
-                for ( var item in jsonCompetencias ){
-                    jsonCompetenciasIx.push( jsonCompetencias[ item ] );
-                }
+                var jsonCompetenciasIx = $.map(jsonCompetencias, function(item){ return item;} );
                 params.vCompetencias = JSON.stringify(jsonCompetenciasIx);
 
 
@@ -202,15 +194,12 @@
                 <div class="row">
 
 
-                    <div class="col-md-7" id="chupala">
+                    <div class="col-md-7" id="select-box">
 
                         <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
-                            <!--<input type="hidden" name="id_evaluacion_competencia" id="id_evaluacion_competencia" value="<?php //print $view->evaluacion_competencia->getIdEvaluacionCompetencia() ?>">-->
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $id_empleado; ?>" >
 
-
-                            <?php foreach ($view->competencias as $com){
-                                ?>
+                            <?php foreach ($view->competencias as $com){ ?>
 
                                 <div class="form-group required">
                                     <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><span class="glyphicon glyphicon-info-sign help_puntaje"></span></a> </label>
@@ -228,8 +217,6 @@
                                     </div>
                                 </div>
 
-
-
                             <?php  } ?>
 
 
@@ -241,29 +228,15 @@
 
                     <div class="col-md-5">
 
-
                         <div class="alert alert-info fade in">
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
-
-                            <div id="chucaro">
+                            <div id="help-box">
                                 Al presionar sobre el ícono <span class="glyphicon glyphicon-info-sign"></span>&nbsp de cada competencia, podrá
                                 visualizar la descripción del significado de cada puntaje.
-
-
                             </div>
-
                         </div>
 
-
-
-
                     </div>
-
-
-
-
-
-
 
 
 
