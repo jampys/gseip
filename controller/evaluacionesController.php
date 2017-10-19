@@ -109,7 +109,7 @@ switch ($operation)
 
         foreach($rows as $row){
             //$this->detalle[$row['id_detail']] = $row['detail_1']; //clave - valor
-            $evaluaciones_competencias[$row['id_evaluacion_competencia']] = new EvaluacionCompetencia($row['id_evaluacion_competencia']); //clave - valor
+            $evaluaciones_competencias[$row['id_competencia']] = new EvaluacionCompetencia($row['id_evaluacion_competencia']); //clave - valor
         }
 
 
