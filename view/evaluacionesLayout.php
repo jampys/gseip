@@ -30,12 +30,13 @@
                 params={};
                 //params.id_evaluacion_competencia = $(this).closest('tr').attr('id_evaluacion_competencia');
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
+                params.id_plan_evaluacion = $(this).closest('tr').attr('id_plan_evaluacion');
                 params.periodo = $('#periodo').val();
                 params.action = "evaluaciones";
                 params.operation = "loadEac";
-                //alert(params.id_empleado);
                 $('#popupbox').load('index.php', params,function(){
-                    $('#modalEac').modal();
+                    //$('#modalEac').modal();
+                    $('#modalEac').data('id_plan_evaluacion', 99).modal();
                 })
 
             });
