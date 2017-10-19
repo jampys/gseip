@@ -19,7 +19,7 @@
         var jsonCompetenciasHelp =[];
 
 
-
+        //carga un array con la descripcion de los puntajes de cada competencia
         $.ajax({
             url:"index.php",
             type:"post",
@@ -27,7 +27,7 @@
             dataType:"json",//xml,html,script,json
             success: function(data, textStatus, jqXHR) {
 
-                $.each(data, function(indice, val){ //carga el array de empleados
+                $.each(data, function(indice, val){
 
                     /*var id = data[indice]['id_competencia'];
                      item = {};
@@ -41,20 +41,12 @@
                      }*/
 
                     jsonCompetenciasHelp[indice] = data[indice];
-                    //alert(data[indice]['id_puntaje_competencia']);
-
-
                 });
 
                 //alert(Object.keys(jsonCompetenciasHelp).length);
-
-
             }
 
         });
-
-
-
 
 
 
@@ -74,32 +66,25 @@
 
 
 
+        //Al presionar el icono (i) de cada label
         $(document).on("click", ".help_puntaje", function(e){
-
-            $('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
-            $('#help-box').html('').scrollTop();
 
             var id = $(this).closest('.form-group').find('select').attr('id');
             var label = $(this).closest('.form-group').find('label').text();
 
-            $('#help-box').append('<p><span class="glyphicon glyphicon-tags"></span>&nbsp'+label+'</p>');
+            $('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
+            $('#help-box').html('<p><span class="glyphicon glyphicon-tags"></span>&nbsp'+label+'</p>')
+                          .scrollTop();
 
             $.each(jsonCompetenciasHelp, function(indice, val){ //carga el array de empleados
 
                 if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
-                    $('#help-box').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp');
-                    $('#help-box').append('<strong>'+jsonCompetenciasHelp[indice]['id_puntaje']+'</strong>');
-                    $('#help-box').append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
+                    $('#help-box').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp')
+                    .append('<strong>'+jsonCompetenciasHelp[indice]['id_puntaje']+'</strong>')
+                    .append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
                 }
 
-
-
-
             });
-
-
-
-
 
         });
 
@@ -149,13 +134,13 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    alert(xhr.responseText);
+                    //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     if(data >=0){
-                        $("#myElem").html('Evalucion competencias guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Evaluación de competencias guardada con exito').addClass('alert alert-success').show();
 
                     }else{
-                        $("#myElem").html('Error al guardar evaluacion de competencias').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar evaluación de competencias').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElem").hide();
                                             $('#content').load('index.php',{action:"evaluaciones", operation:"refreshGrid"});

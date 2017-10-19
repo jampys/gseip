@@ -55,7 +55,7 @@ switch ($operation)
             */
 
             $vCompetencias = json_decode($_POST["vCompetencias"], true);
-            print_r($vCompetencias);
+            //print_r($vCompetencias);
 
             foreach ($vCompetencias as $vC) {
 
