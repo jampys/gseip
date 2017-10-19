@@ -35,11 +35,10 @@ left join planes_evaluacion pe on pe.id_plan_evaluacion = eac_ec.id_plan_evaluac
     }
 
 
-    public static function getPeriodos() {
+    public static function getPeriodos() { //ok
         $stmt=new sQuery();
         $query = "select periodo
-                  from objetivos
-                  group by periodo";
+                  from planes_evaluacion";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();

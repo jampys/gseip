@@ -130,7 +130,6 @@
                             <label for="periodo" class="control-label">Periodo</label>
 
                             <select class="form-control" id="periodo" name="periodo">
-                                <option value="">Todos</option>
                                 <?php foreach ($view->periodos as $pe){
                                     ?>
                                     <option value="<?php echo $pe['periodo']; ?>"
