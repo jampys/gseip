@@ -64,25 +64,13 @@
         });
 
 
-        $('#eac-form').validate({
-            rules: {
-                codigo: {
-                        required: true,
-                        digits: true,
-                        maxlength: 3
-                },
-                nombre: {required: true}
-            },
-            messages:{
-                codigo: {
-                    required: "Ingrese el código",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 3 dígitos"
-                },
-                nombre: "Ingrese el nombre"
-            }
-
+        /* validacion del formulario */
+        $.validator.addMethod("requerido", $.validator.methods.required, "Seleccione un puntaje");
+        jQuery.validator.addClassRules('selectpicker', {
+            requerido: true
         });
+
+        $('#eac-form').validate();
 
 
 
@@ -146,7 +134,7 @@
         //Al guardar una evaluacion de competencias
         $('#modalEac').on('click', '#submit',function(){
             alert('guardar evaluacion desempeño');
-            //if ($("#contrato-form").valid()){
+            if ($("#eac-form").valid()){
                 var params={};
                 params.action = 'evaluaciones';
                 params.operation = 'saveEac';
@@ -181,7 +169,7 @@
 
                 });
 
-            //}
+            }
             return false;
         });
 
