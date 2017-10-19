@@ -3,9 +3,8 @@
     .alert{
         overflow-y:scroll;
         width:100%;
-        height: 50%;
+        /*max-height: 50%;*/
     }
-
 
 </style>
 
@@ -13,6 +12,8 @@
 
 
     $(document).ready(function(){
+
+        $('.selectpicker').selectpicker();
 
         var jsonCompetencias = [];
         var jsonCompetenciasHelp =[];
@@ -29,22 +30,24 @@
                 $.each(data, function(indice, val){ //carga el array de empleados
 
                     /*var id = data[indice]['id_competencia'];
-                    item = {};
-                    item.id_competencia = id;
-                    item.id_puntaje = data[indice]['id_puntaje'];
-                    item.descripcion = data[indice]['descripcion'];
+                     item = {};
+                     item.id_competencia = id;
+                     item.id_puntaje = data[indice]['id_puntaje'];
+                     item.descripcion = data[indice]['descripcion'];
 
-                    if(!jsonCompetenciasHelp[id]) {jsonCompetenciasHelp[id]= item; }
-                    else {
-                        jsonCompetenciasHelp[id].id_puntaje += item.id_puntaje;
-                    }*/
+                     if(!jsonCompetenciasHelp[id]) {jsonCompetenciasHelp[id]= item; }
+                     else {
+                     jsonCompetenciasHelp[id].id_puntaje += item.id_puntaje;
+                     }*/
 
-                    jsonCompetenciasHelp = data[indice];
+                    jsonCompetenciasHelp[indice] = data[indice];
+                    //alert(data[indice]['id_puntaje_competencia']);
 
 
                 });
 
-                //alert(jsonCompetenciasHelp[1].id_puntaje);
+                //alert(Object.keys(jsonCompetenciasHelp).length);
+
 
             }
 
@@ -84,9 +87,30 @@
 
 
         $(document).on("click", ".help_puntaje", function(e){
-            //alert($(this).attr('class'));
-            //alert( $('#1').val());
-            alert($(this).closest('div').css({'background-color' : 'red'}));
+
+            $('#chucaro').parent().css("max-height", $("#chupala").height()); //el div padre de #chucaro
+            $('#chucaro').html('').scrollTop();
+
+            var id = $(this).closest('.form-group').find('select').attr('id');
+            var label = $(this).closest('.form-group').find('label').text();
+
+            $('#chucaro').append('<p><span class="glyphicon glyphicon-tags"></span>&nbsp'+label+'</p>');
+
+            $.each(jsonCompetenciasHelp, function(indice, val){ //carga el array de empleados
+
+                if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
+                    $('#chucaro').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp');
+                    $('#chucaro').append('<strong>'+jsonCompetenciasHelp[indice]['id_puntaje']+'</strong>');
+                    $('#chucaro').append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
+                }
+
+
+
+
+            });
+
+
+
 
 
         });
@@ -94,7 +118,9 @@
 
 
         // Al presionar alguno de los select de puntajes
-        $(document).on("change", ".select_puntaje", function(e){
+        //$(document).change(".select_puntaje", function(e){
+        $('#modalEac').on('change', ".selectpicker", function(e){
+            alert($(this).val());
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
             item.id_evaluacion_competencia = $('#id_evaluacion_competencia').val();
@@ -105,11 +131,11 @@
 
             if(jsonCompetencias[item.id_competencia]) {
                 jsonCompetencias[item.id_competencia].id_puntaje =item.id_puntaje;
-                alert('el elemento existe '+jsonCompetencias[item.id_competencia].id_puntaje);
+                //alert('el elemento existe '+jsonCompetencias[item.id_competencia].id_puntaje);
             }
             else { //si no existe, lo agrega
                 jsonCompetencias[item.id_competencia] =item;
-                alert('el elemento No existe '+jsonCompetencias[item.id_competencia].id_puntaje);
+                //alert('el elemento No existe '+jsonCompetencias[item.id_competencia].id_puntaje);
 
             }
 
@@ -185,7 +211,7 @@
                 <div class="row">
 
 
-                    <div class="col-md-7">
+                    <div class="col-md-7" id="chupala">
 
                         <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
                             <input type="hidden" name="id_evaluacion_competencia" id="id_evaluacion_competencia" value="<?php print $view->evaluacion_competencia->getIdEvaluacionCompetencia() ?>">
@@ -198,7 +224,7 @@
                                 <div class="form-group required">
                                     <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><span class="glyphicon glyphicon-info-sign help_puntaje"></span></a> </label>
                                     <div class="col-md-6">
-                                        <select class="form-control select_puntaje" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" >
+                                        <select class="form-control selectpicker" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" >
                                             <option value="" disabled selected>Seleccione el puntaje</option>
                                             <?php foreach ($view->puntajes as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje']; ?>"
@@ -226,15 +252,15 @@
 
 
                         <div class="alert alert-info fade in">
-                            <a href="#" class="close" data-dismiss="alert">&times;</a>
-                            <span class="glyphicon glyphicon-tags" ></span>&nbsp Panel Content
-                            Puede seleccionar mas de un proceso porque la seleccion es posible que sea
-                            dificiel de soportar y es por eso.
-                            Que los costos financieros sean contra indicados.
-                            El vocero del gobierno de Emmanuel Macron, Christophe Castane, y el líder de Francia Insumisa, Jean-Luc Melenchon, estaban entre los objetivos del grupo. Todos los detenidos tienen entre 17 y 25 años y están siendo investigados por la justicia.
-                            También es una composición de caracteres imprimibles (con grafema) generados por un algoritmo de cifrado que, aunque no tienen sentido para cualquier persona, sí puede ser descifrado por su destinatario original. En otras palabras, un texto es un entramado de signos con una intención comunicativa que adquiere sentido en determinado contexto.
+                            <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
 
-                            Las ideas esenciales que comunica un texto están contenidas en lo que se suele denominar «macroproposiciones», unidades estru
+                            <div id="chucaro">
+                                Al presionar sobre el ícono <span class="glyphicon glyphicon-info-sign"></span>&nbsp de cada competencia, podrá
+                                visualizar la descripción del significado de cada puntaje.
+
+
+                            </div>
+
                         </div>
 
 
@@ -266,6 +292,7 @@
         </div>
     </div>
 </div>
+
 
 
 
