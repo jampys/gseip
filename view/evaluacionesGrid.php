@@ -43,10 +43,7 @@
             </thead>
             <tbody>
             <?php foreach ($view->evaluaciones as $evaluacion):   ?>
-                <tr id_evaluacion_competencia="<?php echo $evaluacion['id_evaluacion_competencia'];?>"
-                    id_evaluacion_objetivo="<?php echo $evaluacion['id_evaluacion_objetivo'];?>"
-                    id_empleado="<?php echo $evaluacion['id_empleado'];?>"
-                    >
+                <tr id_empleado="<?php echo $evaluacion['id_empleado'];?>" >
                     <td><?php echo $evaluacion['apellido'];?></td>
                     <td><?php echo $evaluacion['nombre'];?></td>
                     <td><?php echo $evaluacion['contrato'];?></td>

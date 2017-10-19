@@ -28,12 +28,12 @@
             //Al presionar en editar una evaluacion de competencias
             $(document).on('click', '.loadEac', function(){ //ok
                 params={};
-                params.id_evaluacion_competencia = $(this).closest('tr').attr('id_evaluacion_competencia');
+                //params.id_evaluacion_competencia = $(this).closest('tr').attr('id_evaluacion_competencia');
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
                 params.periodo = $('#periodo').val();
                 params.action = "evaluaciones";
                 params.operation = "loadEac";
-                //alert(params.periodo);
+                //alert(params.id_empleado);
                 $('#popupbox').load('index.php', params,function(){
                     $('#modalEac').modal();
                 })

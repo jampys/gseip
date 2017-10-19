@@ -111,7 +111,7 @@
             alert($(this).val());
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
-            item.id_evaluacion_competencia = $('#id_evaluacion_competencia').val();
+            //item.id_evaluacion_competencia = $('#id_evaluacion_competencia').val();
             item.id_competencia = $(this).attr('id');
             item.id_puntaje = $(this).val();
             item.id_empleado = $('#id_empleado').val();
@@ -202,7 +202,7 @@
                     <div class="col-md-7" id="chupala">
 
                         <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
-                            <input type="hidden" name="id_evaluacion_competencia" id="id_evaluacion_competencia" value="<?php print $view->evaluacion_competencia->getIdEvaluacionCompetencia() ?>">
+                            <!--<input type="hidden" name="id_evaluacion_competencia" id="id_evaluacion_competencia" value="<?php print $view->evaluacion_competencia->getIdEvaluacionCompetencia() ?>">-->
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->evaluacion_competencia->getIdEmpleado() ?>">
 
 
