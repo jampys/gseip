@@ -132,23 +132,16 @@ where em.id_empleado = :id_empleado";
         return $stmt->dpGetAffect();
     }
 
-    private function insertEvaluacionCompetencia(){
+    private function insertEvaluacionCompetencia(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into objetivos(periodo, nombre, id_proceso, id_area, id_contrato, meta, actividades, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento)
-                values(:periodo, :nombre, :id_proceso, :id_area, :id_contrato, :meta, :actividades, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento)";
+        $query="insert into eac_evaluacion_competencia(id_competencia, id_puntaje, fecha, id_empleado, id_plan_evaluacion, periodo)
+                values(:id_competencia, :id_puntaje, date(sysdate()), :id_empleado, 1, :periodo)";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_competencia', $this->getIdCompetencia());
+        $stmt->dpBind(':id_puntaje', $this->getIdPuntaje());
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpBind(':periodo', $this->getPeriodo());
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':id_proceso', $this->getIdProceso());
-        $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
-        $stmt->dpBind(':meta', $this->getMeta());
-        $stmt->dpBind(':actividades', $this->getActividades());
-        $stmt->dpBind(':indicador', $this->getIndicador());
-        $stmt->dpBind(':frecuencia', $this->getFrecuencia());
-        $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
-        $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
