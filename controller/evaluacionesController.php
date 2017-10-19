@@ -104,13 +104,14 @@ switch ($operation)
         $periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
         //tiene que generar un array asociativo con las evaluaciones de competencias existentes del empleado
         //$view->evaluacion_competencia = new EvaluacionCompetencia($_POST['id_evaluacion_competencia']);
-        $evaluaciones_competencias = array();
+        /*$evaluaciones_competencias = array();
         $rows = EvaluacionCompetencia::getEvaluacionesCompetencias($_POST['id_empleado'], $periodo);
 
         foreach($rows as $row){
             //$this->detalle[$row['id_detail']] = $row['detail_1']; //clave - valor
             $evaluaciones_competencias[$row['id_competencia']] = new EvaluacionCompetencia($row['id_evaluacion_competencia']); //clave - valor
-        }
+        }*/
+        $id_empleado = $_POST['id_empleado'];
 
 
 

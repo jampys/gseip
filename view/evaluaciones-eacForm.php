@@ -202,8 +202,8 @@
                     <div class="col-md-7" id="chupala">
 
                         <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
-                            <!--<input type="hidden" name="id_evaluacion_competencia" id="id_evaluacion_competencia" value="<?php print $view->evaluacion_competencia->getIdEvaluacionCompetencia() ?>">-->
-                            <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->evaluacion_competencia->getIdEmpleado() ?>">
+                            <!--<input type="hidden" name="id_evaluacion_competencia" id="id_evaluacion_competencia" value="<?php //print $view->evaluacion_competencia->getIdEvaluacionCompetencia() ?>">-->
+                            <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $id_empleado; ?>" >
 
 
                             <?php foreach ($view->competencias as $com){
@@ -216,7 +216,7 @@
                                             <option value="" disabled selected>Seleccione el puntaje</option>
                                             <?php foreach ($view->puntajes as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje']; ?>"
-                                                    <?php echo ($view->evaluacion_competencia->getIdEvaluacionCompetencia() && $com['nro_orden'] == $p['nro_orden'])? 'selected' :'' ?>
+                                                    <?php echo ($com['nro_orden'] == $p['nro_orden'])? 'selected' :'' ?>
                                                     >
                                                     <?php echo $p['nro_orden'];?>
                                                 </option>

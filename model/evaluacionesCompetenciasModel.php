@@ -65,7 +65,7 @@ class EvaluacionCompetencia
     { $this->periodo=$val;}
 
 
-    public static function getEvaluacionesCompetencias($id_empleado, $periodo) { //ok
+    /*public static function getEvaluacionesCompetencias($id_empleado, $periodo) { //ok
         $stmt=new sQuery();
         $query="select *
 from eac_evaluacion_competencia
@@ -76,7 +76,7 @@ and periodo = :periodo";
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
-    }
+    }*/
 
 
     public static function getCompetencias($id_empleado, $periodo) { //ok
