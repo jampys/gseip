@@ -147,8 +147,7 @@
 
 
                         <div class="form-group col-md-2">
-                            <label for="search">&nbsp;</label>
-                            <button  id="new" type="button" class="form-control btn btn-primary btn-sm">Nuevo objetivo</button>
+                            <!-- aca estaba el boton de nuevo, que ahora no hace falta -->
                         </div>
 
 

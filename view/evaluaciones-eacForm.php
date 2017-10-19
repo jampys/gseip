@@ -212,7 +212,7 @@
                                 <div class="form-group required">
                                     <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><span class="glyphicon glyphicon-info-sign help_puntaje"></span></a> </label>
                                     <div class="col-md-6">
-                                        <select class="form-control selectpicker" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" >
+                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" >
                                             <option value="" disabled selected>Seleccione el puntaje</option>
                                             <?php foreach ($view->puntajes as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje']; ?>"
