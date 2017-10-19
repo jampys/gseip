@@ -91,10 +91,10 @@ class Contrato
 
     public static function getContratos() { //ok
         $stmt=new sQuery();
-        $query = "select id_contrato, nro_contrato,
+        $query = "select co.id_contrato, co.nro_contrato,
                   DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                  CONCAT(apellido, ' ', nombre) as responsable,
+                  CONCAT(re.apellido, ' ', re.nombre) as responsable,
                   cia.razon_social as compania
                   from contratos co, empleados re, companias cia
                   where co.id_responsable = re.id_empleado
