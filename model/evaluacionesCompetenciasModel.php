@@ -150,11 +150,12 @@ where em.id_empleado = :id_empleado";
 
         $stmt=new sQuery();
         $query="insert into eac_evaluacion_competencia(id_competencia, id_puntaje, fecha, id_empleado, id_plan_evaluacion, periodo)
-                values(:id_competencia, :id_puntaje, date(sysdate()), :id_empleado, 1, :periodo)";
+                values(:id_competencia, :id_puntaje, date(sysdate()), :id_empleado, :id_plan_evaluacion, :periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_competencia', $this->getIdCompetencia());
         $stmt->dpBind(':id_puntaje', $this->getIdPuntaje());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':id_plan_evaluacion', $this->getIdPlanEvaluacion());
         $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();

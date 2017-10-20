@@ -33,7 +33,6 @@ switch ($operation)
         try{
 
             /*
-
             $objetivo = new Objetivo($_POST['id_objetivo']);
             $objetivo->setPeriodo($_POST['periodo']);
             $objetivo->setNombre($_POST['nombre']);
@@ -51,7 +50,6 @@ switch ($operation)
 
             //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
             $id_objetivo = (!$objetivo->getIdObjetivo())? sQuery::dpLastInsertId(): $objetivo->getIdObjetivo();
-
             */
 
             $vCompetencias = json_decode($_POST["vCompetencias"], true);
@@ -69,6 +67,7 @@ switch ($operation)
                 $evaluacion_competencia->setIdCompetencia($vC['id_competencia']);
                 $evaluacion_competencia->setIdPuntaje($vC['id_puntaje']);
                 $evaluacion_competencia->setIdEmpleado($vC['id_empleado']);
+                $evaluacion_competencia->setIdPlanEvaluacion($vC['id_plan_evaluacion']);
                 $evaluacion_competencia->setPeriodo($vC['periodo']);
 
                 //echo 'id objetivo sub: '.$vS['id_objetivo_sub'].'---';
@@ -102,19 +101,7 @@ switch ($operation)
     case 'loadEac': //Abre el formulario de evaluacion anual de competecias
         $view->label='Evaluacion de competencias';
         $periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
-        //tiene que generar un array asociativo con las evaluaciones de competencias existentes del empleado
-        //$view->evaluacion_competencia = new EvaluacionCompetencia($_POST['id_evaluacion_competencia']);
-        /*$evaluaciones_competencias = array();
-        $rows = EvaluacionCompetencia::getEvaluacionesCompetencias($_POST['id_empleado'], $periodo);
-
-        foreach($rows as $row){
-            //$this->detalle[$row['id_detail']] = $row['detail_1']; //clave - valor
-            $evaluaciones_competencias[$row['id_competencia']] = new EvaluacionCompetencia($row['id_evaluacion_competencia']); //clave - valor
-        }*/
-        $id_empleado = $_POST['id_empleado'];
-
-
-
+        //$id_empleado = $_POST['id_empleado'];
 
         $view->competencias = EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $periodo);
         $view->puntajes = EvaluacionCompetencia::getPuntajes();

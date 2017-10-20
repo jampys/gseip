@@ -35,9 +35,9 @@
                 params.action = "evaluaciones";
                 params.operation = "loadEac";
                 $('#popupbox').load('index.php', params,function(){
-                    //$('#modalEac').modal();
-                    $('#modalEac').data('id_plan_evaluacion', 99).modal();
-                })
+                    $('#modalEac').modal();
+                });
+                $('#popupbox').data({'id_empleado':params.id_empleado, 'id_plan_evaluacion': params.id_plan_evaluacion}); //paso parametros
 
             });
 
