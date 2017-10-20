@@ -145,7 +145,7 @@
                         $("#myElem").html('Error al guardar evaluación de competencias').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElem").hide();
-                                            $('#content').load('index.php',{action:"evaluaciones", operation:"refreshGrid"});
+                                            $('#content').load('index.php',{action:"evaluaciones", operation:"refreshGrid", periodo: $('#periodo').val() });
                                             $('#modalEac').modal('hide');
                     }, 2000);
 
