@@ -41,10 +41,17 @@
 
             });
 
+            //Al presionar en editar una evaluacion de objetivos
+            $(document).on('click', '.loadEao', function(){
+                alert('Funcionalidad en desarrollo');
+                throw new Error();
+            });
 
 
 
             $(document).on('click', '.delete', function(){
+                alert('Funcionalidad en desarrollo');
+                throw new Error();
                 var id = $(this).attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [

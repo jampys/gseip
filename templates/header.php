@@ -29,15 +29,15 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li class="dropdown-header">RRHH</li>
                             <li><a href="index.php?action=habilidades">Habilidades</a></li>
                             <li><a href="index.php?action=habilidad-empleado">Habilidades por Empleado</a></li>
                             <li><a href="index.php?action=puestos">Puestos</a></li>
                             <li><a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></li>
-                            <li><a href="index.php?action=objetivos">Objetivos</a></li>
                             <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">NAV HEADER</li>
+                            <li class="dropdown-header">DESEMPEÑO</li>
+                            <li><a href="index.php?action=objetivos">Objetivos</a></li>
                             <li><a href="index.php?action=evaluaciones">Evaluaciones</a></li>
-                            <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
 
