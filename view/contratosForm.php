@@ -77,12 +77,7 @@
                     required: true,
                     digits: true},
                 compania: {required: true},
-                responsable: {
-                    require_from_group: {
-                        param: [2, ".responsable-group"]
-                        //depends: function(element) { return $('#responsable').val().length > 0;}
-                    }
-                },
+                responsable: {required: true},
                 fecha_desde: {required: true},
                 fecha_hasta: {required: true}
             },
@@ -92,7 +87,7 @@
                     digits: "Ingrese solo números"
                 },
                 compania: "Ingrese la compañía",
-                responsable: "Seleccione un empleado sugerido",
+                responsable: "Seleccione un responsable",
                 fecha_desde: "Seleccione la fecha desde",
                 fecha_hasta: "Seleccione la fecha hasta"
             }
@@ -101,31 +96,28 @@
 
 
 
-        $("#responsable").autocomplete({ //ok
-            source: function( request, response ) {
-                $.ajax({
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: { "term": request.term, "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
-                    success: function(data) {
-                        response($.map(data, function(item) {
-                            return {
-                                label: item.apellido+" "+item.nombre,
-                                id: item.id_empleado
+        $('#responsable').closest('.form-group').find(':input').on('keypress', function(){ //ok
+            //alert('hola');
+            var items="";
 
-                            };
-                        }));
-                    }
+            $.ajax({
+                url: "index.php",
+                type: "post",
+                dataType: "json",
+                data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
+                success: function(data) {
+                    $.each(data.slice(0, 5),function(index,item)
+                    {
+                        //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+                        items+="<option value='"+item['id_empleado']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
+                    });
 
-                });
-            },
-            minLength: 2,
-            select: function(event, ui) {
-                $('#id_responsable').val(ui.item? ui.item.id : '');
-                $('#responsable').val(ui.item.label);
-            },
-            search: function(event, ui) { $('#id_responsable').val(''); }
+                    $("#responsable").html(items);
+                    $('.selectpicker').selectpicker('refresh');
+                }
+
+            });
+
         });
 
 
@@ -369,8 +361,11 @@
     <div class="form-group required">
         <label for="responsable" class="col-md-4 control-label">Responsable</label>
         <div class="col-md-8">
-            <input type="text" class="form-control responsable-group" id="responsable" name="responsable" placeholder="Responsable" value ="<?php print $view->responsable; ?>">
-            <input type="hidden" name="id_responsable" id="id_responsable" class="responsable-group" value = "<?php print $view->contrato->getIdResponsable() ?>" >
+            <select id="responsable" name="responsable" class="form-control selectpicker" data-live-search="true" title="<?php echo ($view->contrato->getIdResponsable())? "": "Seleccione un responsable";     ?>">
+                <option value = "<?php print $view->contrato->getIdResponsable() ?>">
+                    <?php print $view->responsable; ?>
+                </option>
+            </select>
         </div>
     </div>
 
