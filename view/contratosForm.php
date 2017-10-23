@@ -96,8 +96,13 @@
 
 
 
-        $('#responsable').closest('.form-group').find(':input').on('keypress', function(){ //ok
+        $('#responsable').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert('hola');
+            var code = (e.keyCode || e.which);
+            if(code == 37 || code == 38 || code == 39 || code == 40) { // do nothing if it's an arrow key
+                return;
+            }
+
             var items="";
 
             $.ajax({
