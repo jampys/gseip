@@ -88,9 +88,13 @@
                 dataType: "json",
                 data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
                 success: function(data) {
-                    $.each(data.slice(0, 5),function(index,item) {
-                        //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
-                        items+="<option value='"+item['cuil']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
+                    $.each(data.slice(0, 5),function(index,item) { //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+
+                        items+='<option value="'+item['cuil']+'"'+
+                               ' id_empleado="'+item['id_empleado']+'"'+
+                               ' legajo="'+item['legajo']+'"'+
+                               ' >'+item['apellido']+' '+item['nombre']+ '</option>';
+
                     });
 
                     $("#myModal #search_empleado").html(items);
@@ -101,8 +105,30 @@
 
         });
 
-        $('#mySelect').on('changed.bs.select', function (e) {
-            alert('ahhh');
+        //Al seleccionar un empleado
+        $('#myModal #search_empleado').on('changed.bs.select', function (e) {
+
+            var selected = $("#myModal #search_empleado option:selected");
+
+            item = {};
+            item.id_empleado = selected.attr('id_empleado');
+            item.empleado = selected.text();
+            item.legajo = selected.attr('legajo');
+            item.cuil = selected.val();
+
+            if(jsonEmpleados[item.id_empleado]) {
+                //alert('el elemento existe');
+            }
+            else {
+                jsonEmpleados[item.id_empleado] =item;
+
+                $('#empleados-table tbody').append('<tr data-id='+item.id_empleado+'>' +
+                '<td>'+item.legajo+'</td>' +
+                '<td>'+item.empleado+'</td>' +
+                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                '</tr>');
+            }
+
         });
 
 
@@ -263,8 +289,7 @@
                                 <thead>
                                 <tr>
                                     <th class="col-md-1">Leg.</th>
-                                    <th class="col-md-5">Apellido</th>
-                                    <th class="col-md-5">Nombre</th>
+                                    <th class="col-md-10">Apellido y nombre</th>
                                     <th class="col-md-1 text-center">Eliminar</th>
                                 </tr>
                                 </thead>
