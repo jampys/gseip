@@ -96,7 +96,7 @@
 
 
 
-        $('#responsable').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+        $('#id_responsable').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert(e.keyCode);
             var code = (e.keyCode || e.which);
             if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key
@@ -117,7 +117,7 @@
                         items+="<option value='"+item['id_empleado']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
                     });
 
-                    $("#responsable").html(items);
+                    $("#id_responsable").html(items);
                     $('.selectpicker').selectpicker('refresh');
                 }
 
@@ -370,9 +370,9 @@
 
 
     <div class="form-group required">
-        <label for="responsable" class="col-md-4 control-label">Responsable</label>
+        <label for="id_responsable" class="col-md-4 control-label">Responsable</label>
         <div class="col-md-8">
-            <select id="responsable" name="responsable" class="form-control selectpicker" data-live-search="true" title="<?php echo ($view->contrato->getIdResponsable())? "": "Seleccione un responsable";     ?>">
+            <select id="id_responsable" name="id_responsable" class="form-control selectpicker" data-live-search="true" title="<?php echo ($view->contrato->getIdResponsable())? "": "Seleccione un responsable";     ?>">
                 <option value = "<?php print $view->contrato->getIdResponsable() ?>">
                     <?php print $view->responsable; ?>
                 </option>
