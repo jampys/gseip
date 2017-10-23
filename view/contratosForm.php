@@ -226,12 +226,13 @@
                     value: jsonEmpleados[id].id_empleado,
                     text : jsonEmpleados[id].empleado
                 }));
-                $('.selectpicker').selectpicker('val', jsonEmpleados[id].id_empleado).selectpicker('refresh');
+                $('#id_empleado').selectpicker('val', jsonEmpleados[id].id_empleado).selectpicker('refresh'); //asigna valor y refresh de #id_empleado
 
                 $('#puesto').val(jsonEmpleados[id].id_puesto);
                 $('#id_proceso').val(jsonEmpleados[id].id_proceso);
                 $('#myModal #fecha_desde').datepicker('setDate', jsonEmpleados[id].fecha_desde );
                 $('#myModal #fecha_hasta').datepicker('setDate', jsonEmpleados[id].fecha_hasta );
+                $('.selectpicker').selectpicker('refresh'); //refresh de puesto y procesos
 
             });
             return false;
