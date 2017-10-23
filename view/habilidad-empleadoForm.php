@@ -3,6 +3,8 @@
 
     $(document).ready(function(){
 
+        $('.selectpicker').selectpicker();
+
         var jsonEmpleados = [];
         var jsonHabilidades = [];
 
@@ -14,7 +16,7 @@
 
 
 
-        $("#myModal #search_empleado").autocomplete({ //ok
+        /*$("#myModal #search_empleado").autocomplete({ //ok
             source: function( request, response ) {
                 $.ajax({
                     url: "index.php",
@@ -69,6 +71,38 @@
                 $("#myModal #search_empleado").val('');
 
             }
+        });*/
+
+        $('#myModal #search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            //alert('hola');
+            var code = (e.keyCode || e.which);
+            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
+                return;
+            }
+
+            var items="";
+
+            $.ajax({
+                url: "index.php",
+                type: "post",
+                dataType: "json",
+                data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
+                success: function(data) {
+                    $.each(data.slice(0, 5),function(index,item) {
+                        //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+                        items+="<option value='"+item['cuil']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
+                    });
+
+                    $("#myModal #search_empleado").html(items);
+                    $('.selectpicker').selectpicker('refresh');
+                }
+
+            });
+
+        });
+
+        $('#mySelect').on('changed.bs.select', function (e) {
+            alert('ahhh');
         });
 
 
@@ -218,7 +252,8 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="search_empleado" class="control-label">Empleado</label>
-                                    <input type="text" class="form-control" id="search_empleado" name="search_empleado" placeholder="Empleado">
+                                    <select id="search_empleado" name="search_empleado" class="form-control selectpicker" data-live-search="true" title="Seleccione un empleado">
+                                    </select>
                                 </div>
 
                             </form>
