@@ -16,17 +16,12 @@
 
         $('#empleado-form').validate({
             rules: {
-                empleado: {
-                    require_from_group: {
-                        param: [2, ".empleado-group"]
-                        //depends: function(element) { return $('#empleado').val().length > 0;}
-                    }
-                },
+                empleado: {required: true},
                 puesto: {required: true},
                 fecha_desde: {required: true}
             },
             messages:{
-                empleado: "Seleccione un empleado sugerido",
+                empleado: "Seleccione un empleado",
                 puesto: "Seleccione un puesto",
                 fecha_desde: "Seleccione la fecha desde"
             }
@@ -51,31 +46,33 @@
             $('#fecha_desde').datepicker('setEndDate', maxDate);
         });
 
-        $("#empleado").autocomplete({ //ok
-            source: function( request, response ) {
-                $.ajax({
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: { "term": request.term, "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
-                    success: function(data) {
-                        response($.map(data, function(item) {
-                            return {
-                                label: item.apellido+" "+item.nombre,
-                                id: item.id_empleado
+        $('#id_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            //alert('hola');
+            var code = (e.keyCode || e.which);
+            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
+                return;
+            }
 
-                            };
-                        }));
-                    }
+            var items="";
 
-                });
-            },
-            minLength: 2,
-            select: function(event, ui) {
-                $('#id_empleado').val(ui.item? ui.item.id : '');
-                $('#empleado').val(ui.item.label);
-            },
-            search: function(event, ui) { $('#id_empleado').val(''); }
+            $.ajax({
+                url: "index.php",
+                type: "post",
+                dataType: "json",
+                data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
+                success: function(data) {
+                    $.each(data.slice(0, 5),function(index,item)
+                    {
+                        //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+                        items+="<option value='"+item['id_empleado']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
+                    });
+
+                    $("#id_empleado").html(items);
+                    $('.selectpicker').selectpicker('refresh');
+                }
+
+            });
+
         });
 
 
@@ -102,9 +99,11 @@
                     <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
 
                     <div class="form-group required">
-                        <label class="control-label" for="empleado">Empleado</label>
-                        <input type="text" class="form-control empleado-group" id="empleado" name="empleado" placeholder="Empleado">
-                        <input type="hidden" name="id_empleado" id="id_empleado" class="empleado-group"/>
+                        <label class="control-label" for="id_empleado">Empleado</label>
+                        <!--<input type="text" class="form-control empleado-group" id="empleado" name="empleado" placeholder="Empleado">
+                        <input type="hidden" name="id_empleado" id="id_empleado" class="empleado-group"/>-->
+                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker" data-live-search="true" title="Seleccione un empleado">
+                        </select>
                     </div>
 
                     <div class="form-group required">

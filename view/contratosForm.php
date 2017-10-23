@@ -214,20 +214,24 @@
         $('#contrato').on('click', '.update-empleado', function(e){ //ok
             //alert('actualizar empleado');
             var id = $(this).closest('tr').attr('id_empleado');
-            //alert(id);
+            //alert(jsonEmpleados[id].id_empleado);
             params={};
             params.action = "contratos";
             params.operation="loadEmpleado";
             $('#popupbox1').load('index.php', params,function(){
                 $('#myModal').modal();
-                $('#empleado').val(jsonEmpleados[id].empleado);
-                $('#id_empleado').val(jsonEmpleados[id].id_empleado);
+                //$('#empleado').val(jsonEmpleados[id].empleado);
+                //$('#empleado').val(jsonEmpleados[id].id_empleado);
+                $('#id_empleado').append($('<option>', {
+                    value: jsonEmpleados[id].id_empleado,
+                    text : jsonEmpleados[id].empleado
+                }));
+                $('.selectpicker').selectpicker('val', jsonEmpleados[id].id_empleado).selectpicker('refresh');
+
                 $('#puesto').val(jsonEmpleados[id].id_puesto);
                 $('#id_proceso').val(jsonEmpleados[id].id_proceso);
                 $('#myModal #fecha_desde').datepicker('setDate', jsonEmpleados[id].fecha_desde );
                 $('#myModal #fecha_hasta').datepicker('setDate', jsonEmpleados[id].fecha_hasta );
-
-                $('.selectpicker').selectpicker('refresh');
 
             });
             return false;
@@ -272,7 +276,8 @@
             else { // si no existe en el array, lo inserta
                 item = {};
                 item.id_empleado = id;
-                item.empleado = $('#empleado').val();
+                //item.empleado = $('#empleado').val();
+                item.empleado = $("#id_empleado option:selected").text();
                 item.puesto = $("#puesto option:selected").text();
                 item.id_puesto = $("#puesto").val();
                 item.id_proceso = $("#id_proceso").val();
