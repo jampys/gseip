@@ -97,9 +97,9 @@
 
 
         $('#responsable').closest('.form-group').find(':input').on('keyup', function(e){ //ok
-            //alert('hola');
+            //alert(e.keyCode);
             var code = (e.keyCode || e.which);
-            if(code == 37 || code == 38 || code == 39 || code == 40) { // do nothing if it's an arrow key
+            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key
                 return;
             }
 
