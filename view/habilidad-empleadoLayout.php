@@ -12,113 +12,83 @@
 
         $(document).ready(function(){
 
+            $('.selectpicker').selectpicker();
+
 
             $(document).on('click', '#search', function(){ //ok
 
-                if ($("#search_form").valid()){ //ok
                     //alert('presiono en buscar');
                     //var id = $(this).attr('data-id');
                     //preparo los parametros
                     params={};
-                    params.cuil = $("#cuil").val();
-                    params.id_habilidad = $("#id_habilidad").val();
+                    params.cuil = $("#search_empleado").val();
+                    params.id_habilidad = $("#search_habilidad").val();
                     params.action = "habilidad-empleado";
                     params.operation = "buscar";
                     //alert(params.cuil);
                     //alert(params.id_habilidad);
                     $('#content').load('index.php', params);
 
+            });
+
+
+
+            $('#search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+                //alert('hola');
+                var code = (e.keyCode || e.which);
+                if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
+                    return;
                 }
 
+                var items="";
 
-            });
+                $.ajax({
+                    url: "index.php",
+                    type: "post",
+                    dataType: "json",
+                    data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
+                    success: function(data) {
+                        $.each(data.slice(0, 5),function(index,item) {
+                            //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+                            items+="<option value='"+item['cuil']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
+                        });
 
-
-
-            $("#search_empleado").autocomplete({ //ok
-                source: function( request, response ) {
-                    $.ajax({
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: { "term": request.term, "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
-                        success: function(data) {
-                            response($.map(data, function(item) {
-                                return {
-                                    label: item.apellido+" "+item.nombre,
-                                    id: item.cuil
-
-                                };
-                            }));
-                        }
-
-                    });
-                },
-                minLength: 2,
-                select: function(event, ui) {
-                    $('#cuil').val(ui.item? ui.item.id : '');
-                    $('#search_empleado').val(ui.item.label);
-                },
-                search: function(event, ui) { $('#cuil').val(''); }
-            });
-
-
-            $("#search_habilidad").autocomplete({ //ok
-                source: function( request, response ) {
-                    $.ajax({
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: { "term": request.term, "action":"habilidades", "operation":"autocompletarHabilidades"},
-                        success: function(data) {
-                            response($.map(data, function(item) {
-                                return {
-                                    label: item.nombre,
-                                    id: item.id_habilidad
-
-                                };
-                            }));
-                        },
-                        error: function(data, textStatus, errorThrown) {
-                            console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                        }
-
-
-                    });
-                },
-                minLength: 2,
-                select: function(event, ui) {
-                    $('#id_habilidad').val(ui.item? ui.item.id : '');
-                    $('#search_habilidad').val(ui.item.label);
-                },
-                search: function(event, ui) { $('#id_habilidad').val(''); }
-            });
-
-
-
-            $('#search_form').validate({ //ok
-                ignore:"",
-                rules: {
-                    search_empleado: {
-                        //digits: function(item){return ($('#search_empleado').val().length > 0 && $('#cuil').val().length == 0); }
-                        require_from_group: {
-                            param: [2, ".empleado-group"],
-                            depends: function(element) { return $('#search_empleado').val().length > 0;}
-                        }
-                    },
-                    search_habilidad: {
-                        //required: function(item){return $('#search_habilidad').val().length > 0;}
-                        require_from_group: {
-                            param: [2, ".habilidad-group"],
-                            depends: function(element) { return $('#search_habilidad').val().length > 0;}
-                        }
+                        $("#search_empleado").html(items);
+                        $('.selectpicker').selectpicker('refresh');
                     }
 
-                },
-                messages:{
-                    search_empleado: "Seleccione un empleado sugerido",
-                    search_habilidad: "Seleccione una habilidad sugerida"
+                });
+
+            });
+
+
+
+            $('#search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+                //alert('hola');
+                var code = (e.keyCode || e.which);
+                if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
+                    return;
                 }
+
+                var items="";
+
+                $.ajax({
+                    url: "index.php",
+                    type: "post",
+                    dataType: "json",
+                    data: { "term": $(this).val(),  "action":"habilidades", "operation":"autocompletarHabilidades"},
+                    success: function(data) {
+                        $.each(data.slice(0, 5),function(index,item)
+                        {
+                            //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+                            items+="<option value='"+item['id_habilidad']+"'>"+item['nombre']+"</option>";
+                        });
+
+                        $("#search_habilidad").html(items);
+                        $('.selectpicker').selectpicker('refresh');
+                    }
+
+                });
 
             });
 
@@ -240,13 +210,15 @@
                     <form id="search_form" name="search_form">
                         <div class="form-group col-md-4">
                             <label for="search_empleado" class="control-label">Empleado</label>
-                            <input type="text" class="form-control empleado-group" id="search_empleado" name="search_empleado" placeholder="Empleado">
-                            <input type="hidden" name="cuil" id="cuil" class="empleado-group"/>
+                            <select id="search_empleado" name="search_empleado" class="form-control selectpicker" data-live-search="true" title="Seleccione un empleado">
+
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="search_habilidad" class="control-label">Habilidad</label>
-                            <input type="text" class="form-control habilidad-group" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
-                            <input type="hidden" name="id_habilidad" id="id_habilidad" class="habilidad-group"/>
+                            <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker" data-live-search="true" title="Seleccione una habilidad">
+
+                            </select>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
