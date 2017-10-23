@@ -227,6 +227,7 @@
                     text : jsonEmpleados[id].empleado
                 }));
                 $('#id_empleado').selectpicker('val', jsonEmpleados[id].id_empleado).selectpicker('refresh'); //asigna valor y refresh de #id_empleado
+                $("#id_empleado").prop('disabled', true);
 
                 $('#puesto').val(jsonEmpleados[id].id_puesto);
                 $('#id_proceso').val(jsonEmpleados[id].id_proceso);
