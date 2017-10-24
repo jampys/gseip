@@ -3,6 +3,8 @@
 
     $(document).ready(function(){
 
+        $('.selectpicker').selectpicker();
+
         var jsonPuestos = [];
         var jsonHabilidades = [];
         var jsonRequerida = [];
@@ -31,7 +33,7 @@
 
 
 
-        $("#myModal #search_puesto").autocomplete({ //ok
+        /*$("#myModal #search_puesto").autocomplete({ //ok
             source: function( request, response ) {
                 $.ajax({
                     url: "index.php",
@@ -80,11 +82,67 @@
                 $("#myModal #search_puesto").val('');
 
             }
+        });*/
+
+        $('#myModal #search_puesto').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            //alert('hola');
+            var code = (e.keyCode || e.which);
+            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
+                return;
+            }
+
+            var items="";
+
+            $.ajax({
+                url: "index.php",
+                type: "post",
+                dataType: "json",
+                data: { "term": $(this).val(),  "action":"puestos", "operation":"autocompletarPuestos"},
+                success: function(data) {
+                    $.each(data.slice(0, 5),function(index,item) { //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+
+                        items+='<option value="'+item['id_puesto']+'"'+
+                        ' codigo="'+item['codigo']+'"'+
+                        ' >'+item['nombre']+ '</option>';
+
+                    });
+
+                    $("#myModal #search_puesto").html(items).selectpicker('refresh');
+
+                }
+
+            });
+
+        });
+
+
+        $("#myModal #search_puesto").on('changed.bs.select', function (e) {
+
+            var selected = $("#myModal #search_puesto option:selected");
+
+            item = {};
+            item.codigo = selected.attr('codigo');
+            item.id_puesto = selected.val();
+            item.nombre = selected.text();
+
+            if(jsonPuestos[item.id_puesto]) {
+                //alert('el elemento existe');
+            }
+            else {
+                jsonPuestos[item.id_puesto] =item;
+
+                $('#puestos-table tbody').append('<tr data-id='+item.id_puesto+'>' +
+                '<td>'+item.codigo+'</td>' +
+                '<td>'+item.nombre+'</td>' +
+                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                '</tr>');
+            }
+
         });
 
 
 
-        $("#myModal #search_habilidad").autocomplete({
+        /*$("#myModal #search_habilidad").autocomplete({
             source: function( request, response ) {
                 $.ajax({
                     url: "index.php",
@@ -139,6 +197,75 @@
 
                 $("#myModal #search_habilidad").val('');
             }
+        });*/
+
+        $('#myModal #search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            //alert('hola');
+            var code = (e.keyCode || e.which);
+            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
+                return;
+            }
+
+            var items="";
+
+            $.ajax({
+                url: "index.php",
+                type: "post",
+                dataType: "json",
+                data: { "term": $(this).val(),  "action":"habilidades", "operation":"autocompletarHabilidades"},
+                success: function(data) {
+                    $.each(data.slice(0, 5),function(index,item) { //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+
+                        items+='<option value="'+item['id_habilidad']+'"'+
+                        ' >'+item['nombre']+'</option>';
+
+                    });
+
+                    $("#myModal #search_habilidad").html(items).selectpicker('refresh');
+
+                }
+
+            });
+
+        });
+
+        $("#myModal #search_habilidad").on('changed.bs.select', function (e) {
+
+            var selected = $("#myModal #search_habilidad option:selected");
+
+            /*item = {};
+            item.id_habilidad = selected.val();
+            item.nombre = selected.text();*/
+
+            item = {};
+            item.id_habilidad = selected.val();
+            item.nombre = selected.text();
+            item.requerida = jsonRequerida.default;
+
+            if(jsonHabilidades[item.id_habilidad]) {
+                //alert('el elemento existe');
+            }
+            else {
+                jsonHabilidades[item.id_habilidad] =item;
+
+                $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
+                '<td>'+item.nombre+'</td>' +
+                '<td>' +
+                '<select class="form-control input-sm select_requerida" id="requerida-'+item.id_habilidad+'" name="requerida-'+item.id_habilidad+'">'+
+                '</select>'+
+                '</td>'+
+                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                '</tr>');
+
+                $.each(jsonRequerida, function(i, itemx) {
+                    $("#requerida-"+item.id_habilidad+"").append('<option value="'+jsonRequerida[i]+'">'+jsonRequerida[i]+'</option>');
+                });
+                $("#requerida-"+item.id_habilidad+"").val(jsonRequerida.default);
+
+            }
+
+
+
         });
 
 
@@ -247,7 +374,8 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="search_puesto" class="control-label">Puesto</label>
-                                    <input type="text" class="form-control" id="search_puesto" name="search_puesto" placeholder="Puesto">
+                                    <select id="search_puesto" name="search_puesto" class="form-control selectpicker" data-live-search="true" title="Seleccione un puesto">
+                                    </select>
                                 </div>
 
                             </form>
@@ -278,7 +406,8 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="search_habilidad" class="control-label">Habilidad</label>
-                                    <input type="text" class="form-control" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
+                                    <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker" data-live-search="true" title="Seleccione una habilidad">
+                                    </select>
                                 </div>
 
                             </form>
