@@ -74,7 +74,7 @@
 
             });
 
-        
+
 
         $('#myModal #search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert('hola');

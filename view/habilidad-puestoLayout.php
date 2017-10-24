@@ -12,6 +12,8 @@
 
         $(document).ready(function(){
 
+            $('.selectpicker').selectpicker();
+
 
             $(document).on('click', '#search', function(){ //ok
 
@@ -19,8 +21,8 @@
                     //alert('presiono en buscar');
                     //var id = $(this).attr('data-id');
                     params={};
-                    params.id_puesto = $("#id_puesto").val();
-                    params.id_habilidad = $("#id_habilidad").val();
+                    params.id_puesto = $("#search_puesto").val();
+                    params.id_habilidad = $("#search_habilidad").val();
                     params.action = "habilidad-puesto";
                     params.operation = "buscar";
                     //alert(params.cuil);
@@ -32,88 +34,63 @@
 
 
 
-            $("#search_puesto").autocomplete({ //ok
-                source: function( request, response ) {
-                    $.ajax({
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: { "term": request.term, "action":"puestos", "operation":"autocompletarPuestos"},
-                        success: function(data) {
-                            response($.map(data, function(item) {
-                                return {
-                                    label: item.nombre,
-                                    id: item.id_puesto
+            $('#search_puesto').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+                //alert('hola');
+                var code = (e.keyCode || e.which);
+                if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
+                    return;
+                }
 
-                                };
-                            }));
-                        }
+                var items="";
 
-                    });
-                },
-                minLength: 2,
-                select: function(event, ui) {
-                    $('#id_puesto').val(ui.item? ui.item.id : '');
-                    $('#search_puesto').val(ui.item.label);
-                },
-                search: function(event, ui) { $('#id_puesto').val(''); }
-            });
+                $.ajax({
+                    url: "index.php",
+                    type: "post",
+                    dataType: "json",
+                    data: { "term": $(this).val(),  "action":"puestos", "operation":"autocompletarPuestos"},
+                    success: function(data) {
+                        $.each(data.slice(0, 5),function(index,item)
+                        {
+                            //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+                            items+="<option value='"+item['id_puesto']+"'>"+item['nombre']+"</option>";
+                        });
 
-
-            $("#search_habilidad").autocomplete({ //ok
-                source: function( request, response ) {
-                    $.ajax({
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: { "term": request.term, "action":"habilidades", "operation":"autocompletarHabilidades"},
-                        success: function(data) {
-                            response($.map(data, function(item) {
-                                return {
-                                    label: item.nombre,
-                                    id: item.id_habilidad
-
-                                };
-                            }));
-                        },
-                        error: function(data, textStatus, errorThrown) {
-                            console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                        }
-
-
-                    });
-                },
-                minLength: 2,
-                select: function(event, ui) {
-                    $('#id_habilidad').val(ui.item? ui.item.id : '');
-                    $('#search_habilidad').val(ui.item.label);
-                },
-                search: function(event, ui) { $('#id_habilidad').val(''); }
-            });
-
-
-
-            $('#search_form').validate({ //ok
-                ignore:"",
-                rules: {
-                    search_puesto: {
-                        require_from_group: {
-                            param: [2, ".puesto-group"],
-                            depends: function(element) { return $('#search_puesto').val().length > 0;}
-                        }
-                    },
-                    search_habilidad: {
-                        require_from_group: {
-                            param: [2, ".habilidad-group"],
-                            depends: function(element) { return $('#search_habilidad').val().length > 0;}
-                        }
+                        $("#search_puesto").html(items);
+                        $('.selectpicker').selectpicker('refresh');
                     }
 
-                },
-                messages:{
-                    search_puesto: "Seleccione un puesto sugerido",
-                    search_habilidad: "Seleccione una habilidad sugerida"
+                });
+
+            });
+
+
+
+            $('#search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+                //alert('hola');
+                var code = (e.keyCode || e.which);
+                if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
+                    return;
                 }
+
+                var items="";
+
+                $.ajax({
+                    url: "index.php",
+                    type: "post",
+                    dataType: "json",
+                    data: { "term": $(this).val(),  "action":"habilidades", "operation":"autocompletarHabilidades"},
+                    success: function(data) {
+                        $.each(data.slice(0, 5),function(index,item)
+                        {
+                            //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+                            items+="<option value='"+item['id_habilidad']+"'>"+item['nombre']+"</option>";
+                        });
+
+                        $("#search_habilidad").html(items);
+                        $('.selectpicker').selectpicker('refresh');
+                    }
+
+                });
 
             });
 
@@ -234,14 +211,14 @@
 
                         <div class="form-group col-md-4">
                             <label for="search_puesto" class="control-label">Puesto</label>
-                            <input type="text" class="form-control puesto-group" id="search_puesto" name="search_puesto" placeholder="Puesto">
-                            <input type="hidden" name="id_puesto" id="id_puesto" class="puesto-group"/>
+                            <select id="search_puesto" name="search_puesto" class="form-control selectpicker" data-live-search="true" title="Seleccione un puesto">
+                            </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="search_habilidad" class="control-label">Habilidad</label>
-                            <input type="text" class="form-control habilidad-group" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
-                            <input type="hidden" name="id_habilidad" id="id_habilidad" class="habilidad-group"/>
+                            <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker" data-live-search="true" title="Seleccione una habilidad">
+                            </select>
                         </div>
 
                         <div class="form-group col-md-1">
