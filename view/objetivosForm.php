@@ -3,6 +3,15 @@
 
     $(document).ready(function(){
 
+        //Necesario para que funcione el plug-in bootstrap-select
+        $('.selectpicker').selectpicker({
+            //propiedades del selectpicker
+
+        }).change(function(){
+            $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
+                             // elimine el mensaje de requerido de jquery validation
+        });
+
         var jsonSubobjetivos = [];
 
         $.cargarTablaSubobjetivos=function(){
@@ -69,86 +78,80 @@
                 meta: {required: true},
                 actividades: {required: true},
                 indicador: {required: true},
-                responsable_ejecucion: {
-                    require_from_group: {
-                        param: [2, ".responsable-ejecucion-group"]
-                        //depends: function(element) { return $('#responsable_ejecucion').val().length > 0;}
-                    }
-                },
-                responsable_seguimiento: {
-                    require_from_group: {
-                        param: [2, ".responsable-seguimiento-group"]
-                        //depends: function(element) { return $('#responsable_seguimiento').val().length > 0;}
-                    }
-                }
+                responsable_ejecucion: {required: true},
+                responsable_seguimiento: {required: true}
             },
             messages:{
                 nombre: "Ingrese el nombre",
                 meta: "Ingrese la meta",
                 actividades: "Ingrese las actividades",
                 indicador: "Ingrese el indicador",
-                responsable_ejecucion: "Seleccione un responsable ejecución sugerido",
-                responsable_seguimiento: "Seleccione un responsable seguimiento sugerido"
+                responsable_ejecucion: "Seleccione un responsable ejecución",
+                responsable_seguimiento: "Seleccione un responsable seguimiento"
             }
 
         });
 
 
-        $("#responsable_ejecucion").autocomplete({ //ok
-            source: function( request, response ) {
-                $.ajax({
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: { "term": request.term, "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
-                    success: function(data) {
-                        response($.map(data, function(item) {
-                            return {
-                                label: item.apellido+" "+item.nombre,
-                                id: item.id_empleado
 
-                            };
-                        }));
-                    }
+        $('#responsable_ejecucion').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            //alert(e.keyCode);
+            var code = (e.keyCode || e.which);
+            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key
+                return;
+            }
 
-                });
-            },
-            minLength: 2,
-            select: function(event, ui) {
-                $('#id_responsable_ejecucion').val(ui.item? ui.item.id : '');
-                $('#responsable_ejecucion').val(ui.item.label);
-            },
-            search: function(event, ui) { $('#id_responsable_ejecucion').val(''); }
+            var items="";
+
+            $.ajax({
+                url: "index.php",
+                type: "post",
+                dataType: "json",
+                data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
+                success: function(data) {
+                    $.each(data.slice(0, 5),function(index,item)
+                    {
+                        //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+                        items+="<option value='"+item['id_empleado']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
+                    });
+
+                    $("#responsable_ejecucion").html(items);
+                    $('.selectpicker').selectpicker('refresh');
+                }
+
+            });
+
         });
 
 
-        $("#responsable_seguimiento").autocomplete({ //ok
-            source: function( request, response ) {
-                $.ajax({
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: { "term": request.term, "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
-                    success: function(data) {
-                        response($.map(data, function(item) {
-                            return {
-                                label: item.apellido+" "+item.nombre,
-                                id: item.id_empleado
+        $('#responsable_seguimiento').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            //alert(e.keyCode);
+            var code = (e.keyCode || e.which);
+            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key
+                return;
+            }
 
-                            };
-                        }));
-                    }
+            var items="";
 
-                });
-            },
-            minLength: 2,
-            select: function(event, ui) {
-                $('#id_responsable_seguimiento').val(ui.item? ui.item.id : '');
-                $('#responsable_seguimiento').val(ui.item.label);
-            },
-            search: function(event, ui) { $('#id_responsable_seguimiento').val(''); }
+            $.ajax({
+                url: "index.php",
+                type: "post",
+                dataType: "json",
+                data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
+                success: function(data) {
+                    $.each(data.slice(0, 5),function(index,item)
+                    {
+                        //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+                        items+="<option value='"+item['id_empleado']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
+                    });
+
+                    $("#responsable_seguimiento").html(items);
+                    $('.selectpicker').selectpicker('refresh');
+                }
+
+            });
+
         });
-
 
 
 
@@ -405,7 +408,7 @@
         <label for="periodo" class="col-md-4 control-label">Período</label>
         <div class="col-md-8">
 
-            <select class="form-control" id="periodo" name="periodo">
+            <select class="form-control selectpicker show-tick" id="periodo" name="periodo">
                 <?php foreach ($view->periodos as $pe){
                     ?>
                     <option value="<?php echo $pe['periodo']; ?>"
@@ -432,8 +435,8 @@
         <label for="id_proceso" class="col-md-4 control-label">Proceso</label>
         <div class="col-md-8">
 
-            <select class="form-control" id="id_proceso" name="id_proceso">
-                <option value="" disabled selected>Seleccione un proceso</option>
+            <select class="form-control selectpicker show-tick" id="id_proceso" name="id_proceso" data-live-search="true" data-size="5">
+                <option value="">Seleccione un proceso</option>
                 <?php foreach ($view->procesos as $pro){
                     ?>
                     <option value="<?php echo $pro['id_proceso']; ?>"
@@ -452,8 +455,8 @@
         <label for="id_area" class="col-md-4 control-label">Área</label>
         <div class="col-md-8">
 
-            <select class="form-control" id="id_area" name="id_area">
-                <option value="" disabled selected>Seleccione un área</option>
+            <select class="form-control selectpicker show-tick" id="id_area" name="id_area">
+                <option value="">Seleccione un área</option>
                 <?php foreach ($view->areas as $ar){
                     ?>
                     <option value="<?php echo $ar['id_area']; ?>"
@@ -472,8 +475,8 @@
         <label for="id_contrato" class="col-md-4 control-label">Contrato</label>
         <div class="col-md-8">
 
-            <select class="form-control" id="id_contrato" name="id_contrato">
-                <option value="" disabled selected>Seleccione un contrato</option>
+            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato">
+                <option value="">Seleccione un contrato</option>
                 <?php foreach ($view->contratos as $con){
                     ?>
                     <option value="<?php echo $con['id_contrato']; ?>"
@@ -514,8 +517,8 @@
     <div class="form-group required">
         <label for="frecuencia" class="col-md-4 control-label">Frecuencia</label>
         <div class="col-md-8">
-            <select class="form-control" id="frecuencia" name="frecuencia">
-                <option value="" disabled selected>Seleccione la frecuencia</option>
+            <select class="form-control selectpicker show-tick" id="frecuencia" name="frecuencia">
+                <option value="">Seleccione una frecuencia</option>
                 <?php foreach ($view->frecuencias['enum'] as $fre){
                     ?>
                     <option value="<?php echo $fre; ?>"
@@ -533,8 +536,14 @@
     <div class="form-group required">
         <label for="responsable_ejecucion" class="col-md-4 control-label">Responsable ejecución</label>
         <div class="col-md-8">
-            <input type="text" class="form-control responsable-ejecucion-group" id="responsable_ejecucion" name="responsable_ejecucion" placeholder="Responsable ejecución" value ="<?php print $view->responsable_ejecucion; ?>">
-            <input type="hidden" name="id_responsable_ejecucion" id="id_responsable_ejecucion" class="responsable-ejecucion-group" value = "<?php print $view->objetivo->getIdResponsableEjecucion() ?>" >
+            <!--<input type="text" class="form-control responsable-ejecucion-group" id="responsable_ejecucion" name="responsable_ejecucion" placeholder="Responsable ejecución" value ="<?php //print $view->responsable_ejecucion; ?>">
+            <input type="hidden" name="id_responsable_ejecucion" id="id_responsable_ejecucion" class="responsable-ejecucion-group" value = "<?php //print $view->objetivo->getIdResponsableEjecucion() ?>" >-->
+
+            <select id="responsable_ejecucion" name="responsable_ejecucion" class="form-control selectpicker" data-live-search="true" title="<?php echo ($view->objetivo->getIdResponsableEjecucion())? "": "Seleccione un responsable de ejecucion";     ?>">
+                <option value = "<?php print $view->objetivo->getIdResponsableEjecucion() ?>">
+                    <?php print $view->responsable_ejecucion; ?>
+                </option>
+            </select>
         </div>
     </div>
 
@@ -542,8 +551,14 @@
     <div class="form-group required">
         <label for="responsable_seguimiento" class="col-md-4 control-label">Responsable seguimiento</label>
         <div class="col-md-8">
-            <input type="text" class="form-control responsable-seguimiento-group" id="responsable_seguimiento" name="responsable_seguimiento" placeholder="Responsable seguimiento" value ="<?php print $view->responsable_seguimiento; ?>">
-            <input type="hidden" name="id_responsable_seguimiento" id="id_responsable_seguimiento" class="responsable-seguimiento-group" value = "<?php print $view->objetivo->getIdResponsableSeguimiento() ?>" >
+            <!--<input type="text" class="form-control responsable-seguimiento-group" id="responsable_seguimiento" name="responsable_seguimiento" placeholder="Responsable seguimiento" value ="<?php //print $view->responsable_seguimiento; ?>">
+            <input type="hidden" name="id_responsable_seguimiento" id="id_responsable_seguimiento" class="responsable-seguimiento-group" value = "<?php //print $view->objetivo->getIdResponsableSeguimiento() ?>" >-->
+            <select id="responsable_seguimiento" name="responsable_seguimiento" class="form-control selectpicker" data-live-search="true" title="<?php echo ($view->objetivo->getIdResponsableSeguimiento())? "": "Seleccione un responsable de seguimiento";     ?>">
+                <option value = "<?php print $view->objetivo->getIdResponsableSeguimiento() ?>">
+                    <?php print $view->responsable_seguimiento; ?>
+                </option>
+            </select>
+
         </div>
     </div>
 

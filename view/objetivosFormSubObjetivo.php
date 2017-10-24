@@ -3,6 +3,14 @@
 
     $(document).ready(function(){
 
+        $('.selectpicker').selectpicker({
+            //propiedades del selectpicker
+
+        }).change(function(){
+            $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
+                             // elimine el mensaje de requerido de jquery validation
+        });
+
 
         $('#myModal').modal({ //ok
             backdrop: 'static',
@@ -50,10 +58,9 @@
                         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label" for="puesto" >Área</label>
-                        <select class="form-control" id="id_area" name="id_area">
-                            <option value="" disabled selected>Seleccione el área</option>
+                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione un área">
                             <?php foreach ($view->areas as $ar){
                                 ?>
                                 <option value="<?php echo $ar['id_area']; ?>"
