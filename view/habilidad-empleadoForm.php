@@ -16,63 +16,6 @@
 
 
 
-        /*$("#myModal #search_empleado").autocomplete({ //ok
-            source: function( request, response ) {
-                $.ajax({
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: { "term": request.term, "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
-                    success: function(data) {
-                        response($.map(data, function(item) {
-                            return {
-                                apellido: item.apellido,
-                                nombre: item.nombre,
-                                legajo: item.legajo,
-                                id: item.cuil,
-                                id_empleado: item.id_empleado,
-                                label: item.apellido+' '+item.nombre
-
-
-                            };
-                        }));
-                    },
-                    error: function(data, textStatus, errorThrown) {
-                        console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                    }
-
-
-                });
-            },
-            minLength: 2,
-            change: function(event, ui) {
-
-                item = {};
-                item.apellido = ui.item.apellido;
-                item.nombre = ui.item.nombre;
-                item.legajo = ui.item.legajo;
-                item.cuil = ui.item.cuil;
-                item.id_empleado = ui.item.id_empleado;
-
-                if(jsonEmpleados[item.id_empleado]) {
-                    //alert('el elemento existe');
-                }
-                else {
-                    jsonEmpleados[item.id_empleado] =item;
-
-                    $('#empleados-table tbody').append('<tr data-id='+item.id_empleado+'>' +
-                    '<td>'+item.legajo+'</td>' +
-                    '<td>'+item.apellido+'</td>' +
-                    '<td>'+item.nombre+'</td>' +
-                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
-                    '</tr>');
-                }
-
-                $("#myModal #search_empleado").val('');
-
-            }
-        });*/
-
         $('#myModal #search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert('hola');
             var code = (e.keyCode || e.which);
@@ -135,7 +78,7 @@
 
 
 
-        $("#myModal #search_habilidad").autocomplete({ //ok
+        /*$("#myModal #search_habilidad").autocomplete({ //ok
             source: function( request, response ) {
                 $.ajax({
                     url: "index.php",
@@ -180,6 +123,62 @@
 
                 $("#myModal #search_habilidad").val('');
             }
+        });*/
+
+        $('#myModal #search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            //alert('hola');
+            var code = (e.keyCode || e.which);
+            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
+                return;
+            }
+
+            var items="";
+
+            $.ajax({
+                url: "index.php",
+                type: "post",
+                dataType: "json",
+                data: { "term": $(this).val(),  "action":"habilidades", "operation":"autocompletarHabilidades"},
+                success: function(data) {
+                    $.each(data.slice(0, 5),function(index,item) { //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
+
+                        items+='<option value="'+item['id_habilidad']+'"'+
+                        ' >'+item['nombre']+'</option>';
+
+                    });
+
+                    $("#myModal #search_habilidad")
+                        .html(items)
+                        .selectpicker('refresh')
+                        .on('changed.bs.select', function (e) {
+
+                            var selected = $("#myModal #search_habilidad option:selected");
+
+                            item = {};
+                            item.id_habilidad = selected.attr('id_habilidad');
+                            item.nombre = selected.text();
+
+                            if(jsonHabilidades[item.id_habilidad]) {
+                                //alert('el elemento existe');
+                            }
+                            else {
+                                jsonHabilidades[item.id_habilidad] =item;
+
+                                $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
+                                '<td>'+item.nombre+'</td>' +
+                                '<td></td>' +
+                                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                                '</tr>');
+                            }
+
+
+                        });
+
+
+                }
+
+            });
+
         });
 
 
@@ -312,7 +311,8 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="search_habilidad" class="control-label">Habilidad</label>
-                                    <input type="text" class="form-control" id="search_habilidad" name="search_habilidad" placeholder="Habilidad">
+                                    <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker" data-live-search="true" title="Seleccione una habilidad">
+                                    </select>
                                 </div>
 
                             </form>
