@@ -74,55 +74,7 @@
 
             });
 
-
-
-
-        /*$("#myModal #search_habilidad").autocomplete({ //ok
-            source: function( request, response ) {
-                $.ajax({
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: { "term": request.term, "action":"habilidades", "operation":"autocompletarHabilidades"},
-                    success: function(data) {
-                        response($.map(data, function(item) {
-                            return {
-                                label: item.nombre,
-                                id_habilidad: item.id_habilidad
-
-                            };
-                        }));
-                    },
-                    error: function(data, textStatus, errorThrown) {
-                        console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                    }
-
-
-                });
-            },
-            minLength: 2,
-            change: function(event, ui) {
-
-                item = {};
-                item.nombre = ui.item.label;
-                item.id_habilidad = ui.item.id_habilidad;
-
-                if(jsonHabilidades[item.id_habilidad]) {
-                    //alert('el elemento existe');
-                }
-                else {
-                    jsonHabilidades[item.id_habilidad] =item;
-
-                    $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
-                    '<td>'+item.nombre+'</td>' +
-                    '<td></td>' +
-                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
-                    '</tr>');
-                }
-
-                $("#myModal #search_habilidad").val('');
-            }
-        });*/
+        
 
         $('#myModal #search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert('hola');
