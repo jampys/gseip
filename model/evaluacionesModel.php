@@ -29,7 +29,7 @@ left join eac_evaluacion_competencia eac_ec on em.id_empleado = eac_ec.id_emplea
 left join eao_evaluacion_objetivo eao_eo on em.id_empleado = eao_eo.id_empleado and eao_eo.periodo = :periodo
         left join planes_evaluacion pe on pe.id_plan_evaluacion = eac_ec.id_plan_evaluacion or pe.id_plan_evaluacion = eao_eo.id_plan_evaluacion";*/
         $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, ec.id_empleado_contrato, ec.id_contrato, ec.id_puesto,
-cia.razon_social as contrato, pu.nombre as puesto,
+cia.nombre as contrato, pu.nombre as puesto,
 pe.id_plan_evaluacion, pe.periodo,
 (SELECT (EXISTS (SELECT 1 FROM eac_evaluacion_competencia eac_ec where eac_ec.id_empleado = em.id_empleado and eac_ec.periodo = :periodo ))) as hasAnyEac,
 (SELECT (EXISTS (SELECT 1 FROM eao_evaluacion_objetivo eao_eo where eao_eo.id_empleado = em.id_empleado and eao_eo.periodo = :periodo ))) as hasAnyEao

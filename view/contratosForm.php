@@ -362,7 +362,7 @@
                     <option value="<?php echo $cia['id_compania']; ?>"
                         <?php echo ($cia['id_compania'] == $view->contrato->getIdCompania())? 'selected' :'' ?>
                         >
-                        <?php echo $cia['razon_social'];?>
+                        <?php echo $cia['nombre'];?>
                     </option>
                 <?php  } ?>
             </select>

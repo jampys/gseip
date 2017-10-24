@@ -4,6 +4,7 @@ class Compania
 {
     private $id_compania;
     private $razon_social;
+    private $nombre;
     private $cuit;
     private $direccion;
     private $id_localidad;
@@ -14,6 +15,9 @@ class Compania
 
     function getRazonSocial()
     { return $this->razon_social;}
+
+    function getNombre()
+    { return $this->nombre;}
 
     function getCuit()
     { return $this->cuit;}
@@ -30,6 +34,9 @@ class Compania
 
     function setRazonSocial($val)
     { $this->razon_social=$val;}
+
+    function setNombre($val)
+    { $this->nombre=$val;}
 
     function setCuit($val)
     {  $this->cuit=$val;}
