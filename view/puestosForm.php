@@ -3,6 +3,15 @@
 
     $(document).ready(function(){
 
+        //Necesario para que funcione el plug-in bootstrap-select
+        $('.selectpicker').selectpicker({
+            //propiedades del selectpicker
+
+        }).change(function(){
+            $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
+                             // elimine el mensaje de requerido de jquery validation
+        });
+
 
         $('#myModal').modal({
             backdrop: 'static',
@@ -70,8 +79,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="id_area" >Área</label>
-                        <select class="form-control" id="id_area" name="id_area">
-                            <option value="" disabled selected>Seleccione el area</option>
+                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione un área">
                             <?php foreach ($view->areas as $area){
                                 ?>
                                 <option value="<?php echo $area['id_area']; ?>"
@@ -85,8 +93,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="id_nivel_competencia" >Nivel de competencia</label>
-                        <select class="form-control" id="id_nivel_competencia" name="id_nivel_competencia">
-                            <option value="" disabled selected>Seleccione el nivel de competencia</option>
+                        <select class="form-control selectpicker show-tick" id="id_nivel_competencia" name="id_nivel_competencia" title="Seleccione un nivel de competencia">
                             <?php foreach ($view->nivelesCompetencias as $nc){
                                 ?>
                                 <option value="<?php echo $nc['id_nivel_competencia']; ?>"
@@ -100,8 +107,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="id_puesto_superior" >Puesto superior</label>
-                        <select class="form-control" id="id_puesto_superior" name="id_puesto_superior">
-                            <option value="" disabled selected>Seleccione el puesto superior</option>
+                        <select class="form-control selectpicker show-tick" id="id_puesto_superior" name="id_puesto_superior" title="Seleccione un puesto superior" data-live-search="true" data-size="5">
                             <?php foreach ($view->puesto_superior as $sup){
                                 ?>
                                 <option value="<?php echo $sup['id_puesto']; ?>"
