@@ -107,7 +107,8 @@
 
                     <div class="form-group">
                         <label class="control-label" for="id_puesto_superior" >Puesto superior</label>
-                        <select class="form-control selectpicker show-tick" id="id_puesto_superior" name="id_puesto_superior" title="Seleccione un puesto superior" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="id_puesto_superior" name="id_puesto_superior" data-live-search="true" data-size="5">
+                            <option value="">Seleccione el puesto superior</option>
                             <?php foreach ($view->puesto_superior as $sup){
                                 ?>
                                 <option value="<?php echo $sup['id_puesto']; ?>"
