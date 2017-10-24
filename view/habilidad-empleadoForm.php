@@ -40,40 +40,39 @@
 
                     });
 
-                    $("#myModal #search_empleado")
-                        .html(items)
-                        .selectpicker('refresh')
-                        .on('changed.bs.select', function (e) {
-
-                            var selected = $("#myModal #search_empleado option:selected");
-
-                            item = {};
-                            item.id_empleado = selected.attr('id_empleado');
-                            item.empleado = selected.text();
-                            item.legajo = selected.attr('legajo');
-                            item.cuil = selected.val();
-
-                            if(jsonEmpleados[item.id_empleado]) {
-                                //alert('el elemento existe');
-                            }
-                            else {
-                                jsonEmpleados[item.id_empleado] =item;
-
-                                $('#empleados-table tbody').append('<tr data-id='+item.id_empleado+'>' +
-                                '<td>'+item.legajo+'</td>' +
-                                '<td>'+item.empleado+'</td>' +
-                                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
-                                '</tr>');
-                            }
-
-                    });
-
+                    $("#myModal #search_empleado").html(items).selectpicker('refresh');
 
                 }
 
             });
 
         });
+
+
+        $("#myModal #search_empleado").on('changed.bs.select', function (e) {
+
+                var selected = $("#myModal #search_empleado option:selected");
+
+                item = {};
+                item.id_empleado = selected.attr('id_empleado');
+                item.empleado = selected.text();
+                item.legajo = selected.attr('legajo');
+                item.cuil = selected.val();
+
+                if(jsonEmpleados[item.id_empleado]) {
+                    //alert('el elemento existe');
+                }
+                else {
+                    jsonEmpleados[item.id_empleado] =item;
+
+                    $('#empleados-table tbody').append('<tr data-id='+item.id_empleado+'>' +
+                    '<td>'+item.legajo+'</td>' +
+                    '<td>'+item.empleado+'</td>' +
+                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                    '</tr>');
+                }
+
+            });
 
 
 
@@ -147,39 +146,36 @@
 
                     });
 
-                    $("#myModal #search_habilidad")
-                        .html(items)
-                        .selectpicker('refresh')
-                        .on('changed.bs.select', function (e) {
-
-                            var selected = $("#myModal #search_habilidad option:selected");
-
-                            item = {};
-                            item.id_habilidad = selected.attr('id_habilidad');
-                            item.nombre = selected.text();
-
-                            if(jsonHabilidades[item.id_habilidad]) {
-                                //alert('el elemento existe');
-                            }
-                            else {
-                                jsonHabilidades[item.id_habilidad] =item;
-
-                                $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
-                                '<td>'+item.nombre+'</td>' +
-                                '<td></td>' +
-                                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
-                                '</tr>');
-                            }
-
-
-                        });
-
+                    $("#myModal #search_habilidad").html(items).selectpicker('refresh');
 
                 }
 
             });
 
         });
+
+        $("#myModal #search_habilidad").on('changed.bs.select', function (e) {
+
+                var selected = $("#myModal #search_habilidad option:selected");
+
+                item = {};
+                item.id_habilidad = selected.val();
+                item.nombre = selected.text();
+
+                if(jsonHabilidades[item.id_habilidad]) {
+                    //alert('el elemento existe');
+                }
+                else {
+                    jsonHabilidades[item.id_habilidad] =item;
+
+                    $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
+                    '<td>'+item.nombre+'</td>' +
+                    '<td></td>' +
+                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                    '</tr>');
+                }
+
+            });
 
 
 
