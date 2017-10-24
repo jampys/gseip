@@ -77,7 +77,7 @@
                     required: true,
                     digits: true},
                 compania: {required: true},
-                responsable: {required: true},
+                id_responsable: {required: true},
                 fecha_desde: {required: true},
                 fecha_hasta: {required: true}
             },
@@ -87,7 +87,7 @@
                     digits: "Ingrese solo números"
                 },
                 compania: "Ingrese la compañía",
-                responsable: "Seleccione un responsable",
+                id_responsable: "Seleccione un responsable",
                 fecha_desde: "Seleccione la fecha desde",
                 fecha_hasta: "Seleccione la fecha hasta"
             }
