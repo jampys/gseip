@@ -21,25 +21,61 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <!--<li class="active"><a href="#">Home</a></li>-->
-                    <li><a href="index.php?action=empleados">Empleados</a></li>
-                    <li><a href="index.php?action=contratos">Contratos</a></li>
 
+                    <!--<li><a href="index.php?action=empleados">Empleados</a></li>
+                    <li><a href="index.php?action=contratos">Contratos</a></li>-->
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--<li class="dropdown-header">RRHH</li>-->
+                            <li><a href="index.php?action=empleados">Empleados</a></li>
+                            <li><a href="index.php?action=puestos">Puestos</a></li>
+                            <li><a href="index.php?action=contratos">Contratos</a></li>
+                            <li><a href="#">Organigrama</a></li>
+
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">HABILIDADES Y COMPETENCIAS</li>
+                            <li><a href="index.php?action=habilidades">Habilidades</a></li>
+                            <li><a href="index.php?action=habilidad-empleado">Habilidades por Empleado</a></li>
+                            <li><a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></li>
+
+                        </ul>
+                    </li>
 
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Capacitación<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">RRHH</li>
-                            <li><a href="index.php?action=habilidades">Habilidades</a></li>
-                            <li><a href="index.php?action=habilidad-empleado">Habilidades por Empleado</a></li>
-                            <li><a href="index.php?action=puestos">Puestos</a></li>
-                            <li><a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">DESEMPEÑO</li>
+                            <!--<li class="dropdown-header">RRHH</li>-->
+                            <li><a href="#">Plan de capacitación</a></li>
+                            <li><a href="#">Capacitaciones</a></li>
+                            <li><a href="#">Cursos</a></li>
+                            <li><a href="#">Estadísticas</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desarrollo<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Plan de evaluación</a></li>
                             <li><a href="index.php?action=objetivos">Objetivos</a></li>
                             <li><a href="index.php?action=evaluaciones">Evaluaciones</a></li>
                         </ul>
                     </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Selección<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--<li class="dropdown-header">RRHH</li>-->
+                            <li><a href="#">Registros</a></li>
+                        </ul>
+                    </li>
+
+
+
 
 
 
