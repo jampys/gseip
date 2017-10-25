@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="form-group required">
-                        <label class="control-label" for="puesto" >Área</label>
+                        <label class="control-label" for="id_area" >Área</label>
                         <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione un área">
                             <?php foreach ($view->areas as $ar){
                                 ?>

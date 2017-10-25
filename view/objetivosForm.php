@@ -344,6 +344,7 @@
                     item.area = $('#myModal #id_area option:selected').text();
                     item.nombre = $('#myModal #nombre').val();
                     item.operacion = 'insert';
+                    item.indice = id;
                     jsonSubobjetivos[id] = item;
                     //alert('agregado con exito');
                 }
