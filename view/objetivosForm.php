@@ -482,7 +482,7 @@
                     <option value="<?php echo $con['id_contrato']; ?>"
                         <?php echo ($con['id_contrato'] == $view->objetivo->getIdContrato() )? 'selected' :'' ?>
                         >
-                        <?php echo $con['nro_contrato']." ".$con['compania']; ?>
+                        <?php echo $con['nombre']; ?>
                     </option>
                 <?php  } ?>
             </select>

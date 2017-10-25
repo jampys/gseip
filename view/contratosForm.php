@@ -158,7 +158,7 @@
                 params.operation = 'saveContrato';
                 params.id_contrato=$('#id_contrato').val();
                 params.nro_contrato=$('#nro_contrato').val();
-                params.nro_contrato=$('#nombre').val();
+                params.nombre=$('#nombre').val();
                 params.fecha_desde=$('#fecha_desde').val();
                 params.fecha_hasta=$('#fecha_hasta').val();
                 params.id_responsable=$('#id_responsable').val();

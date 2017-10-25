@@ -107,7 +107,7 @@ class Objetivo
 
     public static function getObjetivos($periodo) { //ok
         $stmt=new sQuery();
-        $query="select ob.*, ar.nombre as area, pro.nombre as proceso, cia.razon_social as contrato
+        $query="select ob.*, ar.nombre as area, pro.nombre as proceso, con.nombre as contrato
 from objetivos ob
 left join areas ar on ob.id_area = ar.id_area
 left join procesos pro on pro.id_proceso = ob.id_proceso
