@@ -309,6 +309,8 @@
                 $('#myModal #nombre').val(jsonSubobjetivos[id].nombre);
                 $('#myModal #id_area').val(jsonSubobjetivos[id].id_area);
 
+                $('.selectpicker').selectpicker('refresh'); //refresh de #id_area
+
             });
             return false;
         });
