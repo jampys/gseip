@@ -269,7 +269,7 @@
         });
 
 
-        $(document).on("change", ".select_requerida", function(e){ //ok
+        $('#myModal').on("change", ".select_requerida", function(e){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //alert(id);
             jsonHabilidades[id].requerida = $(this).val();
