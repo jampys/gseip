@@ -257,6 +257,7 @@
                         params={};
                         params.action = "objetivos";
                         params.operation = "refreshGrid";
+                        params.periodo = $('#search_panel #periodo').val();
                         $('#content').load('index.php', params, function(){
                             $('#search_panel').show();
                         });
