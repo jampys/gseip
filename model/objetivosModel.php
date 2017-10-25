@@ -113,7 +113,7 @@ left join areas ar on ob.id_area = ar.id_area
 left join procesos pro on pro.id_proceso = ob.id_proceso
 left join contratos con on con.id_contrato = ob.id_contrato
 left join companias cia on cia.id_compania = con.id_compania
-where ob.periodo = :periodo";
+where ob.periodo = ifnull(:periodo, ob.periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();

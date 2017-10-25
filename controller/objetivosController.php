@@ -19,7 +19,7 @@ switch ($operation)
     case 'refreshGrid':
         $view->disableLayout=true;
         //$view->periodos = Objetivo::getPeriodos();
-        $periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
+        $periodo = (isset($_POST['periodo']) && $_POST['periodo']!='')? $_POST['periodo'] : null;
         $view->objetivos = Objetivo::getObjetivos($periodo);
         $view->contentTemplate="view/objetivosGrid.php";
         break;
