@@ -222,7 +222,7 @@ where ob.periodo = :periodo";
         return $stmt->dpGetAffect();
     }
 
-    public static function getPeriodos() { //ok
+    public static function getPeriodos() { 
         $stmt=new sQuery();
         $query = "select periodo
                   from objetivos

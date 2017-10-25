@@ -5,6 +5,7 @@ include_once("model/procesosModel.php");
 include_once("model/areasModel.php");
 include_once("model/contratosModel.php");
 include_once("model/subobjetivosModel.php");
+include_once("model/evaluacionesModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -97,7 +98,7 @@ switch ($operation)
         $view->objetivo = new Objetivo();
         $view->label='Nuevo objetivo';
 
-        $view->periodos = Objetivo::getPeriodos();
+        $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->procesos = Proceso::getProcesos();
         $view->areas = Area::getAreas();
@@ -116,7 +117,7 @@ switch ($operation)
         $view->label='Editar Objetivo';
 
 
-        $view->periodos = Objetivo::getPeriodos();
+        $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->procesos = Proceso::getProcesos();
         $view->areas = Area::getAreas();
