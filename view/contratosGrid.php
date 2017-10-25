@@ -55,7 +55,8 @@
             <thead>
             <tr>
                 <th>Nro.</th>
-                <th>Companía</th>
+                <th>Nombre</th>
+                <th>Compañía</th>
                 <th>Responsable</th>
                 <th>Fecha desde</th>
                 <th>Fecha hasta</th>
@@ -66,6 +67,7 @@
             <?php foreach ($view->contratos as $contrato): ?>
                 <tr>
                     <td><?php echo $contrato['nro_contrato'];?></td>
+                    <td><?php echo $contrato['nombre'];?></td>
                     <td><?php echo $contrato['compania'];?></td>
                     <td><?php echo $contrato['responsable'];?></td>
                     <td><?php echo $contrato['fecha_desde'];?></td>

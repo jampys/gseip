@@ -5,6 +5,7 @@ class Contrato
 {
     private $id_contrato;
     private $nro_contrato;
+    private $nombre;
     private $fecha_desde;
     private $fecha_hasta;
     private $id_responsable;
@@ -18,6 +19,9 @@ class Contrato
 
     function getNroContrato()
     { return $this->nro_contrato;}
+
+    function getNombre()
+    { return $this->nombre;}
 
     function getFechaDesde()
     { return $this->fecha_desde;}
@@ -43,6 +47,9 @@ class Contrato
     function setNroContrato($val)
     { $this->nro_contrato=$val;}
 
+    function setNombre($val)
+    { $this->nombre=$val;}
+
     function setFechaDesde($val)
     { $this->fecha_desde=$val;}
 
@@ -66,7 +73,7 @@ class Contrato
                     DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                     DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                     re.apellido, re.nombre, cia.razon_social,
-                    co.id_responsable, co.id_compania
+                    co.id_responsable, co.id_compania, co.nombre
                     from contratos co, empleados re, companias cia
                     where co.id_responsable = re.id_empleado
                     and co.id_compania = cia.id_compania
@@ -78,6 +85,7 @@ class Contrato
 
             $this->setIdContrato($rows[0]['id_contrato']);
             $this->setNroContrato($rows[0]['nro_contrato']);
+            $this->setNombre($rows[0]['nombre']);
             $this->setFechaDesde($rows[0]['fecha_desde']);
             $this->setFechaHasta($rows[0]['fecha_hasta']);
             $this->setIdResponsable($rows[0]['id_responsable']);
@@ -91,7 +99,7 @@ class Contrato
 
     public static function getContratos() { //ok
         $stmt=new sQuery();
-        $query = "select co.id_contrato, co.nro_contrato,
+        $query = "select co.id_contrato, co.nro_contrato, co.nombre,
                   DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                   CONCAT(re.apellido, ' ', re.nombre) as responsable,
@@ -118,6 +126,7 @@ class Contrato
         $stmt=new sQuery();
         $query="update contratos set
                 nro_contrato = :nro_contrato,
+                nombre = :nombre,
                 fecha_desde = STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
                 fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
                 id_responsable= :id_responsable,
@@ -125,6 +134,7 @@ class Contrato
                 where id_contrato = :id_contrato";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_contrato', $this->getNroContrato());
+        $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':id_responsable', $this->getIdResponsable());
@@ -138,8 +148,9 @@ class Contrato
     private function insertContrato(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into contratos(nro_contrato, fecha_desde, fecha_hasta, id_responsable, id_compania)
+        $query="insert into contratos(nro_contrato, nombre, fecha_desde, fecha_hasta, id_responsable, id_compania)
                 values(:nro_contrato,
+                       :nombre,
                         STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
                         STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
                         :id_responsable,
@@ -147,6 +158,7 @@ class Contrato
                       )";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_contrato', $this->getNroContrato());
+        $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':id_responsable', $this->getIdResponsable());

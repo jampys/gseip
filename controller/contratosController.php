@@ -42,6 +42,7 @@ switch ($operation)
 
             $contrato = new Contrato($_POST['id_contrato']);
             $contrato->setNroContrato($_POST['nro_contrato']);
+            $contrato->setNombre($_POST['nombre']);
             $contrato->setFechaDesde($_POST['fecha_desde']);
             $contrato->setFechaHasta($_POST['fecha_hasta']);
             $contrato->setIdResponsable($_POST['id_responsable']);

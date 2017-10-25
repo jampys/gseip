@@ -77,6 +77,7 @@
                     required: true,
                     digits: true},
                 compania: {required: true},
+                nombre: {required: true},
                 id_responsable: {required: true},
                 fecha_desde: {required: true},
                 fecha_hasta: {required: true}
@@ -87,6 +88,7 @@
                     digits: "Ingrese solo números"
                 },
                 compania: "Ingrese la compañía",
+                nombre: "Ingrese un nombre",
                 id_responsable: "Seleccione un responsable",
                 fecha_desde: "Seleccione la fecha desde",
                 fecha_hasta: "Seleccione la fecha hasta"
@@ -156,6 +158,7 @@
                 params.operation = 'saveContrato';
                 params.id_contrato=$('#id_contrato').val();
                 params.nro_contrato=$('#nro_contrato').val();
+                params.nro_contrato=$('#nombre').val();
                 params.fecha_desde=$('#fecha_desde').val();
                 params.fecha_hasta=$('#fecha_hasta').val();
                 params.id_responsable=$('#id_responsable').val();
@@ -368,6 +371,14 @@
             </select>
         </div>
     </div>
+
+
+        <div class="form-group required">
+            <label for="nombre" class="col-md-4 control-label">Nombre</label>
+            <div class="col-md-8">
+                <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->contrato->getNombre() ?>">
+            </div>
+        </div>
 
 
     <div class="form-group required">
