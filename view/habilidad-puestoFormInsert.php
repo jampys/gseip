@@ -31,58 +31,7 @@
             keyboard: false
         });
 
-
-
-        /*$("#myModal #search_puesto").autocomplete({ //ok
-            source: function( request, response ) {
-                $.ajax({
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: { "term": request.term, "action":"puestos", "operation":"autocompletarPuestos"},
-                    success: function(data) {
-                        response($.map(data, function(item) {
-                            return {
-                                codigo: item.codigo,
-                                id_puesto: item.id_puesto,
-                                label: item.nombre
-
-
-                            };
-                        }));
-                    },
-                    error: function(data, textStatus, errorThrown) {
-                        console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                    }
-
-
-                });
-            },
-            minLength: 2,
-            change: function(event, ui) {
-
-                item = {};
-                item.codigo = ui.item.codigo;
-                item.id_puesto = ui.item.id_puesto;
-                item.nombre = ui.item.label;
-
-                if(jsonPuestos[item.id_puesto]) {
-                    //alert('el elemento existe');
-                }
-                else {
-                    jsonPuestos[item.id_puesto] =item;
-
-                    $('#puestos-table tbody').append('<tr data-id='+item.id_puesto+'>' +
-                    '<td>'+item.codigo+'</td>' +
-                    '<td>'+item.nombre+'</td>' +
-                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
-                    '</tr>');
-                }
-
-                $("#myModal #search_puesto").val('');
-
-            }
-        });*/
+        
 
         $('#myModal #search_puesto').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert('hola');
@@ -141,63 +90,6 @@
         });
 
 
-
-        /*$("#myModal #search_habilidad").autocomplete({
-            source: function( request, response ) {
-                $.ajax({
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: { "term": request.term, "action":"habilidades", "operation":"autocompletarHabilidades"},
-                    success: function(data) {
-                        response($.map(data, function(item) {
-                            return {
-                                label: item.nombre,
-                                id_habilidad: item.id_habilidad
-
-                            };
-                        }));
-                    },
-                    error: function(data, textStatus, errorThrown) {
-                        console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                    }
-
-
-                });
-            },
-            minLength: 2,
-            change: function(event, ui) {
-
-                item = {};
-                item.nombre = ui.item.label;
-                item.id_habilidad = ui.item.id_habilidad;
-                item.requerida = jsonRequerida.default;
-
-                if(jsonHabilidades[item.id_habilidad]) {
-                    //alert('el elemento existe');
-                }
-                else {
-                    jsonHabilidades[item.id_habilidad] =item;
-
-                    $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
-                    '<td>'+item.nombre+'</td>' +
-                    '<td>' +
-                    '<select class="form-control input-sm select_requerida" id="requerida-'+item.id_habilidad+'" name="requerida-'+item.id_habilidad+'">'+
-                    '</select>'+
-                    '</td>'+
-                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
-                    '</tr>');
-
-                    $.each(jsonRequerida, function(i, itemx) {
-                        $("#requerida-"+item.id_habilidad+"").append('<option value="'+jsonRequerida[i]+'">'+jsonRequerida[i]+'</option>');
-                    });
-                    $("#requerida-"+item.id_habilidad+"").val(jsonRequerida.default);
-
-                }
-
-                $("#myModal #search_habilidad").val('');
-            }
-        });*/
 
         $('#myModal #search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert('hola');
