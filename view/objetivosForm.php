@@ -220,7 +220,7 @@
                 params.action = 'objetivos';
                 params.operation = 'saveObjetivo';
                 params.id_objetivo=$('#id_objetivo').val();
-                params.periodo=$('#periodo').val();
+                params.periodo=$('#objetivo #periodo').val();
                 params.nombre=$('#nombre').val();
                 params.id_proceso=$('#id_proceso').val();
                 params.id_area=$('#id_area').val();
@@ -229,8 +229,8 @@
                 params.actividades=$('#actividades').val();
                 params.indicador=$('#indicador').val();
                 params.frecuencia=$('#frecuencia').val();
-                params.id_responsable_ejecucion=$('#id_responsable_ejecucion').val();
-                params.id_responsable_seguimiento=$('#id_responsable_seguimiento').val();
+                params.id_responsable_ejecucion=$('#responsable_ejecucion').val();
+                params.id_responsable_seguimiento=$('#responsable_seguimiento').val();
 
                 //alert(params.id_compania);
 
