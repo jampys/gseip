@@ -94,22 +94,21 @@
 
 
 
-            $(document).on('click', '.edit', function(){
-                alert('Funcionalidad en desarrollo');
+            $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).attr('data-id');
                 params={};
-                params.id_habilidad = id;
-                params.action = "habilidades";
-                params.operation = "editHabilidad";
-                /*$('#popupbox').load('index.php', params,function(){
-                 $('#myModal').modal();
-                 })*/
+                params.id_renovacion = id;
+                params.action = "vencimientos_personal";
+                params.operation = "editRenovacion";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                })
 
             });
 
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "vencimientos_personal";
                 params.operation="newRenovacion";

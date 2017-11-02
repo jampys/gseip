@@ -31,7 +31,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newRenovacion':
+    case 'newRenovacion': //ok
         $view->renovacion = new Vencimiento_personal();
         $view->label='Nueva renovación';
 
@@ -39,12 +39,12 @@ switch ($operation)
         $view->contentTemplate="view/vencimientos_personalForm.php";
         break;
 
-    case 'editHabilidad':
-        $view->label='Editar Habilidad';
-        $view->habilidad = new Habilidad($_POST['id_habilidad']);
+    case 'editRenovacion': //ok
+        $view->label='Editar Renovación';
+        $view->renovacion = new Vencimiento_personal($_POST['id_renovacion']);
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/habilidadesForm.php";
+        $view->contentTemplate="view/vencimientos_personalForm.php";
         break;
 
     case 'deleteHabilidad':
