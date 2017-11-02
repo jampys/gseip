@@ -95,11 +95,12 @@
 
 
             $(document).on('click', '.edit', function(){ //ok
-                var id = $(this).attr('data-id');
+                var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
                 params.action = "vencimientos_personal";
                 params.operation = "editRenovacion";
+                //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })

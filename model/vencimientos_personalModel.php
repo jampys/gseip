@@ -63,8 +63,6 @@ class Vencimiento_personal
         if ($nro!=0){
             $stmt=new sQuery();
             $query="select *
-                    --DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
-                    --DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
                     from vto_renovacion_p
                     where id_renovacion = :nro";
             $stmt->dpPrepare($query);

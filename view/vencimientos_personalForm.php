@@ -40,7 +40,7 @@
 
 
             dynamicFormData: function(){
-                var data ={ "id": ($('#id_habilidad').val())? $('#id_habilidad').val() : objeto.id };
+                var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
                 return data;},
 
             //statusBarWidth:500,
@@ -67,7 +67,7 @@
                 $.ajax({
                     cache: false,
                     url: "index.php",
-                    data:{"action": "load", "id": $('#id_habilidad').val() },
+                    data:{"action": "load", "id": $('#id_renovacion').val() },
                     type:"post",
                     dataType: "json",
                     success: function(data)
