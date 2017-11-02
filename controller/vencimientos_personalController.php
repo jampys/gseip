@@ -31,12 +31,12 @@ switch ($operation)
         exit;
         break;
 
-    case 'newHabilidad':
-        $view->habilidad = new Habilidad();
-        $view->label='Nueva Habilidad';
+    case 'newRenovacion':
+        $view->renovacion = new Vencimiento_personal();
+        $view->label='Nueva renovación';
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/habilidadesForm.php";
+        $view->contentTemplate="view/vencimientos_personalForm.php";
         break;
 
     case 'editHabilidad':

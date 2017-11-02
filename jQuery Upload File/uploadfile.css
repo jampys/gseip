@@ -1,0 +1,170 @@
+.ajax-file-upload-statusbar {
+border: 1px solid #337ab7; /*modificado dario */
+/*margin-top: 10px; */
+/*width: 420px; */ /*modificado dario */
+/*margin-right: 10px;*/
+/*margin: 5px;*/ /* modificado dario */
+ margin: 0 0 5px 0;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+padding: 5px 5px 5px 15px
+}
+
+.ajax-file-upload-filename {
+width: 300px;
+height: auto;
+margin: 0 5px 5px 0px;
+}
+
+.ajax-file-upload-filesize {
+width: 50px;
+height: auto;
+margin: 0 5px 5px 0px;
+display: inline-block;
+vertical-align:middle;
+}
+
+.ajax-file-upload-progress {
+margin: 5px 10px 5px 0px;
+position: relative;
+width: 250px;
+border: 1px solid #ddd;
+padding: 1px;
+border-radius: 3px;
+display: inline-block;
+color:#FFFFFF;
+}
+
+.ajax-file-upload-bar {
+background-color: #337ab7; /*modificado dario */
+width: 0;
+height: 20px;
+border-radius: 3px;
+color:#FFFFFF;
+}
+
+.ajax-file-upload-percent {
+position: absolute;
+display: inline-block;
+top: 3px;
+left: 48%
+}
+
+.ajax-file-upload-red {
+/*-moz-box-shadow: inset 0 39px 0 -24px #e67a73;
+-webkit-box-shadow: inset 0 39px 0 -24px #e67a73;
+box-shadow: inset 0 39px 0 -24px #e67a73;*/
+background-color: #d9534f;
+border-color: #d43f3a;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+display: inline-block;
+color: #fff;
+font-family: arial;
+font-size: 13px;
+/*font-weight: normal;*/
+padding: 4px 15px;
+text-decoration: none;
+/*text-shadow: 0 1px 0 #b23e35;*/
+cursor: pointer;
+vertical-align: top;
+margin: 5px 10px 5px 0px;
+}
+.ajax-file-upload-red:hover {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+
+.ajax-file-upload-green {
+background-color: #5cb85c;
+border-color: #4cae4c;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+/*margin: 0;
+padding: 0;*/
+display: inline-block;
+color: #fff;
+font-family: arial;
+font-size: 13px;
+/*font-weight: normal;*/
+padding: 4px 15px;
+text-decoration: none;
+cursor: pointer;
+/*text-shadow: 0 1px 0 #5b8a3c;*/
+vertical-align: top;
+margin: 5px 10px 5px 0px;
+}
+.ajax-file-upload-green:hover {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
+}
+
+
+
+.ajax-file-upload {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+   /*font-weight: bold;*/
+	/*padding: 15px 20px;*/
+	cursor:pointer;
+	/*line-height:20px;*/
+	/*height:30px;*/
+	margin:0 10px 10px 0;
+  display: inline-block;
+  /*background: #fff;*/
+  /*border: 1px solid #e8e8e8;*/
+  /*color: #888;*/
+  text-decoration: none;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  /*-moz-box-shadow: 0 2px 0 0 #e8e8e8;
+  -webkit-box-shadow: 0 2px 0 0 #e8e8e8;
+  box-shadow: 0 2px 0 0 #e8e8e8;*/
+  padding: 6px 10px 6px 10px;
+  color: #fff; /*color del texto del boton */
+  background: #337ab7; /* modificado dario */
+  border-color: #2e6da4; /* agregado dario */
+  /*border: none;*/
+  /*-moz-box-shadow: 0 2px 0 0 #13648d;
+  -webkit-box-shadow: 0 2px 0 0 #13648d;
+  box-shadow: 0 2px 0 0 #13648d;*/
+  vertical-align: middle;
+  }
+.ajax-file-upload:hover {
+      /*background: #3396c9;
+      -moz-box-shadow: 0 2px 0 0 #15719f;
+      -webkit-box-shadow: 0 2px 0 0 #15719f;
+      box-shadow: 0 2px 0 0 #15719f;*/
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+
+.ajax-upload-dragdrop{
+	/*border:2px dotted #A5A5C7;*/
+	/*width:420px;*/ /*modificado dario */
+	color: #DADCE3;
+	text-align:left;
+	vertical-align:middle;
+	padding:10px 10px 0px 10px;
+
+    border: 1px dashed #ccc;
+    border-radius: 0;
+    transition: background-color .01s linear .01s;
+}
+
+.state-hover{
+		border:2px solid #A5A5C7;
+}
+
+
+.ajax-file-upload-container{
+	margin:20px 0px 20px 0px;
+}

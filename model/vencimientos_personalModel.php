@@ -158,13 +158,13 @@ join empleados em on v_renov_p.id_empleado = em.id_empleado";
 
 
 
-    public static function getHabilidadesImg($id_habilidad) {
+    public static function getHabilidadesImg($id) { //ok
         $stmt=new sQuery();
         $query = "select *
-                from imagenes
-                where id_habilidad = :id_habilidad";
+                from uploads
+                where id = :id";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $id_habilidad);
+        $stmt->dpBind(':id', $id);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

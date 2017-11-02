@@ -1,7 +1,7 @@
 <?php
-include_once("model/habilidadesModel.php");
+include_once("model/vencimientos_personalModel.php");
 $id = $_POST['id'];
-$files = Habilidad::getHabilidadesImg($id);
+$files = Vencimiento_personal::getHabilidadesImg($id);
 
 $ret= array();
 

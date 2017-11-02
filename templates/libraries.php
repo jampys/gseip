@@ -56,6 +56,13 @@
     <script src="bootstrap-select/dist/js/i18n/defaults-es_ES.min.js"></script>
 
 
+    <!-- plug-in jQuery Upload File -->
+    <!--<link href="http://hayageek.github.io/jQuery-Upload-File/4.0.11/uploadfile.css" rel="stylesheet">
+    <script src="http://hayageek.github.io/jQuery-Upload-File/4.0.11/jquery.uploadfile.min.js"></script>-->
+    <link href="jQuery Upload File/uploadfile.css" rel="stylesheet">
+    <script src="jQuery Upload File/jquery.uploadfile.js"></script>
+
+
     <!-- librerias css propias -->
     <link rel="stylesheet" href="resources/css/dario.css">
 

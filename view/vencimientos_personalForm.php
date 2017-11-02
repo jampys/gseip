@@ -206,17 +206,17 @@
             <div class="modal-body">
 
 
-                <form name ="habilidad" id="habilidad" method="POST" action="index.php">
-                    <input type="hidden" name="id_habilidad" id="id_habilidad" value="<?php print $view->habilidad->getIdHabilidad() ?>">
+                <form name ="renovacion_personal" id="renovacion_personal" method="POST" action="index.php">
+                    <input type="hidden" name="id_renovacion" id="id_renovacion" value="<?php print $view->renovacion->getIdRenovacion() ?>">
 
                     <div class="form-group required">
-                        <label class="control-label" for="codigo">Código</label>
-                        <input class="form-control" type="text" name="codigo" id="codigo" value = "<?php print $view->habilidad->getCodigo() ?>" placeholder="Código">
+                        <label class="control-label" for="id_empleado">Empleado</label>
+                        <input class="form-control" type="text" name="id_empleado" id="id_empleado" value = "<?php print $view->renovacion->getIdEmpleado() ?>" placeholder="Código">
                     </div>
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php print $view->habilidad->getNombre() ?>" placeholder="Nombre">
+                        <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php //print $view->habilidad->getNombre() ?>" placeholder="Nombre">
                     </div>
 
 

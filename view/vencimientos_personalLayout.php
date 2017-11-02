@@ -15,7 +15,7 @@
             $('.selectpicker').selectpicker();
 
 
-            $(document).on('click', '#search', function(){ //ok
+            $(document).on('click', '#search', function(){
 
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
@@ -33,7 +33,7 @@
 
 
 
-            $('#search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            $('#search_empleado').closest('.form-group').find(':input').on('keyup', function(e){
                 //alert('hola');
                 var code = (e.keyCode || e.which);
                 if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
@@ -63,7 +63,7 @@
 
 
 
-            $('#search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            $('#search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){
                 //alert('hola');
                 var code = (e.keyCode || e.which);
                 if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
@@ -109,10 +109,10 @@
 
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){
                 params={};
-                params.action = "habilidad-empleado";
-                params.operation="new";
+                params.action = "vencimientos_personal";
+                params.operation="newRenovacion";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
@@ -120,14 +120,14 @@
 
 
 
-            $(document).on('click', '#cancel',function(){ //ok
+            $(document).on('click', '#cancel',function(){
                 $('#myModal').modal('hide');
             });
 
 
 
 
-            $(document).on('click', '#example .delete', function(){ //ok
+            $(document).on('click', '#example .delete', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
@@ -152,7 +152,7 @@
             });
 
 
-            $.fn.borrar = function(id) { //ok
+            $.fn.borrar = function(id) {
                 //alert(id);
                 //preparo los parametros
                 params={};
