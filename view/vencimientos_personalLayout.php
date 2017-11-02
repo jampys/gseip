@@ -215,8 +215,8 @@
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="search_habilidad" class="control-label">Habilidad</label>
-                        <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker" data-live-search="true" title="Seleccione una habilidad">
+                        <label for="search_habilidad" class="control-label">Vencimiento</label>
+                        <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker" data-live-search="true" title="Seleccione un vencimiento">
 
                         </select>
                     </div>
@@ -226,7 +226,7 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="new">Agregar</button>
+                        <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
                     </div>
                 </form>
             </div>
