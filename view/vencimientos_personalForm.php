@@ -49,21 +49,15 @@
             showPreview:true,
             previewHeight: "75px",
             previewWidth: "75px",
-
             onSuccess:function(files,data,xhr,pd){
                 //files: list of files
                 //data: response from server
                 //xhr : jquer xhr object
-
                 //alert(files[0])
                 //alert(data);
-
             },
+            onLoad:function(obj) {
 
-
-
-            onLoad:function(obj)
-            {
                 $.ajax({
                     cache: false,
                     url: "index.php",
@@ -98,9 +92,9 @@
                 pd.statusbar.hide(); //You choice.
 
             },
-            downloadCallback:function(filename,pd)
-            {
-                location.href="download.php?filename="+filename;
+            downloadCallback:function(filename,pd) {
+                //location.href="download.php?filename="+filename;
+                location.href="index.php?action=vencimientos_personal&operation=download&filename="+filename;
             }
         });
 
