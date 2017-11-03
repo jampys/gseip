@@ -94,8 +94,7 @@
             },
             downloadCallback:function(filename,pd) {
                 //location.href="download.php?filename="+filename;
-                //location.href="index.php?action=vencimientos_personal&operation=download&filename="+filename;
-                var win = window.open('index.php?action=uploads&operation=download&filename='+filename, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                var win = window.open('index.php?action=uploads&operation=download&filename='+filename, '_blank', 'height=570,width=520,scrollbars=yes,status=yes');
                 //var win = window.open(url, '_blank');
                 win.focus();
             }
