@@ -34,6 +34,48 @@ switch ($operation) {
 
     case 'upload':
 
+        $id = $_POST['id'];
+        /* con este id hago el insert de las fotos en la BD */
+
+        $output_dir = "uploads/";
+        if(isset($_FILES["myfile"])) {
+
+            $ret = array();
+
+            //	This is for custom errors;
+            /*	$custom_error= array();
+                $custom_error['jquery-upload-file-error']="File already exists";
+                echo json_encode($custom_error);
+                die();
+            */
+            $error =$_FILES["myfile"]["error"];
+            //You need to handle  both cases
+            //If Any browser does not support serializing of multiple files using FormData()
+            if(!is_array($_FILES["myfile"]["name"])) //single file
+            {
+                $fileName = $_FILES["myfile"]["name"];
+                move_uploaded_file($_FILES["myfile"]["tmp_name"],$output_dir.$fileName);
+                $ret[]= $fileName;
+                //Agregar codigo para insertar en la BD
+            }
+            else  //Multiple files, file[]
+            {
+                $fileCount = count($_FILES["myfile"]["name"]);
+                for($i=0; $i < $fileCount; $i++)
+                {
+                    $fileName = $_FILES["myfile"]["name"][$i];
+                    move_uploaded_file($_FILES["myfile"]["tmp_name"][$i],$output_dir.$fileName);
+                    $ret[]= $fileName;
+                    //Agregar codigo para insertar en la BD
+                }
+
+            }
+            echo json_encode($ret);
+
+
+        }
+
+
         break;
 
     case 'download':
@@ -66,6 +108,21 @@ switch ($operation) {
         break;
 
     case 'delete':
+
+        $output_dir = "uploads/vto_vencimiento_p/";
+        if( isset($_POST['name'])) {
+
+            $fileName =$_POST['name'];
+            $fileName=str_replace("..",".",$fileName); //required. if somebody is trying parent folder files
+            $filePath = $output_dir. $fileName;
+
+            if (file_exists($filePath)) {
+
+                unlink($filePath);
+                //Agregar codigo para borrar de la BD
+            }
+        }
+
 
         break;
 

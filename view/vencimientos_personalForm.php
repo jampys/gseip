@@ -83,10 +83,10 @@
             },
             deleteCallback: function (data, pd) {
                 for (var i = 0; i < data.length; i++) {
-                    $.post("delete.php", {op: "delete",name: data[i]},
+                    $.post("index.php", {action: "uploads", operation: "delete", name: data[i]},
                         function (resp,textStatus, jqXHR) {
                             //Show Message
-                            alert("File Deleted");
+                            //alert("File Deleted");
                         });
                 }
                 pd.statusbar.hide(); //You choice.
