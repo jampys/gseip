@@ -94,8 +94,7 @@
             },
             downloadCallback:function(filename,pd) {
                 //location.href="download.php?filename="+filename;
-                var win = window.open('index.php?action=uploads&operation=download&filename='+filename, '_blank', 'height=570,width=520,scrollbars=yes,status=yes');
-                //var win = window.open(url, '_blank');
+                var win = window.open('index.php?action=uploads&operation=download&filename='+filename, '_blank');
                 win.focus();
             }
         });
