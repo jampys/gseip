@@ -67,7 +67,7 @@
                 $.ajax({
                     cache: false,
                     url: "index.php",
-                    data:{"action": "load", "id": $('#id_renovacion').val() },
+                    data:{"action": "uploads", "operation": "load", "id": $('#id_renovacion').val() },
                     type:"post",
                     dataType: "json",
                     success: function(data)
