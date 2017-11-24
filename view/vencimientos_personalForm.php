@@ -136,11 +136,10 @@
                     success: function(data)
                     {
                         //alert('todo ok '+data);
-                        for(var i=0;i<data.length;i++)
-                        {
+                        for(var i=0;i<data.length;i++) {
                             obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"]);
-
                         }
+                        
                         $('img').addClass('image').css('cursor', 'zoom-in');
                         //non.viewer('update');
                         $('.image').viewer({});
@@ -157,7 +156,6 @@
             },
             deleteCallback: function (data, pd) {
                 for (var i = 0; i < data.length; i++) {
-                    //$.post("delete.php", {op: "delete",name: data[i]},
                     $.post("index.php", {action: "uploads", operation: "delete", name: data[i]},
                         function (resp,textStatus, jqXHR) {
                             //Show Message
@@ -167,9 +165,7 @@
                 pd.statusbar.hide(); //You choice.
 
             },
-            downloadCallback:function(filename,pd)
-            {
-                //location.href="download.php?filename="+filename;
+            downloadCallback:function(filename,pd) {
                 location.href="index.php?action=uploads&operation=download&filename="+filename;
             }
         });
