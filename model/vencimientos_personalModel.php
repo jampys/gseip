@@ -160,7 +160,8 @@ join empleados em on v_renov_p.id_empleado = em.id_empleado";
         $stmt=new sQuery();
         $query = "select *
                 from uploads_vencimiento_p
-                where id_renovacion = :id_renovacion";
+                where id_renovacion = :id_renovacion
+                order by fecha asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_renovacion', $id_renovacion);
         $stmt->dpExecute();

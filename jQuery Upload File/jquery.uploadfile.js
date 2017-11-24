@@ -214,9 +214,12 @@
 			$(obj).remove();
 
 		}
+
+
         //This is for showing Old files to user.
         this.createProgress = function (filename,filepath,filesize) {
-            var pd = new createProgressDiv(this, s);
+            var dpType = filename.split('.').pop();
+            var pd = new createProgressDiv(this, s, dpType);
             pd.progressDiv.show();
             pd.progressbar.width('100%');
 
@@ -235,7 +238,8 @@
             obj.selectedFiles++;
             if(s.showPreview)
             {
-                pd.preview.attr('src',filepath);
+                if(dpType=='pdf') pd.preview.attr('src','ViewerJS/#../'+filepath);
+                else pd.preview.attr('src',filepath);
                 pd.preview.show();
             }
 
@@ -376,7 +380,8 @@
             }
             return result;
         }
-		function noserializeAndUploadFiles(s, obj, files) {
+
+		function noserializeAndUploadFiles(s, obj, files) { //no es llamada nunca
 		    var ts = $.extend({}, s);
                 var fd = new FormData();
                 var fileArray = [];
@@ -411,7 +416,8 @@
 
 
                 ts.fileData = fd;
-                var pd = new createProgressDiv(obj, s);
+
+                var pd = new createProgressDiv(obj, s, 0);
                 pd.filename.html(fileListStr);
                 var form = $("<form style='display:block; position:absolute;left: 150px;' class='" + obj.formGroup + "' method='" + s.method + "' action='" + s.url + "' enctype='" + s.enctype + "'></form>");
                 form.appendTo('body');
@@ -458,7 +464,9 @@
                 }
                 ts.fileData = fd;
 
-                var pd = new createProgressDiv(obj, s);
+                //alert(files[i].name);
+                var dpType = files[i].name.split('.').pop();
+                var pd = new createProgressDiv(obj, s, dpType);
                 var fileNameStr = "";
                 if(s.showFileCounter) fileNameStr = obj.fileCounter + s.fileCounterStyle + files[i].name
                 else fileNameStr = files[i].name;
@@ -608,7 +616,7 @@
                     }
                     obj.selectedFiles += fileArray.length;
 
-                    var pd = new createProgressDiv(obj, s);
+                    var pd = new createProgressDiv(obj, s, 0);
                     pd.filename.html(fileList);
                     ajaxFormSubmit(form, s, pd, fileArray, obj, null);
                 }
@@ -664,11 +672,17 @@
         }
 
 
-		function defaultProgressBar(obj,s)
+		function defaultProgressBar(obj,s, dpType)
 		{
 
 			this.statusbar = $("<div class='ajax-file-upload-statusbar'></div>").width(s.statusBarWidth);
-            this.preview = $("<img class='ajax-file-upload-preview' />").width(s.previewWidth).height(s.previewHeight).appendTo(this.statusbar).hide();
+
+            //this.preview = $("<img class='ajax-file-upload-preview' />").width(s.previewWidth).height(s.previewHeight).appendTo(this.statusbar).hide();
+            if(dpType=='jpg')this.preview = $("<img class='ajax-file-upload-preview image' />").width(s.previewWidth).height(s.previewHeight).appendTo(this.statusbar).hide();
+            else if(dpType=='pdf') this.preview = $("<iframe width='100%' height='130' allowfullscreen webkitallowfullscreen></iframe>").appendTo(this.statusbar).hide();
+            else this.preview = $("<img class='ajax-file-upload-preview' />").width(0).height(0).appendTo(this.statusbar).hide();
+
+
             this.filename = $("<div class='ajax-file-upload-filename'></div>").appendTo(this.statusbar);
             this.progressDiv = $("<div class='ajax-file-upload-progress'>").appendTo(this.statusbar).hide();
             this.progressbar = $("<div class='ajax-file-upload-bar'></div>").appendTo(this.progressDiv);
@@ -684,14 +698,19 @@
             this.cancel.addClass("ajax-file-upload-red");
             this.del.addClass("ajax-file-upload-red");
 
+
+
 			return this;
 		}
-        function createProgressDiv(obj, s) {
+
+
+        function createProgressDiv(obj, s, dpType) {
+            //alert(dpType);
 	        var bar = null;
         	if(s.customProgressBar)
         		bar =  new s.customProgressBar(obj,s);
         	else
-        		bar =  new defaultProgressBar(obj,s);
+        		bar =  new defaultProgressBar(obj,s, dpType);
 
 			bar.abort.addClass(obj.formGroup);
             bar.abort.addClass(s.abortButtonClass);

@@ -3,6 +3,8 @@
 
     $(document).ready(function(){
 
+        var non = $('.image').viewer({});
+
         //alert($('#id_habilidad').val());
 
         //if($('#id_habilidad').val()) alert('ahh habilidad');
@@ -11,16 +13,9 @@
         var objeto={};
 
 
-        /*$("#fileuploader").uploadFile({
-            url:"model/upload.php",
-            fileName:"myfile",
-            dragDrop:true,
-            showDelete: true,
-            showDownload:true
-        });*/
 
 
-        var uploadObj = $("#fileuploader").uploadFile({
+        /*var uploadObj = $("#fileuploader").uploadFile({
             url:"upload.php",
             dragDrop: true,
             autoSubmit: false,
@@ -33,28 +28,17 @@
             showAbort: true,
 
 
-            //formData: {"id_habilidad": $('#id_habilidad').val(),"codigo": $('#codigo').val(), "nombre": $('#nombre').val() },
-            /*dynamicFormData: function(){
-                var data ={ "id_habilidad": $('#id_habilidad').val(),"codigo": $('#codigo').val(), "nombre": $('#nombre').val()};
-                return data;},*/
-
-
             dynamicFormData: function(){
                 var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
                 return data;},
 
-            //statusBarWidth:500,
-            //dragdropWidth:500,
+
             maxFileSize:200*1024,
             showPreview:true,
             previewHeight: "75px",
             previewWidth: "75px",
             onSuccess:function(files,data,xhr,pd){
-                //files: list of files
-                //data: response from server
-                //xhr : jquer xhr object
-                //alert(files[0])
-                //alert(data);
+
             },
             onLoad:function(obj) {
 
@@ -95,8 +79,101 @@
             downloadCallback:function(filename,pd) {
                 location.href="index.php?action=uploads&operation=download&filename="+filename;
             }
-            
+
+        }); */
+
+
+        var uploadObj = $("#fileuploader").uploadFile({
+            url:"upload.php",
+            dragDrop: true,
+            autoSubmit: false,
+            fileName: "myfile",
+            returnType: "json",
+            showDelete: true,
+            showDownload:true,
+
+            showCancel: true,
+            showAbort: true,
+
+
+            //formData: {"id_habilidad": $('#id_habilidad').val(),"codigo": $('#codigo').val(), "nombre": $('#nombre').val() },
+            /*dynamicFormData: function(){
+             var data ={ "id_habilidad": $('#id_habilidad').val(),"codigo": $('#codigo').val(), "nombre": $('#nombre').val()};
+             return data;},*/
+
+
+            dynamicFormData: function(){
+                var data ={ "id": ($('#id_habilidad').val())? $('#id_habilidad').val() : objeto.id };
+                return data;},
+
+            //statusBarWidth:500,
+            //dragdropWidth:500,
+            maxFileSize:2048*2048,
+            showPreview:true,
+            previewHeight: "75px",
+            previewWidth: "auto",
+            uploadQueueOrder:'bottom', //el orden en que se muestran los archivos subidos.
+            showFileCounter: false, //muestra el nro de archivos subidos
+            downloadStr: "<span class='glyphicon glyphicon-download'></span>",
+            deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
+            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Upload",
+            cancelStr: "<span class='glyphicon glyphicon-remove-circle'></span>",
+
+            onSelect:function(files)
+            {
+                non.viewer('upload');
+            },
+
+
+            onLoad:function(obj){
+                $.ajax({
+                    cache: false,
+                    url: "index.php",
+                    //data:{"action": "load", "id": $('#id_habilidad').val() },
+                    data:{"action": "uploads", "operation": "load", "id": $('#id_renovacion').val() },
+                    type:"post",
+                    dataType: "json",
+                    success: function(data)
+                    {
+                        //alert('todo ok '+data);
+                        for(var i=0;i<data.length;i++)
+                        {
+                            obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"]);
+
+                        }
+                        $('img').addClass('image').css('cursor', 'zoom-in');
+                        //non.viewer('update');
+                        $('.image').viewer({});
+
+                    },
+                    error: function(e) {
+                        alert('errrorrrr '+ e.responseText);
+
+                    }
+
+
+
+                });
+            },
+            deleteCallback: function (data, pd) {
+                for (var i = 0; i < data.length; i++) {
+                    //$.post("delete.php", {op: "delete",name: data[i]},
+                    $.post("index.php", {action: "uploads", operation: "delete", name: data[i]},
+                        function (resp,textStatus, jqXHR) {
+                            //Show Message
+                            alert("File Deleted");
+                        });
+                }
+                pd.statusbar.hide(); //You choice.
+
+            },
+            downloadCallback:function(filename,pd)
+            {
+                //location.href="download.php?filename="+filename;
+                location.href="index.php?action=uploads&operation=download&filename="+filename;
+            }
         });
+
 
 
 

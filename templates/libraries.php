@@ -63,6 +63,12 @@
     <script src="jQuery Upload File/jquery.uploadfile.js"></script>
 
 
+    <!-- plug-in simple jQuery image viewing https://www.npmjs.com/package/imageviewer -->
+
+    <link  href="ViewerImg/viewer.css" rel="stylesheet">
+    <script src="ViewerImg/viewer.js"></script>
+
+
     <!-- librerias css propias -->
     <link rel="stylesheet" href="resources/css/dario.css">
 

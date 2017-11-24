@@ -6,17 +6,16 @@ if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
 switch ($operation) {
 
-    case 'load':
+    case 'load': //ok
         $id = $_POST['id'];
         $files = Vencimiento_personal::uploadsLoad($id);
 
         $ret= array();
 
-
         foreach($files as $file){
 
             $filePath = $file['directory']."/".$file['name'];
-            if(!file_exists($filePath)) //Si el archivo no existe, saltea el loop
+            if(!file_exists($filePath)) //Si el archivo no existe, salta el loop
                 continue;
 
             $details = array();
@@ -78,7 +77,7 @@ switch ($operation) {
 
         break;
 
-    case 'download':
+    case 'download': //ok
 
         $output_dir = "uploads/vto_vencimiento_p/";
 

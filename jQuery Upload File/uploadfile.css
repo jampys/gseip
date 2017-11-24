@@ -1,5 +1,5 @@
 .ajax-file-upload-statusbar {
-border: 1px solid #337ab7; /*modificado dario */
+border: 1px solid #ccc; /*rgb(221, 221, 221); /*#337ab7; /*modificado dario */
 /*margin-top: 10px; */
 /*width: 420px; */ /*modificado dario */
 /*margin-right: 10px;*/
@@ -8,7 +8,8 @@ border: 1px solid #337ab7; /*modificado dario */
 -moz-border-radius: 3px;
 -webkit-border-radius: 3px;
 border-radius: 3px;
-padding: 5px 5px 5px 15px
+padding: 5px 5px 5px 15px;
+    background-color: #f0efef;
 }
 
 .ajax-file-upload-filename {
@@ -65,12 +66,15 @@ color: #fff;
 font-family: arial;
 font-size: 13px;
 /*font-weight: normal;*/
-padding: 4px 15px;
+/*padding: 4px 15px;*/
 text-decoration: none;
 /*text-shadow: 0 1px 0 #b23e35;*/
 cursor: pointer;
 vertical-align: top;
-margin: 5px 10px 5px 0px;
+/*margin: 5px 10px 5px 0px;*/
+    padding: 5px 15px;
+    margin: 6px 10px 5px 0px;
+
 }
 .ajax-file-upload-red:hover {
     color: #fff;
@@ -91,12 +95,15 @@ color: #fff;
 font-family: arial;
 font-size: 13px;
 /*font-weight: normal;*/
-padding: 4px 15px;
+/*padding: 4px 15px;*/
 text-decoration: none;
 cursor: pointer;
 /*text-shadow: 0 1px 0 #5b8a3c;*/
 vertical-align: top;
-margin: 5px 10px 5px 0px;
+/*margin: 5px 10px 5px 0px;*/
+    padding: 5px 15px;
+    margin: 6px 10px 5px 0px;
+
 }
 .ajax-file-upload-green:hover {
     color: #fff;
