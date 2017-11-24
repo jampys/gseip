@@ -139,7 +139,7 @@
                         for(var i=0;i<data.length;i++) {
                             obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"]);
                         }
-                        
+
                         $('img').addClass('image').css('cursor', 'zoom-in');
                         //non.viewer('update');
                         $('.image').viewer({});

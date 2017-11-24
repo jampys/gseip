@@ -168,6 +168,15 @@ join empleados em on v_renov_p.id_empleado = em.id_empleado";
         return $stmt->dpFetchAll();
     }
 
+    public static function uploadsDelete($name){ //ok
+        $stmt=new sQuery();
+        $query="delete from uploads_vencimiento_p where name =:name";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':name', $name);
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+    }
+
 
 
 

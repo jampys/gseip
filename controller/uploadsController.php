@@ -7,6 +7,7 @@ if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 switch ($operation) {
 
     case 'load': //ok
+
         $id = $_POST['id'];
         $files = Vencimiento_personal::uploadsLoad($id);
 
@@ -104,10 +105,10 @@ switch ($operation) {
 
         }
 
-
         break;
 
-    case 'delete':
+
+    case 'delete': //ok
 
         $output_dir = "uploads/vto_vencimiento_p/";
         if( isset($_POST['name'])) {
@@ -117,15 +118,12 @@ switch ($operation) {
             $filePath = $output_dir. $fileName;
 
             if (file_exists($filePath)) {
-
                 unlink($filePath);
-                //Agregar codigo para borrar de la BD
+                Vencimiento_personal::uploadsDelete($fileName); //Borra el registro de la BD
             }
         }
 
-
         break;
-
 
 
     default :
