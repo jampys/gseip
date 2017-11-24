@@ -93,10 +93,9 @@
 
             },
             downloadCallback:function(filename,pd) {
-                //location.href="download.php?filename="+filename;
-                var win = window.open('index.php?action=uploads&operation=download&filename='+filename, '_blank');
-                win.focus();
+                location.href="index.php?action=uploads&operation=download&filename="+filename;
             }
+            
         });
 
 
