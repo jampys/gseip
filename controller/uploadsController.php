@@ -1,5 +1,5 @@
 <?php
-include_once("model/vencimientos_personalModel.php");
+include_once("model/vto_renovacion_personalModel.php");
 
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
@@ -9,7 +9,7 @@ switch ($operation) {
     case 'load': //ok
 
         $id = $_POST['id'];
-        $files = Vencimiento_personal::uploadsLoad($id);
+        $files = Renovacion_personal::uploadsLoad($id);
 
         $ret= array();
 
@@ -119,7 +119,7 @@ switch ($operation) {
 
             if (file_exists($filePath)) {
                 unlink($filePath);
-                Vencimiento_personal::uploadsDelete($fileName); //Borra el registro de la BD
+                Renovacion_personal::uploadsDelete($fileName); //Borra el registro de la BD
             }
         }
 

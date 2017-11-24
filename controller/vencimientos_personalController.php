@@ -1,6 +1,7 @@
 ﻿<?php
 
-include_once("model/vencimientos_personalModel.php");
+include_once("model/vto_renovacion_personalModel.php");
+include_once("model/vto_vencimientos_personalModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -32,8 +33,10 @@ switch ($operation)
         break;
 
     case 'newRenovacion': //ok
-        $view->renovacion = new Vencimiento_personal();
+        $view->renovacion = new Renovacion_personal();
         $view->label='Nueva renovación';
+
+        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/vencimientos_personalForm.php";
@@ -41,7 +44,9 @@ switch ($operation)
 
     case 'editRenovacion': //ok
         $view->label='Editar Renovación';
-        $view->renovacion = new Vencimiento_personal($_POST['id_renovacion']);
+        $view->renovacion = new Renovacion_personal($_POST['id_renovacion']);
+
+        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/vencimientos_personalForm.php";
@@ -62,7 +67,7 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->vencimientos_personal = Vencimiento_personal::getVencimientosPersonal();
+        $view->vencimientos_personal = Renovacion_personal::getRenovacionesPersonal();
         $view->contentTemplate="view/vencimientos_personalGrid.php";
         break;
 }

@@ -3,6 +3,14 @@
 
     $(document).ready(function(){
 
+        $('.selectpicker').selectpicker({
+            //propiedades del selectpicker
+
+        }).change(function(){
+            $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
+                             // elimine el mensaje de requerido de jquery validation
+        });
+
         var non = $('.image').viewer({});
 
         //alert($('#id_habilidad').val());
@@ -91,19 +99,11 @@
             returnType: "json",
             showDelete: true,
             showDownload:true,
-
             showCancel: true,
             showAbort: true,
 
-
-            //formData: {"id_habilidad": $('#id_habilidad').val(),"codigo": $('#codigo').val(), "nombre": $('#nombre').val() },
-            /*dynamicFormData: function(){
-             var data ={ "id_habilidad": $('#id_habilidad').val(),"codigo": $('#codigo').val(), "nombre": $('#nombre').val()};
-             return data;},*/
-
-
             dynamicFormData: function(){
-                var data ={ "id": ($('#id_habilidad').val())? $('#id_habilidad').val() : objeto.id };
+                var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
                 return data;},
 
             //statusBarWidth:500,
@@ -284,6 +284,20 @@
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php //print $view->habilidad->getNombre() ?>" placeholder="Nombre">
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="id_vencimiento" class="control-label">Vencimiento</label>
+                            <select class="form-control selectpicker show-tick" id="id_vencimiento" name="id_vencimiento" title="Seleccione el vencimiento" data-live-search="true" data-size="5">
+                                <?php foreach ($view->vencimientos as $vto){
+                                    ?>
+                                    <option value="<?php echo $vto['id_vencimiento']; ?>"
+                                        <?php echo ($vto['id_vencimiento'] == $view->renovacion->getIdVencimiento())? 'selected' :'' ?>
+                                        >
+                                        <?php echo $vto['nombre'] ;?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
                     </div>
 
 
