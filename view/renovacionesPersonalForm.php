@@ -252,22 +252,19 @@
         });
 
 
-        $('#habilidad').validate({
+        $('#renovacion_personal').validate({
             rules: {
-                codigo: {
-                        required: true,
-                        digits: true,
-                        maxlength: 3
-                },
-                nombre: {required: true}
+                id_empleado: {required: true},
+                id_vencimiento: {required: true},
+                fecha_emision: {required: true},
+                fecha_vencimiento: {required: true}
+
             },
             messages:{
-                codigo: {
-                    required: "Ingrese el código",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 3 dígitos"
-                },
-                nombre: "Ingrese el nombre"
+                id_empleado: "Seleccione un empleado",
+                id_vencimiento: "Seleccione un vencimiento",
+                fecha_emision: "Ingrese la fecha de emisión",
+                fecha_vencimiento: "Ingrese la fecha de vencimiento"
             }
 
         });
@@ -324,9 +321,9 @@
                     <div class="form-group required">
                         <label class="control-label" for="">Emisión / Vencimiento</label>
                         <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_emision" id="fecha_emision" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                            <input class="form-control" type="text" name="fecha_emision" id="fecha_emision" value = "<?php print $view->renovacion->getFechaEmision() ?>" placeholder="DD/MM/AAAA">
                             <div class="input-group-addon">hasta</div>
-                            <input class="form-control" type="text" name="fecha_vencimiento" id="fecha_vencimiento" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                            <input class="form-control" type="text" name="fecha_vencimiento" id="fecha_vencimiento" value = "<?php print $view->renovacion->getFechaVencimiento() ?>" placeholder="DD/MM/AAAA">
                         </div>
                     </div>
 

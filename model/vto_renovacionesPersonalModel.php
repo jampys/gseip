@@ -69,7 +69,11 @@ class RenovacionPersonal
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query="select *
+            $query="select id_renovacion, id_vencimiento, id_empleado,
+                    DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
+                    DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
+                    alert_status,
+                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha
                     from vto_renovacion_p
                     where id_renovacion = :nro";
             $stmt->dpPrepare($query);
@@ -116,7 +120,7 @@ join empleados em on v_renov_p.id_empleado = em.id_empleado";
     }
 
 
-    public function updateHabilidad(){
+    public function updateRenovacion(){
         $stmt=new sQuery();
         $query="update habilidades set codigo =:codigo, nombre =:nombre
                 where id_habilidad =:id_habilidad";
