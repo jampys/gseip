@@ -11,6 +11,26 @@
                              // elimine el mensaje de requerido de jquery validation
         });
 
+
+        $('.input-daterange').datepicker({ //ok
+            //todayBtn: "linked",
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
+
+        $('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
+            var minDate = new Date(selected.date.valueOf());
+            $('#fecha_vencimiento').datepicker('setStartDate', minDate);
+        });
+
+        $('#fecha_vencimiento').datepicker().on('changeDate', function (selected) { //ok
+            var maxDate = new Date(selected.date.valueOf());
+            $('#fecha_emision').datepicker('setEndDate', maxDate);
+        });
+
+
+
         var non = $('.image').viewer({});
 
         //alert($('#id_habilidad').val());
@@ -298,6 +318,16 @@
                                     </option>
                                 <?php  } ?>
                             </select>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label class="control-label" for="">Emisión / Vencimiento</label>
+                        <div class="input-group input-daterange">
+                            <input class="form-control" type="text" name="fecha_emision" id="fecha_emision" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                            <div class="input-group-addon">hasta</div>
+                            <input class="form-control" type="text" name="fecha_vencimiento" id="fecha_vencimiento" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                        </div>
                     </div>
 
 
