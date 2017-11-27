@@ -98,7 +98,7 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
-                params.action = "vencimientos_personal";
+                params.action = "renovacionesPersonal";
                 params.operation = "editRenovacion";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
@@ -111,7 +111,7 @@
 
             $(document).on('click', '#new', function(){ //ok
                 params={};
-                params.action = "vencimientos_personal";
+                params.action = "renovacionesPersonal";
                 params.operation="newRenovacion";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();

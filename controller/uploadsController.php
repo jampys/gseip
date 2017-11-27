@@ -1,5 +1,5 @@
 <?php
-include_once("model/vto_renovacion_personalModel.php");
+include_once("model/vto_renovacionesPersonalModel.php");
 
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 

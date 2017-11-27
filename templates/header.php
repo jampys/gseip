@@ -80,7 +80,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vencimientos<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">PERSONAL</li>
-                            <li><a href="index.php?action=vencimientos_personal">Renovación</a></li>
+                            <li><a href="index.php?action=renovacionesPersonal">Renovación</a></li>
 
                             <li role="separator" class="divider"></li>
 
