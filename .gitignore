@@ -2,3 +2,5 @@
 #bd/
 #ignora el directorio .idea
 .idea/
+#ignora el directorio uploads
+uploads/
