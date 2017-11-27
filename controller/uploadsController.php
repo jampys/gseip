@@ -34,10 +34,9 @@ switch ($operation) {
 
     case 'upload':
 
-        $id = $_POST['id'];
-        /* con este id hago el insert de las fotos en la BD */
+        $id = $_POST['id']; //con este id (id_renovacion) hago el insert de los uploads en la BD
 
-        $output_dir = "uploads/";
+        $output_dir = "uploads/vto_vencimiento_p/";
         if(isset($_FILES["myfile"])) {
 
             $ret = array();

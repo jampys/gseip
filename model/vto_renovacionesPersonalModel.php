@@ -145,7 +145,6 @@ join empleados em on v_renov_p.id_empleado = em.id_empleado";
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-        //echo "last ide ".print_r(squery::dpLastInsertId() )."ooooo";
     }
 
     function deleteHabilidad(){
@@ -156,18 +155,6 @@ join empleados em on v_renov_p.id_empleado = em.id_empleado";
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
-
-
-    public function autocompletarHabilidades($term) {
-        $stmt=new sQuery();
-        $query = "select *
-                  from habilidades
-                  where nombre like '%$term%'";
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
-
 
 
 

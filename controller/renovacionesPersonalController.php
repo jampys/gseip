@@ -26,8 +26,8 @@ switch ($operation)
         $renovacion->setFechaVencimiento($_POST['fecha_vencimiento']);
         //$renovacion->setAlertStatus($_POST['alert_status']);
 
-        $rta = $renovacion->save();
-        print_r(json_encode($rta));
+        $renovacion->save();
+        print_r(json_encode(sQuery::dpLastInsertId()));
         exit;
         break;
 
