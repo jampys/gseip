@@ -111,30 +111,32 @@ join empleados em on v_renov_p.id_empleado = em.id_empleado";
     }
 
 
-    function save(){
-        if($this->id_habilidad)
-        {$rta = $this->updateHabilidad();}
+    function save(){ //ok
+        if($this->id_renovacion)
+        {$rta = $this->updateRenovacion();}
         else
-        {$rta =$this->insertHabilidad();}
+        {$rta =$this->insertRenovacion();}
         return $rta;
     }
 
 
-    public function updateRenovacion(){
+    public function updateRenovacion(){ //ok
         $stmt=new sQuery();
-        $query="update habilidades set codigo =:codigo, nombre =:nombre
-                where id_habilidad =:id_habilidad";
+        $query="update vto_renovacion_p set id_vencimiento =:id_vencimiento,
+                      fecha_emision = STR_TO_DATE(:fecha_emision, '%d/%m/%Y'),
+                      fecha_vencimiento = STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
+                where id_renovacion =:id_renovacion";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
+        $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
+        $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
+        $stmt->dpBind(':id_renovacion', $this->getIdRenovacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-        //echo "conexion comun ".print_r(squery::dpGetConnectionId() )."ooooo";
 
     }
 
-    private function insertHabilidad(){
+    private function insertRenovacion(){
         $stmt=new sQuery();
         $query="insert into habilidades(codigo, nombre)
                 values(:codigo, :nombre)";

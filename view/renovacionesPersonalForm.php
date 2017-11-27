@@ -193,24 +193,21 @@
 
 
 
-        $('#myModal').on('click', '#submit',function(){
+        $('#myModal').on('click', '#submit',function(){ //ok
 
-            if ($("#habilidad").valid()){
-
-
-                //uploadObj.startUpload();
-
-
+            if ($("#renovacion_personal").valid()){
 
                 var params={};
-                params.action = 'habilidades';
-                params.operation = 'saveHabilidad';
-                params.id_habilidad=$('#id_habilidad').val();
-                params.codigo=$('#codigo').val();
-                params.nombre=$('#nombre').val();
+                params.action = 'renovacionesPersonal';
+                params.operation = 'saveRenovacion';
+                params.id_renovacion = $('#id_renovacion').val();
+                params.id_vencimiento = $('#id_vencimiento').val();
+                params.fecha_emision = $('#fecha_emision').val();
+                params.fecha_vencimiento = $('#fecha_vencimiento').val();
+
                 $.post('index.php',params,function(data, status, xhr){
 
-                    objeto.id = data;
+                    objeto.id = data; //data trae el id de la renovacion
                     //alert(objeto.id);
 
                     //alert(xhr.responseText);
@@ -218,10 +215,10 @@
                     //alert(rta);
                     if(data >=0){
                         uploadObj.startUpload();
-                        $("#myElem").html('Habilidad guardada con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
+                        $("#myElem").html('Renovación guardada con exito').addClass('alert alert-success').show();
+                        $('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                     }else{
-                        $("#myElem").html('Error al guardar la habilidad').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar la renovación').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElem").hide();
                         $('#myModal').modal('hide');

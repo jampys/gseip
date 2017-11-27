@@ -14,21 +14,20 @@ switch ($operation)
 {
     case 'refreshGrid':
         $view->disableLayout=true;
-        $view->habilidades = Habilidad::getHabilidades();
-        $view->contentTemplate="view/habilidadesGrid.php";
+        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal();
+        $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 
-    case 'saveHabilidad':
+    case 'saveRenovacion':
 
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $habilidad->setCodigo($_POST['codigo']);
-        $habilidad->setNombre($_POST['nombre']);
+        $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
+        $renovacion->setIdVencimiento($_POST['id_vencimiento']);
+        $renovacion->setFechaEmision($_POST['fecha_emision']);
+        $renovacion->setFechaVencimiento($_POST['fecha_vencimiento']);
+        //$renovacion->setAlertStatus($_POST['alert_status']);
 
-        $rta = $habilidad->save();
-        //print_r(json_encode($rta));
-        echo sQuery::dpLastInsertId();
-        //$ah = new sQuery();
-        //echo "conexion comun: ".print_r(squery::dpLastInsertId() )."///";
+        $rta = $renovacion->save();
+        print_r(json_encode($rta));
         exit;
         break;
 
@@ -71,7 +70,7 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->vencimientos_personal = RenovacionPersonal::getRenovacionesPersonal();
+        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal();
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 }

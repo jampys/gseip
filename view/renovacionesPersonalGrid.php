@@ -50,13 +50,13 @@
             </thead>
             <tbody>
 
-            <?php foreach ($view->vencimientos_personal as $vp):   ?>
-                    <tr data-id="<?php echo $vp['id_renovacion']; ?>" >
-                        <td><?php echo $vp['fecha']; ?></td>
-                        <td><?php echo $vp['vencimiento']; ?></td>
-                        <td><?php echo $vp['empleado']; ?></td>
-                        <td><?php echo $vp['fecha_emision']; ?></td>
-                        <td><?php echo $vp['fecha_vencimiento']; ?></td>
+            <?php foreach ($view->renovaciones_personal as $rp):   ?>
+                    <tr data-id="<?php echo $rp['id_renovacion']; ?>" >
+                        <td><?php echo $rp['fecha']; ?></td>
+                        <td><?php echo $rp['vencimiento']; ?></td>
+                        <td><?php echo $rp['empleado']; ?></td>
+                        <td><?php echo $rp['fecha_emision']; ?></td>
+                        <td><?php echo $rp['fecha_vencimiento']; ?></td>
 
                         <td class="text-center"><a class="edit" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -81,7 +81,7 @@
 
 <div id="confirm">
     <div class="modal-body">
-        ¿Desea eliminar la habillidad al empleado?
+        ¿Desea eliminar la renovación?
     </div>
 
     <div id="myElemento" style="display:none">
