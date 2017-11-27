@@ -9,7 +9,7 @@ switch ($operation) {
     case 'load': //ok
 
         $id = $_POST['id'];
-        $files = Renovacion_personal::uploadsLoad($id);
+        $files = RenovacionPersonal::uploadsLoad($id);
 
         $ret= array();
 
@@ -119,7 +119,7 @@ switch ($operation) {
 
             if (file_exists($filePath)) {
                 unlink($filePath);
-                Renovacion_personal::uploadsDelete($fileName); //Borra el registro de la BD
+                RenovacionPersonal::uploadsDelete($fileName); //Borra el registro de la BD
             }
         }
 

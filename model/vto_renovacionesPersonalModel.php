@@ -1,6 +1,7 @@
 <?php
+include_once("empleadosModel.php");
 
-class Renovacion_personal
+class RenovacionPersonal
 {
     private $id_renovacion;
     private $id_vencimiento;
@@ -9,6 +10,8 @@ class Renovacion_personal
     private $fecha_vencimiento;
     private $alert_status;
     private $fecha;
+
+    private $empleado;
 
 
     // GETTERS
@@ -32,6 +35,10 @@ class Renovacion_personal
 
     function getFecha()
     { return $this->fecha;}
+
+    function getEmpleado(){
+        return ($this->empleado)? $this->empleado : new Empleado() ;
+    }
 
 
     //SETTERS
@@ -77,6 +84,8 @@ class Renovacion_personal
             $this->setFechaVencimiento($rows[0]['fecha_vencimiento']);
             $this->setAlertStatus($rows[0]['alert_status']);
             $this->setFecha($rows[0]['fecha']);
+
+            $this->empleado = new Empleado($rows[0]['id_empleado']);
         }
     }
 

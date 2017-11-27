@@ -33,10 +33,12 @@ switch ($operation)
         break;
 
     case 'newRenovacion': //ok
-        $view->renovacion = new Renovacion_personal();
         $view->label='Nueva renovación';
+        $view->renovacion = new RenovacionPersonal();
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
+
+        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/renovacionesPersonalForm.php";
@@ -44,9 +46,11 @@ switch ($operation)
 
     case 'editRenovacion': //ok
         $view->label='Editar Renovación';
-        $view->renovacion = new Renovacion_personal($_POST['id_renovacion']);
+        $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
+
+        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/renovacionesPersonalForm.php";
@@ -67,7 +71,7 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->vencimientos_personal = Renovacion_personal::getRenovacionesPersonal();
+        $view->vencimientos_personal = RenovacionPersonal::getRenovacionesPersonal();
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 }

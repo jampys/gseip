@@ -278,13 +278,13 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="id_empleado">Empleado</label>
-                        <input class="form-control" type="text" name="id_empleado" id="id_empleado" value = "<?php print $view->renovacion->getIdEmpleado() ?>" placeholder="Código">
+                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker" data-live-search="true" title="<?php echo ($view->renovacion->getIdEmpleado())? "": "Seleccione un empleado";     ?>">
+                            <option value = "<?php print $view->renovacion->getIdEmpleado() ?>">
+                                <?php print $view->empleado; ?>
+                            </option>
+                        </select>
                     </div>
 
-                    <div class="form-group required">
-                        <label class="control-label" for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php //print $view->habilidad->getNombre() ?>" placeholder="Nombre">
-                    </div>
 
                     <div class="form-group required">
                         <label for="id_vencimiento" class="control-label">Vencimiento</label>
