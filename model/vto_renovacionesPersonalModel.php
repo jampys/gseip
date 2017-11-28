@@ -158,6 +158,20 @@ join empleados em on v_renov_p.id_empleado = em.id_empleado";
 
 
 
+    public static function uploadsUpload($directory, $name, $id_renovacion){ //ok
+        $stmt=new sQuery();
+        $query="insert into uploads_vencimiento_p(directory, name, fecha, id_renovacion)
+                values(:directory, :name, date(sysdate()), :id_renovacion)";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':directory', $directory);
+        $stmt->dpBind(':name', $name);
+        $stmt->dpBind(':id_renovacion', $id_renovacion);
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+    }
+
+
+
     public static function uploadsLoad($id_renovacion) { //ok
         $stmt=new sQuery();
         $query = "select *

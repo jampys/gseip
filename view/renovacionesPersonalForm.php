@@ -112,7 +112,8 @@
 
 
         var uploadObj = $("#fileuploader").uploadFile({
-            url:"upload.php",
+            //url:"upload.php",
+            url: "index.php?action=uploads&operation=upload",
             dragDrop: true,
             autoSubmit: false,
             fileName: "myfile",
