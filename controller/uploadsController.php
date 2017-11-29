@@ -55,11 +55,9 @@ switch ($operation) {
             {
                 $temp = explode(".", $_FILES["myfile"]["name"]);
                 $newfilename = $id . '_' . $temp[0] . '_' .round(microtime(true)) . '.' . end($temp);
-                if (!file_exists($output_dir . $newfilename)) {
-                    if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $newfilename))
-                        RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
-                    $ret[]= $newfilename;
-                }
+                if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $newfilename))
+                    RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
+                $ret[]= $newfilename;
             }
             else  //Multiple files, file[]
             {
@@ -68,11 +66,9 @@ switch ($operation) {
                 {
                     $temp = explode(".", $_FILES["myfile"]["name"][$i]);
                     $newfilename = $id . '_' . $temp[0] . '_' .round(microtime(true)) . '.' . end($temp);
-                    if (!file_exists($output_dir . $newfilename)) {
-                        if (move_uploaded_file($_FILES["myfile"]["tmp_name"][$i], $output_dir . $newfilename))
-                            RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
-                        $ret[] = $newfilename;
-                    }
+                    if (move_uploaded_file($_FILES["myfile"]["tmp_name"][$i], $output_dir . $newfilename))
+                        RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
+                    $ret[] = $newfilename;
                 }
 
             }

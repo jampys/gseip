@@ -112,7 +112,6 @@
 
 
         var uploadObj = $("#fileuploader").uploadFile({
-            //url:"upload.php",
             url: "index.php?action=uploads&operation=upload",
             dragDrop: true,
             autoSubmit: false,
@@ -122,13 +121,12 @@
             showDownload:true,
             showCancel: true,
             showAbort: true,
+            allowDuplicates: false,
 
             dynamicFormData: function(){
                 var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
                 return data;},
 
-            //statusBarWidth:500,
-            //dragdropWidth:500,
             maxFileSize:2048*2048,
             showPreview:true,
             previewHeight: "75px",
@@ -139,6 +137,8 @@
             deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
             uploadStr:"<span class='glyphicon glyphicon-plus'></span> Upload",
             cancelStr: "<span class='glyphicon glyphicon-remove-circle'></span>",
+
+            duplicateErrorStr: "no permitido. El archivo ya existe.",
 
             onSelect:function(files)
             {
