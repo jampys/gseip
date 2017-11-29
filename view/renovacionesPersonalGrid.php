@@ -8,7 +8,12 @@
              url: 'dataTables/Spanish.json'
              }*/
             "stateSave": true,
-            "order": [[ 4, "asc" ]] //4 = fecha_vencimiento
+            "order": [[ 4, "asc" ]], //4 = fecha_vencimiento
+            "columnDefs": [
+                { type: 'date-uk', targets: 1 }, //fecha
+                { type: 'date-uk', targets: 4 }, //fecha_emision
+                { type: 'date-uk', targets: 5 } //fecha_vencimiento
+            ]
         });
 
 
@@ -39,12 +44,12 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
+                <th>Nro. rnv</th>
                 <th>Fecha</th>
                 <th>vencimiento</th>
                 <th>empleado</th>
                 <th>F. emisión</th>
                 <th>F. vto.</th>
-
                 <th>Editar</th>
                 <th>Borrar</th>
             </tr>
@@ -53,6 +58,7 @@
 
             <?php foreach ($view->renovaciones_personal as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_renovacion']; ?>" style="background-color: <?php echo $rp['color']; ?>" >
+                        <td><?php echo $rp['id_renovacion']; ?></td>
                         <td><?php echo $rp['fecha']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
                         <td><?php echo $rp['empleado']; ?></td>
