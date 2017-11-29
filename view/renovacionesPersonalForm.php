@@ -180,7 +180,7 @@
                     $.post("index.php", {action: "uploads", operation: "delete", name: data[i]},
                         function (resp,textStatus, jqXHR) {
                             //Show Message
-                            alert("File Deleted");
+                            //alert("File Deleted");
                         });
                 }
                 pd.statusbar.hide(); //You choice.

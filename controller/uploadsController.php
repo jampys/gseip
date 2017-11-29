@@ -3,6 +3,8 @@ include_once("model/vto_renovacionesPersonalModel.php");
 
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
+$output_dir = $GLOBALS['ini']['upload_dir']."vto_vencimiento_p/";
+
 
 switch ($operation) {
 
@@ -36,7 +38,6 @@ switch ($operation) {
 
         $id = $_POST['id']; //con este id (id_renovacion) hago el insert de los uploads en la BD
 
-        $output_dir = "uploads/vto_vencimiento_p/";
         if(isset($_FILES["myfile"])) {
 
             $ret = array();
@@ -81,8 +82,6 @@ switch ($operation) {
 
     case 'download': //ok
 
-        $output_dir = "uploads/vto_vencimiento_p/";
-
         if(isset($_GET['filename']))
         {
             $fileName=$_GET['filename'];
@@ -110,8 +109,7 @@ switch ($operation) {
 
 
     case 'delete': //ok
-
-        $output_dir = "uploads/vto_vencimiento_p/";
+        
         if( isset($_POST['name'])) {
 
             $fileName =$_POST['name'];
