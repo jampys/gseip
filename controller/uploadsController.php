@@ -40,13 +40,14 @@ switch ($operation) {
 
             $ret = array();
 
-            //	This is for custom errors;
-            /*	$custom_error= array();
-                $custom_error['jquery-upload-file-error']="File already exists";
+            // Manejo de errores: Si hay un error con el archivo subido o el directorio destino no existe...
+            if($_FILES['myfile']['error']!= 0 || !is_dir($output_dir)){ 
+                $custom_error= array();
+                $custom_error['jquery-upload-file-error'] = "Error al subir el archivo.";
                 echo json_encode($custom_error);
                 die();
-            */
-            $error =$_FILES["myfile"]["error"];
+            }
+
             //You need to handle  both cases
             //If Any browser does not support serializing of multiple files using FormData()
             if(!is_array($_FILES["myfile"]["name"])) //single file
@@ -82,12 +83,12 @@ switch ($operation) {
 
         if(isset($_GET['filename']))
         {
-            $fileName=$_GET['filename'];
-            $fileName=str_replace("..",".",$fileName); //required. if somebody is trying parent folder files
+            $fileName = $_GET['filename'];
+            $fileName = str_replace("..",".",$fileName); //required. if somebody is trying parent folder files
             $file = $output_dir.$fileName;
             $file = str_replace("..","",$file);
             if (file_exists($file)) {
-                $fileName =str_replace(" ","",$fileName);
+                $fileName = str_replace(" ","",$fileName);
                 header('Content-Description: File Transfer');
                 header('Content-Disposition: attachment; filename='.$fileName);
                 header('Content-Transfer-Encoding: binary');
