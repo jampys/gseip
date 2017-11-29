@@ -33,82 +33,7 @@
 
         var non = $('.image').viewer({});
 
-        //alert($('#id_habilidad').val());
-
-        //if($('#id_habilidad').val()) alert('ahh habilidad');
-        //else alert('no hay');
-
         var objeto={};
-
-
-
-
-        /*var uploadObj = $("#fileuploader").uploadFile({
-            url:"upload.php",
-            dragDrop: true,
-            autoSubmit: false,
-            fileName: "myfile",
-            returnType: "json",
-            showDelete: true,
-            showDownload:true,
-
-            showCancel: true,
-            showAbort: true,
-
-
-            dynamicFormData: function(){
-                var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
-                return data;},
-
-
-            maxFileSize:200*1024,
-            showPreview:true,
-            previewHeight: "75px",
-            previewWidth: "75px",
-            onSuccess:function(files,data,xhr,pd){
-
-            },
-            onLoad:function(obj) {
-
-                $.ajax({
-                    cache: false,
-                    url: "index.php",
-                    data:{"action": "uploads", "operation": "load", "id": $('#id_renovacion').val() },
-                    type:"post",
-                    dataType: "json",
-                    success: function(data)
-                    {
-                        //alert('todo ok '+data);
-                        for(var i=0;i<data.length;i++)
-                        {
-                            obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"]);
-                        }
-                    },
-                    error: function(e) {
-                        alert('errrorrrr '+ e.responseText);
-
-                    }
-
-
-
-                });
-            },
-            deleteCallback: function (data, pd) {
-                for (var i = 0; i < data.length; i++) {
-                    $.post("index.php", {action: "uploads", operation: "delete", name: data[i]},
-                        function (resp,textStatus, jqXHR) {
-                            //Show Message
-                            //alert("File Deleted");
-                        });
-                }
-                pd.statusbar.hide(); //You choice.
-
-            },
-            downloadCallback:function(filename,pd) {
-                location.href="index.php?action=uploads&operation=download&filename="+filename;
-            }
-
-        }); */
 
 
         var uploadObj = $("#fileuploader").uploadFile({
@@ -140,11 +65,9 @@
 
             duplicateErrorStr: "no permitido. El archivo ya existe.",
 
-            onSelect:function(files)
-            {
+            onSelect:function(files) {
                 non.viewer('upload');
             },
-
 
             onLoad:function(obj){
                 $.ajax({
@@ -211,12 +134,10 @@
 
                     objeto.id = data; //data trae el id de la renovacion
                     //alert(objeto.id);
-
                     //alert(xhr.responseText);
-                    //var rta= parseInt(data.charAt(3));
-                    //alert(rta);
+
                     if(data >=0){
-                        uploadObj.startUpload();
+                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#myElem").html('Renovación guardada con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                     }else{
