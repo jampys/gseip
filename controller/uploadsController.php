@@ -54,9 +54,10 @@ switch ($operation) {
             if(!is_array($_FILES["myfile"]["name"])) //single file
             {
                 $fileName = $_FILES["myfile"]["name"];
-                move_uploaded_file($_FILES["myfile"]["tmp_name"],$output_dir.$fileName);
+                if(move_uploaded_file($_FILES["myfile"]["tmp_name"],$output_dir.$fileName))
+                    RenovacionPersonal::uploadsUpload($output_dir, $fileName, $id); //inserta en la BD
                 $ret[]= $fileName;
-                RenovacionPersonal::uploadsUpload($output_dir, $fileName, $id); //inserta en la BD
+
             }
             else  //Multiple files, file[]
             {
@@ -64,9 +65,10 @@ switch ($operation) {
                 for($i=0; $i < $fileCount; $i++)
                 {
                     $fileName = $_FILES["myfile"]["name"][$i];
-                    move_uploaded_file($_FILES["myfile"]["tmp_name"][$i],$output_dir.$fileName);
+                    if(move_uploaded_file($_FILES["myfile"]["tmp_name"][$i],$output_dir.$fileName))
+                        RenovacionPersonal::uploadsUpload($output_dir, $fileName, $id); //inserta en la BD
                     $ret[]= $fileName;
-                    RenovacionPersonal::uploadsUpload($output_dir, $fileName, $id); //inserta en la BD
+
                 }
 
             }
