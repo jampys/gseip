@@ -80,13 +80,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vencimientos<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">PERSONAL</li>
-                            <li><a href="index.php?action=renovacionesPersonal">Renovación</a></li>
+                            <li><a href="index.php?action=renovacionesPersonal">Renovaciones</a></li>
 
                             <li role="separator" class="divider"></li>
 
                             <li class="dropdown-header">VEHICULAR</li>
                             <li><a href="index.php?action=">Vehículos</a></li>
-                            <li><a href="index.php?action=">Renovación</a></li>
+                            <li><a href="index.php?action=">Renovaciones</a></li>
 
                         </ul>
                     </li>
