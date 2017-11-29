@@ -109,7 +109,7 @@ switch ($operation) {
 
 
     case 'delete': //ok
-        
+
         if( isset($_POST['name'])) {
 
             $fileName =$_POST['name'];
