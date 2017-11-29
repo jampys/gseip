@@ -51,7 +51,7 @@
             <tbody>
 
             <?php foreach ($view->renovaciones_personal as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_renovacion']; ?>" >
+                    <tr data-id="<?php echo $rp['id_renovacion']; ?>" style="background-color: <?php echo $rp['color']; ?>" >
                         <td><?php echo $rp['fecha']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
                         <td><?php echo $rp['empleado']; ?></td>
