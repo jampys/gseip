@@ -56,8 +56,7 @@ switch ($operation) {
                 $fileName = $_FILES["myfile"]["name"];
                 move_uploaded_file($_FILES["myfile"]["tmp_name"],$output_dir.$fileName);
                 $ret[]= $fileName;
-                //Agregar codigo para insertar en la BD
-                RenovacionPersonal::uploadsUpload($output_dir, $fileName, $id);
+                RenovacionPersonal::uploadsUpload($output_dir, $fileName, $id); //inserta en la BD
             }
             else  //Multiple files, file[]
             {
@@ -67,8 +66,7 @@ switch ($operation) {
                     $fileName = $_FILES["myfile"]["name"][$i];
                     move_uploaded_file($_FILES["myfile"]["tmp_name"][$i],$output_dir.$fileName);
                     $ret[]= $fileName;
-                    //Agregar codigo para insertar en la BD
-                    RenovacionPersonal::uploadsUpload($output_dir, $fileName, $id);
+                    RenovacionPersonal::uploadsUpload($output_dir, $fileName, $id); //inserta en la BD
                 }
 
             }
