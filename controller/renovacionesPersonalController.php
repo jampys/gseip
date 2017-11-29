@@ -24,6 +24,7 @@ switch ($operation)
         $renovacion->setIdVencimiento($_POST['id_vencimiento']);
         $renovacion->setFechaEmision($_POST['fecha_emision']);
         $renovacion->setFechaVencimiento($_POST['fecha_vencimiento']);
+        $renovacion->setIdEmpleado($_POST['id_empleado']);
         //$renovacion->setAlertStatus($_POST['alert_status']);
 
         $renovacion->save();

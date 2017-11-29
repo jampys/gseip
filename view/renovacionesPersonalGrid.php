@@ -7,7 +7,8 @@
             /*language: {
              url: 'dataTables/Spanish.json'
              }*/
-            "stateSave": true
+            "stateSave": true,
+            "order": [[ 4, "asc" ]] //4 = fecha_vencimiento
         });
 
 

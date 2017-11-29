@@ -119,7 +119,7 @@ and vav.id_vencimiento = vrp.id_vencimiento
 and vrp.id_empleado = em.id_empleado
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta(vrp.id_renovacion)
-order by vrp.fecha asc";
+order by vrp.fecha_vencimiento asc";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
@@ -153,11 +153,13 @@ order by vrp.fecha asc";
 
     private function insertRenovacion(){
         $stmt=new sQuery();
-        $query="insert into habilidades(codigo, nombre)
-                values(:codigo, :nombre)";
+        $query="insert into vto_renovacion_p(id_vencimiento, id_empleado, fecha_emision, fecha_vencimiento, fecha)
+                values(:id_vencimiento, :id_empleado, STR_TO_DATE(:fecha_emision, '%d/%m/%Y'), STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'), date(sysdate()))";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
+        $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
