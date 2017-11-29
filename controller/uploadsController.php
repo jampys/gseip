@@ -29,9 +29,7 @@ switch ($operation) {
 
         }
 
-        //echo json_encode('ahhhhh');
         echo json_encode($ret);
-
         break;
 
     case 'upload':
@@ -126,15 +124,10 @@ switch ($operation) {
 
 
     default :
-
         break;
 }
 
-/*if ($view->disableLayout==true) {
-    include_once ($view->contentTemplate);}
-else {
-    include_once('view/empleadosLayout.php');
-}*/
+
 
 
 ?>
