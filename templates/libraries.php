@@ -61,6 +61,7 @@
     <script src="http://hayageek.github.io/jQuery-Upload-File/4.0.11/jquery.uploadfile.min.js"></script>-->
     <link href="jQuery Upload File/uploadfile.css" rel="stylesheet">
     <script src="jQuery Upload File/jquery.uploadfile.js"></script>
+    <script src="jQuery Upload File/jquery.form.js"></script>
 
 
     <!-- plug-in simple jQuery image viewing https://www.npmjs.com/package/imageviewer -->
