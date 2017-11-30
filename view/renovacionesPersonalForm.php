@@ -78,14 +78,13 @@
                     data:{"action": "uploads", "operation": "load", "id": $('#id_renovacion').val() },
                     type:"post",
                     dataType: "json",
-                    success: function(data)
-                    {
+                    success: function(data) {
+
                         //alert('todo ok '+data);
                         for(var i=0;i<data.length;i++) {
                             if(data[i]['jquery-upload-file-error']) {
-                                alert('encontro el error');
-                                //obj.culo(data[i]["name"],data[i]["path"],data[i]["size"]);
-                                obj.culo('nombre.jpg','path','size33', 'mensaje de error');
+                                //alert('encontro el error');
+                                obj.dpErrorOnLoad(data[i]["name"], data[i]['jquery-upload-file-error']);
                             }
                             else{
                                 obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"]);
@@ -100,10 +99,7 @@
                     },
                     error: function(e) {
                         alert('errrorrrr '+ e.responseText);
-
                     }
-
-
 
                 });
             },

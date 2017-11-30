@@ -265,7 +265,8 @@
         }
 
 
-        this.culo = function (filename,filepath,filesize, msg) {
+        this.dpErrorOnLoad = function (filename, msg) {
+            //Basada en la funcion this.createProgress
             var dpType = filename.split('.').pop();
             var pd = new createProgressDiv(this, s, dpType);
             //pd.progressDiv.show();
@@ -277,8 +278,8 @@
             else fileNameStr = filename;
 
 
-            if (s.showFileSize)
-                fileNameStr += " (" + getSizeStr(filesize) + ")";
+            /*if (s.showFileSize)
+                fileNameStr += " (" + getSizeStr(filesize) + ")"; */
 
 
             pd.filename.html(fileNameStr);

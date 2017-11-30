@@ -20,10 +20,10 @@ switch ($operation) {
             $filePath = $file['directory']."/".$file['name'];
             if(!file_exists($filePath)){ //Si el archivo no existe, salta el loop
                 $custom_error= array();
-                $custom_error['jquery-upload-file-error']="File already exists";
+                $custom_error['jquery-upload-file-error']= "No se encuentra el archivo en el servidor.";
+                $custom_error['name'] = $file['name'];
                 $ret[] = $custom_error;
                 continue;
-
             }
 
 
