@@ -18,8 +18,14 @@ switch ($operation) {
         foreach($files as $file){
 
             $filePath = $file['directory']."/".$file['name'];
-            if(!file_exists($filePath)) //Si el archivo no existe, salta el loop
+            if(!file_exists($filePath)){ //Si el archivo no existe, salta el loop
+                $custom_error= array();
+                $custom_error['jquery-upload-file-error']="File already exists";
+                $ret[] = $custom_error;
                 continue;
+
+            }
+
 
             $details = array();
             $details['name'] = $file['name'];
@@ -53,7 +59,7 @@ switch ($operation) {
             if(!is_array($_FILES["myfile"]["name"])) //single file
             {
                 $temp = explode(".", $_FILES["myfile"]["name"]);
-                $newfilename = $id . '_' . $temp[0] . '_' .round(microtime(true)) . '.' . end($temp);
+                $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp[0] . '_' .round(microtime(true)) . '.' . end($temp);
                 if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $newfilename))
                     RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
                 $ret[]= $newfilename;
@@ -64,7 +70,7 @@ switch ($operation) {
                 for($i=0; $i < $fileCount; $i++)
                 {
                     $temp = explode(".", $_FILES["myfile"]["name"][$i]);
-                    $newfilename = $id . '_' . $temp[0] . '_' .round(microtime(true)) . '.' . end($temp);
+                    $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp[0] . '_' .round(microtime(true)) . '.' . end($temp);
                     if (move_uploaded_file($_FILES["myfile"]["tmp_name"][$i], $output_dir . $newfilename))
                         RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
                     $ret[] = $newfilename;

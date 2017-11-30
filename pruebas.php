@@ -1,6 +1,6 @@
 <?php
 
-include_once("config/config.php.old");
+include_once("config/config.php");
 include_once("config/soporte.php");
 include_once("model/empleadosModel.php");
 include_once("model/localidadesModel.php");
@@ -36,6 +36,16 @@ print_r( $vals[1]);
 
 print_r( Soporte::getPeriodos(2015, 2017));
 ?>
+
+<hr/>
+
+<?php
+
+echo str_pad(2, 5, 0, STR_PAD_LEFT);
+?>
+
+
+
 
 
 

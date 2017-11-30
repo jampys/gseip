@@ -82,7 +82,15 @@
                     {
                         //alert('todo ok '+data);
                         for(var i=0;i<data.length;i++) {
-                            obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"]);
+                            if(data[i]['jquery-upload-file-error']) {
+                                alert('encontro el error');
+                                //obj.culo(data[i]["name"],data[i]["path"],data[i]["size"]);
+                                obj.culo('nombre.jpg','path','size33', 'mensaje de error');
+                            }
+                            else{
+                                obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"]);
+                            }
+
                         }
 
                         $('img').addClass('image').css('cursor', 'zoom-in');
