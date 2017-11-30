@@ -17,7 +17,7 @@ switch($operation){
 
             if($id>=1){
                 $_SESSION["id_usuario"] = $view->u->getIdUsuario(); //$id;
-                $_SESSION["usuario"] = $view->u->getIdUsuario(); //$_POST['usuario'];
+                $_SESSION["usuario"] = $view->u->getUsuario(); //$_POST['usuario'];
                 /*if($id[5]!=1) { //si se ha limpiado el password  hay que cambiarlo...
                     $_SESSION["id_usuario"] = $id[0];
                     $_SESSION["usuario"] = $id[1];

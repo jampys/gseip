@@ -29,10 +29,6 @@ class Usuario{
 
 
     function isAValidUser($usuario,$password){
-        /*
-        *No olvidar despues de hacer la codificacionn a md5
-        *$pass=md5($pass); */
-
 
         $stmt=new sQuery();
         $query="select * from sec_usuarios where usuario = :usuario and password = md5(:password)";
@@ -52,7 +48,7 @@ class Usuario{
                 //$datos[0] =(int )$r[0]['id_usuario'];
                 //$datos[1] = $r[0]['usuario'];
                 //return $datos;
-                $this->setIdUsuario(1);//$r[0]['id_usuario']);
+                $this->setIdUsuario($r[0]['id_usuario']);
                 $this->setUsuario($r[0]['usuario']);
 
                 return 1;
