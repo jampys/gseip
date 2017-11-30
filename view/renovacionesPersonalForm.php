@@ -60,10 +60,11 @@
             showFileCounter: false, //muestra el nro de archivos subidos
             downloadStr: "<span class='glyphicon glyphicon-download'></span>",
             deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
-            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Upload",
+            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Subir",
             cancelStr: "<span class='glyphicon glyphicon-remove-circle'></span>",
 
             duplicateErrorStr: "no permitido. El archivo ya existe.",
+            dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
 
             onSelect:function(files) {
                 non.viewer('upload');
