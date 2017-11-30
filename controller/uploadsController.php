@@ -18,14 +18,13 @@ switch ($operation) {
         foreach($files as $file){
 
             $filePath = $file['directory']."/".$file['name'];
-            if(!file_exists($filePath)){ //Si el archivo no existe, salta el loop
+            if(!file_exists($filePath)){
                 $custom_error= array();
                 $custom_error['jquery-upload-file-error']= "No se encuentra el archivo en el servidor.";
                 $custom_error['name'] = $file['name'];
                 $ret[] = $custom_error;
-                continue;
+                continue; //salta el loop
             }
-
 
             $details = array();
             $details['name'] = $file['name'];

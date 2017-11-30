@@ -157,12 +157,13 @@
             if(mainQ.length >= 1 )
 	 			submitPendingUploads();
 
-        }
+        };
 
         this.getFileCount = function () {
             return obj.selectedFiles;
 
-        }
+        };
+
         this.stopUpload = function () {
             $("." + s.abortButtonClass).each(function (i, items) {
                 if($(this).hasClass(obj.formGroup)) $(this).click();
@@ -170,12 +171,14 @@
              $("." + s.cancelButtonClass).each(function (i, items) {
                 if($(this).hasClass(obj.formGroup)) $(this).click();
             });
-        }
+        };
+
         this.cancelAll = function () {
             $("." + s.cancelButtonClass).each(function (i, items) {
                 if($(this).hasClass(obj.formGroup)) $(this).click();
             });
-        }
+        };
+
         this.update = function (settings) {
             //update new settings
             s = $.extend(s, settings);
@@ -190,13 +193,13 @@
             }
             
             
-        }
+        };
 
 	this.enqueueFile = function(file){
 	    if( !( file instanceof File) ) return;
 	    var files = [file];
             serializeAndUploadFiles(s, obj, files);
-	}
+	};
         
         this.reset = function (removeStatusBars) {
 			obj.fileCounter = 1;
@@ -207,13 +210,14 @@
 			{
 				obj.container.html("");
 			}
-        }
+        };
+
 		this.remove = function()
 		{
 			obj.container.html("");
 			$(obj).remove();
 
-		}
+		};
 
 
         //This is for showing Old files to user.
@@ -262,7 +266,7 @@
             }
 
             return pd;
-        }
+        };
 
 
         this.dpErrorOnLoad = function (filename, msg) {
@@ -317,7 +321,7 @@
                 //s.onError.call(this, fileArray, 200, msg, pd);
                 if(s.showStatusAfterError) {
                     pd.progressDiv.hide();
-                    pd.statusbar.append("<span class='" + s.errorClass + "'>ERROR: " + msg + "</span>");
+                    pd.statusbar.append("<span class='" + s.errorClass + "'><b>ERROR:</b> " + msg + "</span>");
                 } else {
                     pd.statusbar.hide();
                     pd.statusbar.remove();
@@ -336,10 +340,12 @@
 
             this.getResponses = function () {
             return this.responses;
-        }
+        };
+
         var mainQ=[];
         var progressQ=[]
         var running = false;
+
           function submitPendingUploads() {
 			if(running) return;
 			running = true;
