@@ -46,6 +46,10 @@
                             $("#myElem").html('error conexion bd').addClass('alert alert-danger').show();
                             setTimeout(function() { $("#myElem").hide();
                             }, 2000);
+                        },
+                        beforeSend: function() {
+                            // setting a timeout
+                            $("#myElem").html('Accediendo al sistema ...').addClass('alert alert-info').show();
                         }
 
 
