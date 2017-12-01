@@ -52,27 +52,11 @@
                             $("#myElem").html('Accediendo al sistema ...').removeClass('alert alert-danger').addClass('alert alert-info').show();
                         }
 
-
-
-
-
                     });
-
-
-
-
-
-
-
-
-
 
                 }
                 return false;
             });
-
-
-
 
 
 

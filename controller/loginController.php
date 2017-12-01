@@ -12,7 +12,7 @@ switch($operation){
 
         if (isset($_POST['usuario']) && isset($_POST['contraseña']) ){
 
-            $id=$view->u->isAValidUser($_POST['usuario'],$_POST['contraseña']);
+            $id = $view->u->isAValidUser($_POST['usuario'],$_POST['contraseña']);
 
             if($id >= 1){
                 $_SESSION["id_usuario"] = $view->u->getIdUsuario(); //$id;
