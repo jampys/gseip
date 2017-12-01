@@ -28,26 +28,16 @@
                         dataType:"json",//xml,html,script,json
                         success: function(data, textStatus, jqXHR) {
 
-                            if(data >=1){ //Accede al sistema
+                            if(data['id'] >= 1){ //Accede al sistema
                                 $("#myElem").html('Accediendo al sistema ...').addClass('alert alert-info').show();
                                 setTimeout(function(){ $("#myElem").hide();
                                                         window.location.href = "index.php?action=index";
                                                      }, 1500);
-                                //$('#content').load('index.php',{action:"index"});
-                                /*params={};
-                                 params.action="index";
-                                 $.post('controller/indexLayout.php',params,function(data, status, xhr){
-                                 alert(data);
-                                 });*/
-
-                            }else if (data == 0){ //usuario inhabilitado
-                                $("#myElem").html('Usuario inhabilitado').addClass('alert alert-danger').show();
+                            }
+                            else {
+                                $("#myElem").html(data['msg']).addClass('alert alert-danger').show();
                                 setTimeout(function() { $("#myElem").hide();
-                                }, 2000);
-                            }else if (data == -1){ //usuario o contraseña invalidos
-                                $("#myElem").html('Usuario o contraseña invalidos').addClass('alert alert-danger').show();
-                                setTimeout(function() { $("#myElem").hide();
-                                }, 2000);
+                                                      }, 2000);
                             }
 
                         },

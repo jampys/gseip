@@ -10,7 +10,6 @@ switch($operation){
 
     case 'login':
 
-
         if (isset($_POST['usuario']) && isset($_POST['contraseña']) ){
 
             $id=$view->u->isAValidUser($_POST['usuario'],$_POST['contraseña']);
@@ -38,22 +37,20 @@ switch($operation){
                 //IMPORTANTE: probar mas que un header location cargar una $view->content error
                 //Por el momento no se le carga ninguna vista para cuando ingresa ok.
             }
-            else
-            {
-                //echo "EL USUARIO NO SE PUDO LOGUEAR";
-                if($id==0){
-                    $_SESSION["error"]="Usuario inhabilitado";
-                    //$view->content="view/error.php";
-                }
-                if($id==-1){
-                    $_SESSION["error"]="Usuario o contraseña inválidos";
-                    //$view->content="view/error.php";
-                }
+            else if($id==0){ //usuario inhabilitado
+                $e = array();
+                $e['msg']= "Usuario inhabilitado";
+                $e['id'] = $id;
+            }
+            else if($id==-1){ //Usuario o contraseña inválidos
+                $e = array();
+                $e['msg']= "Usuario o contraseña inválidos";
+                $e['id'] = $id;
             }
 
         }
 
-        print_r(json_encode($id));
+        print_r(json_encode($e));
         exit;
         break;
 
