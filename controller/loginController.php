@@ -14,9 +14,11 @@ switch($operation){
 
             $id=$view->u->isAValidUser($_POST['usuario'],$_POST['contraseña']);
 
-            if($id>=1){
+            if($id >= 1){
                 $_SESSION["id_usuario"] = $view->u->getIdUsuario(); //$id;
                 $_SESSION["usuario"] = $view->u->getUsuario(); //$_POST['usuario'];
+                $e = array();
+                $e['id'] = $id;
                 /*if($id[5]!=1) { //si se ha limpiado el password  hay que cambiarlo...
                     $_SESSION["id_usuario"] = $id[0];
                     $_SESSION["usuario"] = $id[1];
@@ -37,12 +39,12 @@ switch($operation){
                 //IMPORTANTE: probar mas que un header location cargar una $view->content error
                 //Por el momento no se le carga ninguna vista para cuando ingresa ok.
             }
-            else if($id==0){ //usuario inhabilitado
+            else if($id == 0){ //usuario inhabilitado
                 $e = array();
                 $e['msg']= "Usuario inhabilitado";
                 $e['id'] = $id;
             }
-            else if($id==-1){ //Usuario o contraseña inválidos
+            else if($id == -1){ //Usuario o contraseña inválidos
                 $e = array();
                 $e['msg']= "Usuario o contraseña inválidos";
                 $e['id'] = $id;

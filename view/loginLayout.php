@@ -43,13 +43,13 @@
                         },
                         error: function(data, textStatus, errorThrown) {
                             //alert(data.responseText);
-                            $("#myElem").html('error conexion bd').addClass('alert alert-danger').show();
+                            $("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
                             setTimeout(function() { $("#myElem").hide();
                             }, 2000);
                         },
                         beforeSend: function() {
                             // setting a timeout
-                            $("#myElem").html('Accediendo al sistema ...').addClass('alert alert-info').show();
+                            $("#myElem").html('Accediendo al sistema ...').removeClass('alert alert-danger').addClass('alert alert-info').show();
                         }
 
 
