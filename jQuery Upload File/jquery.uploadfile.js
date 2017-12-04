@@ -751,10 +751,13 @@
 		function defaultProgressBar(obj,s, dpType)
 		{
 
-			this.statusbar = $("<div class='ajax-file-upload-statusbar'></div>").width(s.statusBarWidth);
+			this.statusbar = $("<div class='ajax-file-upload-statusbar'></div>"); //.width(s.statusBarWidth);
 
             //this.preview = $("<img class='ajax-file-upload-preview' />").width(s.previewWidth).height(s.previewHeight).appendTo(this.statusbar).hide();
-            if(dpType=='jpg')this.preview = $("<img class='ajax-file-upload-preview image' />").width(s.previewWidth).height(s.previewHeight).appendTo(this.statusbar).hide();
+            if(dpType == 'jpg' ||  dpType == 'png'){
+                this.preview = $("<img class='ajax-file-upload-preview image' />").width(s.previewWidth).height(s.previewHeight).appendTo(this.statusbar).hide();
+                this.preview.addClass('image').css('cursor', 'zoom-in').viewer({});
+            }
             else if(dpType=='pdf') this.preview = $("<iframe width='100%' height='130' allowfullscreen webkitallowfullscreen></iframe>").appendTo(this.statusbar).hide();
             else this.preview = $("<img class='ajax-file-upload-preview' />").width(0).height(0).appendTo(this.statusbar).hide();
 
