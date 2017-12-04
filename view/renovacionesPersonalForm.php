@@ -31,7 +31,7 @@
 
 
 
-        var non = $('.image').viewer({});
+        $('.image').viewer({});
 
         var objeto={};
 
@@ -69,15 +69,10 @@
             duplicateErrorStr: "no permitido. El archivo ya existe.",
             sizeErrorStr: "no permitido. Tamaño máximo permitido: ",
 
-            onSelect:function(files) {
-                non.viewer('upload');
-            },
-
             onLoad:function(obj){
                 $.ajax({
                     cache: false,
                     url: "index.php",
-                    //data:{"action": "load", "id": $('#id_habilidad').val() },
                     data:{"action": "uploads", "operation": "load", "id": $('#id_renovacion').val() },
                     type:"post",
                     dataType: "json",
@@ -96,7 +91,6 @@
                         }
 
                         $('img').addClass('image').css('cursor', 'zoom-in');
-                        //non.viewer('update');
                         $('.image').viewer({});
 
                     },
