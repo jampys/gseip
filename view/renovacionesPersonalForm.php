@@ -53,7 +53,7 @@
                 var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
                 return data;},
 
-            maxFileSize:2048*2048,
+            maxFileSize:2097152, //tamaño expresado en bytes
             showPreview:true,
             previewHeight: "75px",
             previewWidth: "auto",
@@ -61,12 +61,13 @@
             showFileCounter: false, //muestra el nro de archivos subidos
             downloadStr: "<span class='glyphicon glyphicon-download'></span>",
             deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
+            dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
             uploadStr:"<span class='glyphicon glyphicon-plus'></span> Subir",
             cancelStr: "<span class='glyphicon glyphicon-remove-circle'></span>",
 
             extErrorStr: "no está permitido. Solo se permiten extensiones: ",
             duplicateErrorStr: "no permitido. El archivo ya existe.",
-            dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
+            sizeErrorStr: "no permitido. Tamaño máximo permitido: ",
 
             onSelect:function(files) {
                 non.viewer('upload');
