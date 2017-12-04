@@ -47,6 +47,7 @@
             showCancel: true,
             showAbort: true,
             allowDuplicates: false,
+            allowedTypes: "jpg, png, pdf, txt, doc, docx",
 
             dynamicFormData: function(){
                 var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
@@ -63,6 +64,7 @@
             uploadStr:"<span class='glyphicon glyphicon-plus'></span> Subir",
             cancelStr: "<span class='glyphicon glyphicon-remove-circle'></span>",
 
+            extErrorStr: "no está permitido. Solo se permiten extensiones: ",
             duplicateErrorStr: "no permitido. El archivo ya existe.",
             dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
 
