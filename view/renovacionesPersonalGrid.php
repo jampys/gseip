@@ -8,7 +8,7 @@
              url: 'dataTables/Spanish.json'
              }*/
             "stateSave": true,
-            "order": [[ 4, "asc" ]], //4 = fecha_vencimiento
+            "order": [[ 5, "asc" ]], //5 = fecha_vencimiento
             "columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
