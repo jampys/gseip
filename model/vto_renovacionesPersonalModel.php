@@ -112,8 +112,9 @@ DATE_FORMAT(vrp.fecha,  '%d/%m/%Y') as fecha,
 vvp.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
-CONCAT(em.apellido, ' ', em.nombre) as empleado
-from vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, empleados em, vto_alerta va
+CONCAT(em.apellido, ' ', em.nombre) as empleado,
+vrp.renovacion
+from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, empleados em, vto_alerta va
 where vrp.id_vencimiento = vvp.id_vencimiento
 and vav.id_vencimiento = vrp.id_vencimiento
 and vrp.id_empleado = em.id_empleado
