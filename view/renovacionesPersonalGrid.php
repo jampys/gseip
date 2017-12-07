@@ -8,18 +8,18 @@
              url: 'dataTables/Spanish.json'
              }*/
             "stateSave": true,
-            "order": [[6, "asc"], [7, "asc"] ], //5 = fecha_vencimiento
+            "order": [[6, "asc"], [7, "asc"] ], //6=priority (oculta), 7=renovacion
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
                 { type: 'date-uk', targets: 5 } //fecha_vencimiento
             ]*/
             columnDefs: [
-                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 0 ]},
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 0 ]},
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 0 ]},
-                {targets: [ 6 ], orderData: [ 6, 5 ]},
-                {targets: [ 7 ], orderData: [ 7, 5 ]}
+                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]}, //fecha_emision
+                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 6 ]}, //fecha_vencimiento
+                {targets: [ 6 ], orderData: [ 6]}, //priority
+                {targets: [ 7 ], orderData: [ 7]} //renovacion
             ]
         });
 

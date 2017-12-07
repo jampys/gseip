@@ -120,7 +120,7 @@ and vav.id_vencimiento = vrp.id_vencimiento
 and vrp.id_empleado = em.id_empleado
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta(vrp.id_renovacion)
-order by va.priority, vrp.fecha_vencimiento asc";
+order by va.priority, vrp.renovacion asc";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
