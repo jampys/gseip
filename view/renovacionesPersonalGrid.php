@@ -8,11 +8,17 @@
              url: 'dataTables/Spanish.json'
              }*/
             "stateSave": true,
-            "order": [[ 5, "asc" ]], //5 = fecha_vencimiento
-            "columnDefs": [
+            "order": [[6, "asc"], [5, "asc"] ], //5 = fecha_vencimiento
+            /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
                 { type: 'date-uk', targets: 5 } //fecha_vencimiento
+            ]*/
+            columnDefs: [
+                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 0 ]},
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 0 ]},
+                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 0 ]},
+                {targets: [ 6 ], orderData: [ 6, 5 ]}
             ]
         });
 
@@ -50,6 +56,7 @@
                 <th>empleado</th>
                 <th>F. emisión</th>
                 <th>F. vto.</th>
+                <th style="display: none">Priority</th>
                 <th>Editar</th>
                 <th>Borrar</th>
             </tr>
@@ -64,6 +71,7 @@
                         <td><?php echo $rp['empleado']; ?></td>
                         <td><?php echo $rp['fecha_emision']; ?></td>
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
+                        <td style="display: none"><?php echo $rp['priority']; ?></td>
 
                         <td class="text-center"><a class="edit" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
