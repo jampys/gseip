@@ -10,6 +10,7 @@ class RenovacionPersonal
     private $fecha_vencimiento;
     private $alert_status;
     private $fecha;
+    private $id_rnv_renovacion; //id_renovacion que le sigue
 
     private $empleado;
 
@@ -40,6 +41,9 @@ class RenovacionPersonal
         return ($this->empleado)? $this->empleado : new Empleado() ;
     }
 
+    function getIdRnvRenovacion()
+    { return $this->id_rnv_renovacion;}
+
 
     //SETTERS
     function setIdRenovacion($val)
@@ -63,18 +67,27 @@ class RenovacionPersonal
     function setFecha($val)
     { $this->fecha=$val;}
 
+    function setIdRnvRenovacion($val)
+    { $this->id_rnv_renovacion=$val;}
+
 
 
     function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query="select id_renovacion, id_vencimiento, id_empleado,
+            /*$query="select id_renovacion, id_vencimiento, id_empleado,
                     DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
                     DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
                     alert_status,
                     DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha
                     from vto_renovacion_p
+                    where id_renovacion = :nro";*/
+            $query = "select id_renovacion, id_vencimiento, id_empleado,
+                    DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
+                    DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
+                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion
+                    from v_vto_renovacion_p
                     where id_renovacion = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -88,6 +101,7 @@ class RenovacionPersonal
             $this->setFechaVencimiento($rows[0]['fecha_vencimiento']);
             $this->setAlertStatus($rows[0]['alert_status']);
             $this->setFecha($rows[0]['fecha']);
+            $this->setIdRnvRenovacion($rows[0]['id_rnv_renovacion']);
 
             $this->empleado = new Empleado($rows[0]['id_empleado']);
         }
@@ -113,14 +127,14 @@ vvp.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
 CONCAT(em.apellido, ' ', em.nombre) as empleado,
-vrp.renovacion
+vrp.id_rnv_renovacion
 from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, empleados em, vto_alerta va
 where vrp.id_vencimiento = vvp.id_vencimiento
 and vav.id_vencimiento = vrp.id_vencimiento
 and vrp.id_empleado = em.id_empleado
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta(vrp.id_renovacion)
-order by va.priority, vrp.renovacion asc";
+order by va.priority, vrp.id_rnv_renovacion asc";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();

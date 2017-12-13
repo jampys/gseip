@@ -77,8 +77,8 @@
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td style="display: none"><?php echo $rp['priority']; ?></td>
                         <td class="text-center">
-                            <?php if($rp['renovacion']){ ?>
-                                <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rp['renovacion']; ?>" >
+                            <?php if($rp['id_rnv_renovacion']){ ?>
+                                <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rp['id_rnv_renovacion']; ?>" >
                                     <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
                                 </a>
                             <?php } else{ ?>
