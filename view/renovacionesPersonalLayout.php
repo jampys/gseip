@@ -108,6 +108,20 @@
             });
 
 
+            $(document).on('click', '.renovar', function(){ //ok
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_renovacion = id;
+                params.action = "renovacionesPersonal";
+                params.operation = "renovRenovacion";
+                //alert(params.id_renovacion);
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                })
+
+            });
+
+
 
             $(document).on('click', '#new', function(){ //ok
                 params={};
