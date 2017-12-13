@@ -76,7 +76,19 @@
                         <td><?php echo $rp['fecha_emision']; ?></td>
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td style="display: none"><?php echo $rp['priority']; ?></td>
-                        <td><?php echo $rp['renovacion']; ?></td>
+                        <td class="text-center">
+                            <?php if($rp['renovacion']){ ?>
+                                <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rp['renovacion']; ?>" >
+                                    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                                </a>
+                            <?php } else{ ?>
+                                <a class="renovar" href="javascript:void(0);" data-toggle="tooltip" title="renovar" >
+                                    <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                                </a>
+
+                            <?php } ?>
+
+                        </td>
 
                         <td class="text-center">
                             <a class="edit" href="javascript:void(0);">
