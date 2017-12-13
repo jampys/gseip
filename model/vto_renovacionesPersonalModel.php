@@ -226,6 +226,26 @@ order by va.priority, vrp.id_rnv_renovacion asc";
     }
 
 
+    public function checkFechaEmision($fecha_emision, $id_empleado, $id_vencimiento) { //ok
+        /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
+        sea mayor. */
+        $stmt=new sQuery();
+        $query = "select *
+                  from v_vto_renovacion_p
+                  where id_empleado = :id_empleado
+                  and id_vencimiento = :id_vencimiento
+                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
+                  order by fecha_emision asc
+                  limit 1";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':fecha_emision', $fecha_emision);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
+        $stmt->dpExecute();
+        return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }
+
+
 
 
 }

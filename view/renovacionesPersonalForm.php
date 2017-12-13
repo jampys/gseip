@@ -178,14 +178,32 @@
             rules: {
                 id_empleado: {required: true},
                 id_vencimiento: {required: true},
-                fecha_emision: {required: true},
+                fecha_emision: {
+                    required: true,
+                    remote: {
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            action: "renovacionesPersonal",
+                            operation: "checkFechaEmision",
+                            fecha_emision: function(){ return $('#fecha_emision').val();},
+                            id_empleado: function(){ return $('#id_empleado').val();},
+                            id_vencimiento: function(){ return $('#id_vencimiento').val();}
+                        }
+                    }
+                },
                 fecha_vencimiento: {required: true}
 
             },
             messages:{
                 id_empleado: "Seleccione un empleado",
                 id_vencimiento: "Seleccione un vencimiento",
-                fecha_emision: "Ingrese la fecha de emisión",
+                fecha_emision: {
+                    required: "Ingrese la fecha de emisión",
+                    remote: "La fecha de emisión debe ser mayor"
+
+                },
                 fecha_vencimiento: "Ingrese la fecha de vencimiento"
             }
 
