@@ -240,14 +240,14 @@ order by va.priority, vrp.id_rnv_renovacion asc";
         $query = "select *
 from v_vto_renovacion_p
 where
-                  ( -- renovar: busca renovacion vigente
+                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_renovacion ingresada sea mayor que la de ésta
                   :id_renovacion is null
                   and id_empleado = :id_empleado
 				  and id_vencimiento = :id_vencimiento
                   and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
                   )
                   OR
-                  ( -- editar: busca renovacion anterior
+                  ( -- editar: busca renovacion anterior y ....
                   :id_renovacion is not null
                   and id_empleado = :id_empleado
 				  and id_vencimiento = :id_vencimiento
