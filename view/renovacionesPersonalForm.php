@@ -189,7 +189,8 @@
                             operation: "checkFechaEmision",
                             fecha_emision: function(){ return $('#fecha_emision').val();},
                             id_empleado: function(){ return $('#id_empleado').val();},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();}
+                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
+                            id_renovacion: function(){ return $('#id_renovacion').val();}
                         }
                     }
                 },
