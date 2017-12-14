@@ -12,10 +12,17 @@
 }
 
 /* modifica estilo a color rojo del tooltip de jquery-validate.bootstrap-tooltip, ya que por defecto es de color negro */
-.has-error .tooltip .tooltip-inner {
+/*.has-error .tooltip .tooltip-inner {
     background-color: #a94442;
 }
 .has-error .tooltip .tooltip-arrow {
+    border-top-color: #a94442;
+    border-bottom-color: #a94442;
+}*/
+.error + .tooltip .tooltip-inner {
+    background-color: #a94442;
+}
+.error + .tooltip.top .tooltip-arrow {
     border-top-color: #a94442;
     border-bottom-color: #a94442;
 }
