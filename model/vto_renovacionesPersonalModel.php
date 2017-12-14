@@ -108,17 +108,24 @@ class RenovacionPersonal
     }
 
 
-    public static function getRenovacionesPersonal() { //ok
+    public static function getRenovacionesPersonal($id_empleado, $id_vencimiento) { //ok
         $stmt=new sQuery();
-        /*$query = "select v_renov_p.id_renovacion,
-v_vto_p.nombre as vencimiento,
+        /*$query = "select vrp.id_renovacion, vrp.id_vencimiento, vrp.id_empleado,
+DATE_FORMAT(vrp.fecha_emision,  '%d/%m/%Y') as fecha_emision,
+DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
+DATE_FORMAT(vrp.fecha,  '%d/%m/%Y') as fecha,
+vvp.nombre as vencimiento,
+vav.id_alerta, vav.days,
+va.color, va.priority,
 CONCAT(em.apellido, ' ', em.nombre) as empleado,
-DATE_FORMAT(v_renov_p.fecha_emision,  '%d/%m/%Y') as fecha_emision,
-DATE_FORMAT(v_renov_p.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-DATE_FORMAT(v_renov_p.fecha,  '%d/%m/%Y') as fecha
-from vto_renovacion_p v_renov_p
-join vto_vencimiento_p v_vto_p on v_renov_p.id_vencimiento = v_vto_p.id_vencimiento
-join empleados em on v_renov_p.id_empleado = em.id_empleado";*/
+vrp.id_rnv_renovacion
+from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, empleados em, vto_alerta va
+where vrp.id_vencimiento = vvp.id_vencimiento
+and vav.id_vencimiento = vrp.id_vencimiento
+and vrp.id_empleado = em.id_empleado
+and vav.id_alerta = va.id_alerta
+and vav.id_alerta = func_alerta(vrp.id_renovacion)
+order by va.priority, vrp.id_rnv_renovacion asc"; */
         $query = "select vrp.id_renovacion, vrp.id_vencimiento, vrp.id_empleado,
 DATE_FORMAT(vrp.fecha_emision,  '%d/%m/%Y') as fecha_emision,
 DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
@@ -134,8 +141,15 @@ and vav.id_vencimiento = vrp.id_vencimiento
 and vrp.id_empleado = em.id_empleado
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta(vrp.id_renovacion)
+and vrp.id_empleado =  ifnull(:id_empleado, vrp.id_empleado)
+and vrp.id_vencimiento = ifnull(:id_vencimiento, vrp.id_vencimiento)
 order by va.priority, vrp.id_rnv_renovacion asc";
+
+        //condiciones
+        // and em.cuil = ifnull(:cuil, em.cuil)
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

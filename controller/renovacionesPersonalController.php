@@ -12,13 +12,23 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'buscar': //ok
         $view->disableLayout=true;
-        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal();
+        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
+        $id_vencimiento = ($_POST['id_vencimiento']!='')? $_POST['id_vencimiento'] : null;
+        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_vencimiento);
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 
-    case 'saveRenovacion':
+    case 'refreshGrid': //ok
+        $view->disableLayout=true;
+        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
+        $id_vencimiento = ($_POST['id_vencimiento']!='')? $_POST['id_vencimiento'] : null;
+        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_vencimiento);
+        $view->contentTemplate="view/renovacionesPersonalGrid.php";
+        break;
+
+    case 'saveRenovacion': //ok
 
         $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
         $renovacion->setIdVencimiento($_POST['id_vencimiento']);
@@ -94,7 +104,8 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal();
+        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal(null, null);
+        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal(); //carga el combo para filtrar vencimientos
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 }
