@@ -144,7 +144,7 @@ and vav.id_alerta = func_alerta(vrp.id_renovacion)
 and em.cuil =  ifnull(:cuil, em.cuil)
 and vrp.id_vencimiento = ifnull(:id_vencimiento, vrp.id_vencimiento)
 order by va.priority, vrp.id_rnv_renovacion asc";
-        
+
         $stmt->dpPrepare($query);
         $stmt->dpBind(':cuil', $cuil);
         $stmt->dpBind(':id_vencimiento', $id_vencimiento);
