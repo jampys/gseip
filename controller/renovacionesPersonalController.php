@@ -12,19 +12,11 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'buscar': //ok
-        $view->disableLayout=true;
-        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
-        $id_vencimiento = ($_POST['id_vencimiento']!='')? $_POST['id_vencimiento'] : null;
-        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_vencimiento);
-        $view->contentTemplate="view/renovacionesPersonalGrid.php";
-        break;
-
     case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
+        $cuil = ($_POST['cuil']!='')? $_POST['cuil'] : null;
         $id_vencimiento = ($_POST['id_vencimiento']!='')? $_POST['id_vencimiento'] : null;
-        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_vencimiento);
+        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($cuil, $id_vencimiento);
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 

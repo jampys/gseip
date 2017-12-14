@@ -15,20 +15,18 @@
             $('.selectpicker').selectpicker();
 
 
-            $(document).on('click', '#search', function(){
-
+            $(document).on('click', '#search', function(){ //ok
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_empleado = $("#search_empleado").val();
+                params.cuil = $("#search_empleado").val();
                 params.id_vencimiento = $("#search_vencimiento").val();
                 params.action = "renovacionesPersonal";
-                params.operation = "buscar";
+                params.operation = "refreshGrid";
                 //alert(params.cuil);
-                //alert(params.id_habilidad);
+                //alert(params.id_vencimiento);
                 $('#content').load('index.php', params);
-
             });
 
 
