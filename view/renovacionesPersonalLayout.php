@@ -191,7 +191,7 @@
                 <form id="search_form" name="search_form">
                     <div class="form-group col-md-4">
                         <label for="search_empleado" class="control-label">Empleado</label>
-                        <select id="search_empleado" name="search_empleado" class="form-control selectpicker" data-live-search="true" title="Seleccione un empleado">
+                        <select id="search_empleado" name="search_empleado" class="form-control selectpicker show-tick" data-live-search="true" title="Seleccione un empleado">
 
                         </select>
                     </div>
@@ -204,7 +204,7 @@
                     </div>-->
                     <div class="form-group col-md-4">
                         <label for="search_vencimiento" class="control-label">Vencimiento</label>
-                        <select class="form-control selectpicker" id="search_vencimiento" name="search_vencimiento" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-live-search="true" data-size="5">
                             <option value="">Seleccione el vencimiento</option>
                             <?php foreach ($view->vencimientos as $vto){
                                 ?>

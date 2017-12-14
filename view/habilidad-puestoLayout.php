@@ -211,13 +211,13 @@
 
                         <div class="form-group col-md-4">
                             <label for="search_puesto" class="control-label">Puesto</label>
-                            <select id="search_puesto" name="search_puesto" class="form-control selectpicker" data-live-search="true" title="Seleccione un puesto">
+                            <select id="search_puesto" name="search_puesto" class="form-control selectpicker show-tick" data-live-search="true" title="Seleccione un puesto">
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="search_habilidad" class="control-label">Habilidad</label>
-                            <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker" data-live-search="true" title="Seleccione una habilidad">
+                            <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker show-tick" data-live-search="true" title="Seleccione una habilidad">
                             </select>
                         </div>
 
