@@ -194,7 +194,23 @@
                         }
                     }
                 },
-                fecha_vencimiento: {required: true}
+                fecha_vencimiento: {
+                    required: true,
+                    remote: {
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            action: "renovacionesPersonal",
+                            operation: "checkFechaVencimiento",
+                            fecha_emision: function(){ return $('#fecha_emision').val();},
+                            fecha_vencimiento: function(){ return $('#fecha_vencimiento').val();},
+                            id_empleado: function(){ return $('#id_empleado').val();},
+                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
+                            id_renovacion: function(){ return $('#id_renovacion').val();}
+                        }
+                    }
+                }
 
             },
             messages:{
@@ -203,9 +219,11 @@
                 fecha_emision: {
                     required: "Ingrese la fecha de emisión",
                     remote: "La fecha de emisión debe ser mayor"
-
                 },
-                fecha_vencimiento: "Ingrese la fecha de vencimiento"
+                fecha_vencimiento: {
+                    required: "Ingrese la fecha de vencimiento",
+                    remote: "La fecha de vencimiento debe ser mayor"
+                },
             }
 
         });

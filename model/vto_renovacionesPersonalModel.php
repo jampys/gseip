@@ -240,7 +240,7 @@ order by va.priority, vrp.id_rnv_renovacion asc";
         $query = "select *
 from v_vto_renovacion_p
 where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_renovacion ingresada sea mayor que la de ésta
+                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
                   :id_renovacion is null
                   and id_empleado = :id_empleado
 				  and id_vencimiento = :id_vencimiento
@@ -260,6 +260,38 @@ where
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_renovacion', $id_renovacion);
         $stmt->dpBind(':fecha_emision', $fecha_emision);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
+        $stmt->dpExecute();
+        return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }
+
+    public function checkFechaVencimiento($fecha_emision, $fecha_vencimiento, $id_empleado, $id_vencimiento, $id_renovacion) {
+        $stmt=new sQuery();
+        $query = "select *
+                  from v_vto_renovacion_p
+                  where
+                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_vencimiento ingresada sea mayor que la de ésta
+                  :id_renovacion is null
+                  and id_empleado = :id_empleado
+				  and id_vencimiento = :id_vencimiento
+                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
+                  )
+                  OR
+                  ( -- editar: busca renovacion anterior y ....
+                  :id_renovacion is not null
+                  and id_empleado = :id_empleado
+				  and id_vencimiento = :id_vencimiento
+                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
+                  and id_renovacion <> :id_renovacion
+                  )
+                  order by fecha_emision asc
+                  limit 1";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_renovacion', $id_renovacion);
+        $stmt->dpBind(':fecha_emision', $fecha_emision);
+        $stmt->dpBind(':fecha_vencimiento', $fecha_vencimiento);
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpExecute();

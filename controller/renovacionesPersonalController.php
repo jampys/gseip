@@ -92,6 +92,13 @@ switch ($operation)
         exit;
         break;
 
+    case 'checkFechaVencimiento': //ok
+        $view->renovacion = new RenovacionPersonal();
+        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
     default : //ok
         $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal();
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
