@@ -204,7 +204,8 @@
                     </div>-->
                     <div class="form-group col-md-4">
                         <label for="search_vencimiento" class="control-label">Vencimiento</label>
-                        <select class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" title="Seleccione el vencimiento" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker" id="search_vencimiento" name="search_vencimiento" data-live-search="true" data-size="5">
+                            <option value="">Seleccione el vencimiento</option>
                             <?php foreach ($view->vencimientos as $vto){
                                 ?>
                                 <option value="<?php echo $vto['id_vencimiento']; ?>" >
