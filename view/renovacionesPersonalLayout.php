@@ -33,7 +33,7 @@
 
 
 
-            $('#search_empleado').closest('.form-group').find(':input').on('keyup', function(e){
+            $('#search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
                 //alert('hola');
                 var code = (e.keyCode || e.which);
                 if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
@@ -54,37 +54,6 @@
                         });
 
                         $("#search_empleado").html(items);
-                        $('.selectpicker').selectpicker('refresh');
-                    }
-
-                });
-
-            });
-
-
-
-            $('#search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){
-                //alert('hola');
-                var code = (e.keyCode || e.which);
-                if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
-                    return;
-                }
-
-                var items="";
-
-                $.ajax({
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: { "term": $(this).val(),  "action":"habilidades", "operation":"autocompletarHabilidades"},
-                    success: function(data) {
-                        $.each(data.slice(0, 5),function(index,item)
-                        {
-                            //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
-                            items+="<option value='"+item['id_habilidad']+"'>"+item['nombre']+"</option>";
-                        });
-
-                        $("#search_habilidad").html(items);
                         $('.selectpicker').selectpicker('refresh');
                     }
 
@@ -229,8 +198,8 @@
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="search_habilidad" class="control-label">Vencimiento</label>
-                        <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker" data-live-search="true" title="Seleccione un vencimiento">
+                        <label for="search_vencimiento" class="control-label">Vencimiento</label>
+                        <select id="search_vencimiento" name="search_vencimiento" class="form-control selectpicker" data-live-search="true" title="Seleccione un vencimiento">
 
                         </select>
                     </div>

@@ -78,12 +78,6 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    case 'autocompletarHabilidades':
-        $view->habilidad = new Habilidad();
-        $rta=$view->habilidad->autocompletarHabilidades($_POST['term']);
-        print_r(json_encode($rta));
-        exit;
-        break;
 
     case 'checkFechaEmision': //ok
         $view->renovacion = new RenovacionPersonal();
