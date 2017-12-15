@@ -3,7 +3,7 @@
 
     $(document).ready(function(){
 
-        $('.selectpicker').selectpicker({
+        $('.selectpicker').selectpicker({ //ok
             //propiedades del selectpicker
 
         }).change(function(){
@@ -157,24 +157,19 @@
 
 
 
-
-
-
-
-
         $('#myModal #cancel').on('click', function(){
            //alert('cancelar');
             //uploadObj.stopUpload();
         });
 
 
-        $('#myModal').modal({
+        $('#myModal').modal({ //ok
             backdrop: 'static',
             keyboard: false
         });
 
 
-        $('#renovacion_personal').validate({
+        $('#renovacion_personal').validate({ //ok
             rules: {
                 id_empleado: {required: true},
                 id_vencimiento: {required: true},
@@ -285,7 +280,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="id_empleado">Empleado</label>
-                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker" data-live-search="true" title="<?php echo ($view->renovacion->getIdEmpleado())? "": "Seleccione un empleado";     ?>">
+                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" title="<?php echo ($view->renovacion->getIdEmpleado())? "": "Seleccione un empleado";     ?>">
                             <option value = "<?php print $view->renovacion->getIdEmpleado() ?>">
                                 <?php print $view->empleado; ?>
                             </option>

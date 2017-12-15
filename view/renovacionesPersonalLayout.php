@@ -109,6 +109,8 @@
 
 
             $(document).on('click', '#example .delete', function(){
+                alert('Funcionalidad en desarrollo');
+                throw new Error();
                 var id = $(this).closest('tr').attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
