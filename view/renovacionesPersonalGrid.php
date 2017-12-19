@@ -10,7 +10,7 @@
              url: 'dataTables/Spanish.json'
              }*/
             "stateSave": true,
-            "order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
+            "order": [[6, "asc"], [7, "asc"], [5, "desc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision

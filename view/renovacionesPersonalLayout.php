@@ -198,13 +198,7 @@
                         </select>
                     </div>
 
-                    <!--<div class="form-group col-md-4">
-                        <label for="search_vencimiento" class="control-label">Vencimiento</label>
-                        <select id="search_vencimiento" name="search_vencimiento" class="form-control selectpicker" data-live-search="true" title="Seleccione un vencimiento">
-
-                        </select>
-                    </div>-->
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label for="search_vencimiento" class="control-label">Vencimiento</label>
                         <select class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-live-search="true" data-size="5">
                             <option value="">Seleccione el vencimiento</option>
@@ -217,15 +211,46 @@
                         </select>
                     </div>
 
+                    <div class="form-group col-md-3">
+                        <label for="search_vencimiento" class="control-label">Contrato</label>
+                        <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
+                            <option value="">Seleccione el contrato</option>
+                            <?php foreach ($view->contratos as $con){
+                                ?>
+                                <option value="<?php echo $con['id_contrato']; ?>" >
+                                    <?php echo $con['nro_contrato'].' '.$con['nombre'];?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
 
-                    <div class="form-group col-md-2">
+
+                    <!--<div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
+                    </div>-->
+
+
+                    <div class="form-group col-md-1">
+                        <label for="search">&nbsp;</label>
+                        <button type="button" class="form-control btn btn-primary btn-sm" id="search">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
                     </div>
+
+                    <div class="form-group col-md-1">
+                        <label for="search">&nbsp;</label>
+                        <button type="button" class="form-control btn btn-primary btn-sm" id="new">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+
+
+
                 </form>
             </div>
 

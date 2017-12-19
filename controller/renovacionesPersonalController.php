@@ -2,6 +2,7 @@
 
 include_once("model/vto_renovacionesPersonalModel.php");
 include_once("model/vto_vencimientosPersonalModel.php");
+include_once("model/contratosModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -98,6 +99,7 @@ switch ($operation)
     default : //ok
         $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal(null, null);
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal(); //carga el combo para filtrar vencimientos
+        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 }
