@@ -110,22 +110,6 @@ class RenovacionPersonal
 
     public static function getRenovacionesPersonal($cuil, $id_vencimiento) { //ok
         $stmt=new sQuery();
-        /*$query = "select vrp.id_renovacion, vrp.id_vencimiento, vrp.id_empleado,
-DATE_FORMAT(vrp.fecha_emision,  '%d/%m/%Y') as fecha_emision,
-DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-DATE_FORMAT(vrp.fecha,  '%d/%m/%Y') as fecha,
-vvp.nombre as vencimiento,
-vav.id_alerta, vav.days,
-va.color, va.priority,
-CONCAT(em.apellido, ' ', em.nombre) as empleado,
-vrp.id_rnv_renovacion
-from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, empleados em, vto_alerta va
-where vrp.id_vencimiento = vvp.id_vencimiento
-and vav.id_vencimiento = vrp.id_vencimiento
-and vrp.id_empleado = em.id_empleado
-and vav.id_alerta = va.id_alerta
-and vav.id_alerta = func_alerta(vrp.id_renovacion)
-order by va.priority, vrp.id_rnv_renovacion asc"; */
         $query = "select vrp.id_renovacion, vrp.id_vencimiento, vrp.id_empleado,
 DATE_FORMAT(vrp.fecha_emision,  '%d/%m/%Y') as fecha_emision,
 DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
