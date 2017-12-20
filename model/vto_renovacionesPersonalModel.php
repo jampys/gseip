@@ -119,7 +119,25 @@ vav.id_alerta, vav.days,
 va.color, va.priority,
 CONCAT(em.apellido, ' ', em.nombre) as empleado,
 vrp.id_rnv_renovacion
-from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, empleados em, vto_alerta va
+from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav,
+(
+
+select emx.*, ecx.id_contrato
+from empleados emx
+left join empleado_contrato ecx on emx.id_empleado = ecx.id_empleado
+where
+(null is null
+ and ecx.id_contrato = 10
+ -- and datediff(ecx.fecha_hasta, date(sysdate())) >= 0
+ )
+OR
+(10 is null
+ and ecx.id_contrato is null )
+ group by emx.id_empleado
+
+
+) em,
+vto_alerta va
 where vrp.id_vencimiento = vvp.id_vencimiento
 and vav.id_vencimiento = vrp.id_vencimiento
 and vrp.id_empleado = em.id_empleado
