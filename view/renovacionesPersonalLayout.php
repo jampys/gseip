@@ -23,6 +23,7 @@
                 params.cuil = $("#search_empleado").val();
                 params.id_vencimiento = $("#search_vencimiento").val();
                 params.id_contrato = $("#search_contrato").val();
+                params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "renovacionesPersonal";
                 params.operation = "refreshGrid";
                 //alert(params.cuil);
@@ -248,6 +249,15 @@
                         <button type="button" class="form-control btn btn-primary btn-sm" id="new">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="search_renovado" name="search_renovado">
+                                    <a href="#" data-toggle="tooltip" title="Seleccione para visualizar registros ya renovados">Renovados</a>
+                            </label>
+                        </div>
                     </div>
 
 
