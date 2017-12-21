@@ -108,7 +108,7 @@ class RenovacionPersonal
     }
 
 
-    public static function getRenovacionesPersonal($cuil, $id_vencimiento) { //ok
+    public static function getRenovacionesPersonal($cuil, $id_vencimiento, $id_contrato) { //ok
         $stmt=new sQuery();
         $query = "select vrp.id_renovacion, vrp.id_vencimiento, vrp.id_empleado,
 DATE_FORMAT(vrp.fecha_emision,  '%d/%m/%Y') as fecha_emision,
@@ -126,13 +126,16 @@ select emx.*, ecx.id_contrato
 from empleados emx
 left join empleado_contrato ecx on emx.id_empleado = ecx.id_empleado
 where
-(null is null
- and ecx.id_contrato = 10
+( -- filtro por contrato
+  :id_contrato is not null
+  and ecx.id_contrato = :id_contrato
  -- and datediff(ecx.fecha_hasta, date(sysdate())) >= 0
  )
 OR
-(10 is null
- and ecx.id_contrato is null )
+( -- todos los contratos, o los sin contrato
+ :id_contrato is null
+ and ecx.id_contrato is null
+ )
  group by emx.id_empleado
 
 
@@ -150,6 +153,7 @@ order by va.priority, vrp.id_rnv_renovacion asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':cuil', $cuil);
         $stmt->dpBind(':id_vencimiento', $id_vencimiento);
+        $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

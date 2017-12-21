@@ -22,6 +22,7 @@
                 params={};
                 params.cuil = $("#search_empleado").val();
                 params.id_vencimiento = $("#search_vencimiento").val();
+                params.id_contrato = $("#search_contrato").val();
                 params.action = "renovacionesPersonal";
                 params.operation = "refreshGrid";
                 //alert(params.cuil);
