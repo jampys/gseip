@@ -18,6 +18,7 @@ switch ($operation)
         $cuil = ($_POST['cuil']!='')? $_POST['cuil'] : null;
         $id_vencimiento = ($_POST['id_vencimiento']!='')? $_POST['id_vencimiento'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
+        $id_contrato = ($_POST['renovado']== 0)? $_POST['id_contrato'] : null;
         $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($cuil, $id_vencimiento, $id_contrato);
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
