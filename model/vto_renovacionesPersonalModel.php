@@ -129,12 +129,12 @@ where
 ( -- filtro por contrato
   :id_contrato is not null
   and ecx.id_contrato = :id_contrato
- -- and datediff(ecx.fecha_hasta, date(sysdate())) >= 0
+  and datediff(ecx.fecha_hasta, date(sysdate())) >= 0
  )
 OR
 ( -- todos los contratos, o los sin contrato
  :id_contrato is null
- and ecx.id_contrato is null
+ -- and ecx.id_contrato is null
  )
  group by emx.id_empleado
 
