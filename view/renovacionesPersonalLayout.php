@@ -27,7 +27,7 @@
                 params.action = "renovacionesPersonal";
                 params.operation = "refreshGrid";
                 //alert(params.cuil);
-                //alert(params.id_vencimiento);
+                //alert(params.renovado);
                 $('#content').load('index.php', params);
             });
 
