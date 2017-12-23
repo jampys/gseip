@@ -6,6 +6,7 @@ class RenovacionPersonal
     private $id_renovacion;
     private $id_vencimiento;
     private $id_empleado;
+    private $id_grupo;
     private $fecha_emision;
     private $fecha_vencimiento;
     private $alert_status;
@@ -24,6 +25,9 @@ class RenovacionPersonal
 
     function getIdEmpleado()
     { return $this->id_empleado;}
+
+    function getIdGrupo()
+    { return $this->id_grupo;}
 
     function getFechaEmision()
     { return $this->fecha_emision;}
@@ -54,6 +58,9 @@ class RenovacionPersonal
 
     function setIdEmpleado($val)
     { $this->id_empleado=$val;}
+
+    function setIdGrupo($val)
+    { $this->id_grupo=$val;}
 
     function setFechaEmision($val)
     { $this->fecha_emision=$val;}
@@ -97,6 +104,7 @@ class RenovacionPersonal
             $this->setIdRenovacion($rows[0]['id_renovacion']);
             $this->setIdVencimiento($rows[0]['id_vencimiento']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
+            $this->setIdGrupo($rows[0]['id_grupo']);
             $this->setFechaEmision($rows[0]['fecha_emision']);
             $this->setFechaVencimiento($rows[0]['fecha_vencimiento']);
             $this->setAlertStatus($rows[0]['alert_status']);
@@ -317,6 +325,24 @@ where
         $stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }
+
+
+    public function empleadosGrupos() { //ok
+        $stmt=new sQuery();
+        $query = "select id_empleado, null, concat(apellido, ' ', nombre) as descripcion
+from empleados
+UNION
+select null, id_vencimiento, concat(nombre, ' ', numero) as descripcion
+from vto_grupos_p";
+
+        $stmt->dpPrepare($query);
+        /*$stmt->dpBind(':cuil', $cuil);
+        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':renovado', $renovado); */
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
     }
 
 

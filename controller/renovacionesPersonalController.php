@@ -42,6 +42,7 @@ switch ($operation)
         $view->renovacion = new RenovacionPersonal();
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
+        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
 
         $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
@@ -54,6 +55,7 @@ switch ($operation)
         $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
+        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
 
         $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
@@ -69,6 +71,7 @@ switch ($operation)
         $view->renovacion->setFechaVencimiento('');
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
+        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
 
         $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 

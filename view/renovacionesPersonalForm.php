@@ -224,7 +224,7 @@
         });
 
 
-        $('#id_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+        /*$('#id_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert(e.keyCode);
             var code = (e.keyCode || e.which);
             if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key
@@ -251,7 +251,7 @@
 
             });
 
-        });
+        });*/
 
 
 
@@ -278,12 +278,29 @@
                 <form name ="renovacion_personal" id="renovacion_personal" method="POST" action="index.php">
                     <input type="hidden" name="id_renovacion" id="id_renovacion" value="<?php print $view->renovacion->getIdRenovacion() ?>">
 
-                    <div class="form-group required">
+                    <!--<div class="form-group required">
                         <label class="control-label" for="id_empleado">Empleado</label>
                         <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" title="<?php echo ($view->renovacion->getIdEmpleado())? "": "Seleccione un empleado";     ?>">
                             <option value = "<?php print $view->renovacion->getIdEmpleado() ?>">
                                 <?php print $view->empleado; ?>
                             </option>
+                        </select>
+                    </div>-->
+
+                    <div class="form-group required">
+                        <label for="id_empleado" class="control-label">Empleado/Grupo</label>
+                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado o grupo" data-live-search="true" data-size="5">
+                            <?php foreach ($view->empleadosGrupos as $eg){
+                                ?>
+                                <option value="<?php echo ($eg['id_empleado'])? $eg['id_empleado'] : $eg['id_grupo']; ?>"
+                                    <?php //echo ($eg['id_vencimiento'] == $view->renovacion->getIdVencimiento())? 'selected' :''
+                                            if($view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
+
+                                    ?>
+                                    >
+                                    <?php echo $eg['descripcion'] ;?>
+                                </option>
+                            <?php  } ?>
                         </select>
                     </div>
 
