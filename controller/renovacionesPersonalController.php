@@ -31,6 +31,7 @@ switch ($operation)
         $renovacion->setFechaEmision($_POST['fecha_emision']);
         $renovacion->setFechaVencimiento($_POST['fecha_vencimiento']);
         $renovacion->setIdEmpleado($_POST['id_empleado']);
+        $renovacion->setIdGrupo($_POST['id_grupo']);
         //$renovacion->setAlertStatus($_POST['alert_status']);
 
         $renovacion->save();

@@ -83,13 +83,6 @@ class RenovacionPersonal
 
         if ($nro!=0){
             $stmt=new sQuery();
-            /*$query="select id_renovacion, id_vencimiento, id_empleado,
-                    DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
-                    DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-                    alert_status,
-                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha
-                    from vto_renovacion_p
-                    where id_renovacion = :nro";*/
             $query = "select id_renovacion, id_vencimiento, id_empleado, id_grupo,
                     DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
                     DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
@@ -223,11 +216,12 @@ order by priority, id_rnv_renovacion asc";
 
     private function insertRenovacion(){
         $stmt=new sQuery();
-        $query="insert into vto_renovacion_p(id_vencimiento, id_empleado, fecha_emision, fecha_vencimiento, fecha)
-                values(:id_vencimiento, :id_empleado, STR_TO_DATE(:fecha_emision, '%d/%m/%Y'), STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'), date(sysdate()))";
+        $query="insert into vto_renovacion_p(id_vencimiento, id_empleado, id_grupo, fecha_emision, fecha_vencimiento, fecha)
+                values(:id_vencimiento, :id_empleado, :id_grupo, STR_TO_DATE(:fecha_emision, '%d/%m/%Y'), STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'), date(sysdate()))";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':id_grupo', $this->getIdGrupo());
         $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
         $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
         $stmt->dpExecute();

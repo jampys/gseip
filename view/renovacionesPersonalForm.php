@@ -127,10 +127,11 @@
                 params.action = 'renovacionesPersonal';
                 params.operation = 'saveRenovacion';
                 params.id_renovacion = $('#id_renovacion').val();
+                params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                params.id_grupo = $('#id_empleado option:selected').attr('id_grupo');
                 params.id_vencimiento = $('#id_vencimiento').val();
                 params.fecha_emision = $('#fecha_emision').val();
                 params.fecha_vencimiento = $('#fecha_vencimiento').val();
-                params.id_empleado = $('#id_empleado').val();
 
                 $.post('index.php',params,function(data, status, xhr){
 
@@ -209,7 +210,7 @@
 
             },
             messages:{
-                id_empleado: "Seleccione un empleado",
+                id_empleado: "Seleccione un empleado o grupo",
                 id_vencimiento: "Seleccione un vencimiento",
                 fecha_emision: {
                     required: "Ingrese la fecha de emisión",
@@ -223,35 +224,6 @@
 
         });
 
-
-        /*$('#id_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
-            //alert(e.keyCode);
-            var code = (e.keyCode || e.which);
-            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key
-                return;
-            }
-
-            var items="";
-
-            $.ajax({
-                url: "index.php",
-                type: "post",
-                dataType: "json",
-                data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
-                success: function(data) {
-                    $.each(data.slice(0, 5),function(index,item)
-                    {
-                        //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
-                        items+="<option value='"+item['id_empleado']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
-                    });
-
-                    $("#id_empleado").html(items);
-                    $('.selectpicker').selectpicker('refresh');
-                }
-
-            });
-
-        });*/
 
 
 
