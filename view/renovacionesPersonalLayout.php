@@ -20,7 +20,6 @@
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                //params.cuil = $("#search_empleado").val();
                 params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
                 params.id_grupo = $('#search_empleado option:selected').attr('id_grupo');
                 params.id_vencimiento = $("#search_vencimiento").val();
@@ -28,40 +27,10 @@
                 params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "renovacionesPersonal";
                 params.operation = "refreshGrid";
-                //alert(params.id_empleado);
+                //alert(params.id_grupo);
                 //alert(params.renovado);
                 $('#content').load('index.php', params);
             });
-
-
-
-            /*$('#search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
-                //alert('hola');
-                var code = (e.keyCode || e.which);
-                if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
-                    return;
-                }
-
-                var items="";
-
-                $.ajax({
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
-                    success: function(data) {
-                        $.each(data.slice(0, 5),function(index,item) {
-                            //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
-                            items+="<option value='"+item['cuil']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
-                        });
-
-                        $("#search_empleado").html(items);
-                        $('.selectpicker').selectpicker('refresh');
-                    }
-
-                });
-
-            });*/
 
 
 
@@ -204,7 +173,8 @@
                     </div>-->
                     <div class="form-group col-md-4">
                         <label for="search_empleado" class="control-label">Empleado/Grupo</label>
-                        <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" title="Seleccione un empleado o grupo" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un empleado o grupo</option>
                             <?php foreach ($view->empleadosGrupos as $eg){
                                 ?>
                                 <option value="" id_empleado="<?php echo $eg['id_empleado']; ?>" id_grupo="<?php echo $eg['id_grupo']; ?>" >
@@ -217,7 +187,7 @@
                     <div class="form-group col-md-3">
                         <label for="search_vencimiento" class="control-label">Vencimiento</label>
                         <select class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-live-search="true" data-size="5">
-                            <option value="">Seleccione el vencimiento</option>
+                            <option value="">Seleccione un vencimiento</option>
                             <?php foreach ($view->vencimientos as $vto){
                                 ?>
                                 <option value="<?php echo $vto['id_vencimiento']; ?>" >

@@ -157,6 +157,7 @@ and em.id_empleado =  ifnull(:id_empleado, em.id_empleado)
 and vrp.id_vencimiento = ifnull(:id_vencimiento, vrp.id_vencimiento)
 and ifnull(:renovado, vrp.id_rnv_renovacion is null)
 and vrp.id_empleado is not null
+and :id_grupo is null -- filtro empleados: no debe traer registros cuando se filtra por grupo
 )
 UNION
 ( -- renovaciones por grupo
@@ -354,17 +355,13 @@ where
 
     public function empleadosGrupos() { //ok
         $stmt=new sQuery();
-        $query = "select id_empleado, null, concat(apellido, ' ', nombre) as descripcion
+        $query = "select id_empleado, null as id_grupo, concat(apellido, ' ', nombre) as descripcion
 from empleados
 UNION
-select null, id_vencimiento, concat(nombre, ' ', numero) as descripcion
+select null, id_grupo, concat(nombre, ' ', numero) as descripcion
 from vto_grupos_p";
 
         $stmt->dpPrepare($query);
-        /*$stmt->dpBind(':cuil', $cuil);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        $stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':renovado', $renovado); */
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
