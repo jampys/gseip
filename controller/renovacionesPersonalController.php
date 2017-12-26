@@ -15,11 +15,12 @@ switch ($operation)
 {
     case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $cuil = ($_POST['cuil']!='')? $_POST['cuil'] : null;
+        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
+        $id_grupo = ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null;
         $id_vencimiento = ($_POST['id_vencimiento']!='')? $_POST['id_vencimiento'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $renovado = ($_POST['renovado']== 0)? null : 1;
-        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($cuil, $id_vencimiento, $id_contrato, $renovado);
+        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado);
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 
@@ -102,9 +103,11 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal(null, null, null, null);
+        $view->renovacion = new RenovacionPersonal();
+        $view->empleadosGrupos = $view->renovacion->empleadosGrupos(); //carga el combo para filtrar empleados-grupos
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal(); //carga el combo para filtrar vencimientos
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal(null, null, null, null, null);
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 }

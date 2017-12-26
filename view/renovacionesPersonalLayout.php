@@ -20,7 +20,9 @@
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.cuil = $("#search_empleado").val();
+                //params.cuil = $("#search_empleado").val();
+                params.id_empleado = $('#id_vencimiento option:selected').attr('id_emleado');
+                params.id_grupo = $('#id_vencimiento option:selected').attr('id_grupo');
                 params.id_vencimiento = $("#search_vencimiento").val();
                 params.id_contrato = $("#search_contrato").val();
                 params.renovado = $('#search_renovado').prop('checked')? 1:0;
@@ -33,7 +35,7 @@
 
 
 
-            $('#search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            /*$('#search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
                 //alert('hola');
                 var code = (e.keyCode || e.which);
                 if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
@@ -59,7 +61,7 @@
 
                 });
 
-            });
+            });*/
 
 
 
@@ -193,10 +195,22 @@
 
             <div class="clearfix">
                 <form id="search_form" name="search_form">
-                    <div class="form-group col-md-4">
+
+                    <!--<div class="form-group col-md-4">
                         <label for="search_empleado" class="control-label">Empleado</label>
                         <select id="search_empleado" name="search_empleado" class="form-control selectpicker show-tick" data-live-search="true" title="Seleccione un empleado">
 
+                        </select>
+                    </div>-->
+                    <div class="form-group col-md-4">
+                        <label for="search_empleado" class="control-label">Empleado/Grupo</label>
+                        <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" title="Seleccione un empleado o grupo" data-live-search="true" data-size="5">
+                            <?php foreach ($view->empleadosGrupos as $eg){
+                                ?>
+                                <option value="" id_empleado="<?php echo $eg['id_empleado']; ?>" id_grupo="<?php echo $eg['id_grupo']; ?>" >
+                                    <?php echo $eg['descripcion'] ;?>
+                                </option>
+                            <?php  } ?>
                         </select>
                     </div>
 
