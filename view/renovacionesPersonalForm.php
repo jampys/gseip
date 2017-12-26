@@ -296,10 +296,9 @@
                                     value="<?php echo ($eg['id_empleado'])? $eg['id_empleado'] : $eg['id_grupo']; ?>"
                                     id_empleado="<?php echo $eg['id_empleado']; ?>"
                                     id_grupo="<?php echo $eg['id_grupo']; ?>"
-                                    <?php //echo ($eg['id_vencimiento'] == $view->renovacion->getIdVencimiento())? 'selected' :''
-                                            //if($eg['id_empleado'] && $view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
-                                            if($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
-
+                                    <?php
+                                            if($eg['id_empleado'] && $view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
+                                            elseif($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
                                     ?>
                                     >
                                     <?php echo $eg['descripcion'] ;?>

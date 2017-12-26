@@ -90,7 +90,7 @@ class RenovacionPersonal
                     DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha
                     from vto_renovacion_p
                     where id_renovacion = :nro";*/
-            $query = "select id_renovacion, id_vencimiento, id_empleado,
+            $query = "select id_renovacion, id_vencimiento, id_empleado, id_grupo,
                     DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
                     DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
                     DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion
