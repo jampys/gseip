@@ -292,9 +292,13 @@
                         <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado o grupo" data-live-search="true" data-size="5">
                             <?php foreach ($view->empleadosGrupos as $eg){
                                 ?>
-                                <option value="<?php echo ($eg['id_empleado'])? $eg['id_empleado'] : $eg['id_grupo']; ?>"
+                                <option
+                                    value="<?php echo ($eg['id_empleado'])? $eg['id_empleado'] : $eg['id_grupo']; ?>"
+                                    id_empleado="<?php echo $eg['id_empleado']; ?>"
+                                    id_grupo="<?php echo $eg['id_grupo']; ?>"
                                     <?php //echo ($eg['id_vencimiento'] == $view->renovacion->getIdVencimiento())? 'selected' :''
-                                            if($view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
+                                            //if($eg['id_empleado'] && $view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
+                                            if($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
 
                                     ?>
                                     >
