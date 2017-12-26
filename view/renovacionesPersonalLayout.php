@@ -21,14 +21,14 @@
                 //preparo los parametros
                 params={};
                 //params.cuil = $("#search_empleado").val();
-                params.id_empleado = $('#id_vencimiento option:selected').attr('id_emleado');
-                params.id_grupo = $('#id_vencimiento option:selected').attr('id_grupo');
+                params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
+                params.id_grupo = $('#search_empleado option:selected').attr('id_grupo');
                 params.id_vencimiento = $("#search_vencimiento").val();
                 params.id_contrato = $("#search_contrato").val();
                 params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "renovacionesPersonal";
                 params.operation = "refreshGrid";
-                //alert(params.cuil);
+                //alert(params.id_empleado);
                 //alert(params.renovado);
                 $('#content').load('index.php', params);
             });

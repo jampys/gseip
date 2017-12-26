@@ -114,7 +114,8 @@ switch ($operation)
 
 
 if ($view->disableLayout==true) { //ok
-    include_once ($view->contentTemplate);}
+    include_once ($view->contentTemplate);
+}
 else {
     include_once('view/renovacionesPersonalLayout.php');
 }

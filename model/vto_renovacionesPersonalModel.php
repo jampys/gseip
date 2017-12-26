@@ -178,7 +178,7 @@ and vav.id_alerta = func_alerta(vrp.id_renovacion)
 and vrp.id_vencimiento = ifnull(null, vrp.id_vencimiento)
 and ifnull(null, vrp.id_rnv_renovacion is null)
 and vrp.id_empleado is null
-and :cuil is null -- filtro empleados: no debe traer registros cuando se filtra por empleado
+and :id_empleado is null -- filtro empleados: no debe traer registros cuando se filtra por empleado
 )
 
 order by priority, id_rnv_renovacion asc";
