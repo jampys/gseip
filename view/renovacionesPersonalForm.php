@@ -133,6 +133,8 @@
                 params.fecha_emision = $('#fecha_emision').val();
                 params.fecha_vencimiento = $('#fecha_vencimiento').val();
 
+                //alert(params.id_grupo);
+
                 $.post('index.php',params,function(data, status, xhr){
 
                     objeto.id = data; //data trae el id de la renovacion
