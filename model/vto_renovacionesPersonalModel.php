@@ -176,10 +176,11 @@ where vrp.id_vencimiento = vvp.id_vencimiento
 and vav.id_vencimiento = vrp.id_vencimiento
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta(vrp.id_renovacion)
-and vrp.id_vencimiento = ifnull(null, vrp.id_vencimiento)
+and vrp.id_vencimiento = ifnull(:id_vencimiento, vrp.id_vencimiento)
 and ifnull(null, vrp.id_rnv_renovacion is null)
 and vrp.id_empleado is null
 and :id_empleado is null -- filtro empleados: no debe traer registros cuando se filtra por empleado
+and :id_contrato is null -- filtro contratos: no debe traer registros cuando se filtra por contrato
 )
 
 order by priority, id_rnv_renovacion asc";
