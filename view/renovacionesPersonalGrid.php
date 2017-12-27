@@ -83,7 +83,8 @@
                                 </a>
                             <?php } else{ ?>
                                 <a class="renovar" href="javascript:void(0);" data-toggle="tooltip" title="renovar" >
-                                    <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                                    <!--<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>-->
+                                    <i class="far fa-clone"></i>
                                 </a>
 
                             <?php } ?>
