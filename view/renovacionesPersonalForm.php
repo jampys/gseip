@@ -266,7 +266,7 @@
 
 
                     <div class="form-group required">
-                        <label for="id_empleado" class="control-label">Empleado/Grupo</label>
+                        <label for="id_empleado" class="control-label">Empleado / Grupo</label>
                         <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado o grupo" data-live-search="true" data-size="5">
                             <?php foreach ($view->empleadosGrupos as $eg){
                                 ?>
@@ -279,7 +279,9 @@
                                             if($eg['id_empleado'] && $view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
                                             elseif($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
                                     ?>
+                                    data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm" : "fas fa-users fa-sm"; ?>"
                                     >
+                                    &nbsp;
                                     <?php echo $eg['descripcion'] ;?>
                                 </option>
                             <?php  } ?>
