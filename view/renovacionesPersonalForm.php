@@ -235,7 +235,7 @@
             else{
                 $('#id_vencimiento').selectpicker('val', '').prop('disabled', false).selectpicker('refresh');
             }
-            
+
         });
 
 

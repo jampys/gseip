@@ -68,6 +68,12 @@
     <script src="ViewerImg/viewer.js"></script>
 
 
+    <!-- plug-in fontawesome -->
+    <link  href="fontawesome/css/fa-svg-with-js.css" rel="stylesheet">
+    <script defer src="fontawesome/js/fontawesome-all.js"></script>
+    <!--<script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>-->
+
+
     <!-- librerias css propias -->
     <link rel="stylesheet" href="resources/css/dario.css">
 
