@@ -43,6 +43,8 @@
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
+                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
                 })
 
             });
@@ -57,6 +59,8 @@
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
+                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
                 })
 
             });
