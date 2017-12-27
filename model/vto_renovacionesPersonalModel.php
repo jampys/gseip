@@ -279,16 +279,9 @@ order by priority, id_rnv_renovacion asc";
         /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
         sea mayor. */
         $stmt=new sQuery();
-        /*$query = "select *
-                  from v_vto_renovacion_p
-                  where id_empleado = :id_empleado
-                  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  order by fecha_emision asc
-                  limit 1"; */
         $query = "select *
-from v_vto_renovacion_p
-where
+                  from v_vto_renovacion_p
+                  where
                   ( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
                   :id_renovacion is null
                   and id_empleado = :id_empleado
