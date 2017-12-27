@@ -227,6 +227,18 @@
         });
 
 
+        $("#myModal #id_empleado").on('changed.bs.select', function (e) { //ok
+            //Al seleccionar un grupo, completa automaticamente el campo vencimiento y lo deshabilita.
+            if ($('#id_empleado option:selected').attr('id_grupo') !='') {
+                $('#id_vencimiento').selectpicker('val', $('#id_empleado option:selected').attr('id_vencimiento')).prop('disabled', true).selectpicker('refresh');
+            }
+            else{
+                $('#id_vencimiento').selectpicker('val', '').prop('disabled', false).selectpicker('refresh');
+            }
+            
+        });
+
+
 
 
     });
@@ -252,14 +264,6 @@
                 <form name ="renovacion_personal" id="renovacion_personal" method="POST" action="index.php">
                     <input type="hidden" name="id_renovacion" id="id_renovacion" value="<?php print $view->renovacion->getIdRenovacion() ?>">
 
-                    <!--<div class="form-group required">
-                        <label class="control-label" for="id_empleado">Empleado</label>
-                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" title="<?php echo ($view->renovacion->getIdEmpleado())? "": "Seleccione un empleado";     ?>">
-                            <option value = "<?php print $view->renovacion->getIdEmpleado() ?>">
-                                <?php print $view->empleado; ?>
-                            </option>
-                        </select>
-                    </div>-->
 
                     <div class="form-group required">
                         <label for="id_empleado" class="control-label">Empleado/Grupo</label>
@@ -270,6 +274,7 @@
                                     value="<?php echo ($eg['id_empleado'])? $eg['id_empleado'] : $eg['id_grupo']; ?>"
                                     id_empleado="<?php echo $eg['id_empleado']; ?>"
                                     id_grupo="<?php echo $eg['id_grupo']; ?>"
+                                    id_vencimiento="<?php echo $eg['id_vencimiento']; ?>"
                                     <?php
                                             if($eg['id_empleado'] && $view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
                                             elseif($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
