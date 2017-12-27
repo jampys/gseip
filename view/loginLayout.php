@@ -29,7 +29,7 @@
                         success: function(data, textStatus, jqXHR) {
 
                             if(data['id'] >= 1){ //Accede al sistema
-                                $("#myElem").html('Accediendo al sistema ...').addClass('alert alert-info').show();
+                                $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Accediendo al sistema...').addClass('alert alert-info').show();
                                 setTimeout(function(){ $("#myElem").hide();
                                                         window.location.href = "index.php?action=index";
                                                      }, 1500);
