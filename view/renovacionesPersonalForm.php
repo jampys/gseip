@@ -90,7 +90,7 @@
 
                         }
 
-                        $('img').addClass('image').css('cursor', 'zoom-in');
+                        $('#myModal img').addClass('image').css('cursor', 'zoom-in');
                         $('.image').viewer({});
 
                     },
