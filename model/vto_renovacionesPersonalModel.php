@@ -9,7 +9,6 @@ class RenovacionPersonal
     private $id_grupo;
     private $fecha_emision;
     private $fecha_vencimiento;
-    private $alert_status;
     private $fecha;
     private $id_rnv_renovacion; //id_renovacion que le sigue
 
@@ -34,9 +33,6 @@ class RenovacionPersonal
 
     function getFechaVencimiento()
     { return $this->fecha_vencimiento;}
-
-    function getAlertStatus()
-    { return $this->alert_status;}
 
     function getFecha()
     { return $this->fecha;}
@@ -68,9 +64,6 @@ class RenovacionPersonal
     function setFechaVencimiento($val)
     { $this->fecha_vencimiento=$val;}
 
-    function setAlertStatus($val)
-    { $this->alert_status=$val;}
-
     function setFecha($val)
     { $this->fecha=$val;}
 
@@ -100,7 +93,6 @@ class RenovacionPersonal
             $this->setIdGrupo($rows[0]['id_grupo']);
             $this->setFechaEmision($rows[0]['fecha_emision']);
             $this->setFechaVencimiento($rows[0]['fecha_vencimiento']);
-            $this->setAlertStatus($rows[0]['alert_status']);
             $this->setFecha($rows[0]['fecha']);
             $this->setIdRnvRenovacion($rows[0]['id_rnv_renovacion']);
 
