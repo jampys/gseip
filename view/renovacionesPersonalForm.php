@@ -186,7 +186,9 @@
                             action: "renovacionesPersonal",
                             operation: "checkFechaEmision",
                             fecha_emision: function(){ return $('#fecha_emision').val();},
-                            id_empleado: function(){ return $('#id_empleado').val();},
+                            //id_empleado: function(){ return $('#id_empleado').val();},
+                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
+                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
                             id_vencimiento: function(){ return $('#id_vencimiento').val();},
                             id_renovacion: function(){ return $('#id_renovacion').val();}
                         }
@@ -203,7 +205,9 @@
                             operation: "checkFechaVencimiento",
                             fecha_emision: function(){ return $('#fecha_emision').val();},
                             fecha_vencimiento: function(){ return $('#fecha_vencimiento').val();},
-                            id_empleado: function(){ return $('#id_empleado').val();},
+                            //id_empleado: function(){ return $('#id_empleado').val();},
+                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
+                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
                             id_vencimiento: function(){ return $('#id_vencimiento').val();},
                             id_renovacion: function(){ return $('#id_renovacion').val();}
                         }
