@@ -56,7 +56,7 @@
                 <th>Nro. rnv</th>
                 <th>Fecha</th>
                 <th>vencimiento</th>
-                <th>empleado</th>
+                <th>empleado / grupo</th>
                 <th>F. emisión</th>
                 <th>F. vto.</th>
                 <th style="display: none">Priority</th>
@@ -72,7 +72,7 @@
                         <td><?php echo $rp['id_renovacion']; ?></td>
                         <td><?php echo $rp['fecha']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
-                        <td><?php echo $rp['empleado']; ?></td>
+                        <td><?php echo ($rp['id_empleado'])? $rp['empleado'] : $rp['grupo']; ?></td>
                         <td><?php echo $rp['fecha_emision']; ?></td>
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td style="display: none"><?php echo $rp['priority']; ?></td>

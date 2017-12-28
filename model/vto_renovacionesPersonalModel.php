@@ -113,6 +113,7 @@ vvp.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
 CONCAT(em.apellido, ' ', em.nombre) as empleado,
+null  as grupo,
 vrp.id_rnv_renovacion
 from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav,
 (
@@ -153,11 +154,12 @@ DATE_FORMAT(vrp.fecha,  '%d/%m/%Y') as fecha,
 vvp.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
-null,
+null as empleado,
+CONCAT(vgp.nombre, ' ', vgp.numero) as grupo,
 vrp.id_rnv_renovacion
-from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav,
-vto_alerta va
-where vrp.id_vencimiento = vvp.id_vencimiento
+from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, vto_alerta va, vto_grupos_p vgp
+where vrp.id_grupo = vgp.id_grupo
+and vrp.id_vencimiento = vvp.id_vencimiento
 and vav.id_vencimiento = vrp.id_vencimiento
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta(vrp.id_renovacion)
