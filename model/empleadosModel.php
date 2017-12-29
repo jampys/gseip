@@ -381,24 +381,51 @@ class Empleado
 
 
 
-    public function checkEmpleadoCuil($cuil) {
+    public function checkEmpleadoCuil($cuil, $id_empleado) {
         $stmt=new sQuery();
-        $query = "select * from empleados
-                  where cuil =:cuil and fecha_baja is null";
+        /*$query = "select * from empleados
+                  where cuil =:cuil and fecha_baja is null"; */
+        $query = "select * from empleados em
+                  where em.cuil =:cuil
+                  and em.fecha_baja is null
+                  and
+                  ( -- nuevo empleado
+                  :id_empleado is null
+                  -- no se ponen condiciones
+                  )
+                  OR
+                  ( -- edicion empleado
+                  :id_empleado is not null
+                  and em.id_empleado <> :id_empleado
+                  )";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':cuil', $cuil);
+        $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpExecute();
 
         //$stmt->dpFetchAll();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
     }
 
-    public function checkEmpleadoLegajo($legajo) {
+    public function checkEmpleadoLegajo($legajo, $id_empleado) {
         $stmt=new sQuery();
-        $query = "select * from empleados
-                  where legajo = lpad(:legajo, 4, 0)";
+        /*$query = "select * from empleados
+                  where legajo = lpad(:legajo, 4, 0)";*/
+        $query= "select * from empleados em
+where
+( -- nuevo empleado
+:id_empleado is null
+and em.legajo = lpad(:legajo, 4, 0)
+)
+OR -- edicion empleado
+(
+:id_empleado is not null
+and em.legajo = lpad(:legajo, 4, 0)
+and em.id_empleado <> :id_empleado
+)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':legajo', $legajo);
+        $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpExecute();
 
         return $output = ($stmt->dpGetAffect()==0)? true : false;

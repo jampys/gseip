@@ -75,14 +75,14 @@ switch ($operation)
 
     case 'checkEmpleadoCuil':
         $view->empleado = new Empleado();
-        $rta = $view->empleado->checkEmpleadoCuil($_POST['cuil']);
+        $rta = $view->empleado->checkEmpleadoCuil($_POST['cuil'], $_POST['id_empleado']);
         print_r(json_encode($rta));
         exit;
         break;
 
     case 'checkEmpleadoLegajo':
         $view->empleado = new Empleado();
-        $rta = $view->empleado->checkEmpleadoLegajo($_POST['legajo']);
+        $rta = $view->empleado->checkEmpleadoLegajo($_POST['legajo'], $_POST['id_empleado']);
         print_r(json_encode($rta));
         exit;
         break;

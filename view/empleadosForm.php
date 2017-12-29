@@ -27,7 +27,10 @@
                         data: {
                             action: "empleados",
                             operation: "checkEmpleadoLegajo",
-                            legajo: function(){ return $('#legajo').val();}}
+                            legajo: function(){ return $('#legajo').val();},
+                            id_empleado: function(){ return $('#id_empleado').val();}
+
+                        }
                     }
                 },
                 nombre: {required: true},
@@ -44,7 +47,9 @@
                         data: {
                             action: "empleados",
                             operation: "checkEmpleadoCuil",
-                            cuil: function(){ return $('#cuil').val();}}
+                            cuil: function(){ return $('#cuil').val();},
+                            id_empleado: function(){ return $('#id_empleado').val();}
+                        }
                         /*success: function(data, textStatus, jqXHR) {
                             console.log(textStatus, jqXHR, data);
                         },
