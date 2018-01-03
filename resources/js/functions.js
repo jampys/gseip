@@ -35,6 +35,12 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
     );
 
 
+    jQuery.validator.addMethod("legajo", function(value, element) {
+        //return this.optional( element ) || /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@(?:\S{1,63})$/.test( value );
+        return this.optional( element ) || /^[INin || SPsp || EXex]+([0-9]{4})$/.test( value );
+    }, 'Ingrese un formato de legajo correcto.');
+
+
     /**************************************************JQUERY VALIDATION ****************************************************/
 
     /* para dataTables: elimina el estado de una tabla ("stateSave": true) al salir de la pantalla */

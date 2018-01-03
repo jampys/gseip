@@ -19,7 +19,8 @@
             rules: {
                 legajo: {
                     required: true,
-                    digits: true,
+                    //digits: true,
+                    legajo: true,
                     remote: {
                         url: "index.php",
                         type: "post",
