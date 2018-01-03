@@ -35,6 +35,10 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
     );
 
 
+    /* regla propia para jquery validation: valida el formato del legajo XX0000
+    * Da un error de javascript por consola (Uncaught TypeError: Cannot read property 'off' of null), pero no afecta al funcionamiento de la validacion
+    * */
+
     jQuery.validator.addMethod("legajo", function(value, element) {
         //return this.optional( element ) || /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@(?:\S{1,63})$/.test( value );
         return this.optional( element ) || /^[INin || SPsp || EXex]+([0-9]{4})$/.test( value );
