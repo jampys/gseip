@@ -415,12 +415,12 @@ class Empleado
 where
 ( -- nuevo empleado
 :id_empleado is null
-and em.legajo = lpad(:legajo, 4, 0)
+and em.legajo = :legajo
 )
 OR -- edicion empleado
 (
 :id_empleado is not null
-and em.legajo = lpad(:legajo, 4, 0)
+and em.legajo = :legajo
 and em.id_empleado <> :id_empleado
 )";
         $stmt->dpPrepare($query);
