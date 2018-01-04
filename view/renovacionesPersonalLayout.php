@@ -175,7 +175,7 @@
 
                         </select>
                     </div>-->
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label for="search_empleado" class="control-label">Empleado / Grupo</label>
                         <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
                             <option value="">Seleccione un empleado o grupo</option>
@@ -206,7 +206,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <label for="search_vencimiento" class="control-label">Contrato</label>
                         <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                             <option value="">Seleccione un contrato</option>
@@ -229,6 +229,15 @@
                         <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
                     </div>-->
 
+                    <div class="form-group col-md-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="search_renovado" name="search_renovado">
+                                <a href="#" data-toggle="tooltip" title="Seleccione para visualizar registros ya renovados">Renovados</a>
+                            </label>
+                        </div>
+                    </div>
+
 
                     <div class="form-group col-md-1">
                         <label for="search">&nbsp;</label>
@@ -242,15 +251,6 @@
                         <button type="button" class="form-control btn btn-primary btn-sm" id="new">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="search_renovado" name="search_renovado">
-                                    <a href="#" data-toggle="tooltip" title="Seleccione para visualizar registros ya renovados">Renovados</a>
-                            </label>
-                        </div>
                     </div>
 
 
