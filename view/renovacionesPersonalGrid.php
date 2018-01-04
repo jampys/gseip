@@ -9,6 +9,11 @@
             /*language: {
              url: 'dataTables/Spanish.json'
              }*/
+
+            "fnInitComplete": function () {
+                                $(this).show(); },
+
+
             "stateSave": true,
             "order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
             /*"columnDefs": [
@@ -50,7 +55,7 @@
 
     <div class="table-responsive">
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
+        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Nro. rnv</th>
