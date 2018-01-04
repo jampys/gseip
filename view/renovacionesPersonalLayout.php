@@ -230,6 +230,7 @@
                     </div>-->
 
                     <div class="form-group col-md-2">
+                        <label for="search_renovado" class="control-label">&nbsp;</label>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" id="search_renovado" name="search_renovado">
