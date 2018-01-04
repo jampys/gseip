@@ -144,7 +144,8 @@
                     if(data >=0){
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#myElem").html('Renovación guardada con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
+                        //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
+                        $("#search").trigger("click");
                     }else{
                         $("#myElem").html('Error al guardar la renovación').addClass('alert alert-danger').show();
                     }
