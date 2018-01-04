@@ -132,6 +132,7 @@ OR
  -- and ecx.id_contrato is null
  )
  group by emx.id_empleado
+ having emx.fecha_baja is null
 ) em,
 vto_alerta va
 where vrp.id_vencimiento = vvp.id_vencimiento
