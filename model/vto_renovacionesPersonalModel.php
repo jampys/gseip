@@ -343,6 +343,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt=new sQuery();
         $query = "select id_empleado, null as id_grupo, concat(apellido, ' ', nombre) as descripcion, null as id_vencimiento
 from empleados
+where fecha_baja is null
 UNION
 select null, id_grupo, concat(nombre, ' ', numero) as descripcion, id_vencimiento
 from vto_grupos_p";
