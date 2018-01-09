@@ -333,9 +333,9 @@
 </script>
 
 
-<div class="col-md-3"></div>
+<div class="col-md-2"></div>
 
-<div class="col-md-6">
+<div class="col-md-8">
 
 
 <div class="panel panel-default" id="contrato">
@@ -350,15 +350,15 @@
     <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->contrato->getIdContrato() ?>">
 
     <div class="form-group required">
-        <label for="nro_contrato" class="col-md-4 control-label">Nro. Contrato</label>
-        <div class="col-md-8">
+        <label for="nro_contrato" class="col-md-3 control-label">Nro. Contrato</label>
+        <div class="col-md-7">
             <input class="form-control" type="text" name="nro_contrato" id="nro_contrato" placeholder="Nro. Contrato" value = "<?php print $view->contrato->getNroContrato() ?>">
         </div>
     </div>
 
     <div class="form-group required">
-        <label for="compania" class="col-md-4 control-label">Compañía</label>
-        <div class="col-md-8">
+        <label for="compania" class="col-md-3 control-label">Compañía</label>
+        <div class="col-md-7">
             <select class="form-control selectpicker show-tick" id="compania" name="compania" title="Seleccione la compañía">
                 <?php foreach ($view->companias as $cia){
                     ?>
@@ -374,16 +374,16 @@
 
 
         <div class="form-group required">
-            <label for="nombre" class="col-md-4 control-label">Nombre</label>
-            <div class="col-md-8">
+            <label for="nombre" class="col-md-3 control-label">Nombre</label>
+            <div class="col-md-7">
                 <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->contrato->getNombre() ?>">
             </div>
         </div>
 
 
     <div class="form-group required">
-        <label for="id_responsable" class="col-md-4 control-label">Responsable</label>
-        <div class="col-md-8">
+        <label for="id_responsable" class="col-md-3 control-label">Responsable</label>
+        <div class="col-md-7">
             <select id="id_responsable" name="id_responsable" class="form-control selectpicker" data-live-search="true" title="<?php echo ($view->contrato->getIdResponsable())? "": "Seleccione un responsable";     ?>">
                 <option value = "<?php print $view->contrato->getIdResponsable() ?>">
                     <?php print $view->responsable; ?>
@@ -394,8 +394,8 @@
 
 
         <div class="form-group required">
-            <label class="col-md-4 control-label" for="fecha">Desde / hasta</label>
-            <div class="col-md-8">
+            <label class="col-md-3 control-label" for="fecha">Desde / hasta</label>
+            <div class="col-md-7">
 
                 <div class="input-group input-daterange">
                     <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
@@ -492,7 +492,7 @@
 
 
 
-<div class="col-md-3"></div>
+<div class="col-md-2"></div>
 
 
 
