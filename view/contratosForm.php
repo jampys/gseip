@@ -421,8 +421,8 @@
         <table class="table table-condensed dpTable table-hover">
             <thead>
             <tr>
-                <th class="col-md-6">Empleado</th>
-                <th class="col-md-4">Puesto</th>
+                <th class="col-md-5">Empleado</th>
+                <th class="col-md-5">Puesto</th>
                 <th class="col-md-1">Editar</th>
                 <th class="col-md-1">Eliminar</th>
             </tr>
