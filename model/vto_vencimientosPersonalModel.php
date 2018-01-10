@@ -25,7 +25,8 @@ class VencimientoPersonal
 
     public static function getVencimientosPersonal() {
         $stmt=new sQuery();
-        $stmt->dpPrepare("select * from vto_vencimiento_p");
+        $stmt->dpPrepare("select * from vto_vencimiento_p
+                          order by nombre");
         $stmt->dpExecute();
         return $stmt->dpFetchAll(); // retorna todos los vencimientos de personal
     }

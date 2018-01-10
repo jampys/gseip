@@ -115,3 +115,10 @@ table.dataTable th { font-size: 14px }
 table.dpTable td { font-size: 13px }
 table.dpTable th { font-size: 14px }
 
+
+/* para que la tabla tenga scroll vertital. Se coloca esta clase al div de nivel superior */
+.fixedTable{
+    height: 150px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}

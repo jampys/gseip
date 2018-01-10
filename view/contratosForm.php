@@ -395,7 +395,7 @@
         <div class="form-group required">
             <label for="id_responsable" class="col-md-3 control-label">Responsable</label>
             <div class="col-md-7">
-                <select id="id_responsable" name="id_responsable" class="form-control selectpicker" data-live-search="true" data-size="5" title="Seleccione un empleado">
+                <select id="id_responsable" name="id_responsable" class="form-control selectpicker" data-live-search="true" data-size="5" title="Seleccione un responsable">
                     <?php foreach ($view->empleados as $em){
                         ?>
                         <option value="<?php echo $em['id_empleado']; ?>"
@@ -433,7 +433,7 @@
         </div>
 
 
-    <div class="table-responsive" id="empleados-table">
+    <div class="fixedTable table-responsive" id="empleados-table">
         <table class="table table-condensed dpTable table-hover">
             <thead>
             <tr>

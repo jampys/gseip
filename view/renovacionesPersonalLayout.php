@@ -213,7 +213,7 @@
                             <?php foreach ($view->contratos as $con){
                                 ?>
                                 <option value="<?php echo $con['id_contrato']; ?>" >
-                                    <?php echo $con['nro_contrato'].' '.$con['nombre'];?>
+                                    <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
                                 </option>
                             <?php  } ?>
                         </select>
