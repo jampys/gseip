@@ -78,26 +78,34 @@ switch ($operation)
                 if($vE['operacion']=='insert') {
                     $empleado_contrato->insertEmpleadoContrato();
                     $id_empleado_contrato = sQuery::dpLastInsertId();
-                    foreach($vE['id_proceso'] as $p){
-                        //echo $p." ";
-                        $contrato_empleado_proceso = new ContratoEmpleadoProceso();
-                        $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
-                        $contrato_empleado_proceso->setIdProceso($p);
-                        if($contrato_empleado_proceso->contratoEmpleadoProceso()<0) $flag = -1;
+                    if($vE['id_proceso']){
+                        foreach($vE['id_proceso'] as $p){ //si se agregaron procesos
+                            //echo $p." ";
+                            $contrato_empleado_proceso = new ContratoEmpleadoProceso();
+                            $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
+                            $contrato_empleado_proceso->setIdProceso($p);
+                            if($contrato_empleado_proceso->contratoEmpleadoProceso()<0) $flag = -1;
+                        }
+
                     }
+
 
                 }
                 else if( $vE['operacion']=='update') {
                     $empleado_contrato->updateEmpleadoContrato();
                     $id_empleado_contrato = $empleado_contrato->getIdEmpleadoContrato();
-                    foreach($vE['id_proceso'] as $p){
-                        //echo $p." ";
-                        $contrato_empleado_proceso = new ContratoEmpleadoProceso();
-                        $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
-                        $contrato_empleado_proceso->setIdProceso($p);
-                        if($contrato_empleado_proceso->contratoEmpleadoProceso()<0) $flag = -1;
-                        //echo 'operacion: '.$vE['operacion'].' - id_empleado_contrato: '.$contrato_empleado_proceso->getIdEmpleadoContrato().' - id_proceso: '.$contrato_empleado_proceso->getIdProceso();
+                    if($vE['id_proceso']){ // si se editaron procesos
+                        foreach($vE['id_proceso'] as $p){
+                            //echo $p." ";
+                            $contrato_empleado_proceso = new ContratoEmpleadoProceso();
+                            $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
+                            $contrato_empleado_proceso->setIdProceso($p);
+                            if($contrato_empleado_proceso->contratoEmpleadoProceso()<0) $flag = -1;
+                            //echo 'operacion: '.$vE['operacion'].' - id_empleado_contrato: '.$contrato_empleado_proceso->getIdEmpleadoContrato().' - id_proceso: '.$contrato_empleado_proceso->getIdProceso();
+                        }
+
                     }
+
 
                 }
                 else if( $vE['operacion']=='delete') {
