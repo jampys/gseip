@@ -46,7 +46,7 @@
             $('#fecha_desde').datepicker('setEndDate', maxDate);
         });
 
-        $('#id_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+        /*$('#id_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert('hola');
             var code = (e.keyCode || e.which);
             if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
@@ -73,7 +73,7 @@
 
             });
 
-        });
+        });*/
 
 
     });
@@ -102,14 +102,22 @@
                         <label class="control-label" for="id_empleado">Empleado</label>
                         <!--<input type="text" class="form-control empleado-group" id="empleado" name="empleado" placeholder="Empleado">
                         <input type="hidden" name="id_empleado" id="id_empleado" class="empleado-group"/>-->
-                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker" data-live-search="true" title="Seleccione un empleado">
+                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker" data-live-search="true" data-size="5" title="Seleccione un empleado">
+                            <?php foreach ($view->empleados as $em){
+                                ?>
+                                <option value="<?php echo $em['id_empleado']; ?>"
+                                    <?php //echo ($sup['codigo'] == $view->puesto->getCodigoSuperior())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                </option>
+                            <?php  } ?>
                         </select>
                     </div>
 
                     <div class="form-group required">
                         <label class="control-label" for="puesto" >Puesto</label>
                         <select class="form-control selectpicker" id="puesto" name="puesto" data-live-search="true" data-size="5" title="Seleccione el puesto">
-                            <?php foreach ($view->puesto as $pu){
+                            <?php foreach ($view->puestos as $pu){
                                 ?>
                                 <option value="<?php echo $pu['id_puesto']; ?>"
                                     <?php //echo ($sup['codigo'] == $view->puesto->getCodigoSuperior())? 'selected' :'' ?>

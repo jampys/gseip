@@ -98,7 +98,7 @@
 
 
 
-        $('#id_responsable').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+        /*$('#id_responsable').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert(e.keyCode);
             var code = (e.keyCode || e.which);
             if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key
@@ -125,7 +125,7 @@
 
             });
 
-        });
+        });*/
 
 
 
@@ -163,7 +163,7 @@
                 params.fecha_hasta=$('#fecha_hasta').val();
                 params.id_responsable=$('#id_responsable').val();
                 params.id_compania=$('#compania').val();
-                //alert(params.id_compania);
+                //alert(params.id_responsable);
 
                 var jsonEmpleadosIx = [];
                 for ( var item in jsonEmpleados ){
@@ -174,7 +174,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    alert(xhr.responseText);
+                    //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     if(data >=0){
                         $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
@@ -223,13 +223,12 @@
             params.operation="loadEmpleado";
             $('#popupbox1').load('index.php', params,function(){
                 $('#myModal').modal();
-                //$('#empleado').val(jsonEmpleados[id].empleado);
-                //$('#empleado').val(jsonEmpleados[id].id_empleado);
-                $('#id_empleado').append($('<option>', {
+                /*$('#id_empleado').append($('<option>', {
                     value: jsonEmpleados[id].id_empleado,
                     text : jsonEmpleados[id].empleado
-                }));
-                $('#id_empleado').selectpicker('val', jsonEmpleados[id].id_empleado).selectpicker('refresh'); //asigna valor y refresh de #id_empleado
+                }));*/
+                //$('#id_empleado').selectpicker('val', jsonEmpleados[id].id_empleado).selectpicker('refresh'); //asigna valor y refresh de #id_empleado
+                $('#id_empleado').val(jsonEmpleados[id].id_empleado);
                 $("#id_empleado").prop('disabled', true);
 
                 $('#puesto').val(jsonEmpleados[id].id_puesto);
@@ -381,6 +380,7 @@
         </div>
 
 
+        <!--
     <div class="form-group required">
         <label for="id_responsable" class="col-md-3 control-label">Responsable</label>
         <div class="col-md-7">
@@ -390,7 +390,23 @@
                 </option>
             </select>
         </div>
-    </div>
+    </div> -->
+
+        <div class="form-group required">
+            <label for="id_responsable" class="col-md-3 control-label">Responsable</label>
+            <div class="col-md-7">
+                <select id="id_responsable" name="id_responsable" class="form-control selectpicker" data-live-search="true" data-size="5" title="Seleccione un empleado">
+                    <?php foreach ($view->empleados as $em){
+                        ?>
+                        <option value="<?php echo $em['id_empleado']; ?>"
+                            <?php echo ($em['id_empleado'] == $view->contrato->getIdResponsable())? 'selected' :'' ?>
+                            >
+                            <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                        </option>
+                    <?php  } ?>
+                </select>
+            </div>
+        </div>
 
 
         <div class="form-group required">

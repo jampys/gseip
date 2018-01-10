@@ -7,6 +7,7 @@ include_once("model/companiasModel.php");
 include_once("model/puestosModel.php");
 include_once("model/procesosModel.php");
 include_once("model/contrato-empleado-procesoModel.php");
+include_once("model/empleadosModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -137,7 +138,9 @@ switch ($operation)
     case 'newContrato': //ok
         $view->label='Nuevo Contrato';
         $view->contrato = new Contrato();
-        $view->responsable = $view->contrato->getResponsable()->getApellido()." ".$view->contrato->getResponsable()->getNombre();
+        $view->empleado = new Empleado();
+        $view->empleados = $view->empleado->getEmpleadosActivos(); //carga el combo de empleados
+        //$view->responsable = $view->contrato->getResponsable()->getApellido()." ".$view->contrato->getResponsable()->getNombre();
         $view->localidades = Localidad::getLocalidades();
         $view->companias = Compania::getCompanias();
 
@@ -148,7 +151,9 @@ switch ($operation)
     case 'editContrato': //ok
         $view->label='Editar Contrato';
         $view->contrato = new Contrato($_POST['id']);
-        $view->responsable = $view->contrato->getResponsable()->getApellido()." ".$view->contrato->getResponsable()->getNombre();
+        $view->empleado = new Empleado();
+        $view->empleados = $view->empleado->getEmpleadosActivos(); //carga el combo de empleados
+        //$view->responsable = $view->contrato->getResponsable()->getApellido()." ".$view->contrato->getResponsable()->getNombre();
         $view->localidades = Localidad::getLocalidades();
         $view->companias = Compania::getCompanias();
 
@@ -165,7 +170,10 @@ switch ($operation)
     case 'loadEmpleado': //ok //abre la ventana modal para agregar y editar un empleado del contrato
         $view->label='Empleado';
         $view->disableLayout=true;
-        $view->puesto = Puesto::getPuestos();
+
+        $view->empleado = new Empleado();
+        $view->empleados = $view->empleado->getEmpleadosActivos(); //carga el combo de empleados
+        $view->puestos = Puesto::getPuestos();
         $view->procesos = Proceso::getProcesos();
 
         $view->contentTemplate="view/contratosFormEmpleado.php";
