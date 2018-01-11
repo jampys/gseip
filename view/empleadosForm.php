@@ -71,7 +71,7 @@
             messages:{
                 legajo: {
                     required: "Ingrese el legajo",
-                    digits: "Ingrese solo números",
+                    //digits: "Ingrese solo números",
                     remote: "El legajo ingresado ya existe"
                 },
                 nombre: "Ingrese el nombre",
