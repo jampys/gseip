@@ -75,7 +75,9 @@ switch ($operation)
 
     case 'checkEmpleadoCuil':
         $view->empleado = new Empleado();
-        $rta = $view->empleado->checkEmpleadoCuil($_POST['cuil'], $_POST['id_empleado']);
+        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
+        $cuil = ($_POST['cuil']!='')? $_POST['cuil'] : null;
+        $rta = $view->empleado->checkEmpleadoCuil($cuil, $id_empleado);
         print_r(json_encode($rta));
         exit;
         break;

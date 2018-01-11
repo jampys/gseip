@@ -398,8 +398,6 @@ class Empleado
 
     public function checkEmpleadoCuil($cuil, $id_empleado) {
         $stmt=new sQuery();
-        /*$query = "select * from empleados
-                  where cuil =:cuil and fecha_baja is null"; */
         $query = "select * from empleados em
                   where em.cuil =:cuil
                   and em.fecha_baja is null

@@ -81,6 +81,7 @@
                             $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
 
                         }else{
+                            alert(xhr.responseText);
                             $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                         }
                         setTimeout(function() { $("#myElem").hide();

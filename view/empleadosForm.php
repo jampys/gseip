@@ -62,8 +62,8 @@
                 },
                 fecha_nacimiento: {required: true},
                 fecha_alta: {required: true},
-                domicilio: {required: true},
-                lugar_residencia: {required: true},
+                direccion: {required: true},
+                localidad: {required: true},
                 telefono: {digits: true},
                 email: {email: true},
                 sexo: {required: true}
@@ -85,8 +85,8 @@
                 },
                 fecha_nacimiento: "Ingrese la fecha de nacimiento",
                 fecha_alta: "Ingrese la fecha de alta",
-                domicilio: "Ingrese el domicilio",
-                lugar_residencia: "Seleccione la localidad",
+                direccion: "Ingrese la dirección",
+                localidad: "Seleccione una localidad",
                 telefono: {digits: "Ingrese solo números"},
                 email: {email: "Ingrese una dirección de email válida"},
                 sexo: "Seleccione el sexo"
