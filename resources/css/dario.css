@@ -122,3 +122,10 @@ table.dpTable th { font-size: 14px }
     overflow-y: auto;    /* Trigger vertical scroll    */
     overflow-x: hidden;  /* Hide the horizontal scroll */
 }
+
+
+/* bootstrap por defecto muestra a los input readonly con un color de fondo gris.
+ De esta manera, se hace que lo muestre de manera normal*/
+input[readonly]{
+    background-color:transparent !important;
+}
