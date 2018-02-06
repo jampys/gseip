@@ -42,17 +42,23 @@
             //myWindow.document.write("<p>This is 'myWindow'</p>");
             //myWindow.opener.document.write("<p>This is the source window!</p>");
             params={};
-            params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-            params.id_grupo = $('#search_empleado option:selected').attr('id_grupo');
+            var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
+            params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
+            var attr = $('#search_empleado option:selected').attr('id_grupo');
+            params.id_grupo = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_grupo') : '';
+            params.id_vencimiento = $("#search_vencimiento").val();
+            params.id_contrato = $("#search_contrato").val();
+            params.renovado = $('#search_renovado').prop('checked')? 1 : '';
             //var nro_version = Number($('#version').val());
             //var lugar_trabajo = $('#lugar_trabajo').val();
             //var usuario  = "<?php echo $_SESSION["USER_NOMBRE"].' '.$_SESSION["USER_APELLIDO"]; ?>";
             //var id_cia = "<?php echo $_SESSION['ID_CIA']; ?>";
-            var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
+            //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
+            var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
             //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=sci_plan_version.rptdesign&p_periodo="+periodo+"&p_nro_version="+nro_version+"&p_lugar_trabajo="+lugar_trabajo+"&p_usuario="+usuario+"&p_id_cia="+id_cia;
-            var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=gseip_vencimientos.rptdesign&p_id_empleado="+params.id_empleado+"&p_nro_version="+params.id_empleado+"&p_lugar_trabajo="+params.id_empleado+"&p_usuario="+params.id_empleado+"&p_id_cia="+params.id_empleado;
-            var win = window.open(URL, "_blank", strWindowFeatures);
-            //alert(params.id_empleado);
+            var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=gseip_vencimientos.rptdesign&p_id_empleado="+params.id_empleado+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_renovado="+params.renovado+"&p_id_cia="+params.id_empleado;
+            //var win = window.open(URL, "_blank", strWindowFeatures);
+            var win = window.open(URL, "_blank");
             return false;
         });
 
