@@ -38,9 +38,6 @@
 
 
         $(document).on("click", ".pdf", function(){
-            //var myWindow = window.open("", "myWindow", "width=200,height=100");
-            //myWindow.document.write("<p>This is 'myWindow'</p>");
-            //myWindow.opener.document.write("<p>This is the source window!</p>");
             params={};
             var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
             params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
