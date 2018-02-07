@@ -54,7 +54,7 @@ echo str_pad(2, 5, 0, STR_PAD_LEFT);
 
 //print_r(Role::getRolePerms(1));
 //$s = new Role();
-$s = Role::getRolePerms(1);
+//$s = Role::getRolePerms(1);
 //if($s->hasPerm('EMP_VER')) echo 'tiene permiso';
 //else echo 'no tiene permiso';
 
@@ -67,7 +67,7 @@ else echo 'no tiene privilegio';
 
 <?php
 $pa = new PrivilegedUser(2);
-if($pa->hasAction('EMP_INSERT')) echo 'tiene accion';
+if($pa->hasAction('EMP_SELECT')) echo 'tiene accion';
 else echo 'no tiene accion';
 ?>
 

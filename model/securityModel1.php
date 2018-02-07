@@ -72,6 +72,15 @@ class Role
     public function hasPerm($permission) {
         return isset($this->permissions[$permission]);
     }
+
+    public function hasNenucos($perm) {
+        foreach ($this->permissions as $role) {
+            if ($role->hasPerm($perm)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 
@@ -118,10 +127,13 @@ class PrivilegedUser
     }
 
 
-    public function hasAction($perm) {
+    /*public function hasAction($perm) {
         foreach ($this->roles as $role) {
 
+            print_r($role);
+
             foreach ($role as $privilege) {
+
 
                 if ($privilege->hasPerm($perm)) {
                     return true;
@@ -129,6 +141,15 @@ class PrivilegedUser
 
             }
 
+        }
+        return false;
+    }*/
+
+    public function hasAction($perm) {
+        foreach ($this->roles as $role) {
+            if ($role->hasNenucos($perm)) {
+                return true;
+            }
         }
         return false;
     }
