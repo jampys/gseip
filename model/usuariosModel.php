@@ -2,27 +2,27 @@
 
 class Usuario{
 
-    private $id_usuario;
-    private $usuario;
+    private $id_user;
+    private $user;
     private $password;
 
 
     // metodos que devuelven valores
-    function getIdUsuario()
-    { return $this->id_usuario;}
+    function getIdUser()
+    { return $this->id_user;}
 
-    function getUsuario()
-    { return $this->usuario;}
+    function getUser()
+    { return $this->user;}
 
     function getPassword()
     { return $this->password;}
 
     // metodos que setean los valores
-    function setIdUsuario($val)
-    { $this->id_usuario=$val;}
+    function setIdUser($val)
+    { $this->id_user=$val;}
 
-    function setUsuario($val)
-    {  $this->usuario=$val;}
+    function setUser($val)
+    {  $this->user=$val;}
 
     function setPassword($val)
     {  $this->password=$val;}
@@ -31,7 +31,7 @@ class Usuario{
     function isAValidUser($usuario,$password){
 
         $stmt=new sQuery();
-        $query="select * from sec_usuarios where usuario = :usuario and password = md5(:password)";
+        $query="select * from sec_users where user = :usuario and password = md5(:password)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':usuario', $usuario);
         $stmt->dpBind(':password', $password);
@@ -48,8 +48,8 @@ class Usuario{
                 //$datos[0] =(int )$r[0]['id_usuario'];
                 //$datos[1] = $r[0]['usuario'];
                 //return $datos;
-                $this->setIdUsuario($r[0]['id_usuario']);
-                $this->setUsuario($r[0]['usuario']);
+                $this->setIdUser($r[0]['id_user']);
+                $this->setUser($r[0]['user']);
 
                 return 1;
             }

@@ -15,8 +15,8 @@ switch($operation){
             $id = $view->u->isAValidUser($_POST['usuario'],$_POST['contraseña']);
 
             if($id >= 1){
-                $_SESSION["id_usuario"] = $view->u->getIdUsuario(); //$id;
-                $_SESSION["usuario"] = $view->u->getUsuario(); //$_POST['usuario'];
+                $_SESSION["id_usuario"] = $view->u->getIdUser(); //$id;
+                $_SESSION["usuario"] = $view->u->getUser(); //$_POST['usuario'];
                 $e = array();
                 $e['id'] = $id;
                 /*if($id[5]!=1) { //si se ha limpiado el password  hay que cambiarlo...
