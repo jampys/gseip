@@ -42,13 +42,16 @@ class Role
 class PrivilegedUser
 {
     private $roles;
+    private $id_user;
 
-    public function __construct() {
-        parent::__construct();
+    public function __construct($id_user) {
+        //parent::__construct();
+        $this->id_user = $id_user;
+        $this->initRoles();
     }
 
     // override User method
-    public static function getByUsername($username) {
+    /*public static function getByUsername($username) {
         $sql = "SELECT * FROM users WHERE username = :username";
         $sth = $GLOBALS["DB"]->prepare($sql);
         $sth->execute(array(":username" => $username));
@@ -65,19 +68,33 @@ class PrivilegedUser
         } else {
             return false;
         }
-    }
+    }*/
 
     // populate roles with their associated permissions
     protected function initRoles() {
-        $this->roles = array();
+        /*$this->roles = array();
         $sql = "SELECT t1.role_id, t2.role_name FROM user_role as t1
                 JOIN roles as t2 ON t1.role_id = t2.role_id
                 WHERE t1.user_id = :user_id";
         $sth = $GLOBALS["DB"]->prepare($sql);
-        $sth->execute(array(":user_id" => $this->user_id));
+        $sth->execute(array(":user_id" => $this->user_id));*/
 
-        while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
+        $stmt=new sQuery();
+        $query="select id_user, id_role
+                from sec_user_role sur
+                where id_user = :id_user";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_user', $this->id_user);
+        $stmt->dpExecute();
+        $rows = $stmt->dpFetchAll();
+
+
+        /*while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
             $this->roles[$row["role_name"]] = Role::getRolePerms($row["role_id"]);
+        }*/
+        foreach($rows as $row) {
+            $this->roles[$row["role_name"]] = Role::getRolePerms($row["id_role"]);
         }
     }
 
