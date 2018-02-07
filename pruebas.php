@@ -54,7 +54,12 @@ echo str_pad(2, 5, 0, STR_PAD_LEFT);
 //print_r(Role::getRolePerms(1));
 //$s = new Role();
 $s = Role::getRolePerms(1);
-if($s->hasPerm('EMP_VER')) echo 'tiene permiso';
+//if($s->hasPerm('EMP_VER')) echo 'tiene permiso';
+//else echo 'no tiene permiso';
+
+
+$pu = new PrivilegedUser(2);
+if($pu->hasPrivilege('EMP_VER')) echo 'tiene permiso';
 else echo 'no tiene permiso';
 ?>
 
