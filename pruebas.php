@@ -51,7 +51,11 @@ echo str_pad(2, 5, 0, STR_PAD_LEFT);
 *********** pruebas de seguridad ***************************
 <?php
 
-print_r(Role::getRolePerms(1));
+//print_r(Role::getRolePerms(1));
+//$s = new Role();
+$s = Role::getRolePerms(1);
+if($s->hasPerm('EMP_VER')) echo 'tiene permiso';
+else echo 'no tiene permiso';
 ?>
 
 
