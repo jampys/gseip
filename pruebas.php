@@ -51,7 +51,7 @@ echo str_pad(2, 5, 0, STR_PAD_LEFT);
 *********** pruebas de seguridad ***************************
 <?php
 
-$s = new Role();
+print_r(Role::getRolePerms(1));
 ?>
 
 

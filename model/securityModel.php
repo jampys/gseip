@@ -23,11 +23,7 @@ class Role
         $stmt->dpExecute();
         $rows = $stmt->dpFetchAll();
 
-        /*while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
-            $role->permissions[$row["perm_desc"]] = true;
-        }
-        return $role;*/
-
+        
         foreach($rows as $row) {
             $role->permissions[$row["code"]] = true;
         }
