@@ -5,6 +5,8 @@ include_once("config/soporte.php");
 include_once("model/empleadosModel.php");
 include_once("model/localidadesModel.php");
 
+include_once("model/securityModel.php");
+
 
 
 $stmt=new sQuery();
@@ -43,6 +45,16 @@ print_r( Soporte::getPeriodos(2015, 2017));
 
 echo str_pad(2, 5, 0, STR_PAD_LEFT);
 ?>
+
+
+<br/>
+*********** pruebas de seguridad ***************************
+<?php
+
+$s = new Role();
+?>
+
+
 
 
 
