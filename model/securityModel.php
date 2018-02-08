@@ -46,46 +46,46 @@ class Role
     }
 
 
-    public static function getRolePrivileges($role_id, $id_domain) { //obtengo todos los privilegios del rol
+    public static function getRolePrivileges($role_id) { //obtengo todos los privilegios del rol
         $role = new Role();
 
         $stmt=new sQuery();
-        /*$query="select sp.code, srp.id_privilege
+        $query="select sp.code, srp.id_privilege, srp.id_domain
                 from sec_role_privilege srp, sec_privileges sp
                 where srp.id_privilege = sp.id_privilege
-                and srp.id_role = :id_role"; */
-        $query = "select * -- sp.code, srp.id_privilege
-                from sec_role_privilege srp, sec_privileges sp
-                where srp.id_privilege = sp.id_privilege
-                and srp.id_role = :id_role
-                -- seguridad domain --
-                and (1 = :id_domain -- 1 (dominio accesible por todos) = dominio del objeto
-                    or 1 = srp.id_domain -- 1 (dominio accesible por todos) = dominio del privilegio
-                    or srp.id_domain = :id_domain -- srp.id_domain (dominio del privilegio) = dominio del objeto
-                    )";
+                and srp.id_role = :id_role";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_role', $role_id);
-        $stmt->dpBind(':id_domain', $id_domain);
         $stmt->dpExecute();
         $rows = $stmt->dpFetchAll();
 
 
         foreach($rows as $row) {
             //$role->permissions[$row["code"]] = true;
-            $role->privileges[$row["code"]] = Privilege::getPrivilegeActions($row["id_privilege"]);
+            //$role->privileges[$row["code"]] = Privilege::getPrivilegeActions($row["id_privilege"]);
+            $role->privileges[$row["code"]] = array('privilege'=>Privilege::getPrivilegeActions($row["id_privilege"]), 'domain'=>$row["id_domain"]);
         }
         return $role;
     }
 
 
-    public function hasPrivilege($privilege) { // check if a permission is set
-        return isset($this->privileges[$privilege]);
+    public function hasPrivilege($privilege, $object_domain) { // check if a permission is set
+        return isset($this->privileges[$privilege]) &&
+                                                        ($object_domain == 1
+                                                            || $this->privileges[$privilege]['domain'] == $object_domain
+                                                            || $this->privileges[$privilege]['domain'] == 1
+                                                        );
     }
 
-    public function hasAction($action) {
+
+    public function hasAction($action, $object_domain) {
         foreach ($this->privileges as $privilege) {
-            if ($privilege->hasAction($action)) {
+            if ($privilege['privilege']->hasAction($action)  &&
+                                                                ($object_domain == 1
+                                                                    || $privilege['domain'] == $object_domain
+                                                                    || $privilege['domain'] == 1
+                                                                )) {
                 return true;
             }
         }
@@ -100,11 +100,9 @@ class PrivilegedUser
 {
     private $roles;
     private $id_user;
-    private $id_domain;
 
-    public function __construct($id_user, $id_domain) {
+    public function __construct($id_user) {
         $this->id_user = $id_user;
-        $this->id_domain = $id_domain;
         $this->initRoles();
     }
 
@@ -122,14 +120,14 @@ class PrivilegedUser
         $rows = $stmt->dpFetchAll();
 
         foreach($rows as $row) {
-            $this->roles[$row["role_name"]] = Role::getRolePrivileges($row["id_role"], $this->id_domain );
+            $this->roles[$row["role_name"]] = Role::getRolePrivileges($row["id_role"]);
         }
     }
 
 
-    public function hasPrivilege($privilege) { // check if user has a specific privilege
+    public function hasPrivilege($privilege, $domain) { // check if user has a specific privilege
         foreach ($this->roles as $role) {
-            if ($role->hasPrivilege($privilege)) {
+            if ($role->hasPrivilege($privilege, $domain)) {
                 return true;
             }
         }
@@ -138,9 +136,9 @@ class PrivilegedUser
 
 
 
-    public function hasAction($action) { //chequea si el usuario tiene una accion especifica
+    public function hasAction($action, $domain) { //chequea si el usuario tiene una accion especifica
         foreach ($this->roles as $role) {
-            if ($role->hasAction($action)) {
+            if ($role->hasAction($action, $domain)) {
                 return true;
             }
         }
