@@ -116,6 +116,7 @@
 <div class="col-md-6">
 
 
+<fieldset disabled>
 <div class="panel panel-default ">
     <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
 
@@ -393,6 +394,7 @@
 
 
 </div>
+</fieldset>
 
 
 
