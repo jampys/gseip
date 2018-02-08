@@ -46,17 +46,27 @@ class Role
     }
 
 
-    public static function getRolePrivileges($role_id) { //obtengo todos los privilegios del rol
+    public static function getRolePrivileges($role_id, $id_domain) { //obtengo todos los privilegios del rol
         $role = new Role();
 
         $stmt=new sQuery();
-        $query="select sp.code, srp.id_privilege
+        /*$query="select sp.code, srp.id_privilege
                 from sec_role_privilege srp, sec_privileges sp
                 where srp.id_privilege = sp.id_privilege
-                and srp.id_role = :id_role";
+                and srp.id_role = :id_role"; */
+        $query = "select * -- sp.code, srp.id_privilege
+                from sec_role_privilege srp, sec_privileges sp
+                where srp.id_privilege = sp.id_privilege
+                and srp.id_role = :id_role
+                -- seguridad domain --
+                and (1 = :id_domain -- 1 (dominio accesible por todos) = dominio del objeto
+                    or 1 = srp.id_domain -- 1 (dominio accesible por todos) = dominio del privilegio
+                    or srp.id_domain = :id_domain -- srp.id_domain (dominio del privilegio) = dominio del objeto
+                    )";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_role', $role_id);
+        $stmt->dpBind(':id_domain', $id_domain);
         $stmt->dpExecute();
         $rows = $stmt->dpFetchAll();
 
@@ -90,9 +100,11 @@ class PrivilegedUser
 {
     private $roles;
     private $id_user;
+    private $id_domain;
 
-    public function __construct($id_user) {
+    public function __construct($id_user, $id_domain) {
         $this->id_user = $id_user;
+        $this->id_domain = $id_domain;
         $this->initRoles();
     }
 
@@ -110,7 +122,7 @@ class PrivilegedUser
         $rows = $stmt->dpFetchAll();
 
         foreach($rows as $row) {
-            $this->roles[$row["role_name"]] = Role::getRolePrivileges($row["id_role"]);
+            $this->roles[$row["role_name"]] = Role::getRolePrivileges($row["id_role"], $this->id_domain );
         }
     }
 

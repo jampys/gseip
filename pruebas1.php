@@ -19,15 +19,16 @@ include_once("model/securityModel2.php");
 //if($s->hasPerm('EMP_VER')) echo 'tiene permiso';
 //else echo 'no tiene permiso';
 
-
-$pu = new PrivilegedUser(1); //2: administrador, 1: RT
-if($pu->hasPrivilege('RPE_ABM')) echo 'tiene privilegio';
-else echo 'no tiene privilegio';
+// pruebas sobre PrivilegedUser y Role
+//$pu = new PrivilegedUser(1, 5); //id_usuario 1:RT 2:administrador, id_dominio: 1:SEIP, 2:YPF GASMED
+//if($pu->hasPrivilege('RPE_VER')) echo 'tiene privilegio';
+//else echo 'no tiene privilegio';
 ?>
 <br/>
 
 <?php
-$pa = new PrivilegedUser(1);
+// pruebas sobre PrivilegedUser, Role y Privilege
+$pa = new PrivilegedUser(2, 1);
 if($pa->hasAction('RPE_SELECT')) echo 'tiene accion';
 else echo 'no tiene accion';
 ?>
