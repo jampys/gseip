@@ -10,14 +10,14 @@ class Privilege
     }
 
 
-    public static function getPrivilegeActions($privilege_id) { //obtengo todas las acciones de un privilegio
+    public static function getPrivilegeActions($privilege_id) { //obtiene todas las acciones de un privilegio
         $privilege = new Privilege();
 
         $stmt=new sQuery();
         $query="select *
-from sec_privilege_action spa, sec_actions sa
-where spa.id_action = sa.id_action
-and spa.id_privilege = :id_privilege";
+                from sec_privilege_action spa, sec_actions sa
+                where spa.id_action = sa.id_action
+                and spa.id_privilege = :id_privilege";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_privilege', $privilege_id);
@@ -31,22 +31,22 @@ and spa.id_privilege = :id_privilege";
         return $privilege;
     }
 
-    // check if a permission is set
-    public function hasPerm($permission) {
-        return isset($this->actions[$permission]);
+
+    public function hasAction($Action) { // check if a permission is set
+        return isset($this->actions[$Action]);
     }
 }
 
 class Role
 {
-    protected $permissions;
+    protected $privileges;
 
     protected function __construct() {
-        $this->permissions = array();
+        $this->privileges = array();
     }
 
 
-    public static function getRolePerms($role_id) { //obtengo todos los privilegios del rol
+    public static function getRolePrivileges($role_id) { //obtengo todos los privilegios del rol
         $role = new Role();
 
         $stmt=new sQuery();
@@ -63,19 +63,19 @@ class Role
 
         foreach($rows as $row) {
             //$role->permissions[$row["code"]] = true;
-            $role->permissions[$row["code"]] = Privilege::getPrivilegeActions($row["id_privilege"]);
+            $role->privileges[$row["code"]] = Privilege::getPrivilegeActions($row["id_privilege"]);
         }
         return $role;
     }
 
-    // check if a permission is set
-    public function hasPerm($permission) {
-        return isset($this->permissions[$permission]);
+
+    public function hasPrivilege($privilege) { // check if a permission is set
+        return isset($this->privileges[$privilege]);
     }
 
-    public function hasNenucos($perm) {
-        foreach ($this->permissions as $role) {
-            if ($role->hasPerm($perm)) {
+    public function hasAction($action) {
+        foreach ($this->privileges as $privilege) {
+            if ($privilege->hasAction($action)) {
                 return true;
             }
         }
@@ -92,14 +92,12 @@ class PrivilegedUser
     private $id_user;
 
     public function __construct($id_user) {
-        //parent::__construct();
         $this->id_user = $id_user;
         $this->initRoles();
     }
 
 
-    // populate roles with their associated permissions
-    protected function initRoles() {
+    protected function initRoles() { // populate roles with their associated permissions
 
         $stmt=new sQuery();
         $query="select id_user, id_role
@@ -112,14 +110,14 @@ class PrivilegedUser
         $rows = $stmt->dpFetchAll();
 
         foreach($rows as $row) {
-            $this->roles[$row["role_name"]] = Role::getRolePerms($row["id_role"]);
+            $this->roles[$row["role_name"]] = Role::getRolePrivileges($row["id_role"]);
         }
     }
 
-    // check if user has a specific privilege
-    public function hasPrivilege($perm) {
+
+    public function hasPrivilege($privilege) { // check if user has a specific privilege
         foreach ($this->roles as $role) {
-            if ($role->hasPerm($perm)) {
+            if ($role->hasPrivilege($privilege)) {
                 return true;
             }
         }
@@ -127,27 +125,10 @@ class PrivilegedUser
     }
 
 
-    /*public function hasAction($perm) {
+
+    public function hasAction($action) { //chequea si el usuario tiene una accion especifica
         foreach ($this->roles as $role) {
-
-            print_r($role);
-
-            foreach ($role as $privilege) {
-
-
-                if ($privilege->hasPerm($perm)) {
-                    return true;
-                }
-
-            }
-
-        }
-        return false;
-    }*/
-
-    public function hasAction($perm) {
-        foreach ($this->roles as $role) {
-            if ($role->hasNenucos($perm)) {
+            if ($role->hasAction($action)) {
                 return true;
             }
         }
