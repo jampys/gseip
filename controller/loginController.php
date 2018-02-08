@@ -1,7 +1,6 @@
 <?php
 
 require_once("model/usuariosModel.php");
-require_once("model/securityModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
