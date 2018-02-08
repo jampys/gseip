@@ -29,7 +29,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
-                            <li><a href="index.php?action=empleados">Empleados</a></li>
+                            <?php if ( 1==1  /*$obj = unserialize($_SESSION['loggedUser'])->hasPrivilege('RPE_VER', 1) */  ) { ?>
+                                <li><a href="index.php?action=empleados">Empleados</a></li>
+                            <?php } ?>
+
                             <li><a href="index.php?action=puestos">Puestos</a></li>
                             <li><a href="index.php?action=contratos">Contratos</a></li>
                             <li><a href="#">Organigrama</a></li>

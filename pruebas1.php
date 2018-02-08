@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 include_once("config/config.php");
 include_once("config/soporte.php");
@@ -24,14 +25,30 @@ include_once("model/securityModel.php");
 //if($pu->hasPrivilege('RPE_VER', 1)) echo 'tiene privilegio';
 //else echo 'no tiene privilegio';
 ?>
-<br/>
+
 
 <?php
 // pruebas sobre PrivilegedUser, Role y Privilege
 $pa = new PrivilegedUser(1);
-if($pa->hasAction('RPE_INSERT', 5)) echo 'tiene accion';
+if($pa->hasAction('RPE_SELECT', 2)) echo 'tiene accion';
 else echo 'no tiene accion';
 ?>
+
+
+<br/>
+<br/>
+*********** pruebas objeto serializable ************************
+<?php
+$obj = new PrivilegedUser(2);
+$_SESSION['loggedUser'] = serialize($obj);
+
+//if( $obj->hasPrivilege('EMP_VER', 1) )echo 'que culo';
+
+
+if ( $obj = unserialize($_SESSION['loggedUser'])->hasPrivilege('RPE_VER', 1)   ) { ?>
+<li><a href="index.php?action=empleados">Empleados</a></li>
+
+<?php } ?>
 
 
 

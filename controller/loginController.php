@@ -1,9 +1,12 @@
 <?php
 
+require_once("model/usuariosModel.php");
+require_once("model/securityModel.php");
+
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
 
-require_once("model/usuariosModel.php");
+
 $view->u=new Usuario();
 
 switch($operation){
@@ -17,6 +20,10 @@ switch($operation){
             if($id >= 1){
                 $_SESSION["id_usuario"] = $view->u->getIdUser(); //$id;
                 $_SESSION["usuario"] = $view->u->getUser(); //$_POST['usuario'];
+
+                $obj = new PrivilegedUser($_SESSION["id_usuario"]);
+                $_SESSION['loggedUser'] = serialize($obj);
+
                 $e = array();
                 $e['id'] = $id;
                 /*if($id[5]!=1) { //si se ha limpiado el password  hay que cambiarlo...
