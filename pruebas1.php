@@ -5,7 +5,7 @@ include_once("config/soporte.php");
 include_once("model/empleadosModel.php");
 include_once("model/localidadesModel.php");
 
-include_once("model/securityModel2.php");
+include_once("model/securityModel.php");
 ?>
 
 
