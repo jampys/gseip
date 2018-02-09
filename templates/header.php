@@ -29,7 +29,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
-                            <?php if ( $obj = unserialize($_SESSION['loggedUser'])->hasPrivilege('EMP_VER', 1) ) { ?>
+                            <?php if ( $obj = unserialize($_SESSION['loggedUser'])->hasPrivilege('EMP_VER', array(1)) ) { ?>
                                 <li><a href="index.php?action=empleados">Empleados</a></li>
                             <?php } ?>
 
