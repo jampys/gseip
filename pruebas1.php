@@ -50,6 +50,13 @@ if ( $obj = unserialize($_SESSION['loggedUser'])->hasPrivilege('RPE_VER', 1)   )
 
 <?php } ?>
 
+<br/>
+<br/>
+*********** array en php ************************
+<?php
+$arr = array(1,2);
+foreach ($arr as $a) echo $a;
+?>
 
 
 
