@@ -125,25 +125,50 @@ class PrivilegedUser
     }
 
 
-    public function hasPrivilege($privilege, $domain) { // check if user has a specific privilege
+    /*public function hasPrivilege($privilege, $domain) { // check if user has a specific privilege
         foreach ($this->roles as $role) {
             if ($role->hasPrivilege($privilege, $domain)) {
                 return true;
             }
         }
         return false;
+    }*/
+
+    /*Recibe como argumentos el privilegio, por ej: 'VER_EMP' y un array con el dominio (o los multiples dominios) que tiene el objeto*/
+    public function hasPrivilege($privilege, $domains) {
+        foreach ($this->roles as $role) {
+            foreach($domains as $domain){
+                if ($role->hasPrivilege($privilege, $domain)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 
-
-    public function hasAction($action, $domain) { //chequea si el usuario tiene una accion especifica
+    /*public function hasAction($action, $domain) { //chequea si el usuario tiene una accion especifica
         foreach ($this->roles as $role) {
             if ($role->hasAction($action, $domain)) {
                 return true;
             }
         }
         return false;
+    }*/
+
+    public function hasAction($action, $domains) {
+        foreach ($this->roles as $role) {
+            foreach ($domains as $domain){
+                if ($role->hasAction($action, $domain)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
+
+
+
 
 
 }
