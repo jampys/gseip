@@ -106,6 +106,16 @@ class PrivilegedUser
         $this->initRoles();
     }
 
+    public static function dhasPrivilege($privilege, $domains){
+        $obj = unserialize($_SESSION['loggedUser'])->hasPrivilege($privilege, $domains);
+        return $obj;
+    }
+
+    public static function dhasAction($action, $domains){
+        $obj = unserialize($_SESSION['loggedUser'])->hasAction($action, $domains);
+        return $obj;
+    }
+
 
     protected function initRoles() { // populate roles with their associated permissions
 
