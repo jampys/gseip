@@ -78,7 +78,8 @@ class Empleado
     { return $this->empresa;}
 
     function getDomain()
-    { return $this->domain;}
+    { return   explode(',',$this->domain);//$this->domain; 
+    }
 
     //SETTERS
     function setIdEmpleado($val)
