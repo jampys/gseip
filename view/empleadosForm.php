@@ -116,7 +116,7 @@
 <div class="col-md-6">
 
 
-<fieldset <?php echo ( PrivilegedUser::dhasPrivilege('EMP_VERs', array(1)) )? '' : 'disabled' ?>>
+<fieldset <?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', $view->empleado->getDomain()) )? '' : 'disabled' ?>>
 <div class="panel panel-default ">
     <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
 
