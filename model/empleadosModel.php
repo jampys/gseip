@@ -20,6 +20,7 @@ class Empleado
     private $estado_civil;
     private $cpa;
     private $empresa;
+    private $domain;
 
     //GETTERS
     function getIdEmpleado()
@@ -76,6 +77,9 @@ class Empleado
     function getEmpresa()
     { return $this->empresa;}
 
+    function getDomain()
+    { return $this->domain;}
+
     //SETTERS
     function setIdEmpleado($val)
     { $this->id_empleado=$val;}
@@ -131,6 +135,9 @@ class Empleado
     function setEmpresa($val)
     { $this->empresa=$val;}
 
+    function setDomain($val)
+    { $this->domain=$val;}
+
 
 
     function Empleado($id_empleado = 0){ //constructor
@@ -171,6 +178,7 @@ class Empleado
             $this->setNacionalidad($rows[0]['nacionalidad']);
             $this->setEstadoCivil($rows[0]['estado_civil']);
             $this->setEmpresa($rows[0]['empresa']);
+            $this->setDomain($rows[0]['domain']);
 
         }
     }
