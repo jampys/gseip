@@ -4,7 +4,7 @@ require_once("config/config.php");
 require_once("config/soporte.php");
 require_once("model/securityModel.php");
 
-if(isset($_SESSION["id_usuario"])){
+if(isset($_SESSION["id_user"])){
 
 
     if(!empty($_REQUEST["action"])){

@@ -185,7 +185,7 @@ class Empleado
                       em.telefono, em.email, em.empresa,
                       em.sexo, em.nacionalidad, em.estado_civil, em.CPA,
                       loc.ciudad
-                      from empleados em, domicilios_particulares dp, localidades loc
+                      from v_sec_empleados em, domicilios_particulares dp, localidades loc
                       where em.id_empleado = dp.id_empleado
                       and dp.fecha_hasta is null
                       and dp.id_localidad = loc.id_localidad";
