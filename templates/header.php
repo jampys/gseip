@@ -29,11 +29,14 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
-                            <?php if ( PrivilegedUser::dhasPrivilege('EMP_VER', array(1)) ) { ?>
+                            <?php if ( PrivilegedUser::dhasPrivilege('EMP_VER', 0) ) { ?>
                                 <li><a href="index.php?action=empleados">Empleados</a></li>
                             <?php } ?>
 
-                            <li><a href="index.php?action=puestos">Puestos</a></li>
+                            <?php if ( PrivilegedUser::dhasPrivilege('PUE_VER', 0) ) { ?>
+                                <li><a href="index.php?action=puestos">Puestos</a></li>
+                            <?php } ?>
+
                             <li><a href="index.php?action=contratos">Contratos</a></li>
                             <li><a href="#">Organigrama</a></li>
 

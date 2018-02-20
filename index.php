@@ -2,7 +2,7 @@
 session_start();
 require_once("config/config.php");
 require_once("config/soporte.php");
-require_once("model/securityModel.php");
+require_once("model/securityModel2.php");
 
 if(isset($_SESSION["id_user"])){
 

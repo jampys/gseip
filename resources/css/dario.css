@@ -130,3 +130,16 @@ input[readonly]{
     background-color:transparent !important;
 }
 
+
+
+/* deshabilita los links de las grillas
+https://discourse.wicg.io/t/adding-a-disabled-attribute-to-a-s/1116
+*/
+a.disabled {
+    /*pointer-events: none; */
+    cursor: not-allowed;
+    opacity: 0.30;
+}
+/*a.disabled .glyphicon {
+    opacity: 0.25;
+}*/

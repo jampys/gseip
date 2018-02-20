@@ -78,7 +78,7 @@ class Empleado
     { return $this->empresa;}
 
     function getDomain()
-    { return   explode(',',$this->domain);//$this->domain; 
+    { return $this->domain;    //explode(',',$this->domain);//$this->domain;
     }
 
     //SETTERS
@@ -152,7 +152,7 @@ class Empleado
                     DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
                     em.telefono, em.email, em.empresa,
                     em.sexo, em.nacionalidad, em.estado_civil,
-                    dp.direccion, dp.id_localidad, domain
+                    dp.direccion, dp.id_localidad, id_object
                     from v_sec_empleados em, domicilios_particulares dp
                     where em.id_empleado = dp.id_empleado
                     and dp.fecha_hasta is null
@@ -179,7 +179,7 @@ class Empleado
             $this->setNacionalidad($rows[0]['nacionalidad']);
             $this->setEstadoCivil($rows[0]['estado_civil']);
             $this->setEmpresa($rows[0]['empresa']);
-            $this->setDomain($rows[0]['domain']);
+            $this->setDomain($rows[0]['id_object']);
 
         }
     }
