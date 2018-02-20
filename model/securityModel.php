@@ -53,7 +53,8 @@ class Role
         $query="select sp.code, srp.id_privilege, srp.id_domain
                 from sec_role_privilege srp, sec_privileges sp
                 where srp.id_privilege = sp.id_privilege
-                and srp.id_role = :id_role";
+                and srp.id_role = :id_role
+                and srp.is_allowed = 1";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_role', $role_id);
@@ -151,6 +152,9 @@ and sur.id_user = :id_user";
 
     /*Recibe como argumentos el privilegio, por ej: 'VER_EMP' y un array con el dominio (o los multiples dominios) que tiene el objeto*/
     public function hasPrivilege($privilege, $domains) {
+
+        if(sizeof($this->roles)== 0) return false; //Si el usuario aun no tiene cargados roles
+
         foreach ($this->roles as $role) {
             foreach($domains as $domain){
                 if ($role->hasPrivilege($privilege, $domain)) {
@@ -172,6 +176,9 @@ and sur.id_user = :id_user";
     }*/
 
     public function hasAction($action, $domains) {
+
+        if(sizeof($this->roles)== 0) return false; //Si el usuario aun no tiene cargados roles
+
         foreach ($this->roles as $role) {
             foreach ($domains as $domain){
                 if ($role->hasAction($action, $domain)) {

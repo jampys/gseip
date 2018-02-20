@@ -36,7 +36,7 @@
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
-        <button  id="new" type="button" class="btn btn-primary btn-sm">Nuevo Puesto</button>
+        <button  id="new" type="button" class="btn btn-primary btn-sm" <?php echo ( PrivilegedUser::dhasAction('PUE_INSERT', array(1)) )? '' : 'disabled' ?> >Nuevo Puesto</button>
     </div>
 
     <div class="table-responsive">
@@ -61,7 +61,7 @@
                     <td><?php echo $puesto['area'];?></td>
                     <td><?php echo $puesto['nivel_competencia'];?></td>
                     <td><?php echo $puesto['nombre_superior'];?></td>
-                    <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('PUE_UPDATE', array(2)))? 'edit' : 'disabled'; ?>" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
                     <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('PUE_DELETE', array(2)))? 'delete' : 'disabled'; ?>" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
