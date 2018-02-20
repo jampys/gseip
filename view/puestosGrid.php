@@ -7,11 +7,13 @@
             /*language: {
                 url: 'dataTables/Spanish.json'
             }*/
-            "stateSave": true
+            "stateSave": true,
             /*columnDefs: [
                         {targets: 1, render: $.fn.dataTable.render.ellipsis( 20)}
 
                         ]*/
+            "fnInitComplete": function () {
+                $(this).show(); }
         });
 
 
@@ -39,7 +41,7 @@
 
     <div class="table-responsive">
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
+        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Cod.</th>
@@ -59,8 +61,8 @@
                     <td><?php echo $puesto['area'];?></td>
                     <td><?php echo $puesto['nivel_competencia'];?></td>
                     <td><?php echo $puesto['nombre_superior'];?></td>
-                    <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('PUE_UPDATE', 0))? 'edit' : 'disabled'; ?>" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('PUE_DELETE', 0))? 'delete' : 'disabled'; ?>" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('PUE_UPDATE', array(2)))? 'edit' : 'disabled'; ?>" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('PUE_DELETE', array(2)))? 'delete' : 'disabled'; ?>" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

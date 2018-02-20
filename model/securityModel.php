@@ -112,6 +112,7 @@ class PrivilegedUser
     }
 
     public static function dhasAction($action, $domains){
+        //print_r($domains);
         $obj = unserialize($_SESSION['loggedUser'])->hasAction($action, $domains);
         return $obj;
     }
@@ -120,9 +121,13 @@ class PrivilegedUser
     protected function initRoles() { // populate roles with their associated permissions
 
         $stmt=new sQuery();
-        $query="select id_user, id_role
+        /*$query="select id_user, id_role
                 from sec_user_role sur
-                where id_user = :id_user";
+                where id_user = :id_user"; */
+        $query = "select sur.id_user, sur.id_role, sr.nombre as role_name
+from sec_user_role sur, sec_roles sr
+where sur.id_role = sr.id_role
+and sur.id_user = :id_user";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_user', $this->id_user);
