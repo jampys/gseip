@@ -82,15 +82,18 @@ class Role
 
 
     public function hasAction($action, $object_domain) {
-        print_r($this->privileges);
+        //print_r($this->privileges);
         foreach ($this->privileges as $privilege) {
-            if ($privilege->hasAction($action)  && $this->hasPrivilege($privilege, $object_domain)){
-                                                                /*($object_domain == 1
-                                                                    || $privilege['domain'] == $object_domain
-                                                                    || $privilege['domain'] == 1
-                                                                )) { */
-                return true;
-            }
+            //print_r($privilege).'<br/>';
+            foreach($privilege as $item) //print_r($item).'<br/>';
+                //if ($item->hasAction($action) && $this->hasPrivilege($privilege, $object_domain)) {
+                //print_r($item);
+                echo gettype($item);
+                echo '<br/>';
+                if ($item->hasAction($action)) {
+                    return true;
+                }
+
         }
         return false;
     }
