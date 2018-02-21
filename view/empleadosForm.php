@@ -116,14 +116,20 @@
 <div class="col-md-6">
 
 
-<fieldset <?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', $view->empleado->getDomain()) )? '' : 'disabled' ?>>
+
 <div class="panel panel-default ">
-    <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
 
+    <div class="panel-heading">
+        <h4 class="pull-left"><span>Editar empleado</span></h4>
+
+        <a id="back" class="pull-right" href="#"><i class="fas fa-arrow-left fa-fw"></i>&nbsp;Volver </a>
+        <div class="clearfix"></div>
+
+    </div>
+
+
+    <fieldset <?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', $view->empleado->getDomain()) )? '' : 'disabled' ?>>
     <div class="panel-body">
-
-
-
 
     <form class="form-horizontal" name ="empleado-form" id="empleado-form" method="POST" action="index.php">
     <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
