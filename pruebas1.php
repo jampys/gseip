@@ -33,8 +33,8 @@ foreach ($arr as $a) echo 'elemento: '.$a.'<br/>';
 
 <?php
 // pruebas sobre PrivilegedUser y Role
-$pu = new PrivilegedUser(1); //id_usuario 1:RT 2:administrador, id_dominio: 1:SEIP, 2:YPF GASMED
-if($pu->hasAction('EMP_INSERT', array(1, 2) )) echo 'tiene accion';
+$pu = new PrivilegedUser(3); //id_usuario 1:RT 2:administrador, id_dominio: 1:SEIP, 2:YPF GASMED
+if($pu->hasAction('EMP_INSERT', array(6, 3) )) echo 'tiene accion';
 else echo 'no tiene accion';
 ?>
 

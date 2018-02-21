@@ -73,9 +73,9 @@ class Role
 
 
     public function hasPrivilege($privilege, $object_domain) {
-        return (isset($this->privileges[$privilege][$object_domain])
-                || isset($this->privileges[$privilege]) && $object_domain == 1
-                || isset($this->privileges[$privilege][1])
+        return (isset($this->privileges[$privilege][$object_domain]) //existe el privilegio para ese dominio
+                || isset($this->privileges[$privilege]) && $object_domain == 1 //existe el privilegio y el objeto puede ser accedido por todos
+                || isset($this->privileges[$privilege][1]) // el usuario tiene privilegio 1 para acceder a toda la cia
         );
 
     }
@@ -83,14 +83,16 @@ class Role
 
     public function hasAction($action, $object_domain) {
         //print_r($this->privileges);
-        foreach ($this->privileges as $privilege) {
-            //print_r($privilege).'<br/>';
+        foreach ($this->privileges as $key=>$privilege) {
+            //print_r($privilege);
+            //echo $key;
+            //echo '<br/>';
             foreach($privilege as $item) //print_r($item).'<br/>';
-                //if ($item->hasAction($action) && $this->hasPrivilege($privilege, $object_domain)) {
                 //print_r($item);
-                echo gettype($item);
-                echo '<br/>';
-                if ($item->hasAction($action)) {
+                //echo gettype($item);
+                //echo '<br/>';
+                // $key guarda la clave del array (que contiene el code del privilege)
+                if ($item->hasAction($action) && $this->hasPrivilege($key, $object_domain)) {
                     return true;
                 }
 
