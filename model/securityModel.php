@@ -65,28 +65,30 @@ class Role
         foreach($rows as $row) {
             //$role->permissions[$row["code"]] = true;
             //$role->privileges[$row["code"]] = Privilege::getPrivilegeActions($row["id_privilege"]);
-            $role->privileges[$row["code"]] = array('privilege'=>Privilege::getPrivilegeActions($row["id_privilege"]), 'domain'=>$row["id_domain"]);
+            $role->privileges[$row["code"]][$row["id_domain"]] = Privilege::getPrivilegeActions($row["id_privilege"]); //array('privilege'=>Privilege::getPrivilegeActions($row["id_privilege"]), 'domain'=>$row["id_domain"]);
         }
+        //print_r($role->privileges);
         return $role;
     }
 
 
-    public function hasPrivilege($privilege, $object_domain) { // check if a permission is set
-        return isset($this->privileges[$privilege]) &&
-                                                        ($object_domain == 1
-                                                            || $this->privileges[$privilege]['domain'] == $object_domain
-                                                            || $this->privileges[$privilege]['domain'] == 1
-                                                        );
+    public function hasPrivilege($privilege, $object_domain) {
+        return (isset($this->privileges[$privilege][$object_domain])
+                || isset($this->privileges[$privilege]) && $object_domain == 1
+                || isset($this->privileges[$privilege][1])
+        );
+
     }
 
 
     public function hasAction($action, $object_domain) {
+        print_r($this->privileges);
         foreach ($this->privileges as $privilege) {
-            if ($privilege['privilege']->hasAction($action)  &&
-                                                                ($object_domain == 1
+            if ($privilege->hasAction($action)  && $this->hasPrivilege($privilege, $object_domain)){
+                                                                /*($object_domain == 1
                                                                     || $privilege['domain'] == $object_domain
                                                                     || $privilege['domain'] == 1
-                                                                )) {
+                                                                )) { */
                 return true;
             }
         }
