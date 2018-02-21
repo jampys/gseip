@@ -55,9 +55,10 @@
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
                             <li><a href="#" style="cursor: not-allowed">Plan de capacitación <span class="text-muted"><small> [En construcción]</small></span></a></li>
-                            <li><a href="#">Capacitaciones</a></li>
-                            <li><a href="#">Cursos</a></li>
-                            <li><a href="#">Estadísticas</a></li>
+                            <!--<li><a href="#">Capacitaciones</a></li>-->
+                            <li><a href="#" style="cursor: not-allowed">Capacitaciones <span class="text-muted"><small> [En construcción]</small></span></a></li>
+                            <li><a href="#" style="cursor: not-allowed">Cursos <span class="text-muted"><small> [En construcción]</small></span></a></li>
+                            <li><a href="#" style="cursor: not-allowed">Estadísticas <span class="text-muted"><small> [En construcción]</small></span></a></li>
                         </ul>
                     </li>
 
@@ -65,7 +66,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desarrollo<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Plan de evaluación</a></li>
+                            <li><a href="#" style="cursor: not-allowed">Plan de evaluación <span class="text-muted"><small> [En construcción]</small></span></a></li>
                             <li><a href="index.php?action=objetivos">Objetivos</a></li>
                             <li><a href="index.php?action=evaluaciones">Evaluaciones</a></li>
                         </ul>
@@ -76,7 +77,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Selección<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
-                            <li><a href="#">Registros</a></li>
+                            <li><a href="#" style="cursor: not-allowed">Registros <span class="text-muted"><small> [En construcción]</small></span></a></li>
+
                         </ul>
                     </li>
 
@@ -91,8 +93,9 @@
                             <li role="separator" class="divider"></li>
 
                             <li class="dropdown-header">VEHICULAR</li>
-                            <li><a href="index.php?action="><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos</a></li>
-                            <li><a href="index.php?action="><i class="far fa-calendar-check fa-fw"></i>&nbsp;Renovaciones</a></li>
+                            <!--<li><a href="index.php?action="><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos</a></li>-->
+                            <li><a href="index.php?action=" style="cursor: not-allowed"><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos <span class="text-muted"><small> [En construcción]</small></span></a>
+                            <li><a href="index.php?action=" style="cursor: not-allowed"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Renovaciones <span class="text-muted"><small> [En construcción]</small></span></a></li>
 
                         </ul>
                     </li>
