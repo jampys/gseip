@@ -13,9 +13,15 @@ include_once("model/securityModel.php");
 *********** array en php ************************
 <br/>
 <?php
-$str = '1,2,3';
-$arr = explode(',',$str);
-foreach ($arr as $a) echo 'elemento: '.$a.'<br/>';
+$a = array();
+$a ['VER_EMP']['1']= 15;
+$a ['VER_EMP']['2']= 96;
+$a ['UPDATE_EMP']['2']= 10;
+
+print_r($a);
+
+
+
 ?>
 
 <br/>
