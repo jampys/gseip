@@ -54,7 +54,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Capacitación<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
-                            <li><a href="#">Plan de capacitación</a></li>
+                            <li><a href="#" style="cursor: not-allowed">Plan de capacitación <span class="text-muted"><small> [En construcción]</small></span></a></li>
                             <li><a href="#">Capacitaciones</a></li>
                             <li><a href="#">Cursos</a></li>
                             <li><a href="#">Estadísticas</a></li>
