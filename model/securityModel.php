@@ -108,10 +108,13 @@ class PrivilegedUser
 {
     private $roles;
     private $id_user;
+    private static $error_messages;
 
     public function __construct($id_user) {
         $this->id_user = $id_user;
         $this->initRoles();
+        self::$error_messages = array();
+        self::initErrorMessages();
     }
 
     public static function dhasPrivilege($privilege, $domains){
@@ -194,6 +197,34 @@ and sur.id_user = :id_user";
             }
         }
         return false;
+    }
+
+
+
+    private static function initErrorMessages() { // populate roles with their associated permissions
+
+        $stmt=new sQuery();
+        $query = "select 'ACTION' as type, code, msg_error
+from sec_actions
+UNION
+select 'PRIVILEGE' as type, code, msg_error
+from sec_privileges";
+
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_user', $this->id_user);
+        $stmt->dpExecute();
+        $rows = $stmt->dpFetchAll();
+
+        foreach($rows as $row) {
+            //$self->roles[$row["role_name"]] = Role::getRolePrivileges($row["id_role"]);
+            self::$error_messages[$row["type"]][$row["code"]] = $row["msg_error"];
+        }
+    }
+
+    public static function getErrorMessage($type, $code){
+        //print_r($domains);
+        //$obj = unserialize($_SESSION['loggedUser'])->hasAction($action, $domains);
+        return self::$error_messages[$type][$code];
     }
 
 

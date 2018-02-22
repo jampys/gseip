@@ -76,7 +76,7 @@ switch ($operation)
             $view->puestos = Puesto::getPuestos();
             $view->contentTemplate="view/puestosGrid.php";
         }else{
-            $_SESSION['error'] = 'No tiene permisos para visualizar puestos';
+            $_SESSION['error'] = PrivilegedUser::getErrorMessage('PRIVILEGE', 'EMP_VER');
             header("Location: index.php?action=error");
             exit;
         }

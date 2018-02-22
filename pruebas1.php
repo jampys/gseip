@@ -44,6 +44,16 @@ if($pu->hasAction('EMP_INSERT', array(6, 3) )) echo 'tiene accion';
 else echo 'no tiene accion';
 ?>
 
+<br/>
+<br/>
+*********** pruebas de mensajes de error ***************************
+<br/>
+
+<?php
+echo PrivilegedUser::getErrorMessage('PRIVILEGE', 'PUE_VER');
+
+
+?>
 
 
 
