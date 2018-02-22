@@ -72,8 +72,14 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->puestos = Puesto::getPuestos();
-        $view->contentTemplate="view/puestosGrid.php";
+        if ( PrivilegedUser::dhasPrivilege('PUE_VER', array(1)) ) {
+            $view->puestos = Puesto::getPuestos();
+            $view->contentTemplate="view/puestosGrid.php";
+        }else{
+            $_SESSION['error'] = 'No tiene permisos para visualizar puestos';
+            header("Location: index.php?action=error");
+            exit;
+        }
         break;
 }
 
