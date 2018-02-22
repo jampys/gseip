@@ -79,17 +79,18 @@
                         //alert(rta);
                         if(data >=0){
                             $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                            setTimeout(function() { $("#myElem").hide();
+                                //$('#popupbox').dialog('close');
+                                $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
+                            }, 2000);
 
                         }else{
-                            alert(xhr.responseText);
+                            //alert(xhr.responseText);
                             $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                         }
-                        setTimeout(function() { $("#myElem").hide();
-                                                //$('#popupbox').dialog('close');
-                                                $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
-                                              }, 2000);
 
-                    });
+
+                    }, "json");
 
                 }
                 return false;
