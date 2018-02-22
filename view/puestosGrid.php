@@ -81,7 +81,7 @@
         ¿Desea eliminar el puesto de trabajo?
     </div>
 
-    <div id="myElemento" style="display:none">
+    <div id="myElem" style="display:none">
 
     </div>
 

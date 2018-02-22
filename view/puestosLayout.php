@@ -117,16 +117,16 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Puesto eliminado con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Puesto eliminado con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"puestos", operation: "refreshGrid"});
+                        setTimeout(function() { $("#myElem").hide();
+                            $('#confirm').dialog('close');
+                        }, 2000);
                     }else{
-                        $("#myElemento").html('Error al eliminar el puesto').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al eliminar el puesto').addClass('alert alert-danger').show();
                     }
-                    setTimeout(function() { $("#myElemento").hide();
-                                            $('#confirm').dialog('close');
-                                          }, 2000);
 
-                });
+                }, "post");
 
             };
 
