@@ -108,13 +108,13 @@ class PrivilegedUser
 {
     private $roles;
     private $id_user;
-    private static $error_messages;
+    private $error_messages;
 
     public function __construct($id_user) {
         $this->id_user = $id_user;
         $this->initRoles();
-        self::$error_messages = array();
-        self::initErrorMessages();
+        //self::$error_messages = array();
+        $this->initErrorMessages();
     }
 
     public static function dhasPrivilege($privilege, $domains){
@@ -125,6 +125,12 @@ class PrivilegedUser
     public static function dhasAction($action, $domains){
         //print_r($domains);
         $obj = unserialize($_SESSION['loggedUser'])->hasAction($action, $domains);
+        return $obj;
+    }
+
+    public static function dgetErrorMessage($type, $code){
+        //print_r($domains);
+        $obj = unserialize($_SESSION['loggedUser'])->getErrorMessage($type, $code);
         return $obj;
     }
 
@@ -201,7 +207,7 @@ and sur.id_user = :id_user";
 
 
 
-    private static function initErrorMessages() { // populate roles with their associated permissions
+    private function initErrorMessages() { // populate roles with their associated permissions
 
         $stmt=new sQuery();
         $query = "select 'ACTION' as type, code, msg_error
@@ -217,14 +223,14 @@ from sec_privileges";
 
         foreach($rows as $row) {
             //$self->roles[$row["role_name"]] = Role::getRolePrivileges($row["id_role"]);
-            self::$error_messages[$row["type"]][$row["code"]] = $row["msg_error"];
+            $this->error_messages[$row["type"]][$row["code"]] = $row["msg_error"];
         }
     }
 
-    public static function getErrorMessage($type, $code){
+    public function getErrorMessage($type, $code){
         //print_r($domains);
         //$obj = unserialize($_SESSION['loggedUser'])->hasAction($action, $domains);
-        return self::$error_messages[$type][$code];
+        return $this->error_messages[$type][$code];
     }
 
 

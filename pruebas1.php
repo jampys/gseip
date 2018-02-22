@@ -50,7 +50,8 @@ else echo 'no tiene accion';
 <br/>
 
 <?php
-echo PrivilegedUser::getErrorMessage('PRIVILEGE', 'PUE_VER');
+$pu = new PrivilegedUser(3);
+echo $pu->getErrorMessage('PRIVILEGE', 'PUE_VER');
 
 
 ?>

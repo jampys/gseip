@@ -152,7 +152,7 @@
 
                 <div class="panel panel-danger">
                     <div class="panel-heading">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i>&nbsp; Acceso no permitido
+                        <i class="fas fa-exclamation-triangle fa-fw"></i>&nbsp; Acceso denegado
                     </div>
                     <div class="panel-body">
                         <?php //include_once ($view->contentTemplate);
