@@ -18,6 +18,7 @@ if(isset($_SESSION["id_user"])){
     }else
     {
         //require_once("controller/errorController.php");
+        require_once("controller/indexController.php");
     }
 
 
