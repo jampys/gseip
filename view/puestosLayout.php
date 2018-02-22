@@ -59,14 +59,29 @@
                         if(data >=0){
                             $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
                             $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
+                            setTimeout(function() { $("#myElem").hide();
+                                $('#myModal').modal('hide');
+                            }, 2000);
                         }else{
                             $("#myElem").html('Error al guardar el puesto').addClass('alert alert-danger').show();
                         }
-                        setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
-                                              }, 2000);
 
+
+                    }, "json").fail(function(XMLHttpRequest, textStatus, errorThrown) {
+                        if (XMLHttpRequest.readyState == 4) {
+                            // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
+                            $("#myElem").html('error 4').addClass('alert alert-danger').show();
+                        }
+                        else if (XMLHttpRequest.readyState == 0) {
+                            // Network error (i.e. connection refused, access denied due to CORS, etc.)
+                            $("#myElem").html('error 0').addClass('alert alert-danger').show();
+                        }
+                        else {
+                            // something weird is happening
+                            $("#myElem").html('error extraño').addClass('alert alert-danger').show();
+                        }
                     });
+
 
                 }
                 return false;

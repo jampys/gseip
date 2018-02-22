@@ -22,7 +22,9 @@ class Conexion  // se declara una clase para hacer la conexion con la base de da
                 if ($_SESSION['id_user']) {self::$con->prepare('set @id_user = '.$_SESSION['id_user'])->execute();}
 
             }catch(PDOException $e) {
-                echo "Error: " . $e->getMessage();
+                //echo "Error: " . $e->getMessage();
+                header("Location: index.php?action=error&operation=connection");
+                exit;
             }
 
         }
