@@ -55,7 +55,26 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
 
 
 
-
+    /* maneja los errores de ajax de toda la aplicacion */
+    $( document ).ajaxError(function( event, request, settings ) {
+        //$( "#msg" ).append( "<li>Error requesting page " + settings.url + "</li>" );
+        //alert('error de ajax');
+        if (request.readyState == 4) {
+            // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
+            $("#myElem").html('error 4').addClass('alert alert-danger').show();
+            //alert('error 4');
+        }
+        else if (request.readyState == 0) {
+            // Network error (i.e. connection refused, access denied due to CORS, etc.)
+            $("#myElem").html('error 0').addClass('alert alert-danger').show();
+            //alert('error 0');
+        }
+        else {
+            // something weird is happening
+            $("#myElem").html('error extraño').addClass('alert alert-danger').show();
+            //alert('error raro');
+        }
+    });
 
 
 
