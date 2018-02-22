@@ -23,7 +23,8 @@ class Conexion  // se declara una clase para hacer la conexion con la base de da
 
             }catch(PDOException $e) {
                 //echo "Error: " . $e->getMessage();
-                header("Location: index.php?action=error&operation=connection");
+                //header("Location: index.php?action=error&operation=connection");
+                echo '<script type="text/javascript"> window.location.href = "index.php?action=error&operation=connection"; </script>';
                 exit;
             }
 
