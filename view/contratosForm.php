@@ -151,7 +151,7 @@
 
         //guardar contrato
         $('#contrato').on('click', '#submit',function(){ //ok
-            //alert('guardar contrato');
+            alert('guardar contrato');
             if ($("#contrato-form").valid()){
                 var params={};
                 params.action = 'contratos';
@@ -173,20 +173,18 @@
 
 
                 $.post('index.php',params,function(data, status, xhr){
-
                     //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     if(data >=0){
                         $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
+                        setTimeout(function() { $("#myElem").hide();
+                            $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
+                        }, 2000);
 
                     }else{
                         $("#myElem").html('Error al guardar el contrato').addClass('alert alert-danger').show();
                     }
-                    setTimeout(function() { $("#myElem").hide();
-                                            $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
-                                          }, 2000);
-
-                });
+                }, 'json');
 
             }
             return false;

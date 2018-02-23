@@ -38,7 +38,7 @@
                             <?php } ?>
 
                             <li><a href="index.php?action=contratos">Contratos</a></li>
-                            <li><a href="#">Organigrama</a></li>
+                            <li><a href="#" style="cursor: not-allowed">Organigrama <span class="text-muted"><small> [En construcción]</small></span></a></li>
 
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">HABILIDADES Y COMPETENCIAS</li>
