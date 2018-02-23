@@ -338,10 +338,8 @@
 <div class="panel panel-default" id="contrato">
     <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
 
+    <fieldset <?php echo ( PrivilegedUser::dhasAction('CON_UPDATE', array(1)/*$view->empleado->getDomain()*/) )? '' : 'disabled' ?>>
     <div class="panel-body">
-
-
-
 
     <form class="form-horizontal" name ="contrato-form" id="contrato-form" method="POST" action="index.php">
     <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->contrato->getIdContrato() ?>">
@@ -465,6 +463,7 @@
 
 
 
+
     <div class="panel-footer clearfix">
         <div class="button-group pull-right">
             <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
@@ -483,8 +482,7 @@
 
 
 </div>
-
-
+    </fieldset>
 
 
 

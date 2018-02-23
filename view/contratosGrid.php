@@ -46,7 +46,7 @@
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
-        <button class="btn btn-primary btn-sm" type="button" id="new" >Nuevo Contrato</button>
+        <button class="btn btn-primary btn-sm" type="button" id="new" <?php echo ( PrivilegedUser::dhasAction('CON_INSERT', array(1)) )? '' : 'disabled' ?> >Nuevo Contrato</button>
     </div>
 
     <div class="table-responsive">
