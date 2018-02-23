@@ -12,6 +12,7 @@ class Contrato
     private $id_compania;
 
     private $responsable;
+    private $domain;
 
     //GETTERS
     function getIdContrato()
@@ -39,6 +40,10 @@ class Contrato
         return ($this->responsable)? $this->responsable : new Empleado() ;
     }
 
+    function getDomain()
+    { return explode(',',$this->domain);//$this->domain;
+    }
+
 
     //SETTERS
     function setIdContrato($val)
@@ -62,6 +67,9 @@ class Contrato
     function setIdCompania($val)
     { $this->id_compania=$val;}
 
+    function setDomain($val)
+    { $this->domain=$val;}
+
 
 
     function Contrato($id_contrato = 0){ //constructor ok
@@ -73,7 +81,7 @@ class Contrato
                     DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                     DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                     re.apellido, re.nombre, cia.razon_social,
-                    co.id_responsable, co.id_compania, co.nombre
+                    co.id_responsable, co.id_compania, co.nombre, co.id_domain
                     from contratos co, empleados re, companias cia
                     where co.id_responsable = re.id_empleado
                     and co.id_compania = cia.id_compania
@@ -92,6 +100,7 @@ class Contrato
             $this->setIdCompania($rows[0]['id_compania']);
 
             $this->responsable = new Empleado($rows[0]['id_responsable']);
+            $this->setDomain($rows[0]['id_domain']);
 
         }
     }

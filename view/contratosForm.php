@@ -338,7 +338,7 @@
 <div class="panel panel-default" id="contrato">
     <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
 
-    <fieldset <?php echo ( PrivilegedUser::dhasAction('CON_UPDATE', array(1)/*$view->empleado->getDomain()*/) )? '' : 'disabled' ?>>
+    <fieldset <?php echo ( PrivilegedUser::dhasAction('CON_UPDATE', $view->contrato->getDomain() ) )? '' : 'disabled' ?>>
     <div class="panel-body">
 
     <form class="form-horizontal" name ="contrato-form" id="contrato-form" method="POST" action="index.php">
