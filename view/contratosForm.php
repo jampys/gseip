@@ -31,7 +31,7 @@
                 //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
                 '<td>'+jsonEmpleados[i].puesto+'</td>' +
                 '<td class="text-center"><a class="update-empleado" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
-                '<td class="text-center"><a class="delete-empleado" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
                 '</tr>');
 
             }
@@ -338,7 +338,7 @@
 <div class="panel panel-default" id="contrato">
     <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
 
-    <fieldset <?php echo ( PrivilegedUser::dhasAction('CON_UPDATE', $view->contrato->getDomain() ) )? '' : 'disabled' ?>>
+    <fieldset <?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) )? '' : 'disabled' ?>>
     <div class="panel-body">
 
     <form class="form-horizontal" name ="contrato-form" id="contrato-form" method="POST" action="index.php">

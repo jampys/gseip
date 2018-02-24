@@ -36,8 +36,6 @@
                             }
                             else {
                                 $("#myElem").html(data['msg']).addClass('alert alert-danger').show();
-                                setTimeout(function() { $("#myElem").hide();
-                                                      }, 2000);
                             }
 
                         },
