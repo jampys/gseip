@@ -151,7 +151,7 @@
 
         //guardar contrato
         $('#contrato').on('click', '#submit',function(){ //ok
-            alert('guardar contrato');
+            //alert('guardar contrato');
             if ($("#contrato-form").valid()){
                 var params={};
                 params.action = 'contratos';
@@ -219,6 +219,7 @@
             params={};
             params.action = "contratos";
             params.operation="loadEmpleado";
+            params.id_empleado = id;
             $('#popupbox1').load('index.php', params,function(){
                 $('#myModal').modal();
                 /*$('#id_empleado').append($('<option>', {

@@ -171,7 +171,7 @@ switch ($operation)
         $view->label='Empleado';
         $view->disableLayout=true;
 
-        $view->empleado = new Empleado();
+        $view->empleado = new Empleado($_POST['id_empleado']);
         $view->empleados = $view->empleado->getEmpleadosActivos(); //carga el combo de empleados
         $view->puestos = Puesto::getPuestos();
         $view->procesos = Proceso::getProcesos();
