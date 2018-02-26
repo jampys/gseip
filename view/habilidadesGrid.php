@@ -30,7 +30,7 @@
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
-        <button  id="new" type="button" class="btn btn-primary btn-sm">Nueva Habilidad</button>
+        <button  id="new" type="button" class="btn btn-primary btn-sm" <?php echo ( PrivilegedUser::dhasAction('HAB_INSERT', array(1)) )? '' : 'disabled' ?> >Nueva Habilidad</button>
     </div>
 
     <div class="table-responsive">
@@ -50,7 +50,7 @@
                     <td><?php echo $habilidad['codigo'];?></td>
                     <td><?php echo $habilidad['nombre'];?></td>
                     <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $habilidad['id_habilidad'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="delete" href="javascript:void(0);" data-id="<?php echo $habilidad['id_habilidad'];?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('HAB_DELETE', array(2)))? 'delete' : 'disabled'; ?>" href="javascript:void(0);" data-id="<?php echo $habilidad['id_habilidad'];?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -69,7 +69,7 @@
         ¿Desea eliminar la habillidad?
     </div>
 
-    <div id="myElemento" style="display:none">
+    <div id="myElem" style="display:none">
 
     </div>
 

@@ -42,7 +42,9 @@
 
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">HABILIDADES Y COMPETENCIAS</li>
-                            <li><a href="index.php?action=habilidades">Habilidades</a></li>
+                            <?php if ( PrivilegedUser::dhasPrivilege('HAB_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=habilidades">Habilidades</a></li>
+                            <?php } ?>
                             <li><a href="index.php?action=habilidad-empleado">Habilidades por Empleado</a></li>
                             <li><a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></li>
 

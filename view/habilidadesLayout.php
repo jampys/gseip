@@ -54,14 +54,14 @@
                         if(data >=0){
                             $("#myElem").html('Habilidad guardada con exito').addClass('alert alert-success').show();
                             $('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
+                            setTimeout(function() { $("#myElem").hide();
+                                $('#myModal').modal('hide');
+                            }, 2000);
                         }else{
                             $("#myElem").html('Error al guardar la habilidad').addClass('alert alert-danger').show();
                         }
-                        setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
-                                              }, 2000);
 
-                    });
+                    }, "json");
 
                 }
                 return false;
@@ -110,16 +110,17 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"habilidades", operation: "refreshGrid"});
+                        setTimeout(function() { $("#myElemento").hide();
+                            $('#confirm').dialog('close');
+                        }, 2000);
                     }else{
-                        $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
                     }
-                    setTimeout(function() { $("#myElemento").hide();
-                                            $('#confirm').dialog('close');
-                                          }, 2000);
 
-                });
+
+                }, "json");
 
             };
 

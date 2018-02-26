@@ -58,8 +58,14 @@ switch ($operation)
         break;
 
     default :
-        $view->habilidades = Habilidad::getHabilidades();
-        $view->contentTemplate="view/habilidadesGrid.php";
+        if ( PrivilegedUser::dhasPrivilege('HAB_VER', array(1)) ) {
+            $view->habilidades = Habilidad::getHabilidades();
+            $view->contentTemplate="view/habilidadesGrid.php";
+        }else{
+            $_SESSION['error'] = PrivilegedUser::dgetErrorMessage('PRIVILEGE', 'HAB_VER');
+            header("Location: index.php?action=error");
+            exit;
+        }
         break;
 }
 

@@ -126,7 +126,7 @@
                         $("#myElem").html('Error al eliminar el puesto').addClass('alert alert-danger').show();
                     }
 
-                }, "post");
+                }, "json");
 
             };
 
