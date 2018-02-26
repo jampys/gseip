@@ -33,7 +33,7 @@
 
 
 
-            $('#search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            /*$('#search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
                 //alert('hola');
                 var code = (e.keyCode || e.which);
                 if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
@@ -59,7 +59,7 @@
 
                 });
 
-            });
+            });*/
 
 
 
@@ -210,8 +210,14 @@
                     <form id="search_form" name="search_form">
                         <div class="form-group col-md-4">
                             <label for="search_empleado" class="control-label">Empleado</label>
-                            <select id="search_empleado" name="search_empleado" class="form-control selectpicker show-tick" data-live-search="true" title="Seleccione un empleado">
-
+                            <select id="search_empleado" name="search_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un empleado</option>
+                                <?php foreach ($view->empleados as $em){
+                                    ?>
+                                    <option value="<?php echo $em['cuil']; ?>">
+                                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-4">

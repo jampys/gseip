@@ -1,6 +1,7 @@
 ﻿<?php
 
 include_once("model/habilidad-empleadoModel.php");
+include_once("model/empleadosModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -85,6 +86,7 @@ switch ($operation)
 
     default :
         //$view->habilidades = Habilidad::getHabilidades();
+        $view->empleados = Empleado::getEmpleadosActivos();
         $view->contentTemplate="view/habilidad-empleadoGrid.php";
         break;
 }
