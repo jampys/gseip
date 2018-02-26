@@ -153,10 +153,10 @@ class Empleado
                     em.telefono, em.email, em.empresa,
                     em.sexo, em.nacionalidad, em.estado_civil,
                     dp.direccion, dp.id_localidad, domain
-                    from empleados em, v_sec_domains vsd, domicilios_particulares dp
-                    where em.id_object = vsd.id_object
-                    and em.id_empleado = dp.id_empleado
-                    and dp.fecha_hasta is null
+                    from empleados em
+                    left join v_sec_domains vsd on em.id_object = vsd.id_object
+                    join domicilios_particulares dp on em.id_empleado = dp.id_empleado
+                    where dp.fecha_hasta is null
                     and em.id_empleado = :id_empleado";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':id_empleado', $id_empleado);

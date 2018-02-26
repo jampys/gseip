@@ -120,7 +120,7 @@
 <div class="panel panel-default ">
 
     <div class="panel-heading">
-        <h4 class="pull-left"><span>Editar empleado</span></h4>
+        <h4 class="pull-left"><span><?php echo $view->label ?></span></h4>
 
         <a id="back" class="pull-right" href="#"><i class="fas fa-arrow-left fa-fw"></i>&nbsp;Volver </a>
         <div class="clearfix"></div>
