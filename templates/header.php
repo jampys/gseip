@@ -100,18 +100,27 @@
                         </ul>
                     </li>
 
-
-
-
-
-
-
-
                 </ul>
+
                 <ul class="nav navbar-nav navbar-right">
-                    <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
-                    <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span>
+                                Usuario
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <?php $_SESSION['id_user'] ?>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+                        </ul>
+
+                    </li>
+
                 </ul>
+
             </div>
         </div>
     </nav>
