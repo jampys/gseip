@@ -153,8 +153,9 @@ class Empleado
                     em.telefono, em.email, em.empresa,
                     em.sexo, em.nacionalidad, em.estado_civil,
                     dp.direccion, dp.id_localidad, domain
-                    from v_sec_empleados em, domicilios_particulares dp
-                    where em.id_empleado = dp.id_empleado
+                    from empleados em, v_sec_domains vsd, domicilios_particulares dp
+                    where em.id_object = vsd.id_object
+                    and em.id_empleado = dp.id_empleado
                     and dp.fecha_hasta is null
                     and em.id_empleado = :id_empleado";
             $stmt->dpPrepare($query);
