@@ -112,7 +112,7 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <?php $_SESSION['id_user'] ?>
+                            <li><a href="#"><span class="text-muted"><?php echo $_SESSION['user'] ?></span> </a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
                         </ul>
