@@ -104,10 +104,7 @@
             });
 
             $(document).on('click', '#back',function(){
-                //$('#popupbox').dialog('close');
-                //$('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
                 $("#cancel").trigger("click");
-                //alert('back');
             });
 
 

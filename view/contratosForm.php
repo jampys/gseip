@@ -197,6 +197,10 @@
             $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
         });
 
+        $(document).on('click', '#back',function(){
+            $("#cancel").trigger("click");
+        });
+
 
         //Abre modal para agregar nuevo empleado al contrato
         $('#contrato').on('click', '#add-empleado', function(e){ //ok
@@ -337,7 +341,14 @@
 
 
 <div class="panel panel-default" id="contrato">
-    <div class="panel-heading"><h4><?php echo $view->label ?></h4></div>
+
+    <div class="panel-heading">
+        <h4 class="pull-left"><span><?php echo $view->label ?></span></h4>
+
+        <a id="back" class="pull-right" href="#"><i class="fas fa-arrow-left fa-fw"></i>&nbsp;Volver </a>
+        <div class="clearfix"></div>
+
+    </div>
 
     <fieldset <?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) )? '' : 'disabled' ?>>
     <div class="panel-body">
