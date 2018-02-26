@@ -86,9 +86,15 @@ switch ($operation)
         break;
 
     default :
-        $view->empleados = Empleado::getEmpleadosActivos();
-        $view->habilidades = Habilidad::getHabilidades();
-        $view->contentTemplate="view/habilidad-empleadoGrid.php";
+        if ( PrivilegedUser::dhasPrivilege('HEM_VER', array(1)) ) {
+            $view->empleados = Empleado::getEmpleadosActivos();
+            $view->habilidades = Habilidad::getHabilidades();
+            $view->contentTemplate="view/habilidad-empleadoGrid.php";
+        }else{
+            $_SESSION['error'] = PrivilegedUser::dgetErrorMessage('PRIVILEGE', 'HEM_VER');
+            header("Location: index.php?action=error");
+            exit;
+        }
         break;
 }
 
