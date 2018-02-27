@@ -95,7 +95,7 @@
 
 
             $(document).on('click', '.edit', function(){
-                alert('Funcionalidad en desarrollo');
+                alert('Funcionalidad en construccion');
                 var id = $(this).attr('data-id');
                 params={};
                 params.id_habilidad = id;
@@ -162,17 +162,18 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
-                        $("#search").trigger("click");
-                    }else{
-                        $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
-                    }
-                    setTimeout(function() { $("#myElemento").hide();
-                                            $('#confirm').dialog('close');
-                                          }, 2000);
+                        $("#search").trigger("click"); // refresh grid
+                        setTimeout(function() { $("#myElem").hide();
+                            $('#confirm').dialog('close');
+                        }, 2000);
 
-                });
+                    }else{
+                        $("#myElem").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
+                    }
+
+                }, "json");
 
             };
 
@@ -238,7 +239,7 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary btn-sm" id="new">Agregar</button>
+                            <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" id="new" <?php echo ( PrivilegedUser::dhasAction('HEM_INSERT', array(1)) )? '' : 'disabled' ?> >Agregar</button>
                         </div>
                     </form>
                 </div>

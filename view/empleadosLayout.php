@@ -116,7 +116,7 @@
             });
 
 
-            $.fn.borrar = function(id) {
+            $.fn.borrar = function(id) { //No existe la funcionalidad para eliminar empleados
                 //alert(id);
                 //preparo los parametros
                 params={};

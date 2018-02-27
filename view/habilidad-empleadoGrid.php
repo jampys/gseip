@@ -61,11 +61,11 @@
                                 <td><?php echo $he['cuil']; ?></td>
                                 <td><?php echo $he['habilidad']; ?></td>
                                 <td><?php echo $he['fecha_desde']; ?></td>
-                                <td class="text-center"><a class="edit" href="javascript:void(0);">
+                                <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('HEM_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" href="javascript:void(0);">
                                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                         </a>
                                 </td>
-                                <td class="text-center"><a class="delete" href="javascript:void(0);">
+                                <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('HEM_DELETE', array(1)))? 'delete' : 'disabled'; ?>" href="javascript:void(0);">
                                                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                                         </a>
                                 </td>
@@ -87,7 +87,7 @@
         ¿Desea eliminar la habillidad al empleado?
     </div>
 
-    <div id="myElemento" style="display:none">
+    <div id="myElem" style="display:none">
 
     </div>
 
