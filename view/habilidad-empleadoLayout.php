@@ -173,7 +173,7 @@
                         $("#myElem").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
                     }
 
-                }, "json");
+                });
 
             };
 
