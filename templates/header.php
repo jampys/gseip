@@ -45,8 +45,12 @@
                             <?php if ( PrivilegedUser::dhasPrivilege('HAB_VER', array(1)) ) { ?>
                                 <li><a href="index.php?action=habilidades">Habilidades</a></li>
                             <?php } ?>
-                            <li><a href="index.php?action=habilidad-empleado">Habilidades por Empleado</a></li>
-                            <li><a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></li>
+                            <?php if ( PrivilegedUser::dhasPrivilege('HEM_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=habilidad-empleado">Habilidades por Empleado</a></li>
+                            <?php } ?>
+                            <?php if ( PrivilegedUser::dhasPrivilege('HPU_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></li>
+                            <?php } ?>
 
                         </ul>
                     </li>
