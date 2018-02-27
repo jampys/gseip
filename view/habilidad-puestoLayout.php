@@ -34,7 +34,7 @@
 
 
 
-            $('#search_puesto').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            /*$('#search_puesto').closest('.form-group').find(':input').on('keyup', function(e){ //ok
                 //alert('hola');
                 var code = (e.keyCode || e.which);
                 if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
@@ -61,11 +61,11 @@
 
                 });
 
-            });
+            });*/
 
 
 
-            $('#search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+            /*$('#search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
                 //alert('hola');
                 var code = (e.keyCode || e.which);
                 if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
@@ -92,7 +92,7 @@
 
                 });
 
-            });
+            });*/
 
 
 
@@ -211,13 +211,27 @@
 
                         <div class="form-group col-md-4">
                             <label for="search_puesto" class="control-label">Puesto</label>
-                            <select id="search_puesto" name="search_puesto" class="form-control selectpicker show-tick" data-live-search="true" title="Seleccione un puesto">
+                            <select id="search_puesto" name="search_puesto" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un puesto</option>
+                                <?php foreach ($view->puestos as $pue){
+                                    ?>
+                                    <option value="<?php echo $pue['id_puesto']; ?>">
+                                        <?php echo $pue['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="search_habilidad" class="control-label">Habilidad</label>
-                            <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker show-tick" data-live-search="true" title="Seleccione una habilidad">
+                            <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                                <option value="">Seleccione una habilidad</option>
+                                <?php foreach ($view->habilidades as $hab){
+                                    ?>
+                                    <option value="<?php echo $hab['id_habilidad']; ?>">
+                                        <?php echo $hab['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
                             </select>
                         </div>
 

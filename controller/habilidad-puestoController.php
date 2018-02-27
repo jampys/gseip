@@ -102,6 +102,8 @@ switch ($operation)
         break;
 
     default : //ok
+        $view->habilidades = Habilidad::getHabilidades();
+        $view->puestos = Puesto::getPuestos();
         $view->contentTemplate="view/habilidad-puestoGrid.php";
         break;
 }
