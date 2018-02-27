@@ -69,7 +69,7 @@
                 </form>
 
 
-                <div id="myElem" style="display:none"></div>
+                <div id="myElem" class="msg" style="display:none"></div>
 
 
 

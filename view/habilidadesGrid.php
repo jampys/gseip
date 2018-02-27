@@ -69,7 +69,7 @@
         ¿Desea eliminar la habillidad?
     </div>
 
-    <div id="myElem" style="display:none">
+    <div id="myElem" class="msg" style="display:none">
 
     </div>
 
