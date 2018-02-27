@@ -26,14 +26,14 @@
                     $("#myElem").html('Habilidad del puesto puesto guardada con exito').addClass('alert alert-success').show();
                     //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                     $("#search").trigger("click");
+                    setTimeout(function() { $("#myElem").hide();
+                        $('#myModalUpdate').modal('hide');
+                    }, 2000);
                 }else{
                     $("#myElem").html('Error al guardar la habilidad del puesto').addClass('alert alert-danger').show();
                 }
-                setTimeout(function() { $("#myElem").hide();
-                    $('#myModalUpdate').modal('hide');
-                }, 2000);
 
-            });
+            }, 'json');
 
             return false;
 
@@ -50,7 +50,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -90,7 +90,7 @@
                 </form>
 
 
-                <div id="myElem" style="display:none"></div>
+                <div id="myElem" class="msg" style="display:none"></div>
 
 
             </div>

@@ -219,14 +219,14 @@
                         $("#myElem").html('Habilidades de los puestos guardadas con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                         $("#search").trigger("click");
+                        setTimeout(function() { $("#myElem").hide();
+                            $('#myModal').modal('hide');
+                        }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar las habilidades de los puestos').addClass('alert alert-danger').show();
                     }
-                    setTimeout(function() { $("#myElem").hide();
-                                            $('#myModal').modal('hide');
-                                        }, 2000);
 
-                });
+                }, 'json');
 
             }
             return false;
@@ -337,17 +337,7 @@
                     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-                <div id="myElem" style="display:none"></div>
+                <div id="myElem" class="msg" style="display:none"></div>
 
             </div>
 
