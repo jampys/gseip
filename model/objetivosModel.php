@@ -225,8 +225,10 @@ where ob.periodo = ifnull(:periodo, ob.periodo)";
     public static function getPeriodos() { 
         $stmt=new sQuery();
         $query = "select periodo
-                  from objetivos
-                  group by periodo";
+from objetivos
+group by periodo
+UNION
+select YEAR(CURDATE())"; //periodo actual (por si aun no existe un objetivo del periodo actual)
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
