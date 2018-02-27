@@ -57,11 +57,11 @@
                                 <td><?php echo $hp['puesto']; ?></td>
                                 <td><?php echo $hp['habilidad']; ?></td>
                                 <td><?php echo $hp['requerida']; ?></td>
-                                <td class="text-center"><a class="edit" href="javascript:void(0);">
+                                <td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasAction('HPU_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                         </a>
                                 </td>
-                                <td class="text-center"><a class="delete" href="javascript:void(0);">
+                                <td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasAction('HPU_DELETE', array(1)) )? 'delete' : 'disabled' ?>" href="javascript:void(0);">
                                                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                                         </a>
                                 </td>
