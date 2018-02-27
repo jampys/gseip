@@ -24,6 +24,8 @@ switch ($operation)
     case 'new': //ok
         $view->label='Agregar habilidades';
         $view->disableLayout=true;
+        $view->habilidades = Habilidad::getHabilidades();
+        $view->puestos = Puesto::getPuestos();
         $view->contentTemplate="view/habilidad-puestoFormInsert.php";
         break;
 
