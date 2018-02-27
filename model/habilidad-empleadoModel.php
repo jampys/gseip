@@ -1,10 +1,9 @@
-﻿<?php
-
+<?php
 
 class HabilidadEmpleado
 {
     private $id_habilidad_empleado;
-	private $id_habilidad;
+    private $id_habilidad;
     private $id_empleado;
     private $fecha_desde;
 
@@ -56,8 +55,8 @@ class HabilidadEmpleado
 
 
     public static function getHabilidadEmpleado($cuil, $id_habilidad) { //ok
-			$stmt=new sQuery();
-            $query = "select id_habilidad_empleado, em.id_empleado, em.legajo, em.apellido, em.nombre, em.cuil,
+        $stmt=new sQuery();
+        $query = "select id_habilidad_empleado, em.id_empleado, em.legajo, em.apellido, em.nombre, em.cuil,
 		hab.id_habilidad, hab.nombre as habilidad,
 		DATE_FORMAT(he.fecha_desde,  '%d/%m/%Y') as fecha_desde
 from habilidad_empleado he, habilidades hab, v_sec_empleados em
@@ -66,12 +65,12 @@ and he.id_habilidad = hab.id_habilidad
 and em.cuil = ifnull(:cuil, em.cuil)
 and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
 
-            $stmt->dpPrepare($query);
-            $stmt->dpBind(':cuil', $cuil);
-            $stmt->dpBind(':id_habilidad', $id_habilidad);
-            $stmt->dpExecute();
-            return $stmt->dpFetchAll();
-		}
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':cuil', $cuil);
+        $stmt->dpBind(':id_habilidad', $id_habilidad);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
 
 
 
@@ -86,7 +85,7 @@ and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
     }
 
 
-	public function updateHabilidad(){
+    public function updateHabilidad(){
         $stmt=new sQuery();
         $query="update habilidades set codigo =:codigo, nombre =:nombre, tipo =:tipo
                 where id_habilidad =:id_habilidad";
@@ -97,9 +96,9 @@ and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
         $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}
+    }
 
-	public function insertHabilidadEmpleado(){ //ok
+    public function insertHabilidadEmpleado(){ //ok
         /*$stmt=new sQuery();
         $query="insert into habilidad_empleado(id_habilidad, id_empleado, fecha_desde)
                 values(:id_habilidad, :id_empleado, '2015-02-02')";
@@ -128,10 +127,10 @@ and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
         return ($flag)? intval($flag[0]['flag']) : 0;
 
 
-	}
+    }
 
 
-	function deleteHabilidadEmpleado(){ //ok
+    function deleteHabilidadEmpleado(){ //ok
         $stmt=new sQuery();
         $query="delete from habilidad_empleado
                 where id_habilidad_empleado =:id_habilidad_empleado";
@@ -139,6 +138,8 @@ and hab.id_habilidad = ifnull(:id_habilidad, hab.id_habilidad)";
         $stmt->dpBind(':id_habilidad_empleado', $this->getIdHabilidadEmpleado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-	}	
-	
+    }
+
 }
+
+?>

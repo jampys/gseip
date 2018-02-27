@@ -87,7 +87,7 @@
         ¿Desea eliminar la habillidad al empleado?
     </div>
 
-    <div id="myElem" style="display:none">
+    <div id="myElemento" class="msg" style="display:none">
 
     </div>
 

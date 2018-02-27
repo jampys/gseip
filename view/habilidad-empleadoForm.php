@@ -172,7 +172,6 @@
                 params.vHabilidades = JSON.stringify(jsonHabilidadesIx);
 
                 $.post('index.php',params,function(data, status, xhr){
-
                     //alert(data);
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
@@ -180,14 +179,14 @@
                         $("#myElem").html('Habilidades empleados guardadas con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                         $("#search").trigger("click");
+                        setTimeout(function() { $("#myElem").hide();
+                            $('#myModal').modal('hide');
+                        }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar las habilidades empleados').addClass('alert alert-danger').show();
                     }
-                    setTimeout(function() { $("#myElem").hide();
-                                            $('#myModal').modal('hide');
-                                        }, 2000);
 
-                });
+                }, 'json');
 
             }
             return false;
@@ -287,16 +286,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-                <div id="myElem" style="display:none"></div>
+                <div id="myElem" class="msg" style="display:none"></div>
 
             </div>
 

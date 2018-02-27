@@ -61,15 +61,15 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         //alert('error de ajax');
         if (request.readyState == 4) {
             // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
-            $("#myElem").html('Error de conexión. Intente nuevamente.').addClass('alert alert-danger').show();
+            $(".msg").html('Error de conexión. Intente nuevamente.').addClass('alert alert-danger').show();
         }
         else if (request.readyState == 0) {
             // Network error (i.e. connection refused, access denied due to CORS, etc.)
-            $("#myElem").html('Error de conexión. Intente nuevamente.').addClass('alert alert-danger').show();
+            $(".msg").html('Error de conexión. Intente nuevamente.').addClass('alert alert-danger').show();
         }
         else {
             // something weird is happening
-            $("#myElem").html('Error desconocido. Intente nuevamente.').addClass('alert alert-danger').show();
+            $(".msg").html('Error desconocido. Intente nuevamente.').addClass('alert alert-danger').show();
         }
     });
 
