@@ -16,7 +16,7 @@
 
 
 
-        $('#myModal #search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+        /*$('#myModal #search_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert('hola');
             var code = (e.keyCode || e.which);
             if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
@@ -46,7 +46,7 @@
 
             });
 
-        });
+        }); */
 
 
         $("#myModal #search_empleado").on('changed.bs.select', function (e) {
@@ -76,7 +76,7 @@
 
 
 
-        $('#myModal #search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
+        /*$('#myModal #search_habilidad').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert('hola');
             var code = (e.keyCode || e.which);
             if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
@@ -104,7 +104,7 @@
 
             });
 
-        });
+        });*/
 
         $("#myModal #search_habilidad").on('changed.bs.select', function (e) {
 
@@ -226,7 +226,13 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="search_empleado" class="control-label">Empleado</label>
-                                    <select id="search_empleado" name="search_empleado" class="form-control selectpicker" data-live-search="true" title="Seleccione un empleado">
+                                    <select id="search_empleado" name="search_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
+                                        <?php foreach ($view->empleados as $em){
+                                            ?>
+                                            <option value="<?php echo $em['cuil']; ?>" id_empleado="<?php echo $em['id_empleado']; ?>" legajo="<?php echo $em['legajo']; ?>">
+                                                <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                            </option>
+                                        <?php  } ?>
                                     </select>
                                 </div>
 
@@ -258,7 +264,14 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="search_habilidad" class="control-label">Habilidad</label>
-                                    <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker" data-live-search="true" title="Seleccione una habilidad">
+                                    <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione una habilidad">
+                                        <option value="">Seleccione una habilidad</option>
+                                        <?php foreach ($view->habilidades as $hab){
+                                            ?>
+                                            <option value="<?php echo $hab['id_habilidad']; ?>">
+                                                <?php echo $hab['nombre']; ?>
+                                            </option>
+                                        <?php  } ?>
                                     </select>
                                 </div>
 
