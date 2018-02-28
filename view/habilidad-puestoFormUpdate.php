@@ -11,8 +11,9 @@
 
 
 
-        $(document).one('click', '#myModalUpdate #submit',function(){ //ok
-
+        //$(document).one('click', '#myModalUpdate #submit',function(){ //ok
+        $('#myModalUpdate').on('click', '#submit', function(){ //ok
+            //alert('hizo click');
             var params={};
             params.action = 'habilidad-puesto';
             params.operation = 'saveHabilidadPuesto';
