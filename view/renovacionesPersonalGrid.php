@@ -110,7 +110,7 @@
                                     <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
                                 </a>
                             <?php } else{ ?>
-                                <a class="renovar" href="javascript:void(0);" data-toggle="tooltip" title="renovar" >
+                                <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'renovar' : 'disabled' ?>" href="javascript:void(0);" data-toggle="tooltip" title="renovar">
                                     <i class="far fa-clone"></i>
                                 </a>
 
@@ -124,7 +124,7 @@
                             </a>
                         </td>
                         <td class="text-center">
-                            <a class="delete" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) )? 'delete' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
                         </td>

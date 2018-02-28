@@ -252,10 +252,8 @@
 
 
 
-
-
 <!-- Modal -->
-<fieldset  <?php echo ($view->renovacion->getIdRnvRenovacion())? 'disabled' : '';  ?>  >
+<fieldset  <?php echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
