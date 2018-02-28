@@ -26,31 +26,8 @@ switch ($operation)
 
 
     case 'saveEac': //Guarda una evaluacion de competencias
-        $flag=1;
-
-        sQuery::dpBeginTransaction();
-
         try{
-
-            /*
-            $objetivo = new Objetivo($_POST['id_objetivo']);
-            $objetivo->setPeriodo($_POST['periodo']);
-            $objetivo->setNombre($_POST['nombre']);
-            $objetivo->setIdProceso(($_POST['id_proceso'])? $_POST['id_proceso'] : null);
-            $objetivo->setIdArea(($_POST['id_area'])? $_POST['id_area'] : null);
-            $objetivo->setIdContrato(($_POST['id_contrato'])? $_POST['id_contrato'] : null);
-            $objetivo->setMeta($_POST['meta']);
-            $objetivo->setActividades($_POST['actividades']);
-            $objetivo->setIndicador($_POST['indicador']);
-            $objetivo->setFrecuencia($_POST['frecuencia']);
-            $objetivo->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
-            $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
-
-            if($objetivo->save() < 0) $flag = -1;
-
-            //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
-            $id_objetivo = (!$objetivo->getIdObjetivo())? sQuery::dpLastInsertId(): $objetivo->getIdObjetivo();
-            */
+            sQuery::dpBeginTransaction();
 
             $vCompetencias = json_decode($_POST["vCompetencias"], true);
             //print_r($vCompetencias);
@@ -73,24 +50,19 @@ switch ($operation)
                 //echo 'id objetivo sub: '.$vS['id_objetivo_sub'].'---';
 
                 //echo $vS['operacion'];
-                if($evaluacion_competencia->save() < 0) $flag = -1;
-
+                $evaluacion_competencia->save(); //si falla sale por el catch
 
             }
-
-
-
+            
             //Devuelve el resultado a la vista
-            if($flag > 0) sQuery::dpCommit();
-            else sQuery::dpRollback();
-
-            print_r(json_encode($flag));
+            sQuery::dpCommit();
+            print_r(json_encode(1));
 
         }
         catch(Exception $e){
-            echo $e->getMessage();
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
-            print_r(json_encode($flag));
+            print_r(json_encode(-1));
         }
 
         exit;
