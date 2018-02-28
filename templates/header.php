@@ -73,8 +73,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desarrollo<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" style="cursor: not-allowed">Plan de evaluación <span class="text-muted"><small> [En construcción]</small></span></a></li>
-                            <li><a href="index.php?action=objetivos">Objetivos</a></li>
-                            <li><a href="index.php?action=evaluaciones">Evaluaciones</a></li>
+                            <?php if ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=objetivos">Objetivos</a></li>
+                            <?php } ?>
+                            <?php if ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=evaluaciones">Evaluaciones</a></li>
+                            <?php } ?>
                         </ul>
                     </li>
 

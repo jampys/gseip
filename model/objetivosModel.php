@@ -107,13 +107,16 @@ class Objetivo
 
     public static function getObjetivos($periodo) { //ok
         $stmt=new sQuery();
-        $query="select ob.*, ar.nombre as area, pro.nombre as proceso, con.nombre as contrato
+        /*$query="select ob.*, ar.nombre as area, pro.nombre as proceso, con.nombre as contrato
 from objetivos ob
 left join areas ar on ob.id_area = ar.id_area
 left join procesos pro on pro.id_proceso = ob.id_proceso
 left join contratos con on con.id_contrato = ob.id_contrato
 left join companias cia on cia.id_compania = con.id_compania
-where ob.periodo = ifnull(:periodo, ob.periodo)";
+where ob.periodo = ifnull(:periodo, ob.periodo)"; */
+        $query = "select *
+                  from v_sec_objetivos vso
+                  where vso.periodo = ifnull(:periodo, vso.periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
