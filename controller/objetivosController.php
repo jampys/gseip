@@ -26,11 +26,8 @@ switch ($operation)
 
 
     case 'saveObjetivo':
-        $flag=1;
-
-        sQuery::dpBeginTransaction();
-
         try{
+            sQuery::dpBeginTransaction();
 
             $objetivo = new Objetivo($_POST['id_objetivo']);
             $objetivo->setPeriodo($_POST['periodo']);
@@ -44,8 +41,7 @@ switch ($operation)
             $objetivo->setFrecuencia($_POST['frecuencia']);
             $objetivo->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
             $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
-
-            if($objetivo->save() < 0) $flag = -1;
+            $objetivo->save(); //si falla sale por el catch
 
             //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
             $id_objetivo = (!$objetivo->getIdObjetivo())? sQuery::dpLastInsertId(): $objetivo->getIdObjetivo();
@@ -69,26 +65,21 @@ switch ($operation)
                 //echo 'id objetivo sub: '.$vS['id_objetivo_sub'].'---';
 
                 //echo $vS['operacion'];
-                if($vS['operacion']=='insert') {if($subobjetivo->insertSubobjetivo() < 0) $flag = -1;}
-                else if( $vS['operacion']=='update') {if($subobjetivo->updateSubobjetivo() < 0) $flag = -1;}
-                else if( $vS['operacion']=='delete') {if($subobjetivo->deleteSubobjetivo() < 0) $flag = -1;}
-
+                if($vS['operacion']=='insert') {$subobjetivo->insertSubobjetivo();} //si falla sale por el catch
+                else if( $vS['operacion']=='update') {$subobjetivo->updateSubobjetivo();} //si falla sale por el catch
+                else if( $vS['operacion']=='delete') {$subobjetivo->deleteSubobjetivo();} //si falla sale por el catch
 
             }
 
-
-
             //Devuelve el resultado a la vista
-            if($flag > 0) sQuery::dpCommit();
-            else sQuery::dpRollback();
-
-            print_r(json_encode($flag));
+            sQuery::dpCommit();
+            print_r(json_encode(1));
 
         }
         catch(Exception $e){
-            echo $e->getMessage();
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
-            print_r(json_encode($flag));
+            print_r(json_encode(-1));
         }
 
         exit;

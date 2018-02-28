@@ -32,11 +32,8 @@ switch ($operation)
         break;
 
     case 'insert': //ok
-        $flag=1;
-
-        sQuery::dpBeginTransaction();
-
         try{
+            sQuery::dpBeginTransaction();
 
             $vEmpleados = json_decode($_POST["vEmpleados"], true);
             $vHabilidades = json_decode($_POST["vHabilidades"], true);
@@ -47,23 +44,21 @@ switch ($operation)
                     $c = new HabilidadEmpleado();
                     $c->setIdHabilidad($vH['id_habilidad']);
                     $c->setIdEmpleado($vE['id_empleado']);
-                    if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
+                    $c->insertHabilidadEmpleado();  //si falla sale por el catch
                     //echo "id_empleado: ".$vE['id_empleado']." - id_habilidad: ".$vH['id_habilidad'];
                 }
 
             }
 
             //Devuelve el resultado a la vista
-            if($flag > 0) sQuery::dpCommit();
-            else sQuery::dpRollback();
-
-            print_r(json_encode($flag));
+            sQuery::dpCommit();
+            print_r(json_encode(1));
 
         }
         catch(Exception $e){
-            echo $e->getMessage();
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
-            print_r(json_encode($flag));
+            print_r(json_encode(-1));
         }
 
         exit;

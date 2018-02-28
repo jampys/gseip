@@ -53,7 +53,7 @@ switch ($operation)
                 $evaluacion_competencia->save(); //si falla sale por el catch
 
             }
-            
+
             //Devuelve el resultado a la vista
             sQuery::dpCommit();
             print_r(json_encode(1));
