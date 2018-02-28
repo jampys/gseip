@@ -98,7 +98,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vencimientos<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">PERSONAL</li>
-                            <li><a href="index.php?action=renovacionesPersonal"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Renovaciones</a></li>
+                            <?php if ( PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=renovacionesPersonal"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Renovaciones</a></li>
+                            <?php } ?>
 
                             <li role="separator" class="divider"></li>
 
