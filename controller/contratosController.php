@@ -24,22 +24,10 @@ switch ($operation)
         break;
 
     case 'saveContrato': //ok
-        /*$contrato = new Contrato($_POST['id_contrato']);
-        $contrato->setNroContrato($_POST['nro_contrato']);
-        $contrato->setFechaDesde($_POST['fecha_desde']);
-        $contrato->setFechaHasta($_POST['fecha_hasta']);
-        $contrato->setIdResponsable($_POST['id_responsable']);
-        $contrato->setIdCompania($_POST['id_compania']);
-        $rta = $contrato->save();
-        print_r(json_encode($rta));
-        exit;
-        break;*/
-
-        $flag=1;
-
-        sQuery::dpBeginTransaction();
 
         try{
+
+            sQuery::dpBeginTransaction();
 
             $contrato = new Contrato($_POST['id_contrato']);
             $contrato->setNroContrato($_POST['nro_contrato']);
@@ -48,7 +36,7 @@ switch ($operation)
             $contrato->setFechaHasta($_POST['fecha_hasta']);
             $contrato->setIdResponsable($_POST['id_responsable']);
             $contrato->setIdCompania($_POST['id_compania']);
-            if($contrato->save() < 0) $flag = -1;
+            $contrato->save(); //si falla sale por el catch
 
             //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
             $id_contrato = (!$contrato->getIdContrato())? sQuery::dpLastInsertId(): $contrato->getIdContrato();
@@ -85,7 +73,7 @@ switch ($operation)
                             $contrato_empleado_proceso = new ContratoEmpleadoProceso();
                             $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
                             $contrato_empleado_proceso->setIdProceso($p);
-                            if($contrato_empleado_proceso->contratoEmpleadoProceso()<0) $flag = -1;
+                            $contrato_empleado_proceso->contratoEmpleadoProceso(); //si falla sale por el catch
                         }
 
                     }
@@ -101,7 +89,7 @@ switch ($operation)
                             $contrato_empleado_proceso = new ContratoEmpleadoProceso();
                             $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
                             $contrato_empleado_proceso->setIdProceso($p);
-                            if($contrato_empleado_proceso->contratoEmpleadoProceso()<0) $flag = -1;
+                            $contrato_empleado_proceso->contratoEmpleadoProceso(); //si falla sale por el catch
                             //echo 'operacion: '.$vE['operacion'].' - id_empleado_contrato: '.$contrato_empleado_proceso->getIdEmpleadoContrato().' - id_proceso: '.$contrato_empleado_proceso->getIdProceso();
                         }
 
@@ -111,23 +99,21 @@ switch ($operation)
                 }
                 else if( $vE['operacion']=='delete') {
                     //Elimina en cascada los registros hijos de la tabla empleado_contrato_proceso
-                    if($empleado_contrato->deleteEmpleadoContrato() < 0) $flag = -1;
+                    $empleado_contrato->deleteEmpleadoContrato(); //si falla sale por el catch
                 }
 
 
             }
 
             //Devuelve el resultado a la vista
-            if($flag > 0) sQuery::dpCommit();
-            else sQuery::dpRollback();
-
-            print_r(json_encode($flag));
+            sQuery::dpCommit();
+            print_r(json_encode(1));
 
         }
         catch(Exception $e){
-            echo $e->getMessage();
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
-            print_r(json_encode($flag));
+            print_r(json_encode(-1));
         }
 
         exit;

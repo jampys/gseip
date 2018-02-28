@@ -465,7 +465,7 @@
 
 
 
-    <div id="myElem" class="msg" style="display:none"></div>
+    <div id="myElem" clstyle="display:none"></div>
 
 
     </form>
