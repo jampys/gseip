@@ -38,11 +38,11 @@
 
         var uploadObj = $("#fileuploader").uploadFile({
             url: "index.php?action=uploads&operation=upload",
-            dragDrop: true,
+            dragDrop: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'true' : 'false' ?>,
             autoSubmit: false,
             fileName: "myfile",
             returnType: "json",
-            showDelete: true,
+            showDelete: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'true' : 'false' ?>,
             showDownload:true,
             showCancel: true,
             showAbort: true,
