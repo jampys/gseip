@@ -154,3 +154,7 @@ button.dropdown-toggle.disabled,
 button.dropdown-toggle.disabled:hover{
     background-color: #f5f5f5;
 }
+/* settea el color de los bootstrap datepicker readonly (los puse readonly a algunos para impedir ingresar fechas por teclado) */
+.date input:read-only, .input-daterange input:read-only  {
+    background-color: #f5f5f5 !important;
+}
