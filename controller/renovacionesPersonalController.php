@@ -107,7 +107,7 @@ switch ($operation)
         $view->empleadosGrupos = $view->renovacion->empleadosGrupos(); //carga el combo para filtrar empleados-grupos
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal(); //carga el combo para filtrar vencimientos
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
-        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal(null, null, null, null, null);
+        //$view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal(null, null, null, null, null);
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 }

@@ -95,7 +95,8 @@
             </thead>
             <tbody>
 
-            <?php foreach ($view->renovaciones_personal as $rp):   ?>
+            <?php if($view->renovaciones_personal) {
+                foreach ($view->renovaciones_personal as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_renovacion']; ?>" style="background-color: <?php echo $rp['color']; ?>" >
                         <td><?php echo $rp['id_renovacion']; ?></td>
                         <td><?php echo $rp['fecha']; ?></td>
@@ -129,7 +130,7 @@
                             </a>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php endforeach; } ?>
             </tbody>
         </table>
 
