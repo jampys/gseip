@@ -145,7 +145,12 @@ a.disabled {
 }*/
 
 
-/* settea el color de los imput disabled, para emparejarlos con el de bootstrap select */
+/* settea el color de los imput disabled*/
 input[type="text"]:disabled {
     background-color: #f5f5f583 /* basado en #f5f5f5 con transparencia (ultimos 2 digitos) */
+}
+/* settea el color de los bootstrap select disabled */
+button.dropdown-toggle.disabled,
+button.dropdown-toggle.disabled:hover{
+    background-color: #f5f5f583;
 }
