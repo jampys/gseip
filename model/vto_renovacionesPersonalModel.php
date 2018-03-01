@@ -118,7 +118,7 @@ vrp.id_rnv_renovacion
 from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav,
 (
 select emx.*, ecx.id_contrato
-from v_sec_empleados emx
+from empleados emx
 left join empleado_contrato ecx on emx.id_empleado = ecx.id_empleado
 where
 ( -- filtro por contrato
