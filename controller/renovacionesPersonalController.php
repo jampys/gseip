@@ -30,8 +30,10 @@ switch ($operation)
         $renovacion->setIdVencimiento($_POST['id_vencimiento']);
         $renovacion->setFechaEmision($_POST['fecha_emision']);
         $renovacion->setFechaVencimiento($_POST['fecha_vencimiento']);
-        $renovacion->setIdEmpleado($_POST['id_empleado']);
-        $renovacion->setIdGrupo($_POST['id_grupo']);
+        //$renovacion->setIdEmpleado($_POST['id_empleado']);
+        $renovacion->setIdEmpleado ( ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null);
+        //$renovacion->setIdGrupo($_POST['id_grupo']);
+        $renovacion->setIdGrupo ( ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null);
 
         $renovacion->save();
         print_r(json_encode(sQuery::dpLastInsertId()));

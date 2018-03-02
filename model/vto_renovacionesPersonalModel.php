@@ -211,7 +211,7 @@ order by priority, id_rnv_renovacion asc";
     }
 
     private function insertRenovacion(){
-        $stmt=new sQuery();
+        /*$stmt=new sQuery();
         $query="insert into vto_renovacion_p(id_vencimiento, id_empleado, id_grupo, fecha_emision, fecha_vencimiento, fecha)
                 values(:id_vencimiento, :id_empleado, :id_grupo, STR_TO_DATE(:fecha_emision, '%d/%m/%Y'), STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'), date(sysdate()))";
         $stmt->dpPrepare($query);
@@ -221,7 +221,33 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
         $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
         $stmt->dpExecute();
-        return $stmt->dpGetAffect();
+        return $stmt->dpGetAffect(); */
+
+        $stmt=new sQuery();
+        $query = 'CALL sp_insertRenovacionPersonal(:id_vencimiento,
+                                        :id_empleado,
+                                        :id_grupo,
+                                        :fecha_emision,
+                                        :fecha_vencimiento,
+                                        @flag
+                                    )';
+
+        $stmt->dpPrepare($query);
+
+        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':id_grupo', $this->getIdGrupo());
+        $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
+        $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
+
+        $stmt->dpExecute();
+
+        $stmt->dpCloseCursor();
+        $query = "select @flag as flag";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        $flag = $stmt->dpFetchAll();
+        return ($flag)? intval($flag[0]['flag']) : 0;
     }
 
     function deleteHabilidad(){
