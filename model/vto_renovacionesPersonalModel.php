@@ -115,7 +115,7 @@ va.color, va.priority,
 CONCAT(em.apellido, ' ', em.nombre) as empleado,
 null  as grupo,
 vrp.id_rnv_renovacion
-from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav,
+from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav,
 (
 select emx.*, ecx.id_contrato
 from empleados emx
@@ -158,7 +158,7 @@ va.color, va.priority,
 null as empleado,
 CONCAT(vgp.nombre, ' ', vgp.numero) as grupo,
 vrp.id_rnv_renovacion
-from v_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, vto_alerta va, vto_grupos_p vgp
+from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, vto_alerta va, vto_grupos_p vgp
 where vrp.id_grupo = vgp.id_grupo
 and vrp.id_vencimiento = vvp.id_vencimiento
 and vav.id_vencimiento = vrp.id_vencimiento
