@@ -35,8 +35,9 @@ switch ($operation)
         //$renovacion->setIdGrupo($_POST['id_grupo']);
         $renovacion->setIdGrupo ( ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null);
 
-        $renovacion->save();
-        print_r(json_encode(sQuery::dpLastInsertId()));
+        $rta = $renovacion->save();
+        //print_r(json_encode(sQuery::dpLastInsertId()));
+        print_r(json_encode($rta));
         exit;
         break;
 
