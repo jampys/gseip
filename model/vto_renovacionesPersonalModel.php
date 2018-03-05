@@ -247,7 +247,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         $flag = $stmt->dpFetchAll();
-        return ($flag)? intval($flag[0]['flag']) : 0;
+        return ($flag)? intval($flag[0]['flag']) : -1;
     }
 
     function deleteHabilidad(){
