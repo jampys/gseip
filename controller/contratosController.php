@@ -157,8 +157,7 @@ switch ($operation)
         $view->label='Empleado';
         $view->disableLayout=true;
 
-        $id_empleado = (isset($_POST['id_empleado']))? $_POST['id_empleado'] : '';
-        $view->empleado = new Empleado($id_empleado);
+        $view->empleado = new Empleado($_POST['id_empleado']);
         if($view->empleado->getDomain()[0] == '') $view->empleado->setDomain(1); //Si es un empleado nuevo (no tiene dominio).. le pongo el dominio 0.
         $view->empleados = Empleado::getEmpleadosActivos(); //carga el combo de empleados
         $view->puestos = Puesto::getPuestos();

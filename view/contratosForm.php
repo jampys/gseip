@@ -208,6 +208,7 @@
             params={};
             params.action = "contratos";
             params.operation="loadEmpleado";
+            params.id_empleado = '';
             $('#popupbox1').load('index.php', params,function(){
                 $('#myModal').modal();
                 //alert('add empleado');
