@@ -41,7 +41,7 @@ class Contrato
     }
 
     function getDomain()
-    { return explode(',',$this->domain);//$this->domain;
+    { return $this->domain; //explode(',',$this->domain);
     }
 
 
@@ -68,7 +68,10 @@ class Contrato
     { $this->id_compania=$val;}
 
     function setDomain($val)
-    { $this->domain=$val;}
+    { //$this->domain=$val;
+        if($val != '') $this->domain = explode(',',$val);
+        else $this->domain = array();
+    }
 
 
 
