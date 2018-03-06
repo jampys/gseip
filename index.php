@@ -7,7 +7,7 @@ require_once("model/securityModel.php");
 if(isset($_SESSION["id_user"])){
 
 
-    if(!empty($_REQUEST["action"])){
+    if(!empty($_REQUEST["action"])){ //se puede usar !empty o isset
         $action = $_REQUEST["action"];
     }else{
         $action = 'index';
@@ -24,7 +24,7 @@ if(isset($_SESSION["id_user"])){
 
 }else
 {
-    if($_GET["accion"]=="error"){
+    if(isset($_GET["accion"]) && $_GET["accion"]=="error"){
         //require_once("controller/errorController.php");
     }
     else{

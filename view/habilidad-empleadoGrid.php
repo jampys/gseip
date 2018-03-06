@@ -52,7 +52,7 @@
             </thead>
             <tbody>
 
-            <?php if($view->habilidadEmpleado) {
+            <?php if(isset($view->habilidadEmpleado)) {
                         foreach ($view->habilidadEmpleado as $he):   ?>
                             <tr data-id="<?php echo $he['id_habilidad_empleado']; ?>" >
                                 <td><?php echo $he['legajo']; ?></td>

@@ -50,7 +50,7 @@
             </thead>
             <tbody>
 
-            <?php if($view->habilidadPuesto) {
+            <?php if(isset($view->habilidadPuesto)) {
                         foreach ($view->habilidadPuesto as $hp):   ?>
                             <tr data-id="<?php echo $hp['id_habilidad_puesto']; ?>" >
                                 <td><?php echo $hp['codigo']; ?></td>

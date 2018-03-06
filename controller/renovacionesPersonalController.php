@@ -4,9 +4,8 @@ include_once("model/vto_renovacionesPersonalModel.php");
 include_once("model/vto_vencimientosPersonalModel.php");
 include_once("model/contratosModel.php");
 
-if(isset($_REQUEST['operation']))
-{$operation=$_REQUEST['operation'];}
-
+$operation = "";
+if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
 $view->disableLayout=false;
 

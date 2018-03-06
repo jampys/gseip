@@ -2,8 +2,8 @@
 
 include_once("model/habilidadesModel.php");
 
-if(isset($_REQUEST['operation']))
-{$operation=$_REQUEST['operation'];}
+$operation = "";
+if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
 
 $view->disableLayout=false;

@@ -1,12 +1,12 @@
 <?php
-
 require_once("model/usuariosModel.php");
 
-if(isset($_REQUEST['operation']))
-{$operation=$_REQUEST['operation'];}
-
+$operation = "";
+if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
 $view->u=new Usuario();
+
+$view->disableLayout=false;
 
 switch($operation){
 

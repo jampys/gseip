@@ -96,7 +96,7 @@
             </thead>
             <tbody>
 
-            <?php if($view->renovaciones_personal) {
+            <?php if(isset($view->renovaciones_personal)) {
                 foreach ($view->renovaciones_personal as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_renovacion']; ?>" style="background-color: <?php echo $rp['color']; ?>" >
                         <td><?php echo $rp['id_renovacion']; ?></td>

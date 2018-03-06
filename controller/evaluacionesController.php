@@ -7,9 +7,8 @@ include_once("model/evaluacionesCompetenciasModel.php");
 //include_once("model/contratosModel.php");
 //include_once("model/subobjetivosModel.php");
 
-if(isset($_REQUEST['operation']))
-{$operation=$_REQUEST['operation'];}
-
+$operation = "";
+if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
 $view->disableLayout=false;
 

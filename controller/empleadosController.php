@@ -3,8 +3,8 @@
 include_once("model/empleadosModel.php");
 include_once("model/localidadesModel.php");
 
-if(isset($_REQUEST['operation']))
-{$operation=$_REQUEST['operation'];}
+$operation = "";
+if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
 $view->disableLayout=false;
 

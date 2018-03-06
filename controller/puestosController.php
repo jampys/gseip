@@ -4,8 +4,8 @@ include_once("model/puestosModel.php");
 include_once("model/areasModel.php");
 include_once("model/competenciasNivelesModel.php");
 
-if(isset($_REQUEST['operation']))
-{$operation=$_REQUEST['operation'];}
+$operation = "";
+if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
 
 $view->disableLayout=false;
