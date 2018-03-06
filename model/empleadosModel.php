@@ -78,7 +78,7 @@ class Empleado
     { return $this->empresa;}
 
     function getDomain()
-    { return explode(',',$this->domain);//$this->domain;
+    { return $this->domain;
     }
 
     //SETTERS
@@ -136,8 +136,10 @@ class Empleado
     function setEmpresa($val)
     { $this->empresa=$val;}
 
-    function setDomain($val)
-    { $this->domain=$val;}
+    function setDomain($val){
+        if($val != '') $this->domain = explode(',',$val);
+        else $this->domain = array();
+    }
 
 
 
