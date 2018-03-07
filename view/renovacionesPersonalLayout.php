@@ -46,6 +46,22 @@
                     $('#id_empleado').prop('disabled', true).selectpicker('refresh');
                     $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
                 })
+            });
+
+            $(document).on('click', '.view', function(){ //ok
+                alert('click en ver');
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_renovacion = id;
+                params.action = "renovacionesPersonal";
+                params.operation = "editRenovacion";
+                $('#popupbox').load('index.php', params,function(){
+                    $("fieldset").prop("disabled", true);
+                    $('.selectpicker').selectpicker('refresh');
+                    $('.modal-footer').css('display', 'none');
+                    $('#myModalLabel').html('');
+                    $('#myModal').modal();
+                })
 
             });
 
@@ -62,7 +78,6 @@
                     $('#id_empleado').prop('disabled', true).selectpicker('refresh');
                     $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
                 })
-
             });
 
 

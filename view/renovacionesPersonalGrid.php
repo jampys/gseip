@@ -89,9 +89,10 @@
                 <th>F. emisión</th>
                 <th>F. vto.</th>
                 <th style="display: none">Priority</th>
-                <th>Renov.</th>
-                <th>Editar</th>
-                <th>Borrar</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -106,13 +107,20 @@
                         <td><?php echo $rp['fecha_emision']; ?></td>
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td style="display: none"><?php echo $rp['priority']; ?></td>
+
+                        <td class="text-center">
+                            <a class="view" href="javascript:void(0);">
+                                <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
+                            </a>
+                        </td>
+
                         <td class="text-center">
                             <?php if($rp['id_rnv_renovacion']){ ?>
                                 <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rp['id_rnv_renovacion']; ?>" >
                                     <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
                                 </a>
                             <?php } else{ ?>
-                                <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'renovar' : 'disabled' ?>" href="javascript:void(0);" data-toggle="tooltip" title="renovar">
+                                <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'renovar' : 'disabled' ?>" href="javascript:void(0);" title="renovar">
                                     <i class="far fa-clone"></i>
                                 </a>
 
@@ -121,12 +129,12 @@
                         </td>
 
                         <td class="text-center">
-                            <a class="edit" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                                <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
                             </a>
                         </td>
                         <td class="text-center">
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) )? 'delete' : 'disabled' ?>" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
                         </td>
