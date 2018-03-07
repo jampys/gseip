@@ -105,7 +105,20 @@
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModalUpdate').modal();
                 })
+            });
 
+            $(document).on('click', '.view', function(){ //ok
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_habilidad_puesto = id;
+                params.action = "habilidad-puesto";
+                params.operation = "editHabilidadPuesto";
+                $('#popupbox').load('index.php', params,function(){
+                    $("#habilidad-puesto input, #habilidad-puesto select, #habilidad-puesto textarea").prop("disabled", true);
+                    $('.modal-footer').css('display', 'none');
+                    $('#myModalLabel').html('');
+                    $('#myModalUpdate').modal();
+                })
             });
 
 

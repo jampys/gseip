@@ -60,15 +60,15 @@
                                 <td><?php echo $he['cuil']; ?></td>
                                 <td><?php echo $he['habilidad']; ?></td>
                                 <td><?php echo $he['fecha_desde']; ?></td>
-                                <td class="text-center"><a class="view" href="javascript:void(0);">
+                                <td class="text-center"><a class="view" title="ver" href="javascript:void(0);">
                                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                     </a>
                                 </td>
-                                <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('HEM_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" href="javascript:void(0);">
+                                <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('HEM_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);">
                                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                         </a>
                                 </td>
-                                <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('HEM_DELETE', array(1)))? 'delete' : 'disabled'; ?>" href="javascript:void(0);">
+                                <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('HEM_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);">
                                                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                                         </a>
                                 </td>
