@@ -24,10 +24,26 @@
                 params.action = "contratos";
                 params.operation = "editContrato";
                 $('#content').load('index.php', params,function(){
-
+                    $('#contrato-form').data('operation', 'edit');
                 })
-
             });
+
+
+            $(document).on('click', '.view', function(){ //ok
+                var id=$(this).attr('data-id');
+                params={};
+                params.id=id;
+                params.action = "contratos";
+                params.operation = "editContrato";
+                $('#content').load('index.php', params,function(){
+                    $("#contrato-form input, #contrato-form .selectpicker").prop("disabled", true);
+                    $('.selectpicker').selectpicker('refresh');
+                    $('.panel-footer').css('display', 'none');
+                    $('.panel-heading .pull-left').html('');
+                    $('#contrato-form').data('operation', 'view');
+                })
+            });
+
 
 
             $(document).on('click', '#new', function(){ //ok

@@ -112,7 +112,7 @@ class Contrato
                   DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                   CONCAT(re.apellido, ' ', re.nombre) as responsable,
-                  cia.nombre as compania
+                  cia.nombre as compania, co.id_domain
                   from contratos co, empleados re, companias cia
                   where co.id_responsable = re.id_empleado
                   and co.id_compania = cia.id_compania";

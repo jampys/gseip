@@ -60,7 +60,8 @@
                 <th>Responsable</th>
                 <th>Fecha desde</th>
                 <th>Fecha hasta</th>
-                <th>Editar</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -72,7 +73,8 @@
                     <td><?php echo $contrato['responsable'];?></td>
                     <td><?php echo $contrato['fecha_desde'];?></td>
                     <td><?php echo $contrato['fecha_hasta'];?></td>
-                    <td class="text-center"><a class="edit" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="view" title="ver" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasAction('CON_UPDATE', explode(',',$contrato['id_domain'])  ) )? 'edit' : 'disabled' ?>" title="editar" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

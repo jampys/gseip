@@ -26,14 +26,20 @@
                     continue;
                 }
 
+                var hasPrivilege = '<?php echo  (PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain()))? 1:0;  ?>'; //devuelve 1 o 0
+                var operation = $('#contrato-form').data('operation');
+                var updateClass = (hasPrivilege == 1 && operation != 'view' )? 'update-empleado':'disabled';
+                var deleteClass = (hasPrivilege == 1 && operation != 'view' )? 'update-empleado':'disabled';
+                //alert(hasPrivilege);
+
                 $('#empleados-table tbody').append('<tr id_empleado='+jsonEmpleados[i].id_empleado+'>' +
                 '<td>'+jsonEmpleados[i].empleado+'</td>' +
                 //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
                 '<td>'+jsonEmpleados[i].puesto+'</td>' +
-                '<td class="text-center"><a class="update-empleado" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
-                '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="view-empleado" title="ver" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="'+updateClass+'" title="editar" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="'+deleteClass+'" title="borrar" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
                 '</tr>');
-
             }
 
         };
@@ -246,6 +252,35 @@
         });
 
 
+        //Abre modal para ver datos del empleado en contrato
+        $('#contrato').on('click', '.view-empleado', function(e){ //ok
+            var id = $(this).closest('tr').attr('id_empleado');
+            params={};
+            params.action = "contratos";
+            params.operation="loadEmpleado";
+            params.id_empleado = id;
+            $('#popupbox1').load('index.php', params,function(){
+                $('#id_empleado').val(jsonEmpleados[id].id_empleado);
+                $("#id_empleado").prop('disabled', true);
+                $('#puesto').val(jsonEmpleados[id].id_puesto);
+                $('#id_proceso').val(jsonEmpleados[id].id_proceso);
+                $('#myModal #fecha_desde').datepicker('setDate', jsonEmpleados[id].fecha_desde );
+                $('#myModal #fecha_hasta').datepicker('setDate', jsonEmpleados[id].fecha_hasta );
+                $('.selectpicker').selectpicker('refresh'); //refresh de puesto y procesos
+                //deshabilito campos
+                $("#empleado-form input, #empleado-form .selectpicker, #empleado-form textarea").prop("disabled", true);
+                $('.selectpicker').selectpicker('refresh');
+                $('.modal-footer').css('display', 'none');
+                $('#myModalLabel').html('');
+                $('#myModal').modal();
+
+            });
+            return false;
+        });
+
+
+
+
         //Cada vez que carga este documento, elimina el los eventos click de #myModal #submit. No hubo otra manera de eliminar la repeticion de evento...
         $(document).off('click', '#myModal #submit'); //ok
 
@@ -446,10 +481,11 @@
         <table class="table table-condensed dpTable table-hover">
             <thead>
             <tr>
-                <th class="col-md-5">Empleado</th>
-                <th class="col-md-5">Puesto</th>
-                <th class="col-md-1">Editar</th>
-                <th class="col-md-1">Eliminar</th>
+                <th>Empleado</th>
+                <th>Puesto</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
