@@ -26,6 +26,25 @@
 
             });
 
+            $(document).on('click', '.view', function(){ //ok
+                var id = $(this).attr('data-id');
+                //preparo los parametros
+                params={};
+                params.id_puesto = id;
+                params.action = "puestos";
+                params.operation = "editPuesto";
+                $('#popupbox').load('index.php', params,function(){
+                    $("#puesto input, #puesto .selectpicker, #puesto textarea").prop("disabled", true);
+                    $('.selectpicker').selectpicker('refresh');
+                    $('.modal-footer').css('display', 'none');
+                    $('#myModalLabel').html('');
+                    $('#myModal').modal();
+                })
+
+            });
+
+
+
 
 
             $(document).on('click', '#new', function(){ //ok
