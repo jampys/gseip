@@ -33,6 +33,23 @@
 
             });
 
+            //al presionar el boton para ver
+            $(document).on('click', '.view', function(){
+                var id=$(this).attr('data-id');
+                //preparo los parametros
+                params={};
+                params.id=id;
+                params.action = "empleados";
+                params.operation = "editEmpleado";
+                $('#content').load('index.php', params,function(){
+                    $("#empleado-form input, #empleado-form .selectpicker").prop("disabled", true);
+                    $('.selectpicker').selectpicker('refresh');
+                    $('.panel-footer').css('display', 'none')
+                    $('.panel-heading .pull-left').html('');
+                })
+
+            });
+
 
 
 
