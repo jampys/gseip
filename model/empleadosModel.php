@@ -412,7 +412,7 @@ class Empleado
                   where em.cuil =:cuil
                   and em.fecha_baja is null
                   and
-                  ( -- nuevo empleado
+                  (( -- nuevo empleado
                   :id_empleado is null
                   -- no se ponen condiciones
                   )
@@ -420,7 +420,7 @@ class Empleado
                   ( -- edicion empleado
                   :id_empleado is not null
                   and em.id_empleado <> :id_empleado
-                  )";
+                  ))";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':cuil', $cuil);
         $stmt->dpBind(':id_empleado', $id_empleado);
@@ -435,17 +435,17 @@ class Empleado
         /*$query = "select * from empleados
                   where legajo = lpad(:legajo, 4, 0)";*/
         $query= "select * from empleados em
-where
-( -- nuevo empleado
-:id_empleado is null
-and em.legajo = :legajo
-)
-OR -- edicion empleado
-(
-:id_empleado is not null
-and em.legajo = :legajo
-and em.id_empleado <> :id_empleado
-)";
+                 where em.legajo = :legajo
+                 and (
+                      ( -- nuevo empleado
+                      :id_empleado is null
+                      )
+                      OR -- edicion empleado
+                      (
+                      :id_empleado is not null
+                      and em.id_empleado <> :id_empleado
+                      )
+                    )";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':legajo', $legajo);
         $stmt->dpBind(':id_empleado', $id_empleado);
