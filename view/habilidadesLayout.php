@@ -23,7 +23,22 @@
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
+            });
 
+            $(document).on('click', '.view', function(){
+                var id = $(this).attr('data-id');
+                //preparo los parametros
+                params={};
+                params.id_habilidad = id;
+                params.action = "habilidades";
+                params.operation = "editHabilidad";
+                $('#popupbox').load('index.php', params,function(){
+                    $("#habilidad input, #habilidad .selectpicker, #habilidad textarea").prop("disabled", true);
+                    $('.selectpicker').selectpicker('refresh');
+                    $('.modal-footer').css('display', 'none');
+                    $('#myModalLabel').html('');
+                    $('#myModal').modal();
+                })
             });
 
 
