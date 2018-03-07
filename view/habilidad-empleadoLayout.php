@@ -94,7 +94,7 @@
 
 
 
-            $(document).on('click', '.edit', function(){
+            $(document).on('click', '.edit, .view', function(){
                 alert('Funcionalidad en construccion');
                 var id = $(this).attr('data-id');
                 params={};

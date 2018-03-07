@@ -42,12 +42,11 @@
                 <th>Apellido</th>
                 <th>Nombre</th>
                 <th>CUIL</th>
-
                 <th>Habilidad</th>
                 <th>F. desde</th>
-
-                <th>Editar</th>
-                <th>Borrar</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -61,6 +60,10 @@
                                 <td><?php echo $he['cuil']; ?></td>
                                 <td><?php echo $he['habilidad']; ?></td>
                                 <td><?php echo $he['fecha_desde']; ?></td>
+                                <td class="text-center"><a class="view" href="javascript:void(0);">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                    </a>
+                                </td>
                                 <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('HEM_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" href="javascript:void(0);">
                                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                         </a>
