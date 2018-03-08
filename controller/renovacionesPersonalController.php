@@ -63,6 +63,7 @@ switch ($operation)
         $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
         $view->disableLayout=true;
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/renovacionesPersonalForm.php";
         break;
 

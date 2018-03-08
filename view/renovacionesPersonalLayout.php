@@ -55,6 +55,7 @@
                 params.id_renovacion = id;
                 params.action = "renovacionesPersonal";
                 params.operation = "editRenovacion";
+                params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     $("fieldset").prop("disabled", true);
                     $('.selectpicker').selectpicker('refresh');
