@@ -49,7 +49,6 @@
             });
 
             $(document).on('click', '.view', function(){ //ok
-                alert('click en ver');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -250,7 +249,7 @@
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" id="search_renovado" name="search_renovado">
-                                <a href="#" data-toggle="tooltip" title="Seleccione para visualizar registros ya renovados">Renovados</a>
+                                <a href="#" title="Seleccione para visualizar registros ya renovados">Renovados</a>
                             </label>
                         </div>
                     </div>
@@ -258,14 +257,14 @@
 
                     <div class="form-group col-md-1" style="width: 7%">
                         <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="search">
+                        <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </div>
 
                     <div class="form-group col-md-1" style="width: 7%">
                         <label for="search">&nbsp;</label>
-                        <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" id="new" <?php echo ( PrivilegedUser::dhasAction('RPE_INSERT', array(1)) )? '' : 'disabled' ?>>
+                        <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nueva renovación" id="new" <?php echo ( PrivilegedUser::dhasAction('RPE_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </div>

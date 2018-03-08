@@ -13,7 +13,7 @@
                              // elimine el mensaje de requerido de jquery validation
         });
 
-        $('[data-toggle="tooltip"]').tooltip();
+        //$('[data-toggle="tooltip"]').tooltip();
 
         $('#empleado-form').validate({
             rules: {
@@ -254,7 +254,7 @@
         <div class="col-md-offset-4 col-md-8">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" id="cambio_domicilio" name="cambio_domicilio" <?php echo (!$view->empleado->getIdEmpleado())? 'disabled' :'' ?> > <a href="#" data-toggle="tooltip" title="Registra el cambio de domicilio y conserva el anterior como historico">Cambio de domicilio</a>
+                    <input type="checkbox" id="cambio_domicilio" name="cambio_domicilio" <?php echo (!$view->empleado->getIdEmpleado())? 'disabled' :'' ?> > <a href="#" title="Registra el cambio de domicilio y conserva el anterior como historico">Cambio de domicilio</a>
                 </label>
             </div>
         </div>
