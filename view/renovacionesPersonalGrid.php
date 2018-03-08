@@ -93,6 +93,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -107,6 +108,18 @@
                         <td><?php echo $rp['fecha_emision']; ?></td>
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td style="display: none"><?php echo $rp['priority']; ?></td>
+
+                        <td class="text-center">
+                            <?php if($rp['cant_uploads']> 0 ){ ?>
+                                <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
+                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                                </a>
+                            <?php } else{ ?>
+                                <!--<a class="" href="#" title="renovar">
+                                    <i class="far fa-clone"></i>
+                                </a>-->
+                            <?php } ?>
+                        </td>
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);">
@@ -129,12 +142,14 @@
                         </td>
 
                         <td class="text-center">
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                            <!-- si tiene permiso y no fue renovado -->
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
                             </a>
                         </td>
                         <td class="text-center">
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+                            <!-- si tiene permiso y no fue renovado -->
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) && !$rp['id_rnv_renovacion'] )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
                         </td>
