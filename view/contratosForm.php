@@ -20,26 +20,23 @@
 
             $('#empleados-table tbody tr').remove();
 
+            //alert('<?php //echo $view->target ?>');
+
             for (var i in jsonEmpleados) {
 
                 if (jsonEmpleados[i].operacion == 'delete') { //para no mostrar los eliminados
                     continue;
                 }
 
-                var hasPrivilege = '<?php echo  (PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain()))? 1:0;  ?>'; //devuelve 1 o 0
-                var operation = $('#contrato-form').data('operation');
-                var updateClass = (hasPrivilege == 1 && operation != 'view' )? 'update-empleado':'disabled';
-                var deleteClass = (hasPrivilege == 1 && operation != 'view' )? 'update-empleado':'disabled';
-                //alert(hasPrivilege);
-
                 $('#empleados-table tbody').append('<tr id_empleado='+jsonEmpleados[i].id_empleado+'>' +
                 '<td>'+jsonEmpleados[i].empleado+'</td>' +
-                //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
+                    //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
                 '<td>'+jsonEmpleados[i].puesto+'</td>' +
-                '<td class="text-center"><a class="view-empleado" title="ver" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
-                '<td class="text-center"><a class="'+updateClass+'" title="editar" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
-                '<td class="text-center"><a class="'+deleteClass+'" title="borrar" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
                 '</tr>');
+
             }
 
         };

@@ -143,6 +143,7 @@ switch ($operation)
         $view->companias = Compania::getCompanias();
 
         $view->disableLayout=true;
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/contratosForm.php";
         break;
 
