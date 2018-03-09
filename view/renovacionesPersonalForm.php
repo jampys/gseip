@@ -146,14 +146,14 @@
                         $("#myElem").html('Renovación guardada con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
+                        setTimeout(function() { $("#myElem").hide();
+                            $('#myModal').modal('hide');
+                        }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar la renovación').addClass('alert alert-danger').show();
                     }
-                    setTimeout(function() { $("#myElem").hide();
-                        $('#myModal').modal('hide');
-                    }, 2000);
 
-                });
+                }, 'json');
 
             }
             return false;
@@ -341,7 +341,7 @@
 
 
 
-                <div id="myElem" style="display:none"></div>
+                <div id="myElem" class="msg" style="display:none"></div>
 
 
 
