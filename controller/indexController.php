@@ -12,7 +12,7 @@ $view->disableLayout=false;// marca si usa o no el layout , si no lo usa imprime
 switch ($operation)
 {
     case 'about': //ok
-        $view->label='Acerca de';
+        //$view->label='Acerca de';
         $view->disableLayout=true;
         $view->contentTemplate="view/indexFormAbout.php";
         break;

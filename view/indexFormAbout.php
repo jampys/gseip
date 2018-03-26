@@ -19,13 +19,19 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?php echo $view->label ?></h4>
+                <!--<h4 class="modal-title" id="myModalLabel"><?php echo $view->label ?></h4>-->
+                <img src="resources/img/seip140x40.png" class="img-responsive">
             </div>
+
             <div class="modal-body">
+
+                <p class="text-muted">Versión 2.0 Marzo 2018 </p>
+                <p class="text-muted"><small>Copyright &copy; SEIP SRL 2017 Todos los derechos reservados</small></p>
 
 
             </div>
