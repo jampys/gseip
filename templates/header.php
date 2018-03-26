@@ -117,13 +117,28 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-user"></span>
-                                Usuario
-                            <span class="caret"></span>
+                        <a href="#" title="Ayuda" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="far fa-question-circle fa-lg"></i>
                         </a>
 
                         <ul class="dropdown-menu">
+                            <li class="dropdown-header">AYUDA</li>
+                            <!--<li><a id="about" href="index.php?action=login&operation=salir">Acerca de</a></li>-->
+                            <li><a id="about" href="#">Acerca de</a></li>
+                        </ul>
+
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" title="Tu perfil y configuración" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <!--<span class="glyphicon glyphicon-user"></span>
+                            Usuario
+                            <span class="caret"></span>-->
+                            <i class="fas fa-user fa-lg"></i>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">USUARIO</li>
                             <li><a href="#"><span class="text-muted"><?php echo $_SESSION['user'] ?></span> </a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>

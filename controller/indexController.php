@@ -9,15 +9,21 @@ $view->disableLayout=false;// marca si usa o no el layout , si no lo usa imprime
 
 
 
-/*switch ($operation)
+switch ($operation)
 {
+    case 'about': //ok
+        $view->label='Acerca de';
+        $view->disableLayout=true;
+        $view->contentTemplate="view/indexFormAbout.php";
+        break;
+
     default:
         //$view->disableLayout=true;
         //$view->clientes=Cliente::getClientes();
         //$view->contentTemplate="view/clientesGrid.php"; // seteo el template que se va a mostrar
-        //break;
+        break;
 
-}*/
+}
 
 // si esta deshabilitado el layout solo imprime el template
 if ($view->disableLayout==true) {
