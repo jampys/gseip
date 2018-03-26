@@ -383,7 +383,7 @@
 
     </div>
 
-    <fieldset <?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) )? '' : 'disabled' ?>>
+    <fieldset <?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? '' : 'disabled' ?>>
     <div class="panel-body">
 
     <form class="form-horizontal" name ="contrato-form" id="contrato-form" method="POST" action="index.php">
