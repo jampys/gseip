@@ -5,6 +5,23 @@
 
     $(document).ready(function(){
 
+        var t = $('#culin').DataTable({
+            sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
+            bPaginate: false,
+            //deferRender:    true,
+            scrollY:        150,
+            scrollCollapse: true,
+            scroller:       true,
+            "columnDefs": [
+                {"width": "30%", "targets": 0}, //empleado
+                {"width": "55%", "targets": 1}, //puesto
+                {"width": "5%", "targets": 2}, //ver
+                {"width": "5%", "targets": 3}, //editar
+                {"width": "5%", "targets": 4} //eliminar
+            ]
+
+        });
+
         $('.selectpicker').selectpicker({
             //propiedades del selectpicker
 
@@ -18,7 +35,8 @@
 
         $.cargarTablaEmpleados=function(){
 
-            $('#empleados-table tbody tr').remove();
+            //$('#empleados-table tbody tr').remove();
+            t.clear().draw();
 
             //alert('<?php //echo $view->target ?>');
 
@@ -28,14 +46,25 @@
                     continue;
                 }
 
-                $('#empleados-table tbody').append('<tr id_empleado='+jsonEmpleados[i].id_empleado+'>' +
+                /*$('#empleados-table tbody').append('<tr id_empleado='+jsonEmpleados[i].id_empleado+'>' +
                 '<td>'+jsonEmpleados[i].empleado+'</td>' +
                     //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
                 '<td>'+jsonEmpleados[i].puesto+'</td>' +
                 '<td class="text-center"><a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
                 '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
                 '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
-                '</tr>');
+                '</tr>');*/
+
+                var table_rows = '<tr id_empleado='+jsonEmpleados[i].id_empleado+'>' +
+                    '<td>'+jsonEmpleados[i].empleado+'</td>' +
+                        //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
+                    '<td>'+jsonEmpleados[i].puesto+'</td>' +
+                    '<td class="text-center"><a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
+                    '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
+                    '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                    '</tr>';
+
+                t.rows.add($(table_rows)).draw();
 
             }
 
@@ -363,6 +392,7 @@
 
 
 
+
     });
 
 </script>
@@ -474,8 +504,8 @@
         </div>
 
 
-    <div class="fixedTable table-responsive" id="empleados-table">
-        <table class="table table-condensed dpTable table-hover">
+    <div class="table-responsive" id="empleados-table">
+        <table id="culin" class="table table-condensed dpTable table-hover">
             <thead>
             <tr>
                 <th>Empleado</th>
