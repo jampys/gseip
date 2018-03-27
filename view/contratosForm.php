@@ -336,7 +336,8 @@
                         aDelete[index] = value * -1;
                     });
                     //aMerge: tiene en negativo los que hay que eliminar (delete), y en positivo los que se mantienen o hay que agregar (insert)
-                    var aMerge = $.merge( $("#id_proceso").val(), aDelete );
+                    //var aMerge = $.merge( $("#id_proceso").val(), aDelete );
+                    var aMerge = $.extend({}, $("#id_proceso").val(), aDelete); // $.merge falla cuando $("#id_proceso").val() no tiene valores
                     jsonEmpleados[id].id_proceso = aMerge;
 
                 }
