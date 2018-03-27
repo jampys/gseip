@@ -413,45 +413,48 @@
 
     </div>
 
-    <fieldset <?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? '' : 'disabled' ?>>
+
     <div class="panel-body">
 
     <form class="form-horizontal" name ="contrato-form" id="contrato-form" method="POST" action="index.php">
-    <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->contrato->getIdContrato() ?>">
 
-    <div class="form-group required">
-        <label for="nro_contrato" class="col-md-3 control-label">Nro. Contrato</label>
-        <div class="col-md-7">
-            <input class="form-control" type="text" name="nro_contrato" id="nro_contrato" placeholder="Nro. Contrato" value = "<?php print $view->contrato->getNroContrato() ?>">
-        </div>
-    </div>
+        <fieldset <?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? '' : 'disabled' ?>>
 
-    <div class="form-group required">
-        <label for="compania" class="col-md-3 control-label">Compañía</label>
-        <div class="col-md-7">
-            <select class="form-control selectpicker show-tick" id="compania" name="compania" title="Seleccione la compañía">
-                <?php foreach ($view->companias as $cia){
-                    ?>
-                    <option value="<?php echo $cia['id_compania']; ?>"
-                        <?php echo ($cia['id_compania'] == $view->contrato->getIdCompania())? 'selected' :'' ?>
-                        >
-                        <?php echo $cia['nombre'];?>
-                    </option>
-                <?php  } ?>
-            </select>
-        </div>
-    </div>
+            <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->contrato->getIdContrato() ?>">
 
-
-        <div class="form-group required">
-            <label for="nombre" class="col-md-3 control-label">Nombre</label>
-            <div class="col-md-7">
-                <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->contrato->getNombre() ?>">
+            <div class="form-group required">
+                <label for="nro_contrato" class="col-md-3 control-label">Nro. Contrato</label>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" name="nro_contrato" id="nro_contrato" placeholder="Nro. Contrato" value = "<?php print $view->contrato->getNroContrato() ?>">
+                </div>
             </div>
-        </div>
+
+            <div class="form-group required">
+                <label for="compania" class="col-md-3 control-label">Compañía</label>
+                <div class="col-md-7">
+                    <select class="form-control selectpicker show-tick" id="compania" name="compania" title="Seleccione la compañía">
+                        <?php foreach ($view->companias as $cia){
+                            ?>
+                            <option value="<?php echo $cia['id_compania']; ?>"
+                                <?php echo ($cia['id_compania'] == $view->contrato->getIdCompania())? 'selected' :'' ?>
+                                >
+                                <?php echo $cia['nombre'];?>
+                            </option>
+                        <?php  } ?>
+                    </select>
+                </div>
+            </div>
 
 
-        <!--
+            <div class="form-group required">
+                <label for="nombre" class="col-md-3 control-label">Nombre</label>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->contrato->getNombre() ?>">
+                </div>
+            </div>
+
+
+            <!--
     <div class="form-group required">
         <label for="id_responsable" class="col-md-3 control-label">Responsable</label>
         <div class="col-md-7">
@@ -463,35 +466,38 @@
         </div>
     </div> -->
 
-        <div class="form-group required">
-            <label for="id_responsable" class="col-md-3 control-label">Responsable</label>
-            <div class="col-md-7">
-                <select id="id_responsable" name="id_responsable" class="form-control selectpicker" data-live-search="true" data-size="5" title="Seleccione un responsable">
-                    <?php foreach ($view->empleados as $em){
-                        ?>
-                        <option value="<?php echo $em['id_empleado']; ?>"
-                            <?php echo ($em['id_empleado'] == $view->contrato->getIdResponsable())? 'selected' :'' ?>
-                            >
-                            <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                        </option>
-                    <?php  } ?>
-                </select>
-            </div>
-        </div>
-
-
-        <div class="form-group required">
-            <label class="col-md-3 control-label" for="fecha">Desde / hasta</label>
-            <div class="col-md-7">
-
-                <div class="input-group input-daterange">
-                    <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
-                    <div class="input-group-addon">a</div>
-                    <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+            <div class="form-group required">
+                <label for="id_responsable" class="col-md-3 control-label">Responsable</label>
+                <div class="col-md-7">
+                    <select id="id_responsable" name="id_responsable" class="form-control selectpicker" data-live-search="true" data-size="5" title="Seleccione un responsable">
+                        <?php foreach ($view->empleados as $em){
+                            ?>
+                            <option value="<?php echo $em['id_empleado']; ?>"
+                                <?php echo ($em['id_empleado'] == $view->contrato->getIdResponsable())? 'selected' :'' ?>
+                                >
+                                <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                            </option>
+                        <?php  } ?>
+                    </select>
                 </div>
-
             </div>
-        </div>
+
+
+            <div class="form-group required">
+                <label class="col-md-3 control-label" for="fecha">Desde / hasta</label>
+                <div class="col-md-7">
+
+                    <div class="input-group input-daterange">
+                        <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                        <div class="input-group-addon">a</div>
+                        <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                    </div>
+
+                </div>
+            </div>
+
+
+        </fieldset>
 
 
 
@@ -540,6 +546,7 @@
 
 
 
+
     <div class="panel-footer clearfix">
         <div class="button-group pull-right">
             <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
@@ -558,7 +565,7 @@
 
 
 </div>
-    </fieldset>
+
 
 
 
