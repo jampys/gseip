@@ -1,3 +1,24 @@
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $(document).on('click', '#about', function(){ //ok
+            //preparo los parametros
+            params={};
+            params.action = "index";
+            params.operation = "about";
+            $('#header_popupbox').load('index.php', params,function(){
+                $('#myModal').modal();
+            })
+
+        });
+
+
+    });
+
+</script>
+
+
 <style>
     #brand-image{
         height: 120%;
@@ -153,3 +174,5 @@
     </nav>
 
 </header>
+
+<div id="header_popupbox"></div>
