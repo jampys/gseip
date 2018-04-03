@@ -26,15 +26,15 @@
 
             });
 
-            $(document).on('click', '.view', function(){
+            $(document).on('click', '.view', function(){ //ok
                 var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_puesto = id;
-                params.action = "puestos";
-                params.operation = "editPuesto";
+                params.id_vehiculo = id;
+                params.action = "vehiculos";
+                params.operation = "editVehiculo";
                 $('#popupbox').load('index.php', params,function(){
-                    $("#puesto input, #puesto .selectpicker, #puesto textarea").prop("disabled", true);
+                    $("#vehiculo-form input, #vehiculo-form .selectpicker, #vehiculo-form textarea").prop("disabled", true);
                     $('.selectpicker').selectpicker('refresh');
                     $('.modal-footer').css('display', 'none');
                     $('#myModalLabel').html('');

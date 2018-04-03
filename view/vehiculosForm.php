@@ -54,7 +54,7 @@
 
 
 <!-- Modal -->
-<fieldset <?php echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
+<fieldset <?php echo ( PrivilegedUser::dhasAction('VEH_UPDATE', array(1)) )? '' : 'disabled' ?>>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -65,18 +65,38 @@
             <div class="modal-body">
 
 
-                <form name ="puesto" id="puesto" method="POST" action="index.php">
-                    <input type="hidden" name="id_puesto" id="id_puesto" value="<?php print $view->puesto->getIdPuesto() ?>">
+                <form name ="vehiculo-form" id="vehiculo-form" method="POST" action="index.php">
+                    <input type="hidden" name="id_vehiculo" id="id_vehiculo" value="<?php print $view->vehiculo->getIdVehiculo() ?>">
 
                     <div class="form-group required">
-                        <label class="control-label" for="codigo">Código</label>
-                        <input class="form-control" type="text" name="codigo" id="codigo" value = "<?php print $view->puesto->getCodigo() ?>" placeholder="Código">
+                        <label class="control-label" for="nro_movil">Nro. móvil</label>
+                        <input class="form-control" type="text" name="nro_movil" id="nro_movil" value = "<?php print $view->vehiculo->getNroMovil() ?>" placeholder="Nro. móvil">
                     </div>
 
                     <div class="form-group required">
-                        <label class="control-label" for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php print $view->puesto->getNombre() ?>" placeholder="Nombre">
+                        <label class="control-label" for="matricula">Matrícula</label>
+                        <input class="form-control" type="text" name="matricula" id="matricula"value = "<?php print $view->vehiculo->getMatricula() ?>" placeholder="Matrícula">
                     </div>
+
+                    <div class="form-group required">
+                        <label for="marca" class="control-label">Marca</label>
+                            <select class="form-control selectpicker show-tick" id="marca" name="marca" title="Seleccione la marca">
+                                <?php foreach ($view->marcas['enum'] as $mar){
+                                    ?>
+                                    <option value="<?php echo $mar; ?>"
+                                        <?php echo ($mar == $view->vehiculo->getMarca() OR ($mar == $view->marcas['default'] AND !$view->vehiculo->getIdVehiculo()) )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $mar; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="control-label" for="matricula">Modelo</label>
+                        <input class="form-control" type="text" name="modelo" id="modelo"value = "<?php print $view->vehiculo->getModelo() ?>" placeholder="Modelo">
+                    </div>
+
 
                     <div class="form-group required">
                         <label class="control-label" for="id_area" >Área</label>
@@ -106,26 +126,41 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="id_puesto_superior" >Puesto superior</label>
-                        <select class="form-control selectpicker show-tick" id="id_puesto_superior" name="id_puesto_superior" data-live-search="true" data-size="5">
-                            <option value="">Seleccione el puesto superior</option>
-                            <?php foreach ($view->puesto_superior as $sup){
-                                ?>
-                                <option value="<?php echo $sup['id_puesto']; ?>"
-                                    <?php echo ($sup['id_puesto'] == $view->puesto->getIdPuestoSuperior())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $sup['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
 
                     <div class="form-group">
                         <label class="control-label" for="descripcion">Descripción</label>
                         <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="2"><?php print $view->puesto->getDescripcion(); ?></textarea>
                     </div>
+
+
+                    <?php if(isset($view->domicilios)){  ?>
+                        <div class="table-responsive">
+                            <table class="table table-condensed dpTable table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Dirección</th>
+                                    <th>Localidad</th>
+                                    <th>F. Desde</th>
+                                    <th>F. Hasta</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach ($view->domicilios as $dom):  ?>
+                                    <tr>
+                                        <td><?php echo $dom['direccion'];?></td>
+                                        <td><?php echo $dom['CP'].' '.$dom['ciudad'].' '.$dom['provincia'];?></td>
+                                        <td><?php echo $dom['fecha_desde'];?></td>
+                                        <td><?php echo $dom['fecha_hasta'];?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    <?php } ?>
+
+
+                    <hr/>
 
 
 

@@ -47,6 +47,7 @@ switch ($operation)
         $view->label='Editar vehículo';
         $view->vehiculo = new Vehiculo($_POST['id_vehiculo']);
 
+        $view->marcas = Soporte::get_enum_values('vto_vehiculos', 'marca');
         //$view->puesto_superior = Puesto::getPuestos();
         //$view->areas = Area::getAreas();
         //$view->nivelesCompetencias = CompetenciasNiveles::getNivelesCompetencias();
