@@ -127,7 +127,9 @@
 
                             <li class="dropdown-header">VEHICULAR</li>
                             <!--<li><a href="index.php?action="><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos</a></li>-->
-                            <li><a href="index.php?action=" style="cursor: not-allowed"><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos <span class="text-muted"><small> [En construcción]</small></span></a>
+                            <?php if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=vehiculos"><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos <span class="text-muted"></a>
+                            <?php } ?>
                             <li><a href="index.php?action=" style="cursor: not-allowed"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Renovaciones <span class="text-muted"><small> [En construcción]</small></span></a></li>
 
                         </ul>
