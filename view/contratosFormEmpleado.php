@@ -35,7 +35,7 @@
             todayHighlight: true
         });
 
-        $('#fecha_desde').datepicker().on('changeDate', function (selected) { //ok
+        /*$('#fecha_desde').datepicker().on('changeDate', function (selected) { //ok
             var minDate = new Date(selected.date.valueOf());
             $('#fecha_hasta').datepicker('setStartDate', minDate);
             //$('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', minDate);
@@ -44,7 +44,7 @@
         $('#fecha_hasta').datepicker().on('changeDate', function (selected) { //ok
             var maxDate = new Date(selected.date.valueOf());
             $('#fecha_desde').datepicker('setEndDate', maxDate);
-        });
+        });*/
 
         /*$('#id_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
             //alert('hola');
