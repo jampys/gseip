@@ -10,7 +10,9 @@ class Vehiculo
     private $modelo;
     private $modelo_año;
     private $fecha_baja;
-    private $id_contrato;
+    private $id_contrato; //contrato al que esta afectado el vehiculo actualmente
+    private $fecha_desde;
+    private $fecha_hasta;
 
     // GETTERS
     function getIdVehiculo()
@@ -37,6 +39,12 @@ class Vehiculo
     function getIdContrato()
     { return $this->id_contrato;}
 
+    function getFechaDesde()
+    { return $this->fecha_desde;}
+
+    function getFechaHasta()
+    { return $this->fecha_hasta;}
+
     //SETTERS
     function setIdVehiculo($val)
     { $this->id_vehiculo=$val;}
@@ -62,13 +70,21 @@ class Vehiculo
     function setIdContrato($val)
     {  $this->id_contrato=$val;}
 
+    function setFechaDesde($val)
+    {  $this->fecha_desde=$val;}
+
+    function setFechaHasta($val)
+    {  $this->fecha_hasta=$val;}
+
 
     function __construct($nro=0){ //constructor ok
 
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select ve.*, vvc.id_contrato
+            $query="select ve.*, vvc.id_contrato,
+                  DATE_FORMAT(vvc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(vvc.fecha_hasta,  '%d/%m/%Y') as fecha_hasta
 from vto_vehiculos ve
 left join vto_vehiculo_contrato vvc on ve.id_vehiculo = vvc.id_vehiculo
 where ve.id_vehiculo = :nro
@@ -86,6 +102,8 @@ and (vvc.fecha_hasta is null or datediff(vvc.fecha_hasta, date(sysdate())) > 0)"
             $this->setModeloAño($rows[0]['modelo_año']);
             $this->setFechaBaja($rows[0]['fecha_baja']);
             $this->setIdContrato($rows[0]['id_contrato']);
+            $this->setFechaDesde($rows[0]['fecha_desde']);
+            $this->setFechaHasta($rows[0]['fecha_hasta']);
         }
     }
 

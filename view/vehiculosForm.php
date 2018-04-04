@@ -19,6 +19,25 @@
         });
 
 
+        $('.input-daterange').datepicker({ //ok
+            //todayBtn: "linked",
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
+
+        $('#fecha_desde').datepicker().on('changeDate', function (selected) { //ok
+            var minDate = new Date(selected.date.valueOf());
+            $('#fecha_hasta').datepicker('setStartDate', minDate);
+            //$('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', minDate);
+        });
+
+        $('#fecha_hasta').datepicker().on('changeDate', function (selected) { //ok
+            var maxDate = new Date(selected.date.valueOf());
+            $('#fecha_desde').datepicker('setEndDate', maxDate);
+        });
+
+
         $('#puesto').validate({
             rules: {
                 codigo: {
@@ -133,9 +152,9 @@
                     <div class="form-group required">
                         <label class="control-label" for="fecha">Desde / hasta</label>
                             <div class="input-group input-daterange">
-                                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->vehiculo->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                                 <div class="input-group-addon">a</div>
-                                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->vehiculo->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
                             </div>
                     </div>
 
@@ -143,7 +162,7 @@
                     <div class="form-group">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" id="cambio_domicilio" name="cambio_domicilio" <?php //echo (!$view->empleado->getIdEmpleado())? 'disabled' :'' ?> > <a href="#" title="Registra el cambio de domicilio y conserva el anterior como historico">Cambio de domicilio</a>
+                                    <input type="checkbox" id="cambio_contrato" name="cambio_contrato" <?php echo (!$view->vehiculo->getIdVehiculo())? 'disabled' :'' ?> > <a href="#" title="Registra el cambio de contrato y conserva el anterior como historico">Cambio de contrato</a>
                                 </label>
                             </div>
                     </div>
