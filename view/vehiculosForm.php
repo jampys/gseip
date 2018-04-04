@@ -99,56 +99,62 @@
 
 
                     <div class="form-group required">
-                        <label class="control-label" for="id_area" >Área</label>
-                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione un área">
-                            <?php foreach ($view->areas as $area){
+                        <label class="control-label" for="id_area" >Modelo año</label>
+                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione un modelo año">
+                            <?php foreach ($view->periodos as $per){
                                 ?>
-                                <option value="<?php echo $area['id_area']; ?>"
-                                    <?php echo ($area['id_area'] == $view->puesto->getIdArea())? 'selected' :'' ?>
+                                <option value="<?php echo $per; ?>"
+                                    <?php echo ($per == $view->vehiculo->getModeloAño())? 'selected' :'' ?>
                                     >
-                                    <?php echo $area['nombre']; ?>
+                                    <?php echo $view->vehiculo->getModeloAño(); ?>
                                 </option>
                             <?php  } ?>
                         </select>
                     </div>
 
-                    <div class="form-group required">
-                        <label class="control-label" for="id_nivel_competencia" >Nivel de competencia</label>
-                        <select class="form-control selectpicker show-tick" id="id_nivel_competencia" name="id_nivel_competencia" title="Seleccione un nivel de competencia">
-                            <?php foreach ($view->nivelesCompetencias as $nc){
-                                ?>
-                                <option value="<?php echo $nc['id_nivel_competencia']; ?>"
-                                    <?php echo ($nc['id_nivel_competencia'] == $view->puesto->getIdNivelCompetencia())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $nc['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+
+
+                    <hr/>
+                    <div class="form-group">
+                        <label for="id_contrato" class="col-md-4 control-label">Contrato</label>
+                            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" title="Seleccione el contrato" data-live-search="true" data-size="5">
+                                <?php foreach ($view->contratos_combo as $con){
+                                    ?>
+                                    <option value="<?php echo $con['id_contrato']; ?>"
+                                        <?php echo ($con['id_contrato'] == $view->vehiculo->getIdContrato())? 'selected' :'' ?>
+                                        >
+                                        <?php echo $con['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
                     </div>
 
 
                     <div class="form-group">
-                        <label class="control-label" for="descripcion">Descripción</label>
-                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="2"><?php print $view->puesto->getDescripcion(); ?></textarea>
+                        <div class="col-md-offset-4 col-md-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="cambio_domicilio" name="cambio_domicilio" <?php //echo (!$view->empleado->getIdEmpleado())? 'disabled' :'' ?> > <a href="#" title="Registra el cambio de domicilio y conserva el anterior como historico">Cambio de domicilio</a>
+                                </label>
+                            </div>
+                        </div>
                     </div>
 
 
-                    <?php if(isset($view->domicilios)){  ?>
+                    <?php if(isset($view->contratos)){  ?>
                         <div class="table-responsive">
                             <table class="table table-condensed dpTable table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Dirección</th>
-                                    <th>Localidad</th>
+                                    <th>Contrato</th>
                                     <th>F. Desde</th>
                                     <th>F. Hasta</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach ($view->domicilios as $dom):  ?>
+                                <?php foreach ($view->contratos as $dom):  ?>
                                     <tr>
-                                        <td><?php echo $dom['direccion'];?></td>
-                                        <td><?php echo $dom['CP'].' '.$dom['ciudad'].' '.$dom['provincia'];?></td>
+                                        <td><?php echo $dom['contrato'];?></td>
                                         <td><?php echo $dom['fecha_desde'];?></td>
                                         <td><?php echo $dom['fecha_hasta'];?></td>
                                     </tr>

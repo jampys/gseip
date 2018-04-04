@@ -1,6 +1,7 @@
 ﻿<?php
 
 include_once("model/vehiculosModel.php");
+include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -48,10 +49,8 @@ switch ($operation)
         $view->vehiculo = new Vehiculo($_POST['id_vehiculo']);
 
         $view->marcas = Soporte::get_enum_values('vto_vehiculos', 'marca');
-        //$view->puesto_superior = Puesto::getPuestos();
-        //$view->areas = Area::getAreas();
-        //$view->nivelesCompetencias = CompetenciasNiveles::getNivelesCompetencias();
-
+        $view->periodos = Soporte::getPeriodos(2000, date("Y"));
+        $view->contratos_combo = Contrato::getContratos();
         $view->contratos = $view->vehiculo->getContratosByVehiculo();
 
         $view->disableLayout=true;

@@ -79,6 +79,7 @@ class Vehiculo
             $this->setMatricula($rows[0]['matricula']);
             $this->setMarca($rows[0]['marca']);
             $this->setModelo($rows[0]['modelo']);
+            $this->setModeloAño($rows[0]['modelo_año']);
             $this->setFechaBaja($rows[0]['fecha_baja']);
             $this->setIdContrato($rows[0]['id_contrato']);
         }
@@ -120,9 +121,11 @@ order by ve.nro_movil asc";
     public function getContratosByVehiculo() {
         $stmt=new sQuery();
         $query = "select vvc.id_vehiculo_contrato, vvc.id_vehiculo, vvc.id_contrato,
+co.nombre as contrato,
 DATE_FORMAT(vvc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-DATE_FORMAT(vvc.fecha_desde,  '%d/%m/%Y') as fecha_desde
+DATE_FORMAT(vvc.fecha_hasta,  '%d/%m/%Y') as fecha_hasta
 from vto_vehiculo_contrato vvc
+join contratos co on vvc.id_contrato = co.id_contrato
 where vvc.fecha_hasta is not null
 and id_vehiculo = :id_vehiculo";
         $stmt->dpPrepare($query);
