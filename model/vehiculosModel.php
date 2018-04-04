@@ -68,7 +68,11 @@ class Vehiculo
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select * from vto_vehiculos where id_vehiculo = :nro";
+            $query="select ve.*, vvc.id_contrato
+from vto_vehiculos ve
+left join vto_vehiculo_contrato vvc on ve.id_vehiculo = vvc.id_vehiculo
+where ve.id_vehiculo = :nro
+and (vvc.fecha_hasta is null or datediff(vvc.fecha_hasta, date(sysdate())) > 0)";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();

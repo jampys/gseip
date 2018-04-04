@@ -116,7 +116,7 @@
 
                     <hr/>
                     <div class="form-group">
-                        <label for="id_contrato" class="col-md-4 control-label">Contrato</label>
+                        <label for="id_contrato" class="control-label">Contrato</label>
                             <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" title="Seleccione el contrato" data-live-search="true" data-size="5">
                                 <?php foreach ($view->contratos_combo as $con){
                                     ?>
@@ -130,14 +130,22 @@
                     </div>
 
 
+                    <div class="form-group required">
+                        <label class="control-label" for="fecha">Desde / hasta</label>
+                            <div class="input-group input-daterange">
+                                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                                <div class="input-group-addon">a</div>
+                                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                            </div>
+                    </div>
+
+
                     <div class="form-group">
-                        <div class="col-md-offset-4 col-md-8">
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" id="cambio_domicilio" name="cambio_domicilio" <?php //echo (!$view->empleado->getIdEmpleado())? 'disabled' :'' ?> > <a href="#" title="Registra el cambio de domicilio y conserva el anterior como historico">Cambio de domicilio</a>
                                 </label>
                             </div>
-                        </div>
                     </div>
 
 
