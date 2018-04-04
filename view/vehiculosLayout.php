@@ -47,10 +47,10 @@
 
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
-                params.action = "puestos";
-                params.operation="newPuesto";
+                params.action = "vehiculos";
+                params.operation="newVehiculo";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })

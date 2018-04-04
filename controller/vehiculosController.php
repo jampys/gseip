@@ -32,16 +32,17 @@ switch ($operation)
         exit;
         break;
 
-    case 'newPuesto':
-        $view->puesto = new Puesto();
-        $view->label='Nuevo Puesto de trabajo';
+    case 'newVehiculo': //ok
+        $view->label='Nuevo vehículo';
+        $view->vehiculo = new Vehiculo();
 
-        $view->puesto_superior = Puesto::getPuestos();
-        $view->areas = Area::getAreas();
-        $view->nivelesCompetencias = CompetenciasNiveles::getNivelesCompetencias();
+        $view->marcas = Soporte::get_enum_values('vto_vehiculos', 'marca');
+        $view->periodos = Soporte::getPeriodos(2000, date("Y"));
+        $view->contratos_combo = Contrato::getContratos();
+        $view->contratos = $view->vehiculo->getContratosByVehiculo();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/puestosForm.php";
+        $view->contentTemplate="view/vehiculosForm.php";
         break;
 
     case 'editVehiculo': //ok

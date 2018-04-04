@@ -162,7 +162,7 @@
                     <div class="form-group">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" id="cambio_contrato" name="cambio_contrato" <?php echo (!$view->vehiculo->getIdVehiculo())? 'disabled' :'' ?> > <a href="#" title="Registra el cambio de contrato y conserva el anterior como historico">Cambio de contrato</a>
+                                    <input type="checkbox" id="cambio_contrato" name="cambio_contrato" <?php echo (!$view->vehiculo->getIdVehiculo() || !$view->vehiculo->getIdContrato() )? 'disabled' :'' ?> > <a href="#" title="Registra el cambio de contrato y conserva el anterior como historico">Cambio de contrato</a>
                                 </label>
                             </div>
                     </div>

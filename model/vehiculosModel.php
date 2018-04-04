@@ -114,7 +114,8 @@ and (vvc.fecha_hasta is null or datediff(vvc.fecha_hasta, date(sysdate())) > 0)"
 ve.fecha_baja, ve.responsable,
 co.nombre as contrato
 from vto_vehiculos ve
-left join vto_vehiculo_contrato vvc on ve.id_vehiculo = vvc.id_vehiculo and vvc.fecha_hasta is not null
+left join vto_vehiculo_contrato vvc on ve.id_vehiculo = vvc.id_vehiculo
+			and (vvc.fecha_hasta is null or datediff(vvc.fecha_hasta, date(sysdate())) > 0)
 left join contratos co on vvc.id_contrato = co.id_contrato
 order by ve.nro_movil asc";
 
@@ -140,7 +141,7 @@ order by ve.nro_movil asc";
     }
 
 
-    public function getContratosByVehiculo() {
+    public function getContratosByVehiculo() { //muestra los contratos con el vehiculo que NO estan vigentes
         $stmt=new sQuery();
         $query = "select vvc.id_vehiculo_contrato, vvc.id_vehiculo, vvc.id_contrato,
 co.nombre as contrato,
@@ -148,8 +149,9 @@ DATE_FORMAT(vvc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
 DATE_FORMAT(vvc.fecha_hasta,  '%d/%m/%Y') as fecha_hasta
 from vto_vehiculo_contrato vvc
 join contratos co on vvc.id_contrato = co.id_contrato
-where vvc.fecha_hasta is not null
-and id_vehiculo = :id_vehiculo";
+			and vvc.fecha_hasta is not null
+            and datediff(vvc.fecha_hasta, date(sysdate())) < 0
+where id_vehiculo = :id_vehiculo";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpExecute();
