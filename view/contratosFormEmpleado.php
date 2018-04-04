@@ -151,7 +151,7 @@
 
 
                     <div class="form-group required">
-                        <label class="control-label" for="empleado">Desde / hasta</label>
+                        <label class="control-label" for="empleado">Fecha afectación / desafectación</label>
                         <div class="input-group input-daterange">
                             <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                             <div class="input-group-addon">a</div>
