@@ -80,7 +80,7 @@ class RenovacionPersonal
                     DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
                     DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
                     DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion
-                    from v_vto_renovacion_p
+                    from vto_renovacion_p
                     where id_renovacion = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -304,7 +304,7 @@ order by priority, id_rnv_renovacion asc";
         sea mayor. */
         $stmt=new sQuery();
         $query = "select *
-                  from v_vto_renovacion_p
+                  from vto_renovacion_p
                   where
                   ( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
                   :id_renovacion is null
@@ -336,7 +336,7 @@ order by priority, id_rnv_renovacion asc";
     public function checkFechaVencimiento($fecha_emision, $fecha_vencimiento, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
         $stmt=new sQuery();
         $query = "select *
-                  from v_vto_renovacion_p
+                  from vto_renovacion_p
                   where
                   ( -- renovar: busca renovacion vigente y se asegura que la fecha_vencimiento ingresada sea mayor que la de ésta
                   :id_renovacion is null
