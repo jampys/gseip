@@ -103,7 +103,7 @@
                         <label class="control-label" for="id_empleado">Empleado</label>
                         <!--<input type="text" class="form-control empleado-group" id="empleado" name="empleado" placeholder="Empleado">
                         <input type="hidden" name="id_empleado" id="id_empleado" class="empleado-group"/>-->
-                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker" data-live-search="true" data-size="5" title="Seleccione un empleado">
+                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
                             <?php foreach ($view->empleados as $em){
                                 ?>
                                 <option value="<?php echo $em['id_empleado']; ?>"
@@ -117,7 +117,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="puesto" >Puesto</label>
-                        <select class="form-control selectpicker" id="puesto" name="puesto" data-live-search="true" data-size="5" title="Seleccione el puesto">
+                        <select class="form-control selectpicker show-tick" id="puesto" name="puesto" data-live-search="true" data-size="5" title="Seleccione el puesto">
                             <?php foreach ($view->puestos as $pu){
                                 ?>
                                 <option value="<?php echo $pu['id_puesto']; ?>"

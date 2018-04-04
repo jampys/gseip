@@ -261,7 +261,7 @@
     </div>
 
 
-    <?php if(isset($view->domicilios)){  ?>
+    <?php if(isset($view->domicilios) && sizeof($view->domicilios)>0 ){  ?>
     <div class="table-responsive">
         <table class="table table-condensed dpTable table-hover">
             <thead>
