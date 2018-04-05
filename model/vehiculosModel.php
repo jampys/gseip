@@ -88,7 +88,7 @@ class Vehiculo
         $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_año, ve.propietario,
 ve.fecha_baja, ve.responsable
 from vto_vehiculos ve
-order by ve.nro_movil asc";
+order by ve.fecha_baja asc, ve.nro_movil asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
@@ -96,7 +96,7 @@ order by ve.nro_movil asc";
     }
 
 
-    public static function getEmpleadosActivos() {
+    public static function getVehiculosActivos() {
         $stmt=new sQuery();
         $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
                       DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
@@ -130,123 +130,51 @@ order by vvc.fecha_desde desc";
 
 
 
-    function save(){
-        if($this->id_puesto)
-        {$rta = $this->updatePuesto();}
+    function save(){ //ok
+        if($this->id_vehiculo)
+        {$rta = $this->updateVehiculo();}
         else
-        {$rta =$this->insertPuesto();}
+        {$rta =$this->insertVehiculo();}
         return $rta;
     }
 
-    public function updateEmpleado($cambio_domicilio){
+    public function updateVehiculo(){
 
         $stmt=new sQuery();
-        $query = 'CALL sp_updateEmpleados(:id_empleado,
-                                        :legajo,
-                                        :apellido,
-                                        :nombre,
-                                        :documento,
-                                        :cuil,
-                                        :fecha_nacimiento,
-                                        :fecha_alta,
-                                        :fecha_baja,
-                                        :telefono,
-                                        :email,
-                                        :sexo,
-                                        :nacionalidad,
-                                        :estado_civil,
-                                        :empresa,
-                                        :direccion,
-                                        :id_localidad,
-                                        :cambio_domicilio,
-                                        @flag
-                                    )';
-
+        $query="update puestos set
+                nombre= :nombre,
+                descripcion= :descripcion,
+                codigo= :codigo,
+                id_puesto_superior= :id_puesto_superior,
+                id_area= :id_area,
+                id_nivel_competencia= :id_nivel_competencia
+                where id_puesto = :id_puesto";
         $stmt->dpPrepare($query);
-
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':legajo', $this->getLegajo());
-        $stmt->dpBind(':apellido', $this->getApellido());
         $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':documento', $this->getDocumento());
-        $stmt->dpBind(':cuil', $this->getCuil());
-        $stmt->dpBind(':fecha_nacimiento', $this->getFechaNacimiento());
-        $stmt->dpBind(':fecha_alta', $this->getFechaAlta());
-        $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
-        $stmt->dpBind(':telefono', $this->getTelefono());
-        $stmt->dpBind(':email', $this->getEmail());
-        $stmt->dpBind(':sexo', $this->getSexo());
-        $stmt->dpBind(':nacionalidad', $this->getNacionalidad());
-        $stmt->dpBind(':estado_civil', $this->getEstadoCivil());
-        $stmt->dpBind(':empresa', $this->getEmpresa());
-        $stmt->dpBind(':direccion', $this->getDireccion());
-        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
-        $stmt->dpBind(':cambio_domicilio', $cambio_domicilio);
-
+        $stmt->dpBind(':descripcion', $this->getDescripcion());
+        $stmt->dpBind(':codigo', $this->getCodigo());
+        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
+        $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
+        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpExecute();
-
-        $stmt->dpCloseCursor();
-        $query = "select @flag as flag";
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        $flag = $stmt->dpFetchAll();
-        return ($flag)? intval($flag[0]['flag']) : 0;
-
+        return $stmt->dpGetAffect();
     }
 
-    private function insertEmpleado(){
+    private function insertVehiculo(){
 
         $stmt=new sQuery();
-        $query = 'CALL sp_insertEmpleados(
-                                        :legajo,
-                                        :apellido,
-                                        :nombre,
-                                        :documento,
-                                        :cuil,
-                                        :fecha_nacimiento,
-                                        :fecha_alta,
-                                        :fecha_baja,
-                                        :telefono,
-                                        :email,
-                                        :sexo,
-                                        :nacionalidad,
-                                        :estado_civil,
-                                        :empresa,
-                                        :direccion,
-                                        :id_localidad,
-                                        @flag
-                                    )';
-
+        $query="insert into puestos(nombre, descripcion, codigo, id_puesto_superior, id_area, id_nivel_competencia)
+                values(:nombre, :descripcion, :codigo, :id_puesto_superior, :id_area, :id_nivel_competencia)";
         $stmt->dpPrepare($query);
-
-        //$stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':legajo', $this->getLegajo());
-        $stmt->dpBind(':apellido', $this->getApellido());
         $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':documento', $this->getDocumento());
-        $stmt->dpBind(':cuil', $this->getCuil());
-        $stmt->dpBind(':fecha_nacimiento', $this->getFechaNacimiento());
-        $stmt->dpBind(':fecha_alta', $this->getFechaAlta());
-        $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
-        $stmt->dpBind(':telefono', $this->getTelefono());
-        $stmt->dpBind(':email', $this->getEmail());
-        $stmt->dpBind(':sexo', $this->getSexo());
-        $stmt->dpBind(':nacionalidad', $this->getNacionalidad());
-        $stmt->dpBind(':estado_civil', $this->getEstadoCivil());
-        $stmt->dpBind(':empresa', $this->getEmpresa());
-        $stmt->dpBind(':direccion', $this->getDireccion());
-        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
-        //$stmt->dpBind(':cambio_domicilio', $cambio_domicilio);
-
+        $stmt->dpBind(':descripcion', $this->getDescripcion());
+        $stmt->dpBind(':codigo', $this->getCodigo());
+        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
+        $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
         $stmt->dpExecute();
-
-        $stmt->dpCloseCursor();
-        $query = "select @flag as flag";
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        $flag = $stmt->dpFetchAll();
-        return ($flag)? intval($flag[0]['flag']) : 0;
-
+        return $stmt->dpGetAffect();
     }
 
     function deletePuesto(){
@@ -258,16 +186,7 @@ order by vvc.fecha_desde desc";
         return $stmt->dpGetAffect();
     }
 
-
-    public function autocompletarPuestos($term) {
-        $stmt=new sQuery();
-        $query = "select *
-                  from puestos
-                  where nombre like '%$term%'";
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
+    
 
 }
 
