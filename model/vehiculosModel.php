@@ -10,9 +10,7 @@ class Vehiculo
     private $modelo;
     private $modelo_año;
     private $fecha_baja;
-    private $id_contrato; //contrato al que esta afectado el vehiculo actualmente
-    private $fecha_desde;
-    private $fecha_hasta;
+
 
     // GETTERS
     function getIdVehiculo()
@@ -36,14 +34,6 @@ class Vehiculo
     function getFechaBaja()
     { return $this->fecha_baja;}
 
-    function getIdContrato()
-    { return $this->id_contrato;}
-
-    function getFechaDesde()
-    { return $this->fecha_desde;}
-
-    function getFechaHasta()
-    { return $this->fecha_hasta;}
 
     //SETTERS
     function setIdVehiculo($val)
@@ -67,14 +57,6 @@ class Vehiculo
     function setFechaBaja($val)
     {  $this->fecha_baja=$val;}
 
-    function setIdContrato($val)
-    {  $this->id_contrato=$val;}
-
-    function setFechaDesde($val)
-    {  $this->fecha_desde=$val;}
-
-    function setFechaHasta($val)
-    {  $this->fecha_hasta=$val;}
 
 
     function __construct($nro=0){ //constructor ok
@@ -82,13 +64,9 @@ class Vehiculo
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select ve.*, vvc.id_contrato,
-                  DATE_FORMAT(vvc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-                  DATE_FORMAT(vvc.fecha_hasta,  '%d/%m/%Y') as fecha_hasta
-from vto_vehiculos ve
-left join vto_vehiculo_contrato vvc on ve.id_vehiculo = vvc.id_vehiculo
-where ve.id_vehiculo = :nro
-and (vvc.fecha_hasta is null or datediff(vvc.fecha_hasta, date(sysdate())) > 0)";
+            $query="select ve.*
+                    from vto_vehiculos ve
+                    where ve.id_vehiculo = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
@@ -101,9 +79,6 @@ and (vvc.fecha_hasta is null or datediff(vvc.fecha_hasta, date(sysdate())) > 0)"
             $this->setModelo($rows[0]['modelo']);
             $this->setModeloAño($rows[0]['modelo_año']);
             $this->setFechaBaja($rows[0]['fecha_baja']);
-            $this->setIdContrato($rows[0]['id_contrato']);
-            $this->setFechaDesde($rows[0]['fecha_desde']);
-            $this->setFechaHasta($rows[0]['fecha_hasta']);
         }
     }
 
@@ -111,12 +86,8 @@ and (vvc.fecha_hasta is null or datediff(vvc.fecha_hasta, date(sysdate())) > 0)"
     public static function getVehiculos() { //ok
         $stmt=new sQuery();
         $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_año, ve.propietario,
-ve.fecha_baja, ve.responsable,
-co.nombre as contrato
+ve.fecha_baja, ve.responsable
 from vto_vehiculos ve
-left join vto_vehiculo_contrato vvc on ve.id_vehiculo = vvc.id_vehiculo
-			and (vvc.fecha_hasta is null or datediff(vvc.fecha_hasta, date(sysdate())) > 0)
-left join contratos co on vvc.id_contrato = co.id_contrato
 order by ve.nro_movil asc";
 
         $stmt->dpPrepare($query);
@@ -141,7 +112,7 @@ order by ve.nro_movil asc";
     }
 
 
-    public function getContratosByVehiculo() { //muestra los contratos con el vehiculo que NO estan vigentes
+    public function getContratosByVehiculo() { //muestra los contratos con el vehiculo (TODOS: vigentes y no vigentes)
         $stmt=new sQuery();
         $query = "select vvc.id_vehiculo_contrato, vvc.id_vehiculo, vvc.id_contrato,
 co.nombre as contrato,
@@ -149,9 +120,8 @@ DATE_FORMAT(vvc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
 DATE_FORMAT(vvc.fecha_hasta,  '%d/%m/%Y') as fecha_hasta
 from vto_vehiculo_contrato vvc
 join contratos co on vvc.id_contrato = co.id_contrato
-			and vvc.fecha_hasta is not null
-            and datediff(vvc.fecha_hasta, date(sysdate())) < 0
-where id_vehiculo = :id_vehiculo";
+where id_vehiculo = :id_vehiculo
+order by vvc.fecha_desde desc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpExecute();

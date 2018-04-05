@@ -38,7 +38,6 @@ switch ($operation)
 
         $view->marcas = Soporte::get_enum_values('vto_vehiculos', 'marca');
         $view->periodos = Soporte::getPeriodos(2000, date("Y"));
-        $view->contratos_combo = Contrato::getContratos();
         $view->contratos = $view->vehiculo->getContratosByVehiculo();
 
         $view->disableLayout=true;
@@ -51,7 +50,6 @@ switch ($operation)
 
         $view->marcas = Soporte::get_enum_values('vto_vehiculos', 'marca');
         $view->periodos = Soporte::getPeriodos(2000, date("Y"));
-        $view->contratos_combo = Contrato::getContratos();
         $view->contratos = $view->vehiculo->getContratosByVehiculo();
 
         $view->disableLayout=true;

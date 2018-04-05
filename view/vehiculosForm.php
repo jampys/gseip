@@ -19,25 +19,6 @@
         });
 
 
-        $('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });
-
-        $('#fecha_desde').datepicker().on('changeDate', function (selected) { //ok
-            var minDate = new Date(selected.date.valueOf());
-            $('#fecha_hasta').datepicker('setStartDate', minDate);
-            //$('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', minDate);
-        });
-
-        $('#fecha_hasta').datepicker().on('changeDate', function (selected) { //ok
-            var maxDate = new Date(selected.date.valueOf());
-            $('#fecha_desde').datepicker('setEndDate', maxDate);
-        });
-
-
         $('#puesto').validate({
             rules: {
                 codigo: {
@@ -99,7 +80,7 @@
 
                     <div class="form-group required">
                         <label for="marca" class="control-label">Marca</label>
-                            <select class="form-control selectpicker show-tick" id="marca" name="marca" title="Seleccione la marca">
+                            <select class="form-control selectpicker show-tick" id="marca" name="marca" title="Seleccione la marca" data-live-search="true" data-size="5">
                                 <?php foreach ($view->marcas['enum'] as $mar){
                                     ?>
                                     <option value="<?php echo $mar; ?>"
@@ -119,13 +100,13 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="id_area" >Modelo año</label>
-                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione un modelo año">
+                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione un modelo año" data-live-search="true" data-size="5">
                             <?php foreach ($view->periodos as $per){
                                 ?>
                                 <option value="<?php echo $per; ?>"
                                     <?php echo ($per == $view->vehiculo->getModeloAño())? 'selected' :'' ?>
                                     >
-                                    <?php echo $view->vehiculo->getModeloAño(); ?>
+                                    <?php echo $per; ?>
                                 </option>
                             <?php  } ?>
                         </select>
@@ -134,41 +115,8 @@
 
 
                     <hr/>
-                    <div class="form-group">
-                        <label for="id_contrato" class="control-label">Contrato</label>
-                            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" title="Seleccione el contrato" data-live-search="true" data-size="5">
-                                <?php foreach ($view->contratos_combo as $con){
-                                    ?>
-                                    <option value="<?php echo $con['id_contrato']; ?>"
-                                        <?php echo ($con['id_contrato'] == $view->vehiculo->getIdContrato())? 'selected' :'' ?>
-                                        >
-                                        <?php echo $con['nombre']; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
-                    </div>
 
-
-                    <div class="form-group required">
-                        <label class="control-label" for="fecha">Desde / hasta</label>
-                            <div class="input-group input-daterange">
-                                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->vehiculo->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
-                                <div class="input-group-addon">a</div>
-                                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->vehiculo->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
-                            </div>
-                    </div>
-
-
-                    <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="cambio_contrato" name="cambio_contrato" <?php echo (!$view->vehiculo->getIdVehiculo() || !$view->vehiculo->getIdContrato() )? 'disabled' :'' ?> > <a href="#" title="Registra el cambio de contrato y conserva el anterior como historico">Cambio de contrato</a>
-                                </label>
-                            </div>
-                    </div>
-
-
-                    <?php if(isset($view->contratos)){  ?>
+                    <?php if(isset($view->contratos) && sizeof($view->contratos)>0){  ?>
                         <div class="table-responsive">
                             <table class="table table-condensed dpTable table-hover">
                                 <thead>
@@ -191,7 +139,6 @@
                         </div>
 
                     <?php } ?>
-
 
                     <hr/>
 
