@@ -186,6 +186,28 @@ order by vvc.fecha_desde desc";
         return $stmt->dpGetAffect();
     }
 
+    public function checkVehiculoMatricula($matricula, $id_vehiculo) {
+        $stmt=new sQuery();
+        $query = "select * from vto_vehiculos ve
+                  where ve.matricula = :matricula
+                  -- and em.fecha_baja is null
+                  and
+                  (( -- nuevo vehiculo
+                  :id_vehiculo is null
+                  -- no se ponen condiciones
+                  )
+                  OR
+                  ( -- edicion vehiculo
+                  :id_vehiculo is not null
+                  and ve.id_vehiculo <> :id_vehiculo
+                  ))";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':matricula', $matricula);
+        $stmt->dpBind(':id_vehiculo', $id_vehiculo);
+        $stmt->dpExecute();
+        return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }
+
 
 
 }

@@ -33,7 +33,27 @@
                         digits: true,
                         maxlength: 3
                 },
-                matricula: {required: true},
+                matricula: {
+                    required: true,
+                    remote: {
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            action: "vehiculos",
+                            operation: "checkVehiculoMatricula",
+                            matricula: function(){ return $('#matricula').val();},
+                            id_vehiculo: function(){ return $('#id_vehiculo').val();}
+                        }
+                        /*success: function(data, textStatus, jqXHR) {
+                         console.log(textStatus, jqXHR, data);
+                         },
+                         error: function(data, textStatus, errorThrown) {
+                         console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                         }*/
+
+                    }
+                },
                 marca: {required: true},
                 modelo: {required: true}
             },
@@ -43,7 +63,10 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 3 dígitos"
                 },
-                matricula: "Ingrese la matrícula",
+                matricula: {
+                    required: "Ingrese la matricula",
+                    remote: "La matrícula ingresada ya existe"
+                },
                 marca: "Seleccione una marca",
                 modelo: "Ingrese el modelo"
             }

@@ -63,9 +63,11 @@ switch ($operation)
         die;
         break;
 
-    case 'autocompletarPuestos':
-        $view->puesto = new Puesto();
-        $rta=$view->puesto->autocompletarPuestos($_POST['term']);
+    case 'checkVehiculoMatricula':
+        $view->vehiculo = new Vehiculo();
+        $id_vehiculo = ($_POST['id_vehiculo']!='')? $_POST['id_vehiculo'] : null;
+        $matricula = ($_POST['matricula']!='')? $_POST['matricula'] : null;
+        $rta = $view->vehiculo->checkVehiculoMatricula($matricula, $id_vehiculo);
         print_r(json_encode($rta));
         exit;
         break;
