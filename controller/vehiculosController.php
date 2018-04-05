@@ -63,6 +63,15 @@ switch ($operation)
         die;
         break;
 
+    case 'checkVehiculoNroMovil':
+        $view->vehiculo = new Vehiculo();
+        $id_vehiculo = ($_POST['id_vehiculo']!='')? $_POST['id_vehiculo'] : null;
+        $nro_movil = ($_POST['nro_movil']!='')? $_POST['nro_movil'] : null;
+        $rta = $view->vehiculo->checkVehiculoNroMovil($nro_movil, $id_vehiculo);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
     case 'checkVehiculoMatricula':
         $view->vehiculo = new Vehiculo();
         $id_vehiculo = ($_POST['id_vehiculo']!='')? $_POST['id_vehiculo'] : null;

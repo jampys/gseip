@@ -31,7 +31,24 @@
                 nro_movil: {
                         required: true,
                         digits: true,
-                        maxlength: 3
+                        maxlength: 3,
+                        remote: {
+                            url: "index.php",
+                            type: "post",
+                            dataType: "json",
+                            data: {
+                                action: "vehiculos",
+                                operation: "checkVehiculoNroMovil",
+                                nro_movil: function(){ return $('#nro_movil').val();},
+                                id_vehiculo: function(){ return $('#id_vehiculo').val();}
+                            }
+                            /*success: function(data, textStatus, jqXHR) {
+                            console.log(textStatus, jqXHR, data);
+                            },
+                            error: function(data, textStatus, errorThrown) {
+                            console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                            }*/
+                        }
                 },
                 matricula: {
                     required: true,
@@ -61,7 +78,8 @@
                 nro_movil: {
                     required: "Ingrese el número de movil",
                     digits: "Ingrese solo números",
-                    maxlength: "Máximo 3 dígitos"
+                    maxlength: "Máximo 3 dígitos",
+                    remote: "El nro. de movil ingresado ya existe"
                 },
                 matricula: {
                     required: "Ingrese la matricula",
