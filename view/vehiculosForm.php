@@ -111,7 +111,7 @@
                             <?php foreach ($view->periodos as $per){
                                 ?>
                                 <option value="<?php echo $per; ?>"
-                                    <?php echo ($per == $view->vehiculo->getModeloAño())? 'selected' :'' ?>
+                                    <?php echo ($per == $view->vehiculo->getModeloAno())? 'selected' :'' ?>
                                     >
                                     <?php echo $per; ?>
                                 </option>

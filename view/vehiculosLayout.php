@@ -67,7 +67,7 @@
                     params.matricula = $('#matricula').val();
                     params.marca = $('#marca').val();
                     params.modelo = $('#modelo').val();
-                    params.modelo_año = $('#modelo_año').val();
+                    params.modelo_ano = $('#modelo_ano').val();
                     params.fecha_baja = $('#fecha_baja').val();
                     //alert(params.id_puesto_superior);
                     $.post('index.php',params,function(data, status, xhr){

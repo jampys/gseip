@@ -8,7 +8,7 @@ class Vehiculo
     private $matricula;
     private $marca;
     private $modelo;
-    private $modelo_año;
+    private $modelo_ano;
     private $fecha_baja;
 
 
@@ -28,8 +28,8 @@ class Vehiculo
     function getModelo()
     { return $this->modelo;}
 
-    function getModeloAño()
-    { return $this->modelo_año;}
+    function getModeloAno()
+    { return $this->modelo_ano;}
 
     function getFechaBaja()
     { return $this->fecha_baja;}
@@ -51,8 +51,8 @@ class Vehiculo
     function setModelo($val)
     {  $this->modelo=$val;}
 
-    function setModeloAño($val)
-    {  $this->modelo_año=$val;}
+    function setModeloAno($val)
+    {  $this->modelo_ano=$val;}
 
     function setFechaBaja($val)
     {  $this->fecha_baja=$val;}
@@ -77,7 +77,7 @@ class Vehiculo
             $this->setMatricula($rows[0]['matricula']);
             $this->setMarca($rows[0]['marca']);
             $this->setModelo($rows[0]['modelo']);
-            $this->setModeloAño($rows[0]['modelo_año']);
+            $this->setModeloAno($rows[0]['modelo_ano']);
             $this->setFechaBaja($rows[0]['fecha_baja']);
         }
     }
@@ -85,7 +85,7 @@ class Vehiculo
 
     public static function getVehiculos() { //ok
         $stmt=new sQuery();
-        $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_año, ve.propietario,
+        $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_ano, ve.propietario,
 ve.fecha_baja, ve.responsable
 from vto_vehiculos ve
 order by ve.fecha_baja asc, ve.nro_movil asc";
@@ -141,12 +141,12 @@ order by vvc.fecha_desde desc";
     public function updateVehiculo(){ //ok
 
         $stmt=new sQuery();
-        $query="update vehiculos set
+        $query="update vto_vehiculos set
                 nro_movil = :nro_movil,
                 matricula = :matricula,
                 marca = :marca,
                 modelo = :modelo,
-                modelo_año = :modelo_año,
+                modelo_ano = :modelo_ano,
                 fecha_baja = STR_TO_DATE(:fecha_baja, '%d/%m/%Y')
                 where id_vehiculo = :id_vehiculo";
         $stmt->dpPrepare($query);
@@ -154,7 +154,7 @@ order by vvc.fecha_desde desc";
         $stmt->dpBind(':matricula', $this->getMatricula());
         $stmt->dpBind(':marca', $this->getMarca());
         $stmt->dpBind(':modelo', $this->getModelo());
-        $stmt->dpBind(':modelo_año', $this->getModeloAño());
+        $stmt->dpBind(':modelo_ano', $this->getModeloAno());
         $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpExecute();

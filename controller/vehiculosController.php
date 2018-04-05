@@ -24,7 +24,7 @@ switch ($operation)
         $vehiculo->setMatricula($_POST['matricula']);
         $vehiculo->setMarca($_POST['marca']);
         $vehiculo->setModelo($_POST['modelo']);
-        $vehiculo->setModeloAño($_POST['modelo_año']);
+        $vehiculo->setModeloAno($_POST['modelo_ano']);
         $vehiculo->setFechaBaja(($_POST['fecha_baja'])? $_POST['fecha_baja'] : null);
 
         $rta = $vehiculo->save();

@@ -63,7 +63,7 @@
                     <td><?php echo $vehiculo['matricula'];?></td>
                     <td><?php echo $vehiculo['marca'];?></td>
                     <td><?php echo $vehiculo['modelo'];?></td>
-                    <td><?php echo $vehiculo['modelo_año'];?></td>
+                    <td><?php echo $vehiculo['modelo_ano'];?></td>
                     <td><?php echo $vehiculo['fecha_baja'];?></td>
                     <td class="text-center"><a class="view" title="ver" href="javascript:void(0);" data-id="<?php echo $vehiculo['id_vehiculo'];?>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
                     <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('VEH_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);" data-id="<?php echo $vehiculo['id_vehiculo'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
