@@ -56,14 +56,14 @@ switch ($operation)
         $view->contentTemplate="view/vehiculosForm.php";
         break;
 
-    case 'deletePuesto':
-        $puesto = new Puesto($_POST['id_puesto']);
-        $rta = $puesto->deletePuesto();
+    case 'deleteVehiculo': //ok
+        $vehiculo = new Vehiculo($_POST['id_vehiculo']);
+        $rta = $vehiculo->deleteVehiculo();
         print_r(json_encode($rta));
         die;
         break;
 
-    case 'checkVehiculoNroMovil':
+    case 'checkVehiculoNroMovil': //ok
         $view->vehiculo = new Vehiculo();
         $id_vehiculo = ($_POST['id_vehiculo']!='')? $_POST['id_vehiculo'] : null;
         $nro_movil = ($_POST['nro_movil']!='')? $_POST['nro_movil'] : null;
@@ -72,7 +72,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'checkVehiculoMatricula':
+    case 'checkVehiculoMatricula': //ok
         $view->vehiculo = new Vehiculo();
         $id_vehiculo = ($_POST['id_vehiculo']!='')? $_POST['id_vehiculo'] : null;
         $matricula = ($_POST['matricula']!='')? $_POST['matricula'] : null;

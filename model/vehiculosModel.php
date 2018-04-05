@@ -177,11 +177,11 @@ order by vvc.fecha_desde desc";
         return $stmt->dpGetAffect();
     }
 
-    function deletePuesto(){
+    function deleteVehiculo(){
         $stmt=new sQuery();
-        $query="delete from puestos where id_puesto= :id";
+        $query="delete from vto_vehiculos where id_vehiculo = :id";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getIdPuesto());
+        $stmt->dpBind(':id', $this->getIdVehiculo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
