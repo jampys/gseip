@@ -164,15 +164,15 @@ order by vvc.fecha_desde desc";
     private function insertVehiculo(){
 
         $stmt=new sQuery();
-        $query="insert into puestos(nombre, descripcion, codigo, id_puesto_superior, id_area, id_nivel_competencia)
-                values(:nombre, :descripcion, :codigo, :id_puesto_superior, :id_area, :id_nivel_competencia)";
+        $query="insert into vto_vehiculos(nro_movil, matricula, marca, modelo, modelo_ano, fecha_baja)
+                values(:nro_movil, :matricula, :marca, :modelo, :modelo_ano, STR_TO_DATE(:fecha_baja, '%d/%m/%Y'))";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
-        $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
+        $stmt->dpBind(':nro_movil', $this->getNroMovil());
+        $stmt->dpBind(':matricula', $this->getMatricula());
+        $stmt->dpBind(':marca', $this->getMarca());
+        $stmt->dpBind(':modelo', $this->getModelo());
+        $stmt->dpBind(':modelo_ano', $this->getModeloAno());
+        $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

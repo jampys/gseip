@@ -107,7 +107,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="id_area" >Modelo año</label>
-                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione un modelo año" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="modelo_ano" name="modelo_ano" title="Seleccione un modelo año" data-live-search="true" data-size="5">
                             <?php foreach ($view->periodos as $per){
                                 ?>
                                 <option value="<?php echo $per; ?>"
