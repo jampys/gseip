@@ -138,25 +138,25 @@ order by vvc.fecha_desde desc";
         return $rta;
     }
 
-    public function updateVehiculo(){
+    public function updateVehiculo(){ //ok
 
         $stmt=new sQuery();
-        $query="update puestos set
-                nombre= :nombre,
-                descripcion= :descripcion,
-                codigo= :codigo,
-                id_puesto_superior= :id_puesto_superior,
-                id_area= :id_area,
-                id_nivel_competencia= :id_nivel_competencia
-                where id_puesto = :id_puesto";
+        $query="update vehiculos set
+                nro_movil = :nro_movil,
+                matricula = :matricula,
+                marca = :marca,
+                modelo = :modelo,
+                modelo_año = :modelo_año,
+                fecha_baja = STR_TO_DATE(:fecha_baja, '%d/%m/%Y')
+                where id_vehiculo = :id_vehiculo";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
-        $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':nro_movil', $this->getNroMovil());
+        $stmt->dpBind(':matricula', $this->getMatricula());
+        $stmt->dpBind(':marca', $this->getMarca());
+        $stmt->dpBind(':modelo', $this->getModelo());
+        $stmt->dpBind(':modelo_año', $this->getModeloAño());
+        $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
@@ -186,7 +186,7 @@ order by vvc.fecha_desde desc";
         return $stmt->dpGetAffect();
     }
 
-    
+
 
 }
 

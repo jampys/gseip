@@ -12,22 +12,22 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $view->puestos = Puesto::getPuestos();
-        $view->contentTemplate="view/puestosGrid.php";
+        $view->vehiculos = Vehiculo::getVehiculos();
+        $view->contentTemplate="view/vehiculosGrid.php";
         break;
 
-    case 'savePuesto':
-        $puesto = new Puesto($_POST['id_puesto']);
-        $puesto->setNombre($_POST['nombre']);
-        $puesto->setDescripcion($_POST['descripcion']);
-        $puesto->setCodigo($_POST['codigo']);
-        $puesto->setIdPuestoSuperior(($_POST['id_puesto_superior'])? $_POST['id_puesto_superior'] : null);
-        $puesto->setIdArea($_POST['id_area']);
-        $puesto->setIdNivelCompetencia($_POST['id_nivel_competencia']);
+    case 'saveVehiculo': //ok
+        $vehiculo = new Vehiculo($_POST['id_vehiculo']);
+        $vehiculo->setNroMovil($_POST['nro_movil']);
+        $vehiculo->setMatricula($_POST['matricula']);
+        $vehiculo->setMarca($_POST['marca']);
+        $vehiculo->setModelo($_POST['modelo']);
+        $vehiculo->setModeloAño($_POST['modelo_año']);
+        $vehiculo->setFechaBaja(($_POST['fecha_baja'])? $_POST['fecha_baja'] : null);
 
-        $rta = $puesto->save();
+        $rta = $vehiculo->save();
         print_r(json_encode($rta));
         exit;
         break;

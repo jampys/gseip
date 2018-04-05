@@ -18,27 +18,34 @@
             keyboard: false
         });
 
+        $('.input-group.date').datepicker({
+            //inline: true
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
 
-        $('#puesto').validate({
+
+        $('#vehiculo-form').validate({ //ok
             rules: {
-                codigo: {
+                nro_movil: {
                         required: true,
                         digits: true,
-                        maxlength: 6
+                        maxlength: 3
                 },
-                nombre: {required: true},
-                id_area: {required: true},
-                id_nivel_competencia: {required: true}
+                matricula: {required: true},
+                marca: {required: true},
+                modelo: {required: true}
             },
             messages:{
-                codigo: {
-                    required: "Ingrese el código",
+                nro_movil: {
+                    required: "Ingrese el número de movil",
                     digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
+                    maxlength: "Máximo 3 dígitos"
                 },
-                nombre: "Ingrese el nombre",
-                id_area: "Seleccione un área",
-                id_nivel_competencia: "Seleccione un nivel de competencia"
+                matricula: "Ingrese la matrícula",
+                marca: "Seleccione una marca",
+                modelo: "Ingrese el modelo"
             }
 
         });
@@ -98,7 +105,7 @@
                     </div>
 
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label class="control-label" for="id_area" >Modelo año</label>
                         <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione un modelo año" data-live-search="true" data-size="5">
                             <?php foreach ($view->periodos as $per){
@@ -110,6 +117,17 @@
                                 </option>
                             <?php  } ?>
                         </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="fecha">Fecha baja</label>
+                            <div class="input-group date">
+                                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->vehiculo->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
                     </div>
 
 
