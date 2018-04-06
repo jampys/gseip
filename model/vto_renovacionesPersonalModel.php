@@ -125,7 +125,8 @@ where
 ( -- filtro por contrato
   :id_contrato is not null
   and ecx.id_contrato = :id_contrato
-  and datediff(ecx.fecha_hasta, date(sysdate())) >= 0
+  -- and datediff(ecx.fecha_hasta, date(sysdate())) >= 0
+  and (ecx.fecha_hasta > date(sysdate()) or ecx.fecha_hasta is null)
  )
 OR
 ( -- todos los contratos, o los sin contrato
