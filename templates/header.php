@@ -128,10 +128,12 @@
                             <li class="dropdown-header">VEHICULAR</li>
                             <!--<li><a href="index.php?action="><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos</a></li>-->
                             <?php if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=vehiculos"><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos <span class="text-muted"></a>
+                                <li><a href="index.php?action=vehiculos"><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos</a></li>
                             <?php } ?>
-                            <li><a href="index.php?action=" style="cursor: not-allowed"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Renovaciones <span class="text-muted"><small> [En construcción]</small></span></a></li>
 
+                            <?php if ( PrivilegedUser::dhasPrivilege('RVE_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=renovacionesVehiculos"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Renovaciones</a></li>
+                            <?php } ?>
                         </ul>
                     </li>
 
