@@ -15,17 +15,17 @@
             $('.selectpicker').selectpicker();
 
 
-            $(document).on('click', '#search', function(){
+            $(document).on('click', '#search', function(){ //ok
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-                params.id_grupo = $('#search_empleado option:selected').attr('id_grupo');
+                params.id_vehiculo = $('#search_vehiculo option:selected').attr('id_vehiculo');
+                params.id_grupo = $('#search_vehiculo option:selected').attr('id_grupo');
                 params.id_vencimiento = $("#search_vencimiento").val();
                 params.id_contrato = $("#search_contrato").val();
                 params.renovado = $('#search_renovado').prop('checked')? 1:0;
-                params.action = "renovacionesPersonal";
+                params.action = "renovacionesVehiculos";
                 params.operation = "refreshGrid";
                 //alert(params.id_grupo);
                 //alert(params.renovado);
@@ -191,7 +191,7 @@
                         </select>
                     </div>-->
                     <div class="form-group col-md-3">
-                        <label for="search_empleado" class="control-label">Vehículo / Grupo</label>
+                        <label for="search_vehiculo" class="control-label">Vehículo / Grupo</label>
                         <select class="form-control selectpicker show-tick" id="search_vehiculo" name="search_vehiculo" data-live-search="true" data-size="5">
                             <option value="">Seleccione un vehículo o grupo</option>
                             <?php foreach ($view->vehiculosGrupos as $eg){
