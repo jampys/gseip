@@ -1,6 +1,6 @@
 <?php
 
-class VencimientoPersonal
+class VencimientoVehicular
 {
     private $id_vencimiento;
     private $nombre;
@@ -23,12 +23,12 @@ class VencimientoPersonal
 
 
 
-    public static function getVencimientosPersonal() {
+    public static function getVencimientosVehiculos() { //ok
         $stmt=new sQuery();
-        $stmt->dpPrepare("select * from vto_vencimiento_p
+        $stmt->dpPrepare("select * from vto_vencimiento_v
                           order by nombre");
         $stmt->dpExecute();
-        return $stmt->dpFetchAll(); // retorna todos los vencimientos de personal
+        return $stmt->dpFetchAll(); // retorna todos los vencimientos de vehiculos
     }
 
 

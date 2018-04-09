@@ -178,7 +178,7 @@
 
         <div class="col-md-12">
 
-            <h4>Renovaciones de personal</h4>
+            <h4>Renovaciones de vehículos</h4>
             <hr class="hr-primary"/>
 
             <div class="clearfix">
@@ -191,15 +191,15 @@
                         </select>
                     </div>-->
                     <div class="form-group col-md-3">
-                        <label for="search_empleado" class="control-label">Empleado / Grupo</label>
-                        <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un empleado o grupo</option>
-                            <?php foreach ($view->empleadosGrupos as $eg){
+                        <label for="search_empleado" class="control-label">Vehículo / Grupo</label>
+                        <select class="form-control selectpicker show-tick" id="search_vehiculo" name="search_vehiculo" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un vehículo o grupo</option>
+                            <?php foreach ($view->vehiculosGrupos as $eg){
                                 ?>
                                 <option value=""
-                                        id_empleado="<?php echo $eg['id_empleado']; ?>"
+                                        id_vehiculo="<?php echo $eg['id_vehiculo']; ?>"
                                         id_grupo="<?php echo $eg['id_grupo']; ?>"
-                                        data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm" : "fas fa-users fa-sm"; ?>"
+                                        data-icon="<?php echo ($eg['id_vehiculo'])? "fas fa-user fa-sm" : "fas fa-users fa-sm"; ?>"
                                     >
                                     &nbsp;
                                     <?php echo $eg['descripcion'] ;?>

@@ -1,18 +1,18 @@
 <?php
-include_once("empleadosModel.php");
+include_once("vehiculosModel.php");
 
-class RenovacionPersonal
+class RenovacionVehicular
 {
     private $id_renovacion;
     private $id_vencimiento;
-    private $id_empleado;
+    private $id_vehiculo;
     private $id_grupo;
     private $fecha_emision;
     private $fecha_vencimiento;
     private $fecha;
     private $id_rnv_renovacion; //id_renovacion que le sigue
 
-    private $empleado;
+    private $vehiculo;
 
 
     // GETTERS
@@ -22,8 +22,8 @@ class RenovacionPersonal
     function getIdVencimiento()
     { return $this->id_vencimiento;}
 
-    function getIdEmpleado()
-    { return $this->id_empleado;}
+    function getIdVehiculo()
+    { return $this->id_vehiculo;}
 
     function getIdGrupo()
     { return $this->id_grupo;}
@@ -37,8 +37,8 @@ class RenovacionPersonal
     function getFecha()
     { return $this->fecha;}
 
-    function getEmpleado(){
-        return ($this->empleado)? $this->empleado : new Empleado() ;
+    function getVehiculo(){
+        return ($this->vehiculo)? $this->vehiculo : new Vehiculo() ;
     }
 
     function getIdRnvRenovacion()
@@ -52,8 +52,8 @@ class RenovacionPersonal
     function setIdVencimiento($val)
     {  $this->id_vencimiento=$val;}
 
-    function setIdEmpleado($val)
-    { $this->id_empleado=$val;}
+    function setIdVehiculo($val)
+    { $this->id_vehiculo=$val;}
 
     function setIdGrupo($val)
     { $this->id_grupo=$val;}
@@ -72,15 +72,15 @@ class RenovacionPersonal
 
 
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_renovacion, id_vencimiento, id_empleado, id_grupo,
+            $query = "select id_renovacion, id_vencimiento, id_vehiculo, id_grupo,
                     DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
                     DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
                     DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion
-                    from vto_renovacion_p
+                    from vto_renovacion_v
                     where id_renovacion = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -89,14 +89,14 @@ class RenovacionPersonal
 
             $this->setIdRenovacion($rows[0]['id_renovacion']);
             $this->setIdVencimiento($rows[0]['id_vencimiento']);
-            $this->setIdEmpleado($rows[0]['id_empleado']);
+            $this->setIdVehiculo($rows[0]['id_vehiculo']);
             $this->setIdGrupo($rows[0]['id_grupo']);
             $this->setFechaEmision($rows[0]['fecha_emision']);
             $this->setFechaVencimiento($rows[0]['fecha_vencimiento']);
             $this->setFecha($rows[0]['fecha']);
             $this->setIdRnvRenovacion($rows[0]['id_rnv_renovacion']);
 
-            $this->empleado = new Empleado($rows[0]['id_empleado']);
+            $this->vehiculo = new Vehiculo($rows[0]['id_vehiculo']);
         }
     }
 
@@ -188,7 +188,7 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    function save(){
+    function save(){ //ok
         if($this->id_renovacion)
         {$rta = $this->updateRenovacion();}
         else
@@ -214,17 +214,6 @@ order by priority, id_rnv_renovacion asc";
     }
 
     private function insertRenovacion(){
-        /*$stmt=new sQuery();
-        $query="insert into vto_renovacion_p(id_vencimiento, id_empleado, id_grupo, fecha_emision, fecha_vencimiento, fecha)
-                values(:id_vencimiento, :id_empleado, :id_grupo, STR_TO_DATE(:fecha_emision, '%d/%m/%Y'), STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'), date(sysdate()))";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':id_grupo', $this->getIdGrupo());
-        $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
-        $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect(); */
 
         $stmt=new sQuery();
         $query = 'CALL sp_insertRenovacionPersonal(:id_vencimiento,
@@ -251,15 +240,6 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpExecute();
         $flag = $stmt->dpFetchAll();
         return ($flag)? intval($flag[0]['flag']) : -1;
-    }
-
-    function deleteHabilidad(){
-        $stmt=new sQuery();
-        $query="delete from habilidades where id_habilidad =:id_habilidad";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
     }
 
 
@@ -289,6 +269,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
+
 
     public static function uploadsDelete($name){
         $stmt=new sQuery();
@@ -368,23 +349,16 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    public function empleadosGrupos() {
+    public function vehiculosGrupos() {
         $stmt=new sQuery();
-        /*$query = "select id_empleado, null as id_grupo, concat(apellido, ' ', nombre) as descripcion, null as id_vencimiento
-from empleados
-where fecha_baja is null
-UNION
-select null, id_grupo, concat(nombre, ' ', ifnull(numero, '')) as descripcion, id_vencimiento
-from vto_grupos_p";*/
         $query = "select * FROM
-(select id_empleado, null as id_grupo, concat(apellido, ' ', nombre) as descripcion, null as id_vencimiento
-from empleados
+(select id_vehiculo, null as id_grupo, concat(matricula, ' ', nro_movil, ' ', modelo) as descripcion, null as id_vencimiento
+from vto_vehiculos
 where fecha_baja is null
 UNION
 select null, id_grupo, concat(nombre, ' ', ifnull(numero, '')) as descripcion, id_vencimiento
-from vto_grupos_p) eg
+from vto_grupos_v) eg
 order by eg.descripcion";
-
 
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
