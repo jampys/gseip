@@ -8,7 +8,7 @@ $output_dir = $GLOBALS['ini']['upload_dir']."vto_vencimiento_p/";
 
 switch ($operation) {
 
-    case 'load': //ok
+    case 'load':
 
         $id = $_POST['id'];
         $files = RenovacionPersonal::uploadsLoad($id);
@@ -84,7 +84,7 @@ switch ($operation) {
 
         break;
 
-    case 'download': //ok
+    case 'download':
 
         if(isset($_GET['filename']))
         {
@@ -112,7 +112,7 @@ switch ($operation) {
         break;
 
 
-    case 'delete': //ok
+    case 'delete':
 
         if( isset($_POST['name'])) {
 

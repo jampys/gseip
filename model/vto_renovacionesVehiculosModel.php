@@ -72,7 +72,7 @@ class RenovacionPersonal
 
 
 
-    function __construct($nro=0){ //constructor //ok
+    function __construct($nro=0){ //constructor
 
         if ($nro!=0){
             $stmt=new sQuery();
@@ -101,7 +101,7 @@ class RenovacionPersonal
     }
 
 
-    public static function getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado) { //ok
+    public static function getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado) {
         $stmt=new sQuery();
         $query = "
         ( -- renovaciones por empleado
@@ -188,7 +188,7 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    function save(){ //ok
+    function save(){
         if($this->id_renovacion)
         {$rta = $this->updateRenovacion();}
         else
@@ -197,7 +197,7 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    public function updateRenovacion(){ //ok
+    public function updateRenovacion(){
         $stmt=new sQuery();
         $query="update vto_renovacion_p set id_vencimiento =:id_vencimiento,
                       fecha_emision = STR_TO_DATE(:fecha_emision, '%d/%m/%Y'),
@@ -264,7 +264,7 @@ order by priority, id_rnv_renovacion asc";
 
 
 
-    public static function uploadsUpload($directory, $name, $id_renovacion){ //ok
+    public static function uploadsUpload($directory, $name, $id_renovacion){
         $stmt=new sQuery();
         $query="insert into uploads_vencimiento_p(directory, name, fecha, id_renovacion)
                 values(:directory, :name, date(sysdate()), :id_renovacion)";
@@ -278,7 +278,7 @@ order by priority, id_rnv_renovacion asc";
 
 
 
-    public static function uploadsLoad($id_renovacion) { //ok
+    public static function uploadsLoad($id_renovacion) {
         $stmt=new sQuery();
         $query = "select *
                 from uploads_vencimiento_p
@@ -290,7 +290,7 @@ order by priority, id_rnv_renovacion asc";
         return $stmt->dpFetchAll();
     }
 
-    public static function uploadsDelete($name){ //ok
+    public static function uploadsDelete($name){
         $stmt=new sQuery();
         $query="delete from uploads_vencimiento_p where name =:name";
         $stmt->dpPrepare($query);
@@ -300,7 +300,7 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    public function checkFechaEmision($fecha_emision, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) { //ok
+    public function checkFechaEmision($fecha_emision, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
         /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
         sea mayor. */
         $stmt=new sQuery();
@@ -368,7 +368,7 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    public function empleadosGrupos() { //ok
+    public function empleadosGrupos() {
         $stmt=new sQuery();
         /*$query = "select id_empleado, null as id_grupo, concat(apellido, ' ', nombre) as descripcion, null as id_vencimiento
 from empleados

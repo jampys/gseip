@@ -12,7 +12,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid': //ok
+    case 'refreshGrid':
         $view->disableLayout=true;
         $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
         $id_grupo = ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null;
@@ -23,7 +23,7 @@ switch ($operation)
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 
-    case 'saveRenovacion': //ok
+    case 'saveRenovacion':
 
         $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
         $renovacion->setIdVencimiento($_POST['id_vencimiento']);
@@ -40,7 +40,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newRenovacion': //ok
+    case 'newRenovacion':
         $view->label='Nueva renovación';
         $view->renovacion = new RenovacionPersonal();
 
@@ -53,7 +53,7 @@ switch ($operation)
         $view->contentTemplate="view/renovacionesPersonalForm.php";
         break;
 
-    case 'editRenovacion': //ok
+    case 'editRenovacion':
         $view->label='Editar Renovación';
         $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
 
@@ -91,21 +91,21 @@ switch ($operation)
         break;
 
 
-    case 'checkFechaEmision': //ok
+    case 'checkFechaEmision':
         $view->renovacion = new RenovacionPersonal();
         $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'checkFechaVencimiento': //ok
+    case 'checkFechaVencimiento':
         $view->renovacion = new RenovacionPersonal();
         $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
         print_r(json_encode($rta));
         exit;
         break;
 
-    default : //ok
+    default :
         $view->renovacion = new RenovacionPersonal();
         $view->empleadosGrupos = $view->renovacion->empleadosGrupos(); //carga el combo para filtrar empleados-grupos
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal(); //carga el combo para filtrar vencimientos
@@ -116,7 +116,7 @@ switch ($operation)
 }
 
 
-if ($view->disableLayout==true) { //ok
+if ($view->disableLayout==true) {
     include_once ($view->contentTemplate);
 }
 else {

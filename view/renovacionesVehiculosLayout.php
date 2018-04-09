@@ -15,7 +15,7 @@
             $('.selectpicker').selectpicker();
 
 
-            $(document).on('click', '#search', function(){ //ok
+            $(document).on('click', '#search', function(){
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
@@ -34,7 +34,7 @@
 
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $(document).on('click', '.edit', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -48,7 +48,7 @@
                 })
             });
 
-            $(document).on('click', '.view', function(){ //ok
+            $(document).on('click', '.view', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -66,7 +66,7 @@
             });
 
 
-            $(document).on('click', '.renovar', function(){ //ok
+            $(document).on('click', '.renovar', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -82,7 +82,7 @@
 
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){
                 params={};
                 params.action = "renovacionesPersonal";
                 params.operation="newRenovacion";
