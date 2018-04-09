@@ -119,16 +119,16 @@
 
 
 
-        $('#myModal').on('click', '#submit',function(){
+        $('#myModal').on('click', '#submit',function(){ //ok
 
-            if ($("#renovacion_personal").valid()){
+            if ($("#renovacion_vehicular").valid()){
 
                 var params={};
-                params.action = 'renovacionesPersonal';
+                params.action = 'renovacionesVehiculos';
                 params.operation = 'saveRenovacion';
                 params.id_renovacion = $('#id_renovacion').val();
-                params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                params.id_grupo = $('#id_empleado option:selected').attr('id_grupo');
+                params.id_vehiculo = $('#id_vehiculo option:selected').attr('id_vehiculo');
+                params.id_grupo = $('#id_vehiculo option:selected').attr('id_grupo');
                 params.id_vencimiento = $('#id_vencimiento').val();
                 params.fecha_emision = $('#fecha_emision').val();
                 params.fecha_vencimiento = $('#fecha_vencimiento').val();
@@ -161,7 +161,7 @@
 
 
 
-        $('#myModal #cancel').on('click', function(){
+        $('#myModal #cancel').on('click', function(){ //ok
            //alert('cancelar');
             //uploadObj.stopUpload();
         });
@@ -173,9 +173,9 @@
         });
 
 
-        $('#renovacion_personal').validate({
+        $('#renovacion_vehicular').validate({ //ok
             rules: {
-                id_empleado: {required: true},
+                id_vehiculo: {required: true},
                 id_vencimiento: {required: true},
                 fecha_emision: {
                     required: true,
@@ -184,12 +184,11 @@
                         type: "post",
                         dataType: "json",
                         data: {
-                            action: "renovacionesPersonal",
+                            action: "renovacionesVehiculos",
                             operation: "checkFechaEmision",
                             fecha_emision: function(){ return $('#fecha_emision').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
+                            id_vehiculo: function(){ return $('#id_vehiculo option:selected').attr('id_vehiculo');},
+                            id_grupo: function(){ return $('#id_vehiculo option:selected').attr('id_grupo');},
                             id_vencimiento: function(){ return $('#id_vencimiento').val();},
                             id_renovacion: function(){ return $('#id_renovacion').val();}
                         }
@@ -202,13 +201,12 @@
                         type: "post",
                         dataType: "json",
                         data: {
-                            action: "renovacionesPersonal",
+                            action: "renovacionesVehiculos",
                             operation: "checkFechaVencimiento",
                             fecha_emision: function(){ return $('#fecha_emision').val();},
                             fecha_vencimiento: function(){ return $('#fecha_vencimiento').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
+                            id_vehiculo: function(){ return $('#id_vehiculo option:selected').attr('id_vehiculo');},
+                            id_grupo: function(){ return $('#id_vehiculo option:selected').attr('id_grupo');},
                             id_vencimiento: function(){ return $('#id_vencimiento').val();},
                             id_renovacion: function(){ return $('#id_renovacion').val();}
                         }
@@ -217,7 +215,7 @@
 
             },
             messages:{
-                id_empleado: "Seleccione un empleado o grupo",
+                id_vehiculo: "Seleccione un vehículo o grupo",
                 id_vencimiento: "Seleccione un vencimiento",
                 fecha_emision: {
                     required: "Ingrese la fecha de emisión",
@@ -232,10 +230,10 @@
         });
 
 
-        $("#myModal #id_empleado").on('changed.bs.select', function (e) {
+        $("#myModal #id_vehiculo").on('changed.bs.select', function (e) { //ok
             //Al seleccionar un grupo, completa automaticamente el campo vencimiento y lo deshabilita.
-            if ($('#id_empleado option:selected').attr('id_grupo') !='') {
-                $('#id_vencimiento').selectpicker('val', $('#id_empleado option:selected').attr('id_vencimiento')).prop('disabled', true).selectpicker('refresh');
+            if ($('#id_vehiculo option:selected').attr('id_grupo') !='') {
+                $('#id_vencimiento').selectpicker('val', $('#id_vehiculo option:selected').attr('id_vencimiento')).prop('disabled', true).selectpicker('refresh');
             }
             else{
                 $('#id_vencimiento').selectpicker('val', '').prop('disabled', false).selectpicker('refresh');

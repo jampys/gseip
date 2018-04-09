@@ -196,9 +196,9 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    public function updateRenovacion(){
+    public function updateRenovacion(){ //ok
         $stmt=new sQuery();
-        $query="update vto_renovacion_p set id_vencimiento =:id_vencimiento,
+        $query="update vto_renovacion_v set id_vencimiento =:id_vencimiento,
                       fecha_emision = STR_TO_DATE(:fecha_emision, '%d/%m/%Y'),
                       fecha_vencimiento = STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
                 where id_renovacion =:id_renovacion";
@@ -212,11 +212,11 @@ order by priority, id_rnv_renovacion asc";
 
     }
 
-    private function insertRenovacion(){
+    private function insertRenovacion(){ //ok
 
         $stmt=new sQuery();
-        $query = 'CALL sp_insertRenovacionPersonal(:id_vencimiento,
-                                        :id_empleado,
+        $query = 'CALL sp_insertRenovacionVehicular(:id_vencimiento,
+                                        :id_vehiculo,
                                         :id_grupo,
                                         :fecha_emision,
                                         :fecha_vencimiento,
@@ -226,7 +226,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpPrepare($query);
 
         $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':id_grupo', $this->getIdGrupo());
         $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
         $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
@@ -280,23 +280,23 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    public function checkFechaEmision($fecha_emision, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
+    public function checkFechaEmision($fecha_emision, $id_vehiculo, $id_grupo, $id_vencimiento, $id_renovacion) { //ok
         /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
         sea mayor. */
         $stmt=new sQuery();
         $query = "select *
-                  from vto_renovacion_p
+                  from vto_renovacion_v
                   where
                   ( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
                   :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
+                  and (id_vehiculo = :id_vehiculo or id_grupo = :id_grupo)
 				  and id_vencimiento = :id_vencimiento
                   and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
                   )
                   OR
                   ( -- editar: busca renovacion anterior y ....
                   :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
+                  and (id_vehiculo = :id_vehiculo or id_grupo = :id_grupo)
 				  and id_vencimiento = :id_vencimiento
                   and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
                   and id_renovacion <> :id_renovacion
@@ -307,28 +307,28 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_renovacion', $id_renovacion);
         $stmt->dpBind(':fecha_emision', $fecha_emision);
-        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_vehiculo', $id_vehiculo);
         $stmt->dpBind(':id_grupo', $id_grupo);
         $stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
     }
 
-    public function checkFechaVencimiento($fecha_emision, $fecha_vencimiento, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
+    public function checkFechaVencimiento($fecha_emision, $fecha_vencimiento, $id_vehiculo, $id_grupo, $id_vencimiento, $id_renovacion) { //ok
         $stmt=new sQuery();
         $query = "select *
-                  from vto_renovacion_p
+                  from vto_renovacion_v
                   where
                   ( -- renovar: busca renovacion vigente y se asegura que la fecha_vencimiento ingresada sea mayor que la de ésta
                   :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
+                  and (id_vehiculo = :id_vehiculo or id_grupo = :id_grupo)
 				  and id_vencimiento = :id_vencimiento
                   and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
                   )
                   OR
                   ( -- editar: busca renovacion anterior y ....
                   :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
+                  and (id_vehiculo = :id_vehiculo or id_grupo = :id_grupo)
 				  and id_vencimiento = :id_vencimiento
                   and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
                   and id_renovacion <> :id_renovacion
@@ -340,7 +340,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpBind(':id_renovacion', $id_renovacion);
         $stmt->dpBind(':fecha_emision', $fecha_emision);
         $stmt->dpBind(':fecha_vencimiento', $fecha_vencimiento);
-        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_vehiculo', $id_vehiculo);
         $stmt->dpBind(':id_grupo', $id_grupo);
         $stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpExecute();

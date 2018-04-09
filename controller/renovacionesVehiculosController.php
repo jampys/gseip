@@ -23,14 +23,14 @@ switch ($operation)
         $view->contentTemplate="view/renovacionesVehiculosGrid.php";
         break;
 
-    case 'saveRenovacion':
+    case 'saveRenovacion': //ok
 
-        $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
+        $renovacion = new RenovacionVehicular($_POST['id_renovacion']);
         $renovacion->setIdVencimiento($_POST['id_vencimiento']);
         $renovacion->setFechaEmision($_POST['fecha_emision']);
         $renovacion->setFechaVencimiento($_POST['fecha_vencimiento']);
         //$renovacion->setIdEmpleado($_POST['id_empleado']);
-        $renovacion->setIdEmpleado ( ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null);
+        $renovacion->setIdVehiculo ( ($_POST['id_vehiculo']!='')? $_POST['id_vehiculo'] : null);
         //$renovacion->setIdGrupo($_POST['id_grupo']);
         $renovacion->setIdGrupo ( ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null);
 
@@ -82,17 +82,17 @@ switch ($operation)
         $view->disableLayout=true;
         $view->contentTemplate="view/renovacionesVehiculosForm.php";
         break;
-    
-    case 'checkFechaEmision':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
+
+    case 'checkFechaEmision': //ok
+        $view->renovacion = new RenovacionVehicular();
+        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_vehiculo'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'checkFechaVencimiento':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
+    case 'checkFechaVencimiento': //ok
+        $view->renovacion = new RenovacionVehicular();
+        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_vehiculo'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
         print_r(json_encode($rta));
         exit;
         break;
