@@ -40,17 +40,17 @@ switch ($operation)
         exit;
         break;
 
-    case 'newRenovacion':
+    case 'newRenovacion': //ok
         $view->label='Nueva renovación';
-        $view->renovacion = new RenovacionPersonal();
+        $view->renovacion = new RenovacionVehicular();
 
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
+        $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
+        $view->vehiculosGrupos = $view->renovacion->vehiculosGrupos();
 
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        $view->vehiculo = $view->renovacion->getVehiculo()->getMatricula()." ".$view->renovacion->getVehiculo()->getNroMovil();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/renovacionesVehiculosForm.php";
         break;
 
     case 'editRenovacion': //ok
@@ -60,7 +60,6 @@ switch ($operation)
         $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
         $view->vehiculosGrupos = $view->renovacion->vehiculosGrupos();
 
-        //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
         $view->vehiculo = $view->renovacion->getVehiculo()->getMatricula()." ".$view->renovacion->getVehiculo()->getNroMovil();
 
         $view->disableLayout=true;
@@ -68,30 +67,22 @@ switch ($operation)
         $view->contentTemplate="view/renovacionesVehiculosForm.php";
         break;
 
-    case 'renovRenovacion': //Renueva una renovacion existente
+    case 'renovRenovacion': //Renueva una renovacion existente //ok
         $view->label='Renovación';
-        $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
+        $view->renovacion = new RenovacionVehicular($_POST['id_renovacion']);
         $view->renovacion->setIdRenovacion('');
         $view->renovacion->setFechaEmision('');
         $view->renovacion->setFechaVencimiento('');
 
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
+        $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
+        $view->vehiculosGrupos = $view->renovacion->vehiculosGrupos();
 
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        $view->vehiculo = $view->renovacion->getVehiculo()->getMatricula()." ".$view->renovacion->getVehiculo()->getNroMovil();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/renovacionesVehiculosForm.php";
         break;
-
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
-        print_r(json_encode($rta));
-        die; // no quiero mostrar nada cuando borra , solo devuelve el control.
-        break;
-
-
+    
     case 'checkFechaEmision':
         $view->renovacion = new RenovacionPersonal();
         $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
