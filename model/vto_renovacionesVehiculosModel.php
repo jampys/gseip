@@ -101,7 +101,7 @@ class RenovacionVehicular
     }
 
 
-    public static function getRenovacionesVehiculos($id_vehiculo, $id_grupo, $id_vencimiento, $id_contrato, $renovado) {
+    public static function getRenovacionesVehiculos($id_vehiculo, $id_grupo, $id_vencimiento, $id_contrato, $renovado) { //ok
         $stmt=new sQuery();
         $query = "
         ( -- renovaciones por vehiculo
@@ -140,7 +140,7 @@ where vrv.id_vencimiento = vvv.id_vencimiento
 and vav.id_vencimiento = vrv.id_vencimiento
 and vrv.id_vehiculo = ve.id_vehiculo
 and vav.id_alerta = va.id_alerta
-and vav.id_alerta = func_alerta(vrv.id_renovacion)
+and vav.id_alerta = func_alerta_vehicular(vrv.id_renovacion)
 and ve.id_vehiculo =  ifnull(:id_vehiculo, ve.id_vehiculo)
 and vrv.id_vencimiento = ifnull(:id_vencimiento, vrv.id_vencimiento)
 and ifnull(:renovado, vrv.id_rnv_renovacion is null)
@@ -165,7 +165,7 @@ where vrv.id_grupo = vgv.id_grupo
 and vrv.id_vencimiento = vvv.id_vencimiento
 and vav.id_vencimiento = vrv.id_vencimiento
 and vav.id_alerta = va.id_alerta
-and vav.id_alerta = func_alerta(vrv.id_renovacion)
+and vav.id_alerta = func_alerta_vehicular(vrv.id_renovacion)
 and vrv.id_vencimiento = ifnull(:id_vencimiento, vrv.id_vencimiento) -- filtro por vencimiento
 and vrv.id_grupo = ifnull(:id_grupo, vrv.id_grupo) -- filtro por grupo
 and ifnull(:renovado, vrv.id_rnv_renovacion is null)

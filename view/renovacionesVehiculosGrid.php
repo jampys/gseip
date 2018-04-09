@@ -85,7 +85,7 @@
                 <th>Nro. rnv</th>
                 <th>Fecha</th>
                 <th>vencimiento</th>
-                <th>empleado / grupo</th>
+                <th>vehículo / grupo</th>
                 <th>F. emisión</th>
                 <th>F. vto.</th>
                 <th style="display: none">Priority</th>
@@ -98,13 +98,13 @@
             </thead>
             <tbody>
 
-            <?php if(isset($view->renovaciones_personal)) {
-                foreach ($view->renovaciones_personal as $rp):   ?>
+            <?php if(isset($view->renovaciones_vehiculos)) {
+                foreach ($view->renovaciones_vehiculos as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_renovacion']; ?>" style="background-color: <?php echo $rp['color']; ?>" >
                         <td><?php echo $rp['id_renovacion']; ?></td>
                         <td><?php echo $rp['fecha']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
-                        <td><?php echo ($rp['id_empleado'])? $rp['empleado'] : $rp['grupo']; ?></td>
+                        <td><?php echo ($rp['id_vehiculo'])? $rp['vehiculo'] : $rp['grupo']; ?></td>
                         <td><?php echo $rp['fecha_emision']; ?></td>
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td style="display: none"><?php echo $rp['priority']; ?></td>

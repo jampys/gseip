@@ -253,7 +253,7 @@
 
 
 <!-- Modal -->
-<fieldset  <?php echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
+<fieldset  <?php echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RVE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -264,25 +264,25 @@
             <div class="modal-body">
 
 
-                <form name ="renovacion_personal" id="renovacion_personal" method="POST" action="index.php">
+                <form name ="renovacion_vehicular" id="renovacion_vehicular" method="POST" action="index.php">
                     <input type="hidden" name="id_renovacion" id="id_renovacion" value="<?php print $view->renovacion->getIdRenovacion() ?>">
 
 
                     <div class="form-group required">
-                        <label for="id_empleado" class="control-label">Empleado / Grupo</label>
-                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado o grupo" data-live-search="true" data-size="5">
-                            <?php foreach ($view->empleadosGrupos as $eg){
+                        <label for="id_vehiculo" class="control-label">Vehículo / Grupo</label>
+                        <select class="form-control selectpicker show-tick" id="id_vehiculo" name="id_vehiculo" title="Seleccione un vehículo o grupo" data-live-search="true" data-size="5">
+                            <?php foreach ($view->vehiculosGrupos as $eg){
                                 ?>
                                 <option
-                                    value="<?php echo ($eg['id_empleado'])? $eg['id_empleado'] : $eg['id_grupo']; ?>"
-                                    id_empleado="<?php echo $eg['id_empleado']; ?>"
+                                    value="<?php echo ($eg['id_vehiculo'])? $eg['id_vehiculo'] : $eg['id_grupo']; ?>"
+                                    id_vehiculo="<?php echo $eg['id_vehiculo']; ?>"
                                     id_grupo="<?php echo $eg['id_grupo']; ?>"
                                     id_vencimiento="<?php echo $eg['id_vencimiento']; ?>"
                                     <?php
-                                            if($eg['id_empleado'] && $view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
+                                            if($eg['id_vehiculo'] && $view->renovacion->getIdVehiculo() == $eg['id_vehiculo']) echo 'selected';
                                             elseif($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
                                     ?>
-                                    data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm" : "fas fa-users fa-sm"; ?>"
+                                    data-icon="<?php echo ($eg['id_vehiculo'])? "fas fa-user fa-sm" : "fas fa-users fa-sm"; ?>"
                                     >
                                     &nbsp;
                                     <?php echo $eg['descripcion'] ;?>

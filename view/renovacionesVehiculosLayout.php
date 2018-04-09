@@ -34,25 +34,25 @@
 
 
 
-            $(document).on('click', '.edit', function(){
+            $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
+                params.action = "renovacionesVehiculos";
                 params.operation = "editRenovacion";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#id_vehiculo').prop('disabled', true).selectpicker('refresh');
                     $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
                 })
             });
 
-            $(document).on('click', '.view', function(){
+            $(document).on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
+                params.action = "renovacionesVehiculos";
                 params.operation = "editRenovacion";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
@@ -222,7 +222,7 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="search_vencimiento" class="control-label">Contrato</label>
+                        <label for="search_contrato" class="control-label">Contrato</label>
                         <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                             <option value="">Seleccione un contrato</option>
                             <?php foreach ($view->contratos as $con){

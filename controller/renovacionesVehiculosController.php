@@ -53,18 +53,19 @@ switch ($operation)
         $view->contentTemplate="view/renovacionesPersonalForm.php";
         break;
 
-    case 'editRenovacion':
+    case 'editRenovacion': //ok
         $view->label='Editar Renovación';
-        $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
+        $view->renovacion = new RenovacionVehicular($_POST['id_renovacion']);
 
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
+        $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
+        $view->vehiculosGrupos = $view->renovacion->vehiculosGrupos();
 
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        $view->vehiculo = $view->renovacion->getVehiculo()->getMatricula()." ".$view->renovacion->getVehiculo()->getNroMovil();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/renovacionesVehiculosForm.php";
         break;
 
     case 'renovRenovacion': //Renueva una renovacion existente
