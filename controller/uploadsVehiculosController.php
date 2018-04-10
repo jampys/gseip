@@ -1,17 +1,17 @@
 <?php
-include_once("model/vto_renovacionesPersonalModel.php");
+include_once("model/vto_renovacionesVehiculosModel.php");
 
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
-$output_dir = $GLOBALS['ini']['upload_dir']."vto_vencimiento_p/";
+$output_dir = $GLOBALS['ini']['upload_dir']."vto_vencimiento_v/";
 
 
 switch ($operation) {
 
-    case 'load':
+    case 'load': //ok
 
         $id = $_POST['id'];
-        $files = RenovacionPersonal::uploadsLoad($id);
+        $files = RenovacionVehicular::uploadsLoad($id);
 
         $ret= array();
 
@@ -37,7 +37,7 @@ switch ($operation) {
         echo json_encode($ret);
         break;
 
-    case 'upload':
+    case 'upload': //ok
 
         $id = $_POST['id']; //con este id (id_renovacion) hago el insert de los uploads en la BD
 
@@ -60,7 +60,7 @@ switch ($operation) {
                 $temp = explode(".", $_FILES["myfile"]["name"]);
                 $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp[0] . '_' .round(microtime(true)) . '.' . end($temp);
                 if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $newfilename))
-                    RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
+                    RenovacionVehicular::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
                 $ret[]= $newfilename;
             }
             else  //Multiple files, file[]
@@ -71,7 +71,7 @@ switch ($operation) {
                     $temp = explode(".", $_FILES["myfile"]["name"][$i]);
                     $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp[0] . '_' .round(microtime(true)) . '.' . end($temp);
                     if (move_uploaded_file($_FILES["myfile"]["tmp_name"][$i], $output_dir . $newfilename))
-                        RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
+                        RenovacionVehicular::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
                     $ret[] = $newfilename;
                 }
 
@@ -84,7 +84,7 @@ switch ($operation) {
 
         break;
 
-    case 'download':
+    case 'download': //ok
 
         if(isset($_GET['filename']))
         {
@@ -112,7 +112,7 @@ switch ($operation) {
         break;
 
 
-    case 'delete':
+    case 'delete': //ok
 
         if( isset($_POST['name'])) {
 
@@ -122,7 +122,7 @@ switch ($operation) {
 
             if (file_exists($filePath)) {
                 unlink($filePath);
-                RenovacionPersonal::uploadsDelete($fileName); //Borra el registro de la BD
+                RenovacionVehicular::uploadsDelete($fileName); //Borra el registro de la BD
             }
         }
 

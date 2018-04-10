@@ -243,9 +243,9 @@ order by priority, id_rnv_renovacion asc";
 
 
 
-    public static function uploadsUpload($directory, $name, $id_renovacion){
+    public static function uploadsUpload($directory, $name, $id_renovacion){ //ok
         $stmt=new sQuery();
-        $query="insert into uploads_vencimiento_p(directory, name, fecha, id_renovacion)
+        $query="insert into uploads_vencimiento_v(directory, name, fecha, id_renovacion)
                 values(:directory, :name, date(sysdate()), :id_renovacion)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':directory', $directory);
@@ -257,10 +257,10 @@ order by priority, id_rnv_renovacion asc";
 
 
 
-    public static function uploadsLoad($id_renovacion) {
+    public static function uploadsLoad($id_renovacion) { //ok
         $stmt=new sQuery();
         $query = "select *
-                from uploads_vencimiento_p
+                from uploads_vencimiento_v
                 where id_renovacion = :id_renovacion
                 order by fecha asc";
         $stmt->dpPrepare($query);
@@ -270,9 +270,9 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    public static function uploadsDelete($name){
+    public static function uploadsDelete($name){ //ok
         $stmt=new sQuery();
-        $query="delete from uploads_vencimiento_p where name =:name";
+        $query="delete from uploads_vencimiento_v where name =:name";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':name', $name);
         $stmt->dpExecute();
