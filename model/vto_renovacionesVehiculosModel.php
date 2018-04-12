@@ -157,7 +157,8 @@ vvv.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
 null as vehiculo,
-CONCAT(vgv.nombre, ' ', vgv.numero) as grupo,
+-- CONCAT(vgv.nombre, ' ', vgv.nro_referencia) as grupo,
+CONCAT(vgv.nombre, ' ', ifnull(vgv.nro_referencia, '') as grupo,
 vrv.id_rnv_renovacion,
 (select count(*) from uploads_vencimiento_v where id_renovacion = vrv.id_renovacion) as cant_uploads
 from v_sec_vto_renovacion_v vrv, vto_vencimiento_v vvv, vto_alerta_vencimiento_v vav, vto_alerta va, vto_grupos_v vgv
@@ -355,7 +356,7 @@ order by priority, id_rnv_renovacion asc";
 from vto_vehiculos
 where fecha_baja is null
 UNION
-select null, id_grupo, concat(nombre, ' ', ifnull(numero, '')) as descripcion, id_vencimiento
+select null, id_grupo, concat(nombre, ' ', ifnull(nro_referencia, '')) as descripcion, id_vencimiento
 from vto_grupos_v) eg
 order by eg.descripcion";
 
