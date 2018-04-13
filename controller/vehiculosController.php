@@ -2,6 +2,7 @@
 
 include_once("model/vehiculosModel.php");
 include_once("model/contratosModel.php");
+include_once("model/companiasModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -25,6 +26,8 @@ switch ($operation)
         $vehiculo->setMarca($_POST['marca']);
         $vehiculo->setModelo($_POST['modelo']);
         $vehiculo->setModeloAno($_POST['modelo_ano']);
+        $vehiculo->setPropietario($_POST['propietario']);
+        $vehiculo->setLeasing($_POST['leasing']);
         $vehiculo->setFechaBaja(($_POST['fecha_baja'])? $_POST['fecha_baja'] : null);
 
         $rta = $vehiculo->save();
@@ -39,6 +42,7 @@ switch ($operation)
         $view->marcas = Soporte::get_enum_values('vto_vehiculos', 'marca');
         $view->periodos = Soporte::getPeriodos(2000, date("Y"));
         $view->contratos = $view->vehiculo->getContratosByVehiculo();
+        $view->companias = Compania::getCompanias();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/vehiculosForm.php";
@@ -51,6 +55,7 @@ switch ($operation)
         $view->marcas = Soporte::get_enum_values('vto_vehiculos', 'marca');
         $view->periodos = Soporte::getPeriodos(2000, date("Y"));
         $view->contratos = $view->vehiculo->getContratosByVehiculo();
+        $view->companias = Compania::getCompanias();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/vehiculosForm.php";

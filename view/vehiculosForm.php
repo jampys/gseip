@@ -29,7 +29,7 @@
         $('#vehiculo-form').validate({ //ok
             rules: {
                 nro_movil: {
-                        required: true,
+                        //required: true,
                         digits: true,
                         maxlength: 3,
                         remote: {
@@ -116,7 +116,7 @@
                 <form name ="vehiculo-form" id="vehiculo-form" method="POST" action="index.php">
                     <input type="hidden" name="id_vehiculo" id="id_vehiculo" value="<?php print $view->vehiculo->getIdVehiculo() ?>">
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label class="control-label" for="nro_movil">Nro. móvil</label>
                         <input class="form-control" type="text" name="nro_movil" id="nro_movil" value = "<?php print $view->vehiculo->getNroMovil() ?>" placeholder="Nro. móvil">
                     </div>
@@ -155,6 +155,35 @@
                                     <?php echo ($per == $view->vehiculo->getModeloAno())? 'selected' :'' ?>
                                     >
                                     <?php echo $per; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="propietario" class="control-label">Propietario</label>
+                            <select class="form-control selectpicker show-tick" id="propietario" name="propietario" title="Seleccione el propietario" data-live-search="true" data-size="5">
+                                <?php foreach ($view->companias as $cia){
+                                    ?>
+                                    <option value="<?php echo $cia['id_compania']; ?>"
+                                        <?php echo ($cia['id_compania'] == $view->vehiculo->getPropietario())? 'selected' :'' ?>
+                                        >
+                                        <?php echo $cia['nombre'];?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="leasing" class="control-label">Leasing</label>
+                        <select class="form-control selectpicker show-tick" id="leasing" name="leasing" title="Seleccione el leasing" data-live-search="true" data-size="5">
+                            <?php foreach ($view->companias as $cia){
+                                ?>
+                                <option value="<?php echo $cia['id_compania']; ?>"
+                                    <?php echo ($cia['id_compania'] == $view->vehiculo->getLeasing())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $cia['nombre'];?>
                                 </option>
                             <?php  } ?>
                         </select>
