@@ -330,6 +330,15 @@
                     </div>
 
 
+                    <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="disabled" name="disabled" <?php echo (!$view->renovacion->getDisabled())? '' :'checked' ?> <?php echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Registra el cambio de domicilio y conserva el anterior como historico">Desactivar</a>
+                                </label>
+                            </div>
+                    </div>
+
+
                 </form>
 
 

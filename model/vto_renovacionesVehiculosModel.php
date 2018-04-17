@@ -11,6 +11,7 @@ class RenovacionVehicular
     private $fecha_vencimiento;
     private $fecha;
     private $id_rnv_renovacion; //id_renovacion que le sigue
+    private $disabled;
 
     private $vehiculo;
 
@@ -44,6 +45,9 @@ class RenovacionVehicular
     function getIdRnvRenovacion()
     { return $this->id_rnv_renovacion;}
 
+    function getDisabled()
+    { return $this->disabled;}
+
 
     //SETTERS
     function setIdRenovacion($val)
@@ -70,6 +74,9 @@ class RenovacionVehicular
     function setIdRnvRenovacion($val)
     { $this->id_rnv_renovacion=$val;}
 
+    function setDisabled($val)
+    { $this->disabled=$val;}
+
 
 
     function __construct($nro=0){ //constructor //ok
@@ -79,7 +86,7 @@ class RenovacionVehicular
             $query = "select id_renovacion, id_vencimiento, id_vehiculo, id_grupo,
                     DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
                     DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion
+                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion, disabled
                     from vto_renovacion_v
                     where id_renovacion = :nro";
             $stmt->dpPrepare($query);
@@ -95,6 +102,7 @@ class RenovacionVehicular
             $this->setFechaVencimiento($rows[0]['fecha_vencimiento']);
             $this->setFecha($rows[0]['fecha']);
             $this->setIdRnvRenovacion($rows[0]['id_rnv_renovacion']);
+            $this->setDisabled($rows[0]['disabled']);
 
             $this->vehiculo = new Vehiculo($rows[0]['id_vehiculo']);
         }
@@ -144,6 +152,7 @@ and vav.id_alerta = func_alerta_vehicular(vrv.id_renovacion)
 and ve.id_vehiculo =  ifnull(:id_vehiculo, ve.id_vehiculo)
 and vrv.id_vencimiento = ifnull(:id_vencimiento, vrv.id_vencimiento)
 and ifnull(:renovado, vrv.id_rnv_renovacion is null)
+and ifnull(:renovado, vrv.disabled is null)
 and vrv.id_vehiculo is not null
 and :id_grupo is null -- filtro vehiculos: no debe traer registros cuando se filtra por grupo
 )
@@ -201,12 +210,14 @@ order by priority, id_rnv_renovacion asc";
         $stmt=new sQuery();
         $query="update vto_renovacion_v set id_vencimiento =:id_vencimiento,
                       fecha_emision = STR_TO_DATE(:fecha_emision, '%d/%m/%Y'),
-                      fecha_vencimiento = STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
+                      fecha_vencimiento = STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'),
+                      disabled = STR_TO_DATE(:disabled, '%d/%m/%Y'),
                 where id_renovacion =:id_renovacion";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
         $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
         $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
+        $stmt->dpBind(':disabled', $this->getDisabled());
         $stmt->dpBind(':id_renovacion', $this->getIdRenovacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();

@@ -33,6 +33,7 @@ switch ($operation)
         $renovacion->setIdVehiculo ( ($_POST['id_vehiculo']!='')? $_POST['id_vehiculo'] : null);
         //$renovacion->setIdGrupo($_POST['id_grupo']);
         $renovacion->setIdGrupo ( ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null);
+        $renovacion->setDisabled ( ($_POST['disabled']!='')? date('d/m/Y') : null);
 
         $rta = $renovacion->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
