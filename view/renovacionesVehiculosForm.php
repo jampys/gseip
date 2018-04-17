@@ -132,6 +132,7 @@
                 params.id_vencimiento = $('#id_vencimiento').val();
                 params.fecha_emision = $('#fecha_emision').val();
                 params.fecha_vencimiento = $('#fecha_vencimiento').val();
+                params.disabled = $('#disabled').prop('checked')? 1:0;
 
                 //alert(params.id_grupo);
 
@@ -333,7 +334,7 @@
                     <div class="form-group">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" id="disabled" name="disabled" <?php echo (!$view->renovacion->getDisabled())? '' :'checked' ?> <?php echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Registra el cambio de domicilio y conserva el anterior como historico">Desactivar</a>
+                                    <input type="checkbox" id="disabled" name="disabled" <?php echo (!$view->renovacion->getDisabled())? '' :'checked' ?> <?php echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para desactivar el alerta del vencimiento">Desactivar</a>
                                 </label>
                             </div>
                     </div>

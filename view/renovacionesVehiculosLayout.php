@@ -249,7 +249,7 @@
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" id="search_renovado" name="search_renovado">
-                                <a href="#" title="Seleccione para visualizar registros ya renovados">Renovados</a>
+                                <a href="#" title="Seleccione para visualizar todos los registros (incluyendo renovados y desactivados)">Ver todos</a>
                             </label>
                         </div>
                     </div>

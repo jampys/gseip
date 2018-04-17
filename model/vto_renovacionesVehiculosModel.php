@@ -179,6 +179,7 @@ and vav.id_alerta = func_alerta_vehicular(vrv.id_renovacion)
 and vrv.id_vencimiento = ifnull(:id_vencimiento, vrv.id_vencimiento) -- filtro por vencimiento
 and vrv.id_grupo = ifnull(:id_grupo, vrv.id_grupo) -- filtro por grupo
 and ifnull(:renovado, vrv.id_rnv_renovacion is null)
+and ifnull(:renovado, vrv.disabled is null)
 and vrv.id_vehiculo is null
 and :id_vehiculo is null -- filtro vehiculos: no debe traer registros cuando se filtra por vehiculo
 and :id_contrato is null -- filtro contratos: no debe traer registros cuando se filtra por contrato
@@ -211,7 +212,7 @@ order by priority, id_rnv_renovacion asc";
         $query="update vto_renovacion_v set id_vencimiento =:id_vencimiento,
                       fecha_emision = STR_TO_DATE(:fecha_emision, '%d/%m/%Y'),
                       fecha_vencimiento = STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'),
-                      disabled = STR_TO_DATE(:disabled, '%d/%m/%Y'),
+                      disabled = STR_TO_DATE(:disabled, '%d/%m/%Y')
                 where id_renovacion =:id_renovacion";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
