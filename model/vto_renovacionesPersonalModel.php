@@ -11,6 +11,7 @@ class RenovacionPersonal
     private $fecha_vencimiento;
     private $fecha;
     private $id_rnv_renovacion; //id_renovacion que le sigue
+    private $disabled;
 
     private $empleado;
 
@@ -44,6 +45,9 @@ class RenovacionPersonal
     function getIdRnvRenovacion()
     { return $this->id_rnv_renovacion;}
 
+    function getDisabled()
+    { return $this->disabled;}
+
 
     //SETTERS
     function setIdRenovacion($val)
@@ -70,6 +74,9 @@ class RenovacionPersonal
     function setIdRnvRenovacion($val)
     { $this->id_rnv_renovacion=$val;}
 
+    function setDisabled($val)
+    { $this->disabled=$val;}
+
 
 
     function __construct($nro=0){ //constructor //ok
@@ -79,7 +86,7 @@ class RenovacionPersonal
             $query = "select id_renovacion, id_vencimiento, id_empleado, id_grupo,
                     DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
                     DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion
+                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion, disabled
                     from vto_renovacion_p
                     where id_renovacion = :nro";
             $stmt->dpPrepare($query);
@@ -95,6 +102,7 @@ class RenovacionPersonal
             $this->setFechaVencimiento($rows[0]['fecha_vencimiento']);
             $this->setFecha($rows[0]['fecha']);
             $this->setIdRnvRenovacion($rows[0]['id_rnv_renovacion']);
+            $this->setDisabled($rows[0]['disabled']);
 
             $this->empleado = new Empleado($rows[0]['id_empleado']);
         }
@@ -145,6 +153,7 @@ and vav.id_alerta = func_alerta(vrp.id_renovacion)
 and em.id_empleado =  ifnull(:id_empleado, em.id_empleado)
 and vrp.id_vencimiento = ifnull(:id_vencimiento, vrp.id_vencimiento)
 and ifnull(:renovado, vrp.id_rnv_renovacion is null)
+and ifnull(:renovado, vrp.disabled is null)
 and vrp.id_empleado is not null
 and :id_grupo is null -- filtro empleados: no debe traer registros cuando se filtra por grupo
 )
@@ -170,6 +179,7 @@ and vav.id_alerta = func_alerta(vrp.id_renovacion)
 and vrp.id_vencimiento = ifnull(:id_vencimiento, vrp.id_vencimiento) -- filtro por vencimiento
 and vrp.id_grupo = ifnull(:id_grupo, vrp.id_grupo) -- filtro por grupo
 and ifnull(:renovado, vrp.id_rnv_renovacion is null)
+and ifnull(:renovado, vrp.disabled is null)
 and vrp.id_empleado is null
 and :id_empleado is null -- filtro empleados: no debe traer registros cuando se filtra por empleado
 and :id_contrato is null -- filtro contratos: no debe traer registros cuando se filtra por contrato
@@ -201,12 +211,14 @@ order by priority, id_rnv_renovacion asc";
         $stmt=new sQuery();
         $query="update vto_renovacion_p set id_vencimiento =:id_vencimiento,
                       fecha_emision = STR_TO_DATE(:fecha_emision, '%d/%m/%Y'),
-                      fecha_vencimiento = STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
+                      fecha_vencimiento = STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'),
+                      disabled = STR_TO_DATE(:disabled, '%d/%m/%Y')
                 where id_renovacion =:id_renovacion";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
         $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
         $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
+        $stmt->dpBind(':disabled', $this->getDisabled());
         $stmt->dpBind(':id_renovacion', $this->getIdRenovacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
