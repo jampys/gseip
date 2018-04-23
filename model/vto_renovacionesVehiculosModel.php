@@ -128,7 +128,7 @@ from v_sec_vto_renovacion_v vrv, vto_vencimiento_v vvv, vto_alerta_vencimiento_p
 (
 select vex.*, vvcx.id_contrato
 from vto_vehiculos vex
-left join vto_vehiculo_contrato vvcx on vex.id_vehiculo = vvcx.id_vehiculo
+    left join vto_vehiculo_contrato vvcx on vex.id_vehiculo = vvcx.id_vehiculo
 where
 ( -- filtro por contrato
   :id_contrato is not null
