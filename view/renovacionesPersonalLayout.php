@@ -199,9 +199,8 @@
                                 <option value=""
                                         id_empleado="<?php echo $eg['id_empleado']; ?>"
                                         id_grupo="<?php echo $eg['id_grupo']; ?>"
-                                        data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm" : "fas fa-users fa-sm"; ?>"
+                                        data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
                                     >
-                                    &nbsp;
                                     <?php echo $eg['descripcion'] ;?>
                                 </option>
                             <?php  } ?>

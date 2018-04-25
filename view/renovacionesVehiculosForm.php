@@ -281,9 +281,8 @@
                                             if($eg['id_vehiculo'] && $view->renovacion->getIdVehiculo() == $eg['id_vehiculo']) echo 'selected';
                                             elseif($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
                                     ?>
-                                    data-icon="<?php echo ($eg['id_vehiculo'])? "fas fa-user fa-sm" : "fas fa-users fa-sm"; ?>"
+                                    data-icon="<?php echo ($eg['id_vehiculo'])? "fas fa-car fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
                                     >
-                                    &nbsp;
                                     <?php echo $eg['descripcion'] ;?>
                                 </option>
                             <?php  } ?>

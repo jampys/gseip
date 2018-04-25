@@ -199,9 +199,8 @@
                                 <option value=""
                                         id_vehiculo="<?php echo $eg['id_vehiculo']; ?>"
                                         id_grupo="<?php echo $eg['id_grupo']; ?>"
-                                        data-icon="<?php echo ($eg['id_vehiculo'])? "fas fa-user fa-sm" : "fas fa-users fa-sm"; ?>"
+                                        data-icon="<?php echo ($eg['id_vehiculo'])? "fas fa-car fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
                                     >
-                                    &nbsp;
                                     <?php echo $eg['descripcion'] ;?>
                                 </option>
                             <?php  } ?>
