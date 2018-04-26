@@ -58,7 +58,8 @@ switch ($operation) {
             if(!is_array($_FILES["myfile"]["name"])) //single file
             {
                 $temp = explode(".", $_FILES["myfile"]["name"]);
-                $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp[0] . '_' .round(microtime(true)) . '.' . end($temp);
+                $temp1 = preg_replace('/\s+/', '_', $temp[0]); //reemplaza en el nombre del archivo los espacios en blanco por '_'
+                $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp1 . '_' .round(microtime(true)) . '.' . end($temp);
                 if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $newfilename))
                     RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
                 $ret[]= $newfilename;
@@ -69,7 +70,8 @@ switch ($operation) {
                 for($i=0; $i < $fileCount; $i++)
                 {
                     $temp = explode(".", $_FILES["myfile"]["name"][$i]);
-                    $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp[0] . '_' .round(microtime(true)) . '.' . end($temp);
+                    $temp1 = preg_replace('/\s+/', '_', $temp[0]); //reemplaza en el nombre del archivo los espacios en blanco por '_'
+                    $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp1 . '_' .round(microtime(true)) . '.' . end($temp);
                     if (move_uploaded_file($_FILES["myfile"]["tmp_name"][$i], $output_dir . $newfilename))
                         RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
                     $ret[] = $newfilename;
