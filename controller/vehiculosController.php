@@ -21,7 +21,7 @@ switch ($operation)
 
     case 'saveVehiculo': //ok
         $vehiculo = new Vehiculo($_POST['id_vehiculo']);
-        $vehiculo->setNroMovil($_POST['nro_movil']);
+        $vehiculo->setNroMovil(($_POST['nro_movil'])? $_POST['nro_movil'] : null);
         $vehiculo->setMatricula($_POST['matricula']);
         $vehiculo->setMarca($_POST['marca']);
         $vehiculo->setModelo($_POST['modelo']);
