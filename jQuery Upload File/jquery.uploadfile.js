@@ -242,7 +242,8 @@
             obj.selectedFiles++;
             if(s.showPreview)
             {
-                if(dpType=='pdf') pd.preview.attr('src','ViewerJS/#../'+filepath);
+                //if(dpType=='pdf') pd.preview.attr('src','ViewerJS/#../'+filepath);
+                if(dpType=='pdf') pd.preview.attr('href','ViewerPdf/web/viewer.html?file=../../'+filepath);
                 else pd.preview.attr('src',filepath);
                 pd.preview.show();
             }
@@ -758,7 +759,8 @@
                 this.preview = $("<img class='ajax-file-upload-preview image' />").width(s.previewWidth).height(s.previewHeight).appendTo(this.statusbar).hide();
                 this.preview.addClass('image').css('cursor', 'zoom-in').viewer({});
             }
-            else if(dpType=='pdf') this.preview = $("<iframe width='100%' height='130' allowfullscreen webkitallowfullscreen></iframe>").appendTo(this.statusbar).hide();
+            //else if(dpType=='pdf') this.preview = $("<iframe width='100%' height='130' allowfullscreen webkitallowfullscreen></iframe>").appendTo(this.statusbar).hide();
+            else if(dpType=='pdf') this.preview = $('<a target="_blank"><i class="far fa-file-pdf fa-2x"></i></a>').appendTo(this.statusbar).hide();
             else this.preview = $("<img class='ajax-file-upload-preview' />").width(0).height(0).appendTo(this.statusbar).hide();
 
 
