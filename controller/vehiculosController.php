@@ -3,6 +3,7 @@
 include_once("model/vehiculosModel.php");
 include_once("model/contratosModel.php");
 include_once("model/companiasModel.php");
+include_once("model/empleadosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -29,6 +30,7 @@ switch ($operation)
         $vehiculo->setPropietario($_POST['propietario']);
         $vehiculo->setLeasing($_POST['leasing']);
         $vehiculo->setFechaBaja(($_POST['fecha_baja'])? $_POST['fecha_baja'] : null);
+        $vehiculo->setResponsable(($_POST['responsable'])? $_POST['responsable'] : null);
 
         $rta = $vehiculo->save();
         print_r(json_encode($rta));
@@ -43,6 +45,7 @@ switch ($operation)
         $view->periodos = Soporte::getPeriodos(2000, date("Y"));
         $view->contratos = $view->vehiculo->getContratosByVehiculo();
         $view->companias = Compania::getCompanias();
+        $view->empleados = Empleado::getEmpleadosActivos(); //carga el combo de responsable
 
         $view->disableLayout=true;
         $view->contentTemplate="view/vehiculosForm.php";
@@ -56,6 +59,7 @@ switch ($operation)
         $view->periodos = Soporte::getPeriodos(2000, date("Y"));
         $view->contratos = $view->vehiculo->getContratosByVehiculo();
         $view->companias = Compania::getCompanias();
+        $view->empleados = Empleado::getEmpleadosActivos(); //carga el combo de responsable
 
         $view->disableLayout=true;
         $view->contentTemplate="view/vehiculosForm.php";

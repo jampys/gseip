@@ -71,6 +71,7 @@
                     params.propietario = $('#propietario').val();
                     params.leasing = $('#leasing').val();
                     params.fecha_baja = $('#fecha_baja').val();
+                    params.responsable = $('#reponsable').val();
                     //alert(params.id_puesto_superior);
                     $.post('index.php',params,function(data, status, xhr){
 

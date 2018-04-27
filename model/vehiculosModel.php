@@ -12,6 +12,7 @@ class Vehiculo
     private $fecha_baja;
     private $propietario;
     private $leasing;
+    private $responsable;
 
 
     // GETTERS
@@ -42,6 +43,9 @@ class Vehiculo
     function getLeasing()
     { return $this->leasing;}
 
+    function getResponsable()
+    { return $this->responsable;}
+
 
     //SETTERS
     function setIdVehiculo($val)
@@ -71,6 +75,9 @@ class Vehiculo
     function setLeasing($val)
     {  $this->leasing=$val;}
 
+    function setResponsable($val)
+    {  $this->responsable=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -95,6 +102,7 @@ class Vehiculo
             $this->setFechaBaja($rows[0]['fecha_baja']);
             $this->setPropietario($rows[0]['propietario']);
             $this->setLeasing($rows[0]['leasing']);
+            $this->setResponsable($rows[0]['responsable']);
         }
     }
 
@@ -165,7 +173,8 @@ order by vvc.fecha_desde desc";
                 modelo_ano = :modelo_ano,
                 propietario = :propietario,
                 leasing = :leasing,
-                fecha_baja = STR_TO_DATE(:fecha_baja, '%d/%m/%Y')
+                fecha_baja = STR_TO_DATE(:fecha_baja, '%d/%m/%Y'),
+                responsable = :responsable
                 where id_vehiculo = :id_vehiculo";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_movil', $this->getNroMovil());
@@ -176,6 +185,7 @@ order by vvc.fecha_desde desc";
         $stmt->dpBind(':propietario', $this->getPropietario());
         $stmt->dpBind(':leasing', $this->getLeasing());
         $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
+        $stmt->dpBind(':responsable', $this->getResponsable());
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -184,8 +194,8 @@ order by vvc.fecha_desde desc";
     private function insertVehiculo(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into vto_vehiculos(nro_movil, matricula, marca, modelo, modelo_ano, propietario, leasing, fecha_baja)
-                values(:nro_movil, :matricula, :marca, :modelo, :modelo_ano, :propietario, :leasing, STR_TO_DATE(:fecha_baja, '%d/%m/%Y'))";
+        $query="insert into vto_vehiculos(nro_movil, matricula, marca, modelo, modelo_ano, propietario, leasing, fecha_baja, responsable)
+                values(:nro_movil, :matricula, :marca, :modelo, :modelo_ano, :propietario, :leasing, STR_TO_DATE(:fecha_baja, '%d/%m/%Y'), responsable)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_movil', $this->getNroMovil());
         $stmt->dpBind(':matricula', $this->getMatricula());
@@ -195,6 +205,7 @@ order by vvc.fecha_desde desc";
         $stmt->dpBind(':propietario', $this->getPropietario());
         $stmt->dpBind(':leasing', $this->getLeasing());
         $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
+        $stmt->dpBind(':responsable', $this->getResponsable());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

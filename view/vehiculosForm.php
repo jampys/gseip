@@ -160,6 +160,26 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label class="control-label" for="id_proceso" >Responsable</label>
+
+                        <div class="alert alert-info fade in">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <span class="glyphicon glyphicon-tags" ></span>&nbsp  Por defecto el responsable es el RT del contrato al que está afectado el vehículo y no es necesario completar. Solo hacerlo si se quiere designar a una persona diferente.
+                        </div>
+
+                        <select id="responsable" name="responsable" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable">
+                            <?php foreach ($view->empleados as $em){
+                                ?>
+                                <option value="<?php echo $em['id_empleado']; ?>"
+                                    <?php echo ($em['id_empleado'] == $view->vehiculo->getResponsable())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
 
                     <div class="form-group">
                         <label for="propietario" class="control-label">Propietario</label>
