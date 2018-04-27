@@ -161,14 +161,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="id_proceso" >Responsable</label>
+                        <label class="control-label" for="responsable" >Responsable</label>
 
                         <div class="alert alert-info fade in">
                             <a href="#" class="close" data-dismiss="alert">&times;</a>
                             <span class="glyphicon glyphicon-tags" ></span>&nbsp  Por defecto el responsable es el RT del contrato al que está afectado el vehículo y no es necesario completar. Solo hacerlo si se quiere designar a una persona diferente.
                         </div>
 
-                        <select id="responsable" name="responsable" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable">
+                        <select id="responsable" name="responsable" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un responsable</option>
                             <?php foreach ($view->empleados as $em){
                                 ?>
                                 <option value="<?php echo $em['id_empleado']; ?>"
@@ -183,7 +184,8 @@
 
                     <div class="form-group">
                         <label for="propietario" class="control-label">Propietario</label>
-                            <select class="form-control selectpicker show-tick" id="propietario" name="propietario" title="Seleccione el propietario" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="propietario" name="propietario" data-live-search="true" data-size="5">
+                                <option value="">Seleccione el propietario</option>
                                 <?php foreach ($view->companias as $cia){
                                     ?>
                                     <option value="<?php echo $cia['id_compania']; ?>"
@@ -197,7 +199,8 @@
 
                     <div class="form-group">
                         <label for="leasing" class="control-label">Leasing</label>
-                        <select class="form-control selectpicker show-tick" id="leasing" name="leasing" title="Seleccione el leasing" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="leasing" name="leasing" data-live-search="true" data-size="5">
+                            <option value="">Seleccione el leasing</option>
                             <?php foreach ($view->companias as $cia){
                                 ?>
                                 <option value="<?php echo $cia['id_compania']; ?>"
