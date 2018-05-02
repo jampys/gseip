@@ -223,7 +223,7 @@
 
         //This is for showing Old files to user.
         this.createProgress = function (filename,filepath,filesize, fecha) {
-            var dpType = filename.split('.').pop();
+            var dpType = filename.split('.').pop().toLowerCase(); //para que reconozca extensiones en mayuscula y minuscula
             var pd = new createProgressDiv(this, s, dpType);
             pd.progressDiv.show();
             pd.progressbar.width('100%');
