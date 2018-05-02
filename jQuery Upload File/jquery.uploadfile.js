@@ -42,6 +42,7 @@
             showStatusAfterSuccess: true,
             showStatusAfterError: true,
             showFileCounter: true,
+            showFileDate: true,
             fileCounterStyle: "). ",
             showFileSize: true,
             showProgress: false,
@@ -235,6 +236,10 @@
 
             if(s.showFileSize)
 				fileNameStr += " ("+getSizeStr(filesize)+")";
+
+            if(s.showFileDate)
+                //fileNameStr += " "+fecha+"";
+                fileNameStr += " <span class='text-muted'><small>"+fecha+"</small></span>";
 
 
             pd.filename.html(fileNameStr);
