@@ -221,7 +221,7 @@
 
 
         //This is for showing Old files to user.
-        this.createProgress = function (filename,filepath,filesize) {
+        this.createProgress = function (filename,filepath,filesize, fecha) {
             var dpType = filename.split('.').pop();
             var pd = new createProgressDiv(this, s, dpType);
             pd.progressDiv.show();

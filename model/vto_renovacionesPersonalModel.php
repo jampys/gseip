@@ -292,7 +292,7 @@ order by priority, id_rnv_renovacion asc";
 
     public static function uploadsLoad($id_renovacion) { //ok
         $stmt=new sQuery();
-        $query = "select *
+        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_renovacion
                 from uploads_vencimiento_p
                 where id_renovacion = :id_renovacion
                 order by fecha asc";
