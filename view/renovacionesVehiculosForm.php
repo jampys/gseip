@@ -85,7 +85,7 @@
                                 obj.dpErrorOnLoad(data[i]["name"], data[i]['jquery-upload-file-error']);
                             }
                             else{
-                                obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"]);
+                                obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"], data[i]["fecha"]);
                             }
 
                         }

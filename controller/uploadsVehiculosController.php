@@ -30,6 +30,7 @@ switch ($operation) {
             $details['name'] = $file['name'];
             $details['path'] = $filePath;
             $details['size'] = filesize($filePath);
+            $details['fecha'] = $file['fecha'];
             $ret[] = $details;
 
         }
