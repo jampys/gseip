@@ -765,7 +765,7 @@
                 this.preview.addClass('image').css('cursor', 'zoom-in').viewer({});
             }
             //else if(dpType=='pdf') this.preview = $("<iframe width='100%' height='130' allowfullscreen webkitallowfullscreen></iframe>").appendTo(this.statusbar).hide();
-            else if(dpType=='pdf') this.preview = $('<a target="_blank"><i class="far fa-file-pdf fa-2x"></i></a>').appendTo(this.statusbar).hide();
+            else if(dpType=='pdf') this.preview = $('<a target="_blank" title="abrir"><i class="far fa-file-pdf fa-2x"></i></a>').appendTo(this.statusbar).hide();
             else this.preview = $("<img class='ajax-file-upload-preview' />").width(0).height(0).appendTo(this.statusbar).hide();
 
 
@@ -780,9 +780,9 @@
 
             this.abort.addClass("ajax-file-upload-red");
             this.done.addClass("ajax-file-upload-green");
-			this.download.addClass("ajax-file-upload-green");
-            this.cancel.addClass("ajax-file-upload-red");
-            this.del.addClass("ajax-file-upload-red");
+			this.download.addClass("ajax-file-upload-green").prop('title', 'descargar');
+            this.cancel.addClass("ajax-file-upload-red").prop('title', 'cancelar');
+            this.del.addClass("ajax-file-upload-red").prop('title', 'eliminar');
 
 
 
