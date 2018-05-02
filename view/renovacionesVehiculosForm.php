@@ -59,11 +59,11 @@
             previewWidth: "auto",
             uploadQueueOrder:'bottom', //el orden en que se muestran los archivos subidos.
             showFileCounter: false, //muestra el nro de archivos subidos
-            downloadStr: "<span class='glyphicon glyphicon-download'></span>",
+            downloadStr: "<i class='fas fa-download'></i>",
             deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
             dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
             uploadStr:"<span class='glyphicon glyphicon-plus'></span> Subir",
-            cancelStr: "<span class='glyphicon glyphicon-remove-circle'></span>",
+            cancelStr: "<i class='fas fa-minus-square'></i>",
 
             extErrorStr: "no está permitido. Solo se permiten extensiones: ",
             duplicateErrorStr: "no permitido. El archivo ya existe.",
