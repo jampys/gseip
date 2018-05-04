@@ -95,11 +95,12 @@
                         //var rta= parseInt(data.charAt(3));
                         //alert(rta);
                         if(data >=0){
+                            $(".panel-footer button").prop("disabled", true); //deshabilito botones
                             $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
                             setTimeout(function() { $("#myElem").hide();
-                                //$('#popupbox').dialog('close');
-                                $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
-                            }, 2000);
+                                                    //$('#popupbox').dialog('close');
+                                                    $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
+                                                  }, 2000);
 
                         }else{
                             //alert(xhr.responseText);

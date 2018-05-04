@@ -208,10 +208,11 @@
                     //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     if(data >=0){
+                        $(".panel-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
                         setTimeout(function() { $("#myElem").hide();
-                            $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
-                        }, 2000);
+                                                $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
+                                              }, 2000);
 
                     }else{
                         $("#myElem").html('Error al guardar el contrato').addClass('alert alert-danger').show();

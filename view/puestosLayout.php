@@ -76,11 +76,12 @@
                         //var rta= parseInt(data.charAt(3));
                         //alert(rta);
                         if(data >=0){
+                            $(".modal-footer button").prop("disabled", true); //deshabilito botones
                             $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
                             $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
                             setTimeout(function() { $("#myElem").hide();
-                                $('#myModal').modal('hide');
-                            }, 2000);
+                                                    $('#myModal').modal('hide');
+                                                  }, 2000);
                         }else{
                             $("#myElem").html('Error al guardar el puesto').addClass('alert alert-danger').show();
                         }

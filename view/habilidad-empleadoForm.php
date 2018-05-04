@@ -153,7 +153,7 @@
 
         //$(document).one('click', '#myModal #submit',function(){ //ok
         $('#myModal').on('click', '#submit',function(){ //ok
-            alert('toco click');
+            //alert('toco click');
             //alert(Object.keys(jsonEmpleados).length);
             if (Object.keys(jsonEmpleados).length > 0 && Object.keys(jsonHabilidades).length > 0){
                 var params={};
@@ -178,12 +178,13 @@
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
+                        $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Habilidades empleados guardadas con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                            $('#myModal').modal('hide');
-                        }, 2000);
+                                                $('#myModal').modal('hide');
+                                              }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar las habilidades empleados').addClass('alert alert-danger').show();
                     }
