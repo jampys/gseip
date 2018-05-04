@@ -218,12 +218,13 @@
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
+                        $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Habilidades de los puestos guardadas con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                            $('#myModal').modal('hide');
-                        }, 2000);
+                                                $('#myModal').modal('hide');
+                                              }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar las habilidades de los puestos').addClass('alert alert-danger').show();
                     }

@@ -24,12 +24,13 @@
                 //alert(data);
                 //var rta= parseInt(data.charAt(3));
                 if(data >=0){
+                    $(".modal-footer button").prop("disabled", true); //deshabilito botones
                     $("#myElem").html('Habilidad del puesto puesto guardada con exito').addClass('alert alert-success').show();
                     //$('#content').load('index.php',{action:"habilidades", operation:"refreshGrid"});
                     $("#search").trigger("click");
                     setTimeout(function() { $("#myElem").hide();
-                        $('#myModalUpdate').modal('hide');
-                    }, 2000);
+                                            $('#myModalUpdate').modal('hide');
+                                          }, 2000);
                 }else{
                     $("#myElem").html('Error al guardar la habilidad del puesto').addClass('alert alert-danger').show();
                 }
