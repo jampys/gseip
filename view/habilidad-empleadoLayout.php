@@ -165,9 +165,10 @@
                         $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
                         $("#search").trigger("click"); // refresh grid
+                        $('.btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElemento").hide();
-                            $('#confirm').dialog('close');
-                        }, 2000);
+                                                $('#confirm').dialog('close');
+                                              }, 2000);
 
                     }else{
                         $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();

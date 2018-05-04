@@ -159,3 +159,10 @@ fieldset:disabled .date input:read-only,
 fieldset:disabled .input-daterange input:read-only  {
     background-color: #f5f5f5 !important;
 }
+
+
+/* estilo de boton desabilitado en jquery ui-dialog */
+.ui-dialog button:disabled,
+.ui-dialog button[disabled]{
+    cursor: not-allowed !important;
+}
