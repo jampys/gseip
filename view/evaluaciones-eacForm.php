@@ -139,6 +139,7 @@
                     //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     if(data >=0){
+                        $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Evaluación de competencias guardada con exito').addClass('alert alert-success').show();
 
                     }else{
@@ -147,7 +148,7 @@
                     setTimeout(function() { $("#myElem").hide();
                                             $('#content').load('index.php',{action:"evaluaciones", operation:"refreshGrid", periodo: $('#periodo').val() });
                                             $('#modalEac').modal('hide');
-                    }, 2000);
+                                          }, 2000);
 
                 });
 

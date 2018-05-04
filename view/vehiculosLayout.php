@@ -79,11 +79,12 @@
                         //var rta= parseInt(data.charAt(3));
                         //alert(rta);
                         if(data >=0){
+                            $(".modal-footer button").prop("disabled", true); //deshabilito botones
                             $("#myElem").html('Vehículo guardado con exito').addClass('alert alert-success').show();
                             $('#content').load('index.php',{action:"vehiculos", operation:"refreshGrid"});
                             setTimeout(function() { $("#myElem").hide();
-                                $('#myModal').modal('hide');
-                            }, 2000);
+                                                    $('#myModal').modal('hide');
+                                                  }, 2000);
                         }else{
                             $("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
                         }
@@ -141,9 +142,10 @@
                     if(data >=0){
                         $("#myElem").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"vehiculos", operation: "refreshGrid"});
+                        $('.btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElem").hide();
-                            $('#confirm').dialog('close');
-                        }, 2000);
+                                                $('#confirm').dialog('close');
+                                              }, 2000);
                     }else{
                         $("#myElem").html('Error al eliminar el vehículo').addClass('alert alert-danger').show();
                     }

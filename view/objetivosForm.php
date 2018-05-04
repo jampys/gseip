@@ -246,6 +246,7 @@
                     //alert(xhr.responseText);
                     //var rta= parseInt(data.charAt(3));
                     if(data >=0){
+                        $(".panel-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Objetivo guardado con exito').addClass('alert alert-success').show();
 
                     }else{
