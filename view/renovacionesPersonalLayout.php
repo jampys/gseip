@@ -209,7 +209,7 @@
 
                     <div class="form-group col-md-3">
                         <label for="search_vencimiento" class="control-label">Vencimiento</label>
-                        <select class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-live-search="true" data-size="5">
+                        <select multiple class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-live-search="true" data-size="5">
                             <option value="">Seleccione un vencimiento</option>
                             <?php foreach ($view->vencimientos as $vto){
                                 ?>
