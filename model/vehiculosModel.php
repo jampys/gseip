@@ -139,11 +139,12 @@ order by ve.fecha_baja asc, ve.nro_movil asc";
     public function getContratosByVehiculo() { //muestra los contratos con el vehiculo (TODOS: vigentes y no vigentes)
         $stmt=new sQuery();
         $query = "select vvc.id_vehiculo_contrato, vvc.id_vehiculo, vvc.id_contrato,
-co.nombre as contrato,
+co.nombre as contrato, loc.ciudad as localidad,
 DATE_FORMAT(vvc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
 DATE_FORMAT(vvc.fecha_hasta,  '%d/%m/%Y') as fecha_hasta
 from vto_vehiculo_contrato vvc
 join contratos co on vvc.id_contrato = co.id_contrato
+left join localidades loc on vvc.id_localidad = loc.id_localidad
 where id_vehiculo = :id_vehiculo
 order by vvc.fecha_desde desc";
         $stmt->dpPrepare($query);

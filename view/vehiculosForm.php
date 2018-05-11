@@ -233,6 +233,7 @@
                                 <thead>
                                 <tr>
                                     <th>Contrato</th>
+                                    <th>Ubicación</th>
                                     <th>F. Desde</th>
                                     <th>F. Hasta</th>
                                 </tr>
@@ -241,6 +242,7 @@
                                 <?php foreach ($view->contratos as $dom):  ?>
                                     <tr>
                                         <td><?php echo $dom['contrato'];?></td>
+                                        <td><?php echo $dom['localidad'];?></td>
                                         <td><?php echo $dom['fecha_desde'];?></td>
                                         <td><?php echo $dom['fecha_hasta'];?></td>
                                     </tr>
