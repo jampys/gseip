@@ -192,7 +192,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
+        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':renovado', $renovado);
         $stmt->dpExecute();
