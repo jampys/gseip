@@ -22,7 +22,8 @@
                 params={};
                 params.id_vehiculo = $('#search_vehiculo option:selected').attr('id_vehiculo');
                 params.id_grupo = $('#search_vehiculo option:selected').attr('id_grupo');
-                params.id_vencimiento = $("#search_vencimiento").val();
+                //params.id_vencimiento = $("#search_vencimiento").val();
+                params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                 params.id_contrato = $("#search_contrato").val();
                 params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "renovacionesVehiculos";
@@ -209,8 +210,8 @@
 
                     <div class="form-group col-md-3">
                         <label for="search_vencimiento" class="control-label">Vencimiento</label>
-                        <select class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un vencimiento</option>
+                        <select multiple class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
+                            <!--<option value="">Seleccione un vencimiento</option>-->
                             <?php foreach ($view->vencimientos as $vto){
                                 ?>
                                 <option value="<?php echo $vto['id_vencimiento']; ?>" >
