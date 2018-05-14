@@ -150,7 +150,8 @@ and vrv.id_vehiculo = ve.id_vehiculo
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta_vehicular(vrv.id_renovacion)
 and ve.id_vehiculo =  ifnull(:id_vehiculo, ve.id_vehiculo)
-and vrv.id_vencimiento = ifnull(:id_vencimiento, vrv.id_vencimiento)
+-- and vrv.id_vencimiento = ifnull(:id_vencimiento, vrv.id_vencimiento)
+and vrv.id_vencimiento in ($id_vencimiento)
 and ifnull(:renovado, vrv.id_rnv_renovacion is null)
 and ifnull(:renovado, vrv.disabled is null)
 and vrv.id_vehiculo is not null
@@ -176,7 +177,8 @@ and vrv.id_vencimiento = vvv.id_vencimiento
 and vav.id_vencimiento = vrv.id_vencimiento
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta_vehicular(vrv.id_renovacion)
-and vrv.id_vencimiento = ifnull(:id_vencimiento, vrv.id_vencimiento) -- filtro por vencimiento
+-- and vrv.id_vencimiento = ifnull(:id_vencimiento, vrv.id_vencimiento) -- filtro por vencimiento
+and vrv.id_vencimiento in ($id_vencimiento)
 and vrv.id_grupo = ifnull(:id_grupo, vrv.id_grupo) -- filtro por grupo
 and ifnull(:renovado, vrv.id_rnv_renovacion is null)
 and ifnull(:renovado, vrv.disabled is null)
@@ -190,7 +192,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vehiculo', $id_vehiculo);
         $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
+        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':renovado', $renovado);
         $stmt->dpExecute();
