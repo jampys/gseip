@@ -43,7 +43,8 @@
             params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
             var attr = $('#search_empleado option:selected').attr('id_grupo');
             params.id_grupo = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_grupo') : '';
-            params.id_vencimiento = $("#search_vencimiento").val();
+            //params.id_vencimiento = $("#search_vencimiento").val();
+            params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
             params.id_contrato = $("#search_contrato").val();
             params.renovado = $('#search_renovado').prop('checked')? 1 : '';
             params.id_user = <?php echo $_SESSION['id_user']; ?>
