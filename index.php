@@ -27,7 +27,7 @@ if(isset($_SESSION["id_user"])){
     if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="login"){
         require_once("controller/loginController.php");
     }
-    else{ 
+    else{
         //header("Location: index.php?action=culito");
         echo '<script type="text/javascript"> window.location.href = "index.php?action=login"; </script>';
     }
