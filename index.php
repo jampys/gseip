@@ -22,13 +22,14 @@ if(isset($_SESSION["id_user"])){
     }
 
 
-}else
-{
-    if(isset($_GET["accion"]) && $_GET["accion"]=="error"){
-        //require_once("controller/errorController.php");
-    }
-    else{
+}else {
+
+    if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="login"){
         require_once("controller/loginController.php");
+    }
+    else{ 
+        //header("Location: index.php?action=culito");
+        echo '<script type="text/javascript"> window.location.href = "index.php?action=login"; </script>';
     }
 
 }
