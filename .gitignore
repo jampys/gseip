@@ -4,3 +4,5 @@
 .idea/
 #ignora el directorio uploads
 uploads/
+#ignora el fichero app.ini
+config/app.ini
