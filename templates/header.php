@@ -137,6 +137,29 @@
                         </ul>
                     </li>
 
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Novedades<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">EVENTOS DE PERSONAL</li>
+                            <?php //if ( PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=eventosl-empleado"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Eventos</a></li>
+                            <?php //} ?>
+
+                            <li role="separator" class="divider"></li>
+
+                            <li class="dropdown-header">ACTIVIDAD CUADRILLA</li>
+                            <?php //if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=#"><i class="fas fa-car fa-fw"></i>&nbsp;Actividad</a></li>
+                            <?php //} ?>
+
+                        </ul>
+                    </li>
+
+
+
+
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
