@@ -14,8 +14,15 @@
 
             $('.selectpicker').selectpicker();
 
+            $('.input-daterange').datepicker({ //ok
+                //todayBtn: "linked",
+                format:"dd/mm/yyyy",
+                language: 'es',
+                todayHighlight: true
+            });
 
-            $(document).on('click', '#search', function(){ //ok
+
+            $(document).on('click', '#search', function(){
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
@@ -35,7 +42,7 @@
 
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $(document).on('click', '.edit', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -49,7 +56,7 @@
                 })
             });
 
-            $(document).on('click', '.view', function(){ //ok
+            $(document).on('click', '.view', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -67,7 +74,7 @@
             });
 
 
-            $(document).on('click', '.renovar', function(){ //ok
+            $(document).on('click', '.renovar', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -83,7 +90,7 @@
 
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){ 
                 params={};
                 params.action = "renovacionesPersonal";
                 params.operation="newRenovacion";
@@ -217,36 +224,12 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-3">
-                        <label for="search_vencimiento" class="control-label">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un contrato</option>
-                            <?php foreach ($view->contratos as $con){
-                                ?>
-                                <option value="<?php echo $con['id_contrato']; ?>" >
-                                    <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
-
-                    <!--<div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
-                    </div>-->
-
-                    <div class="form-group col-md-1" style="width: 11%">
-                        <label for="search_renovado" class="control-label">&nbsp;</label>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="search_renovado" name="search_renovado">
-                                <a href="#" title="Seleccione para visualizar todos los registros (incluyendo renovados y desactivados)">Ver todos</a>
-                            </label>
+                    <div class="form-group col-md-4">
+                        <label for="search_vencimiento" class="control-label">Fecha desde / hasta</label>
+                        <div class="input-group input-daterange">
+                            <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                            <div class="input-group-addon">a</div>
+                            <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
                         </div>
                     </div>
 
