@@ -74,7 +74,7 @@ class Sucesos
                     DATE_FORMAT(fecha_desde,  '%d/%m/%Y') as fecha_desde,
                     DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                     observaciones
-                    from nov_evento_liquidacion_empleado
+                    from nov_sucesos
                     where id_evento_empleado = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -93,90 +93,21 @@ class Sucesos
     }
 
 
-    public static function getEventosEmpleados($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado) {
+    public static function getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta) {
         $stmt=new sQuery();
-        $query = "
-        ( -- renovaciones por empleado
-        select vrp.id_renovacion, vrp.id_vencimiento, vrp.id_empleado,
-DATE_FORMAT(vrp.fecha_emision,  '%d/%m/%Y') as fecha_emision,
-DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-DATE_FORMAT(vrp.fecha,  '%d/%m/%Y') as fecha,
-vvp.nombre as vencimiento,
-vav.id_alerta, vav.days,
-va.color, va.priority,
-CONCAT(em.apellido, ' ', em.nombre) as empleado,
-null  as grupo,
-vrp.id_rnv_renovacion,
-(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads
-from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav,
-(
-select emx.*, ecx.id_contrato
-from empleados emx
-left join empleado_contrato ecx on emx.id_empleado = ecx.id_empleado
-where
-( -- filtro por contrato
-  :id_contrato is not null
-  and ecx.id_contrato = :id_contrato
-  -- and datediff(ecx.fecha_hasta, date(sysdate())) >= 0
-  and (ecx.fecha_hasta > date(sysdate()) or ecx.fecha_hasta is null)
- )
-OR
-( -- todos los contratos, o los sin contrato
- :id_contrato is null
- -- and ecx.id_contrato is null
- )
- group by emx.id_empleado
- having emx.fecha_baja is null
-) em,
-vto_alerta va
-where vrp.id_vencimiento = vvp.id_vencimiento
-and vav.id_vencimiento = vrp.id_vencimiento
-and vrp.id_empleado = em.id_empleado
-and vav.id_alerta = va.id_alerta
-and vav.id_alerta = func_alerta(vrp.id_renovacion)
-and em.id_empleado =  ifnull(:id_empleado, em.id_empleado)
-and vrp.id_vencimiento in ($id_vencimiento)
-and ifnull(:renovado, vrp.id_rnv_renovacion is null)
-and ifnull(:renovado, vrp.disabled is null)
-and vrp.id_empleado is not null
-and :id_grupo is null -- filtro empleados: no debe traer registros cuando se filtra por grupo
-)
-UNION
-( -- renovaciones por grupo
-select vrp.id_renovacion, vrp.id_vencimiento, vrp.id_empleado,
-DATE_FORMAT(vrp.fecha_emision,  '%d/%m/%Y') as fecha_emision,
-DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-DATE_FORMAT(vrp.fecha,  '%d/%m/%Y') as fecha,
-vvp.nombre as vencimiento,
-vav.id_alerta, vav.days,
-va.color, va.priority,
-null as empleado,
-CONCAT(vgp.nombre, ' ', ifnull(vgp.numero, '')) as grupo,
-vrp.id_rnv_renovacion,
-(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads
-from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, vto_alerta va, vto_grupos_p vgp
-where vrp.id_grupo = vgp.id_grupo
-and vrp.id_vencimiento = vvp.id_vencimiento
-and vav.id_vencimiento = vrp.id_vencimiento
-and vav.id_alerta = va.id_alerta
-and vav.id_alerta = func_alerta(vrp.id_renovacion)
-and vrp.id_vencimiento in ($id_vencimiento) -- filtro por vencimiento
-and vrp.id_grupo = ifnull(:id_grupo, vrp.id_grupo) -- filtro por grupo
-and ifnull(:renovado, vrp.id_rnv_renovacion is null)
-and ifnull(:renovado, vrp.disabled is null)
-and vrp.id_empleado is null
-and :id_empleado is null -- filtro empleados: no debe traer registros cuando se filtra por empleado
-and :id_contrato is null -- filtro contratos: no debe traer registros cuando se filtra por contrato
-)
-
-order by priority, id_rnv_renovacion asc";
+        $query = "select su.id_suceso, su.id_evento, su.id_empleado,
+                  DATE_FORMAT(su.fecha,  '%d/%m/%Y') as fecha,
+                  DATE_FORMAT(su.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(su.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                  su.observaciones
+                  from nov_sucesos su, empleados em
+                  join empleado";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        $stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':renovado', $renovado);
+        //$stmt->dpBind(':id_evento', $id_evento);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
