@@ -1,115 +1,99 @@
 <?php
-include_once("empleadosModel.php");
+//include_once("empleadosModel.php");
 
-class RenovacionPersonal
+class EventoEmpleado
 {
-    private $id_renovacion;
-    private $id_vencimiento;
+    private $id_evento_empleado;
+    private $id_evento;
     private $id_empleado;
-    private $id_grupo;
-    private $fecha_emision;
-    private $fecha_vencimiento;
     private $fecha;
-    private $id_rnv_renovacion; //id_renovacion que le sigue
-    private $disabled;
+    private $fecha_desde;
+    private $fecha_hasta;
+    private $observaciones;
 
-    private $empleado;
+    //private $empleado;
 
 
     // GETTERS
-    function getIdRenovacion()
-    { return $this->id_renovacion;}
+    function getIdEventoEmpleado()
+    { return $this->id_evento_empleado;}
 
-    function getIdVencimiento()
-    { return $this->id_vencimiento;}
+    function getIdEvento()
+    { return $this->id_evento;}
 
     function getIdEmpleado()
     { return $this->id_empleado;}
 
-    function getIdGrupo()
-    { return $this->id_grupo;}
-
-    function getFechaEmision()
-    { return $this->fecha_emision;}
-
-    function getFechaVencimiento()
-    { return $this->fecha_vencimiento;}
-
     function getFecha()
     { return $this->fecha;}
 
-    function getEmpleado(){
+    function getFechaDesde()
+    { return $this->fecha_desde;}
+
+    function getFechaHasta()
+    { return $this->fecha_hasta;}
+
+    function getObservaciones()
+    { return $this->observaciones;}
+
+    /*function getEmpleado(){
         return ($this->empleado)? $this->empleado : new Empleado() ;
-    }
-
-    function getIdRnvRenovacion()
-    { return $this->id_rnv_renovacion;}
-
-    function getDisabled()
-    { return $this->disabled;}
+    }*/
 
 
     //SETTERS
-    function setIdRenovacion($val)
-    { $this->id_renovacion=$val;}
+    function setIdEventoEmpleado($val)
+    { $this->id_evento_empleado=$val;}
 
-    function setIdVencimiento($val)
-    {  $this->id_vencimiento=$val;}
+    function setIdEvento($val)
+    {  $this->id_evento=$val;}
 
     function setIdEmpleado($val)
     { $this->id_empleado=$val;}
 
-    function setIdGrupo($val)
-    { $this->id_grupo=$val;}
-
-    function setFechaEmision($val)
-    { $this->fecha_emision=$val;}
-
-    function setFechaVencimiento($val)
-    { $this->fecha_vencimiento=$val;}
-
     function setFecha($val)
     { $this->fecha=$val;}
 
-    function setIdRnvRenovacion($val)
-    { $this->id_rnv_renovacion=$val;}
+    function setFechaDesde($val)
+    { $this->fecha_desde=$val;}
 
-    function setDisabled($val)
-    { $this->disabled=$val;}
+    function setFechaHasta($val)
+    { $this->fecha_hasta=$val;}
+
+    function setObservaciones($val)
+    { $this->observaciones=$val;}
 
 
 
-    function __construct($nro=0){ //constructor //ok
+    function __construct($nro=0){ //constructor ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_renovacion, id_vencimiento, id_empleado, id_grupo,
-                    DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
-                    DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion, disabled
-                    from vto_renovacion_p
-                    where id_renovacion = :nro";
+            $query = "select id_evento_empleado, id_evento, id_empleado,
+                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha,
+                    DATE_FORMAT(fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                    DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                    observaciones
+                    from nov_evento_liquidacion_empleado
+                    where id_evento_empleado = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdRenovacion($rows[0]['id_renovacion']);
-            $this->setIdVencimiento($rows[0]['id_vencimiento']);
+            $this->setIdEventoEmpleado($rows[0]['id_evento_empleado']);
+            $this->setIdEvento($rows[0]['id_evento']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
-            $this->setIdGrupo($rows[0]['id_grupo']);
-            $this->setFechaEmision($rows[0]['fecha_emision']);
-            $this->setFechaVencimiento($rows[0]['fecha_vencimiento']);
             $this->setFecha($rows[0]['fecha']);
-            $this->setIdRnvRenovacion($rows[0]['id_rnv_renovacion']);
-            $this->setDisabled($rows[0]['disabled']);
-
-            $this->empleado = new Empleado($rows[0]['id_empleado']);
+            $this->setFechaDesde($rows[0]['fecha_desde']);
+            $this->setFechaHasta($rows[0]['fecha_hasta']);
+            $this->setObservaciones($rows[0]['observaciones']);
+            //$this->empleado = new Empleado($rows[0]['id_empleado']);
         }
     }
 
 
-    public static function getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado) { //ok
+    public static function getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado) {
         $stmt=new sQuery();
         $query = "
         ( -- renovaciones por empleado
@@ -198,7 +182,7 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    function save(){ //ok
+    function save(){
         if($this->id_renovacion)
         {$rta = $this->updateRenovacion();}
         else
@@ -207,7 +191,7 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    public function updateRenovacion(){ //ok
+    public function updateRenovacion(){
         $stmt=new sQuery();
         $query="update vto_renovacion_p set id_vencimiento =:id_vencimiento,
                       fecha_emision = STR_TO_DATE(:fecha_emision, '%d/%m/%Y'),
@@ -276,7 +260,7 @@ order by priority, id_rnv_renovacion asc";
 
 
 
-    public static function uploadsUpload($directory, $name, $id_renovacion){ //ok
+    public static function uploadsUpload($directory, $name, $id_renovacion){
         $stmt=new sQuery();
         $query="insert into uploads_vencimiento_p(directory, name, fecha, id_renovacion)
                 values(:directory, :name, date(sysdate()), :id_renovacion)";
@@ -290,7 +274,7 @@ order by priority, id_rnv_renovacion asc";
 
 
 
-    public static function uploadsLoad($id_renovacion) { //ok
+    public static function uploadsLoad($id_renovacion) {
         $stmt=new sQuery();
         $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_renovacion
                 from uploads_vencimiento_p
@@ -302,7 +286,7 @@ order by priority, id_rnv_renovacion asc";
         return $stmt->dpFetchAll();
     }
 
-    public static function uploadsDelete($name){ //ok
+    public static function uploadsDelete($name){
         $stmt=new sQuery();
         $query="delete from uploads_vencimiento_p where name =:name";
         $stmt->dpPrepare($query);
@@ -312,7 +296,7 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    public function checkFechaEmision($fecha_emision, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) { //ok
+    public function checkFechaEmision($fecha_emision, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
         /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
         sea mayor. */
         $stmt=new sQuery();
@@ -380,7 +364,7 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
-    public function empleadosGrupos() { //ok
+    public function empleadosGrupos() {
         $stmt=new sQuery();
         /*$query = "select id_empleado, null as id_grupo, concat(apellido, ' ', nombre) as descripcion, null as id_vencimiento
 from empleados
