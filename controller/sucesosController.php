@@ -5,7 +5,8 @@ include_once("model/vto_vencimientosPersonalModel.php");
 include_once("model/contratosModel.php");
 
 include_once("model/empleadosModel.php");
-include_once("model/eventoslModel.php");
+include_once("model/nov_eventosLiquidacionModel.php");
+include_once("model/nov_sucesosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -113,9 +114,9 @@ switch ($operation)
     default :
         $view->renovacion = new RenovacionPersonal();
         $view->empleados = Empleado::getEmpleados(); //carga el combo para filtrar empleados
-        $view->eventos = EventosL::getEventosL(); //carga el combo para filtrar eventos liquidacion
+        $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
-        $view->contentTemplate="view/evento-empleado/evento-empleadoGrid.php";
+        $view->contentTemplate="view/sucesosGrid.php";
         break;
 }
 
@@ -124,7 +125,7 @@ if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {
-    include_once('view/evento-empleado/evento-empleadoLayout.php');
+    include_once('view/sucesosLayout.php');
 }
 
 

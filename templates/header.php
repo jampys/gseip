@@ -144,7 +144,7 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">EVENTOS DE PERSONAL</li>
                             <?php //if ( PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=eventosl-empleado"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Eventos</a></li>
+                                <li><a href="index.php?action=sucesos"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Eventos</a></li>
                             <?php //} ?>
 
                             <li role="separator" class="divider"></li>

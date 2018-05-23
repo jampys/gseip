@@ -1,6 +1,6 @@
 <?php
 
-class EventosL
+class EventosLiquidacion
 {
     private $id_evento;
     private $codigo;
@@ -35,9 +35,9 @@ class EventosL
     {  $this->descripcion=$val;}
 
 
-    public static function getEventosL() {
+    public static function getEventosLiquidacion() {
         $stmt=new sQuery();
-        $stmt->dpPrepare("select * from nov_eventosl");
+        $stmt->dpPrepare("select * from nov_eventos_l");
         $stmt->dpExecute();
         return $stmt->dpFetchAll(); // retorna todos los eventos de liquidacion
     }

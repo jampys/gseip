@@ -1,7 +1,7 @@
 <?php
 //include_once("empleadosModel.php");
 
-class EventoEmpleado
+class Sucesos
 {
     private $id_evento_empleado;
     private $id_evento;
@@ -93,7 +93,7 @@ class EventoEmpleado
     }
 
 
-    public static function getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado) {
+    public static function getEventosEmpleados($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado) {
         $stmt=new sQuery();
         $query = "
         ( -- renovaciones por empleado
