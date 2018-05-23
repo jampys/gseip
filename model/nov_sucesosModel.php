@@ -99,9 +99,12 @@ class Sucesos
                   DATE_FORMAT(su.fecha,  '%d/%m/%Y') as fecha,
                   DATE_FORMAT(su.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(su.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                  su.observaciones
-                  from nov_sucesos su, empleados em
-                  join empleado";
+                  su.observaciones,
+                  CONCAT(em.apellido, ' ', em.nombre) as empleado,
+                  ev.nombre as evento
+                  from nov_sucesos su, empleados em, nov_eventos_l ev
+                  where su.id_empleado = em.id_empleado
+                  and su.id_evento = ev.id_evento";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
