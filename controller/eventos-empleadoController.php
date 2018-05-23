@@ -115,7 +115,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleados(); //carga el combo para filtrar empleados
         $view->eventos = EventosL::getEventosL(); //carga el combo para filtrar eventos liquidacion
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
-        $view->contentTemplate="view/eventol-empleado/eventol-empleadoGrid.php";
+        $view->contentTemplate="view/evento-empleado/evento-empleadoGrid.php";
         break;
 }
 
@@ -124,7 +124,7 @@ if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {
-    include_once('view/eventol-empleado/eventol-empleadoLayout.php');
+    include_once('view/evento-empleado/evento-empleadoLayout.php');
 }
 
 
