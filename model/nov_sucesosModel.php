@@ -93,7 +93,7 @@ class Sucesos
     }
 
 
-    public static function getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta) {
+    public static function getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta) { //ok
         $stmt=new sQuery();
         $query = "select su.id_suceso, su.id_evento, su.id_empleado,
                   DATE_FORMAT(su.fecha,  '%d/%m/%Y') as fecha,
@@ -104,7 +104,11 @@ class Sucesos
                   ev.nombre as evento
                   from nov_sucesos su, empleados em, nov_eventos_l ev
                   where su.id_empleado = em.id_empleado
-                  and su.id_evento = ev.id_evento";
+                  and su.id_evento = ev.id_evento
+                  and su.id_empleado = ifnull(:id_empleado, su.id_empleado)
+                  and su.id_evento in ($eventos)
+                  and su.fecha_desde between if(:fecha_desde is null, su.fecha_desde, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
+                  and if(:fecha_hasta is null, su.fecha_hasta, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);

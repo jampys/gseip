@@ -15,18 +15,11 @@
 
 
             "stateSave": true,
-            "order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
-            /*"columnDefs": [
-                { type: 'date-uk', targets: 1 }, //fecha
-                { type: 'date-uk', targets: 4 }, //fecha_emision
-                { type: 'date-uk', targets: 5 } //fecha_vencimiento
-            ]*/
+            "order": [[1, "asc"], [4, "asc"], [5, "asc"] ], //1=fecha, 4=fecha_desde, 5=fecha_hasta
             columnDefs: [
-                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]}, //fecha_emision
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 6 ]}, //fecha_vencimiento
-                {targets: [ 6 ], orderData: [ 6]}, //priority
-                {targets: [ 7 ], orderData: [ 7]} //renovacion
+                {targets: [ 1 ], type: 'date-uk', orderData: [ 1]}, //fecha
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4]}, //fecha_desde
+                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]}, //fecha_hasta
             ]
         });
 

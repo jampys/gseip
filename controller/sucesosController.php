@@ -18,14 +18,13 @@ switch ($operation)
 {
     case 'refreshGrid':
         $view->disableLayout=true;
-        //$id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
-        //$id_grupo = ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null;
-        //$id_vencimiento = ($_POST['id_vencimiento']!='')? $_POST['id_vencimiento'] : null;
-        //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
+        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
+        $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
+        $fecha_desde = ($_POST['fecha_desde']!='')? $_POST['fecha_desde'] : null;
+        $fecha_hasta = ($_POST['fecha_hasta']!='')? $_POST['fecha_hasta'] : null;
         //$renovado = ($_POST['renovado']== 0)? null : 1;
         //$view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado);
-        $view->sucesos = Sucesos::getSucesos(1, 1, 1, 1);
+        $view->sucesos = Sucesos::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta);
         $view->contentTemplate="view/sucesosGrid.php";
         break;
 

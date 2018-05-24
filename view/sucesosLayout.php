@@ -23,18 +23,18 @@
 
 
             $(document).on('click', '#search', function(){
-                alert('presiono en buscar');
+                //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_empleado = $("#search_vencimiento").val(); //$('#search_empleado option:selected').attr('id_empleado');
+                params.id_empleado = $("#search_empleado").val(); //$('#search_empleado option:selected').attr('id_empleado');
                 //params.id_vencimiento = $("#search_vencimiento").val();
                 params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
                 params.fecha_desde = $("#fecha_desde").val();
                 params.fecha_hasta = $("#fecha_hasta").val();
                 params.action = "sucesos";
                 params.operation = "refreshGrid";
-                //alert(params.id_grupo);
+                //alert(params.fecha_desde);
                 //alert(params.renovado);
                 $('#content').load('index.php', params);
             });
