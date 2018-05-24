@@ -1,8 +1,8 @@
 ﻿<?php
 
-include_once("model/vto_renovacionesPersonalModel.php");
-include_once("model/vto_vencimientosPersonalModel.php");
-include_once("model/contratosModel.php");
+//include_once("model/vto_renovacionesPersonalModel.php");
+//include_once("model/vto_vencimientosPersonalModel.php");
+//include_once("model/contratosModel.php");
 
 include_once("model/empleadosModel.php");
 include_once("model/nov_eventosLiquidacionModel.php");
@@ -104,7 +104,6 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->renovacion = new RenovacionPersonal();
         $view->empleados = Empleado::getEmpleados(); //carga el combo para filtrar empleados
         $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion
         $view->contentTemplate="view/sucesosGrid.php";
