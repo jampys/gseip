@@ -22,8 +22,7 @@
             });
 
 
-            $(document).on('click', '#search', function(){
-                //alert('presiono en buscar');
+            $(document).on('click', '#search', function(){ //ok
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
@@ -34,24 +33,23 @@
                 params.fecha_hasta = $("#fecha_hasta").val();
                 params.action = "sucesos";
                 params.operation = "refreshGrid";
-                //alert(params.fecha_desde);
                 //alert(params.renovado);
                 $('#content').load('index.php', params);
             });
 
 
 
-            $(document).on('click', '.edit', function(){
+            $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
-                params.operation = "editRenovacion";
+                params.id_suceso = id;
+                params.action = "sucesos";
+                params.operation = "editSuceso";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                     $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
+                    //$('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
                 })
             });
 
@@ -91,8 +89,8 @@
 
             $(document).on('click', '#new', function(){ 
                 params={};
-                params.action = "renovacionesPersonal";
-                params.operation="newRenovacion";
+                params.action = "sucesos";
+                params.operation="newSuceso";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })

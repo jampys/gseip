@@ -1,9 +1,9 @@
 <?php
 //include_once("empleadosModel.php");
 
-class Sucesos
+class Suceso
 {
-    private $id_evento_empleado;
+    private $id_suceso;
     private $id_evento;
     private $id_empleado;
     private $fecha;
@@ -15,8 +15,8 @@ class Sucesos
 
 
     // GETTERS
-    function getIdEventoEmpleado()
-    { return $this->id_evento_empleado;}
+    function getIdSuceso()
+    { return $this->id_suceso;}
 
     function getIdEvento()
     { return $this->id_evento;}
@@ -42,8 +42,8 @@ class Sucesos
 
 
     //SETTERS
-    function setIdEventoEmpleado($val)
-    { $this->id_evento_empleado=$val;}
+    function setIdSuceso($val)
+    { $this->id_suceso=$val;}
 
     function setIdEvento($val)
     {  $this->id_evento=$val;}
@@ -69,19 +69,19 @@ class Sucesos
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_evento_empleado, id_evento, id_empleado,
+            $query = "select id_suceso, id_evento, id_empleado,
                     DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha,
                     DATE_FORMAT(fecha_desde,  '%d/%m/%Y') as fecha_desde,
                     DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                     observaciones
                     from nov_sucesos
-                    where id_evento_empleado = :nro";
+                    where id_suceso = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdEventoEmpleado($rows[0]['id_evento_empleado']);
+            $this->setIdSuceso($rows[0]['id_suceso']);
             $this->setIdEvento($rows[0]['id_evento']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
             $this->setFecha($rows[0]['fecha']);
@@ -234,36 +234,32 @@ class Sucesos
     }
 
 
-    public function checkFechaEmision($fecha_emision, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
+    public function checkFechaDesde($fecha_desde, $id_empleado, $id_evento, $id_suceso) { //ok
         /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
         sea mayor. */
         $stmt=new sQuery();
         $query = "select *
-                  from vto_renovacion_p
-                  where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
-                  :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
+                  from nov_sucesos
+                  where id_empleado = :id_empleado
+                  and id_suceso = :id_suceso
+                  (( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
+                  :id_suceso is null
+                  and STR_TO_DATE(:fecha_desde, '%d/%m/%Y') between fecha_desde and fecha_hasta
                   )
                   OR
                   ( -- editar: busca renovacion anterior y ....
-                  :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  and id_renovacion <> :id_renovacion
-                  )
-                  order by fecha_emision asc
+                  :id_suceso is not null
+                  and STR_TO_DATE(:fecha_desde, '%d/%m/%Y') between fecha_desde and fecha_hasta
+                  and id_suceso <> :id_suceso
+                  ))
+                  order by fecha_desde asc
                   limit 1";
 
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
-        $stmt->dpBind(':fecha_emision', $fecha_emision);
+        $stmt->dpBind(':id_suceso', $id_suceso);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
         $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
+        $stmt->dpBind(':id_evento', $id_evento);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
     }

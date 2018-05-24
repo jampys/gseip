@@ -37,7 +37,7 @@
 
 
         var uploadObj = $("#fileuploader").uploadFile({
-            url: "index.php?action=uploads&operation=upload",
+            url: "index.php?action=uploadsSucesos&operation=upload",
             dragDrop: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
             autoSubmit: false,
             fileName: "myfile",
@@ -121,19 +121,17 @@
 
         $('#myModal').on('click', '#submit',function(){ //ok
 
-            if ($("#renovacion_personal").valid()){
+            if ($("#suceso-form").valid()){
 
                 var params={};
-                params.action = 'renovacionesPersonal';
-                params.operation = 'saveRenovacion';
-                params.id_renovacion = $('#id_renovacion').val();
-                params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                params.id_grupo = $('#id_empleado option:selected').attr('id_grupo');
-                params.id_vencimiento = $('#id_vencimiento').val();
-                params.fecha_emision = $('#fecha_emision').val();
-                params.fecha_vencimiento = $('#fecha_vencimiento').val();
-                params.disabled = $('#disabled').prop('checked')? 1:0;
-
+                params.action = 'sucesos';
+                params.operation = 'saveSuceso';
+                params.id_suceso = $('#id_suceso').val();
+                params.id_empleado = $('#id_empleado').val();
+                params.id_evento = $('#id_evento').val();
+                params.fecha_desde = $('#fecha_desde').val();
+                params.fecha_hasta = $('#fecha_hasta').val();
+                params.observaciones = $('#observaciones').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -145,14 +143,14 @@
                     if(data >=0){
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Renovación guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Suceso guardado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la renovación').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar el suceso').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
@@ -175,57 +173,53 @@
         });
 
 
-        $('#renovacion_personal').validate({ //ok
+        $('#suceso-form').validate({ //ok
             rules: {
                 id_empleado: {required: true},
-                id_vencimiento: {required: true},
-                fecha_emision: {
+                id_evento: {required: true},
+                fecha_desde: {
                     required: true,
                     remote: {
                         url: "index.php",
                         type: "post",
                         dataType: "json",
                         data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaEmision",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
+                            action: "sucesos",
+                            operation: "checkFechaDesde",
+                            fecha_desde: function(){ return $('#fecha_desde').val();},
+                            id_empleado: function(){ return $('#id_empleado').val();},
+                            id_evento: function(){ return $('#id_evento').val();},
+                            id_suceso: function(){ return $('#id_suceso').val();}
                         }
                     }
                 },
-                fecha_vencimiento: {
+                fecha_hasta: {
                     required: true,
                     remote: {
                         url: "index.php",
                         type: "post",
                         dataType: "json",
                         data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaVencimiento",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            fecha_vencimiento: function(){ return $('#fecha_vencimiento').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
+                            action: "sucesos",
+                            operation: "checkFechaHasta",
+                            fecha_desde: function(){ return $('#fecha_desde').val();},
+                            fecha_hasta: function(){ return $('#fecha_hasta').val();},
+                            id_empleado: function(){ return $('#id_empleado').val();},
+                            id_evento: function(){ return $('#id_evento').val();},
+                            id_suceso: function(){ return $('#id_suceso').val();}
                         }
                     }
                 }
 
             },
             messages:{
-                id_empleado: "Seleccione un empleado o grupo",
-                id_vencimiento: "Seleccione un vencimiento",
-                fecha_emision: {
-                    required: "Ingrese la fecha de emisión",
+                id_empleado: "Seleccione un empleado",
+                id_evento: "Seleccione un evento",
+                fecha_desde: {
+                    required: "Ingrese la fecha desde",
                     remote: "La fecha de emisión debe ser mayor"
                 },
-                fecha_vencimiento: {
+                fecha_hasta: {
                     required: "Ingrese la fecha de vencimiento",
                     remote: "La fecha de vencimiento debe ser mayor"
                 }
@@ -234,7 +228,7 @@
         });
 
 
-        $("#myModal #id_empleado").on('changed.bs.select', function (e) { //ok
+        $("#myModal #id_empleado").on('changed.bs.select', function (e) {
             //Al seleccionar un grupo, completa automaticamente el campo vencimiento y lo deshabilita.
             if ($('#id_empleado option:selected').attr('id_grupo') !='') {
                 $('#id_vencimiento').selectpicker('val', $('#id_empleado option:selected').attr('id_vencimiento')).prop('disabled', true).selectpicker('refresh');
@@ -255,7 +249,7 @@
 
 
 <!-- Modal -->
-<fieldset  <?php echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
+<fieldset  <?php //echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -266,27 +260,20 @@
             <div class="modal-body">
 
 
-                <form name ="renovacion_personal" id="renovacion_personal" method="POST" action="index.php">
-                    <input type="hidden" name="id_renovacion" id="id_renovacion" value="<?php print $view->renovacion->getIdRenovacion() ?>">
+                <form name ="suceso-form" id="suceso-form" method="POST" action="index.php">
+                    <input type="hidden" name="id_suceso" id="id_suceso" value="<?php print $view->suceso->getIdSuceso() ?>">
 
 
                     <div class="form-group required">
-                        <label for="id_empleado" class="control-label">Empleado / Grupo</label>
-                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado o grupo" data-live-search="true" data-size="5">
-                            <?php foreach ($view->empleadosGrupos as $eg){
+                        <label for="id_empleado" class="control-label">Empleado</label>
+                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
+                            <?php foreach ($view->empleados as $em){
                                 ?>
-                                <option
-                                    value="<?php echo ($eg['id_empleado'])? $eg['id_empleado'] : $eg['id_grupo']; ?>"
-                                    id_empleado="<?php echo $eg['id_empleado']; ?>"
-                                    id_grupo="<?php echo $eg['id_grupo']; ?>"
-                                    id_vencimiento="<?php echo $eg['id_vencimiento']; ?>"
-                                    <?php
-                                            if($eg['id_empleado'] && $view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
-                                            elseif($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
-                                    ?>
-                                    data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
+                                <option value="<?php echo $em['id_empleado']; ?>"
+                                    <?php echo ($view->suceso->getIdEmpleado() == $em['id_empleado'])? 'selected' : ''; ?>
+                                    data-icon="fas fa-user fa-sm fa-fw"
                                     >
-                                    <?php echo $eg['descripcion'] ;?>
+                                    <?php echo $em['apellido'].' '.$em['nombre']; ?>
                                 </option>
                             <?php  } ?>
                         </select>
@@ -294,14 +281,13 @@
 
 
                     <div class="form-group required">
-                        <label for="id_vencimiento" class="control-label">Vencimiento</label>
-                            <select class="form-control selectpicker show-tick" id="id_vencimiento" name="id_vencimiento" title="Seleccione el vencimiento" data-live-search="true" data-size="5">
-                                <?php foreach ($view->vencimientos as $vto){
-                                    ?>
-                                    <option value="<?php echo $vto['id_vencimiento']; ?>"
-                                        <?php echo ($vto['id_vencimiento'] == $view->renovacion->getIdVencimiento())? 'selected' :'' ?>
+                        <label for="id_evento" class="control-label">Evento</label>
+                            <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione el evento" data-live-search="true" data-size="5">
+                                <?php foreach ($view->eventos as $ev){ ?>
+                                    <option value="<?php echo $ev['id_evento']; ?>"
+                                        <?php echo ($ev['id_evento'] == $view->suceso->getIdEvento())? 'selected' :'' ?>
                                         >
-                                        <?php echo $vto['nombre'] ;?>
+                                        <?php echo $ev['nombre'] ;?>
                                     </option>
                                 <?php  } ?>
                             </select>
@@ -309,37 +295,34 @@
 
 
                     <div class="form-group required">
-                        <label class="control-label" for="">Emisión / Vencimiento</label>
+                        <label class="control-label" for="">Desde / Hasta</label>
 
-                        <?php if(!$view->renovacion->getIdRnvRenovacion()){ ?>
+                        <?php //if(!$view->renovacion->getIdRnvRenovacion()){ ?>
                         <div class="alert alert-info fade in">
                             <a href="#" class="close" data-dismiss="alert">&times;</a>
-                            <?php if($view->renovacion->getIdRenovacion()){ //Es un edit ?>
+                            <?php //if($view->renovacion->getIdRenovacion()){ //Es un edit ?>
                                 <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación anterior.
                                 <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación anterior.
-                            <?php }else { //Es una renovacion ?>
+                            <?php //}else { //Es una renovacion ?>
                                 <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación vigente.
                                 <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación vigente.
-                            <?php } ?>
+                            <?php //} ?>
 
                         </div>
-                        <?php } ?>
+                        <?php //} ?>
 
                         <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_emision" id="fecha_emision" value = "<?php print $view->renovacion->getFechaEmision() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <input class="form-control" type="text" name="fecha_emision" id="fecha_emision" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
                             <div class="input-group-addon">hasta</div>
-                            <input class="form-control" type="text" name="fecha_vencimiento" id="fecha_vencimiento" value = "<?php print $view->renovacion->getFechaVencimiento() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <input class="form-control" type="text" name="fecha_vencimiento" id="fecha_vencimiento" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
                         </div>
                     </div>
+
 
                     <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="disabled" name="disabled" <?php echo (!$view->renovacion->getDisabled())? '' :'checked' ?> <?php echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para desactivar el alerta del vencimiento">Desactivar</a>
-                            </label>
-                        </div>
+                        <label class="control-label" for="observaciones">Observaciones</label>
+                        <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="2"><?php print $view->suceso->getObservaciones(); ?></textarea>
                     </div>
-
 
                 </form>
 

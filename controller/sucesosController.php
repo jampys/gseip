@@ -16,61 +16,53 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
         $fecha_desde = ($_POST['fecha_desde']!='')? $_POST['fecha_desde'] : null;
         $fecha_hasta = ($_POST['fecha_hasta']!='')? $_POST['fecha_hasta'] : null;
-        //$renovado = ($_POST['renovado']== 0)? null : 1;
-        //$view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado);
-        $view->sucesos = Sucesos::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta);
+        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta);
         $view->contentTemplate="view/sucesosGrid.php";
         break;
 
-    case 'saveRenovacion':
+    case 'saveSuceso': //ok
 
-        $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
-        $renovacion->setIdVencimiento($_POST['id_vencimiento']);
-        $renovacion->setFechaEmision($_POST['fecha_emision']);
-        $renovacion->setFechaVencimiento($_POST['fecha_vencimiento']);
-        //$renovacion->setIdEmpleado($_POST['id_empleado']);
-        $renovacion->setIdEmpleado ( ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null);
-        //$renovacion->setIdGrupo($_POST['id_grupo']);
-        $renovacion->setIdGrupo ( ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null);
-        $renovacion->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-
-        $rta = $renovacion->save();
+        $suceso = new Suceso($_POST['id_suceso']);
+        $suceso->setIdEvento($_POST['id_evento']);
+        $suceso->setIdEmpleado($_POST['id_empleado']);
+        $suceso->setFechaDesde($_POST['fecha_desde']);
+        $suceso->setFechaHasta($_POST['fecha_hasta']);
+        $suceso->setObservaciones($_POST['observaciones']);
+        $rta = $suceso->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'newRenovacion':
-        $view->label='Nueva renovación';
-        $view->renovacion = new RenovacionPersonal();
+    case 'newSuceso': //ok
+        $view->label='Nuevo Suceso';
+        $view->suceso = new Suceso($_POST['id_suceso']);
 
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
-
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        $view->empleados = Empleado::getEmpleados();
+        $view->eventos = EventosLiquidacion::getEventosLiquidacion();
+        //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/sucesosForm.php";
         break;
 
-    case 'editRenovacion':
-        $view->label='Editar Renovación';
-        $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
+    case 'editSuceso': //ok
+        $view->label='Editar Suceso';
+        $view->suceso = new Suceso($_POST['id_suceso']);
 
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
-
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        $view->empleados = Empleado::getEmpleados();
+        $view->eventos = EventosLiquidacion::getEventosLiquidacion();
+        //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/sucesosForm.php";
         break;
 
     case 'renovRenovacion': //Renueva una renovacion existente
@@ -97,25 +89,24 @@ switch ($operation)
         break;
 
 
-    case 'checkFechaEmision':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
+    case 'checkFechaDesde': //ok
+        $view->suceso = new Suceso();
+        $rta = $view->suceso->checkFechaDesde($_POST['fecha_desde'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'checkFechaVencimiento':
+    case 'checkFechaHasta':
         $view->renovacion = new RenovacionPersonal();
         $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
         print_r(json_encode($rta));
         exit;
         break;
 
-    default :
+    default : //ok
         $view->renovacion = new RenovacionPersonal();
         $view->empleados = Empleado::getEmpleados(); //carga el combo para filtrar empleados
         $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion
-        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/sucesosGrid.php";
         break;
 }
