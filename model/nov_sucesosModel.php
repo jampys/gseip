@@ -241,7 +241,7 @@ class Suceso
         $query = "select *
                   from nov_sucesos
                   where id_empleado = :id_empleado
-                  and id_suceso = :id_suceso
+                  and id_evento = :id_evento
                   and
                   (( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
                   :id_suceso is null
