@@ -242,6 +242,7 @@ class Suceso
                   from nov_sucesos
                   where id_empleado = :id_empleado
                   and id_suceso = :id_suceso
+                  and
                   (( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
                   :id_suceso is null
                   and STR_TO_DATE(:fecha_desde, '%d/%m/%Y') between fecha_desde and fecha_hasta
