@@ -50,7 +50,7 @@
             allowedTypes: "jpg, png, pdf, txt, doc, docx",
 
             dynamicFormData: function(){
-                var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
+                var data ={ "id": ($('#id_suceso').val())? $('#id_suceso').val() : objeto.id };
                 return data;},
 
             maxFileSize:2097152, //tamaño expresado en bytes
@@ -73,7 +73,7 @@
                 $.ajax({
                     cache: false,
                     url: "index.php",
-                    data:{"action": "uploads", "operation": "load", "id": $('#id_renovacion').val() },
+                    data:{"action": "uploads", "operation": "load", "id": $('#id_suceso').val() },
                     type:"post",
                     dataType: "json",
                     success: function(data) {
@@ -112,7 +112,7 @@
 
             },
             downloadCallback:function(filename,pd) {
-                location.href="index.php?action=uploads&operation=download&filename="+filename;
+                location.href="index.php?action=uploadsSucesos&operation=download&filename="+filename;
             }
         });
 

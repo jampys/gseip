@@ -1,9 +1,9 @@
 <?php
-include_once("model/vto_renovacionesPersonalModel.php");
+include_once("model/nov_sucesosModel.php");
 
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
-$output_dir = $GLOBALS['ini']['upload_dir']."vto_vencimiento_p/";
+$output_dir = $GLOBALS['ini']['upload_dir']."nov_sucesos/";
 
 
 switch ($operation) {
@@ -11,7 +11,7 @@ switch ($operation) {
     case 'load': //ok
 
         $id = $_POST['id'];
-        $files = RenovacionPersonal::uploadsLoad($id);
+        $files = Suceso::uploadsLoad($id);
 
         $ret= array();
 
@@ -38,9 +38,9 @@ switch ($operation) {
         echo json_encode($ret);
         break;
 
-    case 'upload':
+    case 'upload': //ok
 
-        $id = $_POST['id']; //con este id (id_renovacion) hago el insert de los uploads en la BD
+        $id = $_POST['id']; //con este id (id_suceso) hago el insert de los uploads en la BD
 
         if(isset($_FILES["myfile"])) {
 
@@ -62,7 +62,7 @@ switch ($operation) {
                 $temp1 = preg_replace('/\s+/', '_', $temp[0]); //reemplaza en el nombre del archivo los espacios en blanco por '_'
                 $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp1 . '_' .round(microtime(true)) . '.' . end($temp);
                 if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $newfilename))
-                    RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
+                    Suceso::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
                 $ret[]= $newfilename;
             }
             else  //Multiple files, file[]
@@ -74,7 +74,7 @@ switch ($operation) {
                     $temp1 = preg_replace('/\s+/', '_', $temp[0]); //reemplaza en el nombre del archivo los espacios en blanco por '_'
                     $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp1 . '_' .round(microtime(true)) . '.' . end($temp);
                     if (move_uploaded_file($_FILES["myfile"]["tmp_name"][$i], $output_dir . $newfilename))
-                        RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
+                        Suceso::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
                     $ret[] = $newfilename;
                 }
 
@@ -125,7 +125,7 @@ switch ($operation) {
 
             if (file_exists($filePath)) {
                 unlink($filePath);
-                RenovacionPersonal::uploadsDelete($fileName); //Borra el registro de la BD
+                Suceso::uploadsDelete($fileName); //Borra el registro de la BD
             }
         }
 

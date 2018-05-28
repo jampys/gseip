@@ -120,47 +120,45 @@ class Suceso
     }
 
 
-    function save(){
-        if($this->id_renovacion)
-        {$rta = $this->updateRenovacion();}
+    function save(){ //ok
+        if($this->id_suceso)
+        {$rta = $this->updateSuceso();}
         else
-        {$rta =$this->insertRenovacion();}
+        {$rta =$this->insertSuceso();}
         return $rta;
     }
 
 
-    public function updateRenovacion(){
+    public function updateSuceso(){ //ok
         $stmt=new sQuery();
-        $query="update vto_renovacion_p set id_vencimiento =:id_vencimiento,
-                      fecha_emision = STR_TO_DATE(:fecha_emision, '%d/%m/%Y'),
-                      fecha_vencimiento = STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'),
-                      disabled = STR_TO_DATE(:disabled, '%d/%m/%Y')
-                where id_renovacion =:id_renovacion";
+        $query="update nov_sucesos set id_evento =:id_evento,
+                      fecha_desde = STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
+                      fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
+                where id_suceso =:id_suceso";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
-        $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
-        $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
-        $stmt->dpBind(':disabled', $this->getDisabled());
-        $stmt->dpBind(':id_renovacion', $this->getIdRenovacion());
+        $stmt->dpBind(':id_evento', $this->getIdEvento());
+        $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
+        $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
+        $stmt->dpBind(':id_suceso', $this->getIdSuceso());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    private function insertRenovacion(){
-        /*$stmt=new sQuery();
-        $query="insert into vto_renovacion_p(id_vencimiento, id_empleado, id_grupo, fecha_emision, fecha_vencimiento, fecha)
-                values(:id_vencimiento, :id_empleado, :id_grupo, STR_TO_DATE(:fecha_emision, '%d/%m/%Y'), STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'), date(sysdate()))";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':id_grupo', $this->getIdGrupo());
-        $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
-        $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect(); */
-
+    private function insertSuceso(){ //ok
         $stmt=new sQuery();
+        $query="insert into nov_sucesos(id_evento, id_empleado, fecha, fecha_desde, fecha_hasta, observaciones)
+                values(:id_evento, :id_empleado, sysdate(), STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones)";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_evento', $this->getIdEvento());
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
+        $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
+        $stmt->dpBind(':observaciones', $this->getObservaciones());
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+
+        /*$stmt=new sQuery();
         $query = 'CALL sp_insertRenovacionPersonal(:id_vencimiento,
                                         :id_empleado,
                                         :id_grupo,
@@ -184,7 +182,7 @@ class Suceso
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         $flag = $stmt->dpFetchAll();
-        return ($flag)? intval($flag[0]['flag']) : -1;
+        return ($flag)? intval($flag[0]['flag']) : -1; */
     }
 
     function deleteHabilidad(){
@@ -198,35 +196,35 @@ class Suceso
 
 
 
-    public static function uploadsUpload($directory, $name, $id_renovacion){
+    public static function uploadsUpload($directory, $name, $id_suceso){ //ok
         $stmt=new sQuery();
-        $query="insert into uploads_vencimiento_p(directory, name, fecha, id_renovacion)
-                values(:directory, :name, date(sysdate()), :id_renovacion)";
+        $query="insert into uploads_vencimiento_p(directory, name, fecha, id_suceso)
+                values(:directory, :name, date(sysdate()), :id_suceso)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':directory', $directory);
         $stmt->dpBind(':name', $name);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
+        $stmt->dpBind(':id_suceso', $id_suceso);
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
 
-    public static function uploadsLoad($id_renovacion) {
+    public static function uploadsLoad($id_suceso) { //ok
         $stmt=new sQuery();
-        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_renovacion
-                from uploads_vencimiento_p
-                where id_renovacion = :id_renovacion
+        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_suceso
+                from uploads_suceso
+                where id_suceso = :id_suceso
                 order by fecha asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
+        $stmt->dpBind(':id_suceso', $id_suceso);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
-    public static function uploadsDelete($name){
+    public static function uploadsDelete($name){ //ok
         $stmt=new sQuery();
-        $query="delete from uploads_vencimiento_p where name =:name";
+        $query="delete from uploads_suceso where name =:name";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':name', $name);
         $stmt->dpExecute();
