@@ -200,7 +200,7 @@ class Suceso
 
     public static function uploadsUpload($directory, $name, $id_suceso){ //ok
         $stmt=new sQuery();
-        $query="insert into uploads_vencimiento_p(directory, name, fecha, id_suceso)
+        $query="insert into uploads_suceso(directory, name, fecha, id_suceso)
                 values(:directory, :name, date(sysdate()), :id_suceso)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':directory', $directory);

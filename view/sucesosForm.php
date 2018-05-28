@@ -73,7 +73,7 @@
                 $.ajax({
                     cache: false,
                     url: "index.php",
-                    data:{"action": "uploads", "operation": "load", "id": $('#id_suceso').val() },
+                    data:{"action": "uploadsSucesos", "operation": "load", "id": $('#id_suceso').val() },
                     type:"post",
                     dataType: "json",
                     success: function(data) {
@@ -102,7 +102,7 @@
             },
             deleteCallback: function (data, pd) {
                 for (var i = 0; i < data.length; i++) {
-                    $.post("index.php", {action: "uploads", operation: "delete", name: data[i]},
+                    $.post("index.php", {action: "uploadsSucesos", operation: "delete", name: data[i]},
                         function (resp,textStatus, jqXHR) {
                             //Show Message
                             //alert("File Deleted");
