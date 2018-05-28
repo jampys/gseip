@@ -133,12 +133,14 @@ class Suceso
         $stmt=new sQuery();
         $query="update nov_sucesos set id_evento =:id_evento,
                       fecha_desde = STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
-                      fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
+                      fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
+                      observaciones = :observaciones
                 where id_suceso =:id_suceso";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
+        $stmt->dpBind(':observaciones', $this->getObservaciones());
         $stmt->dpBind(':id_suceso', $this->getIdSuceso());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
