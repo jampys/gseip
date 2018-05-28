@@ -202,7 +202,6 @@
                         data: {
                             action: "sucesos",
                             operation: "checkFechaHasta",
-                            fecha_desde: function(){ return $('#fecha_desde').val();},
                             fecha_hasta: function(){ return $('#fecha_hasta').val();},
                             id_empleado: function(){ return $('#id_empleado').val();},
                             id_evento: function(){ return $('#id_evento').val();},
@@ -216,12 +215,12 @@
                 id_empleado: "Seleccione un empleado",
                 id_evento: "Seleccione un evento",
                 fecha_desde: {
-                    required: "Ingrese la fecha desde",
-                    remote: "La fecha de emisión debe ser mayor"
+                    required: "Seleccione la fecha de inicio",
+                    remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
                 },
                 fecha_hasta: {
-                    required: "Ingrese la fecha de vencimiento",
-                    remote: "La fecha de vencimiento debe ser mayor"
+                    required: "Seleccione la fecha de fin",
+                    remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
                 }
             }
 

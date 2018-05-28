@@ -238,7 +238,7 @@ class Suceso
         /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
         sea mayor. */
         $stmt=new sQuery();
-        $query = "select *
+        /*$query = "select *
                   from nov_sucesos
                   where id_empleado = :id_empleado
                   and id_evento = :id_evento
@@ -254,7 +254,14 @@ class Suceso
                   and id_suceso <> :id_suceso
                   ))
                   order by fecha_desde asc
-                  limit 1";
+                  limit 1";*/
+
+        $query = "select *
+                  from nov_sucesos
+                  where id_empleado = :id_empleado
+                  and id_evento = :id_evento
+                  and STR_TO_DATE(:fecha_desde, '%d/%m/%Y') between fecha_desde and fecha_hasta
+                  and id_suceso <> :id_suceso";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_suceso', $id_suceso);
@@ -265,35 +272,22 @@ class Suceso
         return $output = ($stmt->dpGetAffect()==0)? true : false;
     }
 
-    public function checkFechaVencimiento($fecha_emision, $fecha_vencimiento, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
+    public function checkFechaHasta($fecha_hasta, $id_empleado, $id_evento, $id_suceso) { //ok
+        /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
+        sea mayor. */
         $stmt=new sQuery();
         $query = "select *
-                  from vto_renovacion_p
-                  where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_vencimiento ingresada sea mayor que la de ésta
-                  :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
-                  and id_renovacion <> :id_renovacion
-                  )
-                  order by fecha_emision asc
-                  limit 1";
+                  from nov_sucesos
+                  where id_empleado = :id_empleado
+                  and id_evento = :id_evento
+                  and STR_TO_DATE(:fecha_hasta, '%d/%m/%Y') between fecha_desde and fecha_hasta
+                  and id_suceso <> :id_suceso";
 
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
-        $stmt->dpBind(':fecha_emision', $fecha_emision);
-        $stmt->dpBind(':fecha_vencimiento', $fecha_vencimiento);
+        $stmt->dpBind(':id_suceso', $id_suceso);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
         $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
+        $stmt->dpBind(':id_evento', $id_evento);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
     }
