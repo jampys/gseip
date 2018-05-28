@@ -65,21 +65,6 @@ switch ($operation)
         $view->contentTemplate="view/sucesosForm.php";
         break;
 
-    case 'renovRenovacion': //Renueva una renovacion existente
-        $view->label='Renovación';
-        $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
-        $view->renovacion->setIdRenovacion('');
-        $view->renovacion->setFechaEmision('');
-        $view->renovacion->setFechaVencimiento('');
-
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
-
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
-
-        $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
-        break;
 
     case 'deleteHabilidad':
         $habilidad = new Habilidad($_POST['id_habilidad']);

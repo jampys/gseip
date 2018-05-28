@@ -235,8 +235,7 @@ class Suceso
 
 
     public function checkFechaDesde($fecha_desde, $id_empleado, $id_evento, $id_suceso) { //ok
-        /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
-        sea mayor. */
+        /*Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_desde ingresada */
         $stmt=new sQuery();
         /*$query = "select *
                   from nov_sucesos
@@ -273,8 +272,7 @@ class Suceso
     }
 
     public function checkFechaHasta($fecha_hasta, $id_empleado, $id_evento, $id_suceso) { //ok
-        /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
-        sea mayor. */
+        /*Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_hasta ingresada */
         $stmt=new sQuery();
         $query = "select *
                   from nov_sucesos
@@ -293,28 +291,6 @@ class Suceso
     }
 
 
-    public function empleadosGrupos() {
-        $stmt=new sQuery();
-        /*$query = "select id_empleado, null as id_grupo, concat(apellido, ' ', nombre) as descripcion, null as id_vencimiento
-from empleados
-where fecha_baja is null
-UNION
-select null, id_grupo, concat(nombre, ' ', ifnull(numero, '')) as descripcion, id_vencimiento
-from vto_grupos_p";*/
-        $query = "select * FROM
-(select id_empleado, null as id_grupo, concat(apellido, ' ', nombre) as descripcion, null as id_vencimiento
-from empleados
-where fecha_baja is null
-UNION
-select null, id_grupo, concat(nombre, ' ', ifnull(numero, '')) as descripcion, id_vencimiento
-from vto_grupos_p) eg
-order by eg.descripcion";
-
-
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
 
 
 

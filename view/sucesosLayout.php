@@ -27,7 +27,6 @@
                 //preparo los parametros
                 params={};
                 params.id_empleado = $("#search_empleado").val(); //$('#search_empleado option:selected').attr('id_empleado');
-                //params.id_vencimiento = $("#search_vencimiento").val();
                 params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
                 params.search_fecha_desde = $("#search_fecha_desde").val();
                 params.search_fecha_hasta = $("#search_fecha_hasta").val();
@@ -49,16 +48,16 @@
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                     $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    //$('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
+                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
                 })
             });
 
-            $(document).on('click', '.view', function(){
+            $(document).on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
-                params.operation = "editRenovacion";
+                params.id_suceso = id;
+                params.action = "sucesos";
+                params.operation = "editSuceso";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     $("fieldset").prop("disabled", true);
@@ -68,21 +67,6 @@
                     $('#myModal').modal();
                 })
 
-            });
-
-
-            $(document).on('click', '.renovar', function(){
-                var id = $(this).closest('tr').attr('data-id');
-                params={};
-                params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
-                params.operation = "renovRenovacion";
-                //alert(params.id_renovacion);
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
-                })
             });
 
 
@@ -183,7 +167,7 @@
 
         <div class="col-md-12">
 
-            <h4>Eventos de personal</h4>
+            <h4>Sucesos de personal</h4>
             <hr class="hr-primary"/>
 
             <div class="clearfix">

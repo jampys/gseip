@@ -142,9 +142,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Novedades<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">EVENTOS DE PERSONAL</li>
+                            <li class="dropdown-header">SUCESOS DE PERSONAL</li>
                             <?php //if ( PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=sucesos"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Eventos</a></li>
+                                <li><a href="index.php?action=sucesos"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Sucesos</a></li>
                             <?php //} ?>
 
                             <li role="separator" class="divider"></li>

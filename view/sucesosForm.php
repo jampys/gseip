@@ -295,21 +295,6 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="">Desde / Hasta</label>
-
-                        <?php //if(!$view->renovacion->getIdRnvRenovacion()){ ?>
-                        <div class="alert alert-info fade in">
-                            <a href="#" class="close" data-dismiss="alert">&times;</a>
-                            <?php //if($view->renovacion->getIdRenovacion()){ //Es un edit ?>
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación anterior.
-                                <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación anterior.
-                            <?php //}else { //Es una renovacion ?>
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación vigente.
-                                <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación vigente.
-                            <?php //} ?>
-
-                        </div>
-                        <?php //} ?>
-
                         <div class="input-group input-daterange">
                             <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
                             <div class="input-group-addon">hasta</div>
