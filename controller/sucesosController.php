@@ -20,8 +20,8 @@ switch ($operation)
         $view->disableLayout=true;
         $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
-        $fecha_desde = ($_POST['fecha_desde']!='')? $_POST['fecha_desde'] : null;
-        $fecha_hasta = ($_POST['fecha_hasta']!='')? $_POST['fecha_hasta'] : null;
+        $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
+        $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
         $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta);
         $view->contentTemplate="view/sucesosGrid.php";
         break;

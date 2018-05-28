@@ -29,8 +29,8 @@
                 params.id_empleado = $("#search_empleado").val(); //$('#search_empleado option:selected').attr('id_empleado');
                 //params.id_vencimiento = $("#search_vencimiento").val();
                 params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
-                params.fecha_desde = $("#fecha_desde").val();
-                params.fecha_hasta = $("#fecha_hasta").val();
+                params.search_fecha_desde = $("#search_fecha_desde").val();
+                params.search_fecha_hasta = $("#search_fecha_hasta").val();
                 params.action = "sucesos";
                 params.operation = "refreshGrid";
                 //alert(params.renovado);
@@ -224,9 +224,9 @@
                     <div class="form-group col-md-4">
                         <label for="search_vencimiento" class="control-label">Fecha desde / hasta</label>
                         <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                            <input class="form-control" type="text" name="search_fecha_desde" id="search_fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                             <div class="input-group-addon">a</div>
-                            <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                            <input class="form-control" type="text" name="search_fecha_hasta" id="search_fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
                         </div>
                     </div>
 
