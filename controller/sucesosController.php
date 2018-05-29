@@ -88,6 +88,36 @@ switch ($operation)
         exit;
         break;
 
+
+    case 'txt':
+        $id_empleado = ($_GET['id_empleado']!='')? $_GET['id_empleado'] : null;
+        $eventos = ($_GET['eventos']!='')? implode(",", $_GET['eventos'])  : 'su.id_evento';
+        $fecha_desde = ($_GET['search_fecha_desde']!='')? $_GET['search_fecha_desde'] : null;
+        $fecha_hasta = ($_GET['search_fecha_hasta']!='')? $_GET['search_fecha_hasta'] : null;
+        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta);
+
+        $handle = fopen("file.txt", "a");
+        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta);
+        foreach ($view->sucesos as $su) {
+            //$su['id_empleado']
+            fwrite($handle, str_pad($su['empleado'], 60)."\ttext1\r\n");
+        }
+
+        fclose($handle);
+
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename='.basename('file.txt'));
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize('file.txt'));
+        readfile('file.txt'); //descarga el archivo
+
+        unlink ('file.txt'); //borra el archivo una vez descargado
+
+        exit;
+        break;
+
     default : //ok
         $view->empleados = Empleado::getEmpleados(); //carga el combo para filtrar empleados
         $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion

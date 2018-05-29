@@ -55,6 +55,20 @@
         });
 
 
+        $(document).on("click", ".txt", function(){
+
+            params={};
+            params.id_empleado = $("#search_empleado").val();
+            params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
+            params.fecha_desde = $("#fecha_desde").val();
+            params.fecha_hasta = $("#fecha_hasta").val();
+
+            //location.href="index.php?action=sucesos&operation=txt";
+            location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&fecha_desde="+params.fecha_desde+"&fecha_hasta="+params.fecha_hasta;
+            return false;
+        });
+
+
 
 
 
@@ -126,7 +140,11 @@
 
         <br/>
         <div class="pull-right pdf">
-            <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x"></i></a>
+            <a href="index.php?action=" title="pdf"><i class="far fa-file-pdf fa-fw fa-2x"></i></a>
+        </div>
+
+        <div class="pull-right txt">
+            <a href="#" title="descargar txt"><i class="far fa-file-alt fa-fw fa-2x"></i></a>
         </div>
 
     </div>
