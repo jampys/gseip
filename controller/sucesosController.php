@@ -35,8 +35,8 @@ switch ($operation)
         $suceso->setFechaHasta($_POST['fecha_hasta']);
         $suceso->setObservaciones($_POST['observaciones']);
         $rta = $suceso->save();
-        //print_r(json_encode(sQuery::dpLastInsertId()));
-        print_r(json_encode($rta));
+        print_r(json_encode(sQuery::dpLastInsertId()));
+        //print_r(json_encode($rta));
         exit;
         break;
 
