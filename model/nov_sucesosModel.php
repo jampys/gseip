@@ -103,7 +103,9 @@ class Suceso
                   CONCAT(em.apellido, ' ', em.nombre) as empleado,
                   ev.nombre as evento,
                   ev.codigo as txt_evento,
-                  em.legajo as txt_legajo
+                  em.legajo as txt_legajo,
+                  su.fecha_desde as txt_fecha_desde,
+                  su.fecha_hasta as txt_fecha_hasta
                   from nov_sucesos su, empleados em, nov_eventos_l ev
                   where su.id_empleado = em.id_empleado
                   and su.id_evento = ev.id_evento

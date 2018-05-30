@@ -98,13 +98,19 @@ switch ($operation)
 
         $handle = fopen("file.txt", "a");
         $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta);
-        foreach ($view->sucesos as $su) {
-            //$su['id_empleado']
-            fwrite($handle, str_pad($su['txt_evento'], 10).
-                            str_pad(substr($su['txt_legajo'], 2), 10).
-                            "\ttext1\r\n"
 
-            );
+        foreach ($view->sucesos as $su) {
+            $fd = new DateTime($su['txt_fecha_desde']);
+            $fh = new DateTime($su['txt_fecha_hasta']);
+
+            fwrite($handle, str_pad($su['txt_evento'], 10). //evento
+                            str_pad(substr($su['txt_legajo'], 2), 10). //legajo
+                            str_pad($fd->format('m/Y'), 10). //periodo desde
+                            str_pad($fh->format('m/Y'), 10). //periodo hasta
+                            str_pad($fd->format('d/m/Y'), 10). //fecha desde
+                            str_pad($fh->format('d/m/Y'), 10). //fecha hasta
+
+            "\r\n");
         }
 
         fclose($handle);
