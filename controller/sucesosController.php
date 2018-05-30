@@ -100,7 +100,11 @@ switch ($operation)
         $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta);
         foreach ($view->sucesos as $su) {
             //$su['id_empleado']
-            fwrite($handle, str_pad($su['empleado'], 60)."\ttext1\r\n");
+            fwrite($handle, str_pad($su['txt_evento'], 10).
+                            str_pad(substr($su['txt_legajo'], 2), 10).
+                            "\ttext1\r\n"
+
+            );
         }
 
         fclose($handle);

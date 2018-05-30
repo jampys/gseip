@@ -101,7 +101,9 @@ class Suceso
                   DATE_FORMAT(su.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                   su.observaciones,
                   CONCAT(em.apellido, ' ', em.nombre) as empleado,
-                  ev.nombre as evento
+                  ev.nombre as evento,
+                  ev.codigo as txt_evento,
+                  em.legajo as txt_legajo
                   from nov_sucesos su, empleados em, nov_eventos_l ev
                   where su.id_empleado = em.id_empleado
                   and su.id_evento = ev.id_evento
