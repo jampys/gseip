@@ -60,11 +60,11 @@
             params={};
             params.id_empleado = $("#search_empleado").val();
             params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
-            params.fecha_desde = $("#fecha_desde").val();
-            params.fecha_hasta = $("#fecha_hasta").val();
+            params.search_fecha_desde = $("#search_fecha_desde").val();
+            params.search_fecha_hasta = $("#search_fecha_hasta").val();
 
             //location.href="index.php?action=sucesos&operation=txt";
-            location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&fecha_desde="+params.fecha_desde+"&fecha_hasta="+params.fecha_hasta;
+            location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&search_fecha_desde="+params.search_fecha_desde+"&search_fecha_hasta="+params.search_fecha_hasta;
             return false;
         });
 
