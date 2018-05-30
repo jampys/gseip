@@ -55,7 +55,8 @@
         });
 
 
-        $(document).on("click", ".txt", function(){
+        //$(document).on("click", ".txt", function(){
+        $('.table-responsive').on("click", ".txt", function(){
 
             params={};
             params.id_empleado = $("#search_empleado").val();
