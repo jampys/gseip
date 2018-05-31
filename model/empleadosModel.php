@@ -221,6 +221,23 @@ class Empleado
         return $stmt->dpFetchAll();
     }
 
+    public static function getEmpleadosActivosByDomain() {
+        //Trae los empleados activos del dominio del usuario
+        $stmt=new sQuery();
+        $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
+                      DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
+                      DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
+                      DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
+                      em.telefono, em.email, em.empresa,
+                      em.sexo, em.nacionalidad, em.estado_civil
+                      from v_sec_empleados em
+                      where em.fecha_baja is null
+                      order by em.apellido, em.nombre";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
 
     public function getDomiciliosByEmpleado() {
         $id_empleado = $this->getIdEmpleado();

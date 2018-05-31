@@ -66,8 +66,9 @@
             params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
             params.search_fecha_desde = $("#search_fecha_desde").val();
             params.search_fecha_hasta = $("#search_fecha_hasta").val();
+            params.search_contrato = $("#search_contrato").val();
             //location.href="index.php?action=sucesos&operation=txt";
-            location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&search_fecha_desde="+params.search_fecha_desde+"&search_fecha_hasta="+params.search_fecha_hasta;
+            location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&search_fecha_desde="+params.search_fecha_desde+"&search_fecha_hasta="+params.search_fecha_hasta+"&search_contrato="+params.search_contrato;
             return false;
 
         });
