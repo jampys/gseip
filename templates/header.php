@@ -143,15 +143,15 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Novedades<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">SUCESOS DE PERSONAL</li>
-                            <?php //if ( PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) ) { ?>
+                            <?php if ( PrivilegedUser::dhasPrivilege('SUC_VER', array(1)) ) { ?>
                                 <li><a href="index.php?action=sucesos"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Sucesos</a></li>
-                            <?php //} ?>
+                            <?php } ?>
 
                             <li role="separator" class="divider"></li>
 
                             <li class="dropdown-header">ACTIVIDAD CUADRILLA</li>
                             <?php //if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=#"><i class="fas fa-car fa-fw"></i>&nbsp;Actividad</a></li>
+                                <li><a href="#" style="cursor: not-allowed"><i class="fas fa-car fa-fw"></i>&nbsp;Actividad<span class="text-muted"><small> [En construcción]</small></span></a></li>
                             <?php //} ?>
 
                         </ul>

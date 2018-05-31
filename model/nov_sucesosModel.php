@@ -125,7 +125,7 @@ class Suceso
                   em.legajo as txt_legajo,
                   su.fecha_desde as txt_fecha_desde,
                   su.fecha_hasta as txt_fecha_hasta
-                  from nov_sucesos su
+                  from v_sec_nov_sucesos su
                   join empleados em on su.id_empleado = em.id_empleado
                   join nov_eventos_l ev on su.id_evento = ev.id_evento
                   left join empleado_contrato ec on su.id_empleado = ec.id_empleado
