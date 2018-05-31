@@ -130,7 +130,7 @@
                         $("#myElemento").html('Suceso eliminado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
                         $("#search").trigger("click");
-                        $('.btn').attr("disabled", true); //deshabilito botones
+                        $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElemento").hide();
                                                 $('#confirm').dialog('close');
                                               }, 2000);
