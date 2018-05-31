@@ -198,7 +198,8 @@ class Empleado
                       from v_sec_empleados em, domicilios_particulares dp, localidades loc
                       where em.id_empleado = dp.id_empleado
                       and dp.fecha_hasta is null
-                      and dp.id_localidad = loc.id_localidad";
+                      and dp.id_localidad = loc.id_localidad
+                      order by em.apellido, em.nombre";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
@@ -213,7 +214,8 @@ class Empleado
                       em.telefono, em.email, em.empresa,
                       em.sexo, em.nacionalidad, em.estado_civil
                       from empleados em
-                      where em.fecha_baja is null";
+                      where em.fecha_baja is null
+                      order by em.apellido, em.nombre";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();

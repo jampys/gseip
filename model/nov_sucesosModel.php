@@ -214,11 +214,11 @@ class Suceso
         return ($flag)? intval($flag[0]['flag']) : -1; */
     }
 
-    function deleteHabilidad(){
+    function deleteSuceso(){ //ok
         $stmt=new sQuery();
-        $query="delete from habilidades where id_habilidad =:id_habilidad";
+        $query="delete from nov_sucesos where id_suceso =:id_suceso";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':id_suceso', $this->getIdSuceso());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

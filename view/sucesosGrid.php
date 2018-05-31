@@ -30,8 +30,10 @@
         });
 
 
-        $(document).on("click", ".pdf", function(){
-            params={};
+        //$(document).on("click", ".pdf", function(){
+        $('.table-responsive').on("click", ".pdf", function(){
+            alert('Funcionalidad en contrucción');
+            /*params={};
             var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
             params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
             var attr = $('#search_empleado option:selected').attr('id_grupo');
@@ -51,22 +53,23 @@
             var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=gseip_vencimientos_p.rptdesign&p_id_empleado="+params.id_empleado+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_renovado="+params.renovado+"&p_id_cia="+params.id_empleado+"&p_id_user="+params.id_user;
             //var win = window.open(URL, "_blank", strWindowFeatures);
             var win = window.open(URL, "_blank");
+            return false;*/
             return false;
         });
 
 
         //$(document).on("click", ".txt", function(){
-        $('.table-responsive').on("click", ".txt", function(){
+        $('.table-responsive').on("click", ".txt", function(){ //ok
 
             params={};
             params.id_empleado = $("#search_empleado").val();
             params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
             params.search_fecha_desde = $("#search_fecha_desde").val();
             params.search_fecha_hasta = $("#search_fecha_hasta").val();
-
             //location.href="index.php?action=sucesos&operation=txt";
             location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&search_fecha_desde="+params.search_fecha_desde+"&search_fecha_hasta="+params.search_fecha_hasta;
             return false;
+
         });
 
 
@@ -158,7 +161,7 @@
 
 <div id="confirm">
     <div class="modal-body">
-        ¿Desea eliminar la renovación?
+        ¿Desea eliminar el suceso?
     </div>
 
     <div id="myElemento" style="display:none">

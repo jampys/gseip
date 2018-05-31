@@ -1,7 +1,5 @@
 ﻿<?php
 
-//include_once("model/vto_renovacionesPersonalModel.php");
-//include_once("model/vto_vencimientosPersonalModel.php");
 include_once("model/empleadosModel.php");
 include_once("model/nov_eventosLiquidacionModel.php");
 include_once("model/nov_sucesosModel.php");
@@ -66,11 +64,11 @@ switch ($operation)
         break;
 
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
+    case 'deleteSuceso': //ok
+        $suceso = new Suceso($_POST['id_suceso']);
+        $rta = $suceso->deleteSuceso();
         print_r(json_encode($rta));
-        die; // no quiero mostrar nada cuando borra , solo devuelve el control.
+        //die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
 

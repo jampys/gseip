@@ -72,7 +72,7 @@
 
 
 
-            $(document).on('click', '#new', function(){ 
+            $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "sucesos";
                 params.operation="newSuceso";
@@ -83,16 +83,16 @@
 
 
 
-            $(document).on('click', '#cancel',function(){
+            $(document).on('click', '#cancel',function(){ //ok
                 $('#myModal').modal('hide');
             });
 
 
 
 
-            $(document).on('click', '#example .delete', function(){
-                alert('Funcionalidad en desarrollo');
-                throw new Error();
+            $(document).on('click', '#example .delete', function(){ //ok
+                //alert('Funcionalidad en desarrollo');
+                //throw new Error();
                 var id = $(this).closest('tr').attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
@@ -117,27 +117,28 @@
             });
 
 
-            $.fn.borrar = function(id) {
+            $.fn.borrar = function(id) { //ok
                 //alert(id);
                 //preparo los parametros
                 params={};
-                params.id_habilidad_empleado = id;
-                params.action = "habilidad-empleado";
-                params.operation = "deleteHabilidadEmpleado";
+                params.id_suceso = id;
+                params.action = "sucesos";
+                params.operation = "deleteSuceso";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
+                        $("#myElemento").html('Suceso eliminado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
                         $("#search").trigger("click");
+                        $('.btn').attr("disabled", true); //deshabilito botones
+                        setTimeout(function() { $("#myElemento").hide();
+                                                $('#confirm').dialog('close');
+                                              }, 2000);
                     }else{
-                        $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
+                        $("#myElemento").html('Error al eliminar el suceso').addClass('alert alert-danger').show();
                     }
-                    setTimeout(function() { $("#myElemento").hide();
-                        $('#confirm').dialog('close');
-                    }, 2000);
 
-                });
+                }, 'json');
 
             };
 
