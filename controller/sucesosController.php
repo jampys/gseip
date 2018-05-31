@@ -95,7 +95,8 @@ switch ($operation)
         $fecha_hasta = ($_GET['search_fecha_hasta']!='')? $_GET['search_fecha_hasta'] : null;
         $id_contrato = ($_GET['search_contrato']!='')? $_GET['search_contrato'] : null;
 
-        $handle = fopen("uploads/files/file.txt", "a");
+        $filepath = "uploads/files/file.txt";
+        $handle = fopen($filepath, "w");
         $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
 
         foreach ($view->sucesos as $su) {
@@ -124,14 +125,14 @@ switch ($operation)
         fclose($handle);
 
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename='.basename('file.txt'));
+        header('Content-Disposition: attachment; filename='.basename($filepath));
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
-        header('Content-Length: ' . filesize('file.txt'));
-        readfile('file.txt'); //descarga el archivo
+        header('Content-Length: ' . filesize($filepath));
+        readfile($filepath); //descarga el archivo
 
-        unlink ('uploads/files/file.txt'); //borra el archivo una vez descargado
+        unlink ($filepath); //borra el archivo una vez descargado
 
         exit;
         break;
