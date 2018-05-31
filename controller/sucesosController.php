@@ -2,11 +2,10 @@
 
 //include_once("model/vto_renovacionesPersonalModel.php");
 //include_once("model/vto_vencimientosPersonalModel.php");
-//include_once("model/contratosModel.php");
-
 include_once("model/empleadosModel.php");
 include_once("model/nov_eventosLiquidacionModel.php");
 include_once("model/nov_sucesosModel.php");
+include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -22,7 +21,8 @@ switch ($operation)
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
         $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
         $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
-        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta);
+        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
         $view->contentTemplate="view/sucesosGrid.php";
         break;
 
@@ -141,6 +141,7 @@ switch ($operation)
     default : //ok
         $view->empleados = Empleado::getEmpleados(); //carga el combo para filtrar empleados
         $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion
+        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/sucesosGrid.php";
         break;
 }

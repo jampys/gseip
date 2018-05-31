@@ -93,9 +93,9 @@ class Suceso
     }
 
 
-    public static function getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta) { //ok
+    public static function getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
         $stmt=new sQuery();
-        $query = "select su.id_suceso, su.id_evento, su.id_empleado,
+        /*$query = "select su.id_suceso, su.id_evento, su.id_empleado,
                   DATE_FORMAT(su.fecha,  '%d/%m/%Y') as fecha,
                   DATE_FORMAT(su.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(su.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
@@ -112,13 +112,36 @@ class Suceso
                   and su.id_empleado = ifnull(:id_empleado, su.id_empleado)
                   and su.id_evento in ($eventos)
                   and su.fecha_desde between if(:fecha_desde is null, su.fecha_desde, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
-                  and if(:fecha_hasta is null, su.fecha_hasta, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))";
+                  and if(:fecha_hasta is null, su.fecha_hasta, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))"; */
+
+        $query = "select su.id_suceso, su.id_evento, su.id_empleado,
+                  DATE_FORMAT(su.fecha,  '%d/%m/%Y') as fecha,
+                  DATE_FORMAT(su.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(su.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                  su.observaciones,
+                  CONCAT(em.apellido, ' ', em.nombre) as empleado,
+                  ev.nombre as evento,
+                  ev.codigo as txt_evento,
+                  em.legajo as txt_legajo,
+                  su.fecha_desde as txt_fecha_desde,
+                  su.fecha_hasta as txt_fecha_hasta
+                  from nov_sucesos su
+                  join empleados em on su.id_empleado = em.id_empleado
+                  join nov_eventos_l ev on su.id_evento = ev.id_evento
+                  left join empleado_contrato ec on su.id_empleado = ec.id_empleado
+                  where su.id_empleado = ifnull(:id_empleado, su.id_empleado)
+                  and su.id_evento in ($eventos)
+                  and su.fecha_desde between if(:fecha_desde is null, su.fecha_desde, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
+                  and if(:fecha_hasta is null, su.fecha_hasta, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
+                  and if(:id_contrato is not null, ec.id_contrato = :id_contrato, (ec.id_contrato = ec.id_contrato or ec.id_contrato is null))
+                  group by su.id_suceso";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
         //$stmt->dpBind(':id_evento', $id_evento);
         $stmt->dpBind(':fecha_desde', $fecha_desde);
         $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
