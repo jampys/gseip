@@ -68,7 +68,7 @@ switch ($operation)
         $suceso = new Suceso($_POST['id_suceso']);
         $rta = $suceso->deleteSuceso();
         print_r(json_encode($rta));
-        //die; // no quiero mostrar nada cuando borra , solo devuelve el control.
+        die; 
         break;
 
 
