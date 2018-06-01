@@ -37,7 +37,8 @@
         });
 
 
-        $(document).on("click", ".pdf", function(){
+        //$(document).on("click", ".pdf", function(){
+        $('.table-responsive').on("click", ".pdf", function(){
             params={};
             var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
             params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
