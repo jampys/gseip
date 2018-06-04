@@ -136,62 +136,42 @@ class Busqueda
     }
 
 
-    public function updateBusqueda(){
+    public function updateBusqueda(){ //ok
         $stmt=new sQuery();
         $query="update sel_busquedas set nombre =:nombre,
                       fecha_apertura = STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'),
                       fecha_cierre = STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'),
-                      disabled = STR_TO_DATE(:disabled, '%d/%m/%Y')
-                where id_renovacion =:id_renovacion";
+                      id_puesto = :id_puesto,
+                      id_localidad = :id_localidad,
+                      id_contrato = :id_contrato
+                where id_busqueda =:id_busqueda";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':fecha_apertura', $this->getFechaApertura());
-        $stmt->dpBind(':fecha_cierre', $this->getFechaVencimiento());
-        $stmt->dpBind(':disabled', $this->getDisabled());
-        $stmt->dpBind(':id_renovacion', $this->getIdRenovacion());
+        $stmt->dpBind(':fecha_cierre', $this->getFechaCierre());
+        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    private function insertBusqueda(){
-        /*$stmt=new sQuery();
-        $query="insert into vto_renovacion_p(id_vencimiento, id_empleado, id_grupo, fecha_emision, fecha_vencimiento, fecha)
-                values(:id_vencimiento, :id_empleado, :id_grupo, STR_TO_DATE(:fecha_emision, '%d/%m/%Y'), STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'), date(sysdate()))";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':id_grupo', $this->getIdGrupo());
-        $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
-        $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect(); */
-
+    private function insertBusqueda(){ //ok
         $stmt=new sQuery();
-        $query = 'CALL sp_insertRenovacionPersonal(:id_vencimiento,
-                                        :id_empleado,
-                                        :id_grupo,
-                                        :fecha_emision,
-                                        :fecha_vencimiento,
-                                        @flag
-                                    )';
-
+        $query="insert into sel_busquedas(fecha, nombre, fecha_apertura, fecha_cierre, id_puesto, id_localidad, id_contrato, estado)
+                values(sysdate(), :nombre, STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'), STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), :id_puesto, :id_localidad, :id_contrato)";
         $stmt->dpPrepare($query);
-
-        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':id_grupo', $this->getIdGrupo());
-        $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
-        $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
-
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':fecha_apertura', $this->getFechaApertura());
+        $stmt->dpBind(':fecha_cierre', $this->getFechaCierre());
+        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpExecute();
+        return $stmt->dpGetAffect();
 
-        $stmt->dpCloseCursor();
-        $query = "select @flag as flag";
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        $flag = $stmt->dpFetchAll();
-        return ($flag)? intval($flag[0]['flag']) : -1;
     }
 
     function deleteHabilidad(){
