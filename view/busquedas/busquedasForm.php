@@ -12,23 +12,19 @@
         });
 
 
-        $('.input-daterange').datepicker({ //ok
+        /*$('.input-daterange').datepicker({ //ok
             //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
-        });
-
-        /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
-            var minDate = new Date(selected.date.valueOf());
-            $('#fecha_vencimiento').datepicker('setStartDate', minDate);
-        });
-
-        $('#fecha_vencimiento').datepicker().on('changeDate', function (selected) { //ok
-            var maxDate = new Date(selected.date.valueOf());
-            $('#fecha_emision').datepicker('setEndDate', maxDate);
         });*/
 
+        $('.input-group.date').datepicker({
+            //inline: true
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
 
 
         $('.image').viewer({});
@@ -255,7 +251,7 @@
 
 
 <!-- Modal -->
-<fieldset  <?php echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
+<fieldset  <?php //echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -266,81 +262,81 @@
             <div class="modal-body">
 
 
-                <form name ="renovacion_personal" id="renovacion_personal" method="POST" action="index.php">
-                    <input type="hidden" name="id_renovacion" id="id_renovacion" value="<?php print $view->renovacion->getIdRenovacion() ?>">
-
+                <form name ="busqueda-form" id="busqueda-form" method="POST" action="index.php">
+                    <input type="hidden" name="id_busqueda" id="id_busqueda" value="<?php print $view->busqueda->getIdBusqueda() ?>">
 
                     <div class="form-group required">
-                        <label for="id_empleado" class="control-label">Empleado / Grupo</label>
-                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado o grupo" data-live-search="true" data-size="5">
-                            <?php foreach ($view->empleadosGrupos as $eg){
-                                ?>
-                                <option
-                                    value="<?php echo ($eg['id_empleado'])? $eg['id_empleado'] : $eg['id_grupo']; ?>"
-                                    id_empleado="<?php echo $eg['id_empleado']; ?>"
-                                    id_grupo="<?php echo $eg['id_grupo']; ?>"
-                                    id_vencimiento="<?php echo $eg['id_vencimiento']; ?>"
-                                    <?php
-                                            if($eg['id_empleado'] && $view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
-                                            elseif($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
-                                    ?>
-                                    data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
-                                    >
-                                    <?php echo $eg['descripcion'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                        <label class="control-label" for="nombre">Nombre</label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->busqueda->getNombre() ?>" placeholder="Nombre">
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="control-label" for="fecha_apertura">Fecha apertura</label>
+                        <div class="input-group date">
+                            <input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura" value = "<?php print $view->busqueda->getFechaApertura() ?>" placeholder="DD/MM/AAAA">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="control-label" for="fecha_cierre">Fecha cierre</label>
+                        <div class="input-group date">
+                            <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->busqueda->getFechaCierre() ?>" placeholder="DD/MM/AAAA">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
                     </div>
 
 
-                    <div class="form-group required">
-                        <label for="id_vencimiento" class="control-label">Vencimiento</label>
-                            <select class="form-control selectpicker show-tick" id="id_vencimiento" name="id_vencimiento" title="Seleccione el vencimiento" data-live-search="true" data-size="5">
-                                <?php foreach ($view->vencimientos as $vto){
+                    <div class="form-group">
+                        <label for="id_vencimiento" class="control-label">Puesto</label>
+                            <select class="form-control selectpicker show-tick" id="id_puesto" name="id_puesto" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un puesto</option>
+                                <?php foreach ($view->puestos as $pu){
                                     ?>
-                                    <option value="<?php echo $vto['id_vencimiento']; ?>"
-                                        <?php echo ($vto['id_vencimiento'] == $view->renovacion->getIdVencimiento())? 'selected' :'' ?>
+                                    <option value="<?php echo $pu['id_puesto']; ?>"
+                                        <?php echo ($pu['id_puesto'] == $view->busqueda->getIdPuesto())? 'selected' :'' ?>
                                         >
-                                        <?php echo $vto['nombre'] ;?>
+                                        <?php echo $pu['nombre'] ;?>
                                     </option>
                                 <?php  } ?>
                             </select>
                     </div>
 
-
-                    <div class="form-group required">
-                        <label class="control-label" for="">Emisión / Vencimiento</label>
-
-                        <?php if(!$view->renovacion->getIdRnvRenovacion()){ ?>
-                        <div class="alert alert-info fade in">
-                            <a href="#" class="close" data-dismiss="alert">&times;</a>
-                            <?php if($view->renovacion->getIdRenovacion()){ //Es un edit ?>
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación anterior.
-                                <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación anterior.
-                            <?php }else { //Es una renovacion ?>
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación vigente.
-                                <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación vigente.
-                            <?php } ?>
-
-                        </div>
-                        <?php } ?>
-
-                        <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_emision" id="fecha_emision" value = "<?php print $view->renovacion->getFechaEmision() ?>" placeholder="DD/MM/AAAA" readonly>
-                            <div class="input-group-addon">hasta</div>
-                            <input class="form-control" type="text" name="fecha_vencimiento" id="fecha_vencimiento" value = "<?php print $view->renovacion->getFechaVencimiento() ?>" placeholder="DD/MM/AAAA" readonly>
-                        </div>
+                    <div class="form-group">
+                        <label for="id_localidad" class="control-label">Área</label>
+                        <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un área</option>
+                            <?php foreach ($view->localidades as $loc){
+                                ?>
+                                <option value="<?php echo $loc['id_localidad']; ?>"
+                                    <?php echo ($loc['id_localidad'] == $view->busqueda->getIdLocalidad())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
+                                </option>
+                            <?php  } ?>
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="disabled" name="disabled" <?php echo (!$view->renovacion->getDisabled())? '' :'checked' ?> <?php echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para desactivar el alerta del vencimiento">Desactivar</a>
-                            </label>
-                        </div>
+                        <label for="id_contrato" class="control-label">Contrato</label>
+                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un contrato</option>
+                            <?php foreach ($view->contratos as $co){
+                                ?>
+                                <option value="<?php echo $co['id_contrato']; ?>"
+                                    <?php echo ($co['id_contrato'] == $view->busqueda->getIdContrato())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $co['nombre'] ;?>
+                                </option>
+                            <?php  } ?>
+                        </select>
                     </div>
 
-
+                    
                 </form>
 
 

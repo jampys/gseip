@@ -1,6 +1,9 @@
 ﻿<?php
 include_once("model/busquedasModel.php");
+
 include_once("model/puestosModel.php");
+include_once("model/localidadesModel.php");
+include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -10,16 +13,16 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
-        $id_grupo = ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? $_POST['id_vencimiento'] : null;
-        $id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
+        //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
+        $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
+        $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
-        $renovado = ($_POST['renovado']== 0)? null : 1;
-        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado);
-        $view->contentTemplate="view/renovacionesPersonalGrid.php";
+        $todas = ($_POST['renovado']== 0)? null : 1;
+        $view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
+        $view->contentTemplate="view/busquedas/busquedasGrid.php";
         break;
 
     case 'saveRenovacion':
@@ -40,17 +43,16 @@ switch ($operation)
         exit;
         break;
 
-    case 'newRenovacion':
-        $view->label='Nueva renovación';
-        $view->renovacion = new RenovacionPersonal();
+    case 'newBusqueda': //ok
+        $view->label='Nueva búsqueda';
+        $view->busqueda = new Busqueda();
 
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
-
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        $view->puestos = Puesto::getPuestos();
+        $view->localidades = Localidad::getLocalidades();
+        $view->contratos = Contrato::getContratos();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/busquedas/busquedasForm.php";
         break;
 
     case 'editRenovacion':
@@ -105,18 +107,19 @@ switch ($operation)
         exit;
         break;
 
-    default :
+    default : //ok
         //$view->renovacion = new RenovacionPersonal();
         //$view->empleadosGrupos = $view->renovacion->empleadosGrupos(); //carga el combo para filtrar empleados-grupos
         //$view->vencimientos = VencimientoPersonal::getVencimientosPersonal(); //carga el combo para filtrar vencimientos
-        //$view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
-        $view->puestos = Puesto::getPuestos();
+        $view->puestos = Puesto::getPuestos(); //carga el combo para filtrar puestos
+        $view->localidades = Localidad::getLocalidades(); //carga el combo para filtrar localidades (Areas)
+        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/busquedas/busquedasGrid.php";
         break;
 }
 
 
-if ($view->disableLayout==true) {
+if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {

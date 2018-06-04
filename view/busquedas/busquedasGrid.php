@@ -84,15 +84,15 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro. rnv</th>
+                <th>Nro. búsqueda</th>
                 <th>Fecha</th>
-                <th>vencimiento</th>
-                <th>empleado / grupo</th>
-                <th>F. emisión</th>
-                <th>F. vto.</th>
-                <th style="display: none">Priority</th>
-                <th></th>
-                <th></th>
+                <th>Nombre</th>
+                <th>F. apertura</th>
+                <th>F. cierre</th>
+                <th>Puesto</th>
+                <th>Área</th>
+                <th>Contrato</th>
+                <th>Estado</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -100,28 +100,18 @@
             </thead>
             <tbody>
 
-            <?php if(isset($view->renovaciones_personal)) {
-                foreach ($view->renovaciones_personal as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_renovacion']; ?>" style="background-color: <?php echo $rp['color']; ?>" >
-                        <td><?php echo $rp['id_renovacion']; ?></td>
+            <?php if(isset($view->busquedas)) {
+                foreach ($view->busquedas as $rp):   ?>
+                    <tr data-id="<?php echo $rp['id_busqueda']; ?>">
+                        <td><?php echo $rp['id_busqueda']; ?></td>
                         <td><?php echo $rp['fecha']; ?></td>
-                        <td><?php echo $rp['vencimiento']; ?></td>
-                        <td><?php echo ($rp['id_empleado'])? $rp['empleado'] : $rp['grupo']; ?></td>
-                        <td><?php echo $rp['fecha_emision']; ?></td>
-                        <td><?php echo $rp['fecha_vencimiento']; ?></td>
-                        <td style="display: none"><?php echo $rp['priority']; ?></td>
-
-                        <td class="text-center">
-                            <?php if($rp['cant_uploads']> 0 ){ ?>
-                                <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
-                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-                                </a>
-                            <?php } else{ ?>
-                                <!--<a class="" href="#" title="renovar">
-                                    <i class="far fa-clone"></i>
-                                </a>-->
-                            <?php } ?>
-                        </td>
+                        <td><?php echo $rp['nombre']; ?></td>
+                        <td><?php echo $rp['fecha_apertura']; ?></td>
+                        <td><?php echo $rp['fecha_cierre']; ?></td>
+                        <td><?php echo $rp['puesto']; ?></td>
+                        <td><?php echo $rp['area']; ?></td>
+                        <td><?php echo $rp['contrato']; ?></td>
+                        <td><?php echo $rp['estado']; ?></td>
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);">
@@ -130,28 +120,14 @@
                         </td>
 
                         <td class="text-center">
-                            <?php if($rp['id_rnv_renovacion']){ ?>
-                                <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rp['id_rnv_renovacion']; ?>" >
-                                    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-                                </a>
-                            <?php } else{ ?>
-                                <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'renovar' : 'disabled' ?>" href="javascript:void(0);" title="renovar">
-                                    <i class="far fa-clone"></i>
-                                </a>
-
-                            <?php } ?>
-
-                        </td>
-
-                        <td class="text-center">
-                            <!-- si tiene permiso y no fue renovado -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                            <!-- si tiene permiso para editar -->
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
                             </a>
                         </td>
                         <td class="text-center">
-                            <!-- si tiene permiso y no fue renovado -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) && !$rp['id_rnv_renovacion'] )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+                            <!-- si tiene permiso para eliminar -->
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
                         </td>

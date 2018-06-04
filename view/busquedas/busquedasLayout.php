@@ -21,14 +21,14 @@
                 //preparo los parametros
                 params={};
                 //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-                params.search_puesto = $("#search_puesto").val();
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                //params.id_contrato = $("#search_contrato").val();
+                params.search_puesto = $("#search_puesto").val();
+                params.search_localidad = $("#search_localidad").val();
+                params.search_contrato = $("#search_contrato").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "busquedas";
                 params.operation = "refreshGrid";
                 //alert(params.id_grupo);
-                //alert(params.renovado);
                 $('#content').load('index.php', params);
             });
 
@@ -82,10 +82,10 @@
 
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
-                params.action = "renovacionesPersonal";
-                params.operation="newRenovacion";
+                params.action = "busquedas";
+                params.operation="newBusqueda";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
@@ -178,7 +178,7 @@
 
         <div class="col-md-12">
 
-            <h4>Búsquedas de personal</h4>
+            <h4>Búsquedas laborales</h4>
             <hr class="hr-primary"/>
 
             <div class="clearfix">
@@ -199,20 +199,20 @@
 
 
                     <div class="form-group col-md-3">
-                        <label for="search_vencimiento" class="control-label">Vencimiento</label>
-                        <select multiple class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
-                            <!--<option value="">Seleccione un vencimiento</option>-->
-                            <?php foreach ($view->vencimientos as $vto){
-                                ?>
-                                <option value="<?php echo $vto['id_vencimiento']; ?>" >
-                                    <?php echo $vto['nombre'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                        <label for="search_localidad" class="control-label">Área</label>
+                            <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un área</option>
+                                <?php foreach ($view->localidades as $loc){
+                                    ?>
+                                    <option value="<?php echo $loc['id_localidad']; ?>">
+                                        <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="search_vencimiento" class="control-label">Contrato</label>
+                        <label for="search_contrato" class="control-label">Contrato</label>
                         <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                             <option value="">Seleccione un contrato</option>
                             <?php foreach ($view->contratos as $con){

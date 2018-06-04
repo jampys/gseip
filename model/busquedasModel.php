@@ -100,10 +100,21 @@ class Busqueda
     }
 
 
-    public static function getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado) {
+    public static function getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas) { //ok
         $stmt=new sQuery();
-        $query = "select *
-                  from sel_busquedas";
+        $query = "select bu.id_busqueda,
+                  DATE_FORMAT(bu.fecha,  '%d/%m/%Y') as fecha,
+                  bu.nombre,
+                  DATE_FORMAT(bu.fecha_apertura,  '%d/%m/%Y') as fecha_apertura,
+                  DATE_FORMAT(bu.fecha_cierre,  '%d/%m/%Y') as fecha_cierre,
+                  pu.nombre as puesto,
+                  loc.ciudad as area,
+                  co. nombre as contrato,
+                  bu.estado
+                  from sel_busquedas bu
+                  left join puestos pu on bu.id_puesto = pu.id_puesto
+                  left join localidades loc on bu.id_localidad = loc.id_localidad
+                  left join contratos co on bu.id_contrato = co.id_contrato";
 
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_empleado', $id_empleado);
