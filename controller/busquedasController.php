@@ -1,8 +1,6 @@
 ﻿<?php
-
-include_once("model/vto_renovacionesPersonalModel.php");
-include_once("model/vto_vencimientosPersonalModel.php");
-include_once("model/contratosModel.php");
+include_once("model/busquedasModel.php");
+include_once("model/puestosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -108,11 +106,12 @@ switch ($operation)
         break;
 
     default :
-        $view->renovacion = new RenovacionPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos(); //carga el combo para filtrar empleados-grupos
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal(); //carga el combo para filtrar vencimientos
-        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
-        $view->contentTemplate="view/renovacionesPersonalGrid.php";
+        //$view->renovacion = new RenovacionPersonal();
+        //$view->empleadosGrupos = $view->renovacion->empleadosGrupos(); //carga el combo para filtrar empleados-grupos
+        //$view->vencimientos = VencimientoPersonal::getVencimientosPersonal(); //carga el combo para filtrar vencimientos
+        //$view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+        $view->puestos = Puesto::getPuestos();
+        $view->contentTemplate="view/busquedas/busquedasGrid.php";
         break;
 }
 
@@ -121,7 +120,7 @@ if ($view->disableLayout==true) {
     include_once ($view->contentTemplate);
 }
 else {
-    include_once('view/renovacionesPersonalLayout.php');
+    include_once('view/busquedas/busquedasLayout.php');
 }
 
 

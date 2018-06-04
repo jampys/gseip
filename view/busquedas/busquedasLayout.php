@@ -15,18 +15,17 @@
             $('.selectpicker').selectpicker();
 
 
-            $(document).on('click', '#search', function(){ //ok
+            $(document).on('click', '#search', function(){
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-                params.id_grupo = $('#search_empleado option:selected').attr('id_grupo');
-                //params.id_vencimiento = $("#search_vencimiento").val();
-                params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                params.id_contrato = $("#search_contrato").val();
-                params.renovado = $('#search_renovado').prop('checked')? 1:0;
-                params.action = "renovacionesPersonal";
+                //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
+                params.search_puesto = $("#search_puesto").val();
+                //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
+                //params.id_contrato = $("#search_contrato").val();
+                //params.renovado = $('#search_renovado').prop('checked')? 1:0;
+                params.action = "busquedas";
                 params.operation = "refreshGrid";
                 //alert(params.id_grupo);
                 //alert(params.renovado);
@@ -35,7 +34,7 @@
 
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $(document).on('click', '.edit', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -49,7 +48,7 @@
                 })
             });
 
-            $(document).on('click', '.view', function(){ //ok
+            $(document).on('click', '.view', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -67,7 +66,7 @@
             });
 
 
-            $(document).on('click', '.renovar', function(){ //ok
+            $(document).on('click', '.renovar', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -83,7 +82,7 @@
 
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){
                 params={};
                 params.action = "renovacionesPersonal";
                 params.operation="newRenovacion";
@@ -179,34 +178,25 @@
 
         <div class="col-md-12">
 
-            <h4>Renovaciones de personal</h4>
+            <h4>Búsquedas de personal</h4>
             <hr class="hr-primary"/>
 
             <div class="clearfix">
                 <form id="search_form" name="search_form">
 
-                    <!--<div class="form-group col-md-4">
-                        <label for="search_empleado" class="control-label">Empleado</label>
-                        <select id="search_empleado" name="search_empleado" class="form-control selectpicker show-tick" data-live-search="true" title="Seleccione un empleado">
-
-                        </select>
-                    </div>-->
                     <div class="form-group col-md-3">
-                        <label for="search_empleado" class="control-label">Empleado / Grupo</label>
-                        <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un empleado o grupo</option>
-                            <?php foreach ($view->empleadosGrupos as $eg){
+                        <label for="search_puesto" class="control-label">Puesto</label>
+                        <select id="search_puesto" name="search_puesto" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un puesto</option>
+                            <?php foreach ($view->puestos as $pue){
                                 ?>
-                                <option value=""
-                                        id_empleado="<?php echo $eg['id_empleado']; ?>"
-                                        id_grupo="<?php echo $eg['id_grupo']; ?>"
-                                        data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
-                                    >
-                                    <?php echo $eg['descripcion'] ;?>
+                                <option value="<?php echo $pue['id_puesto']; ?>">
+                                    <?php echo $pue['nombre']; ?>
                                 </option>
                             <?php  } ?>
                         </select>
                     </div>
+
 
                     <div class="form-group col-md-3">
                         <label for="search_vencimiento" class="control-label">Vencimiento</label>

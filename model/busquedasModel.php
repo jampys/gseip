@@ -8,7 +8,8 @@ class Busqueda
     private $fecha_apertura;
     private $fecha_cierre;
     private $id_puesto;
-    private $id_area;
+    private $id_localidad;
+    private $id_contrato;
     private $estado;
 
     // GETTERS
@@ -30,8 +31,11 @@ class Busqueda
     function getIdPuesto()
     { return $this->id_puesto;}
 
-    function getIdArea()
-    { return $this->id_area;}
+    function getIdLocalidad()
+    { return $this->id_localidad;}
+
+    function getIdContrato()
+    { return $this->id_contrato;}
 
     function getEstado()
     { return $this->estado;}
@@ -56,128 +60,57 @@ class Busqueda
     function setIdPuesto($val)
     { $this->id_puesto=$val;}
 
-    function setIdArea($val)
-    { $this->id_area=$val;}
+    function setIdLocalidad($val)
+    { $this->id_localidad=$val;}
+
+    function setIdContrato($val)
+    { $this->id_contrato=$val;}
 
     function setEstado($val)
     { $this->estado=$val;}
 
 
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_renovacion, id_vencimiento, id_empleado, id_grupo,
-                    DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
-                    DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion, disabled
-                    from vto_renovacion_p
-                    where id_renovacion = :nro";
+            $query = "select id_busqueda, nombre,
+                    DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
+                    DATE_FORMAT(fecha_apertura, '%d/%m/%Y') as fecha_apertura,
+                    DATE_FORMAT(fecha_cierre, '%d/%m/%Y') as fecha_cierre,
+                    id_puesto, id_localidad, id_contrato, estado
+                    from sel_busquedas
+                    where id_busqueda = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdRenovacion($rows[0]['id_renovacion']);
-            $this->setIdVencimiento($rows[0]['id_vencimiento']);
-            $this->setIdEmpleado($rows[0]['id_empleado']);
-            $this->setIdGrupo($rows[0]['id_grupo']);
-            $this->setFechaEmision($rows[0]['fecha_emision']);
-            $this->setFechaVencimiento($rows[0]['fecha_vencimiento']);
+            $this->setIdBusqueda($rows[0]['id_busqueda']);
+            $this->setNombre($rows[0]['nombre']);
             $this->setFecha($rows[0]['fecha']);
-            $this->setIdRnvRenovacion($rows[0]['id_rnv_renovacion']);
-            $this->setDisabled($rows[0]['disabled']);
-
-            $this->empleado = new Empleado($rows[0]['id_empleado']);
+            $this->setFechaApertura($rows[0]['fecha_apertura']);
+            $this->setFechaCierre($rows[0]['fecha_cierre']);
+            $this->setIdPuesto($rows[0]['id_puesto']);
+            $this->setIdLocalidad($rows[0]['id_localidad']);
+            $this->setIdContrato($rows[0]['id_contrato']);
+            $this->setEstado($rows[0]['estado']);
         }
     }
 
 
     public static function getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado) {
         $stmt=new sQuery();
-        $query = "
-        ( -- renovaciones por empleado
-        select vrp.id_renovacion, vrp.id_vencimiento, vrp.id_empleado,
-DATE_FORMAT(vrp.fecha_emision,  '%d/%m/%Y') as fecha_emision,
-DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-DATE_FORMAT(vrp.fecha,  '%d/%m/%Y') as fecha,
-vvp.nombre as vencimiento,
-vav.id_alerta, vav.days,
-va.color, va.priority,
-CONCAT(em.apellido, ' ', em.nombre) as empleado,
-null  as grupo,
-vrp.id_rnv_renovacion,
-(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads
-from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav,
-(
-select emx.*, ecx.id_contrato
-from empleados emx
-left join empleado_contrato ecx on emx.id_empleado = ecx.id_empleado
-where
-( -- filtro por contrato
-  :id_contrato is not null
-  and ecx.id_contrato = :id_contrato
-  -- and datediff(ecx.fecha_hasta, date(sysdate())) >= 0
-  and (ecx.fecha_hasta > date(sysdate()) or ecx.fecha_hasta is null)
- )
-OR
-( -- todos los contratos, o los sin contrato
- :id_contrato is null
- -- and ecx.id_contrato is null
- )
- group by emx.id_empleado
- having emx.fecha_baja is null
-) em,
-vto_alerta va
-where vrp.id_vencimiento = vvp.id_vencimiento
-and vav.id_vencimiento = vrp.id_vencimiento
-and vrp.id_empleado = em.id_empleado
-and vav.id_alerta = va.id_alerta
-and vav.id_alerta = func_alerta(vrp.id_renovacion)
-and em.id_empleado =  ifnull(:id_empleado, em.id_empleado)
-and vrp.id_vencimiento in ($id_vencimiento)
-and ifnull(:renovado, vrp.id_rnv_renovacion is null)
-and ifnull(:renovado, vrp.disabled is null)
-and vrp.id_empleado is not null
-and :id_grupo is null -- filtro empleados: no debe traer registros cuando se filtra por grupo
-)
-UNION
-( -- renovaciones por grupo
-select vrp.id_renovacion, vrp.id_vencimiento, vrp.id_empleado,
-DATE_FORMAT(vrp.fecha_emision,  '%d/%m/%Y') as fecha_emision,
-DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-DATE_FORMAT(vrp.fecha,  '%d/%m/%Y') as fecha,
-vvp.nombre as vencimiento,
-vav.id_alerta, vav.days,
-va.color, va.priority,
-null as empleado,
-CONCAT(vgp.nombre, ' ', ifnull(vgp.numero, '')) as grupo,
-vrp.id_rnv_renovacion,
-(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads
-from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, vto_alerta va, vto_grupos_p vgp
-where vrp.id_grupo = vgp.id_grupo
-and vrp.id_vencimiento = vvp.id_vencimiento
-and vav.id_vencimiento = vrp.id_vencimiento
-and vav.id_alerta = va.id_alerta
-and vav.id_alerta = func_alerta(vrp.id_renovacion)
-and vrp.id_vencimiento in ($id_vencimiento) -- filtro por vencimiento
-and vrp.id_grupo = ifnull(:id_grupo, vrp.id_grupo) -- filtro por grupo
-and ifnull(:renovado, vrp.id_rnv_renovacion is null)
-and ifnull(:renovado, vrp.disabled is null)
-and vrp.id_empleado is null
-and :id_empleado is null -- filtro empleados: no debe traer registros cuando se filtra por empleado
-and :id_contrato is null -- filtro contratos: no debe traer registros cuando se filtra por contrato
-)
-
-order by priority, id_rnv_renovacion asc";
+        $query = "select *
+                  from sel_busquedas";
 
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
+        //$stmt->dpBind(':id_empleado', $id_empleado);
+        //$stmt->dpBind(':id_grupo', $id_grupo);
         //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        $stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':renovado', $renovado);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        //$stmt->dpBind(':renovado', $renovado);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
