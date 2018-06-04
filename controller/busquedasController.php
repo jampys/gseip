@@ -55,18 +55,17 @@ switch ($operation)
         $view->contentTemplate="view/busquedas/busquedasForm.php";
         break;
 
-    case 'editRenovacion':
-        $view->label='Editar Renovación';
-        $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
+    case 'editBusqueda': //ok
+        $view->label='Editar búsqueda';
+        $view->busqueda = new Busqueda($_POST['id_busqueda']);
 
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
-
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        $view->puestos = Puesto::getPuestos();
+        $view->localidades = Localidad::getLocalidades();
+        $view->contratos = Contrato::getContratos();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/busquedas/busquedasForm.php";
         break;
 
     case 'renovRenovacion': //Renueva una renovacion existente
