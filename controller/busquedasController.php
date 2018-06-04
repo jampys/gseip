@@ -25,21 +25,19 @@ switch ($operation)
         $view->contentTemplate="view/busquedas/busquedasGrid.php";
         break;
 
-    case 'saveRenovacion':
+    case 'saveBusqueda': //ok
+        $busqueda = new Busqueda($_POST['id_busqueda']);
+        $busqueda->setNombre($_POST['nombre']);
+        $busqueda->setFechaApertura($_POST['fecha_apertura']);
+        $busqueda->setFechaCierre($_POST['fecha_cierre']);
+        //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
+        $busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
+        $busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
+        $busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
 
-        $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
-        $renovacion->setIdVencimiento($_POST['id_vencimiento']);
-        $renovacion->setFechaEmision($_POST['fecha_emision']);
-        $renovacion->setFechaVencimiento($_POST['fecha_vencimiento']);
-        //$renovacion->setIdEmpleado($_POST['id_empleado']);
-        $renovacion->setIdEmpleado ( ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null);
-        //$renovacion->setIdGrupo($_POST['id_grupo']);
-        $renovacion->setIdGrupo ( ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null);
-        $renovacion->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-
-        $rta = $renovacion->save();
-        //print_r(json_encode(sQuery::dpLastInsertId()));
-        print_r(json_encode($rta));
+        $rta = $busqueda->save();
+        print_r(json_encode(sQuery::dpLastInsertId()));
+        //print_r(json_encode($rta));
         exit;
         break;
 
@@ -66,22 +64,6 @@ switch ($operation)
         $view->disableLayout=true;
         $view->target = $_POST['target'];
         $view->contentTemplate="view/busquedas/busquedasForm.php";
-        break;
-
-    case 'renovRenovacion': //Renueva una renovacion existente
-        $view->label='Renovación';
-        $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
-        $view->renovacion->setIdRenovacion('');
-        $view->renovacion->setFechaEmision('');
-        $view->renovacion->setFechaVencimiento('');
-
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
-
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
-
-        $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
         break;
 
     case 'deleteHabilidad':

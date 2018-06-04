@@ -38,7 +38,7 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_busqueda = id;
-                params.action = "busqueda";
+                params.action = "busquedas";
                 params.operation = "editBusqueda";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
@@ -48,38 +48,22 @@
                 })
             });
 
-            $(document).on('click', '.view', function(){
+            $(document).on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
-                params.operation = "editRenovacion";
+                params.id_busqueda = id;
+                params.action = "busquedas";
+                params.operation = "editBusqueda";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     $("fieldset").prop("disabled", true);
-                    $('.selectpicker').selectpicker('refresh');
+                    //$('.selectpicker').selectpicker('refresh');
                     $('.modal-footer').css('display', 'none');
                     $('#myModalLabel').html('');
                     $('#myModal').modal();
                 })
 
             });
-
-
-            $(document).on('click', '.renovar', function(){
-                var id = $(this).closest('tr').attr('data-id');
-                params={};
-                params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
-                params.operation = "renovRenovacion";
-                //alert(params.id_renovacion);
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
-                })
-            });
-
 
 
             $(document).on('click', '#new', function(){ //ok

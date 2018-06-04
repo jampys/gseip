@@ -127,26 +127,26 @@ class Busqueda
     }
 
 
-    function save(){
-        if($this->id_renovacion)
-        {$rta = $this->updateRenovacion();}
+    function save(){ //ok
+        if($this->id_busqueda)
+        {$rta = $this->updateBusqueda();}
         else
-        {$rta =$this->insertRenovacion();}
+        {$rta =$this->insertBusqueda();}
         return $rta;
     }
 
 
-    public function updateRenovacion(){
+    public function updateBusqueda(){
         $stmt=new sQuery();
-        $query="update vto_renovacion_p set id_vencimiento =:id_vencimiento,
-                      fecha_emision = STR_TO_DATE(:fecha_emision, '%d/%m/%Y'),
-                      fecha_vencimiento = STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'),
+        $query="update sel_busquedas set nombre =:nombre,
+                      fecha_apertura = STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'),
+                      fecha_cierre = STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'),
                       disabled = STR_TO_DATE(:disabled, '%d/%m/%Y')
                 where id_renovacion =:id_renovacion";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
-        $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
-        $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':fecha_apertura', $this->getFechaApertura());
+        $stmt->dpBind(':fecha_cierre', $this->getFechaVencimiento());
         $stmt->dpBind(':disabled', $this->getDisabled());
         $stmt->dpBind(':id_renovacion', $this->getIdRenovacion());
         $stmt->dpExecute();
@@ -154,7 +154,7 @@ class Busqueda
 
     }
 
-    private function insertRenovacion(){
+    private function insertBusqueda(){
         /*$stmt=new sQuery();
         $query="insert into vto_renovacion_p(id_vencimiento, id_empleado, id_grupo, fecha_emision, fecha_vencimiento, fecha)
                 values(:id_vencimiento, :id_empleado, :id_grupo, STR_TO_DATE(:fecha_emision, '%d/%m/%Y'), STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'), date(sysdate()))";

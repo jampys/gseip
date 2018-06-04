@@ -117,19 +117,20 @@
 
         $('#myModal').on('click', '#submit',function(){ //ok
 
-            if ($("#renovacion_personal").valid()){
+            if ($("#busqueda-form").valid()){
 
                 var params={};
-                params.action = 'renovacionesPersonal';
-                params.operation = 'saveRenovacion';
-                params.id_renovacion = $('#id_renovacion').val();
-                params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                params.id_grupo = $('#id_empleado option:selected').attr('id_grupo');
-                params.id_vencimiento = $('#id_vencimiento').val();
-                params.fecha_emision = $('#fecha_emision').val();
-                params.fecha_vencimiento = $('#fecha_vencimiento').val();
-                params.disabled = $('#disabled').prop('checked')? 1:0;
-
+                params.action = 'busquedas';
+                params.operation = 'saveBusqueda';
+                params.id_busqueda = $('#id_busqueda').val();
+                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                params.nombre = $('#nombre').val();
+                params.fecha_apertura = $('#fecha_apertura').val();
+                params.fecha_cierre = $('#fecha_cierre').val();
+                params.id_puesto = $('#id_puesto').val();
+                params.id_localidad = $('#id_localidad').val();
+                params.id_contrato = $('#id_contrato').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -141,14 +142,14 @@
                     if(data >=0){
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Renovación guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Búsqueda guardada con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la renovación').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar la búsqueda').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
