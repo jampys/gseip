@@ -108,7 +108,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Selección<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
-                            <li><a href="#" style="cursor: not-allowed">Registros <span class="text-muted"><small> [En construcción]</small></span></a></li>
+                            <li><a href="index.php?action=busquedas">Búsquedas</a></li>
 
                         </ul>
                     </li>
