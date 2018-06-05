@@ -13,9 +13,8 @@
             "fnInitComplete": function () {
                                 $(this).show(); },
 
-
             "stateSave": true,
-            "order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
+            "order": [[3, "asc"]], // 3=fecha_apertura
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
@@ -23,10 +22,8 @@
             ]*/
             columnDefs: [
                 {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]}, //fecha_emision
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 6 ]}, //fecha_vencimiento
-                {targets: [ 6 ], orderData: [ 6]}, //priority
-                {targets: [ 7 ], orderData: [ 7]} //renovacion
+                {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 6 ]}, //fecha_apertura
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]} //fecha_cierre
             ]
         });
 
@@ -38,8 +35,9 @@
 
 
         //$(document).on("click", ".pdf", function(){
-        $('.table-responsive').on("click", ".pdf", function(){
-            params={};
+        $('.table-responsive').on("click", ".pdf", function(){ //ok
+            alert('Funcionalidad en contrucción');
+            /*params={};
             var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
             params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
             var attr = $('#search_empleado option:selected').attr('id_grupo');
@@ -58,7 +56,7 @@
             //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=sci_plan_version.rptdesign&p_periodo="+periodo+"&p_nro_version="+nro_version+"&p_lugar_trabajo="+lugar_trabajo+"&p_usuario="+usuario+"&p_id_cia="+id_cia;
             var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=gseip_vencimientos_p.rptdesign&p_id_empleado="+params.id_empleado+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_renovado="+params.renovado+"&p_id_cia="+params.id_empleado+"&p_id_user="+params.id_user;
             //var win = window.open(URL, "_blank", strWindowFeatures);
-            var win = window.open(URL, "_blank");
+            var win = window.open(URL, "_blank");*/
             return false;
         });
 

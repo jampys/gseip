@@ -160,7 +160,7 @@ class Busqueda
 
     private function insertBusqueda(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_busquedas(fecha, nombre, fecha_apertura, fecha_cierre, id_puesto, id_localidad, id_contrato, estado)
+        $query="insert into sel_busquedas(fecha, nombre, fecha_apertura, fecha_cierre, id_puesto, id_localidad, id_contrato)
                 values(sysdate(), :nombre, STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'), STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), :id_puesto, :id_localidad, :id_contrato)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
