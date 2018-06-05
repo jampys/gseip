@@ -124,7 +124,7 @@ concat(ifnull(matricula, ''), ' ', ifnull(nro_movil, ''), ' ', ifnull(modelo, ''
 null  as grupo,
 vrv.id_rnv_renovacion,
 (select count(*) from uploads_vencimiento_v where id_renovacion = vrv.id_renovacion) as cant_uploads
-from v_sec_vto_renovacion_v vrv, vto_vencimiento_v vvv, vto_alerta_vencimiento_p vav,
+from v_sec_vto_renovacion_v vrv, vto_vencimiento_v vvv, vto_alerta_vencimiento_v vav,
 (
 select vex.*, vvcx.id_contrato
 from vto_vehiculos vex
