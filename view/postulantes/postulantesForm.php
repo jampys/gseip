@@ -260,73 +260,20 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->busqueda->getNombre() ?>" placeholder="Nombre">
+                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->postulante->getNombre() ?>" placeholder="Nombre">
                     </div>
 
                     <div class="form-group required">
-                        <label class="control-label" for="fecha_apertura">Fecha apertura</label>
-                        <div class="input-group date">
-                            <input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura" value = "<?php print $view->busqueda->getFechaApertura() ?>" placeholder="DD/MM/AAAA">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
+                        <label class="control-label" for="nombre">DNI</label>
+                        <input class="form-control" type="text" name="dni" id="dni" value = "<?php print $view->postulante->getDni() ?>" placeholder="DNI">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="lista_negra" name="lista_negra" <?php echo (!$view->postulante->getListaNegra())? '' :'checked' ?> ><a href="#" title="Seleccione para incluir al postulante en la lista negra">Agregar a lista negra</a>
+                            </label>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label" for="fecha_cierre">Fecha cierre</label>
-                        <div class="input-group date">
-                            <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->busqueda->getFechaCierre() ?>" placeholder="DD/MM/AAAA">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="id_vencimiento" class="control-label">Puesto</label>
-                            <select class="form-control selectpicker show-tick" id="id_puesto" name="id_puesto" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un puesto</option>
-                                <?php foreach ($view->puestos as $pu){
-                                    ?>
-                                    <option value="<?php echo $pu['id_puesto']; ?>"
-                                        <?php echo ($pu['id_puesto'] == $view->busqueda->getIdPuesto())? 'selected' :'' ?>
-                                        >
-                                        <?php echo $pu['nombre'] ;?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_localidad" class="control-label">Área</label>
-                        <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un área</option>
-                            <?php foreach ($view->localidades as $loc){
-                                ?>
-                                <option value="<?php echo $loc['id_localidad']; ?>"
-                                    <?php echo ($loc['id_localidad'] == $view->busqueda->getIdLocalidad())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_contrato" class="control-label">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un contrato</option>
-                            <?php foreach ($view->contratos as $co){
-                                ?>
-                                <option value="<?php echo $co['id_contrato']; ?>"
-                                    <?php echo ($co['id_contrato'] == $view->busqueda->getIdContrato())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $co['nombre'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
                     </div>
 
 
@@ -334,8 +281,6 @@
 
 
                 <div id="fileuploader">Upload</div>
-
-
 
 
 

@@ -37,7 +37,7 @@
             $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_busqueda = id;
+                params.id_postulante = id;
                 params.action = "postulantes";
                 params.operation = "editPostulante";
                 //alert(params.id_renovacion);
@@ -48,12 +48,12 @@
                 })
             });
 
-            $(document).on('click', '.view', function(){
+            $(document).on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_busqueda = id;
-                params.action = "busquedas";
-                params.operation = "editBusqueda";
+                params.id_postulante = id;
+                params.action = "postulantes";
+                params.operation = "editPostulante";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     $("fieldset").prop("disabled", true);
@@ -66,10 +66,10 @@
             });
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
-                params.action = "busquedas";
-                params.operation="newBusqueda";
+                params.action = "postulantes";
+                params.operation="newPostulante";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
@@ -77,7 +77,7 @@
 
 
 
-            $(document).on('click', '#cancel',function(){
+            $(document).on('click', '#cancel',function(){ //ok
                 $('#myModal').modal('hide');
             });
 

@@ -40,25 +40,25 @@ switch ($operation)
         exit;
         break;
 
-    case 'newBusqueda':
-        $view->label='Nueva búsqueda';
-        $view->busqueda = new Busqueda();
+    case 'newPostulante': //ok
+        $view->label='Nuevo postulante';
+        $view->postulante = new Postulante();
 
-        $view->puestos = Puesto::getPuestos();
-        $view->localidades = Localidad::getLocalidades();
-        $view->contratos = Contrato::getContratos();
+        //$view->puestos = Puesto::getPuestos();
+        //$view->localidades = Localidad::getLocalidades();
+        //$view->contratos = Contrato::getContratos();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/busquedas/busquedasForm.php";
+        $view->contentTemplate="view/postulantes/postulantesForm.php";
         break;
 
     case 'editPostulante': //ok
         $view->label='Editar postulante';
         $view->postulante = new Postulante($_POST['id_postulante']);
 
-        $view->puestos = Puesto::getPuestos();
-        $view->localidades = Localidad::getLocalidades();
-        $view->contratos = Contrato::getContratos();
+        //$view->puestos = Puesto::getPuestos();
+        //$view->localidades = Localidad::getLocalidades();
+        //$view->contratos = Contrato::getContratos();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

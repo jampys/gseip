@@ -57,7 +57,7 @@ class Postulante
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
                       apellido, nombre, dni, lista_negra
                       from sel_postulantes
-                    where id_postulante = :nro";
+                      where id_postulante = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
@@ -65,7 +65,7 @@ class Postulante
 
             $this->setIdPostulante($rows[0]['id_postulante']);
             $this->setFecha($rows[0]['fecha']);
-            $this->setApellido($rows[0]['apellido   ']);
+            $this->setApellido($rows[0]['apellido']);
             $this->setNombre($rows[0]['nombre']);
             $this->setDni($rows[0]['dni']);
             $this->setListaNegra($rows[0]['lista_negra']);
