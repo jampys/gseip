@@ -250,8 +250,13 @@
             <div class="modal-body">
 
 
-                <form name ="busqueda-form" id="busqueda-form" method="POST" action="index.php">
-                    <input type="hidden" name="id_busqueda" id="id_busqueda" value="<?php print $view->busqueda->getIdBusqueda() ?>">
+                <form name ="postulante-form" id="postulante-form" method="POST" action="index.php">
+                    <input type="hidden" name="id_postulante" id="id_postulante" value="<?php print $view->postulante->getIdPostulante() ?>">
+
+                    <div class="form-group required">
+                        <label class="control-label" for="apellido">Apellido</label>
+                        <input class="form-control" type="text" name="apellido" id="apellido" value = "<?php print $view->postulante->getApellido() ?>" placeholder="Apellido">
+                    </div>
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>

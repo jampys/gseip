@@ -54,9 +54,9 @@ class Postulante
         if ($nro!=0){
             $stmt=new sQuery();
             $query = "select id_postulante,
-                    DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                    apellido, nombre, dni, lista_negra
-                    from sel_postulantes
+                      DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
+                      apellido, nombre, dni, lista_negra
+                      from sel_postulantes
                     where id_postulante = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);

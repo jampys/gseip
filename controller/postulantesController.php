@@ -52,9 +52,9 @@ switch ($operation)
         $view->contentTemplate="view/busquedas/busquedasForm.php";
         break;
 
-    case 'editBusqueda':
-        $view->label='Editar búsqueda';
-        $view->busqueda = new Busqueda($_POST['id_busqueda']);
+    case 'editPostulante': //ok
+        $view->label='Editar postulante';
+        $view->postulante = new Postulante($_POST['id_postulante']);
 
         $view->puestos = Puesto::getPuestos();
         $view->localidades = Localidad::getLocalidades();
@@ -62,7 +62,7 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/busquedas/busquedasForm.php";
+        $view->contentTemplate="view/postulantes/postulantesForm.php";
         break;
 
     case 'deleteHabilidad':

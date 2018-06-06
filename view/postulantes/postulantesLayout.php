@@ -15,7 +15,7 @@
             $('.selectpicker').selectpicker();
 
 
-            $(document).on('click', '#search', function(){
+            $(document).on('click', '#search', function(){ //ok
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
@@ -34,12 +34,12 @@
 
 
 
-            $(document).on('click', '.edit', function(){
+            $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_busqueda = id;
-                params.action = "busquedas";
-                params.operation = "editBusqueda";
+                params.action = "postulantes";
+                params.operation = "editPostulante";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
