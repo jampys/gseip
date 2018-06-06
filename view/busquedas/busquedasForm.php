@@ -160,7 +160,7 @@
 
 
 
-        $('#myModal #cancel').on('click', function(){
+        $('#myModal #cancel').on('click', function(){ //ok
            //alert('cancelar');
             //uploadObj.stopUpload();
         });
@@ -172,11 +172,11 @@
         });
 
 
-        $('#renovacion_personal').validate({ //ok
+        $('#busqueda-form').validate({ //ok
             rules: {
-                id_empleado: {required: true},
-                id_vencimiento: {required: true},
-                fecha_emision: {
+                nombre: {required: true},
+                fecha_apertura: {required: true}
+                /*fecha_emision: {
                     required: true,
                     remote: {
                         url: "index.php",
@@ -212,36 +212,23 @@
                             id_renovacion: function(){ return $('#id_renovacion').val();}
                         }
                     }
-                }
+                }*/
 
             },
             messages:{
-                id_empleado: "Seleccione un empleado o grupo",
-                id_vencimiento: "Seleccione un vencimiento",
-                fecha_emision: {
+                nombre: "Ingrese el nombre",
+                fecha_apertura: "Seleccione la fecha de apertura"
+                /*fecha_emision: {
                     required: "Ingrese la fecha de emisión",
                     remote: "La fecha de emisión debe ser mayor"
                 },
                 fecha_vencimiento: {
                     required: "Ingrese la fecha de vencimiento",
                     remote: "La fecha de vencimiento debe ser mayor"
-                }
+                }*/
             }
 
         });
-
-
-        $("#myModal #id_empleado").on('changed.bs.select', function (e) { //ok
-            //Al seleccionar un grupo, completa automaticamente el campo vencimiento y lo deshabilita.
-            if ($('#id_empleado option:selected').attr('id_grupo') !='') {
-                $('#id_vencimiento').selectpicker('val', $('#id_empleado option:selected').attr('id_vencimiento')).prop('disabled', true).selectpicker('refresh');
-            }
-            else{
-                $('#id_vencimiento').selectpicker('val', '').prop('disabled', false).selectpicker('refresh');
-            }
-
-        });
-
 
 
 
@@ -281,7 +268,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label class="control-label" for="fecha_cierre">Fecha cierre</label>
                         <div class="input-group date">
                             <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->busqueda->getFechaCierre() ?>" placeholder="DD/MM/AAAA">
