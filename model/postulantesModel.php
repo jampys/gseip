@@ -49,38 +49,33 @@ class Postulante
     { $this->lista_negra=$val;}
 
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_busqueda, nombre,
+            $query = "select id_postulante,
                     DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                    DATE_FORMAT(fecha_apertura, '%d/%m/%Y') as fecha_apertura,
-                    DATE_FORMAT(fecha_cierre, '%d/%m/%Y') as fecha_cierre,
-                    id_puesto, id_localidad, id_contrato, estado
-                    from sel_busquedas
-                    where id_busqueda = :nro";
+                    apellido, nombre, dni, lista_negra
+                    from sel_postulantes
+                    where id_postulante = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdBusqueda($rows[0]['id_busqueda']);
-            $this->setNombre($rows[0]['nombre']);
+            $this->setIdPostulante($rows[0]['id_postulante']);
             $this->setFecha($rows[0]['fecha']);
-            $this->setFechaApertura($rows[0]['fecha_apertura']);
-            $this->setFechaCierre($rows[0]['fecha_cierre']);
-            $this->setIdPuesto($rows[0]['id_puesto']);
-            $this->setIdLocalidad($rows[0]['id_localidad']);
-            $this->setIdContrato($rows[0]['id_contrato']);
-            $this->setEstado($rows[0]['estado']);
+            $this->setApellido($rows[0]['apellido   ']);
+            $this->setNombre($rows[0]['nombre']);
+            $this->setDni($rows[0]['dni']);
+            $this->setListaNegra($rows[0]['lista_negra']);
         }
     }
 
 
-    public static function getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas) {
+    public static function getPostulantes($id_puesto, $id_localidad, $id_contrato, $todas) { //ok
         $stmt=new sQuery();
-        $query = "select bu.id_busqueda,
+        /*$query = "select bu.id_busqueda,
                   DATE_FORMAT(bu.fecha,  '%d/%m/%Y') as fecha,
                   bu.nombre,
                   DATE_FORMAT(bu.fecha_apertura,  '%d/%m/%Y') as fecha_apertura,
@@ -92,7 +87,9 @@ class Postulante
                   from sel_busquedas bu
                   left join puestos pu on bu.id_puesto = pu.id_puesto
                   left join localidades loc on bu.id_localidad = loc.id_localidad
-                  left join contratos co on bu.id_contrato = co.id_contrato";
+                  left join contratos co on bu.id_contrato = co.id_contrato";*/
+        $query = "select *
+                  from sel_postulantes pos";
 
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_empleado', $id_empleado);

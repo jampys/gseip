@@ -26,7 +26,7 @@
                 params.search_localidad = $("#search_localidad").val();
                 params.search_contrato = $("#search_contrato").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
-                params.action = "busquedas";
+                params.action = "postulantes";
                 params.operation = "refreshGrid";
                 //alert(params.id_grupo);
                 $('#content').load('index.php', params);
@@ -162,7 +162,7 @@
 
         <div class="col-md-12">
 
-            <h4>Búsquedas laborales</h4>
+            <h4>Postulantes</h4>
             <hr class="hr-primary"/>
 
             <div class="clearfix">

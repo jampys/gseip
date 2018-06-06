@@ -14,17 +14,17 @@
                                 $(this).show(); },
 
             "stateSave": true,
-            "order": [[3, "asc"]], // 3=fecha_apertura
+            "order": [[1, "asc"], [2, "asc"]] // 1=apellido, 2=nombre
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
                 { type: 'date-uk', targets: 5 } //fecha_vencimiento
             ]*/
-            columnDefs: [
+            /*columnDefs: [
                 {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
                 {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 6 ]}, //fecha_apertura
                 {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]} //fecha_cierre
-            ]
+            ]*/
         });
 
 
@@ -69,9 +69,9 @@
 </script>
 
 
-<!--<div class="col-md-1"></div>-->
+<div class="col-md-1"></div>
 
-<div class="col-md-12">
+<div class="col-md-10">
 
 
 
@@ -82,15 +82,11 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro. búsqueda</th>
-                <th>Fecha</th>
+                <th>Nro. postulante</th>
+                <th>Apellido</th>
                 <th>Nombre</th>
-                <th>F. apertura</th>
-                <th>F. cierre</th>
-                <th>Puesto</th>
-                <th>Área</th>
-                <th>Contrato</th>
-                <th>Estado</th>
+                <th>DNI</th>
+                <th>Lista negra</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -98,18 +94,14 @@
             </thead>
             <tbody>
 
-            <?php if(isset($view->busquedas)) {
-                foreach ($view->busquedas as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_busqueda']; ?>">
-                        <td><?php echo $rp['id_busqueda']; ?></td>
-                        <td><?php echo $rp['fecha']; ?></td>
+            <?php if(isset($view->postulantes)) {
+                foreach ($view->postulantes as $rp):   ?>
+                    <tr data-id="<?php echo $rp['id_postulante']; ?>">
+                        <td><?php echo $rp['id_postulante']; ?></td>
+                        <td><?php echo $rp['apellido']; ?></td>
                         <td><?php echo $rp['nombre']; ?></td>
-                        <td><?php echo $rp['fecha_apertura']; ?></td>
-                        <td><?php echo $rp['fecha_cierre']; ?></td>
-                        <td><?php echo $rp['puesto']; ?></td>
-                        <td><?php echo $rp['area']; ?></td>
-                        <td><?php echo $rp['contrato']; ?></td>
-                        <td><?php echo $rp['estado']; ?></td>
+                        <td><?php echo $rp['dni']; ?></td>
+                        <td><?php echo $rp['lista_negra']; ?></td>
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);">
@@ -144,7 +136,7 @@
 
 </div>
 
-<!--<div class="col-md-1"></div>-->
+<div class="col-md-1"></div>
 
 
 

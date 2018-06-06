@@ -1,5 +1,5 @@
 ﻿<?php
-include_once("model/busquedasModel.php");
+include_once("model/postulantesModel.php");
 
 include_once("model/puestosModel.php");
 include_once("model/localidadesModel.php");
@@ -13,15 +13,15 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
         $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $todas = ($_POST['renovado']== 0)? null : 1;
-        $view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->contentTemplate="view/busquedas/busquedasGrid.php";
+        $view->postulantes = Postulante::getPostulantes($id_puesto, $id_localidad, $id_contrato, $todas);
+        $view->contentTemplate="view/postulantes/postulantesGrid.php";
         break;
 
     case 'saveBusqueda':
@@ -87,11 +87,11 @@ switch ($operation)
         exit;
         break;
 
-    default : 
+    default : //ok
         $view->puestos = Puesto::getPuestos(); //carga el combo para filtrar puestos
         $view->localidades = Localidad::getLocalidades(); //carga el combo para filtrar localidades (Areas)
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
-        $view->contentTemplate="view/busquedas/busquedasGrid.php";
+        $view->contentTemplate="view/postulantes/postulantesGrid.php";
         break;
 }
 
@@ -100,7 +100,7 @@ if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {
-    include_once('view/busquedas/busquedasLayout.php');
+    include_once('view/postulantes/postulantesLayout.php');
 }
 
 
