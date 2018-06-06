@@ -109,6 +109,8 @@
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
                             <li><a href="index.php?action=busquedas"><i class="far fa-clipboard fa-fw"></i>&nbsp;Búsquedas</a></li>
+                            <li><a href="index.php?action=postulantes"><i class="far fa-id-badge fa-fw"></i>&nbsp;Postulantes</a></li>
+                            <li><a href="index.php?action=postulaciones"><i class="fas fa-tasks fa-fw"></i>&nbsp;Postulaciones</a></li>
 
                         </ul>
                     </li>
