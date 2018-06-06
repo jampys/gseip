@@ -46,7 +46,7 @@
             allowedTypes: "jpg, png, pdf, txt, doc, docx",
 
             dynamicFormData: function(){
-                var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
+                var data ={ "id": ($('#id_busqueda').val())? $('#id_busqueda').val() : objeto.id };
                 return data;},
 
             maxFileSize:2097152, //tamaño expresado en bytes
@@ -69,7 +69,7 @@
                 $.ajax({
                     cache: false,
                     url: "index.php",
-                    data:{"action": "uploads", "operation": "load", "id": $('#id_renovacion').val() },
+                    data:{"action": "uploadsBusquedas", "operation": "load", "id": $('#id_busqueda').val() },
                     type:"post",
                     dataType: "json",
                     success: function(data) {
@@ -98,7 +98,7 @@
             },
             deleteCallback: function (data, pd) {
                 for (var i = 0; i < data.length; i++) {
-                    $.post("index.php", {action: "uploads", operation: "delete", name: data[i]},
+                    $.post("index.php", {action: "uploadsBusquedas", operation: "delete", name: data[i]},
                         function (resp,textStatus, jqXHR) {
                             //Show Message
                             //alert("File Deleted");
@@ -108,7 +108,7 @@
 
             },
             downloadCallback:function(filename,pd) {
-                location.href="index.php?action=uploads&operation=download&filename="+filename;
+                location.href="index.php?action=uploadsBusquedas&operation=download&filename="+filename;
             }
         });
 

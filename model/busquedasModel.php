@@ -185,35 +185,35 @@ class Busqueda
 
 
 
-    public static function uploadsUpload($directory, $name, $id_renovacion){
+    public static function uploadsUpload($directory, $name, $id_busqueda){ //ok
         $stmt=new sQuery();
-        $query="insert into uploads_vencimiento_p(directory, name, fecha, id_renovacion)
-                values(:directory, :name, date(sysdate()), :id_renovacion)";
+        $query="insert into uploads_busqueda(directory, name, fecha, id_busqueda)
+                values(:directory, :name, date(sysdate()), :id_busqueda)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':directory', $directory);
         $stmt->dpBind(':name', $name);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
+        $stmt->dpBind(':id_busqueda', $id_busqueda);
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
 
-    public static function uploadsLoad($id_renovacion) {
+    public static function uploadsLoad($id_busqueda) { //ok
         $stmt=new sQuery();
-        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_renovacion
-                from uploads_vencimiento_p
-                where id_renovacion = :id_renovacion
+        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_busqueda
+                from uploads_busqueda
+                where id_busqueda = :id_busqueda
                 order by fecha asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
+        $stmt->dpBind(':id_busqueda', $id_busqueda);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
-    public static function uploadsDelete($name){
+    public static function uploadsDelete($name){ //ok
         $stmt=new sQuery();
-        $query="delete from uploads_vencimiento_p where name =:name";
+        $query="delete from uploads_busqueda where name =:name";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':name', $name);
         $stmt->dpExecute();
@@ -286,30 +286,6 @@ class Busqueda
         $stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
-    }
-
-
-    public function empleadosGrupos() {
-        $stmt=new sQuery();
-        /*$query = "select id_empleado, null as id_grupo, concat(apellido, ' ', nombre) as descripcion, null as id_vencimiento
-from empleados
-where fecha_baja is null
-UNION
-select null, id_grupo, concat(nombre, ' ', ifnull(numero, '')) as descripcion, id_vencimiento
-from vto_grupos_p";*/
-        $query = "select * FROM
-(select id_empleado, null as id_grupo, concat(apellido, ' ', nombre) as descripcion, null as id_vencimiento
-from empleados
-where fecha_baja is null
-UNION
-select null, id_grupo, concat(nombre, ' ', ifnull(numero, '')) as descripcion, id_vencimiento
-from vto_grupos_p) eg
-order by eg.descripcion";
-
-
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
     }
 
 
