@@ -33,7 +33,7 @@
 
 
         var uploadObj = $("#fileuploader").uploadFile({
-            url: "index.php?action=uploads&operation=upload",
+            url: "index.php?action=uploadsBusquedas&operation=upload",
             dragDrop: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
             autoSubmit: false,
             fileName: "myfile",
