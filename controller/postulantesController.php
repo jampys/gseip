@@ -24,17 +24,15 @@ switch ($operation)
         $view->contentTemplate="view/postulantes/postulantesGrid.php";
         break;
 
-    case 'saveBusqueda':
-        $busqueda = new Busqueda($_POST['id_busqueda']);
-        $busqueda->setNombre($_POST['nombre']);
-        $busqueda->setFechaApertura($_POST['fecha_apertura']);
-        $busqueda->setFechaCierre( ($_POST['fecha_cierre']!='')? $_POST['fecha_cierre'] : null );
-        //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
-        $busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
-        $busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
+    case 'saveBusqueda': //ok
+        $postulante = new Postulante($_POST['id_postulante']);
+        $postulante->setApellido($_POST['apellido']);
+        $postulante->setNombre($_POST['nombre']);
+        $postulante->setDni($_POST['dni']);
+        $postulante->setListaNegra( ($_POST['lista_negra'] == 1)? 1 : null);
+        //$postulante->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
 
-        $rta = $busqueda->save();
+        $rta = $postulante->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));
         exit;

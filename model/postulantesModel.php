@@ -102,48 +102,42 @@ class Postulante
     }
 
 
-    function save(){
-        if($this->id_busqueda)
-        {$rta = $this->updateBusqueda();}
+    function save(){ //ok
+        if($this->id_postulante)
+        {$rta = $this->updatePostulante();}
         else
-        {$rta =$this->insertBusqueda();}
+        {$rta =$this->insertPostulante();}
         return $rta;
     }
 
 
-    public function updateBusqueda(){
+    public function updatePostulante(){ //ok
         $stmt=new sQuery();
-        $query="update sel_busquedas set nombre =:nombre,
-                      fecha_apertura = STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'),
-                      fecha_cierre = STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'),
-                      id_puesto = :id_puesto,
-                      id_localidad = :id_localidad,
-                      id_contrato = :id_contrato
-                where id_busqueda =:id_busqueda";
+        $query="update sel_postulantes set apellido = :apellido,
+                nombre =:nombre,
+                dni = :dni,
+                lista_negra = :lista_negra
+                where id_postulante = :id_postulante";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':apellido', $this->getApellido());
         $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':fecha_apertura', $this->getFechaApertura());
-        $stmt->dpBind(':fecha_cierre', $this->getFechaCierre());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
-        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
-        $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
+        $stmt->dpBind(':dni', $this->getDni());
+        $stmt->dpBind(':lista_negra', $this->getListaNegra());
+        $stmt->dpBind(':id_postulante', $this->getIdPostulante());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    private function insertBusqueda(){
+    private function insertPostulante(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_busquedas(fecha, nombre, fecha_apertura, fecha_cierre, id_puesto, id_localidad, id_contrato)
-                values(sysdate(), :nombre, STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'), STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), :id_puesto, :id_localidad, :id_contrato)";
+        $query="insert into sel_postulantes(fecha, apellido, nombre, dni, lista_negra)
+                values(sysdate(), :apellido, :nombre, :dni, :lista_negra)";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':apellido', $this->getApellido());
         $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':fecha_apertura', $this->getFechaApertura());
-        $stmt->dpBind(':fecha_cierre', $this->getFechaCierre());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
-        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':dni', $this->getDni());
+        $stmt->dpBind(':lista_negra', $this->getListaNegra());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

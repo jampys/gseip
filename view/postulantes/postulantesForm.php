@@ -117,20 +117,17 @@
 
         $('#myModal').on('click', '#submit',function(){ //ok
 
-            if ($("#busqueda-form").valid()){
+            if ($("#postulante-form").valid()){
 
                 var params={};
-                params.action = 'busquedas';
-                params.operation = 'saveBusqueda';
-                params.id_busqueda = $('#id_busqueda').val();
+                params.action = 'postulantes';
+                params.operation = 'savePostulante';
+                params.id_postulante = $('#id_postulante').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                params.apellido = $('#apellido').val();
                 params.nombre = $('#nombre').val();
-                params.fecha_apertura = $('#fecha_apertura').val();
-                params.fecha_cierre = $('#fecha_cierre').val();
-                params.id_puesto = $('#id_puesto').val();
-                params.id_localidad = $('#id_localidad').val();
-                params.id_contrato = $('#id_contrato').val();
+                params.dni = $('#dni').val();
+                params.lista_negra = $('#lista_negra').prop('checked')? 1:0;
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -142,14 +139,14 @@
                     if(data >=0){
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Búsqueda guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Postulante guardado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la búsqueda').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar el postulante').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
