@@ -169,10 +169,10 @@
         });
 
 
-        $('#busqueda-form').validate({
+        $('#postulante-form').validate({
             rules: {
-                nombre: {required: true},
-                fecha_apertura: {required: true}
+                apellido: {required: true},
+                nombre: {required: true}
                 /*fecha_emision: {
                     required: true,
                     remote: {
@@ -213,8 +213,8 @@
 
             },
             messages:{
-                nombre: "Ingrese el nombre",
-                fecha_apertura: "Seleccione la fecha de apertura"
+                apellido: "Ingrese el apellido",
+                nombre: "Ingrese el nombre"
                 /*fecha_emision: {
                     required: "Ingrese la fecha de emisión",
                     remote: "La fecha de emisión debe ser mayor"
