@@ -33,7 +33,7 @@
 
 
         var uploadObj = $("#fileuploader").uploadFile({
-            url: "index.php?action=uploadsBusquedas&operation=upload",
+            url: "index.php?action=uploadsPostulantes&operation=upload",
             dragDrop: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
             autoSubmit: false,
             fileName: "myfile",
@@ -46,7 +46,7 @@
             allowedTypes: "jpg, png, pdf, txt, doc, docx",
 
             dynamicFormData: function(){
-                var data ={ "id": ($('#id_busqueda').val())? $('#id_busqueda').val() : objeto.id };
+                var data ={ "id": ($('#id_postulante').val())? $('#id_postulante').val() : objeto.id };
                 return data;},
 
             maxFileSize:2097152, //tamaño expresado en bytes
@@ -69,7 +69,7 @@
                 $.ajax({
                     cache: false,
                     url: "index.php",
-                    data:{"action": "uploadsBusquedas", "operation": "load", "id": $('#id_busqueda').val() },
+                    data:{"action": "uploadsPostulantes", "operation": "load", "id": $('#id_postulante').val() },
                     type:"post",
                     dataType: "json",
                     success: function(data) {
@@ -98,7 +98,7 @@
             },
             deleteCallback: function (data, pd) {
                 for (var i = 0; i < data.length; i++) {
-                    $.post("index.php", {action: "uploadsBusquedas", operation: "delete", name: data[i]},
+                    $.post("index.php", {action: "uploadsPostulantes", operation: "delete", name: data[i]},
                         function (resp,textStatus, jqXHR) {
                             //Show Message
                             //alert("File Deleted");
@@ -108,7 +108,7 @@
 
             },
             downloadCallback:function(filename,pd) {
-                location.href="index.php?action=uploadsBusquedas&operation=download&filename="+filename;
+                location.href="index.php?action=uploadsPostulantes&operation=download&filename="+filename;
             }
         });
 
@@ -261,7 +261,7 @@
                     </div>
 
                     <div class="form-group required">
-                        <label class="control-label" for="nombre">DNI</label>
+                        <label class="control-label" for="dni">DNI</label>
                         <input class="form-control" type="text" name="dni" id="dni" value = "<?php print $view->postulante->getDni() ?>" placeholder="DNI">
                     </div>
 

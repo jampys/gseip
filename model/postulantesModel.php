@@ -154,35 +154,35 @@ class Postulante
 
 
 
-    public static function uploadsUpload($directory, $name, $id_busqueda){
+    public static function uploadsUpload($directory, $name, $id_postulante){ //ok
         $stmt=new sQuery();
-        $query="insert into uploads_busqueda(directory, name, fecha, id_busqueda)
-                values(:directory, :name, date(sysdate()), :id_busqueda)";
+        $query="insert into uploads_postulante(directory, name, fecha, id_postulante)
+                values(:directory, :name, date(sysdate()), :id_postulante)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':directory', $directory);
         $stmt->dpBind(':name', $name);
-        $stmt->dpBind(':id_busqueda', $id_busqueda);
+        $stmt->dpBind(':id_postulante', $id_postulante);
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
 
-    public static function uploadsLoad($id_busqueda) {
+    public static function uploadsLoad($id_postulante) { //ok
         $stmt=new sQuery();
-        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_busqueda
-                from uploads_busqueda
-                where id_busqueda = :id_busqueda
+        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_postulante
+                from uploads_postulante
+                where id_postulante = :id_postulante
                 order by fecha asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_busqueda', $id_busqueda);
+        $stmt->dpBind(':id_postulante', $id_postulante);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
-    public static function uploadsDelete($name){
+    public static function uploadsDelete($name){ //ok
         $stmt=new sQuery();
-        $query="delete from uploads_busqueda where name =:name";
+        $query="delete from uploads_postulante where name =:name";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':name', $name);
         $stmt->dpExecute();

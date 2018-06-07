@@ -24,7 +24,7 @@ switch ($operation)
         $view->contentTemplate="view/postulantes/postulantesGrid.php";
         break;
 
-    case 'saveBusqueda': //ok
+    case 'savePostulante': //ok
         $postulante = new Postulante($_POST['id_postulante']);
         $postulante->setApellido($_POST['apellido']);
         $postulante->setNombre($_POST['nombre']);

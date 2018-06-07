@@ -158,9 +158,9 @@
     <div class="row">
 
 
-        <!--<div class="col-md-1"></div>-->
+        <div class="col-md-1"></div>
 
-        <div class="col-md-12">
+        <div class="col-md-10">
 
             <h4>Postulantes</h4>
             <hr class="hr-primary"/>
@@ -195,20 +195,6 @@
                             </select>
                     </div>
 
-                    <div class="form-group col-md-3">
-                        <label for="search_contrato" class="control-label">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un contrato</option>
-                            <?php foreach ($view->contratos as $con){
-                                ?>
-                                <option value="<?php echo $con['id_contrato']; ?>" >
-                                    <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
-
                     <!--<div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
@@ -218,7 +204,7 @@
                         <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
                     </div>-->
 
-                    <div class="form-group col-md-1" style="width: 11%">
+                    <div class="form-group col-md-2">
                         <label for="search_renovado" class="control-label">&nbsp;</label>
                         <div class="checkbox">
                             <label>
@@ -229,14 +215,14 @@
                     </div>
 
 
-                    <div class="form-group col-md-1" style="width: 7%">
+                    <div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </div>
 
-                    <div class="form-group col-md-1" style="width: 7%">
+                    <div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
                         <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nueva renovación" id="new" <?php echo ( PrivilegedUser::dhasAction('RPE_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus"></span>
@@ -252,7 +238,7 @@
         </div>
 
 
-        <!--<div class="col-md-1"></div>-->
+        <div class="col-md-1"></div>
 
     </div>
     <br/>
