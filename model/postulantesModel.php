@@ -190,36 +190,15 @@ class Postulante
     }
 
 
-    public function checkFechaEmision($fecha_emision, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
-        /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
-        sea mayor. */
+    public function checkDni($dni, $id_postulante) { //ok
         $stmt=new sQuery();
         $query = "select *
-                  from vto_renovacion_p
-                  where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
-                  :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  and id_renovacion <> :id_renovacion
-                  )
-                  order by fecha_emision asc
-                  limit 1";
-
+                  from sel_postulantes
+                  where dni = :dni
+                  and id_postulante <> :id_postulante";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
-        $stmt->dpBind(':fecha_emision', $fecha_emision);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
+        $stmt->dpBind(':dni', $dni);
+        $stmt->dpBind(':id_postulante', $id_postulante);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
     }

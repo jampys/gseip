@@ -169,29 +169,25 @@
         });
 
 
-        $('#postulante-form').validate({
+        $('#postulante-form').validate({ //ok
             rules: {
                 apellido: {required: true},
-                nombre: {required: true}
-                /*fecha_emision: {
+                nombre: {required: true},
+                dni: {
                     required: true,
                     remote: {
                         url: "index.php",
                         type: "post",
                         dataType: "json",
                         data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaEmision",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
+                            action: "postulantes",
+                            operation: "checkDni",
+                            dni: function(){ return $('#dni').val();},
+                            id_postulante: function(){ return $('#id_postulante').val();}
                         }
                     }
-                },
-                fecha_vencimiento: {
+                }
+                /*fecha_vencimiento: {
                     required: true,
                     remote: {
                         url: "index.php",
@@ -214,12 +210,12 @@
             },
             messages:{
                 apellido: "Ingrese el apellido",
-                nombre: "Ingrese el nombre"
-                /*fecha_emision: {
-                    required: "Ingrese la fecha de emisión",
-                    remote: "La fecha de emisión debe ser mayor"
-                },
-                fecha_vencimiento: {
+                nombre: "Ingrese el nombre",
+                dni: {
+                    required: "Ingrese el DNI",
+                    remote: "El DNI ingresado ya existe"
+                }
+                /*fecha_vencimiento: {
                     required: "Ingrese la fecha de vencimiento",
                     remote: "La fecha de vencimiento debe ser mayor"
                 }*/

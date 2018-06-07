@@ -71,9 +71,9 @@ switch ($operation)
         break;
 
 
-    case 'checkFechaEmision':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
+    case 'checkDni':
+        $view->postulante = new Postulante();
+        $rta = $view->postulante->checkDni($_POST['dni'], $_POST['id_postulante']);
         print_r(json_encode($rta));
         exit;
         break;
