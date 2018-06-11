@@ -127,6 +127,17 @@ class Busqueda
     }
 
 
+    public static function getBusquedasActivas() { //ok
+        $stmt=new sQuery();
+        $query = "select bu.id_busqueda, bu.nombre
+                  from sel_busquedas bu";
+                  //where bu.fecha_cierre is null or bu.fecha_cierre > date(sysdate())";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
     function save(){ //ok
         if($this->id_busqueda)
         {$rta = $this->updateBusqueda();}

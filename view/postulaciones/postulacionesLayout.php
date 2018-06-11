@@ -33,27 +33,27 @@
             });
 
 
-
-            $(document).on('click', '.edit', function(){
+            $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_busqueda = id;
-                params.action = "busquedas";
-                params.operation = "editBusqueda";
+                params.id_postulacion = id;
+                params.action = "postulaciones";
+                params.operation = "editPostulacion";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    //$('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    //$('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
+                    $('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                    $('#id_postulante').prop('disabled', true).selectpicker('refresh');
                 })
             });
 
-            $(document).on('click', '.view', function(){
+
+            $(document).on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_busqueda = id;
-                params.action = "busquedas";
-                params.operation = "editBusqueda";
+                params.id_postulacion = id;
+                params.action = "postulaciones";
+                params.operation = "editPostulacion";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     $("fieldset").prop("disabled", true);
@@ -66,10 +66,10 @@
             });
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
-                params.action = "busquedas";
-                params.operation="newBusqueda";
+                params.action = "postulaciones";
+                params.operation="newPostulacion";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
@@ -77,7 +77,7 @@
 
 
 
-            $(document).on('click', '#cancel',function(){
+            $(document).on('click', '#cancel',function(){ //ok
                 $('#myModal').modal('hide');
             });
 

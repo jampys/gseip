@@ -17,11 +17,11 @@ class Postulacion
     function getIdBusqueda()
     { return $this->id_busqueda;}
 
-    function getFecha()
-    { return $this->fecha;}
-
     function getIdPostulante()
     { return $this->id_postulante;}
+
+    function getFecha()
+    { return $this->fecha;}
 
     function getOrigenCv()
     { return $this->origen_cv;}
@@ -40,52 +40,46 @@ class Postulacion
     function setIdBusqueda($val)
     { $this->id_busqueda=$val;}
 
-    function setFecha($val)
-    { $this->fecha=$val;}
-
     function setIdPostulante($val)
     { $this->id_postulante=$val;}
+
+    function setFecha($val)
+    { $this->fecha=$val;}
 
     function setOrigenCv($val)
     { $this->origen_cv=$val;}
 
-    function setExpectativa($val)
+    function setExpectativas($val)
     { $this->expectativas=$val;}
 
     function setPropuestaEconomica($val)
     { $this->propuesta_economica=$val;}
 
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_busqueda, nombre,
-                    DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                    DATE_FORMAT(fecha_apertura, '%d/%m/%Y') as fecha_apertura,
-                    DATE_FORMAT(fecha_cierre, '%d/%m/%Y') as fecha_cierre,
-                    id_puesto, id_localidad, id_contrato, estado
-                    from sel_busquedas
-                    where id_busqueda = :nro";
+            $query = "select id_postulacion, id_busqueda, id_postulante,
+                      origen_cv, expectativas, propuesta_economica
+                      from sel_postulaciones
+                      where id_postulacion = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
+            $this->setIdPostulacion($rows[0]['id_postulacion']);
             $this->setIdBusqueda($rows[0]['id_busqueda']);
-            $this->setNombre($rows[0]['nombre']);
-            $this->setFecha($rows[0]['fecha']);
-            $this->setFechaApertura($rows[0]['fecha_apertura']);
-            $this->setFechaCierre($rows[0]['fecha_cierre']);
-            $this->setIdPuesto($rows[0]['id_puesto']);
-            $this->setIdLocalidad($rows[0]['id_localidad']);
-            $this->setIdContrato($rows[0]['id_contrato']);
-            $this->setEstado($rows[0]['estado']);
+            $this->setIdPostulante($rows[0]['id_postulante']);
+            $this->setOrigenCv($rows[0]['origen_cv']);
+            $this->setExpectativas($rows[0]['expectativas']);
+            $this->setPropuestaEconomica($rows[0]['propuesta_economica']);
         }
     }
 
 
-    public static function getPostulaciones($id_puesto, $id_localidad, $id_contrato, $todas) {
+    public static function getPostulaciones($id_puesto, $id_localidad, $id_contrato, $todas) { //ok
         $stmt=new sQuery();
         $query = "select pos.id_postulacion, pos.id_busqueda, pos.id_postulante,
                   DATE_FORMAT(pos.fecha,  '%d/%m/%Y') as fecha,

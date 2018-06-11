@@ -5,6 +5,9 @@ include_once("model/puestosModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/contratosModel.php");
 
+include_once("model/busquedasModel.php");
+include_once("model/postulantesModel.php");
+
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
@@ -40,29 +43,35 @@ switch ($operation)
         exit;
         break;
 
-    case 'newBusqueda':
-        $view->label='Nueva búsqueda';
-        $view->busqueda = new Busqueda();
+    case 'newPostulacion': //ok
+        $view->label='Nueva postulación';
+        $view->postulacion = new Postulacion();
 
-        $view->puestos = Puesto::getPuestos();
-        $view->localidades = Localidad::getLocalidades();
-        $view->contratos = Contrato::getContratos();
+        //$view->puestos = Puesto::getPuestos();
+        //$view->localidades = Localidad::getLocalidades();
+        //$view->contratos = Contrato::getContratos();
+        $view->busquedas = Busqueda::getBusquedasActivas();
+        $view->postulantes = Postulante::getPostulantesActivos();
+        $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/busquedas/busquedasForm.php";
+        $view->contentTemplate="view/postulaciones/postulacionesForm.php";
         break;
 
-    case 'editBusqueda':
-        $view->label='Editar búsqueda';
-        $view->busqueda = new Busqueda($_POST['id_busqueda']);
+    case 'editPostulacion': //ok
+        $view->label='Editar postulación';
+        $view->postulacion = new Postulacion($_POST['id_postulacion']);
 
-        $view->puestos = Puesto::getPuestos();
-        $view->localidades = Localidad::getLocalidades();
-        $view->contratos = Contrato::getContratos();
+        //$view->puestos = Puesto::getPuestos();
+        //$view->localidades = Localidad::getLocalidades();
+        //$view->contratos = Contrato::getContratos();
+        $view->busquedas = Busqueda::getBusquedasActivas();
+        $view->postulantes = Postulante::getPostulantesActivos();
+        $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/busquedas/busquedasForm.php";
+        $view->contentTemplate="view/postulaciones/postulacionesForm.php";
         break;
 
     case 'deleteHabilidad':

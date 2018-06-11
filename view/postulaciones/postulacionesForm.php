@@ -250,80 +250,60 @@
             <div class="modal-body">
 
 
-                <form name ="busqueda-form" id="busqueda-form" method="POST" action="index.php">
-                    <input type="hidden" name="id_busqueda" id="id_busqueda" value="<?php print $view->busqueda->getIdBusqueda() ?>">
+                <form name ="postulacion-form" id="postulacion-form" method="POST" action="index.php">
+                    <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->postulacion->getIdPostulacion() ?>">
 
-                    <div class="form-group required">
-                        <label class="control-label" for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->busqueda->getNombre() ?>" placeholder="Nombre">
-                    </div>
-
-                    <div class="form-group required">
-                        <label class="control-label" for="fecha_apertura">Fecha apertura</label>
-                        <div class="input-group date">
-                            <input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura" value = "<?php print $view->busqueda->getFechaApertura() ?>" placeholder="DD/MM/AAAA">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="id_busqueda" class="control-label">Búsqueda</label>
+                        <select class="form-control selectpicker show-tick" id="id_busqueda" name="id_busqueda" title="Seleccione la búsqueda" data-live-search="true" data-size="5">
+                            <?php foreach ($view->busquedas as $bu){
+                                ?>
+                                <option value="<?php echo $bu['id_busqueda']; ?>"
+                                    <?php echo ($bu['id_busqueda'] == $view->postulacion->getIdBusqueda())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $bu['nombre'] ;?>
+                                </option>
+                            <?php  } ?>
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="fecha_cierre">Fecha cierre</label>
-                        <div class="input-group date">
-                            <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->busqueda->getFechaCierre() ?>" placeholder="DD/MM/AAAA">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
-                        </div>
+                        <label for="id_postulante" class="control-label">Postulante</label>
+                        <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
+                            <?php foreach ($view->postulantes as $po){
+                                ?>
+                                <option value="<?php echo $po['id_postulante']; ?>"
+                                    <?php echo ($po['id_postulante'] == $view->postulacion->getIdPostulante())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $po['apellido']." ".$po['nombre'] ;?>
+                                </option>
+                            <?php  } ?>
+                        </select>
                     </div>
 
-
-                    <div class="form-group">
-                        <label for="id_vencimiento" class="control-label">Puesto</label>
-                            <select class="form-control selectpicker show-tick" id="id_puesto" name="id_puesto" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un puesto</option>
-                                <?php foreach ($view->puestos as $pu){
+                    <div class="form-group required">
+                        <label for="origen_cv" class="control-label">Origen del CV</label>
+                            <select class="form-control selectpicker show-tick" id="origen_cv" name="origen_cv" title="Seleccione el origen del CV">
+                                <?php foreach ($view->origenes_cv['enum'] as $cv){
                                     ?>
-                                    <option value="<?php echo $pu['id_puesto']; ?>"
-                                        <?php echo ($pu['id_puesto'] == $view->busqueda->getIdPuesto())? 'selected' :'' ?>
+                                    <option value="<?php echo $cv; ?>"
+                                        <?php echo ($cv == $view->postulacion->getOrigenCv() OR ($cv == $view->origenes_cv['default'] AND !$view->postulacion->getIdPostulacion()) )? 'selected' :'' ?>
                                         >
-                                        <?php echo $pu['nombre'] ;?>
+                                        <?php echo $cv; ?>
                                     </option>
                                 <?php  } ?>
                             </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="id_localidad" class="control-label">Área</label>
-                        <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un área</option>
-                            <?php foreach ($view->localidades as $loc){
-                                ?>
-                                <option value="<?php echo $loc['id_localidad']; ?>"
-                                    <?php echo ($loc['id_localidad'] == $view->busqueda->getIdLocalidad())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                        <label class="control-label" for="expectativas">Expectativas ($)</label>
+                        <input class="form-control" type="text" name="expectativas" id="expectativas" value = "<?php print $view->postulacion->getExpectativas() ?>" placeholder="Expectativas">
                     </div>
 
                     <div class="form-group">
-                        <label for="id_contrato" class="control-label">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un contrato</option>
-                            <?php foreach ($view->contratos as $co){
-                                ?>
-                                <option value="<?php echo $co['id_contrato']; ?>"
-                                    <?php echo ($co['id_contrato'] == $view->busqueda->getIdContrato())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $co['nombre'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                        <label class="control-label" for="expectativas">Propuesta económica ($)</label>
+                        <input class="form-control" type="text" name="propuesta_economica" id="propuesta_economica" value = "<?php print $view->postulacion->getPropuestaEconomica() ?>" placeholder="Propuesta económica">
                     </div>
-
 
                 </form>
 

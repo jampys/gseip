@@ -102,6 +102,18 @@ class Postulante
     }
 
 
+    public static function getPostulantesActivos() { //ok
+        //se usa para cargar combo de postulantes en formulario de postulacion
+        $stmt=new sQuery();
+        $query = "select *
+                  from sel_postulantes pos";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
     function save(){ //ok
         if($this->id_postulante)
         {$rta = $this->updatePostulante();}
