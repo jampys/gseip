@@ -113,7 +113,7 @@ class Postulacion
     public function updatePostulacion(){ //ok
         $stmt=new sQuery();
         $query="update sel_postulacion set id_busqueda =:id_busqueda,
-                      id_postulante = :id_postulante
+                      id_postulante = :id_postulante,
                       origen_cv = :origen_cv,
                       expectativas = :expectativas,
                       propuesta_economica = :propuesta_economica
