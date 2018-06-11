@@ -101,38 +101,36 @@ class Postulacion
     }
 
 
-    function save(){
-        if($this->id_busqueda)
-        {$rta = $this->updateBusqueda();}
+    function save(){ //ok
+        if($this->id_postulacion)
+        {$rta = $this->updatePostulacion();}
         else
-        {$rta =$this->insertBusqueda();}
+        {$rta =$this->insertPostulacion();}
         return $rta;
     }
 
 
-    public function updateBusqueda(){
+    public function updatePostulacion(){ //ok
         $stmt=new sQuery();
-        $query="update sel_busquedas set nombre =:nombre,
-                      fecha_apertura = STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'),
-                      fecha_cierre = STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'),
-                      id_puesto = :id_puesto,
-                      id_localidad = :id_localidad,
-                      id_contrato = :id_contrato
-                where id_busqueda =:id_busqueda";
+        $query="update sel_postulacion set id_busqueda =:id_busqueda,
+                      id_postulante = :id_postulante
+                      origen_cv = :origen_cv,
+                      expectativas = :expectativas,
+                      propuesta_economica = :propuesta_economica
+                where id_postulacion =:id_postulacion";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':fecha_apertura', $this->getFechaApertura());
-        $stmt->dpBind(':fecha_cierre', $this->getFechaCierre());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
-        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
+        $stmt->dpBind(':id_postulante', $this->getIdPostulante());
+        $stmt->dpBind(':origen_cv', $this->getOrigenCv());
+        $stmt->dpBind(':expectativas', $this->getExpectativas());
+        $stmt->dpBind(':propuesta_conomica', $this->getPropuestaEconomica());
+        $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    private function insertBusqueda(){
+    private function insertPostulacion(){
         $stmt=new sQuery();
         $query="insert into sel_busquedas(fecha, nombre, fecha_apertura, fecha_cierre, id_puesto, id_localidad, id_contrato)
                 values(sysdate(), :nombre, STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'), STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), :id_puesto, :id_localidad, :id_contrato)";

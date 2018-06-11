@@ -115,22 +115,21 @@
 
 
 
-        $('#myModal').on('click', '#submit',function(){
+        $('#myModal').on('click', '#submit',function(){ //ok
 
-            if ($("#busqueda-form").valid()){
+            if ($("#postulacion-form").valid()){
 
                 var params={};
-                params.action = 'busquedas';
-                params.operation = 'saveBusqueda';
-                params.id_busqueda = $('#id_busqueda').val();
+                params.action = 'postulaciones';
+                params.operation = 'savePostulacion';
+                params.id_postulacion = $('#id_postulacion').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
-                params.nombre = $('#nombre').val();
-                params.fecha_apertura = $('#fecha_apertura').val();
-                params.fecha_cierre = $('#fecha_cierre').val();
-                params.id_puesto = $('#id_puesto').val();
-                params.id_localidad = $('#id_localidad').val();
-                params.id_contrato = $('#id_contrato').val();
+                params.id_busqueda = $('#id_busqueda').val();
+                params.id_postulante = $('#id_postulante').val();
+                params.origen_cv = $('#origen_cv').val();
+                params.expectativas = $('#expectativas').val();
+                params.propuesta_economica = $('#propuesta_economica').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -140,16 +139,16 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
+                        //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Búsqueda guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la búsqueda').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar la postulación').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');

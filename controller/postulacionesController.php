@@ -27,19 +27,19 @@ switch ($operation)
         $view->contentTemplate="view/postulaciones/postulacionesGrid.php";
         break;
 
-    case 'saveBusqueda':
-        $busqueda = new Busqueda($_POST['id_busqueda']);
-        $busqueda->setNombre($_POST['nombre']);
-        $busqueda->setFechaApertura($_POST['fecha_apertura']);
-        $busqueda->setFechaCierre( ($_POST['fecha_cierre']!='')? $_POST['fecha_cierre'] : null );
+    case 'savePostulacion': //ok
+        $postulacion = new Postulacion($_POST['id_postulacion']);
+        $postulacion->setIdBusqueda($_POST['id_busqueda']);
+        $postulacion->setIdPostulante($_POST['id_postulante']);
+        $postulacion->setOrigenCv($_POST['origen_cv']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
-        $busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
-        $busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
+        //$postulacion->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
+        $postulacion->setExpectativas($_POST['expectativas']);
+        $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
 
-        $rta = $busqueda->save();
-        print_r(json_encode(sQuery::dpLastInsertId()));
-        //print_r(json_encode($rta));
+        $rta = $postulacion->save();
+        //print_r(json_encode(sQuery::dpLastInsertId()));
+        print_r(json_encode($rta));
         exit;
         break;
 
