@@ -178,17 +178,18 @@
 
         $('#etapas_left_side').on('click', '.edit', function(){ //ok
             alert('editar etapa');
-            /*var id = $(this).closest('tr').attr('data-id');
+            //var id = $(this).closest('tr').attr('data-id');
             params={};
-            params.id_postulacion = id;
-            params.action = "postulaciones";
-            params.operation = "editPostulacion";
+            //params.id_postulacion = id;
+            params.action = "etapas";
+            params.operation = "editEtapa";
             //alert(params.id_renovacion);
-            $('#popupbox').load('index.php', params,function(){
-                $('#myModal').modal();
-                $('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                $('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            })*/
+            $('#etapas_right_side').load('index.php', params,function(){
+                //alert('cargo el contenido en right side');
+                //$('#myModal').modal();
+                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+            })
         });
 
 

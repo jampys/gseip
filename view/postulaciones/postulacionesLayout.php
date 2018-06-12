@@ -33,7 +33,7 @@
             });
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_postulacion = id;
@@ -71,8 +71,8 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_postulacion = id;
-                params.action = "postulaciones";
-                params.operation = "etapas";
+                params.action = "etapas";
+                //params.operation = "etapas"; //entra en default
                 //params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     //$("fieldset").prop("disabled", true);
