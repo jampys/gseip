@@ -4,7 +4,8 @@ class Etapa
 {
     private $id_etapa;
     private $id_postulacion;
-    private $fecha;
+    private $fecha; //fecha de registro en el sistema
+    private $fecha_etapa; //fecha en que se realizó la etapa. Puede no coincidir con la fecha de carga.
     private $etapa; //nombre de la etapa
     private $aprobado;
     private $motivo;
@@ -13,70 +14,102 @@ class Etapa
     private $id_user;
 
     // GETTERS
-    function getIdPostulante()
-    { return $this->id_postulante;}
+    function getIdEtapa()
+    { return $this->id_etapa;}
+
+    function getIdPostulacion()
+    { return $this->id_postulacion;}
 
     function getFecha()
     { return $this->fecha;}
 
-    function getApellido()
-    { return $this->apellido;}
+    function getFechaEtapa()
+    { return $this->fecha_etapa;}
 
-    function getNombre()
-    { return $this->nombre;}
+    function getEtapa()
+    { return $this->etapa;}
 
-    function getDni()
-    { return $this->dni;}
+    function getAprobado()
+    { return $this->aprobado;}
 
-    function getListaNegra()
-    { return $this->lista_negra;}
+    function getMotivo()
+    { return $this->motivo;}
+
+    function getModoContacto()
+    { return $this->modo_contacto;}
+
+    function getComentarios()
+    { return $this->comentarios;}
+
+    function getIdUser()
+    { return $this->id_user;}
 
 
     //SETTERS
-    function setIdPostulante($val)
-    { $this->id_postulante=$val;}
+    function setIdEtapa($val)
+    { $this->id_etapa=$val;}
+
+    function setIdPostulacion($val)
+    {  $this->id_postulacion=$val;}
 
     function setFecha($val)
-    {  $this->fecha=$val;}
-
-    function setApellido($val)
-    { $this->apellido=$val;}
+    { $this->fecha=$val;}
 
     function setNombre($val)
     { $this->nombre=$val;}
 
-    function setDni($val)
-    { $this->dni=$val;}
+    function setFechaEtapa($val)
+    { $this->fecha_etapa=$val;}
 
-    function setListaNegra($val)
-    { $this->lista_negra=$val;}
+    function setEtapa($val)
+    { $this->etapa=$val;}
+
+    function setAprobado($val)
+    { $this->aprobado=$val;}
+
+    function setMotivo($val)
+    { $this->motivo=$val;}
+
+    function setModoContacto($val)
+    { $this->modo_contacto=$val;}
+
+    function setComentarios($val)
+    { $this->comentarios=$val;}
+
+    function setIdUser($val)
+    { $this->id_user=$val;}
 
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_postulante,
+            $query = "select id_etapa, id_postulacion,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      apellido, nombre, dni, lista_negra
-                      from sel_postulantes
-                      where id_postulante = :nro";
+                      DATE_FORMAT(fecha_etapa, '%d/%m/%Y') as fecha_etapa,
+                      etapa, aprobado, motivo, modo_contacto, comentarios, id_user
+                      from sel_etapas
+                      where id_etapa = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdPostulante($rows[0]['id_postulante']);
+            $this->setIdEtapa($rows[0]['id_etapa']);
+            $this->setIdPostulacion($rows[0]['id_postulacion']);
             $this->setFecha($rows[0]['fecha']);
-            $this->setApellido($rows[0]['apellido']);
-            $this->setNombre($rows[0]['nombre']);
-            $this->setDni($rows[0]['dni']);
-            $this->setListaNegra($rows[0]['lista_negra']);
+            $this->setFechaEtapa($rows[0]['fecha_etapa']);
+            $this->setEtapa($rows[0]['etapa']);
+            $this->setAprobado($rows[0]['aprobado']);
+            $this->setMotivo($rows[0]['motivo']);
+            $this->setModoContacto($rows[0]['modo_contacto']);
+            $this->setComentarios($rows[0]['comnetarios']);
+            $this->setIdUser($rows[0]['id_user']);
         }
     }
 
 
-    public static function getEtapas() {
+    public static function getEtapas() { //ok
         $stmt=new sQuery();
         $query = "select *
                   from sel_etapas";
@@ -93,33 +126,35 @@ class Etapa
 
 
     function save(){ //ok
-        if($this->id_postulante)
-        {$rta = $this->updatePostulante();}
+        if($this->id_etapa)
+        {$rta = $this->updateEtapa();}
         else
-        {$rta =$this->insertPostulante();}
+        {$rta =$this->insertEtapa();}
         return $rta;
     }
 
 
-    public function updatePostulante(){
+    public function updateEtapa(){ //ok
         $stmt=new sQuery();
-        $query="update sel_postulantes set apellido = :apellido,
+        /*$query="update sel_etapas set apellido = :apellido,
                 nombre =:nombre,
                 dni = :dni,
                 lista_negra = :lista_negra
-                where id_postulante = :id_postulante";
+                where id_postulante = :id_postulante";*/
+        $query="update sel_etapas set etapa = :etapa
+                where id_etapa = :id_etapa";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':apellido', $this->getApellido());
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':dni', $this->getDni());
-        $stmt->dpBind(':lista_negra', $this->getListaNegra());
-        $stmt->dpBind(':id_postulante', $this->getIdPostulante());
+        $stmt->dpBind(':etapa', $this->getEtapa());
+        //$stmt->dpBind(':nombre', $this->getNombre());
+        //$stmt->dpBind(':dni', $this->getDni());
+        //$stmt->dpBind(':lista_negra', $this->getListaNegra());
+        $stmt->dpBind(':id_etapa', $this->getIdEtapa());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    private function insertPostulante(){
+    private function insertEtapa(){
         $stmt=new sQuery();
         $query="insert into sel_postulantes(fecha, apellido, nombre, dni, lista_negra)
                 values(sysdate(), :apellido, :nombre, :dni, :lista_negra)";
