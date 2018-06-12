@@ -252,7 +252,7 @@
                 <form name ="postulacion-form" id="postulacion-form" method="POST" action="index.php">
                     <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->postulacion->getIdPostulacion() ?>">
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label for="id_busqueda" class="control-label">Búsqueda</label>
                         <select class="form-control selectpicker show-tick" id="id_busqueda" name="id_busqueda" title="Seleccione la búsqueda" data-live-search="true" data-size="5">
                             <?php foreach ($view->busquedas as $bu){
@@ -266,8 +266,8 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="id_postulante" class="control-label">Postulante</label>
+                    <div class="form-group required">
+                        <label for="id_postulante" class="control-label">Postulante</label>&nbsp;<a href="#" title="nuevo postulante"><i class="far fa-plus-square fa-fw"></i></a>
                         <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
                             <?php foreach ($view->postulantes as $po){
                                 ?>
