@@ -176,6 +176,23 @@
 
 
 
+        $('#etapas_left_side').on('click', '.edit', function(){ //ok
+            alert('editar etapa');
+            /*var id = $(this).closest('tr').attr('data-id');
+            params={};
+            params.id_postulacion = id;
+            params.action = "postulaciones";
+            params.operation = "editPostulacion";
+            //alert(params.id_renovacion);
+            $('#popupbox').load('index.php', params,function(){
+                $('#myModal').modal();
+                $('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                $('#id_postulante').prop('disabled', true).selectpicker('refresh');
+            })*/
+        });
+
+
+
 
 
 
@@ -202,7 +219,7 @@
 
                 <div class="row">
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="etapas_left_side">
 
 
 
@@ -250,38 +267,12 @@
                         </div>
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="etapas_right_side">
 
 
-                            <form>
 
-                                <div class="form-group col-md-12">
-                                    <label for="search_habilidad" class="control-label">Habilidad</label>
-                                    <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione una habilidad">
-                                        <?php foreach ($view->habilidades as $hab){
-                                            ?>
-                                            <option value="<?php echo $hab['id_habilidad']; ?>">
-                                                <?php echo $hab['nombre']; ?>
-                                            </option>
-                                        <?php  } ?>
-                                    </select>
-                                </div>
 
-                            </form>
-                            <br/>
 
-                            <table class="table table-condensed dataTable table-hover" id="habilidades-table">
-                                <thead>
-                                <tr>
-                                    <th class="col-md-9">Nombre</th>
-                                    <th class="col-md-2">Requerida</th>
-                                    <th class="col-md-1 text-center">Eliminar</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <!-- se genera dinamicamente con javascript -->
-                                </tbody>
-                            </table>
 
 
                         </div>
