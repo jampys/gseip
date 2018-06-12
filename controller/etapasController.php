@@ -16,27 +16,28 @@ switch ($operation)
     case 'refreshGrid':
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
-        $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
-        $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
-        $todas = ($_POST['renovado']== 0)? null : 1;
-        $view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->contentTemplate="view/busquedas/busquedasGrid.php";
+        //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
+        //$id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
+        //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
+        //$todas = ($_POST['renovado']== 0)? null : 1;
+        //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
+        $view->etapas = Etapa::getEtapas();
+        $view->contentTemplate="view/postulaciones/etapasGrid.php";
         break;
 
-    case 'saveBusqueda':
-        $busqueda = new Busqueda($_POST['id_busqueda']);
-        $busqueda->setNombre($_POST['nombre']);
-        $busqueda->setFechaApertura($_POST['fecha_apertura']);
-        $busqueda->setFechaCierre( ($_POST['fecha_cierre']!='')? $_POST['fecha_cierre'] : null );
+    case 'saveEtapa': //ok
+        $etapa = new Etapa($_POST['id_etapa']);
+        $etapa->setComentarios($_POST['comentarios']);
+        $etapa->setEtapa($_POST['etapa']);
+        //$busqueda->setFechaCierre( ($_POST['fecha_cierre']!='')? $_POST['fecha_cierre'] : null );
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
-        $busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
-        $busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
+        //$busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
+        //$busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
+        //$busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
 
-        $rta = $busqueda->save();
-        print_r(json_encode(sQuery::dpLastInsertId()));
-        //print_r(json_encode($rta));
+        $rta = $etapa->save();
+        //print_r(json_encode(sQuery::dpLastInsertId()));
+        print_r(json_encode($rta));
         exit;
         break;
 

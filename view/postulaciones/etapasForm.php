@@ -16,7 +16,7 @@
         $('#etapas_left_side').on('click', '.edit', function(){ //ok
             //var id = $(this).closest('tr').attr('data-id');
             var id = $(this).attr('data-id');
-            alert('editar etapa: '+id);
+            //alert('editar etapa: '+id);
             params={};
             params.id_etapa = id;
             params.action = "etapas";
@@ -34,45 +34,47 @@
 
         $('#myModal').on('click', '#submit',function(){
 
-            alert('guardar etapa');
+            //alert('guardar etapa');
 
-            if ($("#postulacion-form").valid()){
+            //if ($("#postulacion-form").valid()){
 
                 var params={};
-                params.action = 'postulaciones';
-                params.operation = 'savePostulacion';
-                params.id_postulacion = $('#id_postulacion').val();
+                params.action = 'etapas';
+                params.operation = 'saveEtapa';
+                params.id_etapa = $('#id_etapa').val();
+                params.etapa = $('#etapa').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
-                params.id_busqueda = $('#id_busqueda').val();
-                params.id_postulante = $('#id_postulante').val();
-                params.origen_cv = $('#origen_cv').val();
-                params.expectativas = $('#expectativas').val();
-                params.propuesta_economica = $('#propuesta_economica').val();
-                //alert(params.id_grupo);
+                params.comentarios = $('#comentarios').val();
+                //params.id_postulante = $('#id_postulante').val();
+                //params.origen_cv = $('#origen_cv').val();
+                //params.expectativas = $('#expectativas').val();
+                //params.propuesta_economica = $('#propuesta_economica').val();
+                //alert(params.id_etapa);
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    objeto.id = data; //data trae el id de la renovacion
+                    //objeto.id = data; //data trae el id de la renovacion
                     //alert(objeto.id);
                     //alert(xhr.responseText);
 
                     if(data >=0){
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
-                        $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
-                        $("#search").trigger("click");
+                        $("#etapa-form button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Etapa guardada con exito').addClass('alert alert-success').show();
+                        $('#etapas_left_side').load('index.php',{action:"etapas", operation:"refreshGrid"});
+                        //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                            $('#myModal').modal('hide');
-                        }, 2000);
+                                                //$('#myModal').modal('hide');
+                                                $('#etapa-form').hide();
+                                              }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la postulación').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar la etapa').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
 
-            }
+            //}
             return false;
         });
 
@@ -111,7 +113,7 @@
                 </div>
 
 
-                <div id="myElem" class="msg" style="display:none"></div>
+                <!--<div id="myElem" class="msg" style="display:none"></div>-->
 
             </div>
 

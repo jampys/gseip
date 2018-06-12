@@ -103,7 +103,7 @@ class Etapa
             $this->setAprobado($rows[0]['aprobado']);
             $this->setMotivo($rows[0]['motivo']);
             $this->setModoContacto($rows[0]['modo_contacto']);
-            $this->setComentarios($rows[0]['comnetarios']);
+            $this->setComentarios($rows[0]['comentarios']);
             $this->setIdUser($rows[0]['id_user']);
         }
     }
@@ -141,11 +141,12 @@ class Etapa
                 dni = :dni,
                 lista_negra = :lista_negra
                 where id_postulante = :id_postulante";*/
-        $query="update sel_etapas set etapa = :etapa
+        $query="update sel_etapas set etapa = :etapa,
+                comentarios = :comentarios
                 where id_etapa = :id_etapa";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':etapa', $this->getEtapa());
-        //$stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':comentarios', $this->getComentarios());
         //$stmt->dpBind(':dni', $this->getDni());
         //$stmt->dpBind(':lista_negra', $this->getListaNegra());
         $stmt->dpBind(':id_etapa', $this->getIdEtapa());
