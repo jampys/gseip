@@ -66,6 +66,25 @@
             });
 
 
+            $(document).on('click', '.etapas', function(){
+                alert('presiono sobre etapas');
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_postulacion = id;
+                params.action = "postulaciones";
+                params.operation = "etapas";
+                //params.target = "view";
+                $('#popupbox').load('index.php', params,function(){
+                    //$("fieldset").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
+                    //$('#myModalLabel').html('');
+                    $('#myModal').modal();
+                })
+
+            });
+
+
             $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "postulaciones";

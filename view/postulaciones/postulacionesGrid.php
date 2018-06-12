@@ -103,7 +103,7 @@
                         <td><?php echo $rp['postulante']; ?></td>
 
                         <td class="text-center">
-                            <a class="view" href="javascript:void(0);">
+                            <a class="etapas" href="javascript:void(0);">
                                 <i class="far fa-list-alt fa-fw" title="etapas"></i>
                             </a>
                         </td>

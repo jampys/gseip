@@ -7,6 +7,7 @@ include_once("model/contratosModel.php");
 
 include_once("model/busquedasModel.php");
 include_once("model/postulantesModel.php");
+include_once("model/etapasModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -72,6 +73,22 @@ switch ($operation)
         $view->disableLayout=true;
         $view->target = $_POST['target'];
         $view->contentTemplate="view/postulaciones/postulacionesForm.php";
+        break;
+
+    case 'etapas':
+        $view->label='Etapas';
+        //$view->postulacion = new Postulacion($_POST['id_postulacion']);
+
+        $view->etapas = Etapa::getEtapas();
+        //$view->localidades = Localidad::getLocalidades();
+        //$view->contratos = Contrato::getContratos();
+        //$view->busquedas = Busqueda::getBusquedasActivas();
+        //$view->postulantes = Postulante::getPostulantesActivos();
+        //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
+
+        $view->disableLayout=true;
+        //$view->target = $_POST['target'];
+        $view->contentTemplate="view/postulaciones/etapasForm.php";
         break;
 
     case 'deleteHabilidad':
