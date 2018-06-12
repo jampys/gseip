@@ -123,7 +123,7 @@ class Postulacion
         $stmt->dpBind(':id_postulante', $this->getIdPostulante());
         $stmt->dpBind(':origen_cv', $this->getOrigenCv());
         $stmt->dpBind(':expectativas', $this->getExpectativas());
-        $stmt->dpBind(':propuesta_conomica', $this->getPropuestaEconomica());
+        $stmt->dpBind(':propuesta_economica', $this->getPropuestaEconomica());
         $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
