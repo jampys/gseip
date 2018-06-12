@@ -1,4 +1,4 @@
-﻿<script type="text/javascript">
+<script type="text/javascript">
 
 
     $(document).ready(function(){
@@ -99,71 +99,16 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel"><?php echo $view->label ?></h4>
             </div>
+
             <div class="modal-body">
-
-
+                
                 <div class="row">
+                        <div class="col-md-6" id="etapas_left_side"><?php include_once('view/postulaciones/etapasGrid.php');?></div>
 
-                        <div class="col-md-6" id="etapas_left_side">
-
-
-
-
-                                <table class="table table-condensed dataTable table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Fecha</th>
-                                        <th>Etapa</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php foreach ($view->etapas as $et): ?>
-                                        <tr>
-                                            <td><?php echo $et['fecha'];?></td>
-                                            <td><?php echo $et['etapa'];?></td>
-                                            <td class="text-center"><a class="view" href="javascript:void(0);" data-id="<?php echo $et['id_etapa'];?>" title="ver"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
-                                            <td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" data-id="<?php echo $et['id_etapa'];?>" title="editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                        <div class="col-md-6" id="etapas_right_side"></div>
 
 
-
-
-
-                            <!--<table class="table table-condensed dataTable table-hover" id="puestos-table">
-                                <thead>
-                                <tr>
-                                    <th class="col-md-1">Cod.</th>
-                                    <th class="col-md-10">Nombre</th>
-                                    <th class="col-md-1 text-center">Eliminar</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>-->
-
-
-
-                        </div>
-
-
-                        <div class="col-md-6" id="etapas_right_side">
-
-
-
-
-
-
-
-                        </div>
-
-
-                    </div>
+                </div>
 
 
                 <div id="myElem" class="msg" style="display:none"></div>
