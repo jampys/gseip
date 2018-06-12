@@ -52,21 +52,21 @@
 
 
 <form name ="etapa-form" id="etapa-form" method="POST" action="index.php">
-    <input type="hidden" name="id_etapa" id="id_etapa" value="<?php //print $view->puesto->getIdPuesto() ?>">
+    <input type="hidden" name="id_etapa" id="id_etapa" value="<?php print $view->etapa->getIdEtapa() ?>">
 
     <div class="form-group required">
-        <label class="control-label" for="codigo">Código</label>
-        <input class="form-control" type="text" name="codigo" id="codigo" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Código">
+        <label class="control-label" for="etapa">Etapa</label>
+        <input class="form-control" type="text" name="etapa" id="etapa" value = "<?php print $view->etapa->getEtapa() ?>" placeholder="Etapa">
     </div>
 
     <div class="form-group required">
-        <label class="control-label" for="nombre">Nombre</label>
-        <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php //print $view->puesto->getNombre() ?>" placeholder="Nombre">
+        <label class="control-label" for="motivo">Motivo</label>
+        <input class="form-control" type="text" name="motivo" id="motivo"value = "<?php print $view->etapa->getMotivo() ?>" placeholder="Motivo">
     </div>
 
     <div class="form-group">
-        <label class="control-label" for="descripcion">Descripción</label>
-        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="2"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+        <label class="control-label" for="comentarios">Comentarios</label>
+        <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="2"><?php print $view->etapa->getComentarios(); ?></textarea>
     </div>
 
 

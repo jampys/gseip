@@ -53,25 +53,12 @@ switch ($operation)
         break;
 
     case 'editEtapa': //ok
-        /*$view->label='Editar búsqueda';
-        $view->busqueda = new Busqueda($_POST['id_busqueda']);
+        //$view->label='Editar búsqueda';
+        $view->etapa = new Etapa($_POST['id_etapa']);
 
-        $view->puestos = Puesto::getPuestos();
-        $view->localidades = Localidad::getLocalidades();
-        $view->contratos = Contrato::getContratos();
-
-        $view->disableLayout=true;
-        $view->target = $_POST['target'];
-        $view->contentTemplate="view/busquedas/busquedasForm.php";
-        break;*/
-        //$view->label='Etapas';
-        //$view->postulacion = new Postulacion($_POST['id_postulacion']);
-
-        //$view->etapas = Etapa::getEtapas();
+        //$view->puestos = Puesto::getPuestos();
         //$view->localidades = Localidad::getLocalidades();
         //$view->contratos = Contrato::getContratos();
-        //$view->busquedas = Busqueda::getBusquedasActivas();
-        //$view->postulantes = Postulante::getPostulantesActivos();
         //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
 
         $view->disableLayout=true;
