@@ -130,17 +130,16 @@ class Postulacion
 
     }
 
-    private function insertPostulacion(){
+    private function insertPostulacion(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_busquedas(fecha, nombre, fecha_apertura, fecha_cierre, id_puesto, id_localidad, id_contrato)
-                values(sysdate(), :nombre, STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'), STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), :id_puesto, :id_localidad, :id_contrato)";
+        $query="insert into sel_postulaciones(id_busqueda, id_postulante, fecha, origen_cv, expectativas, propuesta_economica)
+                values(:id_busqueda, :id_postulante, sysdate(), :origen_cv, :expectativas, :propuesta_economica)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':fecha_apertura', $this->getFechaApertura());
-        $stmt->dpBind(':fecha_cierre', $this->getFechaCierre());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
-        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
+        $stmt->dpBind(':id_postulante', $this->getIdPostulante());
+        $stmt->dpBind(':origen_cv', $this->getOrigenCv());
+        $stmt->dpBind(':expectativas', $this->getExpectativas());
+        $stmt->dpBind(':propuesta_economica', $this->getPropuestaEconomica());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
