@@ -56,14 +56,15 @@
                 params.action = 'etapas';
                 params.operation = 'saveEtapa';
                 params.id_etapa = $('#id_etapa').val();
-                params.etapa = $('#etapa').val();
                 params.id_postulacion = $('#id_postulacion').val();
+                params.fecha_etapa = $('#fecha_etapa').val();
+                params.etapa = $('#etapa').val();
+                params.aprobado = $('#aprobado').val();
+                params.motivo = $('#motivo').val();
+                params.modo_contacto = $('#modo_contacto').val();
+                params.comentarios = $('#comentarios').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
-                params.comentarios = $('#comentarios').val();
-                //params.origen_cv = $('#origen_cv').val();
-                //params.expectativas = $('#expectativas').val();
-                //params.propuesta_economica = $('#propuesta_economica').val();
                 //alert(params.id_etapa);
 
                 $.post('index.php',params,function(data, status, xhr){

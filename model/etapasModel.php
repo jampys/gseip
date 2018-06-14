@@ -147,7 +147,11 @@ class Etapa
                 dni = :dni,
                 lista_negra = :lista_negra
                 where id_postulante = :id_postulante";*/
-        $query="update sel_etapas set etapa = :etapa,
+        $query="update sel_etapas set fecha_etapa = :fecha_etapa,
+                etapa = :etapa,
+                aprobado = :aprobado,
+                motivo = :motivo,
+                modo_contacto = :modo_contacto,
                 comentarios = :comentarios
                 where id_etapa = :id_etapa";
         $stmt->dpPrepare($query);

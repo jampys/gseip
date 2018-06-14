@@ -70,13 +70,69 @@
     <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->etapa->getIdPostulacion() ?>">
 
     <div class="form-group required">
-        <label class="control-label" for="etapa">Etapa</label>
-        <input class="form-control" type="text" name="etapa" id="etapa" value = "<?php print $view->etapa->getEtapa() ?>" placeholder="Etapa">
+        <label class="control-label" for="fecha_etapa">Fecha etapa</label>
+        <div class="input-group date">
+            <input class="form-control" type="text" name="fecha_etapa" id="fecha_etapa" value = "<?php print $view->etapa->getFechaEtapa() ?>" placeholder="DD/MM/AAAA">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
     </div>
 
     <div class="form-group required">
-        <label class="control-label" for="motivo">Motivo</label>
-        <input class="form-control" type="text" name="motivo" id="motivo"value = "<?php print $view->etapa->getMotivo() ?>" placeholder="Motivo">
+        <label for="etapa" class="control-label">Etapa</label>
+        <select class="form-control selectpicker show-tick" id="etapa" name="etapa" title="Seleccione la etapa">
+            <?php foreach ($view->etapas['enum'] as $et){
+                ?>
+                <option value="<?php echo $et; ?>"
+                    <?php echo ($et == $view->etapa->getEtapa() OR ($et == $view->etapas['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
+                    >
+                    <?php echo $et; ?>
+                </option>
+            <?php  } ?>
+        </select>
+    </div>
+
+
+    <div class="form-group required">
+        <label for="aprobado" class="control-label">Aprobado</label>
+
+            <?php foreach($view->aprobados['enum'] as $val){ ?>
+                <label class="radio-inline">
+                    <input type="radio" name="sexo" value="<?php echo $val ?>"
+                        <?php echo ($val == $view->etapa->getAprobado() OR ($val == $view->aprobados['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
+                        ><?php echo $val ?>
+                </label>
+            <?php } ?>
+
+    </div>
+
+    <div class="form-group required">
+        <label for="motivo" class="control-label">Motivo</label>
+        <select class="form-control selectpicker show-tick" id="motivo" name="motivo" title="Seleccione el motivo">
+            <?php foreach ($view->motivos['enum'] as $mo){
+                ?>
+                <option value="<?php echo $mo; ?>"
+                    <?php echo ($mo == $view->etapa->getMotivo() OR ($mo == $view->motivos['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
+                    >
+                    <?php echo $mo; ?>
+                </option>
+            <?php  } ?>
+        </select>
+    </div>
+
+    <div class="form-group required">
+        <label for="modo_contacto" class="control-label">Modo contacto</label>
+        <select class="form-control selectpicker show-tick" id="modo_contacto" name="modo_contacto" title="Seleccione el modo de contacto">
+            <?php foreach ($view->modos_contacto['enum'] as $mc){
+                ?>
+                <option value="<?php echo $mc; ?>"
+                    <?php echo ($mc == $view->etapa->getModoContacto() OR ($mc == $view->modos_contacto['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
+                    >
+                    <?php echo $mc; ?>
+                </option>
+            <?php  } ?>
+        </select>
     </div>
 
     <div class="form-group">

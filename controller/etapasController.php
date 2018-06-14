@@ -27,14 +27,14 @@ switch ($operation)
 
     case 'saveEtapa': //ok
         $etapa = new Etapa($_POST['id_etapa']);
-        $etapa->setComentarios($_POST['comentarios']);
+        $etapa->setFechaEtapa($_POST['fecha_etapa']);
         $etapa->setEtapa($_POST['etapa']);
-        //$busqueda->setFechaCierre( ($_POST['fecha_cierre']!='')? $_POST['fecha_cierre'] : null );
+        $etapa->setAprobado($_POST['aprobado']);
+        $etapa->setMotivo($_POST['motivo']);
+        $etapa->setModoContacto($_POST['modo_contacto']);
+        $etapa->setComentarios($_POST['comentarios']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        //$busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
         //$busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
-        //$busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
-
         $rta = $etapa->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
@@ -46,8 +46,10 @@ switch ($operation)
         $view->etapa = new Etapa($_POST['id_etapa']);
 
         //$view->puestos = Puesto::getPuestos();
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->contratos = Contrato::getContratos();
+        $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
+        $view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
+        $view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
+        $view->aprobados = Soporte::get_enum_values('sel_etapas', 'aprobado');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
@@ -58,9 +60,10 @@ switch ($operation)
         $view->etapa = new Etapa($_POST['id_etapa']);
 
         //$view->puestos = Puesto::getPuestos();
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->contratos = Contrato::getContratos();
-        //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
+        $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
+        $view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
+        $view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
+        $view->aprobados = Soporte::get_enum_values('sel_etapas', 'aprobado');
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
