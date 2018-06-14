@@ -61,6 +61,11 @@
 
 
 <form name ="etapa-form" id="etapa-form" method="POST" action="index.php">
+
+    <div class="alert alert-info">
+        <strong><?php echo $view->label ?></strong>
+    </div>
+
     <input type="hidden" name="id_etapa" id="id_etapa" value="<?php print $view->etapa->getIdEtapa() ?>">
     <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->etapa->getIdPostulacion() ?>">
 

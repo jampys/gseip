@@ -42,8 +42,8 @@ switch ($operation)
         break;
 
     case 'newEtapa': //ok
-        //$view->label='Nueva búsqueda';
-        $view->busqueda = new Etapa();
+        $view->label='Nueva etapa';
+        $view->etapa = new Etapa($_POST['id_etapa']);
 
         //$view->puestos = Puesto::getPuestos();
         //$view->localidades = Localidad::getLocalidades();
@@ -54,7 +54,7 @@ switch ($operation)
         break;
 
     case 'editEtapa': //ok
-        //$view->label='Editar búsqueda';
+        $view->label='Editar etapa';
         $view->etapa = new Etapa($_POST['id_etapa']);
 
         //$view->puestos = Puesto::getPuestos();

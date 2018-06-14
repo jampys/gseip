@@ -34,7 +34,7 @@
         $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
             params.action = "etapas";
-            params.operation = "editEtapa";
+            params.operation = "newEtapa";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -76,7 +76,7 @@
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#etapa-form button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Etapa guardada con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                        $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
@@ -129,7 +129,10 @@
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
 
-                            <?php include_once('view/postulaciones/etapasGrid.php');?>
+                            <div class="grid">
+                                <?php include_once('view/postulaciones/etapasGrid.php');?>
+                            </div>
+
                         </div>
 
                         <div class="col-md-6" id="etapas_right_side">
