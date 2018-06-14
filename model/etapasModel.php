@@ -155,10 +155,12 @@ class Etapa
                 comentarios = :comentarios
                 where id_etapa = :id_etapa";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':fecha_etapa', $this->getFechaEtapa());
         $stmt->dpBind(':etapa', $this->getEtapa());
+        $stmt->dpBind(':aprobado', $this->getAprobado());
+        $stmt->dpBind(':motivo', $this->getMotivo());
+        $stmt->dpBind(':modo_contacto', $this->getModoContacto());
         $stmt->dpBind(':comentarios', $this->getComentarios());
-        //$stmt->dpBind(':dni', $this->getDni());
-        //$stmt->dpBind(':lista_negra', $this->getListaNegra());
         $stmt->dpBind(':id_etapa', $this->getIdEtapa());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
