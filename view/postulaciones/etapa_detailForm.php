@@ -97,15 +97,20 @@
     <div class="form-group required">
         <label for="aprobado" class="control-label">Aprobado</label>
 
+        <div class="input-group">
+
             <?php foreach($view->aprobados['enum'] as $val){ ?>
                 <label class="radio-inline">
-                    <input type="radio" name="sexo" value="<?php echo $val ?>"
+                    <input type="radio" name="aprobado" value="<?php echo $val ?>"
                         <?php echo ($val == $view->etapa->getAprobado() OR ($val == $view->aprobados['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
-                        ><?php echo $val ?>
+                        ><?php echo ($val==1)? 'Aprobado':'Desaprobado' ?>
                 </label>
             <?php } ?>
 
+        </div>
     </div>
+
+
 
     <div class="form-group required">
         <label for="motivo" class="control-label">Motivo</label>
