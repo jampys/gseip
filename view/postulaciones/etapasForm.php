@@ -31,6 +31,20 @@
         });
 
 
+        $('#etapas_left_side').on('click', '#add', function(){ //ok
+            params={};
+            params.action = "etapas";
+            params.operation = "editEtapa";
+            //alert(params.id_renovacion);
+            $('#etapas_right_side').load('index.php', params,function(){
+                //alert('cargo el contenido en right side');
+                //$('#myModal').modal();
+                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+            })
+        });
+
+
 
         $('#myModal').on('click', '#submit',function(){
 
@@ -43,10 +57,10 @@
                 params.operation = 'saveEtapa';
                 params.id_etapa = $('#id_etapa').val();
                 params.etapa = $('#etapa').val();
+                params.id_postulacion = $('#id_postulacion').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
                 params.comentarios = $('#comentarios').val();
-                //params.id_postulante = $('#id_postulante').val();
                 //params.origen_cv = $('#origen_cv').val();
                 //params.expectativas = $('#expectativas').val();
                 //params.propuesta_economica = $('#propuesta_economica').val();
@@ -62,7 +76,7 @@
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#etapa-form button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Etapa guardada con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side').load('index.php',{action:"etapas", operation:"refreshGrid"});
+                        $('#etapas_left_side').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');

@@ -21,7 +21,7 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->etapas = Etapa::getEtapas();
+        $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
         $view->contentTemplate="view/postulaciones/etapasGrid.php";
         break;
 
@@ -41,16 +41,16 @@ switch ($operation)
         exit;
         break;
 
-    case 'newBusqueda':
-        $view->label='Nueva búsqueda';
-        $view->busqueda = new Busqueda();
+    case 'newEtapa': //ok
+        //$view->label='Nueva búsqueda';
+        $view->busqueda = new Etapa();
 
-        $view->puestos = Puesto::getPuestos();
-        $view->localidades = Localidad::getLocalidades();
-        $view->contratos = Contrato::getContratos();
+        //$view->puestos = Puesto::getPuestos();
+        //$view->localidades = Localidad::getLocalidades();
+        //$view->contratos = Contrato::getContratos();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/busquedas/busquedasForm.php";
+        $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
         break;
 
     case 'editEtapa': //ok
