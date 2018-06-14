@@ -96,13 +96,6 @@
 
 
 
-            $(document).on('click', '#cancel',function(){ //ok
-                $('#myModal').modal('hide');
-            });
-
-
-
-
             $(document).on('click', '#example .delete', function(){
                 alert('Funcionalidad en desarrollo');
                 throw new Error();

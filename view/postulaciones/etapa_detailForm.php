@@ -19,6 +19,15 @@
         });
 
 
+        //cancel de formulario de etapa
+        $('#etapa-form #cancel').on('click', function(){
+            //alert('cancelar edicion de etapa');
+            //uploadObj.stopUpload();
+            //$('#myModal').modal('hide');
+            $('#etapa-form').hide();
+        });
+
+
         $('#puesto').validate({ //ok
             rules: {
                 codigo: {
