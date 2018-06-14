@@ -13,6 +13,14 @@
         });
 
 
+        $('.input-group.date').datepicker({
+            //inline: true
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
+
+
         $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -21,9 +29,6 @@
 
         //cancel de formulario de etapa
         $('#etapa-form #cancel').on('click', function(){
-            //alert('cancelar edicion de etapa');
-            //uploadObj.stopUpload();
-            //$('#myModal').modal('hide');
             $('#etapa-form').hide();
         });
 

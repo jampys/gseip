@@ -147,7 +147,7 @@ class Etapa
                 dni = :dni,
                 lista_negra = :lista_negra
                 where id_postulante = :id_postulante";*/
-        $query="update sel_etapas set fecha_etapa = :fecha_etapa,
+        $query="update sel_etapas set fecha_etapa = STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'),
                 etapa = :etapa,
                 aprobado = :aprobado,
                 motivo = :motivo,
