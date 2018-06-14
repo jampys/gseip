@@ -142,11 +142,6 @@ class Etapa
 
     public function updateEtapa(){ //ok
         $stmt=new sQuery();
-        /*$query="update sel_etapas set apellido = :apellido,
-                nombre =:nombre,
-                dni = :dni,
-                lista_negra = :lista_negra
-                where id_postulante = :id_postulante";*/
         $query="update sel_etapas set fecha_etapa = STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'),
                 etapa = :etapa,
                 aprobado = :aprobado,
@@ -167,15 +162,19 @@ class Etapa
 
     }
 
-    private function insertEtapa(){
+    private function insertEtapa(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_postulantes(fecha, apellido, nombre, dni, lista_negra)
-                values(sysdate(), :apellido, :nombre, :dni, :lista_negra)";
+        $query="insert into sel_etapas(id_postulacion, fecha, fecha_etapa, etapa, aprobado, motivo , modo_contacto, comentarios, id_user)
+                values(:id_postulacion, sysdate(), :fecha_etapa, :etapa, :aprobado, :motivo, :modo_contacto, :comentarios, :id_user)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':apellido', $this->getApellido());
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':dni', $this->getDni());
-        $stmt->dpBind(':lista_negra', $this->getListaNegra());
+        $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
+        $stmt->dpBind(':fecha_etapa', $this->getFechaEtapa());
+        $stmt->dpBind(':etapa', $this->getEtapa());
+        $stmt->dpBind(':aprobado', $this->getAprobado());
+        $stmt->dpBind(':motivo', $this->getMotivo());
+        $stmt->dpBind(':modo_contacto', $this->getModoContacto());
+        $stmt->dpBind(':comentarios', $this->getComentarios());
+        $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

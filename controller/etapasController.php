@@ -27,12 +27,14 @@ switch ($operation)
 
     case 'saveEtapa': //ok
         $etapa = new Etapa($_POST['id_etapa']);
+        $etapa->setIdPostulacion($_POST['id_postulacion']);
         $etapa->setFechaEtapa($_POST['fecha_etapa']);
         $etapa->setEtapa($_POST['etapa']);
         $etapa->setAprobado($_POST['aprobado']);
         $etapa->setMotivo($_POST['motivo']);
         $etapa->setModoContacto($_POST['modo_contacto']);
         $etapa->setComentarios($_POST['comentarios']);
+        $etapa->setIdUser($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         //$busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
         $rta = $etapa->save();
