@@ -91,23 +91,11 @@ switch ($operation)
 
 
     default : //carga la tabla de etapas de la postulacion
-        //$view->puestos = Puesto::getPuestos(); //carga el combo para filtrar puestos
-        //$view->localidades = Localidad::getLocalidades(); //carga el combo para filtrar localidades (Areas)
-        //$view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
-        //$view->contentTemplate="view/busquedas/busquedasGrid.php";
-        //break;
-        $view->label='Etapas';
         //$view->postulacion = new Postulacion($_POST['id_postulacion']);
-
-        $view->etapas = Etapa::getEtapas();
+        $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
         //$view->localidades = Localidad::getLocalidades();
-        //$view->contratos = Contrato::getContratos();
-        //$view->busquedas = Busqueda::getBusquedasActivas();
-        //$view->postulantes = Postulante::getPostulantesActivos();
         //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
-
         $view->disableLayout=true;
-        //$view->target = $_POST['target'];
         $view->contentTemplate="view/postulaciones/etapasForm.php";
         break;
 }

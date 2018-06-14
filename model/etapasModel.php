@@ -109,12 +109,18 @@ class Etapa
     }
 
 
-    public static function getEtapas() { //ok
+    public static function getEtapas($id_postulacion) { //ok
         $stmt=new sQuery();
-        $query = "select *
-                  from sel_etapas";
+        $query = "select et.id_etapa, et.id_postulacion,
+                  DATE_FORMAT(et.fecha, '%d/%m/%Y') as fecha,
+                  DATE_FORMAT(et.fecha_etapa, '%d/%m/%Y') as fecha_etapa,
+                  et.etapa, et.aprobado, et.motivo, et.modo_contacto, et.comentarios, et.id_user,
+                  us.user
+                  from sel_etapas et
+                  join sec_users us on et.id_user = us.id_user
+                  where et.id_postulacion = :id_postulacion";
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_postulacion', $id_postulacion);
         //$stmt->dpBind(':id_grupo', $id_grupo);
         //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
         //$stmt->dpBind(':id_contrato', $id_contrato);

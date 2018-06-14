@@ -160,14 +160,8 @@
 
         //cancel de formulario de postulacion
         $('#myModal #cancel').on('click', function(){
-           //alert('cancelar');
-            //uploadObj.stopUpload();
             $('#myModal').modal('hide');
         });
-
-        /*$(document).on('click', '#cancel',function(){ //ok
-            $('#myModal').modal('hide');
-        });*/
 
 
         $('#myModal').modal({
