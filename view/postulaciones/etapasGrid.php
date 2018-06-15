@@ -41,10 +41,10 @@
 
 <?php }else{ ?>
 
+    <br/>
     <div class="alert alert-warning">
-        <strong>Warning!</strong> Indicates a warning that might need attention.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> La postulación aún no tiene etapas registradas.
     </div>
-
 
 <?php } ?>
 

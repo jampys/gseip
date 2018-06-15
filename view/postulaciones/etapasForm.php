@@ -128,9 +128,11 @@
 
                         <div class="col-md-6" id="etapas_left_side">
 
-                            <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar etapa">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
+                            <div class="clearfix">
+                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar etapa">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </div>
 
                             <div class="grid">
                                 <?php include_once('view/postulaciones/etapasGrid.php');?>
