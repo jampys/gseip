@@ -30,6 +30,28 @@
             })
         });
 
+        $('#etapas_left_side').on('click', '.view', function(){ //ok
+            //var id = $(this).closest('tr').attr('data-id');
+            var id = $(this).attr('data-id');
+            //alert('editar etapa: '+id);
+            params={};
+            params.id_etapa = id;
+            params.action = "etapas";
+            params.operation = "editEtapa";
+            params.target = "view";
+            //alert(params.id_renovacion);
+            $('#etapas_right_side').load('index.php', params,function(){
+                //alert('cargo el contenido en right side');
+                $("#etapas_right_side fieldset").prop("disabled", true);
+                $("#etapas_right_side button").css('display', 'none');
+                //$('#myModal').modal();
+                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                $('.selectpicker').selectpicker('refresh');
+            })
+        });
+
+
+
 
         $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};

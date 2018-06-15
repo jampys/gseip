@@ -66,6 +66,7 @@
 
 
 <form name ="etapa-form" id="etapa-form" method="POST" action="index.php">
+    <fieldset>
 
     <div class="alert alert-info">
         <strong><?php echo $view->label ?></strong>
@@ -162,6 +163,7 @@
     </div>
 
 
+    </fieldset>
 </form>
 
 

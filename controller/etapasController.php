@@ -58,7 +58,7 @@ switch ($operation)
         break;
 
     case 'editEtapa': //ok
-        $view->label='Editar etapa';
+        $view->label = ($_POST['target']!='view')? 'Editar etapa': 'Ver etapa';
         $view->etapa = new Etapa($_POST['id_etapa']);
 
         //$view->puestos = Puesto::getPuestos();

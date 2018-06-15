@@ -48,7 +48,7 @@
             });
 
 
-            $(document).on('click', '.view', function(){ //ok
+            $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_postulacion = id;
