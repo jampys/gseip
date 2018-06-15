@@ -118,7 +118,8 @@ class Etapa
                   us.user
                   from sel_etapas et
                   join sec_users us on et.id_user = us.id_user
-                  where et.id_postulacion = :id_postulacion";
+                  where et.id_postulacion = :id_postulacion
+                  order by et.fecha_etapa asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_postulacion', $id_postulacion);
         //$stmt->dpBind(':id_grupo', $id_grupo);
