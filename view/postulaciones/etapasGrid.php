@@ -1,4 +1,4 @@
-<?php if(isset($view->etapas)) {?>
+<?php if(isset($view->etapas) && sizeof($view->etapas) > 0) {?>
 
     <table class="table table-condensed dataTable table-hover">
         <thead>
