@@ -165,7 +165,7 @@ class Etapa
     private function insertEtapa(){ //ok
         $stmt=new sQuery();
         $query="insert into sel_etapas(id_postulacion, fecha, fecha_etapa, etapa, aprobado, motivo , modo_contacto, comentarios, id_user)
-                values(:id_postulacion, sysdate(), :fecha_etapa, :etapa, :aprobado, :motivo, :modo_contacto, :comentarios, :id_user)";
+                values(:id_postulacion, sysdate(), STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'), :etapa, :aprobado, :motivo, :modo_contacto, :comentarios, :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
         $stmt->dpBind(':fecha_etapa', $this->getFechaEtapa());
