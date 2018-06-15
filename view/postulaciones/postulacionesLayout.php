@@ -182,6 +182,19 @@
                 <form id="search_form" name="search_form">
 
                     <div class="form-group col-md-3">
+                        <label for="search_contrato" class="control-label">Búsqueda</label>
+                        <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
+                            <option value="">Seleccione la búsqueda</option>
+                            <?php foreach ($view->contratos as $con){
+                                ?>
+                                <option value="<?php echo $con['id_contrato']; ?>" >
+                                    <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3">
                         <label for="search_puesto" class="control-label">Puesto</label>
                         <select id="search_puesto" name="search_puesto" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
                             <option value="">Seleccione un puesto</option>
@@ -206,19 +219,6 @@
                                     </option>
                                 <?php  } ?>
                             </select>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="search_contrato" class="control-label">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un contrato</option>
-                            <?php foreach ($view->contratos as $con){
-                                ?>
-                                <option value="<?php echo $con['id_contrato']; ?>" >
-                                    <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
-                                </option>
-                            <?php  } ?>
-                        </select>
                     </div>
 
 
