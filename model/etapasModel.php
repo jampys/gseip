@@ -7,7 +7,7 @@ class Etapa
     private $fecha; //fecha de registro en el sistema
     private $fecha_etapa; //fecha en que se realizó la etapa. Puede no coincidir con la fecha de carga.
     private $etapa; //nombre de la etapa
-    private $aprobado;
+    private $aplica;
     private $motivo;
     private $modo_contacto;
     private $comentarios;
@@ -29,8 +29,8 @@ class Etapa
     function getEtapa()
     { return $this->etapa;}
 
-    function getAprobado()
-    { return $this->aprobado;}
+    function getAplica()
+    { return $this->aplica;}
 
     function getMotivo()
     { return $this->motivo;}
@@ -64,8 +64,8 @@ class Etapa
     function setEtapa($val)
     { $this->etapa=$val;}
 
-    function setAprobado($val)
-    { $this->aprobado=$val;}
+    function setAplica($val)
+    { $this->aplica=$val;}
 
     function setMotivo($val)
     { $this->motivo=$val;}
@@ -87,7 +87,7 @@ class Etapa
             $query = "select id_etapa, id_postulacion,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
                       DATE_FORMAT(fecha_etapa, '%d/%m/%Y') as fecha_etapa,
-                      etapa, aprobado, motivo, modo_contacto, comentarios, id_user
+                      etapa, aplica, motivo, modo_contacto, comentarios, id_user
                       from sel_etapas
                       where id_etapa = :nro";
             $stmt->dpPrepare($query);
@@ -100,7 +100,7 @@ class Etapa
             $this->setFecha($rows[0]['fecha']);
             $this->setFechaEtapa($rows[0]['fecha_etapa']);
             $this->setEtapa($rows[0]['etapa']);
-            $this->setAprobado($rows[0]['aprobado']);
+            $this->setAplica($rows[0]['aplica']);
             $this->setMotivo($rows[0]['motivo']);
             $this->setModoContacto($rows[0]['modo_contacto']);
             $this->setComentarios($rows[0]['comentarios']);
@@ -114,7 +114,7 @@ class Etapa
         $query = "select et.id_etapa, et.id_postulacion,
                   DATE_FORMAT(et.fecha, '%d/%m/%Y') as fecha,
                   DATE_FORMAT(et.fecha_etapa, '%d/%m/%Y') as fecha_etapa,
-                  et.etapa, et.aprobado, et.motivo, et.modo_contacto, et.comentarios, et.id_user,
+                  et.etapa, et.aplica, et.motivo, et.modo_contacto, et.comentarios, et.id_user,
                   us.user
                   from sel_etapas et
                   join sec_users us on et.id_user = us.id_user
@@ -144,7 +144,7 @@ class Etapa
         $stmt=new sQuery();
         $query="update sel_etapas set fecha_etapa = STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'),
                 etapa = :etapa,
-                aprobado = :aprobado,
+                aplica = :aplica,
                 motivo = :motivo,
                 modo_contacto = :modo_contacto,
                 comentarios = :comentarios
@@ -152,7 +152,7 @@ class Etapa
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_etapa', $this->getFechaEtapa());
         $stmt->dpBind(':etapa', $this->getEtapa());
-        $stmt->dpBind(':aprobado', $this->getAprobado());
+        $stmt->dpBind(':aplica', $this->getAplica());
         $stmt->dpBind(':motivo', $this->getMotivo());
         $stmt->dpBind(':modo_contacto', $this->getModoContacto());
         $stmt->dpBind(':comentarios', $this->getComentarios());
@@ -164,13 +164,13 @@ class Etapa
 
     private function insertEtapa(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_etapas(id_postulacion, fecha, fecha_etapa, etapa, aprobado, motivo , modo_contacto, comentarios, id_user)
-                values(:id_postulacion, sysdate(), STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'), :etapa, :aprobado, :motivo, :modo_contacto, :comentarios, :id_user)";
+        $query="insert into sel_etapas(id_postulacion, fecha, fecha_etapa, etapa, aplica, motivo , modo_contacto, comentarios, id_user)
+                values(:id_postulacion, sysdate(), STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'), :etapa, :aplica, :motivo, :modo_contacto, :comentarios, :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
         $stmt->dpBind(':fecha_etapa', $this->getFechaEtapa());
         $stmt->dpBind(':etapa', $this->getEtapa());
-        $stmt->dpBind(':aprobado', $this->getAprobado());
+        $stmt->dpBind(':aplica', $this->getAplica());
         $stmt->dpBind(':motivo', $this->getMotivo());
         $stmt->dpBind(':modo_contacto', $this->getModoContacto());
         $stmt->dpBind(':comentarios', $this->getComentarios());

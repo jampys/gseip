@@ -30,7 +30,7 @@ switch ($operation)
         $etapa->setIdPostulacion($_POST['id_postulacion']);
         $etapa->setFechaEtapa($_POST['fecha_etapa']);
         $etapa->setEtapa($_POST['etapa']);
-        $etapa->setAprobado($_POST['aprobado']);
+        $etapa->setAplica($_POST['aplica']);
         $etapa->setMotivo($_POST['motivo']);
         $etapa->setModoContacto($_POST['modo_contacto']);
         $etapa->setComentarios($_POST['comentarios']);
@@ -51,7 +51,7 @@ switch ($operation)
         $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
         $view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
         $view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
-        $view->aprobados = Soporte::get_enum_values('sel_etapas', 'aprobado');
+        $view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
@@ -65,7 +65,7 @@ switch ($operation)
         $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
         $view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
         $view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
-        $view->aprobados = Soporte::get_enum_values('sel_etapas', 'aprobado');
+        $view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];

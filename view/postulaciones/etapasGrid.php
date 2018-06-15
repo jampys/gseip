@@ -3,7 +3,7 @@
     <tr>
         <th>Fecha</th>
         <th>Etapa</th>
-        <th>Aprobado</th>
+        <th>Aplica</th>
         <th>Usuario</th>
         <th></th>
         <th></th>
@@ -14,7 +14,7 @@
         <tr>
             <td><?php echo $et['fecha_etapa'];?></td>
             <td><?php echo $et['etapa'];?></td>
-            <td><?php echo $et['aprobado'];?></td>
+            <td><?php echo $et['aplica'];?></td>
             <td><?php echo $et['user'];?></td>
             <td class="text-center"><a class="view" href="javascript:void(0);" data-id="<?php echo $et['id_etapa'];?>" title="ver"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
             <td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" data-id="<?php echo $et['id_etapa'];?>" title="editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>

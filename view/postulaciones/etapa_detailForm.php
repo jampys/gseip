@@ -100,15 +100,15 @@
 
 
     <div class="form-group required">
-        <label for="aprobado" class="control-label">Aprobado</label>
+        <label for="aplica" class="control-label">Aplica</label>
 
         <div class="input-group">
 
-            <?php foreach($view->aprobados['enum'] as $val){ ?>
+            <?php foreach($view->aplica_opts['enum'] as $val){ ?>
                 <label class="radio-inline">
-                    <input type="radio" name="aprobado" value="<?php echo $val ?>"
-                        <?php echo ($val == $view->etapa->getAprobado() OR ($val == $view->aprobados['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
-                        ><?php echo ($val==1)? 'Aprobado':'Desaprobado' ?>
+                    <input type="radio" name="aplica" value="<?php echo $val ?>"
+                        <?php echo ($val == $view->etapa->getAplica() OR ($val == $view->aplica_opts['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
+                        ><?php echo ($val==1)? 'Si':'No' ?>
                 </label>
             <?php } ?>
 

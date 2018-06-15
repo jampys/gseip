@@ -61,13 +61,13 @@
                 params.id_postulacion = $('#id_postulacion').val();
                 params.fecha_etapa = $('#fecha_etapa').val();
                 params.etapa = $('#etapa').val();
-                params.aprobado = $('input[name=aprobado]:checked').val();
+                params.aplica = $('input[name=aplica]:checked').val();
                 params.motivo = $('#motivo').val();
                 params.modo_contacto = $('#modo_contacto').val();
                 params.comentarios = $('#comentarios').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
-                //alert(params.aprobado);
+                //alert(params.aplica);
 
                 $.post('index.php',params,function(data, status, xhr){
 
