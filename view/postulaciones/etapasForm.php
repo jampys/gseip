@@ -43,7 +43,7 @@
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 $("#etapas_right_side fieldset").prop("disabled", true);
-                $("#etapas_right_side button").css('display', 'none');
+                $("#etapa-form #footer-buttons button").css('display', 'none');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 $('.selectpicker').selectpicker('refresh');
@@ -99,7 +99,7 @@
 
                     if(data >=0){
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
-                        $("#etapa-form button").prop("disabled", true); //deshabilito botones
+                        $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Etapa guardada con exito').addClass('alert alert-success').show();
                         $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
                         //$("#search").trigger("click");
