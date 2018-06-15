@@ -95,8 +95,9 @@ switch ($operation)
         break;
 
 
-    default : //carga la tabla de etapas de la postulacion
+    default : //carga la tabla de etapas de la postulacion //ok
         //$view->postulacion = new Postulacion($_POST['id_postulacion']);
+        $view->label='Etapas de la postulación';
         $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
         //$view->localidades = Localidad::getLocalidades();
         //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');

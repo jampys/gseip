@@ -81,7 +81,9 @@ class Postulacion
 
     public static function getPostulaciones($id_puesto, $id_localidad, $id_contrato, $todas) { //ok
         $stmt=new sQuery();
-        $query = "select pos.id_postulacion, pos.id_busqueda, pos.id_postulante,
+        $query = "select
+                  (select !exists(select 1 from sel_etapas etx where  etx.id_postulacion = pos.id_postulacion and etx.aplica = '0')) as aplica,
+                  pos.id_postulacion, pos.id_busqueda, pos.id_postulante,
                   DATE_FORMAT(pos.fecha,  '%d/%m/%Y') as fecha,
                   pos.origen_cv, pos.expectativas, pos.propuesta_economica,
                   CONCAT(po.apellido, ' ', po.nombre) as postulante,

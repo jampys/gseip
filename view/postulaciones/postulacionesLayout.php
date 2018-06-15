@@ -66,8 +66,8 @@
             });
 
 
-            $(document).on('click', '.etapas', function(){
-                alert('presiono sobre etapas');
+            $(document).on('click', '.etapas', function(){ //ok
+                //alert('presiono sobre etapas');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_postulacion = id;

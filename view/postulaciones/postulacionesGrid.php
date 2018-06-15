@@ -86,6 +86,7 @@
                 <th>Fecha</th>
                 <th>Búsqueda</th>
                 <th>Postulante</th>
+                <th>Aplica</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -101,6 +102,7 @@
                         <td><?php echo $rp['fecha']; ?></td>
                         <td><?php echo $rp['busqueda']; ?></td>
                         <td><?php echo $rp['postulante']; ?></td>
+                        <td style="text-align: center"><?php echo($rp['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
 
                         <td class="text-center">
                             <a class="etapas" href="javascript:void(0);">
