@@ -119,6 +119,61 @@
 
 
 
+        //$(document).on('click', '#example .delete', function(){
+        $('#etapas_left_side').on('click', '.delete', function(){
+            //alert('Funcionalidad en desarrollo');
+            //throw new Error();
+            //var id = $(this).closest('tr').attr('data-id');
+            var id = $(this).attr('data-id');
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
+                buttons: [
+                    {
+                        text: "Aceptar",
+                        click: function() {
+                            $.fn.borrar(id);
+                        },
+                        class:"btn btn-danger"
+                    },
+                    {
+                        text: "Cancelar",
+                        click: function() {
+                            $(this).dialog("close");
+                        },
+                        class:"btn btn-default"
+                    }
+
+                ]
+            }).dialog('open');
+            return false;
+        });
+
+
+        $.fn.borrar = function(id) {
+            //alert(id);
+            //preparo los parametros
+            params={};
+            params.id_etapa = id;
+            params.action = "etapas";
+            params.operation = "deleteEtapa";
+
+            $.post('index.php',params,function(data, status, xhr){
+                if(data >=0){
+                    $("#myElem").html('Etapa eliminada con exito').addClass('alert alert-success').show();
+                    $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                    //$("#search").trigger("click");
+                }else{
+                    $("#myElem").html('Error al eliminar la etapa').addClass('alert alert-danger').show();
+                }
+                setTimeout(function() { $("#myElemento").hide();
+                    $('#confirm').dialog('close');
+                }, 2000);
+
+            });
+
+        };
+
+
+
         //evento al salir o cerrar con la x el modal de etapas
         $("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
@@ -183,5 +238,17 @@
     </div>
 </div>
 
+
+
+<div id="confirm">
+    <div class="modal-body">
+        ¿Desea eliminar la etapa?
+    </div>
+
+    <div id="myElemento" style="display:none">
+
+    </div>
+
+</div>
 
 

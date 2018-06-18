@@ -72,9 +72,9 @@ switch ($operation)
         $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
         break;
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
+    case 'deleteEtapa': //ok
+        $view->etapa = new Etapa($_POST['id_etapa']);
+        $rta = $view->etapa->deleteEtapa();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;

@@ -113,7 +113,7 @@ class Etapa
         $stmt=new sQuery();
         $query = "select et.id_etapa, et.id_postulacion,
                   DATE_FORMAT(et.fecha, '%d/%m/%Y') as fecha,
-                  DATE_FORMAT(et.fecha_etapa, '%d/%m/%Y') as fecha_etapa,
+                  DATE_FORMAT(et.fecha_etapa, '%d/%m/%y') as fecha_etapa,
                   et.etapa, et.aplica, et.motivo, et.modo_contacto, et.comentarios, et.id_user,
                   us.user
                   from sel_etapas et
@@ -181,11 +181,11 @@ class Etapa
 
     }
 
-    function deleteHabilidad(){
+    function deleteEtapa(){ //ok
         $stmt=new sQuery();
-        $query="delete from habilidades where id_habilidad =:id_habilidad";
+        $query="delete from sel_etapas where id_etapa = :id_etapa";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':id_etapa', $this->getIdEtapa());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
