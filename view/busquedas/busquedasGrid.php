@@ -14,16 +14,16 @@
                                 $(this).show(); },
 
             "stateSave": true,
-            "order": [[3, "asc"]], // 3=fecha_apertura
+            "order": [[3, "asc"], [5, "asc"]], // 3=fecha_apertura, 5=puesto
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
                 { type: 'date-uk', targets: 5 } //fecha_vencimiento
             ]*/
             columnDefs: [
-                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
-                {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 6 ]}, //fecha_apertura
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]} //fecha_cierre
+                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 5 ]}, //fecha
+                {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 5 ]}, //fecha_apertura
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 5 ]} //fecha_cierre
             ]
         });
 
@@ -82,7 +82,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro. búsqueda</th>
+                <th>Nro. busq.</th>
                 <th>Fecha</th>
                 <th>Nombre</th>
                 <th>F. apertura</th>
