@@ -12,6 +12,11 @@
         });
 
 
+        $('#confirm').dialog({
+            autoOpen: false
+            //modal: true,
+        });
+
 
         $('#etapas_left_side').on('click', '.edit', function(){ //ok
             //var id = $(this).closest('tr').attr('data-id');
@@ -153,20 +158,24 @@
             //preparo los parametros
             params={};
             params.id_etapa = id;
+            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
             params.action = "etapas";
             params.operation = "deleteEtapa";
+            alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
+                //alert(xhr.responseText);
                 if(data >=0){
-                    $("#myElem").html('Etapa eliminada con exito').addClass('alert alert-success').show();
+                    $("#myElemento").html('Etapa eliminada con exito').addClass('alert alert-success').show();
                     $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
                     //$("#search").trigger("click");
+                    setTimeout(function() { $("#myElemento").hide();
+                                            $('#confirm').dialog('close');
+                                          }, 2000);
                 }else{
-                    $("#myElem").html('Error al eliminar la etapa').addClass('alert alert-danger').show();
+                    $("#myElemento").html('Error al eliminar la etapa').addClass('alert alert-danger').show();
                 }
-                setTimeout(function() { $("#myElemento").hide();
-                    $('#confirm').dialog('close');
-                }, 2000);
+
 
             });
 
