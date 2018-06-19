@@ -12,15 +12,15 @@
         });
 
 
-        $('#confirm').dialog({
+        $('#confirm-etp').dialog({
             autoOpen: false
             //modal: true,
         });
 
 
         $('#etapas_left_side').on('click', '.edit', function(){ //ok
-            //var id = $(this).closest('tr').attr('data-id');
-            var id = $(this).attr('data-id');
+            var id = $(this).closest('tr').attr('data-id');
+            //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
             params.id_etapa = id;
@@ -36,8 +36,8 @@
         });
 
         $('#etapas_left_side').on('click', '.view', function(){ //ok
-            //var id = $(this).closest('tr').attr('data-id');
-            var id = $(this).attr('data-id');
+            var id = $(this).closest('tr').attr('data-id');
+            //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
             params.id_etapa = id;
@@ -75,7 +75,7 @@
 
 
 
-        $('#myModal').on('click', '#submit',function(){
+        $('#myModal').on('click', '#submit',function(){ //ok
 
             //alert('guardar etapa');
 
@@ -128,9 +128,9 @@
         $('#etapas_left_side').on('click', '.delete', function(){
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
-            //var id = $(this).closest('tr').attr('data-id');
-            var id = $(this).attr('data-id');
-            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
+            var id = $(this).closest('tr').attr('data-id');
+            //var id = $(this).attr('data-id');
+            $('#confirm-etp').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -166,11 +166,12 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#myElemento").html('Etapa eliminada con exito').addClass('alert alert-success').show();
+                    $("#confirm-etp #myElemento").html('Etapa eliminada con exito').addClass('alert alert-success').show();
                     $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#myElemento").hide();
-                                            $('#confirm').dialog('close');
+                    setTimeout(function() { $("#confirm-etp #myElemento").hide();
+                                            $('#etapa-form').hide();
+                                            $('#confirm-etp').dialog('close');
                                           }, 2000);
                 }else{
                     $("#myElemento").html('Error al eliminar la etapa').addClass('alert alert-danger').show();
@@ -249,7 +250,7 @@
 
 
 
-<div id="confirm">
+<div id="confirm-etp">
     <div class="modal-body">
         ¿Desea eliminar la etapa?
     </div>
