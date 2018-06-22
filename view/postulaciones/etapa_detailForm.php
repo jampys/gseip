@@ -33,26 +33,30 @@
         });
 
 
-        $('#puesto').validate({ //ok
+        $('#etapa-form').validate({
             rules: {
-                codigo: {
+                /*codigo: {
                         required: true,
                         digits: true,
                         maxlength: 6
-                },
-                nombre: {required: true},
-                id_area: {required: true},
-                id_nivel_competencia: {required: true}
+                },*/
+                fecha_etapa: {required: true},
+                etapa: {required: true},
+                aplica: {required: true},
+                motivo: {required: true},
+                modo_contacto: {required: true}
             },
             messages:{
-                codigo: {
+                /*codigo: {
                     required: "Ingrese el código",
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
-                },
-                nombre: "Ingrese el nombre",
-                id_area: "Seleccione un área",
-                id_nivel_competencia: "Seleccione un nivel de competencia"
+                }, */
+                fecha_etapa: "Seleccione una fecha para la etapa",
+                etapa: "Seleccione una etapa",
+                aplica: "Seleccione un aplica hola aplica hola aplica hola",
+                motivo: "Seleccione el motivo",
+                modo_contacto: "Seleccione el modo de contacto"
             }
 
         });
@@ -87,7 +91,7 @@
 
     <div class="form-group required">
         <label for="etapa" class="control-label">Etapa</label>
-        <select class="form-control selectpicker show-tick" id="etapa" name="etapa" title="Seleccione la etapa">
+        <select class="form-control selectpicker show-tick" id="etapa" name="etapa" title="Seleccione la etapa"  data-live-search="true" data-size="5">
             <?php foreach ($view->etapas['enum'] as $et){
                 ?>
                 <option value="<?php echo $et; ?>"
@@ -120,7 +124,7 @@
 
     <div class="form-group required">
         <label for="motivo" class="control-label">Motivo</label>
-        <select class="form-control selectpicker show-tick" id="motivo" name="motivo" title="Seleccione el motivo">
+        <select class="form-control selectpicker show-tick" id="motivo" name="motivo" title="Seleccione el motivo"  data-live-search="true" data-size="5">
             <?php foreach ($view->motivos['enum'] as $mo){
                 ?>
                 <option value="<?php echo $mo; ?>"
@@ -134,7 +138,7 @@
 
     <div class="form-group required">
         <label for="modo_contacto" class="control-label">Modo contacto</label>
-        <select class="form-control selectpicker show-tick" id="modo_contacto" name="modo_contacto" title="Seleccione el modo de contacto">
+        <select class="form-control selectpicker show-tick" id="modo_contacto" name="modo_contacto" title="Seleccione el modo de contacto"  data-live-search="true" data-size="5">
             <?php foreach ($view->modos_contacto['enum'] as $mc){
                 ?>
                 <option value="<?php echo $mc; ?>"

@@ -57,7 +57,7 @@
 
 
 
-
+        //Abre formulario para ingresar nueva etapa
         $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
             params.action = "etapas";
@@ -74,12 +74,11 @@
         });
 
 
-
+        //Guardar etapa luego de ingresar nueva o editar
         $('#myModal').on('click', '#submit',function(){ //ok
-
             //alert('guardar etapa');
 
-            //if ($("#postulacion-form").valid()){
+            if ($("#etapa-form").valid()){
 
                 var params={};
                 params.action = 'etapas';
@@ -118,7 +117,7 @@
 
                 }, 'json');
 
-            //}
+            }
             return false;
         });
 
@@ -161,7 +160,7 @@
             params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
             params.action = "etapas";
             params.operation = "deleteEtapa";
-            alert(params.id_etapa);
+            //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
