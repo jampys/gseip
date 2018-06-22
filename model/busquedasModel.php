@@ -114,14 +114,15 @@ class Busqueda
                   from sel_busquedas bu
                   left join puestos pu on bu.id_puesto = pu.id_puesto
                   left join localidades loc on bu.id_localidad = loc.id_localidad
-                  left join contratos co on bu.id_contrato = co.id_contrato";
+                  left join contratos co on bu.id_contrato = co.id_contrato
+                  where bu.id_puesto =  ifnull(:id_puesto, bu.id_puesto)
+                  and bu.id_localidad =  ifnull(:id_localidad, bu.id_localidad)
+                  and bu.id_contrato =  ifnull(:id_contrato, bu.id_contrato)";
 
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':id_empleado', $id_empleado);
-        //$stmt->dpBind(':id_grupo', $id_grupo);
-        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
-        //$stmt->dpBind(':renovado', $renovado);
+        $stmt->dpBind(':id_puesto', $id_puesto);
+        $stmt->dpBind(':id_localidad', $id_localidad);
+        $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
