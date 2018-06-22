@@ -104,6 +104,7 @@
                     </li>
 
 
+                    <?php if ( PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) || PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) || PrivilegedUser::dhasPrivilege('PTN_VER', array(1))  ) { ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Selección<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -119,6 +120,7 @@
                             <?php } ?>
                         </ul>
                     </li>
+                    <?php } ?>
 
 
 
