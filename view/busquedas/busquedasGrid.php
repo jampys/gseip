@@ -8,11 +8,9 @@
         $('#example').DataTable({
             /*language: {
              url: 'dataTables/Spanish.json'
-             }*/
-
+             },*/
             "fnInitComplete": function () {
                                 $(this).show(); },
-
             "stateSave": true,
             "order": [[3, "asc"], [5, "asc"]], // 3=fecha_apertura, 5=puesto
             /*"columnDefs": [
