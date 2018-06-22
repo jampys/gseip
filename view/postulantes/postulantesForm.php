@@ -34,11 +34,11 @@
 
         var uploadObj = $("#fileuploader").uploadFile({
             url: "index.php?action=uploadsPostulantes&operation=upload",
-            dragDrop: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
+            dragDrop: <?php echo ( PrivilegedUser::dhasAction('PTE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
             autoSubmit: false,
             fileName: "myfile",
             returnType: "json",
-            showDelete: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
+            showDelete: <?php echo ( PrivilegedUser::dhasAction('PTE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
             showDownload:true,
             showCancel: true,
             showAbort: true,
