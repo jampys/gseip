@@ -54,7 +54,7 @@
                 }, */
                 fecha_etapa: "Seleccione una fecha para la etapa",
                 etapa: "Seleccione una etapa",
-                aplica: "Seleccione un aplica hola aplica hola aplica hola",
+                aplica: "Seleccione una opción",
                 motivo: "Seleccione el motivo",
                 modo_contacto: "Seleccione el modo de contacto"
             }
