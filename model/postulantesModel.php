@@ -73,24 +73,12 @@ class Postulante
     }
 
 
-    public static function getPostulantes($id_puesto, $id_localidad, $id_contrato, $todas) { //ok
+    public static function getPostulantes($id_puesto, $id_localidad, $todas) { //ok
         $stmt=new sQuery();
-        /*$query = "select bu.id_busqueda,
-                  DATE_FORMAT(bu.fecha,  '%d/%m/%Y') as fecha,
-                  bu.nombre,
-                  DATE_FORMAT(bu.fecha_apertura,  '%d/%m/%Y') as fecha_apertura,
-                  DATE_FORMAT(bu.fecha_cierre,  '%d/%m/%Y') as fecha_cierre,
-                  pu.nombre as puesto,
-                  loc.ciudad as area,
-                  co. nombre as contrato,
-                  bu.estado
-                  from sel_busquedas bu
-                  left join puestos pu on bu.id_puesto = pu.id_puesto
-                  left join localidades loc on bu.id_localidad = loc.id_localidad
-                  left join contratos co on bu.id_contrato = co.id_contrato";*/
-        $query = "select *
+        $query = "select pos.id_postulante,
+                  DATE_FORMAT(pos.fecha,  '%d/%m/%Y') as fecha,
+                  pos.apellido, pos.nombre, pos.dni, pos.lista_negra
                   from sel_postulantes pos";
-
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_empleado', $id_empleado);
         //$stmt->dpBind(':id_grupo', $id_grupo);
