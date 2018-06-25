@@ -259,7 +259,7 @@
                                 <option value="<?php echo $bu['id_busqueda']; ?>"
                                     <?php echo ($bu['id_busqueda'] == $view->postulacion->getIdBusqueda())? 'selected' :'' ?>
                                     >
-                                    <?php echo $bu['nombre'] ;?>
+                                    <?php echo $bu['fecha_apertura'].' '.$bu['nombre'];?>
                                 </option>
                             <?php  } ?>
                         </select>

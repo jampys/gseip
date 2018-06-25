@@ -79,7 +79,7 @@ class Postulacion
     }
 
 
-    public static function getPostulaciones($id_puesto, $id_localidad, $id_contrato, $todas) { //ok
+    public static function getPostulaciones($id_busqueda, $id_postulante, $todas) { //ok
         $stmt=new sQuery();
         $query = "select
                   (select !exists(select 1 from sel_etapas etx where  etx.id_postulacion = pos.id_postulacion and etx.aplica = '0')) as aplica,
@@ -90,14 +90,13 @@ class Postulacion
                   bu.nombre as busqueda
                   from sel_postulaciones pos
                   join sel_postulantes po on pos.id_postulante = po.id_postulante
-                  join sel_busquedas bu on pos.id_busqueda = bu.id_busqueda";
+                  join sel_busquedas bu on pos.id_busqueda = bu.id_busqueda
+                  where pos.id_busqueda =  ifnull(:id_busqueda, pos.id_busqueda)
+                  and pos.id_postulante =  ifnull(:id_postulante, pos.id_postulante)";
 
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':id_empleado', $id_empleado);
-        //$stmt->dpBind(':id_grupo', $id_grupo);
-        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
-        //$stmt->dpBind(':renovado', $renovado);
+        $stmt->dpBind(':id_busqueda', $id_busqueda);
+        $stmt->dpBind(':id_postulante', $id_postulante);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

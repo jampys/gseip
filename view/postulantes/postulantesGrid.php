@@ -90,6 +90,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -102,6 +103,18 @@
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['dni']; ?></td>
                         <td style="text-align: center"><?php echo($rp['lista_negra'] == 1)? '<i class="fas fa-user-times fa-lg fa-fw" style="color: #fc140c"></i>' : ''; ?></td>
+
+                        <td class="text-center">
+                            <?php if($rp['cant_uploads']> 0 ){ ?>
+                                <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
+                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                                </a>
+                            <?php } else{ ?>
+                                <!--<a class="" href="#" title="renovar">
+                                    <i class="far fa-clone"></i>
+                                </a>-->
+                            <?php } ?>
+                        </td>
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);">

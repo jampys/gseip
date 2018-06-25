@@ -110,7 +110,8 @@ class Busqueda
                   pu.nombre as puesto,
                   loc.ciudad as area,
                   co. nombre as contrato,
-                  bu.estado
+                  bu.estado,
+                  (select count(*) from uploads_busqueda where id_busqueda = bu.id_busqueda) as cant_uploads
                   from sel_busquedas bu
                   left join puestos pu on bu.id_puesto = pu.id_puesto
                   left join localidades loc on bu.id_localidad = loc.id_localidad
@@ -130,8 +131,20 @@ class Busqueda
 
     public static function getBusquedasActivas() { //ok
         $stmt=new sQuery();
-        $query = "select bu.id_busqueda, bu.nombre
-                  from sel_busquedas bu";
+        $query = $query = "select bu.id_busqueda,
+                  DATE_FORMAT(bu.fecha,  '%d/%m/%Y') as fecha,
+                  bu.nombre,
+                  DATE_FORMAT(bu.fecha_apertura,  '%d/%m/%Y') as fecha_apertura,
+                  DATE_FORMAT(bu.fecha_cierre,  '%d/%m/%Y') as fecha_cierre,
+                  pu.nombre as puesto,
+                  loc.ciudad as area,
+                  co. nombre as contrato,
+                  bu.estado,
+                  (select count(*) from uploads_busqueda where id_busqueda = bu.id_busqueda) as cant_uploads
+                  from sel_busquedas bu
+                  left join puestos pu on bu.id_puesto = pu.id_puesto
+                  left join localidades loc on bu.id_localidad = loc.id_localidad
+                  left join contratos co on bu.id_contrato = co.id_contrato";
                   //where bu.fecha_cierre is null or bu.fecha_cierre > date(sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();

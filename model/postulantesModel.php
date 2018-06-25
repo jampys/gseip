@@ -77,7 +77,8 @@ class Postulante
         $stmt=new sQuery();
         $query = "select pos.id_postulante,
                   DATE_FORMAT(pos.fecha,  '%d/%m/%Y') as fecha,
-                  pos.apellido, pos.nombre, pos.dni, pos.lista_negra
+                  pos.apellido, pos.nombre, pos.dni, pos.lista_negra,
+                  (select count(*) from uploads_postulante where id_postulante = pos.id_postulante) as cant_uploads
                   from sel_postulantes pos";
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_empleado', $id_empleado);

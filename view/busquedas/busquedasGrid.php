@@ -80,7 +80,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro. busq.</th>
+                <th>Nro. bq.</th>
                 <th>Fecha</th>
                 <th>Nombre</th>
                 <th>F. apertura</th>
@@ -89,6 +89,7 @@
                 <th>Área</th>
                 <th>Contrato</th>
                 <th>Estado</th>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -108,6 +109,18 @@
                         <td><?php echo $rp['area']; ?></td>
                         <td><?php echo $rp['contrato']; ?></td>
                         <td><?php echo $rp['estado']; ?></td>
+
+                        <td class="text-center">
+                            <?php if($rp['cant_uploads']> 0 ){ ?>
+                                <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
+                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                                </a>
+                            <?php } else{ ?>
+                                <!--<a class="" href="#" title="renovar">
+                                    <i class="far fa-clone"></i>
+                                </a>-->
+                            <?php } ?>
+                        </td>
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);">
