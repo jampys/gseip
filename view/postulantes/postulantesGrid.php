@@ -101,7 +101,7 @@
                         <td><?php echo $rp['apellido']; ?></td>
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['dni']; ?></td>
-                        <td><?php echo $rp['lista_negra']; ?></td>
+                        <td style="text-align: center"><?php echo($rp['lista_negra'] == 1)? '<i class="fas fa-user-times fa-lg fa-fw" style="color: #fc140c"></i>' : ''; ?></td>
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);">

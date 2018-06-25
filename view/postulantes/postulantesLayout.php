@@ -24,7 +24,6 @@
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                 params.search_puesto = $("#search_puesto").val();
                 params.search_localidad = $("#search_localidad").val();
-                params.search_contrato = $("#search_contrato").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "postulantes";
                 params.operation = "refreshGrid";
@@ -209,7 +208,7 @@
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" id="search_renovado" name="search_renovado">
-                                <a href="#" title="Seleccione para visualizar todos los registros (incluyendo renovados y desactivados)">Ver todos</a>
+                                <a href="#" title="Funcionalidad en construcción">Ver todos</a>
                             </label>
                         </div>
                     </div>
