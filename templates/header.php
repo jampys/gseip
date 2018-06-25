@@ -104,14 +104,23 @@
                     </li>
 
 
+                    <?php if ( PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) || PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) || PrivilegedUser::dhasPrivilege('PTN_VER', array(1))  ) { ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Selección<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
-                            <li><a href="#" style="cursor: not-allowed">Registros <span class="text-muted"><small> [En construcción]</small></span></a></li>
-
+                            <?php if ( PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=busquedas"><i class="far fa-clipboard fa-fw"></i>&nbsp;Búsquedas</a></li>
+                            <?php } ?>
+                            <?php if ( PrivilegedUser::dhasPrivilege('PTE_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=postulantes"><i class="far fa-id-badge fa-fw"></i>&nbsp;Postulantes</a></li>
+                            <?php } ?>
+                            <?php if ( PrivilegedUser::dhasPrivilege('PTN_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=postulaciones"><i class="fas fa-tasks fa-fw"></i>&nbsp;Postulaciones</a></li>
+                            <?php } ?>
                         </ul>
                     </li>
+                    <?php } ?>
 
 
 
