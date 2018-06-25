@@ -168,9 +168,9 @@
                 <form id="search_form" name="search_form">
 
                     <div class="form-group col-md-3">
-                        <label for="search_puesto" class="control-label">Puesto</label>
+                        <label for="search_puesto" class="control-label">Filtro 1</label>
                         <select id="search_puesto" name="search_puesto" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un puesto</option>
+                            <option value="">Seleccione un filtro 1</option>
                             <?php foreach ($view->puestos as $pue){
                                 ?>
                                 <option value="<?php echo $pue['id_puesto']; ?>">
@@ -182,9 +182,9 @@
 
 
                     <div class="form-group col-md-3">
-                        <label for="search_localidad" class="control-label">Área</label>
+                        <label for="search_localidad" class="control-label">Filtro 2</label>
                             <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un área</option>
+                                <option value="">Seleccione un filtro 2</option>
                                 <?php foreach ($view->localidades as $loc){
                                     ?>
                                     <option value="<?php echo $loc['id_localidad']; ?>">
