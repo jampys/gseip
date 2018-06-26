@@ -46,11 +46,11 @@
             params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
             params.id_contrato = $("#search_contrato").val();
             params.renovado = $('#search_renovado').prop('checked')? 1 : '';
-            params.id_user = <?php echo $_SESSION['id_user']; ?>
+            params.id_user = <?php //echo $_SESSION['id_user']; ?>
             //var nro_version = Number($('#version').val());
             //var lugar_trabajo = $('#lugar_trabajo').val();
-            //var usuario  = "<?php echo $_SESSION["USER_NOMBRE"].' '.$_SESSION["USER_APELLIDO"]; ?>";
-            //var id_cia = "<?php echo $_SESSION['ID_CIA']; ?>";
+            //var usuario  = "<?php //echo $_SESSION["USER_NOMBRE"].' '.$_SESSION["USER_APELLIDO"]; ?>";
+            //var id_cia = "<?php //echo $_SESSION['ID_CIA']; ?>";
             //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
             var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
             //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=sci_plan_version.rptdesign&p_periodo="+periodo+"&p_nro_version="+nro_version+"&p_lugar_trabajo="+lugar_trabajo+"&p_usuario="+usuario+"&p_id_cia="+id_cia;

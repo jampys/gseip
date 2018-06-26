@@ -19,7 +19,7 @@ switch ($operation)
         $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
         $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        $todas = ($_POST['renovado']== 0)? null : 1;
+        $todas = null; //($_POST['renovado']== 0)? null : 1;
         $view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
         $view->contentTemplate="view/busquedas/busquedasGrid.php";
         break;

@@ -22,7 +22,7 @@ switch ($operation)
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         $id_busqueda = ($_POST['search_busqueda']!='')? $_POST['search_busqueda'] : null;
         $id_postulante = ($_POST['search_postulante']!='')? $_POST['search_postulante'] : null;
-        $todas = ($_POST['renovado']== 0)? null : 1;
+        $todas = null; //($_POST['renovado']== 0)? null : 1;
         $view->postulaciones = Postulacion::getPostulaciones($id_busqueda, $id_postulante, $todas);
         $view->contentTemplate="view/postulaciones/postulacionesGrid.php";
         break;
