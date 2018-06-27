@@ -101,6 +101,8 @@ class Busqueda
 
 
     public static function getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas) { //ok
+        //los filtros para los parametros se hacen de ésta manera porque la condicion por ej bu.id_contrato = bu.id_contrato
+        //no funciona cuando el regisrtro tiene el id_contrato null
         $stmt=new sQuery();
         $query = "select bu.id_busqueda,
                   DATE_FORMAT(bu.fecha,  '%d/%m/%Y') as fecha,
@@ -116,10 +118,9 @@ class Busqueda
                   left join puestos pu on bu.id_puesto = pu.id_puesto
                   left join localidades loc on bu.id_localidad = loc.id_localidad
                   left join contratos co on bu.id_contrato = co.id_contrato
-                  where bu.id_puesto =  ifnull(:id_puesto, bu.id_puesto)
-                  and bu.id_localidad =  ifnull(:id_localidad, bu.id_localidad)
-                  and bu.id_contrato =  ifnull(:id_contrato, bu.id_contrato)";
-
+                  where if (:id_puesto is null, 1, bu.id_puesto = :id_puesto)
+                  and if (:id_localidad is null, 1, bu.id_localidad = :id_localidad)
+                  and if (:id_contrato is null, 1, bu.id_contrato = :id_contrato)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_puesto', $id_puesto);
         $stmt->dpBind(':id_localidad', $id_localidad);
