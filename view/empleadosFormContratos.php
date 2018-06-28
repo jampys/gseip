@@ -32,7 +32,7 @@
                                 <td><?php echo $con['fecha_desde'];?></td>
                                 <td><?php echo $con['fecha_hasta'];?></td>
                                 <td><?php echo $con['puesto'];?></td>
-                                <td style="text-align: center"><?php echo($con['days_left'] < 0)? '<i class="fas fa-arrow-down fa-fw" style="color: #fc140c"></i>':'<i class="fas fa-arrow-up fa-fw" style="color: #49ed0e"></i>'; ?></td>
+                                <td style="text-align: center"><?php echo($con['days_left'] < 0)? '<i class="fas fa-arrow-down fa-fw" style="color: #fc140c"></i><span style="color: #fc140c">'.abs($con['days_left']).'</span>' : '<i class="fas fa-arrow-up fa-fw" style="color: #49ed0e"></i><span style="color: #49ed0e">'.abs($con['days_left']); ?></span></td>
 
 
                                 <!--<td class="text-center">
@@ -57,18 +57,6 @@
                         <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <!--<table class="table table-condensed dataTable table-hover" id="puestos-table">
-                        <thead>
-                        <tr>
-                            <th class="col-md-1">Cod.</th>
-                            <th class="col-md-10">Nombre</th>
-                            <th class="col-md-1 text-center">Eliminar</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>-->
 
 
 
