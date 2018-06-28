@@ -140,8 +140,8 @@ class ContratoEmpleado
     public static function getContratosByEmpleado($id_empleado) { //ok
         $stmt=new sQuery();
         $query = "select ec.id_empleado_contrato, ec.id_empleado, ec.id_contrato, ec.id_puesto,
-                  DATE_FORMAT(ec.fecha_desde,  '%d/%m/%y') as fecha_desde,
-                  DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%y') as fecha_hasta,
+                  DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                   co.nro_contrato,
                   co.nombre as contrato,
                   pu.nombre as puesto,
