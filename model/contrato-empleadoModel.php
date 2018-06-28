@@ -149,7 +149,8 @@ class ContratoEmpleado
                   from empleado_contrato ec, contratos co, puestos pu
                   where ec.id_contrato = co.id_contrato
                   and ec.id_puesto = pu.id_puesto
-                  and ec.id_empleado = :id_empleado";
+                  and ec.id_empleado = :id_empleado
+                  order by ec.fecha_desde desc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpExecute();

@@ -32,7 +32,9 @@
                                 <td><?php echo $con['fecha_desde'];?></td>
                                 <td><?php echo $con['fecha_hasta'];?></td>
                                 <td><?php echo $con['puesto'];?></td>
-                                <td style="text-align: center"><?php echo($con['days_left'] < 0)? '<i class="fas fa-arrow-down fa-fw" style="color: #fc140c"></i><span style="color: #fc140c">'.abs($con['days_left']).'</span>' : '<i class="fas fa-arrow-up fa-fw" style="color: #49ed0e"></i><span style="color: #49ed0e">'.abs($con['days_left']); ?></span></td>
+                                <td style="text-align: center">
+                                    <?php echo($con['days_left'] < 0)? '<i class="fas fa-arrow-down fa-fw" style="color: #fc140c"></i><span style="color: #fc140c">'.abs($con['days_left']).'</span>' : '<i class="fas fa-arrow-up fa-fw" style="color: #49ed0e"></i><span style="color: #49ed0e">'.(($con['days_left'])? abs($con['days_left']) : "").'</span>'?>
+                                </td>
 
 
                                 <!--<td class="text-center">
