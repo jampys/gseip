@@ -76,7 +76,10 @@
 
                     <br/>
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado no se encuentra afectado a ningún contrato.
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado no se encuentra afectado a ningún contrato.Para afectar un empleado a un contrato diríjase a
+                        <?php if ( PrivilegedUser::dhasPrivilege('CON_VER', array(1)) ) { ?>
+                            <a href="index.php?action=contratos">Contratos</a></p>
+                        <?php } ?>
                     </div>
 
                 <?php } ?>
