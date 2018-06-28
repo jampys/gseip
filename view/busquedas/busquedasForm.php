@@ -318,7 +318,7 @@
                                 <option value="<?php echo $co['id_contrato']; ?>"
                                     <?php echo ($co['id_contrato'] == $view->busqueda->getIdContrato())? 'selected' :'' ?>
                                     >
-                                    <?php echo $co['nombre'] ;?>
+                                    <?php echo $co['nombre'].' '.$co['nro_contrato'] ;?>
                                 </option>
                             <?php  } ?>
                         </select>

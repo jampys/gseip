@@ -273,7 +273,7 @@
                                 <option value="<?php echo $po['id_postulante']; ?>"
                                     <?php echo ($po['id_postulante'] == $view->postulacion->getIdPostulante())? 'selected' :'' ?>
                                     >
-                                    <?php echo $po['apellido']." ".$po['nombre'] ;?>
+                                    <?php echo $po['apellido']." ".$po['nombre']." ".$po['dni'];?>
                                 </option>
                             <?php  } ?>
                         </select>
@@ -306,7 +306,7 @@
                 </form>
 
 
-                <div id="fileuploader">Upload</div>
+                <!--<div id="fileuploader">Upload</div>-->
 
 
 

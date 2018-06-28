@@ -200,7 +200,7 @@
                             <?php foreach ($view->postulantes as $pos){
                                 ?>
                                 <option value="<?php echo $pos['id_postulante']; ?>">
-                                    <?php echo $pos['apellido'].' '.$pos['nombre'];?>
+                                    <?php echo $pos['apellido'].' '.$pos['nombre'].' '.$pos['dni'];?>
                                 </option>
                             <?php  } ?>
                         </select>
