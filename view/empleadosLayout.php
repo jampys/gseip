@@ -156,6 +156,24 @@
 
             };
 
+
+            $(document).on('click', '.contratos', function(){ //ok
+                alert('tocó en contratos');
+
+                var id = $(this).attr('data-id');
+                //preparo los parametros
+                params={};
+                params.id_puesto = id;
+                params.action = "empleados";
+                params.operation = "loadContratos";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                })
+
+            });
+
+
+
         });
 
     </script>
@@ -177,6 +195,8 @@
 
     </div>
 
+
+    <div id="popupbox"></div>
 
 
     <?php require_once('templates/footer.php'); ?>

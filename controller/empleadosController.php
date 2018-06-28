@@ -96,6 +96,18 @@ switch ($operation)
         exit;
         break;
 
+    case 'loadContratos': //abre la ventana modal para mostrar los contratos del empleado
+        $view->label='Contratos';
+        $view->disableLayout=true;
+
+        //$view->empleado = new Empleado($_POST['id_empleado']);
+        //$view->puestos = Puesto::getPuestos();
+        //$view->procesos = Proceso::getProcesos();
+
+        $view->contentTemplate="view/empleadosFormContratos.php";
+        exit;
+        break;
+
 
     default :
         $view->empleados=Empleado::getEmpleados();
