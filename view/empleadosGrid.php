@@ -76,7 +76,7 @@
                     <td><?php echo $empleado['fecha_alta'];?></td>
                     <td><?php echo $empleado['fecha_baja'];?></td>
                     <td><?php echo $empleado['ciudad'];?></td>
-                    <td class="text-center"><a class="contratos" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>" title="contratos"><i class="fab fa-cuttlefish"></i></a></td>
+                    <td class="text-center"><a class="contratos" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>" title="contratos"><i class="fab fa-wpforms"></i></a></td>
                     <td class="text-center"><a class="view" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>" title="ver"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
                     <td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>" title="editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
                 </tr>
