@@ -12,9 +12,9 @@
 
         $(document).ready(function(){
 
-            $('#popupbox').dialog({
+            /*$('#popupbox').dialog({
                 autoOpen:false
-            });
+            });*/
 
 
             //añado la posibilidad de editar al presionar sobre edit
@@ -156,14 +156,13 @@
 
             };
 
-
+            //Al presionar el boton contratos, para mostrar los contratos del empleado
             $(document).on('click', '.contratos', function(){ //ok
-                alert('tocó en contratos');
-
+                //alert('tocó en contratos');
                 var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_puesto = id;
+                params.id_empleado = id;
                 params.action = "empleados";
                 params.operation = "loadContratos";
                 $('#popupbox').load('index.php', params,function(){

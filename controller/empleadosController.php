@@ -2,6 +2,7 @@
 
 include_once("model/empleadosModel.php");
 include_once("model/localidadesModel.php");
+include_once("model/contrato-empleadoModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -100,12 +101,11 @@ switch ($operation)
         $view->label='Contratos';
         $view->disableLayout=true;
 
-        //$view->empleado = new Empleado($_POST['id_empleado']);
+        $view->contratos = ContratoEmpleado::getContratosByEmpleado($_POST['id_empleado']);
         //$view->puestos = Puesto::getPuestos();
         //$view->procesos = Proceso::getProcesos();
 
         $view->contentTemplate="view/empleadosFormContratos.php";
-        exit;
         break;
 
 
