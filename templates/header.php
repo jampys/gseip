@@ -162,7 +162,7 @@
 
                             <li class="dropdown-header">ACTIVIDAD CUADRILLA</li>
                             <?php //if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
-                                <li><a href="#" style="cursor: not-allowed"><i class="fas fa-car fa-fw"></i>&nbsp;Actividad<span class="text-muted"><small> [En construcción]</small></span></a></li>
+                                <li><a href="index.php?action=partes"><i class="fas fa-car fa-fw"></i>&nbsp;Partes diarios cuadrilla</a></li>
                             <?php //} ?>
 
                         </ul>
