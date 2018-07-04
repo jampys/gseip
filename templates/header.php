@@ -162,6 +162,10 @@
 
                             <li class="dropdown-header">ACTIVIDAD CUADRILLA</li>
                             <?php //if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
+                            <li><a href="index.php?action=cuadrillas"><i class="fas fa-car fa-fw"></i>&nbsp;Cuadrillas</a></li>
+                            <?php //} ?>
+
+                            <?php //if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
                                 <li><a href="index.php?action=partes"><i class="fas fa-car fa-fw"></i>&nbsp;Partes diarios cuadrilla</a></li>
                             <?php //} ?>
 
