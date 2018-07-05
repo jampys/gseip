@@ -18,14 +18,14 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){
+        $('#etapas_left_side').on('click', '.edit', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.id_cuadrilla_empleado = id;
+            params.action = "cuadrilla-empleado";
+            params.operation = "editEmpleado";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -35,14 +35,14 @@
             })
         });
 
-        $('#etapas_left_side').on('click', '.view', function(){
+        $('#etapas_left_side').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.id_cuadrilla_empleado = id;
+            params.action = "cuadrilla-empleado";
+            params.operation = "editEmpleado";
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
@@ -58,16 +58,16 @@
 
 
         //Abre formulario para ingresar nueva etapa
-        $('#etapas_left_side').on('click', '#add', function(){
+        $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
-            params.action = "etapas";
-            params.operation = "newEtapa";
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
+            params.action = "cuadrilla-empleado";
+            params.operation = "newEmpleado";
+            params.id_cuadrilla = $('#etapas_left_side #add').attr('id_cuadrilla');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_postulacion').val(params.id_postulacion);
+                $('#id_cuadrilla').val(params.id_cuadrilla);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
@@ -75,22 +75,17 @@
 
 
         //Guardar etapa luego de ingresar nueva o editar
-        $('#myModal').on('click', '#submit',function(){
-            //alert('guardar etapa');
+        $('#myModal').on('click', '#submit',function(){ //ok
+            //alert('guardar empleado');
 
-            if ($("#etapa-form").valid()){
+            if ($("#empleado-form").valid()){
 
                 var params={};
-                params.action = 'etapas';
-                params.operation = 'saveEtapa';
-                params.id_etapa = $('#id_etapa').val();
-                params.id_postulacion = $('#id_postulacion').val();
-                params.fecha_etapa = $('#fecha_etapa').val();
-                params.etapa = $('#etapa').val();
-                params.aplica = $('input[name=aplica]:checked').val();
-                params.motivo = $('#motivo').val();
-                params.modo_contacto = $('#modo_contacto').val();
-                params.comentarios = $('#comentarios').val();
+                params.action = 'cuadrilla-empleado';
+                params.operation = 'saveEmpleado';
+                params.id_cuadrilla_empleado = $('#id_cuadrilla_empleado').val();
+                params.id_cuadrilla = $('#id_cuadrilla').val();
+                params.id_empleado = $('#id_empleado').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.aplica);
@@ -103,16 +98,16 @@
 
                     if(data >=0){
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
-                        $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Etapa guardada con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                        $('#etapas_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla:params.id_cuadrilla, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
-                                                $('#etapa-form').hide();
+                                                $('#empleado-form').hide();
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la etapa').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
@@ -221,7 +216,7 @@
                             </div>
 
                             <div class="grid">
-                                <?php include_once('view/postulaciones/etapasGrid.php');?>
+                                <?php include_once('view/cuadrillas/empleadosGrid.php');?>
                             </div>
 
                         </div>

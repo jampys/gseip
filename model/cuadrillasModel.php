@@ -92,45 +92,45 @@ class Cuadrilla
     }
 
 
-    function save(){
-        if($this->id_postulacion)
-        {$rta = $this->updatePostulacion();}
+    function save(){ //ok
+        if($this->id_cuadrilla)
+        {$rta = $this->updateCuadrilla();}
         else
-        {$rta =$this->insertPostulacion();}
+        {$rta =$this->insertCuadrilla();}
         return $rta;
     }
 
 
-    public function updatePostulacion(){
+    public function updateCuadrilla(){ //ok
         $stmt=new sQuery();
-        $query="update sel_postulaciones set id_busqueda =:id_busqueda,
-                      id_postulante = :id_postulante,
-                      origen_cv = :origen_cv,
-                      expectativas = :expectativas,
-                      propuesta_economica = :propuesta_economica
-                where id_postulacion =:id_postulacion";
+        $query="update nov_cuadrillas set id_contrato =:id_contrato,
+                      default_id_vehiculo = :default_id_vehiculo,
+                      default_id_area = :default_id_area,
+                      nombre = :nombre,
+                      actividad = :actividad
+                where id_cuadrilla =:id_cuadrilla";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
-        $stmt->dpBind(':id_postulante', $this->getIdPostulante());
-        $stmt->dpBind(':origen_cv', $this->getOrigenCv());
-        $stmt->dpBind(':expectativas', $this->getExpectativas());
-        $stmt->dpBind(':propuesta_economica', $this->getPropuestaEconomica());
-        $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':default_id_vehiculo', $this->getDefaultIdVehiculo());
+        $stmt->dpBind(':default_id_area', $this->getDefaultIdArea());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':actividad', $this->getActividad());
+        $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    private function insertPostulacion(){
+    private function insertCuadrilla(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_postulaciones(id_busqueda, id_postulante, fecha, origen_cv, expectativas, propuesta_economica)
-                values(:id_busqueda, :id_postulante, sysdate(), :origen_cv, :expectativas, :propuesta_economica)";
+        $query="insert into nov_cuadrillas(id_contrato, default_id_vehiculo, default_id_area, nombre, actividad)
+                values(:id_contrato, :default_id_vehiculo, :default_id_area, :nombre, :actividad)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
-        $stmt->dpBind(':id_postulante', $this->getIdPostulante());
-        $stmt->dpBind(':origen_cv', $this->getOrigenCv());
-        $stmt->dpBind(':expectativas', $this->getExpectativas());
-        $stmt->dpBind(':propuesta_economica', $this->getPropuestaEconomica());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':default_id_vehiculo', $this->getDefaultIdVehiculo());
+        $stmt->dpBind(':default_id_area', $this->getDefaultIdArea());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':actividad', $this->getActividad());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

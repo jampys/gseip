@@ -1,169 +1,103 @@
 <?php
 
-class Etapa
+class CuadrillaEmpleado
 {
-    private $id_etapa;
-    private $id_postulacion;
+    private $id_cuadrilla_empleado;
     private $fecha; //fecha de registro en el sistema
-    private $fecha_etapa; //fecha en que se realizó la etapa. Puede no coincidir con la fecha de carga.
-    private $etapa; //nombre de la etapa
-    private $aplica;
-    private $motivo;
-    private $modo_contacto;
-    private $comentarios;
-    private $id_user;
+    private $id_cuadrilla;
+    private $id_empleado;
 
     // GETTERS
-    function getIdEtapa()
-    { return $this->id_etapa;}
-
-    function getIdPostulacion()
-    { return $this->id_postulacion;}
+    function getIdCuadrillaEmpleado()
+    { return $this->id_cuadrilla_empleado;}
 
     function getFecha()
     { return $this->fecha;}
 
-    function getFechaEtapa()
-    { return $this->fecha_etapa;}
+    function getIdCuadrilla()
+    { return $this->id_cuadrilla;}
 
-    function getEtapa()
-    { return $this->etapa;}
-
-    function getAplica()
-    { return $this->aplica;}
-
-    function getMotivo()
-    { return $this->motivo;}
-
-    function getModoContacto()
-    { return $this->modo_contacto;}
-
-    function getComentarios()
-    { return $this->comentarios;}
-
-    function getIdUser()
-    { return $this->id_user;}
+    function getIdEmpleado()
+    { return $this->id_empleado;}
 
 
     //SETTERS
-    function setIdEtapa($val)
-    { $this->id_etapa=$val;}
-
-    function setIdPostulacion($val)
-    {  $this->id_postulacion=$val;}
+    function setIdCuadrillaEmpleado($val)
+    { $this->id_cuadrilla_empleado=$val;}
 
     function setFecha($val)
     { $this->fecha=$val;}
 
-    function setNombre($val)
-    { $this->nombre=$val;}
+    function setIdCuadrilla($val)
+    {  $this->id_cuadrilla=$val;}
 
-    function setFechaEtapa($val)
-    { $this->fecha_etapa=$val;}
-
-    function setEtapa($val)
-    { $this->etapa=$val;}
-
-    function setAplica($val)
-    { $this->aplica=$val;}
-
-    function setMotivo($val)
-    { $this->motivo=$val;}
-
-    function setModoContacto($val)
-    { $this->modo_contacto=$val;}
-
-    function setComentarios($val)
-    { $this->comentarios=$val;}
-
-    function setIdUser($val)
-    { $this->id_user=$val;}
+    function setIdEmpleado($val)
+    { $this->id_empleado=$val;}
 
 
-    function __construct($nro=0){ //constructor
+
+    function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_etapa, id_postulacion,
+            $query = "select id_cuadrilla_empleado,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      DATE_FORMAT(fecha_etapa, '%d/%m/%Y') as fecha_etapa,
-                      etapa, aplica, motivo, modo_contacto, comentarios, id_user
-                      from sel_etapas
-                      where id_etapa = :nro";
+                      id_cuadrilla, id_empleado
+                      from nov_cuadrilla_empleado
+                      where id_cuadrilla_empleado = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdEtapa($rows[0]['id_etapa']);
-            $this->setIdPostulacion($rows[0]['id_postulacion']);
+            $this->setIdCuadrillaEmpleado($rows[0]['id_cuadrilla_empleado']);
             $this->setFecha($rows[0]['fecha']);
-            $this->setFechaEtapa($rows[0]['fecha_etapa']);
-            $this->setEtapa($rows[0]['etapa']);
-            $this->setAplica($rows[0]['aplica']);
-            $this->setMotivo($rows[0]['motivo']);
-            $this->setModoContacto($rows[0]['modo_contacto']);
-            $this->setComentarios($rows[0]['comentarios']);
-            $this->setIdUser($rows[0]['id_user']);
+            $this->setIdCuadrilla($rows[0]['id_cuadrilla']);
+            $this->setIdEmpleado($rows[0]['id_empleado']);
         }
     }
 
 
-    public static function getEtapas($id_postulacion) {
+    public static function getCuadrillaEmpleado($id_cuadrilla) { //ok
         $stmt=new sQuery();
-        $query = "select et.id_etapa, et.id_postulacion,
-                  DATE_FORMAT(et.fecha, '%d/%m/%Y') as fecha,
-                  DATE_FORMAT(et.fecha_etapa, '%d/%m/%y') as fecha_etapa,
-                  et.etapa, et.aplica, et.motivo, et.modo_contacto, et.comentarios, et.id_user,
-                  us.user
-                  from sel_etapas et
-                  join sec_users us on et.id_user = us.id_user
-                  where et.id_postulacion = :id_postulacion
-                  order by et.fecha_etapa asc";
+        $query = "select nce.id_cuadrilla_empleado,
+                  DATE_FORMAT(nce.fecha, '%d/%m/%Y') as fecha,
+                  nce.id_cuadrilla, nce.id_empleado,
+                  em.apellido, em.nombre
+                  from nov_cuadrilla_empleado nce
+                  join empleados em on nce.id_empleado = em.id_empleado
+                  where nce.id_cuadrilla = :id_cuadrilla
+                  order by em.apellido asc, em.nombre asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_postulacion', $id_postulacion);
-        //$stmt->dpBind(':id_grupo', $id_grupo);
-        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
-        //$stmt->dpBind(':renovado', $renovado);
+        $stmt->dpBind(':id_cuadrilla', $id_cuadrilla);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
 
 
-    function save(){
-        if($this->id_etapa)
-        {$rta = $this->updateEtapa();}
+    function save(){ //ok
+        if($this->id_cuadrilla_empleado)
+        {$rta = $this->updateCuadrillaEmpleado();}
         else
-        {$rta =$this->insertEtapa();}
+        {$rta =$this->insertCuadrillaEmpleado();}
         return $rta;
     }
 
 
-    public function updateEtapa(){
+    public function updateCuadrillaEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="update sel_etapas set fecha_etapa = STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'),
-                etapa = :etapa,
-                aplica = :aplica,
-                motivo = :motivo,
-                modo_contacto = :modo_contacto,
-                comentarios = :comentarios
-                where id_etapa = :id_etapa";
+        $query="update nov_cuadrilla_empleado set id_empleado = :id_empleado
+                where id_cuadrilla_empleado = :id_cuadrilla_empleado";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':fecha_etapa', $this->getFechaEtapa());
-        $stmt->dpBind(':etapa', $this->getEtapa());
-        $stmt->dpBind(':aplica', $this->getAplica());
-        $stmt->dpBind(':motivo', $this->getMotivo());
-        $stmt->dpBind(':modo_contacto', $this->getModoContacto());
-        $stmt->dpBind(':comentarios', $this->getComentarios());
-        $stmt->dpBind(':id_etapa', $this->getIdEtapa());
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':id_cuadrilla_empleado', $this->getIdCuadrillaEmpleado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    private function insertEtapa(){
+    private function insertCuadrillaEmpleado(){
         $stmt=new sQuery();
         $query="insert into sel_etapas(id_postulacion, fecha, fecha_etapa, etapa, aplica, motivo , modo_contacto, comentarios, id_user)
                 values(:id_postulacion, sysdate(), STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'), :etapa, :aplica, :motivo, :modo_contacto, :comentarios, :id_user)";

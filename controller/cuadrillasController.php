@@ -27,35 +27,32 @@ switch ($operation)
         $view->contentTemplate="view/cuadrillas/cuadrillasGrid.php";
         break;
 
-    case 'savePostulacion':
-        $postulacion = new Postulacion($_POST['id_postulacion']);
-        $postulacion->setIdBusqueda($_POST['id_busqueda']);
-        $postulacion->setIdPostulante($_POST['id_postulante']);
-        $postulacion->setOrigenCv($_POST['origen_cv']);
+    case 'saveCuadrilla': //ok
+        $cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
+        $cuadrilla->setIdContrato($_POST['id_contrato']);
+        $cuadrilla->setDefaultIdVehiculo($_POST['default_id_vehiculo']);
+        $cuadrilla->setDefaultIdArea($_POST['default_id_area']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         //$postulacion->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
-        $postulacion->setExpectativas($_POST['expectativas']);
-        $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
+        $cuadrilla->setNombre($_POST['nombre']);
+        $cuadrilla->setActividad($_POST['actividad']);
 
-        $rta = $postulacion->save();
+        $rta = $cuadrilla->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'newPostulacion':
-        $view->label='Nueva postulación';
-        $view->postulacion = new Postulacion();
+    case 'newCuadrilla': //ok
+        $view->label='Nueva cuadrilla';
+        $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
 
-        //$view->puestos = Puesto::getPuestos();
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->contratos = Contrato::getContratos();
-        $view->busquedas = Busqueda::getBusquedasActivas();
-        $view->postulantes = Postulante::getPostulantesActivos();
-        $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
+        $view->contratos = Contrato::getContratos();
+        $view->vehiculos = Vehiculo::getVehiculos();
+        $view->areas = NovArea::getAreas();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/postulacionesForm.php";
+        $view->contentTemplate="view/cuadrillas/cuadrillasForm.php";
         break;
 
     case 'editCuadrilla': //ok

@@ -104,27 +104,29 @@
                         <td><?php echo $rp['vehiculo']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
 
+                        <!-- si tiene permiso para agregar empleados -->
                         <td class="text-center">
-                            <a class="etapas" href="javascript:void(0);">
-                                <i class="far fa-list-alt fa-fw" title="etapas"></i>
+                            <a class="empleados" href="javascript:void(0);">
+                                <i class="far fa-list-alt fa-fw" title="empleados"></i>
                             </a>
                         </td>
 
+                        <!-- si tiene permiso para ver -->
                         <td class="text-center">
-                            <!-- si tiene permiso para ver etapas -->
-                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'etapas' : 'disabled' ?>" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
                             </a>
                         </td>
 
+                        <!-- si tiene permiso para editar -->
                         <td class="text-center">
-                            <!-- si tiene permiso para editar -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
                             </a>
                         </td>
+
+                        <!-- si tiene permiso para eliminar -->
                         <td class="text-center">
-                            <!-- si tiene permiso para eliminar -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>

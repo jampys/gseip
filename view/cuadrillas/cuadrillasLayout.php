@@ -46,12 +46,12 @@
             });
 
 
-            $('#content').on('click', '.view', function(){
+            $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_postulacion = id;
-                params.action = "postulaciones";
-                params.operation = "editPostulacion";
+                params.id_cuadrilla = id;
+                params.action = "cuadrillas";
+                params.operation = "editCuadrilla";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     $("fieldset").prop("disabled", true);
@@ -64,12 +64,12 @@
             });
 
 
-            $(document).on('click', '.etapas', function(){
+            $(document).on('click', '.empleados', function(){ //ok
                 //alert('presiono sobre etapas');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_postulacion = id;
-                params.action = "etapas";
+                params.id_cuadrilla = id;
+                params.action = "cuadrilla-empleado";
                 //params.operation = "etapas"; //entra en default
                 //params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
@@ -78,16 +78,16 @@
                     //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
-                    $('#etapas_left_side #add').attr('id_postulacion', id);
+                    $('#etapas_left_side #add').attr('id_cuadrilla', id);
                 })
 
             });
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
-                params.action = "postulaciones";
-                params.operation="newPostulacion";
+                params.action = "cuadrillas";
+                params.operation="newCuadrilla";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })

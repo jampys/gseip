@@ -27,45 +27,36 @@
         });
 
 
-        //$('.image').viewer({});
+        $('#myModal').on('click', '#submit',function(){ //ok
 
-        //var objeto={};
-
-
-        $('#myModal').on('click', '#submit',function(){
-
-            if ($("#postulacion-form").valid()){
+            if ($("#cuadrilla-form").valid()){
 
                 var params={};
-                params.action = 'postulaciones';
-                params.operation = 'savePostulacion';
-                params.id_postulacion = $('#id_postulacion').val();
+                params.action = 'cuadrillas';
+                params.operation = 'saveCuadrilla';
+                params.id_cuadrilla = $('#id_cuadrilla').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
-                params.id_busqueda = $('#id_busqueda').val();
-                params.id_postulante = $('#id_postulante').val();
-                params.origen_cv = $('#origen_cv').val();
-                params.expectativas = $('#expectativas').val();
-                params.propuesta_economica = $('#propuesta_economica').val();
+                params.id_contrato = $('#id_contrato').val();
+                params.default_id_vehiculo = $('#default_id_vehiculo').val();
+                params.default_id_area = $('#default_id_area').val();
+                params.nombre = $('#nombre').val();
+                params.actividad = $('#actividad').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
-
-                    //objeto.id = data; //data trae el id de la renovacion
-                    //alert(objeto.id);
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Cuadrilla guardada con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la postulación').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar la cuadrilla').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
@@ -87,10 +78,12 @@
         });
 
 
-        $('#postulacion-form').validate({
+        $('#cuadrilla-form').validate({ //ok
             rules: {
-                id_busqueda: {required: true},
-                id_postulante: {required: true}
+                nombre: {required: true},
+                id_contrato: {required: true},
+                default_id_vehiculo: {required: true},
+                default_id_area: {required: true}
                 /*fecha_emision: {
                     required: true,
                     remote: {
@@ -131,8 +124,10 @@
 
             },
             messages:{
-                id_busqueda: "Seleccione la búsqueda",
-                id_postulante: "Seleccione el postulante"
+                nombre: "Ingrese el nombre",
+                id_contrato: "Seleccione el contrato",
+                default_id_vehiculo: "Seleccione el vehículo",
+                default_id_area: "Seleccione el área"
                 /*fecha_emision: {
                     required: "Ingrese la fecha de emisión",
                     remote: "La fecha de emisión debe ser mayor"
@@ -193,8 +188,8 @@
                     </div>
 
                     <div class="form-group required">
-                        <label for="id_vehiculo" class="control-label">Vehículo (por defecto)</label>
-                        <select class="form-control selectpicker show-tick" id="id_vehiculo" name="id_vehiculo" title="Seleccione el vehículo" data-live-search="true" data-size="5">
+                        <label for="default_id_vehiculo" class="control-label">Vehículo (por defecto)</label>
+                        <select class="form-control selectpicker show-tick" id="default_id_vehiculo" name="default_id_vehiculo" title="Seleccione el vehículo" data-live-search="true" data-size="5">
                             <?php foreach ($view->vehiculos as $ve){
                                 ?>
                                 <option value="<?php echo $ve['id_vehiculo']; ?>"
@@ -207,8 +202,8 @@
                     </div>
 
                     <div class="form-group required">
-                        <label for="id_area" class="control-label">Área (por defecto)</label>
-                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione el área" data-live-search="true" data-size="5">
+                        <label for="default_id_area" class="control-label">Área (por defecto)</label>
+                        <select class="form-control selectpicker show-tick" id="default_id_area" name="default_id_area" title="Seleccione el área" data-live-search="true" data-size="5">
                             <?php foreach ($view->areas as $ar){
                                 ?>
                                 <option value="<?php echo $ar['id_area']; ?>"
