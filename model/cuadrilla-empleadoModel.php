@@ -97,80 +97,39 @@ class CuadrillaEmpleado
 
     }
 
-    private function insertCuadrillaEmpleado(){
+    private function insertCuadrillaEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_etapas(id_postulacion, fecha, fecha_etapa, etapa, aplica, motivo , modo_contacto, comentarios, id_user)
-                values(:id_postulacion, sysdate(), STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'), :etapa, :aplica, :motivo, :modo_contacto, :comentarios, :id_user)";
+        $query="insert into nov_cuadrilla_empleado(fecha, id_cuadrilla, id_empleado)
+                values(sysdate(), :id_cuadrilla, :id_empleado)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
-        $stmt->dpBind(':fecha_etapa', $this->getFechaEtapa());
-        $stmt->dpBind(':etapa', $this->getEtapa());
-        $stmt->dpBind(':aplica', $this->getAplica());
-        $stmt->dpBind(':motivo', $this->getMotivo());
-        $stmt->dpBind(':modo_contacto', $this->getModoContacto());
-        $stmt->dpBind(':comentarios', $this->getComentarios());
-        $stmt->dpBind(':id_user', $this->getIdUser());
+        $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    function deleteEtapa(){
+    function deleteCuadrillaEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="delete from sel_etapas where id_etapa = :id_etapa";
+        $query="delete from nov_cuadrilla_empleado where id_cuadrilla_empleado = :id_cuadrilla_empleado";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_etapa', $this->getIdEtapa());
+        $stmt->dpBind(':id_cuadrilla_empleado', $this->getIdCuadrillaEmpleado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
-
-    public static function uploadsUpload($directory, $name, $id_postulante){
-        $stmt=new sQuery();
-        $query="insert into uploads_postulante(directory, name, fecha, id_postulante)
-                values(:directory, :name, date(sysdate()), :id_postulante)";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':directory', $directory);
-        $stmt->dpBind(':name', $name);
-        $stmt->dpBind(':id_postulante', $id_postulante);
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-    }
-
-
-
-    public static function uploadsLoad($id_postulante) {
-        $stmt=new sQuery();
-        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_postulante
-                from uploads_postulante
-                where id_postulante = :id_postulante
-                order by fecha asc";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_postulante', $id_postulante);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
-
-    public static function uploadsDelete($name){
-        $stmt=new sQuery();
-        $query="delete from uploads_postulante where name =:name";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':name', $name);
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-    }
-
-
-    public function checkDni($dni, $id_postulante) {
+    public function checkEmpleado($id_cuadrilla_empleado, $id_cuadrilla, $id_empleado) { //ok
         $stmt=new sQuery();
         $query = "select *
-                  from sel_postulantes
-                  where dni = :dni
-                  and id_postulante <> :id_postulante";
+                  from nov_cuadrilla_empleado
+                  where id_cuadrilla = :id_cuadrilla
+                  and id_empleado = :id_empleado
+                  and id_cuadrilla_empleado <> :id_cuadrilla_empleado";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':dni', $dni);
-        $stmt->dpBind(':id_postulante', $id_postulante);
+        $stmt->dpBind(':id_cuadrilla', $id_cuadrilla);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_cuadrilla_empleado', $id_cuadrilla_empleado);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
     }

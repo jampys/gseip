@@ -59,17 +59,17 @@ switch ($operation)
         $view->contentTemplate="view/cuadrillas/empleado_detailForm.php";
         break;
 
-    case 'deleteEtapa':
-        $view->etapa = new Etapa($_POST['id_etapa']);
-        $rta = $view->etapa->deleteEtapa();
+    case 'deleteEmpleado': //ok
+        $view->empleado = new CuadrillaEmpleado($_POST['id_cuadrilla_empleado']);
+        $rta = $view->empleado->deleteCuadrillaEmpleado();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
 
-    case 'checkFechaEmision':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
+    case 'checkEmpleado': //ok
+        $view->empleado = new CuadrillaEmpleado();
+        $rta = $view->empleado->checkEmpleado($_POST['id_cuadrilla_empleado'], $_POST['id_cuadrilla'], $_POST['id_empleado']);
         print_r(json_encode($rta));
         exit;
         break;

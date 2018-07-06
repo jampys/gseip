@@ -57,7 +57,7 @@
 
 
 
-        //Abre formulario para ingresar nueva etapa
+        //Abre formulario para ingresar un nuevo empleado
         $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
             params.action = "cuadrilla-empleado";
@@ -151,24 +151,25 @@
             //alert(id);
             //preparo los parametros
             params={};
-            params.id_etapa = id;
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
-            params.action = "etapas";
-            params.operation = "deleteEtapa";
+            params.id_cuadrilla_empleado = id;
+            params.id_cuadrilla = $('#etapas_left_side #add').attr('id_cuadrilla');
+            params.action = "cuadrilla-empleado";
+            params.operation = "deleteEmpleado";
             //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-etp #myElemento").html('Etapa eliminada con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                    $("#confirm-etp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
+                    $('#etapas_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla: params.id_cuadrilla, operation:"refreshGrid"});
                     //$("#search").trigger("click");
+                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     setTimeout(function() { $("#confirm-etp #myElemento").hide();
-                                            $('#etapa-form').hide();
+                                            $('#empleado-form').hide();
                                             $('#confirm-etp').dialog('close');
                                           }, 2000);
                 }else{
-                    $("#myElemento").html('Error al eliminar la etapa').addClass('alert alert-danger').show();
+                    $("#myElemento").html('Error al eliminar el empleado').addClass('alert alert-danger').show();
                 }
 
 
@@ -246,7 +247,7 @@
 
 <div id="confirm-etp">
     <div class="modal-body">
-        ¿Desea eliminar la etapa?
+        ¿Desea eliminar el empleado?
     </div>
 
     <div id="myElemento" style="display:none">

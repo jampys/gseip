@@ -32,7 +32,21 @@
                         digits: true,
                         maxlength: 6
                 },*/
-                id_empleado: {required: true}
+                id_empleado: {
+                    required: true,
+                    remote: {
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            action: "cuadrilla-empleado",
+                            operation: "checkEmpleado",
+                            id_cuadrilla_empleado: function(){ return $('#id_cuadrilla_empleado').val();},
+                            id_cuadrilla: function(){ return $('#id_cuadrilla').val();},
+                            id_empleado: function(){ return $('#id_empleado').val();}
+                        }
+                    }
+                }
             },
             messages:{
                 /*codigo: {
@@ -40,7 +54,10 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }, */
-                id_empleado: "Seleccione un empleado"
+                id_empleado: {
+                    required: "Seleccione un empleado",
+                    remote: "La fecha de emisión debe ser mayor"
+                }
             }
 
         });
@@ -65,7 +82,7 @@
 
 
         <div class="form-group required">
-            <label for="id_contrato" class="control-label">Empleado</label>
+            <label for="id_empleado" class="control-label">Empleado</label>
             <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione el empleado" data-live-search="true" data-size="5">
                 <?php foreach ($view->empleados as $em){
                     ?>
