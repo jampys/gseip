@@ -56,7 +56,7 @@
                 }, */
                 id_empleado: {
                     required: "Seleccione un empleado",
-                    remote: "La fecha de emisión debe ser mayor"
+                    remote: "El empleado seleccionado ya se encuentra en la cuadrilla"
                 }
             }
 
@@ -83,7 +83,8 @@
 
         <div class="form-group required">
             <label for="id_empleado" class="control-label">Empleado</label>
-            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione el empleado" data-live-search="true" data-size="5">
+            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" data-live-search="true" data-size="5">
+                <option value="">Seleccione un empleado</option>
                 <?php foreach ($view->empleados as $em){
                     ?>
                     <option value="<?php echo $em['id_empleado']; ?>"
