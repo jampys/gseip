@@ -78,7 +78,7 @@
                     //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
-                    $('#etapas_left_side #add').attr('id_cuadrilla', id);
+                    $('#empleados_left_side #add').attr('id_cuadrilla', id);
                 })
 
             });

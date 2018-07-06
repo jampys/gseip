@@ -52,7 +52,6 @@ switch ($operation)
         $view->empleado = new CuadrillaEmpleado($_POST['id_cuadrilla_empleado']);
 
         $view->empleados = Empleado::getEmpleados();
-        //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
@@ -74,19 +73,10 @@ switch ($operation)
         exit;
         break;
 
-    case 'checkFechaVencimiento':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
 
     default : //carga la tabla de empleados de la cuadrilla //ok
-        //$view->postulacion = new Postulacion($_POST['id_postulacion']);
         $view->label='Empleados de la cuadrilla';
         $view->empleados = CuadrillaEmpleado::getCuadrillaEmpleado($_POST['id_cuadrilla']);
-        //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
         $view->disableLayout=true;
         $view->contentTemplate="view/cuadrillas/empleadosForm.php";
         break;

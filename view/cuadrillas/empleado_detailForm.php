@@ -19,13 +19,13 @@
         });
 
 
-        //cancel de formulario de etapa
+        //cancel de formulario de empleado
         $('#empleado-form #cancel').on('click', function(){ //ok
             $('#empleado-form').hide();
         });
 
 
-        $('#empleado-form').validate({
+        $('#empleado-form').validate({ //ok
             rules: {
                 /*codigo: {
                         required: true,
@@ -112,16 +112,3 @@
 
     </fieldset>
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-

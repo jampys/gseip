@@ -18,7 +18,7 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){ //ok
+        $('#empleados_left_side').on('click', '.edit', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -27,7 +27,7 @@
             params.action = "cuadrilla-empleado";
             params.operation = "editEmpleado";
             //alert(params.id_renovacion);
-            $('#etapas_right_side').load('index.php', params,function(){
+            $('#empleados_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
@@ -35,7 +35,7 @@
             })
         });
 
-        $('#etapas_left_side').on('click', '.view', function(){ //ok
+        $('#empleados_left_side').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -45,10 +45,10 @@
             params.operation = "editEmpleado";
             params.target = "view";
             //alert(params.id_renovacion);
-            $('#etapas_right_side').load('index.php', params,function(){
+            $('#empleados_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
-                $("#etapas_right_side fieldset").prop("disabled", true);
-                $("#etapa-form #footer-buttons button").css('display', 'none');
+                $("#empleados_right_side fieldset").prop("disabled", true);
+                $("#empleado-form #footer-buttons button").css('display', 'none');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 $('.selectpicker').selectpicker('refresh');
@@ -58,13 +58,13 @@
 
 
         //Abre formulario para ingresar un nuevo empleado
-        $('#etapas_left_side').on('click', '#add', function(){ //ok
+        $('#empleados_left_side').on('click', '#add', function(){ //ok
             params={};
             params.action = "cuadrilla-empleado";
             params.operation = "newEmpleado";
-            params.id_cuadrilla = $('#etapas_left_side #add').attr('id_cuadrilla');
+            params.id_cuadrilla = $('#empleados_left_side #add').attr('id_cuadrilla');
             //alert(params.id_renovacion);
-            $('#etapas_right_side').load('index.php', params,function(){
+            $('#empleados_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 $('#id_cuadrilla').val(params.id_cuadrilla);
@@ -100,7 +100,7 @@
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla:params.id_cuadrilla, operation:"refreshGrid"});
+                        $('#empleados_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla:params.id_cuadrilla, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
@@ -119,9 +119,7 @@
 
 
         //$(document).on('click', '#example .delete', function(){
-        $('#etapas_left_side').on('click', '.delete', function(){
-            //alert('Funcionalidad en desarrollo');
-            //throw new Error();
+        $('#empleados_left_side').on('click', '.delete', function(){
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             $('#confirm-etp').dialog({ //se agregan botones al confirm dialog y se abre
@@ -152,7 +150,7 @@
             //preparo los parametros
             params={};
             params.id_cuadrilla_empleado = id;
-            params.id_cuadrilla = $('#etapas_left_side #add').attr('id_cuadrilla');
+            params.id_cuadrilla = $('#empleados_left_side #add').attr('id_cuadrilla');
             params.action = "cuadrilla-empleado";
             params.operation = "deleteEmpleado";
             //alert(params.id_etapa);
@@ -161,7 +159,7 @@
                 //alert(xhr.responseText);
                 if(data >=0){
                     $("#confirm-etp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla: params.id_cuadrilla, operation:"refreshGrid"});
+                    $('#empleados_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla: params.id_cuadrilla, operation:"refreshGrid"});
                     //$("#search").trigger("click");
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     setTimeout(function() { $("#confirm-etp #myElemento").hide();
@@ -179,9 +177,8 @@
 
 
 
-        //evento al salir o cerrar con la x el modal de etapas
+        //evento al salir o cerrar con la x el modal de empleados
         $("#myModal").on("hidden.bs.modal", function () {
-            //alert('salir de etapas');
             $("#search").trigger("click");
         });
 
@@ -208,10 +205,10 @@
                 
                 <div class="row">
 
-                        <div class="col-md-6" id="etapas_left_side">
+                        <div class="col-md-6" id="empleados_left_side">
 
                             <div class="clearfix">
-                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar etapa">
+                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar empleado">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
                             </div>
@@ -222,7 +219,7 @@
 
                         </div>
 
-                        <div class="col-md-6" id="etapas_right_side">
+                        <div class="col-md-6" id="empleados_right_side">
 
                         </div>
 
