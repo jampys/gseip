@@ -1,5 +1,5 @@
 ﻿<?php
-include_once("model/busquedasModel.php");
+include_once("model/nov_partesModel.php");
 
 include_once("model/puestosModel.php");
 include_once("model/nov_areasModel.php");
@@ -13,15 +13,15 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
-        $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
-        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        $todas = null; //($_POST['renovado']== 0)? null : 1;
-        $view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->contentTemplate="view/busquedas/busquedasGrid.php";
+        //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
+        //$id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
+        //$id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        //$todas = null; //($_POST['renovado']== 0)? null : 1;
+        $view->partes = Parte::getPartes($id_puesto, $id_localidad, $id_contrato, $todas);
+        $view->contentTemplate="view/novedades_partes/partesGrid.php";
         break;
 
     case 'saveBusqueda':

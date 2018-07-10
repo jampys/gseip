@@ -30,18 +30,18 @@
             });
 
 
-            $(document).on('click', '#search', function(){
+            $(document).on('click', '#search', function(){ //ok
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
                 //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                params.search_puesto = $("#search_puesto").val();
-                params.search_localidad = $("#search_localidad").val();
-                params.search_contrato = $("#search_contrato").val();
+                //params.search_puesto = $("#search_puesto").val();
+                //params.search_localidad = $("#search_localidad").val();
+                //params.search_contrato = $("#search_contrato").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
-                params.action = "busquedas";
+                params.action = "partes";
                 params.operation = "refreshGrid";
                 //alert(params.id_grupo);
                 $('#content').load('index.php', params);

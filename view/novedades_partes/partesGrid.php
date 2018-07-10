@@ -80,15 +80,13 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro. bq.</th>
-                <th>Fecha</th>
-                <th>Nombre</th>
-                <th>F. apertura</th>
-                <th>F. cierre</th>
-                <th>Puesto</th>
+                <th>Nro. pte.</th>
+                <th>Fecha pte.</th>
+                <th>Cuadrilla</th>
                 <th>Área</th>
+                <th>Vehículo</th>
+                <th>Evento</th>
                 <th>Contrato</th>
-                <th>Estado</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -97,18 +95,16 @@
             </thead>
             <tbody>
 
-            <?php if(isset($view->busquedas)) {
-                foreach ($view->busquedas as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_busqueda']; ?>">
-                        <td><?php echo $rp['id_busqueda']; ?></td>
-                        <td><?php echo $rp['fecha']; ?></td>
-                        <td><?php echo $rp['nombre']; ?></td>
-                        <td><?php echo $rp['fecha_apertura']; ?></td>
-                        <td><?php echo $rp['fecha_cierre']; ?></td>
-                        <td><?php echo $rp['puesto']; ?></td>
+            <?php if(isset($view->partes)) {
+                foreach ($view->partes as $rp):   ?>
+                    <tr data-id="<?php echo $rp['id_parte']; ?>">
+                        <td><?php echo $rp['id_parte']; ?></td>
+                        <td><?php echo $rp['fecha_parte']; ?></td>
+                        <td><?php echo $rp['cuadrilla']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
+                        <td><?php echo $rp['vehiculo']; ?></td>
+                        <td><?php echo $rp['Evento']; ?></td>
                         <td><?php echo $rp['contrato']; ?></td>
-                        <td><?php echo $rp['estado']; ?></td>
 
                         <td class="text-center">
                             <?php if($rp['cant_uploads']> 0 ){ ?>
