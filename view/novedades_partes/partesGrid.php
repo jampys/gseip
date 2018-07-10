@@ -82,12 +82,11 @@
             <tr>
                 <th>Nro. pte.</th>
                 <th>Fecha pte.</th>
+                <th>Contrato</th>
                 <th>Cuadrilla</th>
                 <th>Área</th>
                 <th>Vehículo</th>
                 <th>Evento</th>
-                <th>Contrato</th>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -100,23 +99,12 @@
                     <tr data-id="<?php echo $rp['id_parte']; ?>">
                         <td><?php echo $rp['id_parte']; ?></td>
                         <td><?php echo $rp['fecha_parte']; ?></td>
+                        <td><?php echo $rp['contrato']; ?></td>
                         <td><?php echo $rp['cuadrilla']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
                         <td><?php echo $rp['vehiculo']; ?></td>
                         <td><?php echo $rp['Evento']; ?></td>
-                        <td><?php echo $rp['contrato']; ?></td>
 
-                        <td class="text-center">
-                            <?php if($rp['cant_uploads']> 0 ){ ?>
-                                <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
-                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-                                </a>
-                            <?php } else{ ?>
-                                <!--<a class="" href="#" title="renovar">
-                                    <i class="far fa-clone"></i>
-                                </a>-->
-                            <?php } ?>
-                        </td>
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);">

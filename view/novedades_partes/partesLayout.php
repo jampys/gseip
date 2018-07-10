@@ -12,7 +12,13 @@
 
         $(document).ready(function(){
 
-            $('.selectpicker').selectpicker();
+            $('.selectpicker').selectpicker({ //ok
+                //propiedades del selectpicker
+
+            }).change(function(){
+                $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
+                                 // elimine el mensaje de requerido de jquery validation
+            });
 
 
             $('.input-group.date').datepicker({ //ok para fecha (nuevo)

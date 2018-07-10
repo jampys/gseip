@@ -42,7 +42,7 @@ switch ($operation)
 
     case 'newParte': //ok
         $view->label='Nuevo parte';
-        $view->busqueda = new Busqueda();
+        $view->parte = new Parte();
 
         $view->puestos = Puesto::getPuestos();
         //$view->localidades = Localidad::getLocalidades();
