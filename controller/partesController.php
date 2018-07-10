@@ -2,7 +2,7 @@
 include_once("model/busquedasModel.php");
 
 include_once("model/puestosModel.php");
-include_once("model/localidadesModel.php");
+include_once("model/nov_areasModel.php");
 include_once("model/contratosModel.php");
 
 $operation = "";
@@ -40,16 +40,16 @@ switch ($operation)
         exit;
         break;
 
-    case 'newBusqueda':
-        $view->label='Nueva búsqueda';
+    case 'newParte': //ok
+        $view->label='Nuevo parte';
         $view->busqueda = new Busqueda();
 
         $view->puestos = Puesto::getPuestos();
-        $view->localidades = Localidad::getLocalidades();
+        //$view->localidades = Localidad::getLocalidades();
         $view->contratos = Contrato::getContratos();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/busquedas/busquedasForm.php";
+        $view->contentTemplate="view/novedades_partes/partesForm.php";
         break;
 
     case 'editBusqueda':
@@ -89,7 +89,7 @@ switch ($operation)
 
     default :
         $view->puestos = Puesto::getPuestos(); //carga el combo para filtrar puestos
-        $view->localidades = Localidad::getLocalidades(); //carga el combo para filtrar localidades (Areas)
+        $view->areas = NovArea::getAreas(); //carga el combo para filtrar Areas
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/novedades_partes/partesGrid.php";
         break;

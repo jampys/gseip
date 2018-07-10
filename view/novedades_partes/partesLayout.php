@@ -15,8 +15,15 @@
             $('.selectpicker').selectpicker();
 
 
-            $('.input-group.date').datepicker({
+            $('.input-group.date').datepicker({ //ok para fecha (nuevo)
                 //inline: true
+                format:"dd/mm/yyyy",
+                language: 'es',
+                todayHighlight: true
+            });
+
+            $('.input-daterange').datepicker({ //ok para fecha desde-hasta (buscar)
+                //todayBtn: "linked",
                 format:"dd/mm/yyyy",
                 language: 'es',
                 todayHighlight: true
@@ -74,13 +81,19 @@
             });
 
 
-            $(document).on('click', '#new', function(){
-                params={};
-                params.action = "busquedas";
-                params.operation="newBusqueda";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                })
+            $(document).on('click', '#new', function(){ //ok
+
+                if ($("#add-form").valid()){
+
+                    params={};
+                    params.action = "partes";
+                    params.operation="newParte";
+                    $('#popupbox').load('index.php', params,function(){
+                        $('#myModal').modal();
+                    });
+
+                }
+
             });
 
 
@@ -143,6 +156,23 @@
 
             };
 
+
+            $('#add-form').validate({
+                rules: {
+                    add_fecha: {required: true},
+                    add_contrato: {required: true}
+                },
+                messages:{
+                    add_fecha: "Seleccione la fecha",
+                    add_contrato: "Seleccione el contrato"
+                }
+
+            });
+
+
+
+
+
         });
 
     </script>
@@ -181,7 +211,7 @@
                 <!-- FILA DE ARRIBA -->
                 <div class="row">
 
-                    <form id="search_form" name="search_form">
+                    <form id="add-form" name="add-form">
 
                         <div class="form-group col-md-3">
                             <label class="control-label" for="add_fecha">Fecha</label>
@@ -224,7 +254,7 @@
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nueva búsqueda" id="new" <?php echo ( PrivilegedUser::dhasAction('BUS_INSERT', array(1)) )? '' : 'disabled' ?>>
+                            <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('BUS_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </div>
@@ -248,10 +278,10 @@
                             <label for="search_localidad" class="control-label">Área</label>
                             <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un área</option>
-                                <?php foreach ($view->localidades as $loc){
+                                <?php foreach ($view->areas as $ar){
                                     ?>
-                                    <option value="<?php echo $loc['id_localidad']; ?>">
-                                        <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
+                                    <option value="<?php echo $ar['id_area']; ?>">
+                                        <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
                                     </option>
                                 <?php  } ?>
                             </select>
@@ -270,6 +300,14 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-md-4">
+                            <label for="search_vencimiento" class="control-label">Fecha desde / hasta</label>
+                            <div class="input-group input-daterange">
+                                <input class="form-control" type="text" name="search_fecha_desde" id="search_fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                                <div class="input-group-addon">a</div>
+                                <input class="form-control" type="text" name="search_fecha_hasta" id="search_fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                            </div>
+                        </div>
 
 
                         <!--<div class="form-group col-md-2">
@@ -281,7 +319,7 @@
                             <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
                         </div>-->
 
-                        <div class="form-group col-md-2">
+                        <!--<div class="form-group col-md-2">
                             <label for="search_renovado" class="control-label">&nbsp;</label>
                             <div class="checkbox">
                                 <label>
@@ -289,17 +327,11 @@
                                     <a href="#" title="Funcionalidad en construcción">Ver todos</a>
                                 </label>
                             </div>
-                        </div>
-
-
-                        <div class="form-group col-md-2">
-
-                        </div>
-
+                        </div>-->
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
+                            <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar partes" id="search">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </div>
