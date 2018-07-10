@@ -172,36 +172,95 @@
                     <table class="table table-condensed dataTable table-hover">
                         <thead>
                         <tr>
-                            <th>Fecha</th>
-                            <th>Empleado</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php foreach ($view->cuadrillas as $cu): ?>
                             <tr data-id="<?php echo $cu['id_cuadrilla'];?>">
-                                <td><?php echo $cu['nombre'];?></td>
-                                <td><?php echo $cu['nombre']." ".$cu['actividad'];?></td>
 
-                                <td class="text-center">
+                                <td style="width: 10px"><?php echo $cu['nombre'];?></td>
+
+                                <td><?php echo $cu['nombre'];?></td>
+
+                                <td>
+                                    <div class="form-group">
+                                        <select class="selectpicker form-control" data-live-search="true" data-size="5">
+                                            <option>Mustard vacelino samuel</option>
+                                            <option>Ketchup</option>
+                                            <option>Relish</option>
+                                        </select>
+                                    </div>
+                                </td>
+
+
+                                <td>
+                                    <div>
+                                        <div class="form-group">
+                                            <select class="selectpicker form-control">
+                                                <option>Mustard vacelino samuel</option>
+                                                <option>Ketchup</option>
+                                                <option>Relish</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <div class="form-group">
+                                            <select class="selectpicker form-control">
+                                                <option>Mustard vacelino samuel</option>
+                                                <option>Ketchup</option>
+                                                <option>Relish</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+
+
+
+
+
+                                <td><?php echo $cu['nombre'];?></td>
+
+                                <td><?php echo $cu['nombre'];?></td>
+
+                                <td><?php echo $cu['nombre'];?></td>
+
+                                <td><?php echo $cu['nombre'];?></td>
+
+
+                                <td>
                                     <a class="view" href="javascript:void(0);" data-id="<?php echo $cu['id_cuadrilla_empleado'];?>" title="ver">
                                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                     </a>
                                 </td>
 
-                                <td class="text-center">
+                                <td>
                                     <a class="<?php echo ( PrivilegedUser::dhasAction('ETP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
                                 </td>
 
-                                <td class="text-center">
+                                <td>
                                     <a class="<?php echo ( PrivilegedUser::dhasAction('ETP_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                     </a>
                                 </td>
+
+
                             </tr>
                         <?php endforeach; ?>
                         </tbody>

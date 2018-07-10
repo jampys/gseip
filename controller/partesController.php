@@ -46,7 +46,7 @@ switch ($operation)
         $view->label='Nuevo parte';
         $view->parte = new Parte();
 
-        $view->areas = Area::getAreas();
+        $view->areas = NovArea::getAreas();
         //$view->localidades = Localidad::getLocalidades();
         //$view->contratos = Contrato::getContratos();
 
