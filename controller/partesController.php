@@ -7,6 +7,7 @@ include_once("model/contratosModel.php");
 include_once("model/cuadrillasModel.php");
 include_once("model/vehiculosModel.php");
 include_once("model/nov_eventosCuadrillaModel.php");
+include_once("model/empleadosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -47,11 +48,12 @@ switch ($operation)
         $view->label='Nuevo parte';
         $view->parte = new Parte();
 
+        $view->empleados = Empleado::getEmpleados();
         $view->areas = NovArea::getAreas();
         $view->vehiculos = Vehiculo::getVehiculos();
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
 
-        $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], null);
+        $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['add_contrato'], null);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/novedades_partes/partesForm.php";

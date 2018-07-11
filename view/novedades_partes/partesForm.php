@@ -183,20 +183,30 @@
 
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <select class="selectpicker form-control">
-                                                <option>Mustard</option>
-                                                <option>Ketchup</option>
-                                                <option>Relish</option>
+                                            <select class="selectpicker form-control show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
+                                                <option value="">Seleccione un empleado</option>
+                                                <?php foreach ($view->empleados as $ar){ ?>
+                                                    <option value="<?php echo $ar['id_empleado']; ?>"
+                                                        <?php echo ($ar['id_empleado'] == $cu['empleado_1'])? 'selected' :'' ?>
+                                                        >
+                                                        <?php echo $ar['apellido'].' '.$ar['nombre']; ?>
+                                                    </option>
+                                                <?php  } ?>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <select class="selectpicker form-control">
-                                                <option>Mustard</option>
-                                                <option>Ketchup</option>
-                                                <option>Relish</option>
+                                            <select class="selectpicker form-control show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
+                                                <option value="">Seleccione un empleado</option>
+                                                <?php foreach ($view->empleados as $ar){ ?>
+                                                    <option value="<?php echo $ar['id_empleado']; ?>"
+                                                        <?php echo ($ar['id_empleado'] == $cu['empleado_2'])? 'selected' :'' ?>
+                                                        >
+                                                        <?php echo $ar['apellido'].' '.$ar['nombre']; ?>
+                                                    </option>
+                                                <?php  } ?>
                                             </select>
                                         </div>
                                     </div>

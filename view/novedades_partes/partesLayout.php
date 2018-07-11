@@ -94,6 +94,7 @@
                     params={};
                     params.action = "partes";
                     params.operation="newParte";
+                    params.add_contrato = $("#add_contrato").val();
                     $('#popupbox').load('index.php', params,function(){
                         $('#myModal').modal();
                     });
