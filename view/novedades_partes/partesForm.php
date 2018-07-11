@@ -201,25 +201,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <select class="selectpicker form-control">
-                                                <option>Mustard</option>
-                                                <option>Ketchup</option>
-                                                <option>Relish</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <select class="selectpicker form-control">
-                                                <option>Mustard cafesiño</option>
-                                                <option>Ketchup</option>
-                                                <option>Relish</option>
-                                            </select>
-                                        </div>
-                                    </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
@@ -229,6 +210,34 @@
                                                     <option value="<?php echo $ar['id_area']; ?>"
                                                         <?php echo ($ar['id_area'] == $cu['default_id_area'])? 'selected' :'' ?>
                                                         >
+                                                        <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
+                                                    </option>
+                                                <?php  } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="selectpicker form-control show-tick" id="search_vehiculo" name="search_vehiculo" data-live-search="true" data-size="5">
+                                                <option value="">Seleccione un Vehículo</option>
+                                                <?php foreach ($view->vehiculos as $ar){ ?>
+                                                    <option value="<?php echo $ar['id_vehiculo']; ?>"
+                                                        <?php echo ($ar['id_vehiculo'] == $cu['default_id_vehiculo'])? 'selected' :'' ?>
+                                                        >
+                                                        <?php echo $ar['nro_movil'].' '.$ar['modelo']; ?>
+                                                    </option>
+                                                <?php  } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="selectpicker form-control show-tick" id="search_vehiculo" name="search_vehiculo" data-live-search="true" data-size="5">
+                                                <option value="">Seleccione un evento</option>
+                                                <?php foreach ($view->eventos as $ar){ ?>
+                                                    <option value="<?php echo $ar['id_evento']; ?>">
                                                         <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
                                                     </option>
                                                 <?php  } ?>
@@ -295,8 +304,8 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
-                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
+                <!--<button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>-->
+                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
             </div>
 
         </div>

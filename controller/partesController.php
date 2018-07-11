@@ -1,11 +1,12 @@
 ﻿<?php
 include_once("model/nov_partesModel.php");
 
-include_once("model/puestosModel.php");
 include_once("model/nov_areasModel.php");
 include_once("model/contratosModel.php");
 
 include_once("model/cuadrillasModel.php");
+include_once("model/vehiculosModel.php");
+include_once("model/nov_eventosCuadrillaModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -47,8 +48,8 @@ switch ($operation)
         $view->parte = new Parte();
 
         $view->areas = NovArea::getAreas();
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->contratos = Contrato::getContratos();
+        $view->vehiculos = Vehiculo::getVehiculos();
+        $view->eventos = EventosCuadrilla::getEventosCuadrilla();
 
         $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], null);
 
@@ -91,8 +92,7 @@ switch ($operation)
         exit;
         break;
 
-    default :
-        $view->puestos = Puesto::getPuestos(); //carga el combo para filtrar puestos
+    default : //ok
         $view->areas = NovArea::getAreas(); //carga el combo para filtrar Areas
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/novedades_partes/partesGrid.php";
