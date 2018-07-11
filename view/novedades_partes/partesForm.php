@@ -167,68 +167,106 @@
                 <?php if(isset($view->cuadrillas) && sizeof($view->cuadrillas) > 0) {?>
 
                     <?php foreach ($view->cuadrillas as $cu): ?>
+
                         <div class="row">
-                            <div class="col-md-2"><?php echo $cu['nombre'] ?></div>
+
                             <div class="col-md-2">
-                                <div class="form-group">
-                                    <select class="selectpicker form-control">
-                                        <option>Mustard</option>
-                                        <option>Ketchup</option>
-                                        <option>Relish</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <select class="selectpicker form-control">
-                                        <option>Mustard</option>
-                                        <option>Ketchup</option>
-                                        <option>Relish</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <select class="selectpicker form-control">
-                                        <option>Mustard</option>
-                                        <option>Ketchup</option>
-                                        <option>Relish</option>
-                                    </select>
+                                <div class="row">
+                                    <div class="col-md-12"><?php echo $cu['nombre'] ?></div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <select class="selectpicker form-control">
-                                        <option>Mustard</option>
-                                        <option>Ketchup</option>
-                                        <option>Relish</option>
-                                    </select>
+
+
+                            <div class="col-md-9">
+                                <div class="row">
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <select class="selectpicker form-control">
+                                                <option>Mustard</option>
+                                                <option>Ketchup</option>
+                                                <option>Relish</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <select class="selectpicker form-control">
+                                                <option>Mustard</option>
+                                                <option>Ketchup</option>
+                                                <option>Relish</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="selectpicker form-control">
+                                                <option>Mustard</option>
+                                                <option>Ketchup</option>
+                                                <option>Relish</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="selectpicker form-control">
+                                                <option>Mustard cafesiño</option>
+                                                <option>Ketchup</option>
+                                                <option>Relish</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="selectpicker form-control show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
+                                                <option value="">Seleccione un Área</option>
+                                                <?php foreach ($view->areas as $ar){ ?>
+                                                    <option value="<?php echo $ar['id_area']; ?>"
+                                                        <?php echo ($ar['id_area'] == $cu['default_id_area'])? 'selected' :'' ?>
+                                                        >
+                                                        <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
+                                                    </option>
+                                                <?php  } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
                                 </div>
                             </div>
+
 
                             <div class="col-md-1">
-                                <div class="form-group">
-                                    <select class="selectpicker form-control">
-                                        <option>Mustard</option>
-                                        <option>Ketchup</option>
-                                        <option>Relish</option>
-                                    </select>
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <a class="<?php echo ( PrivilegedUser::dhasAction('ETP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <a class="<?php echo ( PrivilegedUser::dhasAction('ETP_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </a>
+
+                                    </div>
+
+
                                 </div>
                             </div>
 
 
 
-                            <div class="col-md-1">
-                                <a class="<?php echo ( PrivilegedUser::dhasAction('ETP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </a>
 
-                                <a class="<?php echo ( PrivilegedUser::dhasAction('ETP_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                </a>
-                            </div>
                         </div>
+
 
 
 
