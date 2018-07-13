@@ -25,8 +25,10 @@
                 //inline: true
                 format:"dd/mm/yyyy",
                 language: 'es',
-                todayHighlight: true
-            });
+                todayHighlight: true,
+                autoclose: true
+            }).datepicker('setDate', new Date()); //pone por defecto la fecha actual
+            //$('.input-group.date').datepicker('setDate', new Date());
 
             $('.input-daterange').datepicker({ //ok para fecha desde-hasta (buscar)
                 //todayBtn: "linked",
@@ -178,8 +180,6 @@
 
 
 
-
-
         });
 
     </script>
@@ -254,11 +254,6 @@
                             <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
                         </div>-->
 
-                        <div class="form-group col-md-4">
-
-                        </div>
-
-
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('BUS_INSERT', array(1)) )? '' : 'disabled' ?>>
@@ -266,6 +261,9 @@
                             </button>
                         </div>
 
+                        <div class="form-group col-md-4">
+
+                        </div>
 
 
                     </form>
@@ -280,18 +278,13 @@
 
                     <form id="search_form" name="search_form">
 
-
-                        <div class="form-group col-md-3">
-                            <label for="search_localidad" class="control-label">Área</label>
-                            <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un área</option>
-                                <?php foreach ($view->areas as $ar){
-                                    ?>
-                                    <option value="<?php echo $ar['id_area']; ?>">
-                                        <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
+                        <div class="form-group col-md-4">
+                            <label for="search_vencimiento" class="control-label">Fecha desde / hasta</label>
+                            <div class="input-group input-daterange">
+                                <input class="form-control" type="text" name="search_fecha_desde" id="search_fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                                <div class="input-group-addon">a</div>
+                                <input class="form-control" type="text" name="search_fecha_hasta" id="search_fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                            </div>
                         </div>
 
                         <div class="form-group col-md-3">
@@ -307,15 +300,18 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-4">
-                            <label for="search_vencimiento" class="control-label">Fecha desde / hasta</label>
-                            <div class="input-group input-daterange">
-                                <input class="form-control" type="text" name="search_fecha_desde" id="search_fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
-                                <div class="input-group-addon">a</div>
-                                <input class="form-control" type="text" name="search_fecha_hasta" id="search_fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
-                            </div>
+                        <div class="form-group col-md-3">
+                            <label for="search_localidad" class="control-label">Área</label>
+                            <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un área</option>
+                                <?php foreach ($view->areas as $ar){
+                                    ?>
+                                    <option value="<?php echo $ar['id_area']; ?>">
+                                        <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
                         </div>
-
 
                         <!--<div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
