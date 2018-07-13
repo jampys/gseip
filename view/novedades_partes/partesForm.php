@@ -264,19 +264,16 @@
                             <div class="col-md-1">
                                 <div class="row">
 
-                                    <div class="col-md-6">
-                                        <a class="<?php echo ( PrivilegedUser::dhasAction('ETP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
+                                    <div class="col-md-12">
+                                        <!--<a class="<?php echo ( PrivilegedUser::dhasAction('ETP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                        </a>
+                                        </a>-->
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="btn-primary">
+                                            </label>
+                                        </div>
                                     </div>
-
-                                    <div class="col-md-6">
-                                        <a class="<?php echo ( PrivilegedUser::dhasAction('ETP_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                        </a>
-
-                                    </div>
-
 
                                 </div>
                             </div>
