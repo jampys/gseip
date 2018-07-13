@@ -28,23 +28,43 @@
 
 
 
-        $('#myModal').on('click', '#submit',function(){
+        $('#myModal').on('click', '#submit',function(){ //ok
 
-            if ($("#busqueda-form").valid()){
+            //if ($("#busqueda-form").valid()){
+
+                var jsonCuadrillas = [];
+
+                //alert('presiono en submit');
+
+                $('.cu_cuadrilla').each(function(){ //recorre c/u de las cuadrillas
+                    //alert('encontro cuadrilla');
+
+                    if($(this).find('.cu_selected').prop('checked')){ //si la cuadrilla esta seleccionada para guardarse
+                        item = {};
+                        item.id_cuadrilla = $(this).attr('id_cuadrilla');
+                        item.id_contrato = $(this).attr('id_contrato');
+                        item.nombre = $(this).find('.cu_nombre').text();
+                        item.id_empleado_1 = $(this).find('.cu_id_empleado_1 option:selected').val();
+                        item.id_empleado_2 = $(this).find('.cu_id_empleado_2 option:selected').val();
+                        item.id_area = $(this).find('.cu_id_area option:selected').val();
+                        item.id_vehiculo = $(this).find('.cu_id_vehiculo option:selected').val();
+                        item.id_evento = $(this).find('.cu_id_evento option:selected').val();
+
+                        jsonCuadrillas.push(item);
+                    }
+
+                });
+
+                alert(jsonCuadrillas[0].nombre);
+                throw new Error();
+
 
                 var params={};
-                params.action = 'busquedas';
-                params.operation = 'saveBusqueda';
-                params.id_busqueda = $('#id_busqueda').val();
+                params.action = 'partes';
+                params.operation = 'insertPartes';
+                params.vCuadrillas = JSON.stringify(jsonCuadrillas);
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
-                params.nombre = $('#nombre').val();
-                params.fecha_apertura = $('#fecha_apertura').val();
-                params.fecha_cierre = $('#fecha_cierre').val();
-                params.id_puesto = $('#id_puesto').val();
-                params.id_localidad = $('#id_localidad').val();
-                params.id_contrato = $('#id_contrato').val();
-                //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
 
@@ -67,7 +87,7 @@
 
                 }, 'json');
 
-            }
+            //}
             return false;
         });
 
@@ -168,11 +188,11 @@
 
                     <?php foreach ($view->cuadrillas as $cu): ?>
 
-                        <div class="row">
+                        <div class="row cu_cuadrilla" id_cuadrilla="<?php echo $cu['id_cuadrilla'] ?>" id_contrato="<?php echo $cu['id_contrato'] ?>">
 
                             <div class="col-md-2">
                                 <div class="row">
-                                    <div class="col-md-12"><?php echo $cu['nombre'] ?></div>
+                                    <div class="col-md-12 cu_nombre"><?php echo $cu['nombre'] ?></div>
                                 </div>
                             </div>
 
@@ -183,7 +203,7 @@
 
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
-                                            <select class="selectpicker form-control show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
+                                            <select class="selectpicker form-control show-tick cu_id_empleado_1" data-live-search="true" data-size="5">
                                                 <option value="">Seleccione un empleado</option>
                                                 <?php foreach ($view->empleados as $ar){ ?>
                                                     <option value="<?php echo $ar['id_empleado']; ?>"
@@ -198,7 +218,7 @@
 
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
-                                            <select class="selectpicker form-control show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
+                                            <select class="selectpicker form-control show-tick cu_id_empleado_2" data-live-search="true" data-size="5">
                                                 <option value="">Seleccione un empleado</option>
                                                 <?php foreach ($view->empleados as $ar){ ?>
                                                     <option value="<?php echo $ar['id_empleado']; ?>"
@@ -214,7 +234,7 @@
 
                                     <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
-                                            <select class="selectpicker form-control show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
+                                            <select class="selectpicker form-control show-tick cu_id_area" data-live-search="true" data-size="5">
                                                 <option value="">Seleccione un Área</option>
                                                 <?php foreach ($view->areas as $ar){ ?>
                                                     <option value="<?php echo $ar['id_area']; ?>"
@@ -229,7 +249,7 @@
 
                                     <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
-                                            <select class="selectpicker form-control show-tick" id="search_vehiculo" name="search_vehiculo" data-live-search="true" data-size="5">
+                                            <select class="selectpicker form-control show-tick cu_id_vehiculo" data-live-search="true" data-size="5">
                                                 <option value="">Seleccione un Vehículo</option>
                                                 <?php foreach ($view->vehiculos as $ar){ ?>
                                                     <option value="<?php echo $ar['id_vehiculo']; ?>"
@@ -244,7 +264,7 @@
 
                                     <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
-                                            <select class="selectpicker form-control show-tick" id="search_vehiculo" name="search_vehiculo" data-live-search="true" data-size="5">
+                                            <select class="selectpicker form-control show-tick cu_id_evento" data-live-search="true" data-size="5">
                                                 <option value="">Seleccione un evento</option>
                                                 <?php foreach ($view->eventos as $ar){ ?>
                                                     <option value="<?php echo $ar['id_evento']; ?>">
@@ -270,7 +290,7 @@
                                         </a>-->
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" class="btn-primary">
+                                                <input type="checkbox" class="cu_selected">
                                             </label>
                                         </div>
                                     </div>

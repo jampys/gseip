@@ -28,7 +28,23 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/partesGrid.php";
         break;
 
-    case 'saveBusqueda':
+    case 'insertPartes': //guarda de manera masiva los partes seleccionados
+        $busqueda = new Busqueda($_POST['id_busqueda']);
+        $busqueda->setNombre($_POST['nombre']);
+        $busqueda->setFechaApertura($_POST['fecha_apertura']);
+        $busqueda->setFechaCierre( ($_POST['fecha_cierre']!='')? $_POST['fecha_cierre'] : null );
+        //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
+        $busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
+        $busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
+        $busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
+
+        $rta = $busqueda->save();
+        print_r(json_encode(sQuery::dpLastInsertId()));
+        //print_r(json_encode($rta));
+        exit;
+        break;
+
+    case 'saveParte': //guarda un parte despues de ser editado
         $busqueda = new Busqueda($_POST['id_busqueda']);
         $busqueda->setNombre($_POST['nombre']);
         $busqueda->setFechaApertura($_POST['fecha_apertura']);
