@@ -29,18 +29,44 @@ switch ($operation)
         break;
 
     case 'insertPartes': //guarda de manera masiva los partes seleccionados
-        $busqueda = new Busqueda($_POST['id_busqueda']);
-        $busqueda->setNombre($_POST['nombre']);
-        $busqueda->setFechaApertura($_POST['fecha_apertura']);
-        $busqueda->setFechaCierre( ($_POST['fecha_cierre']!='')? $_POST['fecha_cierre'] : null );
-        //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
-        $busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
-        $busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
 
-        $rta = $busqueda->save();
-        print_r(json_encode(sQuery::dpLastInsertId()));
-        //print_r(json_encode($rta));
+        try{
+            sQuery::dpBeginTransaction();
+
+            $vCuadrillas = json_decode($_POST["vCuadrillas"], true);
+
+            foreach ($vCuadrillas as $vC) {
+
+                //echo "id_cuadrilla: ".$vC['id_cuadrilla']." - fecha: ".$_POST["fecha_parte"];
+
+                $p = new Parte();
+                $p->setFechaParte($_POST["fecha_parte"]);
+                $p->setCuadrilla(($vC['cuadrilla'] != '')? $vC['cuadrilla'] : null);
+                $p->setIdArea(($vC['id_area'] != '')? $vC['id_area'] : null);
+                $p->setIdVehiculo(($vC['id_vehiculo'] != '')? $vC['id_vehiculo'] : null);
+                //$p->setIdEvento($vC['id_evento']);
+                $p->setIdEvento(($vC['id_evento']!='')? $vC['id_evento'] : null);
+                $p->setIdContrato($vC['id_contrato']);
+                $p->insertParte();  //si falla sale por el catch
+
+                //tomo el ultimo id insertado, para insertar luego los empleados del parte
+                $id_parte = sQuery::dpLastInsertId();
+
+            }
+
+            //exit;
+
+            //Devuelve el resultado a la vista
+            sQuery::dpCommit();
+            print_r(json_encode(1));
+
+        }
+        catch(Exception $e){
+            echo $e->getMessage(); //habilitar para ver el mensaje de error
+            sQuery::dpRollback();
+            print_r(json_encode(-1));
+        }
+
         exit;
         break;
 

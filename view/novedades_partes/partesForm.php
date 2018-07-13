@@ -43,7 +43,7 @@
                         item = {};
                         item.id_cuadrilla = $(this).attr('id_cuadrilla');
                         item.id_contrato = $(this).attr('id_contrato');
-                        item.nombre = $(this).find('.cu_nombre').text();
+                        item.cuadrilla = $(this).find('.cu_cuadrilla').text();
                         item.id_empleado_1 = $(this).find('.cu_id_empleado_1 option:selected').val();
                         item.id_empleado_2 = $(this).find('.cu_id_empleado_2 option:selected').val();
                         item.id_area = $(this).find('.cu_id_area option:selected').val();
@@ -55,13 +55,14 @@
 
                 });
 
-                alert(jsonCuadrillas[0].nombre);
-                throw new Error();
+                //alert(jsonCuadrillas[0].nombre);
+                //throw new Error();
 
 
                 var params={};
                 params.action = 'partes';
                 params.operation = 'insertPartes';
+                params.fecha_parte = $('#add_fecha').val();
                 params.vCuadrillas = JSON.stringify(jsonCuadrillas);
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
@@ -70,7 +71,7 @@
 
                     //objeto.id = data; //data trae el id de la renovacion
                     //alert(objeto.id);
-                    //alert(xhr.responseText);
+                    alert(xhr.responseText);
 
                     if(data >=0){
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
@@ -85,7 +86,7 @@
                         $("#myElem").html('Error al guardar la búsqueda').addClass('alert alert-danger').show();
                     }
 
-                }, 'json');
+                });
 
             //}
             return false;
@@ -192,7 +193,7 @@
 
                             <div class="col-md-2">
                                 <div class="row">
-                                    <div class="col-md-12 cu_nombre"><?php echo $cu['nombre'] ?></div>
+                                    <div class="col-md-12 cu_cuadrilla"><?php echo $cu['nombre'] ?></div>
                                 </div>
                             </div>
 

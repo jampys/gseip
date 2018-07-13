@@ -113,15 +113,15 @@ class Parte
 
 
 
-    function save(){
-        if($this->id_puesto)
-        {$rta = $this->updatePuesto();}
+    function save(){ //ok
+        if($this->id_parte)
+        {$rta = $this->updateParte();}
         else
-        {$rta =$this->insertPuesto();}
+        {$rta =$this->insertParte();}
         return $rta;
     }
 
-    public function updatePuesto(){
+    public function updateParte(){
 
         $stmt=new sQuery();
         $query="update puestos set
@@ -144,18 +144,18 @@ class Parte
         return $stmt->dpGetAffect();
     }
 
-    private function insertPuesto(){
+    public function insertParte(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into puestos(nombre, descripcion, codigo, id_puesto_superior, id_area, id_nivel_competencia)
-                values(:nombre, :descripcion, :codigo, :id_puesto_superior, :id_area, :id_nivel_competencia)";
+        $query="insert into nov_partes(fecha, fecha_parte, cuadrilla, id_area, id_vehiculo, id_evento, id_contrato)
+                values(sysdate(), STR_TO_DATE(:fecha_parte, '%d/%m/%Y'), :cuadrilla, :id_area, :id_vehiculo, :id_evento, :id_contrato)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
+        $stmt->dpBind(':fecha_parte', $this->getFechaParte());
+        $stmt->dpBind(':cuadrilla', $this->getCuadrilla());
         $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
+        $stmt->dpBind(':id_evento', $this->getIdEvento());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
