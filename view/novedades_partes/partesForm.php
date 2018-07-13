@@ -181,7 +181,7 @@
                             <div class="col-md-9">
                                 <div class="row">
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
                                                 <option value="">Seleccione un empleado</option>
@@ -196,7 +196,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
                                                 <option value="">Seleccione un empleado</option>
@@ -212,7 +212,7 @@
                                     </div>
 
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
                                                 <option value="">Seleccione un Área</option>
@@ -227,7 +227,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick" id="search_vehiculo" name="search_vehiculo" data-live-search="true" data-size="5">
                                                 <option value="">Seleccione un Vehículo</option>
@@ -242,7 +242,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick" id="search_vehiculo" name="search_vehiculo" data-live-search="true" data-size="5">
                                                 <option value="">Seleccione un evento</option>
@@ -314,7 +314,7 @@
             </div>
 
             <div class="modal-footer">
-                <!--<button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>-->
+                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
                 <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
             </div>
 
