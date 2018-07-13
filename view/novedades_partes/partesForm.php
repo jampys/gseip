@@ -71,22 +71,22 @@
 
                     //objeto.id = data; //data trae el id de la renovacion
                     //alert(objeto.id);
-                    alert(xhr.responseText);
+                    //alert(xhr.responseText);
 
                     if(data >=0){
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Búsqueda guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Partes guardados con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la búsqueda').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar los partes').addClass('alert alert-danger').show();
                     }
 
-                });
+                }, 'json');
 
             //}
             return false;

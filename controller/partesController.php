@@ -1,5 +1,6 @@
 ﻿<?php
 include_once("model/nov_partesModel.php");
+include_once("model/nov_parte-empleadoModel.php");
 
 include_once("model/nov_areasModel.php");
 include_once("model/contratosModel.php");
@@ -51,6 +52,23 @@ switch ($operation)
 
                 //tomo el ultimo id insertado, para insertar luego los empleados del parte
                 $id_parte = sQuery::dpLastInsertId();
+
+                //se insertan los 2 empleados de la cuadrilla
+                if($vC['id_empleado_1']){
+                    $pe1 = new ParteEmpleado();
+                    $pe1->setIdParte($id_parte);
+                    $pe1->setIdEmpleado($vC['id_empleado_1']);
+                    $pe1->setConductor(null);
+                    $pe1->insertParteEmpleado();
+                }
+
+                if($vC['id_empleado_2']){
+                    $pe2 = new ParteEmpleado();
+                    $pe2->setIdParte($id_parte);
+                    $pe2->setIdEmpleado($vC['id_empleado_2']);
+                    $pe2->setConductor(null);
+                    $pe2->insertParteEmpleado();
+                }
 
             }
 
