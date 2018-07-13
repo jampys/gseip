@@ -34,8 +34,11 @@
                 //todayBtn: "linked",
                 format:"dd/mm/yyyy",
                 language: 'es',
-                todayHighlight: true
+                todayHighlight: true,
+                autoclose: true
             });
+
+            $('#search_fecha_desde').datepicker('setDate', new Date()); //pone por defecto el rango en la fecha actual
 
 
             $(document).on('click', '#search', function(){ //ok
