@@ -98,7 +98,8 @@ class Cuadrilla
                   join contratos co on cu.id_contrato = co.id_contrato
                   join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
                   join nov_areas ar on cu.default_id_area = ar.id_area
-                  where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)";
+                  where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
+                  order by cu.nombre";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
