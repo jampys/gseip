@@ -100,6 +100,9 @@
                     params.action = "partes";
                     params.operation="newParte";
                     params.add_contrato = $("#add_contrato").val();
+                    params.fecha = $("#add_fecha").val(); //para mostrar en el titulo del modal
+                    params.contrato = $("#add_contrato option:selected").text(); //para mostrar en el titulo del modal
+
                     $('#popupbox').load('index.php', params,function(){
                         $('#myModal').modal();
                     });
@@ -343,7 +346,7 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            
+
                         </div>
 
                     </form>

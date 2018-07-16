@@ -108,7 +108,7 @@ switch ($operation)
         break;
 
     case 'newParte': //ok
-        $view->label='Nuevo parte';
+        $view->label='Nuevo parte: '.$_POST['fecha'].' '.$_POST['contrato'];
         $view->parte = new Parte();
 
         $view->empleados = Empleado::getEmpleados();

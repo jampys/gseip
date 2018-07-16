@@ -313,7 +313,7 @@
 
                     <br/>
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> La cuadrilla aún no tiene empleados registrados.
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> El contrato aún no tiene cuadrillas asociadas.
                     </div>
 
                 <?php } ?>
