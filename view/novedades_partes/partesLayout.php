@@ -48,9 +48,9 @@
                 params={};
                 //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                //params.search_puesto = $("#search_puesto").val();
-                //params.search_localidad = $("#search_localidad").val();
-                //params.search_contrato = $("#search_contrato").val();
+                params.search_fecha_desde = $("#search_fecha_desde").val();
+                params.search_fecha_hasta = $("#search_fecha_hasta").val();
+                params.search_contrato = $("#search_contrato").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "partes";
                 params.operation = "refreshGrid";
@@ -303,7 +303,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-3">
+                        <!--<div class="form-group col-md-3">
                             <label for="search_localidad" class="control-label">Área</label>
                             <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un área</option>
@@ -314,7 +314,7 @@
                                     </option>
                                 <?php  } ?>
                             </select>
-                        </div>
+                        </div>-->
 
                         <!--<div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
@@ -340,6 +340,10 @@
                             <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar partes" id="search">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            
                         </div>
 
                     </form>

@@ -23,9 +23,11 @@ switch ($operation)
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
         //$id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
-        //$id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        //$todas = null; //($_POST['renovado']== 0)? null : 1;
-        $view->partes = Parte::getPartes($id_puesto, $id_localidad, $id_contrato, $todas);
+        $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
+        $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
+        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $todas = null; //($_POST['renovado']== 0)? null : 1;
+        $view->partes = Parte::getPartes($fecha_desde, $fecha_hasta, $id_contrato, $todas);
         $view->contentTemplate="view/novedades_partes/partesGrid.php";
         break;
 

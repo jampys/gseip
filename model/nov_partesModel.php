@@ -97,7 +97,7 @@ class Parte
     }
 
 
-    public static function getPartes($a, $b, $c, $d) { //ok
+    public static function getPartes($fecha_desde, $fecha_hasta, $id_contrato, $d) { //ok
         $stmt=new sQuery();
         $query="select pa.id_parte,
                     DATE_FORMAT(pa.fecha,  '%d/%m/%Y') as fecha,
@@ -114,8 +114,14 @@ class Parte
                     left join nov_eventos_c nec on pa.id_evento = nec.id_evento
                     left join contratos co on pa.id_contrato = co.id_contrato
                     join sec_users us on pa.id_user = us.id_user
+                    and pa.fecha_parte between if(:fecha_desde is null, pa.fecha_parte, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
+                    and if(:fecha_hasta is null, pa.fecha_parte, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
+                    and pa.id_contrato =  ifnull(:id_contrato, pa.id_contrato)
                     order by pa.fecha_parte asc";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
