@@ -48,6 +48,7 @@ switch ($operation)
                 //$p->setIdEvento($vC['id_evento']);
                 $p->setIdEvento(($vC['id_evento']!='')? $vC['id_evento'] : null);
                 $p->setIdContrato($vC['id_contrato']);
+                $p->setIdUser($_SESSION['id_user']);
                 $p->insertParte();  //si falla sale por el catch
 
                 //tomo el ultimo id insertado, para insertar luego los empleados del parte

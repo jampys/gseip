@@ -11,6 +11,7 @@ class Parte
     private $id_vehiculo;
     private $id_evento;
     private $id_contrato;
+    private $id_user;
 
     // GETTERS
     function getIdParte()
@@ -37,6 +38,9 @@ class Parte
     function getIdContrato()
     { return $this->id_contrato;}
 
+    function getIdUser()
+    { return $this->id_user;}
+
     //SETTERS
     function setIdParte($val)
     { $this->id_parte=$val;}
@@ -62,6 +66,9 @@ class Parte
     function setIdContrato($val)
     {  $this->id_contrato=$val;}
 
+    function setIdUser($val)
+    {  $this->id_user=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -71,7 +78,7 @@ class Parte
             $query="select id_parte,
                     DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha,
                     DATE_FORMAT(fecha_parte,  '%d/%m/%Y') as fecha_parte,
-                    cuadrilla, id_area, id_vehiculo, id_evento, id_contrato
+                    cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, id_user
                     from nov_partes where id_parte = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -98,13 +105,15 @@ class Parte
                     pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato,
                     concat(ar.codigo, ' ', ar.nombre) as area,
                     concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
-                    nec.nombre as evento,
-                    co.nombre as contrato
+                    concat(nec.codigo, ' ', nec.nombre) as evento,
+                    co.nombre as contrato,
+                    us.user
                     from nov_partes pa
                     left join nov_areas ar on pa.id_area = ar.id_area
                     left join vto_vehiculos ve on pa.id_vehiculo = ve.id_vehiculo
                     left join nov_eventos_c nec on pa.id_evento = nec.id_evento
                     left join contratos co on pa.id_contrato = co.id_contrato
+                    join sec_users us on pa.id_user = us.id_user
                     order by pa.fecha_parte asc";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
@@ -147,8 +156,8 @@ class Parte
     public function insertParte(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into nov_partes(fecha, fecha_parte, cuadrilla, id_area, id_vehiculo, id_evento, id_contrato)
-                values(sysdate(), STR_TO_DATE(:fecha_parte, '%d/%m/%Y'), :cuadrilla, :id_area, :id_vehiculo, :id_evento, :id_contrato)";
+        $query="insert into nov_partes(fecha, fecha_parte, cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, id_user)
+                values(sysdate(), STR_TO_DATE(:fecha_parte, '%d/%m/%Y'), :cuadrilla, :id_area, :id_vehiculo, :id_evento, :id_contrato, :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_parte', $this->getFechaParte());
         $stmt->dpBind(':cuadrilla', $this->getCuadrilla());
@@ -156,6 +165,7 @@ class Parte
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
