@@ -99,6 +99,11 @@ class Cuadrilla
                   join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
                   join nov_areas ar on cu.default_id_area = ar.id_area
                   where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
+                  and not exists( select 1
+                                  from nov_partes pax
+                                  where pax.id_contrato = cu.id_contrato
+                                  and pax.cuadrilla = cu.nombre
+                                )
                   order by cu.nombre";
 
         $stmt->dpPrepare($query);
