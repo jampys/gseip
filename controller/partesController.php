@@ -108,14 +108,14 @@ switch ($operation)
         break;
 
     case 'newParte': //ok
-        $view->label='Nuevo parte: '.$_POST['fecha'].' '.$_POST['contrato'];
+        $view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
         $view->parte = new Parte();
 
         $view->empleados = Empleado::getEmpleados();
         $view->areas = NovArea::getAreas();
         $view->vehiculos = Vehiculo::getVehiculos();
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
-        $view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], null);
+        $view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/novedades_partes/partesForm.php";

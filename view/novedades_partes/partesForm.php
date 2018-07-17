@@ -321,7 +321,7 @@
 
                     <br/>
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> El contrato aún no tiene cuadrillas asociadas.
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> El contrato aún no tiene cuadrillas asociadas ó ya existen partes para las cuadrillas del contrato en la fecha indicada.
                     </div>
 
                 <?php } ?>

@@ -107,7 +107,7 @@ class Cuadrilla
     }
 
 
-    public static function getCuadrillasForPartes($id_contrato, $todas) {
+    public static function getCuadrillasForPartes($id_contrato, $fecha_parte) {
         $stmt=new sQuery();
         $query = "select
                   (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
@@ -127,10 +127,12 @@ class Cuadrilla
                                   from nov_partes pax
                                   where pax.id_contrato = cu.id_contrato
                                   and pax.cuadrilla = cu.nombre
+                                  and pax.fecha_parte = STR_TO_DATE(:fecha_parte, '%d/%m/%Y')
                                 )
                   order by cu.nombre";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':fecha_parte', $fecha_parte);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
