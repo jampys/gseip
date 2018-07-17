@@ -199,9 +199,9 @@
 
                         <div class="row cu_cuadrilla" id_cuadrilla="<?php echo $cu['id_cuadrilla'] ?>" id_contrato="<?php echo $cu['id_contrato'] ?>">
 
-                            <div class="col-md-2">
+                            <div class="col-md-2" style="padding-right: 5px">
                                 <div class="row">
-                                    <div class="col-md-12 cu_cuadrilla"><button type="button" class="btn btn-primary"><?php echo $cu['nombre'] ?></button></div>
+                                    <div class="col-md-12 cu_cuadrilla"><button type="button" class="btn btn-primary" title="<?php echo $cu['nombre'] ?>"><?php echo substr($cu['nombre'], 0, 20) ?></button></div>
                                 </div>
                             </div>
 
