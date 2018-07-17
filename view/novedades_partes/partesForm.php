@@ -165,6 +165,14 @@
         });
 
 
+        $('.cu_cuadrilla .btn').on('click', function(){ //ok
+            //alert('toco una cuadrilla');
+            //$(this).closest('.row.cu_cuadrilla').find(':checkbox').prop('checked', true);
+            var chk = $(this).closest('.row.cu_cuadrilla').find(':checkbox');
+            chk.prop('checked', !chk.is(':checked'))
+
+        });
+
 
     });
 
@@ -193,7 +201,7 @@
 
                             <div class="col-md-2">
                                 <div class="row">
-                                    <div class="col-md-12 cu_cuadrilla"><?php echo $cu['nombre'] ?></div>
+                                    <div class="col-md-12 cu_cuadrilla"><button type="button" class="btn btn-primary"><?php echo $cu['nombre'] ?></button></div>
                                 </div>
                             </div>
 

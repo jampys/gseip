@@ -115,8 +115,7 @@ switch ($operation)
         $view->areas = NovArea::getAreas();
         $view->vehiculos = Vehiculo::getVehiculos();
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
-
-        $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['add_contrato'], null);
+        $view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], null);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/novedades_partes/partesForm.php";

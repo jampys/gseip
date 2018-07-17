@@ -99,13 +99,36 @@ class Cuadrilla
                   join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
                   join nov_areas ar on cu.default_id_area = ar.id_area
                   where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
+                  order by cu.nombre";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+    public static function getCuadrillasForPartes($id_contrato, $todas) {
+        $stmt=new sQuery();
+        $query = "select
+                  (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
+                   where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1) as empleado_1,
+                   (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
+                   where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1, 1) as empleado_2,
+                  cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.actividad,
+                  co.nombre as contrato,
+                  concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
+                  concat(ar.codigo, ' ', ar.nombre) as area
+                  from nov_cuadrillas cu
+                  join contratos co on cu.id_contrato = co.id_contrato
+                  join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
+                  join nov_areas ar on cu.default_id_area = ar.id_area
+                  where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
                   and not exists( select 1
                                   from nov_partes pax
                                   where pax.id_contrato = cu.id_contrato
                                   and pax.cuadrilla = cu.nombre
                                 )
                   order by cu.nombre";
-
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
