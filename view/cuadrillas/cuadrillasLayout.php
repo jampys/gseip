@@ -192,25 +192,6 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-3">
-
-                    </div>
-
-
-                    <div class="form-group col-md-3">
-                        <!--<label for="search_localidad" class="control-label">Área</label>
-                        <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un área</option>
-                            <?php foreach ($view->localidades as $loc){
-                                ?>
-                                <option value="<?php echo $loc['id_localidad']; ?>">
-                                    <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>-->
-                    </div>
-
-
                     <!--<div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
@@ -220,30 +201,27 @@
                         <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
                     </div>-->
 
-                    <div class="form-group col-md-1" style="width: 11%">
-                        <label for="search_renovado" class="control-label">&nbsp;</label>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="search_renovado" name="search_renovado">
-                                <a href="#" title="Funcionalidad en contrucción">Ver todos</a>
-                            </label>
-                        </div>
-                    </div>
 
-
-                    <div class="form-group col-md-1" style="width: 7%">
+                    <div class="form-group col-md-1">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </div>
 
-                    <div class="form-group col-md-1" style="width: 7%">
+                    <div class="form-group col-md-1">
                         <label for="search">&nbsp;</label>
-                        <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nueva postulación" id="new" <?php echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?>>
+                        <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nueva cuadrilla" id="new" <?php echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </div>
+
+                    <div class="form-group col-md-7">
+
+                    </div>
+
+
+
 
 
 

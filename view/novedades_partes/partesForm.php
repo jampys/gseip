@@ -69,8 +69,6 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    //objeto.id = data; //data trae el id de la renovacion
-                    //alert(objeto.id);
                     //alert(xhr.responseText);
 
                     if(data >=0){
@@ -106,67 +104,21 @@
         });
 
 
-        $('#busqueda-form').validate({
+        /*$('#busqueda-form').validate({
             rules: {
                 nombre: {required: true},
                 fecha_apertura: {required: true}
-                /*fecha_emision: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaEmision",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
-                        }
-                    }
-                },
-                fecha_vencimiento: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaVencimiento",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            fecha_vencimiento: function(){ return $('#fecha_vencimiento').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
-                        }
-                    }
-                }*/
-
             },
             messages:{
                 nombre: "Ingrese el nombre",
                 fecha_apertura: "Seleccione la fecha de apertura"
-                /*fecha_emision: {
-                    required: "Ingrese la fecha de emisión",
-                    remote: "La fecha de emisión debe ser mayor"
-                },
-                fecha_vencimiento: {
-                    required: "Ingrese la fecha de vencimiento",
-                    remote: "La fecha de vencimiento debe ser mayor"
-                }*/
             }
 
-        });
+        });*/
 
 
+        //Al presionar el boton con el nombre de la cuadrilla
         $('.cu_cuadrilla .btn').on('click', function(){ //ok
-            //alert('toco una cuadrilla');
             //$(this).closest('.row.cu_cuadrilla').find(':checkbox').prop('checked', true);
             var chk = $(this).closest('.row.cu_cuadrilla').find(':checkbox');
             chk.prop('checked', !chk.is(':checked'))
