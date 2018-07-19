@@ -68,6 +68,7 @@
                     params.marca = $('#marca').val();
                     params.modelo = $('#modelo').val();
                     params.modelo_ano = $('#modelo_ano').val();
+                    params.tetra = $('#tetra').val();
                     params.propietario = $('#propietario').val();
                     params.leasing = $('#leasing').val();
                     params.fecha_baja = $('#fecha_baja').val();
