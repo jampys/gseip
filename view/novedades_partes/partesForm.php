@@ -153,7 +153,7 @@
 
                             <div class="col-md-2" style="padding-right: 5px">
                                 <div class="row">
-                                    <div class="col-md-12 cu_cuadrilla"><button type="button" class="btn btn-primary" title="<?php echo $cu['nombre'] ?>"><?php echo substr($cu['nombre'], 0, 20) ?></button></div>
+                                    <div class="col-md-12 cu_cuadrilla"><button type="button" class="btn btn-primary btn-block" title="<?php echo $cu['nombre'] ?>"><?php echo substr($cu['nombre'], 0, 20) ?></button></div>
                                 </div>
                             </div>
 
