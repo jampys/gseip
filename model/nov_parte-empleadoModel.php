@@ -69,7 +69,7 @@ class ParteEmpleado
     public static function getParteEmpleado($id_parte) { //ok
         $stmt=new sQuery();
         $query = "select npe.id_parte_empleado,
-                  DATE_FORMAT(npe.fecha, '%d/%m/%Y') as fecha,
+                  -- DATE_FORMAT(npe.fecha, '%d/%m/%Y') as fecha,
                   npe.id_parte, npe.id_empleado, npe.conductor,
                   em.apellido, em.nombre
                   from nov_parte_empleado npe

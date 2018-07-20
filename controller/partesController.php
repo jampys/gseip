@@ -118,20 +118,23 @@ switch ($operation)
         $view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/novedades_partes/partesForm.php";
+        $view->contentTemplate="view/novedades_partes/partesFormInsert.php";
         break;
 
-    case 'editBusqueda':
-        $view->label='Editar búsqueda';
-        $view->busqueda = new Busqueda($_POST['id_busqueda']);
+    case 'editParte':
+        $view->label='Editar parte';
+        $view->parte = new Parte($_POST['id_parte']);
 
-        $view->puestos = Puesto::getPuestos();
-        $view->localidades = Localidad::getLocalidades();
-        $view->contratos = Contrato::getContratos();
+        $view->empleados = Empleado::getEmpleados();
+        $view->areas = NovArea::getAreas();
+        $view->vehiculos = Vehiculo::getVehiculos();
+        $view->eventos = EventosCuadrilla::getEventosCuadrilla();
+        //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
+
+        $view->empleados = ParteEmpleado::getParteEmpleado($_POST['id_parte']);
 
         $view->disableLayout=true;
-        $view->target = $_POST['target'];
-        $view->contentTemplate="view/busquedas/busquedasForm.php";
+        $view->contentTemplate="view/novedades_partes/partesFormUpdate.php";
         break;
 
     case 'deleteHabilidad':

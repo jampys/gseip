@@ -60,12 +60,12 @@
 
 
 
-            $(document).on('click', '.edit', function(){
+            $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_busqueda = id;
-                params.action = "busquedas";
-                params.operation = "editBusqueda";
+                params.id_parte = id;
+                params.action = "partes";
+                params.operation = "editParte";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
