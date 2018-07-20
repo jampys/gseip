@@ -13,7 +13,7 @@
         <tbody>
         <?php foreach ($view->empleados as $em): ?>
             <tr data-id="<?php echo $em['id_parte_empleado'];?>">
-                <td><?php echo $em['apellido'];?></td>
+                <td><?php echo $em['apellido'].' '.$em['nombre'];?></td>
                 <td><?php echo $em['conductor'];?></td>
                 <!--<td style="text-align: center"><?php echo($et['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
                 <td><?php echo $et['user'];?></td>-->

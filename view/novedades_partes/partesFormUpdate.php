@@ -262,17 +262,22 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-
+                                        <label class="control-label" for="hs_normal">Hs. Normal</label>
+                                        <input class="form-control" type="text" name="hs_normal" id="hs_normal" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Hs. Normal">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label class="control-label" for="hs_50">Hs. 50%</label>
+                                        <input class="form-control" type="text" name="hs_50" id="hs_50" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Hs. 50%">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label class="control-label" for="codigo">Hs. 100%</label>
+                                        <input class="form-control" type="text" name="hs_100" id="hs_100" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Hs. 100%">
                                     </div>
                                 </div>
 

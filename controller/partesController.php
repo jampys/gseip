@@ -122,8 +122,8 @@ switch ($operation)
         break;
 
     case 'editParte':
-        $view->label='Editar parte';
         $view->parte = new Parte($_POST['id_parte']);
+        $view->label='Editar parte: '.$view->parte->getFechaParte().' '; //falta el nombre del contrato
 
         $view->empleados = Empleado::getEmpleados();
         $view->areas = NovArea::getAreas();
