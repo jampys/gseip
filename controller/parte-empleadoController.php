@@ -1,5 +1,5 @@
 ﻿<?php
-include_once("model/cuadrilla-empleadoModel.php");
+include_once("model/nov_parte-empleadoModel.php");
 
 include_once("model/puestosModel.php");
 include_once("model/localidadesModel.php");
@@ -37,14 +37,14 @@ switch ($operation)
         exit;
         break;
 
-    case 'newEmpleado':
+    case 'newEmpleado': //ok
         $view->label='Nuevo empleado';
-        $view->empleado = new CuadrillaEmpleado($_POST['id_cuadrilla_empleado']);
+        $view->empleado = new ParteEmpleado();
 
         $view->empleados = Empleado::getEmpleados();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/cuadrillas/empleado_detailForm.php";
+        $view->contentTemplate="view/novedades_partes/empleado_detailForm.php";
         break;
 
     case 'editEmpleado':

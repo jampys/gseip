@@ -76,18 +76,27 @@
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_etapa" id="id_etapa" value="<?php print $view->etapa->getIdEtapa() ?>">
-    <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->etapa->getIdPostulacion() ?>">
+    <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->empleado->getIdParte() ?>">
 
-    <div class="form-group required">
-        <label class="control-label" for="fecha_etapa">Fecha etapa</label>
-        <div class="input-group date">
-            <input class="form-control" type="text" name="fecha_etapa" id="fecha_etapa" value = "<?php print $view->etapa->getFechaEtapa() ?>" placeholder="DD/MM/AAAA">
-            <div class="input-group-addon">
-                <span class="glyphicon glyphicon-th"></span>
-            </div>
+        <!--<input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php //print $view->etapa->getIdPostulacion() ?>">-->
+
+
+        <div class="form-group required">
+            <label for="id_empleado" class="control-label">Empleado</label>
+            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" data-live-search="true" data-size="5">
+                <option value="">Seleccione un empleado</option>
+                <?php foreach ($view->empleados as $em){
+                    ?>
+                    <option value="<?php echo $em['id_empleado']; ?>"
+                        <?php echo ($em['id_empleado'] == $view->empleado->getIdEmpleado())? 'selected' :'' ?>
+                        >
+                        <?php echo $em['apellido'].' '.$em['nombre'];?>
+                    </option>
+                <?php  } ?>
+            </select>
         </div>
-    </div>
+
+
 
     <div class="form-group required">
         <label for="etapa" class="control-label">Etapa</label>
@@ -150,10 +159,6 @@
         </select>
     </div>
 
-    <div class="form-group">
-        <label class="control-label" for="comentarios">Comentarios</label>
-        <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="2"><?php print $view->etapa->getComentarios(); ?></textarea>
-    </div>
 
 
     <div id="myElem" class="msg" style="display:none"></div>

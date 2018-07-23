@@ -60,14 +60,15 @@
         //Abre formulario para ingresar nueva etapa
         $('#etapas_left_side').on('click', '#add', function(){
             params={};
-            params.action = "etapas";
-            params.operation = "newEtapa";
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
+            params.action = "parte-empleado";
+            params.operation = "newEmpleado";
+            //params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
+            params.id_parte = $('#id_parte').val();
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_postulacion').val(params.id_postulacion);
+                //$('#id_postulacion').val(params.id_postulacion);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
@@ -214,6 +215,8 @@
 
                         <div class="col-md-6" id="etapas_left_side">
 
+                            <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
+
                             <div class="form-group">
                                 <label for="etapa" class="control-label">Área</label>
                                 <select class="selectpicker form-control show-tick cu_id_area" data-live-search="true" data-size="5">
@@ -287,7 +290,7 @@
 
 
                             <div class="clearfix">
-                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar etapa">
+                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar empleado">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
                             </div>
