@@ -121,7 +121,7 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/partesFormInsert.php";
         break;
 
-    case 'editParte':
+    case 'editParte': //ok
         $view->parte = new Parte($_POST['id_parte']);
         $view->label='Editar parte: '.$view->parte->getFechaParte().' '; //falta el nombre del contrato
 

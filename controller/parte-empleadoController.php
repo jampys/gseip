@@ -42,6 +42,7 @@ switch ($operation)
         $view->empleado = new ParteEmpleado();
 
         $view->empleados = Empleado::getEmpleados();
+        $view->conductor = Soporte::get_enum_values('nov_parte_empleado', 'conductor');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/novedades_partes/empleado_detailForm.php";

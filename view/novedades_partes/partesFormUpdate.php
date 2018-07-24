@@ -288,7 +288,7 @@
 
 
 
-
+                            <hr/>
                             <div class="clearfix">
                                 <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar empleado">
                                     <span class="glyphicon glyphicon-plus"></span>
