@@ -17,15 +17,16 @@
             //modal: true,
         });
 
-
-        $('#etapas_left_side').on('click', '.edit', function(){
+        //para editar empleado de un parte
+        $('#etapas_left_side').on('click', '.edit', function(){ //ok
+            //alert('editar empleado del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
             params.id_etapa = id;
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.action = "parte-empleado";
+            params.operation = "editEmpleado";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
