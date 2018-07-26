@@ -13,38 +13,27 @@
         });
 
 
-        $('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });
-
-
         $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
         });
 
 
-        //cancel de formulario de etapa
-        $('#etapa-form #cancel').on('click', function(){
+        //cancel de formulario de parte-empleado
+        $('#etapa-form #cancel').on('click', function(){ //ok
+            //alert('cancelar form parte-empleado');
             $('#etapa-form').hide();
         });
 
 
-        $('#etapa-form').validate({
+        $('#etapa-form').validate({ //ok
             rules: {
                 /*codigo: {
                         required: true,
                         digits: true,
                         maxlength: 6
                 },*/
-                fecha_etapa: {required: true},
-                etapa: {required: true},
-                aplica: {required: true},
-                motivo: {required: true},
-                modo_contacto: {required: true}
+                id_empleado: {required: true}
             },
             messages:{
                 /*codigo: {
@@ -52,11 +41,7 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }, */
-                fecha_etapa: "Seleccione una fecha para la etapa",
-                etapa: "Seleccione una etapa",
-                aplica: "Seleccione una opción",
-                motivo: "Seleccione el motivo",
-                modo_contacto: "Seleccione el modo de contacto"
+                id_empleado: "Seleccione un empleado"
             }
 
         });
@@ -76,15 +61,13 @@
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->empleado->getIdParte() ?>">
-
-        <!--<input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php //print $view->etapa->getIdPostulacion() ?>">-->
+        <!--<input type="hidden" name="id_parte" id="id_parte" value="<?php //print $view->empleado->getIdParte() ?>">-->
+        <input type="hidden" name="id_parte_empleado" id="id_parte_empleado" value="<?php print $view->empleado->getIdParteEmpleado() ?>">
 
 
         <div class="form-group required">
-            <label for="id_empleado" class="control-label">Empleado iaia</label>
-            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" data-live-search="true" data-size="5">
-                <option value="">Seleccione un empleado</option>
+            <label for="id_empleado" class="control-label">Empleado</label>
+            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
                 <?php foreach ($view->empleados as $em){
                     ?>
                     <option value="<?php echo $em['id_empleado']; ?>"
@@ -98,7 +81,7 @@
 
 
     <div class="form-group required">
-        <label for="aplica" class="control-label">Conductor</label>
+        <label for="conductor" class="control-label">Conductor</label>
 
         <div class="input-group">
 

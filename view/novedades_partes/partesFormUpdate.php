@@ -36,14 +36,16 @@
             })
         });
 
-        $('#etapas_left_side').on('click', '.view', function(){
+
+        //para ver empleado de un parte
+        $('#etapas_left_side').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.id_parte_empleado = id;
+            params.action = "parte-empleado";
+            params.operation = "editEmpleado";
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
@@ -58,8 +60,8 @@
 
 
 
-        //Abre formulario para ingresar nueva etapa
-        $('#etapas_left_side').on('click', '#add', function(){
+        //Abre formulario para ingresar un nuevo empleado al parte
+        $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
             params.action = "parte-empleado";
             params.operation = "newEmpleado";
@@ -76,45 +78,39 @@
         });
 
 
-        //Guardar etapa luego de ingresar nueva o editar
+        //Guardar parte-empleado luego de ingresar nuevo o editar
         $('#myModal').on('click', '#submit',function(){
             //alert('guardar etapa');
 
             if ($("#etapa-form").valid()){
 
                 var params={};
-                params.action = 'etapas';
-                params.operation = 'saveEtapa';
-                params.id_etapa = $('#id_etapa').val();
-                params.id_postulacion = $('#id_postulacion').val();
-                params.fecha_etapa = $('#fecha_etapa').val();
-                params.etapa = $('#etapa').val();
-                params.aplica = $('input[name=aplica]:checked').val();
-                params.motivo = $('#motivo').val();
-                params.modo_contacto = $('#modo_contacto').val();
-                params.comentarios = $('#comentarios').val();
+                params.action = 'parte-empleado';
+                params.operation = 'saveEmpleado';
+                params.id_parte = $('#id_parte').val();
+                params.id_parte_empleado = $('#id_parte_empleado').val();
+                params.id_empleado = $('#id_empleado').val();
+                params.conductor = $('input[name=conductor]:checked').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.aplica);
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    //objeto.id = data; //data trae el id de la renovacion
                     //alert(objeto.id);
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Etapa guardada con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                        $('#etapas_left_side .grid').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
                                                 $('#etapa-form').hide();
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la etapa').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
@@ -158,24 +154,25 @@
             //alert(id);
             //preparo los parametros
             params={};
-            params.id_etapa = id;
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
-            params.action = "etapas";
-            params.operation = "deleteEtapa";
+            params.id_parte_empleado = id;
+            params.id_parte = $('#id_parte').val();
+            //params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
+            params.action = "parte-empleado";
+            params.operation = "deleteEmpleado";
             //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-etp #myElemento").html('Etapa eliminada con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                    $("#confirm-etp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
+                    $('#etapas_left_side .grid').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-etp #myElemento").hide();
                                             $('#etapa-form').hide();
                                             $('#confirm-etp').dialog('close');
                                           }, 2000);
                 }else{
-                    $("#myElemento").html('Error al eliminar la etapa').addClass('alert alert-danger').show();
+                    $("#myElemento").html('Error al eliminar el empleado').addClass('alert alert-danger').show();
                 }
 
 
@@ -327,7 +324,7 @@
 
 <div id="confirm-etp">
     <div class="modal-body">
-        ¿Desea eliminar la etapa?
+        ¿Desea eliminar el empleado?
     </div>
 
     <div id="myElemento" style="display:none">

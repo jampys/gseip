@@ -90,13 +90,14 @@ class ParteEmpleado
     }
 
 
-    public function updateParteEmpleado(){
+    public function updateParteEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="update nov_cuadrilla_empleado set id_empleado = :id_empleado
-                where id_cuadrilla_empleado = :id_cuadrilla_empleado";
+        $query="update nov_parte_empleado set id_empleado = :id_empleado, conductor = :conductor
+                where id_parte_empleado = :id_parte_empleado";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':id_cuadrilla_empleado', $this->getIdCuadrillaEmpleado());
+        $stmt->dpBind(':conductor', $this->getConductor());
+        $stmt->dpBind(':id_parte_empleado', $this->getIdParteEmpleado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
@@ -115,11 +116,11 @@ class ParteEmpleado
     }
 
 
-    function deleteCuadrillaEmpleado(){
+    function deleteParteEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="delete from nov_cuadrilla_empleado where id_cuadrilla_empleado = :id_cuadrilla_empleado";
+        $query="delete from nov_parte_empleado where id_parte_empleado = :id_parte_empleado";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_cuadrilla_empleado', $this->getIdCuadrillaEmpleado());
+        $stmt->dpBind(':id_parte_empleado', $this->getIdParteEmpleado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

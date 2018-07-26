@@ -13,7 +13,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -21,16 +21,17 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->empleados = CuadrillaEmpleado::getCuadrillaEmpleado($_POST['id_cuadrilla']);
-        $view->contentTemplate="view/cuadrillas/empleadosGrid.php";
+        $view->empleados = ParteEmpleado::getParteEmpleado($_POST['id_parte']);
+        $view->contentTemplate="view/novedades_partes/empleadosGrid.php";
         break;
 
-    case 'saveEmpleado':
-        $empleado = new CuadrillaEmpleado($_POST['id_cuadrilla_empleado']);
-        $empleado->setIdCuadrilla($_POST['id_cuadrilla']);
+    case 'saveEmpleado': //ok
+        $empleado = new ParteEmpleado($_POST['id_parte_empleado']);
+        $empleado->setIdParte($_POST['id_parte']);
         $empleado->setIdEmpleado($_POST['id_empleado']);
+        //$empleado->setConductor($_POST['conductor']);
+        $empleado->setConductor( ($_POST['conductor']!= 0)? $_POST['conductor'] : null);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        //$busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
         $rta = $empleado->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
@@ -60,9 +61,9 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/empleado_detailForm.php";
         break;
 
-    case 'deleteEmpleado':
-        $view->empleado = new CuadrillaEmpleado($_POST['id_cuadrilla_empleado']);
-        $rta = $view->empleado->deleteCuadrillaEmpleado();
+    case 'deleteEmpleado': //ok
+        $view->empleado = new ParteEmpleado($_POST['id_parte_empleado']);
+        $rta = $view->empleado->deleteParteEmpleado();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
