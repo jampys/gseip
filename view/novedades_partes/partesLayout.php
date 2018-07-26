@@ -59,8 +59,10 @@
             });
 
 
-
-            $(document).on('click', '.edit', function(){ //ok
+            //para editar un parte
+            //$(document).on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){ //ok
+                alert('editar parte');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_parte = id;
@@ -74,7 +76,9 @@
                 })
             });
 
-            $(document).on('click', '.view', function(){
+            //para ver un parte
+            //$(document).on('click', '.view', function(){
+            $('#content').on('click', '.view', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_busqueda = id;
@@ -91,8 +95,9 @@
 
             });
 
-
-            $(document).on('click', '#new', function(){ //ok
+            //para agregar partes de cuadrilla de un contrato
+            //$(document).on('click', '#new', function(){ //ok
+            $('#content').on('click', '#new', function(){ //ok
 
                 if ($("#add-form").valid()){
 

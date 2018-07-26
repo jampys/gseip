@@ -24,7 +24,7 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
+            params.id_parte_empleado = id;
             params.action = "parte-empleado";
             params.operation = "editEmpleado";
             //alert(params.id_renovacion);

@@ -48,8 +48,7 @@ class ParteEmpleado
         if ($nro!=0){
             $stmt=new sQuery();
             $query = "select id_parte_empleado,
-                      DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      id_parte, id_empleado
+                      id_parte, id_empleado, conductor
                       from nov_parte_empleado
                       where id_parte_empleado = :nro";
             $stmt->dpPrepare($query);
@@ -58,7 +57,6 @@ class ParteEmpleado
             $rows = $stmt ->dpFetchAll();
 
             $this->setIdParteEmpleado($rows[0]['id_parte_empleado']);
-            $this->setFecha($rows[0]['fecha']);
             $this->setIdParte($rows[0]['id_parte']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
             $this->setConductor($rows[0]['conductor']);

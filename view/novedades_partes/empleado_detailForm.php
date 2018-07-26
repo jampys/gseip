@@ -82,7 +82,7 @@
 
 
         <div class="form-group required">
-            <label for="id_empleado" class="control-label">Empleado</label>
+            <label for="id_empleado" class="control-label">Empleado iaia</label>
             <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" data-live-search="true" data-size="5">
                 <option value="">Seleccione un empleado</option>
                 <?php foreach ($view->empleados as $em){

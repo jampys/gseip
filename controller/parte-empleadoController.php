@@ -50,7 +50,7 @@ switch ($operation)
 
     case 'editEmpleado': //ok
         $view->label = ($_POST['target']!='view')? 'Editar empleado': 'Ver empleado';
-        $view->empleado = new ParteEmpleado($_POST['id_empleado']);
+        $view->empleado = new ParteEmpleado($_POST['id_parte_empleado']);
 
         $view->empleados = Empleado::getEmpleados();
         $view->conductor = Soporte::get_enum_values('nov_parte_empleado', 'conductor');
