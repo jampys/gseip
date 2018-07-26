@@ -166,6 +166,7 @@
                 if(data >=0){
                     $("#confirm-etp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
                     $('#etapas_left_side .grid').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-etp #myElemento").hide();
                                             $('#etapa-form').hide();
