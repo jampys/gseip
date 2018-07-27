@@ -247,7 +247,8 @@
 
 
                             <!-- seccion de empleados -->
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#demo-empleados">Empleados</button>
+                            <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-empleados">Empleados</button>
+
                             <div id="demo-empleados" class="collapse">
                                 <div class="clearfix">
                                     <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar empleado">
@@ -257,6 +258,24 @@
 
                                 <div class="grid-empleados">
                                     <?php include_once('view/novedades_partes/empleadosGrid.php');?>
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- seccion de ordenes -->
+                            <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-ordenes">Órdenes</button>
+                       
+                            <div id="demo-ordenes" class="collapse">
+                                <div class="clearfix">
+                                    <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar órden">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                </div>
+
+                                <div class="grid-ordenes">
+                                    <?php include_once('view/novedades_partes/ordenesGrid.php');?>
                                 </div>
 
                             </div>
