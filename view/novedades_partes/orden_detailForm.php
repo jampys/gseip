@@ -20,7 +20,7 @@
 
 
         //cancel de formulario de parte-empleado
-        $('#empleado-form #cancel').on('click', function(){ //ok
+        $('#empleado-form #cancel').on('click', function(){
             //alert('cancelar form parte-empleado');
             $('#empleado-form').hide();
         });
@@ -71,7 +71,7 @@
 
 
 
-        $('#empleado-form').validate({ //ok
+        $('#empleado-form').validate({
             rules: {
                 /*codigo: {
                         required: true,

@@ -28,7 +28,7 @@
 
 
         //Guardar parte-empleado luego de ingresar nuevo o editar
-        $('#right_side').on('click', '#submit',function(){
+        $('#empleado-form').on('click', '#submit',function(){
             //alert('guardar empleado');
 
             if ($("#empleado-form").valid()){

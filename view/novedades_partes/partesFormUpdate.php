@@ -244,40 +244,54 @@
                             </div>
 
 
-
-
                             <!-- seccion de empleados -->
-                            <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-empleados">Empleados</button>
-
-                            <div id="demo-empleados" class="collapse">
-                                <div class="clearfix">
-                                    <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar empleado">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                    </button>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-empleados" title="Mostrar empleados">Empleados</button>
                                 </div>
 
+                                <div class="col-md-4">
+
+                                </div>
+
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-primary btn-sm btn-block" id="add" name="add" title="Agregar empleado">
+                                        <i class="fas fa-plus"></i>&nbsp
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="demo-empleados" class="collapse">
                                 <div class="grid-empleados">
                                     <?php include_once('view/novedades_partes/empleadosGrid.php');?>
                                 </div>
-
                             </div>
 
 
+                            <br/>
+
 
                             <!-- seccion de ordenes -->
-                            <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-ordenes">Órdenes</button>
-                       
-                            <div id="demo-ordenes" class="collapse">
-                                <div class="clearfix">
-                                    <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar órden">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                    </button>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>
                                 </div>
 
+                                <div class="col-md-4">
+
+                                </div>
+
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-primary btn-sm btn-block" id="add" name="add" title="Agregar orden">
+                                        <i class="fas fa-plus"></i>&nbsp
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="demo-ordenes" class="collapse">
                                 <div class="grid-ordenes">
                                     <?php include_once('view/novedades_partes/ordenesGrid.php');?>
                                 </div>
-
                             </div>
 
 
@@ -286,6 +300,8 @@
 
 
                         </div>
+
+
 
                         <div class="col-md-6" id="right_side">
 
