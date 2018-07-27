@@ -12,7 +12,7 @@
         });
 
 
-        $('#confirm-etp').dialog({
+        $('#confirm-emp').dialog({
             autoOpen: false
             //modal: true,
         });
@@ -78,48 +78,6 @@
         });
 
 
-        //Guardar parte-empleado luego de ingresar nuevo o editar
-        $('#myModal').on('click', '#submit',function(){
-            //alert('guardar etapa');
-
-            if ($("#empleado-form").valid()){
-
-                var params={};
-                params.action = 'parte-empleado';
-                params.operation = 'saveEmpleado';
-                params.id_parte = $('#id_parte').val();
-                params.id_parte_empleado = $('#id_parte_empleado').val();
-                params.id_empleado = $('#id_empleado').val();
-                params.conductor = $('input[name=conductor]:checked').val();
-                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                //params.disabled = $('#disabled').prop('checked')? 1:0;
-                //alert(params.aplica);
-
-                $.post('index.php',params,function(data, status, xhr){
-
-                    //alert(objeto.id);
-                    //alert(xhr.responseText);
-
-                    if(data >=0){
-                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
-                        $('#empleados_left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
-                        setTimeout(function() { $("#myElem").hide();
-                                                //$('#myModal').modal('hide');
-                                                $('#empleado-form').hide();
-                                              }, 2000);
-                    }else{
-                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
-                    }
-
-                }, 'json');
-
-            }
-            return false;
-        });
-
-
 
         //$(document).on('click', '#example .delete', function(){
         $('#empleados_left_side').on('click', '.delete', function(){
@@ -127,7 +85,7 @@
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            $('#confirm-etp').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm-emp').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -164,13 +122,13 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-etp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
+                    $("#confirm-emp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
                     $('#empleados_left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-etp #myElemento").hide();
+                    setTimeout(function() { $("#confirm-emp #myElemento").hide();
                                             $('#empleado-form').hide();
-                                            $('#confirm-etp').dialog('close');
+                                            $('#confirm-emp').dialog('close');
                                           }, 2000);
                 }else{
                     $("#myElemento").html('Error al eliminar el empleado').addClass('alert alert-danger').show();
@@ -323,7 +281,7 @@
 
 
 
-<div id="confirm-etp">
+<div id="confirm-emp">
     <div class="modal-body">
         ¿Desea eliminar el empleado?
     </div>

@@ -26,6 +26,51 @@
         });
 
 
+
+        //Guardar parte-empleado luego de ingresar nuevo o editar
+        $('#right_side').on('click', '#submit',function(){
+            //alert('guardar empleado');
+
+            if ($("#empleado-form").valid()){
+
+                var params={};
+                params.action = 'parte-empleado';
+                params.operation = 'saveEmpleado';
+                params.id_parte = $('#id_parte').val();
+                params.id_parte_empleado = $('#id_parte_empleado').val();
+                params.id_empleado = $('#id_empleado').val();
+                params.conductor = $('input[name=conductor]:checked').val();
+                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                //alert(params.aplica);
+
+                $.post('index.php',params,function(data, status, xhr){
+
+                    //alert(objeto.id);
+                    //alert(xhr.responseText);
+
+                    if(data >=0){
+                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                        $('#empleados_left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        //$("#search").trigger("click");
+                        setTimeout(function() { $("#myElem").hide();
+                            //$('#myModal').modal('hide');
+                            $('#empleado-form').hide();
+                        }, 2000);
+                    }else{
+                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                    }
+
+                }, 'json');
+
+            }
+            return false;
+        });
+
+
+
+
         $('#empleado-form').validate({ //ok
             rules: {
                 /*codigo: {
