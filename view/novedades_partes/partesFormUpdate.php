@@ -19,7 +19,26 @@
 
         //para editar empleado de un parte
         $('#empleados_left_side').on('click', '.edit', function(){ //ok
-            //alert('editar empleado del parte');
+            alert('editar empleado del parte');
+            var id = $(this).closest('tr').attr('data-id');
+            //var id = $(this).attr('data-id');
+            //alert('editar etapa: '+id);
+            params={};
+            params.id_parte_empleado = id;
+            params.action = "parte-empleado";
+            params.operation = "editEmpleado";
+            //alert(params.id_renovacion);
+            $('#right_side').load('index.php', params,function(){
+                //alert('cargo el contenido en right side');
+                //$('#myModal').modal();
+                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+            })
+        });
+
+        //para editar orden de un parte
+        $('#empleados_left_side').on('click', '.edit', function(){ //ok
+            alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
