@@ -20,13 +20,13 @@
 
 
         //cancel de formulario de parte-empleado
-        $('#etapa-form #cancel').on('click', function(){ //ok
+        $('#empleado-form #cancel').on('click', function(){ //ok
             //alert('cancelar form parte-empleado');
-            $('#etapa-form').hide();
+            $('#empleado-form').hide();
         });
 
 
-        $('#etapa-form').validate({ //ok
+        $('#empleado-form').validate({ //ok
             rules: {
                 /*codigo: {
                         required: true,
@@ -54,7 +54,7 @@
 
 
 
-<form name ="etapa-form" id="etapa-form" method="POST" action="index.php">
+<form name ="empleado-form" id="empleado-form" method="POST" action="index.php">
     <fieldset>
 
     <div class="alert alert-info">

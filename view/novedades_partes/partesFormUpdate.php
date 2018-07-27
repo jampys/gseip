@@ -18,7 +18,7 @@
         });
 
         //para editar empleado de un parte
-        $('#etapas_left_side').on('click', '.edit', function(){ //ok
+        $('#empleados_left_side').on('click', '.edit', function(){ //ok
             //alert('editar empleado del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
@@ -28,7 +28,7 @@
             params.action = "parte-empleado";
             params.operation = "editEmpleado";
             //alert(params.id_renovacion);
-            $('#etapas_right_side').load('index.php', params,function(){
+            $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
@@ -38,7 +38,7 @@
 
 
         //para ver empleado de un parte
-        $('#etapas_left_side').on('click', '.view', function(){ //ok
+        $('#empleados_left_side').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -48,10 +48,10 @@
             params.operation = "editEmpleado";
             params.target = "view";
             //alert(params.id_renovacion);
-            $('#etapas_right_side').load('index.php', params,function(){
+            $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
-                $("#etapas_right_side fieldset").prop("disabled", true);
-                $("#etapa-form #footer-buttons button").css('display', 'none');
+                $("#right_side fieldset").prop("disabled", true);
+                $("#empleado-form #footer-buttons button").css('display', 'none');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 $('.selectpicker').selectpicker('refresh');
@@ -61,14 +61,14 @@
 
 
         //Abre formulario para ingresar un nuevo empleado al parte
-        $('#etapas_left_side').on('click', '#add', function(){ //ok
+        $('#empleados_left_side').on('click', '#add', function(){ //ok
             params={};
             params.action = "parte-empleado";
             params.operation = "newEmpleado";
-            //params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
+            //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
             params.id_parte = $('#id_parte').val();
             //alert(params.id_renovacion);
-            $('#etapas_right_side').load('index.php', params,function(){
+            $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 //$('#id_postulacion').val(params.id_postulacion);
@@ -82,7 +82,7 @@
         $('#myModal').on('click', '#submit',function(){
             //alert('guardar etapa');
 
-            if ($("#etapa-form").valid()){
+            if ($("#empleado-form").valid()){
 
                 var params={};
                 params.action = 'parte-empleado';
@@ -101,13 +101,13 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        $('#empleados_left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
-                                                $('#etapa-form').hide();
+                                                $('#empleado-form').hide();
                                               }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
@@ -122,7 +122,7 @@
 
 
         //$(document).on('click', '#example .delete', function(){
-        $('#etapas_left_side').on('click', '.delete', function(){
+        $('#empleados_left_side').on('click', '.delete', function(){
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
@@ -156,7 +156,7 @@
             params={};
             params.id_parte_empleado = id;
             params.id_parte = $('#id_parte').val();
-            //params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
+            //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
             params.action = "parte-empleado";
             params.operation = "deleteEmpleado";
             //alert(params.id_etapa);
@@ -165,11 +165,11 @@
                 //alert(xhr.responseText);
                 if(data >=0){
                     $("#confirm-etp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                    $('#empleados_left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-etp #myElemento").hide();
-                                            $('#etapa-form').hide();
+                                            $('#empleado-form').hide();
                                             $('#confirm-etp').dialog('close');
                                           }, 2000);
                 }else{
@@ -212,7 +212,7 @@
                 
                 <div class="row">
 
-                        <div class="col-md-6" id="etapas_left_side">
+                        <div class="col-md-6" id="empleados_left_side">
 
                             <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
 
@@ -294,13 +294,13 @@
                                 </button>
                             </div>
 
-                            <div class="grid">
+                            <div class="grid-empleados">
                                 <?php include_once('view/novedades_partes/empleadosGrid.php');?>
                             </div>
 
                         </div>
 
-                        <div class="col-md-6" id="etapas_right_side">
+                        <div class="col-md-6" id="right_side">
 
                         </div>
 
