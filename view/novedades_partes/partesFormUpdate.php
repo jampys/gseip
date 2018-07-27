@@ -245,16 +245,26 @@
 
 
 
-                            <hr/>
-                            <div class="clearfix">
-                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar empleado">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button>
+
+                            <!-- seccion de empleados -->
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#demo-empleados">Empleados</button>
+                            <div id="demo-empleados" class="collapse">
+                                <div class="clearfix">
+                                    <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar empleado">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                </div>
+
+                                <div class="grid-empleados">
+                                    <?php include_once('view/novedades_partes/empleadosGrid.php');?>
+                                </div>
+
                             </div>
 
-                            <div class="grid-empleados">
-                                <?php include_once('view/novedades_partes/empleadosGrid.php');?>
-                            </div>
+
+
+
+
 
                         </div>
 
