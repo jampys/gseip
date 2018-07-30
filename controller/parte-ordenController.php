@@ -49,16 +49,16 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/empleado_detailForm.php";
         break;
 
-    case 'editEmpleado':
-        $view->label = ($_POST['target']!='view')? 'Editar empleado': 'Ver empleado';
-        $view->empleado = new ParteEmpleado($_POST['id_parte_empleado']);
+    case 'editOrden': //ok
+        $view->label = ($_POST['target']!='view')? 'Editar orden': 'Ver orden';
+        $view->orden = new ParteOrden($_POST['id_parte_orden']);
 
-        $view->empleados = Empleado::getEmpleados();
-        $view->conductor = Soporte::get_enum_values('nov_parte_empleado', 'conductor');
+        //$view->empleados = Empleado::getEmpleados();
+        $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
-        $view->contentTemplate="view/novedades_partes/empleado_detailForm.php";
+        $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
         break;
 
     case 'deleteEmpleado':

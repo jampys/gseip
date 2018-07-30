@@ -18,7 +18,7 @@
         });
 
         //para editar empleado de un parte
-        $('#empleados_left_side').on('click', '.edit', function(){ //ok
+        $('.grid-empleados').on('click', '.edit', function(){ //ok
             alert('editar empleado del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
@@ -37,15 +37,15 @@
         });
 
         //para editar orden de un parte
-        $('#empleados_left_side').on('click', '.edit', function(){ //ok
+        $('.grid-ordenes').on('click', '.edit', function(){ //ok
             alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_parte_empleado = id;
-            params.action = "parte-empleado";
-            params.operation = "editEmpleado";
+            params.id_parte_orden = id;
+            params.action = "parte-orden";
+            params.operation = "editOrden";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -57,7 +57,7 @@
 
 
         //para ver empleado de un parte
-        $('#empleados_left_side').on('click', '.view', function(){ //ok
+        $('.grid-empleados').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -80,7 +80,7 @@
 
 
         //Abre formulario para ingresar un nuevo empleado al parte
-        $('#empleados_left_side').on('click', '#add', function(){ //ok
+        $('#left_side').on('click', '#add-empleado', function(){ //ok
             params={};
             params.action = "parte-empleado";
             params.operation = "newEmpleado";
@@ -99,7 +99,7 @@
 
 
         //$(document).on('click', '#example .delete', function(){
-        $('#empleados_left_side').on('click', '.delete', function(){
+        $('.grid-empleados').on('click', '.delete', function(){
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
@@ -142,7 +142,7 @@
                 //alert(xhr.responseText);
                 if(data >=0){
                     $("#confirm-emp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
-                    $('#empleados_left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                    $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-emp #myElemento").hide();
@@ -189,7 +189,7 @@
                 
                 <div class="row">
 
-                        <div class="col-md-6" id="empleados_left_side">
+                        <div class="col-md-6" id="left_side">
 
                             <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
 
@@ -274,7 +274,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary btn-sm btn-block" id="add" name="add" title="Agregar empleado">
+                                    <button type="button" class="btn btn-primary btn-sm btn-block" id="add-empleado" name="add-empleado" title="Agregar empleado">
                                         <i class="fas fa-plus"></i>&nbsp
                                     </button>
                                 </div>
@@ -301,7 +301,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary btn-sm btn-block" id="add" name="add" title="Agregar orden">
+                                    <button type="button" class="btn btn-primary btn-sm btn-block" id="add-orden" name="add-orden" title="Agregar orden">
                                         <i class="fas fa-plus"></i>&nbsp
                                     </button>
                                 </div>

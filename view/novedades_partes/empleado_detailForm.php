@@ -52,7 +52,7 @@
                     if(data >=0){
                         $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
-                        $('#empleados_left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                             //$('#myModal').modal('hide');

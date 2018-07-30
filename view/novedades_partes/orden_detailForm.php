@@ -19,19 +19,19 @@
         });
 
 
-        //cancel de formulario de parte-empleado
-        $('#empleado-form #cancel').on('click', function(){
-            //alert('cancelar form parte-empleado');
-            $('#empleado-form').hide();
+        //cancel de formulario de parte-orden
+        $('#orden-form #cancel').on('click', function(){
+            //alert('cancelar form parte-orden');
+            $('#orden-form').hide();
         });
 
 
 
-        //Guardar parte-empleado luego de ingresar nuevo o editar
+        //Guardar parte-orden luego de ingresar nuevo o editar
         $('#right_side').on('click', '#submit',function(){
-            //alert('guardar empleado');
+            //alert('guardar orden');
 
-            if ($("#empleado-form").valid()){
+            if ($("#orden-form").valid()){
 
                 var params={};
                 params.action = 'parte-empleado';
@@ -50,16 +50,16 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
-                        $('#empleados_left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        $("#orden-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Orden guardada con exito').addClass('alert alert-success').show();
+                        $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                             //$('#myModal').modal('hide');
-                            $('#empleado-form').hide();
+                            $('#orden-form').hide();
                         }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar la órden').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
@@ -71,7 +71,7 @@
 
 
 
-        $('#empleado-form').validate({
+        $('#orden-form').validate({
             rules: {
                 /*codigo: {
                         required: true,
@@ -99,47 +99,50 @@
 
 
 
-<form name ="empleado-form" id="empleado-form" method="POST" action="index.php">
+<form name ="orden-form" id="orden-form" method="POST" action="index.php">
     <fieldset>
 
     <div class="alert alert-info">
         <strong><?php echo $view->label ?></strong>
     </div>
 
-        <!--<input type="hidden" name="id_parte" id="id_parte" value="<?php //print $view->empleado->getIdParte() ?>">-->
-        <input type="hidden" name="id_parte_empleado" id="id_parte_empleado" value="<?php print $view->empleado->getIdParteEmpleado() ?>">
-
+        <!--<input type="hidden" name="id_parte" id="id_parte" value="<?php //print $view->orden->getIdParte() ?>">-->
+        <input type="hidden" name="id_parte_orden" id="id_parte_orden" value="<?php print $view->orden->getIdParteOrden() ?>">
 
         <div class="form-group required">
-            <label for="id_empleado" class="control-label">Empleado</label>
-            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
-                <?php foreach ($view->empleados as $em){
+            <label class="control-label" for="codigo">Nro. parte diario</label>
+            <input class="form-control" type="text" name="nro_parte_diario" id="nro_parte_diario" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Nro. parte diario">
+        </div>
+
+        <div class="form-group required">
+            <label for="orden_tipo" class="control-label">Tipo orden</label>
+            <select class="form-control selectpicker show-tick" id="orden_tipo" name="orden_tipo" title="Seleccione el tipo de orden">
+                <?php foreach ($view->orden_tipos['enum'] as $nac){
                     ?>
-                    <option value="<?php echo $em['id_empleado']; ?>"
-                        <?php echo ($em['id_empleado'] == $view->empleado->getIdEmpleado())? 'selected' :'' ?>
+                    <option value="<?php echo $nac; ?>"
+                        <?php //echo ($nac == $view->empleado->getNacionalidad() OR ($nac == $view->nacionalidades['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
                         >
-                        <?php echo $em['apellido'].' '.$em['nombre'];?>
+                        <?php echo $nac; ?>
                     </option>
                 <?php  } ?>
             </select>
         </div>
 
-
-    <div class="form-group required">
-        <label for="conductor" class="control-label">Conductor</label>
-
-        <div class="input-group">
-
-            <?php foreach($view->conductor['enum'] as $val){ ?>
-                <label class="radio-inline">
-                    <input type="radio" name="conductor" value="<?php echo $val ?>"
-                        <?php echo ($val == $view->empleado->getConductor() OR ($val == $view->conductor['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
-                        ><?php echo ($val==1)? 'Si':'No' ?>
-                </label>
-            <?php } ?>
-
+        <div class="form-group required">
+            <label class="control-label" for="orden_nro">Nro. orden</label>
+            <input class="form-control" type="text" name="orden_nro" id="orden_nro" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Nro. orden">
         </div>
-    </div>
+
+        <div class="form-group required">
+            <label class="control-label" for="duracion">Duración (hs)</label>
+            <input class="form-control" type="text" name="duracion" id="duracion" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Duración">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="servicio">Servicio</label>
+            <textarea class="form-control" name="servicio" id="servicio" placeholder="Servicio" rows="2"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+        </div>
+
 
 
 
