@@ -19,7 +19,7 @@
 
         //para editar empleado de un parte
         $('.grid-empleados').on('click', '.edit', function(){ //ok
-            alert('editar empleado del parte');
+            //alert('editar empleado del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -38,7 +38,7 @@
 
         //para editar orden de un parte
         $('.grid-ordenes').on('click', '.edit', function(){ //ok
-            alert('editar orden del parte');
+            //alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);

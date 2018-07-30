@@ -25,14 +25,16 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/ordenesGrid.php";
         break;
 
-    case 'saveEmpleado':
-        $empleado = new ParteEmpleado($_POST['id_parte_empleado']);
-        $empleado->setIdParte($_POST['id_parte']);
-        $empleado->setIdEmpleado($_POST['id_empleado']);
-        //$empleado->setConductor($_POST['conductor']);
-        $empleado->setConductor( ($_POST['conductor']!= 0)? $_POST['conductor'] : null);
+    case 'saveOrden': //ok
+        $orden = new ParteOrden($_POST['id_parte_orden']);
+        $orden->setIdParte($_POST['id_parte']);
+        $orden->setNroParteDiario($_POST['nro_parte_diario']);
+        $orden->setOrdenTipo($_POST['orden_tipo']);
+        $orden->setOrdenNro($_POST['orden_nro']);
+        $orden->setDuracion($_POST['duracion']);
+        $orden->setServicio($_POST['servicio']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $rta = $empleado->save();
+        $rta = $orden->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;

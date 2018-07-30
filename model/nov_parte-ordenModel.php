@@ -106,29 +106,33 @@ class ParteOrden
     }
 
 
-    function save(){
-        if($this->id_parte_empleado)
-        {$rta = $this->updateParteEmpleado();}
+    function save(){ //ok
+        if($this->id_parte_orden)
+        {$rta = $this->updateParteOrden();}
         else
-        {$rta =$this->insertParteEmpleado();}
+        {$rta =$this->insertParteOrden();}
         return $rta;
     }
 
 
-    public function updateParteEmpleado(){
+    public function updateParteOrden(){ //ok
         $stmt=new sQuery();
-        $query="update nov_parte_empleado set id_empleado = :id_empleado, conductor = :conductor
-                where id_parte_empleado = :id_parte_empleado";
+        $query="update nov_parte_orden set nro_parte_diario = :nro_parte_diario, orden_tipo = :orden_tipo, orden_nro = :orden_nro,
+                duracion = :duracion, servicio = :servicio
+                where id_parte_orden = :id_parte_orden";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':conductor', $this->getConductor());
-        $stmt->dpBind(':id_parte_empleado', $this->getIdParteEmpleado());
+        $stmt->dpBind(':nro_parte_diario', $this->getNroParteDiario());
+        $stmt->dpBind(':orden_tipo', $this->getOrdenTipo());
+        $stmt->dpBind(':orden_nro', $this->getOrdenNro());
+        $stmt->dpBind(':duracion', $this->getDuracion());
+        $stmt->dpBind(':servicio', $this->getServicio());
+        $stmt->dpBind(':id_parte_orden', $this->getIdParteOrden());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
-    public function insertParteEmpleado(){
+    public function insertParteOrden(){
         $stmt=new sQuery();
         $query="insert into nov_parte_empleado(id_parte, id_empleado, conductor)
                 values(:id_parte, :id_empleado, :conductor)";

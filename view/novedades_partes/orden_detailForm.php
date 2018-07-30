@@ -28,18 +28,22 @@
 
 
         //Guardar parte-orden luego de ingresar nuevo o editar
-        $('#right_side').on('click', '#submit',function(){
+        $('#right_side').on('click', '#submit',function(){ //ok
             //alert('guardar orden');
 
             if ($("#orden-form").valid()){
 
                 var params={};
-                params.action = 'parte-empleado';
-                params.operation = 'saveEmpleado';
+                params.action = 'parte-orden';
+                params.operation = 'saveOrden';
                 params.id_parte = $('#id_parte').val();
-                params.id_parte_empleado = $('#id_parte_empleado').val();
-                params.id_empleado = $('#id_empleado').val();
-                params.conductor = $('input[name=conductor]:checked').val();
+                params.id_parte_orden = $('#id_parte_orden').val();
+                params.nro_parte_diario = $('#nro_parte_diario').val();
+                params.orden_tipo = $('#orden_tipo').val();
+                params.orden_nro = $('#orden_nro').val();
+                params.duracion = $('#duracion').val();
+                params.servicio = $('#servicio').val();
+                //params.conductor = $('input[name=conductor]:checked').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.aplica);
@@ -111,7 +115,7 @@
 
         <div class="form-group required">
             <label class="control-label" for="codigo">Nro. parte diario</label>
-            <input class="form-control" type="text" name="nro_parte_diario" id="nro_parte_diario" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Nro. parte diario">
+            <input class="form-control" type="text" name="nro_parte_diario" id="nro_parte_diario" value = "<?php print $view->orden->getNroParteDiario() ?>" placeholder="Nro. parte diario">
         </div>
 
         <div class="form-group required">
@@ -120,7 +124,7 @@
                 <?php foreach ($view->orden_tipos['enum'] as $nac){
                     ?>
                     <option value="<?php echo $nac; ?>"
-                        <?php //echo ($nac == $view->empleado->getNacionalidad() OR ($nac == $view->nacionalidades['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
+                        <?php echo ($nac == $view->orden->getOrdenTipo() OR ($nac == $view->orden_tipos['default'] AND !$view->orden->getIdParteOrden()) )? 'selected' :'' ?>
                         >
                         <?php echo $nac; ?>
                     </option>
@@ -130,17 +134,17 @@
 
         <div class="form-group required">
             <label class="control-label" for="orden_nro">Nro. orden</label>
-            <input class="form-control" type="text" name="orden_nro" id="orden_nro" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Nro. orden">
+            <input class="form-control" type="text" name="orden_nro" id="orden_nro" value = "<?php print $view->orden->getOrdenNro() ?>" placeholder="Nro. orden">
         </div>
 
         <div class="form-group required">
             <label class="control-label" for="duracion">Duración (hs)</label>
-            <input class="form-control" type="text" name="duracion" id="duracion" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Duración">
+            <input class="form-control" type="text" name="duracion" id="duracion" value = "<?php print $view->orden->getDuracion() ?>" placeholder="Duración">
         </div>
 
         <div class="form-group">
             <label class="control-label" for="servicio">Servicio</label>
-            <textarea class="form-control" name="servicio" id="servicio" placeholder="Servicio" rows="2"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+            <textarea class="form-control" name="servicio" id="servicio" placeholder="Servicio" rows="2"><?php print $view->orden->getServicio(); ?></textarea>
         </div>
 
 
