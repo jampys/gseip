@@ -42,9 +42,8 @@ switch ($operation)
 
     case 'newOrden': //ok
         $view->label='Nueva Orden';
-        $view->empleado = new ParteOrden();
+        $view->orden = new ParteOrden();
 
-        //$view->empleados = Empleado::getEmpleados();
         $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
 
         $view->disableLayout=true;
@@ -56,7 +55,6 @@ switch ($operation)
         $view->label = ($_POST['target']!='view')? 'Editar orden': 'Ver orden';
         $view->orden = new ParteOrden($_POST['id_parte_orden']);
 
-        //$view->empleados = Empleado::getEmpleados();
         $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
 
         $view->disableLayout=true;
@@ -64,9 +62,9 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
         break;
 
-    case 'deleteEmpleado':
-        $view->empleado = new ParteEmpleado($_POST['id_parte_empleado']);
-        $rta = $view->empleado->deleteParteEmpleado();
+    case 'deleteOrden': //ok
+        $view->orden = new ParteOrden($_POST['id_parte_orden']);
+        $rta = $view->orden->deleteParteOrden();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;

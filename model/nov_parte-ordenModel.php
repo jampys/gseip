@@ -132,24 +132,27 @@ class ParteOrden
     }
 
 
-    public function insertParteOrden(){
+    public function insertParteOrden(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_parte_empleado(id_parte, id_empleado, conductor)
-                values(:id_parte, :id_empleado, :conductor)";
+        $query="insert into nov_parte_orden(fecha, id_parte, nro_parte_diario, orden_tipo, orden_nro, duracion, servicio)
+                values(sysdate(), :id_parte, :nro_parte_diario, :orden_tipo, :orden_nro, :duracion, :servicio)";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':nro_parte_diario', $this->getNroParteDiario());
+        $stmt->dpBind(':orden_tipo', $this->getOrdenTipo());
+        $stmt->dpBind(':orden_nro', $this->getOrdenNro());
+        $stmt->dpBind(':duracion', $this->getDuracion());
+        $stmt->dpBind(':servicio', $this->getServicio());
         $stmt->dpBind(':id_parte', $this->getIdParte());
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':conductor', $this->getConductor());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
-    function deleteParteEmpleado(){
+    function deleteParteOrden(){ //ok
         $stmt=new sQuery();
-        $query="delete from nov_parte_empleado where id_parte_empleado = :id_parte_empleado";
+        $query="delete from nov_parte_orden where id_parte_orden = :id_parte_orden";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_parte_empleado', $this->getIdParteEmpleado());
+        $stmt->dpBind(':id_parte_orden', $this->getIdParteOrden());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

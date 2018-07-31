@@ -12,7 +12,7 @@
         });
 
 
-        $('#confirm-emp').dialog({
+        $('#confirm-emp, #confirm-ord').dialog({
             autoOpen: false
             //modal: true,
         });
@@ -137,9 +137,8 @@
         });
 
 
-
-        //$(document).on('click', '#example .delete', function(){
-        $('.grid-empleados').on('click', '.delete', function(){
+        //eliminar empleado del parte
+        $('.grid-empleados').on('click', '.delete', function(){ //ok
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
@@ -190,13 +189,79 @@
                                             $('#confirm-emp').dialog('close');
                                           }, 2000);
                 }else{
-                    $("#myElemento").html('Error al eliminar el empleado').addClass('alert alert-danger').show();
+                    $("#confirm-emp #myElemento").html('Error al eliminar el empleado').addClass('alert alert-danger').show();
                 }
 
 
             });
 
         };
+
+
+
+
+
+        //eliminar orden del parte
+        $('.grid-ordenes').on('click', '.delete', function(){ //ok
+            //alert('Funcionalidad en desarrollo');
+            //throw new Error();
+            var id = $(this).closest('tr').attr('data-id');
+            //var id = $(this).attr('data-id');
+            $('#confirm-ord').dialog({ //se agregan botones al confirm dialog y se abre
+                buttons: [
+                    {
+                        text: "Aceptar",
+                        click: function() {
+                            $.fn.borrar(id);
+                        },
+                        class:"btn btn-danger"
+                    },
+                    {
+                        text: "Cancelar",
+                        click: function() {
+                            $(this).dialog("close");
+                        },
+                        class:"btn btn-default"
+                    }
+
+                ]
+            }).dialog('open');
+            return false;
+        });
+
+
+        $.fn.borrar = function(id) {
+            //alert(id);
+            //preparo los parametros
+            params={};
+            params.id_parte_orden = id;
+            params.id_parte = $('#id_parte').val();
+            //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
+            params.action = "parte-orden";
+            params.operation = "deleteOrden";
+            //alert(params.id_etapa);
+
+            $.post('index.php',params,function(data, status, xhr){
+                //alert(xhr.responseText);
+                if(data >=0){
+                    $("#confirm-ord #myElemento").html('Orden eliminada con exito').addClass('alert alert-success').show();
+                    $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
+                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
+                    //$("#search").trigger("click");
+                    setTimeout(function() { $("#confirm-ord #myElemento").hide();
+                        $('#orden-form').hide();
+                        $('#confirm-ord').dialog('close');
+                    }, 2000);
+                }else{
+                    $("#confirm-ord #myElemento").html('Error al eliminar la orden').addClass('alert alert-danger').show();
+                }
+
+
+            });
+
+        };
+
+
 
 
 
@@ -375,7 +440,7 @@
             </div>
 
             <div class="modal-footer">
-                <!--<button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>-->
+                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Calcular</button>
                 <button class="btn btn-default btn-sm" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
             </div>
 
@@ -388,6 +453,20 @@
 <div id="confirm-emp">
     <div class="modal-body">
         ¿Desea eliminar el empleado?
+    </div>
+
+    <div id="myElemento" style="display:none">
+
+    </div>
+
+</div>
+
+
+
+
+<div id="confirm-ord">
+    <div class="modal-body">
+        ¿Desea eliminar la orden?
     </div>
 
     <div id="myElemento" style="display:none">

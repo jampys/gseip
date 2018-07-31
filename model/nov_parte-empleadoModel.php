@@ -105,8 +105,8 @@ class ParteEmpleado
 
     public function insertParteEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_parte_empleado(id_parte, id_empleado, conductor)
-                values(:id_parte, :id_empleado, :conductor)";
+        $query="insert into nov_parte_empleado(fecha, id_parte, id_empleado, conductor)
+                values(sysdate(), :id_parte, :id_empleado, :conductor)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_parte', $this->getIdParte());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
