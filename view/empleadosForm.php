@@ -341,7 +341,7 @@
     <div class="form-group required">
         <label for="nacionalidad" class="col-md-4 control-label">Nacionalidad</label>
         <div class="col-md-8">
-            <select class="form-control selectpicker show-tick" id="nacionalidad" name="nacionalidad" title="Seleccione la nacionalidad">
+            <select class="form-control selectpicker show-tick" id="nacionalidad" name="nacionalidad" title="Seleccione la nacionalidad" data-live-search="true" data-size="5">
                 <?php foreach ($view->nacionalidades['enum'] as $nac){
                     ?>
                     <option value="<?php echo $nac; ?>"
@@ -357,7 +357,7 @@
     <div class="form-group required">
         <label for="estado_civil" class="col-md-4 control-label">Estado civil</label>
         <div class="col-md-8">
-            <select class="form-control selectpicker show-tick" id="estado_civil" name="estado_civil" title="Seleccione el estado civil">
+            <select class="form-control selectpicker show-tick" id="estado_civil" name="estado_civil" title="Seleccione el estado civil" data-live-search="true" data-size="5">
                 <?php foreach ($view->estados_civiles['enum'] as $ec){
                     ?>
                     <option value="<?php echo $ec; ?>"

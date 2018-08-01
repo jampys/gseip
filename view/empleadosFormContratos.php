@@ -17,7 +17,7 @@
                         <thead>
                         <tr>
                             <th>Contrato</th>
-                            <th>Nro.</th>
+                            <th>Ubicación</th>
                             <th>F. afect.</th>
                             <th>F. desaf.</th>
                             <th>Puesto</th>
@@ -27,8 +27,8 @@
                         <tbody>
                         <?php foreach ($view->contratos as $con): ?>
                             <tr data-id="<?php echo $con['id_contrato'];?>">
-                                <td><?php echo $con['contrato'];?></td>
-                                <td><?php echo $con['nro_contrato'];?></td>
+                                <td><?php echo $con['contrato'].' '.$con['nro_contrato'];?></td>
+                                <td><?php echo $con['localidad'];?></td>
                                 <td><?php echo $con['fecha_desde'];?></td>
                                 <td><?php echo $con['fecha_hasta'];?></td>
                                 <td><?php echo $con['puesto'];?></td>
@@ -66,7 +66,7 @@
 
                     <br/>
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado no se encuentra afectado a ningún contrato.Para afectar un empleado a un contrato diríjase a
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado no se encuentra afectado a ningún contrato. Para afectar un empleado a un contrato diríjase a
                         <?php if ( PrivilegedUser::dhasPrivilege('CON_VER', array(1)) ) { ?>
                             <a href="index.php?action=contratos">Contratos</a></p>
                         <?php } ?>
