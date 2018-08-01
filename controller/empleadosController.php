@@ -90,12 +90,6 @@ switch ($operation)
         exit;
         break;
 
-    case 'autocompletarEmpleadosByCuil':
-        $view->empleado = new Empleado();
-        $rta=$view->empleado->autocompletarEmpleadosByCuil($_POST['term']);
-        print_r(json_encode($rta));
-        exit;
-        break;
 
     case 'loadContratos': //abre la ventana modal para mostrar los contratos del empleado
         $view->label='Contratos';
