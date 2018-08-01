@@ -273,6 +273,7 @@
                 $('#myModal #fecha_desde').datepicker('setDate', jsonEmpleados[id].fecha_desde );
                 $('#myModal #fecha_hasta').datepicker('setDate', jsonEmpleados[id].fecha_hasta );
                 $('.selectpicker').selectpicker('refresh'); //refresh de puesto y procesos
+                $('#myModal #id_localidad').val(jsonEmpleados[id].id_localidad);
 
             });
             return false;

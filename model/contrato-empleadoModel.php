@@ -9,6 +9,7 @@ class ContratoEmpleado
     private $id_puesto;
     private $fecha_desde;
     private $fecha_hasta;
+    private $id_localidad;
 
     private $procesos;
 
@@ -30,6 +31,9 @@ class ContratoEmpleado
 
     function getFechaHasta()
     { return $this->fecha_hasta;}
+
+    function getIdLocalidad()
+    { return $this->id_localidad;}
 
     function getProcesos(){
         return $this->procesos;
@@ -54,6 +58,9 @@ class ContratoEmpleado
     function setFechaHasta($val)
     {  $this->fecha_hasta=$val;}
 
+    function setIdLocalidad($val)
+    {  $this->id_localidad=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -62,7 +69,7 @@ class ContratoEmpleado
             $stmt=new sQuery();
             $query="select id_empleado_contrato, id_empleado, id_contrato, id_puesto,
                     DATE_FORMAT(fecha_desde,  '%d/%m/%Y') as fecha_desde,
-                    DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta
+                    DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta, id_localidad
                     from empleado_contrato where id_empleado_contrato = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -75,6 +82,7 @@ class ContratoEmpleado
             $this->setIdPuesto($rows[0]['id_puesto']);
             $this->setFechaDesde($rows[0]['fecha_desde']);
             $this->setFechaHasta($rows[0]['fecha_hasta']);
+            $this->setIdLocalidad($rows[0]['id_localidad']);
 
             $this->procesos = array();
             $this->procesos = ContratoEmpleadoProceso::getContratoEmpleadoProceso($this->getIdEmpleadoContrato());
@@ -104,6 +112,7 @@ class ContratoEmpleado
         $query = "select ec.id_empleado_contrato, ec.id_empleado, ec.id_contrato, ec.id_puesto,
                   DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                  ec.id_localidad,
                   CONCAT (em.apellido, ' ', em.nombre) as empleado,
                   pu.nombre as puesto
                   from empleado_contrato ec, empleados em, puestos pu
@@ -124,6 +133,7 @@ class ContratoEmpleado
                                 'id_puesto'=>$row['id_puesto'],
                                 'fecha_desde'=>$row['fecha_desde'],
                                 'fecha_hasta'=>$row['fecha_hasta'],
+                                'id_localidad'=>$row['id_localidad'],
                                 'empleado'=>$row['empleado'],
                                 'puesto'=>$row['puesto'],
                                 'id_proceso'=>$unEmpleado->getProcesos()
@@ -165,12 +175,14 @@ class ContratoEmpleado
         $query="update empleado_contrato
                 set id_puesto= :id_puesto,
                 fecha_desde= STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
-                fecha_hasta= STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
+                fecha_hasta= STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
+                id_localidad = :id_localidad
                 where id_empleado_contrato = :id_empleado_contrato";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
+        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
         $stmt->dpBind(':id_empleado_contrato', $this->getIdEmpleadoContrato());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -180,16 +192,18 @@ class ContratoEmpleado
     public function insertEmpleadoContrato(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into empleado_contrato(id_empleado, id_contrato, id_puesto, fecha_desde, fecha_hasta)
+        $query="insert into empleado_contrato(id_empleado, id_contrato, id_puesto, fecha_desde, fecha_hasta, id_localidad)
                 values(:id_empleado, :id_contrato, :id_puesto,
                 STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
-                STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))";
+                STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
+                :id_localidad)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
+        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

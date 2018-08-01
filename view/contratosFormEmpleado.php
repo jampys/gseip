@@ -130,6 +130,21 @@
                     </div>
 
 
+                    <div class="form-group">
+                        <label class="control-label" for="id_localidad" >Ubicación</label>
+                        <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" title="Seleccione la ubicación" data-live-search="true" data-size="5">
+                            <?php foreach ($view->localidades as $loc){
+                                ?>
+                                <option value="<?php echo $loc['id_localidad']; ?>"
+                                    <?php //echo ($loc['id_localidad'] == $view->empleado->getIdLocalidad())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
                     <div class="form-group required">
                         <label class="control-label" for="id_proceso" >Proceso</label>
 
