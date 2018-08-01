@@ -60,6 +60,7 @@ switch ($operation)
                 $empleado_contrato->setIdPuesto($vE['id_puesto']);
                 $empleado_contrato->setFechaDesde($vE['fecha_desde']);
                 $empleado_contrato->setFechaHasta(($vE['fecha_hasta'])? $vE['fecha_hasta']: null); //fecha_desde puede ser null
+                $empleado_contrato->setIdLocalidad(($vE['id_localidad'])? $vE['id_localidad']: null);
 
                 //echo 'id empleado contrato: '.$vE['id_empleado_contrato'].'---';
 

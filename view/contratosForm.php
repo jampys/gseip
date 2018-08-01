@@ -193,6 +193,7 @@
                 params.nombre=$('#nombre').val();
                 params.fecha_desde=$('#fecha_desde').val();
                 params.fecha_hasta=$('#fecha_hasta').val();
+                params.id_localidad=$('#id_localidad').val();
                 params.id_responsable=$('#id_responsable').val();
                 params.id_compania=$('#compania').val();
                 //alert(params.id_responsable);
@@ -272,8 +273,9 @@
                 $('#id_proceso').val(jsonEmpleados[id].id_proceso);
                 $('#myModal #fecha_desde').datepicker('setDate', jsonEmpleados[id].fecha_desde );
                 $('#myModal #fecha_hasta').datepicker('setDate', jsonEmpleados[id].fecha_hasta );
-                $('.selectpicker').selectpicker('refresh'); //refresh de puesto y procesos
                 $('#myModal #id_localidad').val(jsonEmpleados[id].id_localidad);
+                $('.selectpicker').selectpicker('refresh'); //refresh de puesto y procesos
+
 
             });
             return false;
@@ -294,6 +296,7 @@
                 $('#id_proceso').val(jsonEmpleados[id].id_proceso);
                 $('#myModal #fecha_desde').datepicker('setDate', jsonEmpleados[id].fecha_desde );
                 $('#myModal #fecha_hasta').datepicker('setDate', jsonEmpleados[id].fecha_hasta );
+                $('#myModal #id_localidad').val(jsonEmpleados[id].id_localidad);
                 $('.selectpicker').selectpicker('refresh'); //refresh de puesto y procesos
                 //deshabilito campos
                 $("#empleado-form input, #empleado-form .selectpicker, #empleado-form textarea").prop("disabled", true);
@@ -326,6 +329,7 @@
                 jsonEmpleados[id].puesto = $("#puesto option:selected").text();
                 jsonEmpleados[id].fecha_desde = $('#myModal #fecha_desde').val();
                 jsonEmpleados[id].fecha_hasta = $('#myModal #fecha_hasta').val();
+                jsonEmpleados[id].id_localidad = $('#myModal #id_localidad').val();
 
                 if(!jsonEmpleados[id].id_empleado_contrato){ //si no esta en la BD
                     jsonEmpleados[id].operacion = 'insert';
@@ -355,6 +359,7 @@
                 item.id_proceso = $("#id_proceso").val();
                 item.fecha_desde = $('#myModal #fecha_desde').val();
                 item.fecha_hasta = $('#myModal #fecha_hasta').val();
+                item.id_localidad = $('#myModal #id_localidad').val();
                 item.operacion = 'insert';
                 jsonEmpleados[id] = item;
                 //alert('agregado con exito');
