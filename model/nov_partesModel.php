@@ -12,6 +12,9 @@ class Parte
     private $id_evento;
     private $id_contrato;
     private $id_user;
+    private $hs_normal;
+    private $hs_50;
+    private $hs_100;
 
     // GETTERS
     function getIdParte()
@@ -41,6 +44,17 @@ class Parte
     function getIdUser()
     { return $this->id_user;}
 
+    function getHsNormal()
+    { return $this->hs_normal;}
+
+    function getHs50()
+    { return $this->hs_50;}
+
+    function getHs100()
+    { return $this->hs_100;}
+
+
+
     //SETTERS
     function setIdParte($val)
     { $this->id_parte=$val;}
@@ -69,6 +83,15 @@ class Parte
     function setIdUser($val)
     {  $this->id_user=$val;}
 
+    function setHsNormal($val)
+    {  $this->hs_normal=$val;}
+
+    function setHs50($val)
+    {  $this->hs_50=$val;}
+
+    function setHs100($val)
+    {  $this->hs_100=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -78,7 +101,8 @@ class Parte
             $query="select id_parte,
                     DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha,
                     DATE_FORMAT(fecha_parte,  '%d/%m/%Y') as fecha_parte,
-                    cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, id_user
+                    cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, id_user,
+                    hs_normal, hs_50, hs_100
                     from nov_partes where id_parte = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -93,6 +117,9 @@ class Parte
             $this->setIdVehiculo($rows[0]['id_vehiculo']);
             $this->setIdEvento($rows[0]['id_evento']);
             $this->setIdContrato($rows[0]['id_contrato']);
+            $this->setHsNormal($rows[0]['hs_normal']);
+            $this->setHs50($rows[0]['hs_50']);
+            $this->setHs100($rows[0]['hs_100']);
         }
     }
 
@@ -136,27 +163,60 @@ class Parte
         return $rta;
     }
 
+
     public function updateParte(){
 
         $stmt=new sQuery();
-        $query="update puestos set
-                nombre= :nombre,
-                descripcion= :descripcion,
-                codigo= :codigo,
-                id_puesto_superior= :id_puesto_superior,
-                id_area= :id_area,
-                id_nivel_competencia= :id_nivel_competencia
-                where id_puesto = :id_puesto";
+        $query = 'CALL sp_updateEmpleados(:id_empleado,
+                                        :legajo,
+                                        :apellido,
+                                        :nombre,
+                                        :documento,
+                                        :cuil,
+                                        :fecha_nacimiento,
+                                        :fecha_alta,
+                                        :fecha_baja,
+                                        :telefono,
+                                        :email,
+                                        :sexo,
+                                        :nacionalidad,
+                                        :estado_civil,
+                                        :empresa,
+                                        :direccion,
+                                        :id_localidad,
+                                        :cambio_domicilio,
+                                        @flag
+                                    )';
+
         $stmt->dpPrepare($query);
+
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':legajo', $this->getLegajo());
+        $stmt->dpBind(':apellido', $this->getApellido());
         $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
-        $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':documento', $this->getDocumento());
+        $stmt->dpBind(':cuil', $this->getCuil());
+        $stmt->dpBind(':fecha_nacimiento', $this->getFechaNacimiento());
+        $stmt->dpBind(':fecha_alta', $this->getFechaAlta());
+        $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
+        $stmt->dpBind(':telefono', $this->getTelefono());
+        $stmt->dpBind(':email', $this->getEmail());
+        $stmt->dpBind(':sexo', $this->getSexo());
+        $stmt->dpBind(':nacionalidad', $this->getNacionalidad());
+        $stmt->dpBind(':estado_civil', $this->getEstadoCivil());
+        $stmt->dpBind(':empresa', $this->getEmpresa());
+        $stmt->dpBind(':direccion', $this->getDireccion());
+        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
+        $stmt->dpBind(':cambio_domicilio', $cambio_domicilio);
+
         $stmt->dpExecute();
-        return $stmt->dpGetAffect();
+
+        $stmt->dpCloseCursor();
+        $query = "select @flag as flag";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        $flag = $stmt->dpFetchAll();
+        return ($flag)? intval($flag[0]['flag']) : 0;
     }
 
     public function insertParte(){ //ok

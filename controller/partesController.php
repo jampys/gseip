@@ -22,8 +22,6 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
-        //$id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
         $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
         $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
@@ -32,7 +30,7 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/partesGrid.php";
         break;
 
-    case 'insertPartes': //guarda de manera masiva los partes seleccionados
+    case 'insertPartes': //guarda de manera masiva los partes seleccionados //ok
 
         try{
             sQuery::dpBeginTransaction();
@@ -92,19 +90,19 @@ switch ($operation)
         exit;
         break;
 
-    case 'saveParte': //guarda un parte despues de ser editado
-        $busqueda = new Busqueda($_POST['id_busqueda']);
-        $busqueda->setNombre($_POST['nombre']);
-        $busqueda->setFechaApertura($_POST['fecha_apertura']);
-        $busqueda->setFechaCierre( ($_POST['fecha_cierre']!='')? $_POST['fecha_cierre'] : null );
+    case 'calcularParte': //ok  //guarda un parte despues de ser editado
+        $parte = new Parte($_POST['id_parte']);
+        $parte->setIdArea($_POST['id_area']);
+        $parte->setIdVehiculo($_POST['id_vehiculo']);
+        $parte->setIdEvento( ($_POST['id_evento']!='')? $_POST['id_evento'] : null );
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
-        $busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
-        $busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
+        $parte->setHsNormal( ($_POST['hs_normal']!='')? $_POST['hs_normal'] : null);
+        $parte->setHs50( ($_POST['hs_50']!='')? $_POST['hs_50'] : null);
+        $parte->setHs100( ($_POST['hs_100']!='')? $_POST['hs_100'] : null);
 
-        $rta = $busqueda->save();
-        print_r(json_encode(sQuery::dpLastInsertId()));
-        //print_r(json_encode($rta));
+        $rta = $parte->save();
+        //print_r(json_encode(sQuery::dpLastInsertId()));
+        print_r(json_encode($rta));
         exit;
         break;
 

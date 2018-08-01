@@ -28,7 +28,7 @@
 
 
         //Guardar parte-empleado luego de ingresar nuevo o editar
-        $('#empleado-form').on('click', '#submit',function(){
+        $('#empleado-form').on('click', '#submit',function(){ //ok
             //alert('guardar empleado');
 
             if ($("#empleado-form").valid()){
@@ -176,7 +176,7 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label" for="vianda">Vianda (VD)</label>
+                    <label class="control-label" for="vianda">Vianda diaria (VD)</label>
                     <input class="form-control" type="text" name="vianda" id="vianda" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Vianda" disabled>
                 </div>
             </div>

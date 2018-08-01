@@ -32,6 +32,7 @@
 
             $('.input-daterange').datepicker({ //ok para fecha desde-hasta (buscar)
                 //todayBtn: "linked",
+                orientation: "bottom",
                 format:"dd/mm/yyyy",
                 language: 'es',
                 todayHighlight: true,

@@ -262,14 +262,59 @@
         };
 
 
-
-
-
         //evento al salir o cerrar con la x el modal de etapas
         $("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
             $("#search").trigger("click");
         });
+
+
+
+
+        //Guardar (calcular) parte
+        $(document).on('click', '#calcular',function(){
+            //alert('calcular');
+            //throw new Error();
+
+            //if ($("#empleado-form").valid()){
+                var params={};
+                params.action = 'partes';
+                params.operation = 'calcularParte';
+                params.id_parte = $('#id_parte').val();
+                params.id_area = $('#id_area').val();
+                params.id_vehiculo = $('#id_vehiculo').val();
+                params.id_evento = $('#id_evento').val();
+                params.hs_normal = $('#hs_normal').val();
+                params.hs_50 = $('#hs_50').val();
+                params.hs_100 = $('#hs_100').val();
+                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                //alert(params.aplica);
+
+                $.post('index.php',params,function(data, status, xhr){
+
+                    //alert(xhr.responseText);
+
+                    if(data >=0){
+                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                        $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        //$("#search").trigger("click");
+                        setTimeout(function() { $("#myElem").hide();
+                            //$('#myModal').modal('hide');
+                            $('#empleado-form').hide();
+                        }, 2000);
+                    }else{
+                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                    }
+
+                }, 'json');
+
+            //}
+            return false;
+        });
+
+
 
 
 
@@ -299,8 +344,8 @@
                             <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
 
                             <div class="form-group">
-                                <label for="etapa" class="control-label">Área</label>
-                                <select class="selectpicker form-control show-tick cu_id_area" data-live-search="true" data-size="5">
+                                <label for="id_area" class="control-label">Área</label>
+                                <select class="selectpicker form-control show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5">
                                     <option value="">Seleccione un Área</option>
                                     <?php foreach ($view->areas as $ar){ ?>
                                         <option value="<?php echo $ar['id_area']; ?>"
@@ -313,8 +358,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="etapa" class="control-label">Vehículo</label>
-                                <select class="selectpicker form-control show-tick cu_id_vehiculo" data-live-search="true" data-size="5">
+                                <label for="id_vehiculo" class="control-label">Vehículo</label>
+                                <select class="selectpicker form-control show-tick" id="id_vehiculo" name="id_vehiculo" data-live-search="true" data-size="5">
                                     <option value="">Seleccione un Vehículo</option>
                                     <?php foreach ($view->vehiculos as $ar){ ?>
                                         <option value="<?php echo $ar['id_vehiculo']; ?>"
@@ -327,8 +372,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="etapa" class="control-label">Evento</label>
-                                <select class="selectpicker form-control show-tick cu_id_evento" data-live-search="true" data-size="5">
+                                <label for="id_evento" class="control-label">Evento</label>
+                                <select class="selectpicker form-control show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
                                     <option value="">Seleccione un evento</option>
                                     <?php foreach ($view->eventos as $ar){ ?>
                                         <option value="<?php echo $ar['id_evento']; ?>"
@@ -347,21 +392,21 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label" for="hs_normal">Hs. Normal</label>
-                                        <input class="form-control" type="text" name="hs_normal" id="hs_normal" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Hs. Normal">
+                                        <input class="form-control" type="text" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" placeholder="Hs. Normal">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label" for="hs_50">Hs. 50%</label>
-                                        <input class="form-control" type="text" name="hs_50" id="hs_50" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Hs. 50%">
+                                        <input class="form-control" type="text" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" placeholder="Hs. 50%">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="codigo">Hs. 100%</label>
-                                        <input class="form-control" type="text" name="hs_100" id="hs_100" value = "<?php //print $view->puesto->getCodigo() ?>" placeholder="Hs. 100%">
+                                        <label class="control-label" for="hs_100">Hs. 100%</label>
+                                        <input class="form-control" type="text" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" placeholder="Hs. 100%">
                                     </div>
                                 </div>
 
@@ -440,7 +485,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Calcular</button>
+                <button class="btn btn-primary btn-sm" id="calcular" name="calcular" type="submit">Calcular</button>
                 <button class="btn btn-default btn-sm" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
             </div>
 
