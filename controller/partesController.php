@@ -102,6 +102,7 @@ switch ($operation)
 
         $rta = $parte->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
+        //print_r(json_encode($rta));
         print_r(json_encode($rta));
         exit;
         break;

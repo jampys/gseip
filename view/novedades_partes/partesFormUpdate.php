@@ -296,11 +296,11 @@
 
                     //alert(xhr.responseText);
 
-                    if(data >=0){
+                    if(data[0]['flag'] >=0){
 
 
                         //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><span class="glyphicon glyphicon-tags" ></span>&nbsp  mje fijo</div>');
+                        $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><span class="glyphicon glyphicon-tags" ></span>&nbsp '+data[0]['msg']+'</div>');
                         //$('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         /*setTimeout(function() { $("#myElem").hide();

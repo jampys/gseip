@@ -164,7 +164,7 @@ class Parte
     }
 
 
-    public function updateParte(){
+    public function updateParte(){ //ok
         $stmt=new sQuery();
         $query = 'CALL sp_calcularNovedades(:id_parte,
                                         :id_area,
@@ -173,7 +173,8 @@ class Parte
                                         :hs_normal,
                                         :hs_50,
                                         :hs_100,
-                                        @flag
+                                        @flag,
+                                        @msg
                                     )';
 
         $stmt->dpPrepare($query);
@@ -189,11 +190,12 @@ class Parte
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();
-        $query = "select @flag as flag";
+        $query = "select @flag as flag, @msg as msg";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
-        $flag = $stmt->dpFetchAll();
-        return ($flag)? intval($flag[0]['flag']) : -1;
+        //$flag = $stmt->dpFetchAll();
+        //return ($flag)? intval($flag[0]['flag']) : -1;
+        return $stmt->dpFetchAll(); //retorna array bidimensional con flag y msg
     }
 
 
