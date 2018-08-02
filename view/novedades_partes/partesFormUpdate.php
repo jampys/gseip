@@ -276,7 +276,8 @@
             //alert('calcular');
             //throw new Error();
 
-            //if ($("#empleado-form").valid()){
+            if ($("#parte-form").valid()){
+
                 var params={};
                 params.action = 'partes';
                 params.operation = 'calcularParte';
@@ -312,8 +313,27 @@
 
                 }, 'json');
 
-            //}
+            }
             return false;
+        });
+
+
+        $('#parte-form').validate({ //ok
+            rules: {
+                hs_normal: {
+                    required: true,
+                    digits: true,
+                    maxlength: 6
+                }
+            },
+            messages:{
+                hs_normal: {
+                    required: "Ingrese el código",
+                    digits: "Ingrese solo números",
+                    maxlength: "Máximo 6 dígitos"
+                }
+            }
+
         });
 
 
@@ -343,131 +363,131 @@
 
                         <div class="col-md-6" id="left_side">
 
-                            <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
+                            <form name ="parte-form" id="parte-form" method="POST" action="index.php">
 
-                            <div class="form-group">
-                                <label for="id_area" class="control-label">Área</label>
-                                <select class="selectpicker form-control show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5">
-                                    <option value="">Seleccione un Área</option>
-                                    <?php foreach ($view->areas as $ar){ ?>
-                                        <option value="<?php echo $ar['id_area']; ?>"
-                                            <?php echo ($ar['id_area'] == $view->parte->getIdArea() )? 'selected' :'' ?>
-                                            >
-                                            <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
-                                        </option>
-                                    <?php  } ?>
-                                </select>
-                            </div>
+                                <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
 
-                            <div class="form-group">
-                                <label for="id_vehiculo" class="control-label">Vehículo</label>
-                                <select class="selectpicker form-control show-tick" id="id_vehiculo" name="id_vehiculo" data-live-search="true" data-size="5">
-                                    <option value="">Seleccione un Vehículo</option>
-                                    <?php foreach ($view->vehiculos as $ar){ ?>
-                                        <option value="<?php echo $ar['id_vehiculo']; ?>"
-                                            <?php echo ($ar['id_vehiculo'] == $view->parte->getIdVehiculo())? 'selected' :'' ?>
-                                            >
-                                            <?php echo $ar['nro_movil'].' '.$ar['modelo']; ?>
-                                        </option>
-                                    <?php  } ?>
-                                </select>
-                            </div>
+                                <div class="form-group">
+                                    <label for="id_area" class="control-label">Área</label>
+                                    <select class="selectpicker form-control show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5">
+                                        <option value="">Seleccione un Área</option>
+                                        <?php foreach ($view->areas as $ar){ ?>
+                                            <option value="<?php echo $ar['id_area']; ?>"
+                                                <?php echo ($ar['id_area'] == $view->parte->getIdArea() )? 'selected' :'' ?>
+                                                >
+                                                <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
+                                            </option>
+                                        <?php  } ?>
+                                    </select>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="id_evento" class="control-label">Evento</label>
-                                <select class="selectpicker form-control show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
-                                    <option value="">Seleccione un evento</option>
-                                    <?php foreach ($view->eventos as $ar){ ?>
-                                        <option value="<?php echo $ar['id_evento']; ?>"
-                                            <?php echo ($ar['id_evento'] == $view->parte->getIdEvento())? 'selected' :'' ?>
-                                            >
-                                            <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
-                                        </option>
-                                    <?php  } ?>
-                                </select>
-                            </div>
+                                <div class="form-group">
+                                    <label for="id_vehiculo" class="control-label">Vehículo</label>
+                                    <select class="selectpicker form-control show-tick" id="id_vehiculo" name="id_vehiculo" data-live-search="true" data-size="5">
+                                        <option value="">Seleccione un Vehículo</option>
+                                        <?php foreach ($view->vehiculos as $ar){ ?>
+                                            <option value="<?php echo $ar['id_vehiculo']; ?>"
+                                                <?php echo ($ar['id_vehiculo'] == $view->parte->getIdVehiculo())? 'selected' :'' ?>
+                                                >
+                                                <?php echo $ar['nro_movil'].' '.$ar['modelo']; ?>
+                                            </option>
+                                        <?php  } ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="id_evento" class="control-label">Evento</label>
+                                    <select class="selectpicker form-control show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
+                                        <option value="">Seleccione un evento</option>
+                                        <?php foreach ($view->eventos as $ar){ ?>
+                                            <option value="<?php echo $ar['id_evento']; ?>"
+                                                <?php echo ($ar['id_evento'] == $view->parte->getIdEvento())? 'selected' :'' ?>
+                                                >
+                                                <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
+                                            </option>
+                                        <?php  } ?>
+                                    </select>
+                                </div>
 
 
 
-                            <div class="row">
+                                <div class="row">
 
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label" for="hs_normal">Hs. Normal</label>
-                                        <input class="form-control" type="text" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" placeholder="Hs. Normal">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label" for="hs_normal">Hs. Normal</label>
+                                            <input class="form-control" type="text" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" placeholder="Hs. Normal">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label" for="hs_50">Hs. 50%</label>
+                                            <input class="form-control" type="text" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" placeholder="Hs. 50%">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label" for="hs_100">Hs. 100%</label>
+                                            <input class="form-control" type="text" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" placeholder="Hs. 100%">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- seccion de empleados -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-empleados" title="Mostrar empleados">Empleados</button>
+                                    </div>
+
+                                    <div class="col-md-4">
+
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-empleado" name="add-empleado" title="Agregar empleado">
+                                            <i class="fas fa-plus"></i>&nbsp
+                                        </button>
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label" for="hs_50">Hs. 50%</label>
-                                        <input class="form-control" type="text" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" placeholder="Hs. 50%">
+                                <div id="demo-empleados" class="collapse">
+                                    <div class="grid-empleados">
+                                        <?php include_once('view/novedades_partes/empleadosGrid.php');?>
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label" for="hs_100">Hs. 100%</label>
-                                        <input class="form-control" type="text" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" placeholder="Hs. 100%">
+
+                                <br/>
+
+
+                                <!-- seccion de ordenes -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>
+                                    </div>
+
+                                    <div class="col-md-4">
+
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-orden" name="add-orden" title="Agregar orden">
+                                            <i class="fas fa-plus"></i>&nbsp
+                                        </button>
                                     </div>
                                 </div>
 
-                            </div>
-
-
-                            <!-- seccion de empleados -->
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-empleados" title="Mostrar empleados">Empleados</button>
+                                <div id="demo-ordenes" class="collapse">
+                                    <div class="grid-ordenes">
+                                        <?php include_once('view/novedades_partes/ordenesGrid.php');?>
+                                    </div>
                                 </div>
 
-                                <div class="col-md-4">
-
-                                </div>
-
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary btn-sm btn-block" id="add-empleado" name="add-empleado" title="Agregar empleado">
-                                        <i class="fas fa-plus"></i>&nbsp
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div id="demo-empleados" class="collapse">
-                                <div class="grid-empleados">
-                                    <?php include_once('view/novedades_partes/empleadosGrid.php');?>
-                                </div>
-                            </div>
-
-
-                            <br/>
-
-
-                            <!-- seccion de ordenes -->
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>
-                                </div>
-
-                                <div class="col-md-4">
-
-                                </div>
-
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary btn-sm btn-block" id="add-orden" name="add-orden" title="Agregar orden">
-                                        <i class="fas fa-plus"></i>&nbsp
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div id="demo-ordenes" class="collapse">
-                                <div class="grid-ordenes">
-                                    <?php include_once('view/novedades_partes/ordenesGrid.php');?>
-                                </div>
-                            </div>
-
-
-
-
+                            </form>
 
 
                         </div>
