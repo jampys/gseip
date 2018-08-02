@@ -296,14 +296,14 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('<a href="#" class="close" data-dismiss="alert">&times;</a><span class="glyphicon glyphicon-tags" ></span>&nbsp  mje fijo').addClass('alert alert-success').show();
+                        //$('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
-                        setTimeout(function() { $("#myElem").hide();
+                        /*setTimeout(function() { $("#myElem").hide();
                             //$('#myModal').modal('hide');
                             $('#empleado-form').hide();
-                        }, 2000);
+                        }, 2000);*/
                     }else{
                         $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                     }
@@ -480,8 +480,10 @@
                 </div>
 
 
-                <!--<div id="myElem" class="msg" style="display:none"></div>-->
+                <!-- <div id="myElem" class="msg" style="display:none"></div>  para mostrar los resultados de "calcular"   -->
+                <div id="myElem" class="msg fade in" style="display:none">
 
+                </div>
             </div>
 
             <div class="modal-footer">
