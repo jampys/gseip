@@ -39,7 +39,8 @@
                 params.id_parte = $('#id_parte').val();
                 params.id_parte_empleado = $('#id_parte_empleado').val();
                 params.id_empleado = $('#id_empleado').val();
-                params.conductor = $('input[name=conductor]:checked').val();
+                //params.conductor = $('input[name=conductor]:checked').val();
+                params.conductor = $('#conductor').prop('checked')? 1:0;
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.aplica);
@@ -125,19 +126,28 @@
         </div>
 
 
-        <div class="form-group required">
+        <!--<div class="form-group required">
             <label for="conductor" class="control-label">Conductor</label>
 
             <div class="input-group">
 
-                <?php foreach($view->conductor['enum'] as $val){ ?>
+                <?php //foreach($view->conductor['enum'] as $val){ ?>
                     <label class="radio-inline">
-                        <input type="radio" name="conductor" value="<?php echo $val ?>"
-                            <?php echo ($val == $view->empleado->getConductor() OR ($val == $view->conductor['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
-                            ><?php echo ($val==1)? 'Si':'No' ?>
+                        <input type="radio" name="conductor" value="<?php //echo $val ?>"
+                            <?php //echo ($val == $view->empleado->getConductor() OR ($val == $view->conductor['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
+                            ><?php //echo ($val==1)? 'Si':'No' ?>
                     </label>
-                <?php } ?>
+                <?php //} ?>
 
+            </div>
+        </div>-->
+
+
+        <div class="form-group required">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="conductor" name="conductor" <?php echo ($view->empleado->getConductor()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para la persona que maneja">Conductor</a>
+                </label>
             </div>
         </div>
 

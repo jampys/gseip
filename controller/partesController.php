@@ -60,7 +60,7 @@ switch ($operation)
                     $pe1 = new ParteEmpleado();
                     $pe1->setIdParte($id_parte);
                     $pe1->setIdEmpleado($vC['id_empleado_1']);
-                    $pe1->setConductor(null);
+                    $pe1->setConductor(1);
                     $pe1->insertParteEmpleado();
                 }
 

@@ -16,7 +16,7 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
+        //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;volante
         //$id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
@@ -30,7 +30,7 @@ switch ($operation)
         $empleado->setIdParte($_POST['id_parte']);
         $empleado->setIdEmpleado($_POST['id_empleado']);
         //$empleado->setConductor($_POST['conductor']);
-        $empleado->setConductor( ($_POST['conductor']!= 0)? $_POST['conductor'] : null);
+        $empleado->setConductor( ($_POST['conductor']== 1)? $_POST['conductor'] : null);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $empleado->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
