@@ -165,49 +165,26 @@ class Parte
 
 
     public function updateParte(){
-
         $stmt=new sQuery();
-        $query = 'CALL sp_updateEmpleados(:id_empleado,
-                                        :legajo,
-                                        :apellido,
-                                        :nombre,
-                                        :documento,
-                                        :cuil,
-                                        :fecha_nacimiento,
-                                        :fecha_alta,
-                                        :fecha_baja,
-                                        :telefono,
-                                        :email,
-                                        :sexo,
-                                        :nacionalidad,
-                                        :estado_civil,
-                                        :empresa,
-                                        :direccion,
-                                        :id_localidad,
-                                        :cambio_domicilio,
+        $query = 'CALL sp_calcularNovedades(:id_parte,
+                                        :id_area,
+                                        :id_vehiculo,
+                                        :id_evento,
+                                        :hs_normal,
+                                        :hs_50,
+                                        :hs_100,
                                         @flag
                                     )';
 
         $stmt->dpPrepare($query);
 
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':legajo', $this->getLegajo());
-        $stmt->dpBind(':apellido', $this->getApellido());
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':documento', $this->getDocumento());
-        $stmt->dpBind(':cuil', $this->getCuil());
-        $stmt->dpBind(':fecha_nacimiento', $this->getFechaNacimiento());
-        $stmt->dpBind(':fecha_alta', $this->getFechaAlta());
-        $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
-        $stmt->dpBind(':telefono', $this->getTelefono());
-        $stmt->dpBind(':email', $this->getEmail());
-        $stmt->dpBind(':sexo', $this->getSexo());
-        $stmt->dpBind(':nacionalidad', $this->getNacionalidad());
-        $stmt->dpBind(':estado_civil', $this->getEstadoCivil());
-        $stmt->dpBind(':empresa', $this->getEmpresa());
-        $stmt->dpBind(':direccion', $this->getDireccion());
-        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
-        $stmt->dpBind(':cambio_domicilio', $cambio_domicilio);
+        $stmt->dpBind(':id_parte', $this->getIdParte());
+        $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
+        $stmt->dpBind(':id_evento', $this->getIdEvento());
+        $stmt->dpBind(':hs_normal', $this->getHsNormal());
+        $stmt->dpBind(':hs_50', $this->getHs50());
+        $stmt->dpBind(':hs_100', $this->getHs100());
 
         $stmt->dpExecute();
 
@@ -216,8 +193,9 @@ class Parte
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         $flag = $stmt->dpFetchAll();
-        return ($flag)? intval($flag[0]['flag']) : 0;
+        return ($flag)? intval($flag[0]['flag']) : -1;
     }
+
 
     public function insertParte(){ //ok
 
