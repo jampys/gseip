@@ -300,7 +300,7 @@
 
 
                         //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><span class="glyphicon glyphicon-tags" ></span>&nbsp '+data[0]['msg']+'</div>');
+                        $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
                         //$('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         /*setTimeout(function() { $("#myElem").hide();
@@ -308,7 +308,8 @@
                             $('#empleado-form').hide();
                         }, 2000);*/
                     }else{
-                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                        //$("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                        $("#msg-container").html('<div id="myElem" class="msg alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-exclamation-triangle fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
                     }
 
                 }, 'json');
