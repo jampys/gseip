@@ -296,8 +296,10 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
+
+
                         //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('<a href="#" class="close" data-dismiss="alert">&times;</a><span class="glyphicon glyphicon-tags" ></span>&nbsp  mje fijo').addClass('alert alert-success').show();
+                        $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><span class="glyphicon glyphicon-tags" ></span>&nbsp  mje fijo</div>');
                         //$('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         /*setTimeout(function() { $("#myElem").hide();
@@ -481,7 +483,7 @@
 
 
                 <!-- <div id="myElem" class="msg" style="display:none"></div>  para mostrar los resultados de "calcular"   -->
-                <div id="myElem" class="msg fade in" style="display:none">
+                <div id="msg-container">
 
                 </div>
             </div>
