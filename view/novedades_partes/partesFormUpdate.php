@@ -320,18 +320,41 @@
 
         $('#parte-form').validate({ //ok
             rules: {
+                id_area: {required: true},
                 hs_normal: {
-                    required: true,
+                    require_from_group: [1, ".hs-group"],
+                    digits: true,
+                    maxlength: 6
+                },
+                hs_50: {
+                    require_from_group: [1, ".hs-group"],
+                    digits: true,
+                    maxlength: 6
+                },
+                hs_100: {
+                    require_from_group: [1, ".hs-group"],
                     digits: true,
                     maxlength: 6
                 }
             },
             messages:{
+                id_area: "Seleccione un área",
                 hs_normal: {
-                    required: "Ingrese el código",
+                    require_from_group: "Complete al menos un tipo de hora",
+                    digits: "Ingrese solo números",
+                    maxlength: "Máximo 6 dígitos"
+                },
+                hs_50: {
+                    require_from_group: "Complete al menos un tipo de hora",
+                    digits: "Ingrese solo números",
+                    maxlength: "Máximo 6 dígitos"
+                },
+                hs_100: {
+                    require_from_group: "Complete al menos un tipo de hora",
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }
+
             }
 
         });
@@ -367,10 +390,9 @@
 
                                 <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
 
-                                <div class="form-group">
+                                <div class="form-group required">
                                     <label for="id_area" class="control-label">Área</label>
-                                    <select class="selectpicker form-control show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5">
-                                        <option value="">Seleccione un Área</option>
+                                    <select class="selectpicker form-control show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5" title="Seleccione un área">
                                         <?php foreach ($view->areas as $ar){ ?>
                                             <option value="<?php echo $ar['id_area']; ?>"
                                                 <?php echo ($ar['id_area'] == $view->parte->getIdArea() )? 'selected' :'' ?>
@@ -416,21 +438,21 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label" for="hs_normal">Hs. Normal</label>
-                                            <input class="form-control" type="text" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" placeholder="Hs. Normal">
+                                            <input class="form-control hs-group" type="text" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" placeholder="Hs. Normal">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label" for="hs_50">Hs. 50%</label>
-                                            <input class="form-control" type="text" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" placeholder="Hs. 50%">
+                                            <input class="form-control hs-group" type="text" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" placeholder="Hs. 50%">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label" for="hs_100">Hs. 100%</label>
-                                            <input class="form-control" type="text" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" placeholder="Hs. 100%">
+                                            <input class="form-control hs-group" type="text" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" placeholder="Hs. 100%">
                                         </div>
                                     </div>
 
