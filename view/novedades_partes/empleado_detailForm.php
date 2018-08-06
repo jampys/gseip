@@ -74,8 +74,8 @@
 
         $('#empleado-form').validate({ //ok
             rules: {
-                id_empleado: {required: true},
-                conductor: {
+                id_empleado: {required: true}
+                /*conductor: {
                     //required: true,
                     remote: {
                         url: "index.php",
@@ -88,14 +88,14 @@
                             id_parte: function(){ return $('#id_parte').val();}
                         }
                     }
-                }
+                }*/
             },
             messages:{
-                id_empleado: "Seleccione un empleado",
-                conductor: {
+                id_empleado: "Seleccione un empleado"
+                /*conductor: {
                     //required: "Seleccione un empleado",
                     remote: "La cuadrilla tiene asignado otro conductor"
-                }
+                }*/
             }
 
         });
