@@ -126,17 +126,21 @@ class ParteEmpleado
     }
 
 
-    public function checkEmpleado($id_cuadrilla_empleado, $id_cuadrilla, $id_empleado) {
+    public function checkEmpleado($id_parte_empleado, $id_parte) { //ok
         $stmt=new sQuery();
-        $query = "select *
+        /*$query = "select *
                   from nov_cuadrilla_empleado
                   where id_cuadrilla = :id_cuadrilla
                   and id_empleado = :id_empleado
-                  and id_cuadrilla_empleado <> :id_cuadrilla_empleado";
+                  and id_cuadrilla_empleado <> :id_cuadrilla_empleado";*/
+        $query = "select 1
+                  from nov_parte_empleado
+                  where id_parte = :id_parte
+                  and conductor = 1
+                  and id_parte_empleado <> :id_parte_empleado";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_cuadrilla', $id_cuadrilla);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_cuadrilla_empleado', $id_cuadrilla_empleado);
+        $stmt->dpBind(':id_parte', $id_parte);
+        $stmt->dpBind(':id_parte_empleado', $id_parte_empleado);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
     }

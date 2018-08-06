@@ -69,9 +69,9 @@ switch ($operation)
         break;
 
 
-    case 'checkEmpleado':
-        $view->empleado = new CuadrillaEmpleado();
-        $rta = $view->empleado->checkEmpleado($_POST['id_cuadrilla_empleado'], $_POST['id_cuadrilla'], $_POST['id_empleado']);
+    case 'checkEmpleado': //ok
+        $view->empleado = new ParteEmpleado();
+        $rta = $view->empleado->checkEmpleado($_POST['id_parte_empleado'], $_POST['id_parte']);
         print_r(json_encode($rta));
         exit;
         break;

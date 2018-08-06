@@ -74,20 +74,28 @@
 
         $('#empleado-form').validate({ //ok
             rules: {
-                /*codigo: {
-                        required: true,
-                        digits: true,
-                        maxlength: 6
-                },*/
-                id_empleado: {required: true}
+                id_empleado: {required: true},
+                conductor: {
+                    //required: true,
+                    remote: {
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            action: "parte-empleado",
+                            operation: "checkEmpleado",
+                            id_parte_empleado: function(){ return $('#id_parte_empleado').val();},
+                            id_parte: function(){ return $('#id_parte').val();}
+                        }
+                    }
+                }
             },
             messages:{
-                /*codigo: {
-                    required: "Ingrese el código",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                }, */
-                id_empleado: "Seleccione un empleado"
+                id_empleado: "Seleccione un empleado",
+                conductor: {
+                    //required: "Seleccione un empleado",
+                    remote: "La cuadrilla tiene asignado otro conductor"
+                }
             }
 
         });
