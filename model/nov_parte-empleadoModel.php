@@ -126,7 +126,7 @@ class ParteEmpleado
     }
 
 
-    public function checkEmpleado($id_parte_empleado, $id_parte) { //ok
+    public function checkEmpleado($id_parte_empleado, $id_parte) { //No se usa
         $stmt=new sQuery();
         /*$query = "select *
                   from nov_cuadrilla_empleado
