@@ -96,9 +96,9 @@ switch ($operation)
         $parte->setIdVehiculo($_POST['id_vehiculo']);
         $parte->setIdEvento( ($_POST['id_evento']!='')? $_POST['id_evento'] : null );
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $parte->setHsNormal( ($_POST['hs_normal']!='')? $_POST['hs_normal'] : null);
-        $parte->setHs50( ($_POST['hs_50']!='')? $_POST['hs_50'] : null);
-        $parte->setHs100( ($_POST['hs_100']!='')? $_POST['hs_100'] : null);
+        $parte->setHsNormal( ($_POST['hs_normal']!='')? $_POST['hs_normal'] : 0);
+        $parte->setHs50( ($_POST['hs_50']!='')? $_POST['hs_50'] : 0);
+        $parte->setHs100( ($_POST['hs_100']!='')? $_POST['hs_100'] : 0);
 
         $rta = $parte->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
