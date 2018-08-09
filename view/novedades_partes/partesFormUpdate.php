@@ -290,7 +290,7 @@
                 params.hs_100 = $('#hs_100').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
-                //alert(params.aplica);
+                //alert(params.id_parte);
 
                 $.post('index.php',params,function(data, status, xhr){
 
