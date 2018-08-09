@@ -262,7 +262,7 @@
         };
 
 
-        //evento al salir o cerrar con la x el modal de etapas
+        //evento al salir o cerrar con la x el modal de actualizar el parte
         $("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
             $("#search").trigger("click");
@@ -301,7 +301,7 @@
 
                         //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
-                        //$('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         /*setTimeout(function() { $("#myElem").hide();
                             //$('#myModal').modal('hide');
