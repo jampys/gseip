@@ -161,29 +161,27 @@
 
 
 
-        <hr/>
-
-
+        <!--<hr/>
         <div class="row">
 
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="hs_manejo">Hs. manejo (HM)</label>
-                    <input class="form-control" type="text" name="hs_manejo" id="hs_manejo" value = "<?php print $view->empleado->getHsManejo() ?>" placeholder="Hs. manejo" disabled>
+                    <input class="form-control" type="text" name="hs_manejo" id="hs_manejo" value = "<?php //print $view->empleado->getHsManejo() ?>" placeholder="Hs. manejo" disabled>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="hs_viaje">Hs. viaje (HV)</label>
-                    <input class="form-control" type="text" name="hs_viaje" id="hs_viaje" value = "<?php print $view->empleado->getHsViaje() ?>" placeholder="Hs. viaje" disabled>
+                    <input class="form-control" type="text" name="hs_viaje" id="hs_viaje" value = "<?php //print $view->empleado->getHsViaje() ?>" placeholder="Hs. viaje" disabled>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="hs_base">Hs. base (HB)</label>
-                    <input class="form-control" type="text" name="hs_base" id="hs_base" value = "<?php print $view->empleado->getHsBase() ?>" placeholder="Hs. base" disabled>
+                    <input class="form-control" type="text" name="hs_base" id="hs_base" value = "<?php //print $view->empleado->getHsBase() ?>" placeholder="Hs. base" disabled>
                 </div>
             </div>
 
@@ -195,14 +193,14 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="vianda_diaria">Vianda diaria (VD)</label>
-                    <input class="form-control" type="text" name="vianda_diaria" id="vianda_diaria" value = "<?php print $view->empleado->getViandaDiaria() ?>" placeholder="Vianda diaria" disabled>
+                    <input class="form-control" type="text" name="vianda_diaria" id="vianda_diaria" value = "<?php //print $view->empleado->getViandaDiaria() ?>" placeholder="Vianda diaria" disabled>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="vianda_extra">Vianda extra (VE)</label>
-                    <input class="form-control" type="text" name="vianda_extra" id="vianda_extra" value = "<?php print $view->empleado->getViandaExtra() ?>" placeholder="Vianda extra" disabled>
+                    <input class="form-control" type="text" name="vianda_extra" id="vianda_extra" value = "<?php //print $view->empleado->getViandaExtra() ?>" placeholder="Vianda extra" disabled>
                 </div>
             </div>
 
@@ -210,7 +208,7 @@
 
             </div>
 
-        </div>
+        </div>-->
 
 
 

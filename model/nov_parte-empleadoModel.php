@@ -128,6 +128,7 @@ class ParteEmpleado
         $query = "select npe.id_parte_empleado,
                   -- DATE_FORMAT(npe.fecha, '%d/%m/%Y') as fecha,
                   npe.id_parte, npe.id_empleado, npe.conductor,
+                  npe.hs_manejo, npe.hs_viaje, npe.hs_base, npe.vianda_diaria, npe.vianda_extra,
                   em.apellido, em.nombre
                   from nov_parte_empleado npe
                   join empleados em on npe.id_empleado = em.id_empleado
