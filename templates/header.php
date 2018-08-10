@@ -61,7 +61,7 @@
                             <?php if ( PrivilegedUser::dhasPrivilege('CON_VER', array(1)) ) { ?>
                                 <li><a href="index.php?action=contratos">Contratos</a></li>
                             <?php } ?>
-                            <li><a href="#" style="cursor: not-allowed">Organigrama <span class="text-muted"><small> [En construcción]</small></span></a></li>
+                            <li><a href="#" style="cursor: not-allowed">Organigrama <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">HABILIDADES Y COMPETENCIAS</li>
@@ -83,11 +83,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Capacitación<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
-                            <li><a href="#" style="cursor: not-allowed">Plan de capacitación <span class="text-muted"><small> [En construcción]</small></span></a></li>
+                            <li><a href="#" style="cursor: not-allowed">Plan de capacitación <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <!--<li><a href="#">Capacitaciones</a></li>-->
-                            <li><a href="#" style="cursor: not-allowed">Capacitaciones <span class="text-muted"><small> [En construcción]</small></span></a></li>
-                            <li><a href="#" style="cursor: not-allowed">Cursos <span class="text-muted"><small> [En construcción]</small></span></a></li>
-                            <li><a href="#" style="cursor: not-allowed">Estadísticas <span class="text-muted"><small> [En construcción]</small></span></a></li>
+                            <li><a href="#" style="cursor: not-allowed">Capacitaciones <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+                            <li><a href="#" style="cursor: not-allowed">Cursos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+                            <li><a href="#" style="cursor: not-allowed">Estadísticas <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                         </ul>
                     </li>
 
@@ -95,7 +95,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desarrollo<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" style="cursor: not-allowed">Plan de evaluación <span class="text-muted"><small> [En construcción]</small></span></a></li>
+                            <li><a href="#" style="cursor: not-allowed">Plan de evaluación <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <?php if ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) ) { ?>
                                 <li><a href="index.php?action=objetivos">Objetivos</a></li>
                             <?php } ?>
@@ -155,18 +155,18 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">SUCESOS DE PERSONAL</li>
                             <?php if ( PrivilegedUser::dhasPrivilege('SUC_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=sucesos"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Sucesos</a></li>
+                                <li><a href="index.php?action=sucesos"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Sucesos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <?php } ?>
 
                             <li role="separator" class="divider"></li>
 
                             <li class="dropdown-header">ACTIVIDAD CUADRILLA</li>
                             <?php //if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
-                            <li><a href="index.php?action=cuadrillas"><i class="fas fa-car fa-fw"></i>&nbsp;Cuadrillas</a></li>
+                            <li><a href="index.php?action=cuadrillas"><i class="fas fa-car fa-fw"></i>&nbsp;Cuadrillas <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <?php //} ?>
 
                             <?php //if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=partes"><i class="fas fa-car fa-fw"></i>&nbsp;Partes diarios cuadrilla</a></li>
+                                <li><a href="index.php?action=partes"><i class="fas fa-car fa-fw"></i>&nbsp;Partes diarios cuadrilla <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <?php //} ?>
 
                         </ul>
