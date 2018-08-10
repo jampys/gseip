@@ -105,8 +105,8 @@
                         <td><?php echo $rp['cuadrilla']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
                         <td><?php echo $rp['vehiculo']; ?></td>
-                        <td><?php echo $rp['evento']; ?></td>
-                        <td style="text-align: center"><?php echo(!$rp['evento'])? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
+                        <td class="text-danger"><?php echo $rp['evento']; ?></td>
+                        <td style="text-align: center"><?php echo($rp['calculado'])? '<i class="fas fa-check fa-fw text-success"></i>':'<i class="fas fa-exclamation-triangle fa-fw text-warning"></i>'; ?></td>
                         <td><?php echo $rp['user'];?></td>
 
 

@@ -1,6 +1,7 @@
 ﻿<?php
 include_once("model/nov_partesModel.php");
 include_once("model/nov_parte-empleadoModel.php");
+include_once("model/nov_parte-ordenModel.php");
 
 include_once("model/nov_areasModel.php");
 include_once("model/contratosModel.php");
@@ -21,8 +22,6 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
-        //$id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
         $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
         $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
@@ -31,7 +30,7 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/partesGrid.php";
         break;
 
-    case 'insertPartes': //guarda de manera masiva los partes seleccionados
+    case 'insertPartes': //guarda de manera masiva los partes seleccionados //ok
 
         try{
             sQuery::dpBeginTransaction();
@@ -61,7 +60,7 @@ switch ($operation)
                     $pe1 = new ParteEmpleado();
                     $pe1->setIdParte($id_parte);
                     $pe1->setIdEmpleado($vC['id_empleado_1']);
-                    $pe1->setConductor(null);
+                    $pe1->setConductor(1);
                     $pe1->insertParteEmpleado();
                 }
 
@@ -91,19 +90,20 @@ switch ($operation)
         exit;
         break;
 
-    case 'saveParte': //guarda un parte despues de ser editado
-        $busqueda = new Busqueda($_POST['id_busqueda']);
-        $busqueda->setNombre($_POST['nombre']);
-        $busqueda->setFechaApertura($_POST['fecha_apertura']);
-        $busqueda->setFechaCierre( ($_POST['fecha_cierre']!='')? $_POST['fecha_cierre'] : null );
+    case 'calcularParte': //ok  //guarda un parte despues de ser editado
+        $parte = new Parte($_POST['id_parte']);
+        $parte->setIdArea($_POST['id_area']);
+        $parte->setIdVehiculo($_POST['id_vehiculo']);
+        $parte->setIdEvento( ($_POST['id_evento']!='')? $_POST['id_evento'] : null );
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
-        $busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
-        $busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
+        $parte->setHsNormal( ($_POST['hs_normal']!='')? $_POST['hs_normal'] : 0);
+        $parte->setHs50( ($_POST['hs_50']!='')? $_POST['hs_50'] : 0);
+        $parte->setHs100( ($_POST['hs_100']!='')? $_POST['hs_100'] : 0);
 
-        $rta = $busqueda->save();
-        print_r(json_encode(sQuery::dpLastInsertId()));
+        $rta = $parte->save();
+        //print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));
+        print_r(json_encode($rta));
         exit;
         break;
 
@@ -118,20 +118,24 @@ switch ($operation)
         $view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/novedades_partes/partesForm.php";
+        $view->contentTemplate="view/novedades_partes/partesFormInsert.php";
         break;
 
-    case 'editBusqueda':
-        $view->label='Editar búsqueda';
-        $view->busqueda = new Busqueda($_POST['id_busqueda']);
+    case 'editParte': //ok
+        $view->parte = new Parte($_POST['id_parte']);
+        $view->label='Editar parte: '.$view->parte->getFechaParte().' '; //falta el nombre del contrato
 
-        $view->puestos = Puesto::getPuestos();
-        $view->localidades = Localidad::getLocalidades();
-        $view->contratos = Contrato::getContratos();
+        $view->empleados = Empleado::getEmpleados();
+        $view->areas = NovArea::getAreas();
+        $view->vehiculos = Vehiculo::getVehiculos();
+        $view->eventos = EventosCuadrilla::getEventosCuadrilla();
+        //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
+
+        $view->empleados = ParteEmpleado::getParteEmpleado($_POST['id_parte']);
+        $view->ordenes = ParteOrden::getParteOrden($_POST['id_parte']);
 
         $view->disableLayout=true;
-        $view->target = $_POST['target'];
-        $view->contentTemplate="view/busquedas/busquedasForm.php";
+        $view->contentTemplate="view/novedades_partes/partesFormUpdate.php";
         break;
 
     case 'deleteHabilidad':

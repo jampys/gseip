@@ -98,6 +98,7 @@
         });
 
 
+
         $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -117,7 +118,8 @@
         });*/
 
 
-        //Al presionar el boton con el nombre de la cuadrilla
+        //Al presionar el boton con
+        // el nombre de la cuadrilla
         $('.cu_cuadrilla .btn').on('click', function(){ //ok
             //$(this).closest('.row.cu_cuadrilla').find(':checkbox').prop('checked', true);
             var chk = $(this).closest('.row.cu_cuadrilla').find(':checkbox');

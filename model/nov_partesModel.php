@@ -12,6 +12,9 @@ class Parte
     private $id_evento;
     private $id_contrato;
     private $id_user;
+    private $hs_normal;
+    private $hs_50;
+    private $hs_100;
 
     // GETTERS
     function getIdParte()
@@ -41,6 +44,17 @@ class Parte
     function getIdUser()
     { return $this->id_user;}
 
+    function getHsNormal()
+    { return $this->hs_normal;}
+
+    function getHs50()
+    { return $this->hs_50;}
+
+    function getHs100()
+    { return $this->hs_100;}
+
+
+
     //SETTERS
     function setIdParte($val)
     { $this->id_parte=$val;}
@@ -69,6 +83,15 @@ class Parte
     function setIdUser($val)
     {  $this->id_user=$val;}
 
+    function setHsNormal($val)
+    {  $this->hs_normal=$val;}
+
+    function setHs50($val)
+    {  $this->hs_50=$val;}
+
+    function setHs100($val)
+    {  $this->hs_100=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -78,7 +101,8 @@ class Parte
             $query="select id_parte,
                     DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha,
                     DATE_FORMAT(fecha_parte,  '%d/%m/%Y') as fecha_parte,
-                    cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, id_user
+                    cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, id_user,
+                    hs_normal, hs_50, hs_100
                     from nov_partes where id_parte = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -93,6 +117,9 @@ class Parte
             $this->setIdVehiculo($rows[0]['id_vehiculo']);
             $this->setIdEvento($rows[0]['id_evento']);
             $this->setIdContrato($rows[0]['id_contrato']);
+            $this->setHsNormal($rows[0]['hs_normal']);
+            $this->setHs50($rows[0]['hs_50']);
+            $this->setHs100($rows[0]['hs_100']);
         }
     }
 
@@ -102,7 +129,7 @@ class Parte
         $query="select pa.id_parte,
                     DATE_FORMAT(pa.fecha,  '%d/%m/%Y') as fecha,
                     DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
-                    pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato,
+                    pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.calculado,
                     concat(ar.codigo, ' ', ar.nombre) as area,
                     concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
                     concat(nec.codigo, ' ', nec.nombre) as evento,
@@ -136,28 +163,41 @@ class Parte
         return $rta;
     }
 
-    public function updateParte(){
 
+    public function updateParte(){ //ok
         $stmt=new sQuery();
-        $query="update puestos set
-                nombre= :nombre,
-                descripcion= :descripcion,
-                codigo= :codigo,
-                id_puesto_superior= :id_puesto_superior,
-                id_area= :id_area,
-                id_nivel_competencia= :id_nivel_competencia
-                where id_puesto = :id_puesto";
+        $query = 'CALL sp_calcularNovedades(:id_parte,
+                                        :id_area,
+                                        :id_vehiculo,
+                                        :id_evento,
+                                        :hs_normal,
+                                        :hs_50,
+                                        :hs_100,
+                                        @flag,
+                                        @msg
+                                    )';
+
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
+
+        $stmt->dpBind(':id_parte', $this->getIdParte());
         $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
+        $stmt->dpBind(':id_evento', $this->getIdEvento());
+        $stmt->dpBind(':hs_normal', $this->getHsNormal());
+        $stmt->dpBind(':hs_50', $this->getHs50());
+        $stmt->dpBind(':hs_100', $this->getHs100());
+
         $stmt->dpExecute();
-        return $stmt->dpGetAffect();
+
+        $stmt->dpCloseCursor();
+        $query = "select @flag as flag, @msg as msg";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        //$flag = $stmt->dpFetchAll();
+        //return ($flag)? intval($flag[0]['flag']) : -1;
+        return $stmt->dpFetchAll(); //retorna array bidimensional con flag y msg
     }
+
 
     public function insertParte(){ //ok
 

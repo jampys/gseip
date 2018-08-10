@@ -32,6 +32,7 @@
 
             $('.input-daterange').datepicker({ //ok para fecha desde-hasta (buscar)
                 //todayBtn: "linked",
+                orientation: "bottom",
                 format:"dd/mm/yyyy",
                 language: 'es',
                 todayHighlight: true,
@@ -59,13 +60,15 @@
             });
 
 
-
-            $(document).on('click', '.edit', function(){
+            //para editar un parte
+            //$(document).on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){ //ok
+                //alert('editar parte');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_busqueda = id;
-                params.action = "busquedas";
-                params.operation = "editBusqueda";
+                params.id_parte = id;
+                params.action = "partes";
+                params.operation = "editParte";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
@@ -74,12 +77,14 @@
                 })
             });
 
-            $(document).on('click', '.view', function(){
+            //para ver un parte
+            //$(document).on('click', '.view', function(){
+            $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_busqueda = id;
-                params.action = "busquedas";
-                params.operation = "editBusqueda";
+                params.id_parte = id;
+                params.action = "partes";
+                params.operation = "editParte";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     $("fieldset").prop("disabled", true);
@@ -91,7 +96,7 @@
 
             });
 
-
+            //para agregar partes de cuadrilla de un contrato
             $(document).on('click', '#new', function(){ //ok
 
                 if ($("#add-form").valid()){
@@ -110,13 +115,6 @@
                 }
 
             });
-
-
-
-            $(document).on('click', '#cancel',function(){
-                $('#myModal').modal('hide');
-            });
-
 
 
 
