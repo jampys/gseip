@@ -161,6 +161,47 @@ class Puesto
         return $stmt->dpFetchAll();
     }
 
+
+    public static function uploadsUpload($directory, $name, $id_puesto){ //ok
+        $stmt=new sQuery();
+        $query="insert into uploads_puesto(directory, name, fecha, id_puesto)
+                values(:directory, :name, date(sysdate()), :id_puesto)";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':directory', $directory);
+        $stmt->dpBind(':name', $name);
+        $stmt->dpBind(':id_busqueda', $id_puesto);
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+    }
+
+    public static function uploadsLoad($id_puesto) { //ok
+        $stmt=new sQuery();
+        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_puesto
+                  from uploads_puesto
+                  where id_puesto = :id_puesto
+                  order by fecha asc";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_puesto', $id_puesto);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+    public static function uploadsDelete($name){ //ok
+        $stmt=new sQuery();
+        $query="delete from uploads_puesto where name =:name";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':name', $name);
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+    }
+
+
+
+
+
+
+
+
 }
 
 

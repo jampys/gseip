@@ -18,6 +18,141 @@
             keyboard: false
         });
 
+        $('.image').viewer({});
+
+        var objeto={};
+
+
+
+        var uploadObj = $("#fileuploader").uploadFile({
+            url: "index.php?action=uploadsPuestos&operation=upload",
+            dragDrop: <?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
+            autoSubmit: false,
+            fileName: "myfile",
+            returnType: "json",
+            showDelete: <?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
+            showDownload:true,
+            showCancel: true,
+            showAbort: true,
+            allowDuplicates: false,
+            allowedTypes: "jpg, png, pdf, txt, doc, docx",
+
+            dynamicFormData: function(){
+                var data ={ "id": ($('#id_puesto').val())? $('#id_puesto').val() : objeto.id };
+                return data;},
+
+            maxFileSize:2097152, //tamaño expresado en bytes
+            showPreview:true,
+            previewHeight: "75px",
+            previewWidth: "auto",
+            uploadQueueOrder:'bottom', //el orden en que se muestran los archivos subidos.
+            showFileCounter: false, //muestra el nro de archivos subidos
+            downloadStr: "<i class='fas fa-download'></i>",
+            deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
+            dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
+            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Subir",
+            cancelStr: "<i class='fas fa-minus-square'></i>",
+
+            extErrorStr: "no está permitido. Solo se permiten extensiones: ",
+            duplicateErrorStr: "no permitido. El archivo ya existe.",
+            sizeErrorStr: "no permitido. Tamaño máximo permitido: ",
+
+            onLoad:function(obj){
+                $.ajax({
+                    cache: false,
+                    url: "index.php",
+                    data:{"action": "uploadsPuestos", "operation": "load", "id": $('#id_puesto').val() },
+                    type:"post",
+                    dataType: "json",
+                    success: function(data) {
+
+                        //alert('todo ok '+data);
+                        for(var i=0;i<data.length;i++) {
+                            if(data[i]['jquery-upload-file-error']) {
+                                //alert('encontro el error');
+                                obj.dpErrorOnLoad(data[i]["name"], data[i]['jquery-upload-file-error']);
+                            }
+                            else{
+                                obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"], data[i]["fecha"]);
+                            }
+
+                        }
+
+                        $('#myModal img').addClass('image').css('cursor', 'zoom-in');
+                        $('.image').viewer({});
+
+                    },
+                    error: function(e) {
+                        alert('errrorrrr '+ e.responseText);
+                    }
+
+                });
+            },
+            deleteCallback: function (data, pd) {
+                for (var i = 0; i < data.length; i++) {
+                    $.post("index.php", {action: "uploadsPuestos", operation: "delete", name: data[i]},
+                        function (resp,textStatus, jqXHR) {
+                            //Show Message
+                            //alert("File Deleted");
+                        });
+                }
+                pd.statusbar.hide(); //You choice.
+
+            },
+            downloadCallback:function(filename,pd) {
+                location.href="index.php?action=uploadsPuestos&operation=download&filename="+filename;
+            }
+        });
+
+
+
+        $(document).on('click', '#submit',function(){ //ok
+            if ($("#puesto").valid()){
+                var params={};
+                params.action = 'puestos';
+                params.operation = 'savePuesto';
+                params.id_puesto=$('#id_puesto').val();
+                params.nombre=$('#nombre').val();
+                params.descripcion=$('#descripcion').val();
+                params.codigo=$('#codigo').val();
+                params.id_puesto_superior=$('#id_puesto_superior').val();
+                params.id_area=$('#id_area').val();
+                params.id_nivel_competencia=$('#id_nivel_competencia').val();
+                //alert(params.id_puesto_superior);
+                $.post('index.php',params,function(data, status, xhr){
+
+                    objeto.id = data; //data trae el id del puesto
+                    //alert(data);
+                    //var rta= parseInt(data.charAt(3));
+                    //alert(rta);
+                    if(data >=0){
+                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
+                        $(".modal-footer button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
+                        $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
+                        setTimeout(function() { $("#myElem").hide();
+                            $('#myModal').modal('hide');
+                        }, 2000);
+                    }else{
+                        $("#myElem").html('Error al guardar el puesto').addClass('alert alert-danger').show();
+                    }
+
+
+                }, "json");
+
+
+            }
+            return false;
+        });
+
+
+        $('#myModal #cancel').on('click', function(){ //ok
+        //$(document).on('click', '#cancel',function(){ //ok
+            //$('#myModal').modal('hide');
+        });
+
+
+
 
         $('#puesto').validate({ //ok
             rules: {
@@ -127,11 +262,10 @@
                         <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="2"><?php print $view->puesto->getDescripcion(); ?></textarea>
                     </div>
 
-
-
-
-
                 </form>
+
+
+                <div id="fileuploader">Upload</div>
 
 
                 <div id="myElem" class="msg" style="display:none"></div>

@@ -45,8 +45,6 @@
 
 
 
-
-
             $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "puestos";
@@ -54,49 +52,6 @@
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
-            });
-
-
-            $(document).on('click', '#submit',function(){ //ok
-                if ($("#puesto").valid()){
-                    var params={};
-                    params.action = 'puestos';
-                    params.operation = 'savePuesto';
-                    params.id_puesto=$('#id_puesto').val();
-                    params.nombre=$('#nombre').val();
-                    params.descripcion=$('#descripcion').val();
-                    params.codigo=$('#codigo').val();
-                    params.id_puesto_superior=$('#id_puesto_superior').val();
-                    params.id_area=$('#id_area').val();
-                    params.id_nivel_competencia=$('#id_nivel_competencia').val();
-                    //alert(params.id_puesto_superior);
-                    $.post('index.php',params,function(data, status, xhr){
-
-                        //alert(data);
-                        //var rta= parseInt(data.charAt(3));
-                        //alert(rta);
-                        if(data >=0){
-                            $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                            $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
-                            $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
-                            setTimeout(function() { $("#myElem").hide();
-                                                    $('#myModal').modal('hide');
-                                                  }, 2000);
-                        }else{
-                            $("#myElem").html('Error al guardar el puesto').addClass('alert alert-danger').show();
-                        }
-
-
-                    }, "json");
-
-
-                }
-                return false;
-            });
-
-
-            $(document).on('click', '#cancel',function(){ //ok
-                $('#myModal').modal('hide');
             });
 
 
