@@ -29,7 +29,8 @@ switch ($operation)
         $puesto->setIdNivelCompetencia($_POST['id_nivel_competencia']);
 
         $rta = $puesto->save();
-        print_r(json_encode($rta));
+        //print_r(json_encode($rta));
+        print_r(json_encode(sQuery::dpLastInsertId()));
         exit;
         break;
 

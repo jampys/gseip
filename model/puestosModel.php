@@ -1,6 +1,4 @@
 <?php
-
-
 class Puesto
 {
     private $id_puesto;
@@ -165,11 +163,11 @@ class Puesto
     public static function uploadsUpload($directory, $name, $id_puesto){ //ok
         $stmt=new sQuery();
         $query="insert into uploads_puesto(directory, name, fecha, id_puesto)
-                values(:directory, :name, date(sysdate()), :id_puesto)";
+                values(:directory, :name, sysdate(), :id_puesto)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':directory', $directory);
         $stmt->dpBind(':name', $name);
-        $stmt->dpBind(':id_busqueda', $id_puesto);
+        $stmt->dpBind(':id_puesto', $id_puesto);
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
@@ -196,14 +194,6 @@ class Puesto
     }
 
 
-
-
-
-
-
-
 }
-
-
 
 ?>
