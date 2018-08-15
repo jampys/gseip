@@ -57,7 +57,8 @@ class Puesto
     public static function getPuestos() { //ok
         $stmt=new sQuery();
         $query="select pu.id_puesto, pu.nombre, pu.descripcion, pu.codigo,
-                    su.nombre as nombre_superior, ar.nombre as area, nc.nombre as nivel_competencia
+                    su.nombre as nombre_superior, ar.nombre as area, nc.nombre as nivel_competencia,
+                    (select count(*) from uploads_puesto where id_puesto = pu.id_puesto) as cant_uploads
                     from puestos pu
                     left join puestos su on pu.id_puesto_superior = su.id_puesto
                     left join areas ar on pu.id_area = ar.id_area
@@ -191,6 +192,24 @@ class Puesto
         $stmt->dpBind(':name', $name);
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
+    }
+
+
+    public static function getEmpleadosByPuesto($id_puesto) { //ok
+        $stmt=new sQuery();
+        $query="select em.nombre, em.apellido, concat(co.nro_contrato, ' ', co.nombre) as contrato,
+                DATE_FORMAT(ec.fecha_desde, '%d/%m/%Y') as fecha_desde,
+                DATE_FORMAT(ec.fecha_hasta, '%d/%m/%Y') as fecha_hasta,
+                loc.ciudad, loc.CP
+                from empleado_contrato ec
+                join contratos co on ec.id_contrato = co.id_contrato
+                join empleados em on ec.id_empleado = em.id_empleado
+                left join localidades loc  on ec.id_localidad = loc.id_localidad
+                where ec.id_puesto = :id_puesto";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_puesto', $id_puesto);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
     }
 
 

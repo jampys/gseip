@@ -3,6 +3,7 @@
 include_once("model/puestosModel.php");
 include_once("model/areasModel.php");
 include_once("model/competenciasNivelesModel.php");
+include_once("model/habilidad-puestoModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -70,6 +71,18 @@ switch ($operation)
         $rta=$view->puesto->autocompletarPuestos($_POST['term']);
         print_r(json_encode($rta));
         exit;
+        break;
+
+
+    case 'loadDetalles': //abre la ventana modal para mostrar los detalles del puesto
+        //$view->label='Detalles del puesto';
+        $view->disableLayout=true;
+        $view->puestos = new Puesto($_POST['id_puesto']);
+        $view->label= $view->puestos->getNombre();
+
+        $view->empleados = Puesto::getEmpleadosByPuesto($_POST['id_puesto']);
+        $view->habilidades = HabilidadPuesto::getHabilidadPuesto($_POST['id_puesto'], null);
+        $view->contentTemplate="view/puestosFormDetalles.php";
         break;
 
     default : //ok
