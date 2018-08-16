@@ -81,7 +81,7 @@ and periodo = :periodo";
 
     public static function getCompetencias($id_empleado, $periodo) { //ok
         $stmt=new sQuery();
-        $query="select cnc.id_nivel_competencia, co.id_competencia, co.nombre,
+        /*$query="select cnc.id_nivel_competencia, co.id_competencia, co.nombre,
 eac_ec.id_evaluacion_competencia, eac_pu.nro_orden
 from empleados em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
@@ -91,7 +91,19 @@ join competencia_nivel_competencia cnc on cnc.id_nivel_competencia = nc.id_nivel
 join competencias co on cnc.id_competencia = co.id_competencia
 left join eac_evaluacion_competencia eac_ec on co.id_competencia = eac_ec.id_competencia and eac_ec.id_empleado = em.id_empleado and eac_ec.periodo = :periodo
 left join eac_puntajes eac_pu on eac_ec.id_puntaje = eac_pu.id_puntaje
-where em.id_empleado = :id_empleado";
+where em.id_empleado = :id_empleado";*/
+        $query="select cnc.id_nivel_competencia, co.id_competencia, co.nombre,
+eac_ec.id_evaluacion_competencia, eac_pu.nro_orden
+from empleados em
+join empleado_contrato ec on em.id_empleado = ec.id_empleado
+join puestos pu on ec.id_puesto = pu.id_puesto
+-- join competencias_niveles nc on pu.id_nivel_competencia = nc.id_nivel_competencia
+join competencia_nivel_competencia cnc on pu.id_nivel_competencia = cnc.id_nivel_competencia
+join competencias co on cnc.id_competencia = co.id_competencia
+left join eac_evaluacion_competencia eac_ec on co.id_competencia = eac_ec.id_competencia and eac_ec.id_empleado = em.id_empleado and eac_ec.periodo = :periodo
+left join eac_puntajes eac_pu on eac_ec.id_puntaje = eac_pu.id_puntaje
+where em.id_empleado = :id_empleado
+group by co.id_competencia";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpBind(':periodo', $periodo);
