@@ -162,7 +162,8 @@ switch ($operation)
         $temp = $view->empleado->getDomain(); //lo pongo antes en una variable temporal, sino da error en produccion
         if($temp[0] == '') $view->empleado->setDomain(1); //Si es un empleado nuevo (no tiene dominio).. le pongo el dominio 1.
         //echo '<script type="text/javascript"> alert('.sizeof($view->empleado->getDomain()).'); </script>';
-        $view->empleados = Empleado::getEmpleadosActivos(); //carga el combo de empleados
+        // si es uno nuevo: trae solo los empleados activos, si es una edicion: trae todos
+        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos() : Empleado::getEmpleados(); //carga el combo de empleados
         $view->localidades = Localidad::getLocalidades();
         $view->puestos = Puesto::getPuestos();
         $view->procesos = Proceso::getProcesos();
