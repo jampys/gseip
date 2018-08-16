@@ -124,6 +124,15 @@
 
         <div id="content" class="row">
             <?php //include_once ($view->contentTemplate);  ?>
+
+
+            <br/>
+            <!--https://www.youtube.com/watch?v=5-sIoU632dE-->
+            <p><a href="uploads/files/general.htm" target="_blank"><i class="fas fa-sitemap fa-fw"></i> Organigrama General</a></p>
+            <p><a href="uploads/files/operativa.htm" target="_blank"><i class="fas fa-sitemap fa-fw"></i> Anexo Área operativa</a></p>
+
+
+
         </div>
 
     </div>

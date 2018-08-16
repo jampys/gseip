@@ -77,7 +77,7 @@ switch ($operation)
 if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);}
 else {
-    include_once('view/puestosLayout.php');
+    include_once('view/organigramas/organigramasLayout.php');
 }
 
 
