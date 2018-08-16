@@ -36,9 +36,9 @@
                 <th>Nombre</th>
                 <th>Contrato</th>
                 <th>Puesto</th>
-                <th>Eval. comp.</th>
-                <th>Eval. obj.</th>
-                <th>Borrar</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -50,9 +50,9 @@
                     <td><?php echo $evaluacion['nombre'];?></td>
                     <td><?php echo $evaluacion['contrato'];?></td>
                     <td><?php echo $evaluacion['puesto'];?></td>
-                    <td class="text-center"><a class="loadEac" href="javascript:void(0);" ><span class="glyphicon glyphicon-edit <?php echo (!$evaluacion['hasAnyEac'])? 'text-danger': '';  ?>" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="loadEao" href="javascript:void(0);" ><span class="glyphicon glyphicon-edit <?php echo (!$evaluacion['hasAnyEao'])? 'text-danger': '';  ?>" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="delete" href="javascript:void(0);" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="loadEac" href="javascript:void(0);" title="Evaluación competencias" ><span class="glyphicon glyphicon-edit <?php echo (!$evaluacion['hasAnyEac'])? 'text-danger': '';  ?>" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="loadEao" href="javascript:void(0);" title="Evaluación objetivos" ><span class="glyphicon glyphicon-edit <?php echo (!$evaluacion['hasAnyEao'])? 'text-danger': '';  ?>" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="delete" href="javascript:void(0);" title="Borrar" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
