@@ -31,7 +31,7 @@ join puestos pu on ec.id_puesto = pu.id_puesto
 join planes_evaluacion pe on pe.periodo = :periodo";*/
         $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, ec.id_empleado_contrato, ec.id_contrato, ec.id_puesto,
 co.nombre as contrato, pu.nombre as puesto,
-pe.id_plan_evaluacion, pe.periodo,
+pe.id_plan_evaluacion, pe.periodo, pe.cerrado,
 (EXISTS (SELECT 1 FROM eac_evaluacion_competencia eac_ec where eac_ec.id_empleado = em.id_empleado and eac_ec.periodo = :periodo )) as hasAnyEac,
 (EXISTS (SELECT 1 FROM eao_evaluacion_objetivo eao_eo where eao_eo.id_empleado = em.id_empleado and eao_eo.periodo = :periodo )) as hasAnyEao
 from empleados em
@@ -56,7 +56,7 @@ group by em.id_empleado";
         $stmt=new sQuery();
         $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, ec.id_empleado_contrato, ec.id_contrato, ec.id_puesto,
 co.nombre as contrato, pu.nombre as puesto,
-pe.id_plan_evaluacion, pe.periodo,
+pe.id_plan_evaluacion, pe.periodo, pe.cerrado,
 (EXISTS (SELECT 1 FROM eac_evaluacion_competencia eac_ec where eac_ec.id_empleado = em.id_empleado and eac_ec.periodo = :periodo )) as hasAnyEac,
 (EXISTS (SELECT 1 FROM eao_evaluacion_objetivo eao_eo where eao_eo.id_empleado = em.id_empleado and eao_eo.periodo = :periodo )) as hasAnyEao
 from empleados em

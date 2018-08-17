@@ -46,6 +46,8 @@
              foreach ($view->evaluaciones as $evaluacion):   ?>
                 <tr id_empleado="<?php echo $evaluacion['id_empleado'];?>"
                     id_plan_evaluacion="<?php echo $evaluacion['id_plan_evaluacion'];?>"
+                    periodo="<?php echo $evaluacion['periodo'];?>"
+                    cerrado="<?php echo $evaluacion['cerrado'];?>"
                     >
                     <td><?php echo $evaluacion['apellido'];?></td>
                     <td><?php echo $evaluacion['nombre'];?></td>

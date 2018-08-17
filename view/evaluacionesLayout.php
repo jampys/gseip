@@ -34,14 +34,15 @@
                 //params.id_evaluacion_competencia = $(this).closest('tr').attr('id_evaluacion_competencia');
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
                 params.id_plan_evaluacion = $(this).closest('tr').attr('id_plan_evaluacion');
-                params.periodo = $('#periodo').val();
-                params.cerrado = $('#periodo option:selected').attr('cerrado');
+                params.periodo = $(this).closest('tr').attr('periodo'); //$('#periodo').val();
+                params.cerrado = $(this).closest('tr').attr('cerrado'); //$('#periodo option:selected').attr('cerrado');
                 params.action = "evaluaciones";
                 params.operation = "loadEac";
+                alert(params.cerrado);
                 $('#popupbox').load('index.php', params,function(){
                     $('#modalEac').modal();
                 });
-                $('#popupbox').data({'id_empleado':params.id_empleado, 'id_plan_evaluacion': params.id_plan_evaluacion}); //paso parametros
+                //$('#popupbox').data({'id_empleado':params.id_empleado, 'id_plan_evaluacion': params.id_plan_evaluacion}); //paso parametros
 
             });
 

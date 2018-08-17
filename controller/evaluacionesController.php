@@ -72,9 +72,13 @@ switch ($operation)
 
     case 'loadEac': //Abre el formulario de evaluacion anual de competecias //ok
         $view->label='Evaluacion de competencias';
-        $periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
+        //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
 
-        $view->competencias = EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $periodo);
+        //$view->competencias = EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $periodo);
+        $view->competencias = (!$_POST['cerrado'])? EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $_POST['periodo']) : EvaluacionCompetencia::getCompetencias1($_POST['id_empleado'], $_POST['periodo']);
+
+        $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
+
         $view->puntajes = EvaluacionCompetencia::getPuntajes();
 
         $view->disableLayout=true;

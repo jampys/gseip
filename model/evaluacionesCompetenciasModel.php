@@ -111,6 +111,28 @@ group by co.id_competencia";
         return $stmt->dpFetchAll();
     }
 
+
+    public static function getCompetencias1($id_empleado, $periodo) { //ok
+        $stmt=new sQuery();
+
+        $query="select null as id_nivel_competencia,
+eac_ec.id_competencia,
+co.nombre,
+eac_ec.id_evaluacion_competencia,
+eac_pu.nro_orden
+from empleados em
+join eac_evaluacion_competencia eac_ec on em.id_empleado = eac_ec.id_empleado and eac_ec.periodo = :periodo
+join eac_puntajes eac_pu on eac_ec.id_puntaje = eac_pu.id_puntaje
+join competencias co on eac_ec.id_competencia = co.id_competencia
+where em.id_empleado = :id_empleado";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':periodo', $periodo);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
     function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){

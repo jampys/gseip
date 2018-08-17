@@ -98,8 +98,11 @@
             item.id_competencia = $(this).attr('id');
             item.id_puntaje = $(this).val();
             //item.id_empleado = $('#id_empleado').val();
-            item.id_empleado = $('#popupbox').data('id_empleado');
-            item.id_plan_evaluacion = $('#popupbox').data('id_plan_evaluacion');
+            //item.id_empleado = $('#popupbox').data('id_empleado');
+            //item.id_plan_evaluacion = $('#popupbox').data('id_plan_evaluacion');
+            //item.periodo = $('#periodo').val();
+            item.id_empleado = $('#id_empleado').val();
+            item.id_plan_evaluacion = $('#id_plan_evaluacion').val();
             item.periodo = $('#periodo').val();
 
             if(jsonCompetencias[item.id_competencia]) {
@@ -122,13 +125,9 @@
                 var params={};
                 params.action = 'evaluaciones';
                 params.operation = 'saveEac';
-                /*params.id_contrato=$('#id_contrato').val();
-                params.nro_contrato=$('#nro_contrato').val();
-                params.fecha_desde=$('#fecha_desde').val();
-                params.fecha_hasta=$('#fecha_hasta').val();
-                params.id_responsable=$('#id_responsable').val();
-                params.id_compania=$('#compania').val();
-                alert(params.id_compania); */
+                params.periodo = $('#periodo').val();
+                params.cerrado = $('#cerrado').val();
+                //alert(params.id_compania);
 
                 var jsonCompetenciasIx = $.map(jsonCompetencias, function(item){ return item;} );
                 params.vCompetencias = JSON.stringify(jsonCompetenciasIx);
@@ -146,7 +145,7 @@
                         $("#myElem").html('Error al guardar evaluación de competencias').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElem").hide();
-                                            $('#content').load('index.php',{action:"evaluaciones", operation:"refreshGrid", periodo: $('#periodo').val() });
+                                            $('#content').load('index.php',{action:"evaluaciones", operation:"refreshGrid", periodo: params.periodo, cerrado: params.cerrado });
                                             $('#modalEac').modal('hide');
                                           }, 2000);
 
@@ -169,6 +168,7 @@
 
 
 <!-- Modal -->
+<fieldset <?php echo ($view->params['cerrado'])? 'disabled': ''; //echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
 <div class="modal fade" id="modalEac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -185,7 +185,10 @@
                     <div class="col-md-7" id="select-box">
 
                         <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
-                            <!--<input type="hidden" name="id_empleado" id="id_empleado" value="<?php //print $id_empleado; ?>" >-->
+                            <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
+                            <input type="hidden" name="id_plan_evaluacion" id="id_plan_evaluacion" value="<?php print $view->params['id_plan_evaluacion']; ?>" >
+                            <input type="hidden" name="periodo" id="periodo" value="<?php print $view->params['periodo']; ?>" >
+                            <input type="hidden" name="cerrado" id="cerrado" value="<?php print $view->params['cerrado']; ?>" >
 
                             <?php foreach ($view->competencias as $com){ ?>
 
@@ -243,6 +246,7 @@
         </div>
     </div>
 </div>
+</fieldset>
 
 
 
