@@ -42,7 +42,8 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($view->evaluaciones as $evaluacion):   ?>
+            <?php if(isset($view->evaluaciones)) {
+             foreach ($view->evaluaciones as $evaluacion):   ?>
                 <tr id_empleado="<?php echo $evaluacion['id_empleado'];?>"
                     id_plan_evaluacion="<?php echo $evaluacion['id_plan_evaluacion'];?>"
                     >
@@ -54,7 +55,7 @@
                     <td class="text-center"><a class="loadEao" href="javascript:void(0);" title="Evaluación objetivos" ><span class="glyphicon glyphicon-edit <?php echo (!$evaluacion['hasAnyEao'])? 'text-danger': 'text-success';  ?>" aria-hidden="true"></span></a></td>
                     <td class="text-center"><a class="delete" href="javascript:void(0);" title="Borrar" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach; } ?>
             </tbody>
         </table>
 

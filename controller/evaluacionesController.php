@@ -18,8 +18,9 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$view->periodos = Evaluacion::getPeriodos();
-        $periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
-        $view->evaluaciones = Evaluacion::getEvaluaciones($periodo);
+        //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
+
+        $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo']) : Evaluacion::getEvaluaciones1($_POST['periodo']);
         $view->contentTemplate="view/evaluacionesGrid.php";
         break;
 
@@ -72,7 +73,6 @@ switch ($operation)
     case 'loadEac': //Abre el formulario de evaluacion anual de competecias //ok
         $view->label='Evaluacion de competencias';
         $periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
-        //$id_empleado = $_POST['id_empleado'];
 
         $view->competencias = EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $periodo);
         $view->puntajes = EvaluacionCompetencia::getPuntajes();
@@ -107,7 +107,7 @@ switch ($operation)
     default : //ok
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
-        $view->evaluaciones = Evaluacion::getEvaluaciones($view->periodo_actual);
+        //$view->evaluaciones = Evaluacion::getEvaluaciones($view->periodo_actual);
         $view->contentTemplate="view/evaluacionesGrid.php";
         break;
 }

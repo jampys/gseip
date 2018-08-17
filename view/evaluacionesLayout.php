@@ -14,12 +14,15 @@
 
 
             //Al cambiar el periodo
-            $('#search_panel').on('change', '#periodo', function(){ //ok
+            //$('#search_panel').on('change', '#periodo', function(){ //ok
+            $(document).on('click', '#search', function(){ //ok
                 //alert('cambio el periodo');
                 params={};
                 params.periodo = $('#periodo').val();
+                params.cerrado = $('#periodo option:selected').attr('cerrado');
                 params.action = "evaluaciones";
                 params.operation = "refreshGrid";
+                alert(params.cerrado);
                 $('#content').load('index.php', params,function(){})
 
             });
@@ -32,6 +35,7 @@
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
                 params.id_plan_evaluacion = $(this).closest('tr').attr('id_plan_evaluacion');
                 params.periodo = $('#periodo').val();
+                params.cerrado = $('#periodo option:selected').attr('cerrado');
                 params.action = "evaluaciones";
                 params.operation = "loadEac";
                 $('#popupbox').load('index.php', params,function(){
@@ -136,7 +140,7 @@
                     <form id="search_form" name="search_form">
 
                         <div class="form-group col-md-2">
-                            <label for="periodo" class="control-label">Periodo</label>
+                            <label for="periodo" class="control-label">Plan evaluación</label>
 
                             <select class="form-control" id="periodo" name="periodo">
                                 <?php foreach ($view->periodos as $pe){
@@ -152,13 +156,16 @@
 
                         </div>
 
+                        <div class="form-group col-md-2">
+                            <label for="search">&nbsp;</label>
+                            <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+
 
                         <div class="form-group col-md-8"></div>
 
-
-                        <div class="form-group col-md-2">
-                            <!-- aca estaba el boton de nuevo, que ahora no hace falta -->
-                        </div>
 
 
                     </form>
@@ -170,8 +177,10 @@
 
             <div class="col-md-1"></div>
 
-            <br/>
+
         </div>
+
+        <br/>
 
 
 
