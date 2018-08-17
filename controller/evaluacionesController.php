@@ -24,7 +24,7 @@ switch ($operation)
         break;
 
 
-    case 'saveEac': //Guarda una evaluacion de competencias
+    case 'saveEac': //Guarda una evaluacion de competencias //ok
         try{
             sQuery::dpBeginTransaction();
 
@@ -69,7 +69,7 @@ switch ($operation)
 
 
 
-    case 'loadEac': //Abre el formulario de evaluacion anual de competecias
+    case 'loadEac': //Abre el formulario de evaluacion anual de competecias //ok
         $view->label='Evaluacion de competencias';
         $periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
         //$id_empleado = $_POST['id_empleado'];
@@ -81,7 +81,7 @@ switch ($operation)
         $view->contentTemplate="view/evaluaciones-eacForm.php";
         break;
 
-    case 'loadEac_help':
+    case 'loadEac_help': //ok
         $view->puntaje_competencia = EvaluacionCompetencia::getPuntajeCompetencia();
         print_r(json_encode($view->puntaje_competencia));
         exit;
@@ -104,7 +104,7 @@ switch ($operation)
         $view->contentTemplate="view/objetivosFormSubObjetivo.php";
         break;
 
-    default :
+    default : //ok
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->evaluaciones = Evaluacion::getEvaluaciones($view->periodo_actual);

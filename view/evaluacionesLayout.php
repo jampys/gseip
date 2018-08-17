@@ -142,7 +142,8 @@
                                 <?php foreach ($view->periodos as $pe){
                                     ?>
                                     <option value="<?php echo $pe['periodo']; ?>"
-                                        <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
+                                            cerrado="<?php echo $pe['cerrado']; ?>"
+                                            <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
                                         >
                                         <?php echo $pe['periodo']; ?>
                                     </option>

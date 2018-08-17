@@ -51,7 +51,7 @@ group by em.id_empleado";
 
     public static function getPeriodos() { //ok
         $stmt=new sQuery();
-        $query = "select periodo
+        $query = "select periodo, cerrado
                   from planes_evaluacion";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
