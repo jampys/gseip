@@ -64,9 +64,9 @@ join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join contratos co on ec.id_contrato = co.id_contrato
 join companias cia on co.id_compania = cia.id_compania
 join puestos pu on ec.id_puesto = pu.id_puesto
-join planes_evaluacion pe on pe.periodo = :periodo
 join eac_evaluacion_competencia eec on em.id_empleado = eec.id_empleado
--- where em.fecha_baja is null
+join planes_evaluacion pe on eec.id_plan_evaluacion = pe.id_plan_evaluacion
+where pe.periodo = :periodo
 group by em.id_empleado";
 
         $stmt->dpPrepare($query);

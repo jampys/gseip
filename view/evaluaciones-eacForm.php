@@ -168,7 +168,7 @@
 
 
 <!-- Modal -->
-<fieldset <?php echo ($view->params['cerrado'])? 'disabled': ''; //echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
+<fieldset <?php echo ($view->params['cerrado'] || sizeof($view->competencias)== 0)? 'disabled': ''; //echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
 <div class="modal fade" id="modalEac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -179,8 +179,9 @@
             <div class="modal-body">
 
 
-                <div class="row">
+                <?php if(isset($view->competencias) && sizeof($view->competencias) > 0) {?>
 
+                <div class="row">
 
                     <div class="col-md-7" id="select-box">
 
@@ -189,6 +190,8 @@
                             <input type="hidden" name="id_plan_evaluacion" id="id_plan_evaluacion" value="<?php print $view->params['id_plan_evaluacion']; ?>" >
                             <input type="hidden" name="periodo" id="periodo" value="<?php print $view->params['periodo']; ?>" >
                             <input type="hidden" name="cerrado" id="cerrado" value="<?php print $view->params['cerrado']; ?>" >
+
+
 
                             <?php foreach ($view->competencias as $com){ ?>
 
@@ -228,9 +231,14 @@
 
                     </div>
 
-
-
                 </div> <!-- row -->
+
+                <?php }else{ ?>
+                    <br/>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> El puesto del empleado seleccionado no tiene nivel de competencias asociado.
+                    </div>
+                <?php } ?>
 
 
                 <div id="myElem" style="display:none"></div>
