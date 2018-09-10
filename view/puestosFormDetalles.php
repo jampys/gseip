@@ -1,3 +1,13 @@
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+
+    });
+
+</script>
+
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -15,28 +25,33 @@
 
                     <h4><span class="label label-primary">Empleados en el puesto</span></h4>
 
-                    <table class="table table-condensed dataTable table-hover">
-                        <thead>
-                        <tr>
-                            <th>Empleado</th>
-                            <th>Contrato</th>
-                            <th>F. desde</th>
-                            <th>F. hasta</th>
-                            <!--<th>Localidad</th>-->
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($view->empleados as $em): ?>
-                            <tr data-id="<?php echo $em['id_empleado'];?>">
-                                <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
-                                <td><?php echo $em['contrato']; ?></td>
-                                <td><?php echo $em['fecha_desde']; ?></td>
-                                <td><?php echo $em['fecha_hasta']; ?></td>
-                                <!--<td><?php //echo $em['CP'].' '.$em['ciudad']; ?></td>-->
+
+                    <div class="table-responsive fixedTable">
+
+                        <!--<table class="table table-condensed dataTable table-hover">-->
+                        <table class="table table-condensed dataTable table-hover">
+                            <thead>
+                            <tr>
+                                <th>Empleado</th>
+                                <th>Contrato</th>
+                                <th>F. desde</th>
+                                <th>F. hasta</th>
+
                             </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($view->empleados as $em): ?>
+                                <tr data-id="<?php echo $em['id_empleado'];?>">
+                                    <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
+                                    <td><?php echo $em['contrato']; ?></td>
+                                    <td><?php echo $em['fecha_desde']; ?></td>
+                                    <td><?php echo $em['fecha_hasta']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
 
 
 
@@ -60,22 +75,27 @@
 
                     <h4><span class="label label-primary">Habilidades requeridas</span></h4>
 
-                    <table class="table table-condensed dataTable table-hover">
-                        <thead>
-                        <tr>
-                            <th>Habilidad</th>
-                            <th>Requerida</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($view->habilidades as $hab): ?>
-                            <tr data-id="<?php echo $hab['id_habilidad'];?>">
-                                <td><?php echo $hab['habilidad']; ?></td>
-                                <td><?php echo $hab['requerida']; ?></td>
+                    <div class="table-responsive fixedTable">
+
+                        <!--<table class="table table-condensed dataTable table-hover">-->
+                        <table class="table table-condensed dataTable table-hover">
+                            <thead>
+                            <tr>
+                                <th>Habilidad</th>
+                                <th>Requerida</th>
                             </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($view->habilidades as $hab): ?>
+                                <tr data-id="<?php echo $hab['id_habilidad'];?>">
+                                    <td><?php echo $hab['habilidad']; ?></td>
+                                    <td><?php echo $hab['requerida']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
 
 
 
