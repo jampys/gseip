@@ -22,7 +22,7 @@
                 params.cerrado = $('#periodo option:selected').attr('cerrado');
                 params.action = "evaluaciones";
                 params.operation = "refreshGrid";
-                alert(params.cerrado);
+                //alert(params.cerrado);
                 $('#content').load('index.php', params,function(){})
 
             });
@@ -38,7 +38,7 @@
                 params.cerrado = $(this).closest('tr').attr('cerrado'); //$('#periodo option:selected').attr('cerrado');
                 params.action = "evaluaciones";
                 params.operation = "loadEac";
-                alert(params.cerrado);
+                //alert(params.cerrado);
                 $('#popupbox').load('index.php', params,function(){
                     $('#modalEac').modal();
                 });
