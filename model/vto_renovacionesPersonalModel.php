@@ -109,7 +109,7 @@ class RenovacionPersonal
     }
 
 
-    public static function getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $renovado) { //ok
+    public static function getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado) { //ok
         $stmt=new sQuery();
         $query = "
         ( -- renovaciones por empleado
@@ -192,6 +192,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpBind(':id_grupo', $id_grupo);
         //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_subcontratista', $id_subcontratista);
         $stmt->dpBind(':renovado', $renovado);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
