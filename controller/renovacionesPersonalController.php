@@ -3,6 +3,7 @@
 include_once("model/vto_renovacionesPersonalModel.php");
 include_once("model/vto_vencimientosPersonalModel.php");
 include_once("model/contratosModel.php");
+include_once("model/subcontratistasModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -112,6 +113,7 @@ switch ($operation)
         $view->empleadosGrupos = $view->renovacion->empleadosGrupos(); //carga el combo para filtrar empleados-grupos
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal(); //carga el combo para filtrar vencimientos
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+        $view->subcontratistas = Subcontratista::getSubcontratistas(); //carga el combo para filtrar subcontratistas
         //$view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal(null, null, null, null, null);
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;

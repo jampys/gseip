@@ -185,88 +185,105 @@
             <div class="clearfix">
                 <form id="search_form" name="search_form">
 
-                    <!--<div class="form-group col-md-4">
-                        <label for="search_empleado" class="control-label">Empleado</label>
-                        <select id="search_empleado" name="search_empleado" class="form-control selectpicker show-tick" data-live-search="true" title="Seleccione un empleado">
 
-                        </select>
-                    </div>-->
-                    <div class="form-group col-md-3">
-                        <label for="search_empleado" class="control-label">Empleado / Grupo</label>
-                        <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un empleado o grupo</option>
-                            <?php foreach ($view->empleadosGrupos as $eg){
-                                ?>
-                                <option value=""
-                                        id_empleado="<?php echo $eg['id_empleado']; ?>"
-                                        id_grupo="<?php echo $eg['id_grupo']; ?>"
-                                        data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
-                                    >
-                                    <?php echo $eg['descripcion'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
+                    <!-- FILA DE ARRIBA -->
+                    <div class="row">
 
-                    <div class="form-group col-md-3">
-                        <label for="search_vencimiento" class="control-label">Vencimiento</label>
-                        <select multiple class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
-                            <!--<option value="">Seleccione un vencimiento</option>-->
-                            <?php foreach ($view->vencimientos as $vto){
-                                ?>
-                                <option value="<?php echo $vto['id_vencimiento']; ?>" >
-                                    <?php echo $vto['nombre'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="search_vencimiento" class="control-label">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un contrato</option>
-                            <?php foreach ($view->contratos as $con){
-                                ?>
-                                <option value="<?php echo $con['id_contrato']; ?>" >
-                                    <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
-
-                    <!--<div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
-                    </div>-->
-
-                    <div class="form-group col-md-1" style="width: 11%">
-                        <label for="search_renovado" class="control-label">&nbsp;</label>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="search_renovado" name="search_renovado">
-                                <a href="#" title="Seleccione para visualizar todos los registros (incluyendo renovados y desactivados)">Ver todos</a>
-                            </label>
+                        <div class="form-group col-md-3">
+                            <!--<label for="search_empleado" class="control-label">Empleado / Grupo</label>-->
+                            <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un empleado o grupo</option>
+                                <?php foreach ($view->empleadosGrupos as $eg){
+                                    ?>
+                                    <option value=""
+                                            id_empleado="<?php echo $eg['id_empleado']; ?>"
+                                            id_grupo="<?php echo $eg['id_grupo']; ?>"
+                                            data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
+                                        >
+                                        <?php echo $eg['descripcion'] ;?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
                         </div>
+
+                        <div class="form-group col-md-3">
+                            <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
+                            <select multiple class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5" title="Seleccione un vencimiento">
+                                <!--<option value="">Seleccione un vencimiento</option>-->
+                                <?php foreach ($view->vencimientos as $vto){
+                                    ?>
+                                    <option value="<?php echo $vto['id_vencimiento']; ?>" >
+                                        <?php echo $vto['nombre'] ;?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <!--<label for="search_vencimiento" class="control-label">Contrato</label>-->
+                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un contrato</option>
+                                <?php foreach ($view->contratos as $con){
+                                    ?>
+                                    <option value="<?php echo $con['id_contrato']; ?>" >
+                                        <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <!--<label for="search_renovado" class="control-label">&nbsp;</label>-->
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="search_renovado" name="search_renovado">
+                                    <a href="#" title="Seleccione para visualizar todos los registros (incluyendo renovados y desactivados)">Ver todos</a>
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-1">
+
+                        </div>
+
+
                     </div>
 
+                    <!-- FILA DE ABAJO -->
+                    <div class="row">
 
-                    <div class="form-group col-md-1" style="width: 7%">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </div>
+                        <div class="form-group col-md-3">
+                            <!--<label for="search_contrato" class="control-label">Subcontratista</label>-->
+                            <select class="form-control selectpicker show-tick" id="search_subcontratista" name="search_subcontratista" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un subcontratista</option>
+                                <?php foreach ($view->subcontratistas as $sub){
+                                    ?>
+                                    <option value="<?php echo $sub['id_subcontratista']; ?>" >
+                                        <?php echo $sub['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
 
-                    <div class="form-group col-md-1" style="width: 7%">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nueva renovación" id="new" <?php echo ( PrivilegedUser::dhasAction('RPE_INSERT', array(1)) )? '' : 'disabled' ?>>
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
+                        <div class="form-group col-md-7">
+
+                        </div>
+
+                        <div class="form-group col-md-1">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+
+                        <div class="form-group col-md-1">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nueva renovación" id="new" <?php echo ( PrivilegedUser::dhasAction('RPE_INSERT', array(1)) )? '' : 'disabled' ?>>
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+
                     </div>
 
 
