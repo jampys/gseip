@@ -261,7 +261,7 @@
                                 <?php foreach ($view->subcontratistas as $sub){
                                     ?>
                                     <option value="<?php echo $sub['id_subcontratista']; ?>" >
-                                        <?php echo $sub['nombre']; ?>
+                                        <?php echo $sub['razon_social']; ?>
                                     </option>
                                 <?php  } ?>
                             </select>
