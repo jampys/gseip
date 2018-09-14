@@ -129,8 +129,10 @@ from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p
 select emx.*, ecx.id_contrato
 from empleados emx
 left join empleado_contrato ecx on emx.id_empleado = ecx.id_empleado
-where
-( -- filtro por contrato
+left join subcontratista_empleado subemp on emx.id_empleado = subemp.id_empleado
+where if(:id_subcontratista is not null, subemp.id_subcontratista = :id_subcontratista, (subemp.id_subcontratista = subemp.id_subcontratista or subemp.id_subcontratista is null))
+and
+(( -- filtro por contrato
   :id_contrato is not null
   and ecx.id_contrato = :id_contrato
   -- and datediff(ecx.fecha_hasta, date(sysdate())) >= 0
@@ -140,7 +142,7 @@ OR
 ( -- todos los contratos, o los sin contrato
  :id_contrato is null
  -- and ecx.id_contrato is null
- )
+ ))
  group by emx.id_empleado
  having emx.fecha_baja is null
 ) em,
@@ -183,6 +185,7 @@ and ifnull(:renovado, vrp.disabled is null)
 and vrp.id_empleado is null
 and :id_empleado is null -- filtro empleados: no debe traer registros cuando se filtra por empleado
 and :id_contrato is null -- filtro contratos: no debe traer registros cuando se filtra por contrato
+and :id_subcontratista is null -- filtro subcontratistas: no debe traer registros cuando se filtra por subcontratista
 )
 
 order by priority, id_rnv_renovacion asc";
