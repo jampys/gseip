@@ -3,6 +3,7 @@
 include_once("model/vto_renovacionesVehiculosModel.php");
 include_once("model/vto_vencimientosVehiculosModel.php");
 include_once("model/contratosModel.php");
+include_once("model/subcontratistasModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -104,6 +105,7 @@ switch ($operation)
         $view->vehiculosGrupos = $view->renovacion->vehiculosGrupos(); //carga el combo para filtrar vehiculos-grupos
         $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos(); //carga el combo para filtrar vencimientos
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+        $view->subcontratistas = Subcontratista::getSubcontratistas(); //carga el combo para filtrar subcontratistas
         $view->contentTemplate="view/renovacionesVehiculosGrid.php";
         break;
 }

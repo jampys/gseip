@@ -185,14 +185,12 @@
             <div class="clearfix">
                 <form id="search_form" name="search_form">
 
-                    <!--<div class="form-group col-md-4">
-                        <label for="search_empleado" class="control-label">Empleado</label>
-                        <select id="search_empleado" name="search_empleado" class="form-control selectpicker show-tick" data-live-search="true" title="Seleccione un empleado">
 
-                        </select>
-                    </div>-->
+                <!-- FILA DE ARRIBA -->
+                <div class="row">
+
                     <div class="form-group col-md-3">
-                        <label for="search_vehiculo" class="control-label">Vehículo / Grupo</label>
+                        <!--<label for="search_vehiculo" class="control-label">Vehículo / Grupo</label>-->
                         <select class="form-control selectpicker show-tick" id="search_vehiculo" name="search_vehiculo" data-live-search="true" data-size="5">
                             <option value="">Seleccione un vehículo o grupo</option>
                             <?php foreach ($view->vehiculosGrupos as $eg){
@@ -209,7 +207,7 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="search_vencimiento" class="control-label">Vencimiento</label>
+                        <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
                         <select multiple class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
                             <!--<option value="">Seleccione un vencimiento</option>-->
                             <?php foreach ($view->vencimientos as $vto){
@@ -222,7 +220,7 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="search_contrato" class="control-label">Contrato</label>
+                        <!--<label for="search_contrato" class="control-label">Contrato</label>-->
                         <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                             <option value="">Seleccione un contrato</option>
                             <?php foreach ($view->contratos as $con){
@@ -234,18 +232,8 @@
                         </select>
                     </div>
 
-
-                    <!--<div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
-                    </div>
                     <div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
-                    </div>-->
-
-                    <div class="form-group col-md-1" style="width: 11%">
-                        <label for="search_renovado" class="control-label">&nbsp;</label>
+                        <!--<label for="search_renovado" class="control-label">&nbsp;</label>-->
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" id="search_renovado" name="search_renovado">
@@ -255,19 +243,49 @@
                     </div>
 
 
-                    <div class="form-group col-md-1" style="width: 7%">
-                        <label for="search">&nbsp;</label>
+                    <div class="form-group col-md-1">
+
+                    </div>
+
+
+                </div>
+
+                <!-- FILA DE ABAJO -->
+                <div class="row">
+
+                    <div class="form-group col-md-3">
+                        <!--<label for="search_contrato" class="control-label">Subcontratista</label>-->
+                        <select class="form-control selectpicker show-tick" id="search_subcontratista" name="search_subcontratista" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un subcontratista</option>
+                            <?php foreach ($view->subcontratistas as $sub){
+                                ?>
+                                <option value="<?php echo $sub['id_subcontratista']; ?>" >
+                                    <?php echo $sub['razon_social']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-7">
+
+                    </div>
+
+                    <div class="form-group col-md-1">
+                        <!--<label for="search">&nbsp;</label>-->
                         <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </div>
 
-                    <div class="form-group col-md-1" style="width: 7%">
-                        <label for="search">&nbsp;</label>
+                    <div class="form-group col-md-1">
+                        <!--<label for="search">&nbsp;</label>-->
                         <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nueva renovación" id="new" <?php echo ( PrivilegedUser::dhasAction('RPE_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </div>
+
+
+                </div>
 
 
 
