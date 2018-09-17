@@ -109,7 +109,7 @@ class RenovacionVehicular
     }
 
 
-    public static function getRenovacionesVehiculos($id_vehiculo, $id_grupo, $id_vencimiento, $id_contrato, $renovado) { //ok
+    public static function getRenovacionesVehiculos($id_vehiculo, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado) { //ok
         $stmt=new sQuery();
         $query = "
         ( -- renovaciones por vehiculo
@@ -128,9 +128,11 @@ from v_sec_vto_renovacion_v vrv, vto_vencimiento_v vvv, vto_alerta_vencimiento_v
 (
 select vex.*, vvcx.id_contrato
 from vto_vehiculos vex
-    left join vto_vehiculo_contrato vvcx on vex.id_vehiculo = vvcx.id_vehiculo
-where
-( -- filtro por contrato
+left join vto_vehiculo_contrato vvcx on vex.id_vehiculo = vvcx.id_vehiculo
+left join subcontratista_vehiculo subveh on vex.id_vehiculo = subveh.id_vehiculo
+where if(:id_subcontratista is not null, subveh.id_subcontratista = :id_subcontratista, (subveh.id_subcontratista = subveh.id_subcontratista or subveh.id_subcontratista is null))
+and
+(( -- filtro por contrato
   :id_contrato is not null
   and vvcx.id_contrato = :id_contrato
   and (vvcx.fecha_hasta > date(sysdate()) or vvcx.fecha_hasta is null)
@@ -139,7 +141,7 @@ OR
 ( -- todos los contratos, o los sin contrato
  :id_contrato is null
  -- and vvcx.id_contrato is null
- )
+ ))
  group by vex.id_vehiculo
  having vex.fecha_baja is null
 ) ve,
@@ -183,6 +185,7 @@ and ifnull(:renovado, vrv.disabled is null)
 and vrv.id_vehiculo is null
 and :id_vehiculo is null -- filtro vehiculos: no debe traer registros cuando se filtra por vehiculo
 and :id_contrato is null -- filtro contratos: no debe traer registros cuando se filtra por contrato
+and :id_subcontratista is null -- filtro subcontratistas: no debe traer registros cuando se filtra por subcontratista
 )
 
 order by priority, id_rnv_renovacion asc";
@@ -192,6 +195,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpBind(':id_grupo', $id_grupo);
         //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_subcontratista', $id_subcontratista);
         $stmt->dpBind(':renovado', $renovado);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
