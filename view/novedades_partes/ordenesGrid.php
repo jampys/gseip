@@ -3,12 +3,12 @@
     <table class="table table-condensed dataTable table-hover">
         <thead>
         <tr>
-            <th>Nro. parte</th>
+            <!--<th>Nro. parte</th>
             <th>Tipo orden</th>
             <th>Nro. orden</th>
             <th></th>
             <th></th>
-            <th></th>
+            <th></th>-->
         </tr>
         </thead>
         <tbody>
@@ -21,7 +21,7 @@
                 <td><?php //echo $et['user'];?></td>-->
 
                 <td class="text-center">
-                    <a class="view" href="javascript:void(0);" data-id="<?php echo $et['id_etapa'];?>" title="ver">
+                    <a class="view" href="javascript:void(0);" data-id="<?php //echo $et['id_etapa'];?>" title="ver">
                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                     </a>
                 </td>
