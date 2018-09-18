@@ -4,6 +4,7 @@ include_once("model/vehiculosModel.php");
 include_once("model/contratosModel.php");
 include_once("model/companiasModel.php");
 include_once("model/empleadosModel.php");
+include_once("model/contrato-vehiculoModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -89,6 +90,17 @@ switch ($operation)
         $rta = $view->vehiculo->checkVehiculoMatricula($matricula, $id_vehiculo);
         print_r(json_encode($rta));
         exit;
+        break;
+
+    case 'loadContratos': //abre la ventana modal para mostrar los contratos del empleado
+        $view->label='Contratos';
+        $view->disableLayout=true;
+
+        $view->contratos = ContratoVehiculo::getContratosByVehiculo($_POST['id_vehiculo']);
+        //$view->puestos = Puesto::getPuestos();
+        //$view->procesos = Proceso::getProcesos();
+
+        $view->contentTemplate="view/vehiculosFormContratos.php";
         break;
 
     default : //ok

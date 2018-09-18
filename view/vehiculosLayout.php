@@ -155,6 +155,28 @@
 
             };
 
+
+            //Al presionar el boton contratos, para mostrar los contratos del empleado
+            $(document).on('click', '.contratos', function(){ //ok
+                //alert('tocó en contratos');
+                var id = $(this).attr('data-id');
+                //preparo los parametros
+                params={};
+                params.id_vehiculo = id;
+                params.action = "vehiculos";
+                params.operation = "loadContratos";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                })
+
+            });
+
+
+
+
+
+
+
         });
 
     </script>
