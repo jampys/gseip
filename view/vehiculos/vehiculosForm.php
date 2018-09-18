@@ -229,41 +229,6 @@
                     </div>
 
 
-
-                    <hr/>
-
-                    <?php if(isset($view->contratos) && sizeof($view->contratos)>0){  ?>
-                        <div class="table-responsive">
-                            <table class="table table-condensed dpTable table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Contrato</th>
-                                    <th>Ubicación</th>
-                                    <th>F. Desde</th>
-                                    <th>F. Hasta</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php foreach ($view->contratos as $dom):  ?>
-                                    <tr>
-                                        <td><?php echo $dom['contrato'];?></td>
-                                        <td><?php echo $dom['localidad'];?></td>
-                                        <td><?php echo $dom['fecha_desde'];?></td>
-                                        <td><?php echo $dom['fecha_hasta'];?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    <?php } ?>
-
-                    <hr/>
-
-
-
-
-
                 </form>
 
 

@@ -18,7 +18,7 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         $view->vehiculos = Vehiculo::getVehiculos();
-        $view->contentTemplate="view/vehiculosGrid.php";
+        $view->contentTemplate="view/vehiculos/vehiculosGrid.php";
         break;
 
     case 'saveVehiculo': //ok
@@ -50,7 +50,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosActivos(); //carga el combo de responsable
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/vehiculosForm.php";
+        $view->contentTemplate="view/vehiculos/vehiculosForm.php";
         break;
 
     case 'editVehiculo': //ok
@@ -64,7 +64,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosActivos(); //carga el combo de responsable
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/vehiculosForm.php";
+        $view->contentTemplate="view/vehiculos/vehiculosForm.php";
         break;
 
     case 'deleteVehiculo': //ok
@@ -100,13 +100,13 @@ switch ($operation)
         //$view->puestos = Puesto::getPuestos();
         //$view->procesos = Proceso::getProcesos();
 
-        $view->contentTemplate="view/vehiculosFormContratos.php";
+        $view->contentTemplate="view/vehiculos/vehiculosFormContratos.php";
         break;
 
     default : //ok
         if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) {
             $view->vehiculos = Vehiculo::getVehiculos();
-            $view->contentTemplate="view/vehiculosGrid.php";
+            $view->contentTemplate="view/vehiculos/vehiculosGrid.php";
         }else{
             $_SESSION['error'] = PrivilegedUser::dgetErrorMessage('PRIVILEGE', 'VEH_VER');
             header("Location: index.php?action=error");
@@ -119,7 +119,7 @@ switch ($operation)
 if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);}
 else {
-    include_once('view/vehiculosLayout.php');
+    include_once('view/vehiculos/vehiculosLayout.php');
 }
 
 
