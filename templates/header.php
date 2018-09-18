@@ -49,7 +49,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <!--<li class="dropdown-header">RRHH</li>-->
+                            <li class="dropdown-header">PERSONAL</li>
                             <?php if ( PrivilegedUser::dhasPrivilege('EMP_VER', array(1)) ) { ?>
                                 <li><a href="index.php?action=empleados">Empleados</a></li>
                             <?php } ?>
@@ -59,9 +59,16 @@
                             <?php } ?>
 
                             <?php if ( PrivilegedUser::dhasPrivilege('CON_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=contratos">Contratos</a></li>
+                                <li><a href="index.php?action=contratos"><i class="fas fa-suitcase fa-fw"></i>&nbsp;Contratos</a></li>
                             <?php } ?>
                             <li><a href="index.php?action=organigramas">Organigrama <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">VEHICULAR</li>
+                            <?php if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=vehiculos"><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos</a></li>
+                            <?php } ?>
+
 
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">HABILIDADES Y COMPETENCIAS</li>
@@ -131,19 +138,15 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">PERSONAL</li>
                             <?php if ( PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=renovacionesPersonal"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Renovaciones</a></li>
+                                <li><a href="index.php?action=renovacionesPersonal"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Vencimientos de personal</a></li>
                             <?php } ?>
 
                             <li role="separator" class="divider"></li>
 
                             <li class="dropdown-header">VEHICULAR</li>
-                            <!--<li><a href="index.php?action="><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos</a></li>-->
-                            <?php if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=vehiculos"><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos</a></li>
-                            <?php } ?>
 
                             <?php if ( PrivilegedUser::dhasPrivilege('RVE_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=renovacionesVehiculos"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Renovaciones</a></li>
+                                <li><a href="index.php?action=renovacionesVehiculos"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Vencimientos de vehículos</a></li>
                             <?php } ?>
                         </ul>
                     </li>

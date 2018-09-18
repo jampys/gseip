@@ -180,7 +180,7 @@
 
         <div class="col-md-12">
 
-            <h4>Renovaciones de personal</h4>
+            <h4>Vencimientos de personal</h4>
             <hr class="hr-primary"/>
 
             <div class="clearfix">
