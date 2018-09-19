@@ -1,9 +1,9 @@
 ﻿<?php
-include_once("model/nov_parte-ordenModel.php");
+include_once("model/nov_parte-empleado-conceptoModel.php");
 
-include_once("model/puestosModel.php");
-include_once("model/localidadesModel.php");
-include_once("model/contratosModel.php");
+//include_once("model/puestosModel.php");
+//include_once("model/localidadesModel.php");
+//include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -20,9 +20,8 @@ switch ($operation)
         //$id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
-        //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->ordenes = ParteOrden::getParteOrden($_POST['id_parte']);
-        $view->contentTemplate="view/novedades_partes/ordenesGrid.php";
+        $view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto($_POST['id_parte']);
+        $view->contentTemplate="view/novedades_partes/conceptosGrid.php";
         break;
 
     case 'saveOrden':
