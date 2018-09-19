@@ -487,6 +487,33 @@
                                 <br/>
 
 
+                                <!-- seccion de conceptos -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-conceptos" title="Mostrar conceptos">Conceptos</button>
+                                    </div>
+
+                                    <div class="col-md-4">
+
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-concepto" name="add-concepto" title="Agregar concepto">
+                                            <i class="fas fa-plus"></i>&nbsp
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div id="demo-conceptos" class="collapse">
+                                    <div class="grid-conceptos">
+                                        <?php //include_once('view/novedades_partes/ordenesGrid.php');?>
+                                    </div>
+                                </div>
+
+
+                                <br/>
+
+
                                 <!-- seccion de ordenes -->
                                 <div class="row">
                                     <div class="col-md-4">
