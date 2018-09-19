@@ -282,7 +282,7 @@
 
                     <form id="search_form" name="search_form">
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
                             <label for="search_vencimiento" class="control-label">Fecha desde / hasta</label>
                             <div class="input-group input-daterange">
                                 <input class="form-control" type="text" name="search_fecha_desde" id="search_fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
@@ -343,7 +343,7 @@
                             </button>
                         </div>
 
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
 
                         </div>
 
