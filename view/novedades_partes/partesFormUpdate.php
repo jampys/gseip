@@ -385,7 +385,7 @@
                 
                 <div class="row">
 
-                        <div class="col-md-6" id="left_side">
+                        <div class="col-md-7" id="left_side">
 
                             <form name ="parte-form" id="parte-form" method="POST" action="index.php">
 
@@ -506,7 +506,7 @@
 
                                 <div id="demo-conceptos" class="collapse">
                                     <div class="grid-conceptos">
-                                        <?php //include_once('view/novedades_partes/ordenesGrid.php');?>
+                                        <?php include_once('view/novedades_partes/conceptosGrid.php');?>
                                     </div>
                                 </div>
 
@@ -544,7 +544,7 @@
 
 
 
-                        <div class="col-md-6" id="right_side">
+                        <div class="col-md-5" id="right_side">
 
                         </div>
 

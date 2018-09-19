@@ -1,4 +1,4 @@
-<?php if(isset($view->ordenes) && sizeof($view->ordenes) > 0) {?>
+<?php if(isset($view->conceptos) && sizeof($view->conceptos) > 0) {?>
 
     <table class="table table-condensed dataTable table-hover">
         <thead>
@@ -12,11 +12,14 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($view->ordenes as $em): ?>
-            <tr data-id="<?php echo $em['id_parte_orden'];?>">
-                <td><?php echo $em['nro_parte_diario'];?></td>
-                <td><?php echo $em['orden_tipo'];?></td>
-                <td><?php echo $em['orden_nro'];?></td>
+        <?php foreach ($view->conceptos as $ctos): ?>
+            <tr data-id="<?php echo $ctos['id_parte_empleado_concepto'];?>">
+                <td><?php echo $ctos['id_empleado'];?></td>
+                <td><?php echo $ctos['convenio'];?></td>
+                <td><?php echo $ctos['concepto'];?></td>
+                <td><?php echo $ctos['codigo'];?></td>
+                <td><?php echo $ctos['variable'];?></td>
+                <td><?php echo $ctos['cantidad'];?></td>
                 <!--<td style="text-align: center"><?php //echo($et['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
                 <td><?php //echo $et['user'];?></td>-->
 

@@ -58,31 +58,27 @@ class ParteEmpleadoConcepto
     }
 
 
-    public static function getParteEmpleadoConcepto($fecha_desde, $fecha_hasta, $id_contrato, $d) { //ok
+    //public static function getParteEmpleadoConcepto($fecha_desde, $fecha_hasta, $id_contrato, $d) { //ok
+    public static function getParteEmpleadoConcepto($id_parte) { //ok
         $stmt=new sQuery();
-        $query="select pa.id_parte,
-                    DATE_FORMAT(pa.fecha,  '%d/%m/%Y') as fecha,
-                    DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
-                    pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.calculado,
-                    concat(ar.codigo, ' ', ar.nombre) as area,
-                    concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
-                    concat(nec.codigo, ' ', nec.nombre) as evento,
-                    co.nombre as contrato,
-                    us.user
-                    from nov_partes pa
-                    left join nov_areas ar on pa.id_area = ar.id_area
-                    left join vto_vehiculos ve on pa.id_vehiculo = ve.id_vehiculo
-                    left join nov_eventos_c nec on pa.id_evento = nec.id_evento
-                    left join contratos co on pa.id_contrato = co.id_contrato
-                    join sec_users us on pa.id_user = us.id_user
-                    and pa.fecha_parte between if(:fecha_desde is null, pa.fecha_parte, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
-                    and if(:fecha_hasta is null, pa.fecha_parte, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
-                    and pa.id_contrato =  ifnull(:id_contrato, pa.id_contrato)
-                    order by pa.fecha_parte asc";
+        $query="select npe.id_parte, npe.id_parte_empleado, npe.id_empleado,
+npec.id_parte_empleado_concepto, npec.id_concepto_convenio_contrato,
+npec.cantidad,
+nccto.nombre as concepto,
+ncnio.codigo as convenio,
+nccc.codigo,
+nccc.variable
+from nov_parte_empleado_concepto npec
+join nov_parte_empleado npe on npe.id_parte_empleado = npec.id_parte_empleado
+join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato = npec.id_concepto_convenio_contrato
+join nov_conceptos nccto on nccto.id_concepto = nccc.id_concepto
+join nov_convenios ncnio on ncnio.id_convenio = nccc.id_convenio
+where npe.id_parte = :id_parte
+order by npe.id_empleado asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':fecha_desde', $fecha_desde);
-        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
-        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_parte', $id_parte);
+        //$stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

@@ -62,7 +62,7 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
         break;
 
-    case 'deleteOrden': 
+    case 'deleteOrden':
         $view->orden = new ParteOrden($_POST['id_parte_orden']);
         $rta = $view->orden->deleteParteOrden();
         print_r(json_encode($rta));

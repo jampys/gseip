@@ -2,6 +2,7 @@
 include_once("model/nov_partesModel.php");
 include_once("model/nov_parte-empleadoModel.php");
 include_once("model/nov_parte-ordenModel.php");
+include_once("model/nov_parte-empleado-conceptoModel.php");
 
 include_once("model/nov_areasModel.php");
 include_once("model/contratosModel.php");
@@ -133,6 +134,7 @@ switch ($operation)
 
         $view->empleados = ParteEmpleado::getParteEmpleado($_POST['id_parte']);
         $view->ordenes = ParteOrden::getParteOrden($_POST['id_parte']);
+        $view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto($_POST['id_parte']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/novedades_partes/partesFormUpdate.php";
