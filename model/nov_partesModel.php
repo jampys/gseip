@@ -166,7 +166,7 @@ class Parte
 
     public function updateParte(){ //ok
         $stmt=new sQuery();
-        $query = 'CALL sp_calcularNovedades(:id_parte,
+        $query = 'CALL sp_calcularNovedades2(:id_parte,
                                         :id_area,
                                         :id_vehiculo,
                                         :id_evento,
