@@ -66,11 +66,12 @@ class ParteEmpleado
     public static function getParteEmpleado($id_parte) { //ok
         $stmt=new sQuery();
         $query = "select npe.id_parte_empleado,
-                  -- DATE_FORMAT(npe.fecha, '%d/%m/%Y') as fecha,
                   npe.id_parte, npe.id_empleado, npe.conductor,
-                  em.apellido, em.nombre
+                  em.apellido, em.nombre, em.id_convenio,
+                  nc.codigo as convenio
                   from nov_parte_empleado npe
                   join empleados em on npe.id_empleado = em.id_empleado
+                  left join nov_convenios nc on em.id_convenio = nc.id_convenio
                   where npe.id_parte = :id_parte
                   order by em.apellido asc, em.nombre asc";
         $stmt->dpPrepare($query);

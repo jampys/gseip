@@ -273,7 +273,8 @@
 
 
         //Guardar (calcular) parte
-        $(document).on('click', '#calcular',function(){
+        //$(document).on('click', '#calcular',function(){
+        $("#myModal").on('click', '#calcular', function () {
             //alert('calcular');
             //throw new Error();
 
@@ -303,6 +304,7 @@
                         //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
                         $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        $('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         /*setTimeout(function() { $("#myElem").hide();
                             //$('#myModal').modal('hide');
