@@ -36,7 +36,8 @@ class Subcontratista
 
     public static function getSubcontratistas() {
         $stmt=new sQuery();
-        $stmt->dpPrepare("select * from subcontratistas");
+        $stmt->dpPrepare("select * from subcontratistas
+                          order by razon_social asc");
         $stmt->dpExecute();
         return $stmt->dpFetchAll(); // retorna todos los subcontratistas
     }
