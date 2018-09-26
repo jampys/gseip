@@ -206,7 +206,7 @@ order by vvc.fecha_desde desc";
 
         $stmt=new sQuery();
         $query="insert into vto_vehiculos(nro_movil, matricula, marca, modelo, modelo_ano, tetra, propietario, leasing, fecha_baja, responsable)
-                values(:nro_movil, :matricula, :marca, :modelo, :modelo_ano, :tetra, :propietario, :leasing, STR_TO_DATE(:fecha_baja, '%d/%m/%Y'), responsable)";
+                values(:nro_movil, :matricula, :marca, :modelo, :modelo_ano, :tetra, :propietario, :leasing, STR_TO_DATE(:fecha_baja, '%d/%m/%Y'), :responsable)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_movil', $this->getNroMovil());
         $stmt->dpBind(':matricula', $this->getMatricula());
