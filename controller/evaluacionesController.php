@@ -2,10 +2,7 @@
 
 include_once("model/evaluacionesModel.php");
 include_once("model/evaluacionesCompetenciasModel.php");
-//include_once("model/procesosModel.php");
-//include_once("model/areasModel.php");
-//include_once("model/contratosModel.php");
-//include_once("model/subobjetivosModel.php");
+include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -17,8 +14,8 @@ switch ($operation)
 {
     case 'refreshGrid': //ok
         $view->disableLayout=true;
-        //$view->periodos = Evaluacion::getPeriodos();
         //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
+        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
 
         $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo']) : Evaluacion::getEvaluaciones1($_POST['periodo']);
         $view->contentTemplate="view/evaluacionesGrid.php";
@@ -111,7 +108,7 @@ switch ($operation)
     default : //ok
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
-        //$view->evaluaciones = Evaluacion::getEvaluaciones($view->periodo_actual);
+        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/evaluacionesGrid.php";
         break;
 }

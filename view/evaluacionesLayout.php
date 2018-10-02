@@ -19,6 +19,7 @@
                 //alert('cambio el periodo');
                 params={};
                 params.periodo = $('#periodo').val();
+                params.search_contrato = $('#search_contrato').val();
                 params.cerrado = $('#periodo option:selected').attr('cerrado');
                 params.action = "evaluaciones";
                 params.operation = "refreshGrid";
@@ -157,6 +158,20 @@
 
                         </div>
 
+
+                        <div class="form-group col-md-3">
+                            <label for="search_vencimiento" class="control-label">Contrato</label>
+                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un contrato</option>
+                                <?php foreach ($view->contratos as $con){
+                                    ?>
+                                    <option value="<?php echo $con['id_contrato']; ?>" >
+                                        <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
@@ -165,7 +180,9 @@
                         </div>
 
 
-                        <div class="form-group col-md-8"></div>
+                        <div class="form-group col-md-5">
+
+                        </div>
 
 
 
