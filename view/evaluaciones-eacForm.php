@@ -195,8 +195,8 @@
 
                             <?php foreach ($view->competencias as $com){ ?>
 
-                                <div class="form-group required">
-                                    <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><span class="glyphicon glyphicon-info-sign help_puntaje"></span></a> </label>
+                                <div class="form-group">
+                                    <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
                                     <div class="col-md-6">
                                         <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="Seleccione el puntaje"  >
                                             <?php foreach ($view->puntajes as $p){ ?>
@@ -224,7 +224,7 @@
                         <div class="alert alert-info fade in">
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="help-box">
-                                Al presionar sobre el ícono <span class="glyphicon glyphicon-info-sign"></span>&nbsp de cada competencia, podrá
+                                Al presionar sobre el ícono <i class="fas fa-info-circle fa-fw"></i>&nbsp de cada competencia, podrá
                                 visualizar la descripción del significado de cada puntaje.
                             </div>
                         </div>
