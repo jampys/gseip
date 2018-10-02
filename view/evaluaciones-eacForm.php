@@ -148,12 +148,8 @@
                     }else{
                         $("#myElem").html('Error al guardar evaluación de competencias').addClass('alert alert-danger').show();
                     }
-                    /*setTimeout(function() { $("#myElem").hide();
-                                            $('#content').load('index.php',{action:"evaluaciones", operation:"refreshGrid", periodo: params.periodo, cerrado: params.cerrado });
-                                            $('#modalEac').modal('hide');
-                                          }, 2000);*/
 
-                });
+                }, 'json');
 
             //}
             return false;
