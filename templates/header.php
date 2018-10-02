@@ -106,9 +106,9 @@
                             <?php if ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) ) { ?>
                                 <li><a href="index.php?action=objetivos">Objetivos</a></li>
                             <?php } ?>
-                            <?php if ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) ) { ?>
+                            <?php //if ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) ) { ?>
                                 <li><a href="index.php?action=evaluaciones">Evaluación de desempeño</a></li>
-                            <?php } ?>
+                            <?php //} ?>
                         </ul>
                     </li>
 

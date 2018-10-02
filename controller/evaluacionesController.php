@@ -17,7 +17,7 @@ switch ($operation)
         //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
 
-        $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo']) : Evaluacion::getEvaluaciones1($_POST['periodo']);
+        $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo'], $id_contrato) : Evaluacion::getEvaluaciones1($_POST['periodo'], $id_contrato);
         $view->contentTemplate="view/evaluacionesGrid.php";
         break;
 
