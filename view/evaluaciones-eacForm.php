@@ -140,14 +140,18 @@
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Evaluación de competencias guardada con exito').addClass('alert alert-success').show();
+                        $("#search").trigger("click");
+                        setTimeout(function() { $("#myElem").hide();
+                                                $('#modalEac').modal('hide');
+                                              }, 2000);
 
                     }else{
                         $("#myElem").html('Error al guardar evaluación de competencias').addClass('alert alert-danger').show();
                     }
-                    setTimeout(function() { $("#myElem").hide();
+                    /*setTimeout(function() { $("#myElem").hide();
                                             $('#content').load('index.php',{action:"evaluaciones", operation:"refreshGrid", periodo: params.periodo, cerrado: params.cerrado });
                                             $('#modalEac').modal('hide');
-                                          }, 2000);
+                                          }, 2000);*/
 
                 });
 
