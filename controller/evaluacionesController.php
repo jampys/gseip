@@ -41,6 +41,7 @@ switch ($operation)
                 $evaluacion_competencia->setIdCompetencia($vC['id_competencia']);
                 $evaluacion_competencia->setIdPuntaje($vC['id_puntaje']);
                 $evaluacion_competencia->setIdEmpleado($vC['id_empleado']);
+                $evaluacion_competencia->setIdEvaluador($_SESSION["id_user"]);
                 $evaluacion_competencia->setIdPlanEvaluacion($vC['id_plan_evaluacion']);
                 $evaluacion_competencia->setPeriodo($vC['periodo']);
 
