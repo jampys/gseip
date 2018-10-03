@@ -96,7 +96,7 @@
             item = {};
             item.id_evaluacion_competencia = $(this).attr('id_evaluacion_competencia');
             item.id_competencia = $(this).attr('id');
-            item.id_puntaje = $(this).val();
+            item.id_puntaje_competencia = $(this).val();
             //item.id_empleado = $('#id_empleado').val();
             //item.id_empleado = $('#popupbox').data('id_empleado');
             //item.id_plan_evaluacion = $('#popupbox').data('id_plan_evaluacion');
@@ -106,7 +106,7 @@
             item.periodo = $('#periodo').val();
 
             if(jsonCompetencias[item.id_competencia]) {
-                jsonCompetencias[item.id_competencia].id_puntaje =item.id_puntaje;
+                jsonCompetencias[item.id_competencia].id_puntaje_competencia =item.id_puntaje_competencia;
                 //alert('el elemento existe '+jsonCompetencias[item.id_competencia].id_puntaje);
             }
             else { //si no existe, lo agrega

@@ -39,7 +39,7 @@ switch ($operation)
                 $evaluacion_competencia = new EvaluacionCompetencia();
                 $evaluacion_competencia->setIdEvaluacionCompetencia($vC['id_evaluacion_competencia']);
                 $evaluacion_competencia->setIdCompetencia($vC['id_competencia']);
-                $evaluacion_competencia->setIdPuntaje($vC['id_puntaje']);
+                $evaluacion_competencia->setIdPuntajeCompetencia($vC['id_puntaje_competencia']);
                 $evaluacion_competencia->setIdEmpleado($vC['id_empleado']);
                 $evaluacion_competencia->setIdEvaluador($_SESSION["id_user"]);
                 $evaluacion_competencia->setIdPlanEvaluacion($vC['id_plan_evaluacion']);
