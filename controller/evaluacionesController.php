@@ -19,7 +19,7 @@ switch ($operation)
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
 
         $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo'], $id_contrato) : Evaluacion::getEvaluaciones1($_POST['periodo'], $id_contrato);
-        $view->contentTemplate="view/evaluacionesGrid.php";
+        $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";
         break;
 
 
@@ -89,7 +89,7 @@ switch ($operation)
         }
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/evaluaciones-eacForm.php";
+        $view->contentTemplate="view/evaluaciones/evaluaciones-eacForm.php";
         break;
 
     case 'loadEac_help': //ok
@@ -119,7 +119,7 @@ switch ($operation)
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
-        $view->contentTemplate="view/evaluacionesGrid.php";
+        $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";
         break;
 }
 
@@ -127,7 +127,7 @@ switch ($operation)
 if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);}
 else {
-    include_once('view/evaluacionesLayout.php');
+    include_once('view/evaluaciones/evaluacionesLayout.php');
 }
 
 
