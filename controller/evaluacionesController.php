@@ -77,14 +77,15 @@ switch ($operation)
 
         $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
 
-        $view->temp = EvaluacionCompetencia::getPuntajes();
+        $view->temp = EvaluacionCompetencia::getPuntajes(); //trae todas las competencias con todos sus puntajes
         $view->puntajes = array();
 
+        //este foreach genera un array asociativo... donde cada competencia contiene un array con los puntajes de la competencia
         foreach ($view->temp as $pu){
             //$view->puntajes[$pu['id_competencia']][] = array('id_puntaje' => $pu['id_puntaje'], 'nro_orden' => $pu['nro_orden']);
-            $view->puntajes[$pu['id_competencia']][] = array('id_puntaje' => $pu['id_puntaje'], 'nro_orden' => $pu['nro_orden']);
+            $view->puntajes[$pu['id_competencia']][] = array('id_puntaje_competencia' => $pu['id_puntaje_competencia'], 'puntaje' => $pu['puntaje']);
         }
-        
+
         $view->disableLayout=true;
         $view->contentTemplate="view/evaluaciones-eacForm.php";
         break;

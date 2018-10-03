@@ -200,10 +200,10 @@
                                     <div class="col-md-6">
                                         <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="Seleccione el puntaje"  >
                                             <?php foreach ($view->puntajes[$com['id_competencia']] as $p){ ?>
-                                                <option value="<?php echo $p['id_puntaje']; ?>"
-                                                    <?php echo ($com['nro_orden'] == $p['nro_orden'])? 'selected' :'' ?>
+                                                <option value="<?php echo $p['id_puntaje_competencia']; ?>"
+                                                    <?php echo ($com['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
                                                     >
-                                                    <?php echo $p['nro_orden'];?>
+                                                    <?php echo $p['puntaje'];?>
                                                 </option>
                                             <?php  } ?>
                                         </select>
