@@ -205,11 +205,11 @@ where em.id_empleado = :id_empleado";
         $stmt=new sQuery();
         /*$query="select *
                 from eac_puntajes";*/
-        $query="select pc.id_puntaje_competencia, pc.id_competencia, pc.id_puntaje, pc.descripcion, co.codigo, co.nombre, pc.puntaje
+        $query="select pc.id_puntaje_competencia, pc.id_competencia, pc.descripcion, co.codigo, co.nombre, pc.puntaje
 from ead_puntaje_competencia pc
 join competencias co on pc.id_competencia = co.id_competencia
 -- join eac_puntajes pu on pc.id_puntaje = pu.id_puntaje
-order by co.id_competencia, pu.nro_orden";
+order by co.id_competencia, pc.puntaje";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
