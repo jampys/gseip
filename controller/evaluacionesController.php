@@ -81,7 +81,8 @@ switch ($operation)
 
         $view->puntajes = array();
         foreach ($view->puntajesX as $pu){
-            $view->puntajes[$pu['id_id_competencia']][] = $pu['nro_orden'];
+            //$view->puntajes[$pu['id_competencia']][] = array('id_puntaje' => $pu['id_puntaje'], 'nro_orden' => $pu['nro_orden']);
+            $view->puntajes[$pu['id_competencia']][] = array('id_puntaje' => $pu['id_puntaje'], 'nro_orden' => $pu['nro_orden']);
 
 
         }
