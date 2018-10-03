@@ -77,7 +77,17 @@ switch ($operation)
 
         $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
 
-        $view->puntajes = EvaluacionCompetencia::getPuntajes();
+        $view->puntajesX = EvaluacionCompetencia::getPuntajes();
+
+        $view->puntajes = array();
+        foreach ($view->puntajesX as $pu){
+            $view->puntajes[$pu['id_id_competencia']][] = $pu['nro_orden'];
+
+
+        }
+
+
+
 
         $view->disableLayout=true;
         $view->contentTemplate="view/evaluaciones-eacForm.php";

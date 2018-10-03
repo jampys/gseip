@@ -218,12 +218,18 @@ where em.id_empleado = :id_empleado";
     }
 
 
-    public static function getPuntajeCompetencia() {
+    public static function getPuntajeCompetencia() { //ok
         $stmt=new sQuery();
-        $query="select *
+        /*$query="select *
 from
 eac_puntaje_competencia
-order by id_competencia, id_puntaje asc";
+order by id_competencia, id_puntaje asc";*/
+        $query="select pc.id_puntaje_competencia, pc.id_competencia, pc.id_puntaje, pc.descripcion, co.codigo, co.nombre, pu.nombre, pu.nro_orden
+from eac_puntaje_competencia pc
+join competencias co on pc.id_competencia = co.id_competencia
+join eac_puntajes pu on pc.id_puntaje = pu.id_puntaje
+order by co.id_competencia, pu.nro_orden";
+
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
