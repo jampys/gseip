@@ -3,6 +3,7 @@
 include_once("model/evaluacionesModel.php");
 include_once("model/evaluacionesCompetenciasModel.php");
 include_once("model/contratosModel.php");
+include_once("model/empleadosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -69,7 +70,8 @@ switch ($operation)
 
 
     case 'loadEac': //Abre el formulario de evaluacion anual de competecias //ok
-        $view->label='Evaluacion de competencias';
+        $view->empleado = new Empleado($_POST['id_empleado']);
+        $view->label = 'Evaluacion de competencias: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
         //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
 
         //$view->competencias = EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $periodo);
