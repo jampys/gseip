@@ -80,7 +80,7 @@ switch ($operation)
         $view->temp = EvaluacionCompetencia::getPuntajes(); //trae todas las competencias con todos sus puntajes
         $view->puntajes = array();
 
-        //este foreach genera un array asociativo... donde cada competencia contiene un array con los puntajes de la competencia
+        //este foreach genera un array asociativo... donde cada competencia contiene un array por cada puntaje
         foreach ($view->temp as $pu){
             //$view->puntajes[$pu['id_competencia']][] = array('id_puntaje' => $pu['id_puntaje'], 'nro_orden' => $pu['nro_orden']);
             $view->puntajes[$pu['id_competencia']][] = array('id_puntaje_competencia' => $pu['id_puntaje_competencia'], 'puntaje' => $pu['puntaje']);

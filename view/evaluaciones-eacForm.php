@@ -80,7 +80,7 @@
 
                 if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
                     $('#help-box').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp')
-                    .append('<strong>'+jsonCompetenciasHelp[indice]['id_puntaje']+'</strong>')
+                    .append('<strong>'+jsonCompetenciasHelp[indice]['puntaje']+'</strong>')
                     .append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
                 }
 
