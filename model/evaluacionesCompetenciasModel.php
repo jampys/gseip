@@ -201,7 +201,7 @@ where em.id_empleado = :id_empleado";
 
 
     public static function getPuntajes() { //ok
-        // obtengo las descripciones de las puntuaciones de todas las competencias
+        // obtengo los puntajes que tienen las competencias
         $stmt=new sQuery();
         /*$query="select *
                 from eac_puntajes";*/
@@ -217,6 +217,7 @@ order by co.id_competencia, pu.nro_orden";
 
 
     public static function getPuntajeCompetencia() { //ok
+        //obtengo la descripcion de un puntaje determinado para una competencia.
         $stmt=new sQuery();
         $query="select *
                 from ead_puntaje_competencia
