@@ -4,7 +4,7 @@ class EvaluacionCompetencia
 {
     private $id_evaluacion_competencia;
     private $id_competencia;
-    private $puntaje;
+    private $id_puntaje_competencia;
     private $fecha;
     private $id_evaluador;
     private $id_empleado;
@@ -19,8 +19,8 @@ class EvaluacionCompetencia
     function getIdCompetencia()
     { return $this->id_competencia;}
 
-    function getPuntaje()
-    { return $this->puntaje;}
+    function getIdPuntajeCompetencia()
+    { return $this->id_puntaje_competencia;}
 
     function getFecha()
     { return $this->fecha;}
@@ -46,8 +46,8 @@ class EvaluacionCompetencia
     function setIdCompetencia($val)
     { $this->id_competencia=$val;}
 
-    function setPuntaje($val)
-    { $this->puntaje=$val;}
+    function setIdPuntajeCompetencia($val)
+    { $this->id_puntaje_competencia=$val;}
 
     function setFecha($val)
     { $this->fecha=$val;}
@@ -80,17 +80,18 @@ and periodo = :periodo";
 
 
     public static function getCompetencias($id_empleado, $periodo) { //ok
+        //para planes abiertos (vigentes)
         $stmt=new sQuery();
         $query="select cnc.id_nivel_competencia, co.id_competencia, co.nombre,
-eac_ec.id_evaluacion_competencia, eac_pu.nro_orden
+eac_ec.id_evaluacion_competencia, eac_pc.puntaje
 from empleados em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join puestos pu on ec.id_puesto = pu.id_puesto
--- join competencias_niveles nc on pu.id_nivel_competencia = nc.id_nivel_competencia
 join competencia_nivel_competencia cnc on pu.id_nivel_competencia = cnc.id_nivel_competencia
 join competencias co on cnc.id_competencia = co.id_competencia
-left join eac_evaluacion_competencia eac_ec on co.id_competencia = eac_ec.id_competencia and eac_ec.id_empleado = em.id_empleado and eac_ec.periodo = :periodo
-left join eac_puntajes eac_pu on eac_ec.id_puntaje = eac_pu.id_puntaje
+left join ead_evaluacion_competencia ead_ec on co.id_competencia = ead_ec.id_competencia and eac_ec.id_empleado = em.id_empleado and eac_ec.periodo = :periodo
+-- left join eac_puntajes eac_pu on eac_ec.id_puntaje = eac_pu.id_puntaje
+left join ead_puntaje_competencia ead_pc on ead_ec.id_puntaje_competencia = ead_pc.id_puntaje_competencia
 where em.id_empleado = :id_empleado
 group by co.id_competencia";
         $stmt->dpPrepare($query);
@@ -102,16 +103,17 @@ group by co.id_competencia";
 
 
     public static function getCompetencias1($id_empleado, $periodo) { //ok
+        //para planes cerrados
         $stmt=new sQuery();
-
         $query="select null as id_nivel_competencia,
-eac_ec.id_competencia,
+ead_ec.id_competencia,
 co.nombre,
-eac_ec.id_evaluacion_competencia,
-eac_pu.nro_orden
+ead_ec.id_evaluacion_competencia,
+eac_pc.puntaje
 from empleados em
-join eac_evaluacion_competencia eac_ec on em.id_empleado = eac_ec.id_empleado and eac_ec.periodo = :periodo
-join eac_puntajes eac_pu on eac_ec.id_puntaje = eac_pu.id_puntaje
+join ead_evaluacion_competencia ead_ec on em.id_empleado = ead_ec.id_empleado and ead_ec.periodo = :periodo
+-- join eac_puntajes eac_pu on eac_ec.id_puntaje = eac_pu.id_puntaje
+join ead_puntaje_competencia ead_pc on ead_ec.id_puntaje_competencia = ead_pc.id_puntaje_competencia
 join competencias co on eac_ec.id_competencia = co.id_competencia
 where em.id_empleado = :id_empleado";
         $stmt->dpPrepare($query);
@@ -127,7 +129,7 @@ where em.id_empleado = :id_empleado";
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select * from eac_evaluacion_competencia where id_evaluacion_competencia = :nro";
+            $query="select * from ead_evaluacion_competencia where id_evaluacion_competencia = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
@@ -159,12 +161,13 @@ where em.id_empleado = :id_empleado";
     public function updateEvaluacionCompetencia(){ //ok
 
         $stmt=new sQuery();
-        $query="update eac_evaluacion_competencia set
-                id_puntaje= :id_puntaje,
+        $query="update ead_evaluacion_competencia set
+                -- id_puntaje= :id_puntaje,
+                id_puntaje_competencia = :id_puntaje_competencia
                 id_evaluador=  :id_evaluador
                 where id_evaluacion_competencia = :id_evaluacion_competencia";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_puntaje', $this->getIdPuntaje());
+        $stmt->dpBind(':id_puntaje_competencia', $this->getIdPuntajeCompetencia());
         $stmt->dpBind(':id_evaluador', $this->getIdEvaluador());
         $stmt->dpBind(':id_evaluacion_competencia', $this->getIdEvaluacionCompetencia());
         $stmt->dpExecute();
@@ -174,11 +177,11 @@ where em.id_empleado = :id_empleado";
     private function insertEvaluacionCompetencia(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into eac_evaluacion_competencia(id_competencia, id_puntaje, fecha, id_evaluador, id_empleado, id_plan_evaluacion, periodo)
-                values(:id_competencia, :id_puntaje, date(sysdate()), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo)";
+        $query="insert into eac_evaluacion_competencia(id_competencia, id_puntaje_competencia, fecha, id_evaluador, id_empleado, id_plan_evaluacion, periodo)
+                values(:id_competencia, :id_puntaje_competencia, date(sysdate()), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_competencia', $this->getIdCompetencia());
-        $stmt->dpBind(':id_puntaje', $this->getIdPuntaje());
+        $stmt->dpBind(':id_puntaje', $this->getIdPuntajeCompetencia());
         $stmt->dpBind(':id_evaluador', $this->getIdEvaluador());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpBind(':id_plan_evaluacion', $this->getIdPlanEvaluacion());
@@ -198,6 +201,7 @@ where em.id_empleado = :id_empleado";
 
 
     public static function getPuntajes() { //ok
+        // obtengo las descripciones de las puntuaciones de todas las competencias
         $stmt=new sQuery();
         /*$query="select *
                 from eac_puntajes";*/
@@ -215,8 +219,8 @@ order by co.id_competencia, pu.nro_orden";
     public static function getPuntajeCompetencia() { //ok
         $stmt=new sQuery();
         $query="select *
-                from eac_puntaje_competencia
-                order by id_competencia, id_puntaje asc";
+                from ead_puntaje_competencia
+                order by id_competencia, puntaje asc";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
