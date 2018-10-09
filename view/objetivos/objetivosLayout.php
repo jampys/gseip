@@ -15,7 +15,7 @@
             $('.selectpicker').selectpicker();
 
 
-            $(document).on('click', '#search', function(){ //ok
+            $(document).on('click', '#search', function(){
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
@@ -32,7 +32,7 @@
             });
 
 
-            $('#content').on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_postulacion = id;
@@ -47,7 +47,7 @@
             });
 
 
-            $('#content').on('click', '.view', function(){ //ok
+            $('#content').on('click', '.view', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_postulacion = id;
@@ -65,7 +65,7 @@
             });
 
 
-            $(document).on('click', '.etapas', function(){ //ok
+            $(document).on('click', '.etapas', function(){
                 //alert('presiono sobre etapas');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -85,7 +85,7 @@
             });
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){
                 params={};
                 params.action = "postulaciones";
                 params.operation="newPostulacion";

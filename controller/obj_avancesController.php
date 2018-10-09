@@ -25,7 +25,7 @@ switch ($operation)
         $view->contentTemplate="view/postulaciones/etapasGrid.php";
         break;
 
-    case 'saveEtapa': //ok
+    case 'saveEtapa':
         $etapa = new Etapa($_POST['id_etapa']);
         $etapa->setIdPostulacion($_POST['id_postulacion']);
         $etapa->setFechaEtapa($_POST['fecha_etapa']);
@@ -43,7 +43,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newEtapa': //ok
+    case 'newEtapa':
         $view->label='Nueva etapa';
         $view->etapa = new Etapa($_POST['id_etapa']);
 
@@ -57,7 +57,7 @@ switch ($operation)
         $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
         break;
 
-    case 'editEtapa': //ok
+    case 'editEtapa':
         $view->label = ($_POST['target']!='view')? 'Editar etapa': 'Ver etapa';
         $view->etapa = new Etapa($_POST['id_etapa']);
 
@@ -72,7 +72,7 @@ switch ($operation)
         $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
         break;
 
-    case 'deleteEtapa': //ok
+    case 'deleteEtapa':
         $view->etapa = new Etapa($_POST['id_etapa']);
         $rta = $view->etapa->deleteEtapa();
         print_r(json_encode($rta));
@@ -95,7 +95,7 @@ switch ($operation)
         break;
 
 
-    default : //carga la tabla de etapas de la postulacion //ok
+    default : //carga la tabla de etapas de la postulacion
         //$view->postulacion = new Postulacion($_POST['id_postulacion']);
         $view->label='Etapas de la postulación';
         $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);

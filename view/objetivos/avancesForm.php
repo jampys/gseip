@@ -18,7 +18,7 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){ //ok
+        $('#etapas_left_side').on('click', '.edit', function(){
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -35,7 +35,7 @@
             })
         });
 
-        $('#etapas_left_side').on('click', '.view', function(){ //ok
+        $('#etapas_left_side').on('click', '.view', function(){
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -58,7 +58,7 @@
 
 
         //Abre formulario para ingresar nueva etapa
-        $('#etapas_left_side').on('click', '#add', function(){ //ok
+        $('#etapas_left_side').on('click', '#add', function(){
             params={};
             params.action = "etapas";
             params.operation = "newEtapa";
@@ -75,7 +75,7 @@
 
 
         //Guardar etapa luego de ingresar nueva o editar
-        $('#myModal').on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){
             //alert('guardar etapa');
 
             if ($("#etapa-form").valid()){

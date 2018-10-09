@@ -12,7 +12,7 @@
         });
 
 
-        /*$('.input-daterange').datepicker({ //ok
+        /*$('.input-daterange').datepicker({
             //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
@@ -115,7 +115,7 @@
 
 
 
-        $('#myModal').on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){
 
             if ($("#postulacion-form").valid()){
 

@@ -27,7 +27,7 @@ switch ($operation)
         $view->contentTemplate="view/postulaciones/postulacionesGrid.php";
         break;
 
-    case 'savePostulacion': //ok
+    case 'savePostulacion':
         $postulacion = new Postulacion($_POST['id_postulacion']);
         $postulacion->setIdBusqueda($_POST['id_busqueda']);
         $postulacion->setIdPostulante($_POST['id_postulante']);
@@ -43,7 +43,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newPostulacion': //ok
+    case 'newPostulacion':
         $view->label='Nueva postulación';
         $view->postulacion = new Postulacion();
 
@@ -58,7 +58,7 @@ switch ($operation)
         $view->contentTemplate="view/postulaciones/postulacionesForm.php";
         break;
 
-    case 'editPostulacion': //ok
+    case 'editPostulacion':
         $view->label='Editar postulación';
         $view->postulacion = new Postulacion($_POST['id_postulacion']);
 
@@ -97,7 +97,7 @@ switch ($operation)
         exit;
         break;
 
-    default : //ok
+    default :
         $view->busquedas = Busqueda::getBusquedasActivas(); //carga el combo para filtrar busquedas
         $view->postulantes = Postulante::getPostulantesActivos(); //carga el combo para filtrar postulantes
         //$view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
@@ -106,7 +106,7 @@ switch ($operation)
 }
 
 
-if ($view->disableLayout==true) { //ok
+if ($view->disableLayout==true) {
     include_once ($view->contentTemplate);
 }
 else {
