@@ -1,13 +1,13 @@
 ﻿<?php
-include_once("model/postulacionesModel.php");
+include_once("model/obj_objetivosModel.php");
 
-include_once("model/puestosModel.php");
-include_once("model/localidadesModel.php");
-include_once("model/contratosModel.php");
+//include_once("model/puestosModel.php");
+//include_once("model/localidadesModel.php");
+//include_once("model/contratosModel.php");
 
-include_once("model/busquedasModel.php");
-include_once("model/postulantesModel.php");
-include_once("model/etapasModel.php");
+//include_once("model/busquedasModel.php");
+//include_once("model/postulantesModel.php");
+//include_once("model/etapasModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -97,20 +97,20 @@ switch ($operation)
         exit;
         break;
 
-    default :
-        $view->busquedas = Busqueda::getBusquedasActivas(); //carga el combo para filtrar busquedas
-        $view->postulantes = Postulante::getPostulantesActivos(); //carga el combo para filtrar postulantes
-        //$view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
-        $view->contentTemplate="view/postulaciones/postulacionesGrid.php";
+    default : //ok
+        $view->periodos = Objetivo::getPeriodos();
+        $view->periodo_actual = Soporte::getPeriodoActual();
+        $view->objetivos = Objetivo::getObjetivos($view->periodo_actual);
+        $view->contentTemplate="view/objetivos/objetivosGrid.php";
         break;
 }
 
 
-if ($view->disableLayout==true) {
+if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {
-    include_once('view/postulaciones/postulacionesLayout.php');
+    include_once('view/objetivos/objetivosLayout.php');
 }
 
 

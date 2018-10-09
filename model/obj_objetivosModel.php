@@ -96,7 +96,7 @@ class Objetivo
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query="select * from objetivos where id_objetivo = :nro";
+            $query="select * from obj_objetivos where id_objetivo = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
@@ -208,7 +208,7 @@ class Objetivo
     public static function getPeriodos(){ //ok
         $stmt=new sQuery();
         $query = "select periodo
-from objetivos
+from obj_objetivos
 group by periodo
 UNION
 select YEAR(CURDATE())"; //periodo actual (por si aun no existe un objetivo del periodo actual)
