@@ -1,264 +1,227 @@
 <?php
 
-class Postulacion
+class Objetivo
 {
-    private $id_postulacion;
-    private $id_busqueda;
-    private $fecha;
-    private $id_postulante;
-    private $origen_cv;
-    private $expectativas;
-    private $propuesta_economica;
+    private $id_objetivo;
+    private $periodo;
+    private $nombre;
+    //private $id_proceso;
+    private $id_area;
+    private $id_contrato;
+    private $id_puesto;
+    private $meta;
+    private $actividades;
+    private $indicador;
+    private $frecuencia;
+    private $id_responsable_ejecucion;
+    private $id_responsable_seguimiento;
 
     // GETTERS
-    function getIdPostulacion()
-    { return $this->id_postulacion;}
+    function getIdObjetivo()
+    { return $this->id_objetivo;}
 
-    function getIdBusqueda()
-    { return $this->id_busqueda;}
+    function getPeriodo()
+    { return $this->periodo;}
 
-    function getIdPostulante()
-    { return $this->id_postulante;}
+    function getNombre()
+    { return $this->nombre;}
 
-    function getFecha()
-    { return $this->fecha;}
+    function getIdArea()
+    { return $this->id_area;}
 
-    function getOrigenCv()
-    { return $this->origen_cv;}
+    function getIdContrato()
+    { return $this->id_contrato;}
 
-    function getExpectativas()
-    { return $this->expectativas;}
+    function getIdPuesto()
+    { return $this->id_puesto;}
 
-    function getPropuestaEconomica()
-    { return $this->propuesta_economica;}
+    function getMeta()
+    { return $this->meta;}
+
+    function getActividades()
+    { return $this->actividades;}
+
+    function getIndicador()
+    { return $this->indicador;}
+
+    function getFrecuencia()
+    { return $this->frecuencia;}
+
+    function getIdResponsableEjecucion()
+    { return $this->id_responsable_ejecucion;}
+
+    function getIdResponsableSeguimiento()
+    { return $this->id_responsable_seguimiento;}
 
 
     //SETTERS
-    function setIdPostulacion($val)
-    {  $this->id_postulacion=$val;}
+    function setIdObjetivo($val)
+    { $this->id_objetivo=$val;}
 
-    function setIdBusqueda($val)
-    { $this->id_busqueda=$val;}
+    function setPeriodo($val)
+    { $this->periodo=$val;}
 
-    function setIdPostulante($val)
-    { $this->id_postulante=$val;}
+    function setNombre($val)
+    { $this->nombre=$val;}
 
-    function setFecha($val)
-    { $this->fecha=$val;}
+    function setIdArea($val)
+    {  $this->id_area=$val;}
 
-    function setOrigenCv($val)
-    { $this->origen_cv=$val;}
+    function setIdContrato($val)
+    { $this->id_contrato=$val;}
 
-    function setExpectativas($val)
-    { $this->expectativas=$val;}
+    function setIdPuesto($val)
+    { $this->id_puesto=$val;}
 
-    function setPropuestaEconomica($val)
-    { $this->propuesta_economica=$val;}
+    function setMeta($val)
+    { $this->meta=$val;}
+
+    function setActividades($val)
+    { $this->actividades=$val;}
+
+    function setIndicador($val)
+    { $this->indicador=$val;}
+
+    function setFrecuencia($val)
+    { $this->frecuencia=$val;}
+
+    function setIdResponsableEjecucion($val)
+    { $this->id_responsable_ejecucion=$val;}
+
+    function setIdResponsableSeguimiento($val)
+    { $this->id_responsable_seguimiento=$val;}
 
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_postulacion, id_busqueda, id_postulante,
-                      origen_cv, expectativas, propuesta_economica
-                      from sel_postulaciones
-                      where id_postulacion = :nro";
+            $query="select * from objetivos where id_objetivo = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdPostulacion($rows[0]['id_postulacion']);
-            $this->setIdBusqueda($rows[0]['id_busqueda']);
-            $this->setIdPostulante($rows[0]['id_postulante']);
-            $this->setOrigenCv($rows[0]['origen_cv']);
-            $this->setExpectativas($rows[0]['expectativas']);
-            $this->setPropuestaEconomica($rows[0]['propuesta_economica']);
+            $this->setIdObjetivo($rows[0]['id_objetivo']);
+            $this->setPeriodo($rows[0]['periodo']);
+            $this->setNombre($rows[0]['nombre']);
+            $this->setIdArea($rows[0]['id_area']);
+            $this->setIdContrato($rows[0]['id_contrato']);
+            $this->setIdPuesto($rows[0]['id_puesto']);
+            $this->setMeta($rows[0]['meta']);
+            $this->setActividades($rows[0]['actividades']);
+            $this->setIndicador($rows[0]['indicador']);
+            $this->setFrecuencia($rows[0]['frecuencia']);
+            $this->setIdResponsableEjecucion($rows[0]['id_responsable_ejecucion']);
+            $this->setIdResponsableSeguimiento($rows[0]['id_responsable_seguimiento']);
         }
     }
 
 
-    public static function getPostulaciones($id_busqueda, $id_postulante, $todas) {
+    public static function getObjetivos($periodo) { //ok
         $stmt=new sQuery();
-        $query = "select
-                  (select !exists(select 1 from sel_etapas etx where  etx.id_postulacion = pos.id_postulacion and etx.aplica = '0')) as aplica,
-                  pos.id_postulacion, pos.id_busqueda, pos.id_postulante,
-                  DATE_FORMAT(pos.fecha,  '%d/%m/%Y') as fecha,
-                  pos.origen_cv, pos.expectativas, pos.propuesta_economica,
-                  CONCAT(po.apellido, ' ', po.nombre) as postulante,
-                  bu.nombre as busqueda
-                  from sel_postulaciones pos
-                  join sel_postulantes po on pos.id_postulante = po.id_postulante
-                  join sel_busquedas bu on pos.id_busqueda = bu.id_busqueda
-                  where pos.id_busqueda =  ifnull(:id_busqueda, pos.id_busqueda)
-                  and pos.id_postulante =  ifnull(:id_postulante, pos.id_postulante)";
-
+        $query = "select *
+                  from v_sec_objetivos vso
+                  where vso.periodo = ifnull(:periodo, vso.periodo)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_busqueda', $id_busqueda);
-        $stmt->dpBind(':id_postulante', $id_postulante);
+        $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
 
-    function save(){
-        if($this->id_postulacion)
-        {$rta = $this->updatePostulacion();}
+    function save(){ //ok
+        if($this->id_objetivo)
+        {$rta = $this->updateObjetivo();}
         else
-        {$rta =$this->insertPostulacion();}
+        {$rta =$this->insertObjetivo();}
         return $rta;
     }
 
 
-    public function updatePostulacion(){
+    public function updateObjetivo(){ //ok
+
         $stmt=new sQuery();
-        $query="update sel_postulaciones set id_busqueda =:id_busqueda,
-                      id_postulante = :id_postulante,
-                      origen_cv = :origen_cv,
-                      expectativas = :expectativas,
-                      propuesta_economica = :propuesta_economica
-                where id_postulacion =:id_postulacion";
+        $query="update obj_objetivos set
+                periodo= :periodo,
+                nombre= :nombre,
+                id_area= :id_area,
+                id_contrato= :id_contrato,
+                id_puesto= :id_puesto,
+                meta= :meta,
+                actividades= :actividades,
+                indicador= :indicador,
+                frecuencia= :frecuencia,
+                id_responsable_ejecucion= :id_responsable_ejecucion,
+                id_responsable_seguimiento= :id_responsable_seguimiento
+                where id_objetivo = :id_objetivo";
+
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
-        $stmt->dpBind(':id_postulante', $this->getIdPostulante());
-        $stmt->dpBind(':origen_cv', $this->getOrigenCv());
-        $stmt->dpBind(':expectativas', $this->getExpectativas());
-        $stmt->dpBind(':propuesta_economica', $this->getPropuestaEconomica());
-        $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-
-    }
-
-    private function insertPostulacion(){
-        $stmt=new sQuery();
-        $query="insert into sel_postulaciones(id_busqueda, id_postulante, fecha, origen_cv, expectativas, propuesta_economica)
-                values(:id_busqueda, :id_postulante, sysdate(), :origen_cv, :expectativas, :propuesta_economica)";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
-        $stmt->dpBind(':id_postulante', $this->getIdPostulante());
-        $stmt->dpBind(':origen_cv', $this->getOrigenCv());
-        $stmt->dpBind(':expectativas', $this->getExpectativas());
-        $stmt->dpBind(':propuesta_economica', $this->getPropuestaEconomica());
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-
-    }
-
-    function deleteHabilidad(){
-        $stmt=new sQuery();
-        $query="delete from habilidades where id_habilidad =:id_habilidad";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':meta', $this->getMeta());
+        $stmt->dpBind(':actividades', $this->getActividades());
+        $stmt->dpBind(':indicador', $this->getIndicador());
+        $stmt->dpBind(':frecuencia', $this->getFrecuencia());
+        $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
+        $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
+        $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
+    private function insertObjetivo(){ //ok
 
-
-    public static function uploadsUpload($directory, $name, $id_busqueda){
         $stmt=new sQuery();
-        $query="insert into uploads_busqueda(directory, name, fecha, id_busqueda)
-                values(:directory, :name, date(sysdate()), :id_busqueda)";
+        $query="insert into obj_objetivos(periodo, nombre, id_area, id_contrato, id_puesto, meta, actividades, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento)
+                values(:periodo, :nombre, :id_area, :id_contrato, :id_puesto, :meta, :actividades, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':directory', $directory);
-        $stmt->dpBind(':name', $name);
-        $stmt->dpBind(':id_busqueda', $id_busqueda);
+        $stmt->dpBind(':periodo', $this->getPeriodo());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':meta', $this->getMeta());
+        $stmt->dpBind(':actividades', $this->getActividades());
+        $stmt->dpBind(':indicador', $this->getIndicador());
+        $stmt->dpBind(':frecuencia', $this->getFrecuencia());
+        $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
+        $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
-
-    public static function uploadsLoad($id_busqueda) {
+    function deleteObjetivo(){ //ok
         $stmt=new sQuery();
-        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_busqueda
-                from uploads_busqueda
-                where id_busqueda = :id_busqueda
-                order by fecha asc";
+        $query="delete from obj_objetivos where id_objetivo= :id";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_busqueda', $id_busqueda);
+        $stmt->dpBind(':id', $this->getIdObjetivo());
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+    }
+
+
+    public static function getPeriodos(){ //ok
+        $stmt=new sQuery();
+        $query = "select periodo
+from objetivos
+group by periodo
+UNION
+select YEAR(CURDATE())"; //periodo actual (por si aun no existe un objetivo del periodo actual)
+        $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
-    public static function uploadsDelete($name){
-        $stmt=new sQuery();
-        $query="delete from uploads_busqueda where name =:name";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':name', $name);
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-    }
 
 
-    public function checkFechaEmision($fecha_emision, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
-        /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
-        sea mayor. */
-        $stmt=new sQuery();
-        $query = "select *
-                  from vto_renovacion_p
-                  where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
-                  :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  and id_renovacion <> :id_renovacion
-                  )
-                  order by fecha_emision asc
-                  limit 1";
 
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
-        $stmt->dpBind(':fecha_emision', $fecha_emision);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        $stmt->dpExecute();
-        return $output = ($stmt->dpGetAffect()==0)? true : false;
-    }
 
-    public function checkFechaVencimiento($fecha_emision, $fecha_vencimiento, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
-        $stmt=new sQuery();
-        $query = "select *
-                  from vto_renovacion_p
-                  where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_vencimiento ingresada sea mayor que la de ésta
-                  :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
-                  and id_renovacion <> :id_renovacion
-                  )
-                  order by fecha_emision asc
-                  limit 1";
 
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
-        $stmt->dpBind(':fecha_emision', $fecha_emision);
-        $stmt->dpBind(':fecha_vencimiento', $fecha_vencimiento);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        $stmt->dpExecute();
-        return $output = ($stmt->dpGetAffect()==0)? true : false;
-    }
 
 
 
