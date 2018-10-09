@@ -18,7 +18,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         $periodo = ($_POST['search_periodo']!='')? $_POST['search_periodo'] : null;
         //$view->periodos = Objetivo::getPeriodos();
@@ -27,17 +27,21 @@ switch ($operation)
         $view->contentTemplate="view/objetivos/objetivosGrid.php";
         break;
 
-    case 'savePostulacion':
-        $postulacion = new Postulacion($_POST['id_postulacion']);
-        $postulacion->setIdBusqueda($_POST['id_busqueda']);
-        $postulacion->setIdPostulante($_POST['id_postulante']);
-        $postulacion->setOrigenCv($_POST['origen_cv']);
-        //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        //$postulacion->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
-        $postulacion->setExpectativas($_POST['expectativas']);
-        $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
+    case 'saveObjetivo': //ok
+        $objetivo = new Objetivo($_POST['id_objetivo']);
+        $objetivo->setPeriodo($_POST['periodo']);
+        $objetivo->setNombre($_POST['nombre']);
+        $objetivo->setIdPuesto(($_POST['id_puesto'])? $_POST['id_puesto'] : null);
+        $objetivo->setIdArea(($_POST['id_area'])? $_POST['id_area'] : null);
+        $objetivo->setIdContrato(($_POST['id_contrato'])? $_POST['id_contrato'] : null);
+        $objetivo->setMeta($_POST['meta']);
+        $objetivo->setActividades($_POST['actividades']);
+        $objetivo->setIndicador($_POST['indicador']);
+        $objetivo->setFrecuencia($_POST['frecuencia']);
+        $objetivo->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
+        $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
 
-        $rta = $postulacion->save();
+        $rta = $objetivo->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;
@@ -77,27 +81,13 @@ switch ($operation)
         break;
 
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
+    case 'deleteObjetivo': //ok
+        $objetivo = new Objetivo($_POST['id_objetivo']);
+        $rta = $objetivo->deleteObjetivo();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
-
-
-    case 'checkFechaEmision':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'checkFechaVencimiento':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
+    
 
     default : //ok
         $view->periodos = Objetivo::getPeriodos();

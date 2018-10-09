@@ -19,50 +19,49 @@
             todayHighlight: true
         });*/
 
-        $('.input-group.date').datepicker({
+        /*$('.input-group.date').datepicker({
             //inline: true
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
-        });
-
-
-        $('.image').viewer({});
+        });*/
 
 
 
-        $('#myModal').on('click', '#submit',function(){
+        $('#myModal').on('click', '#submit',function(){ //ok
 
             if ($("#objetivo-form").valid()){
 
                 var params={};
-                params.action = 'postulaciones';
-                params.operation = 'savePostulacion';
-                params.id_postulacion = $('#id_postulacion').val();
-                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                //params.disabled = $('#disabled').prop('checked')? 1:0;
-                params.id_busqueda = $('#id_busqueda').val();
-                params.id_postulante = $('#id_postulante').val();
-                params.origen_cv = $('#origen_cv').val();
-                params.expectativas = $('#expectativas').val();
-                params.propuesta_economica = $('#propuesta_economica').val();
-                //alert(params.id_grupo);
+                params.action = 'obj_objetivos';
+                params.operation = 'saveObjetivo';
+                params.id_objetivo=$('#id_objetivo').val();
+                params.periodo=$('#myModal #periodo').val();
+                params.nombre=$('#nombre').val();
+                params.id_puesto=$('#id_puesto').val();
+                params.id_area=$('#id_area').val();
+                params.id_contrato=$('#id_contrato').val();
+                params.meta=$('#meta').val();
+                params.actividades=$('#actividades').val();
+                params.indicador=$('#indicador').val();
+                params.frecuencia=$('#frecuencia').val();
+                params.id_responsable_ejecucion=$('#id_responsable_ejecucion').val();
+                params.id_responsable_seguimiento=$('#id_responsable_seguimiento').val();
 
                 $.post('index.php',params,function(data, status, xhr){
 
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Objetivo guardado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la postulación').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar el objetivo').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
