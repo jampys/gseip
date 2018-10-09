@@ -160,7 +160,7 @@
 
 
                     <div class="form-group">
-                        <label for="id_proceso" class="control-label">Puesto</label>
+                        <label for="id_puesto" class="control-label">Puesto</label>
                         <select class="form-control selectpicker show-tick" id="id_puesto" name="id_puesto" data-live-search="true" data-size="5">
                             <option value="">Seleccione un puesto</option>
                             <?php foreach ($view->puestos as $pu){
