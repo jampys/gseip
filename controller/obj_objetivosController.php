@@ -1,9 +1,10 @@
 ﻿<?php
 include_once("model/obj_objetivosModel.php");
 
-//include_once("model/puestosModel.php");
-//include_once("model/localidadesModel.php");
-//include_once("model/contratosModel.php");
+include_once("model/puestosModel.php");
+include_once("model/areasModel.php");
+include_once("model/contratosModel.php");
+include_once("model/evaluacionesModel.php");
 
 //include_once("model/busquedasModel.php");
 //include_once("model/postulantesModel.php");
@@ -19,12 +20,11 @@ switch ($operation)
 {
     case 'refreshGrid':
         $view->disableLayout=true;
-        //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        $id_busqueda = ($_POST['search_busqueda']!='')? $_POST['search_busqueda'] : null;
-        $id_postulante = ($_POST['search_postulante']!='')? $_POST['search_postulante'] : null;
-        $todas = null; //($_POST['renovado']== 0)? null : 1;
-        $view->postulaciones = Postulacion::getPostulaciones($id_busqueda, $id_postulante, $todas);
-        $view->contentTemplate="view/postulaciones/postulacionesGrid.php";
+        $periodo = ($_POST['search_periodo']!='')? $_POST['search_periodo'] : null;
+        //$view->periodos = Objetivo::getPeriodos();
+        //$view->periodo_actual = Soporte::getPeriodoActual();
+        $view->objetivos = Objetivo::getObjetivos($periodo);
+        $view->contentTemplate="view/objetivos/objetivosGrid.php";
         break;
 
     case 'savePostulacion':
@@ -43,35 +43,37 @@ switch ($operation)
         exit;
         break;
 
-    case 'newPostulacion':
-        $view->label='Nueva postulación';
-        $view->postulacion = new Postulacion();
+    case 'newObjetivo': //ok
+        $view->label='Nuevo objetivo';
+        $view->objetivo = new Objetivo();
 
-        //$view->puestos = Puesto::getPuestos();
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->contratos = Contrato::getContratos();
-        $view->busquedas = Busqueda::getBusquedasActivas();
-        $view->postulantes = Postulante::getPostulantesActivos();
-        $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
+        $view->periodos = Evaluacion::getPeriodos();
+        $view->periodo_actual = Soporte::getPeriodoActual();
+        $view->puestos = Puesto::getPuestos();
+        $view->areas = Area::getAreas();
+        $view->contratos = Contrato::getContratos();
+        $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
+        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos() : Empleado::getEmpleados(); //carga el combo de empleados
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/postulacionesForm.php";
+        $view->contentTemplate="view/objetivos/objetivosForm.php";
         break;
 
-    case 'editPostulacion':
-        $view->label='Editar postulación';
-        $view->postulacion = new Postulacion($_POST['id_postulacion']);
+    case 'editObjetivo': //ok
+        $view->label='Editar objetivo';
+        $view->objetivo = new Objetivo($_POST['id_objetivo']);
 
-        //$view->puestos = Puesto::getPuestos();
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->contratos = Contrato::getContratos();
-        $view->busquedas = Busqueda::getBusquedasActivas();
-        $view->postulantes = Postulante::getPostulantesActivos();
-        $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
+        $view->periodos = Evaluacion::getPeriodos();
+        $view->periodo_actual = Soporte::getPeriodoActual();
+        $view->puestos = Puesto::getPuestos();
+        $view->areas = Area::getAreas();
+        $view->contratos = Contrato::getContratos();
+        $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
+        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos() : Empleado::getEmpleados(); //carga el combo de empleados
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/postulaciones/postulacionesForm.php";
+        $view->contentTemplate="view/objetivos/objetivosForm.php";
         break;
 
 
@@ -100,7 +102,7 @@ switch ($operation)
     default : //ok
         $view->periodos = Objetivo::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
-        $view->objetivos = Objetivo::getObjetivos($view->periodo_actual);
+        //$view->objetivos = Objetivo::getObjetivos($view->periodo_actual);
         $view->contentTemplate="view/objetivos/objetivosGrid.php";
         break;
 }

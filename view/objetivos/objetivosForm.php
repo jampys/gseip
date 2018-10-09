@@ -29,95 +29,11 @@
 
         $('.image').viewer({});
 
-        var objeto={};
-
-
-        var uploadObj = $("#fileuploader").uploadFile({
-            url: "index.php?action=uploadsBusquedas&operation=upload",
-            dragDrop: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
-            autoSubmit: false,
-            fileName: "myfile",
-            returnType: "json",
-            showDelete: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
-            showDownload:true,
-            showCancel: true,
-            showAbort: true,
-            allowDuplicates: false,
-            allowedTypes: "jpg, png, pdf, txt, doc, docx",
-
-            dynamicFormData: function(){
-                var data ={ "id": ($('#id_busqueda').val())? $('#id_busqueda').val() : objeto.id };
-                return data;},
-
-            maxFileSize:2097152, //tamaño expresado en bytes
-            showPreview:true,
-            previewHeight: "75px",
-            previewWidth: "auto",
-            uploadQueueOrder:'bottom', //el orden en que se muestran los archivos subidos.
-            showFileCounter: false, //muestra el nro de archivos subidos
-            downloadStr: "<i class='fas fa-download'></i>",
-            deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
-            dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
-            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Subir",
-            cancelStr: "<i class='fas fa-minus-square'></i>",
-
-            extErrorStr: "no está permitido. Solo se permiten extensiones: ",
-            duplicateErrorStr: "no permitido. El archivo ya existe.",
-            sizeErrorStr: "no permitido. Tamaño máximo permitido: ",
-
-            onLoad:function(obj){
-                $.ajax({
-                    cache: false,
-                    url: "index.php",
-                    data:{"action": "uploadsBusquedas", "operation": "load", "id": $('#id_busqueda').val() },
-                    type:"post",
-                    dataType: "json",
-                    success: function(data) {
-
-                        //alert('todo ok '+data);
-                        for(var i=0;i<data.length;i++) {
-                            if(data[i]['jquery-upload-file-error']) {
-                                //alert('encontro el error');
-                                obj.dpErrorOnLoad(data[i]["name"], data[i]['jquery-upload-file-error']);
-                            }
-                            else{
-                                obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"], data[i]["fecha"]);
-                            }
-
-                        }
-
-                        $('#myModal img').addClass('image').css('cursor', 'zoom-in');
-                        $('.image').viewer({});
-
-                    },
-                    error: function(e) {
-                        alert('errrorrrr '+ e.responseText);
-                    }
-
-                });
-            },
-            deleteCallback: function (data, pd) {
-                for (var i = 0; i < data.length; i++) {
-                    $.post("index.php", {action: "uploadsBusquedas", operation: "delete", name: data[i]},
-                        function (resp,textStatus, jqXHR) {
-                            //Show Message
-                            //alert("File Deleted");
-                        });
-                }
-                pd.statusbar.hide(); //You choice.
-
-            },
-            downloadCallback:function(filename,pd) {
-                location.href="index.php?action=uploadsBusquedas&operation=download&filename="+filename;
-            }
-        });
-
-
 
 
         $('#myModal').on('click', '#submit',function(){
 
-            if ($("#postulacion-form").valid()){
+            if ($("#objetivo-form").valid()){
 
                 var params={};
                 params.action = 'postulaciones';
@@ -134,8 +50,6 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    objeto.id = data; //data trae el id de la renovacion
-                    //alert(objeto.id);
                     //alert(xhr.responseText);
 
                     if(data >=0){
@@ -170,60 +84,35 @@
         });
 
 
-        $('#postulacion-form').validate({
+        $('#objetivo-form').validate({ //ok
             rules: {
-                id_busqueda: {required: true},
-                id_postulante: {required: true}
-                /*fecha_emision: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaEmision",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
-                        }
-                    }
+                nombre: {required: true},
+                id_puesto: {
+                    XOR_with: [
+                        '#id_area',
+                        'Seleccione un puesto o un área'
+                    ]
                 },
-                fecha_vencimiento: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaVencimiento",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            fecha_vencimiento: function(){ return $('#fecha_vencimiento').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
-                        }
-                    }
-                }*/
+                id_area: {
+                    XOR_with: [
+                        '#id_puesto',
+                        'Seleccione un puesto o un área'
+                    ]
 
+                },
+                meta: {required: true},
+                actividades: {required: true},
+                indicador: {required: true},
+                id_responsable_ejecucion: {required: true},
+                id_responsable_seguimiento: {required: true}
             },
             messages:{
-                id_busqueda: "Seleccione la búsqueda",
-                id_postulante: "Seleccione el postulante"
-                /*fecha_emision: {
-                    required: "Ingrese la fecha de emisión",
-                    remote: "La fecha de emisión debe ser mayor"
-                },
-                fecha_vencimiento: {
-                    required: "Ingrese la fecha de vencimiento",
-                    remote: "La fecha de vencimiento debe ser mayor"
-                }*/
+                nombre: "Ingrese el nombre",
+                meta: "Ingrese la meta",
+                actividades: "Ingrese las actividades",
+                indicador: "Ingrese el indicador",
+                responsable_ejecucion: "Seleccione un responsable ejecución",
+                responsable_seguimiento: "Seleccione un responsable seguimiento"
             }
 
         });
@@ -248,66 +137,141 @@
             <div class="modal-body">
 
 
-                <form name ="postulacion-form" id="postulacion-form" method="POST" action="index.php">
-                    <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->postulacion->getIdPostulacion() ?>">
+                <form name ="objetivo-form" id="objetivo-form" method="POST" action="index.php">
+                    <input type="hidden" name="id_objetivo" id="id_objetivo" value="<?php print $view->objetivo->getIdObjetivo() ?>">
 
                     <div class="form-group required">
-                        <label for="id_busqueda" class="control-label">Búsqueda</label>
-                        <select class="form-control selectpicker show-tick" id="id_busqueda" name="id_busqueda" title="Seleccione la búsqueda" data-live-search="true" data-size="5">
-                            <?php foreach ($view->busquedas as $bu){
+                        <label for="id_busqueda" class="control-label">Período</label>
+                        <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione el periodo" data-live-search="true" data-size="5">
+                            <?php foreach ($view->periodos as $pe){
                                 ?>
-                                <option value="<?php echo $bu['id_busqueda']; ?>"
-                                    <?php echo ($bu['id_busqueda'] == $view->postulacion->getIdBusqueda())? 'selected' :'' ?>
+                                <option value="<?php echo $pe['periodo']; ?>"
+                                    <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
                                     >
-                                    <?php echo $bu['fecha_apertura'].' '.$bu['nombre'];?>
+                                    <?php echo $pe['periodo']; ?>
                                 </option>
                             <?php  } ?>
                         </select>
                     </div>
 
                     <div class="form-group required">
-                        <label for="id_postulante" class="control-label">Postulante</label>&nbsp;<a href="#" title="nuevo postulante"><i class="far fa-plus-square fa-fw"></i></a>
-                        <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
-                            <?php foreach ($view->postulantes as $po){
+                        <label for="nombre" class="control-label">Nombre</label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->objetivo->getNombre() ?>">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="id_proceso" class="control-label">Puesto</label>
+                        <select class="form-control selectpicker show-tick" id="id_puesto" name="id_puesto" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un puesto</option>
+                            <?php foreach ($view->puestos as $pu){
                                 ?>
-                                <option value="<?php echo $po['id_postulante']; ?>"
-                                    <?php echo ($po['id_postulante'] == $view->postulacion->getIdPostulante())? 'selected' :'' ?>
+                                <option value="<?php echo $pu['id_puesto']; ?>"
+                                    <?php echo ($pu['id_puesto'] == $view->objetivo->getIdPuesto() )? 'selected' :'' ?>
                                     >
-                                    <?php echo $po['apellido']." ".$po['nombre']." ".$po['dni'];?>
+                                    <?php echo $pu['nombre']; ?>
                                 </option>
                             <?php  } ?>
                         </select>
                     </div>
 
+
+                    <div class="form-group">
+                        <label for="id_area" class="control-label">Área</label>
+                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area">
+                            <option value="">Seleccione un área</option>
+                            <?php foreach ($view->areas as $ar){
+                                ?>
+                                <option value="<?php echo $ar['id_area']; ?>"
+                                    <?php echo ($ar['id_area'] == $view->objetivo->getIdArea() )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $ar['nombre']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="id_contrato" class="control-label">Contrato</label>
+                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato">
+                            <option value="">Seleccione un contrato</option>
+                            <?php foreach ($view->contratos as $con){
+                                ?>
+                                <option value="<?php echo $con['id_contrato']; ?>"
+                                    <?php echo ($con['id_contrato'] == $view->objetivo->getIdContrato() )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
                     <div class="form-group required">
-                        <label for="origen_cv" class="control-label">Origen del CV</label>
-                            <select class="form-control selectpicker show-tick" id="origen_cv" name="origen_cv" title="Seleccione el origen del CV">
-                                <?php foreach ($view->origenes_cv['enum'] as $cv){
-                                    ?>
-                                    <option value="<?php echo $cv; ?>"
-                                        <?php echo ($cv == $view->postulacion->getOrigenCv() OR ($cv == $view->origenes_cv['default'] AND !$view->postulacion->getIdPostulacion()) )? 'selected' :'' ?>
-                                        >
-                                        <?php echo $cv; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
+                        <label class="control-label" for="descripcion">Meta</label>
+                        <textarea class="form-control" name="meta" id="meta" placeholder="Meta" rows="2"><?php print $view->objetivo->getMeta(); ?></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="expectativas">Expectativas ($)</label>
-                        <input class="form-control" type="text" name="expectativas" id="expectativas" value = "<?php print $view->postulacion->getExpectativas() ?>" placeholder="Expectativas">
+
+                    <div class="form-group required">
+                        <label class="control-label" for="actividades">Actividades</label>
+                        <textarea class="form-control" name="actividades" id="actividades" placeholder="Actividades" rows="3"><?php print $view->objetivo->getActividades(); ?></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="expectativas">Propuesta económica ($)</label>
-                        <input class="form-control" type="text" name="propuesta_economica" id="propuesta_economica" value = "<?php print $view->postulacion->getPropuestaEconomica() ?>" placeholder="Propuesta económica">
+                    <div class="form-group required">
+                        <label for="indicador" class="control-label">Indicador</label>
+                        <input class="form-control" type="text" name="indicador" id="indicador" placeholder="Indicador" value = "<?php print $view->objetivo->getIndicador() ?>">
                     </div>
+
+
+                    <div class="form-group required">
+                        <label for="frecuencia" class="control-label">Frecuencia</label>
+                        <select class="form-control selectpicker show-tick" id="frecuencia" name="frecuencia">
+                            <option value="">Seleccione una frecuencia</option>
+                            <?php foreach ($view->frecuencias['enum'] as $fre){
+                                ?>
+                                <option value="<?php echo $fre; ?>"
+                                    <?php echo ($fre == $view->objetivo->getFrecuencia() OR ($fre == $view->frecuencias['default'] AND !$view->objetivo->getIdObjetivo()) )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $fre; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label for="id_responsable_ejecucion" class="control-label">Responsable ejecución</label>
+                        <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
+                            <?php foreach ($view->empleados as $em){
+                                ?>
+                                <option value="<?php echo $em['id_empleado']; ?>"
+                                    <?php echo ($em['id_empleado'] == $view->objetivo->getIdResponsableEjecucion())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label for="id_responsable_seguimiento" class="control-label">Responsable seguimiento</label>
+                        <select id="id_responsable_seguimiento" name="id_responsable_seguimiento" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
+                            <?php foreach ($view->empleados as $em){
+                                ?>
+                                <option value="<?php echo $em['id_empleado']; ?>"
+                                    <?php echo ($em['id_empleado'] == $view->objetivo->getIdResponsableEjecucion())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
 
                 </form>
-
-
-                <!--<div id="fileuploader">Upload</div>-->
-
 
 
 

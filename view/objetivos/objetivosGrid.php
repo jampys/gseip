@@ -62,29 +62,31 @@
                         <td><?php echo $rp['contrato']; ?></td>
                         <td style="text-align: center"><?php //echo($rp['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
 
+
                         <td class="text-center">
-                            <a class="etapas" href="javascript:void(0);">
+                            <!-- si tiene permiso para ver etapas -->
+                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'etapas' : 'disabled' ?>" href="javascript:void(0);">
                                 <i class="far fa-list-alt fa-fw" title="etapas"></i>
                             </a>
                         </td>
 
                         <td class="text-center">
-                            <!-- si tiene permiso para ver etapas -->
-                            <a class="<?php //echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'etapas' : 'disabled' ?>" href="javascript:void(0);">
+                            <!-- si tiene permiso para ver objetivo -->
+                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
                             </a>
                         </td>
 
                         <td class="text-center">
                             <!-- si tiene permiso para editar -->
-                            <a class="<?php //echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
                             </a>
                         </td>
-                        
+
                         <td class="text-center">
                             <!-- si tiene permiso para eliminar -->
-                            <a class="<?php //echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
                         </td>
@@ -106,7 +108,7 @@
 
 <div id="confirm">
     <div class="modal-body">
-        ¿Desea eliminar la renovación?
+        ¿Desea eliminar el objetivo?
     </div>
 
     <div id="myElemento" style="display:none">

@@ -15,44 +15,44 @@
             $('.selectpicker').selectpicker();
 
 
-            $(document).on('click', '#search', function(){
+            $(document).on('click', '#search', function(){ //ok
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
                 //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                params.search_busqueda = $("#search_busqueda").val();
-                params.search_postulante = $("#search_postulante").val();
+                params.search_periodo = $("#search_periodo").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
-                params.action = "postulaciones";
+                params.action = "obj_objetivos";
                 params.operation = "refreshGrid";
                 //alert(params.id_grupo);
                 $('#content').load('index.php', params);
             });
 
 
-            $('#content').on('click', '.edit', function(){
+            $('#content').on('click', '.edit', function(){ //ok
+                //alert('presionó en editar');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_postulacion = id;
-                params.action = "postulaciones";
-                params.operation = "editPostulacion";
+                params.id_objetivo = id;
+                params.action = "obj_objetivos";
+                params.operation = "editObjetivo";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                    $('#id_postulante').prop('disabled', true).selectpicker('refresh');
+                    //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                    //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
                 })
             });
 
 
-            $('#content').on('click', '.view', function(){
+            $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_postulacion = id;
-                params.action = "postulaciones";
-                params.operation = "editPostulacion";
+                params.id_objetivo = id;
+                params.action = "obj_objetivos";
+                params.operation = "editObjetivo";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     $("fieldset").prop("disabled", true);
@@ -85,10 +85,10 @@
             });
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
-                params.action = "postulaciones";
-                params.operation="newPostulacion";
+                params.action = "obj_objetivos";
+                params.operation="newObjetivo";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
@@ -96,9 +96,9 @@
 
 
 
-            $(document).on('click', '#example .delete', function(){
-                alert('Funcionalidad en desarrollo');
-                throw new Error();
+            $(document).on('click', '#example .delete', function(){ //ok
+                //alert('Funcionalidad en desarrollo');
+                //throw new Error();
                 var id = $(this).closest('tr').attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
@@ -123,25 +123,25 @@
             });
 
 
-            $.fn.borrar = function(id) {
+            $.fn.borrar = function(id) { //ok
                 //alert(id);
                 //preparo los parametros
                 params={};
-                params.id_habilidad_empleado = id;
-                params.action = "habilidad-empleado";
-                params.operation = "deleteHabilidadEmpleado";
+                params.id_objetivo = id;
+                params.action = "obj_objetivos";
+                params.operation = "deleteObjetivo";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
+                        $("#myElemento").html('Objetivo eliminado con exito').addClass('alert alert-success').show();
+                        //$('#content').load('index.php',{action:"objetivos", operation: "refreshGrid"});
                         $("#search").trigger("click");
                     }else{
-                        $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
+                        $("#myElemento").html('Error al eliminar el objetivo').addClass('alert alert-danger').show();
                     }
                     setTimeout(function() { $("#myElemento").hide();
-                        $('#confirm').dialog('close');
-                    }, 2000);
+                                            $('#confirm').dialog('close');
+                                          }, 2000);
 
                 });
 
@@ -182,7 +182,7 @@
 
                     <div class="form-group col-md-2">
                         <label for="periodo" class="control-label">Periodo</label>
-                        <select class="form-control" id="periodo" name="periodo">
+                        <select class="form-control" id="search_periodo" name="search_periodo">
                             <option value="">Todos</option>
                             <?php foreach ($view->periodos as $pe){
                                 ?>
@@ -198,7 +198,14 @@
 
 
 
-                    <div class="form-group col-md-8"></div>
+                    <div class="form-group col-md-6"></div>
+
+                    <div class="form-group col-md-2">
+                        <label for="search">&nbsp;</label>
+                        <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
 
 
                     <div class="form-group col-md-2">
