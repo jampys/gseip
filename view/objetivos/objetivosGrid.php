@@ -3,21 +3,23 @@
 
     $(document).ready(function(){
 
+
         $('#example').DataTable({
             /*language: {
              url: 'dataTables/Spanish.json'
              }*/
+
+            "fnInitComplete": function () {
+                                $(this).show(); },
+
             "stateSave": true
         });
-
 
 
         $('#confirm').dialog({
             autoOpen: false
             //modal: true,
         });
-
-
 
 
     });
@@ -52,12 +54,12 @@
             <tbody>
 
             <?php if(isset($view->objetivos)) {
-                foreach ($view->objetivos as $obj):   ?>
-                    <tr data-id="<?php echo $obj['id_objetivo']; ?>">
-                        <td><?php echo $obj['nombre']; ?></td>
-                        <td><?php echo $obj['puesto']; ?></td>
-                        <td><?php echo $obj['area']; ?></td>
-                        <td><?php echo $obj['contrato']; ?></td>
+                foreach ($view->objetivos as $rp):   ?>
+                    <tr data-id="<?php echo $rp['id_objetivo']; ?>">
+                        <td><?php echo $rp['nombre']; ?></td>
+                        <td><?php echo $rp['puesto']; ?></td>
+                        <td><?php echo $rp['area']; ?></td>
+                        <td><?php echo $rp['contrato']; ?></td>
                         <td style="text-align: center"><?php //echo($rp['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
 
                         <td class="text-center">
@@ -79,7 +81,7 @@
                                 <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
                             </a>
                         </td>
-
+                        
                         <td class="text-center">
                             <!-- si tiene permiso para eliminar -->
                             <a class="<?php //echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
@@ -93,9 +95,8 @@
         </table>
 
 
+
     </div>
-
-
 
 </div>
 
@@ -105,7 +106,7 @@
 
 <div id="confirm">
     <div class="modal-body">
-        ¿Desea eliminar el objetivo?
+        ¿Desea eliminar la renovación?
     </div>
 
     <div id="myElemento" style="display:none">
