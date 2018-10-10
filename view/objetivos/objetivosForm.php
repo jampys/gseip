@@ -154,8 +154,8 @@
                     </div>
 
                     <div class="form-group required">
-                        <label for="nombre" class="control-label">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->objetivo->getNombre() ?>">
+                        <label for="nombre" class="control-label">Objetivo</label>
+                        <textarea class="form-control" name="nombre" id="nombre" placeholder="Objetivo" rows="2"><?php print $view->objetivo->getNombre(); ?></textarea>
                     </div>
 
 
@@ -215,12 +215,23 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="actividades">Actividades</label>
-                        <textarea class="form-control" name="actividades" id="actividades" placeholder="Actividades" rows="3"><?php print $view->objetivo->getActividades(); ?></textarea>
+                        <textarea class="form-control" name="actividades" id="actividades" placeholder="Actividades" rows="2"><?php print $view->objetivo->getActividades(); ?></textarea>
                     </div>
+
 
                     <div class="form-group required">
                         <label for="indicador" class="control-label">Indicador</label>
-                        <input class="form-control" type="text" name="indicador" id="indicador" placeholder="Indicador" value = "<?php print $view->objetivo->getIndicador() ?>">
+                        <select class="form-control selectpicker show-tick" id="indicador" name="indicador" data-live-search="true" data-size="5" title="Seleccione un indicador del objetivo">
+                            <!--<option value="">Seleccione un indicador del objetivo</option>-->
+                            <?php foreach ($view->indicadores['enum'] as $ind){
+                                ?>
+                                <option value="<?php echo $ind; ?>"
+                                    <?php echo ($ind == $view->objetivo->getIndicador() OR ($ind == $view->indicadores['default'] AND !$view->objetivo->getIdObjetivo()) )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $ind; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
                     </div>
 
 
