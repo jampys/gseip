@@ -65,12 +65,12 @@
             });
 
 
-            $(document).on('click', '.etapas', function(){
-                //alert('presiono sobre etapas');
+            $(document).on('click', '.avances', function(){
+                //alert('presiono sobre avances');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_postulacion = id;
-                params.action = "etapas";
+                params.id_objetivo = id;
+                params.action = "avances";
                 //params.operation = "etapas"; //entra en default
                 //params.target = "view";
                 $('#popupbox').load('index.php', params,function(){

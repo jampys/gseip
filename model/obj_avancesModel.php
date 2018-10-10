@@ -1,42 +1,34 @@
 <?php
 
-class Etapa
+class Avance
 {
-    private $id_etapa;
-    private $id_postulacion;
+    private $id_avance;
+    private $id_objetivo;
     private $fecha; //fecha de registro en el sistema
-    private $fecha_etapa; //fecha en que se realizó la etapa. Puede no coincidir con la fecha de carga.
-    private $etapa; //nombre de la etapa
-    private $aplica;
-    private $motivo;
-    private $modo_contacto;
+    private $periodo;
+    private $indicador;
+    private $cantidad;
     private $comentarios;
     private $id_user;
 
     // GETTERS
-    function getIdEtapa()
-    { return $this->id_etapa;}
+    function getIdAvance()
+    { return $this->id_avance;}
 
-    function getIdPostulacion()
-    { return $this->id_postulacion;}
+    function getIdObjetivo()
+    { return $this->id_objetivo;}
 
     function getFecha()
     { return $this->fecha;}
 
-    function getFechaEtapa()
-    { return $this->fecha_etapa;}
+    function getPeriodo()
+    { return $this->periodo;}
 
-    function getEtapa()
-    { return $this->etapa;}
+    function getIndicador()
+    { return $this->indicador;}
 
-    function getAplica()
-    { return $this->aplica;}
-
-    function getMotivo()
-    { return $this->motivo;}
-
-    function getModoContacto()
-    { return $this->modo_contacto;}
+    function getCantidad()
+    { return $this->cantidad;}
 
     function getComentarios()
     { return $this->comentarios;}
@@ -46,32 +38,23 @@ class Etapa
 
 
     //SETTERS
-    function setIdEtapa($val)
-    { $this->id_etapa=$val;}
+    function setIdAvance($val)
+    { $this->id_avance=$val;}
 
-    function setIdPostulacion($val)
-    {  $this->id_postulacion=$val;}
+    function setIdObjetivo($val)
+    {  $this->id_objetivo=$val;}
 
     function setFecha($val)
     { $this->fecha=$val;}
 
-    function setNombre($val)
-    { $this->nombre=$val;}
+    function setPeriodo($val)
+    { $this->periodo=$val;}
 
-    function setFechaEtapa($val)
-    { $this->fecha_etapa=$val;}
+    function setIndicador($val)
+    { $this->indicador=$val;}
 
-    function setEtapa($val)
-    { $this->etapa=$val;}
-
-    function setAplica($val)
-    { $this->aplica=$val;}
-
-    function setMotivo($val)
-    { $this->motivo=$val;}
-
-    function setModoContacto($val)
-    { $this->modo_contacto=$val;}
+    function setCantidad($val)
+    { $this->cantidad=$val;}
 
     function setComentarios($val)
     { $this->comentarios=$val;}
@@ -84,7 +67,7 @@ class Etapa
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_etapa, id_postulacion,
+            $query = "select id_avance, id_objetivo,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
                       DATE_FORMAT(fecha_etapa, '%d/%m/%Y') as fecha_etapa,
                       etapa, aplica, motivo, modo_contacto, comentarios, id_user

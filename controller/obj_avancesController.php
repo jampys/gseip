@@ -95,14 +95,14 @@ switch ($operation)
         break;
 
 
-    default : //carga la tabla de etapas de la postulacion
+    default : //carga la tabla de avance del objetivo
         //$view->postulacion = new Postulacion($_POST['id_postulacion']);
-        $view->label='Etapas de la postulación';
+        $view->label='Avance del objetivo';
         $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
         //$view->localidades = Localidad::getLocalidades();
         //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
         $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/etapasForm.php";
+        $view->contentTemplate="view/objetivos/avancesForm.php";
         break;
 }
 
