@@ -12,7 +12,7 @@
         });
 
 
-        $('#confirm-emp, #confirm-ord').dialog({
+        $('#confirm-tarea, #confirm-ord').dialog({
             autoOpen: false
             //modal: true,
         });
@@ -56,21 +56,21 @@
         });
 
 
-        //para ver empleado de un parte
-        $('.grid-empleados').on('click', '.view', function(){
+        //para ver una tarea
+        $('.grid-tareas').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_parte_empleado = id;
-            params.action = "parte-empleado";
-            params.operation = "editEmpleado";
+            params.id_tarea = id;
+            params.action = "obj_tareas";
+            params.operation = "editTarea";
             params.target = "view";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 $("#right_side fieldset").prop("disabled", true);
-                $("#empleado-form #footer-buttons button").css('display', 'none');
+                $("#tarea-form #footer-buttons button").css('display', 'none');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 $('.selectpicker').selectpicker('refresh');
@@ -101,20 +101,19 @@
 
 
 
-        //Abre formulario para ingresar un nuevo empleado al parte
-        $('#left_side').on('click', '#add-empleado', function(){
+        //Abre formulario para ingresar una nueva tarea
+        $('#left_side').on('click', '#add-tarea', function(){ //ok
             params={};
-            params.action = "parte-empleado";
-            params.operation = "newEmpleado";
+            params.action = "obj_tareas";
+            params.operation = "newTarea";
             //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
-            params.id_parte = $('#id_parte').val();
+            params.id_tarea = $('#id_tarea').val();
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 //$('#id_postulacion').val(params.id_postulacion);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
         });
 
@@ -137,13 +136,13 @@
         });
 
 
-        //eliminar empleado del parte
-        $('.grid-empleados').on('click', '.delete', function(){
+        //eliminar una tarea
+        $('.grid-tareas').on('click', '.delete', function(){
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            $('#confirm-emp').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm-tarea').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -170,26 +169,26 @@
             //alert(id);
             //preparo los parametros
             params={};
-            params.id_parte_empleado = id;
-            params.id_parte = $('#id_parte').val();
+            params.id_tarea = id;
+            params.id_objetivo = $('#id_objetivo').val();
             //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
-            params.action = "parte-empleado";
-            params.operation = "deleteEmpleado";
+            params.action = "obj_tareas";
+            params.operation = "deleteTarea";
             //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-emp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
-                    $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                    $("#confirm-tarea #myElemento").html('Tarea eliminada con exito').addClass('alert alert-success').show();
+                    $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_tarea: params.id_tarea, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-emp #myElemento").hide();
-                                            $('#empleado-form').hide();
-                                            $('#confirm-emp').dialog('close');
+                    setTimeout(function() { $("#confirm-tarea #myElemento").hide();
+                                            $('#tarea-form').hide();
+                                            $('#confirm-tarea').dialog('close');
                                           }, 2000);
                 }else{
-                    $("#confirm-emp #myElemento").html('Error al eliminar el empleado').addClass('alert alert-danger').show();
+                    $("#confirm-tarea #myElemento").html('Error al eliminar el empleado').addClass('alert alert-danger').show();
                 }
 
 
@@ -474,9 +473,9 @@
 
 
 
-<div id="confirm-emp">
+<div id="confirm-tarea">
     <div class="modal-body">
-        ¿Desea eliminar el empleado?
+        ¿Desea eliminar la tarea?
     </div>
 
     <div id="myElemento" style="display:none">

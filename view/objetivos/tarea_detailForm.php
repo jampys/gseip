@@ -27,10 +27,10 @@
         });
 
 
-        //cancel de formulario de parte-orden
-        $('#orden-form #cancel').on('click', function(){
+        //cancel de formulario de tareas
+        $('#tarea-form #cancel').on('click', function(){ //ok
             //alert('cancelar form parte-orden');
-            $('#orden-form').hide();
+            $('#tarea-form').hide();
         });
 
 
@@ -39,18 +39,16 @@
         $('#right_side').on('click', '#submit',function(){ //ok
             //alert('guardar orden');
 
-            if ($("#orden-form").valid()){
+            if ($("#tarea-form").valid()){
 
                 var params={};
-                params.action = 'parte-orden';
-                params.operation = 'saveOrden';
-                params.id_parte = $('#id_parte').val();
-                params.id_parte_orden = $('#id_parte_orden').val();
-                params.nro_parte_diario = $('#nro_parte_diario').val();
-                params.orden_tipo = $('#orden_tipo').val();
-                params.orden_nro = $('#orden_nro').val();
-                params.duracion = $('#duracion').val();
-                params.servicio = $('#servicio').val();
+                params.action = 'obj_tareas';
+                params.operation = 'saveTarea';
+                params.id_objetivo = $('#id_objetivo').val();
+                params.id_tarea = $('#id_tarea').val();
+                params.nombre = $('#nombre').val();
+                params.fecha_inicio = $('#fecha_inicio').val();
+                params.fecha_fin = $('#fecha_fin').val();
                 //params.conductor = $('input[name=conductor]:checked').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
@@ -62,16 +60,16 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#orden-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Orden guardada con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
+                        $("#tarea-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Tarea guardada con exito').addClass('alert alert-success').show();
+                        $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                            //$('#myModal').modal('hide');
-                            $('#orden-form').hide();
-                        }, 2000);
+                                                        //$('#myModal').modal('hide');
+                                                        $('#tarea-form').hide();
+                                              }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la órden').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar la tarea').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
@@ -83,14 +81,14 @@
 
 
 
-        $('#orden-form').validate({
+        $('#tarea-form').validate({ //ok
             rules: {
                 /*codigo: {
                         required: true,
                         digits: true,
                         maxlength: 6
                 },*/
-                id_empleado: {required: true}
+                nombre: {required: true}
             },
             messages:{
                 /*codigo: {
@@ -98,7 +96,7 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }, */
-                id_empleado: "Seleccione un empleado"
+                nombre: "Nombre el nombre"
             }
 
         });
@@ -111,7 +109,7 @@
 
 
 
-<form name ="orden-form" id="orden-form" method="POST" action="index.php">
+<form name ="tarea-form" id="tarea-form" method="POST" action="index.php">
     <fieldset>
 
     <div class="alert alert-info">
@@ -130,7 +128,7 @@
         <div class="form-group required">
             <label class="control-label" for="empleado">Fecha inicio / fin</label>
             <div class="input-group input-daterange">
-                <input class="form-control" type="text" name="fecha_inicio" id="fecha_fin" value = "<?php print $view->tarea->getFechaInicio() ?>" placeholder="DD/MM/AAAA">
+                <input class="form-control" type="text" name="fecha_inicio" id="fecha_inicio" value = "<?php print $view->tarea->getFechaInicio() ?>" placeholder="DD/MM/AAAA">
                 <div class="input-group-addon">a</div>
                 <input class="form-control" type="text" name="fecha_fin" id="fecha_fin" value = "<?php print $view->tarea->getFechaFin() ?>" placeholder="DD/MM/AAAA">
             </div>

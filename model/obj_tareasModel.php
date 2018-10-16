@@ -84,71 +84,54 @@ class Tarea
 
 
     function save(){ //ok
-        if($this->id_parte_orden)
-        {$rta = $this->updateParteOrden();}
+        if($this->id_tarea)
+        {$rta = $this->updateTarea();}
         else
-        {$rta =$this->insertParteOrden();}
+        {$rta =$this->insertTarea();}
         return $rta;
     }
 
 
-    public function updateParteOrden(){ //ok
+    public function updateTarea(){ //ok
         $stmt=new sQuery();
-        $query="update nov_parte_orden set nro_parte_diario = :nro_parte_diario, orden_tipo = :orden_tipo, orden_nro = :orden_nro,
-                duracion = :duracion, servicio = :servicio
-                where id_parte_orden = :id_parte_orden";
+        $query="update obj_tareas set nombre = :nombre,
+                fecha_inicio = STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'),
+                fecha_fin = STR_TO_DATE(:fecha_fin, '%d/%m/%Y')
+                where id_tarea = :id_tarea";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nro_parte_diario', $this->getNroParteDiario());
-        $stmt->dpBind(':orden_tipo', $this->getOrdenTipo());
-        $stmt->dpBind(':orden_nro', $this->getOrdenNro());
-        $stmt->dpBind(':duracion', $this->getDuracion());
-        $stmt->dpBind(':servicio', $this->getServicio());
-        $stmt->dpBind(':id_parte_orden', $this->getIdParteOrden());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':fecha_inicio', $this->getFechaInicio());
+        $stmt->dpBind(':fecha_fin', $this->getFechaFin());
+        $stmt->dpBind(':id_tarea', $this->getIdTarea());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
-    public function insertParteOrden(){ //ok
+    public function insertTarea(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_parte_orden(fecha, id_parte, nro_parte_diario, orden_tipo, orden_nro, duracion, servicio)
-                values(sysdate(), :id_parte, :nro_parte_diario, :orden_tipo, :orden_nro, :duracion, :servicio)";
+        $query="insert into obj_tareas(nombre, fecha_inicio, fecha_fin, id_objetivo)
+                values(:nombre, STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'), STR_TO_DATE(:fecha_fin, '%d/%m/%Y'), :id_objetivo)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nro_parte_diario', $this->getNroParteDiario());
-        $stmt->dpBind(':orden_tipo', $this->getOrdenTipo());
-        $stmt->dpBind(':orden_nro', $this->getOrdenNro());
-        $stmt->dpBind(':duracion', $this->getDuracion());
-        $stmt->dpBind(':servicio', $this->getServicio());
-        $stmt->dpBind(':id_parte', $this->getIdParte());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':fecha_inicio', $this->getFechaInicio());
+        $stmt->dpBind(':fecha_fin', $this->getFechaFin());
+        $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
-    function deleteParteOrden(){ //ok
+    function deleteTarea(){ //ok
         $stmt=new sQuery();
-        $query="delete from nov_parte_orden where id_parte_orden = :id_parte_orden";
+        $query="delete from obj_tareas where id_tarea = :id_tarea";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_parte_orden', $this->getIdParteOrden());
+        $stmt->dpBind(':id_tarea', $this->getIdTarea());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
-    public function checkEmpleado($id_cuadrilla_empleado, $id_cuadrilla, $id_empleado) {
-        $stmt=new sQuery();
-        $query = "select *
-                  from nov_cuadrilla_empleado
-                  where id_cuadrilla = :id_cuadrilla
-                  and id_empleado = :id_empleado
-                  and id_cuadrilla_empleado <> :id_cuadrilla_empleado";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_cuadrilla', $id_cuadrilla);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_cuadrilla_empleado', $id_cuadrilla_empleado);
-        $stmt->dpExecute();
-        return $output = ($stmt->dpGetAffect()==0)? true : false;
-    }
 
 
 
