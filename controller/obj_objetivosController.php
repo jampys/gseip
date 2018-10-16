@@ -1,9 +1,9 @@
 ﻿<?php
 include_once("model/obj_objetivosModel.php");
+include_once("model/obj_tareasModel.php");
 
-include_once("model/puestosModel.php");
-include_once("model/areasModel.php");
-include_once("model/contratosModel.php");
+//include_once("model/areasModel.php");
+//include_once("model/contratosModel.php");
 include_once("model/evaluacionesModel.php");
 
 //include_once("model/busquedasModel.php");
@@ -90,16 +90,16 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    case 'avances':
-        //$view->parte = new Parte($_POST['id_parte']);
-        //$view->label='Editar parte: '.$view->parte->getFechaParte().' '; //falta el nombre del contrato
+    case 'avances': //ok
+        $view->objetivo = new Objetivo($_POST['id_objetivo']);
+        $view->label='Avance del objetivo: codigo_del_objetivo'; //$view->parte->getFechaParte().' '; //falta el nombre del contrato
 
         //$view->empleados = Empleado::getEmpleados();
         //$view->areas = NovArea::getAreas();
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
 
-        //$view->empleados = ParteEmpleado::getParteEmpleado($_POST['id_parte']);
+        $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
         //$view->ordenes = ParteOrden::getParteOrden($_POST['id_parte']);
 
         $view->disableLayout=true;
@@ -107,7 +107,7 @@ switch ($operation)
         break;
 
 
-    default : //ok
+    default : //ok //muestra la grilla de objetivos
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         //$view->objetivos = Objetivo::getObjetivos($view->periodo_actual);

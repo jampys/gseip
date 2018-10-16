@@ -1,27 +1,27 @@
-<?php if(isset($view->ordenes) && sizeof($view->ordenes) > 0) {?>
+<?php if(isset($view->tareas) && sizeof($view->tareas) > 0) {?>
 
     <table class="table table-condensed dataTable table-hover">
         <thead>
         <tr>
-            <th>Nro. parte</th>
-            <th>Tipo orden</th>
-            <th>Nro. orden</th>
+            <th>Tarea</th>
+            <th>F. Inicio</th>
+            <th>F. Fin</th>
             <th></th>
             <th></th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($view->ordenes as $em): ?>
-            <tr data-id="<?php echo $em['id_parte_orden'];?>">
-                <td><?php echo $em['nro_parte_diario'];?></td>
-                <td><?php echo $em['orden_tipo'];?></td>
-                <td><?php echo $em['orden_nro'];?></td>
+        <?php foreach ($view->tareas as $ta): ?>
+            <tr data-id="<?php echo $ta['id_tarea'];?>">
+                <td><?php echo $ta['nombre'];?></td>
+                <td><?php echo $ta['fecha_inicio'];?></td>
+                <td><?php echo $ta['fecha_fin'];?></td>
                 <!--<td style="text-align: center"><?php //echo($et['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
                 <td><?php //echo $et['user'];?></td>-->
 
                 <td class="text-center">
-                    <a class="view" href="javascript:void(0);" data-id="<?php echo $et['id_etapa'];?>" title="ver">
+                    <a class="view" href="javascript:void(0);" data-id="<?php echo $ta['id_tarea'];?>" title="ver">
                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                     </a>
                 </td>

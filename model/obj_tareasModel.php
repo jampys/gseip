@@ -1,106 +1,83 @@
 <?php
 
-class ParteOrden
+class Tarea
 {
-    private $id_parte_orden;
-    private $fecha; //fecha de registro en el sistema
-    private $id_parte;
-    private $nro_parte_diario;
-    private $orden_tipo;
-    private $orden_nro;
-    private $duracion;
-    private $servicio;
-
+    private $id_tarea;
+    private $nombre;
+    private $fecha_inicio;
+    private $fecha_fin;
+    private $id_objetivo;
 
     // GETTERS
-    function getIdParteOrden()
-    { return $this->id_parte_orden;}
+    function getIdTarea()
+    { return $this->id_tarea;}
 
-    function getFecha()
-    { return $this->fecha;}
+    function getNombre()
+    { return $this->nombre;}
 
-    function getIdParte()
-    { return $this->id_parte;}
+    function getFechaInicio()
+    { return $this->fecha_inicio;}
 
-    function getNroParteDiario()
-    { return $this->nro_parte_diario;}
+    function getFechaFin()
+    { return $this->fecha_fin;}
 
-    function getOrdenTipo()
-    { return $this->orden_tipo;}
-
-    function getOrdenNro()
-    { return $this->orden_nro;}
-
-    function getDuracion()
-    { return $this->duracion;}
-
-    function getServicio()
-    { return $this->servicio;}
+    function getIdObjetivo()
+    { return $this->id_objetivo;}
 
 
     //SETTERS
-    function setIdParteOrden($val)
-    { $this->id_parte_orden=$val;}
+    function setIdTarea($val)
+    { $this->id_tarea=$val;}
 
-    function setFecha($val)
-    { $this->fecha=$val;}
+    function setNombre($val)
+    { $this->nombre=$val;}
 
-    function setIdParte($val)
-    {  $this->id_parte=$val;}
+    function setFechaInicio($val)
+    {  $this->fecha_inicio=$val;}
 
-    function setNroParteDiario($val)
-    { $this->nro_parte_diario=$val;}
+    function setFechaFin($val)
+    { $this->fecha_fin=$val;}
 
-    function setOrdenTipo($val)
-    { $this->orden_tipo=$val;}
-
-    function setOrdenNro($val)
-    { $this->orden_nro=$val;}
-
-    function setDuracion($val)
-    { $this->duracion=$val;}
-
-    function setServicio($val)
-    { $this->servicio=$val;}
-
+    function setIdObjetivo($val)
+    { $this->id_objetivo=$val;}
 
 
     function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_parte_orden,
-                      DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      id_parte, nro_parte_diario, orden_tipo, orden_nro, duracion, servicio
-                      from nov_parte_orden
-                      where id_parte_orden = :nro";
+            $query = "select id_tarea, nombre
+                      DATE_FORMAT(fecha_inicio, '%d/%m/%Y') as fecha_inicio,
+                      DATE_FORMAT(fecha_fin, '%d/%m/%Y') as fecha_fin,
+                      id_objetivo
+                      from obj_tareas
+                      where id_tarea = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdParteOrden($rows[0]['id_parte_orden']);
-            $this->setFecha($rows[0]['fecha']);
-            $this->setIdParte($rows[0]['id_parte']);
-            $this->setNroParteDiario($rows[0]['nro_parte_diario']);
-            $this->setOrdenTipo($rows[0]['orden_tipo']);
-            $this->setOrdenNro($rows[0]['orden_nro']);
-            $this->setDuracion($rows[0]['duracion']);
-            $this->setServicio($rows[0]['servicio']);
+            $this->setIdTarea($rows[0]['id_tarea']);
+            $this->setNombre($rows[0]['nombre']);
+            $this->setFechaInicio($rows[0]['fecha_inicio']);
+            $this->setFechaFin($rows[0]['fecha_fin']);
+            $this->setIdObjetivo($rows[0]['id_objetivo']);
         }
     }
 
 
-    public static function getParteOrden($id_parte) { //ok
+    public static function getTareas($id_objetivo) { //ok
+        //trae todas las tareas de un objetivo
         $stmt=new sQuery();
-        $query = "select npo.id_parte_orden,
-                  DATE_FORMAT(npo.fecha, '%d/%m/%Y') as fecha,
-                  npo.id_parte, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro, npo.duracion, npo.servicio
-                  from nov_parte_orden npo
-                  where npo.id_parte = :id_parte
-                  order by fecha asc";
+        $query = "select ot.id_tarea,
+                  DATE_FORMAT(ot.fecha_inicio, '%d/%m/%Y') as fecha_inicio,
+                  DATE_FORMAT(ot.fecha_fin, '%d/%m/%Y') as fecha_fin,
+                  ot.id_objetivo
+                  from obj_tareas ot
+                  where ot.id_objetivo = :id_objetivo
+                  order by fecha_inicio asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_parte', $id_parte);
+        $stmt->dpBind(':id_objetivo', $id_objetivo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

@@ -67,12 +67,12 @@
 
             //$(document).on('click', '.avances', function(){
             $('#content').on('click', '.avances', function(){
-                alert('presiono sobre avances');
+                //alert('presiono sobre avances');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_objetivo = id;
-                params.action = "avances";
-                //params.operation = "etapas"; //entra en default
+                params.action = "obj_objetivos";
+                params.operation = "avances";
                 //params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     //$("fieldset").prop("disabled", true);
