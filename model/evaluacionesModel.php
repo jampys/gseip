@@ -39,7 +39,7 @@ join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join contratos co on ec.id_contrato = co.id_contrato
 join companias cia on co.id_compania = cia.id_compania
 join puestos pu on ec.id_puesto = pu.id_puesto
-join planes_evaluacion pe on pe.periodo = :periodo
+join ead_planes_evaluacion pe on pe.periodo = :periodo
 where em.fecha_baja is null
 and co.id_contrato = ifnull(:id_contrato, co.id_contrato)
 group by em.id_empleado";
@@ -67,7 +67,7 @@ join contratos co on ec.id_contrato = co.id_contrato
 join companias cia on co.id_compania = cia.id_compania
 join puestos pu on ec.id_puesto = pu.id_puesto
 join ead_evaluacion_competencia eec on em.id_empleado = eec.id_empleado
-join planes_evaluacion pe on eec.id_plan_evaluacion = pe.id_plan_evaluacion
+join ead_planes_evaluacion pe on eec.id_plan_evaluacion = pe.id_plan_evaluacion
 where pe.periodo = :periodo
 and co.id_contrato = ifnull(:id_contrato, co.id_contrato)
 group by em.id_empleado";
@@ -84,7 +84,7 @@ group by em.id_empleado";
     public static function getPeriodos() { //ok
         $stmt=new sQuery();
         $query = "select periodo, cerrado
-                  from planes_evaluacion";
+                  from ead_planes_evaluacion";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();

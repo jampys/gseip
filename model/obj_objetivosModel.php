@@ -205,7 +205,7 @@ class Objetivo
     }
 
 
-    public static function getPeriodos(){ //ok
+    /*public static function getPeriodos(){ //ok
         $stmt=new sQuery();
         $query = "select periodo
 from obj_objetivos
@@ -215,12 +215,7 @@ select YEAR(CURDATE())"; //periodo actual (por si aun no existe un objetivo del 
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
-    }
-
-
-
-
-
+    }*/
 
 
 

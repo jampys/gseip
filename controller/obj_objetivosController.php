@@ -92,7 +92,7 @@ switch ($operation)
 
 
     default : //ok
-        $view->periodos = Objetivo::getPeriodos();
+        $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         //$view->objetivos = Objetivo::getObjetivos($view->periodo_actual);
         $view->contentTemplate="view/objetivos/objetivosGrid.php";
