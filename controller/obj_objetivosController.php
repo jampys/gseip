@@ -90,6 +90,22 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
+    case 'avances':
+        //$view->parte = new Parte($_POST['id_parte']);
+        //$view->label='Editar parte: '.$view->parte->getFechaParte().' '; //falta el nombre del contrato
+
+        //$view->empleados = Empleado::getEmpleados();
+        //$view->areas = NovArea::getAreas();
+        //$view->vehiculos = Vehiculo::getVehiculos();
+        //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
+
+        //$view->empleados = ParteEmpleado::getParteEmpleado($_POST['id_parte']);
+        //$view->ordenes = ParteOrden::getParteOrden($_POST['id_parte']);
+
+        $view->disableLayout=true;
+        $view->contentTemplate="view/objetivos/objetivosFormUpdate.php";
+        break;
+
 
     default : //ok
         $view->periodos = Evaluacion::getPeriodos();

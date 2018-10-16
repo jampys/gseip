@@ -65,8 +65,9 @@
             });
 
 
-            $(document).on('click', '.avances', function(){
-                //alert('presiono sobre avances');
+            //$(document).on('click', '.avances', function(){
+            $('#content').on('click', '.avances', function(){
+                alert('presiono sobre avances');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_objetivo = id;
@@ -79,7 +80,7 @@
                     //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
-                    $('#etapas_left_side #add').attr('id_postulacion', id);
+                    //$('#etapas_left_side #add').attr('id_postulacion', id);
                 })
 
             });
