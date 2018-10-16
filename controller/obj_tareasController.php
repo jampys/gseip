@@ -1,9 +1,9 @@
 ﻿<?php
-include_once("model/nov_parte-ordenModel.php");
+include_once("model/obj_tareasModel.php");
 
-include_once("model/puestosModel.php");
-include_once("model/localidadesModel.php");
-include_once("model/contratosModel.php");
+//include_once("model/puestosModel.php");
+//include_once("model/localidadesModel.php");
+//include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -13,7 +13,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid': //ok
+    case 'refreshGrid':
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -25,7 +25,7 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/ordenesGrid.php";
         break;
 
-    case 'saveOrden': //ok
+    case 'saveOrden':
         $orden = new ParteOrden($_POST['id_parte_orden']);
         $orden->setIdParte($_POST['id_parte']);
         $orden->setNroParteDiario($_POST['nro_parte_diario']);
@@ -40,29 +40,29 @@ switch ($operation)
         exit;
         break;
 
-    case 'newOrden': //ok
+    case 'newOrden':
         $view->label='Nueva Orden';
         $view->orden = new ParteOrden();
 
-        $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
+        //$view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
-        $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
+        $view->contentTemplate="view/objetivos/tarea_detailForm.php";
         break;
 
-    case 'editOrden': //ok
-        $view->label = ($_POST['target']!='view')? 'Editar orden': 'Ver orden';
-        $view->orden = new ParteOrden($_POST['id_parte_orden']);
+    case 'editTarea':
+        $view->label = ($_POST['target']!='view')? 'Editar tarea': 'Ver tarea';
+        $view->tarea = new Tarea($_POST['id_tarea']);
 
-        $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
+        //$view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
-        $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
+        $view->contentTemplate="view/objetivos/tarea_detailForm.php";
         break;
 
-    case 'deleteOrden': //ok
+    case 'deleteOrden':
         $view->orden = new ParteOrden($_POST['id_parte_orden']);
         $rta = $view->orden->deleteParteOrden();
         print_r(json_encode($rta));

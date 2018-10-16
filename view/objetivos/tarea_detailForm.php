@@ -19,6 +19,14 @@
         });
 
 
+        $('.input-daterange').datepicker({ //ok
+            //todayBtn: "linked",
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
+
+
         //cancel de formulario de parte-orden
         $('#orden-form #cancel').on('click', function(){
             //alert('cancelar form parte-orden');
@@ -111,44 +119,22 @@
     </div>
 
         <!--<input type="hidden" name="id_parte" id="id_parte" value="<?php //print $view->orden->getIdParte() ?>">-->
-        <input type="hidden" name="id_parte_orden" id="id_parte_orden" value="<?php print $view->orden->getIdParteOrden() ?>">
+        <input type="hidden" name="id_tarea" id="id_tarea" value="<?php print $view->tarea->getIdTarea() ?>">
 
         <div class="form-group required">
-            <label class="control-label" for="codigo">Nro. parte diario</label>
-            <input class="form-control" type="text" name="nro_parte_diario" id="nro_parte_diario" value = "<?php print $view->orden->getNroParteDiario() ?>" placeholder="Nro. parte diario">
+            <label class="control-label" for="nombre">Nombre</label>
+            <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->tarea->getNombre() ?>" placeholder="Nombre">
         </div>
+
 
         <div class="form-group required">
-            <label for="orden_tipo" class="control-label">Tipo orden</label>
-            <select class="form-control selectpicker show-tick" id="orden_tipo" name="orden_tipo" title="Seleccione el tipo de orden">
-                <?php foreach ($view->orden_tipos['enum'] as $nac){
-                    ?>
-                    <option value="<?php echo $nac; ?>"
-                        <?php echo ($nac == $view->orden->getOrdenTipo() OR ($nac == $view->orden_tipos['default'] AND !$view->orden->getIdParteOrden()) )? 'selected' :'' ?>
-                        >
-                        <?php echo $nac; ?>
-                    </option>
-                <?php  } ?>
-            </select>
+            <label class="control-label" for="empleado">Fecha inicio / fin</label>
+            <div class="input-group input-daterange">
+                <input class="form-control" type="text" name="fecha_inicio" id="fecha_fin" value = "<?php print $view->tarea->getFechaInicio() ?>" placeholder="DD/MM/AAAA">
+                <div class="input-group-addon">a</div>
+                <input class="form-control" type="text" name="fecha_fin" id="fecha_fin" value = "<?php print $view->tarea->getFechaFin() ?>" placeholder="DD/MM/AAAA">
+            </div>
         </div>
-
-        <div class="form-group required">
-            <label class="control-label" for="orden_nro">Nro. orden</label>
-            <input class="form-control" type="text" name="orden_nro" id="orden_nro" value = "<?php print $view->orden->getOrdenNro() ?>" placeholder="Nro. orden">
-        </div>
-
-        <div class="form-group required">
-            <label class="control-label" for="duracion">Duración (hs)</label>
-            <input class="form-control" type="text" name="duracion" id="duracion" value = "<?php print $view->orden->getDuracion() ?>" placeholder="Duración">
-        </div>
-
-        <div class="form-group">
-            <label class="control-label" for="servicio">Servicio</label>
-            <textarea class="form-control" name="servicio" id="servicio" placeholder="Servicio" rows="2"><?php print $view->orden->getServicio(); ?></textarea>
-        </div>
-
-
-
 
 
     <div id="myElem" class="msg" style="display:none"></div>

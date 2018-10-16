@@ -3,12 +3,12 @@
     <table class="table table-condensed dataTable table-hover">
         <thead>
         <tr>
-            <th>Tarea</th>
+            <!--<th>Tarea</th>
             <th>F. Inicio</th>
             <th>F. Fin</th>
             <th></th>
             <th></th>
-            <th></th>
+            <th></th>-->
         </tr>
         </thead>
         <tbody>

@@ -17,16 +17,16 @@
             //modal: true,
         });
 
-        //para editar empleado de un parte
-        $('.grid-empleados').on('click', '.edit', function(){
+        //para editar una tarea
+        $('.grid-tareas').on('click', '.edit', function(){
             //alert('editar empleado del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_parte_empleado = id;
-            params.action = "parte-empleado";
-            params.operation = "editEmpleado";
+            params.id_tarea = id;
+            params.action = "obj_tareas";
+            params.operation = "editTarea";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');

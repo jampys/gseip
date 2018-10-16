@@ -46,7 +46,7 @@ class Tarea
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_tarea, nombre
+            $query = "select id_tarea, nombre,
                       DATE_FORMAT(fecha_inicio, '%d/%m/%Y') as fecha_inicio,
                       DATE_FORMAT(fecha_fin, '%d/%m/%Y') as fecha_fin,
                       id_objetivo
@@ -69,7 +69,7 @@ class Tarea
     public static function getTareas($id_objetivo) { //ok
         //trae todas las tareas de un objetivo
         $stmt=new sQuery();
-        $query = "select ot.id_tarea,
+        $query = "select ot.id_tarea, ot.nombre,
                   DATE_FORMAT(ot.fecha_inicio, '%d/%m/%Y') as fecha_inicio,
                   DATE_FORMAT(ot.fecha_fin, '%d/%m/%Y') as fecha_fin,
                   ot.id_objetivo
