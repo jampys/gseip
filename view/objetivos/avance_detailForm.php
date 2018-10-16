@@ -13,50 +13,89 @@
         });
 
 
-        $('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });
-
-
         $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
         });
 
 
-        //cancel de formulario de etapa
-        $('#etapa-form #cancel').on('click', function(){
-            $('#etapa-form').hide();
+        //cancel de formulario de parte-empleado
+        $('#empleado-form #cancel').on('click', function(){ //ok
+            //alert('cancelar form parte-empleado');
+            $('#empleado-form').hide();
         });
 
 
-        $('#etapa-form').validate({
+
+        //Guardar parte-empleado luego de ingresar nuevo o editar
+        $('#empleado-form').on('click', '#submit',function(){ //ok
+            //alert('guardar empleado');
+
+            if ($("#empleado-form").valid()){
+
+                var params={};
+                params.action = 'parte-empleado';
+                params.operation = 'saveEmpleado';
+                params.id_parte = $('#id_parte').val();
+                params.id_parte_empleado = $('#id_parte_empleado').val();
+                params.id_empleado = $('#id_empleado').val();
+                //params.conductor = $('input[name=conductor]:checked').val();
+                params.conductor = $('#conductor').prop('checked')? 1:0;
+                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                //alert(params.aplica);
+
+                $.post('index.php',params,function(data, status, xhr){
+
+                    //alert(objeto.id);
+                    //alert(xhr.responseText);
+
+                    if(data >=0){
+                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                        $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        //$("#search").trigger("click");
+                        setTimeout(function() { $("#myElem").hide();
+                            //$('#myModal').modal('hide');
+                            $('#empleado-form').hide();
+                        }, 2000);
+                    }else{
+                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                    }
+
+                }, 'json');
+
+            }
+            return false;
+        });
+
+
+
+
+        $('#empleado-form').validate({ //ok
             rules: {
-                /*codigo: {
-                        required: true,
-                        digits: true,
-                        maxlength: 6
-                },*/
-                fecha_etapa: {required: true},
-                etapa: {required: true},
-                aplica: {required: true},
-                motivo: {required: true},
-                modo_contacto: {required: true}
+                id_empleado: {required: true}
+                /*conductor: {
+                    //required: true,
+                    remote: {
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            action: "parte-empleado",
+                            operation: "checkEmpleado",
+                            id_parte_empleado: function(){ return $('#id_parte_empleado').val();},
+                            id_parte: function(){ return $('#id_parte').val();}
+                        }
+                    }
+                }*/
             },
             messages:{
-                /*codigo: {
-                    required: "Ingrese el código",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                }, */
-                fecha_etapa: "Seleccione una fecha para la etapa",
-                etapa: "Seleccione una etapa",
-                aplica: "Seleccione una opción",
-                motivo: "Seleccione el motivo",
-                modo_contacto: "Seleccione el modo de contacto"
+                id_empleado: "Seleccione un empleado"
+                /*conductor: {
+                    //required: "Seleccione un empleado",
+                    remote: "La cuadrilla tiene asignado otro conductor"
+                }*/
             }
 
         });
@@ -69,94 +108,117 @@
 
 
 
-<form name ="etapa-form" id="etapa-form" method="POST" action="index.php">
+<form name ="empleado-form" id="empleado-form" method="POST" action="index.php">
     <fieldset>
 
     <div class="alert alert-info">
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_etapa" id="id_etapa" value="<?php print $view->etapa->getIdEtapa() ?>">
-    <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->etapa->getIdPostulacion() ?>">
+        <!--<input type="hidden" name="id_parte" id="id_parte" value="<?php //print $view->empleado->getIdParte() ?>">-->
+        <input type="hidden" name="id_parte_empleado" id="id_parte_empleado" value="<?php print $view->empleado->getIdParteEmpleado() ?>">
 
-    <div class="form-group required">
-        <label class="control-label" for="fecha_etapa">Fecha etapa</label>
-        <div class="input-group date">
-            <input class="form-control" type="text" name="fecha_etapa" id="fecha_etapa" value = "<?php print $view->etapa->getFechaEtapa() ?>" placeholder="DD/MM/AAAA">
-            <div class="input-group-addon">
-                <span class="glyphicon glyphicon-th"></span>
+
+        <div class="form-group required">
+            <label for="id_empleado" class="control-label">Empleado</label>
+            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
+                <?php foreach ($view->empleados as $em){
+                    ?>
+                    <option value="<?php echo $em['id_empleado']; ?>"
+                        <?php echo ($em['id_empleado'] == $view->empleado->getIdEmpleado())? 'selected' :'' ?>
+                        >
+                        <?php echo $em['apellido'].' '.$em['nombre'];?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+
+
+        <!--<div class="form-group required">
+            <label for="conductor" class="control-label">Conductor</label>
+
+            <div class="input-group">
+
+                <?php //foreach($view->conductor['enum'] as $val){ ?>
+                    <label class="radio-inline">
+                        <input type="radio" name="conductor" value="<?php //echo $val ?>"
+                            <?php //echo ($val == $view->empleado->getConductor() OR ($val == $view->conductor['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
+                            ><?php //echo ($val==1)? 'Si':'No' ?>
+                    </label>
+                <?php //} ?>
+
+            </div>
+        </div>-->
+
+
+        <div class="form-group required">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="conductor" name="conductor" <?php echo ($view->empleado->getConductor()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para la persona que maneja">Conductor</a>
+                </label>
             </div>
         </div>
-    </div>
-
-    <div class="form-group required">
-        <label for="etapa" class="control-label">Etapa</label>
-        <select class="form-control selectpicker show-tick" id="etapa" name="etapa" title="Seleccione la etapa"  data-live-search="true" data-size="5">
-            <?php foreach ($view->etapas['enum'] as $et){
-                ?>
-                <option value="<?php echo $et; ?>"
-                    <?php echo ($et == $view->etapa->getEtapa() OR ($et == $view->etapas['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
-                    >
-                    <?php echo $et; ?>
-                </option>
-            <?php  } ?>
-        </select>
-    </div>
 
 
-    <div class="form-group required">
-        <label for="aplica" class="control-label">Aplica</label>
 
-        <div class="input-group">
+        <!--<hr/>
+        <div class="row">
 
-            <?php foreach($view->aplica_opts['enum'] as $val){ ?>
-                <label class="radio-inline">
-                    <input type="radio" name="aplica" value="<?php echo $val ?>"
-                        <?php echo ($val == $view->etapa->getAplica() OR ($val == $view->aplica_opts['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
-                        ><?php echo ($val==1)? 'Si':'No' ?>
-                </label>
-            <?php } ?>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="hs_manejo">Hs. manejo (HM)</label>
+                    <input class="form-control" type="text" name="hs_manejo" id="hs_manejo" value = "<?php //print $view->empleado->getHsManejo() ?>" placeholder="Hs. manejo" disabled>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="hs_viaje">Hs. viaje (HV)</label>
+                    <input class="form-control" type="text" name="hs_viaje" id="hs_viaje" value = "<?php //print $view->empleado->getHsViaje() ?>" placeholder="Hs. viaje" disabled>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="hs_base">Hs. base (HB)</label>
+                    <input class="form-control" type="text" name="hs_base" id="hs_base" value = "<?php //print $view->empleado->getHsBase() ?>" placeholder="Hs. base" disabled>
+                </div>
+            </div>
 
         </div>
-    </div>
+
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="vianda_diaria">Vianda diaria (VD)</label>
+                    <input class="form-control" type="text" name="vianda_diaria" id="vianda_diaria" value = "<?php //print $view->empleado->getViandaDiaria() ?>" placeholder="Vianda diaria" disabled>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="vianda_extra">Vianda extra (VE)</label>
+                    <input class="form-control" type="text" name="vianda_extra" id="vianda_extra" value = "<?php //print $view->empleado->getViandaExtra() ?>" placeholder="Vianda extra" disabled>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+            </div>
+
+        </div>-->
 
 
 
-    <div class="form-group required">
-        <label for="motivo" class="control-label">Motivo</label>
-        <select class="form-control selectpicker show-tick" id="motivo" name="motivo" title="Seleccione el motivo"  data-live-search="true" data-size="5">
-            <?php foreach ($view->motivos['enum'] as $mo){
-                ?>
-                <option value="<?php echo $mo; ?>"
-                    <?php echo ($mo == $view->etapa->getMotivo() OR ($mo == $view->motivos['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
-                    >
-                    <?php echo $mo; ?>
-                </option>
-            <?php  } ?>
-        </select>
-    </div>
-
-    <div class="form-group required">
-        <label for="modo_contacto" class="control-label">Modo contacto</label>
-        <select class="form-control selectpicker show-tick" id="modo_contacto" name="modo_contacto" title="Seleccione el modo de contacto"  data-live-search="true" data-size="5">
-            <?php foreach ($view->modos_contacto['enum'] as $mc){
-                ?>
-                <option value="<?php echo $mc; ?>"
-                    <?php echo ($mc == $view->etapa->getModoContacto() OR ($mc == $view->modos_contacto['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
-                    >
-                    <?php echo $mc; ?>
-                </option>
-            <?php  } ?>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label" for="comentarios">Comentarios</label>
-        <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="2"><?php print $view->etapa->getComentarios(); ?></textarea>
-    </div>
 
 
-    <div id="myElem" class="msg" style="display:none"></div>
+
+
+
+
+        <div id="myElem" class="msg" style="display:none"></div>
 
 
 
