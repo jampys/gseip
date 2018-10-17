@@ -1,9 +1,9 @@
 ﻿<?php
 include_once("model/etapasModel.php");
 
-include_once("model/puestosModel.php");
-include_once("model/localidadesModel.php");
-include_once("model/contratosModel.php");
+//include_once("model/puestosModel.php");
+//include_once("model/localidadesModel.php");
+//include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -13,7 +13,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -21,88 +21,71 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
-        $view->contentTemplate="view/postulaciones/etapasGrid.php";
+        $view->avances = Avance::getAvances($_POST['id_objetivo']);
+        $view->contentTemplate="view/objetivos/avancesGrid.php";
         break;
 
-    case 'saveEtapa':
-        $etapa = new Etapa($_POST['id_etapa']);
-        $etapa->setIdPostulacion($_POST['id_postulacion']);
-        $etapa->setFechaEtapa($_POST['fecha_etapa']);
-        $etapa->setEtapa($_POST['etapa']);
-        $etapa->setAplica($_POST['aplica']);
-        $etapa->setMotivo($_POST['motivo']);
-        $etapa->setModoContacto($_POST['modo_contacto']);
-        $etapa->setComentarios($_POST['comentarios']);
-        $etapa->setIdUser($_SESSION['id_user']);
+    case 'saveAvance': //ok
+        $avance = new Avance($_POST['id_avance']);
+        $avance->setIdAvance($_POST['id_avance']);
+        $avance->setIdObjetivo($_POST['id_objetivo']);
+        $avance->setFecha($_POST['fecha']);
+        $avance->setIndicador($_POST['indicador']);
+        $avance->setCantidad($_POST['cantidad']);
+        $avance->setComentarios($_POST['comentarios']);
+        $avance->setIdUser($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         //$busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
-        $rta = $etapa->save();
+        $rta = $avance->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'newEtapa':
-        $view->label='Nueva etapa';
-        $view->etapa = new Etapa($_POST['id_etapa']);
+    case 'newAvance': //ok
+        $view->label='Nuevo avance';
+        $view->avance = new Avance($_POST['id_avance']);
 
         //$view->puestos = Puesto::getPuestos();
-        $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        $view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
-        $view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
-        $view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
+        //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
+        //$view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
+        //$view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
+        //$view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
+        $view->contentTemplate="view/objetivos/avance_detailForm.php";
         break;
 
-    case 'editEtapa':
-        $view->label = ($_POST['target']!='view')? 'Editar etapa': 'Ver etapa';
-        $view->etapa = new Etapa($_POST['id_etapa']);
+    case 'editAvance': //ok
+        $view->label = ($_POST['target']!='view')? 'Editar avance': 'Ver avance';
+        $view->avance = new Avance($_POST['id_avance']);
 
         //$view->puestos = Puesto::getPuestos();
-        $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        $view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
-        $view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
-        $view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
+        //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
+        //$view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
+        //$view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
+        //$view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
-        $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
+        $view->contentTemplate="view/objetivos/avance_detailForm.php";
         break;
 
-    case 'deleteEtapa':
-        $view->etapa = new Etapa($_POST['id_etapa']);
-        $rta = $view->etapa->deleteEtapa();
+    case 'deleteAvance': //ok
+        $view->avance = new Avance($_POST['id_avance']);
+        $rta = $view->avance->deleteAvance();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-
-    case 'checkFechaEmision':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'checkFechaVencimiento':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-
     default : //carga la tabla de avance del objetivo
         //$view->postulacion = new Postulacion($_POST['id_postulacion']);
-        $view->label='Avance del objetivo';
-        $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
+        //$view->label='Avance del objetivo';
+        //$view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
         //$view->localidades = Localidad::getLocalidades();
         //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
-        $view->disableLayout=true;
-        $view->contentTemplate="view/objetivos/avancesForm.php";
+        //$view->disableLayout=true;
+        //$view->contentTemplate="view/objetivos/avancesForm.php";
         break;
 }
 
