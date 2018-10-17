@@ -47,6 +47,7 @@
                 params.id_objetivo = $('#id_objetivo').val();
                 params.id_tarea = $('#id_tarea').val();
                 params.nombre = $('#nombre').val();
+                params.descripcion = $('#descripcion').val();
                 params.fecha_inicio = $('#fecha_inicio').val();
                 params.fecha_fin = $('#fecha_fin').val();
                 //params.conductor = $('input[name=conductor]:checked').val();
@@ -88,7 +89,9 @@
                         digits: true,
                         maxlength: 6
                 },*/
-                nombre: {required: true}
+                nombre: {required: true},
+                fecha_inicio: {required: true},
+                fecha_fin: {required: true}
             },
             messages:{
                 /*codigo: {
@@ -96,7 +99,10 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }, */
-                nombre: "Nombre el nombre"
+                nombre: "Ingrese el nombre",
+                fecha_inicio: "Seleccione la fecha de inicio",
+                fecha_fin: "Seleccione la fecha de fin"
+
             }
 
         });
@@ -122,6 +128,12 @@
         <div class="form-group required">
             <label class="control-label" for="nombre">Nombre</label>
             <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->tarea->getNombre() ?>" placeholder="Nombre">
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label" for="descripcion">Descripción</label>
+            <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="2"><?php print $view->tarea->getDescripcion(); ?></textarea>
         </div>
 
 

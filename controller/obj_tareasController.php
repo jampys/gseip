@@ -28,6 +28,7 @@ switch ($operation)
     case 'saveTarea': //ok
         $tarea = new Tarea($_POST['id_tarea']);
         $tarea->setNombre($_POST['nombre']);
+        $tarea->setDescripcion($_POST['descripcion']);
         $tarea->setFechaInicio($_POST['fecha_inicio']);
         $tarea->setFechaFin($_POST['fecha_fin']);
         $tarea->setIdObjetivo($_POST['id_objetivo']);

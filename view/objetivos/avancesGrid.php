@@ -4,6 +4,7 @@
         <thead>
         <tr>
             <!--<th>Fecha</th>
+            <th>Tarea</th>
             <th>Indicador</th>
             <th>Cant.</th>
             <th>Usr.</th>
@@ -16,6 +17,7 @@
         <?php foreach ($view->avances as $av): ?>
             <tr data-id="<?php echo $av['id_avance'];?>">
                 <td><?php echo $av['fecha'];?></td>
+                <td><?php echo $av['tarea'];?></td>
                 <td><?php echo $av['indicador'];?></td>
                 <td><?php echo $av['cantidad'];?></td>
                 <td><?php echo $av['user'];?></td>

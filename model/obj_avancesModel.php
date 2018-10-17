@@ -91,12 +91,14 @@ class Avance
 
     public static function getAvances($id_objetivo) { //ok
         $stmt=new sQuery();
-        $query = "select av.id_avance, av.id_objetivo, id_tarea,
+        $query = "select av.id_avance, av.id_objetivo, av.id_tarea,
                   DATE_FORMAT(av.fecha, '%d/%m/%Y') as fecha,
                   av.indicador, av.cantidad, av.comentarios, av.id_user,
+                  ot.nombre as tarea,
                   us.user
                   from obj_avances av
                   join sec_users us on av.id_user = us.id_user
+                  left join obj_tareas ot on av.id_tarea = ot.id_tarea
                   where av.id_objetivo = :id_objetivo
                   order by av.fecha asc";
         $stmt->dpPrepare($query);

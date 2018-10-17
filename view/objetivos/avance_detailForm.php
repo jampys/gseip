@@ -46,7 +46,8 @@
                 params.operation = 'saveAvance';
                 params.id_avance = $('#id_avance').val();
                 params.id_objetivo = $('#id_objetivo').val();
-                params.tarea = $('#tarea').val();
+                params.fecha = $('#fecha').val();
+                params.id_tarea = $('#id_tarea').val();
                 params.indicador = $('#indicador').val();
                 params.cantidad = $('#cantidad').val();
                 params.comentarios = $('#comentarios').val();

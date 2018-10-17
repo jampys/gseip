@@ -4,6 +4,7 @@ class Tarea
 {
     private $id_tarea;
     private $nombre;
+    private $descripcion;
     private $fecha_inicio;
     private $fecha_fin;
     private $id_objetivo;
@@ -14,6 +15,9 @@ class Tarea
 
     function getNombre()
     { return $this->nombre;}
+
+    function getDescripcion()
+    { return $this->descripcion;}
 
     function getFechaInicio()
     { return $this->fecha_inicio;}
@@ -32,6 +36,9 @@ class Tarea
     function setNombre($val)
     { $this->nombre=$val;}
 
+    function setDescripcion($val)
+    { $this->descripcion=$val;}
+
     function setFechaInicio($val)
     {  $this->fecha_inicio=$val;}
 
@@ -46,7 +53,7 @@ class Tarea
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_tarea, nombre,
+            $query = "select id_tarea, nombre, descripcion,
                       DATE_FORMAT(fecha_inicio, '%d/%m/%Y') as fecha_inicio,
                       DATE_FORMAT(fecha_fin, '%d/%m/%Y') as fecha_fin,
                       id_objetivo
@@ -59,6 +66,7 @@ class Tarea
 
             $this->setIdTarea($rows[0]['id_tarea']);
             $this->setNombre($rows[0]['nombre']);
+            $this->setDescripcion($rows[0]['descripcion']);
             $this->setFechaInicio($rows[0]['fecha_inicio']);
             $this->setFechaFin($rows[0]['fecha_fin']);
             $this->setIdObjetivo($rows[0]['id_objetivo']);
@@ -69,7 +77,7 @@ class Tarea
     public static function getTareas($id_objetivo) { //ok
         //trae todas las tareas de un objetivo
         $stmt=new sQuery();
-        $query = "select ot.id_tarea, ot.nombre,
+        $query = "select ot.id_tarea, ot.nombre, ot.descripcion,
                   DATE_FORMAT(ot.fecha_inicio, '%d/%m/%Y') as fecha_inicio,
                   DATE_FORMAT(ot.fecha_fin, '%d/%m/%Y') as fecha_fin,
                   ot.id_objetivo
@@ -94,12 +102,13 @@ class Tarea
 
     public function updateTarea(){ //ok
         $stmt=new sQuery();
-        $query="update obj_tareas set nombre = :nombre,
+        $query="update obj_tareas set nombre = :nombre, descripcion = :descripcion,
                 fecha_inicio = STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'),
                 fecha_fin = STR_TO_DATE(:fecha_fin, '%d/%m/%Y')
                 where id_tarea = :id_tarea";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':descripcion', $this->getDescripcion());
         $stmt->dpBind(':fecha_inicio', $this->getFechaInicio());
         $stmt->dpBind(':fecha_fin', $this->getFechaFin());
         $stmt->dpBind(':id_tarea', $this->getIdTarea());
@@ -110,10 +119,11 @@ class Tarea
 
     public function insertTarea(){ //ok
         $stmt=new sQuery();
-        $query="insert into obj_tareas(nombre, fecha_inicio, fecha_fin, id_objetivo)
-                values(:nombre, STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'), STR_TO_DATE(:fecha_fin, '%d/%m/%Y'), :id_objetivo)";
+        $query="insert into obj_tareas(nombre, descripcion, fecha_inicio, fecha_fin, id_objetivo)
+                values(:nombre, :descripcion, STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'), STR_TO_DATE(:fecha_fin, '%d/%m/%Y'), :id_objetivo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':descripcion', $this->getDescripcion());
         $stmt->dpBind(':fecha_inicio', $this->getFechaInicio());
         $stmt->dpBind(':fecha_fin', $this->getFechaFin());
         $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
