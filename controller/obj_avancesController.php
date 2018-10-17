@@ -47,11 +47,8 @@ switch ($operation)
         $view->label='Nuevo avance';
         $view->avance = new Avance($_POST['id_avance']);
 
-        //$view->puestos = Puesto::getPuestos();
-        //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        //$view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
-        //$view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
-        //$view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
+        $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
+        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivos/avance_detailForm.php";
@@ -63,9 +60,6 @@ switch ($operation)
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
-        //$view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
-        //$view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
-        //$view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];

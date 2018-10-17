@@ -83,7 +83,7 @@ class Tarea
                   ot.id_objetivo
                   from obj_tareas ot
                   where ot.id_objetivo = :id_objetivo
-                  order by fecha_inicio asc";
+                  order by ot.fecha_inicio asc, ot.fecha_fin asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_objetivo', $id_objetivo);
         $stmt->dpExecute();
