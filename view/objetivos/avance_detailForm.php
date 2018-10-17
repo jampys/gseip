@@ -35,7 +35,7 @@
 
 
 
-        //Guardar parte-empleado luego de ingresar nuevo o editar
+        //Guardar avance luego de ingresar nuevo o editar
         $('#avance-form').on('click', '#submit',function(){ //ok
             //alert('guardar empleado');
 

@@ -35,8 +35,8 @@
 
 
 
-        //Guardar parte-orden luego de ingresar nuevo o editar
-        $('#right_side').on('click', '#submit',function(){ //ok
+        //Guardar tarea luego de ingresar nueva o editar
+        $('#tarea-form').on('click', '#submit',function(){ //ok
             //alert('guardar orden');
 
             if ($("#tarea-form").valid()){
