@@ -141,8 +141,9 @@ class Avance
     private function insertAvance(){ //ok
         $stmt=new sQuery();
         $query="insert into obj_avances(id_objetivo, fecha, id_tarea, indicador, cantidad, comentarios, id_user)
-                values(:id_objetivo, STR_TO_DATE(:fecha, '%d/%m/%Y'), :id_tarea :indicador, :cantidad, :comentarios, :id_user)";
+                values(:id_objetivo, STR_TO_DATE(:fecha, '%d/%m/%Y'), :id_tarea, :indicador, :cantidad, :comentarios, :id_user)";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpBind(':fecha', $this->getFecha());
         $stmt->dpBind(':id_tarea', $this->getIdTarea());
         $stmt->dpBind(':indicador', $this->getIndicador());

@@ -40,7 +40,8 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nombre</th>
+                <th>Código</th>
+                <th>Objetivo</th>
                 <th>Puesto</th>
                 <th>Área</th>
                 <th>Contrato</th>
@@ -56,6 +57,7 @@
             <?php if(isset($view->objetivos)) {
                 foreach ($view->objetivos as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_objetivo']; ?>">
+                        <td><?php echo $rp['codigo']; ?></td>
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['puesto']; ?></td>
                         <td><?php echo $rp['area']; ?></td>

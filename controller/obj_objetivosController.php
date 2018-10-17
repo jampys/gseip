@@ -3,10 +3,9 @@ include_once("model/obj_objetivosModel.php");
 include_once("model/obj_tareasModel.php");
 include_once("model/obj_avancesModel.php");
 include_once("model/evaluacionesModel.php");
-
-//include_once("model/busquedasModel.php");
-//include_once("model/postulantesModel.php");
-//include_once("model/etapasModel.php");
+include_once("model/puestosModel.php");
+include_once("model/areasModel.php");
+include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];

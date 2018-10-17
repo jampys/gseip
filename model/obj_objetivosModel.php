@@ -15,6 +15,7 @@ class Objetivo
     private $frecuencia;
     private $id_responsable_ejecucion;
     private $id_responsable_seguimiento;
+    private $codigo;
 
     // GETTERS
     function getIdObjetivo()
@@ -52,6 +53,9 @@ class Objetivo
 
     function getIdResponsableSeguimiento()
     { return $this->id_responsable_seguimiento;}
+
+    function getCodigo()
+    { return $this->codigo;}
 
 
     //SETTERS
@@ -91,6 +95,10 @@ class Objetivo
     function setIdResponsableSeguimiento($val)
     { $this->id_responsable_seguimiento=$val;}
 
+    function setCodigo($val)
+    { $this->codigo=$val;}
+
+
 
     function __construct($nro=0){ //constructor ok
 
@@ -114,6 +122,7 @@ class Objetivo
             $this->setFrecuencia($rows[0]['frecuencia']);
             $this->setIdResponsableEjecucion($rows[0]['id_responsable_ejecucion']);
             $this->setIdResponsableSeguimiento($rows[0]['id_responsable_seguimiento']);
+            $this->setCodigo($rows[0]['codigo']);
         }
     }
 
@@ -176,8 +185,8 @@ class Objetivo
     private function insertObjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into obj_objetivos(periodo, nombre, id_area, id_contrato, id_puesto, meta, actividades, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento)
-                values(:periodo, :nombre, :id_area, :id_contrato, :id_puesto, :meta, :actividades, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento)";
+        $query="insert into obj_objetivos(periodo, nombre, id_area, id_contrato, id_puesto, meta, actividades, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento, fecha)
+                values(:periodo, :nombre, :id_area, :id_contrato, :id_puesto, :meta, :actividades, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento, SYSDATE())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':nombre', $this->getNombre());
