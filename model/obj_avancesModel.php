@@ -4,6 +4,7 @@ class Avance
 {
     private $id_avance;
     private $id_objetivo;
+    private $id_tarea;
     private $fecha; //fecha de registro en el sistema
     private $indicador;
     private $cantidad;
@@ -16,6 +17,9 @@ class Avance
 
     function getIdObjetivo()
     { return $this->id_objetivo;}
+
+    function getIdTarea()
+    { return $this->id_tarea;}
 
     function getFecha()
     { return $this->fecha;}
@@ -40,6 +44,9 @@ class Avance
     function setIdObjetivo($val)
     {  $this->id_objetivo=$val;}
 
+    function setIdTarea($val)
+    {  $this->id_tarea=$val;}
+
     function setFecha($val)
     { $this->fecha=$val;}
 
@@ -60,7 +67,7 @@ class Avance
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_avance, id_objetivo,
+            $query = "select id_avance, id_objetivo, id_tarea,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
                       indicador, cantidad, comentarios, id_user
                       from obj_avances
@@ -72,6 +79,7 @@ class Avance
 
             $this->setIdAvance($rows[0]['id_avance']);
             $this->setIdObjetivo($rows[0]['id_objetivo']);
+            $this->setIdTarea($rows[0]['id_tarea']);
             $this->setFecha($rows[0]['fecha']);
             $this->setIndicador($rows[0]['indicador']);
             $this->setCantidad($rows[0]['cantidad']);
@@ -83,13 +91,13 @@ class Avance
 
     public static function getAvances($id_objetivo) { //ok
         $stmt=new sQuery();
-        $query = "select av.id_avance, av.id_objetivo,
-                  DATE_FORMAT(et.fecha, '%d/%m/%Y') as fecha,
+        $query = "select av.id_avance, av.id_objetivo, id_tarea,
+                  DATE_FORMAT(av.fecha, '%d/%m/%Y') as fecha,
                   av.indicador, av.cantidad, av.comentarios, av.id_user,
                   us.user
                   from obj_avances av
                   join sec_users us on av.id_user = us.id_user
-                  where et.id_objetivo = :id_objetivo
+                  where av.id_objetivo = :id_objetivo
                   order by av.fecha asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_objetivo', $id_objetivo);
@@ -111,12 +119,14 @@ class Avance
     public function updateAvance(){ //ok
         $stmt=new sQuery();
         $query="update obj_avances set fecha = STR_TO_DATE(:fecha, '%d/%m/%Y'),
+                id_tarea = :id_tarea,
                 indicador = :indicador,
                 cantidad = :cantidad,
                 comentarios = :comentarios
                 where id_avance = :id_avance";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha', $this->getFecha());
+        $stmt->dpBind(':id_tarea', $this->getIdTarea());
         $stmt->dpBind(':indicador', $this->getIndicador());
         $stmt->dpBind(':cantidad', $this->getCantidad());
         $stmt->dpBind(':comentarios', $this->getComentarios());
@@ -128,10 +138,11 @@ class Avance
 
     private function insertAvance(){ //ok
         $stmt=new sQuery();
-        $query="insert into obj_avances(id_objetivo, fecha, indicador, cantidad, comentarios, id_user)
-                values(:id_objetivo, STR_TO_DATE(:fecha, '%d/%m/%Y'), :indicador, :cantidad, :comentarios, :id_user)";
+        $query="insert into obj_avances(id_objetivo, fecha, id_tarea, indicador, cantidad, comentarios, id_user)
+                values(:id_objetivo, STR_TO_DATE(:fecha, '%d/%m/%Y'), :id_tarea :indicador, :cantidad, :comentarios, :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha', $this->getFecha());
+        $stmt->dpBind(':id_tarea', $this->getIdTarea());
         $stmt->dpBind(':indicador', $this->getIndicador());
         $stmt->dpBind(':cantidad', $this->getCantidad());
         $stmt->dpBind(':comentarios', $this->getComentarios());

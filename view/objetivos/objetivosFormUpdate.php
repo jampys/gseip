@@ -27,7 +27,6 @@
             params.id_tarea = id;
             params.action = "obj_tareas";
             params.operation = "editTarea";
-            //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
@@ -36,16 +35,16 @@
         });
 
         //para editar un avance
-        $('.grid-avances').on('click', '.edit', function(){
+        $('.grid-avances').on('click', '.edit', function(){ //ok
             //alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
             params.id_avance = id;
-            params.action = "parte-orden";
-            params.operation = "editOrden";
-            //alert(params.id_renovacion);
+            params.id_objetivo = $('#id_objetivo').val();
+            params.action = "obj_avances";
+            params.operation = "editAvance";
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
@@ -77,21 +76,21 @@
         });
 
 
-        //para ver orden de un parte
-        $('.grid-ordenes').on('click', '.view', function(){
+        //para ver un avance
+        $('.grid-avances').on('click', '.view', function(){ //ok
             //alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_parte_orden = id;
-            params.action = "parte-orden";
-            params.operation = "editOrden";
+            params.id_avance = id;
+            params.action = "obj_avances";
+            params.operation = "editAvance";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 $("#right_side fieldset").prop("disabled", true);
-                $("#orden-form #footer-buttons button").css('display', 'none');
+                $("#avance-form #footer-buttons button").css('display', 'none');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 $('.selectpicker').selectpicker('refresh');
@@ -117,13 +116,13 @@
         });
 
 
-        //Abre formulario para ingresar una nueva orden al parte
-        $('#left_side').on('click', '#add-orden', function(){
+        //Abre formulario para ingresar un avance
+        $('#left_side').on('click', '#add-avance', function(){ //ok
             params={};
-            params.action = "parte-orden";
-            params.operation = "newOrden";
+            params.action = "obj_avances";
+            params.operation = "newAvance";
             //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
-            params.id_parte = $('#id_parte').val();
+            params.id_objetivo = $('#id_objetivo').val();
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -197,13 +196,12 @@
 
 
 
-        //eliminar orden del parte
-        $('.grid-ordenes').on('click', '.delete', function(){
+        //eliminar un avance
+        $('.grid-avances').on('click', '.delete', function(){
             //alert('Funcionalidad en desarrollo');
-            //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            $('#confirm-ord').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm-avance').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -230,26 +228,26 @@
             //alert(id);
             //preparo los parametros
             params={};
-            params.id_parte_orden = id;
-            params.id_parte = $('#id_parte').val();
+            params.id_avance = id;
+            params.id_objetivo = $('#id_objetivo').val();
             //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
-            params.action = "parte-orden";
-            params.operation = "deleteOrden";
+            params.action = "obj_avances";
+            params.operation = "deleteAvance";
             //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-ord #myElemento").html('Orden eliminada con exito').addClass('alert alert-success').show();
-                    $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
+                    $("#confirm-avance #myElemento").html('Avance eliminado con exito').addClass('alert alert-success').show();
+                    $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-ord #myElemento").hide();
-                        $('#orden-form').hide();
-                        $('#confirm-ord').dialog('close');
-                    }, 2000);
+                    setTimeout(function() { $("#confirm-avance #myElemento").hide();
+                                            $('#avance-form').hide();
+                                            $('#confirm-avance').dialog('close');
+                                          }, 2000);
                 }else{
-                    $("#confirm-ord #myElemento").html('Error al eliminar la orden').addClass('alert alert-danger').show();
+                    $("#confirm-avance #myElemento").html('Error al eliminar el avance').addClass('alert alert-danger').show();
                 }
 
 

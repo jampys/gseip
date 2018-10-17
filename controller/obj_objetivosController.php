@@ -1,9 +1,7 @@
 ﻿<?php
 include_once("model/obj_objetivosModel.php");
 include_once("model/obj_tareasModel.php");
-
-//include_once("model/areasModel.php");
-//include_once("model/contratosModel.php");
+include_once("model/obj_avancesModel.php");
 include_once("model/evaluacionesModel.php");
 
 //include_once("model/busquedasModel.php");
@@ -94,13 +92,11 @@ switch ($operation)
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
         $view->label='Avance del objetivo: codigo_del_objetivo'; //$view->parte->getFechaParte().' '; //falta el nombre del contrato
 
-        //$view->empleados = Empleado::getEmpleados();
-        //$view->areas = NovArea::getAreas();
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
-        //$view->ordenes = ParteOrden::getParteOrden($_POST['id_parte']);
+        $view->avances = Avance::getAvances($_POST['id_objetivo']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivos/objetivosFormUpdate.php";

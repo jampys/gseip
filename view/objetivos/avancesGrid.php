@@ -1,32 +1,24 @@
-<?php if(isset($view->empleados) && sizeof($view->empleados) > 0) {?>
+<?php if(isset($view->avances) && sizeof($view->avances) > 0) {?>
 
     <table class="table table-condensed dataTable table-hover">
         <thead>
         <tr>
-            <th>Empleado</th>
-            <th><abbr title="Conductor">Cdtor.</abbr></th>
-            <th><abbr title="Horas manejo">HM</abbr></th>
-            <th><abbr title="Horas viaje">HV</abbr></th>
-            <th><abbr title="Horas base">HB</abbr></th>
-            <th><abbr title="Vianda diaria">VD</abbr></th>
-            <th><abbr title="Vianda extra">VE</abbr></th>
+            <!--<th>Fecha</th>
+            <th>Indicador</th>
+            <th>Cant.</th>
+            <th>Usr.</th>
             <th></th>
             <th></th>
-            <th></th>
+            <th></th>-->
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($view->empleados as $em): ?>
-            <tr data-id="<?php echo $em['id_parte_empleado'];?>">
-                <td><?php echo $em['apellido'].' '.$em['nombre'];?></td>
-                <td class="text-center"><?php echo ($em['conductor'])? '<i class="far fa-check-circle fa-fw" style="color: #49ed0e"></i>':''; ?></td>
-                <!--<td style="text-align: center"><?php //echo($et['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
-                <td><?php //echo $et['user'];?></td>-->
-                <td><?php echo $em['hs_manejo'];?></td>
-                <td><?php echo $em['hs_viaje'];?></td>
-                <td><?php echo $em['hs_base'];?></td>
-                <td><?php echo $em['vianda_diaria'];?></td>
-                <td><?php echo $em['vianda_extra'];?></td>
+        <?php foreach ($view->avances as $av): ?>
+            <tr data-id="<?php echo $av['id_avance'];?>">
+                <td><?php echo $av['fecha'];?></td>
+                <td><?php echo $av['indicador'];?></td>
+                <td><?php echo $av['cantidad'];?></td>
+                <td><?php echo $av['user'];?></td>
 
                 <td class="text-center">
                     <a class="view" href="javascript:void(0);" data-id="<?php //echo $et['id_etapa'];?>" title="ver">
@@ -56,7 +48,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> La postulación aún no tiene etapas registradas ahhhh.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> El objetivo no tiene avances registrados.
     </div>
 
 <?php } ?>

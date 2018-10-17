@@ -1,7 +1,7 @@
 ﻿<?php
-include_once("model/etapasModel.php");
+include_once("model/obj_avancesModel.php");
+include_once("model/obj_tareasModel.php");
 
-//include_once("model/puestosModel.php");
 //include_once("model/localidadesModel.php");
 //include_once("model/contratosModel.php");
 
@@ -29,6 +29,7 @@ switch ($operation)
         $avance = new Avance($_POST['id_avance']);
         $avance->setIdAvance($_POST['id_avance']);
         $avance->setIdObjetivo($_POST['id_objetivo']);
+        $avance->setIdTarea($_POST['id_tarea']);
         $avance->setFecha($_POST['fecha']);
         $avance->setIndicador($_POST['indicador']);
         $avance->setCantidad($_POST['cantidad']);
@@ -60,8 +61,8 @@ switch ($operation)
         $view->label = ($_POST['target']!='view')? 'Editar avance': 'Ver avance';
         $view->avance = new Avance($_POST['id_avance']);
 
-        //$view->puestos = Puesto::getPuestos();
-        //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
+        $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
+        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
         //$view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
         //$view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
         //$view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');

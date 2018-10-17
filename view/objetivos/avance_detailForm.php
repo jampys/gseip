@@ -13,6 +13,14 @@
         });
 
 
+        $('.input-group.date').datepicker({
+            //inline: true
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
+
+
         $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -20,27 +28,30 @@
 
 
         //cancel de formulario de parte-empleado
-        $('#empleado-form #cancel').on('click', function(){ //ok
+        $('#avance-form #cancel').on('click', function(){ //ok
             //alert('cancelar form parte-empleado');
-            $('#empleado-form').hide();
+            $('#avance-form').hide();
         });
 
 
 
         //Guardar parte-empleado luego de ingresar nuevo o editar
-        $('#empleado-form').on('click', '#submit',function(){ //ok
+        $('#avance-form').on('click', '#submit',function(){ //ok
             //alert('guardar empleado');
 
-            if ($("#empleado-form").valid()){
+            if ($("#avance-form").valid()){
 
                 var params={};
-                params.action = 'parte-empleado';
-                params.operation = 'saveEmpleado';
-                params.id_parte = $('#id_parte').val();
-                params.id_parte_empleado = $('#id_parte_empleado').val();
-                params.id_empleado = $('#id_empleado').val();
+                params.action = 'obj_avances';
+                params.operation = 'saveAvance';
+                params.id_avance = $('#id_avance').val();
+                params.id_objetivo = $('#id_objetivo').val();
+                params.tarea = $('#tarea').val();
+                params.indicador = $('#indicador').val();
+                params.cantidad = $('#cantidad').val();
+                params.comentarios = $('#comentarios').val();
                 //params.conductor = $('input[name=conductor]:checked').val();
-                params.conductor = $('#conductor').prop('checked')? 1:0;
+                //params.conductor = $('#conductor').prop('checked')? 1:0;
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.aplica);
@@ -51,16 +62,16 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        $("#avance-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Avance guardado con exito').addClass('alert alert-success').show();
+                        $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                            //$('#myModal').modal('hide');
-                            $('#empleado-form').hide();
-                        }, 2000);
+                                                //$('#myModal').modal('hide');
+                                                $('#avance-form').hide();
+                                              }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar el avance').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
@@ -72,30 +83,26 @@
 
 
 
-        $('#empleado-form').validate({ //ok
+        $('#avance-form').validate({ //ok
             rules: {
-                id_empleado: {required: true}
-                /*conductor: {
-                    //required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "parte-empleado",
-                            operation: "checkEmpleado",
-                            id_parte_empleado: function(){ return $('#id_parte_empleado').val();},
-                            id_parte: function(){ return $('#id_parte').val();}
-                        }
-                    }
-                }*/
+                fecha: {required: true},
+                indicador: {required: true},
+                cantidad: {
+                 required: true,
+                 digits: true,
+                 maxlength: 3
+                 }
+
             },
             messages:{
-                id_empleado: "Seleccione un empleado"
-                /*conductor: {
-                    //required: "Seleccione un empleado",
-                    remote: "La cuadrilla tiene asignado otro conductor"
-                }*/
+                fecha: "Seleccione una fecha",
+                indicador: "Seleccione un indicador",
+                cantidad: {
+                 required: "Ingrese la cantidad",
+                 digits: "Ingrese solo números",
+                 maxlength: "Máximo 3 dígitos"
+                 }
+
             }
 
         });
@@ -108,114 +115,68 @@
 
 
 
-<form name ="empleado-form" id="empleado-form" method="POST" action="index.php">
+<form name ="avance-form" id="avance-form" method="POST" action="index.php">
     <fieldset>
 
     <div class="alert alert-info">
         <strong><?php echo $view->label ?></strong>
     </div>
 
-        <!--<input type="hidden" name="id_parte" id="id_parte" value="<?php //print $view->empleado->getIdParte() ?>">-->
-        <input type="hidden" name="id_parte_empleado" id="id_parte_empleado" value="<?php print $view->empleado->getIdParteEmpleado() ?>">
+        <input type="hidden" name="id_avance" id="id_avance" value="<?php print $view->avance->getIdAvance() ?>">
 
 
         <div class="form-group required">
-            <label for="id_empleado" class="control-label">Empleado</label>
-            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
-                <?php foreach ($view->empleados as $em){
+            <label class="control-label" for="fecha_etapa">Fecha</label>
+            <div class="input-group date">
+                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->avance->getFecha() ?>" placeholder="DD/MM/AAAA">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="id_tarea" class="control-label">Tarea</label>
+            <select class="form-control selectpicker show-tick" id="id_tarea" name="id_tarea" title="Seleccione una tarea" data-live-search="true" data-size="5">
+                <!--<option value="">Seleccione una tarea</option>-->
+                <?php foreach ($view->tareas as $ta){
                     ?>
-                    <option value="<?php echo $em['id_empleado']; ?>"
-                        <?php echo ($em['id_empleado'] == $view->empleado->getIdEmpleado())? 'selected' :'' ?>
+                    <option value="<?php echo $ta['id_tarea']; ?>"
+                        <?php echo ($ta['id_tarea'] == $view->avance->getIdTarea())? 'selected' :'' ?>
                         >
-                        <?php echo $em['apellido'].' '.$em['nombre'];?>
+                        <?php echo $ta['nombre'] ;?>
                     </option>
                 <?php  } ?>
             </select>
         </div>
 
 
-        <!--<div class="form-group required">
-            <label for="conductor" class="control-label">Conductor</label>
-
-            <div class="input-group">
-
-                <?php //foreach($view->conductor['enum'] as $val){ ?>
-                    <label class="radio-inline">
-                        <input type="radio" name="conductor" value="<?php //echo $val ?>"
-                            <?php //echo ($val == $view->empleado->getConductor() OR ($val == $view->conductor['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
-                            ><?php //echo ($val==1)? 'Si':'No' ?>
-                    </label>
-                <?php //} ?>
-
-            </div>
-        </div>-->
+        <div class="form-group required">
+            <label for="indicador" class="control-label">Indicador</label>
+            <select class="form-control selectpicker show-tick" id="indicador" name="indicador" title="Seleccione el indicador"  data-live-search="true" data-size="5">
+                <?php foreach ($view->indicadores['enum'] as $mo){
+                    ?>
+                    <option value="<?php echo $mo; ?>"
+                        <?php echo ($mo == $view->avance->getIndicador() OR ($mo == $view->indicadores['default'] AND !$view->avance->getIdAvance()) )? 'selected' :'' ?>
+                        >
+                        <?php echo $mo; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
 
 
         <div class="form-group required">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="conductor" name="conductor" <?php echo ($view->empleado->getConductor()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para la persona que maneja">Conductor</a>
-                </label>
-            </div>
+            <label class="control-label" for="cantidad">Cantidad</label>
+            <input class="form-control" type="text" name="cantidad" id="cantidad" value = "<?php print $view->avance->getCantidad() ?>" placeholder="Cantidad">
         </div>
 
 
-
-        <!--<hr/>
-        <div class="row">
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label class="control-label" for="hs_manejo">Hs. manejo (HM)</label>
-                    <input class="form-control" type="text" name="hs_manejo" id="hs_manejo" value = "<?php //print $view->empleado->getHsManejo() ?>" placeholder="Hs. manejo" disabled>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label class="control-label" for="hs_viaje">Hs. viaje (HV)</label>
-                    <input class="form-control" type="text" name="hs_viaje" id="hs_viaje" value = "<?php //print $view->empleado->getHsViaje() ?>" placeholder="Hs. viaje" disabled>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label class="control-label" for="hs_base">Hs. base (HB)</label>
-                    <input class="form-control" type="text" name="hs_base" id="hs_base" value = "<?php //print $view->empleado->getHsBase() ?>" placeholder="Hs. base" disabled>
-                </div>
-            </div>
-
+        <div class="form-group">
+            <label class="control-label" for="comentarios">Comentarios</label>
+            <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="2"><?php print $view->avance->getComentarios(); ?></textarea>
         </div>
-
-
-        <div class="row">
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label class="control-label" for="vianda_diaria">Vianda diaria (VD)</label>
-                    <input class="form-control" type="text" name="vianda_diaria" id="vianda_diaria" value = "<?php //print $view->empleado->getViandaDiaria() ?>" placeholder="Vianda diaria" disabled>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label class="control-label" for="vianda_extra">Vianda extra (VE)</label>
-                    <input class="form-control" type="text" name="vianda_extra" id="vianda_extra" value = "<?php //print $view->empleado->getViandaExtra() ?>" placeholder="Vianda extra" disabled>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-
-            </div>
-
-        </div>-->
-
-
-
-
-
-
-
 
 
         <div id="myElem" class="msg" style="display:none"></div>
