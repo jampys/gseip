@@ -17,8 +17,12 @@
                 <td><?php echo $ta['nombre'];?></td>
                 <td><?php echo $ta['fecha_inicio'];?></td>
                 <td><?php echo $ta['fecha_fin'];?></td>
-                <!--<td style="text-align: center"><?php //echo($et['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
-                <td><?php //echo $et['user'];?></td>-->
+
+                <td class="text-center">
+                    <a class="avance" href="javascript:void(0);" data-id="<?php echo $ta['id_tarea'];?>" title="Avance">
+                        <i class="fas fa-forward fa-fw"></i>
+                    </a>
+                </td>
 
                 <td class="text-center">
                     <a class="view" href="javascript:void(0);" data-id="<?php echo $ta['id_tarea'];?>" title="ver">
