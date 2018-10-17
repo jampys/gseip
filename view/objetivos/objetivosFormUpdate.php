@@ -12,13 +12,13 @@
         });
 
 
-        $('#confirm-tarea, #confirm-ord').dialog({
+        $('#confirm-tarea, #confirm-avance').dialog({
             autoOpen: false
             //modal: true,
         });
 
         //para editar una tarea
-        $('.grid-tareas').on('click', '.edit', function(){
+        $('.grid-tareas').on('click', '.edit', function(){ //ok
             //alert('editar empleado del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
@@ -32,18 +32,17 @@
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
         });
 
-        //para editar orden de un parte
-        $('.grid-ordenes').on('click', '.edit', function(){
+        //para editar un avance
+        $('.grid-avances').on('click', '.edit', function(){
             //alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_parte_orden = id;
+            params.id_avance = id;
             params.action = "parte-orden";
             params.operation = "editOrden";
             //alert(params.id_renovacion);
@@ -131,15 +130,13 @@
                 //$('#myModal').modal();
                 //$('#id_postulacion').val(params.id_postulacion);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
         });
 
 
         //eliminar una tarea
-        $('.grid-tareas').on('click', '.delete', function(){
-            //alert('Funcionalidad en desarrollo');
-            //throw new Error();
+        $('.grid-tareas').on('click', '.delete', function(){ //ok
+            //alert('Eliminar tarea');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             $('#confirm-tarea').dialog({ //se agregan botones al confirm dialog y se abre
@@ -147,7 +144,7 @@
                     {
                         text: "Aceptar",
                         click: function() {
-                            $.fn.borrar(id);
+                            $.fn.borrarTarea(id);
                         },
                         class:"btn btn-danger"
                     },
@@ -165,8 +162,8 @@
         });
 
 
-        $.fn.borrar = function(id) {
-            //alert(id);
+        $.fn.borrarTarea = function(id) { //ok
+            alert(id);
             //preparo los parametros
             params={};
             params.id_tarea = id;
@@ -177,10 +174,10 @@
             //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
-                //alert(xhr.responseText);
+                alert(xhr.responseText);
                 if(data >=0){
                     $("#confirm-tarea #myElemento").html('Tarea eliminada con exito').addClass('alert alert-success').show();
-                    $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_tarea: params.id_tarea, operation:"refreshGrid"});
+                    $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-tarea #myElemento").hide();
@@ -188,7 +185,7 @@
                                             $('#confirm-tarea').dialog('close');
                                           }, 2000);
                 }else{
-                    $("#confirm-tarea #myElemento").html('Error al eliminar el empleado').addClass('alert alert-danger').show();
+                    $("#confirm-tarea #myElemento").html('Error al eliminar la tarea').addClass('alert alert-danger').show();
                 }
 
 
@@ -211,7 +208,7 @@
                     {
                         text: "Aceptar",
                         click: function() {
-                            $.fn.borrar(id);
+                            $.fn.borrarAvance(id);
                         },
                         class:"btn btn-danger"
                     },
@@ -229,7 +226,7 @@
         });
 
 
-        $.fn.borrar = function(id) {
+        $.fn.borrarAvance = function(id) {
             //alert(id);
             //preparo los parametros
             params={};
@@ -318,48 +315,6 @@
         });
 
 
-        $('#parte-form').validate({
-            rules: {
-                id_area: {required: true},
-                hs_normal: {
-                    require_from_group: [1, ".hs-group"],
-                    digits: true,
-                    maxlength: 6
-                },
-                hs_50: {
-                    require_from_group: [1, ".hs-group"],
-                    digits: true,
-                    maxlength: 6
-                },
-                hs_100: {
-                    require_from_group: [1, ".hs-group"],
-                    digits: true,
-                    maxlength: 6
-                }
-            },
-            messages:{
-                id_area: "Seleccione un área",
-                hs_normal: {
-                    require_from_group: "Complete al menos un tipo de hora",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                },
-                hs_50: {
-                    require_from_group: "Complete al menos un tipo de hora",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                },
-                hs_100: {
-                    require_from_group: "Complete al menos un tipo de hora",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                }
-
-            }
-
-        });
-
-
 
 
 
@@ -418,10 +373,10 @@
                                 <br/>
 
 
-                                <!-- seccion de ordenes -->
+                                <!-- seccion de avances -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-avances" title="Mostrar avances">Avances</button>
                                     </div>
 
                                     <div class="col-md-4">
@@ -429,15 +384,15 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-orden" name="add-orden" title="Agregar orden">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-avance" name="add-avance" title="Agregar avance">
                                             <i class="fas fa-plus"></i>&nbsp
                                         </button>
                                     </div>
                                 </div>
 
-                                <div id="demo-ordenes" class="collapse">
-                                    <div class="grid-ordenes">
-                                        <?php include_once('view/novedades_partes/ordenesGrid.php');?>
+                                <div id="demo-avances" class="collapse">
+                                    <div class="grid-avances">
+                                        <?php include_once('view/objetivos/avancesGrid.php');?>
                                     </div>
                                 </div>
 
@@ -487,9 +442,9 @@
 
 
 
-<div id="confirm-ord">
+<div id="confirm-avance">
     <div class="modal-body">
-        ¿Desea eliminar la orden?
+        ¿Desea eliminar el avance?
     </div>
 
     <div id="myElemento" style="display:none">
