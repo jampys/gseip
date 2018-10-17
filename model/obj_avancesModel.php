@@ -89,7 +89,7 @@ class Avance
     }
 
 
-    public static function getAvances($id_objetivo) { //ok
+    public static function getAvances($id_objetivo, $id_tarea) { //ok
         $stmt=new sQuery();
         $query = "select av.id_avance, av.id_objetivo, av.id_tarea,
                   DATE_FORMAT(av.fecha, '%d/%m/%Y') as fecha,
@@ -100,9 +100,11 @@ class Avance
                   join sec_users us on av.id_user = us.id_user
                   left join obj_tareas ot on av.id_tarea = ot.id_tarea
                   where av.id_objetivo = :id_objetivo
+                  and av.id_tarea = ifnull(:id_tarea, av.id_tarea)
                   order by av.fecha asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_objetivo', $id_objetivo);
+        $stmt->dpBind(':id_tarea', $id_tarea);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

@@ -92,7 +92,7 @@ switch ($operation)
         $view->label='Detalle objetivo: '.$view->objetivo->getCodigo();
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
-        $view->avances = Avance::getAvances($_POST['id_objetivo']);
+        $view->avances = Avance::getAvances($_POST['id_objetivo'], null);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivos/objetivosFormUpdate.php";

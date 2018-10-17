@@ -17,6 +17,20 @@
             //modal: true,
         });
 
+        //para mostrar avance de una tarea individual
+        $('.grid-tareas').on('click', '.avance', function(){
+            //alert('editar empleado del parte');
+            var id = $(this).closest('tr').attr('data-id');
+            //var id = $(this).attr('data-id');
+            //alert('editar etapa: '+id);
+            params={};
+            params.id_tarea = id;
+            params.id_objetivo = $('#id_objetivo').val();
+            params.action = "obj_avances";
+            params.operation = "refreshGrid";
+            $('#left_side .grid-avances').load('index.php', params);
+        });
+
         //para editar una tarea
         $('.grid-tareas').on('click', '.edit', function(){ //ok
             //alert('editar empleado del parte');
