@@ -28,7 +28,11 @@
             params.id_objetivo = $('#id_objetivo').val();
             params.action = "obj_avances";
             params.operation = "refreshGrid";
-            $('#left_side .grid-avances').load('index.php', params);
+            $('#left_side .grid-avances').load('index.php', params, function(){
+                alert('culito');
+                //$("button[data-target='#demo-avances']").trigger("click");
+                $('#demo-avances').collapse('show');
+            });
         });
 
         //para editar una tarea
