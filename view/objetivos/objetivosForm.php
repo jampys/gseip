@@ -177,7 +177,7 @@
 
                     <div class="form-group">
                         <label for="id_area" class="control-label">Área</label>
-                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area">
+                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5">
                             <option value="">Seleccione un área</option>
                             <?php foreach ($view->areas as $ar){
                                 ?>
@@ -193,7 +193,7 @@
 
                     <div class="form-group">
                         <label for="id_contrato" class="control-label">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato">
+                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
                             <option value="">Seleccione un contrato</option>
                             <?php foreach ($view->contratos as $con){
                                 ?>
@@ -237,7 +237,7 @@
 
                     <div class="form-group required">
                         <label for="frecuencia" class="control-label">Frecuencia</label>
-                        <select class="form-control selectpicker show-tick" id="frecuencia" name="frecuencia">
+                        <select class="form-control selectpicker show-tick" id="frecuencia" name="frecuencia" data-live-search="true" data-size="5">
                             <option value="">Seleccione una frecuencia</option>
                             <?php foreach ($view->frecuencias['enum'] as $fre){
                                 ?>
