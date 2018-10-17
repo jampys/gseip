@@ -62,8 +62,8 @@ switch ($operation)
         break;
 
     case 'editObjetivo': //ok
-        $view->label='Editar objetivo';
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
+        $view->label='Editar objetivo: '.$view->objetivo->getCodigo();
 
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
@@ -87,12 +87,9 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    case 'avances': //ok
+    case 'detalle': //detalle del objetivo //ok
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
-        $view->label='Avance del objetivo: codigo_del_objetivo'; //$view->parte->getFechaParte().' '; //falta el nombre del contrato
-
-        //$view->vehiculos = Vehiculo::getVehiculos();
-        //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
+        $view->label='Detalle objetivo: '.$view->objetivo->getCodigo();
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
         $view->avances = Avance::getAvances($_POST['id_objetivo']);

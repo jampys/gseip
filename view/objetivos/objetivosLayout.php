@@ -65,14 +65,14 @@
             });
 
 
-            //$(document).on('click', '.avances', function(){
-            $('#content').on('click', '.avances', function(){
-                //alert('presiono sobre avances');
+            //$(document).on('click', '.detalle', function(){
+            $('#content').on('click', '.detalle', function(){
+                //alert('presiono sobre detalle');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_objetivo = id;
                 params.action = "obj_objetivos";
-                params.operation = "avances";
+                params.operation = "detalle";
                 //params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     //$("fieldset").prop("disabled", true);

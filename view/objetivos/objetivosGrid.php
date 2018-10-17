@@ -67,8 +67,8 @@
 
                         <td class="text-center">
                             <!-- si tiene permiso para ver etapas -->
-                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'avances' : 'disabled' ?>" href="javascript:void(0);">
-                                <i class="far fa-list-alt fa-fw" title="avance del objetivo"></i>
+                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'detalle' : 'disabled' ?>" href="javascript:void(0);">
+                                <i class="far fa-list-alt fa-fw" title="detalle del objetivo"></i>
                             </a>
                         </td>
 

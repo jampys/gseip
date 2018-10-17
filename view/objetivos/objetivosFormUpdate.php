@@ -264,58 +264,6 @@
 
 
 
-
-        //Guardar (calcular) parte
-        $(document).on('click', '#calcular',function(){
-            //alert('calcular');
-            //throw new Error();
-
-            if ($("#parte-form").valid()){
-
-                var params={};
-                params.action = 'partes';
-                params.operation = 'calcularParte';
-                params.id_parte = $('#id_parte').val();
-                params.id_area = $('#id_area').val();
-                params.id_vehiculo = $('#id_vehiculo').val();
-                params.id_evento = $('#id_evento').val();
-                params.hs_normal = $('#hs_normal').val();
-                params.hs_50 = $('#hs_50').val();
-                params.hs_100 = $('#hs_100').val();
-                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                //params.disabled = $('#disabled').prop('checked')? 1:0;
-                //alert(params.id_parte);
-
-                $.post('index.php',params,function(data, status, xhr){
-
-                    //alert(xhr.responseText);
-
-                    if(data[0]['flag'] >=0){
-
-
-                        //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
-                        $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
-                        /*setTimeout(function() { $("#myElem").hide();
-                            //$('#myModal').modal('hide');
-                            $('#empleado-form').hide();
-                        }, 2000);*/
-                    }else{
-                        //$("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
-                        $("#msg-container").html('<div id="myElem" class="msg alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-exclamation-triangle fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
-                    }
-
-                }, 'json');
-
-            }
-            return false;
-        });
-
-
-
-
-
     });
 
 </script>
@@ -416,7 +364,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="calcular" name="calcular" type="submit">Calcular</button>
+                <!--<button class="btn btn-primary btn-sm" id="calcular" name="calcular" type="submit">Calcular</button>-->
                 <button class="btn btn-default btn-sm" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
             </div>
 
