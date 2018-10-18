@@ -42,7 +42,6 @@
                 params.id_area=$('#id_area').val();
                 params.id_contrato=$('#id_contrato').val();
                 params.meta=$('#meta').val();
-                params.actividades=$('#actividades').val();
                 params.indicador=$('#indicador').val();
                 params.frecuencia=$('#frecuencia').val();
                 params.id_responsable_ejecucion=$('#id_responsable_ejecucion').val();
@@ -99,16 +98,22 @@
                     ]
 
                 },
-                meta: {required: true},
-                actividades: {required: true},
+                meta: {
+                    required: true,
+                    digits: true,
+                    maxlength: 3
+                },
                 indicador: {required: true},
                 id_responsable_ejecucion: {required: true},
                 id_responsable_seguimiento: {required: true}
             },
             messages:{
                 nombre: "Ingrese el nombre",
-                meta: "Ingrese la meta",
-                actividades: "Ingrese las actividades",
+                meta: {
+                    required: "Ingrese una meta",
+                    digits: "Ingrese solo números",
+                    maxlength: "Máximo 3 dígitos"
+                },
                 indicador: "Ingrese el indicador",
                 responsable_ejecucion: "Seleccione un responsable ejecución",
                 responsable_seguimiento: "Seleccione un responsable seguimiento"
@@ -208,18 +213,6 @@
 
 
                     <div class="form-group required">
-                        <label class="control-label" for="descripcion">Meta</label>
-                        <textarea class="form-control" name="meta" id="meta" placeholder="Meta" rows="2"><?php print $view->objetivo->getMeta(); ?></textarea>
-                    </div>
-
-
-                    <div class="form-group required">
-                        <label class="control-label" for="actividades">Actividades</label>
-                        <textarea class="form-control" name="actividades" id="actividades" placeholder="Actividades" rows="2"><?php print $view->objetivo->getActividades(); ?></textarea>
-                    </div>
-
-
-                    <div class="form-group required">
                         <label for="indicador" class="control-label">Indicador</label>
                         <select class="form-control selectpicker show-tick" id="indicador" name="indicador" data-live-search="true" data-size="5" title="Seleccione un indicador del objetivo">
                             <!--<option value="">Seleccione un indicador del objetivo</option>-->
@@ -232,6 +225,12 @@
                                 </option>
                             <?php  } ?>
                         </select>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label class="control-label" for="descripcion">Meta</label>
+                        <input class="form-control" type="text" name="meta" id="meta" value = "<?php print $view->objetivo->getMeta() ?>" placeholder="Meta">
                     </div>
 
 
