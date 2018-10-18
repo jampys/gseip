@@ -32,6 +32,7 @@ switch ($operation)
         $objetivo->setIdArea(($_POST['id_area'])? $_POST['id_area'] : null);
         $objetivo->setIdContrato(($_POST['id_contrato'])? $_POST['id_contrato'] : null);
         $objetivo->setMeta($_POST['meta']);
+        $objetivo->setMetaValor( ($_POST['meta_valor'])? $_POST['meta_valor'] : null);
         $objetivo->setIndicador($_POST['indicador']);
         $objetivo->setFrecuencia($_POST['frecuencia']);
         $objetivo->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);

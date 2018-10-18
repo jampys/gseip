@@ -42,6 +42,7 @@
                 params.id_area=$('#id_area').val();
                 params.id_contrato=$('#id_contrato').val();
                 params.meta=$('#meta').val();
+                params.meta_valor=$('#meta_valor').val();
                 params.indicador=$('#indicador').val();
                 params.frecuencia=$('#frecuencia').val();
                 params.id_responsable_ejecucion=$('#id_responsable_ejecucion').val();
@@ -98,7 +99,8 @@
                     ]
 
                 },
-                meta: {
+                meta: {required: true},
+                meta_valor: {
                     required: true,
                     digits: true,
                     maxlength: 3
@@ -109,8 +111,9 @@
             },
             messages:{
                 nombre: "Ingrese el nombre",
-                meta: {
-                    required: "Ingrese una meta",
+                meta: "Ingrese la meta",
+                meta_valor: {
+                    required: "Ingrese un valor para la meta",
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 3 dígitos"
                 },
@@ -227,17 +230,22 @@
                         </select>
                     </div>
 
-
-                    <div class="form-group required">
-                        <label class="control-label" for="descripcion">Meta</label>
-                        <input class="form-control" type="text" name="meta" id="meta" value = "<?php print $view->objetivo->getMeta() ?>" placeholder="Meta">
+                    <div class="row">
+                        <div class="form-group col-md-9">
+                            <label for="meta">Meta</label>
+                            <textarea class="form-control" name="meta" id="meta" placeholder="Meta" rows="2"><?php print $view->objetivo->getMeta(); ?></textarea>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="meta_valor">Valor</label>
+                            <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
+                        </div>
                     </div>
 
 
                     <div class="form-group required">
                         <label for="frecuencia" class="control-label">Frecuencia</label>
-                        <select class="form-control selectpicker show-tick" id="frecuencia" name="frecuencia" data-live-search="true" data-size="5">
-                            <option value="">Seleccione una frecuencia</option>
+                        <select class="form-control selectpicker show-tick" id="frecuencia" name="frecuencia" data-live-search="true" data-size="5" title="Seleccione una frecuencia">
+                            <!--<option value="">Seleccione una frecuencia</option>-->
                             <?php foreach ($view->frecuencias['enum'] as $fre){
                                 ?>
                                 <option value="<?php echo $fre; ?>"

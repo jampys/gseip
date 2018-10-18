@@ -10,6 +10,7 @@ class Objetivo
     private $id_contrato;
     private $id_puesto;
     private $meta;
+    private $meta_valor;
     private $indicador;
     private $frecuencia;
     private $id_responsable_ejecucion;
@@ -37,6 +38,9 @@ class Objetivo
 
     function getMeta()
     { return $this->meta;}
+
+    function getMetaValor()
+    { return $this->meta_valor;}
 
     function getIndicador()
     { return $this->indicador;}
@@ -76,6 +80,9 @@ class Objetivo
     function setMeta($val)
     { $this->meta=$val;}
 
+    function setMetaValor($val)
+    { $this->meta_valor=$val;}
+
     function setIndicador($val)
     { $this->indicador=$val;}
 
@@ -110,6 +117,7 @@ class Objetivo
             $this->setIdContrato($rows[0]['id_contrato']);
             $this->setIdPuesto($rows[0]['id_puesto']);
             $this->setMeta($rows[0]['meta']);
+            $this->setMetaValor($rows[0]['meta_valor']);
             $this->setIndicador($rows[0]['indicador']);
             $this->setFrecuencia($rows[0]['frecuencia']);
             $this->setIdResponsableEjecucion($rows[0]['id_responsable_ejecucion']);
@@ -150,6 +158,7 @@ class Objetivo
                 id_contrato= :id_contrato,
                 id_puesto= :id_puesto,
                 meta= :meta,
+                meta_valor= :meta_valor,
                 indicador= :indicador,
                 frecuencia= :frecuencia,
                 id_responsable_ejecucion= :id_responsable_ejecucion,
@@ -163,6 +172,7 @@ class Objetivo
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpBind(':meta', $this->getMeta());
+        $stmt->dpBind(':meta_valor', $this->getMetaValor());
         $stmt->dpBind(':indicador', $this->getIndicador());
         $stmt->dpBind(':frecuencia', $this->getFrecuencia());
         $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
@@ -175,8 +185,8 @@ class Objetivo
     private function insertObjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into obj_objetivos(periodo, nombre, id_area, id_contrato, id_puesto, meta, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento, fecha)
-                values(:periodo, :nombre, :id_area, :id_contrato, :id_puesto, :meta, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento, SYSDATE())";
+        $query="insert into obj_objetivos(periodo, nombre, id_area, id_contrato, id_puesto, meta, meta_valor, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento, fecha)
+                values(:periodo, :nombre, :id_area, :id_contrato, :id_puesto, :meta, meta_valor, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento, SYSDATE())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':nombre', $this->getNombre());
@@ -184,6 +194,7 @@ class Objetivo
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpBind(':meta', $this->getMeta());
+        $stmt->dpBind(':meta_valor', $this->getMetaValor());
         $stmt->dpBind(':indicador', $this->getIndicador());
         $stmt->dpBind(':frecuencia', $this->getFrecuencia());
         $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
