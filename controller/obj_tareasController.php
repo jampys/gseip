@@ -40,7 +40,7 @@ switch ($operation)
         break;
 
     case 'newTarea': //ok
-        $view->label='Nueva tarea';
+        $view->label='Nueva actividad';
         $view->tarea = new Tarea();
 
         $view->disableLayout=true;
@@ -49,7 +49,7 @@ switch ($operation)
         break;
 
     case 'editTarea': //ok
-        $view->label = ($_POST['target']!='view')? 'Editar tarea': 'Ver tarea';
+        $view->label = ($_POST['target']!='view')? 'Editar actividad': 'Ver actividad';
         $view->tarea = new Tarea($_POST['id_tarea']);
 
         $view->disableLayout=true;
