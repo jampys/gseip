@@ -32,8 +32,8 @@
 
 
     <!-- bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="resources/libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="resources/libraries/bootstrap/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
         var datepicker = $.fn.datepicker.noConflict(); // return $.fn.datepicker to previously assigned value

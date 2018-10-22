@@ -72,7 +72,7 @@ code {
 /* configuracion personalizada de dataTables */
 .dataTables_wrapper { font-size: 13px !important; } /*tamaño del header y paginacion abajo */
 table.dataTable td { font-size: 13px !important; }
-table.dataTable th { font-size: 14px !important; }
+table.dataTable th { font-size: 13px !important; }
 
 
 
