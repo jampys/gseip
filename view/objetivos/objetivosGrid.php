@@ -12,7 +12,10 @@
             "fnInitComplete": function () {
                                 $(this).show(); },
 
-            "stateSave": true
+            "stateSave": true,
+            columnDefs: [
+                {targets: 1, render: $.fn.dataTable.render.ellipsis(40)} //https://datatables.net/blog/2016-02-26
+            ]
         });
 
 
