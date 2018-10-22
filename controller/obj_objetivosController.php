@@ -63,7 +63,13 @@ switch ($operation)
 
     case 'editObjetivo': //ok
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
-        $view->label='Editar objetivo: '.$view->objetivo->getCodigo();
+
+        if($_POST['target'] == 'edit') $view->label='Editar objetivo: '.$view->objetivo->getCodigo();
+        else if ($_POST['target'] == 'clone') {
+            $view->label='Clonar objetivo: '.$view->objetivo->getCodigo();
+            $view->objetivo->setIdObjetivo(null); //pone el id_objetivo en null para al guardar insertar uno nuevo
+        }
+
 
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
