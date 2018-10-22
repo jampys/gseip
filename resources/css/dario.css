@@ -62,15 +62,17 @@ body > .container {
 }
 
 code {
-    font-size: 80%;
+    /*font-size: 80%; */
+    font-size: 13px !important;
+
 }
 
 
 
 /* configuracion personalizada de dataTables */
-.dataTables_wrapper { font-size: 13px } /*tamaño del header y paginacion abajo */
-table.dataTable td { font-size: 13px }
-table.dataTable th { font-size: 14px }
+.dataTables_wrapper { font-size: 13px !important; } /*tamaño del header y paginacion abajo */
+table.dataTable td { font-size: 13px !important; }
+table.dataTable th { font-size: 13px !important; }
 
 
 
@@ -112,8 +114,8 @@ table.dataTable th { font-size: 14px }
 
 
 /* estilo personalizado para tablas */
-table.dpTable td { font-size: 13px }
-table.dpTable th { font-size: 14px }
+table.dpTable td { font-size: 13px !important; }
+table.dpTable th { font-size: 13px !important; }
 
 
 /* para que la tabla tenga scroll vertital. Se coloca esta clase al div de nivel superior */
@@ -166,3 +168,30 @@ fieldset:disabled .input-daterange input:read-only  {
 .ui-dialog button[disabled]{
     cursor: not-allowed !important;
 }
+
+
+/*Agrego fuentes externas: Roboto y Open Sans */
+@font-face {
+    font-family: Roboto;
+    src: url(../fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+
+/*Aplico la fuente Roboto a todo el proyecto */
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px !important;
+}
+
+.navbar-nav > li {
+    font-size: 13px !important;
+}
+.dropdown-menu {
+    font-size: 13px !important;
+}
+
+
