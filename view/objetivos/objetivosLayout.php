@@ -38,6 +38,7 @@
                 params.id_objetivo = id;
                 params.action = "obj_objetivos";
                 params.operation = "editObjetivo";
+                params.target = "edit";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
@@ -61,7 +62,23 @@
                     $('#myModalLabel').html('');
                     $('#myModal').modal();
                 })
+            });
 
+
+            $('#content').on('click', '.clone', function(){ //ok
+                //alert('presionó en editar');
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_objetivo = id;
+                params.action = "obj_objetivos";
+                params.operation = "editObjetivo";
+                params.target = "clone";
+                //alert(params.id_renovacion);
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                    //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                    //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+                })
             });
 
 
