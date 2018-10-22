@@ -186,7 +186,7 @@ class Objetivo
 
         $stmt=new sQuery();
         $query="insert into obj_objetivos(periodo, nombre, id_area, id_contrato, id_puesto, meta, meta_valor, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento, fecha)
-                values(:periodo, :nombre, :id_area, :id_contrato, :id_puesto, :meta, meta_valor, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento, SYSDATE())";
+                values(:periodo, :nombre, :id_area, :id_contrato, :id_puesto, :meta, :meta_valor, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento, SYSDATE())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':nombre', $this->getNombre());
