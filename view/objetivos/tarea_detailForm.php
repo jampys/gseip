@@ -85,7 +85,7 @@
 
         <div class="form-group">
             <label class="control-label" for="descripcion">Descripción</label>
-            <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="2"><?php print $view->tarea->getDescripcion(); ?></textarea>
+            <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="3"><?php print $view->tarea->getDescripcion(); ?></textarea>
         </div>
 
 

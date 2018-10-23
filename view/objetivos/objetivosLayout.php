@@ -188,9 +188,9 @@
     <div class="row">
 
 
-        <div class="col-md-1"></div>
+        <!--<div class="col-md-1"></div>-->
 
-        <div class="col-md-10">
+        <div class="col-md-12">
 
             <h4>Objetivos</h4>
             <hr class="hr-primary"/>
@@ -243,7 +243,7 @@
         </div>
 
 
-        <div class="col-md-1"></div>
+        <!--<div class="col-md-1"></div>-->
 
     </div>
     <br/>
