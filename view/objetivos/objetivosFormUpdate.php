@@ -74,7 +74,8 @@
                             gantt: {
                                 trackHeight: 30, //ancho de la fila
                                 criticalPathEnabled: false
-                            }
+                            },
+                            height: Object.keys(data1).length*30+50
                         };
 
                         var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
