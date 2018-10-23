@@ -24,7 +24,6 @@
 
         function drawChart() {
             //alert('se ejecuto drawChart');
-
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Task ID');
             data.addColumn('string', 'Task Name');
@@ -42,7 +41,6 @@
                 ['id3', 'Planificacion', 'autumn', new Date(2014, 2, 1), new Date(2014, 11, 21), null, 20, null]
 
             ]);*/
-
 
 
             $.ajax({
@@ -80,12 +78,7 @@
                         };
 
                         var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
-
                         chart.draw(data, options);
-
-
-
-
 
                     }
 
@@ -95,17 +88,105 @@
                     alert(data.responseText);
                 }
 
-
             });
 
-
-
-
-
-
-
-
         }
+
+
+
+
+        //Guardar tarea luego de ingresar nueva o editar. Traido de tarea_detailForm.php
+        $(document).on('click', '#tarea-form #submit',function(){ //ok
+            //alert('guardar orden');
+
+            if ($("#tarea-form").valid()){
+
+                var params={};
+                params.action = 'obj_tareas';
+                params.operation = 'saveTarea';
+                params.id_objetivo = $('#id_objetivo').val();
+                params.id_tarea = $('#id_tarea').val();
+                params.nombre = $('#nombre').val();
+                params.descripcion = $('#descripcion').val();
+                params.fecha_inicio = $('#fecha_inicio').val();
+                params.fecha_fin = $('#fecha_fin').val();
+                //params.conductor = $('input[name=conductor]:checked').val();
+                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                //alert(params.aplica);
+
+                $.post('index.php',params,function(data, status, xhr){
+
+                    //alert(objeto.id);
+                    //alert(xhr.responseText);
+
+                    if(data >=0){
+                        $("#tarea-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#tarea-form #myElem").html('Tarea guardada con exito').addClass('alert alert-success').show();
+                        $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
+                        //$("#search").trigger("click");
+                        setTimeout(function() { $("#tarea-form #myElem").hide();
+                                                //$('#myModal').modal('hide');
+                                                $('#tarea-form').hide();
+                                                drawChart();
+                                                }, 2000);
+                    }else{
+                        $("#tarea-form #myElem").html('Error al guardar la tarea').addClass('alert alert-danger').show();
+                    }
+
+                }, 'json');
+
+            }
+            return false;
+        });
+
+
+
+        //Guardar avance luego de ingresar nuevo o editar. Traido de avance_detailForm.php
+        $(document).on('click', '#avance-form #submit',function(){ //ok
+
+            if ($("#avance-form").valid()){
+
+                var params={};
+                params.action = 'obj_avances';
+                params.operation = 'saveAvance';
+                params.id_avance = $('#id_avance').val();
+                params.id_objetivo = $('#id_objetivo').val();
+                params.fecha = $('#fecha').val();
+                params.id_tarea = $('#id_tarea').val();
+                params.indicador = $('#indicador').val();
+                params.cantidad = $('#cantidad').val();
+                params.comentarios = $('#comentarios').val();
+                //params.conductor = $('input[name=conductor]:checked').val();
+                //params.conductor = $('#conductor').prop('checked')? 1:0;
+                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                //alert(params.aplica);
+
+                $.post('index.php',params,function(data, status, xhr){
+
+                    //alert(objeto.id);
+                    //alert(xhr.responseText);
+
+                    if(data >=0){
+                        $("#avance-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#avance-form #myElem").html('Avance guardado con exito').addClass('alert alert-success').show();
+                        $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
+                        //$("#search").trigger("click");
+                        setTimeout(function() { $("#avance-form #myElem").hide();
+                                                //$('#myModal').modal('hide');
+                                                $('#avance-form').hide();
+                                                drawChart();
+                        }, 2000);
+                    }else{
+                        $("#myElem").html('Error al guardar el avance').addClass('alert alert-danger').show();
+                    }
+
+                }, 'json');
+
+            }
+            return false;
+        });
 
 
 

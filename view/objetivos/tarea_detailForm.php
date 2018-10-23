@@ -34,54 +34,6 @@
         });
 
 
-
-        //Guardar tarea luego de ingresar nueva o editar
-        $('#tarea-form').on('click', '#submit',function(){ //ok
-            //alert('guardar orden');
-
-            if ($("#tarea-form").valid()){
-
-                var params={};
-                params.action = 'obj_tareas';
-                params.operation = 'saveTarea';
-                params.id_objetivo = $('#id_objetivo').val();
-                params.id_tarea = $('#id_tarea').val();
-                params.nombre = $('#nombre').val();
-                params.descripcion = $('#descripcion').val();
-                params.fecha_inicio = $('#fecha_inicio').val();
-                params.fecha_fin = $('#fecha_fin').val();
-                //params.conductor = $('input[name=conductor]:checked').val();
-                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                //params.disabled = $('#disabled').prop('checked')? 1:0;
-                //alert(params.aplica);
-
-                $.post('index.php',params,function(data, status, xhr){
-
-                    //alert(objeto.id);
-                    //alert(xhr.responseText);
-
-                    if(data >=0){
-                        $("#tarea-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Tarea guardada con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
-                        setTimeout(function() { $("#myElem").hide();
-                                                        //$('#myModal').modal('hide');
-                                                        $('#tarea-form').hide();
-                                              }, 2000);
-                    }else{
-                        $("#myElem").html('Error al guardar la tarea').addClass('alert alert-danger').show();
-                    }
-
-                }, 'json');
-
-            }
-            return false;
-        });
-
-
-
-
         $('#tarea-form').validate({ //ok
             rules: {
                 /*codigo: {
@@ -140,9 +92,9 @@
         <div class="form-group required">
             <label class="control-label" for="empleado">Fecha inicio / fin</label>
             <div class="input-group input-daterange">
-                <input class="form-control" type="text" name="fecha_inicio" id="fecha_inicio" value = "<?php print $view->tarea->getFechaInicio() ?>" placeholder="DD/MM/AAAA">
+                <input class="form-control" type="text" name="fecha_inicio" id="fecha_inicio" value = "<?php print $view->tarea->getFechaInicio() ?>" placeholder="DD/MM/AAAA" readonly>
                 <div class="input-group-addon">a</div>
-                <input class="form-control" type="text" name="fecha_fin" id="fecha_fin" value = "<?php print $view->tarea->getFechaFin() ?>" placeholder="DD/MM/AAAA">
+                <input class="form-control" type="text" name="fecha_fin" id="fecha_fin" value = "<?php print $view->tarea->getFechaFin() ?>" placeholder="DD/MM/AAAA" readonly>
             </div>
         </div>
 
@@ -152,7 +104,7 @@
 
 
     <div id="footer-buttons" class="pull-right">
-        <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
+        <button class="btn btn-primary btn-sm" id="submit" name="submit" type="button">Guardar</button>
         <!--<button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>-->
         <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
     </div>

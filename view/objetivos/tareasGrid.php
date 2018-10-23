@@ -59,7 +59,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> El objetivo no tiene tarea registradas.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> El objetivo no tiene actividades registradas.
     </div>
 
 <?php } ?>
