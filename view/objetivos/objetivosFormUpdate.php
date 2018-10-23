@@ -600,7 +600,7 @@
 
 <div id="confirm-tarea">
     <div class="modal-body">
-        ¿Desea eliminar la tarea?
+        ¿Desea eliminar la actividad?
     </div>
 
     <div id="myElemento" style="display:none">
