@@ -23,6 +23,7 @@
 
 
         function drawChart() {
+            //alert('se ejecuto drawChart');
 
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Task ID');
@@ -34,26 +35,68 @@
             data.addColumn('number', 'Percent Complete');
             data.addColumn('string', 'Dependencies');
 
-            data.addRows([
-                /*['id1', 'Requerimientos', 'spring', new Date('2014-01-05'), new Date('2014-01-20'), null, 100, null],
-                 ['id2', 'Analisis de costos', 'pinchila', new Date('2014-01-21'), new Date('2014-03-20'), null, 50, null],
-                 ['id3', 'Planificacion', 'autumn', new Date('2014-03-01'), new Date('2014-12-21'), null, 20, null]*/
+            /*data.addRows([
+
                 ['id1', 'Requerimientos', 'spring', new Date(2014, 0, 5), new Date(2014, 0, 20), null, 100, null],
                 ['id2', 'Analisis de costos', 'pinchila', new Date(2014, 0, 21), new Date(2014, 2, 20), null, 50, null],
                 ['id3', 'Planificacion', 'autumn', new Date(2014, 2, 1), new Date(2014, 11, 21), null, 20, null]
 
-            ]);
+            ]);*/
 
-            var options = {
-                gantt: {
-                    trackHeight: 30, //ancho de la fila
-                    criticalPathEnabled: false
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                data:{"action": "obj_objetivos", "operation": "grafico"},
+                dataType:"json",//xml,html,script,json
+                success: function(data1, textStatus, jqXHR) {
+
+                    $.each(data1, function(indice, val){
+
+                        //alert(data1[indice]['Task_Name']);
+                        data.addRows([
+                            [
+                                data1[indice]['Task_ID'],
+                                data1[indice]['Task_Name'],
+                                data1[indice]['Task_Name'],
+                                new Date(data1[indice]['Start_Date']),
+                                new Date(data1[indice]['End_Date']),
+                                null,
+                                (data1[indice]['Percent_Complete'])? parseInt(data1[indice]['Percent_Complete']) : 0,
+                                null
+                            ]
+
+                         ]);
+
+
+                    });
+
+
+                    var options = {
+                        gantt: {
+                            trackHeight: 30, //ancho de la fila
+                            criticalPathEnabled: false
+                        }
+                    };
+
+                    var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+                    chart.draw(data, options);
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
                 }
-            };
 
-            var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
 
-            chart.draw(data, options);
+            });
+
+
+
+
+
+
+
+
         }
 
 

@@ -214,6 +214,21 @@ class Objetivo
     }
 
 
+    public static function graficar() { //ok
+        $stmt=new sQuery();
+        $query = "select t.id_tarea as Task_ID, t.nombre as Task_Name, t.nombre as Resource,
+DATE_FORMAT(t.fecha_inicio,  '%Y-%m-%d') as Start_Date,
+DATE_FORMAT(t.fecha_fin,  '%Y-%m-%d') as End_Date,
+(select max(cantidad) from obj_avances where id_tarea = t.id_tarea) as Percent_Complete
+from obj_tareas t
+where id_objetivo = 1";
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_objetivo', $id_objetivo);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
     /*public static function getPeriodos(){ //ok
         $stmt=new sQuery();
         $query = "select periodo

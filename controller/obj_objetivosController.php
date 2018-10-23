@@ -105,6 +105,19 @@ switch ($operation)
         break;
 
 
+    case 'grafico':
+        $view->objetivo = new Objetivo($_POST['id_objetivo']);
+        //$view->label='Detalle objetivo: '.$view->objetivo->getCodigo();
+
+        //$view->tareas = Tarea::getTareas($_POST['id_objetivo']);
+        //$view->avances = Avance::getAvances($_POST['id_objetivo'], null);
+        $rta = $view->objetivo->graficar();
+        print_r(json_encode($rta));
+        exit;
+        break;
+
+
+
     default : //ok //muestra la grilla de objetivos
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
