@@ -97,7 +97,7 @@
 
         //Guardar tarea luego de ingresar nueva o editar. Traido de tarea_detailForm.php
         $('#myModal').on('click', '#tarea-form #submit',function(){ //ok
-            alert('guardar actividad');
+            //alert('guardar actividad');
 
             if ($("#tarea-form").valid()){
 
@@ -378,7 +378,7 @@
 
 
         $.fn.borrarTarea = function(id) { //ok
-            alert(id);
+            //alert(id);
             //preparo los parametros
             params={};
             params.id_tarea = id;
@@ -389,7 +389,7 @@
             //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
-                alert(xhr.responseText);
+                //alert(xhr.responseText);
                 if(data >=0){
                     $("#confirm-tarea #myElemento").html('Tarea eliminada con exito').addClass('alert alert-success').show();
                     $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
