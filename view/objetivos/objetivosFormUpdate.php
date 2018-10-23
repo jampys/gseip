@@ -16,7 +16,7 @@
 
 
 
-        google.charts.load('current', {'packages':['gantt']});
+        google.charts.load('current', {'packages':['gantt'], 'language': 'es'});
         setTimeout(function() {
                 google.charts.setOnLoadCallback(drawChart);
         }, 500);
@@ -398,6 +398,7 @@
                     setTimeout(function() { $("#confirm-tarea #myElemento").hide();
                                             $('#tarea-form').hide();
                                             $('#confirm-tarea').dialog('close');
+                                            drawChart();
                                           }, 2000);
                 }else{
                     $("#confirm-tarea #myElemento").html('Error al eliminar la tarea').addClass('alert alert-danger').show();
@@ -461,6 +462,7 @@
                     setTimeout(function() { $("#confirm-avance #myElemento").hide();
                                             $('#avance-form').hide();
                                             $('#confirm-avance').dialog('close');
+                                            drawChart();
                                           }, 2000);
                 }else{
                     $("#confirm-avance #myElemento").html('Error al eliminar el avance').addClass('alert alert-danger').show();

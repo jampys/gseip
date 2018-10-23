@@ -53,7 +53,6 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -66,8 +65,6 @@
                         <td><?php echo $rp['puesto']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
                         <td><?php echo $rp['contrato']; ?></td>
-                        <td style="text-align: center"><?php //echo($rp['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
-
 
                         <td class="text-center">
                             <!-- si tiene permiso para ver etapas -->
