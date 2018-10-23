@@ -43,10 +43,12 @@
 
             ]);*/
 
+
+
             $.ajax({
                 url:"index.php",
                 type:"post",
-                data:{"action": "obj_objetivos", "operation": "grafico"},
+                data:{"action": "obj_objetivos", "operation": "graficarGantt", "id_objetivo": <?php print $view->objetivo->getIdObjetivo() ?>},
                 dataType:"json",//xml,html,script,json
                 success: function(data1, textStatus, jqXHR) {
 

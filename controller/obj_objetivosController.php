@@ -105,13 +105,9 @@ switch ($operation)
         break;
 
 
-    case 'grafico':
+    case 'graficarGantt':
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
-        //$view->label='Detalle objetivo: '.$view->objetivo->getCodigo();
-
-        //$view->tareas = Tarea::getTareas($_POST['id_objetivo']);
-        //$view->avances = Avance::getAvances($_POST['id_objetivo'], null);
-        $rta = $view->objetivo->graficar();
+        $rta = $view->objetivo->graficarGantt();
         print_r(json_encode($rta));
         exit;
         break;
