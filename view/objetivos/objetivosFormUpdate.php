@@ -52,37 +52,43 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data1, textStatus, jqXHR) {
 
-                    $.each(data1, function(indice, val){
+                    if(Object.keys(data1).length > 0){
+                        
+                        $.each(data1, function(indice, val){
+                            //alert(data1[indice]['Task_Name']);
+                            data.addRows([
+                                [
+                                    data1[indice]['Task_ID'],
+                                    data1[indice]['Task_Name'],
+                                    data1[indice]['Task_Name'],
+                                    new Date(data1[indice]['Start_Date']),
+                                    new Date(data1[indice]['End_Date']),
+                                    null,
+                                    (data1[indice]['Percent_Complete'])? parseInt(data1[indice]['Percent_Complete']) : 0,
+                                    null
+                                ]
 
-                        //alert(data1[indice]['Task_Name']);
-                        data.addRows([
-                            [
-                                data1[indice]['Task_ID'],
-                                data1[indice]['Task_Name'],
-                                data1[indice]['Task_Name'],
-                                new Date(data1[indice]['Start_Date']),
-                                new Date(data1[indice]['End_Date']),
-                                null,
-                                (data1[indice]['Percent_Complete'])? parseInt(data1[indice]['Percent_Complete']) : 0,
-                                null
-                            ]
-
-                         ]);
+                            ]);
+                        });
 
 
-                    });
+                        var options = {
+                            gantt: {
+                                trackHeight: 30, //ancho de la fila
+                                criticalPathEnabled: false
+                            }
+                        };
+
+                        var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+                        chart.draw(data, options);
 
 
-                    var options = {
-                        gantt: {
-                            trackHeight: 30, //ancho de la fila
-                            criticalPathEnabled: false
-                        }
-                    };
 
-                    var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
 
-                    chart.draw(data, options);
+
+                    }
+
                 },
                 error: function(data, textStatus, errorThrown) {
                     //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
