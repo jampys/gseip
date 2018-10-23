@@ -96,8 +96,8 @@
 
 
         //Guardar tarea luego de ingresar nueva o editar. Traido de tarea_detailForm.php
-        $(document).on('click', '#tarea-form #submit',function(){ //ok
-            //alert('guardar orden');
+        $('#myModal').on('click', '#tarea-form #submit',function(){ //ok
+            alert('guardar actividad');
 
             if ($("#tarea-form").valid()){
 
@@ -143,7 +143,7 @@
 
 
         //Guardar avance luego de ingresar nuevo o editar. Traido de avance_detailForm.php
-        $(document).on('click', '#avance-form #submit',function(){ //ok
+        $('#myModal').on('click', '#avance-form #submit',function(){ //ok
 
             if ($("#avance-form").valid()){
 

@@ -279,7 +279,7 @@
                             <?php foreach ($view->empleados as $em){
                                 ?>
                                 <option value="<?php echo $em['id_empleado']; ?>"
-                                    <?php echo ($em['id_empleado'] == $view->objetivo->getIdResponsableEjecucion())? 'selected' :'' ?>
+                                    <?php echo ($em['id_empleado'] == $view->objetivo->getIdResponsableSeguimiento())? 'selected' :'' ?>
                                     >
                                     <?php echo $em['apellido'].' '.$em['nombre']; ?>
                                 </option>
