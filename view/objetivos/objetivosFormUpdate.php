@@ -171,7 +171,7 @@
                     if(data >=0){
                         $("#avance-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#avance-form #myElem").html('Avance guardado con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
+                        $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: params.id_tarea, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#avance-form #myElem").hide();
                                                 //$('#myModal').modal('hide');
