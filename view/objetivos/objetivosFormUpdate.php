@@ -3,6 +3,62 @@
 
     $(document).ready(function(){
 
+
+
+        google.charts.load('current', {'packages':['gantt']});
+        setTimeout(function() {
+                google.charts.setOnLoadCallback(drawChart);
+        }, 500);
+
+
+        function drawChart() {
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Task ID');
+            data.addColumn('string', 'Task Name');
+            data.addColumn('string', 'Resource');
+            data.addColumn('date', 'Start Date');
+            data.addColumn('date', 'End Date');
+            data.addColumn('number', 'Duration');
+            data.addColumn('number', 'Percent Complete');
+            data.addColumn('string', 'Dependencies');
+
+            data.addRows([
+                /*['id1', 'Requerimientos', 'spring', new Date('2014-01-05'), new Date('2014-01-20'), null, 100, null],
+                 ['id2', 'Analisis de costos', 'pinchila', new Date('2014-01-21'), new Date('2014-03-20'), null, 50, null],
+                 ['id3', 'Planificacion', 'autumn', new Date('2014-03-01'), new Date('2014-12-21'), null, 20, null]*/
+                ['id1', 'Requerimientos', 'spring', new Date(2014, 0, 5), new Date(2014, 0, 20), null, 100, null],
+                ['id2', 'Analisis de costos', 'pinchila', new Date(2014, 0, 21), new Date(2014, 2, 20), null, 50, null],
+                ['id3', 'Planificacion', 'autumn', new Date(2014, 2, 1), new Date(2014, 11, 21), null, 20, null]
+
+            ]);
+
+            var options = {
+                gantt: {
+                    trackHeight: 30, //ancho de la fila
+                    criticalPathEnabled: false
+                }
+            };
+
+            var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         $('.selectpicker').selectpicker();
 
 
@@ -299,6 +355,12 @@
             </div>
 
             <div class="modal-body">
+
+
+
+                <div id="chart_div"></div>
+
+
                 
                 <div class="row">
 
