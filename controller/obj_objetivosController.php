@@ -118,6 +118,13 @@ switch ($operation)
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         //$view->objetivos = Objetivo::getObjetivos($view->periodo_actual);
+        $view->puestos = Puesto::getPuestos();
+        $view->areas = Area::getAreas();
+        $view->contratos = Contrato::getContratos();
+        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->empleados = Empleado::getEmpleadosActivos();
+
+
         $view->contentTemplate="view/objetivos/objetivosGrid.php";
         break;
 }

@@ -198,42 +198,131 @@
             <div class="clearfix">
                 <form id="search_form" name="search_form">
 
-                    <div class="form-group col-md-2">
-                        <label for="periodo" class="control-label">Periodo</label>
-                        <select class="form-control" id="search_periodo" name="search_periodo">
-                            <option value="">Todos</option>
-                            <?php foreach ($view->periodos as $pe){
-                                ?>
-                                <option value="<?php echo $pe['periodo']; ?>"
-                                    <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
-                                    >
-                                    <?php echo $pe['periodo']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+
+                    <!-- FILA DE ARRIBA -->
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <!--<label for="periodo" class="control-label">Periodo</label>-->
+                            <select class="form-control selectpicker show-tick" id="id_puesto" name="id_puesto" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un puesto</option>
+                                <?php foreach ($view->puestos as $pu){
+                                    ?>
+                                    <option value="<?php echo $pu['id_puesto']; ?>"
+                                        <?php //echo ($pu['id_puesto'] == $view->objetivo->getIdPuesto() )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $pu['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group col-md-3">
+                            <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
+                            <select class="form-control selectpicker show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un área</option>
+                                <?php foreach ($view->areas as $ar){
+                                    ?>
+                                    <option value="<?php echo $ar['id_area']; ?>"
+                                        <?php //echo ($ar['id_area'] == $view->objetivo->getIdArea() )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $ar['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
+                            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un contrato</option>
+                                <?php foreach ($view->contratos as $con){
+                                    ?>
+                                    <option value="<?php echo $con['id_contrato']; ?>"
+                                        <?php //echo ($con['id_contrato'] == $view->objetivo->getIdContrato() )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
+                            <select class="form-control selectpicker show-tick" id="indicador" name="indicador" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un indicador</option>
+                                <?php foreach ($view->indicadores['enum'] as $ind){
+                                    ?>
+                                    <option value="<?php echo $ind; ?>"
+                                        <?php //echo ($ind == $view->objetivo->getIndicador() OR ($ind == $view->indicadores['default'] AND !$view->objetivo->getIdObjetivo()) )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $ind; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
+
                     </div>
 
+                    <!-- FILA DE ABAJO -->
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
+                            <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un responsable ejecución</option>
+                                <?php foreach ($view->empleados as $em){
+                                    ?>
+                                    <option value="<?php echo $em['id_empleado']; ?>"
+                                        <?php //echo ($em['id_empleado'] == $view->objetivo->getIdResponsableEjecucion())? 'selected' :'' ?>
+                                        >
+                                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
 
 
+                        <div class="form-group col-md-3">
+                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
+                            <select id="id_responsable_seguimiento" name="id_responsable_seguimiento" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un responsable seguimiento</option>
+                                <?php foreach ($view->empleados as $em){
+                                    ?>
+                                    <option value="<?php echo $em['id_empleado']; ?>"
+                                        <?php //echo ($em['id_empleado'] == $view->objetivo->getIdResponsableSeguimiento())? 'selected' :'' ?>
+                                        >
+                                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
 
-                    <div class="form-group col-md-6"></div>
 
-                    <div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
+                        <div class="form-group col-md-2">
+
+                        </div>
+
+
+                        <div class="form-group col-md-2">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+
+
+                        <div class="form-group col-md-2">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button  id="new" type="button" class="form-control btn btn-primary btn-sm" title="agregar objetivo" <?php //echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?> >
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+
+
                     </div>
-
-
-                    <div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
-                        <button  id="new" type="button" class="form-control btn btn-primary btn-sm" title="agregar objetivo" <?php //echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?> >
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </div>
-
-
 
 
                 </form>

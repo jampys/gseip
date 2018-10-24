@@ -260,7 +260,7 @@
 
                     <div class="form-group required">
                         <label for="id_responsable_ejecucion" class="control-label">Responsable ejecución</label>
-                        <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
+                        <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable ejecución">
                             <?php foreach ($view->empleados as $em){
                                 ?>
                                 <option value="<?php echo $em['id_empleado']; ?>"
@@ -275,7 +275,7 @@
 
                     <div class="form-group required">
                         <label for="id_responsable_seguimiento" class="control-label">Responsable seguimiento</label>
-                        <select id="id_responsable_seguimiento" name="id_responsable_seguimiento" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
+                        <select id="id_responsable_seguimiento" name="id_responsable_seguimiento" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable seguimiento">
                             <?php foreach ($view->empleados as $em){
                                 ?>
                                 <option value="<?php echo $em['id_empleado']; ?>"
