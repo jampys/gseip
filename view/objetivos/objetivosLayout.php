@@ -23,6 +23,14 @@
                 //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                 params.search_periodo = $("#search_periodo").val();
+                params.search_puesto = $("#search_puesto").val();
+                params.search_area = $("#search_area").val();
+                params.search_contrato = $("#search_contrato").val();
+                params.search_indicador = $("#search_indicador").val();
+                params.search_responsable_ejecucion = $("#search_responsable_ejecucion").val();
+                params.search_responsable_seguimiento = $("#search_responsable_seguimiento").val();
+
+
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "obj_objetivos";
                 params.operation = "refreshGrid";
