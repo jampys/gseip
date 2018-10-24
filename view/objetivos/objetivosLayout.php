@@ -204,7 +204,23 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="periodo" class="control-label">Periodo</label>-->
-                            <select class="form-control selectpicker show-tick" id="id_puesto" name="id_puesto" data-live-search="true" data-size="5">
+                            <select class="form-control" id="search_periodo" name="search_periodo">
+                                <option value="">Todos</option>
+                                <?php foreach ($view->periodos as $pe){
+                                    ?>
+                                    <option value="<?php echo $pe['periodo']; ?>"
+                                        <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $pe['periodo']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group col-md-3">
+                            <!--<label for="periodo" class="control-label">Periodo</label>-->
+                            <select class="form-control selectpicker show-tick" id="search_puesto" name="search_puesto" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un puesto</option>
                                 <?php foreach ($view->puestos as $pu){
                                     ?>
@@ -220,7 +236,7 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
-                            <select class="form-control selectpicker show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="search_area" name="search_area" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un área</option>
                                 <?php foreach ($view->areas as $ar){
                                     ?>
@@ -235,7 +251,7 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un contrato</option>
                                 <?php foreach ($view->contratos as $con){
                                     ?>
@@ -248,9 +264,16 @@
                             </select>
                         </div>
 
+
+                    </div>
+
+                    <!-- FILA DE ABAJO -->
+                    <div class="row">
+
+
                         <div class="form-group col-md-3">
                             <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select class="form-control selectpicker show-tick" id="indicador" name="indicador" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="search_indicador" name="search_indicador" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un indicador</option>
                                 <?php foreach ($view->indicadores['enum'] as $ind){
                                     ?>
@@ -264,14 +287,9 @@
                         </div>
 
 
-                    </div>
-
-                    <!-- FILA DE ABAJO -->
-                    <div class="row">
-
                         <div class="form-group col-md-3">
                             <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                            <select id="search_responsable_ejecucion" name="search_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un responsable ejecución</option>
                                 <?php foreach ($view->empleados as $em){
                                     ?>
@@ -287,7 +305,7 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select id="id_responsable_seguimiento" name="id_responsable_seguimiento" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                            <select id="search_responsable_seguimiento" name="search_responsable_seguimiento" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un responsable seguimiento</option>
                                 <?php foreach ($view->empleados as $em){
                                     ?>
@@ -301,12 +319,12 @@
                         </div>
 
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-1">
 
                         </div>
 
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -314,7 +332,7 @@
                         </div>
 
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
                             <button  id="new" type="button" class="form-control btn btn-primary btn-sm" title="agregar objetivo" <?php //echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?> >
                                 <span class="glyphicon glyphicon-plus"></span>

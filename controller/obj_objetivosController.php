@@ -18,6 +18,13 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         $periodo = ($_POST['search_periodo']!='')? $_POST['search_periodo'] : null;
+        $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
+        $id_area = ($_POST['search_area']!='')? $_POST['search_area'] : null;
+        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+
+        $id_indicador = ($_POST['search_indicador']!='')? $_POST['search_indicador'] : null;
+        $id_responsable_ejecucion = ($_POST['search_responsable_ejecucion']!='')? $_POST['search_responsable_ejecucion'] : null;
+        $id_responsable_seguimiento = ($_POST['search_responsable_ejecucion']!='')? $_POST['search_responsable_ejecucion'] : null;
         //$view->periodos = Objetivo::getPeriodos();
         //$view->periodo_actual = Soporte::getPeriodoActual();
         $view->objetivos = Objetivo::getObjetivos($periodo);
