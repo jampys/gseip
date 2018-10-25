@@ -130,7 +130,7 @@
                         $("#myElem").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"habilidades", operation: "refreshGrid"});
                         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                        setTimeout(function() { $("#myElemento").hide();
+                        setTimeout(function() { $("#myElem").hide();
                                                 $('#confirm').dialog('close');
                                               }, 2000);
                     }else{
