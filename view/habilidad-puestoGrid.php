@@ -86,7 +86,7 @@
         ¿Desea eliminar la habillidad del puesto?
     </div>
 
-    <div id="myElemento" class="msg" style="display:none">
+    <div id="myElem" class="msg" style="display:none">
 
     </div>
 
