@@ -233,7 +233,7 @@
                     <div class="row">
                         <div class="form-group col-md-9 required">
                             <label for="meta" class="control-label">Meta</label>
-                            <textarea class="form-control" name="meta" id="meta" placeholder="Meta" rows="2"><?php print $view->objetivo->getMeta(); ?></textarea>
+                            <textarea class="form-control" name="meta" id="meta" placeholder="Meta" rows="3"><?php print $view->objetivo->getMeta(); ?></textarea>
                         </div>
                         <div class="form-group col-md-3 required">
                             <label for="meta_valor" class="control-label">Valor</label>

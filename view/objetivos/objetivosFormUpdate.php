@@ -372,7 +372,8 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                close: function() { $("#confirm-tarea #myElem").empty().removeClass(); }
             }).dialog('open');
             return false;
         });
@@ -392,17 +393,17 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-tarea #myElemento").html('Tarea eliminada con exito').addClass('alert alert-success').show();
+                    $("#confirm-tarea #myElem").html('Actividad eliminada con exito').addClass('alert alert-success').show();
                     $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-tarea #myElemento").hide();
+                    setTimeout(function() { $("#confirm-tarea #myElem").hide();
                                             $('#tarea-form').hide();
                                             $('#confirm-tarea').dialog('close');
                                             drawChart();
                                           }, 2000);
                 }else{
-                    $("#confirm-tarea #myElemento").html('Error al eliminar la tarea').addClass('alert alert-danger').show();
+                    $("#confirm-tarea #myElem").html('No es posible eliminar la actividad').addClass('alert alert-danger').show();
                 }
 
 
@@ -436,7 +437,8 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                close: function() { $("#confirm-avance #myElem").empty().removeClass(); }
             }).dialog('open');
             return false;
         });
@@ -456,17 +458,17 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-avance #myElemento").html('Avance eliminado con exito').addClass('alert alert-success').show();
+                    $("#confirm-avance #myElem").html('Avance eliminado con exito').addClass('alert alert-success').show();
                     $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-avance #myElemento").hide();
+                    setTimeout(function() { $("#confirm-avance #myElem").hide();
                                             $('#avance-form').hide();
                                             $('#confirm-avance').dialog('close');
                                             drawChart();
                                           }, 2000);
                 }else{
-                    $("#confirm-avance #myElemento").html('Error al eliminar el avance').addClass('alert alert-danger').show();
+                    $("#confirm-avance #myElem").html('No es posible eliminar el avance').addClass('alert alert-danger').show();
                 }
 
 
@@ -604,7 +606,7 @@
         ¿Desea eliminar la actividad?
     </div>
 
-    <div id="myElemento" style="display:none">
+    <div id="myElem" class="msg" style="display:none">
 
     </div>
 
@@ -618,7 +620,7 @@
         ¿Desea eliminar el avance?
     </div>
 
-    <div id="myElemento" style="display:none">
+    <div id="myElem" class="msg" style="display:none">
 
     </div>
 
