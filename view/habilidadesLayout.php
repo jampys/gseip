@@ -110,7 +110,8 @@
                             class:"btn btn-default"
                         }
 
-                    ]
+                    ],
+                    close: function() { $("#myElem").empty().removeClass(); }
                 }).dialog('open');
                 return false;
             });
@@ -133,11 +134,11 @@
                                                 $('#confirm').dialog('close');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
+                        $("#myElem").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
                     }
 
 
-                }, "json");
+                });
 
             };
 
