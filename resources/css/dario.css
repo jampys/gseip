@@ -194,4 +194,8 @@ body{
     font-size: 13px !important;
 }
 
+/* corrige el excesivo espacio que deja bootstrap despues de un alert*/
+.msg.alert{
+    margin-bottom: 0px;
+}
 
