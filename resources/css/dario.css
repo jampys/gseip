@@ -190,6 +190,6 @@ body{
 
 /* corrige el excesivo espacio que deja bootstrap despues de un alert*/
 .alert{
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 
