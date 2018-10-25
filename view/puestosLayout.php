@@ -111,7 +111,7 @@
                     if(data >=0){
                         $("#myElem").html('Puesto eliminado con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"puestos", operation: "refreshGrid"});
-                        $('.btn').attr("disabled", true); //deshabilito botones
+                        $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#confirm').dialog('close');
                                               }, 2000);
