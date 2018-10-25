@@ -100,7 +100,8 @@ class Avance
                   join sec_users us on av.id_user = us.id_user
                   left join obj_tareas ot on av.id_tarea = ot.id_tarea
                   where av.id_objetivo = :id_objetivo
-                  and av.id_tarea = ifnull(:id_tarea, av.id_tarea)
+                  -- and av.id_tarea = ifnull(:id_tarea, av.id_tarea)
+                  and if(:id_tarea is null, 1 , av.id_tarea = :id_tarea)
                   order by av.fecha asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_objetivo', $id_objetivo);

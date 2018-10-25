@@ -34,56 +34,6 @@
         });
 
 
-
-        //Guardar avance luego de ingresar nuevo o editar
-        $('#avance-form').on('click', '#submit',function(){ //ok
-            //alert('guardar empleado');
-
-            if ($("#avance-form").valid()){
-
-                var params={};
-                params.action = 'obj_avances';
-                params.operation = 'saveAvance';
-                params.id_avance = $('#id_avance').val();
-                params.id_objetivo = $('#id_objetivo').val();
-                params.fecha = $('#fecha').val();
-                params.id_tarea = $('#id_tarea').val();
-                params.indicador = $('#indicador').val();
-                params.cantidad = $('#cantidad').val();
-                params.comentarios = $('#comentarios').val();
-                //params.conductor = $('input[name=conductor]:checked').val();
-                //params.conductor = $('#conductor').prop('checked')? 1:0;
-                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                //params.disabled = $('#disabled').prop('checked')? 1:0;
-                //alert(params.aplica);
-
-                $.post('index.php',params,function(data, status, xhr){
-
-                    //alert(objeto.id);
-                    //alert(xhr.responseText);
-
-                    if(data >=0){
-                        $("#avance-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Avance guardado con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
-                        setTimeout(function() { $("#myElem").hide();
-                                                //$('#myModal').modal('hide');
-                                                $('#avance-form').hide();
-                                              }, 2000);
-                    }else{
-                        $("#myElem").html('Error al guardar el avance').addClass('alert alert-danger').show();
-                    }
-
-                }, 'json');
-
-            }
-            return false;
-        });
-
-
-
-
         $('#avance-form').validate({ //ok
             rules: {
                 fecha: {required: true},
@@ -129,7 +79,7 @@
         <div class="form-group required">
             <label class="control-label" for="fecha_etapa">Fecha</label>
             <div class="input-group date">
-                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->avance->getFecha() ?>" placeholder="DD/MM/AAAA">
+                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->avance->getFecha() ?>" placeholder="DD/MM/AAAA" readonly>
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -185,7 +135,7 @@
 
 
     <div id="footer-buttons" class="pull-right">
-        <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
+        <button class="btn btn-primary btn-sm" id="submit" name="submit" type="button">Guardar</button>
         <!--<button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>-->
         <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
     </div>

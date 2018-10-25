@@ -29,14 +29,14 @@ switch ($operation)
         $avance = new Avance($_POST['id_avance']);
         $avance->setIdAvance($_POST['id_avance']);
         $avance->setIdObjetivo($_POST['id_objetivo']);
-        $avance->setIdTarea($_POST['id_tarea']);
+        //$avance->setIdTarea($_POST['id_tarea']);
+        $avance->setIdTarea( ($_POST['id_tarea']!='')? $_POST['id_tarea'] : null);
         $avance->setFecha($_POST['fecha']);
         $avance->setIndicador($_POST['indicador']);
         $avance->setCantidad($_POST['cantidad']);
         $avance->setComentarios($_POST['comentarios']);
         $avance->setIdUser($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        //$busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
         $rta = $avance->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));

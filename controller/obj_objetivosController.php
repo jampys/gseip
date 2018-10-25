@@ -18,9 +18,16 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         $periodo = ($_POST['search_periodo']!='')? $_POST['search_periodo'] : null;
+        $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
+        $id_area = ($_POST['search_area']!='')? $_POST['search_area'] : null;
+        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+
+        $indicador = ($_POST['search_indicador']!='')? $_POST['search_indicador'] : null;
+        $id_responsable_ejecucion = ($_POST['search_responsable_ejecucion']!='')? $_POST['search_responsable_ejecucion'] : null;
+        $id_responsable_seguimiento = ($_POST['search_responsable_seguimiento']!='')? $_POST['search_responsable_seguimiento'] : null;
         //$view->periodos = Objetivo::getPeriodos();
         //$view->periodo_actual = Soporte::getPeriodoActual();
-        $view->objetivos = Objetivo::getObjetivos($periodo);
+        $view->objetivos = Objetivo::getObjetivos($periodo, $id_puesto, $id_area, $id_contrato, $indicador, $id_responsable_ejecucion, $id_responsable_seguimiento);
         $view->contentTemplate="view/objetivos/objetivosGrid.php";
         break;
 
@@ -105,10 +112,26 @@ switch ($operation)
         break;
 
 
+    case 'graficarGantt':
+        $view->objetivo = new Objetivo($_POST['id_objetivo']);
+        $rta = $view->objetivo->graficarGantt();
+        print_r(json_encode($rta));
+        exit;
+        break;
+
+
+
     default : //ok //muestra la grilla de objetivos
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         //$view->objetivos = Objetivo::getObjetivos($view->periodo_actual);
+        $view->puestos = Puesto::getPuestos();
+        $view->areas = Area::getAreas();
+        $view->contratos = Contrato::getContratos();
+        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->empleados = Empleado::getEmpleadosActivos();
+
+
         $view->contentTemplate="view/objetivos/objetivosGrid.php";
         break;
 }

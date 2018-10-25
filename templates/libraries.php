@@ -74,6 +74,10 @@
     <!--<script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>-->
 
 
+    <!-- incluyo el plug-in google charts -->
+    <script type="text/javascript" src="resources/libraries/google charts/loader.js"></script>
+
+
     <!-- librerias css propias -->
     <link rel="stylesheet" href="resources/css/dario.css">
 

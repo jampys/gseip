@@ -1,7 +1,207 @@
+<style type="text/css">
+    
+    text {
+        font-family: 'Roboto' !important;
+        font-weight: normal !important;
+        font-size: 13px !important;
+    }
+
+</style>
+
+
 <script type="text/javascript">
 
 
     $(document).ready(function(){
+
+
+
+        google.charts.load('current', {'packages':['gantt'], 'language': 'es'});
+        setTimeout(function() {
+                google.charts.setOnLoadCallback(drawChart);
+        }, 500);
+
+
+        function drawChart() {
+            //alert('se ejecuto drawChart');
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Task ID');
+            data.addColumn('string', 'Task Name');
+            data.addColumn('string', 'Resource');
+            data.addColumn('date', 'Start Date');
+            data.addColumn('date', 'End Date');
+            data.addColumn('number', 'Duration');
+            data.addColumn('number', 'Percent Complete');
+            data.addColumn('string', 'Dependencies');
+
+            /*data.addRows([
+
+                ['id1', 'Requerimientos', 'spring', new Date(2014, 0, 5), new Date(2014, 0, 20), null, 100, null],
+                ['id2', 'Analisis de costos', 'pinchila', new Date(2014, 0, 21), new Date(2014, 2, 20), null, 50, null],
+                ['id3', 'Planificacion', 'autumn', new Date(2014, 2, 1), new Date(2014, 11, 21), null, 20, null]
+
+            ]);*/
+
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                data:{"action": "obj_objetivos", "operation": "graficarGantt", "id_objetivo": <?php print $view->objetivo->getIdObjetivo() ?>},
+                dataType:"json",//xml,html,script,json
+                success: function(data1, textStatus, jqXHR) {
+
+                    if(Object.keys(data1).length > 0){
+                        
+                        $.each(data1, function(indice, val){
+                            //alert(data1[indice]['Task_Name']);
+                            data.addRows([
+                                [
+                                    data1[indice]['Task_ID'],
+                                    data1[indice]['Task_Name'],
+                                    data1[indice]['Task_Name'],
+                                    new Date(data1[indice]['Start_Date']),
+                                    new Date(data1[indice]['End_Date']),
+                                    null,
+                                    (data1[indice]['Percent_Complete'])? parseInt(data1[indice]['Percent_Complete']) : 0,
+                                    null
+                                ]
+
+                            ]);
+                        });
+
+
+                        var options = {
+                            gantt: {
+                                trackHeight: 30, //ancho de la fila
+                                criticalPathEnabled: false
+                            },
+                            height: Object.keys(data1).length*30+50
+                        };
+
+                        var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+                        chart.draw(data, options);
+
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
+        }
+
+
+
+
+        //Guardar tarea luego de ingresar nueva o editar. Traido de tarea_detailForm.php
+        $('#myModal').on('click', '#tarea-form #submit',function(){ //ok
+            //alert('guardar actividad');
+
+            if ($("#tarea-form").valid()){
+
+                var params={};
+                params.action = 'obj_tareas';
+                params.operation = 'saveTarea';
+                params.id_objetivo = $('#id_objetivo').val();
+                params.id_tarea = $('#id_tarea').val();
+                params.nombre = $('#nombre').val();
+                params.descripcion = $('#descripcion').val();
+                params.fecha_inicio = $('#fecha_inicio').val();
+                params.fecha_fin = $('#fecha_fin').val();
+                //params.conductor = $('input[name=conductor]:checked').val();
+                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                //alert(params.aplica);
+
+                $.post('index.php',params,function(data, status, xhr){
+
+                    //alert(objeto.id);
+                    //alert(xhr.responseText);
+
+                    if(data >=0){
+                        $("#tarea-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#tarea-form #myElem").html('Tarea guardada con exito').addClass('alert alert-success').show();
+                        $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
+                        //$("#search").trigger("click");
+                        setTimeout(function() { $("#tarea-form #myElem").hide();
+                                                //$('#myModal').modal('hide');
+                                                $('#tarea-form').hide();
+                                                drawChart();
+                                                }, 2000);
+                    }else{
+                        $("#tarea-form #myElem").html('Error al guardar la tarea').addClass('alert alert-danger').show();
+                    }
+
+                }, 'json');
+
+            }
+            return false;
+        });
+
+
+
+        //Guardar avance luego de ingresar nuevo o editar. Traido de avance_detailForm.php
+        $('#myModal').on('click', '#avance-form #submit',function(){ //ok
+
+            if ($("#avance-form").valid()){
+
+                var params={};
+                params.action = 'obj_avances';
+                params.operation = 'saveAvance';
+                params.id_avance = $('#id_avance').val();
+                params.id_objetivo = $('#id_objetivo').val();
+                params.fecha = $('#fecha').val();
+                params.id_tarea = $('#id_tarea').val();
+                params.indicador = $('#indicador').val();
+                params.cantidad = $('#cantidad').val();
+                params.comentarios = $('#comentarios').val();
+                //params.conductor = $('input[name=conductor]:checked').val();
+                //params.conductor = $('#conductor').prop('checked')? 1:0;
+                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                //alert(params.aplica);
+
+                $.post('index.php',params,function(data, status, xhr){
+
+                    //alert(objeto.id);
+                    //alert(xhr.responseText);
+
+                    if(data >=0){
+                        $("#avance-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#avance-form #myElem").html('Avance guardado con exito').addClass('alert alert-success').show();
+                        $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: params.id_tarea, operation:"refreshGrid"});
+                        //$("#search").trigger("click");
+                        setTimeout(function() { $("#avance-form #myElem").hide();
+                                                //$('#myModal').modal('hide');
+                                                $('#avance-form').hide();
+                                                drawChart();
+                        }, 2000);
+                    }else{
+                        $("#myElem").html('Error al guardar el avance').addClass('alert alert-danger').show();
+                    }
+
+                }, 'json');
+
+            }
+            return false;
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         $('.selectpicker').selectpicker();
 
@@ -179,7 +379,7 @@
 
 
         $.fn.borrarTarea = function(id) { //ok
-            alert(id);
+            //alert(id);
             //preparo los parametros
             params={};
             params.id_tarea = id;
@@ -190,7 +390,7 @@
             //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
-                alert(xhr.responseText);
+                //alert(xhr.responseText);
                 if(data >=0){
                     $("#confirm-tarea #myElemento").html('Tarea eliminada con exito').addClass('alert alert-success').show();
                     $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
@@ -199,6 +399,7 @@
                     setTimeout(function() { $("#confirm-tarea #myElemento").hide();
                                             $('#tarea-form').hide();
                                             $('#confirm-tarea').dialog('close');
+                                            drawChart();
                                           }, 2000);
                 }else{
                     $("#confirm-tarea #myElemento").html('Error al eliminar la tarea').addClass('alert alert-danger').show();
@@ -262,6 +463,7 @@
                     setTimeout(function() { $("#confirm-avance #myElemento").hide();
                                             $('#avance-form').hide();
                                             $('#confirm-avance').dialog('close');
+                                            drawChart();
                                           }, 2000);
                 }else{
                     $("#confirm-avance #myElemento").html('Error al eliminar el avance').addClass('alert alert-danger').show();
@@ -299,6 +501,12 @@
             </div>
 
             <div class="modal-body">
+
+
+
+                <div id="chart_div"></div>
+
+
                 
                 <div class="row">
 
@@ -393,7 +601,7 @@
 
 <div id="confirm-tarea">
     <div class="modal-body">
-        ¿Desea eliminar la tarea?
+        ¿Desea eliminar la actividad?
     </div>
 
     <div id="myElemento" style="display:none">
