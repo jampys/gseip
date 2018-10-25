@@ -14,6 +14,8 @@
 
     $(document).ready(function(){
 
+        var v_id_tarea;
+
 
 
         google.charts.load('current', {'packages':['gantt'], 'language': 'es'});
@@ -227,7 +229,7 @@
         $('.grid-tareas').on('click', '.avance', function(){
             //alert('editar empleado del parte');
             var id = $(this).closest('tr').attr('data-id');
-            $('myModal').data('id_tarea', id); //guardo el id_tarea para refrescar la grilla de avances
+            v_id_tarea = id; //guardo el id_tarea para refrescar la grilla de avances
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
@@ -424,7 +426,7 @@
 
         //eliminar un avance
         $('.grid-avances').on('click', '.delete', function(){
-            //alert('Funcionalidad en desarrollo');
+            //alert(v_id_tarea);
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             $('#confirm-avance').dialog({ //se agregan botones al confirm dialog y se abre
@@ -466,7 +468,7 @@
                 //alert(xhr.responseText);
                 if(data >=0){
                     $("#confirm-avance #myElem").html('Avance eliminado con exito').addClass('alert alert-success').show();
-                    $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: $('myModal').data('id_tarea'), operation:"refreshGrid"});
+                    $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: v_id_tarea, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-avance #myElem").hide();
