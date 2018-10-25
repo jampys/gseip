@@ -127,14 +127,14 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElem").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
+                        $("#confirm #myElem").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"habilidades", operation: "refreshGrid"});
                         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                        setTimeout(function() { $("#myElem").hide();
+                        setTimeout(function() { $("#confirm #myElem").hide();
                                                 $('#confirm').dialog('close');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
+                        $("#confirm #myElem").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
                     }
 
 
