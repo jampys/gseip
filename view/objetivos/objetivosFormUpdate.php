@@ -27,7 +27,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Task ID');
             data.addColumn('string', 'Task Name');
-            data.addColumn('string', 'Resource');
+            //data.addColumn('string', 'Resource');
             data.addColumn('date', 'Start Date');
             data.addColumn('date', 'End Date');
             data.addColumn('number', 'Duration');
@@ -58,7 +58,7 @@
                                 [
                                     data1[indice]['Task_ID'],
                                     data1[indice]['Task_Name'],
-                                    data1[indice]['Task_Name'],
+                                    //data1[indice]['Task_Name'],
                                     new Date(data1[indice]['Start_Date']),
                                     new Date(data1[indice]['End_Date']),
                                     null,
@@ -74,6 +74,12 @@
                             gantt: {
                                 trackHeight: 30, //ancho de la fila
                                 criticalPathEnabled: false
+                                /*,innerGridHorizLine: {
+                                    stroke: '#ffe0b2',
+                                    strokeWidth: 1
+                                },
+                                innerGridTrack: {fill: '#fff3e0'},
+                                innerGridDarkTrack: {fill: '#ffcc80'}*/
                             },
                             height: Object.keys(data1).length*30+50
                         };
