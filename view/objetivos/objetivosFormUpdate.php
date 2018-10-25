@@ -523,6 +523,8 @@
                     </div>
                 </div>
 
+                <br/>
+
 
 
                 <div id="chart_div"></div>
