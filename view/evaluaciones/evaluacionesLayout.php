@@ -94,7 +94,7 @@
                     if(data >=0){
                         $("#myElemento").html('Objetivo eliminado con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"objetivos", operation: "refreshGrid"});
-                        $('.btn').attr("disabled", true); //deshabilito botones
+                        $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     }else{
                         $("#myElemento").html('Error al eliminar el objetivo').addClass('alert alert-danger').show();
                     }

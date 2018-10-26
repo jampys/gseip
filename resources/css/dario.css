@@ -187,11 +187,9 @@ body{
     font-size: 13px !important;
 }
 
-.navbar-nav > li {
-    font-size: 13px !important;
-}
-.dropdown-menu {
-    font-size: 13px !important;
-}
 
+/* corrige el excesivo espacio que deja bootstrap despues de un alert*/
+.alert{
+    margin-bottom: 10px;
+}
 

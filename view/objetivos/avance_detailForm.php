@@ -88,9 +88,9 @@
 
 
         <div class="form-group">
-            <label for="id_tarea" class="control-label">Tarea</label>
-            <select class="form-control selectpicker show-tick" id="id_tarea" name="id_tarea" title="Seleccione una tarea" data-live-search="true" data-size="5">
-                <!--<option value="">Seleccione una tarea</option>-->
+            <label for="id_tarea" class="control-label">Actividad</label>
+            <select class="form-control selectpicker show-tick" id="id_tarea" name="id_tarea" data-live-search="true" data-size="5">
+                <option value="">Seleccione una actividad</option>
                 <?php foreach ($view->tareas as $ta){
                     ?>
                     <option value="<?php echo $ta['id_tarea']; ?>"

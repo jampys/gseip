@@ -56,7 +56,8 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
 
 
     /* maneja los errores de ajax de toda la aplicacion */
-    $( document ).ajaxError(function( event, request, settings ) {
+    /* 25/10/2018 se anula la funcion momentaneamente, ya que genera un comportamiento diferente con el codigo ejecutado en linux */
+    /*$( document ).ajaxError(function( event, request, settings ) {
         //$( "#msg" ).append( "<li>Error requesting page " + settings.url + "</li>" );
         //alert('error de ajax');
         if (request.readyState == 4) {
@@ -71,7 +72,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             // something weird is happening
             $(".msg").html('Error desconocido. Intente nuevamente.').addClass('alert alert-danger').show();
         }
-    });
+    });*/
 
 
 

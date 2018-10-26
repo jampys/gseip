@@ -58,7 +58,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> El objetivo ó tarea no tiene avances registrados.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> El objetivo ó actividad no tiene avances registrados.
     </div>
 
 <?php } ?>

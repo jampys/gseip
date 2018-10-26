@@ -146,7 +146,8 @@
                             class:"btn btn-default"
                         }
 
-                    ]
+                    ],
+                    close: function() { $("#myElem").empty().removeClass(); }
                 }).dialog('open');
                 return false;
             });
@@ -162,19 +163,19 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
                         $("#search").trigger("click"); // refresh grid
-                        $('.btn').attr("disabled", true); //deshabilito botones
-                        setTimeout(function() { $("#myElemento").hide();
+                        $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
+                        setTimeout(function() { $("#myElem").hide();
                                                 $('#confirm').dialog('close');
                                               }, 2000);
 
                     }else{
-                        $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
+                        $("#myElem").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
                     }
 
-                }, 'json');
+                });
 
             };
 

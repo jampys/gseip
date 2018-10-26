@@ -118,7 +118,7 @@
         ¿Desea eliminar el objetivo?
     </div>
 
-    <div id="myElemento" style="display:none">
+    <div id="myElem" class="msg" style="display:none">
 
     </div>
 

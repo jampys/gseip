@@ -125,7 +125,8 @@
                             class:"btn btn-default"
                         }
 
-                    ]
+                    ],
+                    close: function() { $("#myElem").empty().removeClass(); }
                 }).dialog('open');
                 return false;
             });
@@ -143,15 +144,15 @@
                     if(data >=0){
                         $("#myElem").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"vehiculos", operation: "refreshGrid"});
-                        $('.btn').attr("disabled", true); //deshabilito botones
+                        $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#confirm').dialog('close');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al eliminar el vehículo').addClass('alert alert-danger').show();
+                        $("#myElem").html('No es posible eliminar el vehículo').addClass('alert alert-danger').show();
                     }
 
-                }, "json");
+                });
 
             };
 
