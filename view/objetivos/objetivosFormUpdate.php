@@ -89,6 +89,8 @@
                         var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
                         chart.draw(data, options);
 
+                    }else{
+                        $('#chart_div').empty();
                     }
 
                 },
