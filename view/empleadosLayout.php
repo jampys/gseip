@@ -90,10 +90,7 @@
                     //alert(params.cambio_domicilio);
 
                     $.post('index.php',params,function(data, status, xhr){
-
                         //alert(xhr.responseText);
-                        //var rta= parseInt(data.charAt(3));
-                        //alert(rta);
                         if(data >=0){
                             $(".panel-footer button").prop("disabled", true); //deshabilito botones
                             $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
@@ -102,13 +99,12 @@
                                                     $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
                                                   }, 2000);
 
-                        }else{
-                            //alert(xhr.responseText);
-                            $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                         }
 
-
-                    }, "json");
+                    }, "json").fail(function(jqXHR, textStatus, errorThrown ) {
+                        //alert('Entro a fail '+jqXHR.responseText);
+                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                    });
 
                 }
                 return false;
