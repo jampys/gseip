@@ -90,6 +90,7 @@
                     //alert(params.cambio_domicilio);
 
                     $.post('index.php',params,function(data, status, xhr){
+                        //No se usa .fail() porque el resultado viene de un SP y siempre devuelve 1 o -1 (no lanza excepcion PHP)
                         //alert(xhr.responseText);
                         if(data >=0){
                             $(".panel-footer button").prop("disabled", true); //deshabilito botones
@@ -99,12 +100,12 @@
                                                     $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
                                                   }, 2000);
 
+                        }else{
+                            //alert(xhr.responseText);
+                            $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                         }
 
-                    }, "json").fail(function(jqXHR, textStatus, errorThrown ) {
-                        //alert('Entro a fail '+jqXHR.responseText);
-                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
-                    });
+                    }, "json");
 
                 }
                 return false;
