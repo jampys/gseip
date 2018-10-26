@@ -137,7 +137,7 @@
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
-
+                    //No se usa .fail() porque el resultado (solo para el caso del insert) viene de un SP y siempre devuelve 1 o -1 (no lanza excepcion PHP)
                     objeto.id = data; //data trae el id de la renovacion
                     //alert(objeto.id);
                     //alert(xhr.responseText);
