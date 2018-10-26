@@ -171,10 +171,11 @@
                                                 $('#confirm').dialog('close');
                                               }, 2000);
 
-                    }else{
-                        $("#myElem").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
                     }
 
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#myElem").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
                 });
 
             };

@@ -174,9 +174,7 @@
                 params.vHabilidades = JSON.stringify(jsonHabilidadesIx);
 
                 $.post('index.php',params,function(data, status, xhr){
-                    //alert(data);
-                    //var rta= parseInt(data.charAt(3));
-                    //alert(rta);
+                    //No se usa .fail() porque el resultado viene de una transaccion (try catch) que siempre devuelve 1 o -1
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Habilidades empleados guardadas con exito').addClass('alert alert-success').show();
