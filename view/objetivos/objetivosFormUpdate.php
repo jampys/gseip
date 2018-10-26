@@ -411,11 +411,11 @@
                                             $('#confirm-tarea').dialog('close');
                                             drawChart();
                                           }, 2000);
-                }else{
-                    $("#confirm-tarea #myElem").html('No es posible eliminar la actividad').addClass('alert alert-danger').show();
                 }
 
-
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                $("#confirm-tarea #myElem").html('No es posible eliminar la actividad').addClass('alert alert-danger').show();
             });
 
         };
@@ -476,11 +476,11 @@
                                             $('#confirm-avance').dialog('close');
                                             drawChart();
                                           }, 2000);
-                }else{
-                    $("#confirm-avance #myElem").html('No es posible eliminar el avance').addClass('alert alert-danger').show();
                 }
 
-
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                $("#confirm-avance #myElem").html('No es posible eliminar el avance').addClass('alert alert-danger').show();
             });
 
         };
