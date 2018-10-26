@@ -125,10 +125,7 @@
                 //alert(params.aplica);
 
                 $.post('index.php',params,function(data, status, xhr){
-
-                    //alert(objeto.id);
                     //alert(xhr.responseText);
-
                     if(data >=0){
                         $("#tarea-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#tarea-form #myElem").html('Tarea guardada con exito').addClass('alert alert-success').show();
@@ -139,11 +136,12 @@
                                                 $('#tarea-form').hide();
                                                 drawChart();
                                                 }, 2000);
-                    }else{
-                        $("#tarea-form #myElem").html('Error al guardar la tarea').addClass('alert alert-danger').show();
                     }
 
-                }, 'json');
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#tarea-form #myElem").html('Error al guardar la tarea').addClass('alert alert-danger').show();
+                });
 
             }
             return false;
@@ -173,10 +171,7 @@
                 //alert(params.aplica);
 
                 $.post('index.php',params,function(data, status, xhr){
-
-                    //alert(objeto.id);
                     //alert(xhr.responseText);
-
                     if(data >=0){
                         $("#avance-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#avance-form #myElem").html('Avance guardado con exito').addClass('alert alert-success').show();
@@ -187,11 +182,12 @@
                                                 $('#avance-form').hide();
                                                 drawChart();
                         }, 2000);
-                    }else{
-                        $("#myElem").html('Error al guardar el avance').addClass('alert alert-danger').show();
                     }
 
-                }, 'json');
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#avance-form #myElem").html('Error al guardar el avance').addClass('alert alert-danger').show();
+                });
 
             }
             return false;
@@ -411,11 +407,11 @@
                                             $('#confirm-tarea').dialog('close');
                                             drawChart();
                                           }, 2000);
-                }else{
-                    $("#confirm-tarea #myElem").html('No es posible eliminar la actividad').addClass('alert alert-danger').show();
                 }
 
-
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                $("#confirm-tarea #myElem").html('No es posible eliminar la actividad').addClass('alert alert-danger').show();
             });
 
         };
@@ -476,11 +472,11 @@
                                             $('#confirm-avance').dialog('close');
                                             drawChart();
                                           }, 2000);
-                }else{
-                    $("#confirm-avance #myElem").html('No es posible eliminar el avance').addClass('alert alert-danger').show();
                 }
 
-
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                $("#confirm-avance #myElem").html('No es posible eliminar el avance').addClass('alert alert-danger').show();
             });
 
         };

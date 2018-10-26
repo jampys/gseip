@@ -86,12 +86,12 @@
                             setTimeout(function() { $("#myElem").hide();
                                                     $('#myModal').modal('hide');
                                                   }, 2000);
-                        }else{
-                            $("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
                         }
 
-
-                    }, "json");
+                    }, "json").fail(function(jqXHR, textStatus, errorThrown ) {
+                        //alert('Entro a fail '+jqXHR.responseText);
+                        $("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
+                    });
 
 
                 }
@@ -148,10 +148,11 @@
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#confirm').dialog('close');
                                               }, 2000);
-                    }else{
-                        $("#myElem").html('No es posible eliminar el vehículo').addClass('alert alert-danger').show();
                     }
 
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#myElem").html('No es posible eliminar el vehículo').addClass('alert alert-danger').show();
                 });
 
             };

@@ -96,9 +96,6 @@
                 //alert(params.aplica);
 
                 $.post('index.php',params,function(data, status, xhr){
-
-                    //objeto.id = data; //data trae el id de la renovacion
-                    //alert(objeto.id);
                     //alert(xhr.responseText);
 
                     if(data >=0){
@@ -111,11 +108,12 @@
                                                 //$('#myModal').modal('hide');
                                                 $('#etapa-form').hide();
                                               }, 2000);
-                    }else{
-                        $("#myElem").html('Error al guardar la etapa').addClass('alert alert-danger').show();
                     }
 
-                }, 'json');
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#myElem").html('Error al guardar la etapa').addClass('alert alert-danger').show();
+                });
 
             }
             return false;

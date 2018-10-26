@@ -22,7 +22,6 @@
 
             $.post('index.php',params,function(data, status, xhr){
                 //alert(data);
-                //var rta= parseInt(data.charAt(3));
                 if(data >=0){
                     $(".modal-footer button").prop("disabled", true); //deshabilito botones
                     $("#myElem").html('Habilidad del puesto puesto guardada con exito').addClass('alert alert-success').show();
@@ -31,11 +30,12 @@
                     setTimeout(function() { $("#myElem").hide();
                                             $('#myModalUpdate').modal('hide');
                                           }, 2000);
-                }else{
-                    $("#myElem").html('Error al guardar la habilidad del puesto').addClass('alert alert-danger').show();
                 }
 
-            }, 'json');
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                $("#myElem").html('Error al guardar la habilidad del puesto').addClass('alert alert-danger').show();
+            });
 
             return false;
 

@@ -49,9 +49,7 @@
                 params.id_responsable_seguimiento=$('#id_responsable_seguimiento').val();
 
                 $.post('index.php',params,function(data, status, xhr){
-
                     //alert(xhr.responseText);
-
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Objetivo guardado con exito').addClass('alert alert-success').show();
@@ -60,11 +58,12 @@
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                               }, 2000);
-                    }else{
-                        $("#myElem").html('Error al guardar el objetivo').addClass('alert alert-danger').show();
                     }
 
-                }, 'json');
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#myElem").html('Error al guardar el objetivo').addClass('alert alert-danger').show();
+                });
 
             }
             return false;

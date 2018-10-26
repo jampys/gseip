@@ -61,11 +61,8 @@
                     params.id_habilidad=$('#id_habilidad').val();
                     params.codigo=$('#codigo').val();
                     params.nombre=$('#nombre').val();
-                    $.post('index.php',params,function(data, status, xhr){
 
-                        //alert(data);
-                        //var rta= parseInt(data.charAt(3));
-                        //alert(rta);
+                    $.post('index.php',params,function(data, status, xhr){
                         if(data >=0){
                             $(".modal-footer button").prop("disabled", true); //deshabilito botones
                             $("#myElem").html('Habilidad guardada con exito').addClass('alert alert-success').show();
@@ -73,11 +70,12 @@
                             setTimeout(function() { $("#myElem").hide();
                                                     $('#myModal').modal('hide');
                                                   }, 2000);
-                        }else{
-                            $("#myElem").html('Error al guardar la habilidad').addClass('alert alert-danger').show();
                         }
 
-                    }, "json");
+                    }, "json").fail(function(jqXHR, textStatus, errorThrown ) {
+                        //alert('Entro a fail '+jqXHR.responseText);
+                        $("#myElem").html('Error al guardar la habilidad').addClass('alert alert-danger').show();
+                    });
 
                 }
                 return false;
@@ -133,10 +131,11 @@
                         setTimeout(function() { $("#confirm #myElem").hide();
                                                 $('#confirm').dialog('close');
                                               }, 2000);
-                    }else{
-                        $("#confirm #myElem").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
                     }
 
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#confirm #myElem").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
 
                 });
 
