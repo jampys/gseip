@@ -166,10 +166,11 @@
                         setTimeout(function() { $("#confirm #myElem").hide();
                                                 $('#confirm').dialog('close');
                                               }, 2000);
-                    }else{
-                        $("#confirm #myElem").html('No es posible eliminar el objetivo').addClass('alert alert-danger').show();
                     }
 
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#confirm #myElem").html('No es posible eliminar el objetivo').addClass('alert alert-danger').show();
                 });
 
             };
