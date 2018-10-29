@@ -9,14 +9,15 @@
              url: 'dataTables/Spanish.json'
              }*/
 
-            "fnInitComplete": function () {
-                                $(this).show(); },
+            /*"fnInitComplete": function () {
+             $(this).show(); }*/
 
             "stateSave": true,
             columnDefs: [
                 {targets: 1, render: $.fn.dataTable.render.ellipsis(30)} //https://datatables.net/blog/2016-02-26
-                ,{ "width": "350px", "targets":4 } //progress bar
+                ,{ "width": "80px", "targets":5 } //progress bar
             ]
+
         });
 
 
@@ -38,7 +39,7 @@
 
     <div class="table-responsive">
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>Código</th>
