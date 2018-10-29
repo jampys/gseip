@@ -14,7 +14,8 @@
 
             "stateSave": true,
             columnDefs: [
-                {targets: 1, render: $.fn.dataTable.render.ellipsis(40)} //https://datatables.net/blog/2016-02-26
+                {targets: 1, render: $.fn.dataTable.render.ellipsis(30)} //https://datatables.net/blog/2016-02-26
+                ,{ "width": "350px", "targets":4 } //progress bar
             ]
         });
 
@@ -50,6 +51,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -62,6 +64,15 @@
                         <td><?php echo $rp['puesto']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
                         <td><?php echo $rp['contrato']; ?></td>
+                        <td>
+
+
+                            <div class="progress" style="margin-bottom: 0px">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                    60%
+                                </div>
+                            </div>
+                        </td>
 
                         <td class="text-center">
                             <!-- si tiene permiso para ver etapas -->
