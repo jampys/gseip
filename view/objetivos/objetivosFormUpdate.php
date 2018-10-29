@@ -74,21 +74,31 @@
 
                         var options = {
                             gantt: {
-                                trackHeight: 30, //ancho de la fila
-                                criticalPathEnabled: false
+                                trackHeight: 25, //ancho de la fila
+                                barHeight: 19, //ancho de la barra
+                                criticalPathEnabled: false,
                                 /*,innerGridHorizLine: {
                                     stroke: '#ffe0b2',
                                     strokeWidth: 1
                                 },
                                 innerGridTrack: {fill: '#fff3e0'},
                                 innerGridDarkTrack: {fill: '#ffcc80'}*/
+                                palette: [ //con esto configuro los colores de las barras del gantt https://stackoverflow.com/questions/35165271/customize-the-bar-colors-in-google-gantt-charts
+                                    {
+                                        "color": "#db4437",
+                                        "dark": "#a52714",
+                                        "light": "#f4c7c3"
+                                    }
+                                ]
                             },
-                            height: Object.keys(data1).length*30+50
+                            height: Object.keys(data1).length*25+50 // cantidad_elementos * trackHeight + margen
                         };
 
                         var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
                         chart.draw(data, options);
 
+                    }else{
+                        $('#chart_div').empty();
                     }
 
                 },
@@ -523,6 +533,12 @@
 
                                     <p><strong> <?php print $view->objetivo->getCodigo() ?> </strong>
                                         <?php print $view->objetivo->getNombre() ?> </p>
+
+                                    <div class="progress" style="margin-bottom: 0px">
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php print $view->objetivo->getProgreso(); ?>%;">
+                                            <?php print $view->objetivo->getProgreso(); ?>%
+                                        </div>
+                                    </div>
 
                                 </div>
 

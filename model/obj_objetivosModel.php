@@ -16,6 +16,7 @@ class Objetivo
     private $id_responsable_ejecucion;
     private $id_responsable_seguimiento;
     private $codigo;
+    private $progreso;
 
     // GETTERS
     function getIdObjetivo()
@@ -56,6 +57,9 @@ class Objetivo
 
     function getCodigo()
     { return $this->codigo;}
+
+    function getProgreso()
+    { return $this->progreso;}
 
 
     //SETTERS
@@ -98,13 +102,17 @@ class Objetivo
     function setCodigo($val)
     { $this->codigo=$val;}
 
+    function setProgreso($val)
+    { $this->progreso=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query="select * from obj_objetivos where id_objetivo = :nro";
+            $query="select obj.*, func_obj_progress(obj.id_objetivo) as progreso
+                    from obj_objetivos obj where id_objetivo = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
@@ -123,6 +131,7 @@ class Objetivo
             $this->setIdResponsableEjecucion($rows[0]['id_responsable_ejecucion']);
             $this->setIdResponsableSeguimiento($rows[0]['id_responsable_seguimiento']);
             $this->setCodigo($rows[0]['codigo']);
+            $this->setProgreso($rows[0]['progreso']);
         }
     }
 
@@ -132,7 +141,7 @@ class Objetivo
         /*$query = "select *
                   from v_sec_objetivos vso
                   where vso.periodo = ifnull(:periodo, vso.periodo)";*/
-        $query = "select *
+        $query = "select vso.*, func_obj_progress(vso.id_objetivo) as progreso
                   from v_sec_objetivos vso
                   where vso.periodo = ifnull(:periodo, vso.periodo)
                   and if (:id_puesto is null, 1, vso.id_puesto = :id_puesto)
@@ -140,9 +149,7 @@ class Objetivo
                   and if (:id_contrato is null, 1, vso.id_contrato = :id_contrato)
                   and vso.indicador = ifnull(:indicador, vso.indicador)
                   and vso.id_responsable_ejecucion = ifnull(:id_responsable_ejecucion, vso.id_responsable_ejecucion)
-                  and vso.id_responsable_seguimiento = ifnull(:id_responsable_seguimiento, vso.id_responsable_seguimiento)
-
-                  ";
+                  and vso.id_responsable_seguimiento = ifnull(:id_responsable_seguimiento, vso.id_responsable_seguimiento)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpBind(':id_puesto', $id_puesto);

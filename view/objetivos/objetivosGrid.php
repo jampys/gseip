@@ -9,13 +9,15 @@
              url: 'dataTables/Spanish.json'
              }*/
 
-            "fnInitComplete": function () {
-                                $(this).show(); },
+            /*"fnInitComplete": function () {
+             $(this).show(); }*/
 
             "stateSave": true,
             columnDefs: [
-                {targets: 1, render: $.fn.dataTable.render.ellipsis(40)} //https://datatables.net/blog/2016-02-26
+                {targets: 1, render: $.fn.dataTable.render.ellipsis(30)} //https://datatables.net/blog/2016-02-26
+                ,{ "width": "80px", "targets":5 } //progress bar
             ]
+
         });
 
 
@@ -37,7 +39,7 @@
 
     <div class="table-responsive">
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>Código</th>
@@ -45,6 +47,7 @@
                 <th>Puesto</th>
                 <th>Área</th>
                 <th>Contrato</th>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -62,6 +65,13 @@
                         <td><?php echo $rp['puesto']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
                         <td><?php echo $rp['contrato']; ?></td>
+                        <td>
+                            <div class="progress" style="margin-bottom: 0px">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $rp['progreso']; ?>%;">
+                                    <?php echo $rp['progreso']; ?>%
+                                </div>
+                            </div>
+                        </td>
 
                         <td class="text-center">
                             <!-- si tiene permiso para ver etapas -->

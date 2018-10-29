@@ -21,7 +21,7 @@
                     <td><?php echo $ta['fecha_fin'];?></td>
 
                     <td class="text-center">
-                        <a class="avance" href="javascript:void(0);" data-id="<?php echo $ta['id_tarea'];?>" title="Avance">
+                        <a class="avance" href="javascript:void(0);" data-id="<?php echo $ta['id_tarea'];?>" title="Avances">
                             <i class="fas fa-forward fa-fw"></i>
                         </a>
                     </td>
