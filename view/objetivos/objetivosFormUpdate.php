@@ -75,13 +75,20 @@
                         var options = {
                             gantt: {
                                 trackHeight: 30, //ancho de la fila
-                                criticalPathEnabled: false
+                                criticalPathEnabled: false,
                                 /*,innerGridHorizLine: {
                                     stroke: '#ffe0b2',
                                     strokeWidth: 1
                                 },
                                 innerGridTrack: {fill: '#fff3e0'},
                                 innerGridDarkTrack: {fill: '#ffcc80'}*/
+                                palette: [ //con esto configuro los colores de las barras del gantt https://stackoverflow.com/questions/35165271/customize-the-bar-colors-in-google-gantt-charts
+                                    {
+                                        "color": "#db4437",
+                                        "dark": "#a52714",
+                                        "light": "#f4c7c3"
+                                    }
+                                ]
                             },
                             height: Object.keys(data1).length*30+50
                         };
