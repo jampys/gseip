@@ -74,7 +74,8 @@
 
                         var options = {
                             gantt: {
-                                trackHeight: 30, //ancho de la fila
+                                trackHeight: 25, //ancho de la fila
+                                barHeight: 19, //ancho de la barra
                                 criticalPathEnabled: false,
                                 /*,innerGridHorizLine: {
                                     stroke: '#ffe0b2',
@@ -90,7 +91,7 @@
                                     }
                                 ]
                             },
-                            height: Object.keys(data1).length*30+50
+                            height: Object.keys(data1).length*25+50 // cantidad_elementos * trackHeight + margen
                         };
 
                         var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
