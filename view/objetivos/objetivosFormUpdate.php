@@ -533,6 +533,12 @@
                                     <p><strong> <?php print $view->objetivo->getCodigo() ?> </strong>
                                         <?php print $view->objetivo->getNombre() ?> </p>
 
+                                    <div class="progress" style="margin-bottom: 0px">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php print $view->objetivo->getProgreso(); ?>%;">
+                                            <?php print $view->objetivo->getProgreso(); ?>%
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="col-md-6">

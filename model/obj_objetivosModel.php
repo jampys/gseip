@@ -131,6 +131,7 @@ class Objetivo
             $this->setIdResponsableEjecucion($rows[0]['id_responsable_ejecucion']);
             $this->setIdResponsableSeguimiento($rows[0]['id_responsable_seguimiento']);
             $this->setCodigo($rows[0]['codigo']);
+            $this->setProgreso($rows[0]['progreso']);
         }
     }
 
