@@ -534,7 +534,7 @@
                                         <?php print $view->objetivo->getNombre() ?> </p>
 
                                     <div class="progress" style="margin-bottom: 0px">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php print $view->objetivo->getProgreso(); ?>%;">
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php print $view->objetivo->getProgreso(); ?>%;">
                                             <?php print $view->objetivo->getProgreso(); ?>%
                                         </div>
                                     </div>
