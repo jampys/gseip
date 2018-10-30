@@ -16,7 +16,7 @@
         $('.selectpicker').selectpicker();
 
         var jsonCompetencias = [];
-        var jsonCompetenciasHelp ={};
+        var jsonCompetenciasHelp ={}; //objeto
 
 
         //carga un array con la descripcion de los puntajes de cada competencia
@@ -40,17 +40,17 @@
                      jsonCompetenciasHelp[id].id_puntaje += item.id_puntaje;
                      }*/
                     if(!jsonCompetenciasHelp[data[indice]['id_competencia']]) {
-                        jsonCompetenciasHelp[data[indice]['id_competencia']] = {};
+                        jsonCompetenciasHelp[data[indice]['id_competencia']] = []; //array
                     }
 
-                    jsonCompetenciasHelp[data[indice]['id_competencia']][data[indice]['puntaje']] = data[indice];//['descripcion'];
+                    jsonCompetenciasHelp[data[indice]['id_competencia']].push(data[indice]);//['descripcion'];
 
 
                     //jsonCompetenciasHelp[indice] = data[indice];
                 });
 
                 //alert(Object.keys(jsonCompetenciasHelp).length);
-                //alert(jsonCompetenciasHelp[1][1]);
+                //alert(jsonCompetenciasHelp[1][0]['descripcion']);
             }
 
         });
@@ -210,7 +210,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-md-8 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
                                     <div class="col-md-4">
-                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="Puntaje"  >
+                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="Puntaje" data-live-search="true" data-size="5"  >
                                             <?php foreach ($view->puntajes[$com['id_competencia']] as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje_competencia']; ?>"
                                                     <?php echo ($com['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
