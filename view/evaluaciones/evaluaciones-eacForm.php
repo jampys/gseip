@@ -43,7 +43,7 @@
                         jsonCompetenciasHelp[data[indice]['id_competencia']] = {};
                     }
 
-                    jsonCompetenciasHelp[data[indice]['id_competencia']][data[indice]['puntaje']] = data[indice]['descripcion'];
+                    jsonCompetenciasHelp[data[indice]['id_competencia']][data[indice]['puntaje']] = data[indice];//['descripcion'];
 
 
                     //jsonCompetenciasHelp[indice] = data[indice];
@@ -77,10 +77,12 @@
         $(document).on("click", ".help_puntaje", function(e){
 
             var id = $(this).closest('.form-group').find('select').attr('id');
-            var label = $(this).closest('.form-group').find('label').text();
+            var label = jsonCompetenciasHelp[id][1]['nombre'];  //$(this).closest('.form-group').find('label').text();
+            var definicion = jsonCompetenciasHelp[id][1]['definicion'];
 
             $('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
-            $('#help-box').html('<p><span class="glyphicon glyphicon-tags"></span>&nbsp'+label+'</p>')
+            $('#help-box').html('<p><span class="glyphicon glyphicon-tags"></span> &nbsp; <strong>'+label+'</strong></p>')
+                          .append('<p>'+definicion+'</p>')
                           .scrollTop();
 
 
@@ -92,7 +94,7 @@
                     //.append('<strong>'+jsonCompetenciasHelp[indice]['puntaje']+'</strong>')
                     //.append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
                         .append('<strong>'+indice+'</strong>')
-                        .append('<p>'+jsonCompetenciasHelp[id][indice]+'</p>');
+                        .append('<p>'+jsonCompetenciasHelp[id][indice]['descripcion']+'</p>');
                 //}
 
             });
