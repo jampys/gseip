@@ -16,7 +16,7 @@
         $('.selectpicker').selectpicker();
 
         var jsonCompetencias = [];
-        var jsonCompetenciasHelp =[];
+        var jsonCompetenciasHelp ={};
 
 
         //carga un array con la descripcion de los puntajes de cada competencia
@@ -39,11 +39,18 @@
                      else {
                      jsonCompetenciasHelp[id].id_puntaje += item.id_puntaje;
                      }*/
+                    if(!jsonCompetenciasHelp[data[indice]['id_competencia']]) {
+                        jsonCompetenciasHelp[data[indice]['id_competencia']] = {};
+                    }
 
-                    jsonCompetenciasHelp[indice] = data[indice];
+                    jsonCompetenciasHelp[data[indice]['id_competencia']][data[indice]['puntaje']] = data[indice]['descripcion'];
+
+
+                    //jsonCompetenciasHelp[indice] = data[indice];
                 });
 
                 //alert(Object.keys(jsonCompetenciasHelp).length);
+                //alert(jsonCompetenciasHelp[1][1]);
             }
 
         });
@@ -76,13 +83,17 @@
             $('#help-box').html('<p><span class="glyphicon glyphicon-tags"></span>&nbsp'+label+'</p>')
                           .scrollTop();
 
-            $.each(jsonCompetenciasHelp, function(indice, val){ //carga el array de empleados
 
-                if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
+            // jsonCompetenciasHelp[data[indice]['id_competencia']][data[indice]['puntaje']]
+            $.each(jsonCompetenciasHelp[id], function(indice, val){ //carga el array de empleados
+
+                //if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
                     $('#help-box').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp')
-                    .append('<strong>'+jsonCompetenciasHelp[indice]['puntaje']+'</strong>')
-                    .append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
-                }
+                    //.append('<strong>'+jsonCompetenciasHelp[indice]['puntaje']+'</strong>')
+                    //.append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
+                        .append('<strong>'+indice+'</strong>')
+                        .append('<p>'+jsonCompetenciasHelp[id][indice]+'</p>');
+                //}
 
             });
 
