@@ -77,7 +77,7 @@
         $(document).on("click", ".help_puntaje", function(e){
 
             var id = $(this).closest('.form-group').find('select').attr('id');
-            var label = jsonCompetenciasHelp[id][1]['nombre'];  //$(this).closest('.form-group').find('label').text();
+            var label = jsonCompetenciasHelp[id][1]['nombre'];  // el 1 es el puntaje 
             var definicion = jsonCompetenciasHelp[id][1]['definicion'];
 
             $('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
@@ -87,14 +87,14 @@
 
 
             // jsonCompetenciasHelp[data[indice]['id_competencia']][data[indice]['puntaje']]
-            $.each(jsonCompetenciasHelp[id], function(indice, val){ //carga el array de empleados
+            $.each(jsonCompetenciasHelp[id], function(indice, val){
 
                 //if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
                     $('#help-box').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp')
                     //.append('<strong>'+jsonCompetenciasHelp[indice]['puntaje']+'</strong>')
                     //.append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
-                        .append('<strong>'+indice+'</strong>')
-                        .append('<p>'+jsonCompetenciasHelp[id][indice]['descripcion']+'</p>');
+                        .append('<strong>'+val['puntaje']+'</strong>')
+                        .append('<p>'+val['descripcion']+'</p>');
                 //}
 
             });
