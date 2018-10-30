@@ -195,7 +195,7 @@
 
                 <div class="row">
 
-                    <div class="col-md-7" id="select-box">
+                    <div class="col-md-5" id="select-box">
 
                         <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
@@ -208,9 +208,9 @@
                             <?php foreach ($view->competencias as $com){ ?>
 
                                 <div class="form-group">
-                                    <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
-                                    <div class="col-md-6">
-                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="Seleccione el puntaje"  >
+                                    <label for="" class="col-md-8 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="Puntaje"  >
                                             <?php foreach ($view->puntajes[$com['id_competencia']] as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje_competencia']; ?>"
                                                     <?php echo ($com['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
@@ -231,7 +231,7 @@
                     </div>
 
 
-                    <div class="col-md-5">
+                    <div class="col-md-7">
 
                         <div class="alert alert-info fade in">
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->

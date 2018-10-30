@@ -225,7 +225,7 @@ order by co.id_competencia, pc.puntaje";
         $query="select pc.*, c.nombre, c.definicion
                 from ead_puntaje_competencia pc
                 join competencias c on pc.id_competencia = c.id_competencia
-                order by id_competencia, puntaje asc";
+                order by id_competencia, puntaje desc";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
