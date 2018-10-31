@@ -81,6 +81,9 @@
             var definicion = jsonCompetenciasHelp[id][0]['definicion'];
 
             //$('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
+            $('#another-box').css("max-height", $("#select-box").height());
+            $('#another-box .table-responsive').css("max-height", $("#select-box").height() - 100 );
+
             $('#help-box').html('<p><span class="glyphicon glyphicon-tags"></span> &nbsp; <strong>'+label+'</strong></p>')
                           .append('<p>'+definicion+'</p>');
                           //.scrollTop();
@@ -236,7 +239,7 @@
                     </div>
 
 
-                    <div class="col-md-7">
+                    <div class="col-md-7" id="another-box">
 
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
@@ -246,7 +249,7 @@
                             </div>
 
                             <div id="table-box">
-                                <div class="table-responsive fixedTable">
+                                <div class="table-responsive" style="overflow-y: auto; overflow-x: hidden">
 
                                     <table class="table table-condensed dataTable table-hover">
                                         <thead>
