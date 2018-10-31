@@ -1,6 +1,6 @@
 ﻿<style>
 
-    .alert{
+    /*.alert{ //se usaba para agregarle un scroll bar al info
         overflow-y:scroll;
         width:100%;
         /*max-height: 50%;*/
@@ -97,13 +97,9 @@
                 //}
 
             });*/
-
+            $('#table-box table tbody').html('');
             $.each(jsonCompetenciasHelp[id], function(indice, val){
-
-                //if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
-                $('#table-box table tbody').append('<tr>'+val['descripcion']+'</tr>');
-
-                //}
+                $('#table-box table tbody').append('<tr><td><strong>'+val['puntaje']+'</strong></td>'+val['descripcion']+'</tr>');
 
             });
 
@@ -250,15 +246,21 @@
                             </div>
 
                             <div id="table-box">
+                                <div class="table-responsive fixedTable">
 
-                                <table class="table table-condensed dataTable table-hover">
-                                    <thead>
+                                    <table class="table table-condensed dataTable table-hover">
+                                        <thead>
 
-                                    </thead>
-                                    <tbody>
+                                        </thead>
+                                        <tbody>
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+
+
 
                             </div>
 
