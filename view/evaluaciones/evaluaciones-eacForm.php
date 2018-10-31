@@ -80,14 +80,13 @@
             var label = jsonCompetenciasHelp[id][0]['nombre']; 
             var definicion = jsonCompetenciasHelp[id][0]['definicion'];
 
-            $('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
+            //$('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
             $('#help-box').html('<p><span class="glyphicon glyphicon-tags"></span> &nbsp; <strong>'+label+'</strong></p>')
                           .append('<p>'+definicion+'</p>')
                           .scrollTop();
 
 
-            // jsonCompetenciasHelp[data[indice]['id_competencia']][data[indice]['puntaje']]
-            $.each(jsonCompetenciasHelp[id], function(indice, val){
+            /*$.each(jsonCompetenciasHelp[id], function(indice, val){
 
                 //if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
                     $('#help-box').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp')
@@ -97,7 +96,17 @@
                         .append('<p>'+val['descripcion']+'</p>');
                 //}
 
+            });*/
+
+            $.each(jsonCompetenciasHelp[id], function(indice, val){
+
+                //if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
+                $('#table-box table tbody').append('<tr>'+val['descripcion']+'</tr>');
+
+                //}
+
             });
+
 
         });
 
@@ -233,13 +242,26 @@
 
                     <div class="col-md-7">
 
-                        <div class="alert alert-info fade in">
+
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
-                            <div id="help-box">
+                            <div id="help-box" class="alert alert-info fade in">
                                 Al presionar sobre el ícono <i class="fas fa-info-circle fa-fw"></i>&nbsp de cada competencia, podrá
                                 visualizar la descripción del significado de cada puntaje.
                             </div>
-                        </div>
+
+                            <div id="table-box">
+
+                                <table class="table table-condensed dataTable table-hover">
+                                    <thead>
+
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
 
                     </div>
 
