@@ -82,8 +82,8 @@
 
             //$('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
             $('#help-box').html('<p><span class="glyphicon glyphicon-tags"></span> &nbsp; <strong>'+label+'</strong></p>')
-                          .append('<p>'+definicion+'</p>')
-                          .scrollTop();
+                          .append('<p>'+definicion+'</p>');
+                          //.scrollTop();
 
 
             /*$.each(jsonCompetenciasHelp[id], function(indice, val){
