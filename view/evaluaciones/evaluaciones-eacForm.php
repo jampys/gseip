@@ -77,8 +77,8 @@
         $(document).on("click", ".help_puntaje", function(e){
 
             var id = $(this).closest('.form-group').find('select').attr('id');
-            var label = jsonCompetenciasHelp[id][1]['nombre'];  // el 1 es el puntaje 
-            var definicion = jsonCompetenciasHelp[id][1]['definicion'];
+            var label = jsonCompetenciasHelp[id][0]['nombre']; 
+            var definicion = jsonCompetenciasHelp[id][0]['definicion'];
 
             $('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
             $('#help-box').html('<p><span class="glyphicon glyphicon-tags"></span> &nbsp; <strong>'+label+'</strong></p>')
