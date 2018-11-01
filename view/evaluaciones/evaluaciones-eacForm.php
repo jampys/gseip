@@ -236,7 +236,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-md-8 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
                                     <div class="col-md-4">
-                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="Puntaje" data-live-search="true" data-size="5"  >
+                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="-" data-live-search="true" data-size="5">
                                             <?php foreach ($view->puntajes[$com['id_competencia']] as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje_competencia']; ?>"
                                                     <?php echo ($com['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
