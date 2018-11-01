@@ -8,7 +8,7 @@
 
 /* efecto para mostrar la table de puntajes de manera vertical */
 /* https://stackoverflow.com/questions/16071864/how-to-create-tables-from-column-data-instead-of-row-data-in-html */
-    #table-box table {
+    /*#table-box table {
         display: table;
     }
     #table-box table tr {
@@ -16,7 +16,7 @@
     }
     #table-box table tr td {
         display: block;
-    }
+    }*/
 
     #table-box .table-responsive{
         overflow-x: auto;
@@ -30,6 +30,31 @@
 
 
     $(document).ready(function(){
+
+        function verticalTable(){
+
+            $("#table-box table").each(function () {
+                var $this = $(this);
+                var newrows = [];
+                $this.find("tr").each(function () {
+                    var i = 0;
+                    $(this).find("td,th").each(function () {
+                        i++;
+                        if (newrows[i] === undefined) {
+                            newrows[i] = $("<tr></tr>");
+                        }
+                        newrows[i].append($(this));
+                    });
+                });
+                $this.find("tr").remove();
+                $.each(newrows, function () {
+                    $this.append(this);
+                });
+            });
+
+        }
+
+
 
         $('.selectpicker').selectpicker();
 
@@ -118,11 +143,12 @@
                 //}
 
             });*/
-            $('#table-box table tbody').html('');
+            $('#table-box table').html('');
             $.each(jsonCompetenciasHelp[id], function(indice, val){
-                $('#table-box table tbody').append('<tr><td><strong>'+val['puntaje']+'</strong></td>'+val['descripcion']+'</tr>');
+                $('#table-box table').append('<tr><td><strong>'+val['puntaje']+'</strong></td>'+val['descripcion']+'</tr>');
 
             });
+            verticalTable();
 
 
         });
@@ -270,19 +296,11 @@
                                 <div class="table-responsive">
 
                                     <table class="table table-condensed dataTable table-hover">
-                                        <thead>
-
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
+                                        <!-- los contenidos se cargan dinamicamente desde javascript -->
                                     </table>
 
-
                                 </div>
-
-
-
+                                
                             </div>
 
 
