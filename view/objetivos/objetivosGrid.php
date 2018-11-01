@@ -15,7 +15,7 @@
             "stateSave": true,
             columnDefs: [
                 {targets: 1, render: $.fn.dataTable.render.ellipsis(30)} //https://datatables.net/blog/2016-02-26
-                ,{ "width": "80px", "targets":5 } //progress bar
+                ,{ "width": "90px", "targets":5 } //progress bar
             ]
 
         });
@@ -67,7 +67,7 @@
                         <td><?php echo $rp['contrato']; ?></td>
                         <td>
                             <div class="progress" style="margin-bottom: 0px">
-                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $rp['progreso']; ?>%;">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
                                     <?php echo $rp['progreso']; ?>%
                                 </div>
                             </div>
