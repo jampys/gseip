@@ -67,7 +67,7 @@
                         <td><?php echo $rp['contrato']; ?></td>
                         <td>
                             <div class="progress" style="margin-bottom: 0px">
-                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $rp['progreso']; ?>%;">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
                                     <?php echo $rp['progreso']; ?>%
                                 </div>
                             </div>
