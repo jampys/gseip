@@ -7,6 +7,7 @@
     }*/
 
 /* efecto para mostrar la table de puntajes de manera vertical */
+/* https://stackoverflow.com/questions/16071864/how-to-create-tables-from-column-data-instead-of-row-data-in-html */
     #table-box table {
         display: table;
     }
@@ -97,11 +98,11 @@
             var label = jsonCompetenciasHelp[id][0]['nombre']; 
             var definicion = jsonCompetenciasHelp[id][0]['definicion'];
 
-            //$('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
-            $('#another-box').css("max-height", $("#select-box").height());
-            $('#another-box .table-responsive').css("max-height", $("#select-box").height() - 100 );
+            //$('#label-box').parent().css("max-height", $("#select-box").height()); //el div padre de #label-box
+            $('#help-box').css("max-height", $("#select-box").height());
+            $('#help-box .table-responsive').css("max-height", $("#select-box").height() - 100 );
 
-            $('#help-box').html('<p><span class="glyphicon glyphicon-tags"></span> &nbsp; <strong>'+label+'</strong></p>')
+            $('#label-box').html('<p><span class="glyphicon glyphicon-tags"></span> &nbsp; <strong>'+label+'</strong></p>')
                           .append('<p>'+definicion+'</p>');
                           //.scrollTop();
 
@@ -109,7 +110,7 @@
             /*$.each(jsonCompetenciasHelp[id], function(indice, val){
 
                 //if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
-                    $('#help-box').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp')
+                    $('#label-box').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp')
                     //.append('<strong>'+jsonCompetenciasHelp[indice]['puntaje']+'</strong>')
                     //.append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
                         .append('<strong>'+val['puntaje']+'</strong>')
@@ -220,7 +221,7 @@
 
                 <div class="row">
 
-                    <div class="col-md-5" id="select-box">
+                    <div class="col-md-4" id="select-box">
 
                         <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
@@ -256,11 +257,11 @@
                     </div>
 
 
-                    <div class="col-md-7" id="another-box">
+                    <div class="col-md-8" id="help-box">
 
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
-                            <div id="help-box" class="alert alert-info fade in">
+                            <div id="label-box" class="alert alert-info fade in">
                                 Al presionar sobre el ícono <i class="fas fa-info-circle fa-fw"></i>&nbsp de cada competencia, podrá
                                 visualizar la descripción del significado de cada puntaje.
                             </div>
