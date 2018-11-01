@@ -3,8 +3,25 @@
     /*.alert{ //se usaba para agregarle un scroll bar al info
         overflow-y:scroll;
         width:100%;
-        /*max-height: 50%;*/
+        /*max-height: 50%;
+    }*/
+
+/* efecto para mostrar la table de puntajes de manera vertical */
+    #table-box table {
+        display: table;
     }
+    #table-box table tr {
+        display: table-cell;
+    }
+    #table-box table tr td {
+        display: block;
+    }
+
+    #table-box .table-responsive{
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
 
 </style>
 
@@ -249,7 +266,7 @@
                             </div>
 
                             <div id="table-box">
-                                <div class="table-responsive" style="overflow-y: auto; overflow-x: hidden">
+                                <div class="table-responsive">
 
                                     <table class="table table-condensed dataTable table-hover">
                                         <thead>
