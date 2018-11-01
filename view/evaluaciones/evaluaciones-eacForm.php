@@ -23,6 +23,11 @@
         overflow-y: auto;
     }
 
+    #table-box table tr td {
+        font-size: 11px !important;
+        /*text-align: justify;*/
+    }
+
 
 </style>
 
@@ -33,7 +38,7 @@
 
         function verticalTable(){
 
-            $("#table-box table").each(function () {
+            $("#table-box table").each(function () { //http://jsfiddle.net/zwdLj/
                 var $this = $(this);
                 var newrows = [];
                 $this.find("tr").each(function () {
@@ -145,7 +150,7 @@
             });*/
             $('#table-box table').html('');
             $.each(jsonCompetenciasHelp[id], function(indice, val){
-                $('#table-box table').append('<tr><td><strong>'+val['puntaje']+'</strong></td>'+val['descripcion']+'</tr>');
+                $('#table-box table').append('<tr><td align="center"><strong>'+val['puntaje']+'</strong></td>'+val['descripcion']+'</tr>');
 
             });
             verticalTable();
@@ -300,7 +305,7 @@
                                     </table>
 
                                 </div>
-                                
+
                             </div>
 
 
