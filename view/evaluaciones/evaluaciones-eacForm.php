@@ -28,6 +28,10 @@
         /*text-align: justify;*/
     }
 
+    #table-box table tr th {
+        text-align: center;
+    }
+
 
 </style>
 
@@ -150,7 +154,7 @@
             });*/
             $('#table-box table').html('');
             $.each(jsonCompetenciasHelp[id], function(indice, val){
-                $('#table-box table').append('<tr><td align="center"><strong>'+val['puntaje']+'</strong></td>'+val['descripcion']+'</tr>')
+                $('#table-box table').append('<tr><th><strong>'+val['puntaje']+'</strong></th>'+val['descripcion']+'</tr>')
                                      .scrollTop();
 
             });
