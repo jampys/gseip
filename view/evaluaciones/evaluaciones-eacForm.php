@@ -150,7 +150,8 @@
             });*/
             $('#table-box table').html('');
             $.each(jsonCompetenciasHelp[id], function(indice, val){
-                $('#table-box table').append('<tr><td align="center"><strong>'+val['puntaje']+'</strong></td>'+val['descripcion']+'</tr>');
+                $('#table-box table').append('<tr><td align="center"><strong>'+val['puntaje']+'</strong></td>'+val['descripcion']+'</tr>')
+                                     .scrollTop();
 
             });
             verticalTable();
