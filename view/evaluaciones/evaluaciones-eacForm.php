@@ -1,10 +1,37 @@
 ﻿<style>
 
-    .alert{
+    /*.alert{ //se usaba para agregarle un scroll bar al info
         overflow-y:scroll;
         width:100%;
-        /*max-height: 50%;*/
+        /*max-height: 50%;
+    }*/
+
+/* efecto para mostrar la table de puntajes de manera vertical */
+/* https://stackoverflow.com/questions/16071864/how-to-create-tables-from-column-data-instead-of-row-data-in-html */
+    /*#table-box table {
+        display: table;
     }
+    #table-box table tr {
+        display: table-cell;
+    }
+    #table-box table tr td {
+        display: block;
+    }*/
+
+    #table-box .table-responsive{
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    #table-box table tr td {
+        font-size: 11px !important;
+        /*text-align: justify;*/
+    }
+
+    #table-box table tr th {
+        text-align: center;
+    }
+
 
 </style>
 
@@ -13,10 +40,35 @@
 
     $(document).ready(function(){
 
+        function verticalTable(){
+
+            $("#table-box table").each(function () { //http://jsfiddle.net/zwdLj/
+                var $this = $(this);
+                var newrows = [];
+                $this.find("tr").each(function () {
+                    var i = 0;
+                    $(this).find("td,th").each(function () {
+                        i++;
+                        if (newrows[i] === undefined) {
+                            newrows[i] = $("<tr></tr>");
+                        }
+                        newrows[i].append($(this));
+                    });
+                });
+                $this.find("tr").remove();
+                $.each(newrows, function () {
+                    $this.append(this);
+                });
+            });
+
+        }
+
+
+
         $('.selectpicker').selectpicker();
 
         var jsonCompetencias = [];
-        var jsonCompetenciasHelp =[];
+        var jsonCompetenciasHelp ={}; //objeto
 
 
         //carga un array con la descripcion de los puntajes de cada competencia
@@ -39,11 +91,18 @@
                      else {
                      jsonCompetenciasHelp[id].id_puntaje += item.id_puntaje;
                      }*/
+                    if(!jsonCompetenciasHelp[data[indice]['id_competencia']]) {
+                        jsonCompetenciasHelp[data[indice]['id_competencia']] = []; //array
+                    }
 
-                    jsonCompetenciasHelp[indice] = data[indice];
+                    jsonCompetenciasHelp[data[indice]['id_competencia']].push(data[indice]);//['descripcion'];
+
+
+                    //jsonCompetenciasHelp[indice] = data[indice];
                 });
 
                 //alert(Object.keys(jsonCompetenciasHelp).length);
+                //alert(jsonCompetenciasHelp[1][0]['descripcion']);
             }
 
         });
@@ -70,21 +129,37 @@
         $(document).on("click", ".help_puntaje", function(e){
 
             var id = $(this).closest('.form-group').find('select').attr('id');
-            var label = $(this).closest('.form-group').find('label').text();
+            var label = jsonCompetenciasHelp[id][0]['nombre']; 
+            var definicion = jsonCompetenciasHelp[id][0]['definicion'];
 
-            $('#help-box').parent().css("max-height", $("#select-box").height()); //el div padre de #help-box
-            $('#help-box').html('<p><span class="glyphicon glyphicon-tags"></span>&nbsp'+label+'</p>')
-                          .scrollTop();
+            //$('#label-box').parent().css("max-height", $("#select-box").height()); //el div padre de #label-box
+            $('#help-box').css("max-height", $("#select-box").height());
+            $('#help-box .table-responsive').css("max-height", $("#select-box").height() - 100 );
 
-            $.each(jsonCompetenciasHelp, function(indice, val){ //carga el array de empleados
+            $('#label-box').html('<p><span class="glyphicon glyphicon-tags"></span> &nbsp; <strong>'+label+'</strong></p>')
+                          .append('<p>'+definicion+'</p>');
+                          //.scrollTop();
 
-                if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
-                    $('#help-box').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp')
-                    .append('<strong>'+jsonCompetenciasHelp[indice]['puntaje']+'</strong>')
-                    .append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
-                }
+
+            /*$.each(jsonCompetenciasHelp[id], function(indice, val){
+
+                //if(jsonCompetenciasHelp[indice]['id_competencia'] == id) {
+                    $('#label-box').append('<span class="glyphicon glyphicon-chevron-right"></span>&nbsp')
+                    //.append('<strong>'+jsonCompetenciasHelp[indice]['puntaje']+'</strong>')
+                    //.append('<p>'+jsonCompetenciasHelp[indice]['descripcion']+'</p>');
+                        .append('<strong>'+val['puntaje']+'</strong>')
+                        .append('<p>'+val['descripcion']+'</p>');
+                //}
+
+            });*/
+            $('#table-box table').html('');
+            $.each(jsonCompetenciasHelp[id], function(indice, val){
+                $('#table-box table').append('<tr><th><strong>'+val['puntaje']+'</strong></th>'+val['descripcion']+'</tr>')
+                                     .scrollTop();
 
             });
+            verticalTable();
+
 
         });
 
@@ -182,7 +257,7 @@
 
                 <div class="row">
 
-                    <div class="col-md-7" id="select-box">
+                    <div class="col-md-4" id="select-box">
 
                         <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
@@ -195,9 +270,9 @@
                             <?php foreach ($view->competencias as $com){ ?>
 
                                 <div class="form-group">
-                                    <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
-                                    <div class="col-md-6">
-                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="Seleccione el puntaje"  >
+                                    <label for="" class="col-md-8 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
+                                    <div class="col-md-4">
+                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="-" data-live-search="true" data-size="5">
                                             <?php foreach ($view->puntajes[$com['id_competencia']] as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje_competencia']; ?>"
                                                     <?php echo ($com['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
@@ -218,15 +293,26 @@
                     </div>
 
 
-                    <div class="col-md-5">
+                    <div class="col-md-8" id="help-box">
 
-                        <div class="alert alert-info fade in">
+
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
-                            <div id="help-box">
+                            <div id="label-box" class="alert alert-info fade in">
                                 Al presionar sobre el ícono <i class="fas fa-info-circle fa-fw"></i>&nbsp de cada competencia, podrá
                                 visualizar la descripción del significado de cada puntaje.
                             </div>
-                        </div>
+
+                            <div id="table-box">
+                                <div class="table-responsive">
+
+                                    <table class="table table-condensed dataTable table-hover">
+                                        <!-- los contenidos se cargan dinamicamente desde javascript -->
+                                    </table>
+
+                                </div>
+
+                            </div>
+
 
                     </div>
 

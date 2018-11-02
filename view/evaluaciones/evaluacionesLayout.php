@@ -141,50 +141,54 @@
                 <div class="clearfix">
                     <form id="search_form" name="search_form">
 
-                        <div class="form-group col-md-2">
-                            <label for="periodo" class="control-label">Plan evaluación</label>
+                        <div class="row">
 
-                            <select class="form-control" id="periodo" name="periodo">
-                                <?php foreach ($view->periodos as $pe){
-                                    ?>
-                                    <option value="<?php echo $pe['periodo']; ?>"
-                                            cerrado="<?php echo $pe['cerrado']; ?>"
+                            <div class="form-group col-md-2">
+                                <label for="periodo" class="control-label">Plan evaluación</label>
+
+                                <select class="form-control" id="periodo" name="periodo">
+                                    <?php foreach ($view->periodos as $pe){
+                                        ?>
+                                        <option value="<?php echo $pe['periodo']; ?>"
+                                                cerrado="<?php echo $pe['cerrado']; ?>"
                                             <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
-                                        >
-                                        <?php echo $pe['periodo']; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
+                                            >
+                                            <?php echo $pe['periodo']; ?>
+                                        </option>
+                                    <?php  } ?>
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group col-md-3">
+                                <label for="search_vencimiento" class="control-label">Contrato</label>
+                                <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
+                                    <option value="">Seleccione un contrato</option>
+                                    <?php foreach ($view->contratos as $con){
+                                        ?>
+                                        <option value="<?php echo $con['id_contrato']; ?>" >
+                                            <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                        </option>
+                                    <?php  } ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label for="search">&nbsp;</label>
+                                <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </div>
+
+
+                            <div class="form-group col-md-5">
+
+                            </div>
+
+
 
                         </div>
-
-
-                        <div class="form-group col-md-3">
-                            <label for="search_vencimiento" class="control-label">Contrato</label>
-                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un contrato</option>
-                                <?php foreach ($view->contratos as $con){
-                                    ?>
-                                    <option value="<?php echo $con['id_contrato']; ?>" >
-                                        <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-md-2">
-                            <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </div>
-
-
-                        <div class="form-group col-md-5">
-
-                        </div>
-
-
 
                     </form>
                 </div>

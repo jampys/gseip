@@ -85,9 +85,9 @@
                                 innerGridDarkTrack: {fill: '#ffcc80'}*/
                                 palette: [ //con esto configuro los colores de las barras del gantt https://stackoverflow.com/questions/35165271/customize-the-bar-colors-in-google-gantt-charts
                                     {
-                                        "color": "#db4437",
-                                        "dark": "#a52714",
-                                        "light": "#f4c7c3"
+                                        "color": "#f2a600",
+                                        "dark": "#ee8100",
+                                        "light": "#fce8b2"
                                     }
                                 ]
                             },

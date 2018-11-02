@@ -219,9 +219,13 @@ order by co.id_competencia, pc.puntaje";
     public static function getPuntajeCompetencia() { //ok
         //obtengo la descripcion de un puntaje determinado para una competencia.
         $stmt=new sQuery();
-        $query="select *
+        /*$query="select *
                 from ead_puntaje_competencia
-                order by id_competencia, puntaje asc";
+                order by id_competencia, puntaje asc";*/
+        $query="select pc.*, c.nombre, c.definicion
+                from ead_puntaje_competencia pc
+                join competencias c on pc.id_competencia = c.id_competencia
+                order by id_competencia, puntaje desc";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();

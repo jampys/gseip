@@ -18,22 +18,10 @@ class Evaluacion
     public static function getEvaluaciones($periodo, $id_contrato) { //ok
         //para planes de evaluacion ABIERTOS
         $stmt=new sQuery();
-        /*$query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, ec.id_empleado_contrato, ec.id_contrato, ec.id_puesto,
-co.nombre as contrato, pu.nombre as puesto,
-pe.id_plan_evaluacion, pe.periodo,
-(SELECT (EXISTS (SELECT 1 FROM eac_evaluacion_competencia eac_ec where eac_ec.id_empleado = em.id_empleado and eac_ec.periodo = :periodo ))) as hasAnyEac,
-(SELECT (EXISTS (SELECT 1 FROM eao_evaluacion_objetivo eao_eo where eao_eo.id_empleado = em.id_empleado and eao_eo.periodo = :periodo ))) as hasAnyEao
-from empleados em
-join empleado_contrato ec on em.id_empleado = ec.id_empleado
-join contratos co on ec.id_contrato = co.id_contrato
-join companias cia on co.id_compania = cia.id_compania
-join puestos pu on ec.id_puesto = pu.id_puesto
-join planes_evaluacion pe on pe.periodo = :periodo";*/
         $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, ec.id_empleado_contrato, ec.id_contrato, ec.id_puesto,
 co.nombre as contrato, pu.nombre as puesto,
 pe.id_plan_evaluacion, pe.periodo, pe.cerrado,
-(EXISTS (SELECT 1 FROM ead_evaluacion_competencia ead_ec where ead_ec.id_empleado = em.id_empleado and ead_ec.periodo = :periodo )) as hasAnyEac,
-(EXISTS (SELECT 1 FROM ead_evaluacion_objetivo ead_eo where ead_eo.id_empleado = em.id_empleado and ead_eo.periodo = :periodo )) as hasAnyEao
+func_eval_eac_count(em.id_empleado,pe.periodo) as hasAllEac
 from v_sec_empleados em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join contratos co on ec.id_contrato = co.id_contrato
