@@ -93,26 +93,9 @@ switch ($operation)
         break;
 
     case 'loadEac_help': //ok
-        $view->puntaje_competencia = EvaluacionCompetencia::getPuntajeCompetencia();
+        $view->puntaje_competencia = EvaluacionCompetencia::getPuntajesHelp();
         print_r(json_encode($view->puntaje_competencia));
         exit;
-        break;
-
-
-    case 'deleteObjetivo':
-        $objetivo = new Objetivo($_POST['id_objetivo']);
-        $rta = $objetivo->deleteObjetivo();
-        print_r(json_encode($rta));
-        die;
-        break;
-
-
-    case 'loadSubObjetivo':  //abre la ventana modal para agregar y editar un subobjetivo del objetivo
-        $view->label='Sub objetivo';
-        $view->disableLayout=true;
-        $view->areas = Area::getAreas();
-
-        $view->contentTemplate="view/objetivosFormSubObjetivo.php";
         break;
 
     default : //ok
