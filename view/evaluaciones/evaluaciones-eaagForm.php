@@ -148,8 +148,8 @@
 
 
         //Al guardar una evaluacion de aspectos generales
-        $('#modalEac').on('click', '#submit',function(){ //ok
-            //alert('guardar evaluacion desempeño');
+        $('#modalEaag').on('click', '#submit',function(){ //ok
+            //alert('guardar evaluacion aspectos generales');
             //if ($("#eac-form").valid()){
                 var params={};
                 params.action = 'evaluaciones';
@@ -170,7 +170,7 @@
                         $("#myElem").html('Evaluación de aspectos generales guardada con exito').addClass('alert alert-success').show();
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                                                $('#modalEac').modal('hide');
+                                                $('#modalEaag').modal('hide');
                                               }, 2000);
 
                     }else{
