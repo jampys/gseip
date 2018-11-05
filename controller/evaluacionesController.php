@@ -69,6 +69,51 @@ switch ($operation)
         break;
 
 
+    case 'saveEaag': //Guarda una evaluacion de aspectos generales //ok
+        try{
+            sQuery::dpBeginTransaction();
+
+            $vAspectosGenerales = json_decode($_POST["vAspectosGenerales"], true);
+            //print_r($vCompetencias);
+
+            foreach ($vAspectosGenerales as $vAG) {
+
+                //$c = new HabilidadEmpleado();
+                //$c->setIdHabilidad($vH['id_habilidad']);
+                //$c->setIdEmpleado($vE['id_empleado']);
+                //if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
+                //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
+                $evaluacion_aspecto_general = new EvaluacionAspectoGeneral();
+                $evaluacion_aspecto_general->setIdEvaluacionAspectoGeneral($vAG['id_evaluacion_aspecto_general']);
+                $evaluacion_aspecto_general->setIdAspectoGeneral($vAG['id_aspecto_general']);
+                $evaluacion_aspecto_general->setIdPuntajeAspectoGeneral($vAG['id_puntaje_aspecto_general']);
+                $evaluacion_aspecto_general->setIdEmpleado($vAG['id_empleado']);
+                $evaluacion_aspecto_general->setIdEvaluador($_SESSION["id_user"]);
+                $evaluacion_aspecto_general->setIdPlanEvaluacion($vAG['id_plan_evaluacion']);
+                $evaluacion_aspecto_general->setPeriodo($vAG['periodo']);
+
+                //echo 'id objetivo sub: '.$vS['id_objetivo_sub'].'---';
+
+                //echo $vS['operacion'];
+                $evaluacion_aspecto_general->save(); //si falla sale por el catch
+
+            }
+
+            //Devuelve el resultado a la vista
+            sQuery::dpCommit();
+            print_r(json_encode(1));
+
+        }
+        catch(Exception $e){
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
+            sQuery::dpRollback();
+            print_r(json_encode(-1));
+        }
+
+        exit;
+        break;
+
+
 
     case 'loadEac': //Abre el formulario de evaluacion anual de competecias //ok
         $view->empleado = new Empleado($_POST['id_empleado']);

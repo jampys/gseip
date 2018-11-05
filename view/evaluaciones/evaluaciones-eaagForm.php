@@ -49,8 +49,8 @@
 
         $('.selectpicker').selectpicker();
 
-        var jsonCompetencias = [];
-        var jsonCompetenciasHelp ={}; //objeto
+        var jsonAspectosGenerales = [];
+        var jsonAspectosGeneralesHelp ={}; //objeto
 
 
         //carga un array con la descripcion de los puntajes de cada competencia
@@ -63,16 +63,16 @@
 
                 $.each(data, function(indice, val){
 
-                    if(!jsonCompetenciasHelp[data[indice]['id_aspecto_general']]) {
-                        jsonCompetenciasHelp[data[indice]['id_aspecto_general']] = []; //array
+                    if(!jsonAspectosGeneralesHelp[data[indice]['id_aspecto_general']]) {
+                        jsonAspectosGeneralesHelp[data[indice]['id_aspecto_general']] = []; //array
                     }
 
-                    jsonCompetenciasHelp[data[indice]['id_aspecto_general']].push(data[indice]);//['descripcion'];
-                    //jsonCompetenciasHelp[indice] = data[indice];
+                    jsonAspectosGeneralesHelp[data[indice]['id_aspecto_general']].push(data[indice]);//['descripcion'];
+                    //jsonAspectosGeneralesHelp[indice] = data[indice];
                 });
 
-                //alert(Object.keys(jsonCompetenciasHelp).length);
-                //alert(jsonCompetenciasHelp[1][0]['descripcion']);
+                //alert(Object.keys(jsonAspectosGeneralesHelp).length);
+                //alert(jsonAspectosGeneralesHelp[1][0]['descripcion']);
             }
 
         });
@@ -99,12 +99,12 @@
         $(document).on("click", ".help_puntaje", function(e){
 
             var id = $(this).closest('.form-group').find('select').attr('id');
-            var label = jsonCompetenciasHelp[id][0]['nombre']; 
-            var definicion = jsonCompetenciasHelp[id][0]['definicion'];
+            var label = jsonAspectosGeneralesHelp[id][0]['nombre'];
+            var definicion = jsonAspectosGeneralesHelp[id][0]['definicion'];
 
-            //$('#label-box').parent().css("max-height", $("#select-box").height()); //el div padre de #label-box
-            $('#help-box').css("max-height", $("#select-box").height());
-            $('#help-box .table-responsive').css("max-height", $("#select-box").height() - 100 );
+            //$('#help-box').css("max-height", $("#select-box").height());
+            $('#help-box').css("min-height", '250px');
+            //$('#help-box .table-responsive').css("max-height", $("#select-box").height() );
 
             $('#label-box').html('<p><span class="glyphicon glyphicon-tags"></span> &nbsp; <strong>'+label+'</strong></p>')
                           .append('<p>'+definicion+'</p>');
@@ -112,11 +112,11 @@
 
 
             $('#table-box table').html('');
-            $.each(jsonCompetenciasHelp[id], function(indice, val){
+            $.each(jsonAspectosGeneralesHelp[id], function(indice, val){
                 $('#table-box table').append('<tr><th><strong>'+val['puntaje']+'</strong></th>'+val['descripcion']+'</tr>')
                                      .scrollTop();
             });
-            verticalTable();
+            //verticalTable();
 
 
         });
@@ -127,39 +127,39 @@
         $('#modalEaag').on('change', ".selectpicker", function(e){
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
-            item.id_evaluacion_competencia = $(this).attr('id_evaluacion_competencia');
-            item.id_competencia = $(this).attr('id');
-            item.id_puntaje_competencia = $(this).val();
+            item.id_evaluacion_aspecto_general = $(this).attr('id_evaluacion_aspecto_general');
+            item.id_aspecto_general = $(this).attr('id');
+            item.id_puntaje_aspecto_general = $(this).val();
             item.id_empleado = $('#id_empleado').val();
             item.id_plan_evaluacion = $('#id_plan_evaluacion').val();
             item.periodo = $('#periodo').val();
 
-            if(jsonCompetencias[item.id_competencia]) {
-                jsonCompetencias[item.id_competencia].id_puntaje_competencia =item.id_puntaje_competencia;
-                //alert('el elemento existe '+jsonCompetencias[item.id_competencia].id_puntaje);
+            if(jsonAspectosGenerales[item.id_aspecto_general]) {
+                jsonAspectosGenerales[item.id_aspecto_general].id_puntaje_aspecto_general = item.id_puntaje_aspecto_general;
+                //alert('el elemento existe '+jsonAspectosGenerales[item.id_competencia].id_puntaje);
             }
             else { //si no existe, lo agrega
-                jsonCompetencias[item.id_competencia] =item;
-                //alert('el elemento No existe '+jsonCompetencias[item.id_competencia].id_puntaje);
+                jsonAspectosGenerales[item.id_aspecto_general] =item;
+                //alert('el elemento No existe '+jsonAspectosGenerales[item.id_competencia].id_puntaje);
             }
 
         });
 
 
 
-        //Al guardar una evaluacion de competencias
-        $('#modalEac').on('click', '#submit',function(){
+        //Al guardar una evaluacion de aspectos generales
+        $('#modalEac').on('click', '#submit',function(){ //ok
             //alert('guardar evaluacion desempeño');
             //if ($("#eac-form").valid()){
                 var params={};
                 params.action = 'evaluaciones';
-                params.operation = 'saveEac';
+                params.operation = 'saveEaag';
                 params.periodo = $('#periodo').val();
                 params.cerrado = $('#cerrado').val();
                 //alert(params.id_compania);
 
-                var jsonCompetenciasIx = $.map(jsonCompetencias, function(item){ return item;} );
-                params.vCompetencias = JSON.stringify(jsonCompetenciasIx);
+                var jsonAspectosGeneralesIx = $.map(jsonAspectosGenerales, function(item){ return item;} );
+                params.vAspectosGenerales = JSON.stringify(jsonAspectosGeneralesIx);
 
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -167,14 +167,14 @@
                     //alert(xhr.responseText);
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Evaluación de competencias guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Evaluación de aspectos generales guardada con exito').addClass('alert alert-success').show();
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#modalEac').modal('hide');
                                               }, 2000);
 
                     }else{
-                        $("#myElem").html('Error al guardar evaluación de competencias').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar evaluación de aspectos generales').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
@@ -197,7 +197,7 @@
 
 <!-- Modal -->
 <fieldset <?php echo ($view->params['cerrado'] || sizeof($view->aspectos_generales)== 0)? 'disabled': ''; //echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
-<div class="modal fade" id="modalEac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modalEaag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
