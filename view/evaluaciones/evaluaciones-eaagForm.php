@@ -213,7 +213,7 @@
 
                     <div class="col-md-4" id="select-box">
 
-                        <form class="form-horizontal" name ="eac-form" id="eac-form" method="POST" action="index.php">
+                        <form class="form-horizontal" name ="eaag-form" id="eaag-form" method="POST" action="index.php">
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
                             <input type="hidden" name="id_plan_evaluacion" id="id_plan_evaluacion" value="<?php print $view->params['id_plan_evaluacion']; ?>" >
                             <input type="hidden" name="periodo" id="periodo" value="<?php print $view->params['periodo']; ?>" >

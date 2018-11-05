@@ -54,7 +54,7 @@
                     <td><?php echo $evaluacion['contrato'];?></td>
                     <td><?php echo $evaluacion['puesto'];?></td>
                     <td class="text-center"><a class="loadEac" href="javascript:void(0);" title="Evaluación competencias" ><span class="<?php echo ($evaluacion['hasAllEac'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="loadEao" href="javascript:void(0);" title="Evaluación aspectos generales" ><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span></a></td>
+                    <td class="text-center"><a class="loadEaag" href="javascript:void(0);" title="Evaluación aspectos generales" ><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span></a></td>
                     <td class="text-center"><a class="delete" href="javascript:void(0);" title="Borrar" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; } ?>
