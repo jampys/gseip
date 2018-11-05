@@ -109,20 +109,20 @@ where em.id_empleado = :id_empleado";
     }
 
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select * from ead_evaluacion_competencia where id_evaluacion_competencia = :nro";
+            $query="select * from ead_evaluacion_aspecto_general where id_evaluacion_aspecto_general = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdEvaluacionCompetencia($rows[0]['id_evaluacion_competencia']);
-            $this->setIdCompetencia($rows[0]['id_competencia']);
-            $this->setIdPuntajeCompetencia($rows[0]['id_puntaje_competencia']);
+            $this->setIdEvaluacionAspectoGeneral($rows[0]['id_evaluacion_aspecto_general']);
+            $this->setIdAspectoGeneral($rows[0]['id_aspecto_general']);
+            $this->setIdPuntajeAspectoGeneral($rows[0]['id_puntaje_aspecto_general']);
             $this->setFecha($rows[0]['fecha']);
             $this->setIdEvaluador($rows[0]['id_evaluador']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
@@ -198,13 +198,13 @@ where em.id_empleado = :id_empleado";
     }
 
 
-    public static function getPuntajesHelp() {
+    public static function getPuntajesHelp() { //ok
         //obtengo la descripcion de los puntajes de todas las competencias
         $stmt=new sQuery();
-        $query="select pc.*, c.nombre, c.definicion
-                from ead_puntaje_competencia pc
-                join competencias c on pc.id_competencia = c.id_competencia
-                order by id_competencia, puntaje desc";
+        $query="select pag.*, ag.nombre, ag.definicion
+                from ead_puntaje_aspecto_general pag
+                join aspectos_generales ag on pag.id_aspecto_general = ag.id_aspecto_general
+                order by id_aspecto_general, puntaje desc";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();

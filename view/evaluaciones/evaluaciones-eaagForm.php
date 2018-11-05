@@ -57,17 +57,17 @@
         $.ajax({
             url:"index.php",
             type:"post",
-            data:{"action": "evaluaciones", "operation": "loadEac_help"},
+            data:{"action": "evaluaciones", "operation": "loadEaag_help"},
             dataType:"json",//xml,html,script,json
             success: function(data, textStatus, jqXHR) {
 
                 $.each(data, function(indice, val){
 
-                    if(!jsonCompetenciasHelp[data[indice]['id_competencia']]) {
-                        jsonCompetenciasHelp[data[indice]['id_competencia']] = []; //array
+                    if(!jsonCompetenciasHelp[data[indice]['id_aspecto_general']]) {
+                        jsonCompetenciasHelp[data[indice]['id_aspecto_general']] = []; //array
                     }
 
-                    jsonCompetenciasHelp[data[indice]['id_competencia']].push(data[indice]);//['descripcion'];
+                    jsonCompetenciasHelp[data[indice]['id_aspecto_general']].push(data[indice]);//['descripcion'];
                     //jsonCompetenciasHelp[indice] = data[indice];
                 });
 
@@ -79,7 +79,7 @@
 
 
 
-        $('#modalEac').modal({
+        $('#modalEaag').modal({
             backdrop: 'static',
             keyboard: false
         });
@@ -91,7 +91,7 @@
             requerido: true
         });
 
-        $('#eac-form').validate();
+        $('#eaag-form').validate();
 
 
 
@@ -124,7 +124,7 @@
 
 
         // Al presionar alguno de los select de puntajes
-        $('#modalEac').on('change', ".selectpicker", function(e){
+        $('#modalEaag').on('change', ".selectpicker", function(e){
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
             item.id_evaluacion_competencia = $(this).attr('id_evaluacion_competencia');

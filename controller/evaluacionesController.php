@@ -120,6 +120,13 @@ switch ($operation)
         exit;
         break;
 
+    case 'loadEaag_help': //ok
+        $view->puntaje_aspecto_general = EvaluacionAspectoGeneral::getPuntajesHelp();
+        print_r(json_encode($view->puntaje_aspecto_general));
+        exit;
+        break;
+
+
     default : //ok
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
