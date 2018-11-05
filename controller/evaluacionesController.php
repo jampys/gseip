@@ -106,7 +106,7 @@ switch ($operation)
 
         //este foreach genera un array asociativo... donde cada aspecto general contiene un array por cada puntaje
         foreach ($view->temp as $pu){
-            $view->puntajes[$pu['id_aspecto_generarl']][] = array('id_puntaje_aspecto_general' => $pu['id_puntaje_aspecto_general'], 'puntaje' => $pu['puntaje']);
+            $view->puntajes[$pu['id_aspecto_general']][] = array('id_puntaje_aspecto_general' => $pu['id_puntaje_aspecto_general'], 'puntaje' => $pu['puntaje']);
         }
 
         $view->disableLayout=true;

@@ -196,7 +196,7 @@
 
 
 <!-- Modal -->
-<fieldset <?php echo ($view->params['cerrado'] || sizeof($view->competencias)== 0)? 'disabled': ''; //echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
+<fieldset <?php echo ($view->params['cerrado'] || sizeof($view->aspectos_generales)== 0)? 'disabled': ''; //echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
 <div class="modal fade" id="modalEac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
