@@ -65,19 +65,6 @@ class EvaluacionCompetencia
     { $this->periodo=$val;}
 
 
-    /*public static function getEvaluacionesCompetencias($id_empleado, $periodo) { //ok
-        $stmt=new sQuery();
-        $query="select *
-from eac_evaluacion_competencia
-where id_empleado = :id_empleado
-and periodo = :periodo";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':periodo', $periodo);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }*/
-
 
     public static function getCompetencias($id_empleado, $periodo) { //ok
         //para planes abiertos (vigentes)
@@ -203,25 +190,19 @@ where em.id_empleado = :id_empleado";
     public static function getPuntajes() { //ok
         // obtengo los puntajes que tienen las competencias
         $stmt=new sQuery();
-        /*$query="select *
-                from eac_puntajes";*/
         $query="select pc.id_puntaje_competencia, pc.id_competencia, pc.descripcion, co.codigo, co.nombre, pc.puntaje
-from ead_puntaje_competencia pc
-join competencias co on pc.id_competencia = co.id_competencia
--- join eac_puntajes pu on pc.id_puntaje = pu.id_puntaje
-order by co.id_competencia, pc.puntaje";
+                from ead_puntaje_competencia pc
+                join competencias co on pc.id_competencia = co.id_competencia
+                order by co.id_competencia, pc.puntaje";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
 
-    public static function getPuntajeCompetencia() { //ok
-        //obtengo la descripcion de un puntaje determinado para una competencia.
+    public static function getPuntajesHelp() { //ok
+        //obtengo la descripcion de los puntajes de todas las competencias
         $stmt=new sQuery();
-        /*$query="select *
-                from ead_puntaje_competencia
-                order by id_competencia, puntaje asc";*/
         $query="select pc.*, c.nombre, c.definicion
                 from ead_puntaje_competencia pc
                 join competencias c on pc.id_competencia = c.id_competencia

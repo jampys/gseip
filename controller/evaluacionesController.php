@@ -2,6 +2,7 @@
 
 include_once("model/evaluacionesModel.php");
 include_once("model/evaluacionesCompetenciasModel.php");
+include_once("model/evaluacionesAspectosGeneralesModel.php");
 include_once("model/contratosModel.php");
 include_once("model/empleadosModel.php");
 
@@ -68,6 +69,51 @@ switch ($operation)
         break;
 
 
+    case 'saveEaag': //Guarda una evaluacion de aspectos generales //ok
+        try{
+            sQuery::dpBeginTransaction();
+
+            $vAspectosGenerales = json_decode($_POST["vAspectosGenerales"], true);
+            //print_r($vCompetencias);
+
+            foreach ($vAspectosGenerales as $vAG) {
+
+                //$c = new HabilidadEmpleado();
+                //$c->setIdHabilidad($vH['id_habilidad']);
+                //$c->setIdEmpleado($vE['id_empleado']);
+                //if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
+                //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
+                $evaluacion_aspecto_general = new EvaluacionAspectoGeneral();
+                $evaluacion_aspecto_general->setIdEvaluacionAspectoGeneral($vAG['id_evaluacion_aspecto_general']);
+                $evaluacion_aspecto_general->setIdAspectoGeneral($vAG['id_aspecto_general']);
+                $evaluacion_aspecto_general->setIdPuntajeAspectoGeneral($vAG['id_puntaje_aspecto_general']);
+                $evaluacion_aspecto_general->setIdEmpleado($vAG['id_empleado']);
+                $evaluacion_aspecto_general->setIdEvaluador($_SESSION["id_user"]);
+                $evaluacion_aspecto_general->setIdPlanEvaluacion($vAG['id_plan_evaluacion']);
+                $evaluacion_aspecto_general->setPeriodo($vAG['periodo']);
+
+                //echo 'id objetivo sub: '.$vS['id_objetivo_sub'].'---';
+
+                //echo $vS['operacion'];
+                $evaluacion_aspecto_general->save(); //si falla sale por el catch
+
+            }
+
+            //Devuelve el resultado a la vista
+            sQuery::dpCommit();
+            print_r(json_encode(1));
+
+        }
+        catch(Exception $e){
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
+            sQuery::dpRollback();
+            print_r(json_encode(-1));
+        }
+
+        exit;
+        break;
+
+
 
     case 'loadEac': //Abre el formulario de evaluacion anual de competecias //ok
         $view->empleado = new Empleado($_POST['id_empleado']);
@@ -92,28 +138,39 @@ switch ($operation)
         $view->contentTemplate="view/evaluaciones/evaluaciones-eacForm.php";
         break;
 
+
+    case 'loadEaag': //Abre el formulario de evaluacion anual de aspectos generales //ok
+        $view->empleado = new Empleado($_POST['id_empleado']);
+        $view->label = 'Evaluacion de aspectos generales: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
+
+        $view->aspectos_generales = (!$_POST['cerrado'])? EvaluacionAspectoGeneral::getAspectosGenerales($_POST['id_empleado'], $_POST['periodo']) : EvaluacionAspectoGeneral::getAspectosGenerales1($_POST['id_empleado'], $_POST['periodo']);
+        $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
+
+        $view->temp = EvaluacionAspectoGeneral::getPuntajes(); //trae todos los aspectos generales con todos sus puntajes
+        $view->puntajes = array();
+
+        //este foreach genera un array asociativo... donde cada aspecto general contiene un array por cada puntaje
+        foreach ($view->temp as $pu){
+            $view->puntajes[$pu['id_aspecto_general']][] = array('id_puntaje_aspecto_general' => $pu['id_puntaje_aspecto_general'], 'puntaje' => $pu['puntaje']);
+        }
+
+        $view->disableLayout=true;
+        $view->contentTemplate="view/evaluaciones/evaluaciones-eaagForm.php";
+        break;
+
+
     case 'loadEac_help': //ok
-        $view->puntaje_competencia = EvaluacionCompetencia::getPuntajeCompetencia();
+        $view->puntaje_competencia = EvaluacionCompetencia::getPuntajesHelp();
         print_r(json_encode($view->puntaje_competencia));
         exit;
         break;
 
-
-    case 'deleteObjetivo':
-        $objetivo = new Objetivo($_POST['id_objetivo']);
-        $rta = $objetivo->deleteObjetivo();
-        print_r(json_encode($rta));
-        die;
+    case 'loadEaag_help': //ok
+        $view->puntaje_aspecto_general = EvaluacionAspectoGeneral::getPuntajesHelp();
+        print_r(json_encode($view->puntaje_aspecto_general));
+        exit;
         break;
 
-
-    case 'loadSubObjetivo':  //abre la ventana modal para agregar y editar un subobjetivo del objetivo
-        $view->label='Sub objetivo';
-        $view->disableLayout=true;
-        $view->areas = Area::getAreas();
-
-        $view->contentTemplate="view/objetivosFormSubObjetivo.php";
-        break;
 
     default : //ok
         $view->periodos = Evaluacion::getPeriodos();

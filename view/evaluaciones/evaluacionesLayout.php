@@ -47,6 +47,25 @@
 
             });
 
+
+            //Al presionar en editar una evaluacion de aspectos generales
+            $(document).on('click', '.loadEaag', function(){ //ok
+                params={};
+                //params.id_evaluacion_competencia = $(this).closest('tr').attr('id_evaluacion_competencia');
+                params.id_empleado = $(this).closest('tr').attr('id_empleado');
+                params.id_plan_evaluacion = $(this).closest('tr').attr('id_plan_evaluacion');
+                params.periodo = $(this).closest('tr').attr('periodo'); //$('#periodo').val();
+                params.cerrado = $(this).closest('tr').attr('cerrado'); //$('#periodo option:selected').attr('cerrado');
+                params.action = "evaluaciones";
+                params.operation = "loadEaag";
+                //alert(params.cerrado);
+                $('#popupbox').load('index.php', params,function(){
+                    $('#modalEaag').modal();
+                });
+
+            });
+
+
             //Al presionar en editar una evaluacion de objetivos
             $(document).on('click', '.loadEao', function(){
                 alert('Funcionalidad en desarrollo');
