@@ -79,7 +79,7 @@ join aspectos_generales ag on agnc.id_aspecto_general = ag.id_aspecto_general
 left join ead_evaluacion_aspecto_general ead_eag on ag.id_aspecto_general = ead_eag.id_aspecto_general and ead_eag.id_empleado = em.id_empleado and ead_eag.periodo = :periodo
 left join ead_puntaje_aspecto_general ead_pag on ead_eag.id_puntaje_aspecto_general = ead_pag.id_puntaje_aspecto_general
 where em.id_empleado = :id_empleado
-group by co.id_aspecto_general";
+group by ag.id_aspecto_general";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpBind(':periodo', $periodo);
@@ -134,16 +134,16 @@ where em.id_empleado = :id_empleado";
 
 
 
-    function save(){
-        if($this->id_evaluacion_competencia)
-        {$rta = $this->updateEvaluacionCompetencia();}
+    function save(){ //ok
+        if($this->id_evaluacion_aspecto_general)
+        {$rta = $this->updateEvaluacionAspectoGeneral();}
         else
-        {$rta =$this->insertEvaluacionCompetencia();}
+        {$rta =$this->insertEvaluacionAspectoGeneral();}
         return $rta;
     }
 
 
-    public function updateEvaluacionCompetencia(){
+    public function updateEvaluacionAspectoGeneral(){
 
         $stmt=new sQuery();
         $query="update ead_evaluacion_competencia set
@@ -159,7 +159,7 @@ where em.id_empleado = :id_empleado";
         return $stmt->dpGetAffect();
     }
 
-    private function insertEvaluacionCompetencia(){
+    private function insertEvaluacionAspectoGeneral(){
 
         $stmt=new sQuery();
         $query="insert into ead_evaluacion_competencia(id_competencia, id_puntaje_competencia, fecha, id_evaluador, id_empleado, id_plan_evaluacion, periodo)
@@ -185,13 +185,13 @@ where em.id_empleado = :id_empleado";
     }
 
 
-    public static function getPuntajes() {
-        // obtengo los puntajes que tienen las competencias
+    public static function getPuntajes() { //ok
+        // obtengo los puntajes que tienen los aspectos generales
         $stmt=new sQuery();
-        $query="select pc.id_puntaje_competencia, pc.id_competencia, pc.descripcion, co.codigo, co.nombre, pc.puntaje
-                from ead_puntaje_competencia pc
-                join competencias co on pc.id_competencia = co.id_competencia
-                order by co.id_competencia, pc.puntaje";
+        $query="select pag.id_puntaje_aspecto_general, pag.id_aspecto_general, pag.descripcion, ag.codigo, ag.nombre, pag.puntaje
+                from ead_puntaje_aspecto_general pag
+                join aspectos_generales ag on pag.id_aspecto_general = ag.id_aspecto_general
+                order by ag.id_aspecto_general, pag.puntaje";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();

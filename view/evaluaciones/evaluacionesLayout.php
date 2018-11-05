@@ -49,7 +49,7 @@
 
 
             //Al presionar en editar una evaluacion de aspectos generales
-            $(document).on('click', '.loadEac', function(){ //ok
+            $(document).on('click', '.loadEaag', function(){ //ok
                 params={};
                 //params.id_evaluacion_competencia = $(this).closest('tr').attr('id_evaluacion_competencia');
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
@@ -60,7 +60,7 @@
                 params.operation = "loadEaag";
                 //alert(params.cerrado);
                 $('#popupbox').load('index.php', params,function(){
-                    $('#modalEac').modal();
+                    $('#modalEaag').modal();
                 });
 
             });

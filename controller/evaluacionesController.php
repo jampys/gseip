@@ -2,6 +2,7 @@
 
 include_once("model/evaluacionesModel.php");
 include_once("model/evaluacionesCompetenciasModel.php");
+include_once("model/evaluacionesAspectosGeneralesModel.php");
 include_once("model/contratosModel.php");
 include_once("model/empleadosModel.php");
 
@@ -92,25 +93,26 @@ switch ($operation)
         $view->contentTemplate="view/evaluaciones/evaluaciones-eacForm.php";
         break;
 
+
     case 'loadEaag': //Abre el formulario de evaluacion anual de aspectos generales //ok
         $view->empleado = new Empleado($_POST['id_empleado']);
-        $view->label = 'Evaluacion de competencias: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
+        $view->label = 'Evaluacion de aspectos generales: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
 
-        $view->competencias = (!$_POST['cerrado'])? EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $_POST['periodo']) : EvaluacionCompetencia::getCompetencias1($_POST['id_empleado'], $_POST['periodo']);
-
+        $view->aspectos_generales = (!$_POST['cerrado'])? EvaluacionAspectoGeneral::getAspectosGenerales($_POST['id_empleado'], $_POST['periodo']) : EvaluacionAspectoGeneral::getAspectosGenerales1($_POST['id_empleado'], $_POST['periodo']);
         $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
 
-        $view->temp = EvaluacionCompetencia::getPuntajes(); //trae todas las competencias con todos sus puntajes
+        $view->temp = EvaluacionAspectoGeneral::getPuntajes(); //trae todos los aspectos generales con todos sus puntajes
         $view->puntajes = array();
 
-        //este foreach genera un array asociativo... donde cada competencia contiene un array por cada puntaje
+        //este foreach genera un array asociativo... donde cada aspecto general contiene un array por cada puntaje
         foreach ($view->temp as $pu){
-            $view->puntajes[$pu['id_competencia']][] = array('id_puntaje_competencia' => $pu['id_puntaje_competencia'], 'puntaje' => $pu['puntaje']);
+            $view->puntajes[$pu['id_aspecto_generarl']][] = array('id_puntaje_aspecto_general' => $pu['id_puntaje_aspecto_general'], 'puntaje' => $pu['puntaje']);
         }
 
         $view->disableLayout=true;
         $view->contentTemplate="view/evaluaciones/evaluaciones-eaagForm.php";
         break;
+
 
     case 'loadEac_help': //ok
         $view->puntaje_competencia = EvaluacionCompetencia::getPuntajesHelp();

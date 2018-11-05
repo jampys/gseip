@@ -207,7 +207,7 @@
             <div class="modal-body">
 
 
-                <?php if(isset($view->competencias) && sizeof($view->competencias) > 0) {?>
+                <?php if(isset($view->aspectos_generales) && sizeof($view->aspectos_generales) > 0) {?>
 
                 <div class="row">
 
@@ -221,14 +221,14 @@
 
 
 
-                            <?php foreach ($view->competencias as $com){ ?>
+                            <?php foreach ($view->aspectos_generales as $com){ ?>
 
                                 <div class="form-group">
                                     <label for="" class="col-md-8 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
                                     <div class="col-md-4">
-                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="-" data-live-search="true" data-size="5">
-                                            <?php foreach ($view->puntajes[$com['id_competencia']] as $p){ ?>
-                                                <option value="<?php echo $p['id_puntaje_competencia']; ?>"
+                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
+                                            <?php foreach ($view->puntajes[$com['id_aspecto_general']] as $p){ ?>
+                                                <option value="<?php echo $p['id_puntaje_aspecto_general']; ?>"
                                                     <?php echo ($com['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
                                                     >
                                                     <?php echo $p['puntaje'];?>
@@ -252,7 +252,7 @@
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="label-box" class="alert alert-info fade in">
-                                Al presionar sobre el ícono <i class="fas fa-info-circle fa-fw"></i>&nbsp de cada competencia, podrá
+                                Al presionar sobre el ícono <i class="fas fa-info-circle fa-fw"></i>&nbsp de cada aspecto general, podrá
                                 visualizar la descripción del significado de cada puntaje.
                             </div>
 
