@@ -147,7 +147,6 @@ where em.id_empleado = :id_empleado";
 
         $stmt=new sQuery();
         $query="update ead_evaluacion_aspecto_general set
-                -- id_puntaje= :id_puntaje,
                 id_puntaje_aspecto_general = :id_puntaje_aspecto_general,
                 id_evaluador=  :id_evaluador
                 where id_evaluacion_aspecto_general = :id_evaluacion_aspecto_general";
