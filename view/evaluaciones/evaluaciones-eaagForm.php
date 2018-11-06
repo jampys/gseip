@@ -96,7 +96,7 @@
 
 
         //Al presionar el icono (i) de cada label
-        $(document).on("click", ".help_puntaje", function(e){
+        $('#modalEaag').on("click", ".help_puntaje", function(e){
 
             var id = $(this).closest('.form-group').find('select').attr('id');
             var label = jsonAspectosGeneralesHelp[id][0]['nombre'];
