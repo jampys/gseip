@@ -126,7 +126,7 @@
 
 
         //Al presionar el icono (i) de cada label
-        $(document).on("click", ".help_puntaje", function(e){
+        $('#modalEac').on("click", ".help_puntaje", function(e){
 
             var id = $(this).closest('.form-group').find('select').attr('id');
             var label = jsonCompetenciasHelp[id][0]['nombre']; 
