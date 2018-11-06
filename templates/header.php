@@ -149,6 +149,9 @@
                             <?php if ( PrivilegedUser::dhasPrivilege('RVE_VER', array(1)) ) { ?>
                                 <li><a href="index.php?action=renovacionesVehiculos"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Vencimientos de vehículos</a></li>
                             <?php } ?>
+                            <?php if ( PrivilegedUser::dhasPrivilege('RVE_VER', array(1)) ) { ?>
+                                <li><a href="index.php?action=vto_gruposVehiculos"><i class="fas fa-users fa-sm fa-fw"></i>&nbsp;Grupos de vehículos</a></li>
+                            <?php } ?>
                         </ul>
                     </li>
 
