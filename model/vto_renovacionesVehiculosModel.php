@@ -12,6 +12,7 @@ class RenovacionVehicular
     private $fecha;
     private $id_rnv_renovacion; //id_renovacion que le sigue
     private $disabled;
+    private $referencia;
 
     private $vehiculo;
 
@@ -48,6 +49,9 @@ class RenovacionVehicular
     function getDisabled()
     { return $this->disabled;}
 
+    function getReferencia()
+    { return $this->referencia;}
+
 
     //SETTERS
     function setIdRenovacion($val)
@@ -77,6 +81,9 @@ class RenovacionVehicular
     function setDisabled($val)
     { $this->disabled=$val;}
 
+    function setReferencia($val)
+    { $this->referencia=$val;}
+
 
 
     function __construct($nro=0){ //constructor //ok
@@ -86,7 +93,7 @@ class RenovacionVehicular
             $query = "select id_renovacion, id_vencimiento, id_vehiculo, id_grupo,
                     DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
                     DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion, disabled
+                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion, disabled, referencia
                     from vto_renovacion_v
                     where id_renovacion = :nro";
             $stmt->dpPrepare($query);
@@ -103,6 +110,7 @@ class RenovacionVehicular
             $this->setFecha($rows[0]['fecha']);
             $this->setIdRnvRenovacion($rows[0]['id_rnv_renovacion']);
             $this->setDisabled($rows[0]['disabled']);
+            $this->setReferencia($rows[0]['referencia']);
 
             $this->vehiculo = new Vehiculo($rows[0]['id_vehiculo']);
         }
@@ -216,13 +224,15 @@ order by priority, id_rnv_renovacion asc";
         $query="update vto_renovacion_v set id_vencimiento =:id_vencimiento,
                       fecha_emision = STR_TO_DATE(:fecha_emision, '%d/%m/%Y'),
                       fecha_vencimiento = STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'),
-                      disabled = STR_TO_DATE(:disabled, '%d/%m/%Y')
+                      disabled = STR_TO_DATE(:disabled, '%d/%m/%Y'),
+                      referencia = :referencia
                 where id_renovacion =:id_renovacion";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
         $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
         $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
         $stmt->dpBind(':disabled', $this->getDisabled());
+        $stmt->dpBind(':referencia', $this->getReferencia());
         $stmt->dpBind(':id_renovacion', $this->getIdRenovacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -237,6 +247,7 @@ order by priority, id_rnv_renovacion asc";
                                         :id_grupo,
                                         :fecha_emision,
                                         :fecha_vencimiento,
+                                        :referencia,
                                         @flag
                                     )';
 
@@ -247,6 +258,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpBind(':id_grupo', $this->getIdGrupo());
         $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
         $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
+        $stmt->dpBind(':referencia', $this->getReferencia());
 
         $stmt->dpExecute();
 
