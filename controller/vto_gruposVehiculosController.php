@@ -1,5 +1,6 @@
 ﻿<?php
 include_once("model/vto_gruposVehiculosModel.php");
+include_once("model/vto_vencimientosVehiculosModel.php");
 
 
 $operation = "";
@@ -29,29 +30,25 @@ switch ($operation)
         exit;
         break;
 
-    case 'newPostulacion':
-        $view->label='Nueva postulación';
+    case 'newPostulacion': //ok
         $view->postulacion = new Postulacion();
+        $view->label='Nuevo grupo';
 
-        $view->busquedas = Busqueda::getBusquedasActivas();
-        $view->postulantes = Postulante::getPostulantesActivos();
-        $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
+        $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/postulacionesForm.php";
+        $view->contentTemplate="view/grupos_vehiculos/gruposForm.php";
         break;
 
-    case 'editPostulacion':
-        $view->label='Editar postulación';
-        $view->postulacion = new Postulacion($_POST['id_postulacion']);
+    case 'editGrupo': //ok
+        $view->grupo = new GrupoVehiculo($_POST['id_grupo']);
+        $view->label= $view->grupo->getNombre().' '.$view->grupo->getNroReferencia();
 
-        $view->busquedas = Busqueda::getBusquedasActivas();
-        $view->postulantes = Postulante::getPostulantesActivos();
-        $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
+        $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/postulaciones/postulacionesForm.php";
+        $view->contentTemplate="view/grupos_vehiculos/gruposForm.php";
         break;
 
 

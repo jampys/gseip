@@ -14,12 +14,12 @@
 
 
             $(document).on('click', '.edit', function(){ //ok
-                var id = $(this).attr('data-id');
+                var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_vehiculo = id;
-                params.action = "vehiculos";
-                params.operation = "editVehiculo";
+                params.id_grupo = id;
+                params.action = "vto_gruposVehiculos";
+                params.operation = "editGrupo";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
@@ -27,17 +27,17 @@
             });
 
             $(document).on('click', '.view', function(){ //ok
-                var id = $(this).attr('data-id');
+                var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_vehiculo = id;
-                params.action = "vehiculos";
-                params.operation = "editVehiculo";
+                params.id_grupo = id;
+                params.action = "vto_gruposVehiculos";
+                params.operation = "editGrupo";
                 $('#popupbox').load('index.php', params,function(){
-                    $("#vehiculo-form input, #vehiculo-form .selectpicker, #vehiculo-form textarea").prop("disabled", true);
+                    $("#grupo-form input, #grupo-form .selectpicker, #grupo-form textarea").prop("disabled", true);
                     $('.selectpicker').selectpicker('refresh');
                     $('.modal-footer').css('display', 'none');
-                    $('#myModalLabel').html('');
+                    //$('#myModalLabel').html('');
                     $('#myModal').modal();
                 })
 
@@ -47,7 +47,7 @@
 
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){
                 params={};
                 params.action = "vehiculos";
                 params.operation="newVehiculo";
@@ -57,7 +57,7 @@
             });
 
 
-            $(document).on('click', '#submit',function(){ //ok
+            $(document).on('click', '#submit',function(){
                 if ($("#vehiculo-form").valid()){
                     var params={};
                     params.action = 'vehiculos';
@@ -106,7 +106,7 @@
 
 
 
-            $(document).on('click', '.delete', function(){ //ok
+            $(document).on('click', '.delete', function(){
                 var id = $(this).attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
@@ -132,7 +132,7 @@
             });
 
 
-            $.fn.borrar = function(id) { //ok
+            $.fn.borrar = function(id) {
                 //alert(id);
                 //preparo los parametros
                 params={};
@@ -158,21 +158,24 @@
             };
 
 
-            //Al presionar el boton contratos, para mostrar los contratos del empleado
-            $(document).on('click', '.contratos', function(){ //ok
-                //alert('tocó en contratos');
-                var id = $(this).attr('data-id');
-                //preparo los parametros
+            $(document).on('click', '.etapas', function(){
+                //alert('presiono sobre etapas');
+                var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_vehiculo = id;
-                params.action = "vehiculos";
-                params.operation = "loadContratos";
+                params.id_postulacion = id;
+                params.action = "etapas";
+                //params.operation = "etapas"; //entra en default
+                //params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
+                    //$("fieldset").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
+                    //$('#myModalLabel').html('');
                     $('#myModal').modal();
+                    $('#etapas_left_side #add').attr('id_postulacion', id);
                 })
 
             });
-
 
 
 

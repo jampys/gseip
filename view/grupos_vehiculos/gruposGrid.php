@@ -58,7 +58,7 @@
             </thead>
             <tbody>
             <?php foreach ($view->grupos as $vehiculo):   ?>
-                <tr>
+                <tr data-id="<?php echo $vehiculo['id_grupo']; ?>">
                     <td><?php echo $vehiculo['id_grupo'];?></td>
                     <td><?php echo $vehiculo['nombre'];?></td>
                     <td><?php echo $vehiculo['nro_referencia'];?></td>
@@ -73,7 +73,7 @@
 
                     <td class="text-center">
                         <!-- si tiene permiso para ver etapas -->
-                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'etapas' : 'disabled' ?>" href="javascript:void(0);">
+                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
                             <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
                         </a>
                     </td>
