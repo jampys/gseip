@@ -14,9 +14,6 @@
         text-align: center;
     }
 
-    .alert-warning{
-        margin-bottom: 0 !important;
-    }
 
 
 </style>
@@ -215,7 +212,7 @@
 
                 <div class="row">
 
-                    <div class="col-md-4" id="select-box">
+                    <div class="col-md-5" id="select-box">
 
                         <form class="form-horizontal" name ="eaag-form" id="eaag-form" method="POST" action="index.php">
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
@@ -228,7 +225,8 @@
                             <?php foreach ($view->aspectos_generales as $com){ ?>
 
                                 <div class="form-group">
-                                    <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
+                                    <label for="" class="col-md-5 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
+
                                     <div class="col-md-3">
                                         <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
                                             <?php foreach ($view->puntajes[$com['id_aspecto_general']] as $p){ ?>
@@ -241,8 +239,11 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-md-3 alert alert-warning">
+                                    <div class="col-md-4">
 
+                                        <?php if($com['id_aspecto_general'] == 1){ ?>
+                                        <div class="alert alert-warning" role="alert" style="margin: 0; padding: 6px"> hola</div>
+                                        <?php }  ?>
 
                                     </div>
 
@@ -257,7 +258,7 @@
                     </div>
 
 
-                    <div class="col-md-8" id="help-box">
+                    <div class="col-md-7" id="help-box">
 
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
