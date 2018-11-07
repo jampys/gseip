@@ -14,6 +14,10 @@
         text-align: center;
     }
 
+    .alert-warning{
+        margin-bottom: 0 !important;
+    }
+
 
 </style>
 
@@ -224,8 +228,8 @@
                             <?php foreach ($view->aspectos_generales as $com){ ?>
 
                                 <div class="form-group">
-                                    <label for="" class="col-md-8 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
-                                    <div class="col-md-4">
+                                    <label for="" class="col-md-6 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
+                                    <div class="col-md-3">
                                         <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
                                             <?php foreach ($view->puntajes[$com['id_aspecto_general']] as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje_aspecto_general']; ?>"
@@ -236,6 +240,12 @@
                                             <?php  } ?>
                                         </select>
                                     </div>
+
+                                    <div class="col-md-3 alert alert-warning">
+
+
+                                    </div>
+
                                 </div>
 
                             <?php  } ?>
