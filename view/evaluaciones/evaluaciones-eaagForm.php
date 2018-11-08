@@ -23,6 +23,8 @@
 
     $(document).ready(function(){
 
+        $('[data-toggle="popover"]').popover({html:true, placement: "right"});
+
         function verticalTable(){
 
             $("#table-box table").each(function () { //http://jsfiddle.net/zwdLj/
@@ -242,7 +244,13 @@
                                     <div class="col-md-4">
 
                                         <?php if($com['id_aspecto_general'] == 1){ ?>
-                                        <div class="alert alert-warning" role="alert" style="margin: 0; padding: 6px"> hola</div>
+                                            <!--<div class="alert alert-warning" role="alert" style="margin: 0; padding: 6px"> hola</div>-->
+                                            <a href="#" tabindex="0" data-toggle="popover" data-trigger="focus" title="<span class='glyphicon glyphicon-edit' aria-hidden='true'></span> titulo"
+                                               data-content="<table>
+                            <tr><td style='color:red;'>complex&nbsp;</td><td>HTML</td></tr>
+                            <tr><td style='color:blue;'>complex&nbsp;</td><td>CSS</td></tr>
+                          </table>"
+                                                >popover</a>
                                         <?php }  ?>
 
                                     </div>
