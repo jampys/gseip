@@ -245,12 +245,12 @@
 
                                         <?php if($com['id_aspecto_general'] == 1){ ?>
                                             <!--<div class="alert alert-warning" role="alert" style="margin: 0; padding: 6px"> hola</div>-->
-                                            <a href="#" tabindex="0" data-toggle="popover" data-trigger="focus" title="<span class='glyphicon glyphicon-edit' aria-hidden='true'></span> titulo"
+                                            <a class="btn btn-warning" href="#" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
                                                data-content="<table>
-                            <tr><td style='color:red;'>complex&nbsp;</td><td>HTML</td></tr>
-                            <tr><td style='color:blue;'>complex&nbsp;</td><td>CSS</td></tr>
-                          </table>"
-                                                >popover</a>
+                                                                <tr><td style='color:red;'>complex&nbsp;</td><td>HTML</td></tr>
+                                                                <tr><td style='color:blue;'>complex&nbsp;</td><td>CSS</td></tr>
+                                                            </table>"
+                                                >mas info...</a>
                                         <?php }  ?>
 
                                     </div>
