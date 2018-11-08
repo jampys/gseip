@@ -48,7 +48,7 @@ class GrupoVehiculo
             $stmt=new sQuery();
             $query = "select id_grupo, nombre, id_vencimiento,
                       nro_referencia,
-                      DATE_FORMAT(fecha_baja,  '%d/%m/%Y') as fecha_baja
+                      DATE_FORMAT(fecha_baja,'%d/%m/%Y') as fecha_baja
                       from vto_grupos_v
                       where id_grupo = :nro";
             $stmt->dpPrepare($query);
@@ -80,36 +80,34 @@ class GrupoVehiculo
     }
 
 
-    function save(){
-        if($this->id_postulacion)
-        {$rta = $this->updatePostulacion();}
+    function save(){ //ok
+        if($this->id_grupo)
+        {$rta = $this->updateGrupo();}
         else
-        {$rta =$this->insertPostulacion();}
+        {$rta =$this->insertGrupo();}
         return $rta;
     }
 
 
-    public function updatePostulacion(){
+    public function updateGrupo(){ //ok
         $stmt=new sQuery();
-        $query="update sel_postulaciones set id_busqueda =:id_busqueda,
-                      id_postulante = :id_postulante,
-                      origen_cv = :origen_cv,
-                      expectativas = :expectativas,
-                      propuesta_economica = :propuesta_economica
-                where id_postulacion =:id_postulacion";
+        $query="update vto_grupo_v set nombre =:nombre,
+                      id_vencimiento = :id_vencimiento,
+                      nro_referencia = :nro_referencia,
+                      fecha_baja = :fecha_baja
+                where id_grupo =:id_grupo";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
-        $stmt->dpBind(':id_postulante', $this->getIdPostulante());
-        $stmt->dpBind(':origen_cv', $this->getOrigenCv());
-        $stmt->dpBind(':expectativas', $this->getExpectativas());
-        $stmt->dpBind(':propuesta_economica', $this->getPropuestaEconomica());
-        $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
+        $stmt->dpBind(':nro_referencia', $this->getNroReferencia());
+        $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
+        $stmt->dpBind(':id_grupo', $this->getIdGrupo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    private function insertPostulacion(){
+    private function insertGrupo(){
         $stmt=new sQuery();
         $query="insert into sel_postulaciones(id_busqueda, id_postulante, fecha, origen_cv, expectativas, propuesta_economica)
                 values(:id_busqueda, :id_postulante, sysdate(), :origen_cv, :expectativas, :propuesta_economica)";

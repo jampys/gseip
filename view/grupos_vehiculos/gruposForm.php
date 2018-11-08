@@ -12,7 +12,7 @@
         });
 
 
-        /*$('.input-daterange').datepicker({ //ok
+        /*$('.input-daterange').datepicker({
             //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
@@ -28,33 +28,27 @@
 
 
 
-        $('#myModal').on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){
 
-            if ($("#postulacion-form").valid()){
+            if ($("#grupo-form").valid()){
 
                 var params={};
-                params.action = 'postulaciones';
-                params.operation = 'savePostulacion';
-                params.id_postulacion = $('#id_postulacion').val();
-                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                //params.disabled = $('#disabled').prop('checked')? 1:0;
-                params.id_busqueda = $('#id_busqueda').val();
-                params.id_postulante = $('#id_postulante').val();
-                params.origen_cv = $('#origen_cv').val();
-                params.expectativas = $('#expectativas').val();
-                params.propuesta_economica = $('#propuesta_economica').val();
+                params.action = 'vto_gruposVehiculos';
+                params.operation = 'saveGrupo';
+                params.id_grupo = $('#id_grupo').val();
+                params.nombre = $('#nombre').val();
+                params.nro_referencia = $('#nro_referencia').val();
+                params.id_vencimiento = $('#id_vencimiento').val();
+                params.fecha_baja = $('#fecha_baja').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
-
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
-                        $("#search").trigger("click");
+                        $("#myElem").html('Grupo guardado con exito').addClass('alert alert-success').show();
+                        $('#content').load('index.php',{action:"vto_gruposVehiculos", operation:"refreshGrid"});
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                               }, 2000);
@@ -62,7 +56,7 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar la postulación').addClass('alert alert-danger').show();
+                    $("#myElem").html('Error al guardar el grupo').addClass('alert alert-danger').show();
                 });
 
             }
@@ -82,60 +76,16 @@
         });
 
 
-        $('#postulacion-form').validate({
+        $('#grupo-form').validate({ //ok
             rules: {
-                id_busqueda: {required: true},
-                id_postulante: {required: true}
-                /*fecha_emision: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaEmision",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
-                        }
-                    }
-                },
-                fecha_vencimiento: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaVencimiento",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            fecha_vencimiento: function(){ return $('#fecha_vencimiento').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
-                        }
-                    }
-                }*/
-
+                nombre: {required: true},
+                nro_referencia: {required: true},
+                id_vencimiento: {required: true}
             },
             messages:{
-                id_busqueda: "Seleccione la búsqueda",
-                id_postulante: "Seleccione el postulante"
-                /*fecha_emision: {
-                    required: "Ingrese la fecha de emisión",
-                    remote: "La fecha de emisión debe ser mayor"
-                },
-                fecha_vencimiento: {
-                    required: "Ingrese la fecha de vencimiento",
-                    remote: "La fecha de vencimiento debe ser mayor"
-                }*/
+                nombre: "Ingrese un nombre",
+                nro_referencia: "Ingrese un nro de referencia",
+                id_vencimiento: "Seleccione un vencimiento"
             }
 
         });

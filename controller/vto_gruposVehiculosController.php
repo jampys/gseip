@@ -17,21 +17,20 @@ switch ($operation)
         $view->contentTemplate="view/vehiculos/vehiculosGrid.php";
         break;
 
-    case 'savePostulacion':
-        $postulacion = new Postulacion($_POST['id_postulacion']);
-        $postulacion->setIdBusqueda($_POST['id_busqueda']);
-        $postulacion->setIdPostulante($_POST['id_postulante']);
-        $postulacion->setOrigenCv($_POST['origen_cv']);
-        $postulacion->setExpectativas($_POST['expectativas']);
-        $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
+    case 'saveGrupo': //ok
+        $grupo = new GrupoVehiculo($_POST['id_grupo']);
+        $grupo->setNombre($_POST['nombre']);
+        $grupo->setNroReferencia($_POST['nro_referencia']);
+        $grupo->setIdVencimiento($_POST['id_vencimiento']);
+        $grupo->setFechaBaja($_POST['fecha_baja']);
 
-        $rta = $postulacion->save();
+        $rta = $grupo->save();
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'newPostulacion': //ok
-        $view->postulacion = new Postulacion();
+    case 'newGrupo': //ok
+        $view->grupo = new GrupoVehiculo();
         $view->label='Nuevo grupo';
 
         $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
