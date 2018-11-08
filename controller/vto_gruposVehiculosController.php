@@ -13,12 +13,12 @@ switch ($operation)
 {
     case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $view->grupos = GrupoVehiculo::getGrupos();
+        $view->grupos = Grupo::getGrupos();
         $view->contentTemplate="view/grupos_vehiculos/gruposGrid.php";
         break;
 
     case 'saveGrupo': //ok
-        $grupo = new GrupoVehiculo($_POST['id_grupo']);
+        $grupo = new Grupo($_POST['id_grupo']);
         $grupo->setNombre($_POST['nombre']);
         $grupo->setNroReferencia($_POST['nro_referencia']);
         $grupo->setIdVencimiento($_POST['id_vencimiento']);
@@ -30,7 +30,7 @@ switch ($operation)
         break;
 
     case 'newGrupo': //ok
-        $view->grupo = new GrupoVehiculo();
+        $view->grupo = new Grupo();
         $view->label='Nuevo grupo';
 
         $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
@@ -40,7 +40,7 @@ switch ($operation)
         break;
 
     case 'editGrupo': //ok
-        $view->grupo = new GrupoVehiculo($_POST['id_grupo']);
+        $view->grupo = new Grupo($_POST['id_grupo']);
         $view->label= $view->grupo->getNombre().' '.$view->grupo->getNroReferencia();
 
         $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
@@ -52,7 +52,7 @@ switch ($operation)
 
 
     case 'deleteGrupo': //ok
-        $grupo = new GrupoVehiculo($_POST['id_grupo']);
+        $grupo = new Grupo($_POST['id_grupo']);
         $rta = $grupo->deleteGrupo();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
@@ -60,7 +60,7 @@ switch ($operation)
 
 
     default : //ok
-        $view->grupos = GrupoVehiculo::getGrupos();
+        $view->grupos = Grupo::getGrupos();
         $view->contentTemplate="view/grupos_vehiculos/gruposGrid.php";
         break;
 }

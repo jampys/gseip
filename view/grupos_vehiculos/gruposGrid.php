@@ -66,8 +66,8 @@
                     <td><?php echo $vehiculo['fecha_baja'];?></td>
 
                     <td class="text-center">
-                        <a class="etapas" href="javascript:void(0);">
-                            <i class="far fa-list-alt fa-fw" title="etapas"></i>
+                        <a class="vehiculos" href="javascript:void(0);">
+                            <i class="far fa-list-alt fa-fw" title="vehículos"></i>
                         </a>
                     </td>
 

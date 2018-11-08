@@ -219,7 +219,7 @@
                             </div>
 
                             <div class="grid">
-                                <?php include_once('view/postulaciones/etapasGrid.php');?>
+                                <?php include_once('view/grupos_vehiculos/vehiculosGrid.php');?>
                             </div>
 
                         </div>

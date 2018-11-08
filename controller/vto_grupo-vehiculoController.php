@@ -1,9 +1,9 @@
 ﻿<?php
-include_once("model/etapasModel.php");
+include_once("model/vto_grupo-vehiculoModel.php");
 
-include_once("model/puestosModel.php");
-include_once("model/localidadesModel.php");
-include_once("model/contratosModel.php");
+//include_once("model/puestosModel.php");
+//include_once("model/localidadesModel.php");
+//include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -80,29 +80,11 @@ switch ($operation)
         break;
 
 
-    case 'checkFechaEmision':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'checkFechaVencimiento':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-
-    default : //carga la tabla de etapas de la postulacion
-        //$view->postulacion = new Postulacion($_POST['id_postulacion']);
-        $view->label='Etapas de la postulación';
-        $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
+    default : //carga la tabla de vehiculos del grupo //ok
+        $view->label='Vehículos del grupo';
+        $view->vehiculos = GrupoVehiculo::getVehiculos($_POST['id_grupo']);
         $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/etapasForm.php";
+        $view->contentTemplate="view/grupos_vehiculos/vehiculosForm.php";
         break;
 }
 

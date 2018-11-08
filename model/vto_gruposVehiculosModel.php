@@ -1,6 +1,6 @@
 <?php
 
-class GrupoVehiculo
+class Grupo
 {
     private $id_grupo;
     private $nombre;

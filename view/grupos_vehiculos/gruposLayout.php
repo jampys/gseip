@@ -43,14 +43,13 @@
             });
 
 
-            $(document).on('click', '.etapas', function(){
+            $(document).on('click', '.vehiculos', function(){
                 //alert('presiono sobre etapas');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_postulacion = id;
-                params.action = "etapas";
+                params.id_grupo = id;
+                params.action = "vto_grupo-vehiculo";
                 //params.operation = "etapas"; //entra en default
-                //params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     //$("fieldset").prop("disabled", true);
                     //$('.selectpicker').selectpicker('refresh');

@@ -1,6 +1,6 @@
 <?php
 
-class Etapa
+class GrupoVehiculo
 {
     private $id_etapa;
     private $id_postulacion;
@@ -80,7 +80,7 @@ class Etapa
     { $this->id_user=$val;}
 
 
-    function __construct($nro=0){ //constructor //ok
+    function __construct($nro=0){ //constructor
 
         if ($nro!=0){
             $stmt=new sQuery();
@@ -109,30 +109,23 @@ class Etapa
     }
 
 
-    public static function getEtapas($id_postulacion) { //ok
+    public static function getVehiculos($id_grupo) {  //ok
         $stmt=new sQuery();
-        $query = "select et.id_etapa, et.id_postulacion,
-                  DATE_FORMAT(et.fecha, '%d/%m/%Y') as fecha,
-                  DATE_FORMAT(et.fecha_etapa, '%d/%m/%y') as fecha_etapa,
-                  et.etapa, et.aplica, et.motivo, et.modo_contacto, et.comentarios, et.id_user,
-                  us.user
-                  from sel_etapas et
-                  join sec_users us on et.id_user = us.id_user
-                  where et.id_postulacion = :id_postulacion
-                  order by et.fecha_etapa asc";
+        $query = "select gv.id_grupo_vehiculo, gv.id_vehiculo, gv.id_grupo,
+                  DATE_FORMAT(gv.fecha_desde, '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(gv.fecha_hasta, '%d/%m/%y') as fecha_hasta
+                  from vto_grupo_vehiculo gv
+                  where gv.id_grupo = :id_grupo
+                  order by gv.fecha_desde asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_postulacion', $id_postulacion);
-        //$stmt->dpBind(':id_grupo', $id_grupo);
-        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
-        //$stmt->dpBind(':renovado', $renovado);
+        $stmt->dpBind(':id_grupo', $id_grupo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
 
 
-    function save(){ //ok
+    function save(){
         if($this->id_etapa)
         {$rta = $this->updateEtapa();}
         else
@@ -141,7 +134,7 @@ class Etapa
     }
 
 
-    public function updateEtapa(){ //ok
+    public function updateEtapa(){
         $stmt=new sQuery();
         $query="update sel_etapas set fecha_etapa = STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'),
                 etapa = :etapa,
@@ -163,7 +156,7 @@ class Etapa
 
     }
 
-    private function insertEtapa(){ //ok
+    private function insertEtapa(){
         $stmt=new sQuery();
         $query="insert into sel_etapas(id_postulacion, fecha, fecha_etapa, etapa, aplica, motivo , modo_contacto, comentarios, id_user)
                 values(:id_postulacion, sysdate(), STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'), :etapa, :aplica, :motivo, :modo_contacto, :comentarios, :id_user)";
@@ -181,7 +174,7 @@ class Etapa
 
     }
 
-    function deleteEtapa(){ //ok
+    function deleteEtapa(){
         $stmt=new sQuery();
         $query="delete from sel_etapas where id_etapa = :id_etapa";
         $stmt->dpPrepare($query);
