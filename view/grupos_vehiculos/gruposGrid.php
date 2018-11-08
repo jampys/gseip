@@ -105,7 +105,7 @@
 
 <div id="confirm">
     <div class="modal-body">
-        ¿Desea eliminar el vehículo?
+        ¿Desea eliminar el grupo?
     </div>
 
     <div id="myElem" class="msg" style="display:none">

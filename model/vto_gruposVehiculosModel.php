@@ -91,10 +91,10 @@ class GrupoVehiculo
 
     public function updateGrupo(){ //ok
         $stmt=new sQuery();
-        $query="update vto_grupo_v set nombre =:nombre,
+        $query="update vto_grupos_v set nombre =:nombre,
                       id_vencimiento = :id_vencimiento,
                       nro_referencia = :nro_referencia,
-                      fecha_baja = :fecha_baja
+                      fecha_baja = STR_TO_DATE(:fecha_baja, '%d/%m/%Y')
                 where id_grupo =:id_grupo";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
@@ -107,134 +107,33 @@ class GrupoVehiculo
 
     }
 
-    private function insertGrupo(){
+    private function insertGrupo(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_postulaciones(id_busqueda, id_postulante, fecha, origen_cv, expectativas, propuesta_economica)
-                values(:id_busqueda, :id_postulante, sysdate(), :origen_cv, :expectativas, :propuesta_economica)";
+        $query="insert into vto_grupos_v(nombre, id_vencimiento, nro_referencia, fecha_baja)
+                values(:nombre, :id_vencimiento, :nro_referencia, STR_TO_DATE(:fecha_baja, '%d/%m/%Y'))";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
-        $stmt->dpBind(':id_postulante', $this->getIdPostulante());
-        $stmt->dpBind(':origen_cv', $this->getOrigenCv());
-        $stmt->dpBind(':expectativas', $this->getExpectativas());
-        $stmt->dpBind(':propuesta_economica', $this->getPropuestaEconomica());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
+        $stmt->dpBind(':nro_referencia', $this->getNroReferencia());
+        $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    function deleteHabilidad(){
+    function deleteGrupo(){ //ok
         $stmt=new sQuery();
-        $query="delete from habilidades where id_habilidad =:id_habilidad";
+        $query="delete from vto_grupos_v where id_grupo =:id_grupo";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-    }
-
-
-
-    public static function uploadsUpload($directory, $name, $id_busqueda){
-        $stmt=new sQuery();
-        $query="insert into uploads_busqueda(directory, name, fecha, id_busqueda)
-                values(:directory, :name, date(sysdate()), :id_busqueda)";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':directory', $directory);
-        $stmt->dpBind(':name', $name);
-        $stmt->dpBind(':id_busqueda', $id_busqueda);
+        $stmt->dpBind(':id_grupo', $this->getIdGrupo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
 
-    public static function uploadsLoad($id_busqueda) {
-        $stmt=new sQuery();
-        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_busqueda
-                from uploads_busqueda
-                where id_busqueda = :id_busqueda
-                order by fecha asc";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_busqueda', $id_busqueda);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
-
-    public static function uploadsDelete($name){
-        $stmt=new sQuery();
-        $query="delete from uploads_busqueda where name =:name";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':name', $name);
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-    }
 
 
-    public function checkFechaEmision($fecha_emision, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
-        /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
-        sea mayor. */
-        $stmt=new sQuery();
-        $query = "select *
-                  from vto_renovacion_p
-                  where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
-                  :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  and id_renovacion <> :id_renovacion
-                  )
-                  order by fecha_emision asc
-                  limit 1";
-
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
-        $stmt->dpBind(':fecha_emision', $fecha_emision);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        $stmt->dpExecute();
-        return $output = ($stmt->dpGetAffect()==0)? true : false;
-    }
-
-    public function checkFechaVencimiento($fecha_emision, $fecha_vencimiento, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
-        $stmt=new sQuery();
-        $query = "select *
-                  from vto_renovacion_p
-                  where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_vencimiento ingresada sea mayor que la de ésta
-                  :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
-                  and id_renovacion <> :id_renovacion
-                  )
-                  order by fecha_emision asc
-                  limit 1";
-
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
-        $stmt->dpBind(':fecha_emision', $fecha_emision);
-        $stmt->dpBind(':fecha_vencimiento', $fecha_vencimiento);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        $stmt->dpExecute();
-        return $output = ($stmt->dpGetAffect()==0)? true : false;
-    }
 
 
 

@@ -13,8 +13,8 @@ switch ($operation)
 {
     case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $view->vehiculos = Vehiculo::getVehiculos();
-        $view->contentTemplate="view/vehiculos/vehiculosGrid.php";
+        $view->grupos = GrupoVehiculo::getGrupos();
+        $view->contentTemplate="view/grupos_vehiculos/gruposGrid.php";
         break;
 
     case 'saveGrupo': //ok
@@ -22,7 +22,7 @@ switch ($operation)
         $grupo->setNombre($_POST['nombre']);
         $grupo->setNroReferencia($_POST['nro_referencia']);
         $grupo->setIdVencimiento($_POST['id_vencimiento']);
-        $grupo->setFechaBaja($_POST['fecha_baja']);
+        $grupo->setFechaBaja( ($_POST['fecha_baja']!='')? $_POST['fecha_baja'] : null);
 
         $rta = $grupo->save();
         print_r(json_encode($rta));
@@ -51,9 +51,9 @@ switch ($operation)
         break;
 
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
+    case 'deleteGrupo': //ok
+        $grupo = new GrupoVehiculo($_POST['id_grupo']);
+        $rta = $grupo->deleteGrupo();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;

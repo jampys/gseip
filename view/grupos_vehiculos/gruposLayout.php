@@ -74,8 +74,8 @@
 
 
 
-            $(document).on('click', '.delete', function(){
-                var id = $(this).attr('data-id');
+            $(document).on('click', '.delete', function(){ //ok
+                var id = $(this).closest('tr').attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
                         {
@@ -100,18 +100,18 @@
             });
 
 
-            $.fn.borrar = function(id) {
+            $.fn.borrar = function(id) { //ok
                 //alert(id);
                 //preparo los parametros
                 params={};
-                params.id_vehiculo = id;
-                params.action = "vehiculos";
-                params.operation = "deleteVehiculo";
+                params.id_grupo = id;
+                params.action = "vto_gruposVehiculos";
+                params.operation = "deleteGrupo";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElem").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"vehiculos", operation: "refreshGrid"});
+                        $("#myElem").html('Grupo eliminado con exito').addClass('alert alert-success').show();
+                        $('#content').load('index.php',{action:"vto_gruposVehiculos", operation: "refreshGrid"});
                         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#confirm').dialog('close');
@@ -120,7 +120,7 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('No es posible eliminar el vehículo').addClass('alert alert-danger').show();
+                    $("#myElem").html('No es posible eliminar el grupo').addClass('alert alert-danger').show();
                 });
 
             };
