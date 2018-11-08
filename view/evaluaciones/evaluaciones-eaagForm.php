@@ -14,6 +14,15 @@
         text-align: center;
     }
 
+    .popover-title {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+    }
+    .popover-content table td {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+    }
+
 
 
 </style>
@@ -23,7 +32,7 @@
 
     $(document).ready(function(){
 
-        $('[data-toggle="popover"]').popover({html:true, placement: "right"});
+        $('[data-toggle="popover"]').popover({html:true, placement: "right", container: "#modalEaag"});
 
         function verticalTable(){
 
@@ -245,10 +254,9 @@
 
                                         <?php if($com['id_aspecto_general'] == 1){ ?>
                                             <!--<div class="alert alert-warning" role="alert" style="margin: 0; padding: 6px"> hola</div>-->
-                                            <a class="btn btn-warning" href="#" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
+                                            <a class="btn btn-default" href="#" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
                                                data-content="<table>
-                                                                <tr><td style='color:red;'>complex&nbsp;</td><td>HTML</td></tr>
-                                                                <tr><td style='color:blue;'>complex&nbsp;</td><td>CSS</td></tr>
+                                                                <tr><td>Días de paro:&nbsp;</td><td class='text-danger'><?php echo $view->dias_paro[0]['cantidad'] ?></td></tr>
                                                             </table>"
                                                 >mas info...</a>
                                         <?php }  ?>

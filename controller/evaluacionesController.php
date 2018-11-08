@@ -154,6 +154,8 @@ switch ($operation)
             $view->puntajes[$pu['id_aspecto_general']][] = array('id_puntaje_aspecto_general' => $pu['id_puntaje_aspecto_general'], 'puntaje' => $pu['puntaje']);
         }
 
+        $view->dias_paro = EvaluacionAspectoGeneral::getDiasParo($_POST['id_empleado']);
+
         $view->disableLayout=true;
         $view->contentTemplate="view/evaluaciones/evaluaciones-eaagForm.php";
         break;
