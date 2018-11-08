@@ -209,6 +209,18 @@ where em.id_empleado = :id_empleado";
         return $stmt->dpFetchAll();
     }
 
+    public static function getDiasParo($id_empleado) { //ok
+        //funcion creada de manera temporal, hasta que desde el modulo de competencias se obtenga esta informacion
+        $stmt=new sQuery();
+        $query="select cantidad
+from __temp_dias_paro
+where id_empleado = :id_empleado";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
 
 
 }

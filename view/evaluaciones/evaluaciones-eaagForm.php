@@ -14,6 +14,16 @@
         text-align: center;
     }
 
+    .popover-title {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+    }
+    .popover-content table td {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+    }
+
+
 
 </style>
 
@@ -21,6 +31,8 @@
 
 
     $(document).ready(function(){
+
+        $('[data-toggle="popover"]').popover({html:true, placement: "right", container: "#modalEaag"});
 
         function verticalTable(){
 
@@ -211,7 +223,7 @@
 
                 <div class="row">
 
-                    <div class="col-md-4" id="select-box">
+                    <div class="col-md-5" id="select-box">
 
                         <form class="form-horizontal" name ="eaag-form" id="eaag-form" method="POST" action="index.php">
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
@@ -224,8 +236,9 @@
                             <?php foreach ($view->aspectos_generales as $com){ ?>
 
                                 <div class="form-group">
-                                    <label for="" class="col-md-8 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
-                                    <div class="col-md-4">
+                                    <label for="" class="col-md-5 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
+
+                                    <div class="col-md-3">
                                         <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
                                             <?php foreach ($view->puntajes[$com['id_aspecto_general']] as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje_aspecto_general']; ?>"
@@ -236,6 +249,20 @@
                                             <?php  } ?>
                                         </select>
                                     </div>
+
+                                    <div class="col-md-4">
+
+                                        <?php if($com['id_aspecto_general'] == 1){ ?>
+                                            <!--<div class="alert alert-warning" role="alert" style="margin: 0; padding: 6px"> hola</div>-->
+                                            <a class="btn btn-default" href="#" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
+                                               data-content="<table>
+                                                                <tr><td>Días de paro:&nbsp;</td><td class='text-danger'><?php echo $view->dias_paro[0]['cantidad'] ?></td></tr>
+                                                            </table>"
+                                                >mas info...</a>
+                                        <?php }  ?>
+
+                                    </div>
+
                                 </div>
 
                             <?php  } ?>
@@ -247,7 +274,7 @@
                     </div>
 
 
-                    <div class="col-md-8" id="help-box">
+                    <div class="col-md-7" id="help-box">
 
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
