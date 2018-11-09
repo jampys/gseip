@@ -3,7 +3,7 @@
 
     $(document).ready(function(){
 
-        var t = $('#culino').DataTable({
+        var t = $('#table-vehiculos').DataTable({
             sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
@@ -34,7 +34,7 @@
 
     <br/>
     <div class="table-responsive" id="empleados-table">
-            <table id="culino" class="table table-condensed dpTable table-hover">
+            <table id="table-vehiculos" class="table table-condensed dpTable table-hover">
                 <thead>
                 <tr>
                     <th>Vehículo</th>
@@ -52,7 +52,7 @@
                         <td><?php echo $ve['fecha_hasta']; ?></td>
 
                         <td class="text-center">
-                            <a class="view" href="javascript:void(0);" data-id="<?php //echo $et['id_grupo_vehiculo'];?>" title="ver">
+                            <a class="view" href="javascript:void(0);" title="ver">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             </a>
                         </td>
