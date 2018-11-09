@@ -157,7 +157,7 @@
                                             $('#confirm-ve').dialog('close');
                                           }, 2000);
                 }else{
-                    $("#myElemento").html('Error al eliminar la etapa').addClass('alert alert-danger').show();
+                    $("#myElemento").html('Error al eliminar el vehículo').addClass('alert alert-danger').show();
                 }
 
 
