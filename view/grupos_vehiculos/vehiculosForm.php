@@ -18,7 +18,7 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){ //ok
+        $('#etapas_left_side').on('click', '.edit', function(){
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -35,7 +35,7 @@
             })
         });
 
-        $('#etapas_left_side').on('click', '.view', function(){ //ok
+        $('#etapas_left_side').on('click', '.view', function(){
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -57,17 +57,17 @@
 
 
 
-        //Abre formulario para ingresar nueva etapa
+        //Abre formulario para ingresar un nuevo vehiculo al grupo
         $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
-            params.action = "etapas";
-            params.operation = "newEtapa";
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
+            params.action = "grupos_vehiculos";
+            params.operation = "newVehiculo";
+            params.id_grupo = $('#etapas_left_side #add').attr('id_grupo');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_postulacion').val(params.id_postulacion);
+                $('#id_grupo').val(params.id_grupo);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
@@ -75,7 +75,7 @@
 
 
         //Guardar etapa luego de ingresar nueva o editar
-        $('#myModal').on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){
             //alert('guardar etapa');
 
             if ($("#etapa-form").valid()){
@@ -213,7 +213,7 @@
                         <div class="col-md-6" id="etapas_left_side">
 
                             <div class="clearfix">
-                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar etapa">
+                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar grupo">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
                             </div>

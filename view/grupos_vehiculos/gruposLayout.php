@@ -43,7 +43,7 @@
             });
 
 
-            $(document).on('click', '.vehiculos', function(){
+            $(document).on('click', '.vehiculos', function(){ //ok
                 //alert('presiono sobre etapas');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -51,10 +51,6 @@
                 params.action = "vto_grupo-vehiculo";
                 //params.operation = "etapas"; //entra en default
                 $('#popupbox').load('index.php', params,function(){
-                    //$("fieldset").prop("disabled", true);
-                    //$('.selectpicker').selectpicker('refresh');
-                    //$('.modal-footer').css('display', 'none');
-                    //$('#myModalLabel').html('');
                     $('#myModal').modal();
                     $('#etapas_left_side #add').attr('id_postulacion', id);
                 })

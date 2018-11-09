@@ -43,8 +43,8 @@ switch ($operation)
         exit;
         break;
 
-    case 'newEtapa':
-        $view->label='Nueva etapa';
+    case 'newVehiculo':
+        $view->label='Nuevo vehículo';
         $view->etapa = new Etapa($_POST['id_etapa']);
 
         //$view->puestos = Puesto::getPuestos();

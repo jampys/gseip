@@ -42,18 +42,25 @@
                     <th>F. hasta</th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($view->vehiculos as $ve): ?>
                     <tr data-id="<?php echo $ve['id_grupo_vehiculo']; ?>">
-                        <td><?php echo $ve['matricula'].' Movil: '.$ve['nro_movil']; ?></td>
+                        <td><span class="label label-primary" style="font-weight: normal"><?php echo $ve['matricula']; ?></span> <span class="label label-default" style="font-weight: normal"><?php echo ' Movil: '.$ve['nro_movil']; ?></span></td>
                         <td><?php echo $ve['fecha_desde']; ?></td>
                         <td><?php echo $ve['fecha_hasta']; ?></td>
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);" title="ver">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                            </a>
+                        </td>
+
+                        <td class="text-center">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('ETP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             </a>
                         </td>
 
