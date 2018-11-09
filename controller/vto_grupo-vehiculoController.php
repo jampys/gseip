@@ -1,7 +1,7 @@
 ﻿<?php
 include_once("model/vto_grupo-vehiculoModel.php");
 include_once("model/vehiculosModel.php");
-//include_once("model/localidadesModel.php");
+include_once("model/vto_gruposVehiculosModel.php");
 //include_once("model/contratosModel.php");
 
 $operation = "";
@@ -70,8 +70,10 @@ switch ($operation)
 
     default : //carga la tabla de vehiculos del grupo //ok
         $view->disableLayout=true;
-        $view->label='Vehículos del grupo';
         $view->vehiculos = GrupoVehiculo::getVehiculos($_POST['id_grupo']);
+
+        $view->grupo = new Grupo($_POST['id_grupo']);
+        $view->label= $view->grupo->getNombre().' '.$view->grupo->getNroReferencia();
         $view->contentTemplate="view/grupos_vehiculos/vehiculosForm.php";
         break;
 }

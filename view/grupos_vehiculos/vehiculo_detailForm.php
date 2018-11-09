@@ -87,9 +87,10 @@
                 <option value="">Seleccione un Vehículo</option>
                 <?php foreach ($view->vehiculos as $ar){ ?>
                     <option value="<?php echo $ar['id_vehiculo']; ?>"
+                            data-content="<span class='label label-primary' style='font-weight: normal'><?php echo $ar['matricula']; ?></span> <span class='label label-default' style='font-weight: normal'><?php echo $ar['nro_movil']; ?></span> <?php echo $ar['modelo']; ?>"
                         <?php echo ($ar['id_vehiculo'] == $view->grupo_vehiculo->getIdVehiculo())? 'selected' :'' ?>
                         >
-                        <?php echo $ar['matricula'].' '.$ar['nro_movil'].' '.$ar['modelo']; ?>
+                        <?php //echo $ar['matricula'].' '.$ar['nro_movil'].' '.$ar['modelo']; ?>
                     </option>
                 <?php  } ?>
             </select>
