@@ -85,7 +85,7 @@
                 //alert(params.id_grupo_vehiculo);
 
                 $.post('index.php',params,function(data, status, xhr){
-                    alert(xhr.responseText);
+                    //alert(xhr.responseText);
 
                     if(data >=0){
                         $("#grupo-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
@@ -144,7 +144,8 @@
             params.id_grupo = $('#etapas_left_side #add').attr('id_grupo');
             params.action = "vto_grupo-vehiculo";
             params.operation = "deleteVehiculo";
-            //alert(params.id_etapa);
+            //alert(params.id_grupo);
+            //throw new Error();
 
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);

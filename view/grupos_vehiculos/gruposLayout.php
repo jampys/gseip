@@ -52,7 +52,7 @@
                 //params.operation = "etapas"; //entra en default
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#etapas_left_side #add').attr('id_postulacion', id);
+                    $('#etapas_left_side #add').attr('id_grupo', id);
                 })
 
             });

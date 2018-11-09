@@ -89,7 +89,7 @@
                     <option value="<?php echo $ar['id_vehiculo']; ?>"
                         <?php echo ($ar['id_vehiculo'] == $view->grupo_vehiculo->getIdVehiculo())? 'selected' :'' ?>
                         >
-                        <?php echo $ar['nro_movil'].' '.$ar['modelo']; ?>
+                        <?php echo $ar['matricula'].' '.$ar['nro_movil'].' '.$ar['modelo']; ?>
                     </option>
                 <?php  } ?>
             </select>
