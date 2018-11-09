@@ -113,8 +113,10 @@ class GrupoVehiculo
         $stmt=new sQuery();
         $query = "select gv.id_grupo_vehiculo, gv.id_vehiculo, gv.id_grupo,
                   DATE_FORMAT(gv.fecha_desde, '%d/%m/%Y') as fecha_desde,
-                  DATE_FORMAT(gv.fecha_hasta, '%d/%m/%y') as fecha_hasta
+                  DATE_FORMAT(gv.fecha_hasta, '%d/%m/%y') as fecha_hasta,
+                  ve.matricula, ve.nro_movil
                   from vto_grupo_vehiculo gv
+                  join vto_vehiculos ve on ve.id_vehiculo = gv.id_vehiculo
                   where gv.id_grupo = :id_grupo
                   order by gv.fecha_desde asc";
         $stmt->dpPrepare($query);
