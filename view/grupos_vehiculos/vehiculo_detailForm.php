@@ -35,23 +35,20 @@
 
 
         //cancel de formulario de etapa
-        $('#etapa-form #cancel').on('click', function(){
-            $('#etapa-form').hide();
+        $('#grupo-vehiculo-form #cancel').on('click', function(){
+            $('#grupo-vehiculo-form').hide();
         });
 
 
-        $('#etapa-form').validate({
+        $('#grupo-vehiculo-form').validate({ //ok
             rules: {
                 /*codigo: {
                         required: true,
                         digits: true,
                         maxlength: 6
                 },*/
-                fecha_etapa: {required: true},
-                etapa: {required: true},
-                aplica: {required: true},
-                motivo: {required: true},
-                modo_contacto: {required: true}
+                id_vehiculo: {required: true},
+                fecha_desde: {required: true}
             },
             messages:{
                 /*codigo: {
@@ -59,11 +56,8 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }, */
-                fecha_etapa: "Seleccione una fecha para la etapa",
-                etapa: "Seleccione una etapa",
-                aplica: "Seleccione una opción",
-                motivo: "Seleccione el motivo",
-                modo_contacto: "Seleccione el modo de contacto"
+                id_vehiculo: "Seleccione un vehículo",
+                fecha_desde: "Seleccione una fecha desde"
             }
 
         });
@@ -76,7 +70,7 @@
 
 
 
-<form name ="etapa-form" id="etapa-form" method="POST" action="index.php">
+<form name ="grupo-vehiculo-form" id="grupo-vehiculo-form" method="POST" action="index.php">
     <fieldset>
 
     <div class="alert alert-info">
@@ -87,16 +81,13 @@
     <input type="hidden" name="id_grupo" id="id_grupo" value="<?php print $view->grupo_vehiculo->getIdGrupoVehiculo() ?>">
 
 
-
-
-
         <div class="form-group required">
             <label for="id_vehiculo" class="control-label">Vehículo</label>
             <select class="selectpicker form-control show-tick cu_id_vehiculo" data-live-search="true" data-size="5">
                 <option value="">Seleccione un Vehículo</option>
                 <?php foreach ($view->vehiculos as $ar){ ?>
                     <option value="<?php echo $ar['id_vehiculo']; ?>"
-                        <?php echo ($ar['id_vehiculo'] == $cu['default_id_vehiculo'])? 'selected' :'' ?>
+                        <?php echo ($ar['id_vehiculo'] == $view->grupo_vehiculo->getIdVehiculo())? 'selected' :'' ?>
                         >
                         <?php echo $ar['nro_movil'].' '.$ar['modelo']; ?>
                     </option>
@@ -108,9 +99,9 @@
         <div class="form-group required">
             <label class="control-label" for="empleado">Fecha desde / hasta</label>
             <div class="input-group input-daterange">
-                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->grupo_vehiculo->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                 <div class="input-group-addon">a</div>
-                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->grupo_vehiculo->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
             </div>
         </div>
 

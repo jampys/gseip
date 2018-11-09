@@ -24,19 +24,15 @@ switch ($operation)
         $view->contentTemplate="view/postulaciones/etapasGrid.php";
         break;
 
-    case 'saveEtapa':
-        $etapa = new Etapa($_POST['id_etapa']);
-        $etapa->setIdPostulacion($_POST['id_postulacion']);
-        $etapa->setFechaEtapa($_POST['fecha_etapa']);
-        $etapa->setEtapa($_POST['etapa']);
-        $etapa->setAplica($_POST['aplica']);
-        $etapa->setMotivo($_POST['motivo']);
-        $etapa->setModoContacto($_POST['modo_contacto']);
-        $etapa->setComentarios($_POST['comentarios']);
-        $etapa->setIdUser($_SESSION['id_user']);
+    case 'saveEtapa': //ok
+        $gv = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
+        $gv->setIdGrupo($_POST['id_grupo']);
+        $gv->setIdVehiculo($_POST['id_vehiculo']);
+        $gv->setFechaDesde($_POST['fecha_desde']);
+        $gv->setFechaHasta($_POST['fecha_hasta']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         //$busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
-        $rta = $etapa->save();
+        $rta = $gv->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;

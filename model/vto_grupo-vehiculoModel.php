@@ -92,51 +92,41 @@ class GrupoVehiculo
     }
 
 
-    public function updateGrupoVehiculo(){
+    public function updateGrupoVehiculo(){ //ok
         $stmt=new sQuery();
-        $query="update sel_etapas set fecha_etapa = STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'),
-                etapa = :etapa,
-                aplica = :aplica,
-                motivo = :motivo,
-                modo_contacto = :modo_contacto,
-                comentarios = :comentarios
-                where id_etapa = :id_etapa";
+        $query="update vto_grupo_vehiculo set id_vehiculo = :id_vehiculo,
+                fecha_desde = STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
+                fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
+                where id_grupo_vehiculo = :id_grupo_vehiculo";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':fecha_etapa', $this->getFechaEtapa());
-        $stmt->dpBind(':etapa', $this->getEtapa());
-        $stmt->dpBind(':aplica', $this->getAplica());
-        $stmt->dpBind(':motivo', $this->getMotivo());
-        $stmt->dpBind(':modo_contacto', $this->getModoContacto());
-        $stmt->dpBind(':comentarios', $this->getComentarios());
-        $stmt->dpBind(':id_etapa', $this->getIdEtapa());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
+        $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
+        $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
+        $stmt->dpBind(':id_grupo_vehiculo', $this->getIdGrupoVehiculo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    private function insertGrupoVehiculo(){
+    private function insertGrupoVehiculo(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_etapas(id_postulacion, fecha, fecha_etapa, etapa, aplica, motivo , modo_contacto, comentarios, id_user)
-                values(:id_postulacion, sysdate(), STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'), :etapa, :aplica, :motivo, :modo_contacto, :comentarios, :id_user)";
+        $query="insert into vto_grupo_vehiculo(id_vehiculo, id_grupo, fecha_desde, fecha_hasta)
+                values(:id_vehiculo, :id_grupo, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
-        $stmt->dpBind(':fecha_etapa', $this->getFechaEtapa());
-        $stmt->dpBind(':etapa', $this->getEtapa());
-        $stmt->dpBind(':aplica', $this->getAplica());
-        $stmt->dpBind(':motivo', $this->getMotivo());
-        $stmt->dpBind(':modo_contacto', $this->getModoContacto());
-        $stmt->dpBind(':comentarios', $this->getComentarios());
-        $stmt->dpBind(':id_user', $this->getIdUser());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
+        $stmt->dpBind(':id_grupo', $this->getIdGrupo());
+        $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
+        $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    function deleteGrupoVehiculo(){
+    function deleteGrupoVehiculo(){ //ok
         $stmt=new sQuery();
-        $query="delete from sel_etapas where id_etapa = :id_etapa";
+        $query="delete from vto_grupo_vehiculo where id_grupo_vehiculo = :id_grupo_vehiculo";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_etapa', $this->getIdEtapa());
+        $stmt->dpBind(':id_grupo_vehiculo', $this->getIdGrupoVehiculo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
