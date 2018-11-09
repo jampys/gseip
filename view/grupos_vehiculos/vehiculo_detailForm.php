@@ -83,7 +83,7 @@
 
         <div class="form-group required">
             <label for="id_vehiculo" class="control-label">Vehículo</label>
-            <select class="selectpicker form-control show-tick cu_id_vehiculo" data-live-search="true" data-size="5">
+            <select class="selectpicker form-control show-tick" id="id_vehiculo" name="id_vehiculo" data-live-search="true" data-size="5">
                 <option value="">Seleccione un Vehículo</option>
                 <?php foreach ($view->vehiculos as $ar){ ?>
                     <option value="<?php echo $ar['id_vehiculo']; ?>"

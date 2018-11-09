@@ -12,7 +12,7 @@
         });
 
 
-        $('#confirm-etp').dialog({
+        $('#confirm-ve').dialog({
             autoOpen: false
             //modal: true,
         });
@@ -85,7 +85,7 @@
                 //alert(params.id_grupo_vehiculo);
 
                 $.post('index.php',params,function(data, status, xhr){
-                    //alert(xhr.responseText);
+                    alert(xhr.responseText);
 
                     if(data >=0){
                         $("#grupo-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
@@ -98,7 +98,7 @@
                                               }, 2000);
                     }
 
-                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                }).fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
                     $("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
                 });
@@ -109,13 +109,11 @@
 
 
 
-        //$(document).on('click', '#example .delete', function(){
         $('#etapas_left_side').on('click', '.delete', function(){
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            $('#confirm-etp').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm-ve').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -138,25 +136,25 @@
         });
 
 
-        $.fn.borrar = function(id) {
+        $.fn.borrar = function(id) { //ok
             //alert(id);
             //preparo los parametros
             params={};
-            params.id_etapa = id;
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
-            params.action = "etapas";
-            params.operation = "deleteEtapa";
+            params.id_grupo_vehiculo = id;
+            params.id_grupo = $('#etapas_left_side #add').attr('id_grupo');
+            params.action = "vto_grupo-vehiculo";
+            params.operation = "deleteVehiculo";
             //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-etp #myElemento").html('Etapa eliminada con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                    $("#confirm-ve #myElemento").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
+                    $('#etapas_left_side .grid').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-etp #myElemento").hide();
-                                            $('#etapa-form').hide();
-                                            $('#confirm-etp').dialog('close');
+                    setTimeout(function() { $("#confirm-ve #myElemento").hide();
+                                            $('#grupo-vehiculo-form').hide();
+                                            $('#confirm-ve').dialog('close');
                                           }, 2000);
                 }else{
                     $("#myElemento").html('Error al eliminar la etapa').addClass('alert alert-danger').show();
@@ -235,9 +233,9 @@
 
 
 
-<div id="confirm-etp">
+<div id="confirm-ve">
     <div class="modal-body">
-        ¿Desea eliminar la etapa?
+        ¿Desea eliminar el vehículo del grupo?
     </div>
 
     <div id="myElemento" style="display:none">

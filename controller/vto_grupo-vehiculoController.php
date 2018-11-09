@@ -21,17 +21,16 @@ switch ($operation)
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
         $view->vehiculos = GrupoVehiculo::getVehiculos($_POST['id_grupo']);
-        $view->contentTemplate="view/grupos_vehiculos/vehiculosForm.php";
+        $view->contentTemplate="view/grupos_vehiculos/vehiculosGrid.php";
         break;
 
-    case 'saveEtapa': //ok
+    case 'saveVehiculo': //ok
         $gv = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
         $gv->setIdGrupo($_POST['id_grupo']);
         $gv->setIdVehiculo($_POST['id_vehiculo']);
         $gv->setFechaDesde($_POST['fecha_desde']);
-        $gv->setFechaHasta($_POST['fecha_hasta']);
+        $gv->setFechaHasta( ($_POST['id_fecha_hasta']!='')? $_POST['fecha_hasta'] : null);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        //$busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
         $rta = $gv->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
@@ -61,9 +60,9 @@ switch ($operation)
         $view->contentTemplate="view/grupos_vehiculos/vehiculo_detailForm.php";
         break;
 
-    case 'deleteEtapa':
-        $view->etapa = new Etapa($_POST['id_etapa']);
-        $rta = $view->etapa->deleteEtapa();
+    case 'deleteVehiculo': //ok
+        $view->grupo_vehiculo = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
+        $rta = $view->grupo_vehiculo->deleteGrupoVehiculo();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
