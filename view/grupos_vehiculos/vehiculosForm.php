@@ -118,7 +118,7 @@
                     {
                         text: "Aceptar",
                         click: function() {
-                            $.fn.borrar(id);
+                            $.fn.borrarGv(id);
                         },
                         class:"btn btn-danger"
                     },
@@ -136,7 +136,7 @@
         });
 
 
-        $.fn.borrar = function(id) { //ok
+        $.fn.borrarGv = function(id) { //ok
             //alert(id);
             //preparo los parametros
             params={};
