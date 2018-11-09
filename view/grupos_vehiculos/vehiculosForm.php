@@ -82,7 +82,7 @@
                 params.id_vehiculo = $('#id_vehiculo').val();
                 params.fecha_desde = $('#fecha_desde').val();
                 params.fecha_hasta = $('#fecha_hasta').val();
-                //alert(params.aplica);
+                //alert(params.id_grupo_vehiculo);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);

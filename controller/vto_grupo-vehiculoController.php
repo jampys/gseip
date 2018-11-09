@@ -12,7 +12,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -20,8 +20,8 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
-        $view->contentTemplate="view/postulaciones/etapasGrid.php";
+        $view->vehiculos = GrupoVehiculo::getVehiculos($_POST['id_grupo']);
+        $view->contentTemplate="view/grupos_vehiculos/vehiculosForm.php";
         break;
 
     case 'saveEtapa': //ok
@@ -70,9 +70,9 @@ switch ($operation)
 
 
     default : //carga la tabla de vehiculos del grupo //ok
+        $view->disableLayout=true;
         $view->label='Vehículos del grupo';
         $view->vehiculos = GrupoVehiculo::getVehiculos($_POST['id_grupo']);
-        $view->disableLayout=true;
         $view->contentTemplate="view/grupos_vehiculos/vehiculosForm.php";
         break;
 }
