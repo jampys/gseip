@@ -18,31 +18,28 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){
+        $('#etapas_left_side').on('click', '.edit', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.id_grupo_vehiculo = id;
+            params.action = "vto_grupo-vehiculo";
+            params.operation = "editVehiculo";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
         });
 
-        $('#etapas_left_side').on('click', '.view', function(){
+
+        $('#etapas_left_side').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.id_grupo_vehiculo = id;
+            params.action = "vto_grupo-vehiculo";
+            params.operation = "editVehiculo";
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
@@ -60,7 +57,7 @@
         //Abre formulario para ingresar un nuevo vehiculo al grupo
         $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
-            params.action = "grupos_vehiculos";
+            params.action = "vto_grupo-vehiculo";
             params.operation = "newVehiculo";
             params.id_grupo = $('#etapas_left_side #add').attr('id_grupo');
             //alert(params.id_renovacion);
@@ -68,8 +65,6 @@
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 $('#id_grupo').val(params.id_grupo);
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
         });
 

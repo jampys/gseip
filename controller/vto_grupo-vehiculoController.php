@@ -1,7 +1,6 @@
 ﻿<?php
 include_once("model/vto_grupo-vehiculoModel.php");
-
-//include_once("model/puestosModel.php");
+include_once("model/vehiculosModel.php");
 //include_once("model/localidadesModel.php");
 //include_once("model/contratosModel.php");
 
@@ -43,33 +42,27 @@ switch ($operation)
         exit;
         break;
 
-    case 'newVehiculo':
+    case 'newVehiculo': //ok
         $view->label='Nuevo vehículo';
-        $view->etapa = new Etapa($_POST['id_etapa']);
+        $view->grupo_vehiculo = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
 
-        //$view->puestos = Puesto::getPuestos();
-        $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        $view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
-        $view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
-        $view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
+        //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
+        $view->vehiculos = Vehiculo::getVehiculos();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
+        $view->contentTemplate="view/grupos_vehiculos/vehiculo_detailForm.php";
         break;
 
-    case 'editEtapa':
-        $view->label = ($_POST['target']!='view')? 'Editar etapa': 'Ver etapa';
+    case 'editVehiculo':
+        $view->label = ($_POST['target']!='view')? 'Editar vehículo': 'Ver vehículo';
         $view->etapa = new Etapa($_POST['id_etapa']);
 
-        //$view->puestos = Puesto::getPuestos();
-        $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        $view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
-        $view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
-        $view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
+        //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
+        $view->vehiculos = Vehiculo::getVehiculos();
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
-        $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
+        $view->contentTemplate="view/grupos_vehiculos/vehiculo_detailForm.php";
         break;
 
     case 'deleteEtapa':

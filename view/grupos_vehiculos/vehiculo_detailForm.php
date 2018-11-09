@@ -13,8 +13,15 @@
         });
 
 
-        $('.input-group.date').datepicker({
+        /*$('.input-group.date').datepicker({
             //inline: true
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });*/
+
+        $('.input-daterange').datepicker({ //ok
+            //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
@@ -76,84 +83,36 @@
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_etapa" id="id_etapa" value="<?php print $view->etapa->getIdEtapa() ?>">
-    <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->etapa->getIdPostulacion() ?>">
+    <input type="hidden" name="id_grupo_vehiculo" id="id_grupo_vehiculo" value="<?php print $view->grupo_vehiculo->getIdGrupoVehiculo() ?>">
+    <input type="hidden" name="id_grupo" id="id_grupo" value="<?php print $view->grupo_vehiculo->getIdGrupoVehiculo() ?>">
 
-    <div class="form-group required">
-        <label class="control-label" for="fecha_etapa">Fecha etapa</label>
-        <div class="input-group date">
-            <input class="form-control" type="text" name="fecha_etapa" id="fecha_etapa" value = "<?php print $view->etapa->getFechaEtapa() ?>" placeholder="DD/MM/AAAA">
-            <div class="input-group-addon">
-                <span class="glyphicon glyphicon-th"></span>
+
+
+
+
+        <div class="form-group required">
+            <label for="id_vehiculo" class="control-label">Vehículo</label>
+            <select class="selectpicker form-control show-tick cu_id_vehiculo" data-live-search="true" data-size="5">
+                <option value="">Seleccione un Vehículo</option>
+                <?php foreach ($view->vehiculos as $ar){ ?>
+                    <option value="<?php echo $ar['id_vehiculo']; ?>"
+                        <?php echo ($ar['id_vehiculo'] == $cu['default_id_vehiculo'])? 'selected' :'' ?>
+                        >
+                        <?php echo $ar['nro_movil'].' '.$ar['modelo']; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+
+
+        <div class="form-group required">
+            <label class="control-label" for="empleado">Fecha desde / hasta</label>
+            <div class="input-group input-daterange">
+                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                <div class="input-group-addon">a</div>
+                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
             </div>
         </div>
-    </div>
-
-    <div class="form-group required">
-        <label for="etapa" class="control-label">Etapa</label>
-        <select class="form-control selectpicker show-tick" id="etapa" name="etapa" title="Seleccione la etapa"  data-live-search="true" data-size="5">
-            <?php foreach ($view->etapas['enum'] as $et){
-                ?>
-                <option value="<?php echo $et; ?>"
-                    <?php echo ($et == $view->etapa->getEtapa() OR ($et == $view->etapas['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
-                    >
-                    <?php echo $et; ?>
-                </option>
-            <?php  } ?>
-        </select>
-    </div>
-
-
-    <div class="form-group required">
-        <label for="aplica" class="control-label">Aplica</label>
-
-        <div class="input-group">
-
-            <?php foreach($view->aplica_opts['enum'] as $val){ ?>
-                <label class="radio-inline">
-                    <input type="radio" name="aplica" value="<?php echo $val ?>"
-                        <?php echo ($val == $view->etapa->getAplica() OR ($val == $view->aplica_opts['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
-                        ><?php echo ($val==1)? 'Si':'No' ?>
-                </label>
-            <?php } ?>
-
-        </div>
-    </div>
-
-
-
-    <div class="form-group required">
-        <label for="motivo" class="control-label">Motivo</label>
-        <select class="form-control selectpicker show-tick" id="motivo" name="motivo" title="Seleccione el motivo"  data-live-search="true" data-size="5">
-            <?php foreach ($view->motivos['enum'] as $mo){
-                ?>
-                <option value="<?php echo $mo; ?>"
-                    <?php echo ($mo == $view->etapa->getMotivo() OR ($mo == $view->motivos['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
-                    >
-                    <?php echo $mo; ?>
-                </option>
-            <?php  } ?>
-        </select>
-    </div>
-
-    <div class="form-group required">
-        <label for="modo_contacto" class="control-label">Modo contacto</label>
-        <select class="form-control selectpicker show-tick" id="modo_contacto" name="modo_contacto" title="Seleccione el modo de contacto"  data-live-search="true" data-size="5">
-            <?php foreach ($view->modos_contacto['enum'] as $mc){
-                ?>
-                <option value="<?php echo $mc; ?>"
-                    <?php echo ($mc == $view->etapa->getModoContacto() OR ($mc == $view->modos_contacto['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
-                    >
-                    <?php echo $mc; ?>
-                </option>
-            <?php  } ?>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label" for="comentarios">Comentarios</label>
-        <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="2"><?php print $view->etapa->getComentarios(); ?></textarea>
-    </div>
 
 
     <div id="myElem" class="msg" style="display:none"></div>
