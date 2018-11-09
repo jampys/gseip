@@ -53,9 +53,9 @@ switch ($operation)
         $view->contentTemplate="view/grupos_vehiculos/vehiculo_detailForm.php";
         break;
 
-    case 'editVehiculo':
+    case 'editVehiculo': //ok
         $view->label = ($_POST['target']!='view')? 'Editar vehículo': 'Ver vehículo';
-        $view->etapa = new Etapa($_POST['id_etapa']);
+        $view->grupo_vehiculo = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
 
         //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
         $view->vehiculos = Vehiculo::getVehiculos();

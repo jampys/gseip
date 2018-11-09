@@ -13,7 +13,7 @@
         $(document).ready(function(){
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
@@ -26,7 +26,7 @@
             });
 
 
-            $(document).on('click', '.view', function(){ //ok
+            $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
@@ -43,7 +43,7 @@
             });
 
 
-            $(document).on('click', '.vehiculos', function(){ //ok
+            $('#content').on('click', '.vehiculos', function(){ //ok
                 //alert('presiono sobre etapas');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -58,7 +58,7 @@
             });
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $('#content').on('click', '#new', function(){ //ok
                 params={};
                 params.action = "vto_gruposVehiculos";
                 params.operation="newGrupo";
@@ -69,7 +69,7 @@
 
 
 
-            $(document).on('click', '.delete', function(){ //ok
+            $('#content').on('click', '.delete', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [

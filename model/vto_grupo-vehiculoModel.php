@@ -46,11 +46,11 @@ class GrupoVehiculo
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_grupo_vehiculo, id_vehiculo, id_grupo
+            $query = "select id_grupo_vehiculo, id_vehiculo, id_grupo,
                       DATE_FORMAT(fecha_desde, '%d/%m/%Y') as fecha_desde,
-                      DATE_FORMAT(fecha_hasta, '%d/%m/%Y') as fecha_hasta,
+                      DATE_FORMAT(fecha_hasta, '%d/%m/%Y') as fecha_hasta
                       from vto_grupo_vehiculo
-                      where id_etapa = :nro";
+                      where id_grupo_vehiculo = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();

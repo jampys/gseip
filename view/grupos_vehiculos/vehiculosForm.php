@@ -21,7 +21,7 @@
         $('#etapas_left_side').on('click', '.edit', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            //alert('editar etapa: '+id);
+            alert('editar vehiculo: '+id);
             params={};
             params.id_grupo_vehiculo = id;
             params.action = "vto_grupo-vehiculo";
