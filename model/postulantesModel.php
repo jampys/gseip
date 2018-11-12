@@ -8,7 +8,6 @@ class Postulante
     private $nombre;
     private $dni;
     private $lista_negra;
-
     private $telefono;
     private $formacion;
     private $id_especialidad;
