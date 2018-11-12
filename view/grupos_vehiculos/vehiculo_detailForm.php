@@ -47,17 +47,16 @@
                         digits: true,
                         maxlength: 6
                 },*/
-                conductor: {
+                id_vehiculo: {
                  required: true,
                  remote: {
                     url: "index.php",
                     type: "post",
                     dataType: "json",
                     data: {
-                            action: "parte-empleado",
-                            operation: "checkEmpleado",
-                            id_parte_empleado: function(){ return $('#id_parte_empleado').val();},
-                            id_parte: function(){ return $('#id_parte').val();}
+                            action: "vto_grupo-vehiculo",
+                            operation: "checkVehiculo",
+                            id_vehiculo: function(){ return $('#id_vehiculo').val();}
                           }
                  }
                  },
@@ -69,9 +68,9 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }, */
-                conductor: {
+                id_vehiculo: {
                  required: "Seleccione un vehículo",
-                 remote: "La cuadrilla tiene asignado otro conductor"
+                 remote: "El vehículo se encuentra activo en un grupo"
                  },
                 //id_vehiculo: "Seleccione un vehículo",
                 fecha_desde: "Seleccione una fecha desde"

@@ -67,6 +67,13 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
+    case 'checkVehiculo':
+        $view->grupo_vehiculo = new GrupoVehiculo();
+        $rta = $view->grupo_vehiculo->checkVehiculo($_POST['id_vehiculo']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
 
     default : //carga la tabla de vehiculos del grupo //ok
         $view->disableLayout=true;

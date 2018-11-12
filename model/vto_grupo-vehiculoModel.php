@@ -132,15 +132,17 @@ class GrupoVehiculo
     }
 
 
-    public function checkVehiculo($dni, $id_postulante) {
+    public function checkVehiculo($id_vehiculo) { //ok
+        //verifica que el vehiculo no se encuentre activo en ninguno de los grupos
         $stmt=new sQuery();
-        $query = "select *
-                  from sel_postulantes
-                  where dni = :dni
-                  and id_postulante <> :id_postulante";
+        $query = "select 1
+from vto_grupo_vehiculo gv
+left join vto_grupos_v g on g.id_grupo = gv.id_grupo
+where gv.id_vehiculo = :id_vehiculo
+and gv.fecha_hasta is null
+and g.fecha_baja is null";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':dni', $dni);
-        $stmt->dpBind(':id_postulante', $id_postulante);
+        $stmt->dpBind(':id_vehiculo', $id_vehiculo);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
     }
