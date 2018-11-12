@@ -82,10 +82,11 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro. postulante</th>
                 <th>Apellido</th>
                 <th>Nombre</th>
                 <th>DNI</th>
+                <th>Especialidad</th>
+                <th>Ubicación</th>
                 <th>Lista negra</th>
                 <th></th>
                 <th></th>
@@ -98,10 +99,11 @@
             <?php if(isset($view->postulantes)) {
                 foreach ($view->postulantes as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_postulante']; ?>">
-                        <td><?php echo $rp['id_postulante']; ?></td>
                         <td><?php echo $rp['apellido']; ?></td>
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['dni']; ?></td>
+                        <td><?php echo $rp['especialidad']; ?></td>
+                        <td><?php echo $rp['ciudad']; ?></td>
                         <td style="text-align: center"><?php echo($rp['lista_negra'] == 1)? '<i class="fas fa-user-times fa-lg fa-fw" style="color: #fc140c"></i>' : ''; ?></td>
 
                         <td class="text-center">
