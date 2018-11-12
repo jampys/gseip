@@ -9,6 +9,12 @@ class Postulante
     private $dni;
     private $lista_negra;
 
+    private $telefono;
+    private $formacion;
+    private $id_especialidad;
+    private $id_localidad;
+
+
     // GETTERS
     function getIdPostulante()
     { return $this->id_postulante;}
@@ -27,6 +33,18 @@ class Postulante
 
     function getListaNegra()
     { return $this->lista_negra;}
+
+    function getTelefono()
+    { return $this->telefono;}
+
+    function getFormacion()
+    { return $this->formacion;}
+
+    function getIdEspecialidad()
+    { return $this->id_especialidad;}
+
+    function getIdLocalidad()
+    { return $this->id_localidad;}
 
 
     //SETTERS
@@ -48,6 +66,18 @@ class Postulante
     function setListaNegra($val)
     { $this->lista_negra=$val;}
 
+    function setTelefono($val)
+    { $this->telefono=$val;}
+
+    function setFormacion($val)
+    { $this->formacion=$val;}
+
+    function setIdEspecialidad($val)
+    { $this->id_especialidad=$val;}
+
+    function setIdLocalidad($val)
+    { $this->id_localidad=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -55,7 +85,8 @@ class Postulante
             $stmt=new sQuery();
             $query = "select id_postulante,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      apellido, nombre, dni, lista_negra
+                      apellido, nombre, dni, lista_negra,
+                      telefono, formacion, id_especialidad, id_localidad
                       from sel_postulantes
                       where id_postulante = :nro";
             $stmt->dpPrepare($query);
@@ -69,6 +100,10 @@ class Postulante
             $this->setNombre($rows[0]['nombre']);
             $this->setDni($rows[0]['dni']);
             $this->setListaNegra($rows[0]['lista_negra']);
+            $this->setTelefono($rows[0]['telefono']);
+            $this->setFormacion($rows[0]['formacion']);
+            $this->setIdEspecialidad($rows[0]['id_especialidad']);
+            $this->setDni($rows[0]['id_localidad']);
         }
     }
 

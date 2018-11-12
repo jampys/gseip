@@ -4,6 +4,7 @@ include_once("model/postulantesModel.php");
 include_once("model/puestosModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/contratosModel.php");
+include_once("model/sel_especialidadesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -30,6 +31,10 @@ switch ($operation)
         $postulante->setDni($_POST['dni']);
         $postulante->setListaNegra( ($_POST['lista_negra'] == 1)? 1 : null);
         //$postulante->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
+        $postulante->setTelefono($_POST['telefono']);
+        $postulante->setFormacion($_POST['formacion']);
+        $postulante->setIdEspecialidad($_POST['id_especialidad']);
+        $postulante->setIdLocalidad($_POST['id_localidad']);
 
         $rta = $postulante->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
@@ -41,9 +46,9 @@ switch ($operation)
         $view->label='Nuevo postulante';
         $view->postulante = new Postulante();
 
-        //$view->puestos = Puesto::getPuestos();
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->contratos = Contrato::getContratos();
+        $view->formaciones = Soporte::get_enum_values('sel_postulantes', 'formacion');
+        $view->localidades = Localidad::getLocalidades();
+        $view->especialidades = Especialidad::getEspecialidades();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/postulantes/postulantesForm.php";
@@ -53,9 +58,9 @@ switch ($operation)
         $view->label='Editar postulante';
         $view->postulante = new Postulante($_POST['id_postulante']);
 
-        //$view->puestos = Puesto::getPuestos();
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->contratos = Contrato::getContratos();
+        $view->formaciones = Soporte::get_enum_values('sel_postulantes', 'formacion');
+        $view->localidades = Localidad::getLocalidades();
+        $view->especialidades = Especialidad::getEspecialidades();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

@@ -282,7 +282,7 @@
 
                     <div class="form-group required">
                         <label for="origen_cv" class="control-label">Origen del CV</label>
-                            <select class="form-control selectpicker show-tick" id="origen_cv" name="origen_cv" title="Seleccione el origen del CV">
+                            <select class="form-control selectpicker show-tick" id="origen_cv" name="origen_cv" title="Seleccione el origen del CV" data-live-search="true" data-size="5">
                                 <?php foreach ($view->origenes_cv['enum'] as $cv){
                                     ?>
                                     <option value="<?php echo $cv; ?>"
