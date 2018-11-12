@@ -132,7 +132,7 @@ class GrupoVehiculo
     }
 
 
-    public function checkDni($dni, $id_postulante) {
+    public function checkVehiculo($dni, $id_postulante) {
         $stmt=new sQuery();
         $query = "select *
                   from sel_postulantes

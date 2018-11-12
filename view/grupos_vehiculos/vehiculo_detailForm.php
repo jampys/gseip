@@ -47,7 +47,20 @@
                         digits: true,
                         maxlength: 6
                 },*/
-                id_vehiculo: {required: true},
+                conductor: {
+                 required: true,
+                 remote: {
+                    url: "index.php",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                            action: "parte-empleado",
+                            operation: "checkEmpleado",
+                            id_parte_empleado: function(){ return $('#id_parte_empleado').val();},
+                            id_parte: function(){ return $('#id_parte').val();}
+                          }
+                 }
+                 },
                 fecha_desde: {required: true}
             },
             messages:{
@@ -56,7 +69,11 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }, */
-                id_vehiculo: "Seleccione un vehículo",
+                conductor: {
+                 required: "Seleccione un vehículo",
+                 remote: "La cuadrilla tiene asignado otro conductor"
+                 },
+                //id_vehiculo: "Seleccione un vehículo",
                 fecha_desde: "Seleccione una fecha desde"
             }
 
