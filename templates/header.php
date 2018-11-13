@@ -129,7 +129,7 @@
                             <li class="dropdown-header">VEHICULAR</li>
 
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('RVE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=renovacionesVehiculos"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Vencimientos de vehículos</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('RVE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos"><i class="fas fa-users fa-sm fa-fw"></i>&nbsp;Grupos de vehículos</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos"><i class="fas fa-users fa-sm fa-fw"></i>&nbsp;Grupos de vehículos</a></li>
 
                         </ul>
                     </li>
@@ -140,7 +140,7 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">SUCESOS DE PERSONAL</li>
 
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('SUC_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=sucesos"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Sucesos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+                            <li class="<?php echo (false)? '': 'disabled' ?>"><a href="index.php?action=sucesos"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Sucesos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">ACTIVIDAD CUADRILLA</li>
