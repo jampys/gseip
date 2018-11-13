@@ -49,7 +49,7 @@
                 var data ={ "id": ($('#id_postulante').val())? $('#id_postulante').val() : objeto.id };
                 return data;},
 
-            maxFileSize:2097152, //tamaño expresado en bytes
+            maxFileSize:5242880, //5MB de tamaño expresado en bytes
             showPreview:true,
             previewHeight: "75px",
             previewWidth: "auto",
