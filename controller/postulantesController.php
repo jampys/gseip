@@ -30,11 +30,10 @@ switch ($operation)
         $postulante->setNombre($_POST['nombre']);
         $postulante->setDni($_POST['dni']);
         $postulante->setListaNegra( ($_POST['lista_negra'] == 1)? 1 : null);
-        //$postulante->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
         $postulante->setTelefono($_POST['telefono']);
         $postulante->setFormacion($_POST['formacion']);
-        $postulante->setIdEspecialidad($_POST['id_especialidad']);
-        $postulante->setIdLocalidad($_POST['id_localidad']);
+        $postulante->setIdEspecialidad( ($_POST['id_especialidad']!='')? $_POST['id_especialidad'] : null);
+        $postulante->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
 
         $rta = $postulante->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
