@@ -102,7 +102,7 @@ class Postulante
             $this->setTelefono($rows[0]['telefono']);
             $this->setFormacion($rows[0]['formacion']);
             $this->setIdEspecialidad($rows[0]['id_especialidad']);
-            $this->setDni($rows[0]['id_localidad']);
+            $this->setIdLocalidad($rows[0]['id_localidad']);
         }
     }
 
