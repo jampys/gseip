@@ -179,7 +179,7 @@
                 apellido: {required: true},
                 nombre: {required: true},
                 dni: {
-                    required: true,
+                    //required: true,
                     remote: {
                         url: "index.php",
                         type: "post",
@@ -198,7 +198,7 @@
                 apellido: "Ingrese el apellido",
                 nombre: "Ingrese el nombre",
                 dni: {
-                    required: "Ingrese el DNI",
+                    //required: "Ingrese el DNI",
                     remote: "El postulante ya se encuentra registrado"
                 }
 
@@ -239,7 +239,7 @@
                         <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->postulante->getNombre() ?>" placeholder="Nombre">
                     </div>
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label class="control-label" for="dni">DNI</label>
                         <input class="form-control" type="text" name="dni" id="dni" value = "<?php print $view->postulante->getDni() ?>" placeholder="DNI">
                     </div>
