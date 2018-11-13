@@ -87,10 +87,12 @@ class Postulacion
                   DATE_FORMAT(pos.fecha,  '%d/%m/%Y') as fecha,
                   pos.origen_cv, pos.expectativas, pos.propuesta_economica,
                   CONCAT(po.apellido, ' ', po.nombre) as postulante,
-                  bu.nombre as busqueda
+                  bu.nombre as busqueda,
+                  loc.ciudad
                   from sel_postulaciones pos
                   join sel_postulantes po on pos.id_postulante = po.id_postulante
                   join sel_busquedas bu on pos.id_busqueda = bu.id_busqueda
+                  left join localidades loc on loc.id_localidad = bu.id_localidad
                   where pos.id_busqueda =  ifnull(:id_busqueda, pos.id_busqueda)
                   and pos.id_postulante =  ifnull(:id_postulante, pos.id_postulante)";
 

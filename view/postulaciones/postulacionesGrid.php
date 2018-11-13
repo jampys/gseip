@@ -82,9 +82,9 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro. pos.</th>
                 <th>Fecha</th>
                 <th>Búsqueda</th>
+                <th>Área</th>
                 <th>Postulante</th>
                 <th>Aplica</th>
                 <th></th>
@@ -98,9 +98,9 @@
             <?php if(isset($view->postulaciones)) {
                 foreach ($view->postulaciones as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_postulacion']; ?>">
-                        <td><?php echo $rp['id_postulacion']; ?></td>
                         <td><?php echo $rp['fecha']; ?></td>
                         <td><?php echo $rp['busqueda']; ?></td>
+                        <td><?php echo $rp['ciudad']; ?></td>
                         <td><?php echo $rp['postulante']; ?></td>
                         <td style="text-align: center"><?php echo($rp['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
 

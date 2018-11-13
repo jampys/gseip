@@ -199,7 +199,7 @@
                 nombre: "Ingrese el nombre",
                 dni: {
                     required: "Ingrese el DNI",
-                    remote: "El DNI ingresado ya existe"
+                    remote: "El postulante ya se encuentra registrado"
                 }
 
             }

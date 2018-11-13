@@ -55,8 +55,8 @@ switch ($operation)
         break;
 
     case 'editPostulante': //ok
-        $view->label='Editar postulante';
         $view->postulante = new Postulante($_POST['id_postulante']);
+        $view->label = $view->postulante->getApellido().' '.$view->postulante->getNombre();
 
         $view->formaciones = Soporte::get_enum_values('sel_postulantes', 'formacion');
         $view->localidades = Localidad::getLocalidades();
