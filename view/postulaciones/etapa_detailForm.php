@@ -152,7 +152,7 @@
 
     <div class="form-group">
         <label class="control-label" for="comentarios">Comentarios</label>
-        <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="2"><?php print $view->etapa->getComentarios(); ?></textarea>
+        <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="3"><?php print $view->etapa->getComentarios(); ?></textarea>
     </div>
 
 
