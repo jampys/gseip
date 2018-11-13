@@ -14,6 +14,15 @@
         });
 
 
+        $(".nav .disabled a").removeAttr("href");
+        $(document).on('click', ".nav .disabled a", function(e) {
+            //alert('aaa');
+            //console.log('todo un link');
+            e.preventDefault();
+            return false;
+        });
+
+
     });
 
 </script>
@@ -43,44 +52,27 @@
                 <ul class="nav navbar-nav">
                     <!--<li class="active"><a href="#">Home</a></li>-->
 
-                    <!--<li><a href="index.php?action=empleados">Empleados</a></li>
-                    <li><a href="index.php?action=contratos">Contratos</a></li>-->
-
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">PERSONAL</li>
-                            <?php if ( PrivilegedUser::dhasPrivilege('EMP_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=empleados">Empleados</a></li>
-                            <?php } ?>
 
-                            <?php if ( PrivilegedUser::dhasPrivilege('PUE_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=puestos">Puestos</a></li>
-                            <?php } ?>
-
-                            <?php if ( PrivilegedUser::dhasPrivilege('CON_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=contratos"><i class="fas fa-suitcase fa-fw"></i>&nbsp;Contratos</a></li>
-                            <?php } ?>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('EMP_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=empleados">Empleados</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PUE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=puestos">Puestos</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('CON_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=contratos"><i class="fas fa-suitcase fa-fw"></i>&nbsp;Contratos</a></li>
                             <li><a href="index.php?action=organigramas">Organigrama <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">VEHICULAR</li>
-                            <?php if ( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=vehiculos"><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos</a></li>
-                            <?php } ?>
 
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vehiculos"><i class="fas fa-car fa-fw"></i>&nbsp;Vehículos</a></li>
 
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">HABILIDADES Y COMPETENCIAS</li>
-                            <?php if ( PrivilegedUser::dhasPrivilege('HAB_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=habilidades">Habilidades</a></li>
-                            <?php } ?>
-                            <?php if ( PrivilegedUser::dhasPrivilege('HEM_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=habilidad-empleado">Habilidades por Empleado</a></li>
-                            <?php } ?>
-                            <?php if ( PrivilegedUser::dhasPrivilege('HPU_VER', array(1)) ) { ?>
-                                <li><a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></li>
-                            <?php } ?>
+
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('HAB_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=habilidades">Habilidades</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('HEM_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=habilidad-empleado">Habilidades por Empleado</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('HPU_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></li>
 
                         </ul>
                     </li>
@@ -90,11 +82,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Capacitación<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
-                            <li><a href="#" style="cursor: not-allowed">Plan de capacitación <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
-                            <!--<li><a href="#">Capacitaciones</a></li>-->
-                            <li><a href="#" style="cursor: not-allowed">Capacitaciones <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
-                            <li><a href="#" style="cursor: not-allowed">Cursos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
-                            <li><a href="#" style="cursor: not-allowed">Estadísticas <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+
+                            <li class="disabled"><a href="#">Plan de capacitación <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+                            <li class="disabled"><a href="#">Capacitaciones <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+                            <li class="disabled"><a href="#">Cursos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+                            <li class="disabled"><a href="#">Estadísticas <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+
                         </ul>
                     </li>
 
