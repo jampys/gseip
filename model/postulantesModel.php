@@ -8,6 +8,11 @@ class Postulante
     private $nombre;
     private $dni;
     private $lista_negra;
+    private $telefono;
+    private $formacion;
+    private $id_especialidad;
+    private $id_localidad;
+
 
     // GETTERS
     function getIdPostulante()
@@ -27,6 +32,18 @@ class Postulante
 
     function getListaNegra()
     { return $this->lista_negra;}
+
+    function getTelefono()
+    { return $this->telefono;}
+
+    function getFormacion()
+    { return $this->formacion;}
+
+    function getIdEspecialidad()
+    { return $this->id_especialidad;}
+
+    function getIdLocalidad()
+    { return $this->id_localidad;}
 
 
     //SETTERS
@@ -48,6 +65,18 @@ class Postulante
     function setListaNegra($val)
     { $this->lista_negra=$val;}
 
+    function setTelefono($val)
+    { $this->telefono=$val;}
+
+    function setFormacion($val)
+    { $this->formacion=$val;}
+
+    function setIdEspecialidad($val)
+    { $this->id_especialidad=$val;}
+
+    function setIdLocalidad($val)
+    { $this->id_localidad=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -55,7 +84,8 @@ class Postulante
             $stmt=new sQuery();
             $query = "select id_postulante,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      apellido, nombre, dni, lista_negra
+                      apellido, nombre, dni, lista_negra,
+                      telefono, formacion, id_especialidad, id_localidad
                       from sel_postulantes
                       where id_postulante = :nro";
             $stmt->dpPrepare($query);
@@ -69,6 +99,10 @@ class Postulante
             $this->setNombre($rows[0]['nombre']);
             $this->setDni($rows[0]['dni']);
             $this->setListaNegra($rows[0]['lista_negra']);
+            $this->setTelefono($rows[0]['telefono']);
+            $this->setFormacion($rows[0]['formacion']);
+            $this->setIdEspecialidad($rows[0]['id_especialidad']);
+            $this->setIdLocalidad($rows[0]['id_localidad']);
         }
     }
 
@@ -77,9 +111,13 @@ class Postulante
         $stmt=new sQuery();
         $query = "select pos.id_postulante,
                   DATE_FORMAT(pos.fecha,  '%d/%m/%Y') as fecha,
-                  pos.apellido, pos.nombre, pos.dni, pos.lista_negra,
+                  pos.apellido, pos.nombre, pos.dni, pos.lista_negra, pos.telefono, pos.formacion, pos.id_localidad, pos.id_especialidad,
+                  loc.ciudad, loc.CP, loc.provincia,
+                  es.nombre as especialidad,
                   (select count(*) from uploads_postulante where id_postulante = pos.id_postulante) as cant_uploads
-                  from sel_postulantes pos";
+                  from sel_postulantes pos
+                  left join localidades loc on loc.id_localidad = pos.id_localidad
+                  left join sel_especialidades es on es.id_especialidad = pos.id_especialidad";
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_empleado', $id_empleado);
         //$stmt->dpBind(':id_grupo', $id_grupo);
@@ -117,13 +155,21 @@ class Postulante
         $query="update sel_postulantes set apellido = :apellido,
                 nombre =:nombre,
                 dni = :dni,
-                lista_negra = :lista_negra
+                lista_negra = :lista_negra,
+                telefono = :telefono,
+                formacion = :formacion,
+                id_especialidad = :id_especialidad,
+                id_localidad = :id_localidad
                 where id_postulante = :id_postulante";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':apellido', $this->getApellido());
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':dni', $this->getDni());
         $stmt->dpBind(':lista_negra', $this->getListaNegra());
+        $stmt->dpBind(':telefono', $this->getTelefono());
+        $stmt->dpBind(':formacion', $this->getFormacion());
+        $stmt->dpBind(':id_especialidad', $this->getIdEspecialidad());
+        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
         $stmt->dpBind(':id_postulante', $this->getIdPostulante());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -132,13 +178,17 @@ class Postulante
 
     private function insertPostulante(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_postulantes(fecha, apellido, nombre, dni, lista_negra)
-                values(sysdate(), :apellido, :nombre, :dni, :lista_negra)";
+        $query="insert into sel_postulantes(fecha, apellido, nombre, dni, lista_negra, telefono, formacion, id_especialidad, id_localidad)
+                values(sysdate(), :apellido, :nombre, :dni, :lista_negra, :telefono, :formacion, :id_especialidad, :id_localidad)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':apellido', $this->getApellido());
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':dni', $this->getDni());
         $stmt->dpBind(':lista_negra', $this->getListaNegra());
+        $stmt->dpBind(':telefono', $this->getTelefono());
+        $stmt->dpBind(':formacion', $this->getFormacion());
+        $stmt->dpBind(':id_especialidad', $this->getIdEspecialidad());
+        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

@@ -128,6 +128,10 @@
                 params.nombre = $('#nombre').val();
                 params.dni = $('#dni').val();
                 params.lista_negra = $('#lista_negra').prop('checked')? 1:0;
+                params.telefono = $('#telefono').val();
+                params.formacion = $('#formacion').val();
+                params.id_especialidad = $('#id_especialidad').val();
+                params.id_localidad = $('#id_localidad').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -188,25 +192,6 @@
                         }
                     }
                 }
-                /*fecha_vencimiento: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaVencimiento",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            fecha_vencimiento: function(){ return $('#fecha_vencimiento').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
-                        }
-                    }
-                }*/
 
             },
             messages:{
@@ -214,12 +199,9 @@
                 nombre: "Ingrese el nombre",
                 dni: {
                     required: "Ingrese el DNI",
-                    remote: "El DNI ingresado ya existe"
+                    remote: "El postulante ya se encuentra registrado"
                 }
-                /*fecha_vencimiento: {
-                    required: "Ingrese la fecha de vencimiento",
-                    remote: "La fecha de vencimiento debe ser mayor"
-                }*/
+
             }
 
         });
@@ -261,6 +243,55 @@
                         <label class="control-label" for="dni">DNI</label>
                         <input class="form-control" type="text" name="dni" id="dni" value = "<?php print $view->postulante->getDni() ?>" placeholder="DNI">
                     </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="telefono">Teléfono</label>
+                        <input class="form-control" type="text" name="telefono" id="telefono" value = "<?php print $view->postulante->getTelefono() ?>" placeholder="Teléfono">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_localidad" class="control-label">Ubicación</label>
+                        <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" title="Seleccione la localidad" data-live-search="true" data-size="5">
+                            <?php foreach ($view->localidades as $loc){
+                                ?>
+                                <option value="<?php echo $loc['id_localidad']; ?>"
+                                    <?php echo ($loc['id_localidad'] == $view->postulante->getIdLocalidad())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formacion" class="control-label">Formación</label>
+                        <select class="form-control selectpicker show-tick" id="formacion" name="formacion" title="Seleccione la formación"  data-live-search="true" data-size="5">
+                            <?php foreach ($view->formaciones['enum'] as $fo){
+                                ?>
+                                <option value="<?php echo $fo; ?>"
+                                    <?php echo ($fo == $view->postulante->getFormacion() OR ($fo == $view->formaciones['default'] AND !$view->formacion->getFormacion()) )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $fo; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="id_especialidad" class="control-label">Especialidad</label>
+                        <select class="form-control selectpicker show-tick" id="id_especialidad" name="id_especialidad" title="Seleccione la especialidad" data-live-search="true" data-size="5">
+                            <?php foreach ($view->especialidades as $es){
+                                ?>
+                                <option value="<?php echo $es['id_especialidad']; ?>"
+                                    <?php echo ($es['id_especialidad'] == $view->postulante->getIdEspecialidad())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $es['nombre'];?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
 
                     <div class="form-group">
                         <div class="checkbox">

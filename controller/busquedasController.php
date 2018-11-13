@@ -53,8 +53,8 @@ switch ($operation)
         break;
 
     case 'editBusqueda': //ok
-        $view->label='Editar búsqueda';
         $view->busqueda = new Busqueda($_POST['id_busqueda']);
+        $view->label = $view->busqueda->getNombre();
 
         $view->puestos = Puesto::getPuestos();
         $view->localidades = Localidad::getLocalidades();
