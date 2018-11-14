@@ -10,8 +10,9 @@
 
 
 
-
                 <?php if(isset($view->contratos) && sizeof($view->contratos) > 0) {?>
+
+                    <h4><span class="label label-primary">Contratos</span></h4>
 
                     <table class="table table-condensed dataTable table-hover">
                         <thead>
@@ -34,25 +35,6 @@
                                     <?php echo($con['days_left'] < 0)? '<i class="fas fa-arrow-down fa-fw" style="color: #fc140c"></i><span style="color: #fc140c">'.abs($con['days_left']).'</span>' : '<i class="fas fa-arrow-up fa-fw" style="color: #49ed0e"></i><span style="color: #49ed0e">'.(($con['days_left'])? abs($con['days_left']) : "").'</span>'?>
                                 </td>
 
-
-                                <!--<td class="text-center">
-                                    <a class="view" href="javascript:void(0);" data-id="<?php //echo $et['id_etapa'];?>" title="ver">
-                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                                    </a>
-                                </td>
-
-                                <td class="text-center">
-                                    <a class="<?php //echo ( PrivilegedUser::dhasAction('ETP_UPDATE', array(1)) && $et['id_user'] == $_SESSION['id_user']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                    </a>
-                                </td>
-
-                                <td class="text-center">
-                                    <a class="<?php //echo ( PrivilegedUser::dhasAction('ETP_DELETE', array(1)) && $et['id_user'] == $_SESSION['id_user']  )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                    </a>
-                                </td>-->
-
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -66,6 +48,52 @@
                     <div class="alert alert-warning">
                         <i class="fas fa-exclamation-triangle fa-fw"></i> El vehículo no se encuentra afectado a ningún contrato. La funcionalidad se encuentra en construcción.
                                                                           Consulte con el administrador.
+                    </div>
+
+                <?php } ?>
+
+
+
+
+
+                <br/>
+
+
+                <?php if(isset($view->seguros) && sizeof($view->seguros) > 0) {?>
+
+                    <h4><span class="label label-primary">Seguro vehicular</span></h4>
+
+                    <div class="table-responsive fixedTable">
+
+                        <table class="table table-condensed dataTable table-hover">
+                            <thead>
+                            <tr>
+                                <th>Tipo seguro</th>
+                                <th>Referencia</th>
+                                <th>F. desde</th>
+                                <th>F. hasta</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($view->seguros as $seg): ?>
+                                <tr>
+                                    <td><?php echo $seg['tipo_seguro']; ?></td>
+                                    <td><?php echo $seg['referencia']; ?></td>
+                                    <td><?php echo $seg['fecha_emision']; ?></td>
+                                    <td><?php echo $seg['fecha_vencimiento']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    
+                <?php }else{ ?>
+
+                    <br/>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> El vehículo no posee seguro vehicular.
                     </div>
 
                 <?php } ?>
