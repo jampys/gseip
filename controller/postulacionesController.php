@@ -47,9 +47,6 @@ switch ($operation)
         $view->label='Nueva postulación';
         $view->postulacion = new Postulacion();
 
-        //$view->puestos = Puesto::getPuestos();
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->contratos = Contrato::getContratos();
         $view->busquedas = Busqueda::getBusquedasActivas();
         $view->postulantes = Postulante::getPostulantesActivos();
         $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
@@ -61,10 +58,7 @@ switch ($operation)
     case 'editPostulacion': //ok
         $view->label='Editar postulación';
         $view->postulacion = new Postulacion($_POST['id_postulacion']);
-
-        //$view->puestos = Puesto::getPuestos();
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->contratos = Contrato::getContratos();
+        
         $view->busquedas = Busqueda::getBusquedasActivas();
         $view->postulantes = Postulante::getPostulantesActivos();
         $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
