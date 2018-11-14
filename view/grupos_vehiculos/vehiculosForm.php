@@ -200,7 +200,7 @@
                         <div class="col-md-6" id="etapas_left_side">
 
                             <div class="clearfix">
-                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar grupo">
+                                <button <?php echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? '' : 'disabled' ?> class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar vehículo">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
                             </div>

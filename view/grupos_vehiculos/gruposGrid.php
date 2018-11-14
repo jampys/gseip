@@ -37,7 +37,7 @@
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
-        <button  id="new" type="button" class="btn btn-primary btn-sm" <?php echo ( PrivilegedUser::dhasAction('VEH_INSERT', array(1)) )? '' : 'disabled' ?> >Nuevo Grupo</button>
+        <button  id="new" type="button" class="btn btn-primary btn-sm" <?php echo (PrivilegedUser::dhasAction('GRV_INSERT', array(1)) )? '' : 'disabled' ?> >Nuevo Grupo</button>
     </div>
 
     <div class="table-responsive">
@@ -65,28 +65,29 @@
                     <td><?php echo $vehiculo['vencimiento'];?></td>
                     <td><?php echo $vehiculo['fecha_baja'];?></td>
 
+                    <!-- si tiene permiso para vehiculos del grupo -->
                     <td class="text-center">
-                        <a class="vehiculos" href="javascript:void(0);">
+                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'vehiculos' : 'disabled' ?>" href="javascript:void(0);">
                             <i class="far fa-list-alt fa-fw" title="vehículos"></i>
                         </a>
                     </td>
 
                     <td class="text-center">
-                        <!-- si tiene permiso para ver etapas -->
-                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
+                        <!-- si tiene permiso para ver -->
+                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
                             <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
                         </a>
                     </td>
 
                     <td class="text-center">
                         <!-- si tiene permiso para editar -->
-                        <a class="<?php echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                        <a class="<?php echo ( PrivilegedUser::dhasAction('GRV_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                             <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td class="text-center">
                         <!-- si tiene permiso para eliminar -->
-                        <a class="<?php echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+                        <a class="<?php echo ( PrivilegedUser::dhasAction('GRV_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </a>
                     </td>
