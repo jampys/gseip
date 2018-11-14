@@ -44,9 +44,9 @@
                 $('#content').load('index.php', params,function(){
                     $("#empleado-form input, #empleado-form .selectpicker").prop("disabled", true);
                     $('.selectpicker').selectpicker('refresh');
-                    $('.panel-footer').css('display', 'none')
-                    $('.panel-heading .pull-left').html('');
-                })
+                    $('.panel-footer').css('display', 'none');
+                    //$('.panel-heading .pull-left').html('');
+                });
 
             });
 

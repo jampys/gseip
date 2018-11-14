@@ -59,8 +59,8 @@ switch ($operation)
         break;
 
     case 'editEmpleado':
-        $view->label='Editar Empleado';
         $view->empleado = new Empleado($_POST['id']);
+        $view->label = $view->empleado->getApellido().' '.$view->empleado->getNombre();
 
         $view->localidades = Localidad::getLocalidades();
         $view->sexos = Soporte::get_enum_values('empleados', 'sexo');
