@@ -54,8 +54,8 @@ switch ($operation)
         break;
 
     case 'editVehiculo': //ok
-        $view->label='Editar vehículo';
         $view->vehiculo = new Vehiculo($_POST['id_vehiculo']);
+        $view->label = $view->vehiculo->getMatricula().' '.$view->vehiculo->getModelo();
 
         $view->marcas = Soporte::get_enum_values('vto_vehiculos', 'marca');
         $view->periodos = Soporte::getPeriodos(2000, date("Y"));
@@ -92,13 +92,13 @@ switch ($operation)
         exit;
         break;
 
-    case 'loadContratos': //abre la ventana modal para mostrar los contratos del empleado
-        $view->label='Contratos';
+    case 'loadContratos': //abre la ventana modal para mostrar los contratos del empleado //ok
+        $view->vehiculo = new Vehiculo($_POST['id_vehiculo']);
+        $view->label = $view->vehiculo->getMatricula().' '.$view->vehiculo->getModelo();
         $view->disableLayout=true;
 
         $view->contratos = ContratoVehiculo::getContratosByVehiculo($_POST['id_vehiculo']);
-        //$view->puestos = Puesto::getPuestos();
-        //$view->procesos = Proceso::getProcesos();
+        $view->seguros = $view->vehiculo->getSeguroVehicular();
 
         $view->contentTemplate="view/vehiculos/vehiculosFormContratos.php";
         break;
