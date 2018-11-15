@@ -105,14 +105,15 @@
                         <td style="text-align: center"><?php echo($rp['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
 
                         <td class="text-center">
+                            <!-- si tiene permiso para ver etapas -->
                             <a class="etapas" href="javascript:void(0);">
                                 <i class="far fa-list-alt fa-fw" title="etapas"></i>
                             </a>
                         </td>
 
                         <td class="text-center">
-                            <!-- si tiene permiso para ver etapas -->
-                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'etapas' : 'disabled' ?>" href="javascript:void(0);">
+                            <!-- si tiene permiso para ver -->
+                            <a class="view" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
                             </a>
                         </td>

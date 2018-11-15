@@ -48,8 +48,8 @@ switch ($operation)
         break;
 
     case 'editPuesto': //ok
-        $view->label='Editar Puesto de trabajo';
         $view->puesto = new Puesto($_POST['id_puesto']);
+        $view->label = $view->puesto->getNombre();
 
         $view->puesto_superior = Puesto::getPuestos();
         $view->areas = Area::getAreas();

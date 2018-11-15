@@ -67,7 +67,7 @@
                     $("fieldset").prop("disabled", true);
                     //$('.selectpicker').selectpicker('refresh');
                     $('.modal-footer').css('display', 'none');
-                    $('#myModalLabel').html('');
+                    //$('#myModalLabel').html('');
                     $('#myModal').modal();
                 })
             });

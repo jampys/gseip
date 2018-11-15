@@ -135,8 +135,9 @@ switch ($operation)
         break;
 
     case 'editContrato': //ok
-        $view->label='Editar Contrato';
         $view->contrato = new Contrato($_POST['id']);
+        $view->label = $view->contrato->getNombre().' '.$view->contrato->getNroContrato();
+
         $view->empleado = new Empleado();
         $view->empleados = $view->empleado->getEmpleadosActivos(); //carga el combo de empleados
         //$view->responsable = $view->contrato->getResponsable()->getApellido()." ".$view->contrato->getResponsable()->getNombre();

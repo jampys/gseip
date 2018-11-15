@@ -56,7 +56,7 @@ switch ($operation)
         break;
 
     case 'editPostulacion': //ok
-        $view->label='Editar postulación';
+        $view->label = ($_POST['target'] == 'view')? 'Ver postulación':'Editar postulación';
         $view->postulacion = new Postulacion($_POST['id_postulacion']);
         
         $view->busquedas = Busqueda::getBusquedasActivas();

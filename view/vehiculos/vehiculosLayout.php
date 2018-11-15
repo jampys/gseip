@@ -37,7 +37,7 @@
                     $("#vehiculo-form input, #vehiculo-form .selectpicker, #vehiculo-form textarea").prop("disabled", true);
                     $('.selectpicker').selectpicker('refresh');
                     $('.modal-footer').css('display', 'none');
-                    $('#myModalLabel').html('');
+                    //$('#myModalLabel').html('');
                     $('#myModal').modal();
                 })
 
