@@ -44,7 +44,7 @@ switch ($operation)
         break;
 
     case 'newRenovacion': //ok
-        $view->label='Nueva renovación';
+        $view->label='Nuevo vencimiento';
         $view->renovacion = new RenovacionVehicular();
 
         $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
@@ -57,7 +57,7 @@ switch ($operation)
         break;
 
     case 'editRenovacion': //ok
-        $view->label='Editar Renovación';
+        $view->label = ($_POST['target'] == 'view')? 'Ver vencimiento':'Editar vencimiento';
         $view->renovacion = new RenovacionVehicular($_POST['id_renovacion']);
 
         $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
@@ -71,7 +71,7 @@ switch ($operation)
         break;
 
     case 'renovRenovacion': //Renueva una renovacion existente //ok
-        $view->label='Renovación';
+        $view->label='Renovar vencimiento';
         $view->renovacion = new RenovacionVehicular($_POST['id_renovacion']);
         $view->renovacion->setIdRenovacion('');
         $view->renovacion->setFechaEmision('');
