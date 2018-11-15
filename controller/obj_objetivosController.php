@@ -71,9 +71,9 @@ switch ($operation)
     case 'editObjetivo': //ok
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
 
-        if($_POST['target'] == 'edit') $view->label='Editar objetivo: '.$view->objetivo->getCodigo();
+        if($_POST['target'] == 'edit' or $_POST['target'] == 'view' ) $view->label = $view->objetivo->getCodigo();
         else if ($_POST['target'] == 'clone') {
-            $view->label='Clonar objetivo: '.$view->objetivo->getCodigo();
+            $view->label = '<h4><span class="label label-warning">CLONAR</span> '.$view->objetivo->getCodigo().'</h4>';
             $view->objetivo->setIdObjetivo(null); //pone el id_objetivo en null para al guardar insertar uno nuevo
         }
 

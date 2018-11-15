@@ -117,7 +117,7 @@ switch ($operation)
 
     case 'loadEac': //Abre el formulario de evaluacion anual de competecias //ok
         $view->empleado = new Empleado($_POST['id_empleado']);
-        $view->label = 'Evaluacion de competencias: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
+        $view->label = 'Evaluación de competencias: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
         //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
 
         //$view->competencias = EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $periodo);
@@ -141,7 +141,7 @@ switch ($operation)
 
     case 'loadEaag': //Abre el formulario de evaluacion anual de aspectos generales //ok
         $view->empleado = new Empleado($_POST['id_empleado']);
-        $view->label = 'Evaluacion de aspectos generales: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
+        $view->label = 'Evaluación de aspectos generales: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
 
         $view->aspectos_generales = (!$_POST['cerrado'])? EvaluacionAspectoGeneral::getAspectosGenerales($_POST['id_empleado'], $_POST['periodo']) : EvaluacionAspectoGeneral::getAspectosGenerales1($_POST['id_empleado'], $_POST['periodo']);
         $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
