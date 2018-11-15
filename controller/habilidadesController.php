@@ -36,8 +36,8 @@ switch ($operation)
         break;
 
     case 'editHabilidad':
-        $view->label='Editar Habilidad';
         $view->habilidad = new Habilidad($_POST['id_habilidad']);
+        $view->label = $view->habilidad->getNombre();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/habilidadesForm.php";
