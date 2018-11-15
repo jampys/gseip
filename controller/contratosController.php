@@ -156,10 +156,10 @@ switch ($operation)
         break;
 
     case 'loadEmpleado': //ok //abre la ventana modal para agregar y editar un empleado del contrato
-        $view->label='Empleado';
         $view->disableLayout=true;
-
         $view->empleado = new Empleado($_POST['id_empleado']);
+        $view->label = (!$_POST['id_empleado'])? 'Nuevo empleado': $view->empleado->getApellido().' '.$view->empleado->getNombre();
+
         $temp = $view->empleado->getDomain(); //lo pongo antes en una variable temporal, sino da error en produccion
         if($temp[0] == '') $view->empleado->setDomain(1); //Si es un empleado nuevo (no tiene dominio).. le pongo el dominio 1.
         //echo '<script type="text/javascript"> alert('.sizeof($view->empleado->getDomain()).'); </script>';
