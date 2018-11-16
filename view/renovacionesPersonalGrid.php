@@ -92,6 +92,7 @@
                 <th>F. emisión</th>
                 <th>F. vto.</th>
                 <th style="display: none">Priority</th>
+                <th style="display: none">Rnv</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -111,6 +112,7 @@
                         <td><?php echo $rp['fecha_emision']; ?></td>
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td style="display: none"><?php echo $rp['priority']; ?></td>
+                        <td style="display: none"><?php echo $rp['id_rnv_renovacion']; ?></td>
 
                         <td class="text-center">
                             <?php if($rp['cant_uploads']> 0 ){ ?>
