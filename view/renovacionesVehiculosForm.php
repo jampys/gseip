@@ -53,7 +53,7 @@
                 var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
                 return data;},
 
-            maxFileSize:2097152, //tamaño expresado en bytes
+            maxFileSize:3145728, // 3MB tamaño expresado en bytes
             showPreview:true,
             previewHeight: "75px",
             previewWidth: "auto",
