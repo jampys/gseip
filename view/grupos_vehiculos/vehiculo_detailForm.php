@@ -56,7 +56,8 @@
                     data: {
                             action: "vto_grupo-vehiculo",
                             operation: "checkVehiculo",
-                            id_vehiculo: function(){ return $('#id_vehiculo').val();}
+                            id_vehiculo: function(){ return $('#id_vehiculo').val();},
+                            id_grupo_vehiculo: function(){ return $('#id_grupo_vehiculo').val();}
                           }
                  }
                  },
@@ -94,7 +95,7 @@
     </div>
 
     <input type="hidden" name="id_grupo_vehiculo" id="id_grupo_vehiculo" value="<?php print $view->grupo_vehiculo->getIdGrupoVehiculo() ?>">
-    <input type="hidden" name="id_grupo" id="id_grupo" value="<?php print $view->grupo_vehiculo->getIdGrupoVehiculo() ?>">
+    <input type="hidden" name="id_grupo" id="id_grupo" value="<?php print $view->grupo_vehiculo->getIdGrupo() ?>">
 
 
         <div class="form-group required">
@@ -110,6 +111,12 @@
                     </option>
                 <?php  } ?>
             </select>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label" for="certificado">Certificado</label>
+            <input class="form-control" type="text" name="certificado" id="certificado" value = "<?php print $view->grupo_vehiculo->getCertificado() ?>" placeholder="Certificado">
         </div>
 
 

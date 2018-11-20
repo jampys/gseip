@@ -30,6 +30,7 @@ switch ($operation)
         $gv->setIdVehiculo($_POST['id_vehiculo']);
         $gv->setFechaDesde($_POST['fecha_desde']);
         $gv->setFechaHasta( ($_POST['id_fecha_hasta']!='')? $_POST['fecha_hasta'] : null);
+        $gv->setCertificado($_POST['certificado']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $gv->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
@@ -69,7 +70,7 @@ switch ($operation)
 
     case 'checkVehiculo':
         $view->grupo_vehiculo = new GrupoVehiculo();
-        $rta = $view->grupo_vehiculo->checkVehiculo($_POST['id_vehiculo']);
+        $rta = $view->grupo_vehiculo->checkVehiculo($_POST['id_vehiculo'], $_POST['id_grupo_vehiculo']);
         print_r(json_encode($rta));
         exit;
         break;

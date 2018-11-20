@@ -53,7 +53,7 @@
                 var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
                 return data;},
 
-            maxFileSize:2097152, //tamaño expresado en bytes
+            maxFileSize:3145728, // 3MB tamaño expresado en bytes
             showPreview:true,
             previewHeight: "75px",
             previewWidth: "auto",
@@ -309,7 +309,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="referencia">Referencia</label>
-                        <input class="form-control" type="text" name="referencia" id="referencia"value = "<?php print $view->renovacion->getReferencia() ?>" placeholder="Referencia">
+                        <input class="form-control" type="text" name="referencia" id="referencia" value = "<?php print $view->renovacion->getReferencia() ?>" placeholder="Referencia">
                     </div>
 
 

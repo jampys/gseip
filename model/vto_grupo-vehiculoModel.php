@@ -7,6 +7,7 @@ class GrupoVehiculo
     private $id_grupo;
     private $fecha_desde;
     private $fecha_hasta;
+    private $certificado;
 
     // GETTERS
     function getIdGrupoVehiculo()
@@ -23,6 +24,9 @@ class GrupoVehiculo
 
     function getFechaHasta()
     { return $this->fecha_hasta;}
+
+    function getCertificado()
+    { return $this->certificado;}
 
 
     //SETTERS
@@ -41,6 +45,9 @@ class GrupoVehiculo
     function setFechaHasta($val)
     { $this->fecha_hasta=$val;}
 
+    function setCertificado($val)
+    { $this->certificado=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -48,7 +55,8 @@ class GrupoVehiculo
             $stmt=new sQuery();
             $query = "select id_grupo_vehiculo, id_vehiculo, id_grupo,
                       DATE_FORMAT(fecha_desde, '%d/%m/%Y') as fecha_desde,
-                      DATE_FORMAT(fecha_hasta, '%d/%m/%Y') as fecha_hasta
+                      DATE_FORMAT(fecha_hasta, '%d/%m/%Y') as fecha_hasta,
+                      certificado
                       from vto_grupo_vehiculo
                       where id_grupo_vehiculo = :nro";
             $stmt->dpPrepare($query);
@@ -61,6 +69,7 @@ class GrupoVehiculo
             $this->setIdGrupo($rows[0]['id_grupo']);
             $this->setFechaDesde($rows[0]['fecha_desde']);
             $this->setFechaHasta($rows[0]['fecha_hasta']);
+            $this->setCertificado($rows[0]['certificado']);
         }
     }
 
@@ -70,7 +79,7 @@ class GrupoVehiculo
         $query = "select gv.id_grupo_vehiculo, gv.id_vehiculo, gv.id_grupo,
                   DATE_FORMAT(gv.fecha_desde, '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(gv.fecha_hasta, '%d/%m/%y') as fecha_hasta,
-                  ve.matricula, ve.nro_movil
+                  ve.matricula, ve.nro_movil, gv.certificado
                   from vto_grupo_vehiculo gv
                   join vto_vehiculos ve on ve.id_vehiculo = gv.id_vehiculo
                   where gv.id_grupo = :id_grupo
@@ -96,12 +105,14 @@ class GrupoVehiculo
         $stmt=new sQuery();
         $query="update vto_grupo_vehiculo set id_vehiculo = :id_vehiculo,
                 fecha_desde = STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
-                fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
+                fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
+                certificado = :certificado
                 where id_grupo_vehiculo = :id_grupo_vehiculo";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
+        $stmt->dpBind(':certificado', $this->getCertificado());
         $stmt->dpBind(':id_grupo_vehiculo', $this->getIdGrupoVehiculo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -110,13 +121,14 @@ class GrupoVehiculo
 
     private function insertGrupoVehiculo(){ //ok
         $stmt=new sQuery();
-        $query="insert into vto_grupo_vehiculo(id_vehiculo, id_grupo, fecha_desde, fecha_hasta)
-                values(:id_vehiculo, :id_grupo, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))";
+        $query="insert into vto_grupo_vehiculo(id_vehiculo, id_grupo, fecha_desde, fecha_hasta, certificado)
+                values(:id_vehiculo, :id_grupo, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :certificado)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':id_grupo', $this->getIdGrupo());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
+        $stmt->dpBind(':certificado', $this->getCertificado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
@@ -132,7 +144,7 @@ class GrupoVehiculo
     }
 
 
-    public function checkVehiculo($id_vehiculo) { //ok
+    public function checkVehiculo($id_vehiculo, $id_grupo_vehiculo) { //ok
         //verifica que el vehiculo no se encuentre activo en ninguno de los grupos
         $stmt=new sQuery();
         $query = "select 1
@@ -140,9 +152,11 @@ from vto_grupo_vehiculo gv
 left join vto_grupos_v g on g.id_grupo = gv.id_grupo
 where gv.id_vehiculo = :id_vehiculo
 and gv.fecha_hasta is null
-and g.fecha_baja is null";
+and g.fecha_baja is null
+and gv.id_grupo_vehiculo <> :id_grupo_vehiculo";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vehiculo', $id_vehiculo);
+        $stmt->dpBind(':id_grupo_vehiculo', $id_grupo_vehiculo);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
     }

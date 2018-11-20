@@ -79,12 +79,12 @@
         $('#grupo-form').validate({ //ok
             rules: {
                 nombre: {required: true},
-                nro_referencia: {required: true},
+                //nro_referencia: {required: true},
                 id_vencimiento: {required: true}
             },
             messages:{
                 nombre: "Ingrese un nombre",
-                nro_referencia: "Ingrese un nro de referencia",
+                //nro_referencia: "Ingrese un nro de referencia",
                 id_vencimiento: "Seleccione un vencimiento"
             }
 
@@ -118,7 +118,7 @@
                         <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->grupo->getNombre() ?>" placeholder="Nombre">
                     </div>
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label class="control-label" for="nombre">Nro. referencia</label>
                         <input class="form-control" type="text" name="nro_referencia" id="nro_referencia" value = "<?php print $view->grupo->getNroReferencia() ?>" placeholder="Nro. referencia">
                     </div>

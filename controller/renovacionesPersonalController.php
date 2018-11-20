@@ -77,6 +77,7 @@ switch ($operation)
         $view->renovacion->setIdRenovacion('');
         $view->renovacion->setFechaEmision('');
         $view->renovacion->setFechaVencimiento('');
+        $view->renovacion->setReferencia('');
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
         $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
