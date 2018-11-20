@@ -30,6 +30,7 @@ switch ($operation)
         $gv->setIdVehiculo($_POST['id_vehiculo']);
         $gv->setFechaDesde($_POST['fecha_desde']);
         $gv->setFechaHasta( ($_POST['id_fecha_hasta']!='')? $_POST['fecha_hasta'] : null);
+        $gv->setCertificado($_POST['certificado']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $gv->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));

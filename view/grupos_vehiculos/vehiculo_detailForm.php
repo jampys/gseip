@@ -113,6 +113,12 @@
         </div>
 
 
+        <div class="form-group">
+            <label class="control-label" for="certificado">Certificado</label>
+            <input class="form-control" type="text" name="certificado" id="certificado" value = "<?php print $view->grupo_vehiculo->getCertificado() ?>" placeholder="Certificado">
+        </div>
+
+
         <div class="form-group required">
             <label class="control-label" for="empleado">Fecha desde / hasta</label>
             <div class="input-group input-daterange">
