@@ -83,7 +83,7 @@
                 params.fecha_desde = $('#fecha_desde').val();
                 params.fecha_hasta = $('#fecha_hasta').val();
                 params.certificado = $('#certificado').val();
-                //alert(params.id_grupo_vehiculo);
+                alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);

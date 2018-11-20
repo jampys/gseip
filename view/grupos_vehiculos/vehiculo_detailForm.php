@@ -94,7 +94,7 @@
     </div>
 
     <input type="hidden" name="id_grupo_vehiculo" id="id_grupo_vehiculo" value="<?php print $view->grupo_vehiculo->getIdGrupoVehiculo() ?>">
-    <input type="hidden" name="id_grupo" id="id_grupo" value="<?php print $view->grupo_vehiculo->getIdGrupoVehiculo() ?>">
+    <input type="hidden" name="id_grupo" id="id_grupo" value="<?php print $view->grupo_vehiculo->getIdGrupo() ?>">
 
 
         <div class="form-group required">
