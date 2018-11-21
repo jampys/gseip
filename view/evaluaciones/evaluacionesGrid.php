@@ -53,8 +53,21 @@
                     <td><?php echo $evaluacion['nombre'];?></td>
                     <td><?php echo $evaluacion['contrato'];?></td>
                     <td><?php echo $evaluacion['puesto'];?></td>
-                    <td class="text-center"><a class="loadEac" href="javascript:void(0);" title="Evaluación competencias" ><span class="<?php echo ($evaluacion['hasAllEac'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="loadEaag" href="javascript:void(0);" title="Evaluación aspectos generales" ><span class="<?php echo ($evaluacion['hasAllEaag'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span></a></td>
+
+                    <!-- evaluacion de competencias -->
+                    <td class="text-center">
+                        <a class="<?php echo ( (PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) && $evaluacion['isInSup']) || PrivilegedUser::dhasPrivilege('EAD_COM', array(0))  )? 'loadEac' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación competencias" >
+                            <span class="<?php echo ($evaluacion['hasAllEac'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
+                        </a>
+                    </td>
+
+                    <!-- evaluacion de aspectos generales -->
+                    <td class="text-center">
+                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('EAD_AGS', array(1))  )? 'loadEaag' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación aspectos generales" >
+                            <span class="<?php echo ($evaluacion['hasAllEaag'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
+                        </a>
+                    </td>
+
                     <td class="text-center"><a class="delete" href="javascript:void(0);" title="Borrar" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; } ?>
