@@ -59,7 +59,7 @@ class HabilidadEmpleado
         $query = "select id_habilidad_empleado, em.id_empleado, em.legajo, em.apellido, em.nombre, em.cuil,
 		hab.id_habilidad, hab.nombre as habilidad,
 		DATE_FORMAT(he.fecha_desde,  '%d/%m/%Y') as fecha_desde
-from habilidad_empleado he, habilidades hab, v_sec_empleados em
+from habilidad_empleado he, habilidades hab, v_sec_empleados_control em
 where he.id_empleado = em.id_empleado
 and he.id_habilidad = hab.id_habilidad
 and em.cuil = ifnull(:cuil, em.cuil)
