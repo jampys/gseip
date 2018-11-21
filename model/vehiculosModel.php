@@ -285,6 +285,7 @@ from vto_renovacion_v v
 where v.id_vehiculo = :id_vehiculo
 and v.id_vencimiento = 3
 and v.id_rnv_renovacion is null
+and v.disabled is null
 UNION
 select 'Seguro grupal ' as tipo_seguro, CONCAT(g.nombre, ' ', g.nro_referencia) as referencia,
 DATE_FORMAT(v.fecha_emision,  '%d/%m/%Y') as fecha_emision,
@@ -294,7 +295,8 @@ join vto_grupo_vehiculo gv on g.id_grupo = gv.id_grupo
 join vto_renovacion_v v on v.id_grupo = g.id_grupo
 where gv.id_vehiculo = :id_vehiculo
 and g.id_vencimiento = 3
-and v.id_rnv_renovacion is null";
+and v.id_rnv_renovacion is null
+and v.disabled is null";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpExecute();

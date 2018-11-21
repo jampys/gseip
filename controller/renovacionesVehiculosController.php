@@ -76,6 +76,7 @@ switch ($operation)
         $view->renovacion->setIdRenovacion('');
         $view->renovacion->setFechaEmision('');
         $view->renovacion->setFechaVencimiento('');
+        $view->renovacion->setReferencia('');
 
         $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
         $view->vehiculosGrupos = $view->renovacion->vehiculosGrupos();
