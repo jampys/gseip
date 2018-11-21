@@ -61,7 +61,13 @@
                         </a>
                     </td>
 
-                    <td class="text-center"><a class="loadEaag" href="javascript:void(0);" title="Evaluación aspectos generales" ><span class="<?php echo ($evaluacion['hasAllEaag'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span></a></td>
+                    <!-- evaluacion de competencias -->
+                    <td class="text-center">
+                        <a class="loadEaag" href="javascript:void(0);" title="Evaluación aspectos generales" >
+                            <span class="<?php echo ($evaluacion['hasAllEaag'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
+                        </a>
+                    </td>
+
                     <td class="text-center"><a class="delete" href="javascript:void(0);" title="Borrar" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; } ?>
