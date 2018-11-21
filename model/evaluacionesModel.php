@@ -23,7 +23,7 @@ co.nombre as contrato, pu.nombre as puesto,
 pe.id_plan_evaluacion, pe.periodo, pe.cerrado,
 func_eval_eac_count(em.id_empleado,pe.periodo) as hasAllEac,
 func_eval_eaag_count(em.id_empleado,pe.periodo) as hasAllEaag
-from v_sec_empleados em
+from v_sec_empleados_control em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join contratos co on ec.id_contrato = co.id_contrato
 join companias cia on co.id_compania = cia.id_compania
@@ -50,7 +50,7 @@ co.nombre as contrato, pu.nombre as puesto,
 pe.id_plan_evaluacion, pe.periodo, pe.cerrado,
 (EXISTS (SELECT 1 FROM ead_evaluacion_competencia ead_ec where ead_ec.id_empleado = em.id_empleado and ead_ec.periodo = :periodo )) as hasAnyEac,
 (EXISTS (SELECT 1 FROM ead_evaluacion_objetivo ead_eo where ead_eo.id_empleado = em.id_empleado and ead_eo.periodo = :periodo )) as hasAnyEao
-from v_sec_empleados em
+from v_sec_empleados_control em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join contratos co on ec.id_contrato = co.id_contrato
 join companias cia on co.id_compania = cia.id_compania
