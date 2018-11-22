@@ -77,7 +77,6 @@ join puestos pu on ec.id_puesto = pu.id_puesto
 join competencia_nivel_competencia cnc on pu.id_nivel_competencia = cnc.id_nivel_competencia
 join competencias co on cnc.id_competencia = co.id_competencia
 left join ead_evaluacion_competencia ead_ec on co.id_competencia = ead_ec.id_competencia and ead_ec.id_empleado = em.id_empleado and ead_ec.periodo = :periodo
--- left join eac_puntajes eac_pu on eac_ec.id_puntaje = eac_pu.id_puntaje
 left join ead_puntaje_competencia ead_pc on ead_ec.id_puntaje_competencia = ead_pc.id_puntaje_competencia
 where em.id_empleado = :id_empleado
 group by co.id_competencia";
@@ -99,7 +98,6 @@ ead_ec.id_evaluacion_competencia,
 ead_pc.puntaje
 from empleados em
 join ead_evaluacion_competencia ead_ec on em.id_empleado = ead_ec.id_empleado and ead_ec.periodo = :periodo
--- join eac_puntajes eac_pu on eac_ec.id_puntaje = eac_pu.id_puntaje
 join ead_puntaje_competencia ead_pc on ead_ec.id_puntaje_competencia = ead_pc.id_puntaje_competencia
 join competencias co on ead_ec.id_competencia = co.id_competencia
 where em.id_empleado = :id_empleado";
@@ -149,7 +147,6 @@ where em.id_empleado = :id_empleado";
 
         $stmt=new sQuery();
         $query="update ead_evaluacion_competencia set
-                -- id_puntaje= :id_puntaje,
                 id_puntaje_competencia = :id_puntaje_competencia,
                 id_evaluador=  :id_evaluador
                 where id_evaluacion_competencia = :id_evaluacion_competencia";
