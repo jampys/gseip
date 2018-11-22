@@ -39,6 +39,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -68,7 +69,15 @@
                         </a>
                     </td>
 
-                    <td class="text-center"><a class="delete" href="javascript:void(0);" title="Borrar" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+
+                    <!-- evaluacion de objetivos -->
+                    <td class="text-center">
+                        <a class="<?php echo (true)? 'loadEao' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación objetivos" >
+                            <span class="<?php echo ($evaluacion['hasAllEaag'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
+                        </a>
+                    </td>
+
+                    <td class="text-center"><a class="reporte" href="javascript:void(0);" title="Reporte de evaluación" ><i class="far fa-file-pdf fa-fw"></i></a></td>
                 </tr>
             <?php endforeach; } ?>
             </tbody>

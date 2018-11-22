@@ -161,6 +161,28 @@ switch ($operation)
         break;
 
 
+    case 'loadEao': //Abre el formulario de evaluacion anual de objetivos
+        $view->empleado = new Empleado($_POST['id_empleado']);
+        $view->label = 'Evaluación de objetivos: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
+
+        $view->aspectos_generales = (!$_POST['cerrado'])? EvaluacionAspectoGeneral::getAspectosGenerales($_POST['id_empleado'], $_POST['periodo']) : EvaluacionAspectoGeneral::getAspectosGenerales1($_POST['id_empleado'], $_POST['periodo']);
+        $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
+
+        $view->temp = EvaluacionAspectoGeneral::getPuntajes(); //trae todos los aspectos generales con todos sus puntajes
+        $view->puntajes = array();
+
+        //este foreach genera un array asociativo... donde cada aspecto general contiene un array por cada puntaje
+        foreach ($view->temp as $pu){
+            $view->puntajes[$pu['id_aspecto_general']][] = array('id_puntaje_aspecto_general' => $pu['id_puntaje_aspecto_general'], 'puntaje' => $pu['puntaje']);
+        }
+
+        $view->dias_paro = EvaluacionAspectoGeneral::getDiasParo($_POST['id_empleado']);
+
+        $view->disableLayout=true;
+        $view->contentTemplate="view/evaluaciones/evaluaciones-eaoForm.php";
+        break;
+
+
     case 'loadEac_help': //ok
         $view->puntaje_competencia = EvaluacionCompetencia::getPuntajesHelp();
         print_r(json_encode($view->puntaje_competencia));
