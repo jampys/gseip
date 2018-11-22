@@ -144,7 +144,8 @@ class PrivilegedUser
         $query = "select sur.id_user, sur.id_role, sr.nombre as role_name
 from sec_user_role sur, sec_roles sr
 where sur.id_role = sr.id_role
-and sur.id_user = :id_user";
+and sur.id_user = :id_user
+and sur.fecha_hasta is null";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_user', $this->id_user);
