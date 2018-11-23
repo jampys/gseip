@@ -40,7 +40,7 @@
 
         $('[data-toggle="popover"]').popover({html:true, placement: "right", container: "#modalEaag"});
 
-        function verticalTable(){
+        /*function verticalTable(){
 
             $("#table-box table").each(function () { //http://jsfiddle.net/zwdLj/
                 var $this = $(this);
@@ -61,14 +61,14 @@
                 });
             });
 
-        }
+        }*/
 
 
 
         $('.selectpicker').selectpicker();
 
         var jsonAspectosGenerales = [];
-        var jsonAspectosGeneralesHelp ={}; //objeto
+        //var jsonAspectosGeneralesHelp ={}; //objeto
 
 
         //carga un array con la descripcion de los puntajes de cada competencia
@@ -242,7 +242,12 @@
                             <?php foreach ($view->objetivos as $com){ ?>
 
                                 <div class="form-group">
-                                    <label for="" class="col-md-7 control-label"> <?php echo $com['nombre']; ?> </label>
+
+                                    <div class="col-md-7">
+                                        <div id="label-box" class="alert alert-info fade in">
+                                            <strong><?php echo $com['codigo'];?></strong>&nbsp;<?php echo $com['nombre']; ?>
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-2">
                                         <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
@@ -295,7 +300,8 @@
                                     <table class="table table-condensed dataTable table-hover">
 
                                         <?php foreach ($view->puntajes as $p){ ?>
-                                            <tr><td><?php echo $p['puntaje']; ?></td>
+                                            <tr>
+                                                <td><b><?php echo $p['puntaje']; ?></b></td>
                                                     <?php echo $p['descripcion']; ?>
                                             </tr>
                                         <?php } ?>
