@@ -265,11 +265,7 @@
 
 
                                             <a class="btn btn-default" href="#" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
-                                               data-content='<div class="progress" style="margin-bottom: 0px">
-                                                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($com['progreso'] <= 100)? $com['progreso']:100; ?>%; min-width: 2em">
-                                                                                    <?php echo $com['progreso']; ?>%
-                                                                </div>
-                                                            </div>'
+                                               data-content='<?php require('tutuca.php'); ?>'
 
                                                 >mas info...</a>
 
@@ -322,7 +318,7 @@
                 <?php }else{ ?>
                     <br/>
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> El puesto del empleado seleccionado no tiene nivel de competencias asociado.
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado seleccionado no tiene fijados objetivos para el periodo en cuestión.
                     </div>
                 <?php } ?>
 
