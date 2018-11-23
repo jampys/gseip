@@ -263,14 +263,16 @@
 
                                     <div class="col-md-3">
 
-                                        <?php if(true){ ?>
-                                            <!--<div class="alert alert-warning" role="alert" style="margin: 0; padding: 6px"> hola</div>-->
+
                                             <a class="btn btn-default" href="#" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
-                                               data-content="<table>
-                                                                <tr><td>Días de paro:&nbsp;</td><td class='text-danger'><?php echo $view->dias_paro[0]['cantidad'] ?></td></tr>
-                                                            </table>"
+                                               data-content='<div class="progress" style="margin-bottom: 0px">
+                                                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($com['progreso'] <= 100)? $com['progreso']:100; ?>%; min-width: 2em">
+                                                                                    <?php echo $com['progreso']; ?>%
+                                                                </div>
+                                                            </div>'
+
                                                 >mas info...</a>
-                                        <?php }  ?>
+
 
                                     </div>
 
@@ -302,7 +304,7 @@
                                         <?php foreach ($view->puntajes as $p){ ?>
                                             <tr>
                                                 <td><b><?php echo $p['puntaje']; ?></b></td>
-                                                    <?php echo $p['descripcion']; ?>
+                                                <td><?php echo $p['descripcion']; ?></td>
                                             </tr>
                                         <?php } ?>
 
