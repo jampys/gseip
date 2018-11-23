@@ -22,6 +22,7 @@
         font-family: 'Roboto', sans-serif;
         font-size: 13px;
     }
+    
 
 
 
@@ -208,7 +209,7 @@
 
 
 <!-- Modal -->
-<fieldset <?php echo ($view->params['cerrado'] || sizeof($view->aspectos_generales)== 0)? 'disabled': ''; //echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
+<fieldset <?php echo ($view->params['cerrado'] || sizeof($view->objetivos)== 0)? 'disabled': ''; //echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
 <div class="modal fade" id="modalEaag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -219,7 +220,7 @@
             <div class="modal-body">
 
 
-                <?php if(isset($view->aspectos_generales) && sizeof($view->aspectos_generales) > 0) {?>
+                <?php if(isset($view->objetivos) && sizeof($view->objetivos) > 0) {?>
 
                 <div class="row">
 
@@ -233,15 +234,15 @@
 
 
 
-                            <?php foreach ($view->aspectos_generales as $com){ ?>
+                            <?php foreach ($view->objetivos as $com){ ?>
 
                                 <div class="form-group">
                                     <label for="" class="col-md-5 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
 
                                     <div class="col-md-3">
                                         <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
-                                            <?php foreach ($view->puntajes[$com['id_aspecto_general']] as $p){ ?>
-                                                <option value="<?php echo $p['id_puntaje_aspecto_general']; ?>"
+                                            <?php foreach ($view->puntajes as $p){ ?>
+                                                <option value="<?php echo $p['id_puntaje_objetivo']; ?>"
                                                     <?php echo ($com['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
                                                     >
                                                     <?php echo $p['puntaje'];?>
@@ -252,7 +253,7 @@
 
                                     <div class="col-md-4">
 
-                                        <?php if($com['id_aspecto_general'] == 1){ ?>
+                                        <?php if(true){ ?>
                                             <!--<div class="alert alert-warning" role="alert" style="margin: 0; padding: 6px"> hola</div>-->
                                             <a class="btn btn-default" href="#" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
                                                data-content="<table>
@@ -279,7 +280,7 @@
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="label-box" class="alert alert-info fade in">
-                                Al presionar sobre el ícono <i class="fas fa-info-circle fa-fw"></i>&nbsp de cada aspecto general, podrá
+                                Aquí abajo se podrá
                                 visualizar la descripción del significado de cada puntaje.
                             </div>
 
@@ -287,7 +288,13 @@
                                 <div class="table-responsive">
 
                                     <table class="table table-condensed dataTable table-hover">
-                                        <!-- los contenidos se cargan dinamicamente desde javascript -->
+
+                                        <?php foreach ($view->puntajes as $p){ ?>
+                                            <tr><td><?php echo $p['puntaje']; ?></td>
+                                                    <?php echo $p['descripcion']; ?>
+                                            </tr>
+                                        <?php } ?>
+
                                     </table>
 
                                 </div>

@@ -3,6 +3,7 @@
 include_once("model/evaluacionesModel.php");
 include_once("model/evaluacionesCompetenciasModel.php");
 include_once("model/evaluacionesAspectosGeneralesModel.php");
+include_once("model/evaluacionesObjetivosModel.php");
 include_once("model/contratosModel.php");
 include_once("model/empleadosModel.php");
 
@@ -165,18 +166,11 @@ switch ($operation)
         $view->empleado = new Empleado($_POST['id_empleado']);
         $view->label = 'Evaluación de objetivos: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
 
-        $view->aspectos_generales = (!$_POST['cerrado'])? EvaluacionAspectoGeneral::getAspectosGenerales($_POST['id_empleado'], $_POST['periodo']) : EvaluacionAspectoGeneral::getAspectosGenerales1($_POST['id_empleado'], $_POST['periodo']);
+        $view->objetivos = (!$_POST['cerrado'])? EvaluacionObjetivo::getObjetivos($_POST['id_empleado'], $_POST['periodo']) : EvaluacionObjetivo::getObjetivos1($_POST['id_empleado'], $_POST['periodo']);
         $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
+        $view->puntajes = EvaluacionObjetivo::getPuntajes();
 
-        $view->temp = EvaluacionAspectoGeneral::getPuntajes(); //trae todos los aspectos generales con todos sus puntajes
-        $view->puntajes = array();
-
-        //este foreach genera un array asociativo... donde cada aspecto general contiene un array por cada puntaje
-        foreach ($view->temp as $pu){
-            $view->puntajes[$pu['id_aspecto_general']][] = array('id_puntaje_aspecto_general' => $pu['id_puntaje_aspecto_general'], 'puntaje' => $pu['puntaje']);
-        }
-
-        $view->dias_paro = EvaluacionAspectoGeneral::getDiasParo($_POST['id_empleado']);
+        //$view->dias_paro = EvaluacionAspectoGeneral::getDiasParo($_POST['id_empleado']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/evaluaciones/evaluaciones-eaoForm.php";

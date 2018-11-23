@@ -66,10 +66,10 @@ class EvaluacionObjetivo
 
 
 
-    public static function getAspectosGenerales($id_empleado, $periodo) {
+    public static function getObjetivos($id_empleado, $periodo) {
         //para planes abiertos (vigentes)
         $stmt=new sQuery();
-        $query="select agnc.id_nivel_competencia, ag.id_aspecto_general, ag.nombre,
+        /*$query="select agnc.id_nivel_competencia, ag.id_aspecto_general, ag.nombre,
 ead_eag.id_evaluacion_aspecto_general, ead_pag.puntaje
 from empleados em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
@@ -79,7 +79,13 @@ join aspectos_generales ag on agnc.id_aspecto_general = ag.id_aspecto_general
 left join ead_evaluacion_aspecto_general ead_eag on ag.id_aspecto_general = ead_eag.id_aspecto_general and ead_eag.id_empleado = em.id_empleado and ead_eag.periodo = :periodo
 left join ead_puntaje_aspecto_general ead_pag on ead_eag.id_puntaje_aspecto_general = ead_pag.id_puntaje_aspecto_general
 where em.id_empleado = :id_empleado
-group by ag.id_aspecto_general";
+group by ag.id_aspecto_general";*/
+        $query="select *
+from obj_objetivos o
+left join ead_evaluacion_objetivo ead_eo on o.id_responsable_ejecucion = ead_eo.id_empleado and ead_eo.periodo = 2018
+left join ead_puntaje_objetivo ead_po on ead_eo.id_puntaje_objetivo = ead_po.id_puntaje_objetivo
+where o.id_responsable_ejecucion = 41";
+
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpBind(':periodo', $periodo);
@@ -88,7 +94,7 @@ group by ag.id_aspecto_general";
     }
 
 
-    public static function getAspectosGenerales1($id_empleado, $periodo) { //QUEDARIA OBSOLETA 22/11/2018
+    public static function getObjetivos1($id_empleado, $periodo) { //QUEDARIA OBSOLETA 22/11/2018
         //para planes cerrados
         $stmt=new sQuery();
         $query="select null as id_nivel_competencia,
@@ -184,20 +190,22 @@ where em.id_empleado = :id_empleado";
     }
 
 
-    public static function getPuntajes() {
+    public static function getPuntajes() { //ok
         // obtengo los puntajes que tienen los objetivos
         $stmt=new sQuery();
-        $query="select pag.id_puntaje_aspecto_general, pag.id_aspecto_general, pag.descripcion, ag.codigo, ag.nombre, pag.puntaje
+        /*$query="select pag.id_puntaje_aspecto_general, pag.id_aspecto_general, pag.descripcion, ag.codigo, ag.nombre, pag.puntaje
                 from ead_puntaje_aspecto_general pag
                 join aspectos_generales ag on pag.id_aspecto_general = ag.id_aspecto_general
-                order by ag.id_aspecto_general, pag.puntaje";
+                order by ag.id_aspecto_general, pag.puntaje";*/
+        $query="select *
+        from ead_puntaje_objetivo";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
 
-    public static function getPuntajesHelp() {
+    public static function getPuntajesHelp() { // NO HARIA FALTA
         //obtengo la descripcion de los puntajes de todos los objetivos
         $stmt=new sQuery();
         $query="select pag.*, ag.nombre, ag.definicion
