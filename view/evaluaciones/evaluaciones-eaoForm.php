@@ -22,7 +22,12 @@
         font-family: 'Roboto', sans-serif;
         font-size: 13px;
     }
-    
+
+
+    .modal-dialog{
+        width:80%;
+    }
+
 
 
 
@@ -67,7 +72,7 @@
 
 
         //carga un array con la descripcion de los puntajes de cada competencia
-        $.ajax({
+        /*$.ajax({
             url:"index.php",
             type:"post",
             data:{"action": "evaluaciones", "operation": "loadEaag_help"},
@@ -88,7 +93,7 @@
                 //alert(jsonAspectosGeneralesHelp[1][0]['descripcion']);
             }
 
-        });
+        });*/
 
 
 
@@ -109,7 +114,7 @@
 
 
         //Al presionar el icono (i) de cada label
-        $('#modalEaag').on("click", ".help_puntaje", function(e){
+        /*$('#modalEaag').on("click", ".help_puntaje", function(e){
 
             var id = $(this).closest('.form-group').find('select').attr('id');
             var label = jsonAspectosGeneralesHelp[id][0]['nombre'];
@@ -132,7 +137,7 @@
             //verticalTable();
 
 
-        });
+        });*/
 
 
 
@@ -224,7 +229,7 @@
 
                 <div class="row">
 
-                    <div class="col-md-5" id="select-box">
+                    <div class="col-md-6" id="select-box">
 
                         <form class="form-horizontal" name ="eaag-form" id="eaag-form" method="POST" action="index.php">
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
@@ -237,9 +242,9 @@
                             <?php foreach ($view->objetivos as $com){ ?>
 
                                 <div class="form-group">
-                                    <label for="" class="col-md-5 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
+                                    <label for="" class="col-md-7 control-label"> <?php echo $com['nombre']; ?> </label>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
                                             <?php foreach ($view->puntajes as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje_objetivo']; ?>"
@@ -251,7 +256,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
 
                                         <?php if(true){ ?>
                                             <!--<div class="alert alert-warning" role="alert" style="margin: 0; padding: 6px"> hola</div>-->
@@ -275,7 +280,7 @@
                     </div>
 
 
-                    <div class="col-md-7" id="help-box">
+                    <div class="col-md-6" id="help-box">
 
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
