@@ -88,7 +88,7 @@ group by ag.id_aspecto_general";
     }
 
 
-    public static function getAspectosGenerales1($id_empleado, $periodo) {
+    public static function getAspectosGenerales1($id_empleado, $periodo) { //QUEDARIA OBSOLETA 22/11/2018
         //para planes cerrados
         $stmt=new sQuery();
         $query="select null as id_nivel_competencia,
@@ -109,20 +109,20 @@ where em.id_empleado = :id_empleado";
     }
 
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select * from ead_evaluacion_aspecto_general where id_evaluacion_aspecto_general = :nro";
+            $query="select * from ead_evaluacion_objetivo where id_evaluacion_objetivo = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdEvaluacionAspectoGeneral($rows[0]['id_evaluacion_aspecto_general']);
-            $this->setIdAspectoGeneral($rows[0]['id_aspecto_general']);
-            $this->setIdPuntajeAspectoGeneral($rows[0]['id_puntaje_aspecto_general']);
+            $this->setIdEvaluacionObjetivo($rows[0]['id_evaluacion_objetivo']);
+            $this->setIdObjetivo($rows[0]['id_objetivo']);
+            $this->setIdPuntajeObjetivo($rows[0]['id_puntaje_objetivo']);
             $this->setFecha($rows[0]['fecha']);
             $this->setIdEvaluador($rows[0]['id_evaluador']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
@@ -134,38 +134,38 @@ where em.id_empleado = :id_empleado";
 
 
 
-    function save(){
-        if($this->id_evaluacion_aspecto_general)
-        {$rta = $this->updateEvaluacionAspectoGeneral();}
+    function save(){ //ok
+        if($this->id_evaluacion_objetivo)
+        {$rta = $this->updateEvaluacionObjetivo();}
         else
-        {$rta =$this->insertEvaluacionAspectoGeneral();}
+        {$rta =$this->insertEvaluacionObjetivo();}
         return $rta;
     }
 
 
-    public function updateEvaluacionAspectoGeneral(){
+    public function updateEvaluacionObjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="update ead_evaluacion_aspecto_general set
-                id_puntaje_aspecto_general = :id_puntaje_aspecto_general,
+        $query="update ead_evaluacion_objetivo set
+                id_puntaje_objetivo = :id_puntaje_objetivo,
                 id_evaluador=  :id_evaluador
-                where id_evaluacion_aspecto_general = :id_evaluacion_aspecto_general";
+                where id_evaluacion_objetivo = :id_evaluacion_objetivo";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_puntaje_aspecto_general', $this->getIdPuntajeAspectoGeneral());
+        $stmt->dpBind(':id_puntaje_objetivo', $this->getIdPuntajeObjetivo());
         $stmt->dpBind(':id_evaluador', $this->getIdEvaluador());
-        $stmt->dpBind(':id_evaluacion_aspecto_general', $this->getIdEvaluacionAspectoGeneral());
+        $stmt->dpBind(':id_evaluacion_objetivo', $this->getIdEvaluacionObjetivo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
-    private function insertEvaluacionAspectoGeneral(){
+    private function insertEvaluacionObjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into ead_evaluacion_aspecto_general(id_aspecto_general, id_puntaje_aspecto_general, fecha, id_evaluador, id_empleado, id_plan_evaluacion, periodo)
-                values(:id_aspecto_general, :id_puntaje_aspecto_general, date(sysdate()), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo)";
+        $query="insert into ead_evaluacion_objetivo(id_objetivo, id_puntaje_objetivo, fecha, id_evaluador, id_empleado, id_plan_evaluacion, periodo)
+                values(:id_objetivo, :id_puntaje_objetivo, date(sysdate()), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_aspecto_general', $this->getIdAspectoGeneral());
-        $stmt->dpBind(':id_puntaje_aspecto_general', $this->getIdPuntajeAspectoGeneral());
+        $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
+        $stmt->dpBind(':id_puntaje_objetivo', $this->getIdPuntajeObjetivo());
         $stmt->dpBind(':id_evaluador', $this->getIdEvaluador());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpBind(':id_plan_evaluacion', $this->getIdPlanEvaluacion());
@@ -185,7 +185,7 @@ where em.id_empleado = :id_empleado";
 
 
     public static function getPuntajes() {
-        // obtengo los puntajes que tienen los aspectos generales
+        // obtengo los puntajes que tienen los objetivos
         $stmt=new sQuery();
         $query="select pag.id_puntaje_aspecto_general, pag.id_aspecto_general, pag.descripcion, ag.codigo, ag.nombre, pag.puntaje
                 from ead_puntaje_aspecto_general pag
@@ -198,7 +198,7 @@ where em.id_empleado = :id_empleado";
 
 
     public static function getPuntajesHelp() {
-        //obtengo la descripcion de los puntajes de todas las competencias
+        //obtengo la descripcion de los puntajes de todos los objetivos
         $stmt=new sQuery();
         $query="select pag.*, ag.nombre, ag.definicion
                 from ead_puntaje_aspecto_general pag
@@ -210,7 +210,7 @@ where em.id_empleado = :id_empleado";
     }
 
     public static function getDiasParo($id_empleado) {
-        //funcion creada de manera temporal, hasta que desde el modulo de competencias se obtenga esta informacion
+        //funcion creada ....
         $stmt=new sQuery();
         $query="select cantidad
 from tmp_dias_paro
