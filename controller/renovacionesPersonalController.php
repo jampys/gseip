@@ -32,11 +32,10 @@ switch ($operation)
         $renovacion->setIdVencimiento($_POST['id_vencimiento']);
         $renovacion->setFechaEmision($_POST['fecha_emision']);
         $renovacion->setFechaVencimiento($_POST['fecha_vencimiento']);
-        //$renovacion->setIdEmpleado($_POST['id_empleado']);
         $renovacion->setIdEmpleado ( ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null);
-        //$renovacion->setIdGrupo($_POST['id_grupo']);
         $renovacion->setIdGrupo ( ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null);
         $renovacion->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
+        $renovacion->setReferencia($_POST['referencia']);
 
         $rta = $renovacion->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
@@ -77,6 +76,7 @@ switch ($operation)
         $view->renovacion->setIdRenovacion('');
         $view->renovacion->setFechaEmision('');
         $view->renovacion->setFechaVencimiento('');
+        $view->renovacion->setReferencia('');
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
         $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
