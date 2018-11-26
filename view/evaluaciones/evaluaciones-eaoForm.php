@@ -104,13 +104,12 @@
 
 
         /* validacion del formulario */
-        $.validator.addMethod("requerido", $.validator.methods.required, "Seleccione un puntaje");
-        jQuery.validator.addClassRules('selectpicker', {
-            requerido: true
+        $.validator.addMethod("cRequired", $.validator.methods.required, "Ingrese la ponderación");
+        $.validator.addMethod("cRange", $.validator.methods.range, "Ingrese un valor entre 0 y 100");
+        jQuery.validator.addClassRules('ponderacion', {
+            cRequired: true,
+            cRange: [0, 100]
         });
-
-        $('#eao-form').validate();
-
 
 
         //Al presionar el icono (i) de cada label
@@ -168,13 +167,16 @@
         //Al guardar una evaluacion de aspectos generales
         $('#modalEao').on('click', '#submit',function(){
             //alert('guardar evaluacion aspectos generales');
-            //if ($("#eac-form").valid()){
+            if ($("#eao-form").valid()){
                 var params={};
                 params.action = 'evaluaciones';
                 params.operation = 'saveEao';
                 params.periodo = $('#periodo').val();
                 params.cerrado = $('#cerrado').val();
                 //alert(params.id_compania);
+
+                alert('Fin de la prueba');
+                throw new Error();
 
                 var jsonAspectosGeneralesIx = $.map(jsonAspectosGenerales, function(item){ return item;} );
                 params.vAspectosGenerales = JSON.stringify(jsonAspectosGeneralesIx);
@@ -197,7 +199,7 @@
 
                 }, 'json');
 
-            //}
+            }
             return false;
         });
 
@@ -262,7 +264,7 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <input class="form-control" type="text" name="ponderacion" id="ponderacion" value = "<?php //print $view->grupo->getNombre() ?>" placeholder="Pond.">
+                                        <input class="form-control ponderacion" type="text" value = "<?php //print $view->grupo->getNombre() ?>" placeholder="Pond.">
                                     </div>
 
                                     <div class="col-md-2">
