@@ -243,7 +243,7 @@
 
                                 <div class="form-group">
 
-                                    <div class="col-md-7">
+                                    <div class="col-md-6">
                                         <div id="label-box" class="alert alert-info fade in">
                                             <strong><?php echo $com['codigo'];?></strong>&nbsp;<?php echo $com['nombre']; ?>
                                         </div>
@@ -261,14 +261,19 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
 
+                                            <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php //print $view->grupo->getNombre() ?>" placeholder="Nombre">
+
+
+                                    </div>
+
+                                    <div class="col-md-2">
 
                                             <a class="btn btn-default" href="#" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
                                                data-content='<?php require('tutuca.php'); ?>'
 
                                                 >mas info...</a>
-
 
                                     </div>
 
