@@ -141,7 +141,7 @@
 
 
         // Al presionar alguno de los select de puntajes
-        $('#modalEaag').on('change', ".selectpicker", function(e){
+        $('#modalEao').on('change', ".selectpicker", function(e){
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
             item.id_evaluacion_objetivo = $(this).attr('id_evaluacion_objetivo');
