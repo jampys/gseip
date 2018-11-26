@@ -67,7 +67,7 @@
 
         $('.selectpicker').selectpicker();
 
-        var jsonAspectosGenerales = [];
+        var jsonObjetivos = [];
         //var jsonAspectosGeneralesHelp ={}; //objeto
 
 
@@ -141,7 +141,7 @@
 
 
         // Al presionar alguno de los select de puntajes
-        $('#modalEao').on('change', ".selectpicker", function(e){
+        $('#modalEao').on('change', ".selectpicker, .ponderacion", function(e){
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
             item.id_evaluacion_objetivo = $(this).attr('id_evaluacion_objetivo');
@@ -150,23 +150,25 @@
             item.id_empleado = $('#id_empleado').val();
             item.id_plan_evaluacion = $('#id_plan_evaluacion').val();
             item.periodo = $('#periodo').val();
+            item.ponderacion = $(this).closest('.ponderacion').val();
+            alert('Ponderacion: '+item.ponderacion);
 
-            if(jsonAspectosGenerales[item.id_aspecto_general]) {
-                jsonAspectosGenerales[item.id_aspecto_general].id_puntaje_aspecto_general = item.id_puntaje_aspecto_general;
-                //alert('el elemento existe '+jsonAspectosGenerales[item.id_competencia].id_puntaje);
+            if(jsonObjetivos[item.id_objetivo]) {
+                jsonObjetivos[item.id_objetivo].id_puntaje_objetivo = item.id_puntaje_objetivo;
+                //alert('el elemento existe '+jsonObjetivos[item.id_competencia].id_puntaje);
             }
             else { //si no existe, lo agrega
-                jsonAspectosGenerales[item.id_aspecto_general] =item;
-                //alert('el elemento No existe '+jsonAspectosGenerales[item.id_competencia].id_puntaje);
+                jsonObjetivos[item.id_objetivo] =item;
+                //alert('el elemento No existe '+jsonObjetivos[item.id_competencia].id_puntaje);
             }
 
         });
 
 
 
-        //Al guardar una evaluacion de aspectos generales
+        //Al guardar una evaluacion de objetivos
         $('#modalEao').on('click', '#submit',function(){
-            //alert('guardar evaluacion aspectos generales');
+            //alert('guardar evaluacion objetivos');
             if ($("#eao-form").valid()){
                 var params={};
                 params.action = 'evaluaciones';
@@ -178,8 +180,8 @@
                 alert('Fin de la prueba');
                 throw new Error();
 
-                var jsonAspectosGeneralesIx = $.map(jsonAspectosGenerales, function(item){ return item;} );
-                params.vAspectosGenerales = JSON.stringify(jsonAspectosGeneralesIx);
+                var jsonObjetivosIx = $.map(jsonObjetivos, function(item){ return item;} );
+                params.vObjetivos = JSON.stringify(jsonObjetivosIx);
 
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -187,14 +189,14 @@
                     //alert(xhr.responseText);
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Evaluación de aspectos generales guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Evaluación de objetivos guardada con exito').addClass('alert alert-success').show();
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#modalEaag').modal('hide');
                                               }, 2000);
 
                     }else{
-                        $("#myElem").html('Error al guardar evaluación de aspectos generales').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar evaluación de objetivos').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
