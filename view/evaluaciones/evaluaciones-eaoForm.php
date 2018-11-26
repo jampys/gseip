@@ -144,9 +144,9 @@
         $('#modalEaag').on('change', ".selectpicker", function(e){
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
-            item.id_evaluacion_aspecto_general = $(this).attr('id_evaluacion_aspecto_general');
-            item.id_aspecto_general = $(this).attr('id');
-            item.id_puntaje_aspecto_general = $(this).val();
+            item.id_evaluacion_objetivo = $(this).attr('id_evaluacion_objetivo');
+            item.id_objetivo = $(this).attr('id');
+            item.id_puntaje_objetivo = $(this).val();
             item.id_empleado = $('#id_empleado').val();
             item.id_plan_evaluacion = $('#id_plan_evaluacion').val();
             item.periodo = $('#periodo').val();
