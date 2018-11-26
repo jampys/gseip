@@ -239,21 +239,21 @@
 
 
 
-                            <?php foreach ($view->objetivos as $com){ ?>
+                            <?php foreach ($view->objetivos as $obj){ ?>
 
                                 <div class="form-group">
 
                                     <div class="col-md-6">
                                         <div id="label-box" class="alert alert-info fade in">
-                                            <strong><?php echo $com['codigo'];?></strong>&nbsp;<?php echo $com['nombre']; ?>
+                                            <strong><?php echo $obj['codigo'];?></strong>&nbsp;<?php echo $obj['nombre']; ?>
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
-                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
+                                        <select class="form-control selectpicker show-tick" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>" title="-" data-live-search="true" data-size="5">
                                             <?php foreach ($view->puntajes as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje_objetivo']; ?>"
-                                                    <?php echo ($com['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
+                                                    <?php echo ($obj['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
                                                     >
                                                     <?php echo $p['puntaje'];?>
                                                 </option>
@@ -262,10 +262,7 @@
                                     </div>
 
                                     <div class="col-md-2">
-
-                                            <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php //print $view->grupo->getNombre() ?>" placeholder="Nombre">
-
-
+                                        <input class="form-control" type="text" name="ponderacion" id="ponderacion" value = "<?php //print $view->grupo->getNombre() ?>" placeholder="Pond.">
                                     </div>
 
                                     <div class="col-md-2">
@@ -273,7 +270,7 @@
                                             <a class="btn btn-default" href="#" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
                                                data-content='<?php require('tutuca.php'); ?>'
 
-                                                >mas info...</a>
+                                                >mas...</a>
 
                                     </div>
 
