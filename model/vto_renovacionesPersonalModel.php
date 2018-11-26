@@ -12,6 +12,7 @@ class RenovacionPersonal
     private $fecha;
     private $id_rnv_renovacion; //id_renovacion que le sigue
     private $disabled;
+    private $referencia;
 
     private $empleado;
 
@@ -48,6 +49,9 @@ class RenovacionPersonal
     function getDisabled()
     { return $this->disabled;}
 
+    function getReferencia()
+    { return $this->referencia;}
+
 
     //SETTERS
     function setIdRenovacion($val)
@@ -77,6 +81,9 @@ class RenovacionPersonal
     function setDisabled($val)
     { $this->disabled=$val;}
 
+    function setReferencia($val)
+    { $this->referencia=$val;}
+
 
 
     function __construct($nro=0){ //constructor //ok
@@ -86,7 +93,7 @@ class RenovacionPersonal
             $query = "select id_renovacion, id_vencimiento, id_empleado, id_grupo,
                     DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
                     DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion, disabled
+                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion, disabled, referencia
                     from vto_renovacion_p
                     where id_renovacion = :nro";
             $stmt->dpPrepare($query);
@@ -103,6 +110,7 @@ class RenovacionPersonal
             $this->setFecha($rows[0]['fecha']);
             $this->setIdRnvRenovacion($rows[0]['id_rnv_renovacion']);
             $this->setDisabled($rows[0]['disabled']);
+            $this->setReferencia($rows[0]['referencia']);
 
             $this->empleado = new Empleado($rows[0]['id_empleado']);
         }
@@ -169,7 +177,7 @@ vvp.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
 null as empleado,
-CONCAT(vgp.nombre, ' ', ifnull(vgp.numero, '')) as grupo,
+CONCAT(vgp.nombre, ' ', ifnull(vgp.nro_referencia, '')) as grupo,
 vrp.id_rnv_renovacion,
 (select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads
 from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, vto_alerta va, vto_grupos_p vgp
@@ -216,13 +224,15 @@ order by priority, id_rnv_renovacion asc";
         $query="update vto_renovacion_p set id_vencimiento =:id_vencimiento,
                       fecha_emision = STR_TO_DATE(:fecha_emision, '%d/%m/%Y'),
                       fecha_vencimiento = STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'),
-                      disabled = STR_TO_DATE(:disabled, '%d/%m/%Y')
+                      disabled = STR_TO_DATE(:disabled, '%d/%m/%Y'),
+                      referencia = :referencia
                 where id_renovacion =:id_renovacion";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
         $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
         $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
         $stmt->dpBind(':disabled', $this->getDisabled());
+        $stmt->dpBind(':referencia', $this->getReferencia());
         $stmt->dpBind(':id_renovacion', $this->getIdRenovacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -248,6 +258,7 @@ order by priority, id_rnv_renovacion asc";
                                         :id_grupo,
                                         :fecha_emision,
                                         :fecha_vencimiento,
+                                        :referencia,
                                         @flag
                                     )';
 
@@ -258,6 +269,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpBind(':id_grupo', $this->getIdGrupo());
         $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
         $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
+        $stmt->dpBind(':referencia', $this->getReferencia());
 
         $stmt->dpExecute();
 
@@ -397,7 +409,7 @@ from vto_grupos_p";*/
 from empleados
 where fecha_baja is null
 UNION
-select null, id_grupo, concat(nombre, ' ', ifnull(numero, '')) as descripcion, id_vencimiento
+select null, id_grupo, concat(nombre, ' ', ifnull(nro_referencia, '')) as descripcion, id_vencimiento
 from vto_grupos_p) eg
 order by eg.descripcion";
 

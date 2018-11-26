@@ -133,6 +133,7 @@
                 params.fecha_emision = $('#fecha_emision').val();
                 params.fecha_vencimiento = $('#fecha_vencimiento').val();
                 params.disabled = $('#disabled').prop('checked')? 1:0;
+                params.referencia = $('#referencia').val();
 
                 //alert(params.id_grupo);
 
@@ -237,7 +238,8 @@
         $("#myModal #id_empleado").on('changed.bs.select', function (e) { //ok
             //Al seleccionar un grupo, completa automaticamente el campo vencimiento y lo deshabilita.
             if ($('#id_empleado option:selected').attr('id_grupo') !='') {
-                $('#id_vencimiento').selectpicker('val', $('#id_empleado option:selected').attr('id_vencimiento')).prop('disabled', true).selectpicker('refresh');
+                //$('#id_vencimiento').selectpicker('val', $('#id_empleado option:selected').attr('id_vencimiento')).prop('disabled', true).selectpicker('refresh');
+                $('#id_vencimiento').selectpicker('val', $('#id_empleado option:selected').attr('id_vencimiento')).selectpicker('refresh');
             }
             else{
                 $('#id_vencimiento').selectpicker('val', '').prop('disabled', false).selectpicker('refresh');
@@ -305,6 +307,12 @@
                                     </option>
                                 <?php  } ?>
                             </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="referencia">Referencia</label>
+                        <input class="form-control" type="text" name="referencia" id="referencia" value = "<?php print $view->renovacion->getReferencia() ?>" placeholder="Referencia">
                     </div>
 
 

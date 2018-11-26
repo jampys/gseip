@@ -176,7 +176,6 @@ vvv.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
 null as vehiculo,
--- CONCAT(vgv.nombre, ' ', vgv.nro_referencia) as grupo,
 CONCAT(vgv.nombre, ' ', ifnull(vgv.nro_referencia, '')) as grupo,
 vrv.id_rnv_renovacion,
 (select count(*) from uploads_vencimiento_v where id_renovacion = vrv.id_renovacion) as cant_uploads
