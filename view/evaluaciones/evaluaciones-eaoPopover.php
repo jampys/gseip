@@ -5,8 +5,8 @@
     <div class="col-md-9">
 
         <div class="progress" style="margin-bottom: 0px">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($com['progreso'] <= 100)? $com['progreso']:100; ?>%; min-width: 2em">
-                <?php echo $com['progreso']; ?>%
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($obj['progreso'] <= 100)? $obj['progreso']:100; ?>%; min-width: 2em">
+                <?php echo $obj['progreso']; ?>%
             </div>
         </div>
 
@@ -24,7 +24,7 @@
         <b>Meta</b>
     </div>
     <div class="col-md-9">
-        <p><?php echo $com['meta']; ?></p>
+        <p><?php echo $obj['meta']; ?></p>
     </div>
 </div>
 
@@ -33,7 +33,7 @@
         <b>Indicador</b>
     </div>
     <div class="col-md-9">
-        <p><?php echo $com['indicador']; ?></p>
+        <p><?php echo $obj['indicador']; ?></p>
     </div>
 </div>
 
@@ -42,6 +42,6 @@
         <b>Valor</b>
     </div>
     <div class="col-md-9">
-        <p><?php echo $com['meta_valor']; ?></p>
+        <p><?php echo $obj['meta_valor']; ?></p>
     </div>
 </div>

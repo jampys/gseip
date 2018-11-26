@@ -97,7 +97,7 @@
 
 
 
-        $('#modalEaag').modal({
+        $('#modalEao').modal({
             backdrop: 'static',
             keyboard: false
         });
@@ -109,7 +109,7 @@
             requerido: true
         });
 
-        $('#eaag-form').validate();
+        $('#eao-form').validate();
 
 
 
@@ -166,12 +166,12 @@
 
 
         //Al guardar una evaluacion de aspectos generales
-        $('#modalEaag').on('click', '#submit',function(){
+        $('#modalEao').on('click', '#submit',function(){
             //alert('guardar evaluacion aspectos generales');
             //if ($("#eac-form").valid()){
                 var params={};
                 params.action = 'evaluaciones';
-                params.operation = 'saveEaag';
+                params.operation = 'saveEao';
                 params.periodo = $('#periodo').val();
                 params.cerrado = $('#cerrado').val();
                 //alert(params.id_compania);
@@ -215,7 +215,7 @@
 
 <!-- Modal -->
 <fieldset <?php echo ($view->params['cerrado'] || sizeof($view->objetivos)== 0)? 'disabled': ''; //echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
-<div class="modal fade" id="modalEaag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modalEao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -231,7 +231,7 @@
 
                     <div class="col-md-6" id="select-box">
 
-                        <form class="form-horizontal" name ="eaag-form" id="eaag-form" method="POST" action="index.php">
+                        <form class="form-horizontal" name ="eao-form" id="eao-form" method="POST" action="index.php">
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
                             <input type="hidden" name="id_plan_evaluacion" id="id_plan_evaluacion" value="<?php print $view->params['id_plan_evaluacion']; ?>" >
                             <input type="hidden" name="periodo" id="periodo" value="<?php print $view->params['periodo']; ?>" >
@@ -268,7 +268,7 @@
                                     <div class="col-md-2">
 
                                             <a class="btn btn-default" href="#" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
-                                               data-content='<?php require('tutuca.php'); ?>'
+                                               data-content='<?php require('evaluaciones-eaoPopover.php'); ?>'
 
                                                 >mas...</a>
 
