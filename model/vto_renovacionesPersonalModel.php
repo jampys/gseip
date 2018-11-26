@@ -177,7 +177,7 @@ vvp.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
 null as empleado,
-CONCAT(vgp.nombre, ' ', ifnull(vgp.numero, '')) as grupo,
+CONCAT(vgp.nombre, ' ', ifnull(vgp.nro_referencia, '')) as grupo,
 vrp.id_rnv_renovacion,
 (select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads
 from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, vto_alerta va, vto_grupos_p vgp
