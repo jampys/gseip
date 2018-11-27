@@ -276,7 +276,10 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <input class="form-control ponderacion" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" placeholder="Pond.">
+                                        <div class="input-group">
+                                            <input class="form-control ponderacion" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" >
+                                            <div class="input-group-addon">%</div>
+                                        </div>
                                     </div>
 
 
