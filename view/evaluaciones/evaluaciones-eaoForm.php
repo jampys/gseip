@@ -154,10 +154,12 @@
             item.id_plan_evaluacion = $('#id_plan_evaluacion').val();
             item.periodo = $('#periodo').val();
             item.ponderacion = $(this).closest('.form-group').find('.ponderacion').val();
-            alert('eval objetivo: '+item.ponderacion);
+            //alert('ponderacion: '+item.ponderacion);
+            //throw new Error();
 
             if(jsonObjetivos[item.id_objetivo]) {
                 jsonObjetivos[item.id_objetivo].id_puntaje_objetivo = item.id_puntaje_objetivo;
+                jsonObjetivos[item.id_objetivo].ponderacion = item.ponderacion;
                 //alert('el elemento existe '+jsonObjetivos[item.id_competencia].id_puntaje);
             }
             else { //si no existe, lo agrega

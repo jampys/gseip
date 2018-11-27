@@ -138,6 +138,7 @@ switch ($operation)
                 $evaluacion_objetivo->setIdEvaluador($_SESSION["id_user"]);
                 $evaluacion_objetivo->setIdPlanEvaluacion($vO['id_plan_evaluacion']);
                 $evaluacion_objetivo->setPeriodo($vO['periodo']);
+                $evaluacion_objetivo->setPonderacion($vO['ponderacion']);
 
                 //echo 'id objetivo sub: '.$vS['id_objetivo_sub'].'---';
 
