@@ -153,7 +153,7 @@
             item.id_empleado = $('#id_empleado').val();
             item.id_plan_evaluacion = $('#id_plan_evaluacion').val();
             item.periodo = $('#periodo').val();
-            item.ponderacion = $(this).closest('.form-group').find('.ponderacion').val();
+            item.ponderacion = $(this).closest('.fila').find('.ponderacion').val();
             //alert('ponderacion: '+item.ponderacion);
             //throw new Error();
 
