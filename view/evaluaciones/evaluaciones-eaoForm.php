@@ -248,7 +248,7 @@
                                 <div class="form-group">
 
                                     <div class="col-md-8">
-                                        <div id="label-box" class="alert alert-info fade in">
+                                        <div id="label-box">
                                             <strong><?php echo $obj['codigo'];?></strong>&nbsp;<?php echo $obj['nombre']; ?>
 
                                             <a href="#" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
