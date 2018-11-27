@@ -247,9 +247,14 @@
 
                                 <div class="form-group">
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                         <div id="label-box" class="alert alert-info fade in">
                                             <strong><?php echo $obj['codigo'];?></strong>&nbsp;<?php echo $obj['nombre']; ?>
+
+                                            <a href="#" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
+                                               data-content='<?php require('evaluaciones-eaoPopover.php'); ?>'
+
+                                                >ver mas</a>
                                         </div>
                                     </div>
 
@@ -269,14 +274,6 @@
                                         <input class="form-control ponderacion" type="text" value = "<?php //print $view->grupo->getNombre() ?>" placeholder="Pond.">
                                     </div>
 
-                                    <div class="col-md-2">
-
-                                            <a class="btn btn-default" href="#" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
-                                               data-content='<?php require('evaluaciones-eaoPopover.php'); ?>'
-
-                                                >mas...</a>
-
-                                    </div>
 
                                 </div>
 
