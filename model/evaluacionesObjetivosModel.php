@@ -93,9 +93,10 @@ ead_eo.id_evaluacion_objetivo, ead_eo.ponderacion, ead_eo.id_puntaje_objetivo,
 ead_po.puntaje,
 func_obj_progress(o.id_objetivo) as progreso
 from obj_objetivos o
-left join ead_evaluacion_objetivo ead_eo on o.id_responsable_ejecucion = ead_eo.id_empleado and ead_eo.periodo = :periodo
+left join ead_evaluacion_objetivo ead_eo on ead_eo.id_objetivo = o.id_objetivo and o.id_responsable_ejecucion = ead_eo.id_empleado
 left join ead_puntaje_objetivo ead_po on ead_eo.id_puntaje_objetivo = ead_po.id_puntaje_objetivo
-where o.id_responsable_ejecucion = :id_empleado";
+where o.id_responsable_ejecucion = :id_empleado
+and o.periodo = :periodo";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
