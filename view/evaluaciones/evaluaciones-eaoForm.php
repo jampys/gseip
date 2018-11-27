@@ -147,9 +147,9 @@
             /*item.id_evaluacion_objetivo = $(this).attr('id_evaluacion_objetivo');
             item.id_objetivo = $(this).attr('id');
             item.id_puntaje_objetivo = $(this).val(); */
-            item.id_evaluacion_objetivo = $(this).closest('.form-group').attr('id_evaluacion_objetivo');
-            item.id_objetivo = $(this).closest('.form-group').attr('id');
-            item.id_puntaje_objetivo = $(this).closest('.form-group').find('.selectpicker').val();
+            item.id_evaluacion_objetivo = $(this).closest('.fila').attr('id_evaluacion_objetivo');
+            item.id_objetivo = $(this).closest('.fila').attr('id');
+            item.id_puntaje_objetivo = $(this).closest('.fila').find('.selectpicker').val();
             item.id_empleado = $('#id_empleado').val();
             item.id_plan_evaluacion = $('#id_plan_evaluacion').val();
             item.periodo = $('#periodo').val();
@@ -250,7 +250,7 @@
 
                             <?php foreach ($view->objetivos as $obj){ ?>
 
-                                <div id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
+                                <div class="fila" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
 
                                     <div class="col-md-8">
                                         <div class="form-group">
