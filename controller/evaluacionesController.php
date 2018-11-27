@@ -133,7 +133,8 @@ switch ($operation)
                 $evaluacion_objetivo = new EvaluacionObjetivo();
                 $evaluacion_objetivo->setIdEvaluacionObjetivo($vO['id_evaluacion_objetivo']);
                 $evaluacion_objetivo->setIdObjetivo($vO['id_objetivo']);
-                $evaluacion_objetivo->setIdPuntajeObjetivo($vO['id_puntaje_objetivo']);
+                //$evaluacion_objetivo->setIdPuntajeObjetivo($vO['id_puntaje_objetivo']);
+                $evaluacion_objetivo->setIdPuntajeObjetivo(($vO['id_puntaje_objetivo'] !='')? $vO['id_puntaje_objetivo'] : null);
                 $evaluacion_objetivo->setIdEmpleado($vO['id_empleado']);
                 $evaluacion_objetivo->setIdEvaluador($_SESSION["id_user"]);
                 $evaluacion_objetivo->setIdPlanEvaluacion($vO['id_plan_evaluacion']);
