@@ -80,7 +80,11 @@ left join ead_evaluacion_aspecto_general ead_eag on ag.id_aspecto_general = ead_
 left join ead_puntaje_aspecto_general ead_pag on ead_eag.id_puntaje_aspecto_general = ead_pag.id_puntaje_aspecto_general
 where em.id_empleado = :id_empleado
 group by ag.id_aspecto_general";*/
-        $query="select o.*, ead_eo.*, ead_po.*, func_obj_progress(o.id_objetivo) as progreso
+        $query="select o.id_objetivo, o.periodo, o.nombre, o.id_area, o.id_contrato, id_puesto, o.meta, o.meta_valor, o.indicador,
+o.frecuencia, o.id_responsable_ejecucion, o.id_responsable_seguimiento, o.fecha, o.codigo,
+ead_eo.id_evaluacion_objetivo,
+ead_po.puntaje,
+func_obj_progress(o.id_objetivo) as progreso
 from obj_objetivos o
 left join ead_evaluacion_objetivo ead_eo on o.id_responsable_ejecucion = ead_eo.id_empleado and ead_eo.periodo = :periodo
 left join ead_puntaje_objetivo ead_po on ead_eo.id_puntaje_objetivo = ead_po.id_puntaje_objetivo
