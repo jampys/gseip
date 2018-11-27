@@ -123,7 +123,7 @@ switch ($operation)
             $vObjetivos = json_decode($_POST["vObjetivos"], true);
             //print_r($vCompetencias);
 
-            foreach ($vAspectosGenerales as $vO) {
+            foreach ($vObjetivos as $vO) {
 
                 //$c = new HabilidadEmpleado();
                 //$c->setIdHabilidad($vH['id_habilidad']);
