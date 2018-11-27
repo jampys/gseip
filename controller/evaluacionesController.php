@@ -116,7 +116,7 @@ switch ($operation)
 
 
 
-    case 'saveEaag': //Guarda una evaluacion de objetivos
+    case 'saveEao': //Guarda una evaluacion de objetivos
         try{
             sQuery::dpBeginTransaction();
 

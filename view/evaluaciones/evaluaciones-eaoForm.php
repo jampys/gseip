@@ -177,11 +177,11 @@
                 params.cerrado = $('#cerrado').val();
                 //alert(params.id_compania);
 
-                //alert('Fin de la prueba');
-                //throw new Error();
-
                 var jsonObjetivosIx = $.map(jsonObjetivos, function(item){ return item;} );
                 params.vObjetivos = JSON.stringify(jsonObjetivosIx);
+
+                //alert('Fin de la prueba');
+                //throw new Error();
 
 
                 $.post('index.php',params,function(data, status, xhr){
