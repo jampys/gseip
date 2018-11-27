@@ -116,6 +116,52 @@ switch ($operation)
 
 
 
+    case 'saveEaag': //Guarda una evaluacion de objetivos
+        try{
+            sQuery::dpBeginTransaction();
+
+            $vObjetivos = json_decode($_POST["vObjetivos"], true);
+            //print_r($vCompetencias);
+
+            foreach ($vAspectosGenerales as $vO) {
+
+                //$c = new HabilidadEmpleado();
+                //$c->setIdHabilidad($vH['id_habilidad']);
+                //$c->setIdEmpleado($vE['id_empleado']);
+                //if($c->insertHabilidadEmpleado() < 0) $flag = -1;  //si falla algun insert $flag = -1
+                //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
+                $evaluacion_objetivo = new EvaluacionObjetivo();
+                $evaluacion_objetivo->setIdEvaluacionObjetivo($vO['id_evaluacion_objetivo']);
+                $evaluacion_objetivo->setIdObjetivo($vO['id_objetivo']);
+                $evaluacion_objetivo->setIdPuntajeObjetivo($vO['id_puntaje_objetivo']);
+                $evaluacion_objetivo->setIdEmpleado($vO['id_empleado']);
+                $evaluacion_objetivo->setIdEvaluador($_SESSION["id_user"]);
+                $evaluacion_objetivo->setIdPlanEvaluacion($vO['id_plan_evaluacion']);
+                $evaluacion_objetivo->setPeriodo($vO['periodo']);
+
+                //echo 'id objetivo sub: '.$vS['id_objetivo_sub'].'---';
+
+                //echo $vS['operacion'];
+                $evaluacion_objetivo->save(); //si falla sale por el catch
+
+            }
+
+            //Devuelve el resultado a la vista
+            sQuery::dpCommit();
+            print_r(json_encode(1));
+
+        }
+        catch(Exception $e){
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
+            sQuery::dpRollback();
+            print_r(json_encode(-1));
+        }
+
+        exit;
+        break;
+
+
+
     case 'loadEac': //Abre el formulario de evaluacion anual de competecias //ok
         $view->empleado = new Empleado($_POST['id_empleado']);
         $view->label = 'Evaluación de competencias: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();

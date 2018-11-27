@@ -177,8 +177,8 @@
                 params.cerrado = $('#cerrado').val();
                 //alert(params.id_compania);
 
-                alert('Fin de la prueba');
-                throw new Error();
+                //alert('Fin de la prueba');
+                //throw new Error();
 
                 var jsonObjetivosIx = $.map(jsonObjetivos, function(item){ return item;} );
                 params.vObjetivos = JSON.stringify(jsonObjetivosIx);
