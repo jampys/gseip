@@ -144,14 +144,17 @@
         $('#modalEao').on('change', ".selectpicker, .ponderacion", function(e){
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
-            item.id_evaluacion_objetivo = $(this).attr('id_evaluacion_objetivo');
+            /*item.id_evaluacion_objetivo = $(this).attr('id_evaluacion_objetivo');
             item.id_objetivo = $(this).attr('id');
-            item.id_puntaje_objetivo = $(this).val();
+            item.id_puntaje_objetivo = $(this).val(); */
+            item.id_evaluacion_objetivo = $(this).closest('.form-group').attr('id_evaluacion_objetivo');
+            item.id_objetivo = $(this).closest('.form-group').attr('id');
+            item.id_puntaje_objetivo = $(this).closest('.form-group').find('.selectpicker').val();
             item.id_empleado = $('#id_empleado').val();
             item.id_plan_evaluacion = $('#id_plan_evaluacion').val();
             item.periodo = $('#periodo').val();
-            item.ponderacion = $(this).closest('.ponderacion').val();
-            alert('Ponderacion: '+item.ponderacion);
+            item.ponderacion = $(this).closest('.form-group').find('.ponderacion').val();
+            alert('eval objetivo: '+item.ponderacion);
 
             if(jsonObjetivos[item.id_objetivo]) {
                 jsonObjetivos[item.id_objetivo].id_puntaje_objetivo = item.id_puntaje_objetivo;
@@ -245,7 +248,7 @@
 
                             <?php foreach ($view->objetivos as $obj){ ?>
 
-                                <div class="form-group">
+                                <div class="form-group" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
 
                                     <div class="col-md-8">
                                         <div id="label-box">
@@ -259,7 +262,7 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <select class="form-control selectpicker show-tick" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>" title="-" data-live-search="true" data-size="5">
+                                        <select class="form-control selectpicker show-tick" title="-" data-live-search="true" data-size="5">
                                             <?php foreach ($view->puntajes as $p){ ?>
                                                 <option value="<?php echo $p['id_puntaje_objetivo']; ?>"
                                                     <?php echo ($obj['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
