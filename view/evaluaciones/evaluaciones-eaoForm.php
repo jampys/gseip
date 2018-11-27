@@ -38,7 +38,7 @@
 
     $(document).ready(function(){
 
-        $('[data-toggle="popover"]').popover({html:true, placement: "right", container: "#modalEaag"});
+        $('[data-toggle="popover"]').popover({html:true, placement: "right", container: "#modalEao"});
 
         /*function verticalTable(){
 
@@ -192,7 +192,7 @@
                         $("#myElem").html('Evaluación de objetivos guardada con exito').addClass('alert alert-success').show();
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                                                $('#modalEaag').modal('hide');
+                                                $('#modalEao').modal('hide');
                                               }, 2000);
 
                     }else{
