@@ -233,7 +233,7 @@
 
                 <div class="row">
 
-                    <div class="col-md-6" id="select-box">
+                    <div class="col-md-7" id="select-box">
 
                         <form class="form-horizontal" name ="eao-form" id="eao-form" method="POST" action="index.php">
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
@@ -289,7 +289,7 @@
                     </div>
 
 
-                    <div class="col-md-6" id="help-box">
+                    <div class="col-md-5" id="help-box">
 
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
