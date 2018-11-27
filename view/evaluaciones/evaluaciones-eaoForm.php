@@ -108,7 +108,7 @@
         $.validator.addMethod("cRange", $.validator.methods.range, "Ingrese un valor entre 0 y 100");
         jQuery.validator.addClassRules('ponderacion', {
             cRequired: {
-                depends: function(element) {
+                depends: function(element) { //la ponderacion es requerida solo si cargó el puntaje.
                     return $(this).closest('.fila').find('.selectpicker').val() != '';
                 }
             },
