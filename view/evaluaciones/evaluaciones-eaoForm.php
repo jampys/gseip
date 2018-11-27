@@ -276,7 +276,7 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <input class="form-control ponderacion" type="text" value = "<?php print $obj['ponderacion']; ?>" placeholder="Pond.">
+                                        <input class="form-control ponderacion" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" placeholder="Pond.">
                                     </div>
 
 
