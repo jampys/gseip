@@ -10,6 +10,7 @@ class EvaluacionObjetivo
     private $id_empleado;
     private $id_plan_evaluacion;
     private $periodo;
+    private $ponderacion;
 
 
     // GETTERS
@@ -36,6 +37,9 @@ class EvaluacionObjetivo
 
     function getPeriodo()
     { return $this->periodo;}
+
+    function getPonderacion()
+    { return $this->ponderacion;}
 
 
 
@@ -64,6 +68,9 @@ class EvaluacionObjetivo
     function setPeriodo($val)
     { $this->periodo=$val;}
 
+    function setPonderacion($val)
+    { $this->ponderacion=$val;}
+
 
 
     public static function getObjetivos($id_empleado, $periodo) {
@@ -82,7 +89,7 @@ where em.id_empleado = :id_empleado
 group by ag.id_aspecto_general";*/
         $query="select o.id_objetivo, o.periodo, o.nombre, o.id_area, o.id_contrato, id_puesto, o.meta, o.meta_valor, o.indicador,
 o.frecuencia, o.id_responsable_ejecucion, o.id_responsable_seguimiento, o.fecha, o.codigo,
-ead_eo.id_evaluacion_objetivo,
+ead_eo.id_evaluacion_objetivo, ead_eo.ponderacion, ead_eo.id_puntaje_objetivo
 ead_po.puntaje,
 func_obj_progress(o.id_objetivo) as progreso
 from obj_objetivos o
@@ -138,6 +145,7 @@ where em.id_empleado = :id_empleado";
             $this->setIdEmpleado($rows[0]['id_empleado']);
             $this->setIdPlanEvaluacion($rows[0]['id_plan_evaluacion']);
             $this->setPeriodo($rows[0]['periodo']);
+            $this->setPonderacion($rows[0]['ponderacion']);
 
         }
     }
@@ -158,11 +166,13 @@ where em.id_empleado = :id_empleado";
         $stmt=new sQuery();
         $query="update ead_evaluacion_objetivo set
                 id_puntaje_objetivo = :id_puntaje_objetivo,
-                id_evaluador=  :id_evaluador
+                id_evaluador = :id_evaluador,
+                ponderacion = :ponderacion
                 where id_evaluacion_objetivo = :id_evaluacion_objetivo";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_puntaje_objetivo', $this->getIdPuntajeObjetivo());
         $stmt->dpBind(':id_evaluador', $this->getIdEvaluador());
+        $stmt->dpBind(':ponderacion', $this->getPonderacion());
         $stmt->dpBind(':id_evaluacion_objetivo', $this->getIdEvaluacionObjetivo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -171,8 +181,8 @@ where em.id_empleado = :id_empleado";
     private function insertEvaluacionObjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into ead_evaluacion_objetivo(id_objetivo, id_puntaje_objetivo, fecha, id_evaluador, id_empleado, id_plan_evaluacion, periodo)
-                values(:id_objetivo, :id_puntaje_objetivo, date(sysdate()), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo)";
+        $query="insert into ead_evaluacion_objetivo(id_objetivo, id_puntaje_objetivo, fecha, id_evaluador, id_empleado, id_plan_evaluacion, periodo, ponderacion)
+                values(:id_objetivo, :id_puntaje_objetivo, date(sysdate()), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo, :ponderacion)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpBind(':id_puntaje_objetivo', $this->getIdPuntajeObjetivo());
@@ -180,6 +190,7 @@ where em.id_empleado = :id_empleado";
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpBind(':id_plan_evaluacion', $this->getIdPlanEvaluacion());
         $stmt->dpBind(':periodo', $this->getPeriodo());
+        $stmt->dpBind(':ponderacion', $this->getPonderacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
