@@ -250,10 +250,10 @@
 
                             <?php foreach ($view->objetivos as $obj){ ?>
 
-                                <div class="form-group" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
+                                <div id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
 
                                     <div class="col-md-8">
-                                        <div id="label-box">
+                                        <div class="form-group">
                                             <strong><?php echo $obj['codigo'];?></strong>&nbsp;<?php echo $obj['nombre']; ?>
 
                                             <a href="#" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
