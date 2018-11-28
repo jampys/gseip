@@ -257,14 +257,13 @@
                                 <div class="fila" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
 
                                     <div class="col-md-8">
+
                                         <div class="form-group">
-                                            <strong><?php echo $obj['codigo'];?></strong>&nbsp;<?php echo $obj['nombre']; ?>
-
+                                            <p><strong><?php echo $obj['codigo'];?></strong>&nbsp;<?php echo $obj['nombre']; ?>
                                             <a href="#" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
-                                               data-content='<?php require('evaluaciones-eaoPopover.php'); ?>'
-
-                                                >ver mas</a>
+                                               data-content='<?php require('evaluaciones-eaoPopover.php'); ?>'>ver mas</a></p>
                                         </div>
+
                                     </div>
 
                                     <div class="col-md-2">
