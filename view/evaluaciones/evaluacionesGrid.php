@@ -72,8 +72,8 @@
 
                     <!-- evaluacion de objetivos -->
                     <td class="text-center">
-                        <a class="<?php echo (true)? 'loadEao' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación objetivos" >
-                            <span class="<?php echo ($evaluacion['hasAllEaag'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
+                        <a class="<?php echo (PrivilegedUser::dhasPrivilege('EAD_OBJ', array(1)))? 'loadEao' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación objetivos" >
+                            <span class="<?php echo ($evaluacion['hasAllEao'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
                         </a>
                     </td>
 
