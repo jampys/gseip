@@ -68,6 +68,23 @@
 
             //Al presionar en editar una evaluacion de objetivos
             $(document).on('click', '.loadEao', function(){
+                params={};
+                params.id_empleado = $(this).closest('tr').attr('id_empleado');
+                params.id_plan_evaluacion = $(this).closest('tr').attr('id_plan_evaluacion');
+                params.periodo = $(this).closest('tr').attr('periodo'); //$('#periodo').val();
+                params.cerrado = $(this).closest('tr').attr('cerrado'); //$('#periodo option:selected').attr('cerrado');
+                params.action = "evaluaciones";
+                params.operation = "loadEao";
+                //alert(params.cerrado);
+                $('#popupbox').load('index.php', params,function(){
+                    $('#modalEao').modal();
+                });
+
+            });
+
+
+            //Al presionar en reporte
+            $(document).on('click', '.reporte', function(){
                 alert('Funcionalidad en desarrollo');
                 throw new Error();
             });

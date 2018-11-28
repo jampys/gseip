@@ -98,7 +98,11 @@
 
                             <li class="disabled"><a href="#">Plan de evaluación <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=obj_objetivos">Objetivos</a></li>
-                            <li class="<?php echo ( true )? '': 'disabled' ?>"><a href="index.php?action=evaluaciones">Evaluación de desempeño</a></li>
+                            <li class="<?php echo ( PrivilegedUser::dhasPrivilege('EAD_COM', array(1)) ||
+                                                    PrivilegedUser::dhasPrivilege('EAD_AGS', array(1)) ||
+                                                    PrivilegedUser::dhasPrivilege('EAD_REP', array(1)) ||
+                                                    PrivilegedUser::dhasPrivilege('EAD_OBJ', array(1))
+                                                  )? '': 'disabled' ?>"><a href="index.php?action=evaluaciones">Evaluación de desempeño</a></li>
 
                         </ul>
                     </li>
