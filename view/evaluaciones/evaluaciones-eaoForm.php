@@ -158,7 +158,7 @@
             item.id_plan_evaluacion = $('#id_plan_evaluacion').val();
             item.periodo = $('#periodo').val();
             item.ponderacion = $(this).closest('.fila').find('.ponderacion').val();
-            alert('ponderacion: '+item.ponderacion);
+            //alert('ponderacion: '+item.ponderacion);
             //throw new Error();
 
             if(jsonObjetivos[item.id_objetivo]) {
