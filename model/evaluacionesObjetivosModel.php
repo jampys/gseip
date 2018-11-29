@@ -89,12 +89,14 @@ where em.id_empleado = :id_empleado
 group by ag.id_aspecto_general";*/
         $query="select o.id_objetivo, o.periodo, o.nombre, o.id_area, o.id_contrato, id_puesto, o.meta, o.meta_valor, o.indicador,
 o.frecuencia, o.id_responsable_ejecucion, o.id_responsable_seguimiento, o.fecha, o.codigo,
-ead_eo.id_evaluacion_objetivo, ead_eo.ponderacion, ead_eo.id_puntaje_objetivo,
+ead_eo.id_evaluacion_objetivo, ead_eo.ponderacion, ead_eo.id_puntaje_objetivo, ead_eo.fecha,
 ead_po.puntaje,
+us.user,
 func_obj_progress(o.id_objetivo) as progreso
 from obj_objetivos o
 left join ead_evaluacion_objetivo ead_eo on ead_eo.id_objetivo = o.id_objetivo and o.id_responsable_ejecucion = ead_eo.id_empleado
 left join ead_puntaje_objetivo ead_po on ead_eo.id_puntaje_objetivo = ead_po.id_puntaje_objetivo
+left join sec_users us on us.id_user = ead_eo.id_evaluador
 where o.id_responsable_ejecucion = :id_empleado
 and o.periodo = :periodo";
 

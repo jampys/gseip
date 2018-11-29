@@ -28,6 +28,11 @@
         width:80%;
     }
 
+    .input-group-addon{
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
 
 
 
@@ -279,7 +284,7 @@
                                             </select>
                                             <div class="input-group-addon" style="background-color: #ffffff">
                                                 <a href="#" tabindex="0" data-toggle="popover" data-trigger="hover"
-                                                   data-content='<?php require('evaluaciones-eaoPopover.php'); ?>'>?</a>
+                                                   data-content='<?php echo "<b>".$obj['user']."</b> ".$obj['fecha'];  ?>'>?</a>
                                             </div>
                                         </div>
 
