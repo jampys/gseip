@@ -292,7 +292,7 @@
                                                 <a href="#" title="<?php echo $com['user'].' '.$com['fecha']; ?>">?</a>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
 

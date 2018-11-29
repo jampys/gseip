@@ -70,7 +70,10 @@ class EvaluacionAspectoGeneral
         //para planes abiertos (vigentes)
         $stmt=new sQuery();
         $query="select agnc.id_nivel_competencia, ag.id_aspecto_general, ag.nombre,
-ead_eag.id_evaluacion_aspecto_general, ead_pag.puntaje
+ead_eag.id_evaluacion_aspecto_general,
+DATE_FORMAT(ead_eag.fecha, '%d/%m/%Y %H:%i') as fecha,
+ead_pag.puntaje,
+us.user
 from empleados em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join puestos pu on ec.id_puesto = pu.id_puesto
@@ -78,6 +81,7 @@ join aspecto_general_nivel_competencia agnc on pu.id_nivel_competencia = agnc.id
 join aspectos_generales ag on agnc.id_aspecto_general = ag.id_aspecto_general
 left join ead_evaluacion_aspecto_general ead_eag on ag.id_aspecto_general = ead_eag.id_aspecto_general and ead_eag.id_empleado = em.id_empleado and ead_eag.periodo = :periodo
 left join ead_puntaje_aspecto_general ead_pag on ead_eag.id_puntaje_aspecto_general = ead_pag.id_puntaje_aspecto_general
+left join sec_users us on us.id_user = ead_eag.id_evaluador
 where em.id_empleado = :id_empleado
 group by ag.id_aspecto_general";
         $stmt->dpPrepare($query);
