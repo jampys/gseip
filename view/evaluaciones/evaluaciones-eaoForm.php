@@ -267,15 +267,22 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <select class="form-control selectpicker show-tick" title="-" data-live-search="true" data-size="5">
-                                            <?php foreach ($view->puntajes as $p){ ?>
-                                                <option value="<?php echo $p['id_puntaje_objetivo']; ?>"
-                                                    <?php echo ($obj['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
-                                                    >
-                                                    <?php echo $p['puntaje'];?>
-                                                </option>
-                                            <?php  } ?>
-                                        </select>
+                                        <div class="input-group">
+                                            <select class="form-control selectpicker show-tick" title="-" data-live-search="true" data-size="5">
+                                                <?php foreach ($view->puntajes as $p){ ?>
+                                                    <option value="<?php echo $p['id_puntaje_objetivo']; ?>"
+                                                        <?php echo ($obj['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
+                                                        >
+                                                        <?php echo $p['puntaje'];?>
+                                                    </option>
+                                                <?php  } ?>
+                                            </select>
+                                            <div class="input-group-addon" style="background-color: #ffffff">
+                                                <a href="#" tabindex="0" data-toggle="popover" data-trigger="hover"
+                                                   data-content='<?php require('evaluaciones-eaoPopover.php'); ?>'>?</a>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <div class="col-md-2">
