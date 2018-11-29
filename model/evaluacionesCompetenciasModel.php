@@ -70,7 +70,10 @@ class EvaluacionCompetencia
         //para planes abiertos (vigentes)
         $stmt=new sQuery();
         $query="select cnc.id_nivel_competencia, co.id_competencia, co.nombre,
-ead_ec.id_evaluacion_competencia, ead_pc.puntaje
+ead_ec.id_evaluacion_competencia,
+DATE_FORMAT(ead_ec.fecha, '%d/%m/%Y %H:%i') as fecha,
+ead_pc.puntaje,
+us.user
 from empleados em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join puestos pu on ec.id_puesto = pu.id_puesto
@@ -78,6 +81,7 @@ join competencia_nivel_competencia cnc on pu.id_nivel_competencia = cnc.id_nivel
 join competencias co on cnc.id_competencia = co.id_competencia
 left join ead_evaluacion_competencia ead_ec on co.id_competencia = ead_ec.id_competencia and ead_ec.id_empleado = em.id_empleado and ead_ec.periodo = :periodo
 left join ead_puntaje_competencia ead_pc on ead_ec.id_puntaje_competencia = ead_pc.id_puntaje_competencia
+left join sec_users us on us.id_user = ead_ec.id_evaluador
 where em.id_empleado = :id_empleado
 group by co.id_competencia";
         $stmt->dpPrepare($query);

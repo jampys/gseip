@@ -32,6 +32,11 @@
         text-align: center;
     }
 
+    .input-group-addon{
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
 
 </style>
 

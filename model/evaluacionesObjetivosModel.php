@@ -76,17 +76,6 @@ class EvaluacionObjetivo
     public static function getObjetivos($id_empleado, $periodo) {
         //para planes abiertos (vigentes)
         $stmt=new sQuery();
-        /*$query="select agnc.id_nivel_competencia, ag.id_aspecto_general, ag.nombre,
-ead_eag.id_evaluacion_aspecto_general, ead_pag.puntaje
-from empleados em
-join empleado_contrato ec on em.id_empleado = ec.id_empleado
-join puestos pu on ec.id_puesto = pu.id_puesto
-join aspecto_general_nivel_competencia agnc on pu.id_nivel_competencia = agnc.id_nivel_competencia
-join aspectos_generales ag on agnc.id_aspecto_general = ag.id_aspecto_general
-left join ead_evaluacion_aspecto_general ead_eag on ag.id_aspecto_general = ead_eag.id_aspecto_general and ead_eag.id_empleado = em.id_empleado and ead_eag.periodo = :periodo
-left join ead_puntaje_aspecto_general ead_pag on ead_eag.id_puntaje_aspecto_general = ead_pag.id_puntaje_aspecto_general
-where em.id_empleado = :id_empleado
-group by ag.id_aspecto_general";*/
         $query="select o.id_objetivo, o.periodo, o.nombre, o.id_area, o.id_contrato, id_puesto, o.meta, o.meta_valor, o.indicador,
 o.frecuencia, o.id_responsable_ejecucion, o.id_responsable_seguimiento, o.fecha, o.codigo,
 ead_eo.id_evaluacion_objetivo, ead_eo.ponderacion, ead_eo.id_puntaje_objetivo,
