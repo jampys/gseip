@@ -283,8 +283,7 @@
                                                 <?php  } ?>
                                             </select>
                                             <div class="input-group-addon" style="background-color: #ffffff">
-                                                <a href="#" tabindex="0" data-toggle="popover" data-trigger="hover"
-                                                   data-content='<?php echo "<b>".$obj['user']."</b> ".$obj['fecha'];  ?>'>?</a>
+                                                <a href="#" title="<?php echo $obj['user'].' '.$obj['fecha']; ?>">?</a>
                                             </div>
                                         </div>
 

@@ -89,7 +89,8 @@ where em.id_empleado = :id_empleado
 group by ag.id_aspecto_general";*/
         $query="select o.id_objetivo, o.periodo, o.nombre, o.id_area, o.id_contrato, id_puesto, o.meta, o.meta_valor, o.indicador,
 o.frecuencia, o.id_responsable_ejecucion, o.id_responsable_seguimiento, o.fecha, o.codigo,
-ead_eo.id_evaluacion_objetivo, ead_eo.ponderacion, ead_eo.id_puntaje_objetivo, ead_eo.fecha,
+ead_eo.id_evaluacion_objetivo, ead_eo.ponderacion, ead_eo.id_puntaje_objetivo,
+DATE_FORMAT(ead_eo.fecha, '%d/%m/%Y %H:%i') as fecha,
 ead_po.puntaje,
 us.user,
 func_obj_progress(o.id_objetivo) as progreso
@@ -170,6 +171,7 @@ where em.id_empleado = :id_empleado";
         $query="update ead_evaluacion_objetivo set
                 id_puntaje_objetivo = :id_puntaje_objetivo,
                 id_evaluador = :id_evaluador,
+                fecha = sysdate(),
                 ponderacion = :ponderacion
                 where id_evaluacion_objetivo = :id_evaluacion_objetivo";
         $stmt->dpPrepare($query);
@@ -185,7 +187,7 @@ where em.id_empleado = :id_empleado";
 
         $stmt=new sQuery();
         $query="insert into ead_evaluacion_objetivo(id_objetivo, id_puntaje_objetivo, fecha, id_evaluador, id_empleado, id_plan_evaluacion, periodo, ponderacion)
-                values(:id_objetivo, :id_puntaje_objetivo, date(sysdate()), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo, :ponderacion)";
+                values(:id_objetivo, :id_puntaje_objetivo, sysdate(), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo, :ponderacion)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpBind(':id_puntaje_objetivo', $this->getIdPuntajeObjetivo());
