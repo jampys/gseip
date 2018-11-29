@@ -148,7 +148,8 @@ where em.id_empleado = :id_empleado";
         $stmt=new sQuery();
         $query="update ead_evaluacion_competencia set
                 id_puntaje_competencia = :id_puntaje_competencia,
-                id_evaluador=  :id_evaluador
+                id_evaluador=  :id_evaluador,
+                fecha = sysdate()
                 where id_evaluacion_competencia = :id_evaluacion_competencia";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_puntaje_competencia', $this->getIdPuntajeCompetencia());
@@ -162,7 +163,7 @@ where em.id_empleado = :id_empleado";
 
         $stmt=new sQuery();
         $query="insert into ead_evaluacion_competencia(id_competencia, id_puntaje_competencia, fecha, id_evaluador, id_empleado, id_plan_evaluacion, periodo)
-                values(:id_competencia, :id_puntaje_competencia, date(sysdate()), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo)";
+                values(:id_competencia, :id_puntaje_competencia, sysdate(), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_competencia', $this->getIdCompetencia());
         $stmt->dpBind(':id_puntaje_competencia', $this->getIdPuntajeCompetencia());

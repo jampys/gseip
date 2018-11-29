@@ -148,7 +148,8 @@ where em.id_empleado = :id_empleado";
         $stmt=new sQuery();
         $query="update ead_evaluacion_aspecto_general set
                 id_puntaje_aspecto_general = :id_puntaje_aspecto_general,
-                id_evaluador=  :id_evaluador
+                id_evaluador=  :id_evaluador,
+                fecha = sysdate()
                 where id_evaluacion_aspecto_general = :id_evaluacion_aspecto_general";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_puntaje_aspecto_general', $this->getIdPuntajeAspectoGeneral());
@@ -162,7 +163,7 @@ where em.id_empleado = :id_empleado";
 
         $stmt=new sQuery();
         $query="insert into ead_evaluacion_aspecto_general(id_aspecto_general, id_puntaje_aspecto_general, fecha, id_evaluador, id_empleado, id_plan_evaluacion, periodo)
-                values(:id_aspecto_general, :id_puntaje_aspecto_general, date(sysdate()), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo)";
+                values(:id_aspecto_general, :id_puntaje_aspecto_general, sysdate(), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_aspecto_general', $this->getIdAspectoGeneral());
         $stmt->dpBind(':id_puntaje_aspecto_general', $this->getIdPuntajeAspectoGeneral());
