@@ -23,6 +23,11 @@
         font-size: 13px;
     }
 
+    .input-group-addon{
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
 
 
 </style>
@@ -238,19 +243,26 @@
                                 <div class="form-group">
                                     <label for="" class="col-md-5 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
 
-                                    <div class="col-md-3">
-                                        <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
-                                            <?php foreach ($view->puntajes[$com['id_aspecto_general']] as $p){ ?>
-                                                <option value="<?php echo $p['id_puntaje_aspecto_general']; ?>"
-                                                    <?php echo ($com['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
-                                                    >
-                                                    <?php echo $p['puntaje'];?>
-                                                </option>
-                                            <?php  } ?>
-                                        </select>
+                                    <div class="col-md-4">
+
+                                        <div class="input-group">
+                                            <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
+                                                <?php foreach ($view->puntajes[$com['id_aspecto_general']] as $p){ ?>
+                                                    <option value="<?php echo $p['id_puntaje_aspecto_general']; ?>"
+                                                        <?php echo ($com['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
+                                                        >
+                                                        <?php echo $p['puntaje'];?>
+                                                    </option>
+                                                <?php  } ?>
+                                            </select>
+                                            <div class="input-group-addon" style="background-color: #ffffff">
+                                                <a href="#" title="<?php echo $com['user'].' '.$com['fecha']; ?>">?</a>
+                                            </div>
+                                        </div>
+
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
 
                                         <?php if($com['id_aspecto_general'] == 1){ ?>
                                             <!--<div class="alert alert-warning" role="alert" style="margin: 0; padding: 6px"> hola</div>-->
@@ -258,10 +270,11 @@
                                                data-content="<table>
                                                                 <tr><td>Días de paro:&nbsp;</td><td class='text-danger'><?php echo $view->dias_paro[0]['cantidad'] ?></td></tr>
                                                             </table>"
-                                                >mas info...</a>
+                                                >mas...</a>
                                         <?php }  ?>
 
                                     </div>
+
 
                                 </div>
 

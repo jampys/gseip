@@ -70,7 +70,10 @@ class EvaluacionCompetencia
         //para planes abiertos (vigentes)
         $stmt=new sQuery();
         $query="select cnc.id_nivel_competencia, co.id_competencia, co.nombre,
-ead_ec.id_evaluacion_competencia, ead_pc.puntaje
+ead_ec.id_evaluacion_competencia,
+DATE_FORMAT(ead_ec.fecha, '%d/%m/%Y %H:%i') as fecha,
+ead_pc.puntaje,
+us.user
 from empleados em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join puestos pu on ec.id_puesto = pu.id_puesto
@@ -78,6 +81,7 @@ join competencia_nivel_competencia cnc on pu.id_nivel_competencia = cnc.id_nivel
 join competencias co on cnc.id_competencia = co.id_competencia
 left join ead_evaluacion_competencia ead_ec on co.id_competencia = ead_ec.id_competencia and ead_ec.id_empleado = em.id_empleado and ead_ec.periodo = :periodo
 left join ead_puntaje_competencia ead_pc on ead_ec.id_puntaje_competencia = ead_pc.id_puntaje_competencia
+left join sec_users us on us.id_user = ead_ec.id_evaluador
 where em.id_empleado = :id_empleado
 group by co.id_competencia";
         $stmt->dpPrepare($query);
@@ -148,7 +152,8 @@ where em.id_empleado = :id_empleado";
         $stmt=new sQuery();
         $query="update ead_evaluacion_competencia set
                 id_puntaje_competencia = :id_puntaje_competencia,
-                id_evaluador=  :id_evaluador
+                id_evaluador=  :id_evaluador,
+                fecha = sysdate()
                 where id_evaluacion_competencia = :id_evaluacion_competencia";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_puntaje_competencia', $this->getIdPuntajeCompetencia());
@@ -162,7 +167,7 @@ where em.id_empleado = :id_empleado";
 
         $stmt=new sQuery();
         $query="insert into ead_evaluacion_competencia(id_competencia, id_puntaje_competencia, fecha, id_evaluador, id_empleado, id_plan_evaluacion, periodo)
-                values(:id_competencia, :id_puntaje_competencia, date(sysdate()), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo)";
+                values(:id_competencia, :id_puntaje_competencia, sysdate(), :id_evaluador, :id_empleado, :id_plan_evaluacion, :periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_competencia', $this->getIdCompetencia());
         $stmt->dpBind(':id_puntaje_competencia', $this->getIdPuntajeCompetencia());

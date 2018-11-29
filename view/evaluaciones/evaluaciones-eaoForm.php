@@ -28,6 +28,11 @@
         width:80%;
     }
 
+    .input-group-addon{
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
 
 
 
@@ -267,20 +272,26 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <select class="form-control selectpicker show-tick" title="-" data-live-search="true" data-size="5">
-                                            <?php foreach ($view->puntajes as $p){ ?>
-                                                <option value="<?php echo $p['id_puntaje_objetivo']; ?>"
-                                                    <?php echo ($obj['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
-                                                    >
-                                                    <?php echo $p['puntaje'];?>
-                                                </option>
-                                            <?php  } ?>
-                                        </select>
+                                        <div class="input-group">
+                                            <select class="form-control selectpicker show-tick" title="-" data-live-search="true" data-size="5">
+                                                <?php foreach ($view->puntajes as $p){ ?>
+                                                    <option value="<?php echo $p['id_puntaje_objetivo']; ?>"
+                                                        <?php echo ($obj['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
+                                                        >
+                                                        <?php echo $p['puntaje'];?>
+                                                    </option>
+                                                <?php  } ?>
+                                            </select>
+                                            <div class="input-group-addon" style="background-color: #ffffff">
+                                                <a href="#" title="<?php echo $obj['user'].' '.$obj['fecha']; ?>">?</a>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="input-group">
-                                            <input class="form-control ponderacion" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" >
+                                            <input class="form-control ponderacion" style="text-align: right" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" >
                                             <div class="input-group-addon">%</div>
                                         </div>
                                     </div>
