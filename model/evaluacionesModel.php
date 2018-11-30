@@ -18,8 +18,10 @@ class Evaluacion
     public static function getEvaluaciones($periodo, $id_contrato) { //ok
         //para planes de evaluacion ABIERTOS
         $stmt=new sQuery();
-        $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, ec.id_empleado_contrato, ec.id_contrato, ec.id_puesto,
-co.nombre as contrato, pu.nombre as puesto,
+        $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre,
+ec.id_empleado_contrato, ec.id_contrato, ec.id_puesto,
+co.nombre as contrato,
+pu.nombre as puesto,
 pe.id_plan_evaluacion, pe.periodo, pe.cerrado,
 func_eval_eac_count(em.id_empleado,pe.periodo) as hasAllEac,
 func_eval_eaag_count(em.id_empleado,pe.periodo) as hasAllEaag,

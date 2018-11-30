@@ -64,7 +64,9 @@
 
                     <!-- evaluacion de aspectos generales -->
                     <td class="text-center">
-                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('EAD_AGS', array(1))  )? 'loadEaag' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación aspectos generales" >
+                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('EAD_AGS', array(1)) &&
+                                               !$evaluacion['cerrado']
+                            )? 'loadEaag' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación aspectos generales" >
                             <span class="<?php echo ($evaluacion['hasAllEaag'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
                         </a>
                     </td>
