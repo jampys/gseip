@@ -36,7 +36,7 @@
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
                 params.id_plan_evaluacion = $(this).closest('tr').attr('id_plan_evaluacion');
                 params.periodo = $(this).closest('tr').attr('periodo'); //$('#periodo').val();
-                params.cerrado = $(this).closest('tr').attr('cerrado'); //$('#periodo option:selected').attr('cerrado');
+                //params.cerrado = $(this).closest('tr').attr('cerrado'); //$('#periodo option:selected').attr('cerrado');
                 params.action = "evaluaciones";
                 params.operation = "loadEac";
                 //alert(params.cerrado);
@@ -55,7 +55,7 @@
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
                 params.id_plan_evaluacion = $(this).closest('tr').attr('id_plan_evaluacion');
                 params.periodo = $(this).closest('tr').attr('periodo'); //$('#periodo').val();
-                params.cerrado = $(this).closest('tr').attr('cerrado'); //$('#periodo option:selected').attr('cerrado');
+                //params.cerrado = $(this).closest('tr').attr('cerrado'); //$('#periodo option:selected').attr('cerrado');
                 params.action = "evaluaciones";
                 params.operation = "loadEaag";
                 //alert(params.cerrado);
@@ -72,7 +72,7 @@
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
                 params.id_plan_evaluacion = $(this).closest('tr').attr('id_plan_evaluacion');
                 params.periodo = $(this).closest('tr').attr('periodo'); //$('#periodo').val();
-                params.cerrado = $(this).closest('tr').attr('cerrado'); //$('#periodo option:selected').attr('cerrado');
+                //params.cerrado = $(this).closest('tr').attr('cerrado'); //$('#periodo option:selected').attr('cerrado');
                 params.action = "evaluaciones";
                 params.operation = "loadEao";
                 //alert(params.cerrado);
