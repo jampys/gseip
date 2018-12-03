@@ -130,7 +130,8 @@
 
             $('#table-box table').html('');
             $.each(jsonAspectosGeneralesHelp[id], function(indice, val){
-                $('#table-box table').append('<tr><th><strong>'+val['puntaje']+'</strong></th>'+val['descripcion']+'</tr>')
+                //$('#table-box table').append('<tr><th><strong>'+val['puntaje']+'</strong></th>'+val['descripcion']+'</tr>')
+                $('#table-box table').append('<tr><th><strong>'+val['puntaje']+'</strong></th><td>'+val['descripcion']+'<td></tr>')
                                      .scrollTop();
             });
             //verticalTable();
