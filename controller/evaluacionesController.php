@@ -169,7 +169,7 @@ switch ($operation)
         $view->label = 'Evaluación de competencias: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
         //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
 
-        $view->competencias = EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $periodo);
+        $view->competencias = EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $_POST['periodo']);
 
         $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
 
