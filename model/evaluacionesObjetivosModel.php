@@ -214,7 +214,7 @@ where em.id_empleado = :id_empleado";
     }
 
 
-    public static function getPuntajesHelp() { // NO HARIA FALTA
+    public static function getPuntajesHelp() { // NO HARIA FALTA porque los puntajes son los mismos para todos los objetivos
         //obtengo la descripcion de los puntajes de todos los objetivos
         $stmt=new sQuery();
         $query="select pag.*, ag.nombre, ag.definicion

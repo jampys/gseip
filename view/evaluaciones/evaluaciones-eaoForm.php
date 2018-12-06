@@ -325,7 +325,10 @@
                                         <?php foreach ($view->puntajes as $p){ ?>
                                             <tr>
                                                 <td><b><?php echo $p['puntaje']; ?></b></td>
-                                                <td><?php echo $p['descripcion']; ?></td>
+                                                <td>
+                                                    <b><?php echo $p['descripcion_resumen']; ?></b>
+                                                    <?php echo $p['descripcion']; ?>
+                                                </td>
                                             </tr>
                                         <?php } ?>
 
