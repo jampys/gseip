@@ -92,7 +92,7 @@ group by co.id_competencia";
     }
 
 
-    public static function getCompetencias1($id_empleado, $periodo) { //ok
+    /*public static function getCompetencias1($id_empleado, $periodo) { //OBSOLETO 30/11/2018. Se para query a reporte
         //para planes cerrados
         $stmt=new sQuery();
         $query="select null as id_nivel_competencia,
@@ -110,7 +110,7 @@ where em.id_empleado = :id_empleado";
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
-    }
+    }*/
 
 
     function __construct($nro=0){ //constructor //ok

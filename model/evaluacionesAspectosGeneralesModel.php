@@ -92,7 +92,7 @@ group by ag.id_aspecto_general";
     }
 
 
-    public static function getAspectosGenerales1($id_empleado, $periodo) { //ok
+    /*public static function getAspectosGenerales1($id_empleado, $periodo) { //OBSOLETO 30/11/2018. Se usa query en reporte
         //para planes cerrados
         $stmt=new sQuery();
         $query="select null as id_nivel_competencia,
@@ -110,7 +110,7 @@ where em.id_empleado = :id_empleado";
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
-    }
+    }*/
 
 
     function __construct($nro=0){ //constructor //ok

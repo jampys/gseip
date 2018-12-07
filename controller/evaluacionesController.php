@@ -169,8 +169,7 @@ switch ($operation)
         $view->label = 'Evaluación de competencias: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
         //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
 
-        //$view->competencias = EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $periodo);
-        $view->competencias = (!$_POST['cerrado'])? EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $_POST['periodo']) : EvaluacionCompetencia::getCompetencias1($_POST['id_empleado'], $_POST['periodo']);
+        $view->competencias = EvaluacionCompetencia::getCompetencias($_POST['id_empleado'], $_POST['periodo']);
 
         $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
 
@@ -192,7 +191,7 @@ switch ($operation)
         $view->empleado = new Empleado($_POST['id_empleado']);
         $view->label = 'Evaluación de aspectos generales: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
 
-        $view->aspectos_generales = (!$_POST['cerrado'])? EvaluacionAspectoGeneral::getAspectosGenerales($_POST['id_empleado'], $_POST['periodo']) : EvaluacionAspectoGeneral::getAspectosGenerales1($_POST['id_empleado'], $_POST['periodo']);
+        $view->aspectos_generales = EvaluacionAspectoGeneral::getAspectosGenerales($_POST['id_empleado'], $_POST['periodo']);
         $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
 
         $view->temp = EvaluacionAspectoGeneral::getPuntajes(); //trae todos los aspectos generales con todos sus puntajes
@@ -214,7 +213,7 @@ switch ($operation)
         $view->empleado = new Empleado($_POST['id_empleado']);
         $view->label = 'Evaluación de objetivos: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
 
-        $view->objetivos = (!$_POST['cerrado'])? EvaluacionObjetivo::getObjetivos($_POST['id_empleado'], $_POST['periodo']) : EvaluacionObjetivo::getObjetivos1($_POST['id_empleado'], $_POST['periodo']);
+        $view->objetivos = EvaluacionObjetivo::getObjetivos($_POST['id_empleado'], $_POST['periodo']);
         $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
         $view->puntajes = EvaluacionObjetivo::getPuntajes();
 

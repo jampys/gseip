@@ -98,7 +98,7 @@ and o.periodo = :periodo";
     }
 
 
-    public static function getObjetivos1($id_empleado, $periodo) { //QUEDARIA OBSOLETA 22/11/2018
+    /*public static function getObjetivos1($id_empleado, $periodo) { //OBSOLETO 30/11/2018. Se pasa query a reporte
         //para planes cerrados
         $stmt=new sQuery();
         $query="select null as id_nivel_competencia,
@@ -116,7 +116,7 @@ where em.id_empleado = :id_empleado";
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
-    }
+    }*/
 
 
     function __construct($nro=0){ //constructor //ok
@@ -214,7 +214,7 @@ where em.id_empleado = :id_empleado";
     }
 
 
-    public static function getPuntajesHelp() { // NO HARIA FALTA
+    public static function getPuntajesHelp() { // NO HARIA FALTA porque los puntajes son los mismos para todos los objetivos
         //obtengo la descripcion de los puntajes de todos los objetivos
         $stmt=new sQuery();
         $query="select pag.*, ag.nombre, ag.definicion
