@@ -20,7 +20,7 @@
 
         google.charts.load('current', {'packages':['gantt'], 'language': 'es'});
         setTimeout(function() {
-                google.charts.setOnLoadCallback(drawChart);
+                //google.charts.setOnLoadCallback(drawChart);
         }, 500);
 
 
@@ -53,7 +53,7 @@
                 success: function(data1, textStatus, jqXHR) {
 
                     if(Object.keys(data1).length > 0){
-                        
+
                         $.each(data1, function(indice, val){
                             //alert(data1[indice]['Task_Name']);
                             data.addRows([
@@ -225,32 +225,3 @@
         </div>
     </div>
 </div>
-
-
-
-<div id="confirm-tarea">
-    <div class="modal-body">
-        ¿Desea eliminar la actividad?
-    </div>
-
-    <div id="myElem" class="msg" style="display:none">
-
-    </div>
-
-</div>
-
-
-
-
-<div id="confirm-avance">
-    <div class="modal-body">
-        ¿Desea eliminar el avance?
-    </div>
-
-    <div id="myElem" class="msg" style="display:none">
-
-    </div>
-
-</div>
-
-
