@@ -15,7 +15,7 @@
     $(document).ready(function(){
 
 
-        google.charts.load('current', {'packages':['gantt'], 'language': 'es'});
+        google.charts.load('current', {'packages':['line'], 'language': 'es'});
         setTimeout(function() {
                 google.charts.setOnLoadCallback(drawChart);
         }, 500);
@@ -24,22 +24,10 @@
         function drawChart() {
             //alert('se ejecuto drawChart');
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Task ID');
-            data.addColumn('string', 'Task Name');
-            //data.addColumn('string', 'Resource');
-            data.addColumn('date', 'Start Date');
-            data.addColumn('date', 'End Date');
-            data.addColumn('number', 'Duration');
-            data.addColumn('number', 'Percent Complete');
-            data.addColumn('string', 'Dependencies');
-
-            /*data.addRows([
-
-                ['id1', 'Requerimientos', 'spring', new Date(2014, 0, 5), new Date(2014, 0, 20), null, 100, null],
-                ['id2', 'Analisis de costos', 'pinchila', new Date(2014, 0, 21), new Date(2014, 2, 20), null, 50, null],
-                ['id3', 'Planificacion', 'autumn', new Date(2014, 2, 1), new Date(2014, 11, 21), null, 20, null]
-
-            ]);*/
+            data.addColumn('number', 'Day');
+            data.addColumn('number', 'Guardians of the Galaxy');
+            data.addColumn('number', 'The Avengers');
+            data.addColumn('number', 'Transformers: Age of Extinction');
 
 
             $.ajax({
@@ -49,32 +37,66 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data1, textStatus, jqXHR) {
 
-                    //alert(data1[0]['nombre']);
+                    alert(data1[0]['puntaje']);
+                    alert(Object.keys(data1).length);
+                    /*data.addRows([
+                        [1,  37.8, 80.8, 41.8],
+                        [2,  30.9, 69.5, 32.4],
+                        [3,  25.4,   57, 25.7],
+                        [4,  11.7, 18.8, 10.5],
+                        [5,  11.9, 17.6, 10.4],
+                        [6,   8.8, 13.6,  7.7],
+                        [7,   7.6, 12.3,  9.6],
+                        [8,  12.3, 29.2, 10.6],
+                        [9,  16.9, 42.9, 14.8],
+                        [10, 12.8, 30.9, 11.6],
+                        [11,  5.3,  7.9,  4.7],
+                        [12,  6.6,  8.4,  5.2],
+                        [13,  4.8,  6.3,  3.6],
+                        [14,  4.2,  6.2,  3.4]
+                    ]);*/
 
                     if(Object.keys(data1).length > 0){
 
                         $.each(data1, function(indice, val){
                             //alert(data1[indice]['Task_Name']);
+                            if (data1[indice]['puntaje'] === 0.00) { return; }
+
                             data.addRows([
                                 [
-                                    data1[indice]['Task_ID'],
-                                    data1[indice]['Task_Name'],
+                                    //1,  37, 80, 41
+                                    data1[indice]['puntaje'],
+                                    5,
+                                    3,
+                                    7
                                     //data1[indice]['Task_Name'],
-                                    new Date(data1[indice]['Start_Date']),
-                                    new Date(data1[indice]['End_Date']),
-                                    null,
-                                    (data1[indice]['Percent_Complete'])? parseInt(data1[indice]['Percent_Complete']) : 0,
-                                    null
+                                    //data1[indice]['Task_Name'],
+                                    //new Date(data1[indice]['Start_Date']),
+                                    //new Date(data1[indice]['End_Date']),
+                                    //null,
+                                    //(data1[indice]['Percent_Complete'])? parseInt(data1[indice]['Percent_Complete']) : 0,
+                                    //null
                                 ]
 
                             ]);
                         });
 
 
+                        var options = {
+                            chart: {
+                                title: 'Box Office Earnings in First Two Weeks of Opening',
+                                subtitle: 'in millions of dollars (USD)'
+                            }
+                            //width: 900,
+                            //height: 500
+                        };
 
 
-                        //var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+
+                        var chart = new google.charts.Line(document.getElementById('chart_div'));
                         //chart.draw(data, options);
+                        chart.draw(data, google.charts.Line.convertOptions(options));
 
                     }else{
                         $('#chart_div').empty();
