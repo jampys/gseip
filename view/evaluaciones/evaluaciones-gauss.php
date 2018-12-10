@@ -14,13 +14,10 @@
 
     $(document).ready(function(){
 
-        var v_id_tarea;
-
-
 
         google.charts.load('current', {'packages':['gantt'], 'language': 'es'});
         setTimeout(function() {
-                //google.charts.setOnLoadCallback(drawChart);
+                google.charts.setOnLoadCallback(drawChart);
         }, 500);
 
 
@@ -48,9 +45,11 @@
             $.ajax({
                 url:"index.php",
                 type:"post",
-                data:{"action": "obj_objetivos", "operation": "graficarGantt", "id_objetivo": <?php print $view->objetivo->getIdObjetivo() ?>},
+                data:{"action": "evaluaciones", "operation": "graficarGauss"},
                 dataType:"json",//xml,html,script,json
                 success: function(data1, textStatus, jqXHR) {
+
+                    //alert(data1[0]['nombre']);
 
                     if(Object.keys(data1).length > 0){
 
@@ -72,30 +71,10 @@
                         });
 
 
-                        var options = {
-                            gantt: {
-                                trackHeight: 25, //ancho de la fila
-                                barHeight: 19, //ancho de la barra
-                                criticalPathEnabled: false,
-                                /*,innerGridHorizLine: {
-                                    stroke: '#ffe0b2',
-                                    strokeWidth: 1
-                                },
-                                innerGridTrack: {fill: '#fff3e0'},
-                                innerGridDarkTrack: {fill: '#ffcc80'}*/
-                                palette: [ //con esto configuro los colores de las barras del gantt https://stackoverflow.com/questions/35165271/customize-the-bar-colors-in-google-gantt-charts
-                                    {
-                                        "color": "#f2a600",
-                                        "dark": "#ee8100",
-                                        "light": "#fce8b2"
-                                    }
-                                ]
-                            },
-                            height: Object.keys(data1).length*25+50 // cantidad_elementos * trackHeight + margen
-                        };
 
-                        var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
-                        chart.draw(data, options);
+
+                        //var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+                        //chart.draw(data, options);
 
                     }else{
                         $('#chart_div').empty();
