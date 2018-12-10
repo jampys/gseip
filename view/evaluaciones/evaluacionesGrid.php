@@ -27,7 +27,7 @@
 
             params={};
             params.action = "evaluaciones";
-            params.operation="graficarGauss";
+            params.operation="loadGauss";
             //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
             //params.id_contrato = $("#search_contrato").val();
             //params.id_subcontratista = $("#search_subcontratista").val();
@@ -36,8 +36,7 @@
 
 
             $('#popupbox').load('index.php', params,function(){
-                alert('ahhhhh');
-                //$('#myModalx').modal();
+                $('#myModal').modal();
             });
 
 
