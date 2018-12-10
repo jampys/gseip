@@ -26,8 +26,8 @@
             var data = new google.visualization.DataTable();
             data.addColumn('number', 'Day');
             data.addColumn('number', 'Guardians of the Galaxy');
-            data.addColumn('number', 'The Avengers');
-            data.addColumn('number', 'Transformers: Age of Extinction');
+            //data.addColumn('number', 'The Avengers');
+            //data.addColumn('number', 'Transformers: Age of Extinction');
 
 
             $.ajax({
@@ -37,38 +37,88 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data1, textStatus, jqXHR) {
 
-                    alert(data1[0]['puntaje']);
-                    alert(Object.keys(data1).length);
+                    var myval;
+
+                    var count = 0;
+                    var suma = 0;
+                    var promedio;
+                    var desSt;
+
+                    //alert(data1[0]['puntaje']);
+                    //alert(parseFloat(data1[0]['puntaje']).toFixed(1));
+                    //parseFloat(data1[0]['puntaje']).toFixed(1);
+                    //alert(Object.keys(data1).length);
                     /*data.addRows([
-                        [1,  37.8, 80.8, 41.8],
-                        [2,  30.9, 69.5, 32.4],
-                        [3,  25.4,   57, 25.7],
-                        [4,  11.7, 18.8, 10.5],
-                        [5,  11.9, 17.6, 10.4],
-                        [6,   8.8, 13.6,  7.7],
-                        [7,   7.6, 12.3,  9.6],
-                        [8,  12.3, 29.2, 10.6],
-                        [9,  16.9, 42.9, 14.8],
-                        [10, 12.8, 30.9, 11.6],
-                        [11,  5.3,  7.9,  4.7],
-                        [12,  6.6,  8.4,  5.2],
-                        [13,  4.8,  6.3,  3.6],
-                        [14,  4.2,  6.2,  3.4]
+                        [1,  37.8],
+                        [2,  30.9],
+                        [3,  25.4],
+                        [4,  11.7],
+                        [5,  11.9],
+                        [6,   8.8],
+                        [7,   7.6],
+                        [8,  12.3],
+                        [9,  16.9],
+                        [10, 12.8],
+                        [11,  5.3],
+                        [12,  6.6],
+                        [13,  4.8],
+                        [14,  4.2]
                     ]);*/
 
                     if(Object.keys(data1).length > 0){
 
+
+                        //calculo promedio
                         $.each(data1, function(indice, val){
-                            //alert(data1[indice]['Task_Name']);
-                            if (data1[indice]['puntaje'] === 0.00) { return; }
+                            if (parseFloat(data1[indice]['puntaje']) === 0) { return; } //excluyo los puntajes 0
+                            count++;
+                            suma += parseFloat(data1[indice]['puntaje']);
+                        });
+                        promedio = suma/count;
+                        alert(promedio);
+
+
+                        //calculo desvio standard
+                        var sumaCuadrados = 0;
+                        $.each(data1, function(indice, val){
+                            var value = parseFloat(data1[indice]['puntaje']);
+                            if ( value === 0) { return; } //excluyo los puntajes 0
+                            //count++;
+                            //suma += parseFloat(data1[indice]['puntaje']);
+                            var diff = value - promedio;
+                            var sqrDiff = diff * diff;
+                            sumaCuadrados += sqrDiff;
+                        });
+                        desSt = Math.sqrt(sumaCuadrados/count);
+                        alert(desSt);
+
+
+                        function NormalDensityZx(x, Mean, StdDev) {
+
+                            var a = x - Mean;
+
+                            return Math.exp(-(a * a) / (2 * StdDev * StdDev)) / (Math.sqrt(2 * Math.PI) * StdDev);
+
+                        }
+
+
+
+
+                        //myVal = parseFloat(Math.round(data1[2]['puntaje'] * 100) / 100).toFixed(2);
+                        //alert(myVal);
+
+                        $.each(data1, function(indice, val){
+                            myval = parseFloat(data1[indice]['puntaje']);
+                            //alert(typeof(myval));
+                            //if (data1[indice]['puntaje'] === 0.00) { return; }
 
                             data.addRows([
                                 [
                                     //1,  37, 80, 41
-                                    data1[indice]['puntaje'],
-                                    5,
-                                    3,
-                                    7
+                                    //data1[indice]['puntaje'],
+                                    myval,
+                                    //myval*2
+                                    NormalDensityZx(myval, promedio,desSt)
                                     //data1[indice]['Task_Name'],
                                     //data1[indice]['Task_Name'],
                                     //new Date(data1[indice]['Start_Date']),
@@ -90,6 +140,9 @@
                             //width: 900,
                             //height: 500
                         };
+                        options.hAxis = {};
+                        options.hAxis.minorGridlines = {};
+                        options.hAxis.minorGridlines.count = 12;
 
 
 
