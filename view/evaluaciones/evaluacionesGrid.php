@@ -18,8 +18,8 @@
 
 
 
-        $('.table-responsive').on("click", ".pdf", function(e){
-            e.preventDefault();
+        $('.table-responsive').on("click", ".gauss", function(e){
+            //e.preventDefault();
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
 
@@ -32,11 +32,12 @@
             //params.id_contrato = $("#search_contrato").val();
             //params.id_subcontratista = $("#search_subcontratista").val();
             //params.renovado = $('#search_renovado').prop('checked')? 1 : '';
-            params.id_user = "<?php echo $_SESSION['id_user']; ?>";
+            //params.id_user = "<?php //echo $_SESSION['id_user']; ?>";
 
 
             $('#popupbox').load('index.php', params,function(){
-                $('#myModalx').modal();
+                alert('ahhhhh');
+                //$('#myModalx').modal();
             });
 
 
@@ -44,10 +45,10 @@
 
             //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
             //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-            //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=gseip_vencimientos_v.rptdesign&p_id_vehiculo="+params.id_vehiculo+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_id_subcontratista="+params.id_subcontratista+"&p_renovado="+params.renovado+"&p_id_user="+params.id_user;
+            //var URL="<?php //echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=gseip_vencimientos_v.rptdesign&p_id_vehiculo="+params.id_vehiculo+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_id_subcontratista="+params.id_subcontratista+"&p_renovado="+params.renovado+"&p_id_user="+params.id_user;
             //var win = window.open(URL, "_blank", strWindowFeatures);
             //var win = window.open(URL, "_blank");
-            //return false;
+            return false;
         });
 
 
@@ -127,7 +128,7 @@
         </table>
 
         <br/>
-        <div class="pull-right pdf">
+        <div class="pull-right gauss">
             <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x"></i></a>
         </div>
 

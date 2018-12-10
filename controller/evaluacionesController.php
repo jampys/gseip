@@ -238,8 +238,8 @@ switch ($operation)
 
 
     case 'graficarGauss': //ok
-        $view->evaluaciones = new Evaluacion();
-        $rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
+        //$view->evaluaciones = new Evaluacion();
+        //$rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/evaluaciones/evaluaciones-gauss.php";

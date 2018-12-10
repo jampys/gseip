@@ -277,7 +277,7 @@
 
     </div>
 
-    <div id="popupbox1"></div>
+    <div id="popupbox"></div>
 
 
 
