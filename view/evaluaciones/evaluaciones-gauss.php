@@ -15,7 +15,7 @@
     $(document).ready(function(){
 
 
-        google.charts.load('current', {'packages':['line'], 'language': 'es'});
+        google.charts.load('current', {'packages':['corechart'], 'language': 'es'});
         setTimeout(function() {
                 google.charts.setOnLoadCallback(drawChart);
         }, 500);
@@ -147,9 +147,9 @@
 
 
 
-                        var chart = new google.charts.Line(document.getElementById('chart_div'));
-                        //chart.draw(data, options);
-                        chart.draw(data, google.charts.Line.convertOptions(options));
+                        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                        chart.draw(data, options);
+                        //chart.draw(data, google.charts.Line.convertOptions(options));
 
                     }else{
                         $('#chart_div').empty();
