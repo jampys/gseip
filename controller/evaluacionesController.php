@@ -237,6 +237,17 @@ switch ($operation)
         break;
 
 
+    case 'graficarGauss': //ok
+        $view->evaluaciones = new Evaluacion();
+        $rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
+
+        $view->disableLayout=true;
+        $view->contentTemplate="view/evaluaciones/evaluaciones-gauss.php";
+        //print_r(json_encode($rta));
+        //exit;
+        break;
+
+
     default : //ok
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();

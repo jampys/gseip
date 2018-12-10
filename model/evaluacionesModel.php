@@ -103,6 +103,33 @@ group by em.id_empleado";
     }
 
 
+    public function graficarGauss($periodo, $id_contrato) { //ok
+        //el query es similar a: getEvaluaciones()
+        $stmt=new sQuery();
+        $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre,
+ec.id_empleado_contrato, ec.id_contrato, ec.id_puesto,
+co.nombre as contrato,
+pu.nombre as puesto,
+pe.id_plan_evaluacion, pe.periodo, pe.cerrado,
+func_eval_puntaje_final(em.id_empleado, pe.periodo) as puntaje
+from v_sec_empleados_control em
+join empleado_contrato ec on em.id_empleado = ec.id_empleado
+join contratos co on ec.id_contrato = co.id_contrato
+join companias cia on co.id_compania = cia.id_compania
+join puestos pu on ec.id_puesto = pu.id_puesto
+join ead_planes_evaluacion pe on pe.periodo = 2018
+where em.fecha_baja is null
+and co.id_contrato = ifnull(null, co.id_contrato)
+group by em.id_empleado";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':periodo', $periodo);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
 
 }
 
