@@ -237,8 +237,9 @@ switch ($operation)
         break;
 
     case 'loadGauss':
-        //$view->evaluaciones = new Evaluacion();
-        //$rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
+        $view->evaluaciones = new Evaluacion();
+        $rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
+        $view->puntajes = json_encode($rta);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/evaluaciones/evaluaciones-gauss.php";
@@ -247,12 +248,12 @@ switch ($operation)
         break;
 
 
-    case 'graficarGauss':
+    /*case 'graficarGauss':
         $view->evaluaciones = new Evaluacion();
         $rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
         print_r(json_encode($rta));
         exit;
-        break;
+        break;*/
 
 
     default : //ok

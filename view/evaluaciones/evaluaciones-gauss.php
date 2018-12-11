@@ -26,16 +26,9 @@
             var data = new google.visualization.DataTable();
             data.addColumn('number', 'Day');
             data.addColumn('number', 'Guardians of the Galaxy');
-            //data.addColumn('number', 'The Avengers');
-            //data.addColumn('number', 'Transformers: Age of Extinction');
 
-
-            $.ajax({
-                url:"index.php",
-                type:"post",
-                data:{"action": "evaluaciones", "operation": "graficarGauss"},
-                dataType:"json",//xml,html,script,json
-                success: function(data1, textStatus, jqXHR) {
+                    var hola = <?php echo $view->puntajes; ?>;
+                    alert(hola[0]['nombre']);
 
                     var myval;
 
@@ -50,29 +43,17 @@
                     //alert(Object.keys(data1).length);
                     /*data.addRows([
                         [1,  37.8],
-                        [2,  30.9],
-                        [3,  25.4],
-                        [4,  11.7],
-                        [5,  11.9],
-                        [6,   8.8],
-                        [7,   7.6],
-                        [8,  12.3],
-                        [9,  16.9],
-                        [10, 12.8],
-                        [11,  5.3],
-                        [12,  6.6],
-                        [13,  4.8],
-                        [14,  4.2]
+                        [2,  30.9]
                     ]);*/
 
-                    if(Object.keys(data1).length > 0){
+                    if(Object.keys(hola).length > 0){
 
 
                         //calculo promedio
-                        $.each(data1, function(indice, val){
-                            if (parseFloat(data1[indice]['puntaje']) === 0) { return; } //excluyo los puntajes 0
+                        $.each(hola, function(indice, val){
+                            if (parseFloat(hola[indice]['puntaje']) === 0) { return; } //excluyo los puntajes 0
                             count++;
-                            suma += parseFloat(data1[indice]['puntaje']);
+                            suma += parseFloat(hola[indice]['puntaje']);
                         });
                         promedio = suma/count;
                         alert(promedio);
@@ -80,8 +61,8 @@
 
                         //calculo desvio standard
                         var sumaCuadrados = 0;
-                        $.each(data1, function(indice, val){
-                            var value = parseFloat(data1[indice]['puntaje']);
+                        $.each(hola, function(indice, val){
+                            var value = parseFloat(hola[indice]['puntaje']);
                             if ( value === 0) { return; } //excluyo los puntajes 0
                             //count++;
                             //suma += parseFloat(data1[indice]['puntaje']);
@@ -94,41 +75,23 @@
 
 
                         function NormalDensityZx(x, Mean, StdDev) {
-
                             var a = x - Mean;
-
                             return Math.exp(-(a * a) / (2 * StdDev * StdDev)) / (Math.sqrt(2 * Math.PI) * StdDev);
-
                         }
 
 
 
-
-                        //myVal = parseFloat(Math.round(data1[2]['puntaje'] * 100) / 100).toFixed(2);
-                        //alert(myVal);
-
-                        $.each(data1, function(indice, val){
-                            myval = parseFloat(data1[indice]['puntaje']);
-                            //alert(typeof(myval));
+                        $.each(hola, function(indice, val){
+                            myval = parseFloat(hola[indice]['puntaje']);
                             //if (data1[indice]['puntaje'] === 0.00) { return; }
 
                             data.addRows([
                                 [
-                                    //1,  37, 80, 41
-                                    //data1[indice]['puntaje'],
                                     myval,
-                                    //myval*2
                                     NormalDensityZx(myval, promedio,desSt)
-                                    //data1[indice]['Task_Name'],
-                                    //data1[indice]['Task_Name'],
-                                    //new Date(data1[indice]['Start_Date']),
-                                    //new Date(data1[indice]['End_Date']),
-                                    //null,
-                                    //(data1[indice]['Percent_Complete'])? parseInt(data1[indice]['Percent_Complete']) : 0,
-                                    //null
                                 ]
-
                             ]);
+
                         });
 
                         
@@ -155,13 +118,7 @@
                         $('#chart_div').empty();
                     }
 
-                },
-                error: function(data, textStatus, errorThrown) {
-                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                    alert(data.responseText);
-                }
 
-            });
 
         }
 
