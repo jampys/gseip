@@ -225,6 +225,49 @@
 
                         <div class="col-md-5" id="right_side">
 
+
+
+
+
+
+                            <div class="table-responsive">
+
+                                <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+                                    <thead>
+                                    <tr>
+                                        <th>Nro.</th>
+                                        <th>Nombre</th>
+                                        <th>Nro.</th>
+                                        <th>Vencimiento</th>
+                                        <th>Fecha Baja</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach ($view->puntajes as $vehiculo):   ?>
+                                        <tr data-id="<?php echo $vehiculo['id_empleado']; ?>">
+                                            <td><?php //echo $vehiculo['id_grupo'];?></td>
+                                            <td><?php //echo $vehiculo['nombre'];?></td>
+                                            <td><?php //echo $vehiculo['nro_referencia'];?></td>
+                                            <td><?php //echo $vehiculo['vencimiento'];?></td>
+                                            <td><?php //echo $vehiculo['fecha_baja'];?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
                         </div>
 
 
