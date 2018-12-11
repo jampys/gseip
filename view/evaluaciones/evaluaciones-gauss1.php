@@ -171,37 +171,38 @@
 
                 <div class="row">
 
-                    <div class="col-md-12">
-                        <div class="alert alert-info">
 
 
-                            <div class="row">
+                    <div class="col-md-4">
 
+                        <p><strong>Período:</strong> <?php echo $view->periodo; ?></p>
+                        <p><strong>Contrato:</strong>   <?php //print $view->objetivo->getNombre() ?> </p>
 
-                                <div class="col-md-6">
-
-                                    <p><strong>Período:</strong> <?php echo $view->periodo; ?></p>
-                                    <p><strong>Contrato:</strong>   <?php //print $view->objetivo->getNombre() ?> </p>
-
-                                </div>
-
-                                <div class="col-md-6">
-
-                                    <p><strong>Meta</strong> <?php //print $view->objetivo->getMeta() ?>
-                                       <strong>Indicador</strong> <?php //print $view->objetivo->getIndicador() ?>
-                                        <strong>Valor</strong> <?php //print $view->objetivo->getMetaValor() ?>
-                                    </p>
-
-                                </div>
-
-
-
-                            </div>
-
-
-
-                        </div>
                     </div>
+
+
+                    <div class="col-md-4">
+
+                        <p><strong>Meta</strong> <?php //print $view->objetivo->getMeta() ?>
+                            <strong>Indicador</strong> <?php //print $view->objetivo->getIndicador() ?>
+                            <strong>Valor</strong> <?php //print $view->objetivo->getMetaValor() ?>
+                        </p>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <p><strong>Período:</strong> <?php echo $view->periodo; ?></p>
+                        <p><strong>Contrato:</strong>   <?php //print $view->objetivo->getNombre() ?> </p>
+
+                    </div>
+
+
+
+
+
+
                 </div>
 
                 <br/>
