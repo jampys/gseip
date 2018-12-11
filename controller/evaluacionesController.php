@@ -241,6 +241,7 @@ switch ($operation)
         $view->rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
         $view->puntajes = json_encode($view->rta);
 
+        $view->label = 'Función de densidad';
         $view->periodo = $_POST['periodo'];
 
         $view->disableLayout=true;

@@ -128,7 +128,9 @@
 
         <br/>
         <div class="pull-right gauss">
-            <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x"></i></a>
+            <a href="#" title="Función de densidad">
+                <i class="fas fa-chart-area fa-fw fa-2x"></i>
+            </a>
         </div>
 
     </div>
