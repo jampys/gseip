@@ -238,8 +238,8 @@ switch ($operation)
 
     case 'loadGauss':
         $view->evaluaciones = new Evaluacion();
-        $rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
-        $view->puntajes = json_encode($rta);
+        $view->rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
+        $view->puntajes = json_encode($view->rta);
 
         $view->periodo = $_POST['periodo'];
 

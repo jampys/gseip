@@ -230,26 +230,25 @@
 
 
 
-                            <div class="table-responsive">
+                            <div class="table-responsive fixedTable">
 
-                                <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+                                <table class="table table-condensed dataTable table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Nro.</th>
-                                        <th>Nombre</th>
-                                        <th>Nro.</th>
-                                        <th>Vencimiento</th>
-                                        <th>Fecha Baja</th>
+                                        <th>Empleado</th>
+                                        <th>Contrato</th>
+                                        <th>F.</th>
+                                        <th>F</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach ($view->puntajes as $vehiculo):   ?>
-                                        <tr data-id="<?php echo $vehiculo['id_empleado']; ?>">
-                                            <td><?php //echo $vehiculo['id_grupo'];?></td>
-                                            <td><?php //echo $vehiculo['nombre'];?></td>
-                                            <td><?php //echo $vehiculo['nro_referencia'];?></td>
-                                            <td><?php //echo $vehiculo['vencimiento'];?></td>
-                                            <td><?php //echo $vehiculo['fecha_baja'];?></td>
+                                    <?php foreach ($view->rta as $em): ?>
+                                        <tr data-id="<?php echo $em['id_empleado'];?>">
+                                            <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
+                                            <td><?php echo $em['id_empleado']; ?></td>
+                                            <td><?php echo $em['id_empleado']; ?></td>
+                                            <td><?php echo $em['id_empleado']; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                     </tbody>
