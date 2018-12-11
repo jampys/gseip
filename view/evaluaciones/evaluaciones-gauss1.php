@@ -21,8 +21,9 @@
         //alert(Object.keys(temp).length);
 
         var data = $.map(temp, function(elem, index) {
-            if (parseFloat(temp[index]['puntaje']) === 0) { return null; } //excluyo los puntajes 0
-            else return parseFloat(temp[index]['puntaje']);
+            //if (parseFloat(temp[index]['puntaje']) === 0) { return null; } //excluyo los puntajes 0
+            //else return parseFloat(temp[index]['puntaje']);
+            return parseFloat(temp[index]['puntaje']);
         });
 
 
@@ -226,29 +227,20 @@
                         <div class="col-md-5" id="right_side">
 
 
-
-
-
-
-                            <div class="table-responsive fixedTable">
+                            <div class="table-responsive fixedTable" style="max-height: 300px">
 
                                 <table class="table table-condensed dataTable table-hover">
                                     <thead>
                                     <tr>
                                         <th>Empleado</th>
-                                        <th>Contrato</th>
-                                        <th>F.</th>
-                                        <th>F</th>
-
+                                        <th>Puntaje</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php foreach ($view->rta as $em): ?>
                                         <tr data-id="<?php echo $em['id_empleado'];?>">
                                             <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
-                                            <td><?php echo $em['id_empleado']; ?></td>
-                                            <td><?php echo $em['id_empleado']; ?></td>
-                                            <td><?php echo $em['id_empleado']; ?></td>
+                                            <td><?php echo $em['puntaje']; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                     </tbody>
