@@ -120,8 +120,7 @@ join puestos pu on ec.id_puesto = pu.id_puesto
 join ead_planes_evaluacion pe on pe.periodo = 2018
 where em.fecha_baja is null
 and co.id_contrato = ifnull(null, co.id_contrato)
-group by em.id_empleado
-order by puntaje asc";
+group by em.id_empleado";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $periodo);
