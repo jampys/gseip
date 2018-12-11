@@ -15,124 +15,108 @@
     $(document).ready(function(){
 
 
-        google.charts.load('current', {'packages':['corechart'], 'language': 'es'});
-        setTimeout(function() {
-                google.charts.setOnLoadCallback(drawChart);
-        }, 500);
 
+        var data = [3.5, 3, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.4, 3, 3, 4,
+            4.4, 3.9, 3.5, 3.8, 3.8, 3.4, 3.7, 3.6, 3.3, 3.4, 3, 3.4, 3.5, 3.4, 3.2,
+            3.1, 3.4, 4.1, 4.2, 3.1, 3.2, 3.5, 3.6, 3, 3.4, 3.5, 2.3, 3.2, 3.5, 3.8, 3,
+            3.8, 3.2, 3.7, 3.3, 3.2, 3.2, 3.1, 2.3, 2.8, 2.8, 3.3, 2.4, 2.9, 2.7, 2, 3,
+            2.2, 2.9, 2.9, 3.1, 3, 2.7, 2.2, 2.5, 3.2, 2.8, 2.5, 2.8, 2.9, 3, 2.8, 3,
+            2.9, 2.6, 2.4, 2.4, 2.7, 2.7, 3, 3.4, 3.1, 2.3, 3, 2.5, 2.6, 3, 2.6, 2.3,
+            2.7, 3, 2.9, 2.9, 2.5, 2.8, 3.3, 2.7, 3, 2.9, 3, 3, 2.5, 2.9, 2.5, 3.6,
+            3.2, 2.7, 3, 2.5, 2.8, 3.2, 3, 3.8, 2.6, 2.2, 3.2, 2.8, 2.8, 2.7, 3.3, 3.2,
+            2.8, 3, 2.8, 3, 2.8, 3.8, 2.8, 2.8, 2.6, 3, 3.4, 3.1, 3, 3.1, 3.1, 3.1, 2.7,
+            3.2, 3.3, 3, 2.5, 3, 3.4, 3
+        ];
 
-        function drawChart() {
-            //alert('se ejecuto drawChart');
-            var data = new google.visualization.DataTable();
-            data.addColumn('number', 'Day');
-            data.addColumn('number', 'función de densidad');
+        var pointsInInterval = 5;
 
-            var temp = <?php echo $view->puntajes; ?>;
-            //alert(Object.keys(temp).length);
-
-            var puntajes = $.map(temp, function(elem, index) {
-                if (parseFloat(temp[index]['puntaje']) === 0) { return null; } //excluyo los puntajes 0
-                else return elem;
-            });
-
-            var count = Object.keys(puntajes).length;
-            //alert(count);
-
-
-
-            /*data.addRows([
-             [1,  37.8],
-             [2,  30.9]
-             ]);*/
-
-
-            if(count > 0){
-
-
-                //calculo promedio
-                var suma = 0;
-                var promedio = 0;
-                $.each(puntajes, function(indice, val){
-                    suma += parseFloat(puntajes[indice]['puntaje']);
-                });
-                promedio = suma/count;
-                //alert(promedio);
-
-
-                //calculo desvio standard
-                var sumaCuadrados = 0;
-                var desSt = 0;
-                $.each(puntajes, function(indice, val){
-                    var value = parseFloat(puntajes[indice]['puntaje']);
-                    var diff = value - promedio;
-                    var sqrDiff = diff * diff;
-                    sumaCuadrados += sqrDiff;
-                });
-                desSt = Math.sqrt(sumaCuadrados/count);
-                //alert(desSt);
-
-
-                function NormalDensityZx(x, Mean, StdDev) {
-                    var a = x - Mean;
-                    return Math.exp(-(a * a) / (2 * StdDev * StdDev)) / (Math.sqrt(2 * Math.PI) * StdDev);
+        Highcharts.chart('chart_div', {
+            chart: {
+                margin: [50, 0, 50, 50],
+                events: {
+                    load: function () {
+                        Highcharts.each(this.series[0].data, function (point, i) {
+                            var labels = ['4σ', '3σ', '2σ', 'σ', 'μ', 'σ', '2σ', '3σ', '4σ'];
+                            if (i % pointsInInterval === 0) {
+                                point.update({
+                                    color: 'black',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: labels[Math.floor(i / pointsInInterval)],
+                                        overflow: 'none',
+                                        crop: false,
+                                        y: -2,
+                                        style: {
+                                            fontSize: '13px'
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
                 }
+            },
+
+            title: {
+                text: null
+            },
+
+            legend: {
+                enabled: false
+            },
+
+            xAxis: [{
+                title: {
+                    text: 'Data'
+                },
+                visible: false
+            }, {
+                title: {
+                    text: 'Bell curve'
+                },
+                opposite: true,
+                visible: false
+            }],
+
+            yAxis: [{
+                title: {
+                    text: 'Data'
+                },
+                visible: false
+            }, {
+                title: {
+                    text: 'Bell curve'
+                },
+                opposite: true,
+                visible: false
+            }],
+
+            series: [{
+                name: 'Bell curve asd',
+                type: 'bellcurve',
+                xAxis: 1,
+                yAxis: 1,
+                pointsInInterval: pointsInInterval,
+                intervals: 4,
+                baseSeries: 1,
+                zIndex: -1,
+                marker: {
+                    enabled: true
+                }
+            }, {
+                name: 'Data',
+                type: 'scatter',
+                data: data,
+                visible: false,
+                marker: {
+                    radius: 1.5
+                }
+            }]
+        });
 
 
 
-                $.each(puntajes, function(indice, val){
-                    var myval = parseFloat(puntajes[indice]['puntaje']);
-                    //if (data1[indice]['puntaje'] === 0.00) { return; }
 
-                    data.addRows([
-                        [
-                            myval,
-                            NormalDensityZx(myval, promedio,desSt)
-                        ]
-                    ]);
-
-                });
-
-
-
-
-                var options = {
-                    title: 'Box Office Earnings in First Two Weeks of Opening',
-                    //subtitle: 'in millions of dollars (USD)',
-                    width: 700,
-                    height: 330,
-                    legend: {position: 'top', maxLines: 3}
-                };
-                options.hAxis = {};
-                options.hAxis.minorGridlines = {};
-                options.hAxis.minorGridlines.count = 12;
-
-
-
-
-                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
-                //chart.draw(data, google.charts.Line.convertOptions(options));
-
-            }else{
-                $('#chart_div').empty();
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        }
 
 
 
@@ -214,7 +198,7 @@
 
 
 
-                <div id="chart_div"></div>
+                <div id="chart_div" style="height: 400px"></div>
 
 
                 

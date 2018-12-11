@@ -77,6 +77,10 @@
     <!-- incluyo el plug-in google charts -->
     <script type="text/javascript" src="resources/libraries/google charts/loader.js"></script>
 
+    <!-- incluyo el plug-in highcharts -->
+    <script src="resources/libraries/highcharts/highcharts.js"></script>
+    <script src="resources/libraries/highcharts/histogram-bellcurve.js"></script>
+
 
     <!-- librerias css propias -->
     <link rel="stylesheet" href="resources/css/dario.css">
