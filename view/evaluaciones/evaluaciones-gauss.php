@@ -27,96 +27,111 @@
             data.addColumn('number', 'Day');
             data.addColumn('number', 'Guardians of the Galaxy');
 
-                    var hola = <?php echo $view->puntajes; ?>;
-                    alert(hola[0]['nombre']);
+            var temp = <?php echo $view->puntajes; ?>;
+            //alert(Object.keys(temp).length);
 
-                    var myval;
+            var puntajes = $.map(temp, function(elem, index) {
+                if (parseFloat(temp[index]['puntaje']) === 0) { return null; }
+                else return elem;
+            });
+            alert(Object.keys(puntajes).length);
 
-                    var count = 0;
-                    var suma = 0;
-                    var promedio;
-                    var desSt;
+            var myval;
+            var count = 0;
+            var suma = 0;
+            var promedio;
+            var desSt;
 
-                    //alert(data1[0]['puntaje']);
-                    //alert(parseFloat(data1[0]['puntaje']).toFixed(1));
-                    //parseFloat(data1[0]['puntaje']).toFixed(1);
-                    //alert(Object.keys(data1).length);
-                    /*data.addRows([
-                        [1,  37.8],
-                        [2,  30.9]
-                    ]);*/
-
-                    if(Object.keys(hola).length > 0){
-
-
-                        //calculo promedio
-                        $.each(hola, function(indice, val){
-                            if (parseFloat(hola[indice]['puntaje']) === 0) { return; } //excluyo los puntajes 0
-                            count++;
-                            suma += parseFloat(hola[indice]['puntaje']);
-                        });
-                        promedio = suma/count;
-                        alert(promedio);
+            /*data.addRows([
+             [1,  37.8],
+             [2,  30.9]
+             ]);*/
 
 
-                        //calculo desvio standard
-                        var sumaCuadrados = 0;
-                        $.each(hola, function(indice, val){
-                            var value = parseFloat(hola[indice]['puntaje']);
-                            if ( value === 0) { return; } //excluyo los puntajes 0
-                            //count++;
-                            //suma += parseFloat(data1[indice]['puntaje']);
-                            var diff = value - promedio;
-                            var sqrDiff = diff * diff;
-                            sumaCuadrados += sqrDiff;
-                        });
-                        desSt = Math.sqrt(sumaCuadrados/count);
-                        alert(desSt);
+            if(Object.keys(puntajes).length > 0){
 
 
-                        function NormalDensityZx(x, Mean, StdDev) {
-                            var a = x - Mean;
-                            return Math.exp(-(a * a) / (2 * StdDev * StdDev)) / (Math.sqrt(2 * Math.PI) * StdDev);
-                        }
+                //calculo promedio
+                $.each(puntajes, function(indice, val){
+                    if (parseFloat(puntajes[indice]['puntaje']) === 0) { return; } //excluyo los puntajes 0
+                    count++;
+                    suma += parseFloat(puntajes[indice]['puntaje']);
+                });
+                promedio = suma/count;
+                //alert(promedio);
+
+
+                //calculo desvio standard
+                var sumaCuadrados = 0;
+                $.each(puntajes, function(indice, val){
+                    var value = parseFloat(puntajes[indice]['puntaje']);
+                    if ( value === 0) { return; } //excluyo los puntajes 0
+                    //count++;
+                    //suma += parseFloat(data1[indice]['puntaje']);
+                    var diff = value - promedio;
+                    var sqrDiff = diff * diff;
+                    sumaCuadrados += sqrDiff;
+                });
+                desSt = Math.sqrt(sumaCuadrados/count);
+                alert(desSt);
+
+
+                function NormalDensityZx(x, Mean, StdDev) {
+                    var a = x - Mean;
+                    return Math.exp(-(a * a) / (2 * StdDev * StdDev)) / (Math.sqrt(2 * Math.PI) * StdDev);
+                }
 
 
 
-                        $.each(hola, function(indice, val){
-                            myval = parseFloat(hola[indice]['puntaje']);
-                            //if (data1[indice]['puntaje'] === 0.00) { return; }
+                $.each(puntajes, function(indice, val){
+                    myval = parseFloat(puntajes[indice]['puntaje']);
+                    //if (data1[indice]['puntaje'] === 0.00) { return; }
 
-                            data.addRows([
-                                [
-                                    myval,
-                                    NormalDensityZx(myval, promedio,desSt)
-                                ]
-                            ]);
+                    data.addRows([
+                        [
+                            myval,
+                            NormalDensityZx(myval, promedio,desSt)
+                        ]
+                    ]);
 
-                        });
-
-                        
-
-
-                        var options = {
-                            title: 'Box Office Earnings in First Two Weeks of Opening',
-                            //subtitle: 'in millions of dollars (USD)',
-                            width: 800,
-                            height: 500
-                        };
-                        options.hAxis = {};
-                        options.hAxis.minorGridlines = {};
-                        options.hAxis.minorGridlines.count = 12;
+                });
 
 
 
 
-                        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-                        chart.draw(data, options);
-                        //chart.draw(data, google.charts.Line.convertOptions(options));
+                var options = {
+                    title: 'Box Office Earnings in First Two Weeks of Opening',
+                    //subtitle: 'in millions of dollars (USD)',
+                    width: 800,
+                    height: 500
+                };
+                options.hAxis = {};
+                options.hAxis.minorGridlines = {};
+                options.hAxis.minorGridlines.count = 12;
 
-                    }else{
-                        $('#chart_div').empty();
-                    }
+
+
+
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+                //chart.draw(data, google.charts.Line.convertOptions(options));
+
+            }else{
+                $('#chart_div').empty();
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
