@@ -241,6 +241,8 @@ switch ($operation)
         $rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
         $view->puntajes = json_encode($rta);
 
+        $view->periodo = $_POST['periodo'];
+
         $view->disableLayout=true;
         $view->contentTemplate="view/evaluaciones/evaluaciones-gauss1.php";
         //print_r(json_encode($rta));

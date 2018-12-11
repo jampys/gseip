@@ -180,8 +180,8 @@
 
                                 <div class="col-md-6">
 
-                                    <p><strong> <?php //print $view->objetivo->getCodigo() ?> </strong>
-                                        <?php //print $view->objetivo->getNombre() ?> </p>
+                                    <p><strong>Período:</strong> <?php echo $view->periodo; ?></p>
+                                    <p><strong>Contrato:</strong>   <?php //print $view->objetivo->getNombre() ?> </p>
 
                                 </div>
 
@@ -208,13 +208,15 @@
 
 
 
-                <div id="chart_div" style="height: 400px"></div>
+
 
 
                 
                 <div class="row">
 
                         <div class="col-md-7" id="left_side">
+
+                            <div id="chart_div" style="height: 300px"></div>
 
                         </div>
 
