@@ -25,7 +25,7 @@
             //alert('se ejecuto drawChart');
             var data = new google.visualization.DataTable();
             data.addColumn('number', 'Day');
-            data.addColumn('number', 'Guardians of the Galaxy');
+            data.addColumn('number', 'función de densidad');
 
             var temp = <?php echo $view->puntajes; ?>;
             //alert(Object.keys(temp).length);
@@ -99,7 +99,8 @@
                     title: 'Box Office Earnings in First Two Weeks of Opening',
                     //subtitle: 'in millions of dollars (USD)',
                     width: 700,
-                    height: 330
+                    height: 330,
+                    legend: {position: 'top', maxLines: 3}
                 };
                 options.hAxis = {};
                 options.hAxis.minorGridlines = {};
