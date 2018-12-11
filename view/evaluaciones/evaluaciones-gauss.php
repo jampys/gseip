@@ -31,16 +31,14 @@
             //alert(Object.keys(temp).length);
 
             var puntajes = $.map(temp, function(elem, index) {
-                if (parseFloat(temp[index]['puntaje']) === 0) { return null; }
+                if (parseFloat(temp[index]['puntaje']) === 0) { return null; } //excluyo los puntajes 0
                 else return elem;
             });
-            alert(Object.keys(puntajes).length);
 
-            var myval;
-            var count = 0;
-            var suma = 0;
-            var promedio;
-            var desSt;
+            var count = Object.keys(puntajes).length;
+            //alert(count);
+
+
 
             /*data.addRows([
              [1,  37.8],
@@ -48,13 +46,13 @@
              ]);*/
 
 
-            if(Object.keys(puntajes).length > 0){
+            if(count > 0){
 
 
                 //calculo promedio
+                var suma = 0;
+                var promedio = 0;
                 $.each(puntajes, function(indice, val){
-                    if (parseFloat(puntajes[indice]['puntaje']) === 0) { return; } //excluyo los puntajes 0
-                    count++;
                     suma += parseFloat(puntajes[indice]['puntaje']);
                 });
                 promedio = suma/count;
@@ -63,17 +61,15 @@
 
                 //calculo desvio standard
                 var sumaCuadrados = 0;
+                var desSt = 0;
                 $.each(puntajes, function(indice, val){
                     var value = parseFloat(puntajes[indice]['puntaje']);
-                    if ( value === 0) { return; } //excluyo los puntajes 0
-                    //count++;
-                    //suma += parseFloat(data1[indice]['puntaje']);
                     var diff = value - promedio;
                     var sqrDiff = diff * diff;
                     sumaCuadrados += sqrDiff;
                 });
                 desSt = Math.sqrt(sumaCuadrados/count);
-                alert(desSt);
+                //alert(desSt);
 
 
                 function NormalDensityZx(x, Mean, StdDev) {
@@ -84,7 +80,7 @@
 
 
                 $.each(puntajes, function(indice, val){
-                    myval = parseFloat(puntajes[indice]['puntaje']);
+                    var myval = parseFloat(puntajes[indice]['puntaje']);
                     //if (data1[indice]['puntaje'] === 0.00) { return; }
 
                     data.addRows([
@@ -102,8 +98,8 @@
                 var options = {
                     title: 'Box Office Earnings in First Two Weeks of Opening',
                     //subtitle: 'in millions of dollars (USD)',
-                    width: 800,
-                    height: 500
+                    width: 700,
+                    height: 330
                 };
                 options.hAxis = {};
                 options.hAxis.minorGridlines = {};
