@@ -243,6 +243,8 @@ switch ($operation)
 
         $view->label = 'Función de densidad';
         $view->periodo = $_POST['periodo'];
+        $view->contrato = ($_POST['search_contrato'])? (new Contrato())->getNombre($_POST['search_contrato']) : 'TODOS';
+
 
         $view->disableLayout=true;
         $view->contentTemplate="view/evaluaciones/evaluaciones-gauss1.php";

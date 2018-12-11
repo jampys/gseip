@@ -176,8 +176,8 @@
 
                     <div class="col-md-4">
 
-                        <p><strong>Período:</strong> <?php echo $view->periodo; ?></p>
-                        <p><strong>Contrato:</strong>   <?php //print $view->objetivo->getNombre() ?> </p>
+                        <p><strong>Período:</strong> <?php print $view->periodo; ?></p>
+                        <p><strong>Contrato:</strong>   <?php print $view->contrato; ?> </p>
 
                     </div>
 
