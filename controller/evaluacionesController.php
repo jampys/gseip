@@ -242,7 +242,7 @@ switch ($operation)
         $view->puntajes = json_encode($rta);
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/evaluaciones/evaluaciones-gauss.php";
+        $view->contentTemplate="view/evaluaciones/evaluaciones-gauss1.php";
         //print_r(json_encode($rta));
         //exit;
         break;
