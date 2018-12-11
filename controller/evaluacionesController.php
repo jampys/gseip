@@ -7,6 +7,8 @@ include_once("model/evaluacionesObjetivosModel.php");
 include_once("model/contratosModel.php");
 include_once("model/empleadosModel.php");
 
+include_once("model/puestosModel.php");
+
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
@@ -19,6 +21,7 @@ switch ($operation)
         $view->disableLayout=true;
         //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
 
         $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo'], $id_contrato) : Evaluacion::getEvaluaciones1($_POST['periodo'], $id_contrato);
         $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";
@@ -238,12 +241,16 @@ switch ($operation)
 
     case 'loadGauss':
         $view->evaluaciones = new Evaluacion();
-        $view->rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
+
+        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
+        $view->rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $id_contrato);
+
         $view->puntajes = json_encode($view->rta);
 
         $view->label = 'Función de densidad';
         $view->periodo = $_POST['periodo'];
-        $view->contrato = ($_POST['search_contrato'])? (new Contrato())->getNombre($_POST['search_contrato']) : 'TODOS';
+        $view->contrato = ($_POST['search_contrato'])? (new Contrato($_POST['search_contrato']))->getNombre() : 'TODOS';
 
 
         $view->disableLayout=true;
@@ -265,6 +272,7 @@ switch ($operation)
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+        $view->puestos = Puesto::getPuestos();
         $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";
         break;
 }

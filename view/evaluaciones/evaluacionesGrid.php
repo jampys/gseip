@@ -29,10 +29,10 @@
             params.action = "evaluaciones";
             params.operation="loadGauss";
             params.periodo = $("#periodo").val();
-            params.id_contrato = $("#search_contrato").val();
+            params.search_contrato = $("#search_contrato").val();
             //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
             //params.renovado = $('#search_renovado').prop('checked')? 1 : '';
-            //params.id_user = "<?php //echo $_SESSION['id_user']; ?>";
+            //alert(params.search_contrato);
 
 
             $('#popupbox').load('index.php', params,function(){

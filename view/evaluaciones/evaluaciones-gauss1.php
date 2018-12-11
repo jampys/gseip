@@ -173,44 +173,27 @@
                 <div class="row">
 
 
-
                     <div class="col-md-4">
-
                         <p><strong>Período:</strong> <?php print $view->periodo; ?></p>
                         <p><strong>Contrato:</strong>   <?php print $view->contrato; ?> </p>
-
                     </div>
 
 
                     <div class="col-md-4">
-
-                        <p><strong>Meta</strong> <?php //print $view->objetivo->getMeta() ?>
-                            <strong>Indicador</strong> <?php //print $view->objetivo->getIndicador() ?>
-                            <strong>Valor</strong> <?php //print $view->objetivo->getMetaValor() ?>
-                        </p>
-
+                        <p><strong>Meta</strong> <?php //print $view->objetivo->getMeta() ?></p>
+                        <p><strong>Indicador</strong> <?php //print $view->objetivo->getIndicador() ?></p>
                     </div>
 
 
                     <div class="col-md-4">
-
                         <p><strong>Período:</strong> <?php echo $view->periodo; ?></p>
                         <p><strong>Contrato:</strong>   <?php //print $view->objetivo->getNombre() ?> </p>
-
                     </div>
-
-
-
-
 
 
                 </div>
 
                 <br/>
-
-
-
-
 
 
                 
