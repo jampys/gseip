@@ -115,7 +115,7 @@
 
             yAxis: [{
                 title: {
-                    text: 'Data'
+                    text: 'Puntaje' //'Data'
                 },
                 visible: false
             }, {
