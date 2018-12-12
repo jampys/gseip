@@ -19,7 +19,7 @@
             sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
-            scrollY:        230,
+            scrollY:        200,
             scrollCollapse: true,
             scroller:       true
             /*"columnDefs": [
@@ -146,7 +146,10 @@
                 marker: {
                     radius: 1.5
                 }
-            }]
+            }],
+            credits: {
+                enabled: false
+            }
         });
 
 
