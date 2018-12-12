@@ -21,14 +21,12 @@
             //deferRender:    true,
             scrollY:        200,
             scrollCollapse: true,
-            scroller:       true
-            /*"columnDefs": [
-             {"width": "30%", "targets": 0}, //empleado
-             {"width": "55%", "targets": 1}, //puesto
-             {"width": "5%", "targets": 2}, //ver
-             {"width": "5%", "targets": 3}, //editar
-             {"width": "5%", "targets": 4} //eliminar
-             ]*/
+            scroller:       true,
+            "columnDefs": [
+             {"width": "65%", "targets": 0}, //empleado
+             {"width": "20%", "targets": 1}, //puesto
+             {"width": "15%", "targets": 2} //ver
+             ]
 
         });
 
@@ -252,7 +250,7 @@
                                         <tr data-id="<?php echo $em['id_empleado']; ?>">
                                             <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
                                             <td><?php echo $em['puntaje']; ?></td>
-                                            <td><?php echo $em['id_empleado']; ?></td>
+                                            <td class="text-center"><?php echo ($em['puntaje'] < 1)? '<a href="#" title="Verificar evaluaciones"><i class="fas fa-exclamation-triangle fa-fw"></i></a>' : ''; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                     </tbody>
