@@ -117,7 +117,8 @@
                 title: {
                     text: 'Puntaje' //'Data'
                 },
-                visible: true
+                visible: true,
+                tickPositions: [1,2,3,4,5] //agregado por dario
             }, {
                 title: {
                     text: 'Bell curve'
