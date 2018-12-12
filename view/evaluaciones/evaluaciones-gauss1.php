@@ -14,9 +14,33 @@
 
     $(document).ready(function(){
 
+
+        var t = $('#table-vehiculos').DataTable({
+            sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
+            bPaginate: false,
+            //deferRender:    true,
+            scrollY:        150,
+            scrollCollapse: true,
+            scroller:       true
+            /*"columnDefs": [
+             {"width": "30%", "targets": 0}, //empleado
+             {"width": "55%", "targets": 1}, //puesto
+             {"width": "5%", "targets": 2}, //ver
+             {"width": "5%", "targets": 3}, //editar
+             {"width": "5%", "targets": 4} //eliminar
+             ]*/
+
+        });
+
+        setTimeout(function () { //https://datatables.net/forums/discussion/41587/scrolly-misaligned-table-headers-with-bootstrap
+            $($.fn.dataTable.tables( true ) ).DataTable().columns.adjust().draw();
+        },200);
+
+
+
+
+
         //http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bellcurve-intervals-pointsininterval
-
-
         var temp = <?php echo $view->puntajes; ?>;
         //alert(Object.keys(temp).length);
 
@@ -210,25 +234,25 @@
                         <div class="col-md-5" id="right_side">
 
 
-                            <div class="table-responsive fixedTable" style="max-height: 300px">
-
-                                <table class="table table-condensed dataTable table-hover">
+                            <div class="table-responsive" id="empleados-table">
+                                <table id="table-vehiculos" class="table table-condensed dpTable table-hover">
                                     <thead>
                                     <tr>
                                         <th>Empleado</th>
                                         <th>Puntaje</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php foreach ($view->rta as $em): ?>
-                                        <tr data-id="<?php echo $em['id_empleado'];?>">
+                                        <tr data-id="<?php echo $em['id_empleado']; ?>">
                                             <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
                                             <td><?php echo $em['puntaje']; ?></td>
+                                            <td><?php echo $em['id_empleado']; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                     </tbody>
                                 </table>
-
                             </div>
 
 
