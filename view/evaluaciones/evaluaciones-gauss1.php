@@ -45,9 +45,9 @@
         //alert(Object.keys(temp).length);
 
         var data = $.map(temp, function(elem, index) {
-            //if (parseFloat(temp[index]['puntaje']) === 0) { return null; } //excluyo los puntajes 0
-            //else return parseFloat(temp[index]['puntaje']);
-            return parseFloat(temp[index]['puntaje']);
+            if (parseFloat(temp[index]['puntaje']) === 0) { return null; } //excluyo los puntajes 0
+            else return parseFloat(temp[index]['puntaje']);
+            //return parseFloat(temp[index]['puntaje']);
         });
 
 
