@@ -252,7 +252,8 @@ switch ($operation)
 
         $view->label = 'Función de densidad';
         $view->periodo = $_POST['periodo'];
-        $view->contrato = ($_POST['search_contrato'])? (new Contrato($_POST['search_contrato']))->getNombre() : 'TODOS';
+        $view->c = new Contrato($_POST['search_contrato']);
+        $view->contrato = ($_POST['search_contrato'])? $view->c->getNombre() : 'TODOS';
 
 
         $view->disableLayout=true;
