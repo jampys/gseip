@@ -234,7 +234,7 @@
 
                             <div class="form-group col-md-3">
                                 <!--<label for="periodo" class="control-label">Periodo</label>-->
-                                <select class="form-control selectpicker show-tick" id="search_puesto" name="search_puesto" data-live-search="true" data-size="5">
+                                <select class="form-control selectpicker show-tick" id="search_puesto" name="search_puesto" data-live-search="true" data-size="5" disabled>
                                     <option value="">Seleccione un puesto</option>
                                     <?php foreach ($view->puestos as $pu){
                                         ?>
@@ -250,7 +250,7 @@
 
                             <div class="form-group col-md-3">
                                 <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
-                                <select class="form-control selectpicker show-tick" id="search_area" name="search_area" data-live-search="true" data-size="5">
+                                <select class="form-control selectpicker show-tick" id="search_area" name="search_area" data-live-search="true" data-size="5" disabled>
                                     <option value="">Seleccione un área</option>
                                     <?php foreach ($view->areas as $ar){
                                         ?>
@@ -274,7 +274,7 @@
 
                             <div class="form-group col-md-3">
                                 <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                                <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" data-live-search="true" data-size="5">
+                                <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" data-live-search="true" data-size="5" disabled>
                                     <option value="">Seleccione la ubicación</option>
                                     <?php foreach ($view->localidades as $loc){
                                         ?>
@@ -290,34 +290,12 @@
 
 
                             <div class="form-group col-md-3">
-                                <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                                <select id="search_responsable_ejecucion" name="search_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
-                                    <option value="">Seleccione un responsable ejecución</option>
-                                    <?php foreach ($view->empleados as $em){
-                                        ?>
-                                        <option value="<?php echo $em['id_empleado']; ?>"
-                                            <?php //echo ($em['id_empleado'] == $view->objetivo->getIdResponsableEjecucion())? 'selected' :'' ?>
-                                            >
-                                            <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                                        </option>
-                                    <?php  } ?>
-                                </select>
+
                             </div>
 
 
                             <div class="form-group col-md-3">
-                                <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                                <select id="search_responsable_seguimiento" name="search_responsable_seguimiento" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
-                                    <option value="">Seleccione un responsable seguimiento</option>
-                                    <?php foreach ($view->empleados as $em){
-                                        ?>
-                                        <option value="<?php echo $em['id_empleado']; ?>"
-                                            <?php //echo ($em['id_empleado'] == $view->objetivo->getIdResponsableSeguimiento())? 'selected' :'' ?>
-                                            >
-                                            <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                                        </option>
-                                    <?php  } ?>
-                                </select>
+
                             </div>
 
 

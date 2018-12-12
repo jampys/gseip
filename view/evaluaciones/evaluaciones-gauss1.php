@@ -208,14 +208,14 @@
 
 
                     <div class="col-md-4">
-                        <p><strong>Meta</strong> <?php //print $view->objetivo->getMeta() ?></p>
-                        <p><strong>Indicador</strong> <?php //print $view->objetivo->getIndicador() ?></p>
+                        <p><strong>Puesto:</strong> <?php //print $view->objetivo->getMeta() ?></p>
+                        <p><strong>Área:</strong> <?php //print $view->objetivo->getIndicador() ?></p>
                     </div>
 
 
                     <div class="col-md-4">
-                        <p><strong>Período:</strong> <?php echo $view->periodo; ?></p>
-                        <p><strong>Contrato:</strong>   <?php //print $view->objetivo->getNombre() ?> </p>
+                        <p><strong>Ubicación:</strong> <?php echo $view->periodo; ?></p>
+                        <p><strong>Puntaje:</strong>   <?php //print $view->objetivo->getNombre() ?> </p>
                     </div>
 
 
