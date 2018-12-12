@@ -67,7 +67,7 @@
 
         Highcharts.chart('chart_div', {
             chart: {
-                margin: [50, 0, 50, 50],
+                margin: [50, 10, 50, 50], //[50, 0, 50, 50],
                 events: {
                     load: function () {
                         Highcharts.each(this.series[0].data, function (point, i) {
