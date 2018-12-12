@@ -8,6 +8,8 @@ include_once("model/contratosModel.php");
 include_once("model/empleadosModel.php");
 
 include_once("model/puestosModel.php");
+include_once("model/areasModel.php");
+include_once("model/localidadesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -273,6 +275,9 @@ switch ($operation)
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
         $view->puestos = Puesto::getPuestos();
+        $view->areas = Area::getAreas();
+        $view->localidades = Localidad::getLocalidades();
+
         $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";
         break;
 }

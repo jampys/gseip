@@ -274,18 +274,19 @@
 
                             <div class="form-group col-md-3">
                                 <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                                <select class="form-control selectpicker show-tick" id="search_indicador" name="search_indicador" data-live-search="true" data-size="5">
-                                    <option value="">Seleccione un indicador</option>
-                                    <?php foreach ($view->indicadores['enum'] as $ind){
+                                <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" data-live-search="true" data-size="5">
+                                    <option value="">Seleccione la ubicación</option>
+                                    <?php foreach ($view->localidades as $loc){
                                         ?>
-                                        <option value="<?php echo $ind; ?>"
-                                            <?php //echo ($ind == $view->objetivo->getIndicador() OR ($ind == $view->indicadores['default'] AND !$view->objetivo->getIdObjetivo()) )? 'selected' :'' ?>
+                                        <option value="<?php echo $loc['id_localidad']; ?>"
+                                            <?php //echo ($loc['id_localidad'] == $view->empleado->getIdLocalidad())? 'selected' :'' ?>
                                             >
-                                            <?php echo $ind; ?>
+                                            <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
                                         </option>
                                     <?php  } ?>
                                 </select>
                             </div>
+
 
 
                             <div class="form-group col-md-3">
