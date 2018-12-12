@@ -117,7 +117,7 @@
                 title: {
                     text: 'Puntaje' //'Data'
                 },
-                visible: false
+                visible: true
             }, {
                 title: {
                     text: 'Bell curve'
