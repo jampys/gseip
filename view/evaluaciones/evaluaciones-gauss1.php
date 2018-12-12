@@ -19,7 +19,7 @@
             sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
-            scrollY:        150,
+            scrollY:        230,
             scrollCollapse: true,
             scroller:       true
             /*"columnDefs": [
@@ -34,7 +34,7 @@
 
         setTimeout(function () { //https://datatables.net/forums/discussion/41587/scrolly-misaligned-table-headers-with-bootstrap
             $($.fn.dataTable.tables( true ) ).DataTable().columns.adjust().draw();
-        },200);
+        },700);
 
 
 
