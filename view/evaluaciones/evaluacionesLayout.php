@@ -198,11 +198,12 @@
                 <div class="clearfix">
                     <form id="search_form" name="search_form">
 
+
+                        <!-- FILA DE ARRIBA -->
                         <div class="row">
 
-                            <div class="form-group col-md-2">
-                                <label for="periodo" class="control-label">Plan evaluación</label>
-
+                            <div class="form-group col-md-3">
+                                <!--<label for="periodo" class="control-label">Periodo</label>-->
                                 <select class="form-control" id="periodo" name="periodo">
                                     <?php foreach ($view->periodos as $pe){
                                         ?>
@@ -214,12 +215,11 @@
                                         </option>
                                     <?php  } ?>
                                 </select>
-
                             </div>
 
 
                             <div class="form-group col-md-3">
-                                <label for="search_vencimiento" class="control-label">Contrato</label>
+                                <!--<label for="search_contrato" class="control-label">Contrato</label>-->
                                 <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                                     <option value="">Seleccione un contrato</option>
                                     <?php foreach ($view->contratos as $con){
@@ -231,21 +231,103 @@
                                 </select>
                             </div>
 
+
+                            <div class="form-group col-md-3">
+                                <!--<label for="periodo" class="control-label">Periodo</label>-->
+                                <select class="form-control selectpicker show-tick" id="search_puesto" name="search_puesto" data-live-search="true" data-size="5" disabled>
+                                    <option value="">Seleccione un puesto</option>
+                                    <?php foreach ($view->puestos as $pu){
+                                        ?>
+                                        <option value="<?php echo $pu['id_puesto']; ?>"
+                                            <?php //echo ($pu['id_puesto'] == $view->objetivo->getIdPuesto() )? 'selected' :'' ?>
+                                            >
+                                            <?php echo $pu['nombre']; ?>
+                                        </option>
+                                    <?php  } ?>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group col-md-3">
+                                <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
+                                <select class="form-control selectpicker show-tick" id="search_area" name="search_area" data-live-search="true" data-size="5" disabled>
+                                    <option value="">Seleccione un área</option>
+                                    <?php foreach ($view->areas as $ar){
+                                        ?>
+                                        <option value="<?php echo $ar['id_area']; ?>"
+                                            <?php //echo ($ar['id_area'] == $view->objetivo->getIdArea() )? 'selected' :'' ?>
+                                            >
+                                            <?php echo $ar['nombre']; ?>
+                                        </option>
+                                    <?php  } ?>
+                                </select>
+                            </div>
+
+
+
+
+                        </div>
+
+                        <!-- FILA DE ABAJO -->
+                        <div class="row">
+
+
+                            <div class="form-group col-md-3">
+                                <!--<label for="search_contrato" class="control-label">Contrato</label>-->
+                                <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" data-live-search="true" data-size="5" disabled>
+                                    <option value="">Seleccione la ubicación</option>
+                                    <?php foreach ($view->localidades as $loc){
+                                        ?>
+                                        <option value="<?php echo $loc['id_localidad']; ?>"
+                                            <?php //echo ($loc['id_localidad'] == $view->empleado->getIdLocalidad())? 'selected' :'' ?>
+                                            >
+                                            <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
+                                        </option>
+                                    <?php  } ?>
+                                </select>
+                            </div>
+
+
+
+                            <div class="form-group col-md-3">
+
+                            </div>
+
+
+                            <div class="form-group col-md-3">
+
+                            </div>
+
+
+
+                            <div class="form-group col-md-1">
+
+                            </div>
+
+
                             <div class="form-group col-md-2">
-                                <label for="search">&nbsp;</label>
+                                <!--<label for="search">&nbsp;</label>-->
                                 <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                             </div>
 
 
-                            <div class="form-group col-md-5">
-
-                            </div>
-
-
-
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     </form>
                 </div>

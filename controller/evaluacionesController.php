@@ -7,6 +7,10 @@ include_once("model/evaluacionesObjetivosModel.php");
 include_once("model/contratosModel.php");
 include_once("model/empleadosModel.php");
 
+include_once("model/puestosModel.php");
+include_once("model/areasModel.php");
+include_once("model/localidadesModel.php");
+
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
@@ -19,6 +23,7 @@ switch ($operation)
         $view->disableLayout=true;
         //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
 
         $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo'], $id_contrato) : Evaluacion::getEvaluaciones1($_POST['periodo'], $id_contrato);
         $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";
@@ -236,11 +241,44 @@ switch ($operation)
         exit;
         break;
 
+    case 'loadGauss':
+        $view->evaluaciones = new Evaluacion();
+
+        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
+        $view->rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $id_contrato);
+
+        $view->puntajes = json_encode($view->rta);
+
+        $view->label = 'Función de densidad';
+        $view->periodo = $_POST['periodo'];
+        $view->c = new Contrato($_POST['search_contrato']);
+        $view->contrato = ($_POST['search_contrato'])? $view->c->getNombre() : 'TODOS';
+
+
+        $view->disableLayout=true;
+        $view->contentTemplate="view/evaluaciones/evaluaciones-gauss1.php";
+        //print_r(json_encode($rta));
+        //exit;
+        break;
+
+
+    /*case 'graficarGauss':
+        $view->evaluaciones = new Evaluacion();
+        $rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $_POST['id_contrato']);
+        print_r(json_encode($rta));
+        exit;
+        break;*/
+
 
     default : //ok
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+        $view->puestos = Puesto::getPuestos();
+        $view->areas = Area::getAreas();
+        $view->localidades = Localidad::getLocalidades();
+
         $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";
         break;
 }
