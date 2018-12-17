@@ -30,6 +30,9 @@
             params.operation="loadGauss";
             params.periodo = $("#periodo").val();
             params.search_contrato = $("#search_contrato").val();
+            params.search_puesto = $('#search_puesto').val();
+            params.search_nivel_competencia = $('#search_nivel_competencia').val();
+            params.search_localidad = $('#search_localidad').val();
             //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
             //params.renovado = $('#search_renovado').prop('checked')? 1 : '';
             //alert(params.search_contrato);
@@ -58,9 +61,9 @@
 </script>
 
 
-<div class="col-md-1"></div>
+<!--<div class="col-md-1"></div>-->
 
-<div class="col-md-10">
+<div class="col-md-12">
 
 
     <div class="table-responsive">
@@ -148,7 +151,7 @@
 
 </div>
 
-<div class="col-md-1"></div>
+<!--<div class="col-md-1"></div>-->
 
 
 

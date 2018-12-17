@@ -8,7 +8,7 @@ include_once("model/contratosModel.php");
 include_once("model/empleadosModel.php");
 
 include_once("model/puestosModel.php");
-include_once("model/areasModel.php");
+include_once("model/niveles_competenciasModel.php");
 include_once("model/localidadesModel.php");
 
 $operation = "";
@@ -24,8 +24,10 @@ switch ($operation)
         //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
+        $id_nivel_competencia = ($_POST['search_nivel_competencia']!='')? $_POST['search_nivel_competencia'] : null;
+        $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
 
-        $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo'], $id_contrato) : Evaluacion::getEvaluaciones1($_POST['periodo'], $id_contrato);
+        $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo'], $id_contrato, $id_puesto, $id_nivel_competencia, $id_localidad) : Evaluacion::getEvaluaciones1($_POST['periodo'], $id_contrato, $id_puesto, $id_nivel_competencia, $id_localidad);
         $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";
         break;
 
@@ -246,14 +248,23 @@ switch ($operation)
 
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
-        $view->rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $id_contrato);
+        $id_nivel_competencia = ($_POST['search_nivel_competencia']!='')? $_POST['search_nivel_competencia'] : null;
+        $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
 
+        $view->rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $id_contrato, $id_puesto, $id_nivel_competencia, $id_localidad);
         $view->puntajes = json_encode($view->rta);
 
         $view->label = 'Función de densidad';
         $view->periodo = $_POST['periodo'];
         $view->c = new Contrato($_POST['search_contrato']);
         $view->contrato = ($_POST['search_contrato'])? $view->c->getNombre() : 'TODOS';
+        $view->p = new Puesto($_POST['search_puesto']);
+        $view->puesto = ($_POST['search_puesto'])? $view->p->getNombre() : 'TODOS';
+        $view->n = new NivelCompetencia($_POST['search_nivel_competencia']);
+        $view->nivel_competencia = ($_POST['search_nivel_competencia'])? $view->n->getNombre() : 'TODOS';
+
+        $view->l = new Localidad($_POST['search_localidad']);
+        $view->localidad = ($_POST['search_localidad'])? $view->l->getCiudad() : 'TODAS';
 
 
         $view->disableLayout=true;
@@ -276,7 +287,7 @@ switch ($operation)
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
         $view->puestos = Puesto::getPuestos();
-        $view->areas = Area::getAreas();
+        $view->niveles_competencias = NivelCompetencia::getNivelesCompetencias();
         $view->localidades = Localidad::getLocalidades();
 
         $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";

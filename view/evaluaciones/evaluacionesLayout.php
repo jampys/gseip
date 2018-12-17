@@ -21,6 +21,10 @@
                 params.periodo = $('#periodo').val();
                 params.search_contrato = $('#search_contrato').val();
                 params.cerrado = $('#periodo option:selected').attr('cerrado');
+                params.search_puesto = $('#search_puesto').val();
+                params.search_nivel_competencia = $('#search_nivel_competencia').val();
+                params.search_localidad = $('#search_localidad').val();
+
                 params.action = "evaluaciones";
                 params.operation = "refreshGrid";
                 //alert(params.cerrado);
@@ -87,7 +91,7 @@
 
 
 
-            //Al presionar en reporte
+            //Al presionar en reporte individual
             $('#content').on("click", ".reporte", function(){
                 //$('.table-responsive').on("click", ".pdf", function(){
                 //alert('Funcionalidad en desarrollo');
@@ -188,9 +192,9 @@
             <br/>
 
 
-            <div class="col-md-1"></div>
+            <!--<div class="col-md-1"></div>-->
 
-            <div class="col-md-10">
+            <div class="col-md-12">
 
                 <h4>Evaluación anual de desempeño</h4>
                 <hr class="hr-primary"/>
@@ -234,7 +238,7 @@
 
                             <div class="form-group col-md-3">
                                 <!--<label for="periodo" class="control-label">Periodo</label>-->
-                                <select class="form-control selectpicker show-tick" id="search_puesto" name="search_puesto" data-live-search="true" data-size="5" disabled>
+                                <select class="form-control selectpicker show-tick" id="search_puesto" name="search_puesto" data-live-search="true" data-size="5">
                                     <option value="">Seleccione un puesto</option>
                                     <?php foreach ($view->puestos as $pu){
                                         ?>
@@ -250,11 +254,11 @@
 
                             <div class="form-group col-md-3">
                                 <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
-                                <select class="form-control selectpicker show-tick" id="search_area" name="search_area" data-live-search="true" data-size="5" disabled>
-                                    <option value="">Seleccione un área</option>
-                                    <?php foreach ($view->areas as $ar){
+                                <select class="form-control selectpicker show-tick" id="search_nivel_competencia" name="search_nivel_competencia" data-live-search="true" data-size="5">
+                                    <option value="">Seleccione un nivel competencia</option>
+                                    <?php foreach ($view->niveles_competencias as $ar){
                                         ?>
-                                        <option value="<?php echo $ar['id_area']; ?>"
+                                        <option value="<?php echo $ar['id_nivel_competencia']; ?>"
                                             <?php //echo ($ar['id_area'] == $view->objetivo->getIdArea() )? 'selected' :'' ?>
                                             >
                                             <?php echo $ar['nombre']; ?>
@@ -274,7 +278,7 @@
 
                             <div class="form-group col-md-3">
                                 <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                                <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" data-live-search="true" data-size="5" disabled>
+                                <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
                                     <option value="">Seleccione la ubicación</option>
                                     <?php foreach ($view->localidades as $loc){
                                         ?>
@@ -319,16 +323,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
                     </form>
                 </div>
 
@@ -336,7 +330,7 @@
             </div>
 
 
-            <div class="col-md-1"></div>
+            <!--<div class="col-md-1"></div>-->
 
 
         </div>
