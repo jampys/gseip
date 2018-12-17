@@ -212,15 +212,6 @@ class Puesto
         return $stmt->dpFetchAll();
     }
 
-    public static function getNivelesCompetencias() { //ok
-        $stmt=new sQuery();
-        $query="select *
-        from competencias_niveles";
-
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
 
 
 }

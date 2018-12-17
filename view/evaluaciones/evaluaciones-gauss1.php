@@ -206,13 +206,13 @@
 
 
                     <div class="col-md-4">
-                        <p><strong>Puesto:</strong> <?php //print $view->objetivo->getMeta() ?></p>
-                        <p><strong>Área:</strong> <?php //print $view->objetivo->getIndicador() ?></p>
+                        <p><strong>Puesto:</strong> <?php print $view->puesto; ?></p>
+                        <p><strong>Nivel competencia:</strong> <?php print $view->nivel_competencia; ?></p>
                     </div>
 
 
                     <div class="col-md-4">
-                        <p><strong>Ubicación:</strong> <?php echo $view->periodo; ?></p>
+                        <p><strong>Ubicación:</strong> <?php echo $view->localidad; ?></p>
                         <p><strong>Puntaje:</strong>   <?php //print $view->objetivo->getNombre() ?> </p>
                     </div>
 

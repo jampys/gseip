@@ -192,9 +192,9 @@
             <br/>
 
 
-            <div class="col-md-1"></div>
+            <!--<div class="col-md-1"></div>-->
 
-            <div class="col-md-10">
+            <div class="col-md-12">
 
                 <h4>Evaluación anual de desempeño</h4>
                 <hr class="hr-primary"/>
@@ -323,16 +323,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
                     </form>
                 </div>
 
@@ -340,7 +330,7 @@
             </div>
 
 
-            <div class="col-md-1"></div>
+            <!--<div class="col-md-1"></div>-->
 
 
         </div>

@@ -8,7 +8,7 @@ include_once("model/contratosModel.php");
 include_once("model/empleadosModel.php");
 
 include_once("model/puestosModel.php");
-include_once("model/areasModel.php");
+include_once("model/niveles_competenciasModel.php");
 include_once("model/localidadesModel.php");
 
 $operation = "";
@@ -258,6 +258,13 @@ switch ($operation)
         $view->periodo = $_POST['periodo'];
         $view->c = new Contrato($_POST['search_contrato']);
         $view->contrato = ($_POST['search_contrato'])? $view->c->getNombre() : 'TODOS';
+        $view->p = new Puesto($_POST['search_puesto']);
+        $view->puesto = ($_POST['search_puesto'])? $view->p->getNombre() : 'TODOS';
+        $view->n = new NivelCompetencia($_POST['search_nivel_competencia']);
+        $view->nivel_competencia = ($_POST['search_nivel_competencia'])? $view->n->getNombre() : 'TODOS';
+
+        $view->l = new Localidad($_POST['search_localidad']);
+        $view->localidad = ($_POST['search_localidad'])? $view->l->getCiudad() : 'TODAS';
 
 
         $view->disableLayout=true;
@@ -280,7 +287,7 @@ switch ($operation)
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
         $view->puestos = Puesto::getPuestos();
-        $view->niveles_competencias = Puesto::getNivelesCompetencias();
+        $view->niveles_competencias = NivelCompetencia::getNivelesCompetencias();
         $view->localidades = Localidad::getLocalidades();
 
         $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";

@@ -47,6 +47,26 @@ class Localidad
         return $stmt->dpFetchAll(); // retorna todas las localidades
     }
 
+    function __construct($nro=0){ //constructor ok
+
+        if ($nro!=0){
+
+            $stmt=new sQuery();
+            $query="select * from localidades
+                    where id_localidad = :nro";
+            $stmt->dpPrepare($query);
+            $stmt->dpBind(':nro', $nro);
+            $stmt->dpExecute();
+            $rows = $stmt ->dpFetchAll();
+
+            $this->setIdLocalidad($rows[0]['id_localidad']);
+            $this->setCiudad($rows[0]['ciudad']);
+            $this->setCp($rows[0]['CP']);
+            $this->setProvincia($rows[0]['provincia']);
+            $this->setPais($rows[0]['pais']);
+        }
+    }
+
 
 
 }
