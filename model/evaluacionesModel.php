@@ -15,7 +15,7 @@ class Evaluacion
     { $this->id_localidad=$val;}*/
 
 
-    public static function getEvaluaciones($periodo, $id_contrato, $id_puesto, $id_area) { //ok
+    public static function getEvaluaciones($periodo, $id_contrato, $id_puesto, $id_nivel_competencia, $id_localidad) { //ok
         //para planes de evaluacion ABIERTOS
         $stmt=new sQuery();
         $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre,
@@ -36,21 +36,23 @@ join ead_planes_evaluacion pe on pe.periodo = :periodo
 where em.fecha_baja is null
 and co.id_contrato = ifnull(:id_contrato, co.id_contrato)
 and pu.id_puesto = ifnull(:id_puesto, pu.id_puesto)
-and pu.id_area = ifnull(:id_area, pu.id_area)
+and pu.id_nivel_competencia = ifnull(:id_nivel_competencia, pu.id_nivel_competencia)
+and ec.id_localidad = ifnull(:id_localidad, ec.id_localidad)
 group by em.id_empleado";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':id_puesto', $id_puesto);
-        $stmt->dpBind(':id_area', $id_area);
+        $stmt->dpBind(':id_nivel_competencia', $id_nivel_competencia);
+        $stmt->dpBind(':id_localidad', $id_localidad);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
 
 
-    public static function getEvaluaciones1($periodo, $id_contrato, $id_puesto, $id_area) { //ok
+    public static function getEvaluaciones1($periodo, $id_contrato, $id_puesto, $id_nivel_competencia, $id_localidad) { //ok
         //para planes de evaluacion CERRADOS
         $stmt=new sQuery();
         $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, ec.id_empleado_contrato, ec.id_contrato, ec.id_puesto,
@@ -87,14 +89,16 @@ or exists (select 1
 )
 where co.id_contrato = ifnull(:id_contrato, co.id_contrato)
 and pu.id_puesto = ifnull(:id_puesto, pu.id_puesto)
-and pu.id_area = ifnull(:id_area, pu.id_area)
+and pu.id_nivel_competencia = ifnull(:id_nivel_competencia, pu.id_nivel_competencia)
+and ec.id_localidad = ifnull(:id_localidad, ec.id_localidad)
 group by em.id_empleado";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':id_puesto', $id_puesto);
-        $stmt->dpBind(':id_area', $id_area);
+        $stmt->dpBind(':id_nivel_competencia', $id_nivel_competencia);
+        $stmt->dpBind(':id_localidad', $id_localidad);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
@@ -111,7 +115,7 @@ group by em.id_empleado";
     }
 
 
-    public function graficarGauss($periodo, $id_contrato, $id_puesto, $id_area) { //ok
+    public function graficarGauss($periodo, $id_contrato, $id_puesto, $id_nivel_competencia, $id_localidad) { //ok
         //el query es similar a: getEvaluaciones()
         $stmt=new sQuery();
         $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre,
@@ -129,14 +133,16 @@ join ead_planes_evaluacion pe on pe.periodo = :periodo
 where em.fecha_baja is null
 and co.id_contrato = ifnull(:id_contrato, co.id_contrato)
 and pu.id_puesto = ifnull(:id_puesto, pu.id_puesto)
-and pu.id_area = ifnull(:id_area, pu.id_area)
+and pu.id_nivel_competencia = ifnull(:id_nivel_competencia, pu.id_nivel_competencia)
+and ec.id_localidad = ifnull(:id_localidad, ec.id_localidad)
 group by em.id_empleado";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':id_puesto', $id_puesto);
-        $stmt->dpBind(':id_area', $id_area);
+        $stmt->dpBind(':id_nivel_competencia', $id_nivel_competencia);
+        $stmt->dpBind(':id_localidad', $id_localidad);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
