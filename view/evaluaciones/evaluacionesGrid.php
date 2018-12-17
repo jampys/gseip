@@ -30,6 +30,8 @@
             params.operation="loadGauss";
             params.periodo = $("#periodo").val();
             params.search_contrato = $("#search_contrato").val();
+            params.search_puesto = $('#search_puesto').val();
+            params.search_area = $('#search_area').val();
             //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
             //params.renovado = $('#search_renovado').prop('checked')? 1 : '';
             //alert(params.search_contrato);

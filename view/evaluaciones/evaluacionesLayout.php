@@ -21,6 +21,9 @@
                 params.periodo = $('#periodo').val();
                 params.search_contrato = $('#search_contrato').val();
                 params.cerrado = $('#periodo option:selected').attr('cerrado');
+                params.search_puesto = $('#search_puesto').val();
+                params.search_area = $('#search_area').val();
+
                 params.action = "evaluaciones";
                 params.operation = "refreshGrid";
                 //alert(params.cerrado);
@@ -87,7 +90,7 @@
 
 
 
-            //Al presionar en reporte
+            //Al presionar en reporte individual
             $('#content').on("click", ".reporte", function(){
                 //$('.table-responsive').on("click", ".pdf", function(){
                 //alert('Funcionalidad en desarrollo');
@@ -234,7 +237,7 @@
 
                             <div class="form-group col-md-3">
                                 <!--<label for="periodo" class="control-label">Periodo</label>-->
-                                <select class="form-control selectpicker show-tick" id="search_puesto" name="search_puesto" data-live-search="true" data-size="5" disabled>
+                                <select class="form-control selectpicker show-tick" id="search_puesto" name="search_puesto" data-live-search="true" data-size="5">
                                     <option value="">Seleccione un puesto</option>
                                     <?php foreach ($view->puestos as $pu){
                                         ?>
@@ -250,7 +253,7 @@
 
                             <div class="form-group col-md-3">
                                 <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
-                                <select class="form-control selectpicker show-tick" id="search_area" name="search_area" data-live-search="true" data-size="5" disabled>
+                                <select class="form-control selectpicker show-tick" id="search_area" name="search_area" data-live-search="true" data-size="5">
                                     <option value="">Seleccione un área</option>
                                     <?php foreach ($view->areas as $ar){
                                         ?>

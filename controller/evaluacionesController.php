@@ -24,8 +24,9 @@ switch ($operation)
         //$periodo = (isset($_POST['periodo']))? $_POST['periodo'] : Soporte::getPeriodoActual();
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
+        $id_area = ($_POST['search_area']!='')? $_POST['search_area'] : null;
 
-        $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo'], $id_contrato) : Evaluacion::getEvaluaciones1($_POST['periodo'], $id_contrato);
+        $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo'], $id_contrato, $id_puesto, $id_area) : Evaluacion::getEvaluaciones1($_POST['periodo'], $id_contrato, $id_puesto, $id_area);
         $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";
         break;
 
@@ -246,8 +247,9 @@ switch ($operation)
 
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
-        $view->rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $id_contrato);
+        $id_area = ($_POST['search_area']!='')? $_POST['search_area'] : null;
 
+        $view->rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $id_contrato, $id_puesto, $id_area);
         $view->puntajes = json_encode($view->rta);
 
         $view->label = 'Función de densidad';
