@@ -118,12 +118,12 @@
                     <input type="hidden" name="periodo" id="periodo" value="<?php print $view->params['periodo'] ?>">
                     <input type="hidden" name="id_plan_evaluacion" id="id_plan_evaluacion" value="<?php print $view->params['id_plan_evaluacion'] ?>">
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label" for="fortalezas">Fortalezas</label>
                         <textarea class="form-control" name="fortalezas" id="fortalezas" placeholder="Fortalezas" rows="4"><?php print $view->conclusion->getFortalezas(); ?></textarea>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label" for="aspectos_mejorar">Aspectos a mejorar</label>
                         <textarea class="form-control" name="aspectos_mejorar" id="aspectos_mejorar" placeholder="Aspectos a mejorar" rows="4"><?php print $view->conclusion->getAspectosMejorar(); ?></textarea>
                     </div>
