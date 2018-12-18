@@ -87,6 +87,23 @@
             });
 
 
+            //Al presionar en editar una evaluacion de conclusiones
+            $(document).on('click', '.loadEaconcl', function(){
+                params={};
+                params.id_empleado = $(this).closest('tr').attr('id_empleado');
+                params.id_plan_evaluacion = $(this).closest('tr').attr('id_plan_evaluacion');
+                params.periodo = $(this).closest('tr').attr('periodo'); //$('#periodo').val();
+                //params.cerrado = $(this).closest('tr').attr('cerrado'); //$('#periodo option:selected').attr('cerrado');
+                params.action = "evaluaciones";
+                params.operation = "loadEaconcl";
+                //alert(params.cerrado);
+                $('#popupbox').load('index.php', params,function(){
+                    $('#modalEaconcl').modal();
+                });
+
+            });
+
+
 
 
 

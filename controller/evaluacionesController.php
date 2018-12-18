@@ -230,6 +230,20 @@ switch ($operation)
         $view->contentTemplate="view/evaluaciones/evaluaciones-eaoForm.php";
         break;
 
+    case 'loadEaconcl': //Abre el formulario de conclusiones
+        $view->empleado = new Empleado($_POST['id_empleado']);
+        $view->label = 'Evaluación de objetivos: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
+
+        $view->objetivos = EvaluacionObjetivo::getObjetivos($_POST['id_empleado'], $_POST['periodo']);
+        $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
+        $view->puntajes = EvaluacionObjetivo::getPuntajes();
+
+        //$view->dias_paro = EvaluacionAspectoGeneral::getDiasParo($_POST['id_empleado']);
+
+        $view->disableLayout=true;
+        $view->contentTemplate="view/evaluaciones/evaluaciones-eaoForm.php";
+        break;
+
 
     case 'loadEac_help': //ok
         $view->puntaje_competencia = EvaluacionCompetencia::getPuntajesHelp();
