@@ -120,11 +120,13 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="fortalezas">Fortalezas</label>
+                        <a href="#" title="<?php echo $view->conclusion->getEvaluador().' '.$view->conclusion->getFecha() ?>">?</a>
                         <textarea class="form-control" name="fortalezas" id="fortalezas" placeholder="Fortalezas" rows="4"><?php print $view->conclusion->getFortalezas(); ?></textarea>
                     </div>
 
                     <div class="form-group required">
                         <label class="control-label" for="aspectos_mejorar">Aspectos a mejorar</label>
+                        <a href="#" title="<?php echo $view->conclusion->getEvaluador().' '.$view->conclusion->getFecha() ?>">?</a>
                         <textarea class="form-control" name="aspectos_mejorar" id="aspectos_mejorar" placeholder="Aspectos a mejorar" rows="4"><?php print $view->conclusion->getAspectosMejorar(); ?></textarea>
                     </div>
 
