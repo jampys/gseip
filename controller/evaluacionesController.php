@@ -171,6 +171,22 @@ switch ($operation)
         break;
 
 
+    case 'saveEaconcl': //Guarda una evaluacion conclusion
+        $conclusion = new EvaluacionConclusion($_POST['id_evaluacion_conclusion']);
+        $conclusion->setIdEvaluador($_SESSION["id_user"]);
+        $conclusion->setIdEmpleado($_POST['id_empleado']);
+        $conclusion->setIdPlanEvaluacion($_POST['id_plan_evaluacion']);
+        //$puesto->setIdPuestoSuperior(($_POST['id_puesto_superior'])? $_POST['id_puesto_superior'] : null);
+        $conclusion->setPeriodo($_POST['periodo']);
+        $conclusion->setFortalezas($_POST['fortalezas']);
+        $conclusion->setAspectosMejorar($_POST['aspectos_mejorar']);
+
+        $rta = $conclusion->save();
+        print_r(json_encode($rta));
+        exit;
+        break;
+
+
 
     case 'loadEac': //Abre el formulario de evaluacion anual de competecias //ok
         $view->empleado = new Empleado($_POST['id_empleado']);
@@ -236,6 +252,7 @@ switch ($operation)
         $view->label = 'Comentarios del evaluador para: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
 
         $view->conclusion = new EvaluacionConclusion($_POST['id_evaluacion_conclusion']);
+        $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/evaluaciones/evaluaciones-eaconclForm.php";

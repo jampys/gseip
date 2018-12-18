@@ -21,7 +21,7 @@
 
 
         $(document).on('click', '#submit',function(){
-            if ($("#puesto").valid()){
+            if ($("#eaconcl-form").valid()){
                 var params={};
                 params.action = 'puestos';
                 params.operation = 'savePuesto';
@@ -35,9 +35,6 @@
                 //alert(params.id_puesto_superior);
                 $.post('index.php',params,function(data, status, xhr){
 
-                    objeto.id = data; //data trae el id del puesto
-                    //alert(data);
-                    //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
@@ -45,8 +42,8 @@
                         $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
                         setTimeout(function() { $("#myElem").hide();
-                            $('#myModal').modal('hide');
-                        }, 2000);
+                                                $('#myModal').modal('hide');
+                                              }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar el puesto').addClass('alert alert-danger').show();
                     }
@@ -68,26 +65,25 @@
 
 
 
-        $('#puesto').validate({
+        $('#eaconcl-form').validate({
             rules: {
-                codigo: {
+                /*codigo: {
                         required: true,
                         digits: true,
                         maxlength: 6
-                },
-                nombre: {required: true},
-                id_area: {required: true},
-                id_nivel_competencia: {required: true}
+                },*/
+                fortalezas: {maxLength: 10},
+                aspectos_mejorar: {maxLength: 10}
             },
             messages:{
-                codigo: {
+                /*codigo: {
                     required: "Ingrese el código",
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
-                },
-                nombre: "Ingrese el nombre",
-                id_area: "Seleccione un área",
-                id_nivel_competencia: "Seleccione un nivel de competencia"
+                },*/
+                fortalezas: "Máximo 10 caracteres",
+                aspectos_mejorar: "Máximo 10 caracteres"
+
             }
 
         });
@@ -103,7 +99,7 @@
 
 
 <!-- Modal -->
-<fieldset <?php echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
+<fieldset <?php //echo ( PrivilegedUser::dhasAction('PUE_UPDATE', array(1)) )? '' : 'disabled' ?>>
 <div class="modal fade" id="modalEaconcl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -114,10 +110,11 @@
             <div class="modal-body">
 
 
-                <form name ="puesto" id="puesto" method="POST" action="index.php">
+                <form name ="eaconcl-form" id="eaconcl-form" method="POST" action="index.php">
                     <input type="hidden" name="id_evaluacion_conclusion" id="id_evaluacion_conclusion" value="<?php print $view->conclusion->getIdEvaluacionConclusion(); ?>">
-                    <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->conclusion->getIdEmpleado(); ?>">
-                    <input type="hidden" name="periodo" id="periodo" value="<?php print $view->conclusion->getPeriodo(); ?>">
+                    <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado'] ?>">
+                    <input type="hidden" name="periodo" id="periodo" value="<?php print $view->params['periodo'] ?>">
+                    <input type="hidden" name="id_plan_evaluacion" id="id_plan_evaluacion" value="<?php print $view->params['id_plan_evaluacion'] ?>">
 
                     <div class="form-group">
                         <label class="control-label" for="descripcion">Fortalezas</label>
