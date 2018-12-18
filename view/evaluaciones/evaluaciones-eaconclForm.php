@@ -23,29 +23,27 @@
         $(document).on('click', '#submit',function(){
             if ($("#eaconcl-form").valid()){
                 var params={};
-                params.action = 'puestos';
-                params.operation = 'savePuesto';
-                params.id_puesto=$('#id_puesto').val();
-                params.nombre=$('#nombre').val();
-                params.descripcion=$('#descripcion').val();
-                params.codigo=$('#codigo').val();
-                params.id_puesto_superior=$('#id_puesto_superior').val();
-                params.id_area=$('#id_area').val();
-                params.id_nivel_competencia=$('#id_nivel_competencia').val();
+                params.action = 'evaluaciones';
+                params.operation = 'saveEaconcl';
+                params.id_evaluacion_conclusion = $('#id_evaluacion_conclusion').val();
+                params.id_empleado = $('#id_empleado').val();
+                params.id_plan_evaluacion = $('#id_plan_evaluacion').val();
+                params.periodo = $('#periodo').val();
+                params.fortalezas = $('#fortalezas').val();
+                params.aspectos_mejorar = $('#aspectos_mejorar').val();
                 //alert(params.id_puesto_superior);
                 $.post('index.php',params,function(data, status, xhr){
 
                     //alert(rta);
                     if(data >=0){
-                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
+                        $("#myElem").html('Conclusión guardada con exito').addClass('alert alert-success').show();
+                        $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
+                                                $('#modalEaconcl').modal('hide');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar el puesto').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar la conclusión').addClass('alert alert-danger').show();
                     }
 
 
@@ -72,8 +70,8 @@
                         digits: true,
                         maxlength: 6
                 },*/
-                fortalezas: {maxLength: 10},
-                aspectos_mejorar: {maxLength: 10}
+                fortalezas: {maxlength: 500},
+                aspectos_mejorar: {maxlength: 500}
             },
             messages:{
                 /*codigo: {
@@ -81,9 +79,8 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 },*/
-                fortalezas: "Máximo 10 caracteres",
-                aspectos_mejorar: "Máximo 10 caracteres"
-
+                fortalezas: {maxlength: "Máximo 500 caracteres"},
+                aspectos_mejorar: {maxlength: "Máximo 500 caracteres"}
             }
 
         });
@@ -117,12 +114,12 @@
                     <input type="hidden" name="id_plan_evaluacion" id="id_plan_evaluacion" value="<?php print $view->params['id_plan_evaluacion'] ?>">
 
                     <div class="form-group">
-                        <label class="control-label" for="descripcion">Fortalezas</label>
+                        <label class="control-label" for="fortalezas">Fortalezas</label>
                         <textarea class="form-control" name="fortalezas" id="fortalezas" placeholder="Fortalezas" rows="4"><?php print $view->conclusion->getFortalezas(); ?></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="descripcion">Aspectos a mejorar</label>
+                        <label class="control-label" for="aspectos_mejorar">Aspectos a mejorar</label>
                         <textarea class="form-control" name="aspectos_mejorar" id="aspectos_mejorar" placeholder="Aspectos a mejorar" rows="4"><?php print $view->conclusion->getAspectosMejorar(); ?></textarea>
                     </div>
 
