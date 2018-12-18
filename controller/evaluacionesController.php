@@ -4,9 +4,10 @@ include_once("model/evaluacionesModel.php");
 include_once("model/evaluacionesCompetenciasModel.php");
 include_once("model/evaluacionesAspectosGeneralesModel.php");
 include_once("model/evaluacionesObjetivosModel.php");
+include_once("model/evaluacionesConclusionesModel.php");
+
 include_once("model/contratosModel.php");
 include_once("model/empleadosModel.php");
-
 include_once("model/puestosModel.php");
 include_once("model/niveles_competenciasModel.php");
 include_once("model/localidadesModel.php");
@@ -170,6 +171,22 @@ switch ($operation)
         break;
 
 
+    case 'saveEaconcl': //Guarda una evaluacion conclusion
+        $conclusion = new EvaluacionConclusion($_POST['id_empleado'], $_POST['id_plan_evaluacion']);
+        $conclusion->setIdEvaluador($_SESSION["id_user"]);
+        $conclusion->setIdEmpleado($_POST['id_empleado']);
+        $conclusion->setIdPlanEvaluacion($_POST['id_plan_evaluacion']);
+        //$puesto->setIdPuestoSuperior(($_POST['id_puesto_superior'])? $_POST['id_puesto_superior'] : null);
+        $conclusion->setPeriodo($_POST['periodo']);
+        $conclusion->setFortalezas($_POST['fortalezas']);
+        $conclusion->setAspectosMejorar($_POST['aspectos_mejorar']);
+
+        $rta = $conclusion->save();
+        print_r(json_encode($rta));
+        exit;
+        break;
+
+
 
     case 'loadEac': //Abre el formulario de evaluacion anual de competecias //ok
         $view->empleado = new Empleado($_POST['id_empleado']);
@@ -228,6 +245,18 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->contentTemplate="view/evaluaciones/evaluaciones-eaoForm.php";
+        break;
+
+    case 'loadEaconcl': //Abre el formulario de conclusiones //ok
+        $view->empleado = new Empleado($_POST['id_empleado']);
+        $view->label = 'Comentarios de la evaluación: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
+
+        //$view->conclusion = new EvaluacionConclusion($_POST['id_evaluacion_conclusion']);
+        $view->conclusion = new EvaluacionConclusion($_POST['id_empleado'], $_POST['id_plan_evaluacion'] );
+        $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo']);
+
+        $view->disableLayout=true;
+        $view->contentTemplate="view/evaluaciones/evaluaciones-eaconclForm.php";
         break;
 
 

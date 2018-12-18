@@ -11,6 +11,8 @@ class EvaluacionConclusion
     private $fortalezas;
     private $aspectos_mejorar;
 
+    private $evaluador;
+
 
     // GETTERS
     function getIdEvaluacionConclusion()
@@ -36,6 +38,9 @@ class EvaluacionConclusion
 
     function getAspectosMejorar()
     { return $this->aspectos_mejorar;}
+
+    function getEvaluador()
+    { return $this->evaluador;}
 
 
 
@@ -64,15 +69,26 @@ class EvaluacionConclusion
     function setAspectosMejorar($val)
     { $this->aspectos_mejorar=$val;}
 
+    function setEvaluador($val)
+    { $this->evaluador=$val;}
 
-    function __construct($nro=0){ //constructor //ok
 
-        if ($nro!=0){
+    function __construct($id_empleado=0, $id_plan_evaluacion=0){ //constructor //ok
+
+        if ($id_empleado!=0 && $id_plan_evaluacion!=0){
 
             $stmt=new sQuery();
-            $query="select * from ead_evaluacion_conclusion where id_evaluacion_conclusion = :nro";
+            $query="select ec.id_evaluacion_conclusion,
+                    DATE_FORMAT(ec.fecha, '%d/%m/%Y %H:%i') as fecha,
+                    ec.id_evaluador, ec.id_empleado, ec.id_plan_evaluacion, ec.periodo, ec.fortalezas, ec.aspectos_mejorar,
+                    us.user as evaluador
+                    from ead_evaluacion_conclusion ec
+                    join sec_users us on us.id_user = ec.id_evaluador
+                    where ec.id_empleado = :id_empleado
+                    and ec.id_plan_evaluacion = :id_plan_evaluacion";
             $stmt->dpPrepare($query);
-            $stmt->dpBind(':nro', $nro);
+            $stmt->dpBind(':id_empleado', $id_empleado);
+            $stmt->dpBind(':id_plan_evaluacion', $id_plan_evaluacion);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
@@ -84,6 +100,7 @@ class EvaluacionConclusion
             $this->setPeriodo($rows[0]['periodo']);
             $this->setFortalezas($rows[0]['fortalezas']);
             $this->setAspectosMejorar($rows[0]['aspectos_mejorar']);
+            $this->setEvaluador($rows[0]['evaluador']);
 
         }
     }

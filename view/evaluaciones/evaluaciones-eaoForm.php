@@ -24,9 +24,9 @@
     }
 
 
-    .modal-dialog{
+    /*.modal-dialog{
         width:80%;
-    }
+    }*/
 
     .input-group-addon{
         padding-left: 6px;
@@ -313,8 +313,7 @@
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="label-box" class="alert alert-info fade in">
-                                <i class="fas fa-info-circle fa-fw"></i>&nbsp Aquí abajo se podrá
-                                visualizar la descripción del significado de cada puntaje.
+                                <i class="fas fa-info-circle fa-fw"></i>&nbsp Descripción del significado de cada puntaje.
                             </div>
 
                             <div id="table-box">
