@@ -249,7 +249,7 @@ switch ($operation)
 
     case 'loadEaconcl': //Abre el formulario de conclusiones //ok
         $view->empleado = new Empleado($_POST['id_empleado']);
-        $view->label = 'Comentarios del evaluador para: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
+        $view->label = 'Comentarios de la evaluación: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
 
         //$view->conclusion = new EvaluacionConclusion($_POST['id_evaluacion_conclusion']);
         $view->conclusion = new EvaluacionConclusion($_POST['id_empleado'], $_POST['id_plan_evaluacion'] );

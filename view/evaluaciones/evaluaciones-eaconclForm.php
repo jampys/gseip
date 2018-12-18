@@ -21,7 +21,7 @@
 
 
         $('#modalEaconcl').on('click', '#submit',function(){
-            alert('a guardar');
+            //alert('a guardar');
             if ($("#eaconcl-form").valid()){
                 var params={};
                 params.action = 'evaluaciones';
@@ -38,13 +38,13 @@
                     //alert(rta);
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Conclusión guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Comentarios guardados con exito').addClass('alert alert-success').show();
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#modalEaconcl').modal('hide');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la conclusión').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar los comentarios').addClass('alert alert-danger').show();
                     }
 
 
