@@ -20,7 +20,8 @@
 
 
 
-        $(document).on('click', '#submit',function(){
+        $('#modalEaconcl').on('click', '#submit',function(){
+            alert('a guardar');
             if ($("#eaconcl-form").valid()){
                 var params={};
                 params.action = 'evaluaciones';
@@ -70,8 +71,10 @@
                         digits: true,
                         maxlength: 6
                 },*/
-                fortalezas: {maxlength: 500},
-                aspectos_mejorar: {maxlength: 500}
+                fortalezas: {required: true,
+                             maxlength: 500},
+                aspectos_mejorar: {required: true,
+                                   maxlength: 500}
             },
             messages:{
                 /*codigo: {
@@ -79,8 +82,10 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 },*/
-                fortalezas: {maxlength: "Máximo 500 caracteres"},
-                aspectos_mejorar: {maxlength: "Máximo 500 caracteres"}
+                fortalezas: {required: "Ingrese las fortalezas",
+                             maxlength: "Máximo 500 caracteres"},
+                aspectos_mejorar: {required: "Ingrese los aspectos a mejorar",
+                                   maxlength: "Máximo 500 caracteres"}
             }
 
         });

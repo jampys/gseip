@@ -65,14 +65,17 @@ class EvaluacionConclusion
     { $this->aspectos_mejorar=$val;}
 
 
-    function __construct($nro=0){ //constructor //ok
+    function __construct($id_empleado=0, $id_plan_evaluacion=0){ //constructor //ok
 
-        if ($nro!=0){
+        if ($id_empleado!=0 && $id_plan_evaluacion!=0){
 
             $stmt=new sQuery();
-            $query="select * from ead_evaluacion_conclusion where id_evaluacion_conclusion = :nro";
+            $query="select * from ead_evaluacion_conclusion
+                    where id_empleado = :id_empleado
+                    and id_plan_evaluacion = :id_plan_evaluacion";
             $stmt->dpPrepare($query);
-            $stmt->dpBind(':nro', $nro);
+            $stmt->dpBind(':id_empleado', $id_empleado);
+            $stmt->dpBind(':id_plan_evaluacion', $id_plan_evaluacion);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 

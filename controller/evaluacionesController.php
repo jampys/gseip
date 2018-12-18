@@ -172,7 +172,7 @@ switch ($operation)
 
 
     case 'saveEaconcl': //Guarda una evaluacion conclusion
-        $conclusion = new EvaluacionConclusion($_POST['id_evaluacion_conclusion']);
+        $conclusion = new EvaluacionConclusion($_POST['id_empleado'], $_POST['id_plan_evaluacion']);
         $conclusion->setIdEvaluador($_SESSION["id_user"]);
         $conclusion->setIdEmpleado($_POST['id_empleado']);
         $conclusion->setIdPlanEvaluacion($_POST['id_plan_evaluacion']);
@@ -251,7 +251,8 @@ switch ($operation)
         $view->empleado = new Empleado($_POST['id_empleado']);
         $view->label = 'Comentarios del evaluador para: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
 
-        $view->conclusion = new EvaluacionConclusion($_POST['id_evaluacion_conclusion']);
+        //$view->conclusion = new EvaluacionConclusion($_POST['id_evaluacion_conclusion']);
+        $view->conclusion = new EvaluacionConclusion($_POST['id_empleado'], $_POST['id_plan_evaluacion'] );
         $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo']);
 
         $view->disableLayout=true;

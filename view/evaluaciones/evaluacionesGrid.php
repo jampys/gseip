@@ -129,8 +129,8 @@
                     <!-- evaluacion conclusiones -->
                     <td class="text-center">
                         <a class="<?php echo (  !$evaluacion['cerrado'] &&
-                            ((PrivilegedUser::dhasPrivilege('EAD_OBJ', array(51)) && $evaluacion['isInSup']) ||
-                                PrivilegedUser::dhasPrivilege('EAD_OBJ', array(0)))
+                                                ((PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) && $evaluacion['isInSup']) ||
+                                                PrivilegedUser::dhasPrivilege('EAD_COM', array(0)))
                         )? 'loadEaconcl' : 'disabled' ?>" href="javascript:void(0);" title="Conclusiones" >
                             <span class="<?php echo ($evaluacion['hasAllEao'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
                         </a>
