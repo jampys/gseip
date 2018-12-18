@@ -24,9 +24,9 @@
     }
 
 
-    .modal-dialog{
+    /*.modal-dialog{
         width:80%;
-    }
+    }*/
 
     .input-group-addon{
         padding-left: 6px;
