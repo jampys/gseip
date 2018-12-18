@@ -115,71 +115,21 @@
 
 
                 <form name ="puesto" id="puesto" method="POST" action="index.php">
-                    <input type="hidden" name="id_evaluacion_conclusion" id="id_evaluacion_conclusion" value="<?php print $view->puesto->getIdPuesto() ?>">
+                    <input type="hidden" name="id_evaluacion_conclusion" id="id_evaluacion_conclusion" value="<?php print $view->conclusion->getIdEvaluacionConclusion(); ?>">
+                    <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->conclusion->getIdEmpleado(); ?>">
+                    <input type="hidden" name="periodo" id="periodo" value="<?php print $view->conclusion->getPeriodo(); ?>">
 
-                    <div class="form-group required">
-                        <label class="control-label" for="codigo">Código</label>
-                        <input class="form-control" type="text" name="codigo" id="codigo" value = "<?php print $view->puesto->getCodigo() ?>" placeholder="Código">
-                    </div>
-
-                    <div class="form-group required">
-                        <label class="control-label" for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php print $view->puesto->getNombre() ?>" placeholder="Nombre">
-                    </div>
-
-                    <div class="form-group required">
-                        <label class="control-label" for="id_area" >Área</label>
-                        <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione un área">
-                            <?php foreach ($view->areas as $area){
-                                ?>
-                                <option value="<?php echo $area['id_area']; ?>"
-                                    <?php echo ($area['id_area'] == $view->puesto->getIdArea())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $area['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group required">
-                        <label class="control-label" for="id_nivel_competencia" >Nivel de competencia</label>
-                        <select class="form-control selectpicker show-tick" id="id_nivel_competencia" name="id_nivel_competencia" title="Seleccione un nivel de competencia">
-                            <?php foreach ($view->nivelesCompetencias as $nc){
-                                ?>
-                                <option value="<?php echo $nc['id_nivel_competencia']; ?>"
-                                    <?php echo ($nc['id_nivel_competencia'] == $view->puesto->getIdNivelCompetencia())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $nc['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                    <div class="form-group">
+                        <label class="control-label" for="descripcion">Fortalezas</label>
+                        <textarea class="form-control" name="fortalezas" id="fortalezas" placeholder="Fortalezas" rows="4"><?php print $view->conclusion->getFortalezas(); ?></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="id_puesto_superior" >Puesto superior</label>
-                        <select class="form-control selectpicker show-tick" id="id_puesto_superior" name="id_puesto_superior" data-live-search="true" data-size="5">
-                            <option value="">Seleccione el puesto superior</option>
-                            <?php foreach ($view->puesto_superior as $sup){
-                                ?>
-                                <option value="<?php echo $sup['id_puesto']; ?>"
-                                    <?php echo ($sup['id_puesto'] == $view->puesto->getIdPuestoSuperior())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $sup['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label class="control-label" for="descripcion">Descripción</label>
-                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="2"><?php print $view->puesto->getDescripcion(); ?></textarea>
+                        <label class="control-label" for="descripcion">Aspectos a mejorar</label>
+                        <textarea class="form-control" name="aspectos_mejorar" id="aspectos_mejorar" placeholder="Aspectos a mejorar" rows="4"><?php print $view->conclusion->getAspectosMejorar(); ?></textarea>
                     </div>
 
                 </form>
-
-
-                <div id="fileuploader">Upload</div>
 
 
                 <div id="myElem" class="msg" style="display:none"></div>

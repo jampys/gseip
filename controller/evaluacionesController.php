@@ -4,9 +4,10 @@ include_once("model/evaluacionesModel.php");
 include_once("model/evaluacionesCompetenciasModel.php");
 include_once("model/evaluacionesAspectosGeneralesModel.php");
 include_once("model/evaluacionesObjetivosModel.php");
+include_once("model/evaluacionesConclusionesModel.php");
+
 include_once("model/contratosModel.php");
 include_once("model/empleadosModel.php");
-
 include_once("model/puestosModel.php");
 include_once("model/niveles_competenciasModel.php");
 include_once("model/localidadesModel.php");
@@ -230,18 +231,14 @@ switch ($operation)
         $view->contentTemplate="view/evaluaciones/evaluaciones-eaoForm.php";
         break;
 
-    case 'loadEaconcl': //Abre el formulario de conclusiones
+    case 'loadEaconcl': //Abre el formulario de conclusiones //ok
         $view->empleado = new Empleado($_POST['id_empleado']);
-        $view->label = 'Evaluación de objetivos: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
+        $view->label = 'Comentarios del evaluador para: '.$view->empleado->getApellido().' '.$view->empleado->getNombre();
 
-        $view->objetivos = EvaluacionObjetivo::getObjetivos($_POST['id_empleado'], $_POST['periodo']);
-        $view->params = array('id_empleado' => $_POST['id_empleado'], 'id_plan_evaluacion' => $_POST['id_plan_evaluacion'], 'periodo'=> $_POST['periodo'], 'cerrado'=> $_POST['cerrado']);
-        $view->puntajes = EvaluacionObjetivo::getPuntajes();
-
-        //$view->dias_paro = EvaluacionAspectoGeneral::getDiasParo($_POST['id_empleado']);
+        $view->conclusion = new EvaluacionConclusion($_POST['id_evaluacion_conclusion']);
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/evaluaciones/evaluaciones-eaoForm.php";
+        $view->contentTemplate="view/evaluaciones/evaluaciones-eaconclForm.php";
         break;
 
 
