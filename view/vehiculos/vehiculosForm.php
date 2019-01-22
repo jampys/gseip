@@ -31,8 +31,9 @@
                 nro_movil: {
                         //required: true,
                         //digits: true,
-                        maxlength: 4,
-                        remote: {
+                        maxlength: 4
+                        /*remote: { //se quita validacion porque al ingresar vehiculos de subcontratistas se puede
+                                  // repetir el numero de interno
                             url: "index.php",
                             type: "post",
                             dataType: "json",
@@ -47,8 +48,8 @@
                             },
                             error: function(data, textStatus, errorThrown) {
                             console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                            }*/
-                        }
+                            }
+                        }*/
                 },
                 matricula: {
                     required: true,
@@ -78,8 +79,8 @@
                 nro_movil: {
                     //required: "Ingrese el número de movil",
                     //digits: "Ingrese solo números",
-                    maxlength: "Máximo 4 dígitos",
-                    remote: "El nro. de movil ingresado ya existe"
+                    maxlength: "Máximo 4 dígitos"
+                    //remote: "El nro. de movil ingresado ya existe"
                 },
                 matricula: {
                     required: "Ingrese la matricula",
