@@ -30,8 +30,8 @@
             rules: {
                 nro_movil: {
                         //required: true,
-                        digits: true,
-                        maxlength: 3,
+                        //digits: true,
+                        maxlength: 4,
                         remote: {
                             url: "index.php",
                             type: "post",
@@ -76,9 +76,9 @@
             },
             messages:{
                 nro_movil: {
-                    required: "Ingrese el número de movil",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 3 dígitos",
+                    //required: "Ingrese el número de movil",
+                    //digits: "Ingrese solo números",
+                    maxlength: "Máximo 4 dígitos",
                     remote: "El nro. de movil ingresado ya existe"
                 },
                 matricula: {
