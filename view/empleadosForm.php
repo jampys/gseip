@@ -338,7 +338,7 @@
     </div>
 
 
-    <div class="form-group required">
+    <div class="form-group">
         <label for="nacionalidad" class="col-md-4 control-label">Nacionalidad</label>
         <div class="col-md-8">
             <select class="form-control selectpicker show-tick" id="nacionalidad" name="nacionalidad" title="Seleccione la nacionalidad" data-live-search="true" data-size="5">
@@ -354,7 +354,7 @@
         </div>
     </div>
 
-    <div class="form-group required">
+    <div class="form-group">
         <label for="estado_civil" class="col-md-4 control-label">Estado civil</label>
         <div class="col-md-8">
             <select class="form-control selectpicker show-tick" id="estado_civil" name="estado_civil" title="Seleccione el estado civil" data-live-search="true" data-size="5">
