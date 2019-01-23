@@ -36,6 +36,7 @@ switch ($operation)
         $renovacion->setIdGrupo ( ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null);
         $renovacion->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $renovacion->setReferencia($_POST['referencia']);
+        $renovacion->setCreatedBy($_SESSION["id_user"]);
 
         $rta = $renovacion->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));

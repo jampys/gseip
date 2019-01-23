@@ -267,6 +267,7 @@ order by priority, id_rnv_renovacion asc";
                                         :fecha_emision,
                                         :fecha_vencimiento,
                                         :referencia,
+                                        :created_by
                                         @flag
                                     )';
 
@@ -278,6 +279,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
         $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
         $stmt->dpBind(':referencia', $this->getReferencia());
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
 
         $stmt->dpExecute();
 
