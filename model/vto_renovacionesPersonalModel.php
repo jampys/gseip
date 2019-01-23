@@ -267,7 +267,7 @@ order by priority, id_rnv_renovacion asc";
                                         :fecha_emision,
                                         :fecha_vencimiento,
                                         :referencia,
-                                        :created_by
+                                        :created_by,
                                         @flag
                                     )';
 
