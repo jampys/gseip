@@ -148,7 +148,7 @@
                     {
                         text: "Aceptar",
                         click: function() {
-                            $.fn.borrar(id);
+                            $.fn.borrarE(id);
                         },
                         class:"btn btn-danger"
                     },
@@ -166,7 +166,7 @@
         });
 
 
-        $.fn.borrar = function(id) {
+        $.fn.borrarE = function(id) {
             //alert(id);
             //preparo los parametros
             params={};
@@ -182,6 +182,7 @@
                 if(data >=0){
                     $("#confirm-emp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
                     $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                    $('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-emp #myElemento").hide();
@@ -212,7 +213,7 @@
                     {
                         text: "Aceptar",
                         click: function() {
-                            $.fn.borrar(id);
+                            $.fn.borrarO(id);
                         },
                         class:"btn btn-danger"
                     },
@@ -230,7 +231,7 @@
         });
 
 
-        $.fn.borrar = function(id) {
+        $.fn.borrarO = function(id) {
             //alert(id);
             //preparo los parametros
             params={};
@@ -272,7 +273,8 @@
 
 
         //Guardar (calcular) parte
-        $(document).on('click', '#calcular',function(){
+        //$(document).on('click', '#calcular',function(){
+        $("#myModal").on('click', '#calcular', function () {
             //alert('calcular');
             //throw new Error();
 
@@ -302,6 +304,7 @@
                         //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
                         $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        $('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         /*setTimeout(function() { $("#myElem").hide();
                             //$('#myModal').modal('hide');
@@ -480,6 +483,33 @@
                                 <div id="demo-empleados" class="collapse">
                                     <div class="grid-empleados">
                                         <?php include_once('view/novedades_partes/empleadosGrid.php');?>
+                                    </div>
+                                </div>
+
+
+                                <br/>
+
+
+                                <!-- seccion de conceptos -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-conceptos" title="Mostrar conceptos">Conceptos</button>
+                                    </div>
+
+                                    <div class="col-md-4">
+
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-concepto" name="add-concepto" title="Agregar concepto">
+                                            <i class="fas fa-plus"></i>&nbsp
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div id="demo-conceptos" class="collapse">
+                                    <div class="grid-conceptos">
+                                        <?php include_once('view/novedades_partes/conceptosGrid.php');?>
                                     </div>
                                 </div>
 
