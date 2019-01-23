@@ -9,10 +9,11 @@ class RenovacionVehicular
     private $id_grupo;
     private $fecha_emision;
     private $fecha_vencimiento;
-    private $fecha;
     private $id_rnv_renovacion; //id_renovacion que le sigue
     private $disabled;
     private $referencia;
+    private $created_by;
+    private $created_date;
 
     private $vehiculo;
 
@@ -36,9 +37,6 @@ class RenovacionVehicular
     function getFechaVencimiento()
     { return $this->fecha_vencimiento;}
 
-    function getFecha()
-    { return $this->fecha;}
-
     function getVehiculo(){
         return ($this->vehiculo)? $this->vehiculo : new Vehiculo() ;
     }
@@ -51,6 +49,12 @@ class RenovacionVehicular
 
     function getReferencia()
     { return $this->referencia;}
+
+    function getCreatedBy()
+    { return $this->created_by;}
+
+    function getCreatedDate()
+    { return $this->created_date;}
 
 
     //SETTERS
@@ -72,9 +76,6 @@ class RenovacionVehicular
     function setFechaVencimiento($val)
     { $this->fecha_vencimiento=$val;}
 
-    function setFecha($val)
-    { $this->fecha=$val;}
-
     function setIdRnvRenovacion($val)
     { $this->id_rnv_renovacion=$val;}
 
@@ -83,6 +84,12 @@ class RenovacionVehicular
 
     function setReferencia($val)
     { $this->referencia=$val;}
+
+    function setCreatedBy($val)
+    { $this->created_by=$val;}
+
+    function setCreatedDate($val)
+    { $this->created_date=$val;}
 
 
 
@@ -93,7 +100,8 @@ class RenovacionVehicular
             $query = "select id_renovacion, id_vencimiento, id_vehiculo, id_grupo,
                     DATE_FORMAT(fecha_emision,  '%d/%m/%Y') as fecha_emision,
                     DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha, id_rnv_renovacion, disabled, referencia
+                    DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
+                    id_rnv_renovacion, disabled, referencia
                     from vto_renovacion_v
                     where id_renovacion = :nro";
             $stmt->dpPrepare($query);
@@ -107,7 +115,7 @@ class RenovacionVehicular
             $this->setIdGrupo($rows[0]['id_grupo']);
             $this->setFechaEmision($rows[0]['fecha_emision']);
             $this->setFechaVencimiento($rows[0]['fecha_vencimiento']);
-            $this->setFecha($rows[0]['fecha']);
+            $this->setCreatedDate($rows[0]['created_date']);
             $this->setIdRnvRenovacion($rows[0]['id_rnv_renovacion']);
             $this->setDisabled($rows[0]['disabled']);
             $this->setReferencia($rows[0]['referencia']);
@@ -124,7 +132,7 @@ class RenovacionVehicular
         select vrv.id_renovacion, vrv.id_vencimiento, vrv.id_vehiculo,
 DATE_FORMAT(vrv.fecha_emision,  '%d/%m/%Y') as fecha_emision,
 DATE_FORMAT(vrv.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-DATE_FORMAT(vrv.fecha,  '%d/%m/%Y') as fecha,
+DATE_FORMAT(vrv.created_date,  '%d/%m/%Y') as created_date,
 vvv.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
@@ -171,7 +179,7 @@ UNION
 select vrv.id_renovacion, vrv.id_vencimiento, vrv.id_vehiculo,
 DATE_FORMAT(vrv.fecha_emision,  '%d/%m/%Y') as fecha_emision,
 DATE_FORMAT(vrv.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-DATE_FORMAT(vrv.fecha,  '%d/%m/%Y') as fecha,
+DATE_FORMAT(vrv.created_date,  '%d/%m/%Y') as created_date,
 vvv.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
@@ -247,6 +255,7 @@ order by priority, id_rnv_renovacion asc";
                                         :fecha_emision,
                                         :fecha_vencimiento,
                                         :referencia,
+                                        :created_by,
                                         @flag
                                     )';
 
@@ -258,6 +267,7 @@ order by priority, id_rnv_renovacion asc";
         $stmt->dpBind(':fecha_emision', $this->getFechaEmision());
         $stmt->dpBind(':fecha_vencimiento', $this->getFechaVencimiento());
         $stmt->dpBind(':referencia', $this->getReferencia());
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
 
         $stmt->dpExecute();
 
