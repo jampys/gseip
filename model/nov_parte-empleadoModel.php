@@ -3,17 +3,15 @@
 class ParteEmpleado
 {
     private $id_parte_empleado;
-    private $fecha; //fecha de registro en el sistema
     private $id_parte;
     private $id_empleado;
     private $conductor;
+    private $created_by;
+    private $created_date; //fecha de registro en el sistema
 
     // GETTERS
     function getIdParteEmpleado()
     { return $this->id_parte_empleado;}
-
-    function getFecha()
-    { return $this->fecha;}
 
     function getIdParte()
     { return $this->id_parte;}
@@ -24,13 +22,16 @@ class ParteEmpleado
     function getConductor()
     { return $this->conductor;}
 
+    function getCreatedBy()
+    { return $this->created_by;}
+
+    function getCreatedDate()
+    { return $this->created_date;}
+
 
     //SETTERS
     function setIdParteEmpleado($val)
     { $this->id_parte_empleado=$val;}
-
-    function setFecha($val)
-    { $this->fecha=$val;}
 
     function setIdParte($val)
     {  $this->id_parte=$val;}
@@ -40,6 +41,12 @@ class ParteEmpleado
 
     function setConductor($val)
     { $this->conductor=$val;}
+
+    function setCreatedBy($val)
+    { $this->created_by=$val;}
+
+    function setCreatedDate($val)
+    { $this->created_date=$val;}
 
 
     function __construct($nro=0){ //constructor //ok
@@ -105,12 +112,13 @@ class ParteEmpleado
 
     public function insertParteEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_parte_empleado(fecha, id_parte, id_empleado, conductor)
-                values(sysdate(), :id_parte, :id_empleado, :conductor)";
+        $query="insert into nov_parte_empleado(id_parte, id_empleado, conductor, created_by, created_date)
+                values(:id_parte, :id_empleado, :conductor, :created_by, sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_parte', $this->getIdParte());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpBind(':conductor', $this->getConductor());
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

@@ -62,6 +62,7 @@ switch ($operation)
                     $pe1->setIdParte($id_parte);
                     $pe1->setIdEmpleado($vC['id_empleado_1']);
                     $pe1->setConductor(1);
+                    $pe1->setCreatedBy($_SESSION['id_user']);
                     $pe1->insertParteEmpleado();
                 }
 
@@ -70,6 +71,7 @@ switch ($operation)
                     $pe2->setIdParte($id_parte);
                     $pe2->setIdEmpleado($vC['id_empleado_2']);
                     $pe2->setConductor(null);
+                    $pe2->setCreatedBy($_SESSION['id_user']);
                     $pe2->insertParteEmpleado();
                 }
 
