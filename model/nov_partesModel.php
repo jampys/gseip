@@ -140,7 +140,7 @@ class Parte
                     left join vto_vehiculos ve on pa.id_vehiculo = ve.id_vehiculo
                     left join nov_eventos_c nec on pa.id_evento = nec.id_evento
                     left join contratos co on pa.id_contrato = co.id_contrato
-                    join sec_users us on pa.id_user = us.id_user
+                    join sec_users us on pa.created_by = us.id_user
                     and pa.fecha_parte between if(:fecha_desde is null, pa.fecha_parte, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
                     and if(:fecha_hasta is null, pa.fecha_parte, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
                     and pa.id_contrato =  ifnull(:id_contrato, pa.id_contrato)
