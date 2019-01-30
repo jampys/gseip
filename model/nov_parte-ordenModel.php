@@ -10,14 +10,13 @@ class ParteOrden
     private $orden_nro;
     private $duracion;
     private $servicio;
+    private $created_by;
+    private $created_date;
 
 
     // GETTERS
     function getIdParteOrden()
     { return $this->id_parte_orden;}
-
-    function getFecha()
-    { return $this->fecha;}
 
     function getIdParte()
     { return $this->id_parte;}
@@ -37,13 +36,16 @@ class ParteOrden
     function getServicio()
     { return $this->servicio;}
 
+    function getCreatedBy()
+    { return $this->created_by;}
+
+    function getCreatedDate()
+    { return $this->created_date;}
+
 
     //SETTERS
     function setIdParteOrden($val)
     { $this->id_parte_orden=$val;}
-
-    function setFecha($val)
-    { $this->fecha=$val;}
 
     function setIdParte($val)
     {  $this->id_parte=$val;}
@@ -63,6 +65,12 @@ class ParteOrden
     function setServicio($val)
     { $this->servicio=$val;}
 
+    function setCreatedBy($val)
+    { $this->created_by=$val;}
+
+    function setCreatedDate($val)
+    { $this->created_date=$val;}
+
 
 
     function __construct($nro=0){ //constructor //ok
@@ -70,8 +78,9 @@ class ParteOrden
         if ($nro!=0){
             $stmt=new sQuery();
             $query = "select id_parte_orden,
-                      DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      id_parte, nro_parte_diario, orden_tipo, orden_nro, duracion, servicio
+                      id_parte, nro_parte_diario, orden_tipo, orden_nro, duracion, servicio,
+                      created_by,
+                      DATE_FORMAT(created_date, '%d/%m/%Y') as created_date,
                       from nov_parte_orden
                       where id_parte_orden = :nro";
             $stmt->dpPrepare($query);
@@ -80,13 +89,14 @@ class ParteOrden
             $rows = $stmt ->dpFetchAll();
 
             $this->setIdParteOrden($rows[0]['id_parte_orden']);
-            $this->setFecha($rows[0]['fecha']);
             $this->setIdParte($rows[0]['id_parte']);
             $this->setNroParteDiario($rows[0]['nro_parte_diario']);
             $this->setOrdenTipo($rows[0]['orden_tipo']);
             $this->setOrdenNro($rows[0]['orden_nro']);
             $this->setDuracion($rows[0]['duracion']);
             $this->setServicio($rows[0]['servicio']);
+            $this->setCreatedBy($rows[0]['created_by']);
+            $this->setCreatedDate($rows[0]['created_date']);
         }
     }
 
