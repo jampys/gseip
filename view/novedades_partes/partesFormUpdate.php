@@ -137,6 +137,18 @@
         });
 
 
+        //Abre formulario para ingresar un concepto de manera manual al parte
+        $('#left_side').on('click', '#add-concepto', function(){ //ok
+            params={};
+            params.action = "parte-empleado-concepto";
+            params.operation = "newConcepto";
+            params.id_parte = $('#id_parte').val();
+            $('#right_side').load('index.php', params,function(){
+
+            })
+        });
+
+
         //eliminar empleado del parte
         $('.grid-empleados').on('click', '.delete', function(){ //ok
             //alert('Funcionalidad en desarrollo');

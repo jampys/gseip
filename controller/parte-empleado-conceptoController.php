@@ -1,7 +1,6 @@
 ﻿<?php
 include_once("model/nov_parte-empleado-conceptoModel.php");
-
-//include_once("model/puestosModel.php");
+include_once("model/nov_parte-empleadoModel.php");
 //include_once("model/localidadesModel.php");
 //include_once("model/contratosModel.php");
 
@@ -13,7 +12,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -39,15 +38,15 @@ switch ($operation)
         exit;
         break;
 
-    case 'newOrden':
-        $view->label='Nueva Orden';
-        $view->orden = new ParteOrden();
+    case 'newConcepto': //ok
+        $view->label='Nuevo Concepto';
+        $view->concepto = new ParteEmpleadoConcepto();
 
-        $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
+        $view->empleados = ParteEmpleado::getParteEmpleado($_POST['id_parte']);
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
-        $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
+        $view->contentTemplate="view/novedades_partes/concepto_detailForm.php";
         break;
 
     case 'editOrden':
