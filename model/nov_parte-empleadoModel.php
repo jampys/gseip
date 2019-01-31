@@ -74,7 +74,7 @@ class ParteEmpleado
         $stmt=new sQuery();
         $query = "select npe.id_parte_empleado,
                   npe.id_parte, npe.id_empleado, npe.conductor,
-                  em.apellido, em.nombre, em.id_convenio,
+                  em.apellido, em.nombre, em.legajo, em.id_convenio,
                   nc.codigo as convenio
                   from nov_parte_empleado npe
                   join empleados em on npe.id_empleado = em.id_empleado
