@@ -8,6 +8,10 @@ class ParteEmpleadoConcepto
     private $id_concepto_convenio_contrato;
     private $cantidad;
 
+    private $created_by;
+    private $created_date;
+    private $tipo_calculo;
+
 
     // GETTERS
     function getIdParteEmpleadoConcepto()
@@ -21,6 +25,15 @@ class ParteEmpleadoConcepto
 
     function getCantidad()
     { return $this->cantidad;}
+
+    function getCreatedBy()
+    { return $this->created_by;}
+
+    function getCreatedDate()
+    { return $this->created_date;}
+
+    function getTipoCalculo()
+    { return $this->tipo_calculo;}
 
 
     //SETTERS
@@ -36,6 +49,15 @@ class ParteEmpleadoConcepto
     function setCantidad($val)
     {  $this->cantidad=$val;}
 
+    function setCreatedBy($val)
+    {  $this->created_by=$val;}
+
+    function setCreatedDate($val)
+    {  $this->created_date=$val;}
+
+    function setTipoCalculo($val)
+    {  $this->tipo_calculo=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -43,7 +65,8 @@ class ParteEmpleadoConcepto
 
             $stmt=new sQuery();
             $query="select id_parte_empleado_concepto,
-                    id_parte_empleado, id_concepto_convenio_contrato
+                    id_parte_empleado, id_concepto_convenio_contrato,
+                    tipo_calculo
                     from nov_parte_empleado_concepto where id_parte_empleado_concepto = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -54,6 +77,7 @@ class ParteEmpleadoConcepto
             $this->setIdParteEmpleado($rows[0]['id_parte_empleado']);
             $this->setIdConceptoConvenioContrato($rows[0]['id_concepto_convenio_contrato']);
             $this->setCantidad($rows[0]['cantidad']);
+            $this->setTipoCalculo($rows[0]['tipo_calculo']);
         }
     }
 
@@ -155,16 +179,7 @@ order by npe.id_empleado asc";
         return $stmt->dpGetAffect();
     }
 
-
-    public function autocompletarPuestos($term) {
-        $stmt=new sQuery();
-        $query = "select *
-                  from puestos
-                  where nombre like '%$term%'";
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
+    
 
 }
 
