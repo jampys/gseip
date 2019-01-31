@@ -93,28 +93,22 @@ class ConceptoConvenioContrato
 
 
 
-    public static function getParteEmpleadoConcepto($id_contrato, $id_convenio) {
+    public static function getConceptoConvenioContrato($id_contrato, $id_convenio) { //ok
+        //obtengo los conceptos para un determinado contrato y convenio (select dependiente)
         $stmt=new sQuery();
-        $query="select npe.id_parte, npe.id_parte_empleado, npe.id_empleado,
-npec.id_parte_empleado_concepto, npec.id_concepto_convenio_contrato,
-npec.cantidad,
-nccto.nombre as concepto,
-ncnio.codigo as convenio,
-nccc.codigo,
-nccc.variable,
-em.legajo
-from nov_parte_empleado_concepto npec
-join nov_parte_empleado npe on npe.id_parte_empleado = npec.id_parte_empleado
-join empleados em on npe.id_empleado = em.id_empleado
-join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato = npec.id_concepto_convenio_contrato
-join nov_conceptos nccto on nccto.id_concepto = nccc.id_concepto
-join nov_convenios ncnio on ncnio.id_convenio = nccc.id_convenio
-where npe.id_parte = :id_parte
-order by npe.id_empleado asc";
+        $query="select nccc.id_concepto_convenio_contrato, nccc.id_concepto, nccc.id_contrato, nccc.id_convenio,
+nccc.codigo, nccc.variable, nccc.descripcion, nccc.default_value,
+nctos.nombre as concepto,
+ncnios.codigo as convenio
+from nov_concepto_convenio_contrato nccc
+join nov_conceptos nctos on nctos.id_concepto = nccc.id_concepto
+join nov_convenios ncnios on ncnios.id_convenio = nccc.id_convenio
+where nccc.id_contrato = 21
+and nccc.id_convenio = 1
+order by nctos.nombre asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_parte', $id_parte);
-        //$stmt->dpBind(':fecha_hasta', $fecha_hasta);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_convenio', $id_convenio);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

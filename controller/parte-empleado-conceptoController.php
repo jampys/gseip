@@ -1,8 +1,7 @@
 ﻿<?php
 include_once("model/nov_parte-empleado-conceptoModel.php");
 include_once("model/nov_parte-empleadoModel.php");
-//include_once("model/localidadesModel.php");
-//include_once("model/contratosModel.php");
+include_once("model/nov_concepto-convenio-contratoModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -68,7 +67,7 @@ switch ($operation)
         break;
 
 
-    case 'checkEmpleado':
+    case 'getConceptos': //select dependiente
         $view->empleado = new CuadrillaEmpleado();
         $rta = $view->empleado->checkEmpleado($_POST['id_cuadrilla_empleado'], $_POST['id_cuadrilla'], $_POST['id_empleado']);
         print_r(json_encode($rta));
