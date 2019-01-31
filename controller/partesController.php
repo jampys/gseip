@@ -93,7 +93,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'calcularParte': //ok  //guarda un parte despues de ser editado
+    case 'calcularParte': //ok  //guarda un parte despues de ser editado (boton calcular)
         $parte = new Parte($_POST['id_parte']);
         $parte->setIdArea($_POST['id_area']);
         $parte->setIdVehiculo($_POST['id_vehiculo']);
@@ -102,6 +102,7 @@ switch ($operation)
         $parte->setHsNormal( ($_POST['hs_normal']!='')? $_POST['hs_normal'] : 0);
         $parte->setHs50( ($_POST['hs_50']!='')? $_POST['hs_50'] : 0);
         $parte->setHs100( ($_POST['hs_100']!='')? $_POST['hs_100'] : 0);
+        $parte->setCreatedBy($_SESSION['id_user']);
 
         $rta = $parte->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));

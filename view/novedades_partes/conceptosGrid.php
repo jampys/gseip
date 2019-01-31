@@ -58,7 +58,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> El parte aún no tiene órdenes registradas.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> El parte aún no tiene conceptos registrados.
     </div>
 
 <?php } ?>

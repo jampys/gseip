@@ -179,7 +179,7 @@ order by npe.id_empleado asc";
         return $stmt->dpGetAffect();
     }
 
-    
+
 
 }
 
