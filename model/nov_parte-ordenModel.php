@@ -3,7 +3,6 @@
 class ParteOrden
 {
     private $id_parte_orden;
-    private $fecha; //fecha de registro en el sistema
     private $id_parte;
     private $nro_parte_diario;
     private $orden_tipo;
@@ -11,7 +10,7 @@ class ParteOrden
     private $duracion;
     private $servicio;
     private $created_by;
-    private $created_date;
+    private $created_date; //fecha de registro en el sistema
 
 
     // GETTERS
@@ -80,7 +79,7 @@ class ParteOrden
             $query = "select id_parte_orden,
                       id_parte, nro_parte_diario, orden_tipo, orden_nro, duracion, servicio,
                       created_by,
-                      DATE_FORMAT(created_date, '%d/%m/%Y') as created_date,
+                      DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
                       from nov_parte_orden
                       where id_parte_orden = :nro";
             $stmt->dpPrepare($query);
