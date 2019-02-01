@@ -26,6 +26,13 @@
         });
 
 
+ 
+        $('#concepto-form').on('change', '#id_empleado', function(e){
+
+            alert($('#id_empleado option:selected').attr('id_convenio'));
+        });
+
+
 
         //Guardar parte-orden luego de ingresar nuevo o editar
         //$('#right_side').on('click', '#submit',function(){ //ok
@@ -120,7 +127,9 @@
             <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
                 <?php foreach ($view->empleados as $em){
                     ?>
-                    <option value="<?php echo $em['id_parte_empleado']; ?>"
+                    <option
+                        value="<?php echo $em['id_parte_empleado']; ?>"
+                        id_convenio="<?php echo $em['id_convenio']; ?>"
                         <?php echo ($em['id_parte_empleado'] == $view->concepto->getIdParteEmpleado())? 'selected' :'' ?>
                         >
                         <?php echo $em['apellido'].' '.$em['nombre'];?>
