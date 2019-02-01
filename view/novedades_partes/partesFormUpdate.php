@@ -405,6 +405,7 @@
                             <form name ="parte-form" id="parte-form" method="POST" action="index.php">
 
                                 <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
+                                <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->parte->getIdContrato() ?>">
 
                                 <div class="form-group required">
                                     <label for="id_area" class="control-label">Área</label>

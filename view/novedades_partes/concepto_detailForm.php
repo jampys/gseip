@@ -29,13 +29,20 @@
 
         $('#concepto-form').on('change', '#id_empleado', function(e){
 
-            //alert($('#id_empleado option:selected').attr('id_convenio'));
+            params={};
+            params.action = "parte-empleado-concepto";
+            params.operation = "getConceptos";
+            params.id_convenio = $('#id_empleado option:selected').attr('id_convenio');
+            params.id_contrato = $('#id_contrato').val();
+
+            $('#id_concepto').empty();
 
 
             $.ajax({
                 url:"index.php",
                 type:"post",
-                data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
+                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
+                data: params,
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
@@ -43,12 +50,13 @@
 
                         $.each(data, function(indice, val){
                             //alert(data1[indice]['Task_Name']);
-                            alert('ahhhh');
+                            var label = data[indice]["concepto"]+' ('+data[indice]["codigo"]+') '+data[indice]["convenio"];
+                            $("#id_concepto").append('<option value="'+data[indice]["id_concepto_convenio_contrato"]+'">'+label+'</option>');
+                            //alert('ahhhh');
 
                         });
 
-
-
+                        $('.selectpicker').selectpicker('refresh');
 
 
 
@@ -170,6 +178,14 @@
                         <?php echo $em['apellido'].' '.$em['nombre'];?>
                     </option>
                 <?php  } ?>
+            </select>
+        </div>
+
+
+        <div class="form-group required">
+            <label for="id_empleado" class="control-label">Concepto</label>
+            <select class="form-control selectpicker show-tick" id="id_concepto" name="id_concepto" title="Seleccione un concepto" data-live-search="true" data-size="5">
+                <!-- se completa dinamicamente desde javascript  -->
             </select>
         </div>
 

@@ -68,13 +68,7 @@ switch ($operation)
 
 
     case 'getConceptos': //select dependiente
-        //$view->empleado = new CuadrillaEmpleado();
-        //$rta = $view->empleado->checkEmpleado($_POST['id_cuadrilla_empleado'], $_POST['id_cuadrilla'], $_POST['id_empleado']);
-        //print_r(json_encode($rta));
-        //exit;
-
-        //$view->conceptos = new Objetivo($_POST['id_objetivo']);
-        $rta = ConceptoConvenioContrato::getConceptoConvenioContrato(21, 1); //$view->objetivo->graficarGantt();
+        $rta = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $_POST['id_convenio']);
         print_r(json_encode($rta));
         exit;
         break;

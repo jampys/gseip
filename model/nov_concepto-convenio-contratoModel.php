@@ -103,8 +103,8 @@ ncnios.codigo as convenio
 from nov_concepto_convenio_contrato nccc
 join nov_conceptos nctos on nctos.id_concepto = nccc.id_concepto
 join nov_convenios ncnios on ncnios.id_convenio = nccc.id_convenio
-where nccc.id_contrato = 21
-and nccc.id_convenio = 1
+where nccc.id_contrato = :id_contrato
+and nccc.id_convenio = :id_convenio
 order by nctos.nombre asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
