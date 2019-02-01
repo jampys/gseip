@@ -28,6 +28,7 @@ switch ($operation)
         $concepto->setIdConceptoConvenioContrato($_POST['id_concepto_convenio_contrato']);
         $concepto->setCantidad($_POST['cantidad']);
         $concepto->setCreatedBy($_SESSION['id_user']);
+        $concepto->setMotivo($_POST['motivo']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $concepto->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));

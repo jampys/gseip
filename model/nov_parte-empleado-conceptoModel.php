@@ -11,6 +11,7 @@ class ParteEmpleadoConcepto
     private $created_by;
     private $created_date;
     private $tipo_calculo;
+    private $motivo;
 
 
     // GETTERS
@@ -35,6 +36,9 @@ class ParteEmpleadoConcepto
     function getTipoCalculo()
     { return $this->tipo_calculo;}
 
+    function getMotivo()
+    { return $this->motivo;}
+
 
     //SETTERS
     function setIdParteEmpleadoConcepto($val)
@@ -58,6 +62,9 @@ class ParteEmpleadoConcepto
     function setTipoCalculo($val)
     {  $this->tipo_calculo=$val;}
 
+    function setMotivo($val)
+    {  $this->motivo=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -66,7 +73,7 @@ class ParteEmpleadoConcepto
             $stmt=new sQuery();
             $query="select id_parte_empleado_concepto,
                     id_parte_empleado, id_concepto_convenio_contrato,
-                    tipo_calculo
+                    tipo_calculo, motivo
                     from nov_parte_empleado_concepto where id_parte_empleado_concepto = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -78,6 +85,7 @@ class ParteEmpleadoConcepto
             $this->setIdConceptoConvenioContrato($rows[0]['id_concepto_convenio_contrato']);
             $this->setCantidad($rows[0]['cantidad']);
             $this->setTipoCalculo($rows[0]['tipo_calculo']);
+            $this->setMotivo($rows[0]['motivo']);
         }
     }
 
@@ -164,7 +172,7 @@ order by npe.id_empleado asc";
         $stmt->dpBind(':cantidad', $this->getCantidad());
         $stmt->dpBind(':created_by', $this->getCreatedBy());
         $stmt->dpBind(':tipo_calculo', 'M');
-        $stmt->dpBind(':motivo', 'motivo');
+        $stmt->dpBind(':motivo', $this->getMotivo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
