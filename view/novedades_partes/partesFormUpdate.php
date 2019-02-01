@@ -88,6 +88,23 @@
         });
 
 
+        //para ver concepto de un parte
+        $('.grid-conceptos').on('click', '.view', function(){ //ok
+            //alert('editar orden del parte');
+            var id = $(this).closest('tr').attr('data-id');
+            params={};
+            params.id_parte_empleado_concepto = id;
+            params.action = "parte-empleado-concepto";
+            params.operation = "editConcepto";
+            //alert(params.id_renovacion);
+            $('#right_side').load('index.php', params,function(){
+                $("#right_side fieldset").prop("disabled", true);
+                $("#concepto-form #footer-buttons button").css('display', 'none');
+                $('.selectpicker').selectpicker('refresh');
+            })
+        });
+
+
 
         //Abre formulario para ingresar un nuevo empleado al parte
         $('#left_side').on('click', '#add-empleado', function(){ //ok

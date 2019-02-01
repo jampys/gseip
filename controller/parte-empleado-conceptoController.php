@@ -36,7 +36,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newConcepto': //ok
+    case 'newConcepto': //ok  //abre formulario para cargar concepto nuevo (manualmente)
         $view->label='Nuevo Concepto';
         $view->concepto = new ParteEmpleadoConcepto();
 
@@ -47,15 +47,15 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/concepto_detailForm.php";
         break;
 
-    case 'editOrden':
-        $view->label = ($_POST['target']!='view')? 'Editar orden': 'Ver orden';
-        $view->orden = new ParteOrden($_POST['id_parte_orden']);
+    case 'editConcepto': //ok  //abre formulario para editar concepto cargado manualmente
+        $view->label = ($_POST['target']!='view')? 'Editar concepto': 'Ver concepto';
+        $view->concepto = new ParteEmpleadoConcepto($_POST['id_parte_empleado_concepto']);
 
-        $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
+        $view->empleados = ParteEmpleado::getParteEmpleado($_POST['id_parte']);
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
-        $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
+        $view->contentTemplate="view/novedades_partes/concepto_detailForm.php";
         break;
 
     case 'deleteOrden':
