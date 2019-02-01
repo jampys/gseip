@@ -96,6 +96,7 @@
             params.id_parte_empleado_concepto = id;
             params.action = "parte-empleado-concepto";
             params.operation = "editConcepto";
+            params.id_parte = $('#id_parte').val();
             params.target = "view";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
