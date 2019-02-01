@@ -164,8 +164,8 @@
 
 
         <div class="form-group required">
-            <label for="id_empleado" class="control-label">Empleado</label>
-            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
+            <label for="id_parte_empleado" class="control-label">Empleado</label>
+            <select class="form-control selectpicker show-tick" id="id_parte_empleado" name="id_parte_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
                 <?php foreach ($view->empleados as $em){
                     ?>
                     <option
