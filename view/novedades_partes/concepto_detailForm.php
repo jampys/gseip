@@ -190,7 +190,7 @@
 
         <div class="form-group required">
             <label class="control-label" for="cantidad">Cantidad</label>
-            <input class="form-control" type="text" name="cantidad" id="cantidad" value = "<?php //print $view->orden->getDuracion() ?>" placeholder="Duración">
+            <input class="form-control" type="text" name="cantidad" id="cantidad" value = "<?php //print $view->concepto->getCantidad() ?>" placeholder="Duración">
         </div>
 
 

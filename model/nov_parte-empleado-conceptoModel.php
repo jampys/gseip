@@ -72,7 +72,7 @@ class ParteEmpleadoConcepto
 
             $stmt=new sQuery();
             $query="select id_parte_empleado_concepto,
-                    id_parte_empleado, id_concepto_convenio_contrato,
+                    id_parte_empleado, id_concepto_convenio_contrato, cantidad,
                     tipo_calculo, motivo
                     from nov_parte_empleado_concepto where id_parte_empleado_concepto = :nro";
             $stmt->dpPrepare($query);
