@@ -20,14 +20,14 @@
 
 
         //cancel de formulario de parte-orden
-        $('#concepto-form #cancel').on('click', function(){
+        $('#concepto-form #cancel').on('click', function(){ //ok
             //alert('cancelar form parte-orden');
             $('#concepto-form').hide();
         });
 
 
 
-        $('#concepto-form').on('change', '#id_empleado', function(e){
+        $('#concepto-form').on('change', '#id_empleado', function(e){ //ok
 
             params={};
             params.action = "parte-empleado-concepto";
@@ -49,15 +49,12 @@
                     if(Object.keys(data).length > 0){
 
                         $.each(data, function(indice, val){
-                            //alert(data1[indice]['Task_Name']);
                             var label = data[indice]["concepto"]+' ('+data[indice]["codigo"]+') '+data[indice]["convenio"];
                             $("#id_concepto").append('<option value="'+data[indice]["id_concepto_convenio_contrato"]+'">'+label+'</option>');
-                            //alert('ahhhh');
 
                         });
 
                         $('.selectpicker').selectpicker('refresh');
-
 
 
                     }
@@ -126,14 +123,16 @@
 
 
 
-        $('#orden-form').validate({
+        $('#concepto-form').validate({ //ok
             rules: {
                 /*codigo: {
                         required: true,
                         digits: true,
                         maxlength: 6
                 },*/
-                id_empleado: {required: true}
+                id_empleado: {required: true},
+                id_concepto: {required: true},
+                cantidad: {required: true}
             },
             messages:{
                 /*codigo: {
@@ -141,7 +140,9 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }, */
-                id_empleado: "Seleccione un empleado"
+                id_empleado: "Seleccione un empleado",
+                id_concepto: "Seleccione un concepto",
+                cantidad: "Ingrese una cantidad"
             }
 
         });
@@ -197,7 +198,7 @@
 
 
         <div class="form-group">
-            <label class="control-label" for="servicio">Motivo</label>
+            <label class="control-label" for="motivo">Motivo</label>
             <textarea class="form-control" name="motivo" id="motivo" placeholder="Motivo" rows="2"><?php //print $view->orden->getServicio(); ?></textarea>
         </div>
 
