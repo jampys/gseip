@@ -103,8 +103,6 @@ where npe.id_parte = :id_parte
 order by npe.id_empleado asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_parte', $id_parte);
-        //$stmt->dpBind(':fecha_hasta', $fecha_hasta);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
@@ -112,15 +110,15 @@ order by npe.id_empleado asc";
 
 
     function save(){
-        if($this->id_parte)
-        {$rta = $this->updateParte();}
+        if($this->id_parte_empleado_concepto)
+        {$rta = $this->updateParteEmpleadoConcepto();}
         else
-        {$rta =$this->insertParte();}
+        {$rta =$this->insertParteEmpleadoConcepto();}
         return $rta;
     }
 
 
-    public function updateParte(){
+    public function updateParteEmpleadoConcepto(){
         $stmt=new sQuery();
         $query = 'CALL sp_calcularNovedades(:id_parte,
                                         :id_area,
@@ -155,22 +153,22 @@ order by npe.id_empleado asc";
     }
 
 
-    public function insertParte(){
+    public function insertParteEmpleadoConcepto(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into nov_partes(fecha, fecha_parte, cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, id_user)
-                values(sysdate(), STR_TO_DATE(:fecha_parte, '%d/%m/%Y'), :cuadrilla, :id_area, :id_vehiculo, :id_evento, :id_contrato, :id_user)";
+        $query="insert into nov_parte_empleado_concepto(id_parte_empleado, id_concepto_convenio_contrato, cantidad, created_by, created_date, tipo_calculo, motivo)
+                values(:id_parte_empleado, :id_concepto_convenio_contrato, :cantidad, :created_by, sysdate(), :tipo_calculo, :motivo)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':fecha_parte', $this->getFechaParte());
-        $stmt->dpBind(':cuadrilla', $this->getCuadrilla());
-        $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
-        $stmt->dpBind(':id_evento', $this->getIdEvento());
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
-        $stmt->dpBind(':id_user', $this->getIdUser());
+        $stmt->dpBind(':id_parte_empleado', $this->getIdParteEmpleado());
+        $stmt->dpBind(':id_concepto_convenio_contrato', $this->getIdConceptoConvenioContrato());
+        $stmt->dpBind(':cantidad', $this->getCantidad());
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
+        $stmt->dpBind(':tipo_calculo', 'M');
+        $stmt->dpBind(':motivo', 'motivo');
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
+
 
     function deletePuesto(){
         $stmt=new sQuery();

@@ -75,22 +75,20 @@
 
 
         //Guardar parte-orden luego de ingresar nuevo o editar
-        //$('#right_side').on('click', '#submit',function(){ //ok
-        $('#orden-form').on('click', '#submit',function(){ //ok
+        //$('#right_side').on('click', '#submit',function(){
+        $('#concepto-form').on('click', '#submit',function(){ //ok
             //alert('guardar orden');
 
-            if ($("#orden-form").valid()){
+            if ($("#concepto-form").valid()){
 
                 var params={};
-                params.action = 'parte-orden';
-                params.operation = 'saveOrden';
+                params.action = 'parte-empleado-concepto';
+                params.operation = 'saveConcepto';
                 params.id_parte = $('#id_parte').val();
-                params.id_parte_orden = $('#id_parte_orden').val();
-                params.nro_parte_diario = $('#nro_parte_diario').val();
-                params.orden_tipo = $('#orden_tipo').val();
-                params.orden_nro = $('#orden_nro').val();
-                params.duracion = $('#duracion').val();
-                params.servicio = $('#servicio').val();
+                params.id_parte_empleado = $('#id_parte_empleado').val();
+                params.id_concepto_convenio_contrato = $('#id_concepto_convenio_contrato').val();
+                params.cantidad = $('#cantidad').val();
+                params.motivo = $('#motivo').val();
                 //params.conductor = $('input[name=conductor]:checked').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
@@ -98,20 +96,19 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    //alert(objeto.id);
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#orden-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Orden guardada con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
+                        $("#concepto-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Concepto guardado con exito').addClass('alert alert-success').show();
+                        $('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                             //$('#myModal').modal('hide');
-                            $('#orden-form').hide();
+                            $('#concepto-form').hide();
                         }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la órden').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar el concepto').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');

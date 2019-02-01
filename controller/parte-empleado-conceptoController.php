@@ -22,16 +22,14 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/conceptosGrid.php";
         break;
 
-    case 'saveOrden':
-        $orden = new ParteOrden($_POST['id_parte_orden']);
-        $orden->setIdParte($_POST['id_parte']);
-        $orden->setNroParteDiario($_POST['nro_parte_diario']);
-        $orden->setOrdenTipo($_POST['orden_tipo']);
-        $orden->setOrdenNro($_POST['orden_nro']);
-        $orden->setDuracion($_POST['duracion']);
-        $orden->setServicio($_POST['servicio']);
+    case 'saveConcepto': //ok
+        $concepto = new ParteEmpleadoConcepto($_POST['id_parte_empleado_concepto']);
+        $concepto->setIdParteEmpleado($_POST['id_parte_empleado']);
+        $concepto->setIdConceptoConvenioContrato($_POST['id_concepto_convenio_contrato']);
+        $concepto->setCantidad($_POST['cantidad']);
+        $concepto->setCreatedBy($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $rta = $orden->save();
+        $rta = $concepto->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;
@@ -67,7 +65,7 @@ switch ($operation)
         break;
 
 
-    case 'getConceptos': //select dependiente
+    case 'getConceptos': //select dependiente //ok
         $rta = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $_POST['id_convenio']);
         print_r(json_encode($rta));
         exit;
