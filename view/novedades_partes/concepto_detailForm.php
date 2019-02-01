@@ -86,6 +86,7 @@
                 params.action = 'parte-empleado-concepto';
                 params.operation = 'saveConcepto';
                 params.id_parte = $('#id_parte').val();
+                params.id_parte_empleado_concepto = $('#id_parte_empleado_concepto').val();
                 params.id_parte_empleado = $('#id_parte_empleado').val();
                 params.id_concepto_convenio_contrato = $('#id_concepto').val();
                 params.cantidad = $('#cantidad').val();
