@@ -26,10 +26,45 @@
         });
 
 
- 
+
         $('#concepto-form').on('change', '#id_empleado', function(e){
 
-            alert($('#id_empleado option:selected').attr('id_convenio'));
+            //alert($('#id_empleado option:selected').attr('id_convenio'));
+
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    if(Object.keys(data).length > 0){
+
+                        $.each(data, function(indice, val){
+                            //alert(data1[indice]['Task_Name']);
+                            alert('ahhhh');
+
+                        });
+
+
+
+
+
+
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
+
+
+
         });
 
 
