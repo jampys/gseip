@@ -40,18 +40,11 @@
         $('.grid-ordenes').on('click', '.edit', function(){ //ok
             //alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            //alert('editar etapa: '+id);
             params={};
             params.id_parte_orden = id;
             params.action = "parte-orden";
             params.operation = "editOrden";
-            //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
-                //$('#myModal').modal();
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
         });
 
@@ -82,19 +75,14 @@
         $('.grid-ordenes').on('click', '.view', function(){ //ok
             //alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            //alert('editar etapa: '+id);
             params={};
             params.id_parte_orden = id;
             params.action = "parte-orden";
             params.operation = "editOrden";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
                 $("#right_side fieldset").prop("disabled", true);
                 $("#orden-form #footer-buttons button").css('display', 'none');
-                //$('#myModal').modal();
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 $('.selectpicker').selectpicker('refresh');
             })
         });
@@ -124,15 +112,9 @@
             params={};
             params.action = "parte-orden";
             params.operation = "newOrden";
-            //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
             params.id_parte = $('#id_parte').val();
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
-                //$('#myModal').modal();
-                //$('#id_postulacion').val(params.id_postulacion);
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
         });
 
@@ -144,7 +126,6 @@
             params.operation = "newConcepto";
             params.id_parte = $('#id_parte').val();
             $('#right_side').load('index.php', params,function(){
-
             })
         });
 
