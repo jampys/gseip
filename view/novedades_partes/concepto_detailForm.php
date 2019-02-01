@@ -190,13 +190,13 @@
 
         <div class="form-group required">
             <label class="control-label" for="cantidad">Cantidad</label>
-            <input class="form-control" type="text" name="cantidad" id="cantidad" value = "<?php //print $view->concepto->getCantidad() ?>" placeholder="Duración">
+            <input class="form-control" type="text" name="cantidad" id="cantidad" value = "<?php print $view->concepto->getCantidad() ?>" placeholder="Duración">
         </div>
 
 
         <div class="form-group">
             <label class="control-label" for="motivo">Motivo</label>
-            <textarea class="form-control" name="motivo" id="motivo" placeholder="Motivo" rows="2"><?php //print $view->orden->getServicio(); ?></textarea>
+            <textarea class="form-control" name="motivo" id="motivo" placeholder="Motivo" rows="2"><?php print $view->concepto->getMotivo(); ?></textarea>
         </div>
 
 
