@@ -126,38 +126,21 @@ order by npe.id_empleado asc";
     }
 
 
-    public function updateParteEmpleadoConcepto(){
+    public function updateParteEmpleadoConcepto(){ //ok
         $stmt=new sQuery();
-        $query = 'CALL sp_calcularNovedades(:id_parte,
-                                        :id_area,
-                                        :id_vehiculo,
-                                        :id_evento,
-                                        :hs_normal,
-                                        :hs_50,
-                                        :hs_100,
-                                        @flag,
-                                        @msg
-                                    )';
-
+        $query="update nov_parte_empleado_concepto set id_parte_empleado = :id_parte_empleado,
+                id_concepto_convenio_contrato = :id_concepto_convenio_contrato,
+                cantidad = :cantidad,
+                motivo = :motivo
+                where id_parte_empleado_concepto = :id_parte_empleado_concepto";
         $stmt->dpPrepare($query);
-
-        $stmt->dpBind(':id_parte', $this->getIdParte());
-        $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
-        $stmt->dpBind(':id_evento', $this->getIdEvento());
-        $stmt->dpBind(':hs_normal', $this->getHsNormal());
-        $stmt->dpBind(':hs_50', $this->getHs50());
-        $stmt->dpBind(':hs_100', $this->getHs100());
-
+        $stmt->dpBind(':id_parte_empleado', $this->getIdParteEmpleado());
+        $stmt->dpBind(':id_concepto_convenio_contrato', $this->getIdConceptoConvenioContrato());
+        $stmt->dpBind(':cantidad', $this->getCantidad());
+        $stmt->dpBind(':motivo', $this->getMotivo());
+        $stmt->dpBind(':id_parte_empleado_concepto', $this->getIdParteEmpleadoConcepto());
         $stmt->dpExecute();
-
-        $stmt->dpCloseCursor();
-        $query = "select @flag as flag, @msg as msg";
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        //$flag = $stmt->dpFetchAll();
-        //return ($flag)? intval($flag[0]['flag']) : -1;
-        return $stmt->dpFetchAll(); //retorna array bidimensional con flag y msg
+        return $stmt->dpGetAffect();
     }
 
 

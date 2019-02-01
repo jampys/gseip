@@ -48,6 +48,25 @@
             })
         });
 
+        //para editar concepto de un parte
+        $('.grid-conceptos').on('click', '.edit', function(){ //ok
+            //alert('editar orden del parte');
+            var id = $(this).closest('tr').attr('data-id');
+            params={};
+            params.id_parte_empleado_concepto = id;
+            params.action = "parte-empleado-concepto";
+            params.operation = "editConcepto";
+            params.id_parte = $('#id_parte').val();
+            //params.target = "view";
+            //alert(params.id_renovacion);
+            $('#right_side').load('index.php', params,function(){
+                //$("#right_side fieldset").prop("disabled", true);
+                //$("#concepto-form #footer-buttons button").css('display', 'none');
+                $('#id_parte_empleado').trigger('change'); //para cargar el combo de conceptos
+                $('.selectpicker').selectpicker('refresh');
+            })
+        });
+
 
         //para ver empleado de un parte
         $('.grid-empleados').on('click', '.view', function(){ //ok
