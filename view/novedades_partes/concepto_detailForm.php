@@ -20,9 +20,9 @@
 
 
         //cancel de formulario de parte-orden
-        $('#orden-form #cancel').on('click', function(){
+        $('#concepto-form #cancel').on('click', function(){
             //alert('cancelar form parte-orden');
-            $('#orden-form').hide();
+            $('#concepto-form').hide();
         });
 
 
