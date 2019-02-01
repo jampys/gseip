@@ -102,6 +102,7 @@
             $('#right_side').load('index.php', params,function(){
                 $("#right_side fieldset").prop("disabled", true);
                 $("#concepto-form #footer-buttons button").css('display', 'none');
+                $('#id_parte_empleado').trigger('change'); //para cargar el combo de conceptos
                 $('.selectpicker').selectpicker('refresh');
             })
         });
