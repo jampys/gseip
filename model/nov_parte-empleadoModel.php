@@ -80,7 +80,7 @@ class ParteEmpleado
                   join empleados em on npe.id_empleado = em.id_empleado
                   left join nov_convenios nc on em.id_convenio = nc.id_convenio
                   where npe.id_parte = :id_parte
-                  order by em.apellido asc, em.nombre asc";
+                  order by npe.conductor desc, em.apellido asc, em.nombre asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_parte', $id_parte);
         $stmt->dpExecute();
