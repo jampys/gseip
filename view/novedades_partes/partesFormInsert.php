@@ -159,7 +159,7 @@
 
 
 
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="row">
 
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
@@ -193,7 +193,7 @@
                                     </div>
 
 
-                                    <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
+                                    <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_area" data-live-search="true" data-size="5">
                                                 <option value="">Área</option>
@@ -208,7 +208,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
+                                    <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_vehiculo" data-live-search="true" data-size="5">
                                                 <option value="">Vehículo</option>
@@ -223,7 +223,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-2">
+                                <div class="row">
+
+                                    <div class="col-md-9" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_evento" data-live-search="true" data-size="5">
                                                 <option value="">Evento</option>
@@ -236,16 +244,7 @@
                                         </div>
                                     </div>
 
-
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-1">
-                                <div class="row">
-
-                                    <div class="col-md-12">
+                                    <div class="col-md-3">
                                         <!--<a class="<?php echo ( PrivilegedUser::dhasAction('ETP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         </a>-->
