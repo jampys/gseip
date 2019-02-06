@@ -58,7 +58,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> El parte aún no tiene conceptos registrados.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> El parte aún tiene conceptos registrados.
     </div>
 
 <?php } ?>
