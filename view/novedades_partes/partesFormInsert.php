@@ -43,7 +43,7 @@
                         item = {};
                         item.id_cuadrilla = $(this).attr('id_cuadrilla');
                         item.id_contrato = $(this).attr('id_contrato');
-                        item.cuadrilla = $(this).find('.cu_cuadrilla .btn-primary').text();
+                        item.cuadrilla = $(this).find('.btn-primary').text();
                         item.id_empleado_1 = $(this).find('.cu_id_empleado_1 option:selected').val();
                         item.id_empleado_2 = $(this).find('.cu_id_empleado_2 option:selected').val();
                         item.id_area = $(this).find('.cu_id_area option:selected').val();
