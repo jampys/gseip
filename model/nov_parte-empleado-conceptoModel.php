@@ -161,11 +161,11 @@ order by npe.id_empleado asc";
     }
 
 
-    function deletePuesto(){
+    function deleteParteEmpleadoConcepto(){ //ok
         $stmt=new sQuery();
-        $query="delete from puestos where id_puesto= :id";
+        $query="delete from nov_parte_empleado_concepto where id_parte_empleado_concepto = :id";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getIdPuesto());
+        $stmt->dpBind(':id', $this->getIdParteEmpleadoConcepto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

@@ -58,9 +58,9 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/concepto_detailForm.php";
         break;
 
-    case 'deleteOrden':
-        $view->orden = new ParteOrden($_POST['id_parte_orden']);
-        $rta = $view->orden->deleteParteOrden();
+    case 'deleteConcepto': //ok
+        $view->concepto = new ParteEmpleadoConcepto($_POST['id_parte_empleado_concepto']);
+        $rta = $view->concepto->deleteParteEmpleadoConcepto();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;

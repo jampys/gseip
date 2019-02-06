@@ -12,7 +12,7 @@
         });
 
 
-        $('#confirm-emp, #confirm-ord').dialog({
+        $('#confirm-emp, #confirm-ord, #confirm-con').dialog({
             autoOpen: false
             //modal: true,
         });
@@ -300,16 +300,16 @@
 
         //eliminar concepto del parte
         $('.grid-conceptos').on('click', '.delete', function(){ //ok
-            alert('Funcionalidad en desarrollo');
-            throw new Error();
+            //alert('Funcionalidad en desarrollo');
+            //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            $('#confirm-ord').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm-con').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
                         click: function() {
-                            $.fn.borrarO(id);
+                            $.fn.borrarC(id);
                         },
                         class:"btn btn-danger"
                     },
@@ -327,30 +327,29 @@
         });
 
 
-        $.fn.borrarO = function(id) {
+        $.fn.borrarC = function(id) {
             //alert(id);
             //preparo los parametros
             params={};
-            params.id_parte_orden = id;
+            params.id_parte_empleado_concepto = id;
             params.id_parte = $('#id_parte').val();
-            //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
-            params.action = "parte-orden";
-            params.operation = "deleteOrden";
+            params.action = "parte-empleado-concepto";
+            params.operation = "deleteConcepto";
             //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-ord #myElemento").html('Orden eliminada con exito').addClass('alert alert-success').show();
-                    $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
+                    $("#confirm-con #myElemento").html('Concepto eliminado con exito').addClass('alert alert-success').show();
+                    $('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-ord #myElemento").hide();
-                        $('#orden-form').hide();
-                        $('#confirm-ord').dialog('close');
+                    setTimeout(function() { $("#confirm-con #myElemento").hide();
+                        $('#concepto-form').hide();
+                        $('#confirm-con').dialog('close');
                     }, 2000);
                 }else{
-                    $("#confirm-ord #myElemento").html('Error al eliminar la orden').addClass('alert alert-danger').show();
+                    $("#confirm-con #myElemento").html('Error al eliminar el concepto').addClass('alert alert-danger').show();
                 }
 
 
