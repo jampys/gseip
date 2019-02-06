@@ -43,7 +43,7 @@
                         item = {};
                         item.id_cuadrilla = $(this).attr('id_cuadrilla');
                         item.id_contrato = $(this).attr('id_contrato');
-                        item.cuadrilla = $(this).find('.cu_cuadrilla').text();
+                        item.cuadrilla = $(this).find('.cu_cuadrilla .btn-primary').text();
                         item.id_empleado_1 = $(this).find('.cu_id_empleado_1 option:selected').val();
                         item.id_empleado_2 = $(this).find('.cu_id_empleado_2 option:selected').val();
                         item.id_area = $(this).find('.cu_id_area option:selected').val();
@@ -121,7 +121,7 @@
 
         //Al presionar el boton con
         // el nombre de la cuadrilla
-        $('.cu_cuadrilla .btn').on('click', function(){ //ok
+        $('.cu_cuadrilla .btn-primary').on('click', function(){ //ok
             //$(this).closest('.row.cu_cuadrilla').find(':checkbox').prop('checked', true);
             var chk = $(this).closest('.row.cu_cuadrilla').find(':checkbox');
             chk.prop('checked', !chk.is(':checked'))
@@ -153,10 +153,8 @@
 
                         <div class="row cu_cuadrilla" id_cuadrilla="<?php echo $cu['id_cuadrilla'] ?>" id_contrato="<?php echo $cu['id_contrato'] ?>">
 
-                            <div class="col-md-2" style="padding-right: 5px">
-                                <div class="row">
-                                    <div class="col-md-12 cu_cuadrilla"><button type="button" class="btn btn-primary btn-block" title="<?php echo $cu['nombre'] ?>"><?php echo substr($cu['nombre'], 0, 20) ?></button></div>
-                                </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-primary btn-block" title="<?php echo $cu['nombre'] ?>"><?php echo substr($cu['nombre'], 0, 20) ?></button>
                             </div>
 
 
