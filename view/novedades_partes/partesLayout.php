@@ -108,8 +108,11 @@
                     params.fecha_parte = $("#add_fecha").val(); //para mostrar en el titulo del modal
                     params.contrato = $("#add_contrato option:selected").text(); //para mostrar en el titulo del modal
 
-                    $('#popupbox').load('index.php', params,function(){
+                    /*$('#popupbox').load('index.php', params,function(){
                         $('#myModal').modal();
+                    });*/
+                    $('#content').load('index.php', params,function(){
+
                     });
 
                 }

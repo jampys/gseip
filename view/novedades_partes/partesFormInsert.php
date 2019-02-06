@@ -92,17 +92,18 @@
 
 
 
-        $('#myModal #cancel').on('click', function(){
-           //alert('cancelar');
-            //uploadObj.stopUpload();
+        $('#myModal').on('click', '#cancel, #back',function(){ //ok
+            //$('#popupbox').dialog('close');
+            //$('#content').load('index.php',{action:"partes", operation:"refreshGrid"});
+            $("#search").trigger("click");
         });
 
 
 
-        $('#myModal').modal({
+        /*$('#myModal').modal({
             backdrop: 'static',
             keyboard: false
-        });
+        });*/
 
 
         /*$('#busqueda-form').validate({
@@ -134,18 +135,17 @@
 
 
 
-<!-- Modal -->
-<fieldset  <?php //echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?php echo $view->label ?></h4>
+
+<div class="panel panel-default" id="myModal">
+    
+            <div class="panel-heading">
+                <h4 class="pull-left"><span><?php echo $view->label ?></span></h4>
+                <a id="back" class="pull-right" href="#"><i class="fas fa-arrow-left fa-fw"></i>&nbsp;Volver </a>
+                <div class="clearfix"></div>
             </div>
-            <div class="modal-body">
 
 
+            <div class="panel-body">
 
                 <?php if(isset($view->cuadrillas) && sizeof($view->cuadrillas) > 0) {?>
 
@@ -293,15 +293,17 @@
 
             </div>
 
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
-                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
+            <div class="panel-footer clearfix">
+                <div class="button-group pull-right">
+                    <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
+                    <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
+                </div>
             </div>
 
-        </div>
-    </div>
+
+
 </div>
-</fieldset>
+
 
 
 
