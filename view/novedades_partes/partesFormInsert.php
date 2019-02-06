@@ -134,10 +134,10 @@
 </script>
 
 
-
+<div class="col-md-12">
 
 <div class="panel panel-default" id="myModal">
-    
+
             <div class="panel-heading">
                 <h4 class="pull-left"><span><?php echo $view->label ?></span></h4>
                 <a id="back" class="pull-right" href="#"><i class="fas fa-arrow-left fa-fw"></i>&nbsp;Volver </a>
@@ -167,7 +167,7 @@
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_empleado_1" data-live-search="true" data-size="5">
-                                                <option value="">Seleccione un empleado</option>
+                                                <option value="">Conductor</option>
                                                 <?php foreach ($view->empleados as $ar){ ?>
                                                     <option value="<?php echo $ar['id_empleado']; ?>"
                                                         <?php echo ($ar['id_empleado'] == $cu['empleado_1'])? 'selected' :'' ?>
@@ -182,7 +182,7 @@
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_empleado_2" data-live-search="true" data-size="5">
-                                                <option value="">Seleccione un empleado</option>
+                                                <option value="">Acompañante</option>
                                                 <?php foreach ($view->empleados as $ar){ ?>
                                                     <option value="<?php echo $ar['id_empleado']; ?>"
                                                         <?php echo ($ar['id_empleado'] == $cu['empleado_2'])? 'selected' :'' ?>
@@ -198,7 +198,7 @@
                                     <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_area" data-live-search="true" data-size="5">
-                                                <option value="">Seleccione un Área</option>
+                                                <option value="">Área</option>
                                                 <?php foreach ($view->areas as $ar){ ?>
                                                     <option value="<?php echo $ar['id_area']; ?>"
                                                         <?php echo ($ar['id_area'] == $cu['default_id_area'])? 'selected' :'' ?>
@@ -213,7 +213,7 @@
                                     <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_vehiculo" data-live-search="true" data-size="5">
-                                                <option value="">Seleccione un Vehículo</option>
+                                                <option value="">Vehículo</option>
                                                 <?php foreach ($view->vehiculos as $ar){ ?>
                                                     <option value="<?php echo $ar['id_vehiculo']; ?>"
                                                         <?php echo ($ar['id_vehiculo'] == $cu['default_id_vehiculo'])? 'selected' :'' ?>
@@ -228,7 +228,7 @@
                                     <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_evento" data-live-search="true" data-size="5">
-                                                <option value="">Seleccione un evento</option>
+                                                <option value="">Evento</option>
                                                 <?php foreach ($view->eventos as $ar){ ?>
                                                     <option value="<?php echo $ar['id_evento']; ?>">
                                                         <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
@@ -302,6 +302,7 @@
 
 
 
+</div>
 </div>
 
 
