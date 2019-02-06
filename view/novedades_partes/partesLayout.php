@@ -111,8 +111,9 @@
                     /*$('#popupbox').load('index.php', params,function(){
                         $('#myModal').modal();
                     });*/
+                    $("#content").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Obteniendo informacion de cuadrillas...').addClass('alert alert-info').show();
                     $('#content').load('index.php', params,function(){
-
+                        $("#content").removeClass('alert alert-info');
                     });
 
                 }
