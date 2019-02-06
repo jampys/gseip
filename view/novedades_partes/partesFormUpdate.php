@@ -12,7 +12,7 @@
         });
 
 
-        $('#confirm-emp, #confirm-ord').dialog({
+        $('#confirm-emp, #confirm-ord, #confirm-con').dialog({
             autoOpen: false
             //modal: true,
         });
@@ -40,18 +40,30 @@
         $('.grid-ordenes').on('click', '.edit', function(){ //ok
             //alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            //alert('editar etapa: '+id);
             params={};
             params.id_parte_orden = id;
             params.action = "parte-orden";
             params.operation = "editOrden";
+            $('#right_side').load('index.php', params,function(){
+            })
+        });
+
+        //para editar concepto de un parte
+        $('.grid-conceptos').on('click', '.edit', function(){ //ok
+            //alert('editar orden del parte');
+            var id = $(this).closest('tr').attr('data-id');
+            params={};
+            params.id_parte_empleado_concepto = id;
+            params.action = "parte-empleado-concepto";
+            params.operation = "editConcepto";
+            params.id_parte = $('#id_parte').val();
+            //params.target = "view";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
-                //$('#myModal').modal();
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+                //$("#right_side fieldset").prop("disabled", true);
+                //$("#concepto-form #footer-buttons button").css('display', 'none');
+                $('#id_parte_empleado').trigger('change'); //para cargar el combo de conceptos
+                $('.selectpicker').selectpicker('refresh');
             })
         });
 
@@ -82,19 +94,34 @@
         $('.grid-ordenes').on('click', '.view', function(){ //ok
             //alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            //alert('editar etapa: '+id);
             params={};
             params.id_parte_orden = id;
             params.action = "parte-orden";
             params.operation = "editOrden";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
                 $("#right_side fieldset").prop("disabled", true);
                 $("#orden-form #footer-buttons button").css('display', 'none');
-                //$('#myModal').modal();
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                $('.selectpicker').selectpicker('refresh');
+            })
+        });
+
+
+        //para ver concepto de un parte
+        $('.grid-conceptos').on('click', '.view', function(){ //ok
+            //alert('editar orden del parte');
+            var id = $(this).closest('tr').attr('data-id');
+            params={};
+            params.id_parte_empleado_concepto = id;
+            params.action = "parte-empleado-concepto";
+            params.operation = "editConcepto";
+            params.id_parte = $('#id_parte').val();
+            params.target = "view";
+            //alert(params.id_renovacion);
+            $('#right_side').load('index.php', params,function(){
+                $("#right_side fieldset").prop("disabled", true);
+                $("#concepto-form #footer-buttons button").css('display', 'none');
+                $('#id_parte_empleado').trigger('change'); //para cargar el combo de conceptos
                 $('.selectpicker').selectpicker('refresh');
             })
         });
@@ -124,15 +151,20 @@
             params={};
             params.action = "parte-orden";
             params.operation = "newOrden";
-            //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
             params.id_parte = $('#id_parte').val();
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
-                //$('#myModal').modal();
-                //$('#id_postulacion').val(params.id_postulacion);
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+            })
+        });
+
+
+        //Abre formulario para ingresar un concepto de manera manual al parte
+        $('#left_side').on('click', '#add-concepto', function(){ //ok
+            params={};
+            params.action = "parte-empleado-concepto";
+            params.operation = "newConcepto";
+            params.id_parte = $('#id_parte').val();
+            $('#right_side').load('index.php', params,function(){
             })
         });
 
@@ -261,6 +293,72 @@
             });
 
         };
+
+
+
+
+
+        //eliminar concepto del parte
+        $('.grid-conceptos').on('click', '.delete', function(){ //ok
+            //alert('Funcionalidad en desarrollo');
+            //throw new Error();
+            var id = $(this).closest('tr').attr('data-id');
+            //var id = $(this).attr('data-id');
+            $('#confirm-con').dialog({ //se agregan botones al confirm dialog y se abre
+                buttons: [
+                    {
+                        text: "Aceptar",
+                        click: function() {
+                            $.fn.borrarC(id);
+                        },
+                        class:"btn btn-danger"
+                    },
+                    {
+                        text: "Cancelar",
+                        click: function() {
+                            $(this).dialog("close");
+                        },
+                        class:"btn btn-default"
+                    }
+
+                ]
+            }).dialog('open');
+            return false;
+        });
+
+
+        $.fn.borrarC = function(id) {
+            //alert(id);
+            //preparo los parametros
+            params={};
+            params.id_parte_empleado_concepto = id;
+            params.id_parte = $('#id_parte').val();
+            params.action = "parte-empleado-concepto";
+            params.operation = "deleteConcepto";
+            //alert(params.id_etapa);
+
+            $.post('index.php',params,function(data, status, xhr){
+                //alert(xhr.responseText);
+                if(data >=0){
+                    $("#confirm-con #myElemento").html('Concepto eliminado con exito').addClass('alert alert-success').show();
+                    $('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
+                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
+                    //$("#search").trigger("click");
+                    setTimeout(function() { $("#confirm-con #myElemento").hide();
+                        $('#concepto-form').hide();
+                        $('#confirm-con').dialog('close');
+                    }, 2000);
+                }else{
+                    $("#confirm-con #myElemento").html('Error al eliminar el concepto').addClass('alert alert-danger').show();
+                }
+
+
+            });
+
+        };
+
+
+
 
 
         //evento al salir o cerrar con la x el modal de actualizar el parte
@@ -393,6 +491,7 @@
                             <form name ="parte-form" id="parte-form" method="POST" action="index.php">
 
                                 <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
+                                <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->parte->getIdContrato() ?>">
 
                                 <div class="form-group required">
                                     <label for="id_area" class="control-label">Área</label>
@@ -589,6 +688,19 @@
 <div id="confirm-ord">
     <div class="modal-body">
         ¿Desea eliminar la orden?
+    </div>
+
+    <div id="myElemento" style="display:none">
+
+    </div>
+
+</div>
+
+
+
+<div id="confirm-con">
+    <div class="modal-body">
+        ¿Desea eliminar el concepto?
     </div>
 
     <div id="myElemento" style="display:none">

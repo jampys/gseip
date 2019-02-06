@@ -1,9 +1,7 @@
 ﻿<?php
 include_once("model/nov_parte-empleado-conceptoModel.php");
-
-//include_once("model/puestosModel.php");
-//include_once("model/localidadesModel.php");
-//include_once("model/contratosModel.php");
+include_once("model/nov_parte-empleadoModel.php");
+include_once("model/nov_concepto-convenio-contratoModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -13,7 +11,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -24,54 +22,52 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/conceptosGrid.php";
         break;
 
-    case 'saveOrden':
-        $orden = new ParteOrden($_POST['id_parte_orden']);
-        $orden->setIdParte($_POST['id_parte']);
-        $orden->setNroParteDiario($_POST['nro_parte_diario']);
-        $orden->setOrdenTipo($_POST['orden_tipo']);
-        $orden->setOrdenNro($_POST['orden_nro']);
-        $orden->setDuracion($_POST['duracion']);
-        $orden->setServicio($_POST['servicio']);
+    case 'saveConcepto': //ok
+        $concepto = new ParteEmpleadoConcepto($_POST['id_parte_empleado_concepto']);
+        $concepto->setIdParteEmpleado($_POST['id_parte_empleado']);
+        $concepto->setIdConceptoConvenioContrato($_POST['id_concepto_convenio_contrato']);
+        $concepto->setCantidad($_POST['cantidad']);
+        $concepto->setCreatedBy($_SESSION['id_user']);
+        $concepto->setMotivo($_POST['motivo']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $rta = $orden->save();
+        $rta = $concepto->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'newOrden':
-        $view->label='Nueva Orden';
-        $view->orden = new ParteOrden();
+    case 'newConcepto': //ok  //abre formulario para cargar concepto nuevo (manualmente)
+        $view->label='Nuevo Concepto';
+        $view->concepto = new ParteEmpleadoConcepto();
 
-        $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
-
-        $view->disableLayout=true;
-        //$view->target = $_POST['target'];
-        $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
-        break;
-
-    case 'editOrden':
-        $view->label = ($_POST['target']!='view')? 'Editar orden': 'Ver orden';
-        $view->orden = new ParteOrden($_POST['id_parte_orden']);
-
-        $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
+        $view->empleados = ParteEmpleado::getParteEmpleado($_POST['id_parte']);
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
-        $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
+        $view->contentTemplate="view/novedades_partes/concepto_detailForm.php";
         break;
 
-    case 'deleteOrden':
-        $view->orden = new ParteOrden($_POST['id_parte_orden']);
-        $rta = $view->orden->deleteParteOrden();
+    case 'editConcepto': //ok  //abre formulario para editar concepto cargado manualmente
+        $view->label = ($_POST['target']!='view')? 'Editar concepto': 'Ver concepto';
+        $view->concepto = new ParteEmpleadoConcepto($_POST['id_parte_empleado_concepto']);
+
+        $view->empleados = ParteEmpleado::getParteEmpleado($_POST['id_parte']);
+
+        $view->disableLayout=true;
+        //$view->target = $_POST['target'];
+        $view->contentTemplate="view/novedades_partes/concepto_detailForm.php";
+        break;
+
+    case 'deleteConcepto': //ok
+        $view->concepto = new ParteEmpleadoConcepto($_POST['id_parte_empleado_concepto']);
+        $rta = $view->concepto->deleteParteEmpleadoConcepto();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
 
-    case 'checkEmpleado':
-        $view->empleado = new CuadrillaEmpleado();
-        $rta = $view->empleado->checkEmpleado($_POST['id_cuadrilla_empleado'], $_POST['id_cuadrilla'], $_POST['id_empleado']);
+    case 'getConceptos': //select dependiente //ok
+        $rta = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $_POST['id_convenio']);
         print_r(json_encode($rta));
         exit;
         break;

@@ -33,6 +33,7 @@ switch ($operation)
         $orden->setOrdenNro($_POST['orden_nro']);
         $orden->setDuracion($_POST['duracion']);
         $orden->setServicio($_POST['servicio']);
+        $orden->setCreatedBy($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $orden->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));

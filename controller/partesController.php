@@ -50,7 +50,7 @@ switch ($operation)
                 //$p->setIdEvento($vC['id_evento']);
                 $p->setIdEvento(($vC['id_evento']!='')? $vC['id_evento'] : null);
                 $p->setIdContrato($vC['id_contrato']);
-                $p->setIdUser($_SESSION['id_user']);
+                $p->setCreatedBy($_SESSION['id_user']);
                 $p->insertParte();  //si falla sale por el catch
 
                 //tomo el ultimo id insertado, para insertar luego los empleados del parte
@@ -62,6 +62,7 @@ switch ($operation)
                     $pe1->setIdParte($id_parte);
                     $pe1->setIdEmpleado($vC['id_empleado_1']);
                     $pe1->setConductor(1);
+                    $pe1->setCreatedBy($_SESSION['id_user']);
                     $pe1->insertParteEmpleado();
                 }
 
@@ -70,6 +71,7 @@ switch ($operation)
                     $pe2->setIdParte($id_parte);
                     $pe2->setIdEmpleado($vC['id_empleado_2']);
                     $pe2->setConductor(null);
+                    $pe2->setCreatedBy($_SESSION['id_user']);
                     $pe2->insertParteEmpleado();
                 }
 
@@ -83,7 +85,7 @@ switch ($operation)
 
         }
         catch(Exception $e){
-            echo $e->getMessage(); //habilitar para ver el mensaje de error
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
             print_r(json_encode(-1));
         }
@@ -91,7 +93,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'calcularParte': //ok  //guarda un parte despues de ser editado
+    case 'calcularParte': //ok  //guarda un parte despues de ser editado (boton calcular)
         $parte = new Parte($_POST['id_parte']);
         $parte->setIdArea($_POST['id_area']);
         $parte->setIdVehiculo($_POST['id_vehiculo']);
@@ -100,6 +102,7 @@ switch ($operation)
         $parte->setHsNormal( ($_POST['hs_normal']!='')? $_POST['hs_normal'] : 0);
         $parte->setHs50( ($_POST['hs_50']!='')? $_POST['hs_50'] : 0);
         $parte->setHs100( ($_POST['hs_100']!='')? $_POST['hs_100'] : 0);
+        $parte->setCreatedBy($_SESSION['id_user']);
 
         $rta = $parte->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));

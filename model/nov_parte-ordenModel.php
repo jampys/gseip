@@ -3,21 +3,19 @@
 class ParteOrden
 {
     private $id_parte_orden;
-    private $fecha; //fecha de registro en el sistema
     private $id_parte;
     private $nro_parte_diario;
     private $orden_tipo;
     private $orden_nro;
     private $duracion;
     private $servicio;
+    private $created_by;
+    private $created_date; //fecha de registro en el sistema
 
 
     // GETTERS
     function getIdParteOrden()
     { return $this->id_parte_orden;}
-
-    function getFecha()
-    { return $this->fecha;}
 
     function getIdParte()
     { return $this->id_parte;}
@@ -37,13 +35,16 @@ class ParteOrden
     function getServicio()
     { return $this->servicio;}
 
+    function getCreatedBy()
+    { return $this->created_by;}
+
+    function getCreatedDate()
+    { return $this->created_date;}
+
 
     //SETTERS
     function setIdParteOrden($val)
     { $this->id_parte_orden=$val;}
-
-    function setFecha($val)
-    { $this->fecha=$val;}
 
     function setIdParte($val)
     {  $this->id_parte=$val;}
@@ -63,6 +64,12 @@ class ParteOrden
     function setServicio($val)
     { $this->servicio=$val;}
 
+    function setCreatedBy($val)
+    { $this->created_by=$val;}
+
+    function setCreatedDate($val)
+    { $this->created_date=$val;}
+
 
 
     function __construct($nro=0){ //constructor //ok
@@ -70,8 +77,9 @@ class ParteOrden
         if ($nro!=0){
             $stmt=new sQuery();
             $query = "select id_parte_orden,
-                      DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      id_parte, nro_parte_diario, orden_tipo, orden_nro, duracion, servicio
+                      id_parte, nro_parte_diario, orden_tipo, orden_nro, duracion, servicio,
+                      created_by,
+                      DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
                       from nov_parte_orden
                       where id_parte_orden = :nro";
             $stmt->dpPrepare($query);
@@ -80,13 +88,14 @@ class ParteOrden
             $rows = $stmt ->dpFetchAll();
 
             $this->setIdParteOrden($rows[0]['id_parte_orden']);
-            $this->setFecha($rows[0]['fecha']);
             $this->setIdParte($rows[0]['id_parte']);
             $this->setNroParteDiario($rows[0]['nro_parte_diario']);
             $this->setOrdenTipo($rows[0]['orden_tipo']);
             $this->setOrdenNro($rows[0]['orden_nro']);
             $this->setDuracion($rows[0]['duracion']);
             $this->setServicio($rows[0]['servicio']);
+            $this->setCreatedBy($rows[0]['created_by']);
+            $this->setCreatedDate($rows[0]['created_date']);
         }
     }
 
@@ -94,11 +103,11 @@ class ParteOrden
     public static function getParteOrden($id_parte) { //ok
         $stmt=new sQuery();
         $query = "select npo.id_parte_orden,
-                  DATE_FORMAT(npo.fecha, '%d/%m/%Y') as fecha,
-                  npo.id_parte, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro, npo.duracion, npo.servicio
+                  npo.id_parte, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro, npo.duracion, npo.servicio,
+                  DATE_FORMAT(npo.created_date, '%d/%m/%Y') as created_date
                   from nov_parte_orden npo
                   where npo.id_parte = :id_parte
-                  order by fecha asc";
+                  order by created_date asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_parte', $id_parte);
         $stmt->dpExecute();
@@ -134,8 +143,8 @@ class ParteOrden
 
     public function insertParteOrden(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_parte_orden(fecha, id_parte, nro_parte_diario, orden_tipo, orden_nro, duracion, servicio)
-                values(sysdate(), :id_parte, :nro_parte_diario, :orden_tipo, :orden_nro, :duracion, :servicio)";
+        $query="insert into nov_parte_orden(id_parte, nro_parte_diario, orden_tipo, orden_nro, duracion, servicio, created_by, created_date)
+                values(:id_parte, :nro_parte_diario, :orden_tipo, :orden_nro, :duracion, :servicio, :created_by, sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_parte_diario', $this->getNroParteDiario());
         $stmt->dpBind(':orden_tipo', $this->getOrdenTipo());
@@ -143,6 +152,7 @@ class ParteOrden
         $stmt->dpBind(':duracion', $this->getDuracion());
         $stmt->dpBind(':servicio', $this->getServicio());
         $stmt->dpBind(':id_parte', $this->getIdParte());
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

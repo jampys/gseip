@@ -28,7 +28,8 @@
 
 
         //Guardar parte-orden luego de ingresar nuevo o editar
-        $('#right_side').on('click', '#submit',function(){ //ok
+        //$('#right_side').on('click', '#submit',function(){ //ok
+        $('#orden-form').on('click', '#submit',function(){ //ok
             //alert('guardar orden');
 
             if ($("#orden-form").valid()){

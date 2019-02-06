@@ -4,24 +4,21 @@
 class Parte
 {
     private $id_parte;
-    private $fecha;
     private $fecha_parte;
     private $cuadrilla;
     private $id_area;
     private $id_vehiculo;
     private $id_evento;
     private $id_contrato;
-    private $id_user;
     private $hs_normal;
     private $hs_50;
     private $hs_100;
+    private $created_by;
+    private $created_date;
 
     // GETTERS
     function getIdParte()
     { return $this->id_parte;}
-
-    function getFecha()
-    { return $this->fecha;}
 
     function getFechaParte()
     { return $this->fecha_parte;}
@@ -41,9 +38,6 @@ class Parte
     function getIdContrato()
     { return $this->id_contrato;}
 
-    function getIdUser()
-    { return $this->id_user;}
-
     function getHsNormal()
     { return $this->hs_normal;}
 
@@ -53,14 +47,17 @@ class Parte
     function getHs100()
     { return $this->hs_100;}
 
+    function getCreatedBy()
+    { return $this->created_by;}
+
+    function getCreatedDate()
+    { return $this->created_date;}
+
 
 
     //SETTERS
     function setIdParte($val)
     { $this->id_parte=$val;}
-
-    function setFecha($val)
-    { $this->fecha=$val;}
 
     function setFechaParte($val)
     { $this->fecha_parte=$val;}
@@ -80,9 +77,6 @@ class Parte
     function setIdContrato($val)
     {  $this->id_contrato=$val;}
 
-    function setIdUser($val)
-    {  $this->id_user=$val;}
-
     function setHsNormal($val)
     {  $this->hs_normal=$val;}
 
@@ -92,6 +86,12 @@ class Parte
     function setHs100($val)
     {  $this->hs_100=$val;}
 
+    function setCreatedBy($val)
+    { $this->created_by=$val;}
+
+    function setCreatedDate($val)
+    {  $this->created_date=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -99,10 +99,10 @@ class Parte
 
             $stmt=new sQuery();
             $query="select id_parte,
-                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha,
                     DATE_FORMAT(fecha_parte,  '%d/%m/%Y') as fecha_parte,
-                    cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, id_user,
-                    hs_normal, hs_50, hs_100
+                    cuadrilla, id_area, id_vehiculo, id_evento, id_contrato,
+                    hs_normal, hs_50, hs_100, created_by,
+                    DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date
                     from nov_partes where id_parte = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -110,7 +110,6 @@ class Parte
             $rows = $stmt ->dpFetchAll();
 
             $this->setIdParte($rows[0]['id_parte']);
-            $this->setFecha($rows[0]['fecha']);
             $this->setFechaParte($rows[0]['fecha_parte']);
             $this->setCuadrilla($rows[0]['cuadrilla']);
             $this->setIdArea($rows[0]['id_area']);
@@ -120,6 +119,7 @@ class Parte
             $this->setHsNormal($rows[0]['hs_normal']);
             $this->setHs50($rows[0]['hs_50']);
             $this->setHs100($rows[0]['hs_100']);
+            $this->setCreatedDate($rows[0]['created_date']);
         }
     }
 
@@ -127,7 +127,7 @@ class Parte
     public static function getPartes($fecha_desde, $fecha_hasta, $id_contrato, $d) { //ok
         $stmt=new sQuery();
         $query="select pa.id_parte,
-                    DATE_FORMAT(pa.fecha,  '%d/%m/%Y') as fecha,
+                    DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
                     DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
                     pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.calculado,
                     concat(ar.codigo, ' ', ar.nombre) as area,
@@ -140,7 +140,7 @@ class Parte
                     left join vto_vehiculos ve on pa.id_vehiculo = ve.id_vehiculo
                     left join nov_eventos_c nec on pa.id_evento = nec.id_evento
                     left join contratos co on pa.id_contrato = co.id_contrato
-                    join sec_users us on pa.id_user = us.id_user
+                    join sec_users us on pa.created_by = us.id_user
                     and pa.fecha_parte between if(:fecha_desde is null, pa.fecha_parte, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
                     and if(:fecha_hasta is null, pa.fecha_parte, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
                     and pa.id_contrato =  ifnull(:id_contrato, pa.id_contrato)
@@ -173,6 +173,7 @@ class Parte
                                         :hs_normal,
                                         :hs_50,
                                         :hs_100,
+                                        :created_by,
                                         @flag,
                                         @msg
                                     )';
@@ -186,6 +187,7 @@ class Parte
         $stmt->dpBind(':hs_normal', $this->getHsNormal());
         $stmt->dpBind(':hs_50', $this->getHs50());
         $stmt->dpBind(':hs_100', $this->getHs100());
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
 
         $stmt->dpExecute();
 
@@ -202,8 +204,8 @@ class Parte
     public function insertParte(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into nov_partes(fecha, fecha_parte, cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, id_user)
-                values(sysdate(), STR_TO_DATE(:fecha_parte, '%d/%m/%Y'), :cuadrilla, :id_area, :id_vehiculo, :id_evento, :id_contrato, :id_user)";
+        $query="insert into nov_partes(fecha_parte, cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, created_by, created_date)
+                values(STR_TO_DATE(:fecha_parte, '%d/%m/%Y'), :cuadrilla, :id_area, :id_vehiculo, :id_evento, :id_contrato, :created_by, sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_parte', $this->getFechaParte());
         $stmt->dpBind(':cuadrilla', $this->getCuadrilla());
@@ -211,7 +213,7 @@ class Parte
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
-        $stmt->dpBind(':id_user', $this->getIdUser());
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

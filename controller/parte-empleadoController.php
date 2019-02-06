@@ -29,8 +29,8 @@ switch ($operation)
         $empleado = new ParteEmpleado($_POST['id_parte_empleado']);
         $empleado->setIdParte($_POST['id_parte']);
         $empleado->setIdEmpleado($_POST['id_empleado']);
-        //$empleado->setConductor($_POST['conductor']);
         $empleado->setConductor( ($_POST['conductor']== 1)? $_POST['conductor'] : null);
+        $empleado->setCreatedBy($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $empleado->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
