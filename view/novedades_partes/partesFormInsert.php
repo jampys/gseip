@@ -43,7 +43,7 @@
                         item = {};
                         item.id_cuadrilla = $(this).attr('id_cuadrilla');
                         item.id_contrato = $(this).attr('id_contrato');
-                        item.cuadrilla = $(this).find('.cu_cuadrilla').text();
+                        item.cuadrilla = $(this).find('.btn-primary').text();
                         item.id_empleado_1 = $(this).find('.cu_id_empleado_1 option:selected').val();
                         item.id_empleado_2 = $(this).find('.cu_id_empleado_2 option:selected').val();
                         item.id_area = $(this).find('.cu_id_area option:selected').val();
@@ -92,17 +92,18 @@
 
 
 
-        $('#myModal #cancel').on('click', function(){
-           //alert('cancelar');
-            //uploadObj.stopUpload();
+        $('#myModal').on('click', '#cancel, #back',function(){ //ok
+            //$('#popupbox').dialog('close');
+            //$('#content').load('index.php',{action:"partes", operation:"refreshGrid"});
+            $("#search").trigger("click");
         });
 
 
 
-        $('#myModal').modal({
+        /*$('#myModal').modal({
             backdrop: 'static',
             keyboard: false
-        });
+        });*/
 
 
         /*$('#busqueda-form').validate({
@@ -120,7 +121,7 @@
 
         //Al presionar el boton con
         // el nombre de la cuadrilla
-        $('.cu_cuadrilla .btn').on('click', function(){ //ok
+        $('.cu_cuadrilla .btn-primary').on('click', function(){ //ok
             //$(this).closest('.row.cu_cuadrilla').find(':checkbox').prop('checked', true);
             var chk = $(this).closest('.row.cu_cuadrilla').find(':checkbox');
             chk.prop('checked', !chk.is(':checked'))
@@ -133,19 +134,18 @@
 </script>
 
 
+<div class="col-md-12">
 
-<!-- Modal -->
-<fieldset  <?php //echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?php echo $view->label ?></h4>
+<div class="panel panel-default" id="myModal">
+
+            <div class="panel-heading">
+                <h4 class="pull-left"><span><?php echo $view->label ?></span></h4>
+                <a id="back" class="pull-right" href="#"><i class="fas fa-arrow-left fa-fw"></i>&nbsp;Volver </a>
+                <div class="clearfix"></div>
             </div>
-            <div class="modal-body">
 
 
+            <div class="panel-body">
 
                 <?php if(isset($view->cuadrillas) && sizeof($view->cuadrillas) > 0) {?>
 
@@ -153,21 +153,19 @@
 
                         <div class="row cu_cuadrilla" id_cuadrilla="<?php echo $cu['id_cuadrilla'] ?>" id_contrato="<?php echo $cu['id_contrato'] ?>">
 
-                            <div class="col-md-2" style="padding-right: 5px">
-                                <div class="row">
-                                    <div class="col-md-12 cu_cuadrilla"><button type="button" class="btn btn-primary btn-block" title="<?php echo $cu['nombre'] ?>"><?php echo substr($cu['nombre'], 0, 20) ?></button></div>
-                                </div>
+                            <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
+                                <button type="button" class="btn btn-primary btn-block" title="<?php echo $cu['nombre'] ?>"><?php echo substr($cu['nombre'], 0, 20) ?></button>
                             </div>
 
 
 
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="row">
 
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_empleado_1" data-live-search="true" data-size="5">
-                                                <option value="">Seleccione un empleado</option>
+                                                <option value="">Conductor</option>
                                                 <?php foreach ($view->empleados as $ar){ ?>
                                                     <option value="<?php echo $ar['id_empleado']; ?>"
                                                         <?php echo ($ar['id_empleado'] == $cu['empleado_1'])? 'selected' :'' ?>
@@ -182,7 +180,7 @@
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_empleado_2" data-live-search="true" data-size="5">
-                                                <option value="">Seleccione un empleado</option>
+                                                <option value="">Acompañante</option>
                                                 <?php foreach ($view->empleados as $ar){ ?>
                                                     <option value="<?php echo $ar['id_empleado']; ?>"
                                                         <?php echo ($ar['id_empleado'] == $cu['empleado_2'])? 'selected' :'' ?>
@@ -195,10 +193,10 @@
                                     </div>
 
 
-                                    <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
+                                    <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_area" data-live-search="true" data-size="5">
-                                                <option value="">Seleccione un Área</option>
+                                                <option value="">Área</option>
                                                 <?php foreach ($view->areas as $ar){ ?>
                                                     <option value="<?php echo $ar['id_area']; ?>"
                                                         <?php echo ($ar['id_area'] == $cu['default_id_area'])? 'selected' :'' ?>
@@ -210,10 +208,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
+                                    <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_vehiculo" data-live-search="true" data-size="5">
-                                                <option value="">Seleccione un Vehículo</option>
+                                                <option value="">Vehículo</option>
                                                 <?php foreach ($view->vehiculos as $ar){ ?>
                                                     <option value="<?php echo $ar['id_vehiculo']; ?>"
                                                         <?php echo ($ar['id_vehiculo'] == $cu['default_id_vehiculo'])? 'selected' :'' ?>
@@ -225,10 +223,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-2">
+                                <div class="row">
+
+                                    <div class="col-md-9" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_evento" data-live-search="true" data-size="5">
-                                                <option value="">Seleccione un evento</option>
+                                                <option value="">Evento</option>
                                                 <?php foreach ($view->eventos as $ar){ ?>
                                                     <option value="<?php echo $ar['id_evento']; ?>">
                                                         <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
@@ -238,16 +244,7 @@
                                         </div>
                                     </div>
 
-
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-1">
-                                <div class="row">
-
-                                    <div class="col-md-12">
+                                    <div class="col-md-3">
                                         <!--<a class="<?php echo ( PrivilegedUser::dhasAction('ETP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         </a>-->
@@ -293,15 +290,18 @@
 
             </div>
 
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
-                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
+            <div class="panel-footer clearfix">
+                <div class="button-group pull-right">
+                    <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
+                    <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
+                </div>
             </div>
 
-        </div>
-    </div>
+
+
 </div>
-</fieldset>
+</div>
+
 
 
 

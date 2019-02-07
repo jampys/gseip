@@ -47,7 +47,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> La postulación aún no tiene etapas registradas ahhhh.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> El parte no tiene empleados registrados.
     </div>
 
 <?php } ?>
