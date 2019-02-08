@@ -57,17 +57,20 @@ switch ($operation)
                 $id_parte = sQuery::dpLastInsertId();
 
                 //se insertan los empleados de la cuadrilla
-                if($vC['id_empleado_1']){
-                    $pe1 = new ParteEmpleado();
-                    $pe1->setIdParte($id_parte);
-                    $pe1->setIdEmpleado($vC['id_empleado_1']);
-                    $pe1->setConductor(1);
-                    $pe1->setCreatedBy($_SESSION['id_user']);
-                    $pe1->insertParteEmpleado();
+
+                if($vC['id_empleado_1']){ //conductores
+                    foreach($vC['id_empleado_1'] as $co){
+                        $pe1 = new ParteEmpleado();
+                        $pe1->setIdParte($id_parte);
+                        //$pe1->setIdEmpleado($vC['id_empleado_1']);
+                        $pe1->setIdEmpleado($co);
+                        $pe1->setConductor(1);
+                        $pe1->setCreatedBy($_SESSION['id_user']);
+                        $pe1->insertParteEmpleado();
+                    }
                 }
 
-                if($vC['id_empleado_2']){
-
+                if($vC['id_empleado_2']){ //acompañantes
                     foreach($vC['id_empleado_2'] as $ac){
                         $pe2 = new ParteEmpleado();
                         $pe2->setIdParte($id_parte);
@@ -76,7 +79,6 @@ switch ($operation)
                         $pe2->setCreatedBy($_SESSION['id_user']);
                         $pe2->insertParteEmpleado();
                     }
-
                 }
 
             }

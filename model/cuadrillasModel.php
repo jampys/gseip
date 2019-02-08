@@ -33,7 +33,13 @@ class Cuadrilla
     { return $this->actividad;}
 
     function getConductores()
-    { return $this->conductores;}
+    {
+        $rta = array();
+        foreach ($this->conductores as $co){
+            $rta[]= $co['id_empleado'];
+        }
+        return $rta;
+    }
 
     function getAcompanantes()
     {
@@ -155,12 +161,7 @@ class Cuadrilla
 
         $detalle = array();
         $stmt=new sQuery();
-        $query = "select
-                  (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
-                   where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1) as empleado_1,
-                   (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
-                   where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1, 1) as empleado_2,
-                  cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.actividad,
+        $query = "select cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.actividad,
                   co.nombre as contrato,
                   concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
                   concat(ar.codigo, ' ', ar.nombre) as area
@@ -196,7 +197,8 @@ class Cuadrilla
                 'contrato'=>$row['contrato'],
                 'vehiculo'=>$row['vehiculo'],
                 'area'=>$row['area'],
-                'acompanantes'=>$unaCuadrilla->getAcompanantes()
+                'acompanantes'=>$unaCuadrilla->getAcompanantes(),
+                'conductores'=>$unaCuadrilla->getConductores()
             );
         }
 
