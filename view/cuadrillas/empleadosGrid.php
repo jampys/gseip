@@ -3,8 +3,8 @@
     <table class="table table-condensed dataTable table-hover">
         <thead>
         <tr>
-            <th>Fecha</th>
             <th>Empleado</th>
+            <th>Ctor.</th>
             <th></th>
             <th></th>
             <th></th>
@@ -13,8 +13,8 @@
         <tbody>
         <?php foreach ($view->empleados as $em): ?>
             <tr data-id="<?php echo $em['id_cuadrilla_empleado'];?>">
-                <td><?php echo $em['fecha'];?></td>
-                <td><?php echo $em['apellido']." ".$em['nombre'];?></td>
+                <td><b><?php echo $em['legajo'];?>&nbsp;</b><?php echo $em['apellido']." ".$em['nombre'];?></td>
+                <td><?php echo ($em['conductor'])? '<i class="far fa-check-circle fa-fw" style="color: #49ed0e" title="conductor"></i>':''; ?></td>
 
                 <td class="text-center">
                     <a class="view" href="javascript:void(0);" data-id="<?php echo $em['id_cuadrilla_empleado'];?>" title="ver">

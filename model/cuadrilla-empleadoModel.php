@@ -71,12 +71,12 @@ class CuadrillaEmpleado
         $query = "select nce.id_cuadrilla_empleado,
                   DATE_FORMAT(nce.fecha, '%d/%m/%Y') as fecha,
                   nce.id_cuadrilla, nce.id_empleado, nce.conductor,
-                  em.apellido, em.nombre
+                  em.apellido, em.nombre, em.legajo
                   from nov_cuadrilla_empleado nce
                   join empleados em on nce.id_empleado = em.id_empleado
                   where nce.id_cuadrilla = :id_cuadrilla
                   and if(:conductor is null, 1, nce.conductor = :conductor)
-                  order by em.apellido asc, em.nombre asc";
+                  order by nce.conductor desc, em.legajo asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_cuadrilla', $id_cuadrilla);
         $stmt->dpBind(':conductor', $conductor);
