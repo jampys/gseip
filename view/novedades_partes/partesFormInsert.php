@@ -45,6 +45,7 @@
                         item.id_contrato = $(this).attr('id_contrato');
                         item.cuadrilla = $(this).find('.btn-primary').text();
                         item.id_empleado_1 = $(this).find('.cu_id_empleado_1 option:selected').val();
+                        //item.id_empleado_2 = $(this).find('.cu_id_empleado_2 option:selected').val();
                         item.id_empleado_2 = $(this).find('.cu_id_empleado_2 option:selected').val();
                         item.id_area = $(this).find('.cu_id_area option:selected').val();
                         item.id_vehiculo = $(this).find('.cu_id_vehiculo option:selected').val();
@@ -80,11 +81,12 @@
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                               }, 2000);
-                    }else{
-                        $("#myElem").html('Error al guardar los partes').addClass('alert alert-danger').show();
                     }
 
-                }, 'json');
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#myElem").html('Error al guardar los partes').addClass('alert alert-danger').show();
+                });
 
             //}
             return false;
