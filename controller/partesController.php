@@ -67,12 +67,18 @@ switch ($operation)
                 }
 
                 if($vC['id_empleado_2']){
-                    $pe2 = new ParteEmpleado();
-                    $pe2->setIdParte($id_parte);
-                    $pe2->setIdEmpleado($vC['id_empleado_2']);
-                    $pe2->setConductor(null);
-                    $pe2->setCreatedBy($_SESSION['id_user']);
-                    $pe2->insertParteEmpleado();
+
+                    foreach($vC['id_empleado_2'] as $pe2){
+                        $pe2 = new ParteEmpleado();
+                        $pe2->setIdParte($id_parte);
+                        $pe2->setIdEmpleado($vC['id_empleado_2']);
+                        $pe2->setConductor(null);
+                        $pe2->setCreatedBy($_SESSION['id_user']);
+                        $pe2->insertParteEmpleado();
+                    }
+
+
+
                 }
 
             }
