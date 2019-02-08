@@ -56,7 +56,7 @@ switch ($operation)
                 //tomo el ultimo id insertado, para insertar luego los empleados del parte
                 $id_parte = sQuery::dpLastInsertId();
 
-                //se insertan los 2 empleados de la cuadrilla
+                //se insertan los empleados de la cuadrilla
                 if($vC['id_empleado_1']){
                     $pe1 = new ParteEmpleado();
                     $pe1->setIdParte($id_parte);
@@ -71,7 +71,7 @@ switch ($operation)
                     foreach($vC['id_empleado_2'] as $ac){
                         $pe2 = new ParteEmpleado();
                         $pe2->setIdParte($id_parte);
-                        $pe2->setIdEmpleado($a);
+                        $pe2->setIdEmpleado($ac);
                         $pe2->setConductor(0);
                         $pe2->setCreatedBy($_SESSION['id_user']);
                         $pe2->insertParteEmpleado();
