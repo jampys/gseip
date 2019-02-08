@@ -49,7 +49,7 @@ class CuadrillaEmpleado
             $stmt=new sQuery();
             $query = "select id_cuadrilla_empleado,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      id_cuadrilla, id_empleado
+                      id_cuadrilla, id_empleado, conductor
                       from nov_cuadrilla_empleado
                       where id_cuadrilla_empleado = :nro";
             $stmt->dpPrepare($query);
