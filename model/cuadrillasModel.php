@@ -36,7 +36,13 @@ class Cuadrilla
     { return $this->conductores;}
 
     function getAcompanantes()
-    { return $this->acompanantes;}
+    {
+        $rta = array();
+        foreach ($this->acompanantes as $ac){
+            $rta[]= $ac['id_empleado'];
+        }
+        return $rta;
+    }
 
 
     //SETTERS
