@@ -182,12 +182,7 @@
                                             <select multiple class="selectpicker form-control show-tick cu_id_empleado_2" data-live-search="true" data-size="5">
                                                 <option value="">Acompañantes</option>
                                                 <?php foreach ($view->empleados as $ar){ ?>
-                                                    <option value="<?php echo $ar['id_empleado']; ?>"
-                                                        <?php //echo ($ar['id_empleado'] == $cu['empleado_2'])? 'selected' :'' ?>
-                                                        <?php echo (in_array($ar['id_empleado'], $cu['acompanantes']))? 'selected' :'' ?>
-                                                        >
-                                                        <?php echo $ar['apellido'].' '.$ar['nombre']; ?>
-                                                    </option>
+                                                    <option value="<?php echo $ar['id_empleado']; ?>" <?php echo (in_array($ar['id_empleado'], $cu['acompanantes']))? 'selected' :'' ?>><?php echo $ar['apellido'].' '.$ar['nombre']; ?></option>
                                                 <?php  } ?>
                                             </select>
                                         </div>
