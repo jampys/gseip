@@ -21,7 +21,7 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->empleados = CuadrillaEmpleado::getCuadrillaEmpleado($_POST['id_cuadrilla']);
+        $view->empleados = CuadrillaEmpleado::getCuadrillaEmpleado($_POST['id_cuadrilla'], null);
         $view->contentTemplate="view/cuadrillas/empleadosGrid.php";
         break;
 
@@ -76,7 +76,7 @@ switch ($operation)
 
     default : //carga la tabla de empleados de la cuadrilla //ok
         $view->label='Empleados de la cuadrilla';
-        $view->empleados = CuadrillaEmpleado::getCuadrillaEmpleado($_POST['id_cuadrilla']);
+        $view->empleados = CuadrillaEmpleado::getCuadrillaEmpleado($_POST['id_cuadrilla'], null);
         $view->disableLayout=true;
         $view->contentTemplate="view/cuadrillas/empleadosForm.php";
         break;

@@ -6,6 +6,7 @@ class CuadrillaEmpleado
     private $fecha; //fecha de registro en el sistema
     private $id_cuadrilla;
     private $id_empleado;
+    private $conductor; //1 - conductor - 0 acompañante
 
     // GETTERS
     function getIdCuadrillaEmpleado()
@@ -20,6 +21,9 @@ class CuadrillaEmpleado
     function getIdEmpleado()
     { return $this->id_empleado;}
 
+    function getConductor()
+    { return $this->conductor;}
+
 
     //SETTERS
     function setIdCuadrillaEmpleado($val)
@@ -33,6 +37,9 @@ class CuadrillaEmpleado
 
     function setIdEmpleado($val)
     { $this->id_empleado=$val;}
+
+    function setConductor($val)
+    { $this->conductor=$val;}
 
 
 
@@ -54,11 +61,12 @@ class CuadrillaEmpleado
             $this->setFecha($rows[0]['fecha']);
             $this->setIdCuadrilla($rows[0]['id_cuadrilla']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
+            $this->setConductor($rows[0]['conductor']);
         }
     }
 
 
-    public static function getCuadrillaEmpleado($id_cuadrilla) { //ok
+    public static function getCuadrillaEmpleado($id_cuadrilla, $conductor) { //ok
         $stmt=new sQuery();
         $query = "select nce.id_cuadrilla_empleado,
                   DATE_FORMAT(nce.fecha, '%d/%m/%Y') as fecha,
@@ -67,9 +75,11 @@ class CuadrillaEmpleado
                   from nov_cuadrilla_empleado nce
                   join empleados em on nce.id_empleado = em.id_empleado
                   where nce.id_cuadrilla = :id_cuadrilla
+                  and if(:conductor is null, 1, nce.conductor = :conductor)
                   order by em.apellido asc, em.nombre asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_cuadrilla', $id_cuadrilla);
+        $stmt->dpBind(':conductor', $conductor);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
