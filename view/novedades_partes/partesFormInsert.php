@@ -184,7 +184,7 @@
                                                 <?php foreach ($view->empleados as $ar){ ?>
                                                     <option value="<?php echo $ar['id_empleado']; ?>"
                                                         <?php //echo ($ar['id_empleado'] == $cu['empleado_2'])? 'selected' :'' ?>
-                                                        <?php echo (in_array($ar['id_empleado'], $cu['acompañantes']))? 'selected' :'' ?>
+                                                        <?php echo (in_array($ar['id_empleado'], $cu['acompanantes']))? 'selected' :'' ?>
                                                         >
                                                         <?php echo $ar['apellido'].' '.$ar['nombre']; ?>
                                                     </option>

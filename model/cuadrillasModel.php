@@ -11,7 +11,7 @@ class Cuadrilla
     private $actividad;
 
     private $conductores = array();
-    private $acompañantes = array();
+    private $acompanantes = array();
 
     // GETTERS
     function getIdCuadrilla()
@@ -35,8 +35,8 @@ class Cuadrilla
     function getConductores()
     { return $this->conductores;}
 
-    function getAcompañantes()
-    { return $this->acompañantes;}
+    function getAcompanantes()
+    { return $this->acompanantes;}
 
 
     //SETTERS
@@ -61,8 +61,8 @@ class Cuadrilla
     function setConductores($val)
     { $this->conductores=$val;}
 
-    function setAcompañantes($val)
-    { $this->acompañantes=$val;}
+    function setAcompanantes($val)
+    { $this->acompanantes=$val;}
 
 
 
@@ -87,7 +87,7 @@ class Cuadrilla
             $this->setActividad($rows[0]['actividad']);
 
             $this->conductores = CuadrillaEmpleado::getCuadrillaEmpleado($this->getIdCuadrilla(), 1);
-            $this->acompañantes = CuadrillaEmpleado::getCuadrillaEmpleado($this->getIdCuadrilla(), 0);
+            $this->acompanantes = CuadrillaEmpleado::getCuadrillaEmpleado($this->getIdCuadrilla(), 0);
         }
     }
 
@@ -190,7 +190,7 @@ class Cuadrilla
                 'contrato'=>$row['contrato'],
                 'vehiculo'=>$row['vehiculo'],
                 'area'=>$row['area'],
-                'acompañantes'=>$unaCuadrilla->getAcompañantes()
+                'acompanantes'=>$unaCuadrilla->getAcompanantes()
             );
         }
 
