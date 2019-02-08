@@ -70,7 +70,7 @@ class CuadrillaEmpleado
         $stmt=new sQuery();
         $query = "select nce.id_cuadrilla_empleado,
                   DATE_FORMAT(nce.fecha, '%d/%m/%Y') as fecha,
-                  nce.id_cuadrilla, nce.id_empleado,
+                  nce.id_cuadrilla, nce.id_empleado, nce.conductor,
                   em.apellido, em.nombre
                   from nov_cuadrilla_empleado nce
                   join empleados em on nce.id_empleado = em.id_empleado
