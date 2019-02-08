@@ -29,6 +29,7 @@ switch ($operation)
         $empleado = new CuadrillaEmpleado($_POST['id_cuadrilla_empleado']);
         $empleado->setIdCuadrilla($_POST['id_cuadrilla']);
         $empleado->setIdEmpleado($_POST['id_empleado']);
+        $empleado->setConductor($_POST['conductor']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         //$busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
         $rta = $empleado->save();

@@ -96,11 +96,13 @@ class CuadrillaEmpleado
 
     public function updateCuadrillaEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="update nov_cuadrilla_empleado set id_empleado = :id_empleado
+        $query="update nov_cuadrilla_empleado set id_empleado = :id_empleado,
+                conductor = :conductor
                 where id_cuadrilla_empleado = :id_cuadrilla_empleado";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpBind(':id_cuadrilla_empleado', $this->getIdCuadrillaEmpleado());
+        $stmt->dpBind(':conductor', $this->getConductor());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
@@ -108,11 +110,12 @@ class CuadrillaEmpleado
 
     private function insertCuadrillaEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_cuadrilla_empleado(fecha, id_cuadrilla, id_empleado)
-                values(sysdate(), :id_cuadrilla, :id_empleado)";
+        $query="insert into nov_cuadrilla_empleado(fecha, id_cuadrilla, id_empleado, conductor)
+                values(sysdate(), :id_cuadrilla, :id_empleado, :conductor)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':conductor', $this->getConductor());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
