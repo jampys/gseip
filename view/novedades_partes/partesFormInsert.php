@@ -170,7 +170,7 @@
 
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
-                                            <select class="selectpicker form-control show-tick cu_id_empleado_1" data-live-search="true" data-size="5">
+                                            <select multiple class="selectpicker form-control show-tick cu_id_empleado_1" data-live-search="true" data-size="5">
                                                 <option value="">Conductor</option>
                                                 <?php foreach ($view->empleados as $ar){ ?>
                                                     <option value="<?php echo $ar['id_empleado']; ?>" <?php echo (in_array($ar['id_empleado'], $cu['conductores']))? 'selected' :'' ?>><?php echo $ar['apellido'].' '.$ar['nombre']; ?></option>
