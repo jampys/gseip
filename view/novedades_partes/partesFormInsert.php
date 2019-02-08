@@ -72,7 +72,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    //alert(xhr.responseText);
+                    alert(xhr.responseText);
 
                     if(data >=0){
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
@@ -83,6 +83,8 @@
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                               }, 2000);
+                    }else{
+                        $("#myElem").html('Error al guardar los partes').addClass('alert alert-danger').show();
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
