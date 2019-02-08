@@ -46,12 +46,14 @@
                         item.cuadrilla = $(this).find('.btn-primary').text();
                         item.id_empleado_1 = $(this).find('.cu_id_empleado_1 option:selected').val();
                         //item.id_empleado_2 = $(this).find('.cu_id_empleado_2 option:selected').val();
-                        item.id_empleado_2 = $(this).find('.cu_id_empleado_2 option:selected').val();
+                        item.id_empleado_2 = $(this).find('.cu_id_empleado_2 select').val();
                         item.id_area = $(this).find('.cu_id_area option:selected').val();
                         item.id_vehiculo = $(this).find('.cu_id_vehiculo option:selected').val();
                         item.id_evento = $(this).find('.cu_id_evento option:selected').val();
 
                         jsonCuadrillas.push(item);
+                        //alert(item.id_empleado_2);
+                        //throw new Error();
                     }
 
                 });

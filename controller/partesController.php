@@ -77,8 +77,6 @@ switch ($operation)
                         $pe2->insertParteEmpleado();
                     }
 
-
-
                 }
 
             }
