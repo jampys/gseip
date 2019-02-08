@@ -190,7 +190,7 @@ class Cuadrilla
                 'contrato'=>$row['contrato'],
                 'vehiculo'=>$row['vehiculo'],
                 'area'=>$row['area'],
-                'acompanantes'=>$unaCuadrilla->getAcompanantes()
+                'acompañantes'=>$unaCuadrilla->getAcompañantes()
             );
         }
 
