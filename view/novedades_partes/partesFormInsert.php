@@ -44,13 +44,16 @@
                         item.id_cuadrilla = $(this).attr('id_cuadrilla');
                         item.id_contrato = $(this).attr('id_contrato');
                         item.cuadrilla = $(this).find('.btn-primary').text();
-                        item.id_empleado_1 = $(this).find('.cu_id_empleado_1 option:selected').val();
-                        item.id_empleado_2 = $(this).find('.cu_id_empleado_2 option:selected').val();
+                        //item.id_empleado_1 = $(this).find('.cu_id_empleado_1 option:selected').val();
+                        item.id_empleado_1 = $(this).find('.cu_id_empleado_1 select').val();
+                        item.id_empleado_2 = $(this).find('.cu_id_empleado_2 select').val();
                         item.id_area = $(this).find('.cu_id_area option:selected').val();
                         item.id_vehiculo = $(this).find('.cu_id_vehiculo option:selected').val();
                         item.id_evento = $(this).find('.cu_id_evento option:selected').val();
 
                         jsonCuadrillas.push(item);
+                        //alert(item.id_empleado_2);
+                        //throw new Error();
                     }
 
                 });
@@ -69,7 +72,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    //alert(xhr.responseText);
+                    alert(xhr.responseText);
 
                     if(data >=0){
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
@@ -84,7 +87,10 @@
                         $("#myElem").html('Error al guardar los partes').addClass('alert alert-danger').show();
                     }
 
-                }, 'json');
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#myElem").html('Error al guardar los partes').addClass('alert alert-danger').show();
+                });
 
             //}
             return false;
@@ -164,14 +170,10 @@
 
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
-                                            <select class="selectpicker form-control show-tick cu_id_empleado_1" data-live-search="true" data-size="5">
+                                            <select multiple class="selectpicker form-control show-tick cu_id_empleado_1" data-live-search="true" data-size="5">
                                                 <option value="">Conductor</option>
                                                 <?php foreach ($view->empleados as $ar){ ?>
-                                                    <option value="<?php echo $ar['id_empleado']; ?>"
-                                                        <?php echo ($ar['id_empleado'] == $cu['empleado_1'])? 'selected' :'' ?>
-                                                        >
-                                                        <?php echo $ar['apellido'].' '.$ar['nombre']; ?>
-                                                    </option>
+                                                    <option value="<?php echo $ar['id_empleado']; ?>" <?php echo (in_array($ar['id_empleado'], $cu['conductores']))? 'selected' :'' ?>><?php echo $ar['apellido'].' '.$ar['nombre']; ?></option>
                                                 <?php  } ?>
                                             </select>
                                         </div>
@@ -179,14 +181,10 @@
 
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
-                                            <select class="selectpicker form-control show-tick cu_id_empleado_2" data-live-search="true" data-size="5">
-                                                <option value="">Acompañante</option>
+                                            <select multiple class="selectpicker form-control show-tick cu_id_empleado_2" data-live-search="true" data-size="5">
+                                                <option value="">Acompañantes</option>
                                                 <?php foreach ($view->empleados as $ar){ ?>
-                                                    <option value="<?php echo $ar['id_empleado']; ?>"
-                                                        <?php echo ($ar['id_empleado'] == $cu['empleado_2'])? 'selected' :'' ?>
-                                                        >
-                                                        <?php echo $ar['apellido'].' '.$ar['nombre']; ?>
-                                                    </option>
+                                                    <option value="<?php echo $ar['id_empleado']; ?>" <?php echo (in_array($ar['id_empleado'], $cu['acompanantes']))? 'selected' :'' ?>><?php echo $ar['apellido'].' '.$ar['nombre']; ?></option>
                                                 <?php  } ?>
                                             </select>
                                         </div>

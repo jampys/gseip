@@ -56,23 +56,29 @@ switch ($operation)
                 //tomo el ultimo id insertado, para insertar luego los empleados del parte
                 $id_parte = sQuery::dpLastInsertId();
 
-                //se insertan los 2 empleados de la cuadrilla
-                if($vC['id_empleado_1']){
-                    $pe1 = new ParteEmpleado();
-                    $pe1->setIdParte($id_parte);
-                    $pe1->setIdEmpleado($vC['id_empleado_1']);
-                    $pe1->setConductor(1);
-                    $pe1->setCreatedBy($_SESSION['id_user']);
-                    $pe1->insertParteEmpleado();
+                //se insertan los empleados de la cuadrilla
+
+                if($vC['id_empleado_1']){ //conductores
+                    foreach($vC['id_empleado_1'] as $co){
+                        $pe1 = new ParteEmpleado();
+                        $pe1->setIdParte($id_parte);
+                        //$pe1->setIdEmpleado($vC['id_empleado_1']);
+                        $pe1->setIdEmpleado($co);
+                        $pe1->setConductor(1);
+                        $pe1->setCreatedBy($_SESSION['id_user']);
+                        $pe1->insertParteEmpleado();
+                    }
                 }
 
-                if($vC['id_empleado_2']){
-                    $pe2 = new ParteEmpleado();
-                    $pe2->setIdParte($id_parte);
-                    $pe2->setIdEmpleado($vC['id_empleado_2']);
-                    $pe2->setConductor(null);
-                    $pe2->setCreatedBy($_SESSION['id_user']);
-                    $pe2->insertParteEmpleado();
+                if($vC['id_empleado_2']){ //acompañantes
+                    foreach($vC['id_empleado_2'] as $ac){
+                        $pe2 = new ParteEmpleado();
+                        $pe2->setIdParte($id_parte);
+                        $pe2->setIdEmpleado($ac);
+                        $pe2->setConductor(0);
+                        $pe2->setCreatedBy($_SESSION['id_user']);
+                        $pe2->insertParteEmpleado();
+                    }
                 }
 
             }

@@ -1,4 +1,5 @@
 <?php
+include_once("model/cuadrilla-empleadoModel.php");
 
 class Cuadrilla
 {
@@ -8,6 +9,9 @@ class Cuadrilla
     private $default_id_area;
     private $nombre;
     private $actividad;
+
+    private $conductores = array();
+    private $acompanantes = array();
 
     // GETTERS
     function getIdCuadrilla()
@@ -28,6 +32,24 @@ class Cuadrilla
     function getActividad()
     { return $this->actividad;}
 
+    function getConductores()
+    {
+        $rta = array();
+        foreach ($this->conductores as $co){
+            $rta[]= $co['id_empleado'];
+        }
+        return $rta;
+    }
+
+    function getAcompanantes()
+    {
+        $rta = array();
+        foreach ($this->acompanantes as $ac){
+            $rta[]= $ac['id_empleado'];
+        }
+        return $rta;
+    }
+
 
     //SETTERS
     function setIdCuadrilla($val)
@@ -47,6 +69,12 @@ class Cuadrilla
 
     function setActividad($val)
     { $this->actividad=$val;}
+
+    function setConductores($val)
+    { $this->conductores=$val;}
+
+    function setAcompanantes($val)
+    { $this->acompanantes=$val;}
 
 
 
@@ -69,22 +97,16 @@ class Cuadrilla
             $this->setDefaultIdArea($rows[0]['default_id_area']);
             $this->setNombre($rows[0]['nombre']);
             $this->setActividad($rows[0]['actividad']);
+
+            $this->conductores = CuadrillaEmpleado::getCuadrillaEmpleado($this->getIdCuadrilla(), 1);
+            $this->acompanantes = CuadrillaEmpleado::getCuadrillaEmpleado($this->getIdCuadrilla(), 0);
         }
     }
 
 
     public static function getCuadrillas($id_contrato, $todas) {
+        //trae las cuadrillas para la grilla de cuadrillas
         $stmt=new sQuery();
-        /*$query = "select cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.actividad,
-                  co.nombre as contrato,
-                  concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
-                  concat(ar.codigo, ' ', ar.nombre) as area
-                  from nov_cuadrillas cu
-                  join contratos co on cu.id_contrato = co.id_contrato
-                  join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
-                  join nov_areas ar on cu.default_id_area = ar.id_area
-                  where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)";*/
-
         $query = "select
                   (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
                    where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1) as empleado_1,
@@ -108,7 +130,8 @@ class Cuadrilla
 
 
     public static function getCuadrillasForPartes($id_contrato, $fecha_parte) {
-        $stmt=new sQuery();
+        //trae las cuadrillas para el formulario de insert
+        /*$stmt=new sQuery();
         $query = "select
                   (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
                    where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1) as empleado_1,
@@ -134,7 +157,54 @@ class Cuadrilla
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':fecha_parte', $fecha_parte);
         $stmt->dpExecute();
-        return $stmt->dpFetchAll();
+        return $stmt->dpFetchAll();*/
+
+        $detalle = array();
+        $stmt=new sQuery();
+        $query = "select cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.actividad,
+                  co.nombre as contrato,
+                  concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
+                  concat(ar.codigo, ' ', ar.nombre) as area
+                  from nov_cuadrillas cu
+                  join contratos co on cu.id_contrato = co.id_contrato
+                  join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
+                  join nov_areas ar on cu.default_id_area = ar.id_area
+                  where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
+                  and not exists( select 1
+                                  from nov_partes pax
+                                  where pax.id_contrato = cu.id_contrato
+                                  and pax.cuadrilla = cu.nombre
+                                  and pax.fecha_parte = STR_TO_DATE(:fecha_parte, '%d/%m/%Y')
+                                )
+                  order by cu.nombre";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':fecha_parte', $fecha_parte);
+        $stmt->dpExecute();
+        //return $stmt->dpFetchAll();
+        $rows = $stmt->dpFetchAll();
+
+
+        //Se debe formatear de esta manera para poder enviar un array de objetos a javascript
+        foreach($rows as $row){
+            $unaCuadrilla = new Cuadrilla($row['id_cuadrilla']);
+            $detalle[] = array( 'id_cuadrilla'=>$row['id_cuadrilla'],
+                'id_contrato'=>$row['id_contrato'],
+                'default_id_vehiculo'=>$row['default_id_vehiculo'],
+                'default_id_area'=>$row['default_id_area'],
+                'nombre'=>$row['nombre'],
+                'actividad'=>$row['actividad'],
+                'contrato'=>$row['contrato'],
+                'vehiculo'=>$row['vehiculo'],
+                'area'=>$row['area'],
+                'acompanantes'=>$unaCuadrilla->getAcompanantes(),
+                'conductores'=>$unaCuadrilla->getConductores()
+            );
+        }
+
+        return $detalle;
+
+
     }
 
 

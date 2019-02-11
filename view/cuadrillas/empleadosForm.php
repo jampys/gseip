@@ -86,6 +86,7 @@
                 params.id_cuadrilla_empleado = $('#id_cuadrilla_empleado').val();
                 params.id_cuadrilla = $('#id_cuadrilla').val();
                 params.id_empleado = $('#id_empleado').val();
+                params.conductor = $('#conductor').prop('checked')? 1:0;
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.aplica);
