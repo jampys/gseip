@@ -84,7 +84,10 @@ class ParteOrden
         if ($nro!=0){
             $stmt=new sQuery();
             $query = "select id_parte_orden,
-                      id_parte, nro_parte_diario, orden_tipo, orden_nro, hora_inicio, hora_fin, servicio,
+                      id_parte, nro_parte_diario, orden_tipo, orden_nro,
+                      TIME_FORMAT(hora_inicio, '%H:%i') as hora_inicio,
+                      TIME_FORMAT(hora_fin, '%H:%i') as hora_fin,
+                      servicio,
                       created_by,
                       DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
                       from nov_parte_orden
