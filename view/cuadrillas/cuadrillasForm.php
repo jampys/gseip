@@ -82,7 +82,7 @@
             rules: {
                 nombre: {required: true},
                 id_contrato: {required: true},
-                default_id_vehiculo: {required: true},
+                //default_id_vehiculo: {required: true},
                 default_id_area: {required: true}
                 /*fecha_emision: {
                     required: true,
@@ -126,7 +126,7 @@
             messages:{
                 nombre: "Ingrese el nombre",
                 id_contrato: "Seleccione el contrato",
-                default_id_vehiculo: "Seleccione el vehículo",
+                //default_id_vehiculo: "Seleccione el vehículo",
                 default_id_area: "Seleccione el área"
                 /*fecha_emision: {
                     required: "Ingrese la fecha de emisión",
@@ -187,7 +187,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label for="default_id_vehiculo" class="control-label">Vehículo (por defecto)</label>
                         <select class="form-control selectpicker show-tick" id="default_id_vehiculo" name="default_id_vehiculo" title="Seleccione el vehículo" data-live-search="true" data-size="5">
                             <?php foreach ($view->vehiculos as $ve){

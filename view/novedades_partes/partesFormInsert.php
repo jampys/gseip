@@ -72,7 +72,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
 
-                    alert(xhr.responseText);
+                    //alert(xhr.responseText);
 
                     if(data >=0){
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente

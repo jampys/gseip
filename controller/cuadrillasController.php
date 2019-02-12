@@ -30,7 +30,7 @@ switch ($operation)
     case 'saveCuadrilla': //ok
         $cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
         $cuadrilla->setIdContrato($_POST['id_contrato']);
-        $cuadrilla->setDefaultIdVehiculo($_POST['default_id_vehiculo']);
+        $cuadrilla->setDefaultIdVehiculo( ($_POST['default_id_vehiculo']!='')? $_POST['default_id_vehiculo'] : null );
         $cuadrilla->setDefaultIdArea($_POST['default_id_area']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         //$postulacion->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);

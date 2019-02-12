@@ -118,7 +118,7 @@ class Cuadrilla
                   concat(ar.codigo, ' ', ar.nombre) as area
                   from nov_cuadrillas cu
                   join contratos co on cu.id_contrato = co.id_contrato
-                  join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
+                  left join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
                   join nov_areas ar on cu.default_id_area = ar.id_area
                   where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
                   order by cu.nombre";
@@ -167,7 +167,7 @@ class Cuadrilla
                   concat(ar.codigo, ' ', ar.nombre) as area
                   from nov_cuadrillas cu
                   join contratos co on cu.id_contrato = co.id_contrato
-                  join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
+                  left join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
                   join nov_areas ar on cu.default_id_area = ar.id_area
                   where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
                   and not exists( select 1
