@@ -101,7 +101,10 @@ class Parte
             $query="select id_parte,
                     DATE_FORMAT(fecha_parte,  '%d/%m/%Y') as fecha_parte,
                     cuadrilla, id_area, id_vehiculo, id_evento, id_contrato,
-                    hs_normal, hs_50, hs_100, created_by,
+                    TIME_FORMAT(hs_normal, '%H:%i') as hs_normal,
+                    TIME_FORMAT(hs_50, '%H:%i') as hs_50,
+                    TIME_FORMAT(hs_100, '%H:%i') as hs_100,
+                    created_by,
                     DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date
                     from nov_partes where id_parte = :nro";
             $stmt->dpPrepare($query);
