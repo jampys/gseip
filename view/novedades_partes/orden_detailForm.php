@@ -138,10 +138,25 @@
             <input class="form-control" type="text" name="orden_nro" id="orden_nro" value = "<?php print $view->orden->getOrdenNro() ?>" placeholder="Nro. orden">
         </div>
 
-        <div class="form-group required">
-            <label class="control-label" for="duracion">Duración (hs)</label>
-            <input class="form-control" type="text" name="duracion" id="duracion" value = "<?php print $view->orden->getDuracion() ?>" placeholder="Duración">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label" for="hs_normal">Hr. inicio</label>
+                    <input class="form-control hs-group" type="text" name="hs_normal" id="hs_normal" value = "<?php print $view->orden->getHoraInicio() ?>" placeholder="Hora inicio">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label" for="hs_50">Hr. fin</label>
+                    <input class="form-control hs-group" type="text" name="hs_50" id="hs_50" value = "<?php print $view->orden->getHoraFin() ?>" placeholder="Hora fin">
+                </div>
+            </div>
+
         </div>
+
 
         <div class="form-group">
             <label class="control-label" for="servicio">Servicio</label>
