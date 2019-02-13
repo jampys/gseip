@@ -43,7 +43,7 @@
 
             paramsx={};
             paramsx.action = 'partes';
-            params.operation = 'exportTxt';
+            paramsx.operation = 'exportTxt';
             //params.search_fecha_desde = $("#search_fecha_desde").val();
             //params.search_fecha_hasta = $("#search_fecha_hasta").val();
             //params.search_contrato = $("#search_contrato").val();
@@ -56,7 +56,7 @@
 
                 if(data[0]['flag'] >=0){
 
-                    $("#myElem").html('todo ok').addClass('alert alert-danger').show();
+                    $("#myElem").html('todo ok').addClass('alert alert-success').show();
                     //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                     //$("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
                     //$('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
@@ -66,6 +66,18 @@
                      //$('#myModal').modal('hide');
                      $('#empleado-form').hide();
                      }, 2000);*/
+
+                    throw new Error();
+                    params={};
+                    params.id_empleado = $("#search_empleado").val();
+                    params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
+                    params.search_fecha_desde = $("#search_fecha_desde").val();
+                    params.search_fecha_hasta = $("#search_fecha_hasta").val();
+                    params.search_contrato = $("#search_contrato").val();
+                    //location.href="index.php?action=sucesos&operation=txt";
+                    location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&search_fecha_desde="+params.search_fecha_desde+"&search_fecha_hasta="+params.search_fecha_hasta+"&search_contrato="+params.search_contrato;
+                    return false;
+
                 }else{
                     $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                     //$("#msg-container").html('<div id="myElem" class="msg alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-exclamation-triangle fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
@@ -79,17 +91,7 @@
 
 
 
-            throw new Error();
 
-            params={};
-            params.id_empleado = $("#search_empleado").val();
-            params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
-            params.search_fecha_desde = $("#search_fecha_desde").val();
-            params.search_fecha_hasta = $("#search_fecha_hasta").val();
-            params.search_contrato = $("#search_contrato").val();
-            //location.href="index.php?action=sucesos&operation=txt";
-            location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&search_fecha_desde="+params.search_fecha_desde+"&search_fecha_hasta="+params.search_fecha_hasta+"&search_contrato="+params.search_contrato;
-            return false;
 
         });
 
