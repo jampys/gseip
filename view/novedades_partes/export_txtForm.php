@@ -40,6 +40,45 @@
         $('#myModal').on("click", "#submit", function(){ //ok
 
             alert('presiono en exportar');
+
+            paramsx={};
+            paramsx.action = 'partes';
+            params.operation = 'exportTxt';
+            //params.search_fecha_desde = $("#search_fecha_desde").val();
+            //params.search_fecha_hasta = $("#search_fecha_hasta").val();
+            //params.search_contrato = $("#search_contrato").val();
+
+
+
+            $.post('index.php',paramsx,function(data, status, xhr){
+
+                //alert(xhr.responseText);
+
+                if(data[0]['flag'] >=0){
+
+                    $("#myElem").html('todo ok').addClass('alert alert-danger').show();
+                    //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                    //$("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
+                    //$('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                    //$('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
+                    //$("#search").trigger("click");
+                    /*setTimeout(function() { $("#myElem").hide();
+                     //$('#myModal').modal('hide');
+                     $('#empleado-form').hide();
+                     }, 2000);*/
+                }else{
+                    $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                    //$("#msg-container").html('<div id="myElem" class="msg alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-exclamation-triangle fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
+                }
+
+            }, 'json');
+
+
+
+
+
+
+
             throw new Error();
 
             params={};

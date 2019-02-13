@@ -221,6 +221,37 @@ class Parte
         return $stmt->dpGetAffect();
     }
 
+
+    public static function exportTxt() {
+        $stmt=new sQuery();
+        $query = 'CALL sp_borrar(@flag, @msg)';
+
+        $stmt->dpPrepare($query);
+
+        //$stmt->dpBind(':id_parte', $this->getIdParte());
+        //$stmt->dpBind(':id_area', $this->getIdArea());
+        //$stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
+        //$stmt->dpBind(':id_evento', $this->getIdEvento());
+        //$stmt->dpBind(':hs_normal', $this->getHsNormal());
+        //$stmt->dpBind(':hs_50', $this->getHs50());
+        //$stmt->dpBind(':hs_100', $this->getHs100());
+        //$stmt->dpBind(':created_by', $this->getCreatedBy());
+
+        $stmt->dpExecute();
+
+        $stmt->dpCloseCursor();
+        $query = "select @flag as flag, @msg as msg";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        //$flag = $stmt->dpFetchAll();
+        //return ($flag)? intval($flag[0]['flag']) : -1;
+        return $stmt->dpFetchAll(); //retorna array bidimensional con flag y msg
+    }
+
+
+
+
+
     function deletePuesto(){
         $stmt=new sQuery();
         $query="delete from puestos where id_puesto= :id";
@@ -231,15 +262,6 @@ class Parte
     }
 
 
-    public function autocompletarPuestos($term) {
-        $stmt=new sQuery();
-        $query = "select *
-                  from puestos
-                  where nombre like '%$term%'";
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
 
 }
 

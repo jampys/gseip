@@ -159,12 +159,14 @@ switch ($operation)
         break;
 
     case 'exportTxt':
-        $view->disableLayout=true;
-        //$view->empleado = new Empleado($_POST['id_empleado']);
-        $view->label = 'Exportar a txt';
-        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+        //$parte = new Parte($_POST['id_parte']);
 
-        $view->contentTemplate="view/novedades_partes/export_txtForm.php";
+        //$rta = $parte->save();
+        $rta = Parte::exportTxt();
+        //print_r(json_encode(sQuery::dpLastInsertId()));
+        //print_r(json_encode($rta));
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'deleteHabilidad':
