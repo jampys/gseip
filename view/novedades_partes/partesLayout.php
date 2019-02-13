@@ -62,13 +62,16 @@
 
             $(document).on('click', '#txt', function(){ //ok
 
-                alert('toco en txt');
+                //alert('toco en txt');
                 //preparo los parametros
                 params={};
-                params.action = "index";
-                params.operation = "about";
-                $('#header_popupbox').load('index.php', params,function(){
+                params.action = "partes";
+                params.operation = "exportTxt";
+                $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
+                    
+                    $('#myModal #id_contrato').val($('#search_contrato').val());
+                    $('.selectpicker').selectpicker('refresh');
                 })
 
             });

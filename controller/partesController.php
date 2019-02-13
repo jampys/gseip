@@ -149,26 +149,20 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/partesFormUpdate.php";
         break;
 
+    case 'exportTxt':
+        $view->disableLayout=true;
+        //$view->empleado = new Empleado($_POST['id_empleado']);
+        $view->label = 'Exportar a txt';
+        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+
+        $view->contentTemplate="view/novedades_partes/export_txtForm.php";
+        break;
+
     case 'deleteHabilidad':
         $habilidad = new Habilidad($_POST['id_habilidad']);
         $rta = $habilidad->deleteHabilidad();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
-        break;
-
-
-    case 'checkFechaEmision':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'checkFechaVencimiento':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
         break;
 
     default : //ok
