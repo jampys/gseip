@@ -35,45 +35,26 @@
             todayHighlight: true
         });
 
-        /*$('#fecha_desde').datepicker().on('changeDate', function (selected) { //ok
-            var minDate = new Date(selected.date.valueOf());
-            $('#fecha_hasta').datepicker('setStartDate', minDate);
-            //$('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', minDate);
+
+        //al presionar boton de exportar
+        $('#myModal').on("click", "#submit", function(){ //ok
+
+            alert('presiono en exportar');
+            throw new Error();
+
+            params={};
+            params.id_empleado = $("#search_empleado").val();
+            params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
+            params.search_fecha_desde = $("#search_fecha_desde").val();
+            params.search_fecha_hasta = $("#search_fecha_hasta").val();
+            params.search_contrato = $("#search_contrato").val();
+            //location.href="index.php?action=sucesos&operation=txt";
+            location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&search_fecha_desde="+params.search_fecha_desde+"&search_fecha_hasta="+params.search_fecha_hasta+"&search_contrato="+params.search_contrato;
+            return false;
+
         });
 
-        $('#fecha_hasta').datepicker().on('changeDate', function (selected) { //ok
-            var maxDate = new Date(selected.date.valueOf());
-            $('#fecha_desde').datepicker('setEndDate', maxDate);
-        });*/
 
-        /*$('#id_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
-            //alert('hola');
-            var code = (e.keyCode || e.which);
-            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
-                return;
-            }
-
-            var items="";
-
-            $.ajax({
-                url: "index.php",
-                type: "post",
-                dataType: "json",
-                data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
-                success: function(data) {
-                    $.each(data.slice(0, 5),function(index,item)
-                    {
-                        //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
-                        items+="<option value='"+item['id_empleado']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
-                    });
-
-                    $("#id_empleado").html(items);
-                    $('.selectpicker').selectpicker('refresh');
-                }
-
-            });
-
-        });*/
 
 
     });
@@ -145,8 +126,8 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Aceptar</button>
-                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Exportar</button>
+                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
             </div>
 
         </div>

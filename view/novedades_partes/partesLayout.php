@@ -66,10 +66,10 @@
                 //preparo los parametros
                 params={};
                 params.action = "partes";
-                params.operation = "exportTxt";
+                params.operation = "loadExportTxt";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    
+
                     $('#myModal #id_contrato').val($('#search_contrato').val());
                     $('.selectpicker').selectpicker('refresh');
                 })
