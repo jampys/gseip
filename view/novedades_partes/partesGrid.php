@@ -133,11 +133,7 @@
             </tbody>
         </table>
 
-
-        <br/>
-        <div class="pull-right pdf">
-            <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x"></i></a>
-        </div>
+        
 
     </div>
 
