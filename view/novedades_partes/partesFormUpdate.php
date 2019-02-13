@@ -424,37 +424,37 @@
             rules: {
                 id_area: {required: true},
                 hs_normal: {
-                    require_from_group: [1, ".hs-group"],
-                    digits: true,
-                    maxlength: 6
+                    require_from_group: [1, ".hs-group"]
+                    //digits: true,
+                    //maxlength: 6
                 },
                 hs_50: {
-                    require_from_group: [1, ".hs-group"],
-                    digits: true,
-                    maxlength: 6
+                    require_from_group: [1, ".hs-group"]
+                    //digits: true,
+                    //maxlength: 6
                 },
                 hs_100: {
-                    require_from_group: [1, ".hs-group"],
-                    digits: true,
-                    maxlength: 6
+                    require_from_group: [1, ".hs-group"]
+                    //digits: true,
+                    //maxlength: 6
                 }
             },
             messages:{
                 id_area: "Seleccione un área",
                 hs_normal: {
-                    require_from_group: "Complete al menos un tipo de hora",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
+                    require_from_group: "Complete al menos un tipo de hora"
+                    //digits: "Ingrese solo números",
+                    //maxlength: "Máximo 6 dígitos"
                 },
                 hs_50: {
-                    require_from_group: "Complete al menos un tipo de hora",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
+                    require_from_group: "Complete al menos un tipo de hora"
+                    //digits: "Ingrese solo números",
+                    //maxlength: "Máximo 6 dígitos"
                 },
                 hs_100: {
-                    require_from_group: "Complete al menos un tipo de hora",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
+                    require_from_group: "Complete al menos un tipo de hora"
+                    //digits: "Ingrese solo números",
+                    //maxlength: "Máximo 6 dígitos"
                 }
 
             }
@@ -541,21 +541,21 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label" for="hs_normal">Hs. Normal</label>
-                                            <input class="form-control hs-group" type="text" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" placeholder="Hs. Normal">
+                                            <input class="form-control hs-group" type="text" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" placeholder="hh:mm">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label" for="hs_50">Hs. 50%</label>
-                                            <input class="form-control hs-group" type="text" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" placeholder="Hs. 50%">
+                                            <input class="form-control hs-group" type="text" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" placeholder="hh:mm">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label" for="hs_100">Hs. 100%</label>
-                                            <input class="form-control hs-group" type="text" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" placeholder="Hs. 100%">
+                                            <input class="form-control hs-group" type="text" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" placeholder="hh:mm">
                                         </div>
                                     </div>
 

@@ -42,7 +42,8 @@
                 params.nro_parte_diario = $('#nro_parte_diario').val();
                 params.orden_tipo = $('#orden_tipo').val();
                 params.orden_nro = $('#orden_nro').val();
-                params.duracion = $('#duracion').val();
+                params.hora_inicio = $('#hora_inicio').val();
+                params.hora_fin = $('#hora_fin').val();
                 params.servicio = $('#servicio').val();
                 //params.conductor = $('input[name=conductor]:checked').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
@@ -138,10 +139,25 @@
             <input class="form-control" type="text" name="orden_nro" id="orden_nro" value = "<?php print $view->orden->getOrdenNro() ?>" placeholder="Nro. orden">
         </div>
 
-        <div class="form-group required">
-            <label class="control-label" for="duracion">Duración (hs)</label>
-            <input class="form-control" type="text" name="duracion" id="duracion" value = "<?php print $view->orden->getDuracion() ?>" placeholder="Duración">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label" for="hs_normal">Hora inicio</label>
+                    <input class="form-control hs-group" type="time" name="hora_inicio" id="hora_inicio" value = "<?php print $view->orden->getHoraInicio() ?>" placeholder="hh:mm">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label" for="hs_50">Hora fin</label>
+                    <input class="form-control hs-group" type="time" name="hora_fin" id="hora_fin" value = "<?php print $view->orden->getHoraFin() ?>" placeholder="hh:mm">
+                </div>
+            </div>
+
         </div>
+
 
         <div class="form-group">
             <label class="control-label" for="servicio">Servicio</label>
