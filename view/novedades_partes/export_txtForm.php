@@ -39,7 +39,7 @@
         //al presionar boton de exportar
         $('#myModal').on("click", "#submit", function(){ //ok
 
-            alert('presiono en exportar');
+            //alert('presiono en exportar');
 
             params={};
             params.action = 'partes';
@@ -47,8 +47,6 @@
             params.fecha_desde = $("#myModal #fecha_desde").val();
             params.fecha_hasta = $("#myModal #fecha_hasta").val();
             params.id_contrato = $("#myModal #id_contrato").val();
-
-
 
             $.post('index.php',params,function(data, status, xhr){
 
@@ -69,7 +67,7 @@
                     //params.fecha_hasta = $("#myModal #fecha_hasta").val();
                     //params.id_contrato = $("#myModal #id_contrato").val();
                     //location.href="index.php?action=sucesos&operation=txt";
-                    location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&search_fecha_desde="+params.search_fecha_desde+"&search_fecha_hasta="+params.search_fecha_hasta+"&search_contrato="+params.search_contrato;
+                    location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+"&fecha_desde="+params.fecha_desde+"&fecha_hasta="+params.fecha_hasta;
                     return false;
 
                 }else{

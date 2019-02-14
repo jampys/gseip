@@ -222,9 +222,9 @@ class Parte
     }
 
 
-    public static function exportTxt($id_contrato, $fecha_desde, $fecha_hasta) {
+    public static function checkExportTxt($id_contrato, $fecha_desde, $fecha_hasta) { //ok
         $stmt=new sQuery();
-        $query = 'CALL sp_borrar(
+        $query = 'CALL sp_nov_checkExportTxt(
                                     :id_contrato,
                                     :fecha_desde,
                                     :fecha_hasta,
@@ -251,6 +251,33 @@ class Parte
         //$flag = $stmt->dpFetchAll();
         //return ($flag)? intval($flag[0]['flag']) : -1;
         return $stmt->dpFetchAll(); //retorna array bidimensional con flag y msg
+    }
+
+
+
+
+    public static function exportTxt($id_contrato, $fecha_desde, $fecha_hasta) { //ok
+        $stmt=new sQuery();
+
+        $query = "select em.legajo, nccc.codigo, sum(npec.cantidad) as cantidad, nccc.variable
+from nov_partes np
+join nov_parte_empleado npe on npe.id_parte = np.id_parte
+join empleados em on em.id_empleado = npe.id_empleado
+join nov_parte_empleado_concepto npec on npec.id_parte_empleado = npe.id_parte_empleado
+join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato = npec.id_concepto_convenio_contrato
+where np.id_contrato = :id_contrato
+and np.calculado is not null
+and np.fecha_parte between STR_TO_DATE(:fecha_desde, '%d/%m/%Y')
+and STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
+group by npe.id_empleado, nccc.codigo, nccc.variable";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
     }
 
 
