@@ -57,11 +57,11 @@
                     $("#myElem").html(data[0]['msg']).addClass('alert alert-success').show();
                     //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                     //$("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
-                    setTimeout(function() { $("#myElem").hide();
+                    /*setTimeout(function() { $("#myElem").hide();
                                             //$('#myModal').modal('hide');
                      }, 2000);
 
-                    throw new Error();
+                    throw new Error();*/
                     //params={};
                     //params.fecha_desde = $("#myModal #fecha_desde").val();
                     //params.fecha_hasta = $("#myModal #fecha_hasta").val();

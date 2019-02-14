@@ -189,13 +189,10 @@ switch ($operation)
                 //str_pad($fh->format('d/m/Y'), 10). //fecha hasta
                 //str_pad($d, 10). //dias
                 //str_pad($d, 10). //prorrateo dias
-                str_pad("L", 10). //tipo liquidacion
-                str_pad("MEN", 10). //tipo liquidacion
-                str_pad("01/01/1970", 10). //fecha prevista notificacion
-                str_pad("01/01/1970", 10). //fecha notificacion
-                str_pad(substr($su['observaciones'], 0, 10), 10). //observaciones
-
-
+                str_pad($su['codigo'], 10). //codigo
+                str_pad($su['cantidad'], 10). //cantidad
+                str_pad($su['variable'], 10). //variable
+                //str_pad("MEN", 10). //tipo liquidacion
                 "\r\n");
         }
 
