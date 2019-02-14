@@ -41,45 +41,39 @@
 
             alert('presiono en exportar');
 
-            paramsx={};
-            paramsx.action = 'partes';
-            paramsx.operation = 'exportTxt';
-            //params.search_fecha_desde = $("#search_fecha_desde").val();
-            //params.search_fecha_hasta = $("#search_fecha_hasta").val();
-            //params.search_contrato = $("#search_contrato").val();
+            params={};
+            params.action = 'partes';
+            params.operation = 'checkExportTxt';
+            params.fecha_desde = $("#myModal #fecha_desde").val();
+            params.fecha_hasta = $("#myModal #fecha_hasta").val();
+            params.id_contrato = $("#myModal #id_contrato").val();
 
 
 
-            $.post('index.php',paramsx,function(data, status, xhr){
+            $.post('index.php',params,function(data, status, xhr){
 
                 //alert(xhr.responseText);
 
                 if(data[0]['flag'] >=0){
 
-                    $("#myElem").html('todo ok').addClass('alert alert-success').show();
+                    $("#myElem").html(data[0]['msg']).addClass('alert alert-success').show();
                     //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                     //$("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
-                    //$('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
-                    //$('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
-                    //$("#search").trigger("click");
-                    /*setTimeout(function() { $("#myElem").hide();
-                     //$('#myModal').modal('hide');
-                     $('#empleado-form').hide();
-                     }, 2000);*/
+                    setTimeout(function() { $("#myElem").hide();
+                                            //$('#myModal').modal('hide');
+                     }, 2000);
 
                     throw new Error();
-                    params={};
-                    params.id_empleado = $("#search_empleado").val();
-                    params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
-                    params.search_fecha_desde = $("#search_fecha_desde").val();
-                    params.search_fecha_hasta = $("#search_fecha_hasta").val();
-                    params.search_contrato = $("#search_contrato").val();
+                    //params={};
+                    //params.fecha_desde = $("#myModal #fecha_desde").val();
+                    //params.fecha_hasta = $("#myModal #fecha_hasta").val();
+                    //params.id_contrato = $("#myModal #id_contrato").val();
                     //location.href="index.php?action=sucesos&operation=txt";
                     location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&search_fecha_desde="+params.search_fecha_desde+"&search_fecha_hasta="+params.search_fecha_hasta+"&search_contrato="+params.search_contrato;
                     return false;
 
                 }else{
-                    $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                    $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').show();
                     //$("#msg-container").html('<div id="myElem" class="msg alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-exclamation-triangle fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
                 }
 
@@ -118,7 +112,7 @@
             <div class="modal-body">
 
 
-                <form name ="empleado-form" id="empleado-form" method="POST" action="index.php">
+                <form name ="txt-form" id="txt-form" method="POST" action="index.php">
                     <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
 
                     <div class="alert alert-info fade in">

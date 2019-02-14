@@ -222,15 +222,20 @@ class Parte
     }
 
 
-    public static function exportTxt() {
+    public static function exportTxt($id_contrato, $fecha_desde, $fecha_hasta) {
         $stmt=new sQuery();
-        $query = 'CALL sp_borrar(@flag, @msg)';
+        $query = 'CALL sp_borrar(
+                                    :id_contrato,
+                                    :fecha_desde,
+                                    :fecha_hasta,
+                                    @flag,
+                                    @msg)';
 
         $stmt->dpPrepare($query);
 
-        //$stmt->dpBind(':id_parte', $this->getIdParte());
-        //$stmt->dpBind(':id_area', $this->getIdArea());
-        //$stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
         //$stmt->dpBind(':id_evento', $this->getIdEvento());
         //$stmt->dpBind(':hs_normal', $this->getHsNormal());
         //$stmt->dpBind(':hs_50', $this->getHs50());

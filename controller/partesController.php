@@ -149,23 +149,71 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/partesFormUpdate.php";
         break;
 
-    case 'loadExportTxt':
+    case 'loadExportTxt': //ok  //abre ventana modal para exportar
         $view->disableLayout=true;
-        //$view->empleado = new Empleado($_POST['id_empleado']);
         $view->label = 'Exportar a txt';
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
 
         $view->contentTemplate="view/novedades_partes/export_txtForm.php";
         break;
 
-    case 'exportTxt':
+    case 'checkExportTxt': //ok //chequea que no existan partes sin calcular
         //$parte = new Parte($_POST['id_parte']);
-
         //$rta = $parte->save();
-        $rta = Parte::exportTxt();
+        $rta = Parte::exportTxt($_POST['id_contrato'], $_POST['fecha_desde'], $_POST['fecha_hasta']);
         //print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));
         print_r(json_encode($rta));
+        exit;
+        break;
+
+    case 'exportTxt': //exportacion propiamente dicha
+        $id_empleado = ($_GET['id_empleado']!='')? $_GET['id_empleado'] : null;
+        //$eventos = ($_GET['eventos']!='')? implode(",", $_GET['eventos'])  : 'su.id_evento';
+        $eventos = ($_GET['eventos']!='')? $_GET['eventos']  : 'su.id_evento'; //con get los multiples eventos ya vienen separados por comas, en cambio con post vienen en un array
+        $fecha_desde = ($_GET['search_fecha_desde']!='')? $_GET['search_fecha_desde'] : null;
+        $fecha_hasta = ($_GET['search_fecha_hasta']!='')? $_GET['search_fecha_hasta'] : null;
+        $id_contrato = ($_GET['search_contrato']!='')? $_GET['search_contrato'] : null;
+
+        $filepath = "uploads/files/file.txt";
+        $handle = fopen($filepath, "w");
+        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
+
+        foreach ($view->sucesos as $su) {
+            $fd = new DateTime($su['txt_fecha_desde']);
+            $fh = new DateTime($su['txt_fecha_hasta']);
+            $d = (string)$fh->diff($fd)->days;
+
+            fwrite($handle, str_pad($su['txt_evento'], 10). //evento
+                str_pad(substr($su['txt_legajo'], 2), 10). //legajo
+                str_pad($fd->format('01/m/Y'), 10). //periodo desde
+                str_pad($fh->format('01/m/Y'), 10). //periodo hasta
+                str_pad($fd->format('d/m/Y'), 10). //fecha desde
+                str_pad($fh->format('d/m/Y'), 10). //fecha hasta
+                str_pad($d, 10). //dias
+                str_pad($d, 10). //prorrateo dias
+                str_pad("L", 10). //tipo liquidacion
+                str_pad("MEN", 10). //tipo liquidacion
+                str_pad("01/01/1970", 10). //fecha prevista notificacion
+                str_pad("01/01/1970", 10). //fecha notificacion
+                str_pad(substr($su['observaciones'], 0, 10), 10). //observaciones
+
+
+                "\r\n");
+        }
+
+        fclose($handle);
+
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename='.basename($filepath));
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($filepath));
+        readfile($filepath); //descarga el archivo
+
+        unlink ($filepath); //borra el archivo una vez descargado
+
         exit;
         break;
 
