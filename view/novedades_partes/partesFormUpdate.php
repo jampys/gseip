@@ -3,6 +3,10 @@
 
     $(document).ready(function(){
 
+        $('#timepicker1').timepicker({
+            showMeridian: false
+        });
+
         $('.selectpicker').selectpicker();
 
 
@@ -539,9 +543,14 @@
                                 <div class="row">
 
                                     <div class="col-md-4">
-                                        <div class="form-group">
+                                        <!--<div class="form-group">
                                             <label class="control-label" for="hs_normal">Hs. Normal</label>
                                             <input class="form-control hs-group" type="text" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" placeholder="hh:mm">
+                                        </div>-->
+                                        <label class="control-label" for="hs_normal">Hs. Normal</label>
+                                        <div class="input-group bootstrap-timepicker timepicker">
+                                            <input id="timepicker1" type="text" class="form-control input-small" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" >
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                         </div>
                                     </div>
 
