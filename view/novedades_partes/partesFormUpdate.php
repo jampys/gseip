@@ -547,10 +547,12 @@
                                             <label class="control-label" for="hs_normal">Hs. Normal</label>
                                             <input class="form-control hs-group" type="text" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" placeholder="hh:mm">
                                         </div>-->
-                                        <label class="control-label" for="hs_normal">Hs. Normal</label>
-                                        <div class="input-group bootstrap-timepicker timepicker">
-                                            <input type="text" class="form-control input-small" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" >
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                        <div class="form-group">
+                                            <label class="control-label" for="hs_normal">Hs. Normal</label>
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input type="text" class="form-control input-small" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" >
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -559,10 +561,12 @@
                                             <label class="control-label" for="hs_50">Hs. 50%</label>
                                             <input class="form-control hs-group" type="text" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" placeholder="hh:mm">
                                         </div>-->
-                                        <label class="control-label" for="hs_50">Hs. 50%</label>
-                                        <div class="input-group bootstrap-timepicker timepicker">
-                                            <input type="text" class="form-control input-small" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" >
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                        <div class="form-group">
+                                            <label class="control-label" for="hs_50">Hs. 50%</label>
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input type="text" class="form-control input-small" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" >
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -571,10 +575,12 @@
                                             <label class="control-label" for="hs_100">Hs. 100%</label>
                                             <input class="form-control hs-group" type="text" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" placeholder="hh:mm">
                                         </div>-->
-                                        <label class="control-label" for="hs_100">Hs. 100%</label>
-                                        <div class="input-group bootstrap-timepicker timepicker">
-                                            <input type="text" class="form-control input-small" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" >
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                        <div class="form-group">
+                                            <label class="control-label" for="hs_100">Hs. 100%</label>
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input type="text" class="form-control input-small" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" >
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                            </div>
                                         </div>
                                     </div>
 
