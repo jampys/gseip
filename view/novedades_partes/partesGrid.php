@@ -12,16 +12,16 @@
             "fnInitComplete": function () {
                                 $(this).show(); },
             "stateSave": true,
-            "order": [[3, "asc"], [5, "asc"]], // 3=fecha_apertura, 5=puesto
+            "order": [[0, "asc"], [1, "asc"]], // 0=fecha_parte, 1=contrato
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
                 { type: 'date-uk', targets: 5 } //fecha_vencimiento
             ]*/
             columnDefs: [
-                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 5 ]}, //fecha
-                {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 5 ]}, //fecha_apertura
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 5 ]} //fecha_cierre
+                {targets: [ 0 ], type: 'date-uk', orderData: [ 0, 1 ]} //fecha parte
+                //{targets: [ 3 ], type: 'date-uk', orderData: [ 3, 5 ]}, //
+                //{targets: [ 4 ], type: 'date-uk', orderData: [ 4, 5 ]} //
             ]
         });
 

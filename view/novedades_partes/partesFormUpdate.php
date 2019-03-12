@@ -4,7 +4,9 @@
     $(document).ready(function(){
 
         $('#hs_normal, #hs_50, #hs_100').timepicker({
-            showMeridian: false
+            showMeridian: false,
+            //defaultTime: false
+            defaultTime: '00:00 AM'
         });
 
         $('.selectpicker').selectpicker();
