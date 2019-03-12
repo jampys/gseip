@@ -5,7 +5,8 @@
 
         $('#hora_inicio, #hora_fin').timepicker({
             showMeridian: false,
-            defaultTime: false
+            //defaultTime: false
+            defaultTime: '00:00 AM'
         });
 
         //Necesario para que funcione el plug-in bootstrap-select
