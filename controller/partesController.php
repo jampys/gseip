@@ -149,26 +149,73 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/partesFormUpdate.php";
         break;
 
+    case 'loadExportTxt': //ok  //abre ventana modal para exportar
+        $view->disableLayout=true;
+        $view->label = 'Exportar a txt';
+        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+
+        $view->contentTemplate="view/novedades_partes/export_txtForm.php";
+        break;
+
+    case 'checkExportTxt': //ok //chequea que no existan partes sin calcular
+        //$parte = new Parte($_POST['id_parte']);
+        //$rta = $parte->save();
+        $rta = Parte::checkExportTxt($_POST['id_contrato'], $_POST['fecha_desde'], $_POST['fecha_hasta']);
+        //print_r(json_encode(sQuery::dpLastInsertId()));
+        //print_r(json_encode($rta));
+        print_r(json_encode($rta));
+        exit;
+        break;
+
+    case 'exportTxt': //exportacion propiamente dicha
+
+        $id_contrato = ($_GET['id_contrato']!='')? $_GET['id_contrato'] : null;
+        $fecha_desde = ($_GET['fecha_desde']!='')? $_GET['fecha_desde'] : null;
+        $fecha_hasta = ($_GET['fecha_hasta']!='')? $_GET['fecha_hasta'] : null;
+
+        $filepath = "uploads/files/file.txt";
+        $handle = fopen($filepath, "w");
+        $view->sucesos = Parte::exportTxt($id_contrato, $fecha_desde, $fecha_hasta);
+
+        foreach ($view->sucesos as $su) {
+            //$fd = new DateTime($su['txt_fecha_desde']);
+            //$fh = new DateTime($su['txt_fecha_hasta']);
+            //$d = (string)$fh->diff($fd)->days;
+
+            fwrite($handle, str_pad(substr($su['legajo'], 2), 10). //legajo
+                //str_pad($fd->format('01/m/Y'), 10). //periodo desde
+                //str_pad($fh->format('01/m/Y'), 10). //periodo hasta
+                //str_pad($fd->format('d/m/Y'), 10). //fecha desde
+                //str_pad($fh->format('d/m/Y'), 10). //fecha hasta
+                //str_pad($d, 10). //dias
+                //str_pad($d, 10). //prorrateo dias
+                str_pad($su['codigo'], 10). //codigo
+                str_pad($su['cantidad'], 10). //cantidad
+                str_pad($su['variable'], 10). //variable
+                //str_pad("MEN", 10). //tipo liquidacion
+                "\r\n");
+        }
+
+        fclose($handle);
+
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename='.basename($filepath));
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($filepath));
+        readfile($filepath); //descarga el archivo
+
+        unlink ($filepath); //borra el archivo una vez descargado
+
+        exit;
+        break;
+
     case 'deleteHabilidad':
         $habilidad = new Habilidad($_POST['id_habilidad']);
         $rta = $habilidad->deleteHabilidad();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
-        break;
-
-
-    case 'checkFechaEmision':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'checkFechaVencimiento':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
         break;
 
     default : //ok

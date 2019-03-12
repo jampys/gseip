@@ -87,3 +87,8 @@
 
     <!-- incluyo el archivo que tiene mis funciones javascript -->
     <script type="text/javascript" src="resources/js/functions.js"></script>
+
+
+    <!-- plug in bootstrap-timepicker -->
+    <link rel="stylesheet" href="resources/libraries/bootstrap-timepicker/bootstrap-timepicker.css" />
+    <script type="text/javascript" src="resources/libraries/bootstrap-timepicker/bootstrap-timepicker.js"></script>

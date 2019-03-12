@@ -60,6 +60,23 @@
             });
 
 
+            $(document).on('click', '#txt', function(){ //ok
+
+                //alert('toco en txt');
+                //preparo los parametros
+                params={};
+                params.action = "partes";
+                params.operation = "loadExportTxt";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+
+                    $('#myModal #id_contrato').val($('#search_contrato').val());
+                    $('.selectpicker').selectpicker('refresh');
+                })
+
+            });
+
+
             //para editar un parte
             //$(document).on('click', '.edit', function(){ //ok
             $('#content').on('click', '.edit', function(){ //ok
@@ -347,7 +364,17 @@
                             </button>
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-1">
+                            <label for="search_vencimiento" class="control-label">&nbsp;</label>
+                            <a id="pdf" class="form-control btn btn-primary btn-sm" href="index.php?action=" title="exportar a pdf"><i class="far fa-file-pdf fa-fw fa-2x"></i></a>
+                        </div>
+
+                        <div class="form-group col-md-1">
+                            <label for="search_vencimiento" class="control-label">&nbsp;</label>
+                            <a id="txt" class="form-control btn btn-primary btn-sm" href="#" title="exportar a txt"><i class="far fa-file-alt fa-fw fa-2x"></i></a>
+                        </div>
+
+                        <div class="form-group col-md-2">
 
                         </div>
 

@@ -31,8 +31,10 @@ switch ($operation)
         $orden->setNroParteDiario($_POST['nro_parte_diario']);
         $orden->setOrdenTipo($_POST['orden_tipo']);
         $orden->setOrdenNro($_POST['orden_nro']);
-        $orden->setHoraInicio($_POST['hora_inicio']);
-        $orden->setHoraFin($_POST['hora_fin']);
+        //$orden->setHoraInicio($_POST['hora_inicio']);
+        $orden->setHoraInicio( ($_POST['hora_inicio']!='')? $_POST['hora_inicio'] : null);
+        //$orden->setHoraFin($_POST['hora_fin']);
+        $orden->setHoraFin( ($_POST['hora_fin']!='')? $_POST['hora_fin'] : null);
         $orden->setServicio($_POST['servicio']);
         $orden->setCreatedBy($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
