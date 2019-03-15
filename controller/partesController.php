@@ -102,7 +102,7 @@ switch ($operation)
     case 'calcularParte': //ok  //guarda un parte despues de ser editado (boton calcular)
         $parte = new Parte($_POST['id_parte']);
         $parte->setIdArea($_POST['id_area']);
-        $parte->setIdVehiculo($_POST['id_vehiculo']);
+        $parte->setIdVehiculo( ($_POST['id_vehiculo']!='')? $_POST['id_vehiculo'] : null );
         $parte->setIdEvento( ($_POST['id_evento']!='')? $_POST['id_evento'] : null );
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $parte->setHsNormal( ($_POST['hs_normal']!='')? $_POST['hs_normal'] : 0);
