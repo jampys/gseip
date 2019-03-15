@@ -108,7 +108,7 @@ join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato =
 join nov_conceptos nccto on nccto.id_concepto = nccc.id_concepto
 join nov_convenios ncnio on ncnio.id_convenio = em.id_convenio
 where npe.id_parte = :id_parte
-order by npe.id_empleado asc";
+order by npe.id_empleado asc, nccto.nombre asc, npec.cantidad desc ";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_parte', $id_parte);
         $stmt->dpExecute();
