@@ -13,13 +13,13 @@
             scrollCollapse: true,
             scroller:       true,
             "columnDefs": [
-                {"width": "30%", "targets": 0}, //empleado
-                {"width": "45%", "targets": 1}, //puesto
-                {"width": "5%", "targets": 2}, //fecha_desde
-                {"width": "5%", "targets": 3}, //fecha_hasta
-                {"width": "5%", "targets": 4}, //ver
-                {"width": "5%", "targets": 5}, //editar
-                {"width": "5%", "targets": 6} //eliminar
+                {"width": "35%", "targets": 0}, //empleado
+                {"width": "35%", "targets": 1}, //puesto
+                {"width": "12%", "targets": 2}, //fecha_desde
+                {"width": "12%", "targets": 3} //fecha_hasta
+                //{"width": "5%", "targets": 4}, //ver
+                //{"width": "5%", "targets": 5}, //editar
+                //{"width": "5%", "targets": 6} //eliminar
             ]
 
         });
