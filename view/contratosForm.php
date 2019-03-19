@@ -57,12 +57,14 @@
                 '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
                 '</tr>');*/
 
+                var fecha_hasta = (jsonEmpleados[i].fecha_hasta === null)? '':jsonEmpleados[i].fecha_hasta;
+
                 var table_rows = '<tr id_empleado='+jsonEmpleados[i].id_empleado+'>' +
                     '<td>'+jsonEmpleados[i].empleado+'</td>' +
                         //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
                     '<td>'+jsonEmpleados[i].puesto+'</td>' +
                     '<td>'+jsonEmpleados[i].fecha_desde+'</td>' +
-                    '<td>'+jsonEmpleados[i].fecha_hasta+'</td>' +
+                    '<td>'+fecha_hasta+'</td>' +
                     '<td class="text-center"><a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
                     '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
                     '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
