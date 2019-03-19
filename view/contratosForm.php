@@ -14,10 +14,12 @@
             scroller:       true,
             "columnDefs": [
                 {"width": "30%", "targets": 0}, //empleado
-                {"width": "55%", "targets": 1}, //puesto
-                {"width": "5%", "targets": 2}, //ver
-                {"width": "5%", "targets": 3}, //editar
-                {"width": "5%", "targets": 4} //eliminar
+                {"width": "45%", "targets": 1}, //puesto
+                {"width": "5%", "targets": 2}, //fecha_desde
+                {"width": "5%", "targets": 3}, //fecha_hasta
+                {"width": "5%", "targets": 4}, //ver
+                {"width": "5%", "targets": 5}, //editar
+                {"width": "5%", "targets": 6} //eliminar
             ]
 
         });
@@ -59,6 +61,8 @@
                     '<td>'+jsonEmpleados[i].empleado+'</td>' +
                         //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
                     '<td>'+jsonEmpleados[i].puesto+'</td>' +
+                    '<td>'+jsonEmpleados[i].fecha_desde+'</td>' +
+                    '<td>'+jsonEmpleados[i].fecha_hasta+'</td>' +
                     '<td class="text-center"><a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
                     '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
                     '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
@@ -524,6 +528,8 @@
             <tr>
                 <th>Empleado</th>
                 <th>Puesto</th>
+                <th>F. Desde</th>
+                <th>F. Hasta</th>
                 <th></th>
                 <th></th>
                 <th></th>
