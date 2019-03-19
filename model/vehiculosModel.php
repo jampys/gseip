@@ -280,7 +280,7 @@ order by vvc.fecha_desde desc";
         $stmt=new sQuery();
         $query = "select 'Seguro individual ' as tipo_seguro,v.referencia,
 DATE_FORMAT(v.fecha_emision,  '%d/%m/%Y') as fecha_emision,
-DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento
+DATE_FORMAT(v.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento
 from vto_renovacion_v v
 where v.id_vehiculo = :id_vehiculo
 and v.id_vencimiento = 3
@@ -289,7 +289,7 @@ and v.disabled is null
 UNION
 select 'Seguro grupal ' as tipo_seguro, CONCAT(g.nombre, ' ', g.nro_referencia) as referencia,
 DATE_FORMAT(v.fecha_emision,  '%d/%m/%Y') as fecha_emision,
-DATE_FORMAT(fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento
+DATE_FORMAT(ifnull(gv.fecha_hasta, v.fecha_vencimiento),  '%d/%m/%Y') as fecha_vencimiento
 from vto_grupos_v g
 join vto_grupo_vehiculo gv on g.id_grupo = gv.id_grupo
 join vto_renovacion_v v on v.id_grupo = g.id_grupo
