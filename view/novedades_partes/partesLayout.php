@@ -364,14 +364,10 @@
                             </button>
                         </div>
 
-                        <div class="form-group col-md-1">
-                            <label for="search_vencimiento" class="control-label">&nbsp;</label>
-                            <a id="pdf" class="form-control btn btn-primary btn-sm" href="index.php?action=" title="exportar a pdf"><i class="far fa-file-pdf fa-fw fa-2x"></i></a>
-                        </div>
 
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-2">
                             <label for="search_vencimiento" class="control-label">&nbsp;</label>
-                            <a id="txt" class="form-control btn btn-primary btn-sm" href="#" title="exportar a txt"><i class="far fa-file-alt fa-fw fa-2x"></i></a>
+                            <a id="txt" class="form-control btn btn-primary btn-sm" href="#" title="exportar novedades"><i class="fas fa-file-export fa-fw fa-2x"></i></a>
                         </div>
 
                         <div class="form-group col-md-2">

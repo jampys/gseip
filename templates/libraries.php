@@ -69,8 +69,8 @@
 
 
     <!-- plug-in fontawesome -->
-    <link  href="fontawesome/css/fa-svg-with-js.css" rel="stylesheet">
-    <script defer src="fontawesome/js/fontawesome-all.js"></script>
+    <link  href="resources/libraries/fontawesome/css/all.css" rel="stylesheet">
+    <script defer src="resources/libraries/fontawesome/js/all.js"></script>
     <!--<script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>-->
 
 

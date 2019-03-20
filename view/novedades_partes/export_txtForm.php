@@ -148,7 +148,7 @@
 
                     <div class="alert alert-info fade in">
                         <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        <span class="glyphicon glyphicon-tags" ></span>&nbsp Esta pantalla permite exportar las novedades a txt.
+                        <span class="glyphicon glyphicon-tags" ></span>&nbsp Esta pantalla permite exportar las novedades a formatos .txt (para importar desde BAS) y tabla cruzada.
                     </div>
 
                     <br/>
@@ -192,8 +192,8 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Exportar</button>
-                <button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit">Pdf</button>
+                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit" title="txt">&nbsp;<i class="far fa-file-alt fa-fw"></i>&nbsp;</button>
+                <button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit" title="pdf">&nbsp;<i class="far fa-file-pdf fa-fw"></i>&nbsp;</button>
                 <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
             </div>
 
