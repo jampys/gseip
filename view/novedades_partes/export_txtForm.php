@@ -62,10 +62,6 @@
                      }, 2000);
 
                     throw new Error();*/
-                    //params={};
-                    //params.fecha_desde = $("#myModal #fecha_desde").val();
-                    //params.fecha_hasta = $("#myModal #fecha_hasta").val();
-                    //params.id_contrato = $("#myModal #id_contrato").val();
                     //location.href="index.php?action=sucesos&operation=txt";
                     location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+"&fecha_desde="+params.fecha_desde+"&fecha_hasta="+params.fecha_hasta;
                     return false;
@@ -78,13 +74,34 @@
             }, 'json');
 
 
+        });
 
 
+        $('#myModal').on("click", "#submit1", function(){
+            //var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
+            //params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
+            //var attr = $('#search_empleado option:selected').attr('id_grupo');
+            //params.id_grupo = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_grupo') : '';
+            //params.id_vencimiento = $("#search_vencimiento").val();
+            //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
+            //params.id_subcontratista = $("#search_subcontratista").val();
+            //params.renovado = $('#search_renovado').prop('checked')? 1 : '';
 
+            params={};
+            params.action = 'partes';
+            params.operation = 'checkExportTxt';
+            params.fecha_desde = $("#myModal #fecha_desde").val();
+            params.fecha_hasta = $("#myModal #fecha_hasta").val();
+            params.id_contrato = $("#myModal #id_contrato").val();
+            params.id_user = "<?php echo $_SESSION['id_user']; ?>";
 
-
-
-
+            //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
+            var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
+            //var URL="<?php //echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=sci_plan_version.rptdesign&p_periodo="+periodo+"&p_nro_version="+nro_version+"&p_lugar_trabajo="+lugar_trabajo+"&p_usuario="+usuario+"&p_id_cia="+id_cia;
+            var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_crossTab_novedades.rptdesign&p_id_contrato="+params.id_contrato+"&p_fecha_desde="+params.fecha_desde+"&p_fecha_hasta="+params.fecha_hasta+"&p_id_user="+params.id_user;
+            //var win = window.open(URL, "_blank", strWindowFeatures);
+            var win = window.open(URL, "_blank");
+            return false;
         });
 
 
@@ -160,6 +177,7 @@
 
             <div class="modal-footer">
                 <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Exportar</button>
+                <button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit">Pdf</button>
                 <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
             </div>
 
