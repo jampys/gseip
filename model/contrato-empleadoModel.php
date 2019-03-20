@@ -113,7 +113,7 @@ class ContratoEmpleado
                   DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                   ec.id_localidad,
-                  CONCAT (em.apellido, ' ', em.nombre) as empleado,
+                  CONCAT (em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
                   pu.nombre as puesto
                   from empleado_contrato ec, empleados em, puestos pu
                   where ec.id_empleado = em.id_empleado
