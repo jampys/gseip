@@ -13,8 +13,8 @@
             scrollCollapse: true,
             scroller:       true,
             "columnDefs": [
-                {"width": "35%", "targets": 0}, //empleado
-                {"width": "35%", "targets": 1}, //puesto
+                {"width": "43%", "targets": 0}, //empleado
+                {"width": "33%", "targets": 1}, //puesto
                 {"width": "12%", "targets": 2}, //fecha_desde
                 {"width": "12%", "targets": 3} //fecha_hasta
                 //{"width": "5%", "targets": 4}, //ver
