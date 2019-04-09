@@ -37,7 +37,9 @@ class EventosLiquidacion
 
     public static function getEventosLiquidacion() {
         $stmt=new sQuery();
-        $stmt->dpPrepare("select * from nov_eventos_l");
+        $stmt->dpPrepare("select *
+                          from nov_eventos_l
+                          where enabled = 1");
         $stmt->dpExecute();
         return $stmt->dpFetchAll(); // retorna todos los eventos de liquidacion
     }
