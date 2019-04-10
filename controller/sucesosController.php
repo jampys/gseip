@@ -95,7 +95,8 @@ switch ($operation)
         $fecha_hasta = ($_GET['search_fecha_hasta']!='')? $_GET['search_fecha_hasta'] : null;
         $id_contrato = ($_GET['search_contrato']!='')? $_GET['search_contrato'] : null;
 
-        $filepath = "uploads/files/file.txt";
+        $file_name = "sucesos_c".$id_contrato."_e".$id_empleado."_fd".str_replace("/", "", $fecha_desde)."_fh".str_replace("/", "", $fecha_hasta).".txt";
+        $filepath = "uploads/files/".$file_name;
         $handle = fopen($filepath, "w");
         $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
 
