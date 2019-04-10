@@ -184,7 +184,7 @@ switch ($operation)
             //$fh = new DateTime($su['txt_fecha_hasta']);
             //$d = (string)$fh->diff($fd)->days;
 
-            fwrite($handle, str_pad(substr($su['legajo'], 2), 10). //legajo
+            $line = str_pad(substr($su['legajo'], 2), 10). //legajo
                 //str_pad($fd->format('01/m/Y'), 10). //periodo desde
                 //str_pad($fh->format('01/m/Y'), 10). //periodo hasta
                 //str_pad($fd->format('d/m/Y'), 10). //fecha desde
@@ -195,7 +195,12 @@ switch ($operation)
                 str_pad($su['cantidad'], 10). //cantidad
                 str_pad($su['variable'], 10). //variable
                 //str_pad("MEN", 10). //tipo liquidacion
-                "\r\n");
+                "\r\n";
+
+            $line_no_bom = trim($line, "\\xef\\xbb\\xbf"); //remover el bom
+
+            fwrite($handle, $line_no_bom);
+            ob_end_clean(); //remover el bom
         }
 
         fclose($handle);

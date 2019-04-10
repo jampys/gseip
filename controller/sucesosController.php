@@ -123,7 +123,7 @@ switch ($operation)
 
             $line_no_bom = trim($line, "\\xef\\xbb\\xbf"); //remover el bom
 
-            fwrite($handle, $line);
+            fwrite($handle, $line_no_bom);
         }
 
         fclose($handle);
