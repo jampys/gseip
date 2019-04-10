@@ -102,7 +102,8 @@ switch ($operation)
         foreach ($view->sucesos as $su) {
             $fd = new DateTime($su['txt_fecha_desde']);
             $fh = new DateTime($su['txt_fecha_hasta']);
-            $d = (string)$fh->diff($fd)->days;
+            //$d = (string)$fh->diff($fd)->days;
+            $d = (string)($fh->diff($fd)->days+1);
 
             fwrite($handle, str_pad($su['txt_evento'], 10). //evento
                             str_pad(substr($su['txt_legajo'], 2), 10). //legajo
@@ -114,9 +115,9 @@ switch ($operation)
                             str_pad($d, 10). //prorrateo dias
                             str_pad("L", 10). //tipo liquidacion
                             str_pad("MEN", 10). //tipo liquidacion
-                            str_pad("01/01/1970", 10). //fecha prevista notificacion
-                            str_pad("01/01/1970", 10). //fecha notificacion
-                            str_pad(substr($su['observaciones'], 0, 10), 10). //observaciones
+                            str_pad("00/01/1900", 10). //fecha prevista notificacion
+                            str_pad("00/01/1900", 10). //fecha notificacion
+                            //str_pad(substr($su['observaciones'], 0, 10), 10). //observaciones
 
 
             "\r\n");
