@@ -173,7 +173,9 @@ switch ($operation)
         $fecha_desde = ($_GET['fecha_desde']!='')? $_GET['fecha_desde'] : null;
         $fecha_hasta = ($_GET['fecha_hasta']!='')? $_GET['fecha_hasta'] : null;
 
-        $filepath = "uploads/files/file.txt";
+        $file_name = "novedades_c".$id_contrato."_fd".str_replace("/", "", $fecha_desde)."_fh".str_replace("/", "", $fecha_hasta).".txt";
+        $filepath = "uploads/files/".$file_name;
+        //$filepath = "uploads/files/file.txt";
         $handle = fopen($filepath, "w");
         $view->sucesos = Parte::exportTxt($id_contrato, $fecha_desde, $fecha_hasta);
 
