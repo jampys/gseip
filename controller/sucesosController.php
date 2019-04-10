@@ -95,34 +95,39 @@ switch ($operation)
         $fecha_hasta = ($_GET['search_fecha_hasta']!='')? $_GET['search_fecha_hasta'] : null;
         $id_contrato = ($_GET['search_contrato']!='')? $_GET['search_contrato'] : null;
 
-        $filepath = "uploads/files/file.txt";
+        $file_name = "sucesos_c".$id_contrato."_e".$id_empleado."_fd".str_replace("/", "", $fecha_desde)."_fh".str_replace("/", "", $fecha_hasta).".txt";
+        $filepath = "uploads/files/".$file_name;
         $handle = fopen($filepath, "w");
         $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
 
         foreach ($view->sucesos as $su) {
             $fd = new DateTime($su['txt_fecha_desde']);
             $fh = new DateTime($su['txt_fecha_hasta']);
-            $d = (string)$fh->diff($fd)->days;
+            //$d = (string)$fh->diff($fd)->days;
+            $d = (string)($fh->diff($fd)->days+1);
 
-            fwrite($handle, str_pad($su['txt_evento'], 10). //evento
-                            str_pad(substr($su['txt_legajo'], 2), 10). //legajo
-                            str_pad($fd->format('01/m/Y'), 10). //periodo desde
-                            str_pad($fh->format('01/m/Y'), 10). //periodo hasta
-                            str_pad($fd->format('d/m/Y'), 10). //fecha desde
-                            str_pad($fh->format('d/m/Y'), 10). //fecha hasta
-                            str_pad($d, 10). //dias
-                            str_pad($d, 10). //prorrateo dias
-                            str_pad("L", 10). //tipo liquidacion
-                            str_pad("MEN", 10). //tipo liquidacion
-                            str_pad("01/01/1970", 10). //fecha prevista notificacion
-                            str_pad("01/01/1970", 10). //fecha notificacion
-                            str_pad(substr($su['observaciones'], 0, 10), 10). //observaciones
+            $line = str_pad($su['txt_evento'], 10). //evento
+                str_pad(substr($su['txt_legajo'], 2), 10). //legajo
+                str_pad($fd->format('01/m/Y'), 10). //periodo desde
+                str_pad($fh->format('01/m/Y'), 10). //periodo hasta
+                str_pad($fd->format('d/m/Y'), 10). //fecha desde
+                str_pad($fh->format('d/m/Y'), 10). //fecha hasta
+                str_pad($d, 10). //dias
+                str_pad($d, 10). //prorrateo dias
+                str_pad("L", 10). //tipo liquidacion
+                str_pad("MEN", 10). //tipo liquidacion
+                str_pad("00/01/1900", 10). //fecha prevista notificacion
+                str_pad("00/01/1900", 10). //fecha notificacion
+                //str_pad(substr($su['observaciones'], 0, 10), 10). //observaciones
+                "\r\n";
 
+            $line_no_bom = trim($line, "\\xef\\xbb\\xbf"); //remover el bom
 
-            "\r\n");
+            fwrite($handle, $line_no_bom);
         }
 
         fclose($handle);
+        ob_end_clean(); //remover el bom
 
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename='.basename($filepath));
