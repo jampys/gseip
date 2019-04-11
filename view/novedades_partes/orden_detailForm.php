@@ -138,7 +138,7 @@
 
         <div class="form-group required">
             <label for="orden_tipo" class="control-label">Tipo orden</label>
-            <select class="form-control selectpicker show-tick" id="orden_tipo" name="orden_tipo" title="Tipo de orden">
+            <select class="form-control selectpicker show-tick" id="orden_tipo" name="orden_tipo" title="Seleccione el tipo de orden">
                 <?php foreach ($view->orden_tipos['enum'] as $nac){
                     ?>
                     <option value="<?php echo $nac; ?>"
