@@ -85,20 +85,30 @@
 
         $('#orden-form').validate({
             rules: {
-                /*codigo: {
+                nro_parte_diario: {
                         required: true,
                         digits: true,
-                        maxlength: 6
-                },*/
-                id_empleado: {required: true}
+                        maxlength: 8
+                },
+                orden_tipo: {required: true},
+                orden_nro: {
+                    required: true,
+                    digits: true,
+                    maxlength: 15
+                }
             },
             messages:{
-                /*codigo: {
-                    required: "Ingrese el código",
+                nro_parte_diario: {
+                    required: "Ingrese el Nro. parte diario",
                     digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                }, */
-                id_empleado: "Seleccione un empleado"
+                    maxlength: "Máximo 8 dígitos"
+                },
+                orden_tipo: "Seleccione el tipo de orden",
+                orden_nro: {
+                    required: "Ingrese el Nro. orden",
+                    digits: "Ingrese solo números",
+                    maxlength: "Máximo 15 dígitos"
+                }
             }
 
         });
@@ -128,7 +138,7 @@
 
         <div class="form-group required">
             <label for="orden_tipo" class="control-label">Tipo orden</label>
-            <select class="form-control selectpicker show-tick" id="orden_tipo" name="orden_tipo" title="Seleccione el tipo de orden">
+            <select class="form-control selectpicker show-tick" id="orden_tipo" name="orden_tipo" title="Tipo de orden">
                 <?php foreach ($view->orden_tipos['enum'] as $nac){
                     ?>
                     <option value="<?php echo $nac; ?>"
