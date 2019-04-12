@@ -125,7 +125,7 @@ switch ($operation)
     case 'newContrato': //ok
         $view->label='Nuevo Contrato';
         $view->contrato = new Contrato();
-        $view->empleados = Empleado::getEmpleadosActivos(); //carga el combo de empleados
+        $view->empleados = Empleado::getEmpleadosActivos(null); //carga el combo de empleados
         //$view->responsable = $view->contrato->getResponsable()->getApellido()." ".$view->contrato->getResponsable()->getNombre();
         $view->localidades = Localidad::getLocalidades();
         $view->companias = Compania::getCompanias();
@@ -139,7 +139,7 @@ switch ($operation)
         $view->label = $view->contrato->getNombre().' '.$view->contrato->getNroContrato();
 
         $view->empleado = new Empleado();
-        $view->empleados = $view->empleado->getEmpleadosActivos(); //carga el combo de empleados
+        $view->empleados = $view->empleado->getEmpleadosActivos(null); //carga el combo de empleados
         //$view->responsable = $view->contrato->getResponsable()->getApellido()." ".$view->contrato->getResponsable()->getNombre();
         $view->localidades = Localidad::getLocalidades();
         $view->companias = Compania::getCompanias();
@@ -164,7 +164,7 @@ switch ($operation)
         if($temp[0] == '') $view->empleado->setDomain(1); //Si es un empleado nuevo (no tiene dominio).. le pongo el dominio 1.
         //echo '<script type="text/javascript"> alert('.sizeof($view->empleado->getDomain()).'); </script>';
         // si es uno nuevo: trae solo los empleados activos, si es una edicion: trae todos
-        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos() : Empleado::getEmpleados(); //carga el combo de empleados
+        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
         $view->localidades = Localidad::getLocalidades();
         $view->puestos = Puesto::getPuestos();
         $view->procesos = Proceso::getProcesos();

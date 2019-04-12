@@ -47,7 +47,7 @@ switch ($operation)
         $view->periodos = Soporte::getPeriodos(2000, date("Y"));
         $view->contratos = $view->vehiculo->getContratosByVehiculo();
         $view->companias = Compania::getCompanias();
-        $view->empleados = Empleado::getEmpleadosActivos(); //carga el combo de responsable
+        $view->empleados = Empleado::getEmpleadosActivos(null); //carga el combo de responsable
 
         $view->disableLayout=true;
         $view->contentTemplate="view/vehiculos/vehiculosForm.php";
@@ -61,7 +61,7 @@ switch ($operation)
         $view->periodos = Soporte::getPeriodos(2000, date("Y"));
         $view->contratos = $view->vehiculo->getContratosByVehiculo();
         $view->companias = Compania::getCompanias();
-        $view->empleados = Empleado::getEmpleadosActivos(); //carga el combo de responsable
+        $view->empleados = Empleado::getEmpleadosActivos(null); //carga el combo de responsable
 
         $view->disableLayout=true;
         $view->contentTemplate="view/vehiculos/vehiculosForm.php";

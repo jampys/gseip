@@ -117,7 +117,7 @@ class Cuadrilla
                   concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
                   concat(ar.codigo, ' ', ar.nombre) as area
                   from nov_cuadrillas cu
-                  join contratos co on cu.id_contrato = co.id_contrato
+                  join v_sec_contratos_control co on cu.id_contrato = co.id_contrato
                   left join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
                   join nov_areas ar on cu.default_id_area = ar.id_area
                   where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
