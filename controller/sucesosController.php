@@ -42,7 +42,7 @@ switch ($operation)
         $view->label='Nuevo Suceso';
         $view->suceso = new Suceso($_POST['id_suceso']);
 
-        $view->empleados = Empleado::getEmpleadosActivosByDomain();
+        $view->empleados = Empleado::getEmpleadosActivosByContrato(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
@@ -54,7 +54,7 @@ switch ($operation)
         $view->label='Editar Suceso';
         $view->suceso = new Suceso($_POST['id_suceso']);
 
-        $view->empleados = Empleado::getEmpleadosActivosByDomain();
+        $view->empleados = Empleado::getEmpleadosActivosByContrato(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
