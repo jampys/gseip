@@ -217,24 +217,9 @@ class Empleado
         return $stmt->dpFetchAll();
     }
 
-    public static function getEmpleadosActivos() {
-        $stmt=new sQuery();
-        $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
-                      DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
-                      DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
-                      DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
-                      em.telefono, em.email, em.empresa,
-                      em.sexo, em.nacionalidad, em.estado_civil
-                      from empleados em
-                      where em.fecha_baja is null
-                      order by em.apellido, em.nombre";
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
-
-    public static function getEmpleadosActivosByContrato($id_contrato) {
+    public static function getEmpleadosActivos($id_contrato) {
         //Trae los empleados activos de el o los dominios del usuario. Filtro por contrato
+        //Solo empleados que tienen contrato
         $stmt=new sQuery();
         /*$query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
                       DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
@@ -242,7 +227,7 @@ class Empleado
                       DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
                       em.telefono, em.email, em.empresa,
                       em.sexo, em.nacionalidad, em.estado_civil
-                      from v_sec_empleados em
+                      from empleados em
                       where em.fecha_baja is null
                       order by em.apellido, em.nombre";*/
         $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
@@ -262,6 +247,31 @@ class Empleado
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
+
+
+    public static function getEmpleadosControl($id_contrato) {
+        //Trae los empleados activos de el o los dominios del usuario. Filtro por contrato
+        //Solo empleados que tienen contrato
+        $stmt=new sQuery();
+        $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
+                      DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
+                      DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
+                      DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
+                      em.telefono, em.email, em.empresa,
+                      em.sexo, em.nacionalidad, em.estado_civil
+                      from v_sec_empleados_control em
+                      join empleado_contrato ec on ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta > sysdate())
+                      where em.fecha_baja is null
+                      and ec.id_contrato = ifnull(:id_contrato, ec.id_contrato)
+                      group by em.id_empleado
+                      order by em.apellido, em.nombre";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
 
 
     public function getDomiciliosByEmpleado() {

@@ -62,7 +62,7 @@ switch ($operation)
         $view->contratos = Contrato::getContratos();
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
         $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
-        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos() : Empleado::getEmpleados(); //carga el combo de empleados
+        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivos/objetivosForm.php";
@@ -85,7 +85,7 @@ switch ($operation)
         $view->contratos = Contrato::getContratos();
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
         $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
-        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos() : Empleado::getEmpleados(); //carga el combo de empleados
+        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
@@ -129,7 +129,7 @@ switch ($operation)
         $view->areas = Area::getAreas();
         $view->contratos = Contrato::getContratos();
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
-        $view->empleados = Empleado::getEmpleadosActivos();
+        $view->empleados = Empleado::getEmpleadosActivos(null);
 
 
         $view->contentTemplate="view/objetivos/objetivosGrid.php";

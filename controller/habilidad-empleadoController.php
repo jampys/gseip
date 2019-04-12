@@ -26,7 +26,7 @@ switch ($operation)
     case 'new': //ok
         $view->label='Agregar habilidades';
         $view->disableLayout=true;
-        $view->empleados = Empleado::getEmpleadosActivos();
+        $view->empleados = Empleado::getEmpleadosActivos(null);
         $view->habilidades = Habilidad::getHabilidades();
         $view->contentTemplate="view/habilidad-empleadoForm.php";
         break;
@@ -84,7 +84,7 @@ switch ($operation)
 
     default :
         if ( PrivilegedUser::dhasPrivilege('HEM_VER', array(1)) ) {
-            $view->empleados = Empleado::getEmpleadosActivos();
+            $view->empleados = Empleado::getEmpleadosActivos(null);
             $view->habilidades = Habilidad::getHabilidades();
             $view->contentTemplate="view/habilidad-empleadoGrid.php";
         }else{

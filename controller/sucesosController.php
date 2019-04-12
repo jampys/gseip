@@ -42,7 +42,7 @@ switch ($operation)
         $view->label='Nuevo Suceso';
         $view->suceso = new Suceso($_POST['id_suceso']);
 
-        $view->empleados = Empleado::getEmpleadosActivosByContrato(null);
+        $view->empleados = Empleado::getEmpleadosActivos(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
@@ -54,7 +54,7 @@ switch ($operation)
         $view->label='Editar Suceso';
         $view->suceso = new Suceso($_POST['id_suceso']);
 
-        $view->empleados = Empleado::getEmpleadosActivosByContrato(null);
+        $view->empleados = Empleado::getEmpleadosActivos(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
@@ -143,7 +143,7 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->empleados = Empleado::getEmpleadosActivos(); //carga el combo para filtrar empleados
+        $view->empleados = Empleado::getEmpleadosActivos(null); //carga el combo para filtrar empleados
         $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion
         $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/sucesosGrid.php";
