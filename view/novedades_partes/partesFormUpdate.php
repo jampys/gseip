@@ -33,7 +33,8 @@
             params.id_parte_empleado = id;
             params.action = "parte-empleado";
             params.operation = "editEmpleado";
-            //alert(params.id_renovacion);
+            params.id_contrato = $('#myModal #id_contrato').val();
+            //alert(params.id_contrato);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
@@ -83,6 +84,7 @@
             params.id_parte_empleado = id;
             params.action = "parte-empleado";
             params.operation = "editEmpleado";
+            params.id_contrato = $('#myModal #id_contrato').val();
             params.target = "view";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
@@ -141,6 +143,7 @@
             params.operation = "newEmpleado";
             //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
             params.id_parte = $('#id_parte').val();
+            params.id_contrato = $('#myModal #id_contrato').val();
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
