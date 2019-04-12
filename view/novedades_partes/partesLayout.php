@@ -104,10 +104,10 @@
                 params.operation = "editParte";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
-                    $("fieldset").prop("disabled", true);
-                    //$('.selectpicker').selectpicker('refresh');
+                    //$("fieldset").prop("disabled", true);
+                    $("#parte-form input, #parte-form .selectpicker").prop("disabled", true);
+                    $('.selectpicker').selectpicker('refresh');
                     $('.modal-footer').css('display', 'none');
-                    $('#myModalLabel').html('');
                     $('#myModal').modal();
                 })
 
