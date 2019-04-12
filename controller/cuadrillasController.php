@@ -92,7 +92,7 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/postulaciones/postulacionesGrid.php";
         break;
 }

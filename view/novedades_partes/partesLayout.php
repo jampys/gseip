@@ -113,7 +113,7 @@
 
             });
 
-            //para agregar partes de cuadrilla de un contrato
+            //para agregar partes de un contrato
             $(document).on('click', '#new', function(){ //ok
 
                 if ($("#add-form").valid()){

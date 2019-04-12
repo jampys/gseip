@@ -117,11 +117,11 @@ switch ($operation)
         exit;
         break;
 
-    case 'newParte': //ok
+    case 'newParte': //ok //Abre ventana modal para insertar un parte nuevo.
         $view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
         $view->parte = new Parte();
 
-        $view->empleados = Empleado::getEmpleados();
+        $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
         $view->areas = NovArea::getAreas();
         $view->vehiculos = Vehiculo::getVehiculos();
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
