@@ -121,6 +121,22 @@ class Contrato
         return $stmt->dpFetchAll();
     }
 
+    public static function getContratosControl() { //ok
+        //solo los contratos activos y sobre los que tiene control el usuario
+        $stmt=new sQuery();
+        $query = "select co.id_contrato, co.nro_contrato, co.nombre,
+                  DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                  CONCAT(re.apellido, ' ', re.nombre) as responsable,
+                  cia.nombre as compania, co.id_domain
+                  from v_sec_contratos_control co, empleados re, companias cia
+                  where co.id_responsable = re.id_empleado
+                  and co.id_compania = cia.id_compania";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
 
     function save(){ //ok
         if($this->id_contrato)
