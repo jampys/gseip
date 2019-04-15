@@ -144,7 +144,7 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">SUCESOS DE PERSONAL</li>
 
-                            <li class="<?php echo (true)? '': 'disabled' ?>"><a href="index.php?action=sucesos"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Sucesos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('SUC_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=sucesos"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Sucesos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">ACTIVIDAD CUADRILLA</li>
