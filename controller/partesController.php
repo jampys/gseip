@@ -136,7 +136,7 @@ switch ($operation)
         $view->label='Parte: '.$view->parte->getFechaParte().' '.$view->parte->getCuadrilla(); //falta el nombre del contrato
 
         $view->empleados = Empleado::getEmpleados();
-        $view->areas = NovArea::getAreas();
+        $view->areas = NovArea::getAreas($view->parte->getIdContrato());
         $view->vehiculos = Vehiculo::getVehiculos();
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
