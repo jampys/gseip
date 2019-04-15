@@ -146,6 +146,7 @@ switch ($operation)
         $view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto($_POST['id_parte']);
 
         $view->disableLayout=true;
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/novedades_partes/partesFormUpdate.php";
         break;
 

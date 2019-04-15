@@ -86,6 +86,7 @@
                 params.id_parte = id;
                 params.action = "partes";
                 params.operation = "editParte";
+                params.target = "edit";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
