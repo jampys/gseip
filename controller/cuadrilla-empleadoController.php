@@ -1,4 +1,5 @@
 ﻿<?php
+include_once("model/cuadrillasModel.php");
 include_once("model/cuadrilla-empleadoModel.php");
 
 include_once("model/puestosModel.php");
@@ -76,7 +77,9 @@ switch ($operation)
 
 
     default : //carga la tabla de empleados de la cuadrilla //ok
-        $view->label='Empleados de la cuadrilla';
+        //$view->label='Empleados de la cuadrilla';
+        $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
+        $view->label='Empleados de cuadrilla: '.$view->cuadrilla->getNombre();
         $view->empleados = CuadrillaEmpleado::getCuadrillaEmpleado($_POST['id_cuadrilla'], null);
         $view->disableLayout=true;
         $view->contentTemplate="view/cuadrillas/empleadosForm.php";

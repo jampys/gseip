@@ -57,7 +57,7 @@
                     $("fieldset").prop("disabled", true);
                     //$('.selectpicker').selectpicker('refresh');
                     $('.modal-footer').css('display', 'none');
-                    $('#myModalLabel').html('');
+                    //$('#myModalLabel').html('');
                     $('#myModal').modal();
                 })
 
@@ -211,7 +211,7 @@
 
                     <div class="form-group col-md-1">
                         <label for="search">&nbsp;</label>
-                        <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nueva cuadrilla" id="new" <?php echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?>>
+                        <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nueva cuadrilla" id="new" <?php echo ( PrivilegedUser::dhasAction('CUA_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </div>

@@ -113,21 +113,21 @@
 
                         <!-- si tiene permiso para ver -->
                         <td class="text-center">
-                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('ETP_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('CUA_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
                             </a>
                         </td>
 
                         <!-- si tiene permiso para editar -->
                         <td class="text-center">
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('CUA_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
                             </a>
                         </td>
 
                         <!-- si tiene permiso para eliminar -->
                         <td class="text-center">
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('CUA_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
                         </td>

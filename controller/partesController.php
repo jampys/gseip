@@ -122,7 +122,7 @@ switch ($operation)
         $view->parte = new Parte();
 
         $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
-        $view->areas = NovArea::getAreas();
+        $view->areas = NovArea::getAreas($_POST['add_contrato']);
         $view->vehiculos = Vehiculo::getVehiculos();
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         $view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
@@ -133,10 +133,10 @@ switch ($operation)
 
     case 'editParte': //ok
         $view->parte = new Parte($_POST['id_parte']);
-        $view->label='Editar parte: '.$view->parte->getFechaParte().' '.$view->parte->getCuadrilla(); //falta el nombre del contrato
+        $view->label='Parte: '.$view->parte->getFechaParte().' '.$view->parte->getCuadrilla(); //falta el nombre del contrato
 
         $view->empleados = Empleado::getEmpleados();
-        $view->areas = NovArea::getAreas();
+        $view->areas = NovArea::getAreas($view->parte->getIdContrato());
         $view->vehiculos = Vehiculo::getVehiculos();
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
@@ -146,6 +146,7 @@ switch ($operation)
         $view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto($_POST['id_parte']);
 
         $view->disableLayout=true;
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/novedades_partes/partesFormUpdate.php";
         break;
 

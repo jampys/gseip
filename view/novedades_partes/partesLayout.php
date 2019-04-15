@@ -86,6 +86,7 @@
                 params.id_parte = id;
                 params.action = "partes";
                 params.operation = "editParte";
+                params.target = "edit";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
@@ -104,10 +105,10 @@
                 params.operation = "editParte";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
-                    $("fieldset").prop("disabled", true);
-                    //$('.selectpicker').selectpicker('refresh');
+                    //$("fieldset").prop("disabled", true);
+                    $("#parte-form input, #parte-form .selectpicker").prop("disabled", true);
+                    $('.selectpicker').selectpicker('refresh');
                     $('.modal-footer').css('display', 'none');
-                    $('#myModalLabel').html('');
                     $('#myModal').modal();
                 })
 
@@ -281,7 +282,7 @@
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nuevo parte" id="new" <?php //echo ( PrivilegedUser::dhasAction('BUS_INSERT', array(1)) )? '' : 'disabled' ?>>
+                            <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </div>

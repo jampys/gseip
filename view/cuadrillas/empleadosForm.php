@@ -209,7 +209,7 @@
                         <div class="col-md-6" id="empleados_left_side">
 
                             <div class="clearfix">
-                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar empleado">
+                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar empleado" <?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?>    >
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
                             </div>

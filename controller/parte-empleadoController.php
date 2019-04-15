@@ -42,7 +42,7 @@ switch ($operation)
         $view->label='Nuevo empleado';
         $view->empleado = new ParteEmpleado();
 
-        $view->empleados = Empleado::getEmpleados();
+        $view->empleados = Empleado::getEmpleadosActivos($_POST['id_contrato']);
         $view->conductor = Soporte::get_enum_values('nov_parte_empleado', 'conductor');
 
         $view->disableLayout=true;
@@ -53,7 +53,7 @@ switch ($operation)
         $view->label = ($_POST['target']!='view')? 'Editar empleado': 'Ver empleado';
         $view->empleado = new ParteEmpleado($_POST['id_parte_empleado']);
 
-        $view->empleados = Empleado::getEmpleados();
+        $view->empleados = Empleado::getEmpleadosActivos($_POST['id_contrato']);
         $view->conductor = Soporte::get_enum_values('nov_parte_empleado', 'conductor');
 
         $view->disableLayout=true;

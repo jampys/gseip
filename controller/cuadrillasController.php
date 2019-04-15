@@ -56,8 +56,8 @@ switch ($operation)
         break;
 
     case 'editCuadrilla': //ok
-        $view->label='Editar cuadrilla';
         $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
+        $view->label='Cuadrilla: '.$view->cuadrilla->getNombre();
 
         $view->contratos = Contrato::getContratos();
         $view->vehiculos = Vehiculo::getVehiculos();
