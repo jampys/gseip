@@ -416,7 +416,7 @@ select null, id_grupo, concat(nombre, ' ', ifnull(numero, '')) as descripcion, i
 from vto_grupos_p";*/
         $query = "select * FROM
 (select id_empleado, null as id_grupo, concat(apellido, ' ', nombre) as descripcion, null as id_vencimiento
-from empleados
+from v_sec_empleados_control
 where fecha_baja is null
 UNION
 select null, id_grupo, concat(nombre, ' ', ifnull(nro_referencia, '')) as descripcion, id_vencimiento
