@@ -57,6 +57,7 @@
                             action: "vto_grupo-vehiculo",
                             operation: "checkVehiculo",
                             id_vehiculo: function(){ return $('#id_vehiculo').val();},
+                            id_vencimiento: function(){ return $('#myModal #id_vencimiento').val();},
                             id_grupo_vehiculo: function(){ return $('#id_grupo_vehiculo').val();}
                           }
                  }

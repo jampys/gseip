@@ -195,6 +195,8 @@
             </div>
 
             <div class="modal-body">
+
+                <input type="hidden" name="id_vencimiento" id="id_vencimiento" value="<?php print $view->grupo->getIdVencimiento() ?>">
                 
                 <div class="row">
 
