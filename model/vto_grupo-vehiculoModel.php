@@ -144,18 +144,20 @@ class GrupoVehiculo
     }
 
 
-    public function checkVehiculo($id_vehiculo, $id_grupo_vehiculo) { //ok
+    public function checkVehiculo($id_vehiculo, $id_vencimiento, $id_grupo_vehiculo) { //ok
         //verifica que el vehiculo no se encuentre activo en ninguno de los grupos
         $stmt=new sQuery();
         $query = "select 1
 from vto_grupo_vehiculo gv
 left join vto_grupos_v g on g.id_grupo = gv.id_grupo
 where gv.id_vehiculo = :id_vehiculo
+and g.id_vencimiento = :id_vencimiento
 and gv.fecha_hasta is null
 and g.fecha_baja is null
 and gv.id_grupo_vehiculo <> :id_grupo_vehiculo";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vehiculo', $id_vehiculo);
+        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpBind(':id_grupo_vehiculo', $id_grupo_vehiculo);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;

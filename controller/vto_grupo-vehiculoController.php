@@ -70,7 +70,7 @@ switch ($operation)
 
     case 'checkVehiculo':
         $view->grupo_vehiculo = new GrupoVehiculo();
-        $rta = $view->grupo_vehiculo->checkVehiculo($_POST['id_vehiculo'], $_POST['id_grupo_vehiculo']);
+        $rta = $view->grupo_vehiculo->checkVehiculo($_POST['id_vehiculo'], $_POST['id_vencimiento'], $_POST['id_grupo_vehiculo']);
         print_r(json_encode($rta));
         exit;
         break;
