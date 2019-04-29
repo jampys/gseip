@@ -193,7 +193,8 @@ switch ($operation)
                 //str_pad($d, 10). //dias
                 //str_pad($d, 10). //prorrateo dias
                 str_pad($su['codigo'], 10). //codigo
-                str_pad($su['cantidad'], 10). //cantidad
+                //str_pad($su['cantidad'], 10). //cantidad
+                str_pad(str_replace('.', ',', $su['cantidad']), 10). //cantidad. Reemplazo el . decimal por ,
                 str_pad($su['variable'], 10). //variable
                 //str_pad("MEN", 10). //tipo liquidacion
                 "\r\n";
