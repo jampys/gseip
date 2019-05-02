@@ -27,7 +27,8 @@ func_eval_eac_count(em.id_empleado,pe.periodo) as hasAllEac,
 func_eval_eaag_count(em.id_empleado,pe.periodo) as hasAllEaag,
 func_eval_eao_count (em.id_empleado, pe.periodo) as hasAllEao,
 exists(select 1 from ead_evaluacion_conclusion where id_empleado = em.id_empleado and periodo = pe.periodo) as hasEaconcl,
-func_es_inmediato_superior(em.id_empleado, ec.id_contrato) as isInSup
+func_es_inmediato_superior(em.id_empleado, ec.id_contrato) as isInSup,
+func_es_superior(em.id_empleado) as isSup
 from v_sec_empleados_control em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join contratos co on ec.id_contrato = co.id_contrato
