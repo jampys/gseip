@@ -44,6 +44,7 @@ switch ($operation)
         $objetivo->setFrecuencia($_POST['frecuencia']);
         $objetivo->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
         $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
+        $objetivo->setIdPlanEvaluacion($_POST['id_plan_evaluacion']);
 
         $rta = $objetivo->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
