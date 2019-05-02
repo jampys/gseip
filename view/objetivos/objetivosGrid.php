@@ -103,9 +103,13 @@
 
                         <td class="text-center">
                             <!-- si tiene permiso para eliminar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('OBJ_UPDATE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+                            <a class="<?php echo (  !$rp['cerrado'] &&
+                                                    PrivilegedUser::dhasAction('OBJ_DELETE', array(1))
+                                                 )? 'delete' : 'disabled' ?>" href="javascript:void(0);" title="borrar" >
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
+
+
                         </td>
 
                     </tr>

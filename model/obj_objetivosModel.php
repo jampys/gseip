@@ -138,9 +138,15 @@ class Objetivo
 
     public static function getObjetivos($periodo, $id_puesto, $id_area, $id_contrato, $indicador, $id_responsable_ejecucion, $id_responsable_seguimiento) { //ok
         $stmt=new sQuery();
-        /*$query = "select *
+        /*$query = "select vso.*, func_obj_progress(vso.id_objetivo) as progreso
                   from v_sec_objetivos vso
-                  where vso.periodo = ifnull(:periodo, vso.periodo)";*/
+                  where vso.periodo = ifnull(:periodo, vso.periodo)
+                  and if (:id_puesto is null, 1, vso.id_puesto = :id_puesto)
+                  and if (:id_area is null, 1, vso.id_area = :id_area)
+                  and if (:id_contrato is null, 1, vso.id_contrato = :id_contrato)
+                  and vso.indicador = ifnull(:indicador, vso.indicador)
+                  and vso.id_responsable_ejecucion = ifnull(:id_responsable_ejecucion, vso.id_responsable_ejecucion)
+                  and vso.id_responsable_seguimiento = ifnull(:id_responsable_seguimiento, vso.id_responsable_seguimiento)";*/
         $query = "select vso.*, func_obj_progress(vso.id_objetivo) as progreso
                   from v_sec_objetivos vso
                   where vso.periodo = ifnull(:periodo, vso.periodo)
