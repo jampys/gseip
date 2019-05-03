@@ -91,7 +91,7 @@
 
                         <td class="text-center">
                             <!-- si tiene permiso para ver objetivo -->
-                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
                             </a>
                         </td>
