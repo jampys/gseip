@@ -98,7 +98,9 @@
 
                         <td class="text-center">
                             <!-- si tiene permiso para editar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('OBJ_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                            <a class="<?php echo (  !$rp['cerrado'] &&
+                                                    PrivilegedUser::dhasAction('OBJ_UPDATE', array(1))
+                                                 )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
                             </a>
                         </td>
