@@ -76,6 +76,7 @@ switch ($operation)
         else if ($_POST['target'] == 'clone') {
             $view->label = '<h4><span class="label label-warning">CLONAR</span> '.$view->objetivo->getCodigo().'</h4>';
             $view->objetivo->setIdObjetivo(null); //pone el id_objetivo en null para al guardar insertar uno nuevo
+            $view->objetivo->setPeriodo(null);
         }
 
 

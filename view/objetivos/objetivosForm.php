@@ -154,7 +154,7 @@
                         <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione el periodo" data-live-search="true" data-size="5">
                             <?php foreach ($view->periodos as $pe){
                                 ?>
-                                <option value="<?php echo $pe['id_plan_evaluacion']; ?>" periodo="<?php echo $pe['periodo']; ?>"
+                                <option value="<?php echo $pe['id_plan_evaluacion']; ?>" periodo="<?php echo $pe['periodo']; ?>" <?php echo ($pe['cerrado'])? 'disabled':''; ?>
                                     <?php //echo (  ($view->objetivo->getPeriodo() == $pe['periodo']) ||  (!$view->objetivo->getPeriodo() && $pe['periodo'] == $view->periodo_actual)    )? 'selected' :'' ?>
                                     <?php echo (  ($view->objetivo->getPeriodo() == $pe['periodo'])    )? 'selected' :'' ?>
                                     >
