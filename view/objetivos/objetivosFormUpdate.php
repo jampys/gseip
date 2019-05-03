@@ -519,6 +519,8 @@
 
             <div class="modal-body">
 
+                <input type="hidden" name="cerrado" id="cerrado" value="<?php print $view->params['cerrado'] ?>">
+
 
                 <div class="row">
 
