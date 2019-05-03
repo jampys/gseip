@@ -519,8 +519,6 @@
 
             <div class="modal-body">
 
-                <input type="hidden" name="cerrado" id="cerrado" value="<?php print $view->params['cerrado'] ?>">
-
 
                 <div class="row">
 
@@ -580,7 +578,7 @@
                                 <input type="hidden" name="id_objetivo" id="id_objetivo" value="<?php print $view->objetivo->getIdObjetivo() ?>">
 
 
-                                <!-- seccion de tareas -->
+                                <!-- seccion de actividades -->
                                 <div class="row">
                                     <div class="col-md-4">
                                         <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-tareas" title="Mostrar actividades">Actividades</button>
@@ -591,7 +589,7 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-tarea" name="add-tarea" title="Agregar tarea">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-tarea" name="add-tarea" title="Agregar actividad" <?php echo (!$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? '' : 'disabled' ?> >
                                             <i class="fas fa-plus"></i>&nbsp
                                         </button>
                                     </div>
@@ -618,7 +616,7 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-avance" name="add-avance" title="Agregar avance">
+                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-avance" name="add-avance" title="Agregar avance" <?php echo (!$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? '' : 'disabled' ?>  >
                                             <i class="fas fa-plus"></i>&nbsp
                                         </button>
                                     </div>
