@@ -104,6 +104,7 @@ switch ($operation)
     case 'detalle': //detalle del objetivo //ok
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
         $view->label='Detalle objetivo: '.$view->objetivo->getCodigo();
+        $view->params = array('cerrado'=> $_POST['cerrado']);
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
         $view->avances = Avance::getAvances($_POST['id_objetivo'], null);

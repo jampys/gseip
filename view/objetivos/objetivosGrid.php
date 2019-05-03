@@ -59,7 +59,9 @@
 
             <?php if(isset($view->objetivos)) {
                 foreach ($view->objetivos as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_objetivo']; ?>">
+                    <tr data-id="<?php echo $rp['id_objetivo']; ?>"
+                        cerrado="<?php echo $rp['cerrado']; ?>"
+                        >
                         <td><?php echo $rp['codigo']; ?></td>
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['puesto']; ?></td>

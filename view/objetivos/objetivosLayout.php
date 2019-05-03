@@ -98,6 +98,7 @@
                 params.id_objetivo = id;
                 params.action = "obj_objetivos";
                 params.operation = "detalle";
+                params.cerrado = $(this).closest('tr').attr('cerrado');
                 //params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     //$("fieldset").prop("disabled", true);
