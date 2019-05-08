@@ -40,7 +40,7 @@
 
             //abre ventana modal para exportar sucesos
             $(document).on('click', '#export', function(){
-                alert('toco en export');
+                //alert('toco en export');
                 //preparo los parametros
                 params={};
                 params.action = "sucesos";
