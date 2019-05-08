@@ -109,7 +109,7 @@ group by em.id_empleado";
 
     public static function getPeriodos() { //ok
         $stmt=new sQuery();
-        $query = "select periodo, cerrado
+        $query = "select id_plan_evaluacion, periodo, cerrado
                   from ead_planes_evaluacion";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();

@@ -17,6 +17,7 @@ class Objetivo
     private $id_responsable_seguimiento;
     private $codigo;
     private $progreso;
+    private $id_plan_evaluacion;
 
     // GETTERS
     function getIdObjetivo()
@@ -60,6 +61,9 @@ class Objetivo
 
     function getProgreso()
     { return $this->progreso;}
+
+    function getIdPlanEvaluacion()
+    { return $this->id_plan_evaluacion;}
 
 
     //SETTERS
@@ -105,6 +109,9 @@ class Objetivo
     function setProgreso($val)
     { $this->progreso=$val;}
 
+    function setIdPlanEvaluacion($val)
+    { $this->id_plan_evaluacion=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -132,17 +139,26 @@ class Objetivo
             $this->setIdResponsableSeguimiento($rows[0]['id_responsable_seguimiento']);
             $this->setCodigo($rows[0]['codigo']);
             $this->setProgreso($rows[0]['progreso']);
+            $this->setIdPlanEvaluacion($rows[0]['id_plan_evaluacion']);
         }
     }
 
 
     public static function getObjetivos($periodo, $id_puesto, $id_area, $id_contrato, $indicador, $id_responsable_ejecucion, $id_responsable_seguimiento) { //ok
         $stmt=new sQuery();
-        /*$query = "select *
+        /*$query = "select vso.*, func_obj_progress(vso.id_objetivo) as progreso
                   from v_sec_objetivos vso
-                  where vso.periodo = ifnull(:periodo, vso.periodo)";*/
-        $query = "select vso.*, func_obj_progress(vso.id_objetivo) as progreso
+                  where vso.periodo = ifnull(:periodo, vso.periodo)
+                  and if (:id_puesto is null, 1, vso.id_puesto = :id_puesto)
+                  and if (:id_area is null, 1, vso.id_area = :id_area)
+                  and if (:id_contrato is null, 1, vso.id_contrato = :id_contrato)
+                  and vso.indicador = ifnull(:indicador, vso.indicador)
+                  and vso.id_responsable_ejecucion = ifnull(:id_responsable_ejecucion, vso.id_responsable_ejecucion)
+                  and vso.id_responsable_seguimiento = ifnull(:id_responsable_seguimiento, vso.id_responsable_seguimiento)";*/
+        $query = "select vso.*, func_obj_progress(vso.id_objetivo) as progreso,
+                  pe.cerrado
                   from v_sec_objetivos vso
+                  join ead_planes_evaluacion pe on pe.id_plan_evaluacion = vso.id_plan_evaluacion
                   where vso.periodo = ifnull(:periodo, vso.periodo)
                   and if (:id_puesto is null, 1, vso.id_puesto = :id_puesto)
                   and if (:id_area is null, 1, vso.id_area = :id_area)
@@ -187,7 +203,8 @@ class Objetivo
                 indicador= :indicador,
                 frecuencia= :frecuencia,
                 id_responsable_ejecucion= :id_responsable_ejecucion,
-                id_responsable_seguimiento= :id_responsable_seguimiento
+                id_responsable_seguimiento= :id_responsable_seguimiento,
+                id_plan_evaluacion = :id_plan_evaluacion
                 where id_objetivo = :id_objetivo";
 
         $stmt->dpPrepare($query);
@@ -202,6 +219,7 @@ class Objetivo
         $stmt->dpBind(':frecuencia', $this->getFrecuencia());
         $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
         $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
+        $stmt->dpBind(':id_plan_evaluacion', $this->getIdPlanEvaluacion());
         $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -210,8 +228,8 @@ class Objetivo
     private function insertObjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into obj_objetivos(periodo, nombre, id_area, id_contrato, id_puesto, meta, meta_valor, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento, fecha)
-                values(:periodo, :nombre, :id_area, :id_contrato, :id_puesto, :meta, :meta_valor, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento, SYSDATE())";
+        $query="insert into obj_objetivos(periodo, nombre, id_area, id_contrato, id_puesto, meta, meta_valor, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento, id_plan_evaluacion, fecha)
+                values(:periodo, :nombre, :id_area, :id_contrato, :id_puesto, :meta, :meta_valor, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento, :id_plan_evaluacion, SYSDATE())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':nombre', $this->getNombre());
@@ -224,6 +242,7 @@ class Objetivo
         $stmt->dpBind(':frecuencia', $this->getFrecuencia());
         $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
         $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
+        $stmt->dpBind(':id_plan_evaluacion', $this->getIdPlanEvaluacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

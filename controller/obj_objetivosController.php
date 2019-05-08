@@ -44,6 +44,7 @@ switch ($operation)
         $objetivo->setFrecuencia($_POST['frecuencia']);
         $objetivo->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
         $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
+        $objetivo->setIdPlanEvaluacion($_POST['id_plan_evaluacion']);
 
         $rta = $objetivo->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
@@ -75,6 +76,9 @@ switch ($operation)
         else if ($_POST['target'] == 'clone') {
             $view->label = '<h4><span class="label label-warning">CLONAR</span> '.$view->objetivo->getCodigo().'</h4>';
             $view->objetivo->setIdObjetivo(null); //pone el id_objetivo en null para al guardar insertar uno nuevo
+            if($_POST['cerrado']) $view->objetivo->setPeriodo(null);
+
+
         }
 
 
@@ -103,6 +107,7 @@ switch ($operation)
     case 'detalle': //detalle del objetivo //ok
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
         $view->label='Detalle objetivo: '.$view->objetivo->getCodigo();
+        $view->params = array('cerrado'=> $_POST['cerrado']);
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
         $view->avances = Avance::getAvances($_POST['id_objetivo'], null);

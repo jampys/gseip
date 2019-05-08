@@ -36,7 +36,8 @@
                 params.action = 'obj_objetivos';
                 params.operation = 'saveObjetivo';
                 params.id_objetivo=$('#id_objetivo').val();
-                params.periodo=$('#myModal #periodo').val();
+                params.periodo = $('#myModal #periodo option:selected').attr('periodo');
+                params.id_plan_evaluacion =$('#myModal #periodo').val();
                 params.nombre=$('#nombre').val();
                 params.id_puesto=$('#id_puesto').val();
                 params.id_area=$('#id_area').val();
@@ -84,6 +85,7 @@
 
         $('#objetivo-form').validate({ //ok
             rules: {
+                periodo: {required: true},
                 nombre: {required: true},
                 id_puesto: {
                     XOR_with: [
@@ -109,6 +111,7 @@
                 id_responsable_seguimiento: {required: true}
             },
             messages:{
+                periodo: "Seleccione un período",
                 nombre: "Ingrese el nombre",
                 meta: "Ingrese la meta",
                 meta_valor: {
@@ -151,8 +154,9 @@
                         <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione el periodo" data-live-search="true" data-size="5">
                             <?php foreach ($view->periodos as $pe){
                                 ?>
-                                <option value="<?php echo $pe['periodo']; ?>"
-                                    <?php echo (  ($view->objetivo->getPeriodo() == $pe['periodo']) ||  (!$view->objetivo->getPeriodo() && $pe['periodo'] == $view->periodo_actual)    )? 'selected' :'' ?>
+                                <option value="<?php echo $pe['id_plan_evaluacion']; ?>" periodo="<?php echo $pe['periodo']; ?>" <?php echo ($pe['cerrado'])? 'disabled':''; ?>
+                                    <?php //echo (  ($view->objetivo->getPeriodo() == $pe['periodo']) ||  (!$view->objetivo->getPeriodo() && $pe['periodo'] == $view->periodo_actual)    )? 'selected' :'' ?>
+                                    <?php echo (  ($view->objetivo->getPeriodo() == $pe['periodo'])    )? 'selected' :'' ?>
                                     >
                                     <?php echo $pe['periodo']; ?>
                                 </option>

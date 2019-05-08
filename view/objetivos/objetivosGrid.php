@@ -59,7 +59,9 @@
 
             <?php if(isset($view->objetivos)) {
                 foreach ($view->objetivos as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_objetivo']; ?>">
+                    <tr data-id="<?php echo $rp['id_objetivo']; ?>"
+                        cerrado="<?php echo $rp['cerrado']; ?>"
+                        >
                         <td><?php echo $rp['codigo']; ?></td>
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['puesto']; ?></td>
@@ -89,23 +91,29 @@
 
                         <td class="text-center">
                             <!-- si tiene permiso para ver objetivo -->
-                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
                             </a>
                         </td>
 
                         <td class="text-center">
                             <!-- si tiene permiso para editar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('OBJ_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                            <a class="<?php echo (  !$rp['cerrado'] &&
+                                                    PrivilegedUser::dhasAction('OBJ_UPDATE', array(1))
+                                                 )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
                             </a>
                         </td>
 
                         <td class="text-center">
                             <!-- si tiene permiso para eliminar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('OBJ_UPDATE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+                            <a class="<?php echo (  !$rp['cerrado'] &&
+                                                    PrivilegedUser::dhasAction('OBJ_DELETE', array(1))
+                                                 )? 'delete' : 'disabled' ?>" href="javascript:void(0);" title="borrar" >
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
+
+
                         </td>
 
                     </tr>
