@@ -43,8 +43,8 @@
                 alert('toco en export');
                 //preparo los parametros
                 params={};
-                params.action = "partes";
-                params.operation = "loadExportTxt";
+                params.action = "sucesos";
+                params.operation = "loadExport";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
 

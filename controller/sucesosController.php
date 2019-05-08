@@ -86,6 +86,14 @@ switch ($operation)
         exit;
         break;
 
+    case 'loadExport': //ok  //abre ventana modal para exportar
+        $view->disableLayout=true;
+        $view->label = 'Exportar sucesos';
+        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+
+        $view->contentTemplate="view/sucesos/exportForm.php";
+        break;
+
 
     case 'txt': //ok
         $id_empleado = ($_GET['id_empleado']!='')? $_GET['id_empleado'] : null;
