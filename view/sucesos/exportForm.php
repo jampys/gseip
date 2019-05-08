@@ -132,16 +132,16 @@
             if ($("#txt-form").valid()){
 
                 params={};
-                params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
-                params.search_fecha_desde = $("#search_fecha_desde").val();
-                params.search_fecha_hasta = $("#search_fecha_hasta").val();
-                params.search_contrato = $("#search_contrato").val();
+                params.eventos = '12,21'; //($("#search_evento").val()!= null)? $("#search_evento").val() : '';
+                params.fecha_desde = $("#myModal #fecha_desde").val();
+                params.fecha_hasta = $("#myModal #fecha_hasta").val();
+                params.id_contrato = $("#myModal #id_contrato").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_crossTab_sucesos.rptdesign&p_id_empleado="+params.id_empleado+
-                    "&p_fecha_desde="+params.search_fecha_desde+
-                    "&p_fecha_hasta="+params.search_fecha_hasta+
-                    "&p_id_contrato="+params.search_contrato+
+                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_crossTab_sucesos.rptdesign"+
+                    "&p_fecha_desde="+params.fecha_desde+
+                    "&p_fecha_hasta="+params.fecha_hasta+
+                    "&p_id_contrato="+params.id_contrato+
                     "&p_id_evento="+params.eventos+
                     "&p_id_user="+params.id_user;
                 var win = window.open(URL, "_blank");
@@ -177,16 +177,27 @@
 
         //$('.table-responsive').on("click", ".txt", function(){
         $('#myModal').on("click", "#submit", function(){
-            //alert('presiono en exportar txt');
+            alert('presiono en exportar txt');
 
-            params={};
-            params.id_empleado = $("#search_empleado").val();
-            params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
-            params.search_fecha_desde = $("#search_fecha_desde").val();
-            params.search_fecha_hasta = $("#search_fecha_hasta").val();
-            params.search_contrato = $("#search_contrato").val();
-            //location.href="index.php?action=sucesos&operation=txt";
-            location.href="index.php?action=sucesos&operation=txt&id_empleado="+params.id_empleado+"&eventos="+params.eventos+"&search_fecha_desde="+params.search_fecha_desde+"&search_fecha_hasta="+params.search_fecha_hasta+"&search_contrato="+params.search_contrato;
+            if ($("#txt-form").valid()){
+
+                params={};
+                params.id_empleado = $("#search_empleado").val();
+                params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
+                params.fecha_desde = $("#myModal #fecha_desde").val();
+                params.fecha_hasta = $("#myModal #fecha_hasta").val();
+                params.id_contrato = $("#myModal #id_contrato").val();
+                //location.href="index.php?action=sucesos&operation=txt";
+                location.href="index.php?action=sucesos"+
+                                        "&operation=txt" +
+                                        "&id_empleado="+params.id_empleado+
+                                        "&eventos="+params.eventos+
+                                        "&p_fecha_desde="+params.fecha_desde+
+                                        "&p_fecha_hasta="+params.fecha_hasta+
+                                        "&p_id_contrato="+params.id_contrato;
+
+            }
+
             return false;
 
         });
