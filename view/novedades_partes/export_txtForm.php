@@ -4,7 +4,11 @@
     $(document).ready(function(){
 
         $('.selectpicker').selectpicker({
+            //propiedades del selectpicker
 
+        }).change(function(){
+            $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
+                             // elimine el mensaje de requerido de jquery validation
         });
 
 

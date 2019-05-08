@@ -4,7 +4,11 @@
     $(document).ready(function(){
 
         $('.selectpicker').selectpicker({
+            //propiedades del selectpicker
 
+        }).change(function(){
+            $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
+                             // elimine el mensaje de requerido de jquery validation
         });
 
 
@@ -18,12 +22,14 @@
             rules: {
                 id_contrato: {required: true},
                 fecha_desde: {required: true},
-                fecha_hasta: {required: true}
+                fecha_hasta: {required: true},
+                id_evento: {required: true}
             },
             messages:{
                 id_contrato: "Seleccione un contrato",
                 fecha_desde: "Seleccione la fecha desde",
-                fecha_hasta: "Seleccione la fecha hasta"
+                fecha_hasta: "Seleccione la fecha hasta",
+                id_evento: "Seleccione un evento"
 
             }
         });
@@ -127,12 +133,12 @@
 
         //$('.table-responsive').on("click", ".pdf", function(){
         $('#myModal').on("click", "#submit1", function(){
-            alert('Crosstab sucesos');
+            //alert('Crosstab sucesos');
 
             if ($("#txt-form").valid()){
 
                 params={};
-                params.eventos = '12,21'; //($("#search_evento").val()!= null)? $("#search_evento").val() : '';
+                params.eventos = $("#id_evento").val(); //($("#search_evento").val()!= null)? $("#search_evento").val() : '';
                 params.fecha_desde = $("#myModal #fecha_desde").val();
                 params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
@@ -177,7 +183,7 @@
 
         //$('.table-responsive').on("click", ".txt", function(){
         $('#myModal').on("click", "#submit", function(){
-            alert('presiono en exportar txt');
+            //alert('presiono en exportar txt');
 
             if ($("#txt-form").valid()){
 
@@ -254,6 +260,21 @@
                                 ?>
                                 <option value="<?php echo $con['id_contrato']; ?>" >
                                     <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group required">
+                        <label for="id_evento" class="control-label">Eventos</label>
+                        <select multiple class="form-control selectpicker show-tick" id="id_evento" name="id_evento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
+                            <!--<option value="">Seleccione un vencimiento</option>-->
+                            <?php foreach ($view->eventos as $ev){
+                                ?>
+                                <option value="<?php echo $ev['id_evento']; ?>" >
+                                    <?php echo $ev['nombre'] ;?>
                                 </option>
                             <?php  } ?>
                         </select>

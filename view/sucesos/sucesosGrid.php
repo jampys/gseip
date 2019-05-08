@@ -96,14 +96,14 @@
         </table>
 
 
-        <br/>
+        <!--<br/>
         <div class="pull-right pdf">
             <a href="index.php?action=" title="pdf"><i class="far fa-file-pdf fa-fw fa-2x"></i></a>
         </div>
 
         <div class="pull-right txt">
             <a href="#" title="descargar txt"><i class="far fa-file-alt fa-fw fa-2x"></i></a>
-        </div>
+        </div>-->
 
     </div>
 
