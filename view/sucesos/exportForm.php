@@ -138,7 +138,8 @@
             if ($("#txt-form").valid()){
 
                 params={};
-                params.eventos = $("#id_evento").val(); //($("#search_evento").val()!= null)? $("#search_evento").val() : '';
+                //params.eventos = $("#id_evento").val();
+                params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
                 params.fecha_desde = $("#myModal #fecha_desde").val();
                 params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
@@ -189,7 +190,8 @@
 
                 params={};
                 params.id_empleado = $("#search_empleado").val();
-                params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
+                //params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
+                params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
                 params.fecha_desde = $("#myModal #fecha_desde").val();
                 params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
