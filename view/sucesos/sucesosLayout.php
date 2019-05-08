@@ -248,10 +248,6 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-3">
-
-                        </div>
-
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
@@ -269,6 +265,10 @@
                         <div class="form-group col-md-2">
                             <label for="export" class="control-label">&nbsp;</label>
                             <a id="export" class="form-control btn btn-primary btn-sm" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-2x"></i></a>
+                        </div>
+
+                        <div class="form-group col-md-3">
+
                         </div>
 
                     </div>
