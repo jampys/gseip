@@ -38,6 +38,23 @@
             });
 
 
+            //abre ventana modal para exportar sucesos
+            $(document).on('click', '#export', function(){
+                alert('toco en export');
+                //preparo los parametros
+                params={};
+                params.action = "partes";
+                params.operation = "loadExportTxt";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+
+                    $('#myModal #id_contrato').val($('#search_contrato').val());
+                    $('.selectpicker').selectpicker('refresh');
+                })
+
+            });
+
+
 
             $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
@@ -231,22 +248,27 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-7">
+                        <div class="form-group col-md-3">
 
                         </div>
 
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </div>
 
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nuevo suceso" id="new" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="export" class="control-label">&nbsp;</label>
+                            <a id="export" class="form-control btn btn-primary btn-sm" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-2x"></i></a>
                         </div>
 
                     </div>
