@@ -22,14 +22,14 @@
             rules: {
                 id_contrato: {required: true},
                 fecha_desde: {required: true},
-                fecha_hasta: {required: true},
-                id_evento: {required: true}
+                fecha_hasta: {required: true}
+                //id_evento: {required: true}
             },
             messages:{
                 id_contrato: "Seleccione un contrato",
                 fecha_desde: "Seleccione la fecha desde",
-                fecha_hasta: "Seleccione la fecha hasta",
-                id_evento: "Seleccione un evento"
+                fecha_hasta: "Seleccione la fecha hasta"
+                //id_evento: "Seleccione un evento"
 
             }
         });
@@ -267,7 +267,7 @@
 
 
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label for="id_evento" class="control-label">Eventos</label>
                         <select multiple class="form-control selectpicker show-tick" id="id_evento" name="id_evento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
                             <!--<option value="">Seleccione un vencimiento</option>-->
