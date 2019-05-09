@@ -191,7 +191,7 @@
                                     </div>
 
                                     <div class="col-md-1" style="padding-left: 5px; padding-right: 5px">
-                                        <button type="button" class="btn btn-default btn-intercambio form-control" title="intercambiar conductor/acompañante"><span class="glyphicon glyphicon-resize-horizontal"></span></button>
+                                        <button type="button" class="btn btn-default btn-intercambio form-control" title="intercambiar conductor/acompañante"><span class="glyphicon glyphicon-resize-horizontal fa-lg"></span></button>
                                     </div>
 
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
