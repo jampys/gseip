@@ -84,7 +84,6 @@ class Suceso
         if ($nro!=0){
             $stmt=new sQuery();
             $query = "select id_suceso, id_evento, id_empleado,
-                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha,
                     DATE_FORMAT(fecha_desde,  '%d/%m/%Y') as fecha_desde,
                     DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                     observaciones,
@@ -201,6 +200,7 @@ class Suceso
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':observaciones', $this->getObservaciones());
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
