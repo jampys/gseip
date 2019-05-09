@@ -10,6 +10,8 @@ class Suceso
     private $fecha_desde;
     private $fecha_hasta;
     private $observaciones;
+    private $created_by;
+    private $created_date;
 
     //private $empleado;
 
@@ -35,6 +37,12 @@ class Suceso
 
     function getObservaciones()
     { return $this->observaciones;}
+
+    function getCreatedBy()
+    { return $this->created_by;}
+
+    function getCreatedDate()
+    { return $this->created_date;}
 
     /*function getEmpleado(){
         return ($this->empleado)? $this->empleado : new Empleado() ;
@@ -63,6 +71,12 @@ class Suceso
     function setObservaciones($val)
     { $this->observaciones=$val;}
 
+    function setCreatedBy($val)
+    { $this->created_by=$val;}
+
+    function setCreatedDate($val)
+    {  $this->created_date=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -70,10 +84,11 @@ class Suceso
         if ($nro!=0){
             $stmt=new sQuery();
             $query = "select id_suceso, id_evento, id_empleado,
-                    DATE_FORMAT(fecha,  '%d/%m/%Y') as fecha,
                     DATE_FORMAT(fecha_desde,  '%d/%m/%Y') as fecha_desde,
                     DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                    observaciones
+                    observaciones,
+                    created_by,
+                    DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date
                     from nov_sucesos
                     where id_suceso = :nro";
             $stmt->dpPrepare($query);
@@ -88,6 +103,7 @@ class Suceso
             $this->setFechaDesde($rows[0]['fecha_desde']);
             $this->setFechaHasta($rows[0]['fecha_hasta']);
             $this->setObservaciones($rows[0]['observaciones']);
+            $this->setCreatedDate($rows[0]['created_date']);
             //$this->empleado = new Empleado($rows[0]['id_empleado']);
         }
     }
@@ -115,7 +131,7 @@ class Suceso
                   and if(:fecha_hasta is null, su.fecha_hasta, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))"; */
 
         $query = "select su.id_suceso, su.id_evento, su.id_empleado,
-                  DATE_FORMAT(su.fecha,  '%d/%m/%Y') as fecha,
+                  DATE_FORMAT(su.created_date,  '%d/%m/%Y') as created_date,
                   DATE_FORMAT(su.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(su.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                   su.observaciones,
@@ -176,14 +192,15 @@ class Suceso
 
     private function insertSuceso(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_sucesos(id_evento, id_empleado, fecha, fecha_desde, fecha_hasta, observaciones)
-                values(:id_evento, :id_empleado, sysdate(), STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones)";
+        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date)
+                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':observaciones', $this->getObservaciones());
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

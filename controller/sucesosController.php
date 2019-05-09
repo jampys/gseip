@@ -21,7 +21,7 @@ switch ($operation)
         $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
-        $view->contentTemplate="view/sucesosGrid.php";
+        $view->contentTemplate="view/sucesos/sucesosGrid.php";
         break;
 
     case 'saveSuceso': //ok
@@ -32,6 +32,7 @@ switch ($operation)
         $suceso->setFechaDesde($_POST['fecha_desde']);
         $suceso->setFechaHasta($_POST['fecha_hasta']);
         $suceso->setObservaciones($_POST['observaciones']);
+        $suceso->setCreatedBy($_SESSION['id_user']);
         $rta = $suceso->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));
@@ -47,7 +48,7 @@ switch ($operation)
         //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/sucesosForm.php";
+        $view->contentTemplate="view/sucesos/sucesosForm.php";
         break;
 
     case 'editSuceso': //ok
@@ -60,7 +61,7 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/sucesosForm.php";
+        $view->contentTemplate="view/sucesos/sucesosForm.php";
         break;
 
 
@@ -84,6 +85,15 @@ switch ($operation)
         $rta = $view->suceso->checkFechaHasta($_POST['fecha_hasta'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
         print_r(json_encode($rta));
         exit;
+        break;
+
+    case 'loadExport': //ok  //abre ventana modal para exportar
+        $view->disableLayout=true;
+        $view->label = 'Exportar sucesos';
+        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion
+
+        $view->contentTemplate="view/sucesos/exportForm.php";
         break;
 
 
@@ -146,7 +156,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosControl(null); //carga el combo para filtrar empleados
         $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
-        $view->contentTemplate="view/sucesosGrid.php";
+        $view->contentTemplate="view/sucesos/sucesosGrid.php";
         break;
 }
 
@@ -155,7 +165,7 @@ if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {
-    include_once('view/sucesosLayout.php');
+    include_once('view/sucesos/sucesosLayout.php');
 }
 
 

@@ -23,11 +23,13 @@
                 id_contrato: {required: true},
                 fecha_desde: {required: true},
                 fecha_hasta: {required: true}
+                //id_evento: {required: true}
             },
             messages:{
                 id_contrato: "Seleccione un contrato",
                 fecha_desde: "Seleccione la fecha desde",
                 fecha_hasta: "Seleccione la fecha hasta"
+                //id_evento: "Seleccione un evento"
 
             }
         });
@@ -41,8 +43,8 @@
         });
 
 
-        //al presionar boton de exportar
-        $('#myModal').on("click", "#submit", function(){ //ok
+
+        /*$('#myModal').on("click", "#submit", function(){
             //alert('presiono en exportar');
 
             if ($("#txt-form").valid()){
@@ -68,7 +70,7 @@
                          //$('#myModal').modal('hide');
                          }, 2000);
 
-                         throw new Error();*/
+                         throw new Error();
                         //location.href="index.php?action=sucesos&operation=txt";
                         location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+"&fecha_desde="+params.fecha_desde+"&fecha_hasta="+params.fecha_hasta;
                         return false;
@@ -87,10 +89,12 @@
 
 
 
-        });
+        });*/
 
 
-        $('#myModal').on("click", "#submit1", function(){
+
+
+        /*$('#myModal').on("click", "#submit1", function(){
 
             if ($("#txt-form").valid()){
 
@@ -122,6 +126,88 @@
             }
 
             return false;
+        }); */
+
+
+
+
+        //$('.table-responsive').on("click", ".pdf", function(){
+        $('#myModal').on("click", "#submit1", function(){
+            //alert('Crosstab sucesos');
+
+            if ($("#txt-form").valid()){
+
+                params={};
+                //params.eventos = $("#id_evento").val();
+                params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
+                params.fecha_desde = $("#myModal #fecha_desde").val();
+                params.fecha_hasta = $("#myModal #fecha_hasta").val();
+                params.id_contrato = $("#myModal #id_contrato").val();
+                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
+                var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
+                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_crossTab_sucesos.rptdesign"+
+                    "&p_fecha_desde="+params.fecha_desde+
+                    "&p_fecha_hasta="+params.fecha_hasta+
+                    "&p_id_contrato="+params.id_contrato+
+                    "&p_id_evento="+params.eventos+
+                    "&p_id_user="+params.id_user;
+                var win = window.open(URL, "_blank");
+
+
+                /*var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
+                 params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
+                 var attr = $('#search_empleado option:selected').attr('id_grupo');
+                 params.id_grupo = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_grupo') : '';
+                 //params.id_vencimiento = $("#search_vencimiento").val();
+                 params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
+                 params.id_contrato = $("#search_contrato").val();
+                 params.renovado = $('#search_renovado').prop('checked')? 1 : '';
+                 params.id_user = <?php echo $_SESSION['id_user']; ?>
+                 //var nro_version = Number($('#version').val());
+                 //var lugar_trabajo = $('#lugar_trabajo').val();
+                 //var usuario  = "<?php echo $_SESSION["USER_NOMBRE"].' '.$_SESSION["USER_APELLIDO"]; ?>";
+                 //var id_cia = "<?php echo $_SESSION['ID_CIA']; ?>";
+                 //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
+
+                 //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=sci_plan_version.rptdesign&p_periodo="+periodo+"&p_nro_version="+nro_version+"&p_lugar_trabajo="+lugar_trabajo+"&p_usuario="+usuario+"&p_id_cia="+id_cia;
+                 var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=gseip_vencimientos_p.rptdesign&p_id_empleado="+params.id_empleado+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_renovado="+params.renovado+"&p_id_cia="+params.id_empleado+"&p_id_user="+params.id_user;
+                 //var win = window.open(URL, "_blank", strWindowFeatures);
+                 */
+
+            }
+
+
+            return false;
+        });
+
+
+
+        //$('.table-responsive').on("click", ".txt", function(){
+        $('#myModal').on("click", "#submit", function(){
+            //alert('presiono en exportar txt');
+
+            if ($("#txt-form").valid()){
+
+                params={};
+                params.id_empleado = $("#search_empleado").val();
+                //params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
+                params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
+                params.fecha_desde = $("#myModal #fecha_desde").val();
+                params.fecha_hasta = $("#myModal #fecha_hasta").val();
+                params.id_contrato = $("#myModal #id_contrato").val();
+                //location.href="index.php?action=sucesos&operation=txt";
+                location.href="index.php?action=sucesos"+
+                                        "&operation=txt" +
+                                        "&id_empleado="+params.id_empleado+
+                                        "&eventos="+params.eventos+
+                                        "&p_fecha_desde="+params.fecha_desde+
+                                        "&p_fecha_hasta="+params.fecha_hasta+
+                                        "&p_id_contrato="+params.id_contrato;
+
+            }
+
+            return false;
+
         });
 
 
@@ -152,7 +238,7 @@
 
                     <div class="alert alert-info fade in">
                         <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        <span class="glyphicon glyphicon-tags" ></span>&nbsp Esta pantalla permite exportar las novedades a formatos .txt (para importar desde BAS) y tabla cruzada.
+                        <span class="glyphicon glyphicon-tags" ></span>&nbsp Esta pantalla permite exportar las sucesos a formatos .txt (para importar desde BAS) y tabla cruzada.
                     </div>
 
                     <br/>
@@ -176,6 +262,21 @@
                                 ?>
                                 <option value="<?php echo $con['id_contrato']; ?>" >
                                     <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="id_evento" class="control-label">Eventos</label>
+                        <select multiple class="form-control selectpicker show-tick" id="id_evento" name="id_evento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
+                            <!--<option value="">Seleccione un vencimiento</option>-->
+                            <?php foreach ($view->eventos as $ev){
+                                ?>
+                                <option value="<?php echo $ev['id_evento']; ?>" >
+                                    <?php echo $ev['nombre'] ;?>
                                 </option>
                             <?php  } ?>
                         </select>
