@@ -125,12 +125,23 @@
         });*/
 
 
-        //Al presionar el boton con
-        // el nombre de la cuadrilla
-        $('.cu_cuadrilla .btn-primary').on('click', function(){ //ok
+        //Al presionar el boton con el nombre de la cuadrilla
+        //$('.cu_cuadrilla .btn-primary').on('click', function(){ //ok
+        $('.cu_cuadrilla .btn-block').on('click', function(){ //ok
             //$(this).closest('.row.cu_cuadrilla').find(':checkbox').prop('checked', true);
             var chk = $(this).closest('.row.cu_cuadrilla').find(':checkbox');
             chk.prop('checked', !chk.is(':checked'))
+
+        });
+
+        $('.cu_cuadrilla .btn-intercambio').on('click', function(){ //ok
+            //alert('intercambiar');
+            var c1 = $(this).closest('.row.cu_cuadrilla').find('.cu_id_empleado_1 select').val();
+            var c2 = $(this).closest('.row.cu_cuadrilla').find('.cu_id_empleado_2 select').val();
+            //alert(temp);
+            $(this).closest('.row.cu_cuadrilla').find('.cu_id_empleado_1').val(c2).selectpicker('refresh');
+            $(this).closest('.row.cu_cuadrilla').find('.cu_id_empleado_2').val(c1).selectpicker('refresh');
+            //$('.selectpicker').selectpicker('refresh');
 
         });
 
@@ -179,6 +190,10 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-1" style="padding-left: 5px; padding-right: 5px">
+                                        <button type="button" class="btn btn-default btn-intercambio form-control" title="intercambiar conductor/acompañante"><span class="glyphicon glyphicon-resize-horizontal"></span></button>
+                                    </div>
+
                                     <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select multiple class="selectpicker form-control show-tick cu_id_empleado_2" data-live-search="true" data-size="5" title="Acompañantes">
@@ -206,7 +221,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3" style="padding-left: 5px; padding-right: 5px">
+                                    <div class="col-md-2" style="padding-left: 5px; padding-right: 5px">
                                         <div class="form-group">
                                             <select class="selectpicker form-control show-tick cu_id_vehiculo" data-live-search="true" data-size="5">
                                                 <option value="">Vehículo</option>
