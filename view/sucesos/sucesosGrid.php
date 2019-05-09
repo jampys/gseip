@@ -65,7 +65,7 @@
                 foreach ($view->sucesos as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_suceso']; ?>" >
                         <td><?php echo $rp['id_suceso']; ?></td>
-                        <td><?php echo $rp['fecha']; ?></td>
+                        <td><?php echo $rp['created_date']; ?></td>
                         <td><?php echo $rp['evento']; ?></td>
                         <td><?php echo $rp['empleado']; ?></td>
                         <td><?php echo $rp['fecha_desde']; ?></td>

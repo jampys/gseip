@@ -32,6 +32,7 @@ switch ($operation)
         $suceso->setFechaDesde($_POST['fecha_desde']);
         $suceso->setFechaHasta($_POST['fecha_hasta']);
         $suceso->setObservaciones($_POST['observaciones']);
+        $suceso->setCreatedBy($_SESSION['id_user']);
         $rta = $suceso->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));
