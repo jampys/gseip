@@ -132,7 +132,7 @@ class Parte
         $query="select pa.id_parte,
                     DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
                     DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
-                    pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.calculado,
+                    pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.last_calc_status,
                     concat(ar.codigo, ' ', ar.nombre) as area,
                     concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
                     concat(nec.codigo, ' ', nec.nombre) as evento,
