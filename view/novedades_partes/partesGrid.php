@@ -80,14 +80,14 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <!--<th>Nro. pte.</th>-->
                 <th>Fecha pte.</th>
+                <th>Nro.</th>
                 <th>Contrato</th>
                 <th>Cuadrilla</th>
                 <th>Área</th>
                 <th>Vehículo</th>
                 <th>Evento</th>
-                <th>Estado</th>
+                <th></th>
                 <th>Usr.</th>
                 <th></th>
                 <th></th>
@@ -99,8 +99,8 @@
             <?php if(isset($view->partes)) {
                 foreach ($view->partes as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_parte']; ?>">
-                        <!--<td><?php echo $rp['id_parte']; ?></td>-->
                         <td><?php echo $rp['fecha_parte']; ?></td>
+                        <td><?php echo $rp['id_parte']; ?></td>
                         <td><?php echo $rp['contrato']; ?></td>
                         <td><?php echo $rp['cuadrilla']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
