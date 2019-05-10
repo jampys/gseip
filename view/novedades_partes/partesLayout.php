@@ -247,7 +247,7 @@
                     <form id="add-form" name="add-form">
 
                         <div class="form-group col-md-3">
-                            <label class="control-label" for="add_fecha">Fecha</label>
+                            <label class="control-label" for="add_fecha">Nuevos partes</label>
                             <div class="input-group date">
                                 <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "" placeholder="DD/MM/AAAA">
                                 <div class="input-group-addon">
@@ -257,7 +257,7 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="add_contrato" class="control-label">Contrato</label>
+                            <label for="add_contrato" class="control-label">&nbsp;</label>
                             <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un contrato</option>
                                 <?php foreach ($view->contratos as $con){
@@ -305,7 +305,7 @@
                     <form id="search_form" name="search_form">
 
                         <div class="form-group col-md-3">
-                            <label for="search_vencimiento" class="control-label">Fecha desde / hasta</label>
+                            <label for="search_vencimiento" class="control-label">Buscar partes</label>
                             <div class="input-group input-daterange">
                                 <input class="form-control" type="text" name="search_fecha_desde" id="search_fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                                 <div class="input-group-addon">a</div>
@@ -314,7 +314,7 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="search_contrato" class="control-label">Contrato</label>
+                            <label for="search_contrato" class="control-label">&nbsp;</label>
                             <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un contrato</option>
                                 <?php foreach ($view->contratos as $con){
