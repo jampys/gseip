@@ -127,8 +127,8 @@
             params.target = "clone";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
-                $("#right_side fieldset").prop("disabled", true);
-                $("#orden-form #footer-buttons button").css('display', 'none');
+                //$("#right_side fieldset").prop("disabled", true);
+                //$("#orden-form #footer-buttons button").css('display', 'none');
                 $('.selectpicker').selectpicker('refresh');
             })
         });
