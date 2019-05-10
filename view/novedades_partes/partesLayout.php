@@ -284,7 +284,7 @@
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
-                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-plus fa-lg"></span>
                             </button>
                         </div>
 
@@ -362,14 +362,14 @@
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar partes" id="search">
-                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="glyphicon glyphicon-search fa-lg"></span>
                             </button>
                         </div>
 
 
                         <div class="form-group col-md-2">
                             <label for="search_vencimiento" class="control-label">&nbsp;</label>
-                            <button id="txt" class="form-control btn btn-primary btn-sm" href="#" title="exportar novedades"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
+                            <button id="txt" class="form-control btn btn-primary btn-sm" href="#" title="Exportar novedades"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
                         <div class="form-group col-md-2">
