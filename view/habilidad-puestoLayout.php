@@ -251,17 +251,17 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" class="form-control btn btn-primary btn-sm" id="search">
-                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="glyphicon glyphicon-search fa-lg"></span>
                             </button>
                         </div>
 
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" id="new" <?php echo ( PrivilegedUser::dhasAction('HPU_INSERT', array(1)) )? '' : 'disabled' ?>>
-                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-plus fa-lg"></span>
                             </button>
                         </div>
 

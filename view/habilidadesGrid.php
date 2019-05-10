@@ -30,7 +30,9 @@
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
-        <button  id="new" type="button" class="btn btn-primary btn-sm" <?php echo ( PrivilegedUser::dhasAction('HAB_INSERT', array(1)) )? '' : 'disabled' ?> >Nueva Habilidad</button>
+        <button  id="new" type="button" class="btn btn-primary btn-sm" <?php echo ( PrivilegedUser::dhasAction('HAB_INSERT', array(1)) )? '' : 'disabled' ?> >
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nueva Habilidad
+        </button>
     </div>
 
     <div class="table-responsive">

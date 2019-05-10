@@ -37,7 +37,9 @@
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
-        <button  id="new" type="button" class="btn btn-primary btn-sm" <?php echo ( PrivilegedUser::dhasAction('VEH_INSERT', array(1)) )? '' : 'disabled' ?> >Nuevo Vehículo</button>
+        <button  id="new" type="button" class="btn btn-primary btn-sm" <?php echo ( PrivilegedUser::dhasAction('VEH_INSERT', array(1)) )? '' : 'disabled' ?> >
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo Vehículo
+        </button>
     </div>
 
     <div class="table-responsive">

@@ -48,7 +48,9 @@
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
-        <button class="btn btn-primary btn-sm" type="button" id="new" <?php echo ( PrivilegedUser::dhasAction('EMP_INSERT', array(1)) )? '' : 'disabled' ?> >Nuevo Empleado</button>
+        <button class="btn btn-primary btn-sm" type="button" id="new" <?php echo ( PrivilegedUser::dhasAction('EMP_INSERT', array(1)) )? '' : 'disabled' ?> >
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo Empleado
+        </button>
     </div>
 
     <div class="table-responsive">
