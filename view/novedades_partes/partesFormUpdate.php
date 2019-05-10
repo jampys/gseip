@@ -51,6 +51,7 @@
             params.id_parte_orden = id;
             params.action = "parte-orden";
             params.operation = "editOrden";
+            params.target = "edit";
             $('#right_side').load('index.php', params,function(){
             })
         });
@@ -106,6 +107,24 @@
             params.id_parte_orden = id;
             params.action = "parte-orden";
             params.operation = "editOrden";
+            params.target = "view";
+            //alert(params.id_renovacion);
+            $('#right_side').load('index.php', params,function(){
+                $("#right_side fieldset").prop("disabled", true);
+                $("#orden-form #footer-buttons button").css('display', 'none');
+                $('.selectpicker').selectpicker('refresh');
+            })
+        });
+
+        //para clonar orden de un parte
+        $('.grid-ordenes').on('click', '.clone', function(){ //ok
+            //alert('editar orden del parte');
+            var id = $(this).closest('tr').attr('data-id');
+            params={};
+            params.id_parte_orden = id;
+            params.action = "parte-orden";
+            params.operation = "editOrden";
+            params.target = "clone";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 $("#right_side fieldset").prop("disabled", true);
