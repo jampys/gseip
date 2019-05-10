@@ -72,7 +72,8 @@
 
                     $('#myModal #id_contrato').val($('#search_contrato').val());
                     $('.selectpicker').selectpicker('refresh');
-                })
+                });
+                return false;
 
             });
 
@@ -368,7 +369,7 @@
 
                         <div class="form-group col-md-2">
                             <label for="search_vencimiento" class="control-label">&nbsp;</label>
-                            <a id="txt" class="form-control btn btn-primary btn-sm" href="#" title="exportar novedades"><i class="fas fa-file-export fa-fw fa-2x"></i></a>
+                            <button id="txt" class="form-control btn btn-primary btn-sm" href="#" title="exportar novedades"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
                         <div class="form-group col-md-2">

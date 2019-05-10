@@ -50,7 +50,8 @@
 
                     $('#myModal #id_contrato').val($('#search_contrato').val());
                     $('.selectpicker').selectpicker('refresh');
-                })
+                });
+                return false;
 
             });
 
@@ -264,7 +265,7 @@
 
                         <div class="form-group col-md-2">
                             <label for="export" class="control-label">&nbsp;</label>
-                            <a id="export" class="form-control btn btn-primary btn-sm" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-2x"></i></a>
+                            <button id="export" class="form-control btn btn-primary btn-sm" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
                         <div class="form-group col-md-3">
