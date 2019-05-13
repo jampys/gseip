@@ -72,7 +72,8 @@
 
                     $('#myModal #id_contrato').val($('#search_contrato').val());
                     $('.selectpicker').selectpicker('refresh');
-                })
+                });
+                return false;
 
             });
 
@@ -247,7 +248,7 @@
                     <form id="add-form" name="add-form">
 
                         <div class="form-group col-md-3">
-                            <label class="control-label" for="add_fecha">Fecha</label>
+                            <label class="control-label" for="add_fecha">Nuevos partes</label>
                             <div class="input-group date">
                                 <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "" placeholder="DD/MM/AAAA">
                                 <div class="input-group-addon">
@@ -257,7 +258,7 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="add_contrato" class="control-label">Contrato</label>
+                            <label for="add_contrato" class="control-label">&nbsp;</label>
                             <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un contrato</option>
                                 <?php foreach ($view->contratos as $con){
@@ -283,7 +284,7 @@
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
-                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-plus fa-lg"></span>
                             </button>
                         </div>
 
@@ -305,7 +306,7 @@
                     <form id="search_form" name="search_form">
 
                         <div class="form-group col-md-3">
-                            <label for="search_vencimiento" class="control-label">Fecha desde / hasta</label>
+                            <label for="search_vencimiento" class="control-label">Buscar partes</label>
                             <div class="input-group input-daterange">
                                 <input class="form-control" type="text" name="search_fecha_desde" id="search_fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                                 <div class="input-group-addon">a</div>
@@ -314,7 +315,7 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="search_contrato" class="control-label">Contrato</label>
+                            <label for="search_contrato" class="control-label">&nbsp;</label>
                             <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un contrato</option>
                                 <?php foreach ($view->contratos as $con){
@@ -361,14 +362,14 @@
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar partes" id="search">
-                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="glyphicon glyphicon-search fa-lg"></span>
                             </button>
                         </div>
 
 
                         <div class="form-group col-md-2">
                             <label for="search_vencimiento" class="control-label">&nbsp;</label>
-                            <a id="txt" class="form-control btn btn-primary btn-sm" href="#" title="exportar novedades"><i class="fas fa-file-export fa-fw fa-2x"></i></a>
+                            <button id="txt" class="form-control btn btn-primary btn-sm" href="#" title="Exportar novedades"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
                         <div class="form-group col-md-2">

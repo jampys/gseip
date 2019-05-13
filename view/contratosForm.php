@@ -520,7 +520,9 @@
 
         <div class="clearfix">
             <h4 class="pull-left">Empleados</h4>
-            <button class="btn btn-primary btn-sm pull-right" id="add-empleado" >Agregar</button>
+            <button class="btn btn-primary btn-sm pull-right" id="add-empleado" >
+                <span class="glyphicon glyphicon-plus"></span> Agregar empleado
+            </button>
         </div>
 
 

@@ -33,6 +33,12 @@
                 </td>
 
                 <td class="text-center">
+                    <a class="<?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' /*&& $et['id_user'] == $_SESSION['id_user']*/  )? 'clone' : 'disabled' ?>" href="javascript:void(0);" title="clonar">
+                        <i class="far fa-clone fa-fw"></i>
+                    </a>
+                </td>
+
+                <td class="text-center">
                     <a class="<?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' /*&& $et['id_user'] == $_SESSION['id_user'] */ )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>

@@ -80,14 +80,14 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <!--<th>Nro. pte.</th>-->
                 <th>Fecha pte.</th>
+                <th>Nro.</th>
                 <th>Contrato</th>
                 <th>Cuadrilla</th>
                 <th>Área</th>
                 <th>Vehículo</th>
                 <th>Evento</th>
-                <th>Estado</th>
+                <th></th>
                 <th>Usr.</th>
                 <th></th>
                 <th></th>
@@ -99,14 +99,14 @@
             <?php if(isset($view->partes)) {
                 foreach ($view->partes as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_parte']; ?>">
-                        <!--<td><?php echo $rp['id_parte']; ?></td>-->
                         <td><?php echo $rp['fecha_parte']; ?></td>
+                        <td><?php echo $rp['id_parte']; ?></td>
                         <td><?php echo $rp['contrato']; ?></td>
                         <td><?php echo $rp['cuadrilla']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
                         <td><?php echo $rp['vehiculo']; ?></td>
                         <td class="text-danger"><?php echo $rp['evento']; ?></td>
-                        <td style="text-align: center"><?php echo($rp['calculado'])? '<i class="fas fa-check fa-fw text-success"></i>':'<i class="fas fa-exclamation-triangle fa-fw text-warning"></i>'; ?></td>
+                        <td style="text-align: center"><?php echo($rp['last_calc_status'])? '<i class="fas fa-check fa-fw text-success"></i>':'<i class="fas fa-exclamation-triangle fa-fw text-warning"></i>'; ?></td>
                         <td><?php echo $rp['user'];?></td>
 
 

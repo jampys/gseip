@@ -56,8 +56,14 @@ switch ($operation)
         break;
 
     case 'editOrden': //ok
-        $view->label = ($_POST['target']!='view')? 'Editar orden': 'Ver orden';
+        //$view->label = ($_POST['target']!='view')? 'Editar orden': 'Ver orden';
         $view->orden = new ParteOrden($_POST['id_parte_orden']);
+
+        if($_POST['target'] == 'edit' or $_POST['target'] == 'view' ) $view->label = "Parte diario ".$view->orden->getNroParteDiario();
+        else if ($_POST['target'] == 'clone') {
+            $view->label = '<span class="label label-warning">CLONAR</span> Parte diario '.$view->orden->getNroParteDiario();
+            $view->orden->setIdParteOrden(null); //pone el id_objetivo en null para al guardar insertar uno nuevo
+        }
 
         $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
 

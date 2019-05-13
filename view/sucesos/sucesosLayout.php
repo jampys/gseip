@@ -50,7 +50,8 @@
 
                     $('#myModal #id_contrato').val($('#search_contrato').val());
                     $('.selectpicker').selectpicker('refresh');
-                })
+                });
+                return false;
 
             });
 
@@ -251,20 +252,20 @@
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
-                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="glyphicon glyphicon-search fa-lg"></span>
                             </button>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nuevo suceso" id="new" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
-                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-plus fa-lg"></span>
                             </button>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label for="export" class="control-label">&nbsp;</label>
-                            <a id="export" class="form-control btn btn-primary btn-sm" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-2x"></i></a>
+                            <button id="export" class="form-control btn btn-primary btn-sm" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
                         <div class="form-group col-md-3">

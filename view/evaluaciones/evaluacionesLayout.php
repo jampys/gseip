@@ -329,7 +329,7 @@
                             <div class="form-group col-md-2">
                                 <!--<label for="search">&nbsp;</label>-->
                                 <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
-                                    <span class="glyphicon glyphicon-search"></span>
+                                    <span class="glyphicon glyphicon-search fa-lg"></span>
                                 </button>
                             </div>
 
