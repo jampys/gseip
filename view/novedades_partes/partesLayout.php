@@ -78,6 +78,54 @@
             });
 
 
+            //Select dependiente: al seleccionar contrato carga periodos vigentes
+            $('#concepto-form').on('change', '#add_contrato', function(e){
+                alert('seleccionó un contrato');
+                //throw new Error();
+                params={};
+                params.action = "parte-empleado-concepto";
+                params.operation = "getConceptos";
+                params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
+                params.id_contrato = $('#id_contrato').val();
+
+                $('#id_concepto').empty();
+
+
+                $.ajax({
+                    url:"index.php",
+                    type:"post",
+                    //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
+                    data: params,
+                    dataType:"json",//xml,html,script,json
+                    success: function(data, textStatus, jqXHR) {
+
+                        if(Object.keys(data).length > 0){
+
+                            $.each(data, function(indice, val){
+                                var label = data[indice]["concepto"]+' ('+data[indice]["codigo"]+') '+data[indice]["convenio"];
+                                $("#id_concepto").append('<option value="'+data[indice]["id_concepto_convenio_contrato"]+'">'+label+'</option>');
+
+                            });
+
+                            //si es una edicion o view, selecciona el concepto.
+                            $("#id_concepto").val(<?php print $view->concepto->getIdConceptoConvenioContrato(); ?>);
+                            $('.selectpicker').selectpicker('refresh');
+
+                        }
+
+                    },
+                    error: function(data, textStatus, errorThrown) {
+                        //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                        alert(data.responseText);
+                    }
+
+                });
+
+
+            });
+
+
+
             //para editar un parte
             //$(document).on('click', '.edit', function(){ //ok
             $('#content').on('click', '.edit', function(){ //ok
@@ -248,17 +296,7 @@
                     <form id="add-form" name="add-form">
 
                         <div class="form-group col-md-3">
-                            <label class="control-label" for="add_fecha">Nuevos partes</label>
-                            <div class="input-group date">
-                                <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "" placeholder="DD/MM/AAAA">
-                                <div class="input-group-addon">
-                                    <span class="glyphicon glyphicon-th"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            <label for="add_contrato" class="control-label">&nbsp;</label>
+                            <label for="add_contrato" class="control-label">Nuevos partes</label>
                             <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un contrato</option>
                                 <?php foreach ($view->contratos as $con){
@@ -269,6 +307,24 @@
                                 <?php  } ?>
                             </select>
                         </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="id_periodo" class="control-label">&nbsp;</label>
+                            <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                                <!-- se completa dinamicamente desde javascript  -->
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="add_fecha">&nbsp;</label>
+                            <div class="input-group date">
+                                <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "" placeholder="DD/MM/AAAA">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+
 
 
 
@@ -288,7 +344,7 @@
                             </button>
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-2">
 
                         </div>
 
