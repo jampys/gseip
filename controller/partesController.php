@@ -230,12 +230,7 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    case 'getPeriodos': //select dependiente //ok
-        $rta = NovPeriodo::getPeriodosActivos($_POST['id_contrato']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
+    
     default : //ok
         $view->areas = NovArea::getAreas(); //carga el combo para filtrar Areas
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos

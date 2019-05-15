@@ -83,7 +83,7 @@
                 //alert('seleccionó un contrato');
                 //throw new Error();
                 params={};
-                params.action = "partes";
+                params.action = "nov_periodos";
                 params.operation = "getPeriodos";
                 //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
                 params.id_contrato = $('#add_contrato').val();
