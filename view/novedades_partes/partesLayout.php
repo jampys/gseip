@@ -261,11 +261,13 @@
             $('#add-form').validate({
                 rules: {
                     add_fecha: {required: true},
-                    add_contrato: {required: true}
+                    add_contrato: {required: true},
+                    id_periodo: {required: true}
                 },
                 messages:{
                     add_fecha: "Seleccione la fecha",
-                    add_contrato: "Seleccione el contrato"
+                    add_contrato: "Seleccione el contrato",
+                    id_periodo: "Seleccione el período"
                 }
 
             });
