@@ -125,6 +125,16 @@
             });
 
 
+            $('#add-form').on('change', '#id_periodo', function(e){
+                alert('seleccionó un periodo');
+                //throw new Error();
+
+                
+
+            });
+
+
+
 
             //para editar un parte
             //$(document).on('click', '.edit', function(){ //ok
