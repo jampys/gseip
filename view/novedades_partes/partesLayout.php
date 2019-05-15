@@ -80,15 +80,15 @@
 
             //Select dependiente: al seleccionar contrato carga periodos vigentes
             $('#add-form').on('change', '#add_contrato', function(e){
-                alert('seleccionó un contrato');
+                //alert('seleccionó un contrato');
                 //throw new Error();
                 params={};
-                params.action = "parte-empleado-concepto";
-                params.operation = "getConceptos";
-                params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-                params.id_contrato = $('#id_contrato').val();
+                params.action = "partes";
+                params.operation = "getPeriodos";
+                //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
+                params.id_contrato = $('#add_contrato').val();
 
-                $('#id_concepto').empty();
+                $('#id_periodo').empty();
 
 
                 $.ajax({
@@ -102,14 +102,14 @@
                         if(Object.keys(data).length > 0){
 
                             $.each(data, function(indice, val){
-                                var label = data[indice]["concepto"]+' ('+data[indice]["codigo"]+') '+data[indice]["convenio"];
-                                $("#id_concepto").append('<option value="'+data[indice]["id_concepto_convenio_contrato"]+'">'+label+'</option>');
+                                var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
+                                $("#id_periodo").append('<option value="'+data[indice]["id_periodo"]+'">'+label+'</option>');
 
                             });
 
                             //si es una edicion o view, selecciona el concepto.
                             //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                            $('.selectpicker').selectpicker('refresh');
+                            $('#id_periodo').selectpicker('refresh');
 
                         }
 

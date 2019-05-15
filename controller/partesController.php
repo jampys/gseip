@@ -11,7 +11,7 @@ include_once("model/cuadrillasModel.php");
 include_once("model/vehiculosModel.php");
 include_once("model/nov_eventosCuadrillaModel.php");
 include_once("model/empleadosModel.php");
-include_once("model/novPeriodosModel.php");
+include_once("model/nov_periodosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
