@@ -66,11 +66,12 @@
                 params.action = 'partes';
                 params.operation = 'insertPartes';
                 //params.fecha_parte = $('#add_fecha').val();
-                params.fecha_parte = $('#myModal #add_fecha').val();
+                params.fecha_parte = $('#myModal #fecha_parte').val();
                 params.id_periodo = $('#myModal #id_periodo').val();
                 params.vCuadrillas = JSON.stringify(jsonCuadrillas);
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
+
 
                 $.post('index.php',params,function(data, status, xhr){
 
