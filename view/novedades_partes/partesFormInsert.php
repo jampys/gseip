@@ -65,7 +65,9 @@
                 var params={};
                 params.action = 'partes';
                 params.operation = 'insertPartes';
-                params.fecha_parte = $('#add_fecha').val();
+                //params.fecha_parte = $('#add_fecha').val();
+                params.fecha_parte = $('#myModal #add_fecha').val();
+                params.id_periodo = $('#myModal #id_periodo').val();
                 params.vCuadrillas = JSON.stringify(jsonCuadrillas);
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
@@ -163,6 +165,9 @@
 
 
             <div class="panel-body">
+
+                <input type="hidden" name="fecha_parte" id="fecha_parte" value="<?php print $view->params['fecha_parte'] ?>">
+                <input type="hidden" name="id_periodo" id="id_periodo" value="<?php print $view->params['id_periodo'] ?>">
 
                 <?php if(isset($view->cuadrillas) && sizeof($view->cuadrillas) > 0) {?>
 

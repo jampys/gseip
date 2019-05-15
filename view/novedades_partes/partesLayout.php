@@ -190,6 +190,7 @@
                     params.operation="newParte";
                     params.add_contrato = $("#add_contrato").val();
                     params.fecha_parte = $("#add_fecha").val(); //para mostrar en el titulo del modal
+                    params.id_periodo = $("#id_periodo").val();
                     params.contrato = $("#add_contrato option:selected").text(); //para mostrar en el titulo del modal
 
                     /*$('#popupbox').load('index.php', params,function(){
