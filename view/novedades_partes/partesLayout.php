@@ -127,7 +127,7 @@
 
             });
 
-
+            //Al seleccionar el periodo restringe el rango de fechas del datepicker
             $('#add-form').on('change', '#id_periodo', function(e){
                 //alert('seleccionó un periodo');
                 //throw new Error();
@@ -137,7 +137,7 @@
                 //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
                 $('.input-group.date').datepicker('setStartDate', fecha_desde);
                 $('.input-group.date').datepicker('setEndDate', fecha_hasta);
-                
+
             });
 
 
