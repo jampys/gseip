@@ -103,7 +103,10 @@
 
                             $.each(data, function(indice, val){
                                 var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
-                                $("#id_periodo").append('<option value="'+data[indice]["id_periodo"]+'">'+label+'</option>');
+                                $("#id_periodo").append('<option value="'+data[indice]["id_periodo"]+'"'
+                                                        +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
+                                                        +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
+                                +'>'+label+'</option>');
 
                             });
 
@@ -131,7 +134,9 @@
 
 
                 //$('#add_fecha').datepicker('setStartDate', '18/05/2019');
-                $('#add_fecha').datepicker('setDate', '18/05/2019');
+                $('.input-group.date').datepicker('setStartDate', '21/04/2019');
+
+                alert($('#add_fecha option:selected').attr('fecha_desde'));
 
 
 
