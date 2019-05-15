@@ -11,6 +11,7 @@ include_once("model/cuadrillasModel.php");
 include_once("model/vehiculosModel.php");
 include_once("model/nov_eventosCuadrillaModel.php");
 include_once("model/empleadosModel.php");
+include_once("model/novPeriodosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -225,6 +226,12 @@ switch ($operation)
         $rta = $habilidad->deleteHabilidad();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
+        break;
+
+    case 'getPeriodos': //select dependiente //ok
+        $rta = NovPeriodo::getPeriodosActivos($_POST['id_contrato']);
+        print_r(json_encode($rta));
+        exit;
         break;
 
     default : //ok

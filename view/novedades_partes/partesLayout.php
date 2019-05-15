@@ -79,7 +79,7 @@
 
 
             //Select dependiente: al seleccionar contrato carga periodos vigentes
-            $('#concepto-form').on('change', '#add_contrato', function(e){
+            $('#add-form').on('change', '#add_contrato', function(e){
                 alert('seleccionó un contrato');
                 //throw new Error();
                 params={};
@@ -108,7 +108,7 @@
                             });
 
                             //si es una edicion o view, selecciona el concepto.
-                            $("#id_concepto").val(<?php print $view->concepto->getIdConceptoConvenioContrato(); ?>);
+                            //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
                             $('.selectpicker').selectpicker('refresh');
 
                         }
