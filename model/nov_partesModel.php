@@ -141,18 +141,20 @@ class Parte
         $query="select pa.id_parte,
                     DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
                     DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
-                    pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.last_calc_status, pa.id_periodo,
+                    pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.last_calc_status,
                     concat(ar.codigo, ' ', ar.nombre) as area,
                     concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
                     concat(nec.codigo, ' ', nec.nombre) as evento,
                     co.nombre as contrato,
-                    us.user
+                    us.user,
+                    pa.id_periodo, pe.closed_date
                     from nov_partes pa
                     left join nov_areas ar on pa.id_area = ar.id_area
                     left join vto_vehiculos ve on pa.id_vehiculo = ve.id_vehiculo
                     left join nov_eventos_c nec on pa.id_evento = nec.id_evento
                     join v_sec_contratos_control co on pa.id_contrato = co.id_contrato
                     join sec_users us on pa.created_by = us.id_user
+                    join nov_periodos pe on pe.id_periodo = pa.id_periodo
                     and pa.fecha_parte between if(:fecha_desde is null, pa.fecha_parte, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
                     and if(:fecha_hasta is null, pa.fecha_parte, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
                     and pa.id_contrato =  ifnull(:id_contrato, pa.id_contrato)
