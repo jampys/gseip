@@ -131,15 +131,13 @@
             $('#add-form').on('change', '#id_periodo', function(e){
                 //alert('seleccionó un periodo');
                 //throw new Error();
-
-
+                var fecha_desde = $('#id_periodo option:selected').attr('fecha_desde');
+                var fecha_hasta = $('#id_periodo option:selected').attr('fecha_hasta');
                 //$('#add_fecha').datepicker('setStartDate', '18/05/2019');
-                $('.input-group.date').datepicker('setStartDate', '21/04/2019');
-
-                alert($('#add_fecha option:selected').attr('fecha_desde'));
-
-
-
+                //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
+                $('.input-group.date').datepicker('setStartDate', fecha_desde);
+                $('.input-group.date').datepicker('setEndDate', fecha_hasta);
+                
             });
 
 
