@@ -51,7 +51,7 @@
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                 params.search_fecha_desde = $("#search_fecha_desde").val();
                 params.search_fecha_hasta = $("#search_fecha_hasta").val();
-                params.search_contrato = $("#search_contrato").val();
+                params.search_contrato = $("#add_contrato").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "partes";
                 params.operation = "refreshGrid";
@@ -390,7 +390,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group col-md-3">
+                        <!--<div class="form-group col-md-3">
                             <label for="search_contrato" class="control-label">&nbsp;</label>
                             <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un contrato</option>
@@ -401,7 +401,7 @@
                                     </option>
                                 <?php  } ?>
                             </select>
-                        </div>
+                        </div>-->
 
                         <!--<div class="form-group col-md-3">
                             <label for="search_localidad" class="control-label">Área</label>
@@ -448,7 +448,7 @@
                             <button id="txt" class="form-control btn btn-primary btn-sm" href="#" title="Exportar novedades"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-5">
 
                         </div>
 
