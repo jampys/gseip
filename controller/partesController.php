@@ -45,6 +45,7 @@ switch ($operation)
 
                 $p = new Parte();
                 $p->setFechaParte($_POST["fecha_parte"]);
+                $p->setIdPeriodo($_POST['id_periodo']);
                 $p->setCuadrilla(($vC['cuadrilla'] != '')? $vC['cuadrilla'] : null);
                 $p->setIdArea(($vC['id_area'] != '')? $vC['id_area'] : null);
                 $p->setIdVehiculo(($vC['id_vehiculo'] != '')? $vC['id_vehiculo'] : null);
@@ -52,7 +53,6 @@ switch ($operation)
                 $p->setIdEvento(($vC['id_evento']!='')? $vC['id_evento'] : null);
                 $p->setIdContrato($vC['id_contrato']);
                 $p->setCreatedBy($_SESSION['id_user']);
-                $p->setIdPeriodo($vC['id_periodo']);
                 $p->insertParte();  //si falla sale por el catch
 
                 //tomo el ultimo id insertado, para insertar luego los empleados del parte
