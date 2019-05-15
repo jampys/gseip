@@ -126,10 +126,14 @@
 
 
             $('#add-form').on('change', '#id_periodo', function(e){
-                alert('seleccionó un periodo');
+                //alert('seleccionó un periodo');
                 //throw new Error();
 
-                
+
+                //$('#add_fecha').datepicker('setStartDate', '18/05/2019');
+                $('#add_fecha').datepicker('setDate', '18/05/2019');
+
+
 
             });
 
