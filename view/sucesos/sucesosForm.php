@@ -271,7 +271,9 @@
                             id_suceso: function(){ return $('#id_suceso').val();}
                         }
                     }
-                }
+                },
+                id_periodo1: {required: true},
+                cantidad1: {required: true}
 
             },
             messages:{
@@ -284,7 +286,9 @@
                 fecha_hasta: {
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
-                }
+                },
+                id_periodo1: "Seleccione un período para el evento",
+                cantidad1: "Seleccione una cantidad"
             }
 
         });
