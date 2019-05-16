@@ -151,6 +151,8 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
+                    $("#id_periodo1, #id_periodo2").html('<option value="">Seleccione un período</option>');
+
                     if(Object.keys(data).length > 0){
 
                         $.each(data, function(indice, val){
@@ -388,6 +390,7 @@
                             <label for="id_periodo1" class="control-label">Imputar a período de liquidación</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo1" name="id_periodo1" title="Seleccione un periodo" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript cuando es un insert  -->
+                                <option value="">Seleccione un período</option>
                                 <?php foreach ($view->periodos as $pe){
                                     ?>
                                     <option value="<?php echo $pe['id_periodo']; ?>"
@@ -410,6 +413,7 @@
                             <label for="id_periodo" class="control-label">Imputar a período de liquidación</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo2" name="id_periodo2" title="Seleccione un periodo" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript cuando es un insert  -->
+                                <option value="">Seleccione un período</option>
                                 <?php foreach ($view->periodos as $pe){
                                     ?>
                                     <option value="<?php echo $pe['id_periodo']; ?>"
