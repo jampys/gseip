@@ -27,6 +27,9 @@
 
         });
 
+        //Al abrir el modal calcula la diferencia. Sirve para cuando se trata de una edicion
+        $(".input-daterange").trigger("changeDate");
+
         /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
             var minDate = new Date(selected.date.valueOf());
             $('#fecha_vencimiento').datepicker('setStartDate', minDate);
