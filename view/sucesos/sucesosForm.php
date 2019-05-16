@@ -365,13 +365,13 @@
 
 
                     <div class="row">
-                        <div class="form-group col-md-10 required">
+                        <div class="form-group col-md-9 required">
                             <label for="id_periodo" class="control-label">Período de liquidación</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript  -->
                             </select>
                         </div>
-                        <div class="form-group col-md-2 required">
+                        <div class="form-group col-md-3 required">
                             <label for="meta_valor" class="control-label">Valor</label>
                             <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
                         </div>
