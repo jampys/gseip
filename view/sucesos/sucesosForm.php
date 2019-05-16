@@ -29,6 +29,9 @@
 
         //Al abrir el modal calcula la diferencia. Sirve para cuando se trata de una edicion
         $(".input-daterange").trigger("changeDate");
+        setTimeout(function() {
+            $('#id_empleado').trigger('change');
+        }, 1000);
 
         /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
             var minDate = new Date(selected.date.valueOf());
