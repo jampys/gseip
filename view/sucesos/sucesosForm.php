@@ -151,7 +151,7 @@
 
                         $.each(data, function(indice, val){
                             var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
-                            $("#id_periodo").append('<option value="'+data[indice]["id_periodo"]+'"'
+                            $("#id_periodo1, #id_periodo2").append('<option value="'+data[indice]["id_periodo"]+'"'
                             +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
                             +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
@@ -160,7 +160,7 @@
 
                         //si es una edicion o view, selecciona el concepto.
                         //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                        $('#id_periodo').selectpicker('refresh');
+                        $('#id_periodo1, #id_periodo2').selectpicker('refresh');
 
                     }
 
@@ -388,7 +388,7 @@
                     <div class="row">
                         <div class="form-group col-md-9">
                             <label for="id_periodo" class="control-label">Imputar a período de liquidación</label>
-                            <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="id_periodo2" name="id_periodo2" title="Seleccione un periodo" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript  -->
                             </select>
                         </div>
