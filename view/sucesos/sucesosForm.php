@@ -17,6 +17,14 @@
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
+        }).on('changeDate', function(){
+            //calcula la diferencia en dias entre las 2 fechas
+            var minDate = $('#fecha_desde').datepicker('getDate');
+            var maxDate = $('#fecha_hasta').datepicker('getDate');
+            //maxDate - minDate devuelve la diferencia en milisegundos. 86400 = cant de seg por dia. X 1000 da los miliseg por dia.
+           $('#dias').val((maxDate - minDate)/(86400*1000));
+
+
         });
 
         /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
@@ -357,22 +365,22 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="meta_valor" class="control-label">Días</label>
-                            <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="" disabled>
+                            <label for="dias" class="control-label">Días</label>
+                            <input type="text" class="form-control" name="dias" id="dias" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="" disabled>
                         </div>
                     </div>
 
-                    
+
                     <div class="row">
                         <div class="form-group col-md-9 required">
-                            <label for="id_periodo" class="control-label">Imputar a período de liquidación</label>
-                            <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                            <label for="id_periodo1" class="control-label">Imputar a período de liquidación</label>
+                            <select class="form-control selectpicker show-tick" id="id_periodo1" name="id_periodo1" title="Seleccione un periodo" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript  -->
                             </select>
                         </div>
                         <div class="form-group col-md-3 required">
-                            <label for="meta_valor" class="control-label">Cantidad</label>
-                            <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
+                            <label for="cantidad1" class="control-label">Cantidad</label>
+                            <input type="text" class="form-control" name="cantidad1" id="cantidad1" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
                         </div>
                     </div>
 
@@ -385,8 +393,8 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="meta_valor" class="control-label">Cantidad</label>
-                            <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
+                            <label for="cantidad2" class="control-label">Cantidad</label>
+                            <input type="text" class="form-control" name="cantidad2" id="cantidad2" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
                         </div>
                     </div>
 
