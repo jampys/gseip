@@ -330,12 +330,7 @@
                     </div>
 
 
-                    <div class="form-group required">
-                        <label for="id_periodo" class="control-label">Período de liquidación</label>
-                        <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
-                            <!-- se completa dinamicamente desde javascript  -->
-                        </select>
-                    </div>
+
 
 
                     <div class="form-group required">
@@ -352,12 +347,47 @@
                     </div>
 
 
-                    <div class="form-group required">
-                        <label class="control-label" for="">Desde / Hasta</label>
-                        <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
-                            <div class="input-group-addon">hasta</div>
-                            <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label class="control-label" for="">Desde / Hasta</label>
+                            <div class="input-group input-daterange">
+                                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <div class="input-group-addon">hasta</div>
+                                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>
+                            <div class="form-group col-md-3 required">
+                                <label for="meta_valor" class="control-label">Valor</label>
+                                <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="form-group col-md-10 required">
+                            <label for="id_periodo" class="control-label">Período de liquidación</label>
+                            <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                                <!-- se completa dinamicamente desde javascript  -->
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2 required">
+                            <label for="meta_valor" class="control-label">Valor</label>
+                            <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-9">
+                            <label for="id_periodo" class="control-label">Período de liquidación</label>
+                            <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                                <!-- se completa dinamicamente desde javascript  -->
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="meta_valor" class="control-label">Cant.</label>
+                            <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
                         </div>
                     </div>
 
