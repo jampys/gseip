@@ -139,7 +139,7 @@
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
             params.id_empleado = $('#id_empleado').val();
 
-            $('#id_periodo').empty();
+            $('#id_periodo1, #id_periodo2').empty();
 
 
             $.ajax({
