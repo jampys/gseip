@@ -388,7 +388,7 @@
                     <div class="row">
                         <div class="form-group col-md-9 required">
                             <label for="id_periodo1" class="control-label">Imputar a período de liquidación</label>
-                            <select class="form-control selectpicker show-tick" id="id_periodo1" name="id_periodo1" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="id_periodo1" name="id_periodo1" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <option value="">Seleccione un período</option>
                                 <?php foreach ($view->periodos as $pe){
@@ -411,7 +411,7 @@
                     <div class="row">
                         <div class="form-group col-md-9">
                             <label for="id_periodo" class="control-label">Imputar a período de liquidación</label>
-                            <select class="form-control selectpicker show-tick" id="id_periodo2" name="id_periodo2" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="id_periodo2" name="id_periodo2" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <option value="">Seleccione un período</option>
                                 <?php foreach ($view->periodos as $pe){
