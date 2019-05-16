@@ -33,6 +33,10 @@ switch ($operation)
         $suceso->setFechaHasta($_POST['fecha_hasta']);
         $suceso->setObservaciones($_POST['observaciones']);
         $suceso->setCreatedBy($_SESSION['id_user']);
+        $suceso->setIdPeriodo1($_POST['id_periodo1']);
+        $suceso->setCantidad1($_POST['cantidad1']);
+        $suceso->setIdPeriodo2( ($_POST['id_periodo2']!='')? $_POST['id_periodo2'] : null );
+        $suceso->setCantidad2( ($_POST['cantidad2']!='')? $_POST['cantidad2'] : null );
         $rta = $suceso->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));

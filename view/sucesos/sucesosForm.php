@@ -191,6 +191,10 @@
                 params.fecha_desde = $('#fecha_desde').val();
                 params.fecha_hasta = $('#fecha_hasta').val();
                 params.observaciones = $('#observaciones').val();
+                params.id_periodo1 = $('#id_periodo1').val();
+                params.cantidad1 = $('#cantidad1').val();
+                params.id_periodo2 = $('#id_periodo2').val();
+                params.cantidad2 = $('#cantidad2').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
