@@ -387,19 +387,20 @@
                         <div class="form-group col-md-9 required">
                             <label for="id_periodo1" class="control-label">Imputar a período de liquidación</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo1" name="id_periodo1" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                                <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <?php foreach ($view->periodos as $pe){
                                     ?>
                                     <option value="<?php echo $pe['id_periodo']; ?>"
                                         <?php echo ($view->suceso->getIdPeriodo1() == $pe['id_periodo'])? 'selected' : ''; ?>
                                         >
-                                        <?php echo $pe['nombre'].' '.$pe['nombre']; ?>
+                                        <?php echo $pe['nombre'].' ('.$pe['fecha_desde'].' - '.$pe['fecha_hasta'].')'; ?>
                                     </option>
                                 <?php  } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-3 required">
                             <label for="cantidad1" class="control-label">Cantidad</label>
-                            <input type="text" class="form-control" name="cantidad1" id="cantidad1" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
+                            <input type="text" class="form-control" name="cantidad1" id="cantidad1" value = "<?php print $view->suceso->getCantidad1() ?>" placeholder="Valor">
                         </div>
                     </div>
 
@@ -408,12 +409,20 @@
                         <div class="form-group col-md-9">
                             <label for="id_periodo" class="control-label">Imputar a período de liquidación</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo2" name="id_periodo2" title="Seleccione un periodo" data-live-search="true" data-size="5">
-                                <!-- se completa dinamicamente desde javascript  -->
+                                <!-- se completa dinamicamente desde javascript cuando es un insert  -->
+                                <?php foreach ($view->periodos as $pe){
+                                    ?>
+                                    <option value="<?php echo $pe['id_periodo']; ?>"
+                                        <?php echo ($view->suceso->getIdPeriodo2() == $pe['id_periodo'])? 'selected' : ''; ?>
+                                        >
+                                        <?php echo $pe['nombre'].' ('.$pe['fecha_desde'].' - '.$pe['fecha_hasta'].')'; ?>
+                                    </option>
+                                <?php  } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="cantidad2" class="control-label">Cantidad</label>
-                            <input type="text" class="form-control" name="cantidad2" id="cantidad2" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
+                            <input type="text" class="form-control" name="cantidad2" id="cantidad2" value = "<?php print $view->suceso->getCantidad2() ?>" placeholder="Valor">
                         </div>
                     </div>
 
