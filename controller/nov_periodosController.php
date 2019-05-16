@@ -15,6 +15,12 @@ switch ($operation)
         exit;
         break;
 
+    case 'getPeriodos1': //select dependiente //ok
+        $rta = NovPeriodo::getPeriodosActivos1($_POST['id_empleado']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
 
 
 

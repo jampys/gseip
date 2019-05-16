@@ -230,7 +230,7 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    
+
     default : //ok
         $view->areas = NovArea::getAreas(); //carga el combo para filtrar Areas
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
