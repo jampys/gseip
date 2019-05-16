@@ -4,6 +4,7 @@ include_once("model/empleadosModel.php");
 include_once("model/nov_eventosLiquidacionModel.php");
 include_once("model/nov_sucesosModel.php");
 include_once("model/contratosModel.php");
+include_once("model/nov_periodosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -62,6 +63,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        $view->periodos = NovPeriodo::getPeriodosActivos(21);
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

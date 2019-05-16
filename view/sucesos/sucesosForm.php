@@ -29,10 +29,7 @@
 
         //Al abrir el modal calcula la diferencia. Sirve para cuando se trata de una edicion
         $(".input-daterange").trigger("changeDate");
-        //Carga el combo de periodos dinamicamente.
-        setTimeout(function() {
-            $('#id_empleado').trigger('change');
-        }, 1000);
+
 
         /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
             var minDate = new Date(selected.date.valueOf());
@@ -390,7 +387,14 @@
                         <div class="form-group col-md-9 required">
                             <label for="id_periodo1" class="control-label">Imputar a período de liquidación</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo1" name="id_periodo1" title="Seleccione un periodo" data-live-search="true" data-size="5">
-                                <!-- se completa dinamicamente desde javascript  -->
+                                <?php foreach ($view->periodos as $pe){
+                                    ?>
+                                    <option value="<?php echo $pe['id_periodo']; ?>"
+                                        <?php echo ($view->suceso->getIdPeriodo1() == $pe['id_periodo'])? 'selected' : ''; ?>
+                                        >
+                                        <?php echo $pe['nombre'].' '.$pe['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-3 required">
