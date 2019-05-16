@@ -29,6 +29,7 @@
 
         //Al abrir el modal calcula la diferencia. Sirve para cuando se trata de una edicion
         $(".input-daterange").trigger("changeDate");
+        //Carga el combo de periodos dinamicamente.
         setTimeout(function() {
             $('#id_empleado').trigger('change');
         }, 1000);
