@@ -56,9 +56,9 @@ class NovPeriodo
     { $this->closedDate=$val;}
 
 
-    public static function getPeriodos($id_contrato = null, $all = null) {
+    public static function getPeriodos($id_contrato = null, $activos = null) {
         //Trae los periodos por contrato
-        //si se llama sin parametro, trae solo los periodos activos, sino trae
+        //si se llama sin parametro, trae solo los periodos activos
         $stmt=new sQuery();
         $query="select pe.id_periodo, pe.nombre, pe.id_contrato,
                 DATE_FORMAT(pe.fecha_desde,  '%d/%m/%Y') as fecha_desde,
@@ -66,11 +66,11 @@ class NovPeriodo
                 pe.closed_date
                 from nov_periodos pe
                 where pe.id_contrato = ifnull(:id_contrato, pe.id_contrato)
-                and if(:all is null, 1, pe.closed_date is null)";
+                and if(:activos is null, 1, pe.closed_date is null)";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':all', $all);
+        $stmt->dpBind(':activos', $activos);
         $stmt->dpExecute();
         return $stmt->dpFetchAll(); // retorna todos los periodos
     }

@@ -10,7 +10,9 @@ $view->disableLayout=false;
 switch ($operation)
 {
     case 'getPeriodos': //select dependiente //ok
-        $rta = NovPeriodo::getPeriodosActivos($_POST['id_contrato']);
+        $id_contrato = (($_POST['id_contrato']!='')? $_POST['cantidad2'] : null );
+        $activos = (($_POST['activos']!='')? $_POST['activos'] : null );
+        $rta = NovPeriodo::getPeriodos($id_contrato, $activos);
         print_r(json_encode($rta));
         exit;
         break;
