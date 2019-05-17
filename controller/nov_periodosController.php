@@ -18,7 +18,7 @@ switch ($operation)
         break;
 
     case 'getPeriodos1': //select dependiente //ok
-        $id_contrato = (($_POST['id_contrato']!='')? $_POST['cantidad2'] : null );
+        $id_empleado = (($_POST['id_empleado']!='')? $_POST['id_empleado'] : null );
         $activos = (($_POST['activos']!='')? $_POST['activos'] : null );
         $rta = NovPeriodo::getPeriodos1($id_empleado, $activos);
         print_r(json_encode($rta));
