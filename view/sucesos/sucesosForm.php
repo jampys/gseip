@@ -22,7 +22,7 @@
             var minDate = $('#fecha_desde').datepicker('getDate');
             var maxDate = $('#fecha_hasta').datepicker('getDate');
             //maxDate - minDate devuelve la diferencia en milisegundos. 86400 = cant de seg por dia. X 1000 da los miliseg por dia.
-           $('#dias').val((maxDate - minDate)/(86400*1000));
+           $('#dias').val((maxDate - minDate)/(86400*1000)+1);
 
 
         });
