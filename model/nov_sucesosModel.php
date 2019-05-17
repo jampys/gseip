@@ -325,27 +325,9 @@ class Suceso
     }
 
 
-    public function checkFechaDesde($fecha_desde, $id_empleado, $id_evento, $id_suceso) { //ok
-        /*Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_desde ingresada */
+    /*public function checkFechaDesde($fecha_desde, $id_empleado, $id_evento, $id_suceso) { //obsoleto desde 17/05/2019
+        //Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_desde ingresada
         $stmt=new sQuery();
-        /*$query = "select *
-                  from nov_sucesos
-                  where id_empleado = :id_empleado
-                  and id_evento = :id_evento
-                  and
-                  (( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
-                  :id_suceso is null
-                  and STR_TO_DATE(:fecha_desde, '%d/%m/%Y') between fecha_desde and fecha_hasta
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_suceso is not null
-                  and STR_TO_DATE(:fecha_desde, '%d/%m/%Y') between fecha_desde and fecha_hasta
-                  and id_suceso <> :id_suceso
-                  ))
-                  order by fecha_desde asc
-                  limit 1";*/
-
         $query = "select *
                   from nov_sucesos
                   where id_empleado = :id_empleado
@@ -360,10 +342,10 @@ class Suceso
         $stmt->dpBind(':id_evento', $id_evento);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
-    }
+    }*/
 
-    public function checkFechaHasta($fecha_hasta, $id_empleado, $id_evento, $id_suceso) { //ok
-        /*Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_hasta ingresada */
+    /*public function checkFechaHasta($fecha_hasta, $id_empleado, $id_evento, $id_suceso) { //obsoleto desde 17/05/2019
+        //Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_hasta ingresada
         $stmt=new sQuery();
         $query = "select *
                   from nov_sucesos
@@ -374,6 +356,27 @@ class Suceso
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_suceso', $id_suceso);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_evento', $id_evento);
+        $stmt->dpExecute();
+        return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }*/
+
+    public function checkRango($fecha_desde, $fecha_hasta, $id_empleado, $id_evento, $id_suceso) { //ok
+        //Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_hasta ingresada
+        $stmt=new sQuery();
+        $query = "select *
+                  from nov_sucesos
+                  where id_empleado = :id_empleado
+                  and id_evento = :id_evento
+                  and STR_TO_DATE(:fecha_desde, '%d/%m/%Y') <= fecha_hasta
+                  and STR_TO_DATE(:fecha_hasta, '%d/%m/%Y') >= fecha_desde
+                  and id_suceso <> :id_suceso";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_suceso', $id_suceso);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
         $stmt->dpBind(':fecha_hasta', $fecha_hasta);
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpBind(':id_evento', $id_evento);

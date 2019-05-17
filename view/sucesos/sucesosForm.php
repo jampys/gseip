@@ -246,7 +246,7 @@
             rules: {
                 id_empleado: {required: true},
                 id_evento: {required: true},
-                fecha_desde: {
+                /*fecha_desde: {
                     required: true,
                     remote: {
                         url: "index.php",
@@ -261,7 +261,7 @@
                             id_suceso: function(){ return $('#id_suceso').val();}
                         }
                     }
-                },
+                },*/
                 fecha_hasta: {
                     required: true,
                     remote: {
@@ -270,7 +270,8 @@
                         dataType: "json",
                         data: {
                             action: "sucesos",
-                            operation: "checkFechaHasta",
+                            operation: "checkRango",
+                            fecha_desde: function(){ return $('#fecha_desde').val();},
                             fecha_hasta: function(){ return $('#fecha_hasta').val();},
                             id_empleado: function(){ return $('#id_empleado').val();},
                             id_evento: function(){ return $('#id_evento').val();},

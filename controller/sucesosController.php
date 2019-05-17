@@ -79,16 +79,23 @@ switch ($operation)
         break;
 
 
-    case 'checkFechaDesde': //ok
+    /*case 'checkFechaDesde': //obsoleto desde 17/05/2019
         $view->suceso = new Suceso();
         $rta = $view->suceso->checkFechaDesde($_POST['fecha_desde'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'checkFechaHasta': //ok
+    case 'checkFechaHasta': //obsoleto desde 17/05/2019
         $view->suceso = new Suceso();
         $rta = $view->suceso->checkFechaHasta($_POST['fecha_hasta'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
+        print_r(json_encode($rta));
+        exit;
+        break;*/
+
+    case 'checkRango': //ok
+        $view->suceso = new Suceso();
+        $rta = $view->suceso->checkRango($_POST['fecha_desde'], $_POST['fecha_hasta'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
         print_r(json_encode($rta));
         exit;
         break;
