@@ -175,11 +175,13 @@ class Suceso
                   ev.codigo as txt_evento,
                   em.legajo as txt_legajo,
                   su.fecha_desde as txt_fecha_desde,
-                  su.fecha_hasta as txt_fecha_hasta
+                  su.fecha_hasta as txt_fecha_hasta,
+                  pe.closed_date
                   from v_sec_nov_sucesos su
                   join empleados em on su.id_empleado = em.id_empleado
                   join nov_eventos_l ev on su.id_evento = ev.id_evento
                   left join empleado_contrato ec on su.id_empleado = ec.id_empleado
+                  join nov_periodos pe on pe.id_periodo = su.id_periodo1
                   where su.id_empleado = ifnull(:id_empleado, su.id_empleado)
                   and su.id_evento in ($eventos)
                   and su.fecha_desde <= if(:fecha_desde is null, su.fecha_desde, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
