@@ -131,6 +131,7 @@
 
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
+        // solo se usa cuando es un insert
         $('#suceso-form').on('change', '#id_empleado', function(e){
             //alert('seleccionó un contrato');
             //throw new Error();

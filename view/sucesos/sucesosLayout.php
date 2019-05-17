@@ -63,6 +63,7 @@
                 params.id_suceso = id;
                 params.action = "sucesos";
                 params.operation = "editSuceso";
+                params.target = "edit";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
@@ -70,6 +71,8 @@
                     $('#id_evento').prop('disabled', true).selectpicker('refresh');
                 })
             });
+
+
 
             $(document).on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
