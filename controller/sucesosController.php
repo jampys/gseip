@@ -57,8 +57,8 @@ switch ($operation)
         break;
 
     case 'editSuceso': //ok
-        $view->label='Editar Suceso';
         $view->suceso = new Suceso($_POST['id_suceso']);
+        $view->label = ($_POST['target']!='view')? 'Editar suceso' : 'Ver suceso';
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
