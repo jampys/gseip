@@ -235,26 +235,18 @@ class Parte
     }
 
 
-    public static function checkExportTxt($id_contrato, $fecha_desde, $fecha_hasta) { //ok
+    public static function checkExportTxt($id_contrato, $id_periodo) { //ok
         $stmt=new sQuery();
         $query = 'CALL sp_nov_checkExportTxt(
                                     :id_contrato,
-                                    :fecha_desde,
-                                    :fecha_hasta,
+                                    :id_periodo,
                                     @flag,
                                     @msg)';
 
         $stmt->dpPrepare($query);
 
         $stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':fecha_desde', $fecha_desde);
-        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
-        //$stmt->dpBind(':id_evento', $this->getIdEvento());
-        //$stmt->dpBind(':hs_normal', $this->getHsNormal());
-        //$stmt->dpBind(':hs_50', $this->getHs50());
-        //$stmt->dpBind(':hs_100', $this->getHs100());
-        //$stmt->dpBind(':created_by', $this->getCreatedBy());
-
+        $stmt->dpBind(':id_periodo', $id_periodo);
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();

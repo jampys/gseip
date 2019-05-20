@@ -94,7 +94,7 @@
         });
 
 
-        //al presionar boton de exportar
+        //al presionar boton de exportar en txt
         $('#myModal').on("click", "#submit", function(){ //ok
             //alert('presiono en exportar');
 
@@ -104,9 +104,10 @@
                 params={};
                 params.action = 'partes';
                 params.operation = 'checkExportTxt';
-                params.fecha_desde = $("#myModal #fecha_desde").val();
-                params.fecha_hasta = $("#myModal #fecha_hasta").val();
+                //params.fecha_desde = $("#myModal #fecha_desde").val();
+                //params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
+                params.id_periodo = $("#myModal #id_periodo").val();
 
                 $.post('index.php',params,function(data, status, xhr){
 
@@ -122,8 +123,11 @@
                          }, 2000);
 
                          throw new Error();*/
-                        //location.href="index.php?action=sucesos&operation=txt";
-                        location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+"&fecha_desde="+params.fecha_desde+"&fecha_hasta="+params.fecha_hasta;
+                        //location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+"&fecha_desde="+params.fecha_desde+"&fecha_hasta="+params.fecha_hasta;
+                        location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+
+                                                                                "&id_periodo="+params.id_periodo;
+                                                                                //"&fecha_desde="+params.fecha_desde+
+                                                                                //"&fecha_hasta="+params.fecha_hasta
                         return false;
 
                     }else{
@@ -143,6 +147,7 @@
         });
 
 
+        //al presionar boton de exportar en pdf
         $('#myModal').on("click", "#submit1", function(){
 
             if ($("#txt-form").valid()){

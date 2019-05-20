@@ -164,7 +164,7 @@ switch ($operation)
     case 'checkExportTxt': //ok //chequea que no existan partes sin calcular
         //$parte = new Parte($_POST['id_parte']);
         //$rta = $parte->save();
-        $rta = Parte::checkExportTxt($_POST['id_contrato'], $_POST['fecha_desde'], $_POST['fecha_hasta']);
+        $rta = Parte::checkExportTxt($_POST['id_contrato'], $_POST['id_periodo']);
         //print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));
         print_r(json_encode($rta));
@@ -174,10 +174,12 @@ switch ($operation)
     case 'exportTxt': //exportacion propiamente dicha
 
         $id_contrato = ($_GET['id_contrato']!='')? $_GET['id_contrato'] : null;
-        $fecha_desde = ($_GET['fecha_desde']!='')? $_GET['fecha_desde'] : null;
-        $fecha_hasta = ($_GET['fecha_hasta']!='')? $_GET['fecha_hasta'] : null;
+        $id_periodo = ($_GET['id_periodo']!='')? $_GET['id_periodo'] : null;
+        //$fecha_desde = ($_GET['fecha_desde']!='')? $_GET['fecha_desde'] : null;
+        //$fecha_hasta = ($_GET['fecha_hasta']!='')? $_GET['fecha_hasta'] : null;
 
-        $file_name = "novedades_c".$id_contrato."_fd".str_replace("/", "", $fecha_desde)."_fh".str_replace("/", "", $fecha_hasta).".txt";
+        //$file_name = "novedades_c".$id_contrato."_fd".str_replace("/", "", $fecha_desde)."_fh".str_replace("/", "", $fecha_hasta).".txt";
+        $file_name = "novedades_c".$id_contrato."_p".$id_periodo.".txt";
         $filepath = "uploads/files/".$file_name;
         //$filepath = "uploads/files/file.txt";
         $handle = fopen($filepath, "w");
