@@ -183,7 +183,7 @@ switch ($operation)
         $filepath = "uploads/files/".$file_name;
         //$filepath = "uploads/files/file.txt";
         $handle = fopen($filepath, "w");
-        $view->sucesos = Parte::exportTxt($id_contrato, $fecha_desde, $fecha_hasta);
+        $view->sucesos = Parte::exportTxt($id_contrato, $id_periodo);
 
         foreach ($view->sucesos as $su) {
             //$fd = new DateTime($su['txt_fecha_desde']);
