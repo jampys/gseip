@@ -139,11 +139,12 @@ class Parte
     public static function getPartes($fecha_desde, $fecha_hasta, $id_contrato, $d) { //ok
         $stmt=new sQuery();
         $query="select pa.id_parte,
+                    (select count(*) from nov_parte_orden npox where npox.id_parte = pa.id_parte) as orden_count,
                     DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
                     DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
                     pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.last_calc_status,
                     concat(ar.codigo, ' ', ar.nombre) as area,
-                    concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
+                    ve.nro_movil as vehiculo,
                     concat(nec.codigo, ' ', nec.nombre) as evento,
                     co.nombre as contrato,
                     us.user,

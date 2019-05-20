@@ -85,8 +85,9 @@
                 <th>Contrato</th>
                 <th>Cuadrilla</th>
                 <th>Área</th>
-                <th>Vehículo</th>
+                <th>Móvil</th>
                 <th>Evento</th>
+                <th></th>
                 <th></th>
                 <th>Usr.</th>
                 <th></th>
@@ -106,6 +107,7 @@
                         <td><?php echo $rp['area']; ?></td>
                         <td><?php echo $rp['vehiculo']; ?></td>
                         <td class="text-danger"><?php echo $rp['evento']; ?></td>
+                        <td style="text-align: center"><?php echo($rp['orden_count']>0)? '<i class="fas fa-clipboard-check fa-fw text-success"></i>':'<i class="fas fa-clipboard fa-fw text-warning"></i>'; ?></td>
                         <td style="text-align: center"><?php echo($rp['last_calc_status'])? '<i class="fas fa-check fa-fw text-success"></i>':'<i class="fas fa-exclamation-triangle fa-fw text-warning"></i>'; ?></td>
                         <td><?php echo $rp['user'];?></td>
 
