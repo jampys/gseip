@@ -294,7 +294,7 @@ join empleados em on em.id_empleado = npe.id_empleado
 join nov_parte_empleado_concepto npec on npec.id_parte_empleado = npe.id_parte_empleado
 join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato = npec.id_concepto_convenio_contrato
 where np.id_contrato = :id_contrato
-and np.calculado is not null
+and np.last_calc_status is not null
 and np.id_periodo = :id_periodo
 group by npe.id_empleado, nccc.codigo, nccc.variable
 UNION
