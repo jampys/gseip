@@ -17,7 +17,19 @@
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
+        }).on('changeDate', function(){
+            //calcula la diferencia en dias entre las 2 fechas
+            var minDate = $('#fecha_desde').datepicker('getDate');
+            var maxDate = $('#fecha_hasta').datepicker('getDate');
+            //maxDate - minDate devuelve la diferencia en milisegundos. 86400 = cant de seg por dia. X 1000 da los miliseg por dia.
+           $('#dias').val((maxDate - minDate)/(86400*1000)+1);
+
+
         });
+
+        //Al abrir el modal calcula la diferencia. Sirve para cuando se trata de una edicion
+        $(".input-daterange").trigger("changeDate");
+
 
         /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
             var minDate = new Date(selected.date.valueOf());
@@ -118,6 +130,61 @@
 
 
 
+        //Select dependiente: al seleccionar contrato carga periodos vigentes
+        // solo se usa cuando es un insert
+        $('#suceso-form').on('change', '#id_empleado', function(e){
+            //alert('seleccionó un contrato');
+            //throw new Error();
+            params={};
+            params.action = "nov_periodos";
+            params.operation = "getPeriodos1";
+            //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
+            params.id_empleado = $('#id_empleado').val();
+            params.activos = 1;
+
+            $('#id_periodo1, #id_periodo2').empty();
+
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
+                data: params,
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    $("#id_periodo1, #id_periodo2").html('<option value="">Seleccione un período</option>');
+
+                    if(Object.keys(data).length > 0){
+
+                        $.each(data, function(indice, val){
+                            var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
+                            $("#id_periodo1, #id_periodo2").append('<option value="'+data[indice]["id_periodo"]+'"'
+                            +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
+                            +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
+                            +'>'+label+'</option>');
+
+                        });
+
+                        //si es una edicion o view, selecciona el concepto.
+                        //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
+                        $('#id_periodo1, #id_periodo2').selectpicker('refresh');
+
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
+
+        });
+
+
+
 
         $('#myModal').on('click', '#submit',function(){ //ok
 
@@ -132,6 +199,10 @@
                 params.fecha_desde = $('#fecha_desde').val();
                 params.fecha_hasta = $('#fecha_hasta').val();
                 params.observaciones = $('#observaciones').val();
+                params.id_periodo1 = $('#id_periodo1').val();
+                params.cantidad1 = $('#cantidad1').val();
+                params.id_periodo2 = $('#id_periodo2').val();
+                params.cantidad2 = $('#cantidad2').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -177,7 +248,7 @@
             rules: {
                 id_empleado: {required: true},
                 id_evento: {required: true},
-                fecha_desde: {
+                /*fecha_desde: {
                     required: true,
                     remote: {
                         url: "index.php",
@@ -192,7 +263,7 @@
                             id_suceso: function(){ return $('#id_suceso').val();}
                         }
                     }
-                },
+                },*/
                 fecha_hasta: {
                     required: true,
                     remote: {
@@ -201,14 +272,17 @@
                         dataType: "json",
                         data: {
                             action: "sucesos",
-                            operation: "checkFechaHasta",
+                            operation: "checkRango",
+                            fecha_desde: function(){ return $('#fecha_desde').val();},
                             fecha_hasta: function(){ return $('#fecha_hasta').val();},
                             id_empleado: function(){ return $('#id_empleado').val();},
                             id_evento: function(){ return $('#id_evento').val();},
                             id_suceso: function(){ return $('#id_suceso').val();}
                         }
                     }
-                }
+                },
+                id_periodo1: {required: true},
+                cantidad1: {required: true}
 
             },
             messages:{
@@ -221,7 +295,9 @@
                 fecha_hasta: {
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
-                }
+                },
+                id_periodo1: "Seleccione un período para el evento",
+                cantidad1: "Seleccione una cantidad"
             }
 
         });
@@ -279,6 +355,9 @@
                     </div>
 
 
+
+
+
                     <div class="form-group required">
                         <label for="id_evento" class="control-label">Evento</label>
                             <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione el evento" data-live-search="true" data-size="5">
@@ -293,12 +372,64 @@
                     </div>
 
 
-                    <div class="form-group required">
-                        <label class="control-label" for="">Desde / Hasta</label>
-                        <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
-                            <div class="input-group-addon">hasta</div>
-                            <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label class="control-label" for="">Desde / Hasta</label>
+                            <div class="input-group input-daterange">
+                                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <div class="input-group-addon">hasta</div>
+                                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="dias" class="control-label">Días</label>
+                            <input type="text" class="form-control" name="dias" id="dias" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="" disabled>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label for="id_periodo1" class="control-label">Imputar a período de liquidación</label>
+                            <select class="form-control selectpicker show-tick" id="id_periodo1" name="id_periodo1" data-live-search="true" data-size="5">
+                                <!-- se completa dinamicamente desde javascript cuando es un insert  -->
+                                <option value="">Seleccione un período</option>
+                                <?php foreach ($view->periodos as $pe){
+                                    ?>
+                                    <option value="<?php echo $pe['id_periodo']; ?>"
+                                        <?php echo ($view->suceso->getIdPeriodo1() == $pe['id_periodo'])? 'selected' : ''; ?>
+                                        >
+                                        <?php echo $pe['nombre'].' ('.$pe['fecha_desde'].' - '.$pe['fecha_hasta'].')'; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3 required">
+                            <label for="cantidad1" class="control-label">Cantidad</label>
+                            <input type="text" class="form-control" name="cantidad1" id="cantidad1" value = "<?php print $view->suceso->getCantidad1() ?>" placeholder="Valor">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-9">
+                            <label for="id_periodo" class="control-label">Imputar a período de liquidación</label>
+                            <select class="form-control selectpicker show-tick" id="id_periodo2" name="id_periodo2" data-live-search="true" data-size="5">
+                                <!-- se completa dinamicamente desde javascript cuando es un insert  -->
+                                <option value="">Seleccione un período</option>
+                                <?php foreach ($view->periodos as $pe){
+                                    ?>
+                                    <option value="<?php echo $pe['id_periodo']; ?>"
+                                        <?php echo ($view->suceso->getIdPeriodo2() == $pe['id_periodo'])? 'selected' : ''; ?>
+                                        >
+                                        <?php echo $pe['nombre'].' ('.$pe['fecha_desde'].' - '.$pe['fecha_hasta'].')'; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="cantidad2" class="control-label">Cantidad</label>
+                            <input type="text" class="form-control" name="cantidad2" id="cantidad2" value = "<?php print $view->suceso->getCantidad2() ?>" placeholder="Valor">
                         </div>
                     </div>
 

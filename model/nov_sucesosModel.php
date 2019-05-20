@@ -13,6 +13,11 @@ class Suceso
     private $created_by;
     private $created_date;
 
+    private $id_periodo1;
+    private $cantidad1;
+    private $id_periodo2;
+    private $cantidad2;
+
     //private $empleado;
 
 
@@ -43,6 +48,19 @@ class Suceso
 
     function getCreatedDate()
     { return $this->created_date;}
+
+    function getIdPeriodo1()
+    { return $this->id_periodo1;}
+
+    function getCantidad1()
+    { return $this->cantidad1;}
+
+    function getIdPeriodo2()
+    { return $this->id_periodo2;}
+
+    function getCantidad2()
+    { return $this->cantidad2;}
+
 
     /*function getEmpleado(){
         return ($this->empleado)? $this->empleado : new Empleado() ;
@@ -77,6 +95,18 @@ class Suceso
     function setCreatedDate($val)
     {  $this->created_date=$val;}
 
+    function setIdPeriodo1($val)
+    {  $this->id_periodo1=$val;}
+
+    function setCantidad1($val)
+    {  $this->cantidad1=$val;}
+
+    function setIdPeriodo2($val)
+    {  $this->id_periodo2=$val;}
+
+    function setCantidad2($val)
+    {  $this->cantidad2=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -88,7 +118,8 @@ class Suceso
                     DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                     observaciones,
                     created_by,
-                    DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date
+                    DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
+                    id_periodo1, cantidad1, id_periodo2, cantidad2
                     from nov_sucesos
                     where id_suceso = :nro";
             $stmt->dpPrepare($query);
@@ -104,6 +135,10 @@ class Suceso
             $this->setFechaHasta($rows[0]['fecha_hasta']);
             $this->setObservaciones($rows[0]['observaciones']);
             $this->setCreatedDate($rows[0]['created_date']);
+            $this->setIdPeriodo1($rows[0]['id_periodo1']);
+            $this->setCantidad1($rows[0]['cantidad1']);
+            $this->setIdPeriodo2($rows[0]['id_periodo2']);
+            $this->setCantidad2($rows[0]['cantidad2']);
             //$this->empleado = new Empleado($rows[0]['id_empleado']);
         }
     }
@@ -140,11 +175,13 @@ class Suceso
                   ev.codigo as txt_evento,
                   em.legajo as txt_legajo,
                   su.fecha_desde as txt_fecha_desde,
-                  su.fecha_hasta as txt_fecha_hasta
+                  su.fecha_hasta as txt_fecha_hasta,
+                  pe.closed_date
                   from v_sec_nov_sucesos su
                   join empleados em on su.id_empleado = em.id_empleado
                   join nov_eventos_l ev on su.id_evento = ev.id_evento
                   left join empleado_contrato ec on su.id_empleado = ec.id_empleado
+                  join nov_periodos pe on pe.id_periodo = su.id_periodo1
                   where su.id_empleado = ifnull(:id_empleado, su.id_empleado)
                   and su.id_evento in ($eventos)
                   and su.fecha_desde <= if(:fecha_desde is null, su.fecha_desde, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
@@ -177,13 +214,21 @@ class Suceso
         $query="update nov_sucesos set id_evento =:id_evento,
                       fecha_desde = STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
                       fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
-                      observaciones = :observaciones
+                      observaciones = :observaciones,
+                      id_periodo1 = :id_periodo1,
+                      cantidad1 = :cantidad1,
+                      id_periodo2 = :id_periodo2,
+                      cantidad2 = :cantidad2
                 where id_suceso =:id_suceso";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':observaciones', $this->getObservaciones());
+        $stmt->dpBind(':id_periodo1', $this->getIdPeriodo1());
+        $stmt->dpBind(':cantidad1', $this->getCantidad1());
+        $stmt->dpBind(':id_periodo2', $this->getIdPeriodo2());
+        $stmt->dpBind(':cantidad2', $this->getCantidad2());
         $stmt->dpBind(':id_suceso', $this->getIdSuceso());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -192,8 +237,8 @@ class Suceso
 
     private function insertSuceso(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date)
-                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate())";
+        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, id_periodo1, cantidad1, id_periodo2, cantidad2)
+                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :id_periodo1, :cantidad1, :id_periodo2, :cantidad2)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
@@ -201,6 +246,10 @@ class Suceso
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':observaciones', $this->getObservaciones());
         $stmt->dpBind(':created_by', $this->getCreatedBy());
+        $stmt->dpBind(':id_periodo1', $this->getIdPeriodo1());
+        $stmt->dpBind(':cantidad1', $this->getCantidad1());
+        $stmt->dpBind(':id_periodo2', $this->getIdPeriodo2());
+        $stmt->dpBind(':cantidad2', $this->getCantidad2());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
@@ -278,27 +327,9 @@ class Suceso
     }
 
 
-    public function checkFechaDesde($fecha_desde, $id_empleado, $id_evento, $id_suceso) { //ok
-        /*Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_desde ingresada */
+    /*public function checkFechaDesde($fecha_desde, $id_empleado, $id_evento, $id_suceso) { //obsoleto desde 17/05/2019
+        //Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_desde ingresada
         $stmt=new sQuery();
-        /*$query = "select *
-                  from nov_sucesos
-                  where id_empleado = :id_empleado
-                  and id_evento = :id_evento
-                  and
-                  (( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
-                  :id_suceso is null
-                  and STR_TO_DATE(:fecha_desde, '%d/%m/%Y') between fecha_desde and fecha_hasta
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_suceso is not null
-                  and STR_TO_DATE(:fecha_desde, '%d/%m/%Y') between fecha_desde and fecha_hasta
-                  and id_suceso <> :id_suceso
-                  ))
-                  order by fecha_desde asc
-                  limit 1";*/
-
         $query = "select *
                   from nov_sucesos
                   where id_empleado = :id_empleado
@@ -313,10 +344,10 @@ class Suceso
         $stmt->dpBind(':id_evento', $id_evento);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
-    }
+    }*/
 
-    public function checkFechaHasta($fecha_hasta, $id_empleado, $id_evento, $id_suceso) { //ok
-        /*Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_hasta ingresada */
+    /*public function checkFechaHasta($fecha_hasta, $id_empleado, $id_evento, $id_suceso) { //obsoleto desde 17/05/2019
+        //Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_hasta ingresada
         $stmt=new sQuery();
         $query = "select *
                   from nov_sucesos
@@ -327,6 +358,27 @@ class Suceso
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_suceso', $id_suceso);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_evento', $id_evento);
+        $stmt->dpExecute();
+        return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }*/
+
+    public function checkRango($fecha_desde, $fecha_hasta, $id_empleado, $id_evento, $id_suceso) { //ok
+        //Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_hasta ingresada
+        $stmt=new sQuery();
+        $query = "select *
+                  from nov_sucesos
+                  where id_empleado = :id_empleado
+                  and id_evento = :id_evento
+                  and STR_TO_DATE(:fecha_desde, '%d/%m/%Y') <= fecha_hasta
+                  and STR_TO_DATE(:fecha_hasta, '%d/%m/%Y') >= fecha_desde
+                  and id_suceso <> :id_suceso";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_suceso', $id_suceso);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
         $stmt->dpBind(':fecha_hasta', $fecha_hasta);
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpBind(':id_evento', $id_evento);

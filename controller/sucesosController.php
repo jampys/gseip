@@ -4,6 +4,7 @@ include_once("model/empleadosModel.php");
 include_once("model/nov_eventosLiquidacionModel.php");
 include_once("model/nov_sucesosModel.php");
 include_once("model/contratosModel.php");
+include_once("model/nov_periodosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -33,6 +34,10 @@ switch ($operation)
         $suceso->setFechaHasta($_POST['fecha_hasta']);
         $suceso->setObservaciones($_POST['observaciones']);
         $suceso->setCreatedBy($_SESSION['id_user']);
+        $suceso->setIdPeriodo1($_POST['id_periodo1']);
+        $suceso->setCantidad1($_POST['cantidad1']);
+        $suceso->setIdPeriodo2( ($_POST['id_periodo2']!='')? $_POST['id_periodo2'] : null );
+        $suceso->setCantidad2( ($_POST['cantidad2']!='')? $_POST['cantidad2'] : null );
         $rta = $suceso->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));
@@ -52,12 +57,13 @@ switch ($operation)
         break;
 
     case 'editSuceso': //ok
-        $view->label='Editar Suceso';
         $view->suceso = new Suceso($_POST['id_suceso']);
+        $view->label = ($_POST['target']!='view')? 'Editar suceso' : 'Ver suceso';
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
-        //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        // Si es view: trae todos los periodos, si es una edicion: trae solo los periodos activos
+        $view->periodos = ($_POST['target']=='view')? NovPeriodo::getPeriodos1($view->suceso->getIdEmpleado()) : NovPeriodo::getPeriodos1($view->suceso->getIdEmpleado(), 1) ;
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
@@ -73,16 +79,23 @@ switch ($operation)
         break;
 
 
-    case 'checkFechaDesde': //ok
+    /*case 'checkFechaDesde': //obsoleto desde 17/05/2019
         $view->suceso = new Suceso();
         $rta = $view->suceso->checkFechaDesde($_POST['fecha_desde'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'checkFechaHasta': //ok
+    case 'checkFechaHasta': //obsoleto desde 17/05/2019
         $view->suceso = new Suceso();
         $rta = $view->suceso->checkFechaHasta($_POST['fecha_hasta'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
+        print_r(json_encode($rta));
+        exit;
+        break;*/
+
+    case 'checkRango': //ok
+        $view->suceso = new Suceso();
+        $rta = $view->suceso->checkRango($_POST['fecha_desde'], $_POST['fecha_hasta'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
         print_r(json_encode($rta));
         exit;
         break;

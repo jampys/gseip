@@ -11,6 +11,7 @@ include_once("model/cuadrillasModel.php");
 include_once("model/vehiculosModel.php");
 include_once("model/nov_eventosCuadrillaModel.php");
 include_once("model/empleadosModel.php");
+include_once("model/nov_periodosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -44,6 +45,7 @@ switch ($operation)
 
                 $p = new Parte();
                 $p->setFechaParte($_POST["fecha_parte"]);
+                $p->setIdPeriodo($_POST['id_periodo']);
                 $p->setCuadrilla(($vC['cuadrilla'] != '')? $vC['cuadrilla'] : null);
                 $p->setIdArea(($vC['id_area'] != '')? $vC['id_area'] : null);
                 $p->setIdVehiculo(($vC['id_vehiculo'] != '')? $vC['id_vehiculo'] : null);
@@ -126,6 +128,7 @@ switch ($operation)
         $view->vehiculos = Vehiculo::getVehiculos();
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         $view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
+        $view->params = array('fecha_parte' => $_POST['fecha_parte'], 'id_periodo' => $_POST['id_periodo']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/novedades_partes/partesFormInsert.php";
@@ -226,6 +229,7 @@ switch ($operation)
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
+
 
     default : //ok
         $view->areas = NovArea::getAreas(); //carga el combo para filtrar Areas

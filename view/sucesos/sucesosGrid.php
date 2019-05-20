@@ -80,13 +80,13 @@
 
                         <td class="text-center">
                             <!-- si tiene permiso para editar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)))? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) && !$rp['closed_date'] )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
                             </a>
                         </td>
                         <td class="text-center">
                             <!-- si tiene permiso para eliminar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('SUC_DELETE', array(1)))? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('SUC_DELETE', array(1))&& !$rp['closed_date'] )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
                         </td>

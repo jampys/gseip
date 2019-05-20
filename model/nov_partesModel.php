@@ -15,6 +15,7 @@ class Parte
     private $hs_100;
     private $created_by;
     private $created_date;
+    private $id_periodo;
 
     // GETTERS
     function getIdParte()
@@ -52,6 +53,9 @@ class Parte
 
     function getCreatedDate()
     { return $this->created_date;}
+
+    function getIdPeriodo()
+    { return $this->id_periodo;}
 
 
 
@@ -92,6 +96,9 @@ class Parte
     function setCreatedDate($val)
     {  $this->created_date=$val;}
 
+    function setIdPeriodo($val)
+    {  $this->id_periodo=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -105,7 +112,8 @@ class Parte
                     TIME_FORMAT(hs_50, '%H:%i') as hs_50,
                     TIME_FORMAT(hs_100, '%H:%i') as hs_100,
                     created_by,
-                    DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date
+                    DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
+                    id_periodo
                     from nov_partes where id_parte = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -123,6 +131,7 @@ class Parte
             $this->setHs50($rows[0]['hs_50']);
             $this->setHs100($rows[0]['hs_100']);
             $this->setCreatedDate($rows[0]['created_date']);
+            $this->setIdPeriodo($rows[0]['id_periodo']);
         }
     }
 
@@ -130,20 +139,23 @@ class Parte
     public static function getPartes($fecha_desde, $fecha_hasta, $id_contrato, $d) { //ok
         $stmt=new sQuery();
         $query="select pa.id_parte,
+                    (select count(*) from nov_parte_orden npox where npox.id_parte = pa.id_parte) as orden_count,
                     DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
                     DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
                     pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.last_calc_status,
                     concat(ar.codigo, ' ', ar.nombre) as area,
-                    concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
+                    ve.nro_movil as vehiculo,
                     concat(nec.codigo, ' ', nec.nombre) as evento,
                     co.nombre as contrato,
-                    us.user
+                    us.user,
+                    pa.id_periodo, pe.closed_date
                     from nov_partes pa
                     left join nov_areas ar on pa.id_area = ar.id_area
                     left join vto_vehiculos ve on pa.id_vehiculo = ve.id_vehiculo
                     left join nov_eventos_c nec on pa.id_evento = nec.id_evento
                     join v_sec_contratos_control co on pa.id_contrato = co.id_contrato
                     join sec_users us on pa.created_by = us.id_user
+                    join nov_periodos pe on pe.id_periodo = pa.id_periodo
                     and pa.fecha_parte between if(:fecha_desde is null, pa.fecha_parte, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
                     and if(:fecha_hasta is null, pa.fecha_parte, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
                     and pa.id_contrato =  ifnull(:id_contrato, pa.id_contrato)
@@ -207,8 +219,8 @@ class Parte
     public function insertParte(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into nov_partes(fecha_parte, cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, created_by, created_date)
-                values(STR_TO_DATE(:fecha_parte, '%d/%m/%Y'), :cuadrilla, :id_area, :id_vehiculo, :id_evento, :id_contrato, :created_by, sysdate())";
+        $query="insert into nov_partes(fecha_parte, cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, created_by, created_date, id_periodo)
+                values(STR_TO_DATE(:fecha_parte, '%d/%m/%Y'), :cuadrilla, :id_area, :id_vehiculo, :id_evento, :id_contrato, :created_by, sysdate(), :id_periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_parte', $this->getFechaParte());
         $stmt->dpBind(':cuadrilla', $this->getCuadrilla());
@@ -217,6 +229,7 @@ class Parte
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':created_by', $this->getCreatedBy());
+        $stmt->dpBind(':id_periodo', $this->getIdPeriodo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

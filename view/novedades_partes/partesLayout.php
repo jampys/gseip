@@ -51,7 +51,7 @@
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                 params.search_fecha_desde = $("#search_fecha_desde").val();
                 params.search_fecha_hasta = $("#search_fecha_hasta").val();
-                params.search_contrato = $("#search_contrato").val();
+                params.search_contrato = $("#add_contrato").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "partes";
                 params.operation = "refreshGrid";
@@ -76,6 +76,72 @@
                 return false;
 
             });
+
+
+            //Select dependiente: al seleccionar contrato carga periodos vigentes
+            $('#add-form').on('change', '#add_contrato', function(e){
+                //alert('seleccionó un contrato');
+                //throw new Error();
+                params={};
+                params.action = "nov_periodos";
+                params.operation = "getPeriodos";
+                //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
+                params.id_contrato = $('#add_contrato').val();
+                params.activos = 1;
+
+                $('#id_periodo').empty();
+
+
+                $.ajax({
+                    url:"index.php",
+                    type:"post",
+                    //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
+                    data: params,
+                    dataType:"json",//xml,html,script,json
+                    success: function(data, textStatus, jqXHR) {
+
+                        if(Object.keys(data).length > 0){
+
+                            $.each(data, function(indice, val){
+                                var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
+                                $("#id_periodo").append('<option value="'+data[indice]["id_periodo"]+'"'
+                                                        +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
+                                                        +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
+                                +'>'+label+'</option>');
+
+                            });
+
+                            //si es una edicion o view, selecciona el concepto.
+                            //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
+                            $('#id_periodo').selectpicker('refresh');
+
+                        }
+
+                    },
+                    error: function(data, textStatus, errorThrown) {
+                        //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                        alert(data.responseText);
+                    }
+
+                });
+
+
+            });
+
+            //Al seleccionar el periodo restringe el rango de fechas del datepicker
+            $('#add-form').on('change', '#id_periodo', function(e){
+                //alert('seleccionó un periodo');
+                //throw new Error();
+                var fecha_desde = $('#id_periodo option:selected').attr('fecha_desde');
+                var fecha_hasta = $('#id_periodo option:selected').attr('fecha_hasta');
+                //$('#add_fecha').datepicker('setStartDate', '18/05/2019');
+                //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
+                $('.input-group.date').datepicker('setStartDate', fecha_desde);
+                $('.input-group.date').datepicker('setEndDate', fecha_hasta);
+
+            });
+
+
 
 
             //para editar un parte
@@ -125,6 +191,7 @@
                     params.operation="newParte";
                     params.add_contrato = $("#add_contrato").val();
                     params.fecha_parte = $("#add_fecha").val(); //para mostrar en el titulo del modal
+                    params.id_periodo = $("#id_periodo").val();
                     params.contrato = $("#add_contrato option:selected").text(); //para mostrar en el titulo del modal
 
                     /*$('#popupbox').load('index.php', params,function(){
@@ -196,11 +263,13 @@
             $('#add-form').validate({
                 rules: {
                     add_fecha: {required: true},
-                    add_contrato: {required: true}
+                    add_contrato: {required: true},
+                    id_periodo: {required: true}
                 },
                 messages:{
                     add_fecha: "Seleccione la fecha",
-                    add_contrato: "Seleccione el contrato"
+                    add_contrato: "Seleccione el contrato",
+                    id_periodo: "Seleccione el período"
                 }
 
             });
@@ -248,17 +317,7 @@
                     <form id="add-form" name="add-form">
 
                         <div class="form-group col-md-3">
-                            <label class="control-label" for="add_fecha">Nuevos partes</label>
-                            <div class="input-group date">
-                                <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "" placeholder="DD/MM/AAAA">
-                                <div class="input-group-addon">
-                                    <span class="glyphicon glyphicon-th"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            <label for="add_contrato" class="control-label">&nbsp;</label>
+                            <label for="add_contrato" class="control-label">Nuevos partes</label>
                             <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un contrato</option>
                                 <?php foreach ($view->contratos as $con){
@@ -269,6 +328,24 @@
                                 <?php  } ?>
                             </select>
                         </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="id_periodo" class="control-label">&nbsp;</label>
+                            <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                                <!-- se completa dinamicamente desde javascript  -->
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="add_fecha">&nbsp;</label>
+                            <div class="input-group date">
+                                <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "" placeholder="DD/MM/AAAA">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+
 
 
 
@@ -288,7 +365,7 @@
                             </button>
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-2">
 
                         </div>
 
@@ -314,7 +391,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group col-md-3">
+                        <!--<div class="form-group col-md-3">
                             <label for="search_contrato" class="control-label">&nbsp;</label>
                             <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un contrato</option>
@@ -325,7 +402,7 @@
                                     </option>
                                 <?php  } ?>
                             </select>
-                        </div>
+                        </div>-->
 
                         <!--<div class="form-group col-md-3">
                             <label for="search_localidad" class="control-label">Área</label>
@@ -372,7 +449,7 @@
                             <button id="txt" class="form-control btn btn-primary btn-sm" href="#" title="Exportar novedades"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-5">
 
                         </div>
 
