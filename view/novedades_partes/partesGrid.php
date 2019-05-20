@@ -107,8 +107,8 @@
                         <td><?php echo $rp['area']; ?></td>
                         <td><?php echo $rp['vehiculo']; ?></td>
                         <td class="text-danger"><?php echo $rp['evento']; ?></td>
-                        <td style="text-align: center"><?php echo($rp['orden_count']>0)? '<i class="fas fa-clipboard-check fa-fw text-success"></i>':'<i class="fas fa-clipboard fa-fw text-warning"></i>'; ?></td>
-                        <td style="text-align: center"><?php echo($rp['last_calc_status'])? '<i class="fas fa-check fa-fw text-success"></i>':'<i class="fas fa-exclamation-triangle fa-fw text-warning"></i>'; ?></td>
+                        <td style="text-align: center"><?php echo($rp['orden_count']>0)? '<i class="fas fa-clipboard-check fa-fw text-success" title="parte con órdenes"></i>':'<i class="fas fa-clipboard fa-fw text-warning" title="parte sin órdenes"></i>'; ?></td>
+                        <td style="text-align: center"><?php echo($rp['last_calc_status'])? '<i class="fas fa-check fa-fw text-success" title="parte calculado"></i>':'<i class="fas fa-exclamation-triangle fa-fw text-warning" title="parte sin calcular"></i>'; ?></td>
                         <td><?php echo $rp['user'];?></td>
 
 
