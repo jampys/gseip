@@ -111,17 +111,14 @@ switch ($operation)
 
 
     case 'txt': //ok
-        $id_empleado = ($_GET['id_empleado']!='')? $_GET['id_empleado'] : null;
-        //$eventos = ($_GET['eventos']!='')? implode(",", $_GET['eventos'])  : 'su.id_evento';
-        $eventos = ($_GET['eventos']!='')? $_GET['eventos']  : 'su.id_evento'; //con get los multiples eventos ya vienen separados por comas, en cambio con post vienen en un array
-        $fecha_desde = ($_GET['search_fecha_desde']!='')? $_GET['search_fecha_desde'] : null;
-        $fecha_hasta = ($_GET['search_fecha_hasta']!='')? $_GET['search_fecha_hasta'] : null;
         $id_contrato = ($_GET['search_contrato']!='')? $_GET['search_contrato'] : null;
+        $id_periodo = ($_GET['id_periodo']!='')? $_GET['id_periodo'] : null;
 
-        $file_name = "sucesos_c".$id_contrato."_e".$id_empleado."_fd".str_replace("/", "", $fecha_desde)."_fh".str_replace("/", "", $fecha_hasta).".txt";
+        //$file_name = "sucesos_c".$id_contrato."_e".$id_empleado."_fd".str_replace("/", "", $fecha_desde)."_fh".str_replace("/", "", $fecha_hasta).".txt";
+        $file_name = "sucesos_c".$id_contrato."_p".$id_periodo.".txt";
         $filepath = "uploads/files/".$file_name;
         $handle = fopen($filepath, "w");
-        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
+        $view->sucesos = Suceso::exportTxt($id_contrato, $id_periodo);
 
         foreach ($view->sucesos as $su) {
             $fd = new DateTime($su['txt_fecha_desde']);
