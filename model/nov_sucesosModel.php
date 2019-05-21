@@ -395,7 +395,10 @@ class Suceso
                   ns.fecha_desde as txt_fecha_desde,
                   ns.fecha_hasta as txt_fecha_hasta,
                   (if(ns.id_periodo1 = :id_periodo, ns.cantidad1, 0) + if(ns.id_periodo2 = :id_periodo, ns.cantidad2, 0)) as cantidad,
-                  ns.observaciones
+                  ns.observaciones,
+                  ev.nombre as evento,
+                  ev.codigo as txt_evento,
+                  em.legajo as txt_legajo
                   from v_sec_nov_sucesos ns
                   join empleados em on ns.id_empleado = em.id_empleado
                   join nov_eventos_l ev on ns.id_evento = ev.id_evento
