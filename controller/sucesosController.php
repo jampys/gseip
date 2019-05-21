@@ -124,7 +124,8 @@ switch ($operation)
             $fd = new DateTime($su['txt_fecha_desde']);
             $fh = new DateTime($su['txt_fecha_hasta']);
             //$d = (string)$fh->diff($fd)->days;
-            $d = (string)($fh->diff($fd)->days+1);
+            //$d = (string)($fh->diff($fd)->days+1);
+            $d = $su['cantidad'];
 
             $line = str_pad($su['txt_evento'], 10). //evento
                 str_pad(substr($su['txt_legajo'], 2), 10). //legajo
