@@ -21,12 +21,14 @@
         $('#txt-form').validate({
             rules: {
                 id_contrato: {required: true},
-                fecha_desde: {required: true},
-                fecha_hasta: {required: true}
+                id_periodo: {required: function(item){return $('#id_periodo').attr('validar') == 1}},
+                fecha_desde: {required: function(item){return $('#fecha_desde').attr('validar') == 1}},
+                fecha_hasta: {required: function(item){return $('#fecha_desde').attr('validar') == 1}}
                 //id_evento: {required: true}
             },
             messages:{
                 id_contrato: "Seleccione un contrato",
+                id_periodo: "Seleccione un período",
                 fecha_desde: "Seleccione la fecha desde",
                 fecha_hasta: "Seleccione la fecha hasta"
                 //id_evento: "Seleccione un evento"
@@ -101,6 +103,10 @@
         //$('.table-responsive').on("click", ".pdf", function(){
         $('#myModal').on("click", "#submit1", function(){
             //alert('Crosstab sucesos');
+            $('#id_periodo').attr('validar', 0);
+            $('#fecha_desde').attr('validar', 1);
+            $('#fecha_hasta').attr('validar', 1);
+
 
             if ($("#txt-form").valid()){
 
@@ -152,6 +158,9 @@
         //$('.table-responsive').on("click", ".txt", function(){
         $('#myModal').on("click", "#submit", function(){
             //alert('presiono en exportar txt');
+            $('#id_periodo').attr('validar', 1);
+            $('#fecha_desde').attr('validar', 0);
+            $('#fecha_hasta').attr('validar', 0);
 
             if ($("#txt-form").valid()){
 
