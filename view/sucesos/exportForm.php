@@ -165,20 +165,22 @@
             if ($("#txt-form").valid()){
 
                 params={};
-                params.id_empleado = $("#search_empleado").val();
+                //params.id_empleado = $("#search_empleado").val();
                 //params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
-                params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
-                params.fecha_desde = $("#myModal #fecha_desde").val();
-                params.fecha_hasta = $("#myModal #fecha_hasta").val();
+                //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
+                //params.fecha_desde = $("#myModal #fecha_desde").val();
+                //params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
+                params.id_periodo = $("#myModal #id_periodo").val();
                 //location.href="index.php?action=sucesos&operation=txt";
                 location.href="index.php?action=sucesos"+
                                         "&operation=txt" +
-                                        "&id_empleado="+params.id_empleado+
-                                        "&eventos="+params.eventos+
-                                        "&p_fecha_desde="+params.fecha_desde+
-                                        "&p_fecha_hasta="+params.fecha_hasta+
-                                        "&p_id_contrato="+params.id_contrato;
+                                        //"&id_empleado="+params.id_empleado+
+                                        //"&eventos="+params.eventos+
+                                        //"&p_fecha_desde="+params.fecha_desde+
+                                        //"&p_fecha_hasta="+params.fecha_hasta+
+                                        "&id_contrato="+params.id_contrato+
+                                        "&id_periodo="+params.id_periodo;
 
             }
 

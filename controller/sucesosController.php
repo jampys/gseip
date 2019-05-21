@@ -111,7 +111,7 @@ switch ($operation)
 
 
     case 'txt': //ok
-        $id_contrato = ($_GET['search_contrato']!='')? $_GET['search_contrato'] : null;
+        $id_contrato = ($_GET['id_contrato']!='')? $_GET['id_contrato'] : null;
         $id_periodo = ($_GET['id_periodo']!='')? $_GET['id_periodo'] : null;
 
         //$file_name = "sucesos_c".$id_contrato."_e".$id_empleado."_fd".str_replace("/", "", $fecha_desde)."_fh".str_replace("/", "", $fecha_hasta).".txt";
