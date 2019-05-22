@@ -299,7 +299,7 @@ and np.id_periodo = :id_periodo
 group by npe.id_empleado, nccc.codigo, nccc.variable
 UNION
 select em.legajo, nccc.codigo,
-(if(ns.id_periodo1 = :id_periodo, ns.cantidad1, 0) + if(ns.id_periodo2 = :id_periodo, ns.cantidad2, 0)) as cantidad,
+(if(ns.id_periodo1 = :id_periodo, ifnull(ns.cantidad1,0), 0) + if(ns.id_periodo2 = :id_periodo, ifnull(ns.cantidad2,0), 0)) as cantidad,
 nccc.variable
 from nov_sucesos ns
 join empleados em on em.id_empleado = ns.id_empleado

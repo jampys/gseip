@@ -394,7 +394,7 @@ class Suceso
                   DATE_FORMAT(ns.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                   ns.fecha_desde as txt_fecha_desde,
                   ns.fecha_hasta as txt_fecha_hasta,
-                  (if(ns.id_periodo1 = :id_periodo, ns.cantidad1, 0) + if(ns.id_periodo2 = :id_periodo, ns.cantidad2, 0)) as cantidad,
+                  (if(ns.id_periodo1 = :id_periodo, ifnull(ns.cantidad1,0), 0) + if(ns.id_periodo2 = :id_periodo, ifnull(ns.cantidad2,0), 0)) as cantidad,
                   ns.observaciones,
                   ev.nombre as evento,
                   ev.codigo as txt_evento,
