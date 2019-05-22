@@ -186,8 +186,7 @@ class Suceso
                   and su.id_evento in ($eventos)
                   and su.fecha_desde <= if(:fecha_desde is null, su.fecha_desde, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
                   and su.fecha_hasta >= if(:fecha_hasta is null, su.fecha_hasta, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
-                  and if(:id_contrato is not null, ec.id_contrato = :id_contrato, (ec.id_contrato = ec.id_contrato or ec.id_contrato is null))
-                  group by su.id_suceso";
+                  and if(:id_contrato is not null, ec.id_contrato = :id_contrato, (ec.id_contrato = ec.id_contrato or ec.id_contrato is null))";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
@@ -384,6 +383,36 @@ class Suceso
         $stmt->dpBind(':id_evento', $id_evento);
         $stmt->dpExecute();
         return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }
+
+
+    public static function exportTxt($id_contrato, $id_periodo) {
+        $stmt=new sQuery();
+        $query = "select ns.id_suceso, ns.id_evento, ns.id_empleado,
+                  DATE_FORMAT(ns.created_date,  '%d/%m/%Y') as created_date,
+                  DATE_FORMAT(ns.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(ns.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                  ns.fecha_desde as txt_fecha_desde,
+                  ns.fecha_hasta as txt_fecha_hasta,
+                  (if(ns.id_periodo1 = :id_periodo, ifnull(ns.cantidad1,0), 0) + if(ns.id_periodo2 = :id_periodo, ifnull(ns.cantidad2,0), 0)) as cantidad,
+                  ns.observaciones,
+                  ev.nombre as evento,
+                  ev.codigo as txt_evento,
+                  em.legajo as txt_legajo
+                  from v_sec_nov_sucesos ns
+                  join empleados em on ns.id_empleado = em.id_empleado
+                  join nov_eventos_l ev on ns.id_evento = ev.id_evento
+                  left join empleado_contrato ec on ns.id_empleado = ec.id_empleado
+                  where ec.id_contrato = :id_contrato
+                  and (ns.id_periodo1 = :id_periodo or ns.id_periodo2 = :id_periodo)";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_periodo', $id_periodo);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+
+
     }
 
 
