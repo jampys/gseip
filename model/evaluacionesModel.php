@@ -125,7 +125,8 @@ ec.id_empleado_contrato, ec.id_contrato, ec.id_puesto,
 co.nombre as contrato,
 pu.nombre as puesto,
 pe.id_plan_evaluacion, pe.periodo, pe.cerrado,
-func_eval_puntaje_final(em.id_empleado, pe.periodo) as puntaje
+func_eval_puntaje_final(em.id_empleado, pe.periodo) as puntaje,
+func_es_superior(em.id_empleado) as isSup
 from v_sec_empleados_control em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join contratos co on ec.id_contrato = co.id_contrato
