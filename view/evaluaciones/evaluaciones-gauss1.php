@@ -43,8 +43,9 @@
         //alert(Object.keys(temp).length);
 
         var data = $.map(temp, function(elem, index) {
-            if (parseFloat(temp[index]['puntaje']) === 0) { return null; } //excluyo los puntajes 0
-            else return parseFloat(temp[index]['puntaje']);
+            var pje = temp[index]['puntaje'].split(' ')[0];
+            if (parseFloat(pje) === 0) { return null; } //excluyo los puntajes 0
+            else return parseFloat(pje);
             //return parseFloat(temp[index]['puntaje']);
         });
 
@@ -246,10 +247,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach ($view->rta as $em): ?>
+                                    <?php foreach ($view->rta as $em):
+                                        $pje = explode(' ', $em['puntaje'])[0];
+                                        ?>
                                         <tr data-id="<?php echo $em['id_empleado']; ?>">
                                             <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
-                                            <td><?php echo $em['puntaje']; ?></td>
+                                            <td><?php echo $pje; ?></td>
                                             <td class="text-center"><?php echo ($em['puntaje'] < 1)? '<a href="#" title="Verificar evaluaciones"><i class="fas fa-exclamation-triangle fa-fw"></i></a>' : ''; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
