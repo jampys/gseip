@@ -40,11 +40,13 @@
 
         //http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bellcurve-intervals-pointsininterval
         var temp = <?php echo $view->puntajes; ?>;
+        var pjes = null;
         var pje = null;
         //alert(Object.keys(temp).length);
 
         var data = $.map(temp, function(elem, index) {
-            pje = temp[index]['puntaje'].split(' ')[0];
+            pjes = temp[index]['puntaje'].split(' ');
+            pje = pjes[0];
             if (parseFloat(pje) === 0) { return null; } //excluyo los puntajes 0
             else return parseFloat(pje);
             //return parseFloat(temp[index]['puntaje']);
