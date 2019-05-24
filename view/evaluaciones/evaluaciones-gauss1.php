@@ -253,7 +253,11 @@
                                         ?>
                                         <tr data-id="<?php echo $em['id_empleado']; ?>">
                                             <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
-                                            <td><?php echo ($em['isSup'])? $pje: '<a href="#" title="no disponible"><i class="fas fa-exclamation-triangle fa-fw"></i></a>'; ?></td>
+                                            <td><?php echo ((PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) && $em['isInSup']) ||
+                                                            (PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) && $em['isSup']) ||
+                                                             PrivilegedUser::dhasPrivilege('EAD_COM', array(0))
+                                                           )? $pje: '<a href="#" title="no disponible"><i class="fas fa-exclamation-triangle fa-fw"></i></a>'; ?>
+                                            </td>
                                             <td class="text-center"><?php echo ($em['puntaje'] < 1)? '<a href="#" title="Verificar evaluaciones"><i class="fas fa-exclamation-triangle fa-fw"></i></a>' : ''; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
