@@ -351,16 +351,28 @@
                                 </button>
                             </div>
 
-                            
-                            <div class="form-group col-md-3">
-
-                            </div>
-
 
                             <div class="form-group col-md-2">
 
                             </div>
 
+
+                            <div class="form-group col-md-3" style="margin-top: 5px">
+
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked> todos
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> asp gen
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> comp
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option3"> obj
+                                </label>
+
+                            </div>
 
 
                             <div class="form-group col-md-2">
