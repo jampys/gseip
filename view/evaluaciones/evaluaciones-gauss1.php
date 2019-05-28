@@ -39,14 +39,15 @@
 
 
         //http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bellcurve-intervals-pointsininterval
-        var temp = <?php echo $view->puntajes; ?>;
-        var pjes = null;
+        var temp = <?php echo $view->puntajes_json; ?>;
+        //var pjes = null;
         var pje = null;
         //alert(Object.keys(temp).length);
 
         var data = $.map(temp, function(elem, index) {
-            pjes = temp[index]['puntaje'].split(' ');
-            pje = pjes[0];
+            //pjes = temp[index]['puntaje'].split(' ');
+            //pje = pjes[0];
+            pje = temp[index]['puntaje'];
             if (parseFloat(pje) === 0) { return null; } //excluyo los puntajes 0
             else return parseFloat(pje);
             //return parseFloat(temp[index]['puntaje']);
@@ -250,9 +251,10 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach ($view->rta as $em):
-                                        $pjex = explode(' ', $em['puntaje']);
-                                        $pje = $pjex[0];
+                                    <?php foreach ($view->puntajes as $em):
+                                        //$pjex = explode(' ', $em['puntaje']);
+                                        //$pje = $pjex[0];
+                                        $pje = $em['puntaje'];
                                         ?>
                                         <tr data-id="<?php echo $em['id_empleado']; ?>">
                                             <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>

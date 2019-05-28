@@ -361,16 +361,16 @@
                             <div class="form-group col-md-3" style="margin-top: 5px">
 
                                 <label class="radio-inline">
-                                    <input type="radio" name="categoria" value="option1" checked> todos
+                                    <input type="radio" name="categoria" value="0" checked> todos
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="categoria" value="option2"> asp gen
+                                    <input type="radio" name="categoria" value="1"> asp gen
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="categoria" value="option3"> comp
+                                    <input type="radio" name="categoria" value="2"> comp
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="categoria" value="option3"> obj
+                                    <input type="radio" name="categoria" value="3"> obj
                                 </label>
 
                             </div>
