@@ -49,7 +49,7 @@
                 params.categoria=$('input[name=categoria]:checked').val();
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                 //params.renovado = $('#search_renovado').prop('checked')? 1 : '';
-                alert(params.categoria);
+                //alert(params.categoria);
 
 
                 $('#popupbox').load('index.php', params,function(){
@@ -358,19 +358,19 @@
                             </div>
 
 
-                            <div class="form-group col-md-3" style="margin-top: 5px">
+                            <div class="form-group col-md-3">
 
-                                <label class="radio-inline">
-                                    <input type="radio" name="categoria" value="0" checked> todos
+                                <label class="radio-inline" title="todas las categorías">
+                                    <input type="radio" name="categoria" value="0" checked>todas
                                 </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="categoria" value="1"> asp gen
+                                <label class="radio-inline" title="aspectos generales">
+                                    <input type="radio" name="categoria" value="1">aspectos generales
                                 </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="categoria" value="2"> comp
+                                <label class="radio-inline" title="competencias">
+                                    <input type="radio" name="categoria" value="2">competencias
                                 </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="categoria" value="3"> obj
+                                <label class="radio-inline" title="objetivos">
+                                    <input type="radio" name="categoria" value="3">objetivos
                                 </label>
 
                             </div>
