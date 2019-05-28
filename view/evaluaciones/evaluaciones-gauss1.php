@@ -251,7 +251,8 @@
                                     </thead>
                                     <tbody>
                                     <?php foreach ($view->rta as $em):
-                                        $pje = explode(' ', $em['puntaje'])[0];
+                                        $pjex = explode(' ', $em['puntaje']);
+                                        $pje = $pjex[0];
                                         ?>
                                         <tr data-id="<?php echo $em['id_empleado']; ?>">
                                             <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
