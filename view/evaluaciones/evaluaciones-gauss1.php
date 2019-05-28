@@ -218,7 +218,7 @@
 
                     <div class="col-md-4">
                         <p><strong>Ubicación:</strong> <?php echo $view->localidad; ?></p>
-                        <p><strong>Puntaje:</strong>   <?php //print $view->objetivo->getNombre() ?> </p>
+                        <p><strong>Categoría:</strong>   <?php print $view->categoria; ?> </p>
                     </div>
 
 
