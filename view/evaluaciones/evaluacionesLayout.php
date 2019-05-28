@@ -46,9 +46,10 @@
                 params.search_puesto = $('#search_puesto').val();
                 params.search_nivel_competencia = $('#search_nivel_competencia').val();
                 params.search_localidad = $('#search_localidad').val();
+                params.categoria=$('input[name=categoria]:checked').val();
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                 //params.renovado = $('#search_renovado').prop('checked')? 1 : '';
-                //alert(params.search_contrato);
+                alert(params.categoria);
 
 
                 $('#popupbox').load('index.php', params,function(){
@@ -360,16 +361,16 @@
                             <div class="form-group col-md-3" style="margin-top: 5px">
 
                                 <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked> todos
+                                    <input type="radio" name="categoria" value="option1" checked> todos
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> asp gen
+                                    <input type="radio" name="categoria" value="option2"> asp gen
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> comp
+                                    <input type="radio" name="categoria" value="option3"> comp
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option3"> obj
+                                    <input type="radio" name="categoria" value="option3"> obj
                                 </label>
 
                             </div>
