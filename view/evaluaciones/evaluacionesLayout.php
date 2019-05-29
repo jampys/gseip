@@ -33,6 +33,42 @@
             });
 
 
+            //$('.table-responsive').on("click", ".gauss", function(e){
+            $(document).on("click", "#gauss", function(e){
+                //e.preventDefault();
+                //alert('Funcionalidad en desarrollo');
+                //throw new Error();
+                params={};
+                params.action = "evaluaciones";
+                params.operation="loadGauss";
+                params.periodo = $("#periodo").val();
+                params.search_contrato = $("#search_contrato").val();
+                params.search_puesto = $('#search_puesto').val();
+                params.search_nivel_competencia = $('#search_nivel_competencia').val();
+                params.search_localidad = $('#search_localidad').val();
+                params.categoria=$('input[name=categoria]:checked').val();
+                //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
+                //params.renovado = $('#search_renovado').prop('checked')? 1 : '';
+                //alert(params.categoria);
+
+
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                });
+
+
+                //var nro_version = Number($('#version').val());
+
+                //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
+                //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
+                //var URL="<?php //echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=gseip_vencimientos_v.rptdesign&p_id_vehiculo="+params.id_vehiculo+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_id_subcontratista="+params.id_subcontratista+"&p_renovado="+params.renovado+"&p_id_user="+params.id_user;
+                //var win = window.open(URL, "_blank", strWindowFeatures);
+                //var win = window.open(URL, "_blank");
+                return false;
+            });
+
+
+
             //Al presionar en editar una evaluacion de competencias
             $(document).on('click', '.loadEac', function(){ //ok
                 params={};
@@ -309,29 +345,45 @@
                             </div>
 
 
-
-                            <div class="form-group col-md-3">
-
-                            </div>
-
-
-                            <div class="form-group col-md-3">
-
-                            </div>
-
-
-
-                            <div class="form-group col-md-1">
-
-                            </div>
-
-
                             <div class="form-group col-md-2">
                                 <!--<label for="search">&nbsp;</label>-->
                                 <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
                                     <span class="glyphicon glyphicon-search fa-lg"></span>
                                 </button>
                             </div>
+
+
+                            <div class="form-group col-md-2">
+
+                            </div>
+
+
+                            <div class="form-group col-md-3">
+
+                                <label class="radio-inline" title="todas las categorías">
+                                    <input type="radio" name="categoria" value="0" checked>todas
+                                </label>
+                                <label class="radio-inline" title="aspectos generales">
+                                    <input type="radio" name="categoria" value="1">aspectos generales
+                                </label>
+                                <label class="radio-inline" title="competencias">
+                                    <input type="radio" name="categoria" value="2">competencias
+                                </label>
+                                <label class="radio-inline" title="objetivos">
+                                    <input type="radio" name="categoria" value="3">objetivos
+                                </label>
+
+                            </div>
+
+
+                            <div class="form-group col-md-2">
+                                <button type="button" class="form-control btn btn-primary btn-sm" title="Función de densidad" id="gauss">
+                                    <i class="fas fa-chart-area fa-fw fa-lg"></i>
+                                </button>
+                            </div>
+
+
+
 
 
                         </div>

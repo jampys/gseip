@@ -39,12 +39,17 @@
 
 
         //http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/bellcurve-intervals-pointsininterval
-        var temp = <?php echo $view->puntajes; ?>;
+        var temp = <?php echo $view->puntajes_json; ?>;
+        //var pjes = null;
+        var pje = null;
         //alert(Object.keys(temp).length);
 
         var data = $.map(temp, function(elem, index) {
-            if (parseFloat(temp[index]['puntaje']) === 0) { return null; } //excluyo los puntajes 0
-            else return parseFloat(temp[index]['puntaje']);
+            //pjes = temp[index]['puntaje'].split(' ');
+            //pje = pjes[0];
+            pje = temp[index]['puntaje'];
+            if (parseFloat(pje) === 0) { return null; } //excluyo los puntajes 0
+            else return parseFloat(pje);
             //return parseFloat(temp[index]['puntaje']);
         });
 
@@ -213,7 +218,7 @@
 
                     <div class="col-md-4">
                         <p><strong>Ubicación:</strong> <?php echo $view->localidad; ?></p>
-                        <p><strong>Puntaje:</strong>   <?php //print $view->objetivo->getNombre() ?> </p>
+                        <p><strong>Categoría:</strong>   <?php print $view->categoria; ?> </p>
                     </div>
 
 
@@ -246,10 +251,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach ($view->rta as $em): ?>
+                                    <?php foreach ($view->puntajes as $em):
+                                        //$pjex = explode(' ', $em['puntaje']);
+                                        //$pje = $pjex[0];
+                                        $pje = $em['puntaje'];
+                                        ?>
                                         <tr data-id="<?php echo $em['id_empleado']; ?>">
                                             <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
-                                            <td><?php echo $em['puntaje']; ?></td>
+                                            <td><?php echo ((PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) && $em['isInSup']) ||
+                                                            (PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) && $em['isSup']) ||
+                                                             PrivilegedUser::dhasPrivilege('EAD_COM', array(0))
+                                                           )? $pje: '<a href="#" title="no disponible"><i class="fas fa-exclamation-triangle fa-fw"></i></a>'; ?>
+                                            </td>
                                             <td class="text-center"><?php echo ($em['puntaje'] < 1)? '<a href="#" title="Verificar evaluaciones"><i class="fas fa-exclamation-triangle fa-fw"></i></a>' : ''; ?></td>
                                         </tr>
                                     <?php endforeach; ?>

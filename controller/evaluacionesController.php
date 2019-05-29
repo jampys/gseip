@@ -281,19 +281,58 @@ switch ($operation)
         $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
 
         $view->rta = $view->evaluaciones->graficarGauss($_POST['periodo'], $id_contrato, $id_puesto, $id_nivel_competencia, $id_localidad);
-        $view->puntajes = json_encode($view->rta);
+        //$view->puntajes = json_encode($view->rta);
+
+        $detalle = array();
+
+        foreach($view->rta as $row){
+            $puntaje = "";
+            $array_puntajes = explode(' ', $row['puntaje']);
+            if($_POST['categoria']==0) {$puntaje = $array_puntajes[0]; $view->categoria= 'todas';} //pje total
+            elseif($_POST['categoria']==1) {$puntaje = $array_puntajes[2]; $view->categoria= 'aspectos generales';}  //aspectos generales
+            elseif($_POST['categoria']==2) {$puntaje = $array_puntajes[4]; $view->categoria= 'competencias';}  //competencias
+            elseif($_POST['categoria']==3) {$puntaje = $array_puntajes[6]; $view->categoria= 'objetivos';}  //objetivos
+
+
+            $detalle[] = array( 'id_empleado'=>$row['id_empleado'],
+                'legajo'=>$row['legajo'],
+                'apellido'=>$row['apellido'],
+                'nombre'=>$row['nombre'],
+                'id_empleado_contrato'=>$row['id_empleado_contrato'],
+                'id_contrato'=>$row['id_contrato'],
+                'id_puesto'=>$row['id_puesto'],
+                'contrato'=>$row['contrato'],
+                'puesto'=>$row['puesto'],
+                'id_plan_evaluacion'=>$row['id_plan_evaluacion'],
+                'periodo'=>$row['periodo'],
+                'cerrado'=>$row['cerrado'],
+                'puntaje'=>$puntaje,
+                'isInSup'=>$row['isInSup'],
+                'isSup'=>$row['isSup'],
+
+            );
+        }
+
+        $view->puntajes_json = json_encode($detalle);
+        $view->puntajes = $detalle;
+
+
+
+
+
+
 
         $view->label = 'Función de densidad';
         $view->periodo = $_POST['periodo'];
         $view->c = new Contrato($_POST['search_contrato']);
-        $view->contrato = ($_POST['search_contrato'])? $view->c->getNombre() : 'TODOS';
+        $view->contrato = ($_POST['search_contrato'])? $view->c->getNombre() : 'todos';
         $view->p = new Puesto($_POST['search_puesto']);
-        $view->puesto = ($_POST['search_puesto'])? $view->p->getNombre() : 'TODOS';
+        $view->puesto = ($_POST['search_puesto'])? $view->p->getNombre() : 'todos';
         $view->n = new NivelCompetencia($_POST['search_nivel_competencia']);
-        $view->nivel_competencia = ($_POST['search_nivel_competencia'])? $view->n->getNombre() : 'TODOS';
+        $view->nivel_competencia = ($_POST['search_nivel_competencia'])? $view->n->getNombre() : 'todos';
 
         $view->l = new Localidad($_POST['search_localidad']);
-        $view->localidad = ($_POST['search_localidad'])? $view->l->getCiudad() : 'TODAS';
+        $view->localidad = ($_POST['search_localidad'])? $view->l->getCiudad() : 'todas';
 
 
         $view->disableLayout=true;
