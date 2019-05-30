@@ -68,7 +68,7 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
-                    if(Object.keys(data).length > 0){
+                    if(Object.keys(data["periodos"]).length > 0){
 
                         $.each(data, function(indice, val){
                             var label = data["periodos"][indice]["nombre"]+' ('+data["periodos"][indice]["fecha_desde"]+' - '+data["periodos"][indice]["fecha_hasta"]+')';
