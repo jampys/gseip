@@ -245,6 +245,20 @@
 
 
                     <div class="form-group">
+                        <label for="search_empleado" class="control-label">Empleado</label>
+                        <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un empleado</option>
+                            <?php foreach ($view->empleados as $em){
+                                ?>
+                                <option value="<?php echo $em['id_empleado']; ?>" data-icon="fas fa-user fa-sm fa-fw" >
+                                    <?php echo $em['apellido']." ".$em['nombre'] ;?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
                         <label class="control-label" for="empleado">Fecha desde / hasta</label>
                         <div class="input-group input-daterange">
                             <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
@@ -252,26 +266,6 @@
                             <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
                         </div>
                     </div>
-
-
-
-                    <div class="form-group">
-                        <label for="id_evento" class="control-label">Eventos</label>
-                        <select multiple class="form-control selectpicker show-tick" id="id_evento" name="id_evento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
-                            <!--<option value="">Seleccione un vencimiento</option>-->
-                            <?php foreach ($view->eventos as $ev){
-                                ?>
-                                <option value="<?php echo $ev['id_evento']; ?>" >
-                                    <?php echo $ev['nombre'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
-
-
-
-
 
 
                 </form>

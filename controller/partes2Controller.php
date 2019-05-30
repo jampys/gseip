@@ -22,7 +22,7 @@ $view->disableLayout=false;
 switch ($operation)
 {
 
-    case 'loadControl': //  //abre ventana modal para controlar novedades
+    case 'loadControl': //ok  //abre ventana modal para controlar novedades
         $view->disableLayout=true;
         $view->label = 'Controlar novedades';
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
@@ -30,21 +30,17 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/control_partesForm.php";
         break;
 
-    case 'checkExportTxt': // //chequea que no existan partes sin calcular
-        //$parte = new Parte($_POST['id_parte']);
-        //$rta = $parte->save();
-        $rta = Parte::checkExportTxt($_POST['id_contrato'], $_POST['id_periodo']);
-        //print_r(json_encode(sQuery::dpLastInsertId()));
-        //print_r(json_encode($rta));
+
+    case 'getPeriodos': //select dependiente //ok
+        $id_contrato = (($_POST['id_contrato']!='')? $_POST['cantidad2'] : null );
+        $activos = (($_POST['activos']!='')? $_POST['activos'] : null );
+        $rta = NovPeriodo::getPeriodos($id_contrato, $activos);
         print_r(json_encode($rta));
         exit;
         break;
 
 
     default :
-        $view->areas = NovArea::getAreas(); //carga el combo para filtrar Areas
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
-        $view->contentTemplate="view/novedades_partes/partesGrid.php";
         break;
 }
 
