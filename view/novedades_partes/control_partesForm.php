@@ -156,85 +156,35 @@
             $('#fecha_hasta').attr('validar', 1);
 
 
-            if ($("#txt-form").valid()){
+            //if ($("#txt-form").valid()){
 
                 params={};
-                //params.eventos = $("#id_evento").val();
-                params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
-                params.fecha_desde = $("#myModal #fecha_desde").val();
-                params.fecha_hasta = $("#myModal #fecha_hasta").val();
-                params.id_contrato = $("#myModal #id_contrato").val();
-                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
-                var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_crossTab_sucesos.rptdesign"+
-                    "&p_fecha_desde="+params.fecha_desde+
-                    "&p_fecha_hasta="+params.fecha_hasta+
-                    "&p_id_contrato="+params.id_contrato+
-                    "&p_id_evento="+params.eventos+
-                    "&p_id_user="+params.id_user;
-                var win = window.open(URL, "_blank");
-
-
-                /*var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
-                 params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
-                 var attr = $('#search_empleado option:selected').attr('id_grupo');
-                 params.id_grupo = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_grupo') : '';
-                 //params.id_vencimiento = $("#search_vencimiento").val();
-                 params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                 params.id_contrato = $("#search_contrato").val();
-                 params.renovado = $('#search_renovado').prop('checked')? 1 : '';
-                 params.id_user = <?php echo $_SESSION['id_user']; ?>
-                 //var nro_version = Number($('#version').val());
-                 //var lugar_trabajo = $('#lugar_trabajo').val();
-                 //var usuario  = "<?php echo $_SESSION["USER_NOMBRE"].' '.$_SESSION["USER_APELLIDO"]; ?>";
-                 //var id_cia = "<?php echo $_SESSION['ID_CIA']; ?>";
-                 //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
-
-                 //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=sci_plan_version.rptdesign&p_periodo="+periodo+"&p_nro_version="+nro_version+"&p_lugar_trabajo="+lugar_trabajo+"&p_usuario="+usuario+"&p_id_cia="+id_cia;
-                 var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=gseip_vencimientos_p.rptdesign&p_id_empleado="+params.id_empleado+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_renovado="+params.renovado+"&p_id_cia="+params.id_empleado+"&p_id_user="+params.id_user;
-                 //var win = window.open(URL, "_blank", strWindowFeatures);
-                 */
-
-            }
-
-
-            return false;
-        });
-
-
-        //para exportar a txt
-        //$('.table-responsive').on("click", ".txt", function(){
-        $('#myModal').on("click", "#submit", function(){
-            //alert('presiono en exportar txt');
-            $('#id_periodo').attr('validar', 1);
-            $('#fecha_desde').attr('validar', 0);
-            $('#fecha_hasta').attr('validar', 0);
-
-            if ($("#txt-form").valid()){
-
-                params={};
-                //params.id_empleado = $("#search_empleado").val();
-                //params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
                 //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
                 //params.fecha_desde = $("#myModal #fecha_desde").val();
                 //params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.id_periodo = $("#myModal #id_periodo").val();
-                //location.href="index.php?action=sucesos&operation=txt";
-                location.href="index.php?action=sucesos"+
-                                        "&operation=txt" +
-                                        //"&id_empleado="+params.id_empleado+
-                                        //"&eventos="+params.eventos+
-                                        //"&p_fecha_desde="+params.fecha_desde+
-                                        //"&p_fecha_hasta="+params.fecha_hasta+
-                                        "&id_contrato="+params.id_contrato+
-                                        "&id_periodo="+params.id_periodo;
+                params.id_empleado = $("#myModal #id_empleado").val();
+                params.id_concepto_convenio_contrato = $("#myModal #id_concepto").val();
+                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
+                var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
+                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_conceptos.rptdesign"+
+                    //"&p_fecha_desde="+params.fecha_desde+
+                    //"&p_fecha_hasta="+params.fecha_hasta+
+                    "&p_id_contrato="+params.id_contrato+
+                    "&p_id_periodo="+params.id_periodo+
+                    "&p_id_empleado="+params.id_empleado+
+                    "&p_id_concepto_convenio_contrato="+params.id_concepto_convenio_contrato+
+                    "&p_id_user="+params.id_user;
+                var win = window.open(URL, "_blank");
 
-            }
+            //}
+
 
             return false;
-
         });
+
+
 
 
 
@@ -327,7 +277,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit" title="txt">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
+                <!--<button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit" title="txt">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>-->
                 <button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit" title="pdf">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
                 <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
             </div>
