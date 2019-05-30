@@ -106,15 +106,15 @@
 
 
         //Select dependiente: al seleccionar emppleado carga conceptos
-        $('#myModal').on('change', '#id_parte_empleado', function(e){ //ok
+        $('#myModal').on('change', '#id_empleado', function(e){ //ok
 
             params={};
             params.action = "parte-empleado-concepto";
             params.operation = "getConceptos";
-            params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-            params.id_contrato = $('#id_contrato').val();
+            params.id_convenio = $('#myModal #id_empleado option:selected').attr('id_convenio');
+            params.id_contrato = $('#myModal #id_contrato').val();
 
-            $('#id_concepto').empty();
+            $('#myModal #id_concepto').empty();
 
 
             $.ajax({
@@ -134,8 +134,9 @@
                         });
 
                         //si es una edicion o view, selecciona el concepto.
-                        $("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                        $('.selectpicker').selectpicker('refresh');
+                        //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
+                        //$('.selectpicker').selectpicker('refresh');
+                        $('#myModal #id_convenio').selectpicker('refresh');
 
                     }
 
