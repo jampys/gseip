@@ -22,12 +22,12 @@ $view->disableLayout=false;
 switch ($operation)
 {
 
-    case 'loadExportTxt': //  //abre ventana modal para exportar
+    case 'loadControl': //  //abre ventana modal para controlar novedades
         $view->disableLayout=true;
-        $view->label = 'Exportar novedades';
+        $view->label = 'Controlar novedades';
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
 
-        $view->contentTemplate="view/novedades_partes/export_txtForm.php";
+        $view->contentTemplate="view/novedades_partes/control_partesForm.php";
         break;
 
     case 'checkExportTxt': // //chequea que no existan partes sin calcular
