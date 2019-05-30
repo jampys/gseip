@@ -120,24 +120,17 @@
             $.ajax({
                 url:"index.php",
                 type:"post",
-                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
                 data: params,
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
                     if(Object.keys(data).length > 0){
-
                         $.each(data, function(indice, val){
                             var label = data[indice]["concepto"]+' ('+data[indice]["codigo"]+') '+data[indice]["convenio"];
                             $("#id_concepto").append('<option value="'+data[indice]["id_concepto_convenio_contrato"]+'">'+label+'</option>');
 
                         });
-
-                        //si es una edicion o view, selecciona el concepto.
-                        //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                        //$('.selectpicker').selectpicker('refresh');
-                        $('#myModal #id_convenio').selectpicker('refresh');
-
+                        $('#myModal #id_concepto').selectpicker('refresh');
                     }
 
                 },
