@@ -31,11 +31,12 @@ switch ($operation)
         break;
 
 
-    case 'getPeriodos': //select dependiente //ok
+    case 'getPeriodosAndEmpleados': //select dependiente //ok
         $id_contrato = (($_POST['id_contrato']!='')? $_POST['cantidad2'] : null );
         $activos = (($_POST['activos']!='')? $_POST['activos'] : null );
-        $rta = NovPeriodo::getPeriodos($id_contrato, $activos);
-        print_r(json_encode($rta));
+        $periodos = NovPeriodo::getPeriodos($id_contrato, $activos);
+        $empleados = Empleado::getEmpleadosActivos($id_contrato);
+        print_r(json_encode(array('periodos'=>$periodos, 'empleados'=>$empleados)));
         exit;
         break;
 

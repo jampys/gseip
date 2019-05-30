@@ -51,8 +51,8 @@
             //alert('seleccionó un contrato');
             //throw new Error();
             params={};
-            params.action = "nov_periodos";
-            params.operation = "getPeriodos";
+            params.action = "partes2";
+            params.operation = "getPeriodosAndEmpleados";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
             params.id_contrato = $('#id_contrato').val();
             params.activos = 1;
