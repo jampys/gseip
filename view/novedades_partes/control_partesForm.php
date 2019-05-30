@@ -68,20 +68,74 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
+                    //completo select de periodos
                     if(Object.keys(data["periodos"]).length > 0){
-
-                        $.each(data, function(indice, val){
+                        $.each(data["periodos"], function(indice, val){
                             var label = data["periodos"][indice]["nombre"]+' ('+data["periodos"][indice]["fecha_desde"]+' - '+data["periodos"][indice]["fecha_hasta"]+')';
                             $("#myModal #id_periodo").append('<option value="'+data["periodos"][indice]["id_periodo"]+'"'
                             +' fecha_desde="'+data["periodos"][indice]["fecha_desde"]+'"'
                             +' fecha_hasta="'+data["periodos"][indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
+                        });
+                        $('#myModal #id_periodo').selectpicker('refresh');
+                    }
+
+                    //completo select de empleados
+                    if(Object.keys(data["empleados"]).length > 0){
+                        $.each(data["empleados"], function(indice, val){
+                            var label = data["empleados"][indice]["apellido"]+' '+data["empleados"][indice]["nombre"];
+                            $("#myModal #id_empleado").append('<option value="'+data["empleados"][indice]["id_empleado"]+'"'
+                            +' id_convenio="'+data["empleados"][indice]["id_convenio"]+'"'
+                            //+' fecha_hasta="'+data["periodos"][indice]["fecha_hasta"]+'"'
+                            +'>'+label+'</option>');
+                        });
+                        $('#myModal #id_empleado').selectpicker('refresh');
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
+
+        });
+
+
+
+        //Select dependiente: al seleccionar emppleado carga conceptos
+        $('#myModal').on('change', '#id_parte_empleado', function(e){ //ok
+
+            params={};
+            params.action = "parte-empleado-concepto";
+            params.operation = "getConceptos";
+            params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
+            params.id_contrato = $('#id_contrato').val();
+
+            $('#id_concepto').empty();
+
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
+                data: params,
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    if(Object.keys(data).length > 0){
+
+                        $.each(data, function(indice, val){
+                            var label = data[indice]["concepto"]+' ('+data[indice]["codigo"]+') '+data[indice]["convenio"];
+                            $("#id_concepto").append('<option value="'+data[indice]["id_concepto_convenio_contrato"]+'">'+label+'</option>');
 
                         });
 
                         //si es una edicion o view, selecciona el concepto.
-                        //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                        $('#myModal #id_periodo').selectpicker('refresh');
+                        $("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
+                        $('.selectpicker').selectpicker('refresh');
 
                     }
 
@@ -238,22 +292,24 @@
 
                     <div class="form-group">
                         <label for="id_periodo" class="control-label">Período de liquidación</label>
-                        <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un período" data-live-search="true" data-size="5">
                             <!-- se completa dinamicamente desde javascript  -->
                         </select>
                     </div>
 
 
                     <div class="form-group">
-                        <label for="search_empleado" class="control-label">Empleado</label>
-                        <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un empleado</option>
-                            <?php foreach ($view->empleados as $em){
-                                ?>
-                                <option value="<?php echo $em['id_empleado']; ?>" data-icon="fas fa-user fa-sm fa-fw" >
-                                    <?php echo $em['apellido']." ".$em['nombre'] ;?>
-                                </option>
-                            <?php  } ?>
+                        <label for="id_empleado" class="control-label">Empleado</label>
+                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
+                            <!-- se completa dinamicamente desde javascript  -->
+                        </select>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label for="id_concepto" class="control-label">Concepto</label>
+                        <select class="form-control selectpicker show-tick" id="id_concepto" name="id_concepto" title="Seleccione un concepto" data-live-search="true" data-size="5">
+                            <!-- se completa dinamicamente desde javascript  -->
                         </select>
                     </div>
 
