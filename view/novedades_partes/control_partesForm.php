@@ -71,10 +71,10 @@
                     if(Object.keys(data).length > 0){
 
                         $.each(data, function(indice, val){
-                            var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
-                            $("#myModal #id_periodo").append('<option value="'+data[indice]["id_periodo"]+'"'
-                            +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
-                            +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
+                            var label = data["periodos"][indice]["nombre"]+' ('+data["periodos"][indice]["fecha_desde"]+' - '+data["periodos"][indice]["fecha_hasta"]+')';
+                            $("#myModal #id_periodo").append('<option value="'+data["periodos"][indice]["id_periodo"]+'"'
+                            +' fecha_desde="'+data["periodos"][indice]["fecha_desde"]+'"'
+                            +' fecha_hasta="'+data["periodos"][indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
 
                         });

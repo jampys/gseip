@@ -32,7 +32,7 @@ switch ($operation)
 
 
     case 'getPeriodosAndEmpleados': //select dependiente //ok
-        $id_contrato = (($_POST['id_contrato']!='')? $_POST['cantidad2'] : null );
+        $id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
         $activos = (($_POST['activos']!='')? $_POST['activos'] : null );
         $periodos = NovPeriodo::getPeriodos($id_contrato, $activos);
         $empleados = Empleado::getEmpleadosActivos($id_contrato);
