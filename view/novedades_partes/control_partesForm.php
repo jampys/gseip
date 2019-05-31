@@ -212,13 +212,6 @@
                 <form name ="txt-form" id="txt-form" method="POST" action="index.php">
                     <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
 
-                    <div class="alert alert-info fade in">
-                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        <span class="glyphicon glyphicon-tags" ></span>&nbsp Esta pantalla permite exportar las sucesos a formatos .txt (para importar desde BAS) y tabla cruzada.
-                    </div>
-
-                    <!--<br/>-->
-
 
                     <div class="form-group required">
                         <label class="control-label" for="id_empleado">Contrato</label>
@@ -267,6 +260,17 @@
                         </div>
                     </div>
 
+                    <div class="alert alert-info" role="alert">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Muestra los partes involucrados para un período, empleado y concepto indicados.
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+
 
                 </form>
 
@@ -278,12 +282,12 @@
 
             <div class="modal-footer">
                 <!--<button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit" title="txt">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>-->
-                <button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit" title="pdf">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
-                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
-            </div>
+                <!--<button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit" title="pdf">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>-->
+               <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
+           </div>
 
-        </div>
-    </div>
+       </div>
+   </div>
 </div>
 </fieldset>
 
