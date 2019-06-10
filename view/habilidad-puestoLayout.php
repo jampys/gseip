@@ -222,7 +222,7 @@
                 <h4>Habilidades por puesto</h4>
                 <hr class="hr-primary"/>
 
-                <div class="clearfix">
+                <div class="row clearfix">
                     <form id="search_form" name="search_form">
 
                         <div class="form-group col-md-4">
@@ -253,15 +253,15 @@
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary btn-sm" id="search">
-                                <span class="glyphicon glyphicon-search fa-lg"></span>
+                            <button type="button" class="form-control btn btn-default btn-sm" id="search" title="Buscar">
+                                <span class="glyphicon glyphicon-search fa-lg dp_orange"></span>
                             </button>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" id="new" <?php echo ( PrivilegedUser::dhasAction('HPU_INSERT', array(1)) )? '' : 'disabled' ?>>
-                                <span class="glyphicon glyphicon-plus fa-lg"></span>
+                            <button type="button" class="form-control btn btn-default btn-sm" id="new" <?php echo ( PrivilegedUser::dhasAction('HPU_INSERT', array(1)) )? '' : 'disabled' ?>>
+                                <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                             </button>
                         </div>
 
