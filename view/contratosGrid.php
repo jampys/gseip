@@ -46,8 +46,8 @@
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
-        <button class="btn btn-primary btn-sm" type="button" id="new" <?php echo ( PrivilegedUser::dhasAction('CON_INSERT', array(1)) )? '' : 'disabled' ?> >
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo Contrato
+        <button class="btn btn-default btn-sm" type="button" id="new" <?php echo ( PrivilegedUser::dhasAction('CON_INSERT', array(1)) )? '' : 'disabled' ?> >
+            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nuevo Contrato
         </button>
     </div>
 
@@ -63,7 +63,6 @@
                 <th>Fecha desde</th>
                 <th>Fecha hasta</th>
                 <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -75,8 +74,10 @@
                     <td><?php echo $contrato['responsable'];?></td>
                     <td><?php echo $contrato['fecha_desde'];?></td>
                     <td><?php echo $contrato['fecha_hasta'];?></td>
-                    <td class="text-center"><a class="view" title="ver" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasAction('CON_UPDATE', explode(',',$contrato['id_domain'])  ) )? 'edit' : 'disabled' ?>" title="editar" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                    <td class="text-center">
+                        <a class="view" title="ver" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
+                        <a class="<?php echo ( PrivilegedUser::dhasAction('CON_UPDATE', explode(',',$contrato['id_domain'])  ) )? 'edit' : 'disabled' ?>" title="editar" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-edit dp_yellow" aria-hidden="true"></span></a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
