@@ -78,6 +78,23 @@
             });
 
 
+            $(document).on('click', '#control', function(){ //ok
+                //alert('toco en txt');
+                //preparo los parametros
+                params={};
+                params.action = "partes2";
+                params.operation = "loadControl";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                    $('#myModal #id_contrato').val($('#search_contrato').val());
+                    $('.selectpicker').selectpicker('refresh');
+                });
+                return false;
+
+            });
+
+
+
             //Select dependiente: al seleccionar contrato carga periodos vigentes
             $('#add-form').on('change', '#add_contrato', function(e){
                 //alert('seleccionó un contrato');
@@ -445,12 +462,17 @@
 
 
                         <div class="form-group col-md-2">
-                            <label for="search_vencimiento" class="control-label">&nbsp;</label>
+                            <label for="txt" class="control-label">&nbsp;</label>
                             <button id="txt" class="form-control btn btn-primary btn-sm" href="#" title="Exportar novedades"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
-                        <div class="form-group col-md-5">
+                        <div class="form-group col-md-3">
 
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="control" class="control-label">&nbsp;</label>
+                            <button id="control" class="form-control btn btn-primary btn-sm" href="#" title="Controlar novedades"><i class="fas fa-cog fa-fw fa-lg"></i></button>
                         </div>
 
                     </form>

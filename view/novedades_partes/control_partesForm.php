@@ -51,8 +51,8 @@
             //alert('seleccionó un contrato');
             //throw new Error();
             params={};
-            params.action = "nov_periodos";
-            params.operation = "getPeriodos";
+            params.action = "partes2";
+            params.operation = "getPeriodosAndEmpleados";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
             params.id_contrato = $('#id_contrato').val();
             params.activos = 1;
@@ -68,21 +68,69 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
-                    if(Object.keys(data).length > 0){
-
-                        $.each(data, function(indice, val){
-                            var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
-                            $("#myModal #id_periodo").append('<option value="'+data[indice]["id_periodo"]+'"'
-                            +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
-                            +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
+                    //completo select de periodos
+                    if(Object.keys(data["periodos"]).length > 0){
+                        $.each(data["periodos"], function(indice, val){
+                            var label = data["periodos"][indice]["nombre"]+' ('+data["periodos"][indice]["fecha_desde"]+' - '+data["periodos"][indice]["fecha_hasta"]+')';
+                            $("#myModal #id_periodo").append('<option value="'+data["periodos"][indice]["id_periodo"]+'"'
+                            +' fecha_desde="'+data["periodos"][indice]["fecha_desde"]+'"'
+                            +' fecha_hasta="'+data["periodos"][indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
+                        });
+                        $('#myModal #id_periodo').selectpicker('refresh');
+                    }
+
+                    //completo select de empleados
+                    if(Object.keys(data["empleados"]).length > 0){
+                        $.each(data["empleados"], function(indice, val){
+                            var label = data["empleados"][indice]["apellido"]+' '+data["empleados"][indice]["nombre"];
+                            $("#myModal #id_empleado").append('<option value="'+data["empleados"][indice]["id_empleado"]+'"'
+                            +' id_convenio="'+data["empleados"][indice]["id_convenio"]+'"'
+                            //+' fecha_hasta="'+data["periodos"][indice]["fecha_hasta"]+'"'
+                            +'>'+label+'</option>');
+                        });
+                        $('#myModal #id_empleado').selectpicker('refresh');
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
+
+        });
+
+
+
+        //Select dependiente: al seleccionar emppleado carga conceptos
+        $('#myModal').on('change', '#id_empleado', function(e){ //ok
+
+            params={};
+            params.action = "parte-empleado-concepto";
+            params.operation = "getConceptos";
+            params.id_convenio = $('#myModal #id_empleado option:selected').attr('id_convenio');
+            params.id_contrato = $('#myModal #id_contrato').val();
+
+            $('#myModal #id_concepto').empty();
+
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                data: params,
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    if(Object.keys(data).length > 0){
+                        $.each(data, function(indice, val){
+                            var label = data[indice]["concepto"]+' ('+data[indice]["codigo"]+') '+data[indice]["convenio"];
+                            $("#id_concepto").append('<option value="'+data[indice]["id_concepto_convenio_contrato"]+'">'+label+'</option>');
 
                         });
-
-                        //si es una edicion o view, selecciona el concepto.
-                        //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                        $('#myModal #id_periodo').selectpicker('refresh');
-
+                        $('#myModal #id_concepto').selectpicker('refresh');
                     }
 
                 },
@@ -108,85 +156,35 @@
             $('#fecha_hasta').attr('validar', 1);
 
 
-            if ($("#txt-form").valid()){
+            //if ($("#txt-form").valid()){
 
                 params={};
-                //params.eventos = $("#id_evento").val();
-                params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
-                params.fecha_desde = $("#myModal #fecha_desde").val();
-                params.fecha_hasta = $("#myModal #fecha_hasta").val();
-                params.id_contrato = $("#myModal #id_contrato").val();
-                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
-                var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_crossTab_sucesos.rptdesign"+
-                    "&p_fecha_desde="+params.fecha_desde+
-                    "&p_fecha_hasta="+params.fecha_hasta+
-                    "&p_id_contrato="+params.id_contrato+
-                    "&p_id_evento="+params.eventos+
-                    "&p_id_user="+params.id_user;
-                var win = window.open(URL, "_blank");
-
-
-                /*var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
-                 params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
-                 var attr = $('#search_empleado option:selected').attr('id_grupo');
-                 params.id_grupo = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_grupo') : '';
-                 //params.id_vencimiento = $("#search_vencimiento").val();
-                 params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                 params.id_contrato = $("#search_contrato").val();
-                 params.renovado = $('#search_renovado').prop('checked')? 1 : '';
-                 params.id_user = <?php echo $_SESSION['id_user']; ?>
-                 //var nro_version = Number($('#version').val());
-                 //var lugar_trabajo = $('#lugar_trabajo').val();
-                 //var usuario  = "<?php echo $_SESSION["USER_NOMBRE"].' '.$_SESSION["USER_APELLIDO"]; ?>";
-                 //var id_cia = "<?php echo $_SESSION['ID_CIA']; ?>";
-                 //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
-
-                 //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=sci_plan_version.rptdesign&p_periodo="+periodo+"&p_nro_version="+nro_version+"&p_lugar_trabajo="+lugar_trabajo+"&p_usuario="+usuario+"&p_id_cia="+id_cia;
-                 var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=pdf&__report=gseip_vencimientos_p.rptdesign&p_id_empleado="+params.id_empleado+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_renovado="+params.renovado+"&p_id_cia="+params.id_empleado+"&p_id_user="+params.id_user;
-                 //var win = window.open(URL, "_blank", strWindowFeatures);
-                 */
-
-            }
-
-
-            return false;
-        });
-
-
-        //para exportar a txt
-        //$('.table-responsive').on("click", ".txt", function(){
-        $('#myModal').on("click", "#submit", function(){
-            //alert('presiono en exportar txt');
-            $('#id_periodo').attr('validar', 1);
-            $('#fecha_desde').attr('validar', 0);
-            $('#fecha_hasta').attr('validar', 0);
-
-            if ($("#txt-form").valid()){
-
-                params={};
-                //params.id_empleado = $("#search_empleado").val();
-                //params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
                 //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
                 //params.fecha_desde = $("#myModal #fecha_desde").val();
                 //params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.id_periodo = $("#myModal #id_periodo").val();
-                //location.href="index.php?action=sucesos&operation=txt";
-                location.href="index.php?action=sucesos"+
-                                        "&operation=txt" +
-                                        //"&id_empleado="+params.id_empleado+
-                                        //"&eventos="+params.eventos+
-                                        //"&p_fecha_desde="+params.fecha_desde+
-                                        //"&p_fecha_hasta="+params.fecha_hasta+
-                                        "&id_contrato="+params.id_contrato+
-                                        "&id_periodo="+params.id_periodo;
+                params.id_empleado = $("#myModal #id_empleado").val();
+                params.id_concepto_convenio_contrato = $("#myModal #id_concepto").val();
+                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
+                var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
+                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_conceptos.rptdesign"+
+                    //"&p_fecha_desde="+params.fecha_desde+
+                    //"&p_fecha_hasta="+params.fecha_hasta+
+                    "&p_id_contrato="+params.id_contrato+
+                    "&p_id_periodo="+params.id_periodo+
+                    "&p_id_empleado="+params.id_empleado+
+                    "&p_id_concepto_convenio_contrato="+params.id_concepto_convenio_contrato+
+                    "&p_id_user="+params.id_user;
+                var win = window.open(URL, "_blank");
 
-            }
+            //}
+
 
             return false;
-
         });
+
+
 
 
 
@@ -214,13 +212,6 @@
                 <form name ="txt-form" id="txt-form" method="POST" action="index.php">
                     <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
 
-                    <div class="alert alert-info fade in">
-                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        <span class="glyphicon glyphicon-tags" ></span>&nbsp Esta pantalla permite exportar las sucesos a formatos .txt (para importar desde BAS) y tabla cruzada.
-                    </div>
-
-                    <!--<br/>-->
-
 
                     <div class="form-group required">
                         <label class="control-label" for="id_empleado">Contrato</label>
@@ -238,7 +229,23 @@
 
                     <div class="form-group">
                         <label for="id_periodo" class="control-label">Período de liquidación</label>
-                        <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un período" data-live-search="true" data-size="5">
+                            <!-- se completa dinamicamente desde javascript  -->
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="id_empleado" class="control-label">Empleado</label>
+                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
+                            <!-- se completa dinamicamente desde javascript  -->
+                        </select>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label for="id_concepto" class="control-label">Concepto</label>
+                        <select class="form-control selectpicker show-tick" id="id_concepto" name="id_concepto" title="Seleccione un concepto" data-live-search="true" data-size="5">
                             <!-- se completa dinamicamente desde javascript  -->
                         </select>
                     </div>
@@ -253,25 +260,16 @@
                         </div>
                     </div>
 
-
-
-                    <div class="form-group">
-                        <label for="id_evento" class="control-label">Eventos</label>
-                        <select multiple class="form-control selectpicker show-tick" id="id_evento" name="id_evento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
-                            <!--<option value="">Seleccione un vencimiento</option>-->
-                            <?php foreach ($view->eventos as $ev){
-                                ?>
-                                <option value="<?php echo $ev['id_evento']; ?>" >
-                                    <?php echo $ev['nombre'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                    <div class="alert alert-info" role="alert">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Muestra los partes involucrados para un período, empleado y concepto indicados.
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                            </div>
+                        </div>
                     </div>
-
-
-
-
-
 
 
                 </form>
@@ -283,13 +281,13 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit" title="txt">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
-                <button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit" title="pdf">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
-                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
-            </div>
+                <!--<button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit" title="txt">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>-->
+                <!--<button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit" title="pdf">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>-->
+               <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
+           </div>
 
-        </div>
-    </div>
+       </div>
+   </div>
 </div>
 </fieldset>
 

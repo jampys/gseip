@@ -22,29 +22,26 @@ $view->disableLayout=false;
 switch ($operation)
 {
 
-    case 'loadExportTxt': //  //abre ventana modal para exportar
+    case 'loadControl': //ok  //abre ventana modal para controlar novedades
         $view->disableLayout=true;
-        $view->label = 'Exportar novedades';
+        $view->label = 'Controlar novedades';
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
 
-        $view->contentTemplate="view/novedades_partes/export_txtForm.php";
+        $view->contentTemplate="view/novedades_partes/control_partesForm.php";
         break;
 
-    case 'checkExportTxt': // //chequea que no existan partes sin calcular
-        //$parte = new Parte($_POST['id_parte']);
-        //$rta = $parte->save();
-        $rta = Parte::checkExportTxt($_POST['id_contrato'], $_POST['id_periodo']);
-        //print_r(json_encode(sQuery::dpLastInsertId()));
-        //print_r(json_encode($rta));
-        print_r(json_encode($rta));
+
+    case 'getPeriodosAndEmpleados': //select dependiente //ok
+        $id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
+        $activos = (($_POST['activos']!='')? $_POST['activos'] : null );
+        $periodos = NovPeriodo::getPeriodos($id_contrato, $activos);
+        $empleados = Empleado::getEmpleadosActivos($id_contrato);
+        print_r(json_encode(array('periodos'=>$periodos, 'empleados'=>$empleados)));
         exit;
         break;
 
 
     default :
-        $view->areas = NovArea::getAreas(); //carga el combo para filtrar Areas
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
-        $view->contentTemplate="view/novedades_partes/partesGrid.php";
         break;
 }
 
