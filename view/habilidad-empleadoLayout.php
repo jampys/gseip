@@ -210,7 +210,7 @@
                 <h4>Habilidades por empleado</h4>
                 <hr class="hr-primary"/>
 
-                <div class="clearfix">
+                <div class="row clearfix">
                     <form id="search_form" name="search_form">
                         <div class="form-group col-md-4">
                             <label for="search_empleado" class="control-label">Empleado</label>
@@ -239,7 +239,7 @@
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
                             <button type="button" class="form-control btn btn-default btn-sm" id="search" title="Buscar">
-                                <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+                                <span class="glyphicon glyphicon-search fa-lg dp_orange"></span>
                             </button>
                         </div>
                         <div class="form-group col-md-2">
