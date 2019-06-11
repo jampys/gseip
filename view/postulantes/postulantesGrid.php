@@ -108,12 +108,10 @@
                             <?php if($rp['cant_uploads']> 0 ){ ?>
                                 <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
                                     <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-                                </a>&nbsp;&nbsp;
+                                </a>
                             <?php } else{ ?>
-                                <!--<a class="" href="#" title="renovar">
-                                    <i class="far fa-clone"></i>
-                                </a>-->
-                            <?php } ?>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            <?php } ?>&nbsp;&nbsp;
 
                             <a class="view" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
