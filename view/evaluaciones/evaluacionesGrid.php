@@ -39,10 +39,6 @@
                 <th>Contrato</th>
                 <th>Puesto</th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -63,53 +59,45 @@
                         <a class="<?php echo (!$evaluacion['cerrado'] &&
                             PrivilegedUser::dhasPrivilege('EAD_AGS', array(1))
                         )? 'loadEaag' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación aspectos generales" >
-                            <span class="<?php echo ($evaluacion['hasAllEaag'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
-                        </a>
-                    </td>
+                            <span class="<?php echo ($evaluacion['hasAllEaag'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked dp_blue';  ?>" aria-hidden="true"></span>
+                        </a>&nbsp;&nbsp;
 
                     <!-- evaluacion de competencias -->
-                    <td class="text-center">
                         <a class="<?php echo (  !$evaluacion['cerrado'] &&
                                                 ((PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) && $evaluacion['isInSup']) ||
                                                     (PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) && $evaluacion['isSup']) ||
                                                 PrivilegedUser::dhasPrivilege('EAD_COM', array(0)))
                             )? 'loadEac' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación competencias" >
-                            <span class="<?php echo ($evaluacion['hasAllEac'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
-                        </a>
-                    </td>
+                            <span class="<?php echo ($evaluacion['hasAllEac'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked dp_blue';  ?>" aria-hidden="true"></span>
+                        </a>&nbsp;&nbsp;
 
 
                     <!-- evaluacion de objetivos -->
-                    <td class="text-center">
                         <a class="<?php echo (  !$evaluacion['cerrado'] &&
                                                 ((PrivilegedUser::dhasPrivilege('EAD_OBJ', array(51)) && $evaluacion['isInSup']) ||
                                                     (PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) && $evaluacion['isSup']) ||
                                                 PrivilegedUser::dhasPrivilege('EAD_OBJ', array(0)))
                             )? 'loadEao' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación objetivos" >
-                            <span class="<?php echo ($evaluacion['hasAllEao'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
-                        </a>
-                    </td>
+                            <span class="<?php echo ($evaluacion['hasAllEao'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked dp_blue';  ?>" aria-hidden="true"></span>
+                        </a>&nbsp;&nbsp;
 
 
                     <!-- evaluacion conclusiones -->
-                    <td class="text-center">
                         <a class="<?php echo (  !$evaluacion['cerrado'] &&
                                                 ((PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) && $evaluacion['isInSup']) ||
                                                     (PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) && $evaluacion['isSup']) ||
                                                 PrivilegedUser::dhasPrivilege('EAD_COM', array(0)))
                         )? 'loadEaconcl' : 'disabled' ?>" href="javascript:void(0);" title="Conclusiones" >
-                            <span class="<?php echo ($evaluacion['hasEaconcl'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked';  ?>" aria-hidden="true"></span>
-                        </a>
-                    </td>
+                            <span class="<?php echo ($evaluacion['hasEaconcl'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked dp_blue';  ?>" aria-hidden="true"></span>
+                        </a>&nbsp;&nbsp;
 
                     <!-- reporte individual -->
-                    <td class="text-center">
                         <a class="<?php echo (  //!$evaluacion['cerrado'] &&
                                                 ((PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) && $evaluacion['isInSup']) ||
                                                     (PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) && $evaluacion['isSup']) ||
                                                 PrivilegedUser::dhasPrivilege('EAD_COM', array(0)))
                             )? 'reporte' : 'disabled' ?>" href="javascript:void(0);" title="Reporte de evaluación" >
-                            <i class="far fa-file-pdf fa-fw"></i>
+                            <i class="far fa-file-pdf fa-fw dp_blue"></i>
                         </a>
                     </td>
 
