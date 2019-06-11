@@ -90,9 +90,6 @@
                 <th>Contrato</th>
                 <th>Estado</th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -113,31 +110,26 @@
                         <td class="text-center">
                             <?php if($rp['cant_uploads']> 0 ){ ?>
                                 <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
-                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-paperclip dp_gray" aria-hidden="true"></span>
                                 </a>
                             <?php } else{ ?>
                                 <!--<a class="" href="#" title="renovar">
                                     <i class="far fa-clone"></i>
                                 </a>-->
-                            <?php } ?>
-                        </td>
+                            <?php } ?>&nbsp;&nbsp;
 
-                        <td class="text-center">
                             <a class="view" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
-                            </a>
-                        </td>
+                                <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
+                            </a>&nbsp;&nbsp;
 
-                        <td class="text-center">
                             <!-- si tiene permiso para editar -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
-                            </a>
-                        </td>
-                        <td class="text-center">
+                                <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
+                            </a>&nbsp;&nbsp;
+
                             <!-- si tiene permiso para eliminar -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                             </a>
                         </td>
                     </tr>
@@ -148,7 +140,7 @@
 
         <br/>
         <div class="pull-right pdf">
-            <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x"></i></a>
+            <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
         </div>
 
     </div>
