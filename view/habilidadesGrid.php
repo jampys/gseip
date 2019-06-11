@@ -52,7 +52,7 @@
                     <td><?php echo $habilidad['nombre'];?></td>
                     <td class="text-center">
                         <a class="view" title="ver" href="javascript:void(0);" data-id="<?php echo $habilidad['id_habilidad'];?>"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo (PrivilegedUser::dhasAction('HAB_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);" data-id="<?php echo $habilidad['id_habilidad'];?>"><span class="glyphicon glyphicon-edit dp_yellow" aria-hidden="true"></span></a>&nbsp;&nbsp;
+                        <a class="<?php echo (PrivilegedUser::dhasAction('HAB_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);" data-id="<?php echo $habilidad['id_habilidad'];?>"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
                         <a class="<?php echo (PrivilegedUser::dhasAction('HAB_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);" data-id="<?php echo $habilidad['id_habilidad'];?>"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>
                     </td>
                 </tr>

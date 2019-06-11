@@ -74,14 +74,14 @@
                         <td class="text-center">
                             <!-- si tiene permiso para ver etapas -->
                             <a class="<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'detalle' : 'disabled' ?>" href="javascript:void(0);">
-                                <i class="far fa-list-alt fa-fw dp_brown" title="detalle del objetivo"></i>
+                                <i class="far fa-list-alt fa-fw dp_blue" title="detalle del objetivo"></i>
                             </a>&nbsp;&nbsp;
 
 
 
                             <!-- si tiene permiso para clonar objetivo -->
                             <a class="<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'clone' : 'disabled' ?>" href="javascript:void(0);">
-                                <i class="far fa-clone fa-fw dp_yellow" title="clonar"></i>
+                                <i class="far fa-clone fa-fw dp_blue" title="clonar"></i>
                             </a>&nbsp;&nbsp;
 
 
@@ -97,7 +97,7 @@
                             <a class="<?php echo (  !$rp['cerrado'] &&
                                                     PrivilegedUser::dhasAction('OBJ_UPDATE', array(1))
                                                  )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit dp_yellow" title="editar" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
 

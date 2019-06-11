@@ -76,7 +76,7 @@
                     <td><?php echo $contrato['fecha_hasta'];?></td>
                     <td class="text-center">
                         <a class="view" title="ver" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo ( PrivilegedUser::dhasAction('CON_UPDATE', explode(',',$contrato['id_domain'])  ) )? 'edit' : 'disabled' ?>" title="editar" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-edit dp_yellow" aria-hidden="true"></span></a>
+                        <a class="<?php echo ( PrivilegedUser::dhasAction('CON_UPDATE', explode(',',$contrato['id_domain'])  ) )? 'edit' : 'disabled' ?>" title="editar" href="javascript:void(0);" data-id="<?php echo $contrato['id_contrato'];?>"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>
                     </td>
                 </tr>
             <?php endforeach; ?>

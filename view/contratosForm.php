@@ -67,7 +67,7 @@
                     '<td>'+fecha_hasta+'</td>' +
                     '<td class="text-center">' +
                     '<a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
-                    '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit dp_yellow" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
+                    '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
                     '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_DEL', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>'+
                     '</td>'+
                     '</tr>';

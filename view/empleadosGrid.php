@@ -79,9 +79,9 @@
                     <td><?php echo $empleado['fecha_baja'];?></td>
                     <td><?php echo $empleado['ciudad'];?></td>
                     <td class="text-center">
-                        <a class="contratos" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>" title="contratos"><i class="fas fa-suitcase dp_brown"></i></a>&nbsp;&nbsp;
+                        <a class="contratos" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>" title="contratos"><i class="fas fa-suitcase dp_blue"></i></a>&nbsp;&nbsp;
                         <a class="view" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>" title="ver"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>" title="editar"><span class="glyphicon glyphicon-edit dp_yellow" aria-hidden="true"></span></a>
+                        <a class="<?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" data-id="<?php echo $empleado['id_empleado'];?>" title="editar"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
