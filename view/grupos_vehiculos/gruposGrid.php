@@ -37,7 +37,9 @@
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
-        <button  id="new" type="button" class="btn btn-primary btn-sm" <?php echo (PrivilegedUser::dhasAction('GRV_INSERT', array(1)) )? '' : 'disabled' ?> >Nuevo Grupo</button>
+        <button  id="new" type="button" class="btn btn-default btn-sm" <?php echo (PrivilegedUser::dhasAction('GRV_INSERT', array(1)) )? '' : 'disabled' ?> >
+            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nuevo Grupo
+        </button>
     </div>
 
     <div class="table-responsive">

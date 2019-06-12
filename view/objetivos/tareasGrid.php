@@ -23,22 +23,16 @@
                     <td class="text-center">
                         <a class="avance" href="javascript:void(0);" data-id="<?php echo $ta['id_tarea'];?>" title="Avances">
                             <i class="fas fa-forward fa-fw dp_blue"></i>
-                        </a>
-                    </td>
+                        </a>&nbsp;&nbsp;
 
-                    <td class="text-center">
                         <a class="view" href="javascript:void(0);" data-id="<?php echo $ta['id_tarea'];?>" title="ver">
                             <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
-                        </a>
-                    </td>
+                        </a>&nbsp;&nbsp;
 
-                    <td class="text-center">
                         <a class="<?php echo ( !$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) /*&& $et['id_user'] == $_SESSION['id_user']*/  )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
                             <span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span>
-                        </a>
-                    </td>
+                        </a>&nbsp;&nbsp;
 
-                    <td class="text-center">
                         <a class="<?php echo ( !$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) /*&& $et['id_user'] == $_SESSION['id_user'] */ )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                             <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                         </a>
