@@ -70,7 +70,7 @@
     </div>
 
     <div class="form-group">
-        <button class="btn btn-primary btn-sm btn-block" id="ingresar" name="ingresar" type="submit"><span class="glyphicon glyphicon-log-in"></span> Ingresar</button>
+        <button class="btn btn-primary btn-block" id="ingresar" name="ingresar" type="submit"><span class="glyphicon glyphicon-log-in"></span> Ingresar</button>
     </div>
 </form>
 

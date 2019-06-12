@@ -254,21 +254,21 @@
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-default btn-sm" title="Buscar" id="search">
+                            <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                                 <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                             </button>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-default btn-sm" title="nuevo suceso" id="new" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
+                            <button type="button" class="form-control btn btn-default" title="nuevo suceso" id="new" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                             </button>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label for="export" class="control-label">&nbsp;</label>
-                            <button id="export" class="form-control btn btn-default btn-sm dp_blue" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
+                            <button id="export" class="form-control btn btn-default dp_blue" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
                         <div class="form-group col-md-3">

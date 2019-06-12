@@ -368,16 +368,16 @@
 
                         <!--<div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
+                            <button type="button" class="form-control btn btn-primary" id="search">Buscar</button>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
+                            <button type="button" class="form-control btn btn-primary" id="new">Nueva renovación</button>
                         </div>-->
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-default btn-sm" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
+                            <button type="button" class="form-control btn btn-default" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                             </button>
                         </div>

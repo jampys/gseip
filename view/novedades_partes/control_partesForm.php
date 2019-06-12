@@ -266,7 +266,7 @@
                                 <span class="glyphicon glyphicon-tags" ></span>&nbsp Muestra los partes involucrados para un período, empleado y concepto indicados.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -281,9 +281,9 @@
             </div>
 
             <div class="modal-footer">
-                <!--<button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit" title="txt">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>-->
-                <!--<button class="btn btn-primary btn-sm" id="submit1" name="submit1" type="submit" title="pdf">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>-->
-               <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
+                <!--<button class="btn btn-primary" id="submit" name="submit" type="submit" title="txt">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>-->
+                <!--<button class="btn btn-primary" id="submit1" name="submit1" type="submit" title="pdf">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>-->
+               <button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
            </div>
 
        </div>

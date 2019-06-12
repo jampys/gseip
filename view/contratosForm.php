@@ -522,7 +522,7 @@
 
         <div class="clearfix">
             <h4 class="pull-left">Empleados</h4>
-            <button class="btn btn-default btn-sm pull-right" id="add-empleado" >
+            <button class="btn btn-default pull-right" id="add-empleado" >
                 <span class="glyphicon glyphicon-plus dp_green"></span> Agregar empleado
             </button>
         </div>
@@ -567,8 +567,8 @@
 
     <div class="panel-footer clearfix">
         <div class="button-group pull-right">
-            <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
-            <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
+            <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+            <button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>
         </div>
     </div>
 

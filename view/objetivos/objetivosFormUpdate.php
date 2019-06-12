@@ -581,7 +581,7 @@
                                 <!-- seccion de actividades -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-tareas" title="Mostrar actividades">Actividades</button>
+                                        <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-tareas" title="Mostrar actividades">Actividades</button>
                                     </div>
 
                                     <div class="col-md-4">
@@ -589,7 +589,7 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-default btn-sm btn-block" id="add-tarea" name="add-tarea" title="Agregar actividad" <?php echo (!$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? '' : 'disabled' ?> >
+                                        <button type="button" class="btn btn-default btn-block" id="add-tarea" name="add-tarea" title="Agregar actividad" <?php echo (!$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? '' : 'disabled' ?> >
                                             <i class="fas fa-plus dp_green"></i>&nbsp
                                         </button>
                                     </div>
@@ -608,7 +608,7 @@
                                 <!-- seccion de avances -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-avances" title="Mostrar avances">Avances</button>
+                                        <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-avances" title="Mostrar avances">Avances</button>
                                     </div>
 
                                     <div class="col-md-4">
@@ -616,7 +616,7 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-default btn-sm btn-block" id="add-avance" name="add-avance" title="Agregar avance" <?php echo (!$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? '' : 'disabled' ?>  >
+                                        <button type="button" class="btn btn-default btn-block" id="add-avance" name="add-avance" title="Agregar avance" <?php echo (!$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? '' : 'disabled' ?>  >
                                             <i class="fas fa-plus dp_green"></i>&nbsp
                                         </button>
                                     </div>
@@ -650,8 +650,8 @@
             </div>
 
             <div class="modal-footer">
-                <!--<button class="btn btn-primary btn-sm" id="calcular" name="calcular" type="submit">Calcular</button>-->
-                <button class="btn btn-default btn-sm" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
+                <!--<button class="btn btn-primary" id="calcular" name="calcular" type="submit">Calcular</button>-->
+                <button class="btn btn-default" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
             </div>
 
         </div>

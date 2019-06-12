@@ -294,8 +294,8 @@
             </div>
 
             <div class="modal-footer">
-                <!--<button class="btn btn-primary btn-sm" id="calcular" name="calcular" type="submit">Calcular</button>-->
-                <button class="btn btn-default btn-sm" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
+                <!--<button class="btn btn-primary" id="calcular" name="calcular" type="submit">Calcular</button>-->
+                <button class="btn btn-default" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
             </div>
 
         </div>
