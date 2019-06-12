@@ -589,8 +589,8 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-tarea" name="add-tarea" title="Agregar actividad" <?php echo (!$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? '' : 'disabled' ?> >
-                                            <i class="fas fa-plus"></i>&nbsp
+                                        <button type="button" class="btn btn-default btn-sm btn-block" id="add-tarea" name="add-tarea" title="Agregar actividad" <?php echo (!$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? '' : 'disabled' ?> >
+                                            <i class="fas fa-plus dp_green"></i>&nbsp
                                         </button>
                                     </div>
                                 </div>
@@ -616,8 +616,8 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-avance" name="add-avance" title="Agregar avance" <?php echo (!$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? '' : 'disabled' ?>  >
-                                            <i class="fas fa-plus"></i>&nbsp
+                                        <button type="button" class="btn btn-default btn-sm btn-block" id="add-avance" name="add-avance" title="Agregar avance" <?php echo (!$view->params['cerrado'] && PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? '' : 'disabled' ?>  >
+                                            <i class="fas fa-plus dp_green"></i>&nbsp
                                         </button>
                                     </div>
                                 </div>
