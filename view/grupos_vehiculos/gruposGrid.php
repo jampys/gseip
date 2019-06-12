@@ -53,9 +53,6 @@
                 <th>Vencimiento</th>
                 <th>Fecha Baja</th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -70,27 +67,22 @@
                     <!-- si tiene permiso para vehiculos del grupo -->
                     <td class="text-center">
                         <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'vehiculos' : 'disabled' ?>" href="javascript:void(0);">
-                            <i class="far fa-list-alt fa-fw" title="vehículos"></i>
-                        </a>
-                    </td>
+                            <i class="far fa-list-alt fa-fw dp_blue" title="vehículos"></i>
+                        </a>&nbsp;&nbsp;
 
-                    <td class="text-center">
                         <!-- si tiene permiso para ver -->
                         <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
-                            <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
-                        </a>
-                    </td>
+                            <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
+                        </a>&nbsp;&nbsp;
 
-                    <td class="text-center">
                         <!-- si tiene permiso para editar -->
                         <a class="<?php echo ( PrivilegedUser::dhasAction('GRV_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                            <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
-                        </a>
-                    </td>
-                    <td class="text-center">
+                            <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
+                        </a>&nbsp;&nbsp;
+
                         <!-- si tiene permiso para eliminar -->
                         <a class="<?php echo ( PrivilegedUser::dhasAction('GRV_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                         </a>
                     </td>
                 </tr>
