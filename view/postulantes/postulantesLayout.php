@@ -196,11 +196,11 @@
 
                     <!--<div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
+                        <button type="button" class="form-control btn btn-primary" id="search">Buscar</button>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
+                        <button type="button" class="form-control btn btn-primary" id="new">Nueva renovación</button>
                     </div>-->
 
                     <div class="form-group col-md-2">
@@ -216,14 +216,14 @@
 
                     <div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-default btn-sm" title="Buscar" id="search">
+                        <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                             <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-default btn-sm" title="nuevo postulante" id="new" <?php echo ( PrivilegedUser::dhasAction('PTE_INSERT', array(1)) )? '' : 'disabled' ?>>
+                        <button type="button" class="form-control btn btn-default" title="nuevo postulante" id="new" <?php echo ( PrivilegedUser::dhasAction('PTE_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                         </button>
                     </div>

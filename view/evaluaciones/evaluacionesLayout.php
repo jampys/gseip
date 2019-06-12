@@ -347,7 +347,7 @@
 
                             <div class="form-group col-md-2">
                                 <!--<label for="search">&nbsp;</label>-->
-                                <button type="button" class="form-control btn btn-default btn-sm" title="Buscar" id="search">
+                                <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                                     <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                                 </button>
                             </div>
@@ -377,7 +377,7 @@
 
 
                             <div class="form-group col-md-2">
-                                <button type="button" class="form-control btn btn-default btn-sm" title="Función de densidad" id="gauss">
+                                <button type="button" class="form-control btn btn-default" title="Función de densidad" id="gauss">
                                     <i class="fas fa-chart-area fa-fw fa-lg dp_blue"></i>
                                 </button>
                             </div>

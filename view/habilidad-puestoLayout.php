@@ -253,14 +253,14 @@
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-default btn-sm" id="search" title="Buscar">
+                            <button type="button" class="form-control btn btn-default" id="search" title="Buscar">
                                 <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                             </button>
                         </div>
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-default btn-sm" id="new" <?php echo ( PrivilegedUser::dhasAction('HPU_INSERT', array(1)) )? '' : 'disabled' ?>>
+                            <button type="button" class="form-control btn btn-default" id="new" <?php echo ( PrivilegedUser::dhasAction('HPU_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                             </button>
                         </div>

@@ -436,11 +436,11 @@
 
                         <!--<div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
+                            <button type="button" class="form-control btn btn-primary" id="search">Buscar</button>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
+                            <button type="button" class="form-control btn btn-primary" id="new">Nueva renovación</button>
                         </div>-->
 
                         <!--<div class="form-group col-md-2">
@@ -455,7 +455,7 @@
 
                         <div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-default btn-sm" title="Buscar partes" id="search">
+                            <button type="button" class="form-control btn btn-default" title="Buscar partes" id="search">
                                 <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                             </button>
                         </div>
@@ -463,7 +463,7 @@
 
                         <div class="form-group col-md-2">
                             <label for="txt" class="control-label">&nbsp;</label>
-                            <button id="txt" class="form-control btn btn-default btn-sm" href="#" title="Exportar novedades"><i class="fas fa-file-export fa-fw fa-lg dp_blue"></i></button>
+                            <button id="txt" class="form-control btn btn-default" href="#" title="Exportar novedades"><i class="fas fa-file-export fa-fw fa-lg dp_blue"></i></button>
                         </div>
 
                         <div class="form-group col-md-3">
@@ -472,7 +472,7 @@
 
                         <div class="form-group col-md-2">
                             <label for="control" class="control-label">&nbsp;</label>
-                            <button id="control" class="form-control btn btn-default btn-sm" href="#" title="Controlar novedades"><i class="fas fa-cog fa-fw fa-lg dp_blue"></i></button>
+                            <button id="control" class="form-control btn btn-default" href="#" title="Controlar novedades"><i class="fas fa-cog fa-fw fa-lg dp_blue"></i></button>
                         </div>
 
                     </form>
