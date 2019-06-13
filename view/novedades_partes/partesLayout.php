@@ -472,7 +472,9 @@
 
                         <div class="form-group col-md-2">
                             <label for="control" class="control-label">&nbsp;</label>
-                            <button id="control" class="form-control btn btn-default" href="#" title="Controlar novedades"><i class="fas fa-cog fa-fw fa-lg dp_blue"></i></button>
+                            <button id="control" class="form-control btn btn-default" href="#" title="Controlar novedades">
+                                <span class="glyphicon glyphicon-check fa-lg dp_blue">
+                            </button>
                         </div>
 
                     </form>
