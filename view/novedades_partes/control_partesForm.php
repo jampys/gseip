@@ -152,7 +152,8 @@
         //reporte: concepto en enpleado
         $('#myModal').on("click", "#submit1", function(){
             //alert('Crosstab sucesos');
-            $('#txt-form').validate().resetForm(); //limpiar error input validate
+            //$('#txt-form').validate().resetForm(); //limpiar error input validate
+            $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
             $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
             $('#id_empleado').attr('validar', 1);
             $('#id_concepto').attr('validar', 1);
@@ -190,7 +191,8 @@
         //reporte OTs
         $('#myModal').on("click", "#submit2", function(){
             //alert('Crosstab sucesos');
-            $('#txt-form').validate().resetForm(); //limpiar error input validate
+            //$('#txt-form').validate().resetForm(); //limpiar error input validate
+            $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
             $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
             $('#id_empleado').attr('validar', 0);
             $('#id_concepto').attr('validar', 0);
