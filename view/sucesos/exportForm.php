@@ -103,6 +103,8 @@
         //$('.table-responsive').on("click", ".pdf", function(){
         $('#myModal').on("click", "#submit1", function(){
             //alert('Crosstab sucesos');
+            $('#txt-form').validate().resetForm(); //limpiar error input validate
+            $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
             $('#id_periodo').attr('validar', 0);
             $('#fecha_desde').attr('validar', 1);
             $('#fecha_hasta').attr('validar', 1);
@@ -158,6 +160,8 @@
         //$('.table-responsive').on("click", ".txt", function(){
         $('#myModal').on("click", "#submit", function(){
             //alert('presiono en exportar txt');
+            $('#txt-form').validate().resetForm(); //limpiar error input validate
+            $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
             $('#id_periodo').attr('validar', 1);
             $('#fecha_desde').attr('validar', 0);
             $('#fecha_hasta').attr('validar', 0);
