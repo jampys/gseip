@@ -16,11 +16,11 @@
 
     .popover-title {
         font-family: 'Roboto', sans-serif;
-        font-size: 13px;
+        font-size: 12px;
     }
     .popover-content table td {
         font-family: 'Roboto', sans-serif;
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .input-group-addon{
