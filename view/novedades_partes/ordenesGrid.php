@@ -30,7 +30,7 @@
                     </a>&nbsp;&nbsp;
 
                     <a class="<?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' /*&& $et['id_user'] == $_SESSION['id_user']*/  )? 'clone' : 'disabled' ?>" href="javascript:void(0);" title="clonar">
-                        <i class="far fa-clone fa-fw dp_blue"></i>
+                        <span class="glyphicon glyphicon-duplicate dp_blue">
                     </a>&nbsp;&nbsp;
 
                     <a class="<?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' /*&& $et['id_user'] == $_SESSION['id_user'] */ )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">

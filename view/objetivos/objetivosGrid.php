@@ -81,7 +81,7 @@
 
                             <!-- si tiene permiso para clonar objetivo -->
                             <a class="<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'clone' : 'disabled' ?>" href="javascript:void(0);">
-                                <i class="far fa-clone fa-fw dp_blue" title="clonar"></i>
+                                <span class="glyphicon glyphicon-duplicate dp_blue" title="clonar">
                             </a>&nbsp;&nbsp;
 
 
