@@ -21,17 +21,19 @@
         $('#txt-form').validate({
             rules: {
                 id_contrato: {required: true},
-                id_periodo: {required: function(item){return $('#id_periodo').attr('validar') == 1}},
-                fecha_desde: {required: function(item){return $('#fecha_desde').attr('validar') == 1}},
-                fecha_hasta: {required: function(item){return $('#fecha_desde').attr('validar') == 1}}
-                //id_evento: {required: true}
+                id_periodo: {required: true},
+                id_empleado: {required: function(item){return $('#id_empleado').attr('validar') == 1}},
+                id_concepto: {required: function(item){return $('#id_concepto').attr('validar') == 1}}
+                //fecha_desde: {required: function(item){return $('#fecha_desde').attr('validar') == 1}},
+                //fecha_hasta: {required: function(item){return $('#fecha_desde').attr('validar') == 1}}
             },
             messages:{
                 id_contrato: "Seleccione un contrato",
                 id_periodo: "Seleccione un período",
-                fecha_desde: "Seleccione la fecha desde",
-                fecha_hasta: "Seleccione la fecha hasta"
-                //id_evento: "Seleccione un evento"
+                id_empleado: "Seleccione un empleado",
+                id_concepto: "Seleccione un concepto"
+                //fecha_desde: "Seleccione la fecha desde",
+                //fecha_hasta: "Seleccione la fecha hasta"
 
             }
         });
@@ -147,16 +149,16 @@
 
         
 
-        //para exportar a pdf
-        //$('.table-responsive').on("click", ".pdf", function(){
+        //reporte: concepto en enpleado
         $('#myModal').on("click", "#submit1", function(){
             //alert('Crosstab sucesos');
-            $('#id_periodo').attr('validar', 0);
-            $('#fecha_desde').attr('validar', 1);
-            $('#fecha_hasta').attr('validar', 1);
+            $('#txt-form').validate().resetForm(); //limpiar error input validate
+            $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
+            $('#id_empleado').attr('validar', 1);
+            $('#id_concepto').attr('validar', 1);
 
 
-            //if ($("#txt-form").valid()){
+            if ($("#txt-form").valid()){
 
                 params={};
                 //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
@@ -178,21 +180,23 @@
                     "&p_id_user="+params.id_user;
                 var win = window.open(URL, "_blank");
 
-            //}
+            }
 
 
             return false;
         });
 
 
+        //reporte OTs
         $('#myModal').on("click", "#submit2", function(){
             //alert('Crosstab sucesos');
-            $('#id_periodo').attr('validar', 0);
-            $('#fecha_desde').attr('validar', 1);
-            $('#fecha_hasta').attr('validar', 1);
+            $('#txt-form').validate().resetForm(); //limpiar error input validate
+            $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
+            $('#id_empleado').attr('validar', 0);
+            $('#id_concepto').attr('validar', 0);
 
 
-            //if ($("#txt-form").valid()){
+            if ($("#txt-form").valid()){
 
             params={};
             //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
@@ -212,7 +216,7 @@
                 "&p_id_user="+params.id_user;
             var win = window.open(URL, "_blank");
 
-            //}
+            }
 
 
             return false;
@@ -261,7 +265,7 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label for="id_periodo" class="control-label">Período de liquidación</label>
                         <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un período" data-live-search="true" data-size="5">
                             <!-- se completa dinamicamente desde javascript  -->
@@ -277,7 +281,7 @@
                     </div>
 
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label for="id_concepto" class="control-label">Concepto</label>
                         <select class="form-control selectpicker show-tick" id="id_concepto" name="id_concepto" title="Seleccione un concepto" data-live-search="true" data-size="5">
                             <!-- se completa dinamicamente desde javascript  -->
@@ -288,9 +292,9 @@
                     <div class="form-group">
                         <label class="control-label" for="empleado">Fecha desde / hasta</label>
                         <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly disabled>
                             <div class="input-group-addon">a</div>
-                            <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly disabled>
                         </div>
                     </div>
 
