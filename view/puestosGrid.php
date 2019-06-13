@@ -36,8 +36,8 @@
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
-        <button  id="new" type="button" class="btn btn-primary btn-sm" <?php echo ( PrivilegedUser::dhasAction('PUE_INSERT', array(1)) )? '' : 'disabled' ?> >
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo Puesto
+        <button  id="new" type="button" class="btn btn-default" <?php echo ( PrivilegedUser::dhasAction('PUE_INSERT', array(1)) )? '' : 'disabled' ?> >
+            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nuevo Puesto
         </button>
     </div>
 
@@ -52,10 +52,6 @@
                 <th>Nivel competencia</th>
                 <th>puesto superior</th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -67,23 +63,23 @@
                     <td><?php echo $puesto['nivel_competencia'];?></td>
                     <td><?php echo $puesto['nombre_superior'];?></td>
 
-                    <td class="text-center"><a class="detalles" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>" title="detalles del puesto"><i class="fas fa-suitcase"></i></a></td>
-
                     <td class="text-center">
+                        <a class="detalles" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>" title="detalles del puesto"><i class="fas fa-suitcase dp_blue"></i></a>&nbsp;&nbsp;
+
                         <?php if($puesto['cant_uploads']> 0 ){ ?>
                             <a href="#" title="<?php echo $puesto['cant_uploads']; ?> adjuntos" >
-                                <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-paperclip dp_gray" aria-hidden="true"></span>
                             </a>
                         <?php } else{ ?>
                             <a href="#" title="sin adjuntos" class="disabled">
                                 <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
                             </a>
                         <?php } ?>
+                        &nbsp;&nbsp;
+                        <a class="view" title="ver" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
+                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
+                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>
                     </td>
-
-                    <td class="text-center"><a class="view" title="ver" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('PUE_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                    <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('PUE_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

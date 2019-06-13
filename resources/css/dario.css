@@ -63,16 +63,16 @@ body > .container {
 
 code {
     /*font-size: 80%; */
-    font-size: 13px !important;
+    font-size: 12px !important;
 
 }
 
 
 
 /* configuracion personalizada de dataTables */
-.dataTables_wrapper { font-size: 13px !important; } /*tamaño del header y paginacion abajo */
-table.dataTable td { font-size: 13px !important; }
-table.dataTable th { font-size: 13px !important; }
+.dataTables_wrapper { font-size: 12px !important; } /*tamaño del header y paginacion abajo */
+table.dataTable td { font-size: 12px !important; }
+table.dataTable th { font-size: 12px !important; }
 
 
 
@@ -84,7 +84,7 @@ table.dataTable th { font-size: 13px !important; }
  .datepicker-days tfoot tr th,
  .datepicker-days thead tr td,
  .datepicker-days thead tr th {
-     font-size: 13px;
+     font-size: 12px;
      padding: 3px;
      width: 25px;
      height: 25px}
@@ -114,8 +114,8 @@ table.dataTable th { font-size: 13px !important; }
 
 
 /* estilo personalizado para tablas */
-table.dpTable td { font-size: 13px !important; }
-table.dpTable th { font-size: 13px !important; }
+table.dpTable td { font-size: 12px !important; }
+table.dpTable th { font-size: 12px !important; }
 
 
 /* para que la tabla tenga scroll vertital. Se coloca esta clase al div de nivel superior */
@@ -184,7 +184,7 @@ fieldset:disabled .input-daterange input:read-only  {
 /*Aplico la fuente Roboto a todo el proyecto */
 body{
     font-family: 'Roboto', sans-serif;
-    font-size: 13px !important;
+    font-size: 12px !important;
 }
 
 
@@ -192,4 +192,15 @@ body{
 .alert{
     margin-bottom: 10px;
 }
+
+/* colores para los iconos de font-awesome */
+.dp_brown{color: #6D4C41}
+.dp_green {color: #5fba7d}
+.dp_red{color: #DD2C00}
+.dp_yellow{color: #F9A825}
+.dp_orange{color: #FF5733}
+.dp_purple{color: #4747d1}
+.dp_blue{color: #01579B}
+.dp_gray{color: #455A64}
+
 

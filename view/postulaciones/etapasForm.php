@@ -213,8 +213,8 @@
                         <div class="col-md-6" id="etapas_left_side">
 
                             <div class="clearfix">
-                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar etapa">
-                                    <span class="glyphicon glyphicon-plus"></span>
+                                <button class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar etapa">
+                                    <span class="glyphicon glyphicon-plus dp_green"></span>
                                 </button>
                             </div>
 
@@ -237,8 +237,8 @@
             </div>
 
             <div class="modal-footer">
-                <!--<button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>-->
-                <button class="btn btn-default btn-sm" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
+                <!--<button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>-->
+                <button class="btn btn-default" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
             </div>
 
         </div>

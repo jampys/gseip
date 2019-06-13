@@ -165,7 +165,7 @@
             <h4>Búsquedas laborales</h4>
             <hr class="hr-primary"/>
 
-            <div class="clearfix">
+            <div class="row clearfix">
                 <form id="search_form" name="search_form">
 
                     <div class="form-group col-md-3">
@@ -211,11 +211,11 @@
 
                     <!--<div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="search">Buscar</button>
+                        <button type="button" class="form-control btn btn-primary" id="search">Buscar</button>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" id="new">Nueva renovación</button>
+                        <button type="button" class="form-control btn btn-primary" id="new">Nueva renovación</button>
                     </div>-->
 
                     <div class="form-group col-md-1" style="width: 11%">
@@ -231,15 +231,15 @@
 
                     <div class="form-group col-md-1" style="width: 7%">
                         <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary btn-sm" title="Buscar" id="search">
-                            <span class="glyphicon glyphicon-search fa-lg"></span>
+                        <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
+                            <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>
 
                     <div class="form-group col-md-1" style="width: 7%">
                         <label for="search">&nbsp;</label>
-                        <button type="button" style="background-color: #337ab7" class="form-control btn btn-primary btn-sm" title="nueva búsqueda" id="new" <?php echo ( PrivilegedUser::dhasAction('BUS_INSERT', array(1)) )? '' : 'disabled' ?>>
-                            <span class="glyphicon glyphicon-plus fa-lg"></span>
+                        <button type="button" class="form-control btn btn-default" title="nueva búsqueda" id="new" <?php echo ( PrivilegedUser::dhasAction('BUS_INSERT', array(1)) )? '' : 'disabled' ?>>
+                            <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                         </button>
                     </div>
 

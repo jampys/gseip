@@ -6,8 +6,6 @@
             <th>Empleado</th>
             <th>Ctor.</th>
             <th></th>
-            <th></th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -18,19 +16,15 @@
 
                 <td class="text-center">
                     <a class="view" href="javascript:void(0);" data-id="<?php echo $em['id_cuadrilla_empleado'];?>" title="ver">
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                    </a>
-                </td>
+                        <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
+                    </a>&nbsp;&nbsp;
 
-                <td class="text-center">
                     <a class="<?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
-                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                    </a>
-                </td>
+                        <span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span>
+                    </a>&nbsp;&nbsp;
 
-                <td class="text-center">
                     <a class="<?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                     </a>
                 </td>
             </tr>

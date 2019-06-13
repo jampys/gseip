@@ -21,9 +21,9 @@
                 { type: 'date-uk', targets: 5 } //fecha_vencimiento
             ]*/
             columnDefs: [
-                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
-                {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 6 ]}, //fecha_apertura
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]} //fecha_cierre
+                //{targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
+                //{targets: [ 3 ], type: 'date-uk', orderData: [ 3, 6 ]}, //fecha_apertura
+                //{targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]} //fecha_cierre
             ]
         });
 
@@ -88,9 +88,7 @@
                 <th>Vehículo</th>
                 <th>Área</th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+
             </tr>
             </thead>
             <tbody>
@@ -107,28 +105,22 @@
                         <!-- si tiene permiso para agregar empleados -->
                         <td class="text-center">
                             <a class="empleados" href="javascript:void(0);">
-                                <i class="far fa-list-alt fa-fw" title="empleados"></i>
-                            </a>
-                        </td>
+                                <i class="far fa-list-alt fa-fw dp_blue" title="empleados"></i>
+                            </a>&nbsp;&nbsp;
 
                         <!-- si tiene permiso para ver -->
-                        <td class="text-center">
                             <a class="<?php echo ( PrivilegedUser::dhasPrivilege('CUA_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-eye-open" title="ver" aria-hidden="true"></span>
-                            </a>
-                        </td>
+                                <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
+                            </a>&nbsp;&nbsp;
 
                         <!-- si tiene permiso para editar -->
-                        <td class="text-center">
                             <a class="<?php echo ( PrivilegedUser::dhasAction('CUA_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit" title="editar" aria-hidden="true"></span>
-                            </a>
-                        </td>
+                                <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
+                            </a>&nbsp;&nbsp;
 
                         <!-- si tiene permiso para eliminar -->
-                        <td class="text-center">
                             <a class="<?php echo ( PrivilegedUser::dhasAction('CUA_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                             </a>
                         </td>
 

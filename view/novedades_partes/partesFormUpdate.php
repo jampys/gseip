@@ -620,7 +620,7 @@
                                 <!-- seccion de empleados -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-empleados" title="Mostrar empleados">Empleados</button>
+                                        <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-empleados" title="Mostrar empleados">Empleados</button>
                                     </div>
 
                                     <div class="col-md-4">
@@ -628,8 +628,8 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-empleado" name="add-empleado" title="Agregar empleado" <?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >
-                                            <i class="fas fa-plus"></i>&nbsp
+                                        <button type="button" class="btn btn-default btn-block" id="add-empleado" name="add-empleado" title="Agregar empleado" <?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >
+                                            <i class="fas fa-plus dp_green"></i>&nbsp
                                         </button>
                                 </div>
                                 </div>
@@ -647,7 +647,7 @@
                                 <!-- seccion de conceptos -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-conceptos" title="Mostrar conceptos">Conceptos</button>
+                                        <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-conceptos" title="Mostrar conceptos">Conceptos</button>
                                     </div>
 
                                     <div class="col-md-4">
@@ -655,8 +655,8 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-concepto" name="add-concepto" title="Agregar concepto" <?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >
-                                            <i class="fas fa-plus"></i>&nbsp
+                                        <button type="button" class="btn btn-default btn-block" id="add-concepto" name="add-concepto" title="Agregar concepto" <?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >
+                                            <i class="fas fa-plus dp_green"></i>&nbsp
                                         </button>
                                     </div>
                                 </div>
@@ -674,7 +674,7 @@
                                 <!-- seccion de ordenes -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>
+                                        <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>
                                     </div>
 
                                     <div class="col-md-4">
@@ -682,8 +682,8 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block" id="add-orden" name="add-orden" title="Agregar orden" <?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >
-                                            <i class="fas fa-plus"></i>&nbsp
+                                        <button type="button" class="btn btn-default btn-block" id="add-orden" name="add-orden" title="Agregar orden" <?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >
+                                            <i class="fas fa-plus dp_green"></i>&nbsp
                                         </button>
                                     </div>
                                 </div>
@@ -716,8 +716,8 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="calcular" name="calcular" type="submit">Calcular</button>
-                <button class="btn btn-default btn-sm" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
+                <button class="btn btn-primary" id="calcular" name="calcular" type="submit">Calcular</button>
+                <button class="btn btn-default" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
             </div>
 
         </div>

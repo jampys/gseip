@@ -209,8 +209,8 @@
                         <div class="col-md-6" id="empleados_left_side">
 
                             <div class="clearfix">
-                                <button class="btn btn-primary btn-sm pull-right" id="add" name="add" type="submit" title="Agregar empleado" <?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?>    >
-                                    <span class="glyphicon glyphicon-plus"></span>
+                                <button class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar empleado" <?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?>    >
+                                    <span class="glyphicon glyphicon-plus dp_green"></span>
                                 </button>
                             </div>
 
@@ -233,8 +233,8 @@
             </div>
 
             <div class="modal-footer">
-                <!--<button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>-->
-                <button class="btn btn-default btn-sm" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
+                <!--<button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>-->
+                <button class="btn btn-default" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
             </div>
 
         </div>

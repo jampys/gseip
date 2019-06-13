@@ -68,7 +68,7 @@
                     $('#empleados-table tbody').append('<tr data-id='+item.id_empleado+'>' +
                     '<td>'+item.legajo+'</td>' +
                     '<td>'+item.empleado+'</td>' +
-                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a></td>' +
                     '</tr>');
                 }
 
@@ -123,7 +123,7 @@
                     $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
                     '<td>'+item.nombre+'</td>' +
                     '<td></td>' +
-                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a></td>' +
                     '</tr>');
                 }
 
@@ -305,8 +305,8 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
-                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+                <button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
             </div>
 
         </div>

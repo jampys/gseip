@@ -45,8 +45,6 @@
                 <th>Habilidad</th>
                 <th>F. desde</th>
                 <th></th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -60,17 +58,16 @@
                                 <td><?php echo $he['cuil']; ?></td>
                                 <td><?php echo $he['habilidad']; ?></td>
                                 <td><?php echo $he['fecha_desde']; ?></td>
-                                <td class="text-center"><a class="view" title="ver" href="javascript:void(0);">
-                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                <td class="text-center">
+                                    <a class="view" title="ver" href="javascript:void(0);">
+                                        <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
+                                    </a>&nbsp;&nbsp;
+                                    <a class="<?php echo (PrivilegedUser::dhasAction('HEM_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);">
+                                        <span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span>
+                                    </a>&nbsp;&nbsp;
+                                    <a class="<?php echo (PrivilegedUser::dhasAction('HEM_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);">
+                                        <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                                     </a>
-                                </td>
-                                <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('HEM_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);">
-                                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                                        </a>
-                                </td>
-                                <td class="text-center"><a class="<?php echo (PrivilegedUser::dhasAction('HEM_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);">
-                                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                                        </a>
                                 </td>
                             </tr>
                         <?php endforeach; } ?>

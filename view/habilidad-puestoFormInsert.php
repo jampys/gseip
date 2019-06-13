@@ -83,7 +83,7 @@
                 $('#puestos-table tbody').append('<tr data-id='+item.id_puesto+'>' +
                 '<td>'+item.codigo+'</td>' +
                 '<td>'+item.nombre+'</td>' +
-                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a></td>' +
                 '</tr>');
             }
 
@@ -146,7 +146,7 @@
                 '<select class="form-control input-sm select_requerida" id="requerida-'+item.id_habilidad+'" name="requerida-'+item.id_habilidad+'">'+
                 '</select>'+
                 '</td>'+
-                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a></td>' +
                 '</tr>');
 
                 $.each(jsonRequerida, function(i, itemx) {
@@ -343,8 +343,8 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
-                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+                <button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
             </div>
 
         </div>

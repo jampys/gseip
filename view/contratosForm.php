@@ -15,9 +15,9 @@
             "columnDefs": [
                 {"width": "44%", "targets": 0}, //empleado
                 {"width": "34%", "targets": 1}, //puesto
-                {"width": "11%", "targets": 2}, //fecha_desde
-                {"width": "11%", "targets": 3} //fecha_hasta
-                //{"width": "5%", "targets": 4}, //ver
+                //{"width": "11%", "targets": 2}, //fecha_desde
+                //{"width": "11%", "targets": 3}, //fecha_hasta
+                {"width": "10%", "targets": 4} //ver
                 //{"width": "5%", "targets": 5}, //editar
                 //{"width": "5%", "targets": 6} //eliminar
             ]
@@ -65,9 +65,11 @@
                     '<td>'+jsonEmpleados[i].puesto+'</td>' +
                     '<td>'+jsonEmpleados[i].fecha_desde+'</td>' +
                     '<td>'+fecha_hasta+'</td>' +
-                    '<td class="text-center"><a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
-                    '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
-                    '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_DEL', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                    '<td class="text-center">' +
+                    '<a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
+                    '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
+                    '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_DEL', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>'+
+                    '</td>'+
                     '</tr>';
 
                 t.rows.add($(table_rows)).draw();
@@ -520,8 +522,8 @@
 
         <div class="clearfix">
             <h4 class="pull-left">Empleados</h4>
-            <button class="btn btn-primary btn-sm pull-right" id="add-empleado" >
-                <span class="glyphicon glyphicon-plus"></span> Agregar empleado
+            <button class="btn btn-default pull-right" id="add-empleado" >
+                <span class="glyphicon glyphicon-plus dp_green"></span> Agregar empleado
             </button>
         </div>
 
@@ -534,8 +536,6 @@
                 <th>Puesto</th>
                 <th>F. Desde</th>
                 <th>F. Hasta</th>
-                <th></th>
-                <th></th>
                 <th></th>
             </tr>
             </thead>
@@ -567,8 +567,8 @@
 
     <div class="panel-footer clearfix">
         <div class="button-group pull-right">
-            <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
-            <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
+            <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+            <button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>
         </div>
     </div>
 

@@ -35,8 +35,8 @@
             </div>
 
             <div class="modal-footer">
-                <!--<button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>-->
-                <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cerrar</button>
+                <!--<button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>-->
+                <button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cerrar</button>
             </div>
 
         </div>

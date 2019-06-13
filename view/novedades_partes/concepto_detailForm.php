@@ -210,9 +210,9 @@
 
 
     <div id="footer-buttons" class="pull-right">
-        <button class="btn btn-primary btn-sm" id="submit" name="submit" type="submit">Guardar</button>
-        <!--<button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>-->
-        <button class="btn btn-default btn-sm" id="cancel" name="cancel" type="button">Cancelar</button>
+        <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+        <!--<button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>-->
+        <button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>
     </div>
 
 
