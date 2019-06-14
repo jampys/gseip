@@ -220,14 +220,6 @@
                 <form name ="txt-form" id="txt-form" method="POST" action="index.php">
                     <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
 
-                    <div class="alert alert-info fade in">
-                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        <span class="glyphicon glyphicon-tags" ></span>&nbsp Esta pantalla permite exportar las sucesos a formatos .txt (para importar desde BAS) y tabla cruzada.
-                    </div>
-
-                    <!--<br/>-->
-
-
                     <div class="form-group required">
                         <label class="control-label" for="id_empleado">Contrato</label>
                         <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
@@ -275,8 +267,28 @@
                     </div>
 
 
+                    <div class="alert alert-info" role="alert">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Muestra los sucesos para un rango de fechas y eventos (opcional) indicados.
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
 
 
+                    <div class="alert alert-info" role="alert">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Exporta los sucesos en formato .txt (admisible para BAS) para un período indicado.
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="submit" name="submit" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
 
 
 
@@ -289,8 +301,8 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="txt">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
-                <button class="btn btn-primary" id="submit1" name="submit1" type="submit" title="pdf">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                <!--<button class="btn btn-primary" id="submit" name="submit" type="submit" title="txt">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
+                <button class="btn btn-primary" id="submit1" name="submit1" type="submit" title="pdf">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>-->
                 <button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Salir</button>
             </div>
 

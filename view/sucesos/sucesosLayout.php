@@ -266,14 +266,15 @@
                             </button>
                         </div>
 
+                        <div class="form-group col-md-3">
+
+                        </div>
+
                         <div class="form-group col-md-2">
                             <label for="export" class="control-label">&nbsp;</label>
                             <button id="export" class="form-control btn btn-default dp_blue" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
-                        <div class="form-group col-md-3">
-
-                        </div>
 
                     </div>
 
