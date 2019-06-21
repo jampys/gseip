@@ -3,7 +3,7 @@
     text {
         font-family: 'Roboto' !important;
         font-weight: normal !important;
-        font-size: 13px !important;
+        font-size: 12px !important;
     }
 
 </style>

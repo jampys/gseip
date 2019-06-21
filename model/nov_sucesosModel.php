@@ -170,7 +170,7 @@ class Suceso
                   DATE_FORMAT(su.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(su.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                   su.observaciones,
-                  CONCAT(em.apellido, ' ', em.nombre) as empleado,
+                  CONCAT(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
                   ev.nombre as evento,
                   ev.codigo as txt_evento,
                   em.legajo as txt_legajo,
