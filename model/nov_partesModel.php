@@ -308,7 +308,7 @@ left join nov_convenios nc on nc.id_convenio = em.id_convenio
 join nov_eventos_l nel on nel.id_evento = ns.id_evento
 join nov_concepto_convenio_contrato nccc on nccc.id_concepto = nel.id_concepto and nccc.id_contrato = :id_contrato and nccc.id_convenio = em.id_convenio
 where (ns.id_periodo1 = :id_periodo or ns.id_periodo2 = :id_periodo)
-and nccc.id_concepto in (15, 16, 32, 33)
+and nccc.id_concepto in (15, 16, 18, 29)
 group by em.id_empleado, nccc.codigo, nccc.variable) as temp
 order by id_convenio asc, legajo asc";
 
