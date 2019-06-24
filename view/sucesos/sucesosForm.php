@@ -404,9 +404,21 @@
                                 <?php  } ?>
                             </select>
                         </div>
+                        <div class="form-group col-md-3">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <div class="input-group input-daterange">
+                                <input class="form-control" type="text" name="fd1" id="fd1" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <div class="input-group-addon">hasta</div>
+                                <input class="form-control" type="text" name="fh1" id="fh1" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>
+                        </div>
                         <div class="form-group col-md-3 required">
-                            <label for="cantidad1" class="control-label">Cantidad</label>
-                            <input type="text" class="form-control" name="cantidad1" id="cantidad1" value = "<?php print $view->suceso->getCantidad1() ?>" placeholder="Valor">
+                            <input type="text" class="form-control" name="cantidad1" id="cantidad1" value = "<?php print $view->suceso->getCantidad1() ?>" placeholder="" disabled>
                         </div>
                     </div>
 
@@ -428,8 +440,20 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="cantidad2" class="control-label">Cantidad</label>
-                            <input type="text" class="form-control" name="cantidad2" id="cantidad2" value = "<?php print $view->suceso->getCantidad2() ?>" placeholder="Valor">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <div class="input-group input-daterange">
+                                <input class="form-control" type="text" name="fd2" id="fd2" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <div class="input-group-addon">hasta</div>
+                                <input class="form-control" type="text" name="fh2" id="fh2" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 required">
+                            <input type="text" class="form-control" name="cantidad2" id="cantidad2" value = "<?php print $view->suceso->getCantidad2() ?>" placeholder="" disabled>
                         </div>
                     </div>
 
