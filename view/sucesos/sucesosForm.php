@@ -19,16 +19,19 @@
             todayHighlight: true
         }).on('changeDate', function(){
             //calcula la diferencia en dias entre las 2 fechas
-            var minDate = $('#fecha_desde').datepicker('getDate');
-            var maxDate = $('#fecha_hasta').datepicker('getDate');
+            //var minDate = $('#fecha_desde').datepicker('getDate');
+            //var maxDate = $('#fecha_hasta').datepicker('getDate');
+            var minDate = $(this).closest('.row').find('.cfd').datepicker('getDate');
+            var maxDate = $(this).closest('.row').find('.cfh').datepicker('getDate');
+            //alert('el mindate es: '+minDate);
             //maxDate - minDate devuelve la diferencia en milisegundos. 86400 = cant de seg por dia. X 1000 da los miliseg por dia.
-           $('#dias').val((maxDate - minDate)/(86400*1000)+1);
+            $(this).closest('.row').find('.cdias').val((maxDate - minDate)/(86400*1000)+1);
 
 
         });
 
         //Al abrir el modal calcula la diferencia. Sirve para cuando se trata de una edicion
-        $(".input-daterange").trigger("changeDate");
+        //$(".input-daterange").trigger("changeDate");
 
 
         /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
@@ -393,14 +396,14 @@
                         <div class="form-group col-md-9 required">
                             <label class="control-label" for="">Desde / Hasta</label>
                             <div class="input-group input-daterange">
-                                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfd" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
-                                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfh" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="dias" class="control-label">Días</label>
-                            <input type="text" class="form-control" name="dias" id="dias" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="" disabled>
+                            <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" disabled>
                         </div>
                     </div>
 
