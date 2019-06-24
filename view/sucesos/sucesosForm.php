@@ -50,8 +50,8 @@
             var ischecked= $(this).is(':checked');
             if(ischecked) {
                 //alert('uncheckd ' + $(this).val());
-                $('#fd1').val($('#fecha_desde').val());
-                $('#fh1').val($('#fecha_hasta').val());
+                $('#fd1').datepicker('update', $('#fecha_desde').val());
+                $('#fh1').datepicker('update', $('#fecha_hasta').val());
                 $('#cantidad1').val($('#dias').val());
             }else{
                 $('#fd1').val("");
@@ -441,13 +441,13 @@
                     <div class="row">
                         <div class="form-group col-md-9 required">
                             <div class="input-group input-daterange">
-                                <input class="form-control" type="text" name="fd1" id="fd1" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfd" type="text" name="fd1" id="fd1" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
-                                <input class="form-control" type="text" name="fh1" id="fh1" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfh" type="text" name="fh1" id="fh1" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
-                            <input type="text" class="form-control" name="cantidad1" id="cantidad1" value = "<?php print $view->suceso->getCantidad1() ?>" placeholder="" disabled>
+                            <input type="text" class="form-control cdias" name="cantidad1" id="cantidad1" value = "<?php print $view->suceso->getCantidad1() ?>" placeholder="" disabled>
                         </div>
                     </div>
 
@@ -476,13 +476,13 @@
                     <div class="row">
                         <div class="form-group col-md-9 required">
                             <div class="input-group input-daterange">
-                                <input class="form-control" type="text" name="fd2" id="fd2" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfd" type="text" name="fd2" id="fd2" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
-                                <input class="form-control" type="text" name="fh2" id="fh2" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfh" type="text" name="fh2" id="fh2" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
-                            <input type="text" class="form-control" name="cantidad2" id="cantidad2" value = "<?php print $view->suceso->getCantidad2() ?>" placeholder="" disabled>
+                            <input type="text" class="form-control cdias" name="cantidad2" id="cantidad2" value = "<?php print $view->suceso->getCantidad2() ?>" placeholder="" disabled>
                         </div>
                     </div>
 
