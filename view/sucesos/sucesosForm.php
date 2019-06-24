@@ -42,6 +42,23 @@
         });*/
 
 
+        //Al hacer check o uncheck en checkbox
+        $("#chk_imputar").change(function() {
+            var ischecked= $(this).is(':checked');
+            if(ischecked) {
+                //alert('uncheckd ' + $(this).val());
+                $('#fd1').val($('#fecha_desde').val());
+                $('#fh1').val($('#fecha_hasta').val());
+                $('#cantidad1').val($('#dias').val());
+            }else{
+                $('#fd1').val("");
+                $('#fh1').val("");
+                $('#cantidad1').val("");
+            }
+
+        });
+
+
 
         $('.image').viewer({});
 
@@ -405,6 +422,15 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
+
+                                <label for="chk_imputar" class="control-label">&nbsp;</label>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="chk_imputar" name="chk_imputar">
+                                        <a href="#" title="Imputar todo al primer período seleccionado">Imputar todo</a>
+                                    </label>
+                                </div>
+
 
                         </div>
                     </div>
