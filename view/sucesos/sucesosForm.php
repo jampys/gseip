@@ -360,12 +360,12 @@
 
                     <div class="form-group required">
                         <label for="id_evento" class="control-label">Evento</label>
-                            <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione el evento" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione el evento" data-live-search="true" data-size="5" data-show-subtext="true">
                                 <?php foreach ($view->eventos as $ev){ ?>
-                                    <option value="<?php echo $ev['id_evento']; ?>"
+                                    <option value="<?php echo $ev['id_evento']; ?>" data-subtext="<?php echo $ev['tipo_liquidacion'] ;?>"
                                         <?php echo ($ev['id_evento'] == $view->suceso->getIdEvento())? 'selected' :'' ?>
                                         >
-                                        <?php echo $ev['nombre'] ;?>
+                                        <?php echo $ev['nombre'];?>
                                     </option>
                                 <?php  } ?>
                             </select>
