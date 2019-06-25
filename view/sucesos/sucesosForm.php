@@ -208,7 +208,7 @@
 
         $('#myModal').on('click', '#submit',function(){ //ok
 
-            
+
             if ($("#suceso-form").valid()){
 
                 var params={};
@@ -341,7 +341,7 @@
             jQuery.validator.format("Sum must be {0}")
         );
 
-        $("#dias").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
+        $("#cantidad1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
         /*jQuery.validator.addClassRules({
             cfh: {
                 sum: 50
@@ -478,7 +478,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
-                            <input type="text" class="form-control cdias" name="cantidad1" id="cantidad1" value = "<?php print $view->suceso->getCantidad1() ?>" placeholder="" >
+                            <input type="text" class="form-control cdias" name="cantidad1" id="cantidad1" value = "<?php print ($view->suceso->getCantidad1())? $view->suceso->getCantidad1() : '0'  ?>" placeholder="" >
                         </div>
                     </div>
 
@@ -513,7 +513,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
-                            <input type="text" class="form-control cdias" name="cantidad2" id="cantidad2" value = "<?php print $view->suceso->getCantidad2() ?>" placeholder="" >
+                            <input type="text" class="form-control cdias" name="cantidad2" id="cantidad2" value = "<?php print ($view->suceso->getCantidad2())? $view->suceso->getCantidad2() : '0'  ?>" placeholder="" >
                         </div>
                     </div>
 
