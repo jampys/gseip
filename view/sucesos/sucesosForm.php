@@ -341,7 +341,7 @@
             jQuery.validator.format("La suma de los días imputados debe ser {0}")
         );
 
-        $("#cantidad1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
+        $("#fh1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
         /*jQuery.validator.addClassRules({
             cfh: {
                 sum: 50
@@ -434,7 +434,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="dias" class="control-label">Total días</label>
-                            <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" >
+                            <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" disabled >
                         </div>
                     </div>
 
@@ -478,7 +478,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
-                            <input type="text" class="form-control cdias" name="cantidad1" id="cantidad1" value = "<?php print ($view->suceso->getCantidad1())? $view->suceso->getCantidad1() : '0'  ?>" placeholder="" >
+                            <input type="text" class="form-control cdias" name="cantidad1" id="cantidad1" value = "<?php print ($view->suceso->getCantidad1())? $view->suceso->getCantidad1() : '0'  ?>" placeholder="" disabled >
                         </div>
                     </div>
 
@@ -513,7 +513,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
-                            <input type="text" class="form-control cdias" name="cantidad2" id="cantidad2" value = "<?php print ($view->suceso->getCantidad2())? $view->suceso->getCantidad2() : '0'  ?>" placeholder="" >
+                            <input type="text" class="form-control cdias" name="cantidad2" id="cantidad2" value = "<?php print ($view->suceso->getCantidad2())? $view->suceso->getCantidad2() : '0'  ?>" placeholder="" disabled >
                         </div>
                     </div>
 
