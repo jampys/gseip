@@ -330,13 +330,20 @@
                 $(parent).find(".cdias").each(function () {
                     sumOfVals = sumOfVals + parseInt($(this).val(), 10);
                 });
+                //alert(sumOfVals);
                 if (sumOfVals == params) return true;
                 return false;
             },
             jQuery.validator.format("Sum must be {0}")
         );
 
-        $(".cdias").rules('add', {sum: 100});
+        //$(".cdias").rules('add', {sum: 100});
+        jQuery.validator.addClassRules({
+            cdias: {
+                sum: 50
+            }
+        });
+
 
 
 
