@@ -26,7 +26,8 @@
             var maxDate = $(this).closest('.row').find('.cfh').datepicker('getDate');
             //alert('el mindate es: '+minDate);
             //maxDate - minDate devuelve la diferencia en milisegundos. 86400 = cant de seg por dia. X 1000 da los miliseg por dia.
-            $(this).closest('.row').find('.cdias').val((maxDate - minDate)/(86400*1000)+1);
+            if(minDate == null || maxDate == null) $(this).closest('.row').find('.cdias').val(0);
+            else $(this).closest('.row').find('.cdias').val((maxDate - minDate)/(86400*1000)+1);
 
 
         });
