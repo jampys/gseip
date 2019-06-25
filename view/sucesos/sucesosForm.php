@@ -16,7 +16,8 @@
             //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
-            todayHighlight: true
+            todayHighlight: true,
+            clearBtn: true
         }).on('changeDate', function(){
             //calcula la diferencia en dias entre las 2 fechas
             //var minDate = $('#fecha_desde').datepicker('getDate');
