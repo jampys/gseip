@@ -208,6 +208,15 @@
 
         $('#myModal').on('click', '#submit',function(){ //ok
 
+            var sumOfVals = 0;
+            var parent = $("#suceso-form");
+            $(parent).find(".cdias").each(function () {
+                var a = $(this).val();
+                a = a || 0;
+                sumOfVals = sumOfVals + parseInt(a, 10);
+            });
+            alert(sumOfVals);
+
             if ($("#suceso-form").valid()){
 
                 var params={};
@@ -326,9 +335,12 @@
             "sum",
             function (value, element, params) {
                 var sumOfVals = 0;
-                var parent = $(element).parent("#suceso-form");
+                var parent = $("#suceso-form");
                 $(parent).find(".cdias").each(function () {
-                    sumOfVals = sumOfVals + parseInt($(this).val(), 10);
+                    //sumOfVals = sumOfVals + parseInt($(this).val(), 10);
+                    var a = $(this).val();
+                    a = a || 0; //si el campo es NaN (not a number) lo convierte en 0.
+                    sumOfVals = sumOfVals + parseInt(a, 10);
                 });
                 //alert(sumOfVals);
                 if (sumOfVals == params) return true;
@@ -338,11 +350,11 @@
         );
 
         //$(".cdias").rules('add', {sum: 100});
-        jQuery.validator.addClassRules({
-            cdias: {
+        /*jQuery.validator.addClassRules({
+            cfh: {
                 sum: 50
             }
-        });
+        });*/
 
 
 
