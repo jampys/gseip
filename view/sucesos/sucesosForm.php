@@ -55,10 +55,15 @@
                 $('#fd1').datepicker('update', $('#fecha_desde').val());
                 $('#fh1').datepicker('update', $('#fecha_hasta').val());
                 $('#cantidad1').val($('#dias').val());
+                $('#id_periodo2').val("").selectpicker('refresh');
+                $('#fd2').val("");
+                $('#fh2').val("");
+                $('#cantidad2').val(0);
             }else{
+                //$('#id_periodo1').val("").selectpicker('refresh');
                 $('#fd1').val("");
                 $('#fh1').val("");
-                $('#cantidad1').val("");
+                $('#cantidad1').val(0);
             }
 
         });
@@ -447,7 +452,7 @@
 
                     <div class="row">
                         <div class="form-group col-md-9 required">
-                            <label for="id_periodo1" class="control-label">Imputar a período de liquidación</label>
+                            <label for="id_periodo1" class="control-label">Imputar a período de liquidación 1</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo1" name="id_periodo1" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <option value="">Seleccione un período</option>
@@ -491,7 +496,7 @@
 
                     <div class="row">
                         <div class="form-group col-md-9">
-                            <label for="id_periodo" class="control-label">Imputar a período de liquidación</label>
+                            <label for="id_periodo" class="control-label">Imputar a período de liquidación 2</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo2" name="id_periodo2" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <option value="">Seleccione un período</option>
