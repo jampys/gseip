@@ -208,15 +208,7 @@
 
         $('#myModal').on('click', '#submit',function(){ //ok
 
-            var sumOfVals = 0;
-            var parent = $("#suceso-form");
-            $(parent).find(".cdias").each(function () {
-                var a = $(this).val();
-                a = a || 0;
-                sumOfVals = sumOfVals + parseInt(a, 10);
-            });
-            alert(sumOfVals);
-
+            
             if ($("#suceso-form").valid()){
 
                 var params={};
@@ -335,13 +327,13 @@
             "sum",
             function (value, element, params) {
                 var sumOfVals = 0;
-                var parent = $("#suceso-form");
-                $(parent).find(".cdias").each(function () {
-                    //sumOfVals = sumOfVals + parseInt($(this).val(), 10);
-                    var a = $(this).val();
-                    a = a || 0; //si el campo es NaN (not a number) lo convierte en 0.
-                    sumOfVals = sumOfVals + parseInt(a, 10);
-                });
+                //sumOfVals = sumOfVals + parseInt($(this).val(), 10);
+                var a = $('#cantidad1').val();
+                var b = $('#cantidad2').val();
+                a = a || 0; //si el campo es NaN (not a number) lo convierte en 0.
+                b = b || 0; //si el campo es NaN (not a number) lo convierte en 0.
+                sumOfVals = parseInt(a, 10) + parseInt(b, 10);
+
                 //alert(sumOfVals);
                 if (sumOfVals == params) return true;
                 return false;
@@ -349,7 +341,7 @@
             jQuery.validator.format("Sum must be {0}")
         );
 
-        $("#cantidad1").rules('add', {sum: 100});
+        $("#dias").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
         /*jQuery.validator.addClassRules({
             cfh: {
                 sum: 50
