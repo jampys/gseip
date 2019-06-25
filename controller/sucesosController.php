@@ -38,10 +38,10 @@ switch ($operation)
         $suceso->setCantidad1($_POST['cantidad1']);
         $suceso->setIdPeriodo2( ($_POST['id_periodo2']!='')? $_POST['id_periodo2'] : null );
         $suceso->setCantidad2( ($_POST['cantidad2']!='')? $_POST['cantidad2'] : null );
-        $suceso->setFd1($_POST['fd1']);
-        $suceso->setFh1($_POST['fh1']);
-        $suceso->setFd2($_POST['fd2']);
-        $suceso->setFh2($_POST['fh2']);
+        $suceso->setFd1( ($_POST['fd1'])? $_POST['fd1'] : null  );
+        $suceso->setFh1( ($_POST['fh1'])? $_POST['fh1'] : null );
+        $suceso->setFd2( ($_POST['fd2'])? $_POST['fd2'] : null );
+        $suceso->setFh2( ($_POST['fh2'])? $_POST['fh2'] : null );
         $rta = $suceso->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));

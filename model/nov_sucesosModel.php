@@ -67,16 +67,16 @@ class Suceso
     { return $this->cantidad2;}
 
     function getFd1()
-    { return $this->cantidad2;}
+    { return $this->fd1;}
 
     function getFh1()
-    { return $this->cantidad2;}
+    { return $this->fh1;}
 
     function getFd2()
-    { return $this->cantidad2;}
+    { return $this->fd2;}
 
     function getFh2()
-    { return $this->cantidad2;}
+    { return $this->fh2;}
 
     /*function getEmpleado(){
         return ($this->empleado)? $this->empleado : new Empleado() ;
@@ -124,16 +124,16 @@ class Suceso
     {  $this->cantidad2=$val;}
 
     function setFd1($val)
-    {  $this->cantidad2=$val;}
+    {  $this->fd1=$val;}
 
     function setFh1($val)
-    {  $this->cantidad2=$val;}
+    {  $this->fh1=$val;}
 
     function setFd2($val)
-    {  $this->cantidad2=$val;}
+    {  $this->fd2=$val;}
 
     function setFh2($val)
-    {  $this->cantidad2=$val;}
+    {  $this->fh2=$val;}
 
 
 
@@ -281,7 +281,7 @@ class Suceso
     private function insertSuceso(){ //ok
         $stmt=new sQuery();
         $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, id_periodo1, cantidad1, id_periodo2, cantidad2, fd1, fh1, fd2, fh2)
-                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :id_periodo1, :cantidad1, :id_periodo2, :cantidad2, :fd1, :fh1, :fd2, :fh2)";
+                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :id_periodo1, :cantidad1, :id_periodo2, :cantidad2, STR_TO_DATE(:fd1, '%d/%m/%Y'), STR_TO_DATE(:fh1, '%d/%m/%Y'), STR_TO_DATE(:fd2, '%d/%m/%Y'), STR_TO_DATE(:fh2, '%d/%m/%Y'))";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
