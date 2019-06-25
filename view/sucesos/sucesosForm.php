@@ -226,6 +226,10 @@
                 params.cantidad1 = $('#cantidad1').val();
                 params.id_periodo2 = $('#id_periodo2').val();
                 params.cantidad2 = $('#cantidad2').val();
+                params.fd1 = $('#fd1').val();
+                params.fh1 = $('#fh1').val();
+                params.fd2 = $('#fd2').val();
+                params.fh2 = $('#fh2').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -474,9 +478,9 @@
                     <div class="row">
                         <div class="form-group col-md-9 required">
                             <div class="input-group input-daterange">
-                                <input class="form-control cfd" type="text" name="fd1" id="fd1" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfd" type="text" name="fd1" id="fd1" value = "<?php print $view->suceso->getFd1() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
-                                <input class="form-control cfh" type="text" name="fh1" id="fh1" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfh" type="text" name="fh1" id="fh1" value = "<?php print $view->suceso->getFh1() ?>" placeholder="DD/MM/AAAA" readonly>
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
@@ -509,9 +513,9 @@
                     <div class="row">
                         <div class="form-group col-md-9 required">
                             <div class="input-group input-daterange">
-                                <input class="form-control cfd" type="text" name="fd2" id="fd2" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfd" type="text" name="fd2" id="fd2" value = "<?php print $view->suceso->getFd2() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
-                                <input class="form-control cfh" type="text" name="fh2" id="fh2" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfh" type="text" name="fh2" id="fh2" value = "<?php print $view->suceso->getFh2() ?>" placeholder="DD/MM/AAAA" readonly>
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">

@@ -17,6 +17,11 @@ class Suceso
     private $cantidad1;
     private $id_periodo2;
     private $cantidad2;
+    private $fd1;
+    private $fh1;
+    private $fd2;
+    private $fh2;
+
 
     //private $empleado;
 
@@ -61,6 +66,17 @@ class Suceso
     function getCantidad2()
     { return $this->cantidad2;}
 
+    function getFd1()
+    { return $this->cantidad2;}
+
+    function getFh1()
+    { return $this->cantidad2;}
+
+    function getFd2()
+    { return $this->cantidad2;}
+
+    function getFh2()
+    { return $this->cantidad2;}
 
     /*function getEmpleado(){
         return ($this->empleado)? $this->empleado : new Empleado() ;
@@ -107,6 +123,18 @@ class Suceso
     function setCantidad2($val)
     {  $this->cantidad2=$val;}
 
+    function setFd1($val)
+    {  $this->cantidad2=$val;}
+
+    function setFh1($val)
+    {  $this->cantidad2=$val;}
+
+    function setFd2($val)
+    {  $this->cantidad2=$val;}
+
+    function setFh2($val)
+    {  $this->cantidad2=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -119,7 +147,11 @@ class Suceso
                     observaciones,
                     created_by,
                     DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
-                    id_periodo1, cantidad1, id_periodo2, cantidad2
+                    id_periodo1, cantidad1, id_periodo2, cantidad2,
+                    DATE_FORMAT(fd1,  '%d/%m/%Y') as fd1,
+                    DATE_FORMAT(fh1,  '%d/%m/%Y') as fh1,
+                    DATE_FORMAT(fd2,  '%d/%m/%Y') as fd2,
+                    DATE_FORMAT(fh2,  '%d/%m/%Y') as fh2
                     from nov_sucesos
                     where id_suceso = :nro";
             $stmt->dpPrepare($query);
@@ -139,6 +171,10 @@ class Suceso
             $this->setCantidad1($rows[0]['cantidad1']);
             $this->setIdPeriodo2($rows[0]['id_periodo2']);
             $this->setCantidad2($rows[0]['cantidad2']);
+            $this->setFd1($rows[0]['fd1']);
+            $this->setFh1($rows[0]['fh1']);
+            $this->setFd2($rows[0]['fd2']);
+            $this->setFh2($rows[0]['fh2']);
             //$this->empleado = new Empleado($rows[0]['id_empleado']);
         }
     }
@@ -217,7 +253,11 @@ class Suceso
                       id_periodo1 = :id_periodo1,
                       cantidad1 = :cantidad1,
                       id_periodo2 = :id_periodo2,
-                      cantidad2 = :cantidad2
+                      cantidad2 = :cantidad2,
+                      fd1 = STR_TO_DATE(:fd1, '%d/%m/%Y'),
+                      fh1 = STR_TO_DATE(:fh1, '%d/%m/%Y'),
+                      fd2 = STR_TO_DATE(:fd2, '%d/%m/%Y'),
+                      fh2 = STR_TO_DATE(:fh2, '%d/%m/%Y')
                 where id_suceso =:id_suceso";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
@@ -228,6 +268,10 @@ class Suceso
         $stmt->dpBind(':cantidad1', $this->getCantidad1());
         $stmt->dpBind(':id_periodo2', $this->getIdPeriodo2());
         $stmt->dpBind(':cantidad2', $this->getCantidad2());
+        $stmt->dpBind(':fd1', $this->getFd1());
+        $stmt->dpBind(':fh1', $this->getFh1());
+        $stmt->dpBind(':fd2', $this->getFd2());
+        $stmt->dpBind(':fh2', $this->getFh2());
         $stmt->dpBind(':id_suceso', $this->getIdSuceso());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -236,8 +280,8 @@ class Suceso
 
     private function insertSuceso(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, id_periodo1, cantidad1, id_periodo2, cantidad2)
-                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :id_periodo1, :cantidad1, :id_periodo2, :cantidad2)";
+        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, id_periodo1, cantidad1, id_periodo2, cantidad2, fd1, fh1, fd2, fh2)
+                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :id_periodo1, :cantidad1, :id_periodo2, :cantidad2, :fd1, :fh1, :fd2, :fh2)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
@@ -249,6 +293,10 @@ class Suceso
         $stmt->dpBind(':cantidad1', $this->getCantidad1());
         $stmt->dpBind(':id_periodo2', $this->getIdPeriodo2());
         $stmt->dpBind(':cantidad2', $this->getCantidad2());
+        $stmt->dpBind(':fd1', $this->getFd1());
+        $stmt->dpBind(':fh1', $this->getFh1());
+        $stmt->dpBind(':fd2', $this->getFd2());
+        $stmt->dpBind(':fh2', $this->getFh2());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
