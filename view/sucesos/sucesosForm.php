@@ -301,8 +301,7 @@
                         }
                     }
                 },
-                id_periodo1: {required: true},
-                cantidad1: {required: true}
+                id_periodo1: {required: true}
 
             },
             messages:{
@@ -316,11 +315,32 @@
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
                 },
-                id_periodo1: "Seleccione un período para el evento",
-                cantidad1: "Seleccione una cantidad"
+                id_periodo1: "Seleccione un período para el evento"
             }
 
         });
+
+
+        //https://stackoverflow.com/questions/4225121/jquery-validate-sum-of-multiple-input-values
+        jQuery.validator.addMethod(
+            "sum",
+            function (value, element, params) {
+                var sumOfVals = 0;
+                var parent = $(element).parent("#suceso-form");
+                $(parent).find(".cdias").each(function () {
+                    sumOfVals = sumOfVals + parseInt($(this).val(), 10);
+                });
+                if (sumOfVals == params) return true;
+                return false;
+            },
+            jQuery.validator.format("Sum must be {0}")
+        );
+
+        $(".cdias").rules('add', {sum: 100});
+
+
+
+
 
 
         $("#myModal #id_empleado").on('changed.bs.select', function (e) {
@@ -403,7 +423,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="dias" class="control-label">Días</label>
-                            <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" disabled>
+                            <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" >
                         </div>
                     </div>
 
@@ -447,7 +467,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
-                            <input type="text" class="form-control cdias" name="cantidad1" id="cantidad1" value = "<?php print $view->suceso->getCantidad1() ?>" placeholder="" disabled>
+                            <input type="text" class="form-control cdias" name="cantidad1" id="cantidad1" value = "<?php print $view->suceso->getCantidad1() ?>" placeholder="" >
                         </div>
                     </div>
 
@@ -482,7 +502,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
-                            <input type="text" class="form-control cdias" name="cantidad2" id="cantidad2" value = "<?php print $view->suceso->getCantidad2() ?>" placeholder="" disabled>
+                            <input type="text" class="form-control cdias" name="cantidad2" id="cantidad2" value = "<?php print $view->suceso->getCantidad2() ?>" placeholder="" >
                         </div>
                     </div>
 
