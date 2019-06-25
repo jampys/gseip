@@ -319,10 +319,6 @@
             messages:{
                 id_empleado: "Seleccione un empleado",
                 id_evento: "Seleccione un evento",
-                fecha_desde: {
-                    required: "Seleccione la fecha de inicio",
-                    remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
-                },
                 fecha_hasta: {
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
