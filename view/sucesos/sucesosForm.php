@@ -349,7 +349,7 @@
             jQuery.validator.format("Sum must be {0}")
         );
 
-        $("#fh1").rules('add', {sum: 100});
+        $("#cantidad1").rules('add', {sum: 100});
         /*jQuery.validator.addClassRules({
             cfh: {
                 sum: 50
