@@ -338,7 +338,7 @@
                 if (sumOfVals == params) return true;
                 return false;
             },
-            jQuery.validator.format("Sum must be {0}")
+            jQuery.validator.format("La suma de los días imputados debe ser {0}")
         );
 
         $("#cantidad1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
@@ -425,7 +425,7 @@
 
                     <div class="row">
                         <div class="form-group col-md-9 required">
-                            <label class="control-label" for="">Desde / Hasta</label>
+                            <label class="control-label" for="">Fechas desde / hasta</label>
                             <div class="input-group input-daterange">
                                 <input class="form-control cfd" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
@@ -433,7 +433,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="dias" class="control-label">Días</label>
+                            <label for="dias" class="control-label">Total días</label>
                             <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" >
                         </div>
                     </div>
