@@ -313,7 +313,9 @@
                         }
                     }
                 },
-                id_periodo1: {required: true}
+                id_periodo1: {required: true},
+                id_periodo2: { required: false,
+                               notEqual: ["#id_periodo1", "Seleccione un período de liquidación diferente al primero"] }
 
             },
             messages:{
