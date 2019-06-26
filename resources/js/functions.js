@@ -75,7 +75,17 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
     });*/
 
 
+    /* jquery validation: se agrega metodo para comprobar que valores ingresados no sean iguales
+     https://stackoverflow.com/questions/3571347/how-to-add-a-not-equal-to-rule-in-jquery-validation
+    * */
 
+    jQuery.validator.addMethod(
+        "notEqual",
+        function(value, element, param) {
+            return this.optional(element) || value != $(param[0]).val();
+        },
+        jQuery.validator.format('{1}')
+    );
 
 
 

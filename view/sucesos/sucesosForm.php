@@ -16,19 +16,34 @@
             //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
-            todayHighlight: true
+            todayHighlight: true,
+            clearBtn: true
         }).on('changeDate', function(){
             //calcula la diferencia en dias entre las 2 fechas
-            var minDate = $('#fecha_desde').datepicker('getDate');
-            var maxDate = $('#fecha_hasta').datepicker('getDate');
+            //var minDate = $('#fecha_desde').datepicker('getDate');
+            //var maxDate = $('#fecha_hasta').datepicker('getDate');
+            var minDate = $(this).closest('.row').find('.cfd').datepicker('getDate');
+            var maxDate = $(this).closest('.row').find('.cfh').datepicker('getDate');
+            //alert('el mindate es: '+minDate);
             //maxDate - minDate devuelve la diferencia en milisegundos. 86400 = cant de seg por dia. X 1000 da los miliseg por dia.
-           $('#dias').val((maxDate - minDate)/(86400*1000)+1);
-
+            if(minDate == null || maxDate == null) $(this).closest('.row').find('.cdias').val(0);
+            else $(this).closest('.row').find('.cdias').val((maxDate - minDate)/(86400*1000)+1);
 
         });
 
-        //Al abrir el modal calcula la diferencia. Sirve para cuando se trata de una edicion
-        $(".input-daterange").trigger("changeDate");
+        //solo ocurre al cambiar el valor de fecha_desde y fecha_hasta. Restringe el rango de fechas de fd1, fh1, fd2, fh2
+        $('#fecha_desde, #fecha_hasta').on('changeDate', function(){
+            //alert('cambio las fechas de arriba');
+            var fecha_desde = $('#fecha_desde').val();
+            var fecha_hasta = $('#fecha_hasta').val();
+            //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
+            $('#fd1, #fd2').datepicker('setStartDate', fecha_desde);
+            $('#fh1, #fh2').datepicker('setEndDate', fecha_hasta);
+        });
+
+
+        //Sirve para cuando se trata de una edicion. Restringe las fd1, fh1, fd2, fh2
+        $("#fecha_desde").trigger("changeDate");
 
 
         /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
@@ -40,6 +55,28 @@
             var maxDate = new Date(selected.date.valueOf());
             $('#fecha_emision').datepicker('setEndDate', maxDate);
         });*/
+
+
+        //Al hacer check o uncheck en checkbox
+        $("#chk_imputar").change(function() {
+            var ischecked= $(this).is(':checked');
+            if(ischecked) {
+                //alert('uncheckd ' + $(this).val());
+                $('#fd1').datepicker('update', $('#fecha_desde').val());
+                $('#fh1').datepicker('update', $('#fecha_hasta').val());
+                $('#cantidad1').val($('#dias').val());
+                $('#id_periodo2').val("").selectpicker('refresh');
+                $('#fd2').val("");
+                $('#fh2').val("");
+                $('#cantidad2').val(0);
+            }else{
+                //$('#id_periodo1').val("").selectpicker('refresh');
+                $('#fd1').val("");
+                $('#fh1').val("");
+                $('#cantidad1').val(0);
+            }
+
+        });
 
 
 
@@ -188,6 +225,7 @@
 
         $('#myModal').on('click', '#submit',function(){ //ok
 
+
             if ($("#suceso-form").valid()){
 
                 var params={};
@@ -203,6 +241,10 @@
                 params.cantidad1 = $('#cantidad1').val();
                 params.id_periodo2 = $('#id_periodo2').val();
                 params.cantidad2 = $('#cantidad2').val();
+                params.fd1 = $('#fd1').val();
+                params.fh1 = $('#fh1').val();
+                params.fd2 = $('#fd2').val();
+                params.fh2 = $('#fh2').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -282,25 +324,56 @@
                     }
                 },
                 id_periodo1: {required: true},
-                cantidad1: {required: true}
+                id_periodo2: { required: false,
+                               notEqual: ["#id_periodo1", "Seleccione un período de liquidación diferente al primero"]
+                },
+                fd1: {required: true}
 
             },
             messages:{
                 id_empleado: "Seleccione un empleado",
                 id_evento: "Seleccione un evento",
-                fecha_desde: {
-                    required: "Seleccione la fecha de inicio",
-                    remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
-                },
                 fecha_hasta: {
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
                 },
                 id_periodo1: "Seleccione un período para el evento",
-                cantidad1: "Seleccione una cantidad"
+                fd1: "Seleccione un rango de fechas para el primer período"
             }
 
         });
+
+
+        //https://stackoverflow.com/questions/4225121/jquery-validate-sum-of-multiple-input-values
+        jQuery.validator.addMethod(
+            "sum",
+            function (value, element, params) {
+                var sumOfVals = 0;
+                //sumOfVals = sumOfVals + parseInt($(this).val(), 10);
+                var a = $('#cantidad1').val();
+                var b = $('#cantidad2').val();
+                a = a || 0; //si el campo es NaN (not a number) lo convierte en 0.
+                b = b || 0; //si el campo es NaN (not a number) lo convierte en 0.
+                sumOfVals = parseInt(a, 10) + parseInt(b, 10);
+
+                //alert(sumOfVals);
+                if (sumOfVals == params) return true;
+                return false;
+            },
+            jQuery.validator.format("La suma de los días imputados debe ser {0}")
+        );
+
+        $("#fh1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
+        /*jQuery.validator.addClassRules({
+            cfh: {
+                sum: 50
+            }
+        });*/
+
+
+
+
+
 
 
         $("#myModal #id_empleado").on('changed.bs.select', function (e) {
@@ -360,12 +433,12 @@
 
                     <div class="form-group required">
                         <label for="id_evento" class="control-label">Evento</label>
-                            <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione el evento" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione el evento" data-live-search="true" data-size="5" data-show-subtext="true">
                                 <?php foreach ($view->eventos as $ev){ ?>
-                                    <option value="<?php echo $ev['id_evento']; ?>"
+                                    <option value="<?php echo $ev['id_evento']; ?>" data-subtext="<?php echo $ev['tipo_liquidacion'] ;?>"
                                         <?php echo ($ev['id_evento'] == $view->suceso->getIdEvento())? 'selected' :'' ?>
                                         >
-                                        <?php echo $ev['nombre'] ;?>
+                                        <?php echo $ev['nombre'];?>
                                     </option>
                                 <?php  } ?>
                             </select>
@@ -374,23 +447,23 @@
 
                     <div class="row">
                         <div class="form-group col-md-9 required">
-                            <label class="control-label" for="">Desde / Hasta</label>
+                            <label class="control-label" for="">Fechas desde / hasta</label>
                             <div class="input-group input-daterange">
-                                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfd" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
-                                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control cfh" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="dias" class="control-label">Días</label>
-                            <input type="text" class="form-control" name="dias" id="dias" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="" disabled>
+                            <label for="dias" class="control-label">Total días</label>
+                            <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" disabled >
                         </div>
                     </div>
 
 
                     <div class="row">
                         <div class="form-group col-md-9 required">
-                            <label for="id_periodo1" class="control-label">Imputar a período de liquidación</label>
+                            <label for="id_periodo1" class="control-label">Imputar a período de liquidación 1</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo1" name="id_periodo1" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <option value="">Seleccione un período</option>
@@ -404,16 +477,37 @@
                                 <?php  } ?>
                             </select>
                         </div>
+                        <div class="form-group col-md-3">
+
+                                <label for="chk_imputar" class="control-label">&nbsp;</label>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="chk_imputar" name="chk_imputar">
+                                        <a href="#" title="Imputar todo al primer período seleccionado">Imputar todo</a>
+                                    </label>
+                                </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <div class="input-group input-daterange">
+                                <input class="form-control cfd" type="text" name="fd1" id="fd1" value = "<?php print $view->suceso->getFd1() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <div class="input-group-addon">hasta</div>
+                                <input class="form-control cfh" type="text" name="fh1" id="fh1" value = "<?php print $view->suceso->getFh1() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>
+                        </div>
                         <div class="form-group col-md-3 required">
-                            <label for="cantidad1" class="control-label">Cantidad</label>
-                            <input type="text" class="form-control" name="cantidad1" id="cantidad1" value = "<?php print $view->suceso->getCantidad1() ?>" placeholder="Valor">
+                            <input type="text" class="form-control cdias" name="cantidad1" id="cantidad1" value = "<?php print ($view->suceso->getCantidad1())? $view->suceso->getCantidad1() : '0'  ?>" placeholder="" disabled >
                         </div>
                     </div>
 
 
                     <div class="row">
                         <div class="form-group col-md-9">
-                            <label for="id_periodo" class="control-label">Imputar a período de liquidación</label>
+                            <label for="id_periodo" class="control-label">Imputar a período de liquidación 2</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo2" name="id_periodo2" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <option value="">Seleccione un período</option>
@@ -428,8 +522,20 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="cantidad2" class="control-label">Cantidad</label>
-                            <input type="text" class="form-control" name="cantidad2" id="cantidad2" value = "<?php print $view->suceso->getCantidad2() ?>" placeholder="Valor">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <div class="input-group input-daterange">
+                                <input class="form-control cfd" type="text" name="fd2" id="fd2" value = "<?php print $view->suceso->getFd2() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <div class="input-group-addon">hasta</div>
+                                <input class="form-control cfh" type="text" name="fh2" id="fh2" value = "<?php print $view->suceso->getFh2() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 required">
+                            <input type="text" class="form-control cdias" name="cantidad2" id="cantidad2" value = "<?php print ($view->suceso->getCantidad2())? $view->suceso->getCantidad2() : '0'  ?>" placeholder="" disabled >
                         </div>
                     </div>
 

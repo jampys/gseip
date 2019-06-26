@@ -38,6 +38,10 @@ switch ($operation)
         $suceso->setCantidad1($_POST['cantidad1']);
         $suceso->setIdPeriodo2( ($_POST['id_periodo2']!='')? $_POST['id_periodo2'] : null );
         $suceso->setCantidad2( ($_POST['cantidad2']!='')? $_POST['cantidad2'] : null );
+        $suceso->setFd1( ($_POST['fd1'])? $_POST['fd1'] : null  );
+        $suceso->setFh1( ($_POST['fh1'])? $_POST['fh1'] : null );
+        $suceso->setFd2( ($_POST['fd2'])? $_POST['fd2'] : null );
+        $suceso->setFh2( ($_POST['fh2'])? $_POST['fh2'] : null );
         $rta = $suceso->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));
@@ -121,16 +125,17 @@ switch ($operation)
         $view->sucesos = Suceso::exportTxt($id_contrato, $id_periodo);
 
         foreach ($view->sucesos as $su) {
-            $fd = new DateTime($su['txt_fecha_desde']);
-            $fh = new DateTime($su['txt_fecha_hasta']);
+            $fd = new DateTime($su['fecha_desde']);
+            $fh = new DateTime($su['fecha_hasta']);
+            $pd = $ph = new DateTime($su['periodo_hasta']); //para calcular el periodo se toma el periodo_hasta
             //$d = (string)$fh->diff($fd)->days;
             //$d = (string)($fh->diff($fd)->days+1);
             $d = $su['cantidad'];
 
-            $line = str_pad($su['txt_evento'], 10). //evento
-                str_pad(substr($su['txt_legajo'], 2), 10). //legajo
-                str_pad($fd->format('01/m/Y'), 10). //periodo desde
-                str_pad($fh->format('01/m/Y'), 10). //periodo hasta
+            $line = str_pad($su['evento'], 10). //evento
+                str_pad(substr($su['legajo'], 2), 10). //legajo
+                str_pad($pd->format('01/m/Y'), 10). //periodo desde
+                str_pad($ph->format('01/m/Y'), 10). //periodo hasta
                 str_pad($fd->format('d/m/Y'), 10). //fecha desde
                 str_pad($fh->format('d/m/Y'), 10). //fecha hasta
                 str_pad($d, 10). //dias
