@@ -41,8 +41,8 @@
         });
 
 
-        //Al abrir el modal calcula la diferencia. Sirve para cuando se trata de una edicion
-        //$(".input-daterange").trigger("changeDate");
+        //Sirve para cuando se trata de una edicion. Restringe las fd1, fh1, fd2, fh2
+        $("#fecha_desde").trigger("changeDate");
 
 
         /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
