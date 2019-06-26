@@ -325,7 +325,9 @@
                 },
                 id_periodo1: {required: true},
                 id_periodo2: { required: false,
-                               notEqual: ["#id_periodo1", "Seleccione un período de liquidación diferente al primero"] }
+                               notEqual: ["#id_periodo1", "Seleccione un período de liquidación diferente al primero"]
+                },
+                fd1: {required: true}
 
             },
             messages:{
@@ -335,7 +337,8 @@
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
                 },
-                id_periodo1: "Seleccione un período para el evento"
+                id_periodo1: "Seleccione un período para el evento",
+                fd1: "Seleccione un rango de fechas para el primer período"
             }
 
         });
