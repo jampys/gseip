@@ -413,7 +413,6 @@
 
 
                     <?php if($view->suceso->getIdParte()){ ?>
-                        <br/>
                         <div class="alert alert-info">
                             <i class="fas fa-info fa-fw"></i> Suceso generado automáticamente desde el parte <b><?php echo $view->suceso->getIdParte(); ?></b>.
                         </div>
