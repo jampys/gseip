@@ -31,6 +31,7 @@
 
         });
 
+        //solo ocurre al cambiar el valor de fecha_desde y fecha_hasta. Restringe el rango de fechas de fd1, fh1, fd2, fh2
         $('#fecha_desde, #fecha_hasta').on('changeDate', function(){
             //alert('cambio las fechas de arriba');
             var fecha_desde = $('#fecha_desde').val();
