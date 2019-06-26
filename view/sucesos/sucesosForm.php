@@ -29,8 +29,17 @@
             if(minDate == null || maxDate == null) $(this).closest('.row').find('.cdias').val(0);
             else $(this).closest('.row').find('.cdias').val((maxDate - minDate)/(86400*1000)+1);
 
-
         });
+
+        $('#fecha_desde, #fecha_hasta').on('changeDate', function(){
+            //alert('cambio las fechas de arriba');
+            var fecha_desde = $('#fecha_desde').val();
+            var fecha_hasta = $('#fecha_hasta').val();
+            //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
+            $('#fd1, #fd2').datepicker('setStartDate', fecha_desde);
+            $('#fh1, #fh2').datepicker('setEndDate', fecha_hasta);
+        });
+
 
         //Al abrir el modal calcula la diferencia. Sirve para cuando se trata de una edicion
         //$(".input-daterange").trigger("changeDate");
