@@ -21,6 +21,7 @@ class Suceso
     private $fh1;
     private $fd2;
     private $fh2;
+    private $id_parte;
 
 
     //private $empleado;
@@ -77,6 +78,9 @@ class Suceso
 
     function getFh2()
     { return $this->fh2;}
+
+    function getIdParte()
+    { return $this->id_parte;}
 
     /*function getEmpleado(){
         return ($this->empleado)? $this->empleado : new Empleado() ;
@@ -135,6 +139,9 @@ class Suceso
     function setFh2($val)
     {  $this->fh2=$val;}
 
+    function setIdParte($val)
+    {  $this->id_parte=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -151,7 +158,8 @@ class Suceso
                     DATE_FORMAT(fd1,  '%d/%m/%Y') as fd1,
                     DATE_FORMAT(fh1,  '%d/%m/%Y') as fh1,
                     DATE_FORMAT(fd2,  '%d/%m/%Y') as fd2,
-                    DATE_FORMAT(fh2,  '%d/%m/%Y') as fh2
+                    DATE_FORMAT(fh2,  '%d/%m/%Y') as fh2,
+                    id_parte
                     from nov_sucesos
                     where id_suceso = :nro";
             $stmt->dpPrepare($query);
@@ -175,6 +183,7 @@ class Suceso
             $this->setFh1($rows[0]['fh1']);
             $this->setFd2($rows[0]['fd2']);
             $this->setFh2($rows[0]['fh2']);
+            $this->setIdParte($rows[0]['id_parte']);
             //$this->empleado = new Empleado($rows[0]['id_empleado']);
         }
     }
