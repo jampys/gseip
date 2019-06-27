@@ -66,7 +66,8 @@ class NovPeriodo
                 pe.closed_date
                 from nov_periodos pe
                 where pe.id_contrato = ifnull(:id_contrato, pe.id_contrato)
-                and if(:activos is null, 1, pe.closed_date is null)";
+                and if(:activos is null, 1, pe.closed_date is null)
+                order by pe.fecha_desde asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
@@ -89,7 +90,8 @@ join empleado_contrato ec on ec.id_empleado = em.id_empleado
 join contratos co on co.id_contrato = ec.id_contrato
 join nov_periodos pe on pe.id_contrato = co.id_contrato
 where em.id_empleado = :id_empleado
-and if(:activos is null, 1, pe.closed_date is null)";
+and if(:activos is null, 1, pe.closed_date is null)
+order by fecha_desde asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
