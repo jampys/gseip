@@ -47,7 +47,7 @@ switch ($operation)
         $view->label='Nueva cuadrilla';
         $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
 
-        $view->contratos = Contrato::getContratos();
+        $view->contratos = Contrato::getContratosControl();
         $view->vehiculos = Vehiculo::getVehiculos();
         $view->areas = NovArea::getAreas();
 
@@ -59,7 +59,7 @@ switch ($operation)
         $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
         $view->label='Cuadrilla: '.$view->cuadrilla->getNombre();
 
-        $view->contratos = Contrato::getContratos();
+        $view->contratos = Contrato::getContratosControl();
         $view->vehiculos = Vehiculo::getVehiculos();
         $view->areas = NovArea::getAreas();
 
