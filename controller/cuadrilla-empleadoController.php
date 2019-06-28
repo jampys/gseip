@@ -42,8 +42,9 @@ switch ($operation)
     case 'newEmpleado': //ok
         $view->label='Nuevo empleado';
         $view->empleado = new CuadrillaEmpleado($_POST['id_cuadrilla_empleado']);
+        $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
 
-        $view->empleados = Empleado::getEmpleados();
+        $view->empleados = Empleado::getEmpleadosActivos($view->cuadrilla->getIdContrato());
 
         $view->disableLayout=true;
         $view->contentTemplate="view/cuadrillas/empleado_detailForm.php";
@@ -52,8 +53,9 @@ switch ($operation)
     case 'editEmpleado': //ok
         $view->label = ($_POST['target']!='view')? 'Editar empleado': 'Ver empleado';
         $view->empleado = new CuadrillaEmpleado($_POST['id_cuadrilla_empleado']);
+        $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
 
-        $view->empleados = Empleado::getEmpleados();
+        $view->empleados = Empleado::getEmpleadosActivos($view->cuadrilla->getIdContrato());
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];

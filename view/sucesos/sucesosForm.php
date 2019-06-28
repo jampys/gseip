@@ -476,7 +476,7 @@
                                 <option value="">Seleccione un período</option>
                                 <?php foreach ($view->periodos as $pe){
                                     ?>
-                                    <option value="<?php echo $pe['id_periodo']; ?>"
+                                    <option value="<?php echo $pe['id_periodo']; ?>" <?php echo ($pe['closed_date'])? 'disabled':''; ?>
                                         <?php echo ($view->suceso->getIdPeriodo1() == $pe['id_periodo'])? 'selected' : ''; ?>
                                         >
                                         <?php echo $pe['nombre'].' ('.$pe['fecha_desde'].' - '.$pe['fecha_hasta'].')'; ?>
@@ -520,7 +520,7 @@
                                 <option value="">Seleccione un período</option>
                                 <?php foreach ($view->periodos as $pe){
                                     ?>
-                                    <option value="<?php echo $pe['id_periodo']; ?>"
+                                    <option value="<?php echo $pe['id_periodo']; ?>" <?php echo ($pe['closed_date'])? 'disabled':''; ?>
                                         <?php echo ($view->suceso->getIdPeriodo2() == $pe['id_periodo'])? 'selected' : ''; ?>
                                         >
                                         <?php echo $pe['nombre'].' ('.$pe['fecha_desde'].' - '.$pe['fecha_hasta'].')'; ?>
