@@ -23,6 +23,7 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
+            params.id_cuadrilla = $('#empleados_left_side #add').attr('id_cuadrilla');
             params.id_cuadrilla_empleado = id;
             params.action = "cuadrilla-empleado";
             params.operation = "editEmpleado";
@@ -40,6 +41,7 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
+            params.id_cuadrilla = $('#empleados_left_side #add').attr('id_cuadrilla');
             params.id_cuadrilla_empleado = id;
             params.action = "cuadrilla-empleado";
             params.operation = "editEmpleado";
