@@ -66,8 +66,8 @@ switch ($operation)
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
-        // Si es view: trae todos los periodos, si es una edicion: trae solo los periodos activos
-        $view->periodos = ($_POST['target']=='view')? NovPeriodo::getPeriodos1($view->suceso->getIdEmpleado()) : NovPeriodo::getPeriodos1($view->suceso->getIdEmpleado(), 1) ;
+        // Trae todos los periodos, luego en el formulario quedan habilitados solo los activos
+        $view->periodos = NovPeriodo::getPeriodos1($view->suceso->getIdEmpleado()); ;
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
