@@ -209,6 +209,10 @@ class Suceso
                   and su.id_evento in ($eventos)
                   and su.fecha_desde between if(:fecha_desde is null, su.fecha_desde, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
                   and if(:fecha_hasta is null, su.fecha_hasta, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))"; */
+        /*logica de la fecha de cierre:
+        - periodo_1: es requerido, se pasa la closed_date
+        - Periodo 2: no requerido. Si no tiene periodo_2, se pasa el periodo como cerrado.
+        */
 
         $query = "select su.id_suceso, su.id_evento, su.id_empleado,
                   DATE_FORMAT(su.created_date,  '%d/%m/%Y') as created_date,
@@ -222,7 +226,7 @@ class Suceso
                   su.fecha_desde as txt_fecha_desde,
                   su.fecha_hasta as txt_fecha_hasta,
                   pe1.closed_date as closed_date_1,
-                  pe2.closed_date as closed_date_2
+                  if(pe2.created_date, pe2.closed_date, 1) as closed_date_2
                   from v_sec_nov_sucesos su
                   join empleados em on su.id_empleado = em.id_empleado
                   join nov_eventos_l ev on su.id_evento = ev.id_evento
