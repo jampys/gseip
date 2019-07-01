@@ -41,6 +41,8 @@
                 params.id_empleado = $('#id_empleado').val();
                 //params.conductor = $('input[name=conductor]:checked').val();
                 params.conductor = $('#conductor').prop('checked')? 1:0;
+                params.avoid_event = $('#avoid_event').prop('checked')? 1:'';
+                params.comentario = $('#comentario').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.aplica);
