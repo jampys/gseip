@@ -155,9 +155,22 @@
         <div class="form-group required">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" id="conductor" name="conductor" <?php echo ($view->empleado->getConductor()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para la persona que maneja">Conductor</a>
+                    <input type="checkbox" id="conductor" name="conductor" <?php echo ($view->empleado->getConductor()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Marcar la persona que maneja">Conductor</a>
                 </label>
             </div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="avoid_event" name="avoid_event" <?php echo ($view->empleado->getAvoidEvent()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Si hay un evento evita el curso definido para éste y calcula conceptos de manera normal">Evitar evento</a>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="servicio">Comentario</label>
+            <textarea class="form-control" name="comentario" id="comentario" placeholder="Comentario" rows="2"><?php print $view->empleado->getComentario(); ?></textarea>
         </div>
 
 
