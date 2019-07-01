@@ -113,7 +113,7 @@
     <fieldset>
 
     <div class="alert alert-info">
-        <strong><?php echo $view->label ?></strong>
+        <strong><?php echo $view->label; ?></strong>
     </div>
 
         <!--<input type="hidden" name="id_parte" id="id_parte" value="<?php //print $view->empleado->getIdParte() ?>">-->
