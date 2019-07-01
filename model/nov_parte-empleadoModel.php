@@ -8,6 +8,8 @@ class ParteEmpleado
     private $conductor;
     private $created_by;
     private $created_date; //fecha de registro en el sistema
+    private $avoid_event;
+    private $comentario;
 
     // GETTERS
     function getIdParteEmpleado()
@@ -28,6 +30,12 @@ class ParteEmpleado
     function getCreatedDate()
     { return $this->created_date;}
 
+    function getAvoidEvent()
+    { return $this->avoid_event;}
+
+    function getComentario()
+    { return $this->comentario;}
+
 
     //SETTERS
     function setIdParteEmpleado($val)
@@ -47,6 +55,12 @@ class ParteEmpleado
 
     function setCreatedDate($val)
     { $this->created_date=$val;}
+
+    function setAvoidEvent($val)
+    { $this->avoid_event=$val;}
+
+    function setComentario($val)
+    { $this->comentario=$val;}
 
 
     function __construct($nro=0){ //constructor //ok
