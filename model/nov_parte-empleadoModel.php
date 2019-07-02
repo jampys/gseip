@@ -8,6 +8,8 @@ class ParteEmpleado
     private $conductor;
     private $created_by;
     private $created_date; //fecha de registro en el sistema
+    private $avoid_event;
+    private $comentario;
 
     // GETTERS
     function getIdParteEmpleado()
@@ -27,6 +29,12 @@ class ParteEmpleado
 
     function getCreatedDate()
     { return $this->created_date;}
+
+    function getAvoidEvent()
+    { return $this->avoid_event;}
+
+    function getComentario()
+    { return $this->comentario;}
 
 
     //SETTERS
@@ -48,13 +56,19 @@ class ParteEmpleado
     function setCreatedDate($val)
     { $this->created_date=$val;}
 
+    function setAvoidEvent($val)
+    { $this->avoid_event=$val;}
+
+    function setComentario($val)
+    { $this->comentario=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
             $stmt=new sQuery();
             $query = "select id_parte_empleado,
-                      id_parte, id_empleado, conductor
+                      id_parte, id_empleado, conductor, avoid_event, comentario
                       from nov_parte_empleado
                       where id_parte_empleado = :nro";
             $stmt->dpPrepare($query);
@@ -66,6 +80,8 @@ class ParteEmpleado
             $this->setIdParte($rows[0]['id_parte']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
             $this->setConductor($rows[0]['conductor']);
+            $this->setAvoidEvent($rows[0]['avoid_event']);
+            $this->setComentario($rows[0]['comentario']);
         }
     }
 
@@ -99,11 +115,14 @@ class ParteEmpleado
 
     public function updateParteEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="update nov_parte_empleado set id_empleado = :id_empleado, conductor = :conductor
+        $query="update nov_parte_empleado set id_empleado = :id_empleado, conductor = :conductor,
+                avoid_event = :avoid_event, comentario = :comentario
                 where id_parte_empleado = :id_parte_empleado";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpBind(':conductor', $this->getConductor());
+        $stmt->dpBind(':avoid_event', $this->getAvoidEvent());
+        $stmt->dpBind(':comentario', $this->getComentario());
         $stmt->dpBind(':id_parte_empleado', $this->getIdParteEmpleado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -112,12 +131,14 @@ class ParteEmpleado
 
     public function insertParteEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_parte_empleado(id_parte, id_empleado, conductor, created_by, created_date)
-                values(:id_parte, :id_empleado, :conductor, :created_by, sysdate())";
+        $query="insert into nov_parte_empleado(id_parte, id_empleado, conductor, created_by, created_date, avoid_event, comentario)
+                values(:id_parte, :id_empleado, :conductor, :created_by, sysdate(), :avoid_event, :comentario)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_parte', $this->getIdParte());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpBind(':conductor', $this->getConductor());
+        $stmt->dpBind(':avoid_event', $this->getAvoidEvent());
+        $stmt->dpBind(':comentario', $this->getComentario());
         $stmt->dpBind(':created_by', $this->getCreatedBy());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();

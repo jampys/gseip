@@ -41,6 +41,8 @@
                 params.id_empleado = $('#id_empleado').val();
                 //params.conductor = $('input[name=conductor]:checked').val();
                 params.conductor = $('#conductor').prop('checked')? 1:0;
+                params.avoid_event = $('#avoid_event').prop('checked')? 1:'';
+                params.comentario = $('#comentario').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.aplica);
@@ -155,9 +157,22 @@
         <div class="form-group required">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" id="conductor" name="conductor" <?php echo ($view->empleado->getConductor()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para la persona que maneja">Conductor</a>
+                    <input type="checkbox" id="conductor" name="conductor" <?php echo ($view->empleado->getConductor()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Marcar la persona que maneja">Conductor</a>
                 </label>
             </div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="avoid_event" name="avoid_event" <?php echo ($view->empleado->getAvoidEvent()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Si hay un evento evita el curso definido para éste y calcula conceptos de manera normal">Evitar evento</a>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="servicio">Comentario</label>
+            <textarea class="form-control" name="comentario" id="comentario" placeholder="Comentario" rows="2"><?php print $view->empleado->getComentario(); ?></textarea>
         </div>
 
 
