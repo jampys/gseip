@@ -1,20 +1,128 @@
-﻿<script type="text/javascript">
+﻿<style>
+
+    td.details-control, td.details-hijo {
+        content: 'A';
+        cursor: pointer;
+    }
+    tr.shown td.details-control {
+        content: 'B';
+    }
+
+</style>
+
+<script type="text/javascript">
 
 
     $(document).ready(function(){
 
         $('#example').DataTable({
             /*language: {
-                url: 'dataTables/Spanish.json'
-            }*/
+             url: 'dataTables/Spanish.json'
+             }*/
             "stateSave": true,
             /*columnDefs: [
-                        {targets: 1, render: $.fn.dataTable.render.ellipsis( 20)}
+             {targets: 1, render: $.fn.dataTable.render.ellipsis( 20)}
 
-                        ]*/
+             ]*/
             "fnInitComplete": function () {
                 $(this).show(); }
         });
+
+
+        // Add event listener for opening and closing details
+        //$('#example tbody').on('click', 'td.details-control', function () {
+        /*$(document).on('click', 'td.details-control', function (e) {
+
+            //var table = $(this).closest('table');
+            var tr = $(this).closest('tr');
+            var row = table.row( tr );
+
+            if ( row.child.isShown() ) {
+                alert('verde');
+                // This row is already open - close it
+                tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                // Open this row
+                alert('rojo');
+                tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
+                row.child( format(row.data()) ).show();
+                tr.addClass('shown');
+            }
+        } );*/
+
+        $(document).on('click', 'td.details-control', function (e) {
+
+            alert('toco');
+
+            var table = $(this).closest('table');
+            var tr = $(this).closest('tr');
+            //var row = table.row( tr );
+            //tr.after(format(1));
+
+            /*if ( row.child.isShown() ) {
+                alert('verde');
+                // This row is already open - close it
+                tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                // Open this row
+                alert('rojo');
+                tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
+                row.child( format(row.data()) ).show();
+                tr.addClass('shown');
+            }*/
+
+            if ( tr.hasClass('shown') ) {
+             alert('verde');
+             // This row is already open - close it
+             tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
+             tr.next('tr').hide();
+             tr.removeClass('shown');
+             }
+             else {
+             // Open this row
+             alert('rojo');
+             tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
+             tr.after( format(1) ).show();
+             tr.addClass('shown');
+             }
+
+        } );
+
+
+
+
+    /* Formatting function for row details - modify as you need */
+    function format ( d ) {
+        // `d` is the original data object for the row
+        return '<tr><td colspan="7"><table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 15px">'+
+        '<tr>'+
+        '<td class="details-hijo"><i class="fas fa-plus-circle fa-fw"></i></td>'+
+        '<td>Full name:</td>'+
+        '<td>'+'nombre'+'</td>'+
+        '</tr>'+
+        '<tr>'+
+        '<td class="details-control"><i class="fas fa-plus-circle fa-fw"></i></td>'+
+        '<td>Extension number:</td>'+
+        '<td>'+'exten'+'</td>'+
+        '</tr>'+
+        '<tr>'+
+        '<td class="details-control"><i class="fas fa-plus-circle fa-fw"></i></td>'+
+        '<td>Extra info:</td>'+
+        '<td>And any further details here (images etc)...</td>'+
+        '</tr>'+
+        '</table></td></tr>';
+    }
+
+
+
+
+
 
 
         $('#confirm').dialog({
@@ -46,6 +154,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
+                <th></th>
                 <th>Cod.</th>
                 <th>Nombre</th>
                 <th>Área</th>
@@ -57,6 +166,7 @@
             <tbody>
             <?php foreach ($view->puestos as $puesto):   ?>
                 <tr>
+                    <td class="details-control"></td>
                     <td><?php echo $puesto['codigo'];?></td>
                     <td><?php echo $puesto['nombre'];?></td>
                     <td><?php echo $puesto['area'];?></td>
