@@ -83,28 +83,74 @@
 
         $(document).on('click', 'td.hijo', function (e) {
 
-            //alert('toco');
-
             var t = $(this).closest('table');
             var tr = $(this).closest('tr');
+
+            params={};
+            params.action = "puestos";
+            params.operation = "getHijos";
+            params.id_puesto = $(this).closest('tr').attr('data-id');
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                data: params,
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    //alert(Object.keys(data).length);
+
+                    if ( tr.hasClass('shown') ) {
+                        alert('verde');
+                        // This row is already open - close it
+                        tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
+                        tr.next('tr').hide();
+                        tr.removeClass('shown');
+                    }
+                    else {
+                        // Open this row
+                        alert('rojo');
+                        tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
+                        tr.after('<tr><td colspan="7">'+format(data)+'</td></tr>').show();
+                        tr.addClass('shown');
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //alert('toco');
+
+
             //var row = table.row( tr );
             //tr.after(format(1));
 
 
-            if ( tr.hasClass('shown') ) {
-             alert('verde');
-             // This row is already open - close it
-             tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
-             tr.next('tr').hide();
-             tr.removeClass('shown');
-             }
-             else {
-             // Open this row
-             alert('rojo');
-             tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
-             tr.after('<tr><td colspan="7">'+format(1)+'</td></tr>').show();
-             tr.addClass('shown');
-             }
+
 
         } );
 
@@ -114,21 +160,26 @@
     /* Formatting function for row details - modify as you need */
     function format ( d ) {
 
-        var tutuca = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 15px">';
+        var tutuca ='';
 
-        $.each(d, function(indice, val){
-            //alert('entro al bucle');
-            tutuca +=('<tr>'+
-            '<td class="hijo"><i class="fas fa-plus-circle fa-fw"></i></td>'+
-            '<td>Full name:</td>'+
-            '<td>'+'nombre'+'</td>'+
-            '</tr>');
-         });
+        if(Object.keys(d).length > 0 ){
 
-        tutuca +=('</table>');
+            var tutuca = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 15px">';
+
+            $.each(d, function(indice, val){
+                //alert('entro al bucle');
+                tutuca +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
+                '<td class="hijo"><i class="fas fa-plus-circle fa-fw"></i></td>'+
+                '<td>'+ d[indice]['nombre']+'</td>'+
+                '</tr>');
+            });
+
+            tutuca +=('</table>');
+
+
+        }
+
         return tutuca;
-
-
 
     }
 
