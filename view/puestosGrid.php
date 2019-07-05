@@ -1,11 +1,9 @@
 ﻿<style>
 
     td.details-control, td.hijo {
-        content: 'A';
         cursor: pointer;
     }
     tr.shown td.details-control {
-        content: 'B';
     }
 
 </style>
