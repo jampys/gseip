@@ -34,6 +34,9 @@
         $(document).on('click', 'td.details-control', function (e) {
 
 
+            var tr = $(this).closest('tr');
+            var row = table.row( tr );
+
             params={};
             params.action = "puestos";
             params.operation = "getHijos";
@@ -65,8 +68,7 @@
 
 
 
-                    var tr = $(this).closest('tr');
-                    var row = table.row( tr );
+
 
                     if ( row.child.isShown() ) {
                         alert('verde');
@@ -152,7 +154,7 @@
 
 
         $.each(d, function(indice, val){
-            alert('entro al bucle');
+            //alert('entro al bucle');
 
             tutuca +=('<tr>'+
             '<td class="hijo"><i class="fas fa-plus-circle fa-fw"></i></td>'+
