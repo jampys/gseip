@@ -158,6 +158,7 @@
 
     /* Formatting function for row details - modify as you need */
     function format ( d ) {
+        //https://stackoverflow.com/questions/8749236/create-table-with-jquery-append
 
         var tutuca ='';
 
@@ -167,8 +168,21 @@
 
             $.each(d, function(indice, val){
                 //alert('entro al bucle');
+
+                var clase = '';
+                var icon = '';
+
+                if (d[indice]['hijos']> 0){
+                    //alert('tiene hios');
+                    clase = 'hijo';
+                    icon = '<i class="fas fa-plus-circle fa-fw dp_green"></i></td>';
+                }else{
+                        clase = '';
+                        //icon = '<i class="fas fa-plus-circle fa-fw dp_blue"></i></td>';
+                        icon = '';
+                    }
                 tutuca +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
-                '<td class="hijo"><i class="fas fa-plus-circle fa-fw"></i></td>'+
+                '<td class="'+clase+'">'+icon+
                 '<td>'+ d[indice]['nombre']+'</td>'+
                 '</tr>');
             });
