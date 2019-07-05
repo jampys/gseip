@@ -73,7 +73,8 @@ class Puesto
 
     public static function getHijos($id_puesto) { //ok
         $stmt=new sQuery();
-        $query="select *
+        $query="select pu.*,
+(select count(*) from puestos pux where pux.id_puesto_superior = pu.id_puesto) as hijos
 from puestos pu
 where pu.id_puesto_superior = :id_puesto";
 
