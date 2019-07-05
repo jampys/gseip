@@ -4,6 +4,12 @@
         cursor: pointer;
         width: 20px;
     }
+
+    td.no-hijo {
+        width: 20px;
+    }
+
+
     tr.shown td.details-control {
     }
 
@@ -177,9 +183,8 @@
                     clase = 'hijo';
                     icon = '<i class="fas fa-plus-circle fa-fw dp_green"></i></td>';
                 }else{
-                        clase = '';
-                        //icon = '<i class="fas fa-plus-circle fa-fw dp_blue"></i></td>';
-                        icon = '';
+                        clase = 'no-hijo';
+                        icon = '<i class="far fa-circle fa-fw dp_blue"></i></td>';
                     }
                 tutuca +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
                 '<td class="'+clase+'">'+icon+
