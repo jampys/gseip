@@ -2,6 +2,7 @@
 
     td.details-control, td.hijo {
         cursor: pointer;
+        width: 20px;
     }
     tr.shown td.details-control {
     }
