@@ -70,6 +70,19 @@ class Puesto
         return $stmt->dpFetchAll();
     }
 
+
+    public static function getHijos($id_puesto) { //ok
+        $stmt=new sQuery();
+        $query="select *
+from puestos pu
+where pu.id_puesto_superior = :id_puesto";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_puesto', $id_puesto);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
     function __construct($nro=0){ //constructor ok
 
         if ($nro!=0){
