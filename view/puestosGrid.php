@@ -50,25 +50,7 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
-                    alert(Object.keys(data).length);
-
-                    //if(Object.keys(data).length > 0){
-
-                        /*$.each(data, function(indice, val){
-                            var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
-                            $("#id_periodo1, #id_periodo2").append('<option value="'+data[indice]["id_periodo"]+'"'
-                            +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
-                            +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
-                            +'>'+label+'</option>');
-
-                        });*/
-
-
-                    //}
-
-
-
-
+                    //alert(Object.keys(data).length);
 
                     if ( row.child.isShown() ) {
                         alert('verde');
@@ -131,42 +113,19 @@
 
     /* Formatting function for row details - modify as you need */
     function format ( d ) {
-        // `d` is the original data object for the row
-        /*return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 15px">'+
-        '<tr>'+
-        '<td class="hijo"><i class="fas fa-plus-circle fa-fw"></i></td>'+
-        '<td>Full name:</td>'+
-        '<td>'+'nombre'+'</td>'+
-        '</tr>'+
-        '<tr>'+
-        '<td class="details-control"><i class="fas fa-plus-circle fa-fw"></i></td>'+
-        '<td>Extension number:</td>'+
-        '<td>'+'exten'+'</td>'+
-        '</tr>'+
-        '<tr>'+
-        '<td class="details-control"><i class="fas fa-plus-circle fa-fw"></i></td>'+
-        '<td>Extra info:</td>'+
-        '<td>And any further details here (images etc)...</td>'+
-        '</tr>'+
-        '</table>';*/
 
         var tutuca = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 15px">';
 
-
         $.each(d, function(indice, val){
             //alert('entro al bucle');
-
             tutuca +=('<tr>'+
             '<td class="hijo"><i class="fas fa-plus-circle fa-fw"></i></td>'+
             '<td>Full name:</td>'+
             '<td>'+'nombre'+'</td>'+
             '</tr>');
-
-
          });
 
         tutuca +=('</table>');
-
         return tutuca;
 
 
