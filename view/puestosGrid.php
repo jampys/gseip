@@ -55,7 +55,7 @@
 
         $(document).on('click', 'td.details-control', function (e) {
 
-            alert('toco');
+            //alert('toco');
 
             var table = $(this).closest('table');
             var tr = $(this).closest('tr');
@@ -102,7 +102,7 @@
         // `d` is the original data object for the row
         return '<tr><td colspan="7"><table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 15px">'+
         '<tr>'+
-        '<td class="details-hijo"><i class="fas fa-plus-circle fa-fw"></i></td>'+
+        '<td class="details-control"><i class="fas fa-plus-circle fa-fw"></i></td>'+
         '<td>Full name:</td>'+
         '<td>'+'nombre'+'</td>'+
         '</tr>'+
