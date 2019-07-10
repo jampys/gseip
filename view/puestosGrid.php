@@ -1,6 +1,12 @@
 ﻿<style>
 
-    td.details-control, td.hijo {
+    td.details-control {
+        cursor: pointer;
+        width: 20px;
+        text-align: center;
+    }
+
+    td.hijo {
         cursor: pointer;
         width: 20px;
     }
@@ -170,7 +176,7 @@
 
         if(Object.keys(d).length > 0 ){
 
-            var tutuca = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 15px">';
+            var tutuca = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">';
 
             $.each(d, function(indice, val){
                 //alert('entro al bucle');
