@@ -45,7 +45,7 @@
         });
 
 
-        $(document).on('click', 'tr td .marcar', function() {
+        $('#example').on('click', 'tr td .marcar', function() {
             //alert('click');
             var selected = $(this).hasClass("highlight");
             $("tr td .marcar").removeClass("highlight");
@@ -59,7 +59,7 @@
 
         // Add event listener for opening and closing details
         //$('#example tbody').on('click', 'td.details-control', function () {
-        $(document).on('click', 'td.details-control', function (e) {
+        $('#example').on('click', 'td.details-control', function (e) {
 
 
             tr = $(this).closest('tr');
@@ -109,7 +109,7 @@
 
         } );
 
-        $(document).on('click', 'td.hijo', function (e) {
+        $('#example').on('click', 'td.hijo', function (e) {
 
             var t = $(this).closest('table');
             var tr = $(this).closest('tr');
