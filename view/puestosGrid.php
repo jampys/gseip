@@ -86,6 +86,7 @@
                         tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
                         row.child.hide();
                         tr.removeClass('shown');
+                        tr.attr('id_puesto', tr.attr('data-id')); //al cerrar el arbol.
                     }
                     else {
                         // Open this row
@@ -184,7 +185,7 @@
                     }
                 subTabla +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
                 '<td class="'+clase+'">'+icon+
-                '<td><span class="marcar" style="cursor: pointer">'+ d[indice]['nombre']+'</span></td>'+
+                '<td><span class="marcar" style="cursor: pointer" title="seleccionar">'+ d[indice]['nombre']+'</span></td>'+
                 '</tr>');
             });
 
@@ -254,7 +255,7 @@
                     <td><?php echo $puesto['codigo'];?></td>
 
                     <?php if($puesto['hijos']> 0 ){ ?>
-                        <td><span class="marcar" style="cursor: pointer"><?php echo $puesto['nombre'];?></span></td>
+                        <td><span class="marcar" style="cursor: pointer" title="seleccionar"><?php echo $puesto['nombre'];?></span></td>
                     <?php }else{ ?>
                         <td><?php echo $puesto['nombre'];?></td>
                     <?php } ?>
