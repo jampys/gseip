@@ -32,7 +32,7 @@
 
     $(document).ready(function(){
 
-        var tr;
+        var tr; //tr es la fila (nodo raiz del arbol)
 
         var table = $('#example').DataTable({
             /*language: {
@@ -55,7 +55,8 @@
             if(!selected)
             //alert('pintate');
                 $(this).addClass("highlight");
-                alert(tr.attr('data-id'));
+                //alert(tr.attr('data-id'));
+                tr.attr('id_puesto', $(this).closest('tr').attr('data-id'));
         });
 
 
@@ -272,8 +273,8 @@
             </thead>
             <tbody>
             <?php foreach ($view->puestos as $puesto):   ?>
-                <tr data-id="<?php echo $puesto['id_puesto'];?>">
-                    <td class="details-control"></td>
+                <tr data-id="<?php echo $puesto['id_puesto'];?>" id_puesto="<?php echo $puesto['id_puesto'];?>">
+                    <td class="<?php echo ($puesto['hijos'])? 'details-control' : ''; ?>"></td>
                     <td><?php echo $puesto['codigo'];?></td>
                     <td><span class="pija" style="cursor: pointer"><?php echo $puesto['nombre'];?></span></td>
                     <td><?php echo $puesto['area'];?></td>

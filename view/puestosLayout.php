@@ -14,7 +14,7 @@
 
 
             $(document).on('click', '.edit', function(){ //ok
-                var id = $(this).closest('tr').attr('data-id');
+                var id = $(this).closest('tr').attr('id_puesto');
                 //preparo los parametros
                 params={};
                 params.id_puesto = id;
@@ -27,7 +27,7 @@
             });
 
             $(document).on('click', '.view', function(){ //ok
-                var id = $(this).closest('tr').attr('data-id');
+                var id = $(this).closest('tr').attr('id_puesto');
                 //preparo los parametros
                 params={};
                 params.id_puesto = id;
@@ -47,7 +47,7 @@
             //Al presionar el boton detalles....
             $(document).on('click', '.detalles', function(){ //ok
                 //alert('tocó en contratos');
-                var id = $(this).closest('tr').attr('data-id');
+                var id = $(this).closest('tr').attr('id_puesto');
                 //preparo los parametros
                 params={};
                 params.id_puesto = id;
@@ -74,7 +74,7 @@
 
 
             $(document).on('click', '.delete', function(){ //ok
-                var id = $(this).closest('tr').attr('data-id');
+                var id = $(this).closest('tr').attr('id_puesto');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
                         {

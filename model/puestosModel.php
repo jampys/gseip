@@ -58,7 +58,8 @@ class Puesto
         $stmt=new sQuery();
         $query="select pu.id_puesto, pu.nombre, pu.descripcion, pu.codigo,
                     su.nombre as nombre_superior, ar.nombre as area, nc.nombre as nivel_competencia,
-                    (select count(*) from uploads_puesto where id_puesto = pu.id_puesto) as cant_uploads
+                    (select count(*) from uploads_puesto where id_puesto = pu.id_puesto) as cant_uploads,
+                    (select count(*) from puestos pux where pux.id_puesto_superior = pu.id_puesto) as hijos
                     from puestos pu
                     left join puestos su on pu.id_puesto_superior = su.id_puesto
                     left join areas ar on pu.id_area = ar.id_area
