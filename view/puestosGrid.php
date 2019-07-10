@@ -128,7 +128,7 @@
                     //alert(Object.keys(data).length);
 
                     if ( tr.hasClass('shown') ) {
-                        alert('verde');
+                        //alert('verde');
                         // This row is already open - close it
                         tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
                         tr.next('tr').hide();
