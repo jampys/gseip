@@ -274,7 +274,11 @@
             <tbody>
             <?php foreach ($view->puestos as $puesto):   ?>
                 <tr data-id="<?php echo $puesto['id_puesto'];?>" id_puesto="<?php echo $puesto['id_puesto'];?>">
-                    <td class="<?php echo ($puesto['hijos'])? 'details-control' : ''; ?>"></td>
+                    <?php if($puesto['hijos']> 0 ){ ?>
+                        <td class="details-control"><i class="fas fa-plus-circle fa-fw dp_green"></i></td>
+                    <?php }else{ ?>
+                        <td></td>
+                    <?php } ?>
                     <td><?php echo $puesto['codigo'];?></td>
                     <td><span class="pija" style="cursor: pointer"><?php echo $puesto['nombre'];?></span></td>
                     <td><?php echo $puesto['area'];?></td>
