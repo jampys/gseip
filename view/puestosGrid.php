@@ -19,6 +19,8 @@
     tr.shown td.details-control {
     }
 
+    .highlight { background-color: red !important; }
+
 </style>
 
 <script type="text/javascript">
@@ -37,6 +39,16 @@
              ]*/
             "fnInitComplete": function () {
                 $(this).show(); }
+        });
+
+
+        $(document).on('click', 'tr td.pija', function() {
+            //alert('click');
+            var selected = $(this).hasClass("highlight");
+            $("tr td.pija").removeClass("highlight");
+            if(!selected)
+            //alert('pintate');
+                $(this).addClass("highlight");
         });
 
 
@@ -64,7 +76,7 @@
                     //alert(Object.keys(data).length);
 
                     if ( row.child.isShown() ) {
-                        alert('verde');
+                        //alert('verde');
                         // This row is already open - close it
                         tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
                         row.child.hide();
@@ -72,7 +84,7 @@
                     }
                     else {
                         // Open this row
-                        alert('rojo');
+                        //alert('rojo');
                         tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
                         row.child( format(data )).show();
                         tr.addClass('shown');
@@ -120,7 +132,7 @@
                     }
                     else {
                         // Open this row
-                        alert('rojo');
+                        //alert('rojo');
                         tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
                         tr.after('<tr><td colspan="7">'+format(data)+'</td></tr>').show();
                         tr.addClass('shown');
@@ -194,7 +206,7 @@
                     }
                 tutuca +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
                 '<td class="'+clase+'">'+icon+
-                '<td>'+ d[indice]['nombre']+'</td>'+
+                '<td class="pija" style="cursor: pointer">'+ d[indice]['nombre']+'</td>'+
                 '</tr>');
             });
 
