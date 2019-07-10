@@ -32,6 +32,8 @@
 
     $(document).ready(function(){
 
+        var tr;
+
         var table = $('#example').DataTable({
             /*language: {
              url: 'dataTables/Spanish.json'
@@ -53,6 +55,7 @@
             if(!selected)
             //alert('pintate');
                 $(this).addClass("highlight");
+                alert(tr.attr('data-id'));
         });
 
 
@@ -61,7 +64,7 @@
         $(document).on('click', 'td.details-control', function (e) {
 
 
-            var tr = $(this).closest('tr');
+            tr = $(this).closest('tr');
             var row = table.row( tr );
 
             params={};
@@ -290,9 +293,9 @@
                             </a>
                         <?php } ?>
                         &nbsp;&nbsp;
-                        <a class="view" title="ver" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>
+                        <a class="view" title="ver" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
+                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
+                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
