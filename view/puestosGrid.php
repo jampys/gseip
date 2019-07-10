@@ -16,9 +16,6 @@
     }
 
 
-    tr.shown td.details-control {
-    }
-
     .highlight { background-color: #a8d1ff !important;
                  border-radius: 3px;
                  padding-right: 3px;
@@ -48,10 +45,10 @@
         });
 
 
-        $(document).on('click', 'tr td .pija', function() {
+        $(document).on('click', 'tr td .marcar', function() {
             //alert('click');
             var selected = $(this).hasClass("highlight");
-            $("tr td .pija").removeClass("highlight");
+            $("tr td .marcar").removeClass("highlight");
             if(!selected)
             //alert('pintate');
                 $(this).addClass("highlight");
@@ -156,33 +153,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //alert('toco');
-
-
-            //var row = table.row( tr );
-            //tr.after(format(1));
-
-
-
-
         } );
 
 
@@ -192,11 +162,11 @@
     function format ( d ) {
         //https://stackoverflow.com/questions/8749236/create-table-with-jquery-append
 
-        var tutuca ='';
+        var subTabla ='';
 
         if(Object.keys(d).length > 0 ){
 
-            var tutuca = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">';
+            var subTabla = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">';
 
             $.each(d, function(indice, val){
                 //alert('entro al bucle');
@@ -212,18 +182,18 @@
                         clase = 'no-hijo';
                         icon = '<i class="far fa-circle fa-fw dp_blue"></i></td>';
                     }
-                tutuca +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
+                subTabla +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
                 '<td class="'+clase+'">'+icon+
-                '<td><span class="pija" style="cursor: pointer">'+ d[indice]['nombre']+'</span></td>'+
+                '<td><span class="marcar" style="cursor: pointer">'+ d[indice]['nombre']+'</span></td>'+
                 '</tr>');
             });
 
-            tutuca +=('</table>');
+            subTabla +=('</table>');
 
 
         }
 
-        return tutuca;
+        return subTabla;
 
     }
 
@@ -280,7 +250,7 @@
                         <td></td>
                     <?php } ?>
                     <td><?php echo $puesto['codigo'];?></td>
-                    <td><span class="pija" style="cursor: pointer"><?php echo $puesto['nombre'];?></span></td>
+                    <td><span class="marcar" style="cursor: pointer"><?php echo $puesto['nombre'];?></span></td>
                     <td><?php echo $puesto['area'];?></td>
                     <td><?php echo $puesto['nivel_competencia'];?></td>
                     <td><?php echo $puesto['nombre_superior'];?></td>
