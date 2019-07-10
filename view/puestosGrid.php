@@ -19,7 +19,11 @@
     tr.shown td.details-control {
     }
 
-    .highlight { background-color: red !important; }
+    .highlight { background-color: #a8d1ff !important;
+                 border-radius: 3px;
+                 padding-right: 3px;
+                 padding-left: 3px;
+    }
 
 </style>
 
@@ -42,10 +46,10 @@
         });
 
 
-        $(document).on('click', 'tr td.pija', function() {
+        $(document).on('click', 'tr td .pija', function() {
             //alert('click');
             var selected = $(this).hasClass("highlight");
-            $("tr td.pija").removeClass("highlight");
+            $("tr td .pija").removeClass("highlight");
             if(!selected)
             //alert('pintate');
                 $(this).addClass("highlight");
@@ -206,7 +210,7 @@
                     }
                 tutuca +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
                 '<td class="'+clase+'">'+icon+
-                '<td class="pija" style="cursor: pointer">'+ d[indice]['nombre']+'</td>'+
+                '<td><span class="pija" style="cursor: pointer">'+ d[indice]['nombre']+'</span></td>'+
                 '</tr>');
             });
 
