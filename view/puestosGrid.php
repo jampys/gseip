@@ -272,7 +272,7 @@
                 <tr data-id="<?php echo $puesto['id_puesto'];?>">
                     <td class="details-control"></td>
                     <td><?php echo $puesto['codigo'];?></td>
-                    <td><?php echo $puesto['nombre'];?></td>
+                    <td><span class="pija" style="cursor: pointer"><?php echo $puesto['nombre'];?></span></td>
                     <td><?php echo $puesto['area'];?></td>
                     <td><?php echo $puesto['nivel_competencia'];?></td>
                     <td><?php echo $puesto['nombre_superior'];?></td>
