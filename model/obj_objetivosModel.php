@@ -18,6 +18,7 @@ class Objetivo
     private $codigo;
     private $progreso;
     private $id_plan_evaluacion;
+    private $id_objetivo_superior;
 
     // GETTERS
     function getIdObjetivo()
@@ -64,6 +65,9 @@ class Objetivo
 
     function getIdPlanEvaluacion()
     { return $this->id_plan_evaluacion;}
+
+    function getIdObjetivoSuperior()
+    { return $this->id_objetivo_superior;}
 
 
     //SETTERS
@@ -112,6 +116,9 @@ class Objetivo
     function setIdPlanEvaluacion($val)
     { $this->id_plan_evaluacion=$val;}
 
+    function setIdObjetivoSuperior($val)
+    { $this->id_objetivo_superior=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -140,6 +147,7 @@ class Objetivo
             $this->setCodigo($rows[0]['codigo']);
             $this->setProgreso($rows[0]['progreso']);
             $this->setIdPlanEvaluacion($rows[0]['id_plan_evaluacion']);
+            $this->setIdObjetivoSuperior($rows[0]['id_objetivo_superior']);
         }
     }
 
@@ -204,7 +212,8 @@ class Objetivo
                 frecuencia= :frecuencia,
                 id_responsable_ejecucion= :id_responsable_ejecucion,
                 id_responsable_seguimiento= :id_responsable_seguimiento,
-                id_plan_evaluacion = :id_plan_evaluacion
+                id_plan_evaluacion = :id_plan_evaluacion,
+                id_objetivo_superior = :id_objetivo_superior
                 where id_objetivo = :id_objetivo";
 
         $stmt->dpPrepare($query);
@@ -221,6 +230,7 @@ class Objetivo
         $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
         $stmt->dpBind(':id_plan_evaluacion', $this->getIdPlanEvaluacion());
         $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
+        $stmt->dpBind(':id_objetivo_superior', $this->getIdObjetivoSuperior());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
@@ -228,8 +238,8 @@ class Objetivo
     private function insertObjetivo(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into obj_objetivos(periodo, nombre, id_area, id_contrato, id_puesto, meta, meta_valor, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento, id_plan_evaluacion, fecha)
-                values(:periodo, :nombre, :id_area, :id_contrato, :id_puesto, :meta, :meta_valor, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento, :id_plan_evaluacion, SYSDATE())";
+        $query="insert into obj_objetivos(periodo, nombre, id_area, id_contrato, id_puesto, meta, meta_valor, indicador, frecuencia, id_responsable_ejecucion, id_responsable_seguimiento, id_plan_evaluacion, fecha, id_objetivo_superior)
+                values(:periodo, :nombre, :id_area, :id_contrato, :id_puesto, :meta, :meta_valor, :indicador, :frecuencia, :id_responsable_ejecucion, :id_responsable_seguimiento, :id_plan_evaluacion, SYSDATE(), :id_objetivo_superior)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':nombre', $this->getNombre());
@@ -242,6 +252,7 @@ class Objetivo
         $stmt->dpBind(':frecuencia', $this->getFrecuencia());
         $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
         $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
+        $stmt->dpBind(':id_objetivo_superior', $this->getIdObjetivoSuperior());
         $stmt->dpBind(':id_plan_evaluacion', $this->getIdPlanEvaluacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
