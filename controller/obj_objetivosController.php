@@ -125,6 +125,15 @@ switch ($operation)
         break;
 
 
+    case 'getPadre': //select dependiente
+        //$id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
+        //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
+        $rta = Objetivo::getObjetivos($_POST['id_periodo'], null, null, null, null, null, null);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
+
 
     default : //ok //muestra la grilla de objetivos
         $view->periodos = Evaluacion::getPeriodos();

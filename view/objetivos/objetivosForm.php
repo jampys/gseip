@@ -28,6 +28,57 @@
 
 
 
+        //Select dependiente: al seleccionar contrato carga periodos vigentes
+        $('#objetivo-form').on('change', '#id_periodo', function(e){
+            //alert('seleccionó un contrato');
+            //throw new Error();
+            params={};
+            params.action = "obj_objetivos";
+            params.operation = "getPadre";
+            //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
+            params.id_periodo = $('#myModal #id_periodo').val();
+
+            $('#id_objetivo_superior').empty();
+
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
+                data: params,
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    if(Object.keys(data).length > 0){
+
+                        $.each(data, function(indice, val){
+                            var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
+                            $("#id_periodo").append('<option value="'+data[indice]["id_periodo"]+'"'
+                            +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
+                            +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
+                            +'>'+label+'</option>');
+
+                        });
+
+                        //si es una edicion o view, selecciona el concepto.
+                        //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
+                        $('#id_objetivo_superior').selectpicker('refresh');
+
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
+
+        });
+
+
+
         $('#myModal').on('click', '#submit',function(){ //ok
 
             if ($("#objetivo-form").valid()){
