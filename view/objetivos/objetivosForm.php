@@ -55,7 +55,7 @@
 
                         $.each(data, function(indice, val){
                             var label = data[indice]["codigo"]+' '+data[indice]["nombre"];
-                            $("#id_objetivo_superior").append('<option value="'+data[indice]["id_objeivo_superior"]+'"'
+                            $("#id_objetivo_superior").append('<option value="'+data[indice]["id_objeivo"]+'"'
                             //+' fecha_desde="'+data[indice]["fecha_desde"]+'"'
                             //+' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
@@ -101,6 +101,7 @@
                 params.frecuencia=$('#frecuencia').val();
                 params.id_responsable_ejecucion=$('#id_responsable_ejecucion').val();
                 params.id_responsable_seguimiento=$('#id_responsable_seguimiento').val();
+                params.id_objetivo_superior=$('#id_objetivo_superior').val();
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);

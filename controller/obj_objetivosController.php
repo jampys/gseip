@@ -45,6 +45,7 @@ switch ($operation)
         $objetivo->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
         $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
         $objetivo->setIdPlanEvaluacion($_POST['id_plan_evaluacion']);
+        $objetivo->setIdObjetivoSuperior(($_POST['id_objetivo_superior'])? $_POST['id_objetivo_superior'] : null);
 
         $rta = $objetivo->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
