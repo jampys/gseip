@@ -284,6 +284,20 @@ where id_objetivo = :id_objetivo";
     }
 
 
+    public static function getHijos($id_objetivo) { //ok
+        $stmt=new sQuery();
+        $query="select obj.*,
+(select count(*) from obj_objetivos objx where objx.id_objetivo_superior = obj.id_objetivo) as hijos
+from puestos pu
+where obj.id_objetivo_superior = :id_objetivo";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_objetivo', $id_objetivo);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
     /*public static function getPeriodos(){ //ok
         $stmt=new sQuery();
         $query = "select periodo

@@ -135,6 +135,13 @@ switch ($operation)
         exit;
         break;
 
+    case 'getHijos': //trae los puestos hijos de un objetivo.
+        //$view->puesto = new Puesto();
+        $rta=Objetivo::getHijos($_POST['id_objetivo']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
 
 
     default : //ok //muestra la grilla de objetivos
