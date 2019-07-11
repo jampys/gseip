@@ -29,14 +29,14 @@
 
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
-        $('#objetivo-form').on('change', '#id_periodo', function(e){
-            //alert('seleccionó un contrato');
+        $('#objetivo-form').on('change', '#periodo', function(e){
+            //alert('seleccionó un periodo');
             //throw new Error();
             params={};
             params.action = "obj_objetivos";
             params.operation = "getPadre";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-            params.id_periodo = $('#myModal #id_periodo').val();
+            params.periodo = $('#myModal #periodo').val();
 
             $('#id_objetivo_superior').empty();
 

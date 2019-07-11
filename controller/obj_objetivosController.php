@@ -128,7 +128,7 @@ switch ($operation)
     case 'getPadre': //select dependiente
         //$id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
         //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
-        $rta = Objetivo::getObjetivos($_POST['id_periodo'], null, null, null, null, null, null);
+        $rta = Objetivo::getObjetivos($_POST['periodo'], null, null, null, null, null, null);
         print_r(json_encode($rta));
         exit;
         break;
