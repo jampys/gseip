@@ -1,9 +1,26 @@
 ﻿<style>
 
+    /* https://stackoverflow.com/questions/20782368/use-font-awesome-icon-as-css-content*/
+    /*https://datatables.net/examples/api/row_details.html*/
+
     td.details-control {
         cursor: pointer;
         width: 20px;
         text-align: center;
+    }
+
+    td.details-control:before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f055";
+        color: green;
+    }
+
+    tr.shown td.details-control:before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f056";
+        color: red;
     }
 
     td.hijo {
@@ -11,8 +28,29 @@
         width: 20px;
     }
 
+    td.hijo:before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f055";
+        color: green;
+    }
+
+    tr.shown td.hijo:before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f056";
+        color: red;
+    }
+
     td.no-hijo {
         width: 20px;
+    }
+
+    td.no-hijo:before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f056";
+        color: blue;
     }
 
 
@@ -83,7 +121,7 @@
                     if ( row.child.isShown() ) {
                         //alert('verde');
                         // This row is already open - close it
-                        tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
+                        //tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
                         row.child.hide();
                         tr.removeClass('shown');
                         tr.attr('id_puesto', tr.attr('data-id')); //al cerrar el arbol.
@@ -91,7 +129,7 @@
                     else {
                         // Open this row
                         //alert('rojo');
-                        tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
+                        //tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
                         row.child( format(data )).show();
                         tr.addClass('shown');
                     }
@@ -132,14 +170,14 @@
                     if ( tr.hasClass('shown') ) {
                         //alert('verde');
                         // This row is already open - close it
-                        tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
+                        //tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
                         tr.next('tr').hide();
                         tr.removeClass('shown');
                     }
                     else {
                         // Open this row
                         //alert('rojo');
-                        tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
+                        //tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
                         tr.after('<tr><td colspan="7">'+format(data)+'</td></tr>').show();
                         tr.addClass('shown');
                     }
@@ -178,10 +216,10 @@
                 if (d[indice]['hijos']> 0){
                     //alert('tiene hios');
                     clase = 'hijo';
-                    icon = '<i class="fas fa-plus-circle fa-fw dp_green"></i></td>';
+                    //icon = '<i class="fas fa-plus-circle fa-fw dp_green"></i></td>';
                 }else{
                         clase = 'no-hijo';
-                        icon = '<i class="far fa-circle fa-fw dp_blue"></i></td>';
+                        //icon = '<i class="far fa-circle fa-fw dp_blue"></i></td>';
                     }
                 subTabla +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
                 '<td class="'+clase+'">'+icon+
@@ -247,7 +285,7 @@
                 <tr data-id="<?php echo $puesto['id_puesto'];?>" id_puesto="<?php echo $puesto['id_puesto'];?>">
 
                     <?php if($puesto['hijos']> 0 ){ ?>
-                        <td class="details-control"><i class="fas fa-plus-circle fa-fw dp_green"></i></td>
+                        <td class="details-control"></td>
                     <?php }else{ ?>
                         <td></td>
                     <?php } ?>
