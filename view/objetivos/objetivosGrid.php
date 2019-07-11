@@ -99,7 +99,7 @@
             //alert('pintate');
                 $(this).addClass("highlight");
             //alert(tr.attr('data-id'));
-            tr.attr('id_puesto', $(this).closest('tr').attr('data-id'));
+            tr.attr('id_objetivo', $(this).closest('tr').attr('data-id'));
         });
 
 
@@ -262,6 +262,7 @@
             <?php if(isset($view->objetivos)) {
                 foreach ($view->objetivos as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_objetivo']; ?>"
+                        id_objetivo="<?php echo $puesto['id_objetivo'];?>"
                         cerrado="<?php echo $rp['cerrado']; ?>"
                         >
                         <td class="<?php echo ($rp['hijos']> 0 )? 'details-control' : ''; ?>"></td>
