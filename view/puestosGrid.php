@@ -54,6 +54,10 @@
         color: blue;
     }
 
+    span.seleccionable {
+        cursor: pointer;
+    }
+
 
     .highlight { background-color: #a8d1ff !important;
                  border-radius: 3px;
@@ -84,10 +88,10 @@
         });
 
 
-        $('#example').on('click', 'tr td .marcar', function() {
+        $('#example').on('click', 'tr td .seleccionable', function() {
             //alert('click');
             var selected = $(this).hasClass("highlight");
-            $("tr td .marcar").removeClass("highlight");
+            $("tr td .seleccionable").removeClass("highlight");
             if(!selected)
             //alert('pintate');
                 $(this).addClass("highlight");
@@ -214,7 +218,7 @@
 
                 subTabla +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
                 '<td class="'+clase+'">'+
-                '<td><span class="marcar" style="cursor: pointer" title="seleccionar">'+ d[indice]['nombre']+'</span></td>'+
+                '<td><span class="seleccionable">'+ d[indice]['nombre']+'</span></td>'+
                 '</tr>');
             });
 
@@ -276,13 +280,7 @@
 
                     <td class="<?php echo ($puesto['hijos']> 0 )? 'details-control' : ''; ?>"></td>
                     <td><?php echo $puesto['codigo'];?></td>
-
-                    <?php if($puesto['hijos']> 0 ){ ?>
-                        <td><span class="marcar" style="cursor: pointer" title="seleccionar"><?php echo $puesto['nombre'];?></span></td>
-                    <?php }else{ ?>
-                        <td><?php echo $puesto['nombre'];?></td>
-                    <?php } ?>
-
+                    <td><span class="<?php echo ($puesto['hijos']> 0 )? 'seleccionable' : ''; ?>"><?php echo $puesto['nombre'];?></span></td>
                     <td><?php echo $puesto['area'];?></td>
                     <td><?php echo $puesto['nivel_competencia'];?></td>
                     <td><?php echo $puesto['nombre_superior'];?></td>
