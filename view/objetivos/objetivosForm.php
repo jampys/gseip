@@ -347,12 +347,12 @@
                     <div class="form-group">
                         <label for="id_objetivo_superior" class="control-label">Objetivo de nivel superior</label>
                         <select class="form-control selectpicker show-tick" id="id_objetivo_superior" name="id_objetivo_superior" title="Seleccione un objetivo" data-live-search="true" data-size="5">
-                            <?php foreach ($view->empleados as $em){
+                            <?php foreach ($view->objetivos as $obj){
                                 ?>
-                                <option value="<?php echo $em['id_empleado']; ?>"
-                                    <?php echo ($em['id_empleado'] == $view->objetivo->getIdResponsableSeguimiento())? 'selected' :'' ?>
+                                <option value="<?php echo $obj['id_objetivo']; ?>"
+                                    <?php echo ($obj['id_objetivo'] == $view->objetivo->getIdObjetivoSuperior())? 'selected' :'' ?>
                                     >
-                                    <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                    <?php echo $obj['codigo'].' '.$obj['nombre']; ?>
                                 </option>
                             <?php  } ?>
                         </select>
