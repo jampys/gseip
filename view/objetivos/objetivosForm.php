@@ -55,7 +55,7 @@
 
                         $.each(data, function(indice, val){
                             var label = data[indice]["codigo"]+' '+data[indice]["nombre"];
-                            $("#id_objetivo_superior").append('<option value="'+data[indice]["id_objeivo"]+'"'
+                            $("#id_objetivo_superior").append('<option value="'+data[indice]["id_objetivo"]+'"'
                             //+' fecha_desde="'+data[indice]["fecha_desde"]+'"'
                             //+' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
