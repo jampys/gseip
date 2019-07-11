@@ -85,6 +85,14 @@ switch ($operation)
         $view->contentTemplate="view/puestosFormDetalles.php";
         break;
 
+
+    case 'getHijos': //trae los puestos hijos de un puesto.
+        //$view->puesto = new Puesto();
+        $rta=Puesto::getHijos($_POST['id_puesto']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
     default : //ok
         if ( PrivilegedUser::dhasPrivilege('PUE_VER', array(1)) ) {
             $view->puestos = Puesto::getPuestos();
