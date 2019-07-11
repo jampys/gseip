@@ -83,8 +83,8 @@
 
             "stateSave": true,
             columnDefs: [
-                {targets: 1, render: $.fn.dataTable.render.ellipsis(30)} //https://datatables.net/blog/2016-02-26
-                ,{ "width": "90px", "targets":5 } //progress bar
+                {targets: 2, render: $.fn.dataTable.render.ellipsis(30)} //https://datatables.net/blog/2016-02-26
+                ,{ "width": "90px", "targets":6 } //progress bar
             ]
 
         });
@@ -246,6 +246,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
+                <th></th>
                 <th>Código</th>
                 <th>Objetivo</th>
                 <th>Puesto</th>
@@ -262,6 +263,7 @@
                     <tr data-id="<?php echo $rp['id_objetivo']; ?>"
                         cerrado="<?php echo $rp['cerrado']; ?>"
                         >
+                        <td class="<?php echo ($rp['hijos']> 0 )? 'details-control' : ''; ?>"></td>
                         <td><?php echo $rp['codigo']; ?></td>
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['puesto']; ?></td>
