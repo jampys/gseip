@@ -1,6 +1,7 @@
 ﻿<style>
 
     /* https://stackoverflow.com/questions/20782368/use-font-awesome-icon-as-css-content*/
+    /* https://fontawesome.com/how-to-use/on-the-web/advanced/css-pseudo-elements */
     /*https://datatables.net/examples/api/row_details.html*/
 
     td.details-control {
@@ -9,14 +10,14 @@
         text-align: center;
     }
 
-    td.details-control:before {
+    td.details-control:before { /* icono de un nodo padre cerrado */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f055";
         color: green;
     }
 
-    tr.shown td.details-control:before {
+    tr.shown td.details-control:before {  /* icono de un nodo padre abierto */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f056";
@@ -28,14 +29,14 @@
         width: 20px;
     }
 
-    td.hijo:before {
+    td.hijo:before {  /* icono de un nodo hijo cerrado */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f055";
         color: green;
     }
 
-    tr.shown td.hijo:before {
+    tr.shown td.hijo:before {  /* icono de un nodo hijo abierto */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f056";
@@ -46,10 +47,10 @@
         width: 20px;
     }
 
-    td.no-hijo:before {
+    td.no-hijo:before {  /* icono de un nodo hijo sin hijos */
         font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        content: "\f056";
+        font-weight: 400;
+        content: "\f111";
         color: blue;
     }
 
@@ -209,26 +210,15 @@
 
             $.each(d, function(indice, val){
                 //alert('entro al bucle');
+                var clase = (d[indice]['hijos']> 0)? 'hijo' : 'no-hijo';
 
-                var clase = '';
-                var icon = '';
-
-                if (d[indice]['hijos']> 0){
-                    //alert('tiene hios');
-                    clase = 'hijo';
-                    //icon = '<i class="fas fa-plus-circle fa-fw dp_green"></i></td>';
-                }else{
-                        clase = 'no-hijo';
-                        //icon = '<i class="far fa-circle fa-fw dp_blue"></i></td>';
-                    }
                 subTabla +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
-                '<td class="'+clase+'">'+icon+
+                '<td class="'+clase+'">'+
                 '<td><span class="marcar" style="cursor: pointer" title="seleccionar">'+ d[indice]['nombre']+'</span></td>'+
                 '</tr>');
             });
 
             subTabla +=('</table>');
-
 
         }
 
@@ -284,12 +274,7 @@
             <?php foreach ($view->puestos as $puesto):   ?>
                 <tr data-id="<?php echo $puesto['id_puesto'];?>" id_puesto="<?php echo $puesto['id_puesto'];?>">
 
-                    <?php if($puesto['hijos']> 0 ){ ?>
-                        <td class="details-control"></td>
-                    <?php }else{ ?>
-                        <td></td>
-                    <?php } ?>
-
+                    <td class="<?php echo ($puesto['hijos']> 0 )? 'details-control' : ''; ?>"></td>
                     <td><?php echo $puesto['codigo'];?></td>
 
                     <?php if($puesto['hijos']> 0 ){ ?>
