@@ -14,14 +14,14 @@
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f055";
-        color: green;
+        color: #5fba7d;
     }
 
     tr.shown td.details-control:before {  /* icono de un nodo padre abierto */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f056";
-        color: red;
+        color: #DD2C00;
     }
 
     td.hijo {
@@ -33,14 +33,14 @@
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f055";
-        color: green;
+        color: #5fba7d;
     }
 
     tr.shown td.hijo:before {  /* icono de un nodo hijo abierto */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f056";
-        color: red;
+        color: #DD2C00;
     }
 
     td.no-hijo {
@@ -51,7 +51,7 @@
         font-family: "Font Awesome 5 Free";
         font-weight: 400;
         content: "\f111";
-        color: blue;
+        color: #01579B;
     }
 
     span.seleccionable {
@@ -73,6 +73,8 @@
     $(document).ready(function(){
 
         var tr; //tr es la fila (nodo raiz del arbol)
+
+        $('#example .seleccionable').attr('title','seleccionar');
 
         var table = $('#example').DataTable({
             /*language: {
