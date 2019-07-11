@@ -164,7 +164,8 @@ class Objetivo
                   and vso.id_responsable_ejecucion = ifnull(:id_responsable_ejecucion, vso.id_responsable_ejecucion)
                   and vso.id_responsable_seguimiento = ifnull(:id_responsable_seguimiento, vso.id_responsable_seguimiento)";*/
         $query = "select vso.*, func_obj_progress(vso.id_objetivo) as progreso,
-                  pe.cerrado
+                  pe.cerrado,
+                  (select count(*) from obj_objetivos objx where objx.id_objetivo_superior = vso.id_objetivo) as hijos
                   from v_sec_objetivos vso
                   join ead_planes_evaluacion pe on pe.id_plan_evaluacion = vso.id_plan_evaluacion
                   where vso.periodo = ifnull(:periodo, vso.periodo)

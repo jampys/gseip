@@ -156,9 +156,9 @@
             var tr = $(this).closest('tr');
 
             params={};
-            params.action = "puestos";
+            params.action = "obj_objetivos";
             params.operation = "getHijos";
-            params.id_puesto = $(this).closest('tr').attr('data-id');
+            params.id_objetivo = $(this).closest('tr').attr('data-id');
 
             $.ajax({
                 url:"index.php",
