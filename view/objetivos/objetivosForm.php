@@ -36,7 +36,7 @@
             params.action = "obj_objetivos";
             params.operation = "getPadre";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-            params.periodo = $('#myModal #periodo').val();
+            params.periodo = $('#myModal #periodo option:selected').attr('periodo');
 
             $('#id_objetivo_superior').empty();
 
@@ -48,6 +48,8 @@
                 data: params,
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
+
+                    //alert(Object.keys(data).length);
 
                     if(Object.keys(data).length > 0){
 
