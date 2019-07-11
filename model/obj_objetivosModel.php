@@ -289,7 +289,7 @@ where id_objetivo = :id_objetivo";
         $stmt=new sQuery();
         $query="select obj.*,
 (select count(*) from obj_objetivos objx where objx.id_objetivo_superior = obj.id_objetivo) as hijos
-from puestos pu
+from obj_objetivos obj
 where obj.id_objetivo_superior = :id_objetivo";
 
         $stmt->dpPrepare($query);

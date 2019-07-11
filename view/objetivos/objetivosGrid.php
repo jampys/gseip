@@ -109,9 +109,9 @@
             var row = table.row( tr );
 
             params={};
-            params.action = "puestos";
+            params.action = "obj_objetivos";
             params.operation = "getHijos";
-            params.id_puesto = $(this).closest('tr').attr('data-id');
+            params.id_objetivo = $(this).closest('tr').attr('data-id');
 
             //alert(params.id_puesto);
             $.ajax({
@@ -209,9 +209,10 @@
                     //alert('entro al bucle');
                     var clase = (d[indice]['hijos']> 0)? 'hijo' : 'no-hijo';
 
-                    subTabla +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
+                    subTabla +=('<tr data-id="'+ d[indice]['id_objetivo']+'">'+
                     '<td class="'+clase+'">'+
-                    '<td><span class="seleccionable">'+ d[indice]['nombre']+'</span></td>'+
+                    '<td><span class="seleccionable">'+ d[indice]['codigo']+'</span></td>'+
+                    '<td>&nbsp;'+ d[indice]['nombre']+'</td>'+
                     '</tr>');
                 });
 
@@ -264,7 +265,7 @@
                         cerrado="<?php echo $rp['cerrado']; ?>"
                         >
                         <td class="<?php echo ($rp['hijos']> 0 )? 'details-control' : ''; ?>"></td>
-                        <td><?php echo $rp['codigo']; ?></td>
+                        <td><span class="<?php echo ($rp['hijos']> 0 )? 'seleccionable' : ''; ?>"><?php echo $rp['codigo'];?></span></td>
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['puesto']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
