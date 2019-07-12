@@ -70,7 +70,10 @@
 
         var tr; //tr es la fila (nodo raiz del arbol)
 
-        $('#example .seleccionable').attr('title','seleccionar');
+        //('#example .seleccionable').attr('title','seleccionar');
+        $('#example').on('mouseover', '.seleccionable', function(){
+            $(this).attr('title','seleccionar');
+        });
 
 
         var table = $('#example').DataTable({
