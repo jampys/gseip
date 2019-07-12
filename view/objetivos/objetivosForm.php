@@ -353,6 +353,7 @@
                                 ?>
                                 <option value="<?php echo $obj['id_objetivo']; ?>"
                                     <?php echo ($obj['id_objetivo'] == $view->objetivo->getIdObjetivoSuperior())? 'selected' :'' ?>
+                                    <?php echo ($obj['id_objetivo'] == $view->objetivo->getIdObjetivo())? 'disabled' :'' ?>
                                     >
                                     <?php echo $obj['codigo'].' '.$obj['nombre']; ?>
                                 </option>
