@@ -347,7 +347,8 @@
 
                     <div class="form-group">
                         <label for="id_objetivo_superior" class="control-label">Objetivo de nivel superior</label>
-                        <select class="form-control selectpicker show-tick" id="id_objetivo_superior" name="id_objetivo_superior" title="Seleccione un objetivo" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="id_objetivo_superior" name="id_objetivo_superior" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un objetivo</option>
                             <?php foreach ($view->objetivos as $obj){
                                 ?>
                                 <option value="<?php echo $obj['id_objetivo']; ?>"
