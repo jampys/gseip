@@ -78,7 +78,7 @@
         $('#example').on('mouseover', '.seleccionable', function(){
             $(this).attr('title','seleccionar');
         });
-        
+
 
         var table = $('#example').DataTable({
             /*language: {
