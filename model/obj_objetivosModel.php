@@ -165,9 +165,11 @@ class Objetivo
                   and vso.id_responsable_seguimiento = ifnull(:id_responsable_seguimiento, vso.id_responsable_seguimiento)";*/
         $query = "select vso.*, func_obj_progress(vso.id_objetivo) as progreso,
                   pe.cerrado,
+                  concat(re.apellido, ' ', re.nombre) as responsable_ejecucion,
                   (select count(*) from obj_objetivos objx where objx.id_objetivo_superior = vso.id_objetivo) as hijos
                   from v_sec_objetivos vso
                   join ead_planes_evaluacion pe on pe.id_plan_evaluacion = vso.id_plan_evaluacion
+                  join empleados re on re.id_empleado = vso.id_responsable_ejecucion
                   where vso.periodo = ifnull(:periodo, vso.periodo)
                   and if (:id_puesto is null, 1, vso.id_puesto = :id_puesto)
                   and if (:id_area is null, 1, vso.id_area = :id_area)

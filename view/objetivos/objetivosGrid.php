@@ -254,7 +254,7 @@
                 <th>Código</th>
                 <th>Objetivo</th>
                 <th>Puesto</th>
-                <th>Área</th>
+                <th>Resp. ejecución</th>
                 <th>Contrato</th>
                 <th></th>
                 <th></th>
@@ -272,7 +272,7 @@
                         <td><span class="<?php echo ($rp['hijos']> 0 )? 'seleccionable' : ''; ?>"><?php echo $rp['codigo'];?></span></td>
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['puesto']; ?></td>
-                        <td><?php echo $rp['area']; ?></td>
+                        <td><?php echo $rp['responsable_ejecucion']; ?></td>
                         <td><?php echo $rp['contrato']; ?></td>
                         <td>
                             <div class="progress" style="margin-bottom: 0px">
