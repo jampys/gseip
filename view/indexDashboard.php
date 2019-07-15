@@ -57,7 +57,7 @@
                     </thead>
                     <tbody>
 
-                    <?php if(isset($view->objetivos)) {
+                    <?php if(isset($view->objetivos) && sizeof($view->objetivos) > 0) {
                         foreach ($view->objetivos as $rp):   ?>
                             <tr data-id="<?php echo $rp['id_objetivo']; ?>"
                                 id_objetivo="<?php echo $rp['id_objetivo'];?>"
@@ -122,6 +122,11 @@
                         <?php endforeach; } ?>
                     </tbody>
                 </table>
+
+
+
+
+
 
 
 
