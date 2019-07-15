@@ -535,7 +535,7 @@
                                         <?php print $view->objetivo->getNombre() ?> </p>
 
                                     <div class="progress" style="margin-bottom: 0px">
-                                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($view->objetivo->getProgreso() <= 100)? $view->objetivo->getProgreso():100; ?>%; min-width: 2em">
+                                        <div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($view->objetivo->getProgreso());?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($view->objetivo->getProgreso() <= 100)? $view->objetivo->getProgreso():100; ?>%; min-width: 2em">
                                             <?php print $view->objetivo->getProgreso(); ?>%
                                         </div>
                                     </div>
