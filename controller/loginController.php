@@ -19,6 +19,7 @@ switch($operation){
             if($id >= 1){
                 $_SESSION["id_user"] = $view->u->getIdUser(); //$id;
                 $_SESSION["user"] = $view->u->getUser(); //$_POST['usuario'];
+                $_SESSION["id_empleado"] = $view->u->getIdEmpleado();
 
                 $obj = new PrivilegedUser($_SESSION["id_user"]);
                 $_SESSION['loggedUser'] = serialize($obj);

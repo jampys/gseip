@@ -5,6 +5,7 @@ class Usuario{
     private $id_user;
     private $user;
     private $password;
+    private $id_empleado;
 
 
     // metodos que devuelven valores
@@ -17,6 +18,9 @@ class Usuario{
     function getPassword()
     { return $this->password;}
 
+    function getIdEmpleado()
+    { return $this->id_empleado;}
+
     // metodos que setean los valores
     function setIdUser($val)
     { $this->id_user=$val;}
@@ -26,6 +30,9 @@ class Usuario{
 
     function setPassword($val)
     {  $this->password=$val;}
+
+    function setIdEmpleado($val)
+    {  $this->id_empleado=$val;}
 
 
     function isAValidUser($usuario,$password){
@@ -50,6 +57,7 @@ class Usuario{
                 //return $datos;
                 $this->setIdUser($r[0]['id_user']);
                 $this->setUser($r[0]['user']);
+                $this->setIdEmpleado($r[0]['id_empleado']);
 
                 return 1;
             }

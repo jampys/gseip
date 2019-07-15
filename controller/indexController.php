@@ -1,4 +1,5 @@
 <?php
+include_once("model/obj_objetivosModel.php");
 
 if(isset($_POST['operation']))
 {$operation=$_POST['operation'];}
@@ -18,9 +19,17 @@ switch ($operation)
         break;
 
     default:
-        //$view->disableLayout=true;
+        $view->disableLayout=false;
         //$view->clientes=Cliente::getClientes();
-        //$view->contentTemplate="view/clientesGrid.php"; // seteo el template que se va a mostrar
+
+
+        $id_responsable_ejecucion = $_SESSION["id_empleado"];
+        $view->objetivos = Objetivo::getObjetivos(date('Y'), null, null, null, null, $id_responsable_ejecucion, null);
+
+
+
+
+        $view->contentTemplate="view/indexDashboard.php"; // seteo el template que se va a mostrar
         break;
 
 }

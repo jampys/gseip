@@ -17,8 +17,8 @@
 <div class="container">
 
 
-    <div id="content" class="row">
-        <?php //include_once ($view->contentTemplate);  ?>
+    <div id="content">
+        <?php include_once ($view->contentTemplate);  ?>
     </div>
 
 </div>
