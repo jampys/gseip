@@ -43,7 +43,7 @@
 
     $(document).ready(function(){
 
-        $('[data-toggle="popover"]').popover({html:true, placement: "right", container: "#modalEao"});
+        $('[data-toggle="popover"]').popover({html:true, placement: "right", container: "#modalEao", sanitize: false});
 
         /*function verticalTable(){
 

@@ -45,6 +45,17 @@ class Soporte{
     }
 
 
+    public static function getProgressBarColor($percent){
+        //devuelve la clase bootstrap que aplica color a la progress bar
+        $rta = "";
+        if($percent <= 30 ) $rta = "progress-bar-danger";
+        elseif ($percent <= 80 ) $rta = "progress-bar-warning";
+        else $rta = "progress-bar-success";
+
+        return $rta;
+    }
+
+
 
 
 

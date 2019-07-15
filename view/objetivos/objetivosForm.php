@@ -28,6 +28,59 @@
 
 
 
+        //Select dependiente: al seleccionar contrato carga periodos vigentes
+        $('#objetivo-form').on('change', '#periodo', function(e){
+            //alert('seleccionó un periodo');
+            //throw new Error();
+            params={};
+            params.action = "obj_objetivos";
+            params.operation = "getPadre";
+            //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
+            params.periodo = $('#myModal #periodo option:selected').attr('periodo');
+
+            $('#id_objetivo_superior').empty();
+
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
+                data: params,
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    //alert(Object.keys(data).length);
+
+                    if(Object.keys(data).length > 0){
+
+                        $.each(data, function(indice, val){
+                            var label = data[indice]["codigo"]+' '+data[indice]["nombre"];
+                            $("#id_objetivo_superior").append('<option value="'+data[indice]["id_objetivo"]+'"'
+                            //+' fecha_desde="'+data[indice]["fecha_desde"]+'"'
+                            //+' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
+                            +'>'+label+'</option>');
+
+                        });
+
+                        //si es una edicion o view, selecciona el concepto.
+                        //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
+                        $('#id_objetivo_superior').selectpicker('refresh');
+
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
+
+        });
+
+
+
         $('#myModal').on('click', '#submit',function(){ //ok
 
             if ($("#objetivo-form").valid()){
@@ -48,6 +101,7 @@
                 params.frecuencia=$('#frecuencia').val();
                 params.id_responsable_ejecucion=$('#id_responsable_ejecucion').val();
                 params.id_responsable_seguimiento=$('#id_responsable_seguimiento').val();
+                params.id_objetivo_superior=$('#id_objetivo_superior').val();
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
@@ -285,6 +339,23 @@
                                     <?php echo ($em['id_empleado'] == $view->objetivo->getIdResponsableSeguimiento())? 'selected' :'' ?>
                                     >
                                     <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="id_objetivo_superior" class="control-label">Objetivo de nivel superior</label>
+                        <select class="form-control selectpicker show-tick" id="id_objetivo_superior" name="id_objetivo_superior" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un objetivo</option>
+                            <?php foreach ($view->objetivos as $obj){
+                                ?>
+                                <option value="<?php echo $obj['id_objetivo']; ?>"
+                                    <?php echo ($obj['id_objetivo'] == $view->objetivo->getIdObjetivoSuperior())? 'selected' :'' ?>
+                                    <?php echo ($obj['id_objetivo'] == $view->objetivo->getIdObjetivo())? 'disabled' :'' ?>
+                                    >
+                                    <?php echo $obj['codigo'].' '.$obj['nombre']; ?>
                                 </option>
                             <?php  } ?>
                         </select>

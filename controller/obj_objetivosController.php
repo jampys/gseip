@@ -45,6 +45,7 @@ switch ($operation)
         $objetivo->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
         $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
         $objetivo->setIdPlanEvaluacion($_POST['id_plan_evaluacion']);
+        $objetivo->setIdObjetivoSuperior(($_POST['id_objetivo_superior'])? $_POST['id_objetivo_superior'] : null);
 
         $rta = $objetivo->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
@@ -90,6 +91,7 @@ switch ($operation)
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
         $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
+        $view->objetivos = Objetivo::getObjetivos($view->objetivo->getPeriodo(), null, null,null, null, null, null); ;
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
@@ -120,6 +122,22 @@ switch ($operation)
     case 'graficarGantt':
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
         $rta = $view->objetivo->graficarGantt();
+        print_r(json_encode($rta));
+        exit;
+        break;
+
+
+    case 'getPadre': //select dependiente
+        //$id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
+        //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
+        $rta = Objetivo::getObjetivos($_POST['periodo'], null, null, null, null, null, null);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
+    case 'getHijos': //trae los puestos hijos de un objetivo.
+        //$view->puesto = new Puesto();
+        $rta=Objetivo::getHijos($_POST['id_objetivo']);
         print_r(json_encode($rta));
         exit;
         break;

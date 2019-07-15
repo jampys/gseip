@@ -41,7 +41,7 @@
 
             $('#content').on('click', '.edit', function(){ //ok
                 //alert('presionó en editar');
-                var id = $(this).closest('tr').attr('data-id');
+                var id = $(this).closest('tr').attr('id_objetivo');
                 params={};
                 params.id_objetivo = id;
                 params.action = "obj_objetivos";
@@ -57,7 +57,7 @@
 
 
             $('#content').on('click', '.view', function(){ //ok
-                var id = $(this).closest('tr').attr('data-id');
+                var id = $(this).closest('tr').attr('id_objetivo');
                 params={};
                 params.id_objetivo = id;
                 params.action = "obj_objetivos";
@@ -75,7 +75,7 @@
 
             $('#content').on('click', '.clone', function(){ //ok
                 //alert('presionó en editar');
-                var id = $(this).closest('tr').attr('data-id');
+                var id = $(this).closest('tr').attr('id_objetivo');
                 params={};
                 params.id_objetivo = id;
                 params.action = "obj_objetivos";
@@ -94,7 +94,7 @@
             //$(document).on('click', '.detalle', function(){
             $('#content').on('click', '.detalle', function(){
                 //alert('presiono sobre detalle');
-                var id = $(this).closest('tr').attr('data-id');
+                var id = $(this).closest('tr').attr('id_objetivo');
                 params={};
                 params.id_objetivo = id;
                 params.action = "obj_objetivos";
@@ -127,7 +127,7 @@
             $(document).on('click', '#example .delete', function(){ //ok
                 //alert('Funcionalidad en desarrollo');
                 //throw new Error();
-                var id = $(this).closest('tr').attr('data-id');
+                var id = $(this).closest('tr').attr('id_objetivo');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
                         {
