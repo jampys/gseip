@@ -214,8 +214,8 @@
 
                     subTabla +=('<tr data-id="'+ d[indice]['id_objetivo']+'">'+
                     '<td class="'+clase+'">'+
-                    '<td><span class="seleccionable">'+ d[indice]['codigo']+'</span></td>'+
-                    '<td>&nbsp;'+ d[indice]['nombre']+'</td>'+
+                    '<td><span class="seleccionable">'+ d[indice]['codigo']+'</span>&nbsp;'+ d[indice]['nombre']+'</td>'+
+                    //'<td>&nbsp;'+ d[indice]['nombre']+'</td>'+
                     '</tr>');
                 });
 
