@@ -51,7 +51,7 @@
 
 
 
-        $('#example').on('click', 'td.details-control', function (e) {
+        $('#example, #example1').on('click', 'td.details-control', function (e) {
 
             var t = $(this).closest('table');
             var tr = $(this).closest('tr');
@@ -203,7 +203,57 @@
     </div>
 
 
-    <div class="col-md-6"></div>
+    <div class="col-md-6">
+
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Responsable del seguimiento de objetivos &nbsp;<?php echo date('Y'); ?></div>
+            <div class="panel-body">
+
+
+                <!-- Table -->
+                <?php if(isset($view->objetivos1) && sizeof($view->objetivos1) > 0) { ?>
+
+                    <table id="example1" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
+
+                        <tbody>
+                        <?php foreach ($view->objetivos as $rp):   ?>
+                            <tr data-id="<?php echo $rp['id_objetivo']; ?>"
+                                id_objetivo="<?php echo $rp['id_objetivo'];?>"
+                                >
+                                <td class="details-control col-md-1"></td>
+                                <td class="col-md-3"><span  class="resaltado"><?php echo $rp['codigo'];?></span></td>
+                                <td class="text"><span><?php echo $rp['nombre']; ?></span></td>
+                                <td class="col-md-2">
+                                    <div class="progress" style="margin-bottom: 0px">
+                                        <div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($rp['progreso']);?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
+                                            <?php echo $rp['progreso']; ?>%
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        <?php endforeach;  ?>
+                        </tbody>
+                    </table>
+
+                <?php }else{ ?>
+
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> No se han definido objetivos de los que sea responsable para el período.
+                    </div>
+
+                <?php } ?>
+
+
+
+            </div>
+
+
+        </div>
+
+    </div>
 
 
 

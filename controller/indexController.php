@@ -32,6 +32,7 @@ switch ($operation)
 
         $id_responsable_ejecucion = $_SESSION["id_empleado"];
         $view->objetivos = Objetivo::getObjetivos(date('Y'), null, null, null, null, $_SESSION['id_empleado'], null);
+        $view->objetivos1 = Objetivo::getObjetivos(date('Y'), null, null, null, null, null, $_SESSION['id_empleado']);
 
 
 
