@@ -199,7 +199,7 @@ class Objetivo
                     concat(rs.apellido, ' ', rs.nombre) as responsable_seguimiento,
                     pu.nombre as puesto,
                     ar.nombre as area,
-                    obj.nombre as contrato
+                    con.nombre as contrato
                     from obj_objetivos obj
                     join empleados re on re.id_empleado = obj.id_responsable_ejecucion
                     join empleados rs on rs.id_empleado = obj.id_responsable_seguimiento
