@@ -37,9 +37,9 @@
         font-weight: bold;
     }
 
-    table.hijo td{
+    /*table.hijo td{
         padding-right: 15px;
-    }
+    }*/
 
     table.hijo tr td:first-child {
         min-width: 120px;
