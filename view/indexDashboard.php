@@ -147,7 +147,7 @@
 
 <div class="row">
 
-    <div class="col-md-6">
+    <div class="col-md-6 panel-group">
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
