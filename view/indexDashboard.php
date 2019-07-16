@@ -41,6 +41,10 @@
         padding-right: 15px;
     }
 
+    table.hijo tr td:first-child {
+        min-width: 120px;
+    }
+
 </style>
 
 
