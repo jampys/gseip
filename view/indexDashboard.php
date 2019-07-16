@@ -9,15 +9,32 @@
     td.details-control:before { /* icono de un nodo padre cerrado */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
-        content: "\f055";
-        color: #5fba7d;
+        content: "\f054";
+        color: #01579B;  /* #5fba7d */
     }
 
     tr.shown td.details-control:before {  /* icono de un nodo padre abierto */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
-        content: "\f056";
-        color: #DD2C00;
+        content: "\f078";
+        color: #01579B;  /* #DD2C00 */
+    }
+
+    /*https://stackoverflow.com/questions/23431970/bootstrap-3-truncate-long-text-inside-rows-of-a-table-in-a-responsive-way
+    */
+    .table td.text {
+        max-width: 177px;
+    }
+    .table td.text span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        max-width: 100%;
+    }
+
+    span.resaltado{
+        font-weight: bold;
     }
 
 </style>
@@ -83,20 +100,22 @@
 
             if(Object.keys(d).length > 0 ){
 
-                var subTabla = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">';
+                var puesto = (d[0]['id_puesto'])? d[0]['puesto'] : '';
+                var area = (d[0]['id_area'])? d[0]['area'] : '';
+                var contrato = (d[0]['id_contrato'])? d[0]['contrato'] : '';
 
-                $.each(d, function(indice, val){
-                    //alert('entro al bucle');
-                    //var clase = (d[indice]['hijos']> 0)? 'hijo' : 'no-hijo';
-
-                    subTabla +=('<tr data-id="'+ d[indice]['id_objetivo']+'">'+
-                    '<td>'+
-                    '<td><span>'+ d[indice]['codigo']+'</span>&nbsp;'+ d[indice]['nombre']+'</td>'+
-                        //'<td>&nbsp;'+ d[indice]['nombre']+'</td>'+
-                    '</tr>');
-                });
-
-                subTabla +=('</table>');
+                var subTabla = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">'+
+                                    '<tr><td colspan="2">'+d[0]['nombre']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Puesto<span></td><td>'+puesto+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Área<span></td><td>'+area+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Contrato<span></td><td>'+contrato+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Indicador<span></td><td>'+d[0]['indicador']+'</td></tr>'+
+                                    '<tr><td><span class="resaltado">Meta<span></td><td>'+d[0]['meta']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Valor<span></td><td>'+d[0]['meta_valor']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Frecuencia<span></td><td>'+d[0]['frecuencia']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Resp. ejecución<span></td><td>'+d[0]['responsable_ejecucion']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Resp. seguimiento<span></td><td>'+d[0]['responsable_seguimiento']+'</td></tr>'+
+                               '</table>';
 
             }
 
@@ -131,23 +150,19 @@
             <div class="panel-heading">Mis objetivos</div>
             <div class="panel-body">
 
-                <?php //echo $_SESSION["id_empleado"]   ?>
-
-
-
 
                 <!-- Table -->
                 <?php if(isset($view->objetivos) && sizeof($view->objetivos) > 0) { ?>
 
                 <table id="example" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
-                    <thead>
+                    <!--<thead>
                     <tr>
                         <th></th>
                         <th>Código</th>
                         <th>Objetivo</th>
                         <th></th>
                     </tr>
-                    </thead>
+                    </thead>-->
                     <tbody>
 
 
@@ -156,9 +171,9 @@
                                 id_objetivo="<?php echo $rp['id_objetivo'];?>"
                                 >
                                 <td class="details-control col-md-1"></td>
-                                <td class="col-md-3"><?php echo $rp['codigo'];?></td>
-                                <td><?php echo $rp['nombre']; ?></td>
-                                <td class="col-md-3">
+                                <td class="col-md-3"><span  class="resaltado"><?php echo $rp['codigo'];?></span></td>
+                                <td class="text"><span><?php echo $rp['nombre']; ?></span></td>
+                                <td class="col-md-2">
                                     <div class="progress" style="margin-bottom: 0px">
                                         <div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($rp['progreso']);?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
                                             <?php echo $rp['progreso']; ?>%
