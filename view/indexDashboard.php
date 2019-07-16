@@ -60,7 +60,7 @@
                         // Open this row
                         //alert('rojo');
                         //tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
-                        tr.after('<tr><td colspan="7">'+format(data)+'</td></tr>').show();
+                        tr.after('<tr><td colspan="4">'+format(data)+'</td></tr>').show();
                         tr.addClass('shown');
                     }
 
