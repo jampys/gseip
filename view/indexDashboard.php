@@ -37,6 +37,10 @@
         font-weight: bold;
     }
 
+    table.hijo td{
+        padding-right: 15px;
+    }
+
 </style>
 
 
@@ -104,7 +108,7 @@
                 var area = (d[0]['id_area'])? d[0]['area'] : '';
                 var contrato = (d[0]['id_contrato'])? d[0]['contrato'] : '';
 
-                var subTabla = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">'+
+                var subTabla = '<table class="hijo" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">'+
                                     '<tr><td colspan="2">'+d[0]['nombre']+'</td></tr>'+
                     '<tr><td><span class="resaltado">Puesto<span></td><td>'+puesto+'</td></tr>'+
                     '<tr><td><span class="resaltado">Área<span></td><td>'+area+'</td></tr>'+
@@ -147,7 +151,7 @@
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Mis objetivos</div>
+            <div class="panel-heading">Mis objetivos&nbsp;<?php echo date('Y'); ?></div>
             <div class="panel-body">
 
 
