@@ -47,7 +47,7 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
-                    alert(Object.keys(data).length);
+                    //alert(Object.keys(data).length);
 
                     if ( tr.hasClass('shown') ) {
                         //alert('verde');
@@ -124,7 +124,7 @@
 
 <div class="row">
 
-    <div class="col-md-9">
+    <div class="col-md-6">
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
@@ -154,12 +154,11 @@
                     <?php foreach ($view->objetivos as $rp):   ?>
                             <tr data-id="<?php echo $rp['id_objetivo']; ?>"
                                 id_objetivo="<?php echo $rp['id_objetivo'];?>"
-                                cerrado="<?php echo $rp['cerrado']; ?>"
                                 >
-                                <td class="details-control"></td>
-                                <td><span class="<?php echo ($rp['hijos']> 0 )? 'seleccionable' : ''; ?>"><?php echo $rp['codigo'];?></span></td>
+                                <td class="details-control col-md-1"></td>
+                                <td class="col-md-3"><?php echo $rp['codigo'];?></td>
                                 <td><?php echo $rp['nombre']; ?></td>
-                                <td>
+                                <td class="col-md-3">
                                     <div class="progress" style="margin-bottom: 0px">
                                         <div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($rp['progreso']);?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
                                             <?php echo $rp['progreso']; ?>%
@@ -203,7 +202,7 @@
     </div>
 
 
-    <div class="col-md-3"></div>
+    <div class="col-md-6"></div>
 
 
 

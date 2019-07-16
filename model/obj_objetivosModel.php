@@ -191,6 +191,18 @@ class Objetivo
     }
 
 
+    function getObjetivo(){
+
+            $stmt=new sQuery();
+            $query="select obj.*, func_obj_progress(obj.id_objetivo) as progreso
+                    from obj_objetivos obj where id_objetivo = :id_objetivo";
+            $stmt->dpPrepare($query);
+            $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
+            $stmt->dpExecute();
+            return $stmt->dpFetchAll();
+    }
+
+
     function save(){ //ok
         if($this->id_objetivo)
         {$rta = $this->updateObjetivo();}

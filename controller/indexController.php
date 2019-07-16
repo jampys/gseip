@@ -19,7 +19,8 @@ switch ($operation)
         break;
 
     case 'getObjetivo': //trae los datos del objetivo para mostrar el detalle en el dashboard.
-        $rta = new Objetivo($_POST['id_objetivo']);
+        $view->objetivo = new Objetivo($_POST['id_objetivo']);
+        $rta = $view->objetivo->getObjetivo();
         print_r(json_encode($rta));
         exit;
         break;
