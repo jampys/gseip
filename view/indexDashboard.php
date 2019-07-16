@@ -35,20 +35,14 @@
 
 
                 <!-- Table -->
-                <table class="table">
-
-                </table>
-
-
                 <?php if(isset($view->objetivos) && sizeof($view->objetivos) > 0) { ?>
 
-                <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
+                <table id="example" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th></th>
                         <th>Código</th>
                         <th>Objetivo</th>
-                        <th>Resp. ejecución</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -63,7 +57,6 @@
                                 <td class="<?php echo ($rp['hijos']> 0 )? 'details-control' : ''; ?>"></td>
                                 <td><span class="<?php echo ($rp['hijos']> 0 )? 'seleccionable' : ''; ?>"><?php echo $rp['codigo'];?></span></td>
                                 <td><?php echo $rp['nombre']; ?></td>
-                                <td><?php echo $rp['responsable_ejecucion']; ?></td>
                                 <td>
                                     <div class="progress" style="margin-bottom: 0px">
                                         <div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($rp['progreso']);?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
