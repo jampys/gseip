@@ -110,15 +110,15 @@
 
                 var subTabla = '<table class="hijo" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">'+
                                     '<tr><td colspan="2">'+d[0]['nombre']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Puesto<span></td><td>'+puesto+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Área<span></td><td>'+area+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Contrato<span></td><td>'+contrato+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Indicador<span></td><td>'+d[0]['indicador']+'</td></tr>'+
+                                    '<tr><td><span class="resaltado">Puesto<span></td><td>'+puesto+'</td></tr>'+
+                                    '<tr><td><span class="resaltado">Área<span></td><td>'+area+'</td></tr>'+
+                                    '<tr><td><span class="resaltado">Contrato<span></td><td>'+contrato+'</td></tr>'+
+                                    '<tr><td><span class="resaltado">Indicador<span></td><td>'+d[0]['indicador']+'</td></tr>'+
                                     '<tr><td><span class="resaltado">Meta<span></td><td>'+d[0]['meta']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Valor<span></td><td>'+d[0]['meta_valor']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Frecuencia<span></td><td>'+d[0]['frecuencia']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Resp. ejecución<span></td><td>'+d[0]['responsable_ejecucion']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Resp. seguimiento<span></td><td>'+d[0]['responsable_seguimiento']+'</td></tr>'+
+                                    '<tr><td><span class="resaltado">Valor<span></td><td>'+d[0]['meta_valor']+'</td></tr>'+
+                                    '<tr><td><span class="resaltado">Frecuencia<span></td><td>'+d[0]['frecuencia']+'</td></tr>'+
+                                    '<tr><td><span class="resaltado">Resp. ejecución<span></td><td>'+d[0]['responsable_ejecucion']+'</td></tr>'+
+                                    '<tr><td><span class="resaltado">Resp. seguimiento<span></td><td>'+d[0]['responsable_seguimiento']+'</td></tr>'+
                                '</table>';
 
             }
