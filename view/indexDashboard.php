@@ -188,10 +188,7 @@
                 <?php }else{ ?>
 
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> No existen empleados en el puesto seleccionado. Para afectar un empleado a un puesto diríjase a
-                        <?php if ( PrivilegedUser::dhasPrivilege('CON_VER', array(1)) ) { ?>
-                            <a href="index.php?action=contratos">Contratos</a></p>
-                        <?php } ?>
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> No tiene objetivos fijados para el período vigente.
                     </div>
 
                 <?php } ?>
@@ -245,7 +242,7 @@
                 <?php }else{ ?>
 
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> No se han definido objetivos de los que sea responsable para el período.
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
                     </div>
 
                 <?php } ?>
