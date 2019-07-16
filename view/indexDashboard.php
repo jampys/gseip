@@ -37,7 +37,7 @@
 
             params={};
             params.action = "obj_objetivos";
-            params.operation = "getHijos";
+            params.operation = "getObjetivo";
             params.id_objetivo = $(this).closest('tr').attr('data-id');
 
             $.ajax({
@@ -87,11 +87,11 @@
 
                 $.each(d, function(indice, val){
                     //alert('entro al bucle');
-                    var clase = (d[indice]['hijos']> 0)? 'hijo' : 'no-hijo';
+                    //var clase = (d[indice]['hijos']> 0)? 'hijo' : 'no-hijo';
 
                     subTabla +=('<tr data-id="'+ d[indice]['id_objetivo']+'">'+
-                    '<td class="'+clase+'">'+
-                    '<td><span class="seleccionable">'+ d[indice]['codigo']+'</span>&nbsp;'+ d[indice]['nombre']+'</td>'+
+                    '<td>'+
+                    '<td><span>'+ d[indice]['codigo']+'</span>&nbsp;'+ d[indice]['nombre']+'</td>'+
                         //'<td>&nbsp;'+ d[indice]['nombre']+'</td>'+
                     '</tr>');
                 });
