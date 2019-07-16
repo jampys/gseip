@@ -159,17 +159,8 @@
                 <?php if(isset($view->objetivos) && sizeof($view->objetivos) > 0) { ?>
 
                 <table id="example" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
-                    <!--<thead>
-                    <tr>
-                        <th></th>
-                        <th>Código</th>
-                        <th>Objetivo</th>
-                        <th></th>
-                    </tr>
-                    </thead>-->
+
                     <tbody>
-
-
                     <?php foreach ($view->objetivos as $rp):   ?>
                             <tr data-id="<?php echo $rp['id_objetivo']; ?>"
                                 id_objetivo="<?php echo $rp['id_objetivo'];?>"
@@ -189,8 +180,7 @@
                         <?php endforeach;  ?>
                     </tbody>
                 </table>
-
-
+                    
                 <?php }else{ ?>
 
                     <div class="alert alert-warning">
@@ -201,14 +191,6 @@
                     </div>
 
                 <?php } ?>
-
-
-
-
-
-
-
-
 
 
 
