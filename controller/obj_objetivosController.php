@@ -142,13 +142,6 @@ switch ($operation)
         exit;
         break;
 
-    case 'getObjetivo': //trae los datos del objetivo para mostrar el detalle en el dashboard.
-        $rta = new Objetivo($_POST['id_objetivo']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-
 
     default : //ok //muestra la grilla de objetivos
         $view->periodos = Evaluacion::getPeriodos();

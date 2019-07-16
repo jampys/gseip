@@ -18,6 +18,12 @@ switch ($operation)
         $view->contentTemplate="view/indexFormAbout.php";
         break;
 
+    case 'getObjetivo': //trae los datos del objetivo para mostrar el detalle en el dashboard.
+        $rta = new Objetivo($_POST['id_objetivo']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
     default:
         $view->disableLayout=false;
         //$view->clientes=Cliente::getClientes();

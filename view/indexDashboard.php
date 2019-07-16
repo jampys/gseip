@@ -36,7 +36,7 @@
             var tr = $(this).closest('tr');
 
             params={};
-            params.action = "obj_objetivos";
+            params.action = "index";
             params.operation = "getObjetivo";
             params.id_objetivo = $(this).closest('tr').attr('data-id');
 
@@ -47,7 +47,7 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
-                    //alert(Object.keys(data).length);
+                    alert(Object.keys(data).length);
 
                     if ( tr.hasClass('shown') ) {
                         //alert('verde');
