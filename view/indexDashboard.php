@@ -155,7 +155,7 @@
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Mis objetivos&nbsp;<?php echo date('Y'); ?></div>
+            <div class="panel-heading">Mis objetivos&nbsp;<?php echo date('Y'); ?>&nbsp;<span class="badge" style="background-color: #777"><?php echo sizeof($view->objetivos); ?></span></div>
             <div class="panel-body">
 
 
@@ -209,7 +209,7 @@
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Responsable del seguimiento de objetivos &nbsp;<?php echo date('Y'); ?></div>
+            <div class="panel-heading">Responsable del seguimiento de objetivos &nbsp;<?php echo date('Y'); ?>&nbsp;<span class="badge" style="background-color: #777"><?php echo sizeof($view->objetivos1); ?></span></div>
             <div class="panel-body">
 
 
