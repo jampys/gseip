@@ -1,4 +1,5 @@
 <?php
+include_once("model/obj_objetivosModel.php");
 
 if(isset($_POST['operation']))
 {$operation=$_POST['operation'];}
@@ -17,10 +18,26 @@ switch ($operation)
         $view->contentTemplate="view/indexFormAbout.php";
         break;
 
+    case 'getObjetivo': //trae los datos del objetivo para mostrar el detalle en el dashboard.
+        $view->objetivo = new Objetivo($_POST['id_objetivo']);
+        $rta = $view->objetivo->getObjetivo();
+        print_r(json_encode($rta));
+        exit;
+        break;
+
     default:
-        //$view->disableLayout=true;
+        $view->disableLayout=false;
         //$view->clientes=Cliente::getClientes();
-        //$view->contentTemplate="view/clientesGrid.php"; // seteo el template que se va a mostrar
+
+
+        $id_responsable_ejecucion = $_SESSION["id_empleado"];
+        $view->objetivos = Objetivo::getObjetivos(date('Y'), null, null, null, null, $_SESSION['id_empleado'], null);
+        $view->objetivos1 = Objetivo::getObjetivos(date('Y'), null, null, null, null, null, $_SESSION['id_empleado']);
+
+
+
+
+        $view->contentTemplate="view/indexDashboard.php"; // seteo el template que se va a mostrar
         break;
 
 }

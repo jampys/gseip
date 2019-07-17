@@ -191,6 +191,29 @@ class Objetivo
     }
 
 
+    function getObjetivo(){
+
+            $stmt=new sQuery();
+            $query="select obj.*, func_obj_progress(obj.id_objetivo) as progreso,
+                    concat(re.apellido, ' ', re.nombre) as responsable_ejecucion,
+                    concat(rs.apellido, ' ', rs.nombre) as responsable_seguimiento,
+                    pu.nombre as puesto,
+                    ar.nombre as area,
+                    con.nombre as contrato
+                    from obj_objetivos obj
+                    join empleados re on re.id_empleado = obj.id_responsable_ejecucion
+                    join empleados rs on rs.id_empleado = obj.id_responsable_seguimiento
+                    left join puestos pu on obj.id_puesto = pu.id_puesto
+                    left join areas ar on ar.id_area = obj.id_area
+                    left join contratos con on con.id_contrato = obj.id_contrato
+                    where id_objetivo = :id_objetivo";
+            $stmt->dpPrepare($query);
+            $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
+            $stmt->dpExecute();
+            return $stmt->dpFetchAll();
+    }
+
+
     function save(){ //ok
         if($this->id_objetivo)
         {$rta = $this->updateObjetivo();}

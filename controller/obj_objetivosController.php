@@ -143,7 +143,6 @@ switch ($operation)
         break;
 
 
-
     default : //ok //muestra la grilla de objetivos
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();

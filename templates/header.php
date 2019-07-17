@@ -32,6 +32,19 @@
     #brand-image{
         height: 120%;
     }
+
+    .navbar-nav > li.profile > a img.profile-image {
+        height: 30px;
+        width: 30px;
+    }
+
+    .navbar-nav >li.profile > a {
+      /* por defecto padding derecho e izquierdo de 15px y abajo y arriba de 9px */
+      padding: 2px 15px 2px 15px;
+
+    }
+
+
 </style>
 
 <header>
@@ -175,17 +188,17 @@
 
                     </li>
 
-                    <li class="dropdown">
+                    <li class="dropdown profile">
                         <a href="#" title="Tu perfil y configuración" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <!--<span class="glyphicon glyphicon-user"></span>
-                            Usuario
-                            <span class="caret"></span>-->
-                            <i class="fas fa-user fa-lg"></i>
+
+                            <img src="<?php echo $_SESSION['profile_picture'] ?>" class="profile-image img-circle">&nbsp;<?php echo $_SESSION['user'] ?>
+                            <b class="caret"></b>
+
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">USUARIO</li>
-                            <li><a href="#"><span class="text-muted"><?php echo $_SESSION['user'] ?></span> </a></li>
+                            <!--<li class="dropdown-header">USUARIO</li>-->
+                            <li><a href="#"><i class="fas fa-user"></i>&nbsp;Mi perfil</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
                         </ul>
