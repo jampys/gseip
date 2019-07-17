@@ -524,7 +524,7 @@ class Empleado
     }
 
 
-    public static function getProximosCumpleaños() {
+    public static function getProximosCumpleaños($dias) {
         $stmt=new sQuery();
         $query = "SELECT em.id_empleado, em.apellido, em.nombre, DATE_FORMAT(em.fecha_nacimiento, '%d/%m') as cumpleaños, em.empresa,
 co.nombre as contrato
@@ -536,13 +536,14 @@ and DATE_ADD(em.fecha_nacimiento,
                 INTERVAL YEAR(CURDATE())-YEAR(em.fecha_nacimiento)
                          + IF(DAYOFYEAR(CURDATE()) > DAYOFYEAR(em.fecha_nacimiento),1,0)
                 YEAR)
-            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 10 DAY)
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL :dias DAY)
 group by em.id_empleado
 order by DATE_ADD(em.fecha_nacimiento,
                 INTERVAL YEAR(CURDATE())-YEAR(em.fecha_nacimiento)
                          + IF(DAYOFYEAR(CURDATE()) > DAYOFYEAR(em.fecha_nacimiento),1,0)
                 YEAR) asc";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':dias', $dias);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
