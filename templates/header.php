@@ -189,13 +189,14 @@
                     <li class="dropdown profile">
                         <a href="#" title="Tu perfil y configuración" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
-                            <img src="uploads/profile_user.jpg" class="profile-image img-circle"><b class="caret"></b>
+                            <img src="uploads/profile_user.jpg" class="profile-image img-circle">&nbsp;<?php echo $_SESSION['user'] ?>
+                            <b class="caret"></b>
 
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">USUARIO</li>
-                            <li><a href="#"><span class="text-muted"><?php echo $_SESSION['user'] ?></span> </a></li>
+                            <!--<li class="dropdown-header">USUARIO</li>-->
+                            <li><a href="#"><span class="text-muted">Mi perfil</span> </a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
                         </ul>
