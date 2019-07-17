@@ -141,132 +141,174 @@
 
 
 
-<div class="row" style="height: 50px">
+<div class="row" style="height: 50px"> <!-- abre fila en blanco -->
+
+</div> <!-- cierra fila en blanco -->
 
 
 
 
-</div>
+<div class="row"> <!-- abre fila principal -->
 
 
-<div class="row">
-
-    <div class="col-md-6 panel-group">
-
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Mis objetivos&nbsp;<?php echo date('Y'); ?>&nbsp;<span class="badge" style="background-color: #777"><?php echo sizeof($view->objetivos); ?></span></div>
-            <div class="panel-body">
+    <div class="col-md-6"> <!-- abre columna izquierda -->
 
 
-                <!-- Table -->
-                <?php if(isset($view->objetivos) && sizeof($view->objetivos) > 0) { ?>
+        <div class="row">  <!-- abre fila 1 columna izquierda -->
 
-                <table id="example" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
 
-                    <tbody>
-                    <?php foreach ($view->objetivos as $rp):   ?>
-                            <tr data-id="<?php echo $rp['id_objetivo']; ?>"
-                                id_objetivo="<?php echo $rp['id_objetivo'];?>"
-                                >
-                                <td class="details-control col-md-1"></td>
-                                <td class="col-md-3"><span  class="resaltado"><?php echo $rp['codigo'];?></span></td>
-                                <td class="text"><span><?php echo $rp['nombre']; ?></span></td>
-                                <td class="col-md-2">
-                                    <div class="progress" style="margin-bottom: 0px">
-                                        <div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($rp['progreso']);?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
-                                            <?php echo $rp['progreso']; ?>%
-                                        </div>
-                                    </div>
-                                </td>
+            <div class="col-md-12">
 
-                            </tr>
-                        <?php endforeach;  ?>
-                    </tbody>
-                </table>
 
-                <?php }else{ ?>
+                <div class="panel-group">
 
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> No tiene objetivos fijados para el período vigente.
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Mis objetivos&nbsp;<?php echo date('Y'); ?>&nbsp;<span class="badge" style="background-color: #777"><?php echo sizeof($view->objetivos); ?></span></div>
+                        <div class="panel-body">
+
+
+                            <!-- Table -->
+                            <?php if(isset($view->objetivos) && sizeof($view->objetivos) > 0) { ?>
+
+                                <table id="example" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
+
+                                    <tbody>
+                                    <?php foreach ($view->objetivos as $rp):   ?>
+                                        <tr data-id="<?php echo $rp['id_objetivo']; ?>"
+                                            id_objetivo="<?php echo $rp['id_objetivo'];?>"
+                                            >
+                                            <td class="details-control col-md-1"></td>
+                                            <td class="col-md-3"><span  class="resaltado"><?php echo $rp['codigo'];?></span></td>
+                                            <td class="text"><span><?php echo $rp['nombre']; ?></span></td>
+                                            <td class="col-md-2">
+                                                <div class="progress" style="margin-bottom: 0px">
+                                                    <div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($rp['progreso']);?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
+                                                        <?php echo $rp['progreso']; ?>%
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    <?php endforeach;  ?>
+                                    </tbody>
+                                </table>
+
+                            <?php }else{ ?>
+
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No tiene objetivos fijados para el período vigente.
+                                </div>
+
+                            <?php } ?>
+
+
+
+                        </div>
+
+
                     </div>
 
-                <?php } ?>
+
+                </div>
+
 
 
 
             </div>
 
 
-        </div>
+        </div> <!-- cierra fila 1 columna izquierda -->
 
 
-    </div>
 
 
-    <div class="col-md-6">
+    </div> <!-- cierra columna izquierda -->
 
 
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Responsable del seguimiento de objetivos &nbsp;<?php echo date('Y'); ?>&nbsp;<span class="badge" style="background-color: #777"><?php echo sizeof($view->objetivos1); ?></span></div>
-            <div class="panel-body">
 
 
-                <!-- Table -->
-                <?php if(isset($view->objetivos1) && sizeof($view->objetivos1) > 0) { ?>
+    <div class="col-md-6"> <!-- abre columna derecha -->
 
-                    <table id="example1" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
 
-                        <tbody>
-                        <?php foreach ($view->objetivos1 as $rp):   ?>
-                            <tr data-id="<?php echo $rp['id_objetivo']; ?>"
-                                id_objetivo="<?php echo $rp['id_objetivo'];?>"
-                                >
-                                <td class="details-control col-md-1"></td>
-                                <td class="col-md-3"><span  class="resaltado"><?php echo $rp['codigo'];?></span></td>
-                                <td class="text"><span><?php echo $rp['nombre']; ?></span></td>
-                                <td class="col-md-2">
-                                    <div class="progress" style="margin-bottom: 0px">
-                                        <div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($rp['progreso']);?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
-                                            <?php echo $rp['progreso']; ?>%
-                                        </div>
-                                    </div>
-                                </td>
+        <div class="row"> <!-- abre fila 1 columna derecha -->
 
-                            </tr>
-                        <?php endforeach;  ?>
-                        </tbody>
-                    </table>
 
-                <?php }else{ ?>
 
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
+            <div class="col-md-12">
+
+
+
+
+                <div class="panel-group">
+
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Responsable del seguimiento de objetivos &nbsp;<?php echo date('Y'); ?>&nbsp;<span class="badge" style="background-color: #777"><?php echo sizeof($view->objetivos1); ?></span></div>
+                        <div class="panel-body">
+
+
+                            <!-- Table -->
+                            <?php if(isset($view->objetivos1) && sizeof($view->objetivos1) > 0) { ?>
+
+                                <table id="example1" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
+
+                                    <tbody>
+                                    <?php foreach ($view->objetivos1 as $rp):   ?>
+                                        <tr data-id="<?php echo $rp['id_objetivo']; ?>"
+                                            id_objetivo="<?php echo $rp['id_objetivo'];?>"
+                                            >
+                                            <td class="details-control col-md-1"></td>
+                                            <td class="col-md-3"><span  class="resaltado"><?php echo $rp['codigo'];?></span></td>
+                                            <td class="text"><span><?php echo $rp['nombre']; ?></span></td>
+                                            <td class="col-md-2">
+                                                <div class="progress" style="margin-bottom: 0px">
+                                                    <div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($rp['progreso']);?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
+                                                        <?php echo $rp['progreso']; ?>%
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    <?php endforeach;  ?>
+                                    </tbody>
+                                </table>
+
+                            <?php }else{ ?>
+
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
+                                </div>
+
+                            <?php } ?>
+
+
+
+                        </div>
+
+
                     </div>
 
-                <?php } ?>
+                </div>
 
 
 
             </div>
 
 
-        </div>
 
-    </div>
-
+        </div> <!-- cierra fila 1 columna derecha -->
 
 
 
 
+    </div>  <!-- abre columna derecha -->
 
 
 
 
-
-
-</div>
+</div> <!-- cierra fila principal -->
 
 
 
