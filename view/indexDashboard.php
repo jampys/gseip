@@ -164,7 +164,7 @@
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Mis objetivos&nbsp;<?php echo date('Y'); ?>&nbsp;<span class="badge" style="background-color: #777"><?php echo sizeof($view->objetivos); ?></span></div>
+                        <div class="panel-heading">Mis objetivos&nbsp;<?php echo date('Y'); ?>&nbsp;&nbsp;<span class="badge" style="background-color: #777"><?php echo sizeof($view->objetivos); ?></span></div>
                         <div class="panel-body">
 
 
@@ -245,7 +245,7 @@
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Responsable del seguimiento de objetivos &nbsp;<?php echo date('Y'); ?>&nbsp;<span class="badge" style="background-color: #777"><?php echo sizeof($view->objetivos1); ?></span></div>
+                        <div class="panel-heading">Responsable del seguimiento de objetivos &nbsp;<?php echo date('Y'); ?>&nbsp;&nbsp;<span class="badge" style="background-color: #777"><?php echo sizeof($view->objetivos1); ?></span></div>
                         <div class="panel-body">
 
 
@@ -318,7 +318,7 @@
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Próximos cumpleaños</div>
+                        <div class="panel-heading"><i class="fas fa-birthday-cake fa-lg"></i>&nbsp;&nbsp;Próximos cumpleaños</div>
                         <div class="panel-body">
 
 
