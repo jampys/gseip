@@ -22,7 +22,7 @@
 
     /*https://stackoverflow.com/questions/23431970/bootstrap-3-truncate-long-text-inside-rows-of-a-table-in-a-responsive-way
     */
-    .table td.text {
+    .table td.text { /* para tabla mis objetivos, columna nombre objetivo */
         max-width: 177px;
     }
     .table td.text span {
@@ -305,10 +305,10 @@
 
         <div class="row"> <!-- abre fila 2 columna derecha -->
 
-            <div class="col-md-4">
+            <div class="col-md-3">
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-9">
 
 
 
@@ -323,26 +323,18 @@
 
 
                             <!-- Table -->
-                            <?php if(isset($view->objetivos1) && sizeof($view->objetivos1) > 0) { ?>
+                            <?php if(isset($view->cumpleaños) && sizeof($view->cumpleaños) > 0) { ?>
 
                                 <table id="example1" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
 
                                     <tbody>
-                                    <?php foreach ($view->objetivos1 as $rp):   ?>
-                                        <tr data-id="<?php echo $rp['id_objetivo']; ?>"
-                                            id_objetivo="<?php echo $rp['id_objetivo'];?>"
+                                    <?php foreach ($view->cumpleaños as $rp):   ?>
+                                        <tr data-id="<?php echo $rp['id_empleado']; ?>"
                                             >
                                             <td class="details-control col-md-1"></td>
-                                            <td class="col-md-3"><span  class="resaltado"><?php echo $rp['codigo'];?></span></td>
-                                            <td class="text"><span><?php echo $rp['nombre']; ?></span></td>
-                                            <td class="col-md-2">
-                                                <div class="progress" style="margin-bottom: 0px">
-                                                    <div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($rp['progreso']);?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
-                                                        <?php echo $rp['progreso']; ?>%
-                                                    </div>
-                                                </div>
-                                            </td>
-
+                                            <td class="col-md-1"><span  class="resaltado"><?php echo $rp['cumpleaños'];?></span></td>
+                                            <td class="text" style="max-width: 150px"><span><?php echo $rp['apellido'].' '.$rp['nombre']; ?></span></td>
+                                            <td class="text" style="max-width: 150px"><span><?php echo $rp['contrato']; ?></span></td>
                                         </tr>
                                     <?php endforeach;  ?>
                                     </tbody>
