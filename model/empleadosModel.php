@@ -525,6 +525,7 @@ class Empleado
 
 
     public static function getProximosCumpleaños($dias) {
+        //https://stackoverflow.com/questions/18747853/mysql-select-upcoming-birthdays
         $stmt=new sQuery();
         $query = "SELECT em.id_empleado, em.apellido, em.nombre, DATE_FORMAT(em.fecha_nacimiento, '%d/%m') as cumpleaños, em.empresa,
 co.nombre as contrato
