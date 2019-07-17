@@ -191,7 +191,7 @@
                     <li class="dropdown profile">
                         <a href="#" title="Tu perfil y configuración" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
-                            <img src="uploads/profile_user.jpg" class="profile-image img-circle">&nbsp;<?php echo $_SESSION['user'] ?>
+                            <img src="<?php echo $_SESSION['profile_picture'] ?>" class="profile-image img-circle">&nbsp;<?php echo $_SESSION['user'] ?>
                             <b class="caret"></b>
 
                         </a>

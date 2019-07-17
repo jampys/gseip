@@ -6,6 +6,7 @@ class Usuario{
     private $user;
     private $password;
     private $id_empleado;
+    private $profile_picture;
 
 
     // metodos que devuelven valores
@@ -21,6 +22,9 @@ class Usuario{
     function getIdEmpleado()
     { return $this->id_empleado;}
 
+    function getProfilePicture()
+    { return $this->profile_picture;}
+
     // metodos que setean los valores
     function setIdUser($val)
     { $this->id_user=$val;}
@@ -33,6 +37,9 @@ class Usuario{
 
     function setIdEmpleado($val)
     {  $this->id_empleado=$val;}
+
+    function setProfilePicture($val)
+    {  $this->profile_picture=$val;}
 
 
     function isAValidUser($usuario,$password){
@@ -58,6 +65,7 @@ class Usuario{
                 $this->setIdUser($r[0]['id_user']);
                 $this->setUser($r[0]['user']);
                 $this->setIdEmpleado($r[0]['id_empleado']);
+                $this->setProfilePicture($r[0]['profile_picture']);
 
                 return 1;
             }
