@@ -32,6 +32,17 @@
     #brand-image{
         height: 120%;
     }
+
+    .navbar-nav > li.profile > a img.profile-image {
+        height: 30px;
+        width: 30px;
+    }
+
+    .navbar-nav >li.profile > a {
+        padding: 2px;
+    }
+
+
 </style>
 
 <header>
@@ -175,12 +186,11 @@
 
                     </li>
 
-                    <li class="dropdown">
+                    <li class="dropdown profile">
                         <a href="#" title="Tu perfil y configuración" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <!--<span class="glyphicon glyphicon-user"></span>
-                            Usuario
-                            <span class="caret"></span>-->
-                            <i class="fas fa-user fa-lg"></i>
+
+                            <img src="uploads/profile_user.jpg" class="profile-image img-circle"><b class="caret"></b>
+
                         </a>
 
                         <ul class="dropdown-menu">
