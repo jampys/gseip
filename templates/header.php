@@ -39,7 +39,9 @@
     }
 
     .navbar-nav >li.profile > a {
-        padding: 2px;
+      /* por defecto padding derecho e izquierdo de 15px y abajo y arriba de 9px */
+      padding: 2px 15px 2px 15px;
+
     }
 
 
@@ -196,7 +198,7 @@
 
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">USUARIO</li>-->
-                            <li><a href="#"><span class="text-muted">Mi perfil</span> </a></li>
+                            <li><a href="#"><i class="fas fa-user"></i>&nbsp;Mi perfil</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
                         </ul>
