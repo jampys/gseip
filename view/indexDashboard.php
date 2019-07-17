@@ -219,7 +219,7 @@
                     <table id="example1" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
 
                         <tbody>
-                        <?php foreach ($view->objetivos as $rp):   ?>
+                        <?php foreach ($view->objetivos1 as $rp):   ?>
                             <tr data-id="<?php echo $rp['id_objetivo']; ?>"
                                 id_objetivo="<?php echo $rp['id_objetivo'];?>"
                                 >
