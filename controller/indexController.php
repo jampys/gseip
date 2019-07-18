@@ -35,13 +35,13 @@ switch ($operation)
 
     default:
         $view->disableLayout=false;
-        //$view->clientes=Cliente::getClientes();
+        $view->dias = 7;
 
 
         $id_responsable_ejecucion = $_SESSION["id_empleado"];
         $view->objetivos = Objetivo::getObjetivos(date('Y'), null, null, null, null, $_SESSION['id_empleado'], null);
         $view->objetivos1 = Objetivo::getObjetivos(date('Y'), null, null, null, null, null, $_SESSION['id_empleado']);
-        $view->cumpleaños = Empleado::getProximosCumpleaños(7);
+        $view->cumpleaños = Empleado::getProximosCumpleaños($view->dias);
 
 
 

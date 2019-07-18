@@ -433,7 +433,7 @@
                             <?php }else{ ?>
 
                                 <div class="alert alert-warning">
-                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
+                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No hay cumpleaños los próximos <?php echo $view->dias; ?> dias.
                                 </div>
 
                             <?php } ?>
