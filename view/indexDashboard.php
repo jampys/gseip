@@ -145,7 +145,7 @@
         $('#example2').on('click', 'td.details-control', function (e) {
             //alert('detalle cumple');
 
-            var t = $(this).closest('table');
+            //var t = $(this).closest('table');
             var tr = $(this).closest('tr');
 
             params={};
@@ -160,9 +160,16 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
+                    var tr_abierta = $("#example2 tr[class*='shown']");
+                    tr_abierta.next('tr').hide();
+                    tr_abierta.removeClass('shown');
+
+                    tr.after('<tr><td colspan="3">'+format1(data)+'</td></tr>').show();
+                    tr.addClass('shown');
+
                     //alert(Object.keys(data).length);
 
-                    if ( tr.hasClass('shown') ) {
+                    /*if ( tr.hasClass('shown') ) {
                         //alert('verde');
                         // This row is already open - close it
                         //tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
@@ -175,7 +182,7 @@
                         //tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
                         tr.after('<tr><td colspan="3">'+format1(data)+'</td></tr>').show();
                         tr.addClass('shown');
-                    }
+                    }*/
 
                 },
                 error: function(data, textStatus, errorThrown) {
