@@ -46,6 +46,11 @@
     min-width: 120px;
 }*/
 
+    img.profile-image {
+        height: 70px;
+        width: 70px;
+    }
+
 </style>
 
 
@@ -196,7 +201,7 @@
                 var lugar_trabajo = (d[0]['id_localidad'])? d[0]['lugar_trabajo'] : '';
 
                 var subTabla = '<table class="hijo" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">'+
-                    '<tr><td colspan="2">'+d[0]['id_empleado']+'</td></tr>'+
+                    '<tr><td colspan="2"><img src="<?php echo $_SESSION['profile_picture'] ?>" class="profile-image img-circle"></td></tr>'+
                     '<tr><td style="min-width: 20px"><span class="resaltado">Contrato<span></td><td>'+contrato+'</td></tr>'+
                     '<tr><td><span class="resaltado">Puesto<span></td><td>'+puesto+'</td></tr>'+
                     '<tr><td><span class="resaltado">Lugar trabajo<span></td><td>'+lugar_trabajo+'</td></tr>'+
