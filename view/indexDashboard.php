@@ -46,7 +46,7 @@
     min-width: 120px;
 }*/
 
-    img.profile-image {
+    table.hijo td img.profile-image {
         height: 70px;
         width: 70px;
         margin: 5px;
