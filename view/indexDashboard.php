@@ -49,6 +49,7 @@
     img.profile-image {
         height: 70px;
         width: 70px;
+        margin: 5px;
     }
 
 
@@ -172,7 +173,7 @@
                         // Open this row
                         //alert('rojo');
                         //tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
-                        tr.after('<tr><td colspan="4">'+format1(data)+'</td></tr>').show();
+                        tr.after('<tr><td colspan="3">'+format1(data)+'</td></tr>').show();
                         tr.addClass('shown');
                     }
 
