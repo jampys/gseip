@@ -135,14 +135,15 @@
 
         //tabla de proximos cumpleaños. Abrir detalle
         $('#example2').on('click', 'td.details-control', function (e) {
+            //alert('detalle cumple');
 
             var t = $(this).closest('table');
             var tr = $(this).closest('tr');
 
             params={};
             params.action = "index";
-            params.operation = "getObjetivo";
-            params.id_objetivo = $(this).closest('tr').attr('data-id');
+            params.operation = "getProfile";
+            params.id_empleado = $(this).closest('tr').attr('data-id');
 
             $.ajax({
                 url:"index.php",
@@ -189,21 +190,15 @@
 
             if(Object.keys(d).length > 0 ){
 
-                var puesto = (d[0]['id_puesto'])? d[0]['puesto'] : '';
-                var area = (d[0]['id_area'])? d[0]['area'] : '';
                 var contrato = (d[0]['id_contrato'])? d[0]['contrato'] : '';
+                var puesto = (d[0]['id_puesto'])? d[0]['puesto'] : '';
+                var lugar_trabajo = (d[0]['id_localidad'])? d[0]['lugar_trabajo'] : '';
 
                 var subTabla = '<table class="hijo" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">'+
-                    '<tr><td colspan="2">'+d[0]['nombre']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Puesto<span></td><td>'+puesto+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Área<span></td><td>'+area+'</td></tr>'+
+                    '<tr><td colspan="2">'+d[0]['id_empleado']+'</td></tr>'+
                     '<tr><td><span class="resaltado">Contrato<span></td><td>'+contrato+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Indicador<span></td><td>'+d[0]['indicador']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Meta<span></td><td>'+d[0]['meta']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Valor<span></td><td>'+d[0]['meta_valor']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Frecuencia<span></td><td>'+d[0]['frecuencia']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Resp. ejecución<span></td><td>'+d[0]['responsable_ejecucion']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Resp. seguimiento<span></td><td>'+d[0]['responsable_seguimiento']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Puesto<span></td><td>'+puesto+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Lugar trabajo<span></td><td>'+lugar_trabajo+'</td></tr>'+
                     '</table>';
 
             }

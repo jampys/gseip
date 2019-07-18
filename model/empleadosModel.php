@@ -550,10 +550,14 @@ order by DATE_ADD(em.fecha_nacimiento,
     }
 
 
-    public static function getProfile($id_empleado) {
+    public function getProfile() {
         $stmt=new sQuery();
-        $query = "select if(us.profile_picture is not null, us.profile_picture, em.profile_picture) as profile_picture,
-co.nombre as contrato, pu.nombre as puesto, CONCAT(loc.ciudad, ' ', loc.provincia) as lugar_trabajo, pu.nombre
+        $query = "select em.id_empleado,
+if(us.profile_picture is not null, us.profile_picture, em.profile_picture) as profile_picture,
+co.id_contrato,
+co.nombre as contrato,
+pu.id_puesto, pu.nombre as puesto,
+loc.id_localidad, CONCAT(loc.ciudad, ' ', loc.provincia) as lugar_trabajo
 from empleados em
 left join sec_users us on us.id_empleado = em.id_empleado
 left join empleado_contrato ec on ec.id_empleado = em.id_empleado
@@ -562,7 +566,7 @@ left join puestos pu on ec.id_puesto = pu.id_puesto
 left join localidades loc on loc.id_localidad = ec.id_localidad
 where em.id_empleado = :id_empleado";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

@@ -26,6 +26,13 @@ switch ($operation)
         exit;
         break;
 
+    case 'getProfile': //trae el perfil del empleado para mostrar en el detalle del cumpleaños
+        $view->empleado = new Empleado($_POST['id_empleado']);
+        $rta = $view->empleado->getProfile();
+        print_r(json_encode($rta));
+        exit;
+        break;
+
     default:
         $view->disableLayout=false;
         //$view->clientes=Cliente::getClientes();
