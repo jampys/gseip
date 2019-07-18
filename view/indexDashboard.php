@@ -37,13 +37,14 @@
         font-weight: bold;
     }
 
-    /*table.hijo td{
-        padding-right: 15px;
-    }*/
+    table.hijo td{
+        padding-right: 5px;
+        /* padding-left: 5px; */
+}
 
-    table.hijo tr td:first-child {
-        min-width: 120px;
-    }
+/*table.hijo tr td:first-child {
+    min-width: 120px;
+}*/
 
 </style>
 
@@ -114,7 +115,7 @@
 
                 var subTabla = '<table class="hijo" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">'+
                                     '<tr><td colspan="2">'+d[0]['nombre']+'</td></tr>'+
-                                    '<tr><td><span class="resaltado">Puesto<span></td><td>'+puesto+'</td></tr>'+
+                                    '<tr><td style="min-width: 120px"><span class="resaltado">Puesto<span></td><td>'+puesto+'</td></tr>'+
                                     '<tr><td><span class="resaltado">Área<span></td><td>'+area+'</td></tr>'+
                                     '<tr><td><span class="resaltado">Contrato<span></td><td>'+contrato+'</td></tr>'+
                                     '<tr><td><span class="resaltado">Indicador<span></td><td>'+d[0]['indicador']+'</td></tr>'+
