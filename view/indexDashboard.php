@@ -100,7 +100,7 @@
         } );
 
 
-        /* Formatting function for row details - modify as you need */
+        /* Formato del detalle del objetivo */
         function format ( d ) {
             //https://stackoverflow.com/questions/8749236/create-table-with-jquery-append
 
@@ -124,6 +124,87 @@
                                     '<tr><td><span class="resaltado">Resp. ejecución<span></td><td>'+d[0]['responsable_ejecucion']+'</td></tr>'+
                                     '<tr><td><span class="resaltado">Resp. seguimiento<span></td><td>'+d[0]['responsable_seguimiento']+'</td></tr>'+
                                '</table>';
+
+            }
+
+            return subTabla;
+
+        }
+
+
+
+        //tabla de proximos cumpleaños. Abrir detalle
+        $('#example2').on('click', 'td.details-control', function (e) {
+
+            var t = $(this).closest('table');
+            var tr = $(this).closest('tr');
+
+            params={};
+            params.action = "index";
+            params.operation = "getObjetivo";
+            params.id_objetivo = $(this).closest('tr').attr('data-id');
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                data: params,
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    //alert(Object.keys(data).length);
+
+                    if ( tr.hasClass('shown') ) {
+                        //alert('verde');
+                        // This row is already open - close it
+                        //tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
+                        tr.next('tr').hide();
+                        tr.removeClass('shown');
+                    }
+                    else {
+                        // Open this row
+                        //alert('rojo');
+                        //tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
+                        tr.after('<tr><td colspan="4">'+format1(data)+'</td></tr>').show();
+                        tr.addClass('shown');
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
+        } );
+
+
+
+
+        /* Formato del detalle del cumpleaños */
+        function format1 ( d ) {
+            //https://stackoverflow.com/questions/8749236/create-table-with-jquery-append
+
+            var subTabla ='';
+
+            if(Object.keys(d).length > 0 ){
+
+                var puesto = (d[0]['id_puesto'])? d[0]['puesto'] : '';
+                var area = (d[0]['id_area'])? d[0]['area'] : '';
+                var contrato = (d[0]['id_contrato'])? d[0]['contrato'] : '';
+
+                var subTabla = '<table class="hijo" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">'+
+                    '<tr><td colspan="2">'+d[0]['nombre']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Puesto<span></td><td>'+puesto+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Área<span></td><td>'+area+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Contrato<span></td><td>'+contrato+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Indicador<span></td><td>'+d[0]['indicador']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Meta<span></td><td>'+d[0]['meta']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Valor<span></td><td>'+d[0]['meta_valor']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Frecuencia<span></td><td>'+d[0]['frecuencia']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Resp. ejecución<span></td><td>'+d[0]['responsable_ejecucion']+'</td></tr>'+
+                    '<tr><td><span class="resaltado">Resp. seguimiento<span></td><td>'+d[0]['responsable_seguimiento']+'</td></tr>'+
+                    '</table>';
 
             }
 
@@ -325,7 +406,7 @@
                             <!-- Table -->
                             <?php if(isset($view->cumpleaños) && sizeof($view->cumpleaños) > 0) { ?>
 
-                                <table id="example1" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
+                                <table id="example2" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
 
                                     <tbody>
                                     <?php foreach ($view->cumpleaños as $rp):   ?>
