@@ -196,7 +196,7 @@
 
                 var subTabla = '<table class="hijo" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">'+
                     '<tr><td colspan="2">'+d[0]['id_empleado']+'</td></tr>'+
-                    '<tr><td><span class="resaltado">Contrato<span></td><td>'+contrato+'</td></tr>'+
+                    '<tr><td style="min-width: 20px"><span class="resaltado">Contrato<span></td><td>'+contrato+'</td></tr>'+
                     '<tr><td><span class="resaltado">Puesto<span></td><td>'+puesto+'</td></tr>'+
                     '<tr><td><span class="resaltado">Lugar trabajo<span></td><td>'+lugar_trabajo+'</td></tr>'+
                     '</table>';
@@ -381,10 +381,10 @@
 
         <div class="row"> <!-- abre fila 2 columna derecha -->
 
-            <div class="col-md-3">
+            <div class="col-md-5">
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-7">
 
 
 
@@ -410,7 +410,6 @@
                                             <td class="details-control col-md-1"></td>
                                             <td class="col-md-1"><span  class="resaltado"><?php echo $rp['cumpleaños'];?></span></td>
                                             <td class="text" style="max-width: 150px"><span><?php echo $rp['apellido'].' '.$rp['nombre']; ?></span></td>
-                                            <td class="text" style="max-width: 150px"><span><?php echo $rp['contrato']; ?></span></td>
                                         </tr>
                                     <?php endforeach;  ?>
                                     </tbody>
