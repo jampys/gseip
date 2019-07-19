@@ -287,8 +287,8 @@
 
                             <?php }else{ ?>
 
-                                <div class="alert alert-warning">
-                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No tiene objetivos fijados para el período vigente.
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> No tiene objetivos fijados para el período vigente.
                                 </div>
 
                             <?php } ?>
@@ -337,7 +337,7 @@
                                     <?php foreach ($view->vencimientos as $rp):   ?>
                                         <tr data-id="<?php echo $rp['id_empleado']; ?>"
                                             >
-                                            <td class="col-md-1"><i class="fas fa-circle"></i></td>
+                                            <td class="col-md-1"><i class="fas fa-circle" style="color: <?php echo $rp['color']; ?>"></i></td>
                                             <td class="col-md-1"><span  class="resaltado"><?php echo $rp['fecha_vencimiento'];?></span></td>
                                             <td class="text" style="max-width: 150px"><span><?php echo $rp['vencimiento']; ?></span></td>
                                         </tr>
@@ -347,8 +347,8 @@
 
                             <?php }else{ ?>
 
-                                <div class="alert alert-warning">
-                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No hay cumpleaños los próximos <?php echo $view->dias; ?> dias.
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> No tiene vencimientos próximos.
                                 </div>
 
                             <?php } ?>
@@ -430,8 +430,8 @@
 
                             <?php }else{ ?>
 
-                                <div class="alert alert-warning">
-                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
                                 </div>
 
                             <?php } ?>
@@ -494,8 +494,8 @@
 
                             <?php }else{ ?>
 
-                                <div class="alert alert-warning">
-                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No hay cumpleaños los próximos <?php echo $view->dias; ?> dias.
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> No hay cumpleaños en los próximos <?php echo $view->dias; ?> dias.
                                 </div>
 
                             <?php } ?>
