@@ -312,6 +312,68 @@
         </div> <!-- cierra fila 1 columna izquierda -->
 
 
+        <div class="row"> <!-- abre fila 2 columna izquierda -->
+
+
+
+            <div class="col-md-7">
+
+
+                <div class="panel-group">
+
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading"><i class="far fa-calendar-alt fa-lg"></i>&nbsp;&nbsp;Próximos vencimientos</div>
+                        <div class="panel-body">
+
+
+                            <!-- Table -->
+                            <?php if(isset($view->cumpleaños) && sizeof($view->cumpleaños) > 0) { ?>
+
+                                <table id="example2" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
+
+                                    <tbody>
+                                    <?php foreach ($view->cumpleaños as $rp):   ?>
+                                        <tr data-id="<?php echo $rp['id_empleado']; ?>"
+                                            >
+                                            <td class="details-control col-md-1"></td>
+                                            <td class="col-md-1"><span  class="resaltado"><?php echo $rp['cumpleaños'];?></span></td>
+                                            <td class="text" style="max-width: 150px"><span><?php echo $rp['apellido'].' '.$rp['nombre']; ?></span></td>
+                                        </tr>
+                                    <?php endforeach;  ?>
+                                    </tbody>
+                                </table>
+
+                            <?php }else{ ?>
+
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No hay cumpleaños los próximos <?php echo $view->dias; ?> dias.
+                                </div>
+
+                            <?php } ?>
+
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+            <div class="col-md-5">
+            </div>
+
+
+
+        </div> <!-- cierra fila 2 columna izquierda -->
+
+
 
 
     </div> <!-- cierra columna izquierda -->
