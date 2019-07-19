@@ -329,17 +329,17 @@
 
 
                             <!-- Table -->
-                            <?php if(isset($view->cumpleaños) && sizeof($view->cumpleaños) > 0) { ?>
+                            <?php if(isset($view->vencimientos) && sizeof($view->vencimientos) > 0) { ?>
 
                                 <table id="example2" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
 
                                     <tbody>
-                                    <?php foreach ($view->cumpleaños as $rp):   ?>
+                                    <?php foreach ($view->vencimientos as $rp):   ?>
                                         <tr data-id="<?php echo $rp['id_empleado']; ?>"
                                             >
                                             <td class="details-control col-md-1"></td>
-                                            <td class="col-md-1"><span  class="resaltado"><?php echo $rp['cumpleaños'];?></span></td>
-                                            <td class="text" style="max-width: 150px"><span><?php echo $rp['apellido'].' '.$rp['nombre']; ?></span></td>
+                                            <td class="col-md-1"><span  class="resaltado"><?php echo $rp['id_empleado'];?></span></td>
+                                            <td class="text" style="max-width: 150px"><span><?php echo $rp['id_empleado'].' '.$rp['id_empleado']; ?></span></td>
                                         </tr>
                                     <?php endforeach;  ?>
                                     </tbody>

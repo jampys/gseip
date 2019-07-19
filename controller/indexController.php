@@ -1,6 +1,7 @@
 <?php
 include_once("model/obj_objetivosModel.php");
 include_once("model/empleadosModel.php");
+include_once("model/vto_renovacionesPersonalModel.php");
 
 if(isset($_POST['operation']))
 {$operation=$_POST['operation'];}
@@ -42,6 +43,7 @@ switch ($operation)
         $view->objetivos = Objetivo::getObjetivos(date('Y'), null, null, null, null, $_SESSION['id_empleado'], null);
         $view->objetivos1 = Objetivo::getObjetivos(date('Y'), null, null, null, null, null, $_SESSION['id_empleado']);
         $view->cumpleaños = Empleado::getProximosCumpleaños($view->dias);
+        $view->vencimientos = RenovacionPersonal::getRenovacionesPersonal($_SESSION['id_empleado'], null, 'vrp.id_vencimiento', null, null, null);
 
 
 
