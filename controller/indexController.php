@@ -1,5 +1,6 @@
 <?php
 include_once("model/obj_objetivosModel.php");
+include_once("model/empleadosModel.php");
 
 if(isset($_POST['operation']))
 {$operation=$_POST['operation'];}
@@ -25,14 +26,22 @@ switch ($operation)
         exit;
         break;
 
+    case 'getProfile': //trae el perfil del empleado para mostrar en el detalle del cumpleaños
+        $view->empleado = new Empleado($_POST['id_empleado']);
+        $rta = $view->empleado->getProfile();
+        print_r(json_encode($rta));
+        exit;
+        break;
+
     default:
         $view->disableLayout=false;
-        //$view->clientes=Cliente::getClientes();
+        $view->dias = 7;
 
 
         $id_responsable_ejecucion = $_SESSION["id_empleado"];
         $view->objetivos = Objetivo::getObjetivos(date('Y'), null, null, null, null, $_SESSION['id_empleado'], null);
         $view->objetivos1 = Objetivo::getObjetivos(date('Y'), null, null, null, null, null, $_SESSION['id_empleado']);
+        $view->cumpleaños = Empleado::getProximosCumpleaños($view->dias);
 
 
 

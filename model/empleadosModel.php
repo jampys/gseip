@@ -524,6 +524,54 @@ class Empleado
     }
 
 
+    public static function getProximosCumpleaños($dias) {
+        //https://stackoverflow.com/questions/18747853/mysql-select-upcoming-birthdays
+        $stmt=new sQuery();
+        $query = "SELECT em.id_empleado, em.apellido, em.nombre, DATE_FORMAT(em.fecha_nacimiento, '%d/%m') as cumpleaños, em.empresa,
+co.nombre as contrato
+FROM empleados em
+left join empleado_contrato ec on ec.id_empleado = em.id_empleado
+left join contratos co on co.id_contrato = ec.id_contrato
+WHERE em.fecha_baja is null
+and DATE_ADD(em.fecha_nacimiento,
+                INTERVAL YEAR(CURDATE())-YEAR(em.fecha_nacimiento)
+                         + IF(DAYOFYEAR(CURDATE()) > DAYOFYEAR(em.fecha_nacimiento),1,0)
+                YEAR)
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL :dias DAY)
+group by em.id_empleado
+order by DATE_ADD(em.fecha_nacimiento,
+                INTERVAL YEAR(CURDATE())-YEAR(em.fecha_nacimiento)
+                         + IF(DAYOFYEAR(CURDATE()) > DAYOFYEAR(em.fecha_nacimiento),1,0)
+                YEAR) asc";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':dias', $dias);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+    public function getProfile() {
+        $stmt=new sQuery();
+        $query = "select em.id_empleado,
+if(us.profile_picture is not null, us.profile_picture, em.profile_picture) as profile_picture,
+co.id_contrato,
+co.nombre as contrato,
+pu.id_puesto, pu.nombre as puesto,
+loc.id_localidad, CONCAT(loc.ciudad, ' ', loc.provincia) as lugar_trabajo
+from empleados em
+left join sec_users us on us.id_empleado = em.id_empleado
+left join empleado_contrato ec on ec.id_empleado = em.id_empleado
+left join contratos co on co.id_contrato = ec.id_contrato
+left join puestos pu on ec.id_puesto = pu.id_puesto
+left join localidades loc on loc.id_localidad = ec.id_localidad
+where em.id_empleado = :id_empleado";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
 
 
 }
