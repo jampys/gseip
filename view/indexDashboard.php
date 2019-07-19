@@ -324,22 +324,22 @@
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading"><i class="far fa-calendar-alt fa-lg"></i>&nbsp;&nbsp;Próximos vencimientos</div>
+                        <div class="panel-heading"><i class="far fa-calendar-alt fa-lg"></i>&nbsp;&nbsp;Mis próximos vencimientos</div>
                         <div class="panel-body">
 
 
                             <!-- Table -->
                             <?php if(isset($view->vencimientos) && sizeof($view->vencimientos) > 0) { ?>
 
-                                <table id="example2" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
+                                <table id="example3" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
 
                                     <tbody>
                                     <?php foreach ($view->vencimientos as $rp):   ?>
                                         <tr data-id="<?php echo $rp['id_empleado']; ?>"
                                             >
-                                            <td class="details-control col-md-1"></td>
-                                            <td class="col-md-1"><span  class="resaltado"><?php echo $rp['id_empleado'];?></span></td>
-                                            <td class="text" style="max-width: 150px"><span><?php echo $rp['id_empleado'].' '.$rp['id_empleado']; ?></span></td>
+                                            <td class="col-md-1"><i class="fas fa-circle"></i></td>
+                                            <td class="col-md-1"><span  class="resaltado"><?php echo $rp['fecha_vencimiento'];?></span></td>
+                                            <td class="text" style="max-width: 150px"><span><?php echo $rp['vencimiento']; ?></span></td>
                                         </tr>
                                     <?php endforeach;  ?>
                                     </tbody>
