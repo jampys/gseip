@@ -79,13 +79,13 @@ class Usuario{
 
 
 
-    function checkUserExists($usuario,$password){
+    function checkUserExists($usuario){
 
         $stmt=new sQuery();
-        $query="select * from sec_users where user = :usuario and password = md5(:password)";
+        $query="select * from sec_users where user = :usuario";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':usuario', $usuario);
-        $stmt->dpBind(':password', $password);
+        //$stmt->dpBind(':password', $password);
         $stmt->dpExecute();
         //return $stmt->dpGetAffect();
         $r=$stmt->dpFetchAll();

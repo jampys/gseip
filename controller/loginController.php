@@ -163,30 +163,30 @@ switch($operation){
 
     case 'check-user-exists':
 
-        if (isset($_POST['usuario']) && isset($_POST['contraseña']) ){
+        if (isset($_POST['usuario']) ){
 
-            $id = $view->u->isAValidUser($_POST['usuario'],$_POST['contraseña']);
+            $id = $view->u->checkUserExists($_POST['usuario']);
 
             if($id >= 1){
-                $_SESSION["id_user"] = $view->u->getIdUser(); //$id;
-                $_SESSION["user"] = $view->u->getUser(); //$_POST['usuario'];
-                $_SESSION["id_empleado"] = $view->u->getIdEmpleado();
-                $_SESSION["profile_picture"] = $view->u->getProfilePicture();
+                //$_SESSION["id_user"] = $view->u->getIdUser(); //$id;
+                //$_SESSION["user"] = $view->u->getUser(); //$_POST['usuario'];
+                //$_SESSION["id_empleado"] = $view->u->getIdEmpleado();
+                //$_SESSION["profile_picture"] = $view->u->getProfilePicture();
 
-                $obj = new PrivilegedUser($_SESSION["id_user"]);
-                $_SESSION['loggedUser'] = serialize($obj);
+                //$obj = new PrivilegedUser($_SESSION["id_user"]);
+                //$_SESSION['loggedUser'] = serialize($obj);
 
                 $e = array();
                 $e['id'] = $id;
             }
             else if($id == 0){ //usuario inhabilitado
                 $e = array();
-                $e['msg']= "Usuario inhabilitado";
+                $e['msg']= "Usuario inhabilitado. No es posible recuperar la contraseña.";
                 $e['id'] = $id;
             }
             else if($id == -1){ //Usuario o contraseña inválidos
                 $e = array();
-                $e['msg']= "Usuario o contraseña inválidos";
+                $e['msg']= "El email ingresado no existe";
                 $e['id'] = $id;
             }
 

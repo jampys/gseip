@@ -19,9 +19,9 @@
                 //alert('boton restaurar');
                 var params={};
                 params.action='login';
-                params.operation='login';
+                params.operation='check-user-exists';
                 params.usuario=$('#usuario').val();
-                params.contraseña=$('#contraseña').val();
+                //params.contraseña=$('#contraseña').val();
 
                 $.ajax({
                     url:"index.php",
