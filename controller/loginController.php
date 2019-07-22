@@ -176,6 +176,13 @@ switch($operation){
                 //$obj = new PrivilegedUser($_SESSION["id_user"]);
                 //$_SESSION['loggedUser'] = serialize($obj);
 
+
+
+                // se envia codigo por email
+
+                //se inserta el codigo enviado en el usuario
+
+
                 $e = array();
                 $e['id'] = $id;
             }
@@ -194,6 +201,14 @@ switch($operation){
 
         print_r(json_encode($e));
         exit;
+        break;
+
+    case 'send-code':
+        //session_destroy();
+        //$view->content="view/login.php";
+        //header("Location: index.php");
+        //para evitar los tipicos errores del header location =>lo hago con javascript
+        $view->contentTemplate="view/login/codeForm.php";
         break;
 
 

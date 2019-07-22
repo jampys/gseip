@@ -34,7 +34,7 @@
                             $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Enviando código de recuperación...').addClass('alert alert-info').show();
                             setTimeout(function(){ $("#myElem").hide();
                                 //window.location.href = "../../index.php";
-                                //window.location.href = "index.php";
+                                window.location.href = "index.php";
                             }, 1500);
                         }
                         else {
