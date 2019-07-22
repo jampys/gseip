@@ -50,7 +50,7 @@
                      },*/
                     beforeSend: function() {
                         // setting a timeout
-                        $("#myElem").html('Enviando código de recuperaciónxxx...').removeClass('alert alert-danger').addClass('alert alert-info').show();
+                        $("#myElem").html('Enviando código de recuperación...').removeClass('alert alert-danger').addClass('alert alert-info').show();
                     }
 
                 });
