@@ -109,7 +109,7 @@
 
 
 
-<form name ="recuperar_form" id="login_form" method="POST" action="index.php">
+<form name ="recuperar_form" id="recuperar_form" method="POST" action="index.php">
 
     <div class="form-group">
         <label class="control-label" for="usuario">Recuperar contraseña</label>
