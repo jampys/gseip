@@ -61,7 +61,7 @@
 <form name ="login_form" id="login_form" method="POST" action="index.php">
 
     <div class="form-group">
-        <label class="control-label" for="usuario">Usuario</label>
+        <label class="control-label" for="usuario">Correo</label>
         <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Usuario" >
     </div>
     <div class="form-group">
@@ -71,6 +71,12 @@
 
     <div class="form-group">
         <button class="btn btn-primary btn-block" id="ingresar" name="ingresar" type="submit"><span class="glyphicon glyphicon-log-in"></span> Ingresar</button>
+    </div>
+
+    <div class="form-group" style="text-align: center">
+        <button type="button" class="btn btn-link">
+            <small>¿Olvidaste tu contraseña?</small>
+        </button>
     </div>
 </form>
 
