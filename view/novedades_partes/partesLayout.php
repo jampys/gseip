@@ -27,7 +27,7 @@
                 language: 'es',
                 todayHighlight: true,
                 autoclose: true
-            }).datepicker('setDate', new Date()); //pone por defecto la fecha actual
+            }); //.datepicker('setDate', new Date()); //pone por defecto la fecha actual
             //$('.input-group.date').datepicker('setDate', new Date());
 
             $('.input-daterange').datepicker({ //ok para fecha desde-hasta (buscar)
@@ -131,6 +131,7 @@
                             //si es una edicion o view, selecciona el concepto.
                             //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
                             $('#id_periodo').selectpicker('refresh');
+                            $('#add_fecha').val('');
 
                         }
 
@@ -155,6 +156,7 @@
                 //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
                 $('.input-group.date').datepicker('setStartDate', fecha_desde);
                 $('.input-group.date').datepicker('setEndDate', fecha_hasta);
+                $('#add_fecha').val('');
 
             });
 
