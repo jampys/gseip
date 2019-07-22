@@ -152,12 +152,20 @@ switch($operation){
         echo "<script>window.location='index.php';</script>";
         break;
 
+    case 'recuperar-contraseña':
+        //session_destroy();
+        //$view->content="view/login.php";
+        //header("Location: index.php");
+        //para evitar los tipicos errores del header location =>lo hago con javascript
+        $view->contentTemplate="view/login/recuperarForm.php";
+        break;
+
     default:
         //$view->e=new Empleado();
         //$view->companias=$view->e->getCompanias();
         //$view->content="view/login.php";
         //include_once('view/loginLayout.php');
-        $view->contentTemplate="view/loginForm.php";
+        $view->contentTemplate="view/login/loginForm.php";
         break;
 
 
@@ -167,7 +175,7 @@ switch($operation){
 if ($view->disableLayout==true) {
     include_once ($view->contentTemplate);}
 else {
-    include_once('view/loginLayout.php'); // el layout incluye el template adentro
+    include_once('view/login/loginLayout.php'); // el layout incluye el template adentro
 }
 
 
