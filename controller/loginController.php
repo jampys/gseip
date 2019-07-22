@@ -176,8 +176,8 @@ switch($operation){
                 //$obj = new PrivilegedUser($_SESSION["id_user"]);
                 //$_SESSION['loggedUser'] = serialize($obj);
 
-                //$e = array();
-                //$e['id'] = $id;
+                $e = array();
+                $e['id'] = $id;
             }
             else if($id == 0){ //usuario inhabilitado
                 $e = array();
