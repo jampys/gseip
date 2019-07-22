@@ -179,12 +179,51 @@ switch($operation){
 
 
                 // se envia codigo por email
+                try{
+
+                    require("../resources/libraries/phpmailer/class.phpmailer.php");
+                    $mail = new PHPMailer();
+                    $mail->IsSMTP();
+                    $mail->SMTPAuth = true;
+                    $mail->Host = "mail.innsa.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+                    $mail->Username = "gestion@seip.com.ar"; // Correo completo a utilizar
+                    $mail->Password = "Ada21_Dos"; // Contraseña
+                    $mail->Port = 25; // Puerto a utilizar
+
+                    $mail->From = "info@elserver.com"; // Desde donde enviamos (Para mostrar)
+                    $mail->FromName = "Nombre";
+
+                    $mail->AddAddress("correo"); // Esta es la dirección a donde enviamos
+                    $mail->IsHTML(true); // El correo se envía como HTML
+                    $mail->Subject = "Titulo"; // Este es el titulo del email.
+                    $body = "Hola mundo. Esta es la primer línea<br />";
+                    $body .= "Acá continuo el <strong>mensaje</strong>";
+                    $mail->Body = $body; // Mensaje a enviar
+                    $exito = $mail->Send(); // Envía el correo.
+
+//También podríamos agregar simples verificaciones para saber si se envió:
+                    if($exito){
+                        $rta= "El correo fue enviado correctamente.";
+                    }else{
+                        $rta = "Hubo un inconveniente. Contacta a un administrador.";
+                    }
+
+
+
+                }catch(Exception $e){
+                    //echo $e->getMessage(); //habilitar para ver el mensaje de error
+                    //sQuery::dpRollback();
+                    //print_r(json_encode(-1));
+                    $rta = "entro en el catcha";
+                }
+
 
                 //se inserta el codigo enviado en el usuario
 
 
                 $e = array();
                 $e['id'] = $id;
+                $e['msg'] = $rta;
             }
             else if($id == 0){ //usuario inhabilitado
                 $e = array();
