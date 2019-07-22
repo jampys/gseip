@@ -62,7 +62,7 @@
 
     <div class="form-group">
         <label class="control-label" for="usuario">Correo</label>
-        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Usuario" >
+        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Correo" >
     </div>
     <div class="form-group">
         <label class="control-label" for="contraseña">Contraseña</label>
@@ -75,7 +75,7 @@
 
     <div class="form-group" style="text-align: center">
         <button id="recuperar" name="recuperar" type="button" class="btn btn-link">
-            <small>¿Olvidaste tu contraseña?</small>
+            <small>¿Olvidó su contraseña?</small>
         </button>
     </div>
 </form>

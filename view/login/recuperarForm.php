@@ -31,10 +31,10 @@
                     success: function(data, textStatus, jqXHR) {
 
                         if(data['id'] >= 1){ //Accede al sistema
-                            $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Accediendo al sistema...').addClass('alert alert-info').show();
+                            $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Enviando código de recuperación...').addClass('alert alert-info').show();
                             setTimeout(function(){ $("#myElem").hide();
                                 //window.location.href = "../../index.php";
-                                window.location.href = "index.php";
+                                //window.location.href = "index.php";
                             }, 1500);
                         }
                         else {
