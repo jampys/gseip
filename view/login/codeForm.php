@@ -61,12 +61,12 @@
 <form name ="login_form" id="login_form" method="POST" action="index.php">
 
     <div class="form-group">
-        <label class="control-label" for="usuario">Code</label>
+        <label class="control-label" for="usuario">Código de recuperación</label>
         <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Correo" >
     </div>
 
     <div class="form-group">
-        <button class="btn btn-primary btn-block" id="ingresar" name="ingresar" type="submit"><span class="glyphicon glyphicon-log-in"></span> Ingresar</button>
+        <button class="btn btn-primary btn-block" id="enviar" name="enviar" type="submit">Enviar</button>
     </div>
 
 </form>
