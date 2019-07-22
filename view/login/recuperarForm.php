@@ -13,19 +13,63 @@
     $(document).ready(function(){
 
 
+        $(document).on('click', '#restaurar',function(){
 
-        $('#login_form').validate({
+            if ($("#recuperar_form").valid()){
+                alert('boton restaurar');
+                var params={};
+                params.action='login';
+                params.operation='login';
+                params.usuario=$('#usuario').val();
+                params.contraseña=$('#contraseña').val();
+
+                $.ajax({
+                    url:"index.php",
+                    type:"post",
+                    data: params,
+                    dataType:"json",//xml,html,script,json
+                    success: function(data, textStatus, jqXHR) {
+
+                        if(data['id'] >= 1){ //Accede al sistema
+                            $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Accediendo al sistema...').addClass('alert alert-info').show();
+                            setTimeout(function(){ $("#myElem").hide();
+                                //window.location.href = "../../index.php";
+                                window.location.href = "index.php";
+                            }, 1500);
+                        }
+                        else {
+                            $("#myElem").html(data['msg']).addClass('alert alert-danger').show();
+                        }
+
+                    },
+                    /*error: function(data, textStatus, errorThrown) {
+                     //alert(data.responseText);
+                     $("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
+                     setTimeout(function() { $("#myElem").hide();
+                     }, 2000);
+                     },*/
+                    beforeSend: function() {
+                        // setting a timeout
+                        $("#myElem").html('Accediendo al sistema ...').removeClass('alert alert-danger').addClass('alert alert-info').show();
+                    }
+
+                });
+
+            }
+            return false;
+        });
+
+
+
+        $('#recuperar_form').validate({
             rules: {
-                usuario: {required: true},
-                contraseña: {required: true}
+                usuario: {required: true}
             },
             messages:{
-                usuario: "Ingrese su usuario",
-                contraseña: "Ingrese su contraseña"
+                usuario: "Ingrese su correo"
             },
             tooltip_options: {
-                usuario: {trigger:'focus'},
-                contraseña: {trigger:'focus'}
+                usuario: {trigger:'focus'}
 
             }
         });
@@ -65,11 +109,11 @@
 
 
 
-<form name ="login_form" id="login_form" method="POST" action="index.php">
+<form name ="recuperar_form" id="login_form" method="POST" action="index.php">
 
     <div class="form-group">
-        <label class="control-label" for="email">Recuperar contraseña</label>
-        <input class="form-control" type="text" name="email" id="email" placeholder="Ingrese su correo" >
+        <label class="control-label" for="usuario">Recuperar contraseña</label>
+        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Ingrese su correo" >
     </div>
 
 

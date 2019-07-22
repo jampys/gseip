@@ -79,4 +79,41 @@ class Usuario{
 
 
 
+    function checkUserExists($usuario,$password){
+
+        $stmt=new sQuery();
+        $query="select * from sec_users where user = :usuario and password = md5(:password)";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':usuario', $usuario);
+        $stmt->dpBind(':password', $password);
+        $stmt->dpExecute();
+        //return $stmt->dpGetAffect();
+        $r=$stmt->dpFetchAll();
+
+        if ($stmt->dpGetAffect()>=1) //en teoria devuelve la cantidad de filas afectadas. OJO controlar esta funcion
+        {
+            //lo trabajo de la manera porque a pesar de ser un solo registro el de la consulta
+            // lo devuelve en forma de un array bidimensional
+            //$datos=array();
+            if($r[0]['enabled']==1){
+                //$datos[0] =(int )$r[0]['id_usuario'];
+                //$datos[1] = $r[0]['usuario'];
+                //return $datos;
+                $this->setIdUser($r[0]['id_user']);
+                $this->setUser($r[0]['user']);
+                $this->setIdEmpleado($r[0]['id_empleado']);
+                $this->setProfilePicture($r[0]['profile_picture']);
+
+                return 1;
+            }
+
+            else return 0;
+        }
+        else
+        { return -1;
+        }
+    }
+
+
+
 }

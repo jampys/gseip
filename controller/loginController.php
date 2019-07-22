@@ -160,6 +160,63 @@ switch($operation){
         $view->contentTemplate="view/login/recuperarForm.php";
         break;
 
+
+    case 'check-user-exists':
+
+        if (isset($_POST['usuario']) && isset($_POST['contraseña']) ){
+
+            $id = $view->u->isAValidUser($_POST['usuario'],$_POST['contraseña']);
+
+            if($id >= 1){
+                $_SESSION["id_user"] = $view->u->getIdUser(); //$id;
+                $_SESSION["user"] = $view->u->getUser(); //$_POST['usuario'];
+                $_SESSION["id_empleado"] = $view->u->getIdEmpleado();
+                $_SESSION["profile_picture"] = $view->u->getProfilePicture();
+
+                $obj = new PrivilegedUser($_SESSION["id_user"]);
+                $_SESSION['loggedUser'] = serialize($obj);
+
+                $e = array();
+                $e['id'] = $id;
+                /*if($id[5]!=1) { //si se ha limpiado el password  hay que cambiarlo...
+                    $_SESSION["id_usuario"] = $id[0];
+                    $_SESSION["usuario"] = $id[1];
+
+
+                    //http://stackoverflow.com/questions/1442177/storing-objects-in-php-session
+                    //$obj = new PrivilegedUser($_SESSION["ses_id"]);
+                    //$_SESSION['loggedUser'] = serialize($obj);
+                }*/
+                /*else{
+                    $view->id_usuario = (int)$id[0];
+                    $view->content="view/login_clear_pass.php";
+                }*/
+
+
+                //header("Location: ".Conexion::ruta()."?accion=index");
+                //echo "EL USUARIO SE SE LOGUEO OK";
+                //IMPORTANTE: probar mas que un header location cargar una $view->content error
+                //Por el momento no se le carga ninguna vista para cuando ingresa ok.
+            }
+            else if($id == 0){ //usuario inhabilitado
+                $e = array();
+                $e['msg']= "Usuario inhabilitado";
+                $e['id'] = $id;
+            }
+            else if($id == -1){ //Usuario o contraseña inválidos
+                $e = array();
+                $e['msg']= "Usuario o contraseña inválidos";
+                $e['id'] = $id;
+            }
+
+        }
+
+        print_r(json_encode($e));
+        exit;
+        break;
+
+
+
     default:
         //$view->e=new Empleado();
         //$view->companias=$view->e->getCompanias();
