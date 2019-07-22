@@ -287,8 +287,8 @@
 
                             <?php }else{ ?>
 
-                                <div class="alert alert-warning">
-                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No tiene objetivos fijados para el período vigente.
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> No tiene objetivos fijados para el período vigente.
                                 </div>
 
                             <?php } ?>
@@ -310,6 +310,68 @@
 
 
         </div> <!-- cierra fila 1 columna izquierda -->
+
+
+        <div class="row"> <!-- abre fila 2 columna izquierda -->
+
+
+
+            <div class="col-md-7">
+
+
+                <div class="panel-group">
+
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading"><i class="far fa-calendar-alt fa-lg"></i>&nbsp;&nbsp;Mis próximos vencimientos</div>
+                        <div class="panel-body">
+
+
+                            <!-- Table -->
+                            <?php if(isset($view->vencimientos) && sizeof($view->vencimientos) > 0) { ?>
+
+                                <table id="example3" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
+
+                                    <tbody>
+                                    <?php foreach ($view->vencimientos as $rp):   ?>
+                                        <tr data-id="<?php echo $rp['id_empleado']; ?>"
+                                            >
+                                            <td class="col-md-1"><i class="fas fa-circle" style="color: <?php echo $rp['color']; ?>"></i></td>
+                                            <td class="col-md-1"><span  class="resaltado"><?php echo $rp['fecha_vencimiento'];?></span></td>
+                                            <td class="text" style="max-width: 150px"><span><?php echo $rp['vencimiento']; ?></span></td>
+                                        </tr>
+                                    <?php endforeach;  ?>
+                                    </tbody>
+                                </table>
+
+                            <?php }else{ ?>
+
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> No tiene vencimientos próximos.
+                                </div>
+
+                            <?php } ?>
+
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+            <div class="col-md-5">
+            </div>
+
+
+
+        </div> <!-- cierra fila 2 columna izquierda -->
 
 
 
@@ -368,8 +430,8 @@
 
                             <?php }else{ ?>
 
-                                <div class="alert alert-warning">
-                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
                                 </div>
 
                             <?php } ?>
@@ -432,8 +494,8 @@
 
                             <?php }else{ ?>
 
-                                <div class="alert alert-warning">
-                                    <i class="fas fa-exclamation-triangle fa-fw"></i> No hay cumpleaños los próximos <?php echo $view->dias; ?> dias.
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> No hay cumpleaños en los próximos <?php echo $view->dias; ?> dias.
                                 </div>
 
                             <?php } ?>
