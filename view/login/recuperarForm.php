@@ -63,10 +63,12 @@
 
         $('#recuperar_form').validate({
             rules: {
-                usuario: {required: true}
+                usuario: {  required: true,
+                            email: true}
             },
             messages:{
-                usuario: "Ingrese su correo"
+                usuario: {  required : "Ingrese su correo",
+                            email: "Ingrese un email válido"}
             },
             tooltip_options: {
                 usuario: {trigger:'focus'}
@@ -76,7 +78,7 @@
 
 
         $(document).on('click', '#regresar',function(){
-            //alert('regresar');
+            alert('regresar');
             window.location.href = "index.php?action=login";
             return false;
         });
