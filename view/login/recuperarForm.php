@@ -16,7 +16,7 @@
         $(document).on('click', '#restaurar',function(){
 
             if ($("#recuperar_form").valid()){
-                alert('boton restaurar');
+                //alert('boton restaurar');
                 var params={};
                 params.action='login';
                 params.operation='login';
@@ -78,7 +78,7 @@
 
 
         $(document).on('click', '#regresar',function(){
-            alert('regresar');
+            //alert('regresar');
             window.location.href = "index.php?action=login";
             return false;
         });

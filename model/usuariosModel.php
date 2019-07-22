@@ -96,9 +96,6 @@ class Usuario{
             // lo devuelve en forma de un array bidimensional
             //$datos=array();
             if($r[0]['enabled']==1){
-                //$datos[0] =(int )$r[0]['id_usuario'];
-                //$datos[1] = $r[0]['usuario'];
-                //return $datos;
                 $this->setIdUser($r[0]['id_user']);
                 $this->setUser($r[0]['user']);
                 $this->setIdEmpleado($r[0]['id_empleado']);
