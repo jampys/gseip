@@ -316,6 +316,39 @@ switch($operation){
         break;
 
 
+    case 'toNewPasswordform':
+        //session_destroy();
+        //$view->content="view/login.php";
+        //header("Location: index.php");
+        //para evitar los tipicos errores del header location =>lo hago con javascript
+        $view->contentTemplate="view/login/newPasswordForm.php";
+        break;
+
+
+    case 'saveNewPassword':
+        $puesto = new Usuario($_SESSION["id_user_recup"]);
+        $puesto->setPassword($_POST['password']);
+
+
+        $rta = $puesto->updatePassword();
+        print_r(json_encode($rta));
+        //print_r(json_encode(sQuery::dpLastInsertId()));
+        if($rta >= 1){ //reseteo exitoso
+            //$_SESSION["id_user_recup"] = $view->u->getIdUser(); //$id;
+
+            $e['msg']= "Codigo ingresado ok";
+            $e['id'] = $rta;
+
+        }
+        else { //Usuario o contraseña inválidos
+            $e = array();
+            $e['msg']= "Reseteo dio error";
+            $e['id'] = $rta;
+        }
+        exit;
+        break;
+
+
 
 
 

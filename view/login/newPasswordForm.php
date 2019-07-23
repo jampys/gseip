@@ -37,8 +37,8 @@
                 //alert('boton restaurar');
                 var params={};
                 params.action='login';
-                params.operation='check-code';
-                params.code=$('#code').val();
+                params.operation='saveNewPassword';
+                params.password=$('#password').val();
                 //params.contraseña=$('#contraseña').val();
 
                 $.ajax({
@@ -53,8 +53,8 @@
                             $("#myElem").html(data['msg']).removeClass('alert alert-danger').addClass('alert alert-success').show();
                             setTimeout(function(){ $("#myElem").hide();
 
-                                window.location.href = "index.php?action=login&operation=toNewPasswordform";
-                                //alert('todo ok, a la ventana donde ingresa nueva contraseña');
+                                //window.location.href = "index.php?action=login&operation=send-code";
+                                alert('todo ok, a la ventana donde ingresa nueva contraseña');
                             }, 1500);
                         }
                         else {
@@ -120,8 +120,13 @@
 <form name ="code_form" id="login_form" method="POST" action="index.php">
 
     <div class="form-group">
-        <label class="control-label" for="code">Código de recuperación</label>
-        <input class="form-control" type="text" name="code" id="code" placeholder="Código" >
+        <label class="control-label" for="code">Nueva contraseña</label>
+        <input class="form-control" type="text" name="password" id="password" placeholder="Nueva contraseña" >
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="code">Repita nueva contraseña</label>
+        <input class="form-control" type="text" name="password1" id="password1" placeholder="Repita nueva contraseña" >
     </div>
 
     <div class="form-group">

@@ -132,7 +132,7 @@ class Usuario{
     function checkCode($usuario, $code){
 
         $stmt=new sQuery();
-        $query="select * from sec_users where user = :usuario and reset_code = :reset_code";
+        $query="select * from sec_users where id_user = :usuario and reset_code = :reset_code";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':usuario', $usuario);
         $stmt->dpBind(':reset_code', $code);
@@ -143,6 +143,20 @@ class Usuario{
         if ($stmt->dpGetAffect()>=1) return 1; //en teoria devuelve la cantidad de filas afectadas. OJO controlar esta funcion
         else return -1;
 
+    }
+
+
+    public function updatePassword(){
+
+        $stmt=new sQuery();
+        $query="update sec_users set
+                password= md5(:password)
+                where id_user = :id_user";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_user', $this->getIdUser());
+        $stmt->dpBind(':password', $this->getPassword());
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
     }
 
 
