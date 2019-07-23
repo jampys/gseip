@@ -184,6 +184,9 @@ switch($operation){
                 //$obj = new PrivilegedUser($_SESSION["id_user"]);
                 //$_SESSION['loggedUser'] = serialize($obj);
 
+                //se genera codigo
+                $code = substr( md5(microtime()), 1, 4); //genera codigo aleatorio de 4 digitos
+
 
 
                 // se envia codigo por email
