@@ -204,7 +204,7 @@ switch($operation){
 
                     $mail->AddAddress($target); // Esta es la dirección a donde enviamos
                     $mail->IsHTML(true); // El correo se envía como HTML
-                    $mail->AddEmbeddedImage('resources/img/seip140x40.png', 'logo_2u');
+                    //$mail->AddEmbeddedImage('resources/img/seip140x40.png', 'logo_2u');
                     $mail->Subject = "Titulo"; // Este es el titulo del email.
                     //$body = "Hola mundo. Esta es la primer línea<br />";
                     //$body .= "Acá continuo el <strong>mensaje</strong>";
