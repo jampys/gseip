@@ -30,9 +30,9 @@
                     dataType:"json",//xml,html,script,json
                     success: function(data, textStatus, jqXHR) {
 
-                        if(data['id'] >= 1){ //Accede al sistema
+                        if(data['id'] >= 1){ //Envió codigo por email con exito
                             //$("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Enviando código de recuperación...').addClass('alert alert-info').show();
-                            $("#myElem").html(data['msg']).addClass('alert alert-success').show();
+                            $("#myElem").html(data['msg']).removeClass('alert alert-info').addClass('alert alert-success').show();
                             setTimeout(function(){ $("#myElem").hide();
                                                    //window.location.href = "../../index.php";
                                                     window.location.href = "index.php?action=login&operation=send-code";
