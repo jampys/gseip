@@ -1,6 +1,14 @@
 <?php
 require_once("model/usuariosModel.php");
 
+require("resources/libraries/phpmailer/PHPMailer.php");
+require("resources/libraries/phpmailer/SMTP.php");
+require("resources/libraries/phpmailer/Exception.php");
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
@@ -167,7 +175,7 @@ switch($operation){
 
             $id = $view->u->checkUserExists($_POST['usuario']);
 
-            if($id >= 1){
+            if($id >= 1){ //usuario existe
                 //$_SESSION["id_user"] = $view->u->getIdUser(); //$id;
                 //$_SESSION["user"] = $view->u->getUser(); //$_POST['usuario'];
                 //$_SESSION["id_empleado"] = $view->u->getIdEmpleado();
@@ -189,7 +197,7 @@ switch($operation){
                     $target = "dario.picon@innsa.com";
 
 
-                    require("resources/libraries/phpmailer/class.phpmailer.php");
+                    //require("resources/libraries/phpmailer/class.phpmailer.php");
                     $mail = new PHPMailer();
                     $mail->CharSet = "UTF-8";
                     $mail->IsSMTP();
@@ -197,46 +205,54 @@ switch($operation){
                     $mail->Host = "seip.com.ar"; // SMTP a utilizar. Por ej. smtp.elserver.com
                     $mail->Username = "gestion@seip.com.ar"; // Correo completo a utilizar
                     $mail->Password = "Ada21_Dos"; // Contraseña
-                    $mail->Port = 25; // Puerto a utilizar
+                    $mail->Port = 26; // Puerto a utilizar
 
                     $mail->From = "gestion@seip.com.ar"; // Desde donde enviamos (Para mostrar)
-                    $mail->FromName = "Gestion de RRHH SEIP";
+                    $mail->FromName = "Gestión de RRHH SEIP";
 
                     $mail->AddAddress($target); // Esta es la dirección a donde enviamos
                     $mail->IsHTML(true); // El correo se envía como HTML
                     $mail->AddEmbeddedImage('resources/img/seip140x40.png', 'logo_2u');
-                    $mail->Subject = "Titulo"; // Este es el titulo del email.
+                    $mail->Subject = "Restablecimiento de contraseña"; // Este es el titulo del email.
+                    $mail->SMTPAutoTLS = false;
                     //$body = "Hola mundo. Esta es la primer línea<br />";
                     //$body .= "Acá continuo el <strong>mensaje</strong>";
                     $mail->Body = $body; // Mensaje a enviar
                     $exito = $mail->Send(); // Envía el correo.
 
-//También podríamos agregar simples verificaciones para saber si se envió:
+
+                    $e = array();
+
+                    //$e['msg'] = $rta;
+
+
                     if($exito){
-                        $rta= "El correo fue enviado correctamente.";
+                        $e['msg'] = "El correo fue enviado correctamente.";
+                        $e['id'] = $id;
                     }else{
-                        $rta = "Hubo un inconveniente. Contacta a un administrador.";
+                        $e['msg'] = "Hubo un inconveniente. Contacta a un administrador.";
+                        $e['id'] = -2;
                     }
 
 
 
                 } catch (PhpmailerException $e) {
                     //echo $e->errorMessage(); //Pretty error messages from PHPMailer
-                    $rta = "entro catch de php mailer";
+                    $e['msg'] = "entro catch de php mailer";
+                    $e['id'] = -4;
                 } catch(Exception $e){
                     //echo $e->getMessage(); //habilitar para ver el mensaje de error
                     //sQuery::dpRollback();
                     //print_r(json_encode(-1));
-                    $rta = "entro catch general";
+                    $e['msg'] = "entro catch general";
+                    $e['id'] = -4;
                 }
 
 
                 //se inserta el codigo enviado en el usuario
 
 
-                $e = array();
-                $e['id'] = $id;
-                $e['msg'] = $rta;
+
             }
             else if($id == 0){ //usuario inhabilitado
                 $e = array();
