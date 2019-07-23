@@ -14,7 +14,7 @@
 <body>
 
     <div style="background-color: #000000">
-        <img style="padding-left: 10px" src='http://innsa.com/images/logo.gif' alt='INNSA Comunicaciones'>
+        <img style="padding-left: 10px" src="cid:logo_2u">
     </div>
 
     <div id="contenido" style="background-color: lavender; padding: 10px">

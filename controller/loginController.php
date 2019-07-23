@@ -188,8 +188,10 @@ switch($operation){
 
                     $target = "dario.picon@innsa.com";
 
+
                     require("resources/libraries/phpmailer/class.phpmailer.php");
                     $mail = new PHPMailer();
+                    $mail->CharSet = "UTF-8";
                     $mail->IsSMTP();
                     $mail->SMTPAuth = true;
                     $mail->Host = "seip.com.ar"; // SMTP a utilizar. Por ej. smtp.elserver.com
@@ -202,6 +204,7 @@ switch($operation){
 
                     $mail->AddAddress($target); // Esta es la dirección a donde enviamos
                     $mail->IsHTML(true); // El correo se envía como HTML
+                    $mail->AddEmbeddedImage('resources/img/seip140x40.png', 'logo_2u');
                     $mail->Subject = "Titulo"; // Este es el titulo del email.
                     //$body = "Hola mundo. Esta es la primer línea<br />";
                     //$body .= "Acá continuo el <strong>mensaje</strong>";
@@ -217,11 +220,14 @@ switch($operation){
 
 
 
-                }catch(Exception $e){
+                } catch (phpmailerException $e) {
+                    //echo $e->errorMessage(); //Pretty error messages from PHPMailer
+                    $rta = "entro catch de php mailer";
+                } catch(Exception $e){
                     //echo $e->getMessage(); //habilitar para ver el mensaje de error
                     //sQuery::dpRollback();
                     //print_r(json_encode(-1));
-                    $rta = "entro en el catcha";
+                    $rta = "entro catch general";
                 }
 
 
