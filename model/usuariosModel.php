@@ -42,6 +42,28 @@ class Usuario{
     {  $this->profile_picture=$val;}
 
 
+    function __construct($nro=0){ //constructor ok
+
+        if ($nro!=0){
+
+            $stmt=new sQuery();
+            $query="select * from sec_users where id_user = :nro";
+            $stmt->dpPrepare($query);
+            $stmt->dpBind(':nro', $nro);
+            $stmt->dpExecute();
+            $rows = $stmt ->dpFetchAll();
+
+            $this->setIdUser($rows[0]['id_user']);
+            $this->setUser($rows[0]['user']);
+            $this->setPassword($rows[0]['password']);
+            $this->setIdEmpleado($rows[0]['id_empleado']);
+            //$this->setIdPuestoSuperior($rows[0]['id_puesto_superior']);
+            //$this->setIdArea($rows[0]['id_area']);
+            //$this->setIdNivelCompetencia($rows[0]['id_nivel_competencia']);
+        }
+    }
+
+
     function isAValidUser($usuario,$password){
 
         $stmt=new sQuery();

@@ -332,7 +332,7 @@ switch($operation){
         $e = array();
         if($rta >= 1){ //reseteo exitoso
             //$_SESSION["id_user_recup"] = $view->u->getIdUser(); //$id;
-            $e['msg']= "Codigo ingresado ok";
+            $e['msg']= "Reseteo exitoso ok";
             $e['id'] = $rta;
         }
         else { //Usuario o contraseña inválidos
