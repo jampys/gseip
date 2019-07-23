@@ -14,7 +14,7 @@
 
 
 
-        $('#login_form').validate({
+        /*$('#login_form').validate({
             rules: {
                 usuario: {required: true},
                 contraseña: {required: true}
@@ -28,7 +28,17 @@
                 contraseña: {trigger:'focus'}
 
             }
+        });*/
+
+
+
+        $(document).on('click', '#regresar',function(){
+            //alert('regresar');
+            window.location.href = "index.php?action=login";
+            return false;
         });
+
+
 
 
 
@@ -62,11 +72,17 @@
 
     <div class="form-group">
         <label class="control-label" for="usuario">Código de recuperación</label>
-        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Correo" >
+        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Código" >
     </div>
 
     <div class="form-group">
         <button class="btn btn-primary btn-block" id="enviar" name="enviar" type="submit">Enviar</button>
+    </div>
+
+    <div class="form-group" style="text-align: center">
+        <button id="regresar" name="regresar" type="button" class="btn btn-link">
+            <small>Regresar al área de ingreso</small>
+        </button>
     </div>
 
 </form>
