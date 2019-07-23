@@ -31,23 +31,24 @@
                     success: function(data, textStatus, jqXHR) {
 
                         if(data['id'] >= 1){ //Accede al sistema
-                            $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Enviando código de recuperación...').addClass('alert alert-info').show();
+                            //$("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Enviando código de recuperación...').addClass('alert alert-info').show();
+                            $("#myElem").html(data['msg']).addClass('alert alert-success').show();
                             setTimeout(function(){ $("#myElem").hide();
-                                //window.location.href = "../../index.php";
-                                window.location.href = "index.php?action=login&operation=send-code";
-                            }, 1500);
+                                                   //window.location.href = "../../index.php";
+                                                    window.location.href = "index.php?action=login&operation=send-code";
+                                                 }, 1500);
                         }
                         else {
                             $("#myElem").html(data['msg']).addClass('alert alert-danger').show();
                         }
 
                     },
-                    /*error: function(data, textStatus, errorThrown) {
-                     //alert(data.responseText);
-                     $("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
+                    error: function(data, textStatus, errorThrown) {
+                     alert(data.responseText);
+                        /*$("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
                      setTimeout(function() { $("#myElem").hide();
-                     }, 2000);
-                     },*/
+                     }, 2000);*/
+                     },
                     beforeSend: function() {
                         // setting a timeout
                         $("#myElem").html('Enviando código de recuperación...').removeClass('alert alert-danger').addClass('alert alert-info').show();

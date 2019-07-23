@@ -180,20 +180,21 @@ switch($operation){
 
                 // se envia codigo por email
                 try{
+                    $target = "dario.picon@innsa.com";
 
-                    require("../resources/libraries/phpmailer/class.phpmailer.php");
+                    require("resources/libraries/phpmailer/class.phpmailer.php");
                     $mail = new PHPMailer();
                     $mail->IsSMTP();
                     $mail->SMTPAuth = true;
-                    $mail->Host = "mail.innsa.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+                    $mail->Host = "seip.com.ar"; // SMTP a utilizar. Por ej. smtp.elserver.com
                     $mail->Username = "gestion@seip.com.ar"; // Correo completo a utilizar
                     $mail->Password = "Ada21_Dos"; // Contraseña
                     $mail->Port = 25; // Puerto a utilizar
 
-                    $mail->From = "info@elserver.com"; // Desde donde enviamos (Para mostrar)
+                    $mail->From = "gestion@seip.com.ar"; // Desde donde enviamos (Para mostrar)
                     $mail->FromName = "Nombre";
 
-                    $mail->AddAddress("correo"); // Esta es la dirección a donde enviamos
+                    $mail->AddAddress($target); // Esta es la dirección a donde enviamos
                     $mail->IsHTML(true); // El correo se envía como HTML
                     $mail->Subject = "Titulo"; // Este es el titulo del email.
                     $body = "Hola mundo. Esta es la primer línea<br />";
