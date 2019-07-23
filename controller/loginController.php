@@ -180,6 +180,12 @@ switch($operation){
 
                 // se envia codigo por email
                 try{
+
+                    ob_start();
+                    include ('email/password.php');
+                    $body= ob_get_contents();
+                    ob_get_clean();
+
                     $target = "dario.picon@innsa.com";
 
                     require("resources/libraries/phpmailer/class.phpmailer.php");
@@ -197,8 +203,8 @@ switch($operation){
                     $mail->AddAddress($target); // Esta es la dirección a donde enviamos
                     $mail->IsHTML(true); // El correo se envía como HTML
                     $mail->Subject = "Titulo"; // Este es el titulo del email.
-                    $body = "Hola mundo. Esta es la primer línea<br />";
-                    $body .= "Acá continuo el <strong>mensaje</strong>";
+                    //$body = "Hola mundo. Esta es la primer línea<br />";
+                    //$body .= "Acá continuo el <strong>mensaje</strong>";
                     $mail->Body = $body; // Mensaje a enviar
                     $exito = $mail->Send(); // Envía el correo.
 
