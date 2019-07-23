@@ -200,7 +200,7 @@ switch($operation){
                     $mail->Port = 25; // Puerto a utilizar
 
                     $mail->From = "gestion@seip.com.ar"; // Desde donde enviamos (Para mostrar)
-                    $mail->FromName = "Nombre";
+                    $mail->FromName = "Gestion de RRHH SEIP";
 
                     $mail->AddAddress($target); // Esta es la dirección a donde enviamos
                     $mail->IsHTML(true); // El correo se envía como HTML

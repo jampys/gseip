@@ -13,20 +13,19 @@
 </head>
 <body>
 
-    <div style="background-color: rgb(231, 231, 231); padding-left: 50px">
-        <img style="padding: 10px" src="cid:logo_2u">
+    <div style="background-color: rgb(231, 231, 231)">
+        <img style="padding: 10px; width: 60px; height: 20px" src="cid:logo_2u">
     </div>
 
-    <div id="contenido" style="padding: 10px">
+    <div id="contenido" style="padding: 10px; font-family: 'Roboto', sans-serif">
 
-        <p style='font-weight: bold'><?php //echo $emp[0]['APELLIDO'] ?> <?php //echo $emp[0]['NOMBRE'] ?>:</p>
-        <p>Por la presente le informamos su usuario y contraseña de acceso al sistema de capacitación de Innovisión SA.</p>
+        <p>Hola <?php //echo $emp[0]['APELLIDO'] ?> <?php //echo $emp[0]['NOMBRE'] ?>,</p>
+        <p>Hemos recibido una solicitud para restablecer su contraseña.</p>
 
-        <p><span style="font-weight: bold">Usuario: </span><?php //echo $body_usuario ?></p>
-        <p><span style="font-weight: bold">Contraseña: </span><?php //echo $body_pass ?></p>
-        <p>El sistema al acceder por primera vez le exigira cambiar la contraseña para su seguridad.</p>
+        <p>Codigo de verificación: </p>
+        <p>Si no ha enviado esta solicitud puede ignorar este mensaje.</p>
         <br/>
-        <p>Mensaje enviado desde <a href="<?php //echo $GLOBALS['ini']['app_url']; ?>"><?php //echo $GLOBALS['ini']['app_name']; ?></a></p>
+        <p>Gracias<a href="<?php //echo $GLOBALS['ini']['app_url']; ?>"><?php //echo $GLOBALS['ini']['app_name']; ?></a></p>
 
     </div>
 
