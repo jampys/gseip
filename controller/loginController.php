@@ -327,7 +327,7 @@ switch($operation){
 
 
         $rta = $puesto->updatePassword();
-        print_r(json_encode($rta));
+        //print_r(json_encode($rta));
         //print_r(json_encode(sQuery::dpLastInsertId()));
         $e = array();
         if($rta >= 1){ //reseteo exitoso
@@ -339,6 +339,8 @@ switch($operation){
             $e['msg']= "Reseteo dio error";
             $e['id'] = $rta;
         }
+
+        print_r(json_encode($e));
         exit;
         break;
 
