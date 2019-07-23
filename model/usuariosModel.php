@@ -113,4 +113,19 @@ class Usuario{
 
 
 
+    public function updateCode($code){
+
+        $stmt=new sQuery();
+        $query="update sec_users set
+                reset_code = :reset_code
+                where id_user = :id_user";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_user', $this->getIdUser());
+        $stmt->dpBind(':reset_code', $code);
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+    }
+
+
+
 }
