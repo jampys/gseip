@@ -297,14 +297,10 @@ switch($operation){
 
             if($id >= 1){ //usuario existe
                 //$_SESSION["id_user_recup"] = $view->u->getIdUser(); //$id;
-
                 $e['msg']= "Codigo ingresado ok";
                 $e['id'] = $id;
-
-
             }
             else if($id == -1){ //Usuario o contraseña inválidos
-                $e = array();
                 $e['msg']= "Codigo ingresado invalido";
                 $e['id'] = $id;
             }
@@ -333,15 +329,13 @@ switch($operation){
         $rta = $puesto->updatePassword();
         print_r(json_encode($rta));
         //print_r(json_encode(sQuery::dpLastInsertId()));
+        $e = array();
         if($rta >= 1){ //reseteo exitoso
             //$_SESSION["id_user_recup"] = $view->u->getIdUser(); //$id;
-
             $e['msg']= "Codigo ingresado ok";
             $e['id'] = $rta;
-
         }
         else { //Usuario o contraseña inválidos
-            $e = array();
             $e['msg']= "Reseteo dio error";
             $e['id'] = $rta;
         }
