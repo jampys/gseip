@@ -31,6 +31,54 @@
         });*/
 
 
+        $(document).on('click', '#enviar',function(){
+
+            //if ($("#code_form").valid()){
+                //alert('boton restaurar');
+                var params={};
+                params.action='login';
+                params.operation='check-code';
+                params.code=$('#code').val();
+                //params.contraseña=$('#contraseña').val();
+
+                $.ajax({
+                    url:"index.php",
+                    type:"post",
+                    data: params,
+                    dataType:"json",//xml,html,script,json
+                    success: function(data, textStatus, jqXHR) {
+
+                        if(data['id'] >= 1){ //Envió codigo por email con exito
+                            //$("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Enviando código de recuperación...').addClass('alert alert-info').show();
+                            $("#myElem").html(data['msg']).removeClass('alert alert-info').addClass('alert alert-success').show();
+                            setTimeout(function(){ $("#myElem").hide();
+                                //window.location.href = "../../index.php";
+                                window.location.href = "index.php?action=login&operation=send-code";
+                            }, 1500);
+                        }
+                        else {
+                            $("#myElem").html(data['msg']).addClass('alert alert-danger').show();
+                        }
+
+                    },
+                    error: function(data, textStatus, errorThrown) {
+                        alert(data.responseText);
+                        /*$("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
+                         setTimeout(function() { $("#myElem").hide();
+                         }, 2000);*/
+                    },
+                    beforeSend: function() {
+                        // setting a timeout
+                        $("#myElem").html('Enviando código de recuperación...').removeClass('alert alert-danger').addClass('alert alert-info').show();
+                    }
+
+                });
+
+            //}
+            return false;
+        });
+
+
 
         $(document).on('click', '#regresar',function(){
             //alert('regresar');
@@ -68,11 +116,11 @@
 
 
 
-<form name ="login_form" id="login_form" method="POST" action="index.php">
+<form name ="code_form" id="login_form" method="POST" action="index.php">
 
     <div class="form-group">
-        <label class="control-label" for="usuario">Código de recuperación</label>
-        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Código" >
+        <label class="control-label" for="code">Código de recuperación</label>
+        <input class="form-control" type="text" name="code" id="code" placeholder="Código" >
     </div>
 
     <div class="form-group">

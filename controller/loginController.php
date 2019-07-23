@@ -284,6 +284,41 @@ switch($operation){
 
 
 
+
+
+    case 'check-code':
+
+        if (isset($_POST['code']) ){
+
+            $id = $view->u->checkCode($_SESSION["id_user_recup"], $_POST['code']);
+
+
+            $e = array();
+
+            if($id >= 1){ //usuario existe
+                //$_SESSION["id_user_recup"] = $view->u->getIdUser(); //$id;
+
+                $e['msg']= "Codigo ingresado ok";
+                $e['id'] = $id;
+
+
+            }
+            else if($id == -1){ //Usuario o contraseña inválidos
+                $e = array();
+                $e['msg']= "Codigo ingresado invalido";
+                $e['id'] = $id;
+            }
+
+        }
+
+        print_r(json_encode($e));
+        exit;
+        break;
+
+
+
+
+
     default:
         //$view->e=new Empleado();
         //$view->companias=$view->e->getCompanias();

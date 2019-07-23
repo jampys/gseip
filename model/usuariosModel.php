@@ -128,4 +128,24 @@ class Usuario{
 
 
 
+
+    function checkCode($usuario, $code){
+
+        $stmt=new sQuery();
+        $query="select * from sec_users where user = :usuario and reset_code = :reset_code";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':usuario', $usuario);
+        $stmt->dpBind(':reset_code', $code);
+        $stmt->dpExecute();
+        //return $stmt->dpGetAffect();
+        //$r=$stmt->dpFetchAll();
+
+        if ($stmt->dpGetAffect()>=1) return 1; //en teoria devuelve la cantidad de filas afectadas. OJO controlar esta funcion
+        else return -1;
+
+    }
+
+
+
+
 }
