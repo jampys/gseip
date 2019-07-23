@@ -176,7 +176,7 @@ switch($operation){
             $id = $view->u->checkUserExists($_POST['usuario']);
 
             if($id >= 1){ //usuario existe
-                //$_SESSION["id_user"] = $view->u->getIdUser(); //$id;
+                $_SESSION["id_user_recup"] = $view->u->getIdUser(); //$id;
                 //$_SESSION["user"] = $view->u->getUser(); //$_POST['usuario'];
                 //$_SESSION["id_empleado"] = $view->u->getIdEmpleado();
                 //$_SESSION["profile_picture"] = $view->u->getProfilePicture();
@@ -253,7 +253,7 @@ switch($operation){
 
 
                 //se inserta el codigo enviado en el usuario
-
+                $view->u->updateCode($code);
 
 
             }
