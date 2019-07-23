@@ -4,21 +4,20 @@
 
     Tener cuidado que los email client no soportan CSS => hay que escribirlos inline
     http://stackoverflow.com/questions/12751147/how-to-send-an-email-that-has-html-and-css-in-php   */
-ini_set('magic_quotes_runtime', 0)
 
 ?>
 
-<html xmlns="http://www.w3.org/1999/html">
+<html>
 <head>
 
 </head>
 <body>
 
-    <div style="background-color: #000000">
-        <img style="padding-left: 10px" src="cid:logo_2u">
+    <div style="background-color: rgb(231, 231, 231); padding-left: 50px">
+        <img style="padding: 10px" src="cid:logo_2u">
     </div>
 
-    <div id="contenido" style="background-color: lavender; padding: 10px">
+    <div id="contenido" style="padding: 10px">
 
         <p style='font-weight: bold'><?php //echo $emp[0]['APELLIDO'] ?> <?php //echo $emp[0]['NOMBRE'] ?>:</p>
         <p>Por la presente le informamos su usuario y contraseña de acceso al sistema de capacitación de Innovisión SA.</p>
