@@ -220,7 +220,7 @@ switch($operation){
 
 
 
-                } catch (phpmailerException $e) {
+                } catch (PhpmailerException $e) {
                     //echo $e->errorMessage(); //Pretty error messages from PHPMailer
                     $rta = "entro catch de php mailer";
                 } catch(Exception $e){
