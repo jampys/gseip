@@ -120,12 +120,12 @@
 
     <div class="form-group">
         <label class="control-label" for="code">Nueva contraseña</label>
-        <input class="form-control" type="text" name="password" id="password" placeholder="Nueva contraseña" >
+        <input class="form-control" type="password" name="password" id="password" placeholder="Nueva contraseña" >
     </div>
 
     <div class="form-group">
         <label class="control-label" for="code">Repita nueva contraseña</label>
-        <input class="form-control" type="text" name="password1" id="password1" placeholder="Nueva contraseña" >
+        <input class="form-control" type="password" name="password1" id="password1" placeholder="Nueva contraseña" >
     </div>
 
     <div class="form-group">

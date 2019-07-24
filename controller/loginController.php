@@ -280,8 +280,8 @@ switch($operation){
 
         if (isset($_POST['code']) ){
 
-            $us = new Usuario($_SESSION["id_user_recup"]);
-            $id = $view->us->checkCode($_POST['code']);
+            $view->u = new Usuario($_SESSION["id_user_recup"]);
+            $id = $view->u->checkCode($_POST['code']);
             $e = array();
 
             if($id >= 1){ //usuario existe
@@ -310,11 +310,11 @@ switch($operation){
 
 
     case 'saveNewPassword':
-        $us = new Usuario($_SESSION["id_user_recup"]);
-        $us->setPassword($_POST['password']);
+        $view->u = new Usuario($_SESSION["id_user_recup"]);
+        $view->u->setPassword($_POST['password']);
 
 
-        $rta = $us->updatePassword();
+        $rta = $view->u->updatePassword();
         //print_r(json_encode($rta));
         $e = array();
         if($rta >= 1){ //reseteo exitoso
