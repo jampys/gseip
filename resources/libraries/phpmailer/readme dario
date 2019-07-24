@@ -1,4 +1,0 @@
-se realiza una modificacion en el archivo class.phpmailer.php para corregir el error que arroja:
-function set_magic_quotes_runtime() deprecated
-
-https://www.macadia.es/blog/solucion-al-error-deprecated-function-setmagicquotesruntime-con-phpmailer/123
