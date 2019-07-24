@@ -18,24 +18,26 @@
             rules: {
                 password: {
                     required: true,
-                    maxlength: 4
-                    }
-            },
+                    maxlength: 10,
+                    minlength: 3
+                    },
                 password_again: {
                     equalTo: "#password"
+                }
             },
             messages:{
                 password: {
                     required: "Ingrese una contraseña",
-                    maxLength: "La contraseña no debe superar los 4 caracteres"
+                    maxlength: "La contraseña no debe superar los 10 caracteres",
+                    minlength: "La contraseña debe superar los 3 caracteres"
                 },
-                password_again: "La contraseña ingresada no coincide"
-            },
-            tooltip_options: {
+                password_again: "La contraseña repetida debe coincidir"
+            }
+            /*tooltip_options: {
                 password: {trigger:'focus'},
                 password_again: {trigger:'focus'}
 
-            }
+            }*/
         });
 
 
