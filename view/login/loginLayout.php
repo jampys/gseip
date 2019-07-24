@@ -62,7 +62,7 @@
 
             $(document).on('click', '#recuperar',function(){
                 //alert('recuperar');
-                window.location.href = "index.php?action=login&operation=recuperar-contraseña";
+                window.location.href = "index.php?action=login&operation=toRecuperarForm";
                 return false;
             });
 

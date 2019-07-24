@@ -157,12 +157,12 @@ switch($operation){
         echo "<script>window.location='index.php';</script>";
         break;
 
-    case 'recuperar-contraseña':
+    case 'toRecuperarForm':
         //session_destroy();
         //$view->content="view/login.php";
         //header("Location: index.php");
         //para evitar los tipicos errores del header location =>lo hago con javascript
-        $view->contentTemplate="view/login/recuperarForm.php";
+        $view->contentTemplate="view/login/1recuperarForm.php";
         break;
 
 
@@ -220,7 +220,7 @@ switch($operation){
 
 
                     if($exito){
-                        $e['msg'] = "Código de recuperación enviado correctamente. Revise su casilla de email.";
+                        $e['msg'] = "Código de recuperación enviado. Revise su casilla de correo.";
                         $e['id'] = $id;
                     }else{
                         $e['msg'] = "ERR -2: Error al enviar el código de recuperación.";
@@ -264,12 +264,12 @@ switch($operation){
         exit;
         break;
 
-    case 'send-code':
+    case 'toCodeForm': //send-code
         //session_destroy();
         //$view->content="view/login.php";
         //header("Location: index.php");
         //para evitar los tipicos errores del header location =>lo hago con javascript
-        $view->contentTemplate="view/login/codeForm.php";
+        $view->contentTemplate="view/login/2codeForm.php";
         break;
 
 
@@ -305,7 +305,7 @@ switch($operation){
         //$view->content="view/login.php";
         //header("Location: index.php");
         //para evitar los tipicos errores del header location =>lo hago con javascript
-        $view->contentTemplate="view/login/newPasswordForm.php";
+        $view->contentTemplate="view/login/3newPasswordForm.php";
         break;
 
 
@@ -318,6 +318,7 @@ switch($operation){
         //print_r(json_encode($rta));
         $e = array();
         if($rta >= 1){ //reseteo exitoso
+            session_destroy(); //elimina los datos de session en $_SESSION["id_user_recup"]
             $e['msg']= "Se ha restablecido la contraseña de manera correcta.";
             $e['id'] = $rta;
         }

@@ -35,7 +35,7 @@
                             $("#myElem").html(data['msg']).removeClass('alert alert-info').addClass('alert alert-success').show();
                             setTimeout(function(){ $("#myElem").hide();
                                                    //window.location.href = "../../index.php";
-                                                    window.location.href = "index.php?action=login&operation=send-code";
+                                                    window.location.href = "index.php?action=login&operation=toCodeForm";
                                                  }, 3000);
                         }
                         else {
@@ -69,7 +69,7 @@
             },
             messages:{
                 usuario: {  required : "Ingrese su correo",
-                            email: "Ingrese un email válido"}
+                            email: "Ingrese un correo válido"}
             },
             tooltip_options: {
                 usuario: {trigger:'focus'}

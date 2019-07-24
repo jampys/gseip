@@ -19,7 +19,7 @@
                 password: {
                     required: true,
                     maxlength: 10,
-                    minlength: 3
+                    minlength: 4
                     },
                 password_again: {
                     equalTo: "#password"
@@ -29,7 +29,7 @@
                 password: {
                     required: "Ingrese una contraseña",
                     maxlength: "La contraseña no debe superar los 10 caracteres",
-                    minlength: "La contraseña debe superar los 3 caracteres"
+                    minlength: "La contraseña debe superar los 4 caracteres"
                 },
                 password_again: "La contraseña repetida debe coincidir"
             }
@@ -127,6 +127,16 @@
 
 
 <form name ="new_password_form" id="new_password_form" method="POST" action="index.php">
+
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong><i class="fas fa-exclamation-triangle"></i>&nbsp;La contraseña debe contener</strong>
+        <p>mínimo 4 caracteres</p>
+        <p>máximo 10 caracteres</p>
+        <!--<p>letras mayúsculas y minúsculas</p>
+        <p>Al menos un número</p>-->
+    </div>
+
 
     <div class="form-group">
         <label class="control-label" for="code">Nueva contraseña</label>
