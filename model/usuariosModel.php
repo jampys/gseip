@@ -57,9 +57,6 @@ class Usuario{
             $this->setUser($rows[0]['user']);
             $this->setPassword($rows[0]['password']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
-            //$this->setIdPuestoSuperior($rows[0]['id_puesto_superior']);
-            //$this->setIdArea($rows[0]['id_area']);
-            //$this->setIdNivelCompetencia($rows[0]['id_nivel_competencia']);
         }
     }
 
@@ -172,7 +169,8 @@ class Usuario{
 
         $stmt=new sQuery();
         $query="update sec_users set
-                password= md5(:password)
+                password= md5(:password),
+                last_reset_date = SYSDATE()
                 where id_user = :id_user";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_user', $this->getIdUser());

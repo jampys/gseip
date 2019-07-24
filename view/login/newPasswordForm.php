@@ -51,11 +51,9 @@
                         if(data['id'] >= 1){ //Envió codigo por email con exito
                             //$("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Enviando código de recuperación...').addClass('alert alert-info').show();
                             $("#myElem").html(data['msg']).removeClass('alert alert-danger').addClass('alert alert-success').show();
-                            setTimeout(function(){ $("#myElem").hide();
-
-                                //window.location.href = "index.php?action=login&operation=send-code";
-                                alert('todo ok, a la ventana donde ingresa nueva contraseña');
-                            }, 1500);
+                            setTimeout(function(){  $("#myElem").hide();
+                                                    window.location.href = "index.php?action=login";
+                                                 }, 1500);
                         }
                         else {
                             $("#myElem").html(data['msg']).addClass('alert alert-danger').show();
