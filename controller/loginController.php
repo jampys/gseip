@@ -1,13 +1,13 @@
 <?php
 require_once("model/usuariosModel.php");
 
-require("resources/libraries/phpmailer/PHPMailer.php");
-require("resources/libraries/phpmailer/SMTP.php");
-require("resources/libraries/phpmailer/Exception.php");
+//require("resources/libraries/phpmailer/PHPMailer.php");
+//require("resources/libraries/phpmailer/SMTP.php");
+//require("resources/libraries/phpmailer/Exception.php");
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+//use PHPMailer\PHPMailer\PHPMailer;
+//use PHPMailer\PHPMailer\SMTP;
+//use PHPMailer\PHPMailer\Exception;
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -175,7 +175,7 @@ switch($operation){
 
             if($id >= 1){ //usuario existe
                 $_SESSION["id_user_recup"] = $view->u->getIdUser(); //se guarda id_user en variable de sesion
-
+                $_SESSION["user_recup"] = $view->u->getUser(); //guarda el mail
                 //se genera codigo aleatorio
                 $code = substr( md5(microtime()), 1, 6); //genera codigo aleatorio de 6 digitos
 
@@ -187,11 +187,18 @@ switch($operation){
                     $body= ob_get_contents();
                     ob_get_clean();
 
-                    $target = "dario.picon@innsa.com";
+                    $target = $_SESSION["user_recup"];
 
+                    if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
+                        require("resources/libraries/phpmailer/PHPMailer.php");
+                        require("resources/libraries/phpmailer/SMTP.php");
+                        require("resources/libraries/phpmailer/Exception.php");
+                        $mail = new \PHPMailer\PHPMailer\PHPMailer();
+                    }else{
+                        require("resources/libraries/phpmailer/class.phpmailer.php");
+                        $mail = new PHPMailer();
+                    }
 
-                    //require("resources/libraries/phpmailer/class.phpmailer.php");
-                    $mail = new PHPMailer();
                     $mail->CharSet = "UTF-8";
                     $mail->IsSMTP();
                     $mail->SMTPAuth = true;

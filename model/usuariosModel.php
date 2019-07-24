@@ -116,7 +116,7 @@ class Usuario{
             //$datos=array();
             if($r[0]['enabled']==1){
                 $this->setIdUser($r[0]['id_user']);
-                //$this->setUser($r[0]['user']);
+                $this->setUser($r[0]['user']);
                 //$this->setIdEmpleado($r[0]['id_empleado']);
                 //$this->setProfilePicture($r[0]['profile_picture']);
 
