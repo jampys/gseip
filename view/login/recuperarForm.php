@@ -106,8 +106,9 @@
                         <img id="brand-image" src="resources/img/seip140x40.png">
                     </a>
                 </div>
-
         </nav>
+        <h4>Recuperar contraseña (Paso 1/3)</h4>
+        <hr class="hr-primary"/>
 
 
 
@@ -115,7 +116,7 @@
 <form name ="recuperar_form" id="recuperar_form" method="POST" action="index.php">
 
     <div class="form-group">
-        <label class="control-label" for="usuario">Recuperar contraseña</label>
+        <label class="control-label" for="usuario">Correo</label>
         <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Correo" >
     </div>
 

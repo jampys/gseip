@@ -109,8 +109,9 @@
                         <img id="brand-image" src="resources/img/seip140x40.png">
                     </a>
                 </div>
-
         </nav>
+        <h4>Recuperar contraseña (Paso 3/3)</h4>
+        <hr class="hr-primary"/>
 
 
 
@@ -124,7 +125,7 @@
 
     <div class="form-group">
         <label class="control-label" for="code">Repita nueva contraseña</label>
-        <input class="form-control" type="text" name="password1" id="password1" placeholder="Repita nueva contraseña" >
+        <input class="form-control" type="text" name="password1" id="password1" placeholder="Nueva contraseña" >
     </div>
 
     <div class="form-group">
