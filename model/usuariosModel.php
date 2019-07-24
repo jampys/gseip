@@ -148,12 +148,12 @@ class Usuario{
 
 
 
-    function checkCode($usuario, $code){
+    function checkCode($code){
 
         $stmt=new sQuery();
         $query="select * from sec_users where id_user = :usuario and reset_code = :reset_code";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':usuario', $usuario);
+        $stmt->dpBind(':usuario', $this->getIdUser());
         $stmt->dpBind(':reset_code', $code);
         $stmt->dpExecute();
         //return $stmt->dpGetAffect();

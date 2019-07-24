@@ -36,7 +36,7 @@
                             setTimeout(function(){ $("#myElem").hide();
                                                    //window.location.href = "../../index.php";
                                                     window.location.href = "index.php?action=login&operation=send-code";
-                                                 }, 1500);
+                                                 }, 3000);
                         }
                         else {
                             $("#myElem").html(data['msg']).addClass('alert alert-danger').show();

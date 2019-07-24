@@ -12,8 +12,6 @@ use PHPMailer\PHPMailer\Exception;
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
-$view->u=new Usuario();
-
 $view->disableLayout=false;
 
 switch($operation){
@@ -22,6 +20,7 @@ switch($operation){
 
         if (isset($_POST['usuario']) && isset($_POST['contraseña']) ){
 
+            $view->u=new Usuario();
             $id = $view->u->isAValidUser($_POST['usuario'],$_POST['contraseña']);
 
             if($id >= 1){
@@ -74,7 +73,7 @@ switch($operation){
 
 
 
-    case 'clear_pass': //2do paso al blanquear password. Obliga al usuaria a cambiar el password
+    /*case 'clear_pass': //2do paso al blanquear password. Obliga al usuaria a cambiar el password
         $view->u->setIdUsuario($_POST['id_usuario']);
         $view->u->setPassword($_POST['password']);
         $view->u->setClearPass(0);
@@ -89,12 +88,10 @@ switch($operation){
             header("Location: index.php");
         }
 
+        break;*/
 
 
-        break;
-
-
-    case 'clear_pass_first': //1er paso al blanquear password. Envia mail al usuario con nuevo password
+    /*case 'clear_pass_first': //1er paso al blanquear password. Envia mail al usuario con nuevo password
         $rta=1;
         $view->u->setIdUsuario($_POST['id_usuario']);
         $view->u->setClearPass(1);
@@ -106,7 +103,7 @@ switch($operation){
         $id_empleado=$usuario[0]['ID_EMPLEADO'];
 
 
-        /***********************EMAIL**********************************/
+        //***********************EMAIL**********************************
         //Obtener datos para enviar el mail
         $view->e=new Empleado();
         $emp=$view->e->getEmpleadoById($id_empleado); //id_empleado
@@ -149,7 +146,7 @@ switch($operation){
 
         print_r(json_encode($respuesta));
         exit;
-        break;
+        break;*/
 
 
     case 'salir':
@@ -173,21 +170,14 @@ switch($operation){
 
         if (isset($_POST['usuario']) ){
 
+            $view->u=new Usuario();
             $id = $view->u->checkUserExists($_POST['usuario']);
 
             if($id >= 1){ //usuario existe
-                $_SESSION["id_user_recup"] = $view->u->getIdUser(); //$id;
-                //$_SESSION["user"] = $view->u->getUser(); //$_POST['usuario'];
-                //$_SESSION["id_empleado"] = $view->u->getIdEmpleado();
-                //$_SESSION["profile_picture"] = $view->u->getProfilePicture();
+                $_SESSION["id_user_recup"] = $view->u->getIdUser(); //se guarda id_user en variable de sesion
 
-                //$obj = new PrivilegedUser($_SESSION["id_user"]);
-                //$_SESSION['loggedUser'] = serialize($obj);
-
-                //se genera codigo
-                $code = substr( md5(microtime()), 1, 4); //genera codigo aleatorio de 4 digitos
-
-
+                //se genera codigo aleatorio
+                $code = substr( md5(microtime()), 1, 6); //genera codigo aleatorio de 6 digitos
 
                 // se envia codigo por email
                 try{
@@ -230,10 +220,10 @@ switch($operation){
 
 
                     if($exito){
-                        $e['msg'] = "El correo fue enviado correctamente.";
+                        $e['msg'] = "Código de recuperación enviado correctamente. Revise su casilla de email.";
                         $e['id'] = $id;
                     }else{
-                        $e['msg'] = "Hubo un inconveniente. Contacta a un administrador.";
+                        $e['msg'] = "ERR -2: Error al enviar el código de recuperación.";
                         $e['id'] = -2;
                     }
 
@@ -290,7 +280,8 @@ switch($operation){
 
         if (isset($_POST['code']) ){
 
-            $id = $view->u->checkCode($_SESSION["id_user_recup"], $_POST['code']);
+            $us = new Usuario($_SESSION["id_user_recup"]);
+            $id = $view->us->checkCode($_POST['code']);
             $e = array();
 
             if($id >= 1){ //usuario existe
@@ -319,11 +310,11 @@ switch($operation){
 
 
     case 'saveNewPassword':
-        $puesto = new Usuario($_SESSION["id_user_recup"]);
-        $puesto->setPassword($_POST['password']);
+        $us = new Usuario($_SESSION["id_user_recup"]);
+        $us->setPassword($_POST['password']);
 
 
-        $rta = $puesto->updatePassword();
+        $rta = $us->updatePassword();
         //print_r(json_encode($rta));
         $e = array();
         if($rta >= 1){ //reseteo exitoso
