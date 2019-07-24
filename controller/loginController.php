@@ -215,6 +215,7 @@ switch($operation){
                     $mail->AddEmbeddedImage('resources/img/seip140x40.png', 'logo_2u');
                     $mail->Subject = "Restablecimiento de contraseña";
                     $mail->SMTPAutoTLS = false;
+                    $mail->SMTPSecure = false;
                     //$mail->Body = $body; 
                     $mail->msgHTML(file_get_contents('email/password.php'), __DIR__); //incluye el cuerpo del mail
                     $exito = $mail->Send(); // Envía el correo.
