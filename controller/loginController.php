@@ -328,15 +328,13 @@ switch($operation){
 
         $rta = $puesto->updatePassword();
         //print_r(json_encode($rta));
-        //print_r(json_encode(sQuery::dpLastInsertId()));
         $e = array();
         if($rta >= 1){ //reseteo exitoso
-            //$_SESSION["id_user_recup"] = $view->u->getIdUser(); //$id;
-            $e['msg']= "Reseteo exitoso ok";
+            $e['msg']= "Se ha restablecido la contraseña de manera correcta.";
             $e['id'] = $rta;
         }
-        else { //Usuario o contraseña inválidos
-            $e['msg']= "Reseteo dio error";
+        else { //Reseteo falló
+            $e['msg']= "Error al restablecer la contraseña.";
             $e['id'] = $rta;
         }
 
