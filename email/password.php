@@ -1,12 +1,3 @@
-<?php
-
-/* Este archivo es un template con el formato de e-mail para el blanqueo de password
-
-    Tener cuidado que los email client no soportan CSS => hay que escribirlos inline
-    http://stackoverflow.com/questions/12751147/how-to-send-an-email-that-has-html-and-css-in-php   */
-
-?>
-
 <html>
 <head>
 

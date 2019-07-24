@@ -182,10 +182,10 @@ switch($operation){
                 // se envia codigo por email
                 try{
 
-                    ob_start();
-                    include ('email/password.php');
-                    $body= ob_get_contents();
-                    ob_get_clean();
+                    //ob_start();
+                    //include ('email/password.php');
+                    //$body= ob_get_contents();
+                    //ob_get_clean();
 
                     $target = $_SESSION["user_recup"];
 
@@ -213,11 +213,10 @@ switch($operation){
                     $mail->AddAddress($target); // Esta es la dirección a donde enviamos
                     $mail->IsHTML(true); // El correo se envía como HTML
                     $mail->AddEmbeddedImage('resources/img/seip140x40.png', 'logo_2u');
-                    $mail->Subject = "Restablecimiento de contraseña"; // Este es el titulo del email.
+                    $mail->Subject = "Restablecimiento de contraseña";
                     $mail->SMTPAutoTLS = false;
-                    //$body = "Hola mundo. Esta es la primer línea<br />";
-                    //$body .= "Acá continuo el <strong>mensaje</strong>";
-                    $mail->Body = $body; // Mensaje a enviar
+                    //$mail->Body = $body; 
+                    $mail->msgHTML(file_get_contents('email/password.php'), __DIR__); //incluye el cuerpo del mail
                     $exito = $mail->Send(); // Envía el correo.
 
 
