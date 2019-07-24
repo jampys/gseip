@@ -116,12 +116,12 @@
 
     <div class="form-group">
         <label class="control-label" for="usuario">Recuperar contraseña</label>
-        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Ingrese su correo" >
+        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Correo" >
     </div>
 
 
     <div class="form-group">
-        <button class="btn btn-primary btn-block" id="restaurar" name="restaurar" type="submit">Restaurar</button>
+        <button class="btn btn-primary btn-block" id="restaurar" name="restaurar" type="submit">Enviar</button>
     </div>
 
     <div class="form-group" style="text-align: center">
