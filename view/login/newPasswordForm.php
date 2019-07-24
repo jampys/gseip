@@ -14,26 +14,34 @@
 
 
 
-        /*$('#login_form').validate({
+        $('#new_password_form').validate({
             rules: {
-                usuario: {required: true},
-                contraseña: {required: true}
+                password: {
+                    required: true,
+                    maxlength: 4
+                    }
+            },
+                password_again: {
+                    equalTo: "#password"
             },
             messages:{
-                usuario: "Ingrese su usuario",
-                contraseña: "Ingrese su contraseña"
+                password: {
+                    required: "Ingrese una contraseña",
+                    maxLength: "La contraseña no debe superar los 4 caracteres"
+                },
+                password_again: "La contraseña ingresada no coincide"
             },
             tooltip_options: {
-                usuario: {trigger:'focus'},
-                contraseña: {trigger:'focus'}
+                password: {trigger:'focus'},
+                password_again: {trigger:'focus'}
 
             }
-        });*/
+        });
 
 
         $(document).on('click', '#enviar',function(){
 
-            //if ($("#code_form").valid()){
+            if ($("#new_password_form").valid()){
                 //alert('boton restaurar');
                 var params={};
                 params.action='login';
@@ -73,7 +81,7 @@
 
                 });
 
-            //}
+            }
             return false;
         });
 
@@ -116,7 +124,7 @@
 
 
 
-<form name ="code_form" id="login_form" method="POST" action="index.php">
+<form name ="new_password_form" id="new_password_form" method="POST" action="index.php">
 
     <div class="form-group">
         <label class="control-label" for="code">Nueva contraseña</label>
@@ -125,7 +133,7 @@
 
     <div class="form-group">
         <label class="control-label" for="code">Repita nueva contraseña</label>
-        <input class="form-control" type="password" name="password1" id="password1" placeholder="Nueva contraseña" >
+        <input class="form-control" type="password" name="password_again" id="password_again" placeholder="Nueva contraseña" >
     </div>
 
     <div class="form-group">

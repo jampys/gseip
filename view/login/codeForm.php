@@ -14,26 +14,23 @@
 
 
 
-        /*$('#login_form').validate({
+        $('#code_form').validate({
             rules: {
-                usuario: {required: true},
-                contraseña: {required: true}
+                code: {required: true}
             },
             messages:{
-                usuario: "Ingrese su usuario",
-                contraseña: "Ingrese su contraseña"
-            },
-            tooltip_options: {
+                code: "Ingrese el código de recuperación"
+            }
+            /*tooltip_options: {
                 usuario: {trigger:'focus'},
                 contraseña: {trigger:'focus'}
-
-            }
-        });*/
+            }*/
+        });
 
 
         $(document).on('click', '#enviar',function(){
 
-            //if ($("#code_form").valid()){
+            if ($("#code_form").valid()){
                 //alert('boton restaurar');
                 var params={};
                 params.action='login';
@@ -73,7 +70,7 @@
 
                 });
 
-            //}
+            }
             return false;
         });
 
@@ -116,7 +113,7 @@
 
 
 
-<form name ="code_form" id="login_form" method="POST" action="index.php">
+<form name ="code_form" id="code_form" method="POST" action="index.php">
 
     <div class="form-group">
         <label class="control-label" for="code">Código de recuperación</label>
