@@ -107,7 +107,7 @@
                     </a>
                 </div>
         </nav>
-        <h4>Recuperar contraseña (Paso 1/3)</h4>
+        <h4>Restablecer contraseña (Paso 1/3)</h4>
         <hr class="hr-primary"/>
 
 
