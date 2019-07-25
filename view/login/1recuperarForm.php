@@ -31,7 +31,6 @@
                     success: function(data, textStatus, jqXHR) {
 
                         if(data['id'] >= 1){ //Envió codigo por email con exito
-                            //$("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Enviando código de recuperación...').addClass('alert alert-info').show();
                             $("#myElem").html(data['msg']).removeClass('alert alert-info').addClass('alert alert-success').show();
                             setTimeout(function(){ $("#myElem").hide();
                                                    //window.location.href = "../../index.php";
@@ -51,7 +50,7 @@
                      },
                     beforeSend: function() {
                         // setting a timeout
-                        $("#myElem").html('Enviando código de recuperación...').removeClass('alert alert-danger').addClass('alert alert-info').show();
+                        $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp;Enviando código de recuperación...').removeClass('alert alert-danger').addClass('alert alert-info').show();
                     }
 
                 });
