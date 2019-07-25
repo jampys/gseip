@@ -51,6 +51,7 @@
                     beforeSend: function() {
                         // setting a timeout
                         $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp;Enviando código de recuperación...').removeClass('alert alert-danger').addClass('alert alert-info').show();
+                        $("form button").prop("disabled", true); //deshabilito botones
                     }
 
                 });

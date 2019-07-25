@@ -47,12 +47,13 @@
 
                         if(data['id'] >= 1){ //Envió codigo por email con exito
                             //$("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Enviando código de recuperación...').addClass('alert alert-info').show();
-                            //$("#myElem").html(data['msg']).removeClass('alert alert-danger').addClass('alert alert-success').show();
+                            $("#myElem").html(data['msg']).removeClass('alert alert-danger').addClass('alert alert-success').show();
                             setTimeout(function(){  $("#myElem").hide();
                                                     window.location.href = "index.php?action=login&operation=toNewPasswordform";
                                                  }, 1500);
                         }
                         else {
+                            $("form button").prop("disabled", false); //habilito botones
                             $("#myElem").html(data['msg']).addClass('alert alert-danger').show();
                         }
 
@@ -62,11 +63,12 @@
                         /*$("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
                          setTimeout(function() { $("#myElem").hide();
                          }, 2000);*/
-                    }
-                    /*beforeSend: function() {
+                    },
+                    beforeSend: function() {
                         // setting a timeout
-                        $("#myElem").html('Enviando código de recuperación...').removeClass('alert alert-danger').addClass('alert alert-info').show();
-                    }*/
+                        //$("#myElem").html('Enviando código de recuperación...').removeClass('alert alert-danger').addClass('alert alert-info').show();
+                        $("form button").prop("disabled", true); //deshabilito botones
+                    }
 
                 });
 

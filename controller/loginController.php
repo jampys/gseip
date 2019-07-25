@@ -292,7 +292,7 @@ switch($operation){
             $e = array();
 
             if($id >= 1){ //usuario existe
-                $e['msg']= "El código ingresado es correcto."; //este mensaje no se muestra
+                $e['msg']= "El código ingresado es válido."; //este mensaje no se muestra
                 $e['id'] = $id;
             }
             else if($id == -1){ //Usuario o contraseña inválidos
