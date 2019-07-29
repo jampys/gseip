@@ -1,10 +1,16 @@
 <?php
 require_once("model/usuariosModel.php");
 
+//require("resources/libraries/phpmailer/PHPMailer.php");
+//require("resources/libraries/phpmailer/SMTP.php");
+//require("resources/libraries/phpmailer/Exception.php");
+
+//use PHPMailer\PHPMailer\PHPMailer;
+//use PHPMailer\PHPMailer\SMTP;
+//use PHPMailer\PHPMailer\Exception;
+
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
-
-$view->u=new Usuario();
 
 $view->disableLayout=false;
 
@@ -14,6 +20,7 @@ switch($operation){
 
         if (isset($_POST['usuario']) && isset($_POST['contraseña']) ){
 
+            $view->u=new Usuario();
             $id = $view->u->isAValidUser($_POST['usuario'],$_POST['contraseña']);
 
             if($id >= 1){
@@ -66,7 +73,7 @@ switch($operation){
 
 
 
-    case 'clear_pass': //2do paso al blanquear password. Obliga al usuaria a cambiar el password
+    /*case 'clear_pass': //2do paso al blanquear password. Obliga al usuaria a cambiar el password
         $view->u->setIdUsuario($_POST['id_usuario']);
         $view->u->setPassword($_POST['password']);
         $view->u->setClearPass(0);
@@ -81,12 +88,10 @@ switch($operation){
             header("Location: index.php");
         }
 
+        break;*/
 
 
-        break;
-
-
-    case 'clear_pass_first': //1er paso al blanquear password. Envia mail al usuario con nuevo password
+    /*case 'clear_pass_first': //1er paso al blanquear password. Envia mail al usuario con nuevo password
         $rta=1;
         $view->u->setIdUsuario($_POST['id_usuario']);
         $view->u->setClearPass(1);
@@ -98,7 +103,7 @@ switch($operation){
         $id_empleado=$usuario[0]['ID_EMPLEADO'];
 
 
-        /***********************EMAIL**********************************/
+        //***********************EMAIL**********************************
         //Obtener datos para enviar el mail
         $view->e=new Empleado();
         $emp=$view->e->getEmpleadoById($id_empleado); //id_empleado
@@ -141,7 +146,7 @@ switch($operation){
 
         print_r(json_encode($respuesta));
         exit;
-        break;
+        break;*/
 
 
     case 'salir':
@@ -152,12 +157,197 @@ switch($operation){
         echo "<script>window.location='index.php';</script>";
         break;
 
+    case 'toRecuperarForm':
+        //session_destroy();
+        //$view->content="view/login.php";
+        //header("Location: index.php");
+        //para evitar los tipicos errores del header location =>lo hago con javascript
+        $view->contentTemplate="view/login/1recuperarForm.php";
+        break;
+
+
+    case 'check-user-exists':
+
+        if (isset($_POST['usuario']) ){
+
+            $view->u=new Usuario();
+            $id = $view->u->checkUserExists($_POST['usuario']);
+
+            if($id >= 1){ //usuario existe
+                $_SESSION["id_user_recup"] = $view->u->getIdUser(); //se guarda id_user en variable de sesion
+                $_SESSION["user_recup"] = $view->u->getUser(); //guarda el mail
+                //se genera codigo aleatorio
+                $code = substr( md5(microtime()), 1, 6); //genera codigo aleatorio de 6 digitos
+
+                // se envia codigo por email
+                try{
+
+                    ob_start();
+                    include ('email/password.php');
+                    $body= ob_get_contents();
+                    ob_get_clean();
+
+                    $target = $_SESSION["user_recup"];
+
+                    if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
+                        require("resources/libraries/phpmailer/PHPMailer.php");
+                        require("resources/libraries/phpmailer/SMTP.php");
+                        require("resources/libraries/phpmailer/Exception.php");
+                        $mail = new \PHPMailer\PHPMailer\PHPMailer();
+                    }else{
+                        require("resources/libraries/phpmailer/class.phpmailer.php");
+                        $mail = new PHPMailer();
+                    }
+
+                    $mail->CharSet = "UTF-8";
+                    $mail->IsSMTP();
+                    $mail->SMTPAuth = true;
+                    $mail->Host = "seip.com.ar"; // SMTP a utilizar. Por ej. smtp.elserver.com
+                    $mail->Username = "gestion@seip.com.ar"; // Correo completo a utilizar
+                    $mail->Password = "Ada21_Dos"; // Contraseña
+                    $mail->Port = 26; // Puerto a utilizar
+
+                    $mail->From = "gestion@seip.com.ar"; // Desde donde enviamos (Para mostrar)
+                    $mail->FromName = "Gestión de RRHH SEIP";
+
+                    $mail->AddAddress($target); // Esta es la dirección a donde enviamos
+                    $mail->IsHTML(true); // El correo se envía como HTML
+                    $mail->AddEmbeddedImage('resources/img/seip140x40.png', 'logo_2u');
+                    $mail->Subject = "Restablecimiento de contraseña";
+                    $mail->SMTPAutoTLS = false;
+                    //$mail->SMTPSecure = false;
+                    $mail->Body = $body;
+                    //$mail->msgHTML(file_get_contents('email/password.php'), __DIR__); //incluye el cuerpo del mail
+                    $exito = $mail->Send(); // Envía el correo.
+
+
+                    $e = array();
+
+                    //$e['msg'] = $rta;
+
+
+                    if($exito){
+                        $e['msg'] = "Código de recuperación enviado. Revise su casilla de correo.";
+                        $e['id'] = $id;
+                    }else{
+                        $e['msg'] = "ERR -2: Error al enviar el código de recuperación.";
+                        $e['id'] = -2;
+                    }
+
+
+
+                } catch (PhpmailerException $e) {
+                    //echo $e->errorMessage(); //Pretty error messages from PHPMailer
+                    $e['msg'] = "entro catch de php mailer";
+                    $e['id'] = -4;
+                } catch(Exception $e){
+                    //echo $e->getMessage(); //habilitar para ver el mensaje de error
+                    //sQuery::dpRollback();
+                    //print_r(json_encode(-1));
+                    $e['msg'] = "entro catch general";
+                    $e['id'] = -4;
+                }
+
+
+                //se inserta el codigo enviado en el usuario
+                $view->u->updateCode($code);
+
+
+            }
+            else if($id == 0){ //usuario inhabilitado
+                $e = array();
+                $e['msg']= "Usuario inhabilitado. No es posible recuperar la contraseña.";
+                $e['id'] = $id;
+            }
+            else if($id == -1){ //Usuario o contraseña inválidos
+                $e = array();
+                $e['msg']= "El email ingresado no existe";
+                $e['id'] = $id;
+            }
+
+        }
+
+        print_r(json_encode($e));
+        exit;
+        break;
+
+    case 'toCodeForm': //send-code
+        //session_destroy();
+        //$view->content="view/login.php";
+        //header("Location: index.php");
+        //para evitar los tipicos errores del header location =>lo hago con javascript
+        $view->contentTemplate="view/login/2codeForm.php";
+        break;
+
+
+
+
+
+    case 'check-code':
+
+        if (isset($_POST['code']) ){
+
+            $view->u = new Usuario($_SESSION["id_user_recup"]);
+            $id = $view->u->checkCode($_POST['code']);
+            $e = array();
+
+            if($id >= 1){ //usuario existe
+                $e['msg']= "El código ingresado es válido."; //este mensaje no se muestra
+                $e['id'] = $id;
+            }
+            else if($id == -1){ //Usuario o contraseña inválidos
+                $e['msg']= "El código ingresado es inválido.";
+                $e['id'] = $id;
+            }
+
+        }
+
+        print_r(json_encode($e));
+        exit;
+        break;
+
+
+    case 'toNewPasswordform':
+        //session_destroy();
+        //$view->content="view/login.php";
+        //header("Location: index.php");
+        //para evitar los tipicos errores del header location =>lo hago con javascript
+        $view->contentTemplate="view/login/3newPasswordForm.php";
+        break;
+
+
+    case 'saveNewPassword':
+        $view->u = new Usuario($_SESSION["id_user_recup"]);
+        $view->u->setPassword($_POST['password']);
+
+
+        $rta = $view->u->updatePassword();
+        //print_r(json_encode($rta));
+        $e = array();
+        if($rta >= 1){ //reseteo exitoso
+            session_destroy(); //elimina los datos de session en $_SESSION["id_user_recup"]
+            $e['msg']= "Se ha restablecido la contraseña de manera correcta.";
+            $e['id'] = $rta;
+        }
+        else { //Reseteo falló
+            $e['msg']= "Error al restablecer la contraseña.";
+            $e['id'] = $rta;
+        }
+
+        print_r(json_encode($e));
+        exit;
+        break;
+
+
+
+
+
     default:
         //$view->e=new Empleado();
         //$view->companias=$view->e->getCompanias();
         //$view->content="view/login.php";
         //include_once('view/loginLayout.php');
-        $view->contentTemplate="view/loginForm.php";
+        $view->contentTemplate="view/login/loginForm.php";
         break;
 
 
@@ -167,7 +357,7 @@ switch($operation){
 if ($view->disableLayout==true) {
     include_once ($view->contentTemplate);}
 else {
-    include_once('view/loginLayout.php'); // el layout incluye el template adentro
+    include_once('view/login/loginLayout.php'); // el layout incluye el template adentro
 }
 
 
