@@ -87,6 +87,7 @@
                     params.estado_civil=$('#estado_civil').val();
                     params.empresa=$('#empresa').val();
                     params.cambio_domicilio = $('#cambio_domicilio').prop('checked')? 1:0;
+                    params.id_convenio=$('#id_convenio').val();
                     //alert(params.cambio_domicilio);
 
                     $.post('index.php',params,function(data, status, xhr){

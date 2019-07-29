@@ -357,6 +357,7 @@ class Empleado
                                         :direccion,
                                         :id_localidad,
                                         :cambio_domicilio,
+                                        :id_convenio,
                                         @flag
                                     )';
 
@@ -380,6 +381,7 @@ class Empleado
         $stmt->dpBind(':direccion', $this->getDireccion());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
         $stmt->dpBind(':cambio_domicilio', $cambio_domicilio);
+        $stmt->dpBind(':id_convenio', $this->getIdConvenio());
 
         $stmt->dpExecute();
 
