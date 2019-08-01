@@ -488,7 +488,7 @@
                     <select id="id_responsable" name="id_responsable" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable">
                         <?php foreach ($view->empleados as $em){
                             ?>
-                            <option value="<?php echo $em['id_empleado']; ?>"
+                            <option value="<?php echo $em['id_empleado']; ?>" <?php //echo ($em['fecha_baja'])? 'disabled' :'' ?>
                                 <?php echo ($em['id_empleado'] == $view->contrato->getIdResponsable())? 'selected' :'' ?>
                                 >
                                 <?php echo $em['apellido'].' '.$em['nombre']; ?>

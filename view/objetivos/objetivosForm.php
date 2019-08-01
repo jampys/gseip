@@ -38,7 +38,8 @@
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
             params.periodo = $('#myModal #periodo option:selected').attr('periodo');
 
-            $('#id_objetivo_superior').empty();
+            //$('#id_objetivo_superior').empty();
+            $('#id_objetivo_superior').html('<option value="">Seleccione un objetivo</option>');
 
 
             $.ajax({

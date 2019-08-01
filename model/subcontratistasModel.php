@@ -39,6 +39,7 @@ class Subcontratista
         $stmt->dpPrepare("select *
                           from subcontratistas su
                           join companias co on su.id_compania = co.id_compania
+                          where su.fecha_baja is null
                           order by razon_social asc");
         $stmt->dpExecute();
         return $stmt->dpFetchAll(); // retorna todos los subcontratistas

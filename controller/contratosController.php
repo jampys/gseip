@@ -139,7 +139,9 @@ switch ($operation)
         $view->label = $view->contrato->getNombre().' '.$view->contrato->getNroContrato();
 
         $view->empleado = new Empleado();
-        $view->empleados = $view->empleado->getEmpleadosActivos(null); //carga el combo de empleados
+        //$view->empleados = $view->empleado->getEmpleadosActivos(null); //carga el combo de empleados
+        // si es uno nuevo: trae solo los empleados activos, si es una edicion: trae todos
+        $view->empleados = (!$_POST['id'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
         //$view->responsable = $view->contrato->getResponsable()->getApellido()." ".$view->contrato->getResponsable()->getNombre();
         $view->localidades = Localidad::getLocalidades();
         $view->companias = Compania::getCompanias();

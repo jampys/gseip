@@ -371,6 +371,24 @@
     </div>
 
 
+    <div class="form-group">
+        <label for="id_convenio" class="col-md-4 control-label">Convenio</label>
+        <div class="col-md-8">
+            <select class="form-control selectpicker show-tick" id="id_convenio" name="id_convenio" data-live-search="true" data-size="5">
+                <option value="">Seleccione el convenio</option>
+                <?php foreach ($view->convenios as $conv){
+                    ?>
+                    <option value="<?php echo $conv['id_convenio']; ?>"
+                        <?php echo ($conv['id_convenio'] == $view->empleado->getIdConvenio())? 'selected' :'' ?>
+                        >
+                        <?php echo $conv['codigo'].' '.$conv['nombre'] ;?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+    </div>
+
+
 
     <div id="myElem" class="msg" style="display:none"></div>
 

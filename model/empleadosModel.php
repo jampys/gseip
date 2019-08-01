@@ -21,6 +21,7 @@ class Empleado
     private $cpa;
     private $empresa;
     private $domain;
+    private $id_convenio;
 
     //GETTERS
     function getIdEmpleado()
@@ -81,6 +82,9 @@ class Empleado
     { return explode(',',$this->domain);//$this->domain;
     }
 
+    function getIdConvenio()
+    { return $this->id_convenio;}
+
     //SETTERS
     function setIdEmpleado($val)
     { $this->id_empleado=$val;}
@@ -139,6 +143,9 @@ class Empleado
     function setDomain($val)
     { $this->domain=$val;}
 
+    function setIdConvenio($val)
+    { $this->id_convenio=$val;}
+
 
 
     function Empleado($id_empleado = 0){ //constructor
@@ -163,7 +170,7 @@ class Empleado
                     DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
                     DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
                     em.telefono, em.email, em.empresa,
-                    em.sexo, em.nacionalidad, em.estado_civil,
+                    em.sexo, em.nacionalidad, em.estado_civil, em.id_convenio,
                     dp.direccion, dp.id_localidad, domain
                     from v_sec_empleados em
                     left join domicilios_particulares dp on em.id_empleado = dp.id_empleado
@@ -193,6 +200,7 @@ class Empleado
             $this->setEstadoCivil($rows[0]['estado_civil']);
             $this->setEmpresa($rows[0]['empresa']);
             $this->setDomain($rows[0]['domain']);
+            $this->setIdConvenio($rows[0]['id_convenio']);
 
         }
     }
@@ -349,6 +357,7 @@ class Empleado
                                         :direccion,
                                         :id_localidad,
                                         :cambio_domicilio,
+                                        :id_convenio,
                                         @flag
                                     )';
 
@@ -372,6 +381,7 @@ class Empleado
         $stmt->dpBind(':direccion', $this->getDireccion());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
         $stmt->dpBind(':cambio_domicilio', $cambio_domicilio);
+        $stmt->dpBind(':id_convenio', $this->getIdConvenio());
 
         $stmt->dpExecute();
 
@@ -438,6 +448,7 @@ class Empleado
                                         :empresa,
                                         :direccion,
                                         :id_localidad,
+                                        :id_convenio,
                                         @flag
                                     )';
 
@@ -460,6 +471,7 @@ class Empleado
         $stmt->dpBind(':empresa', $this->getEmpresa());
         $stmt->dpBind(':direccion', $this->getDireccion());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
+        $stmt->dpBind(':id_convenio', $this->getIdConvenio());
         //$stmt->dpBind(':cambio_domicilio', $cambio_domicilio);
 
         $stmt->dpExecute();

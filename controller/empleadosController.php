@@ -3,6 +3,7 @@
 include_once("model/empleadosModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/contrato-empleadoModel.php");
+include_once("model/nov_conveniosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -36,6 +37,7 @@ switch ($operation)
         $empleado->setNacionalidad($_POST['nacionalidad']);
         $empleado->setEstadoCivil($_POST['estado_civil']);
         $empleado->setEmpresa($_POST['empresa']);
+        $empleado->setIdConvenio( ($_POST['id_convenio'])? $_POST['id_convenio'] : null  );
 
         //$cliente->save();
         //break;
@@ -53,6 +55,7 @@ switch ($operation)
         $view->estados_civiles = Soporte::get_enum_values('empleados', 'estado_civil');
         $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
         $view->empresas = Soporte::get_enum_values('empleados', 'empresa');
+        $view->convenios = Convenio::getConvenios();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/empleadosForm.php";
@@ -67,6 +70,7 @@ switch ($operation)
         $view->estados_civiles = Soporte::get_enum_values('empleados', 'estado_civil');
         $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
         $view->empresas = Soporte::get_enum_values('empleados', 'empresa');
+        $view->convenios = Convenio::getConvenios();
 
         $view->domicilios = $view->empleado->getDomiciliosByEmpleado();
 
