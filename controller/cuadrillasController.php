@@ -61,7 +61,8 @@ switch ($operation)
 
         $view->contratos = Contrato::getContratosControl();
         $view->vehiculos = Vehiculo::getVehiculos();
-        $view->areas = NovArea::getAreas();
+        //$view->areas = NovArea::getAreas(25);
+        $view->areas = NovArea::getAreas($view->cuadrilla->getIdContrato());
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
