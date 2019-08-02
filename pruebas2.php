@@ -29,27 +29,18 @@ try {
 
 
     // You should also check filesize here.
-    if ($_FILES['upfile']['size'] > 1000000) {
+    if ($_FILES['fileToUpload']['size'] > 1000000) {
         throw new RuntimeException('Exceeded filesize limit.');
     }
 
-    // DO NOT TRUST $_FILES['upfile']['mime'] VALUE !!
-    // Check MIME Type by yourself.
-    $finfo = new finfo(FILEINFO_MIME_TYPE);
-    if (false === $ext = array_search(
-            $finfo->file($_FILES['fileToUpload']['tmp_name']),
-            array(
-                //'jpg' => 'image/jpeg',
-                //'png' => 'image/png',
-                //'gif' => 'image/gif',
-                'txt' > 'html/txt'
-            ),
-            true
-        )) {
+    //chequea extensiones aceptadas. Solo txt. https://stackoverflow.com/questions/10456113/php-check-file-extension-in-upload-form
+    //$allowed =  array('gif','png' ,'jpg');
+    $allowed =  array('txt');
+    $filename = $_FILES['fileToUpload']['name'];
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    if(!in_array($ext,$allowed) ) {
         throw new RuntimeException('Invalid file format.');
     }
-
-
 
 
 
