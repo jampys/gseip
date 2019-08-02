@@ -1,6 +1,7 @@
 <?php
 //header('Content-Type: text/plain; charset=utf-8');
 
+//validaciones: https://www.php.net/manual/es/features.file-upload.php
 try {
 
     if (
@@ -41,6 +42,7 @@ try {
                 //'jpg' => 'image/jpeg',
                 //'png' => 'image/png',
                 //'gif' => 'image/gif',
+                'txt' > 'html/txt'
             ),
             true
         )) {
