@@ -33,14 +33,13 @@ try {
         throw new RuntimeException('Exceeded filesize limit.');
     }
 
-    //chequea extensiones aceptadas. Solo txt. https://stackoverflow.com/questions/10456113/php-check-file-extension-in-upload-form
-    //$allowed =  array('gif','png' ,'jpg');
-    $allowed =  array('txt');
-    $filename = $_FILES['fileToUpload']['name'];
-    $ext = pathinfo($filename, PATHINFO_EXTENSION);
-    if(!in_array($ext,$allowed) ) {
-        throw new RuntimeException('Invalid file format.');
+    $allowed_types = array ('text/x-fortran');
+    $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
+    $detected_type = finfo_file( $fileInfo, $_FILES['fileToUpload']['tmp_name'] );
+    if ( !in_array($detected_type, $allowed_types) ) {
+        die ( 'Please upload a pdf or an image ' );
     }
+    finfo_close( $fileInfo );
 
 
 
