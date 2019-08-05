@@ -65,11 +65,11 @@ try {
         throw new RuntimeException('Exceeded filesize limit.');
     }
 
-    $allowed_types = array ('text/x-fortran');
+    $allowed_types = array ('text/x-fortran', 'text/plain');
     $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
     $detected_type = finfo_file( $fileInfo, $_FILES['fileToUpload']['tmp_name'] );
     if ( !in_array($detected_type, $allowed_types) ) {
-        die ( 'Please upload a pdf or an image ' );
+        throw new RuntimeException('Solo archivos de texto.');
     }
     finfo_close( $fileInfo );
 
