@@ -169,9 +169,9 @@
     <div class="row">
 
 
-        <!--<div class="col-md-1"></div>-->
+        <div class="col-md-1"></div>
 
-        <div class="col-md-12">
+        <div class="col-md-10">
 
             <h4>Cuadrillas</h4>
             <hr class="hr-primary"/>
@@ -232,7 +232,7 @@
         </div>
 
 
-        <!--<div class="col-md-1"></div>-->
+        <div class="col-md-1"></div>
 
     </div>
     <br/>

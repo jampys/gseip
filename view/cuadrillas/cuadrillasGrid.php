@@ -14,7 +14,7 @@
                                 $(this).show(); },
 
             "stateSave": true,
-            "order": [[3, "asc"]], // 3=fecha_apertura
+            "order": [[0, "asc"]], // 0=Nombre
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
@@ -69,9 +69,9 @@
 </script>
 
 
-<!--<div class="col-md-1"></div>-->
+<div class="col-md-1"></div>
 
-<div class="col-md-12">
+<div class="col-md-10">
 
 
 
@@ -82,7 +82,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro. cuad.</th>
+                <!--<th>Nro. cuad.</th>-->
                 <th>Nombre</th>
                 <th>Contrato</th>
                 <th>Vehículo</th>
@@ -96,7 +96,7 @@
             <?php if(isset($view->cuadrillas)) {
                 foreach ($view->cuadrillas as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_cuadrilla']; ?>">
-                        <td><?php echo $rp['id_cuadrilla']; ?></td>
+                        <!--<td><?php //echo $rp['id_cuadrilla']; ?></td>-->
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['contrato']; ?></td>
                         <td><?php echo $rp['vehiculo']; ?></td>
@@ -139,7 +139,7 @@
 
 </div>
 
-<!--<div class="col-md-1"></div>-->
+<div class="col-md-1"></div>
 
 
 
