@@ -1,7 +1,39 @@
 <?php
 //header('Content-Type: text/plain; charset=utf-8');
-
 //validaciones: https://www.php.net/manual/es/features.file-upload.php
+
+
+/*
+ *
+ * //para verificar el tipo de extension de un archivo.
+    $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
+    $detected_type = finfo_file( $fileInfo, $_FILES['fileToUpload']['tmp_name'] );
+    print_r($detected_type);
+
+
+$allowed_types = array ( 'text');
+    $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
+    $detected_type = finfo_file( $fileInfo, $_FILES['fileToUpload']['tmp_name'] );
+    if ( !in_array($detected_type, $allowed_types) ) {
+        die ( 'Please upload a pdf or an image ' );
+    }
+    finfo_close( $fileInfo );
+
+
+
+$finfo = finfo_open(FILEINFO_MIME_TYPE); // return mime type
+    foreach (glob("*") as $filename) {
+        echo finfo_file($finfo, $filename) . "\n";
+    }
+    finfo_close($finfo);
+
+
+text/x-fortran
+text/x-php  text/x-php text/x-php text/x-php text/html directory directory directory
+ */
+
+
+
 try {
 
     if (
