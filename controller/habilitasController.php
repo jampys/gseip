@@ -138,8 +138,9 @@ switch ($operation)
             }
 
         }catch (RuntimeException $e) {
-
-            echo $e->getMessage();
+            $view->resultado = -1;
+            //echo $e->getMessage();
+            $view->error_msg = $e->getMessage();
 
         }
 

@@ -11,7 +11,8 @@
 
         $(document).on('click', '#culito',function(){
             alert('toco en submit1');
-            window.location.href = "index.php?action=habilitas&operation=connection";
+            //window.location.href = "index.php?action=habilitas&operation=connection";
+            $("#txt-form").submit(); // Submit the form
             return false;
         });
 
@@ -74,10 +75,10 @@
 
 
 
-        <form name ="txt-form" id="txt-form" method="POST" action="index.php">
+        <form name ="txt-form" id="txt-form" method="POST" action="index.php?action=habilitas&operation=connection" enctype="multipart/form-data">
 
             <label class="btn btn-primary" for="fileToUpload">
-                <input id="fileToUpload" type="file" style="display:none"
+                <input id="fileToUpload" name="fileToUpload" type="file" style="display:none"
                        onchange="$('#upload-file-info').html(this.files[0].name)">
                 Button Text Here
             </label>
