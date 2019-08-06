@@ -78,27 +78,30 @@
 
 
 
-
+    <form name ="txt-form" id="txt-form" method="POST" action="index.php?action=habilitas&operation=connection" enctype="multipart/form-data">
             <div class="alert alert-info" role="alert">
+
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <span class="glyphicon glyphicon-tags" ></span>&nbsp Muestra los partes involucrados para un período, empleado y concepto indicados.
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <!--<button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>-->
-                        <form name ="txt-form" id="txt-form" method="POST" action="index.php?action=habilitas&operation=connection" enctype="multipart/form-data">
+
                             <label class="btn btn-primary" for="fileToUpload">
                                 <input id="fileToUpload" name="fileToUpload" type="file" style="display:none"
                                     onchange="$('#upload-file-info').html(this.files[0].name)">
-                                Button Text Here
+                                Seleccione archivo
                             </label>
                             <span class='label label-info' id="upload-file-info"></span>
-                            <button class="btn btn-primary" id="culito" name="culito" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
-                        </form>
+                            <button class="btn btn-primary" id="culito" name="culito" type="submit">Convertir</button>
+
 
                     </div>
                 </div>
+
             </div>
+    </form>
 
 
             <div class="alert alert-info" role="alert">
