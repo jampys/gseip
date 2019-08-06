@@ -9,6 +9,12 @@
             return false;
         });
 
+        $(document).on('click', '#culito',function(){
+            alert('toco en submit1');
+            window.location.href = "index.php?action=habilitas&operation=connection";
+            return false;
+        });
+
         $('#example').DataTable({
             /*language: {
                 url: 'dataTables/Spanish.json'
@@ -62,7 +68,21 @@
 
 
 
+
+
+
+
+
+
         <form name ="txt-form" id="txt-form" method="POST" action="index.php">
+
+            <label class="btn btn-primary" for="fileToUpload">
+                <input id="fileToUpload" type="file" style="display:none"
+                       onchange="$('#upload-file-info').html(this.files[0].name)">
+                Button Text Here
+            </label>
+            <span class='label label-info' id="upload-file-info"></span>
+            <button class="btn btn-primary" id="culito" name="culito" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
 
             <div class="alert alert-info" role="alert">
                 <div class="row">
