@@ -15,7 +15,7 @@ switch ($operation)
         //$rta=$view->puesto->autocompletarPuestos($_POST['term']);
         //print_r(json_encode($rta));
         //exit;
-        $view->disableLayout=true;
+        $view->disableLayout=false;
         $view->contentTemplate="view/habilitas/habilitasForm.php";
         break;
 
