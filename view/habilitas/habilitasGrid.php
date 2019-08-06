@@ -3,6 +3,12 @@
 
     $(document).ready(function(){
 
+        $(document).on('click', '#submit1',function(){
+            alert('toco en submit1');
+            window.location.href = "index.php?action=habilitas&operation=connection";
+            return false;
+        });
+
         $('#example').DataTable({
             /*language: {
                 url: 'dataTables/Spanish.json'
