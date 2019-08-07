@@ -81,7 +81,49 @@ switch ($operation)
                 }
                 fclose($file);
 
+                //obtengo los datos
+                $c = array_slice($a, 0, 20);
 
+                foreach ($c as $k1 => $v1) {
+                    $line = explode(" ", $c[$k1]);
+                    // $array[3] se actualizará con cada valor de $array...
+                    //$line_1 = explode(" ", $a[$k]);
+                    //$line_2 = explode(" ", $a[$k+1]);
+                    //echo is_numeric($line_1[0]). "<br />";
+                    //print_r($array);
+                    //if ($line_1[1] == "Contrato") echo $line_1[0];
+                    if ($line[0] == 'CENTRO') {
+                        $view->datos['centro']= $line[2];
+                        //break;
+                    }
+
+                    // https://stackoverflow.com/questions/2109325/how-do-i-strip-all-spaces-out-of-a-string-in-php?rq=1
+                    if (substr(str_replace(' ', '', $c[$k1]), 0, 11) == 'CERTIFICADO') {
+                        $view->datos['certificado']=
+                            substr(preg_replace('/\s+/', '', $c[$k1]), -10);
+                        break;
+                    }
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //Comienzo a recorrer las lineas
                 foreach ($a as $k => $v) {
                     // $array[3] se actualizará con cada valor de $array...
                     $line_1 = explode(" ", $a[$k]);
