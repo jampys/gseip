@@ -41,19 +41,6 @@ foreach ($view->rta as $r) {
 
 ?>
 
-<table id="example2" class="table table-striped table-condensed table-hover" cellspacing="0" width="100%">
-
-                                    <tbody>
-                                    <?php foreach ($view->rta as $r):   ?>
-    <tr>
-        <td></td>
-        <td><?php echo $r['ot'];?></td>
-        <td><?php echo $r['habilita']; ?></td>
-
-    </tr>
-<?php endforeach;  ?>
-</tbody>
-</table>
 
 
 
@@ -63,6 +50,7 @@ foreach ($view->rta as $r) {
 
 
 
+<?php
 echo "Registros procesados: " . $counter;
 
 ?>
