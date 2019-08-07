@@ -24,7 +24,7 @@ switch ($operation)
                 !isset($_FILES['fileToUpload']['error']) ||
                 is_array($_FILES['fileToUpload']['error'])
             ) {
-                throw new RuntimeException('Invalid parameters.');
+                throw new RuntimeException('Error al cargar archivo.');
             }
 
 
@@ -34,26 +34,26 @@ switch ($operation)
                 case UPLOAD_ERR_OK:
                     break;
                 case UPLOAD_ERR_NO_FILE:
-                    throw new RuntimeException('No file sent.');
+                    throw new RuntimeException('No ha seleccionado ningún archivo.');
                 case UPLOAD_ERR_INI_SIZE:
                 case UPLOAD_ERR_FORM_SIZE:
-                    throw new RuntimeException('Exceeded filesize limit.');
+                    throw new RuntimeException('Tamaño maximo de archivo excedido.');
                 default:
-                    throw new RuntimeException('Unknown errors.');
+                    throw new RuntimeException('Error desconocido.');
             }
 
 
 
             // You should also check filesize here.
             if ($_FILES['fileToUpload']['size'] > 1000000) {
-                throw new RuntimeException('Exceeded filesize limit.');
+                throw new RuntimeException('Tamaño maximo de archivo excedido.');
             }
 
             $allowed_types = array ('text/x-fortran', 'text/plain');
             $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
             $detected_type = finfo_file( $fileInfo, $_FILES['fileToUpload']['tmp_name'] );
             if ( !in_array($detected_type, $allowed_types) ) {
-                throw new RuntimeException('Solo archivos de texto.');
+                throw new RuntimeException('Solo se permiten archivos de texto.');
             }
             finfo_close( $fileInfo );
 
@@ -81,17 +81,12 @@ switch ($operation)
                 }
                 fclose($file);
 
-                //obtengo los datos
+                //obtengo los datos para el encabezado
                 $c = array_slice($a, 0, 20);
 
                 foreach ($c as $k1 => $v1) {
                     $line = explode(" ", $c[$k1]);
-                    // $array[3] se actualizará con cada valor de $array...
-                    //$line_1 = explode(" ", $a[$k]);
-                    //$line_2 = explode(" ", $a[$k+1]);
-                    //echo is_numeric($line_1[0]). "<br />";
-                    //print_r($array);
-                    //if ($line_1[1] == "Contrato") echo $line_1[0];
+
                     if ($line[0] == 'CENTRO') {
                         $view->datos['centro']= $line[2];
                         //break;
@@ -104,22 +99,7 @@ switch ($operation)
                         break;
                     }
 
-
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
