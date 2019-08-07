@@ -110,10 +110,10 @@ switch ($operation)
                                     " " . $line_2[7] .
                                     "<br />";*/
                                 $view->rta[]= array('habilita'=> $line_1[0],
-                                    'ot'=> $line_1[0],
-                                    'cantidad'=> $line_1[0],
-                                    'unitario'=> $line_1[0],
-                                    'importe'=> $line_1[0]
+                                    'ot'=> $line_2[1],
+                                    'cantidad'=> $line_2[4],
+                                    'unitario'=> $line_2[6],
+                                    'importe'=> $line_2[7]
                                 );
                                 break;
                             } else {
