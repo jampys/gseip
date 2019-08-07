@@ -53,7 +53,7 @@
 
     <?php }else{ ?>
 
-        
+
     <span><b>Centro:</b>&nbsp;<?php echo $view->datos['centro']; ?></span><br/>
     <span><b>Certificado:</b>&nbsp;<?php echo $view->datos['certificado']; ?></span><br/>
     <span><b>Registros procesados:</b>&nbsp;<?php echo $counter; ?></span>

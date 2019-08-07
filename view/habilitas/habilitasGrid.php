@@ -36,7 +36,7 @@
 
                 <div class="row">
                     <div class="col-md-9">
-                        <span class="glyphicon glyphicon-tags" ></span>&nbsp Muestra los partes involucrados para un período, empleado y concepto indicados.
+                        <span class="glyphicon glyphicon-tags" ></span>&nbsp Habilitas YPF Chubut
                     </div>
                     <div class="col-md-3">
 
