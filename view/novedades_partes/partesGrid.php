@@ -108,7 +108,8 @@
                             <?php echo($rp['orden_count']>0)? '<i class="fas fa-check fa-fw dp_blue" title="parte con órdenes"></i>':'<i class="fas fa-clipboard fa-fw dp_blue" title="parte sin órdenes"></i>'; ?>&nbsp;&nbsp;
                             <?php echo($rp['last_calc_status'])? '<i class="fas fa-check fa-fw dp_blue" title="parte calculado"></i>':'<i class="fas fa-exclamation-triangle fa-fw dp_blue" title="parte sin calcular"></i>'; ?>
                         </td>
-                        <td><?php echo $rp['user'];?></td>
+                        <td><?php $arr = explode("@", $rp['user'], 2);
+                            echo $arr[0];?></td>
 
 
                         <td class="text-center">
