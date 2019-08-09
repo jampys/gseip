@@ -12,6 +12,7 @@ class Postulante
     private $formacion;
     private $id_especialidad;
     private $id_localidad;
+    private $comentarios;
 
 
     // GETTERS
@@ -45,6 +46,9 @@ class Postulante
     function getIdLocalidad()
     { return $this->id_localidad;}
 
+    function getComentarios()
+    { return $this->comentarios;}
+
 
     //SETTERS
     function setIdPostulante($val)
@@ -77,6 +81,9 @@ class Postulante
     function setIdLocalidad($val)
     { $this->id_localidad=$val;}
 
+    function setComentarios($val)
+    { $this->comentarios=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -85,7 +92,7 @@ class Postulante
             $query = "select id_postulante,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
                       apellido, nombre, dni, lista_negra,
-                      telefono, formacion, id_especialidad, id_localidad
+                      telefono, formacion, id_especialidad, id_localidad, comentarios
                       from sel_postulantes
                       where id_postulante = :nro";
             $stmt->dpPrepare($query);
@@ -103,6 +110,7 @@ class Postulante
             $this->setFormacion($rows[0]['formacion']);
             $this->setIdEspecialidad($rows[0]['id_especialidad']);
             $this->setIdLocalidad($rows[0]['id_localidad']);
+            $this->setComentarios($rows[0]['comentarios']);
         }
     }
 
@@ -159,7 +167,8 @@ class Postulante
                 telefono = :telefono,
                 formacion = :formacion,
                 id_especialidad = :id_especialidad,
-                id_localidad = :id_localidad
+                id_localidad = :id_localidad,
+                comentarios = :comentarios
                 where id_postulante = :id_postulante";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':apellido', $this->getApellido());
@@ -170,6 +179,7 @@ class Postulante
         $stmt->dpBind(':formacion', $this->getFormacion());
         $stmt->dpBind(':id_especialidad', $this->getIdEspecialidad());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
+        $stmt->dpBind(':comentarios', $this->getComentarios());
         $stmt->dpBind(':id_postulante', $this->getIdPostulante());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -178,8 +188,8 @@ class Postulante
 
     private function insertPostulante(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_postulantes(fecha, apellido, nombre, dni, lista_negra, telefono, formacion, id_especialidad, id_localidad)
-                values(sysdate(), :apellido, :nombre, :dni, :lista_negra, :telefono, :formacion, :id_especialidad, :id_localidad)";
+        $query="insert into sel_postulantes(fecha, apellido, nombre, dni, lista_negra, telefono, formacion, id_especialidad, id_localidad, comentarios)
+                values(sysdate(), :apellido, :nombre, :dni, :lista_negra, :telefono, :formacion, :id_especialidad, :id_localidad, :comentarios)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':apellido', $this->getApellido());
         $stmt->dpBind(':nombre', $this->getNombre());
@@ -189,6 +199,7 @@ class Postulante
         $stmt->dpBind(':formacion', $this->getFormacion());
         $stmt->dpBind(':id_especialidad', $this->getIdEspecialidad());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
+        $stmt->dpBind(':comentarios', $this->getComentarios());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

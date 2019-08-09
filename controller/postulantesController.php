@@ -34,6 +34,7 @@ switch ($operation)
         $postulante->setFormacion($_POST['formacion']);
         $postulante->setIdEspecialidad( ($_POST['id_especialidad']!='')? $_POST['id_especialidad'] : null);
         $postulante->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
+        $postulante->setComentarios( ($_POST['comentarios']!='')? $_POST['comentarios'] : null);
 
         $rta = $postulante->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
