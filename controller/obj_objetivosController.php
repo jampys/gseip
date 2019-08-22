@@ -149,7 +149,8 @@ switch ($operation)
         //$view->objetivos = Objetivo::getObjetivos($view->periodo_actual);
         $view->puestos = Puesto::getPuestos();
         $view->areas = Area::getAreas();
-        $view->contratos = Contrato::getContratos();
+        //$view->contratos = Contrato::getContratos();
+        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
         $view->empleados = Empleado::getEmpleadosActivos(null);
 
