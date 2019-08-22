@@ -353,7 +353,8 @@ switch ($operation)
     default : //ok
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
-        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+        //$view->contratos = Contrato::getContratos();
+        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
         $view->puestos = Puesto::getPuestos();
         $view->niveles_competencias = NivelCompetencia::getNivelesCompetencias();
         $view->localidades = Localidad::getLocalidades();
