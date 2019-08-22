@@ -77,6 +77,7 @@ try {
 
 
     $a = array();
+    $rta = array();
     $counter = 0;
 //$file = fopen("uploads/files/SEIP 1016 Julio.txt", "r") or exit("Unable to open file!");
 //$file = $_FILES['fileToUpload']['tmp_name'];
@@ -105,7 +106,8 @@ try {
             //print_r($array);
             if ($line_1[1] == "Contrato") {
                 $counter += 1;
-                echo $line_1[0];
+                //echo $line_1[0];
+
                 $b = array();
                 $b = array_slice($a, $k + 1, 20);
 
@@ -118,11 +120,17 @@ try {
                     //print_r($array);
                     //if ($line_1[1] == "Contrato") echo $line_1[0];
                     if (is_numeric($line_2[0]) && is_numeric($line_2[1])) {
-                        echo " " . $line_2[1] .
+                        /*echo " " . $line_2[1] .
                             " " . $line_2[4] .
                             " " . $line_2[6] .
                             " " . $line_2[7] .
-                            "<br />";
+                            "<br />";*/
+                        $rta[]= array('habilita'=> $line_1[0],
+                            'ot'=> $line_1[0],
+                            'cantidad'=> $line_1[0],
+                            'unitario'=> $line_1[0],
+                            'importe'=> $line_1[0]
+                            );
                         break;
                     } else {
                         continue;
@@ -136,6 +144,12 @@ try {
 
 
         }
+
+
+        foreach ($rta as $r) {
+            echo $r['ot']."<br />";
+        }
+
 
         echo "Registros procesados: " . $counter;
 

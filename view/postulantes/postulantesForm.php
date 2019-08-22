@@ -132,6 +132,7 @@
                 params.formacion = $('#formacion').val();
                 params.id_especialidad = $('#id_especialidad').val();
                 params.id_localidad = $('#id_localidad').val();
+                params.comentarios = $('#comentarios').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -191,7 +192,8 @@
                             id_postulante: function(){ return $('#id_postulante').val();}
                         }
                     }
-                }
+                },
+                comentarios: {maxlength: 500}
 
             },
             messages:{
@@ -200,7 +202,8 @@
                 dni: {
                     //required: "Ingrese el DNI",
                     remote: "El postulante ya se encuentra registrado"
-                }
+                },
+                comentarios: "Máximo 500 caracteres"
 
             }
 
@@ -299,6 +302,12 @@
                                 <input type="checkbox" id="lista_negra" name="lista_negra" <?php echo (!$view->postulante->getListaNegra())? '' :'checked' ?> ><a href="#" title="Seleccione para incluir al postulante en la lista negra">Agregar a lista negra</a>
                             </label>
                         </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="comentarios">Comentarios</label>
+                        <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="3"><?php print $view->postulante->getComentarios(); ?></textarea>
                     </div>
 
 
