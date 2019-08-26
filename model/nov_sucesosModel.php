@@ -214,7 +214,7 @@ class Suceso
         - Periodo 2: no requerido. Si no tiene periodo_2, se pasa el periodo como cerrado.
         */
 
-        // el join con contratos activos, y el group 
+        // el join con contratos activos, y el group
         $query = "select su.id_suceso, su.id_evento, su.id_empleado,
                   DATE_FORMAT(su.created_date,  '%d/%m/%Y') as created_date,
                   DATE_FORMAT(su.fecha_desde,  '%d/%m/%Y') as fecha_desde,
