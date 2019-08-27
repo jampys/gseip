@@ -12,7 +12,7 @@
             "fnInitComplete": function () {
                                 $(this).show(); },
             "stateSave": true,
-            "order": [[0, "asc"], [1, "asc"], [2, "asc"]], // 0=fecha_parte, 1=contrato, 2=cuadrilla
+            "order": [[0, "desc"], [1, "asc"], [2, "asc"]], // 0=fecha_parte, 1=contrato, 2=cuadrilla
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
