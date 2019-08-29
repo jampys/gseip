@@ -189,6 +189,36 @@
 
 
 
+        //Exportar novedades para control administracion
+        $('#myModal').on("click", "#submit2", function(){
+
+            if ($("#txt-form").valid()){
+
+                params={};
+                params.id_contrato = $("#myModal #id_contrato").val();
+                params.id_periodo = $("#myModal #id_periodo").val();
+                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
+
+                //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
+                var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
+                //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_crossTab_novedades.rptdesign&p_id_contrato="+params.id_contrato+"&p_fecha_desde="+params.fecha_desde+"&p_fecha_hasta="+params.fecha_hasta+"&p_id_user="+params.id_user;
+                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_nov_control_administracion.rptdesign&p_id_contrato="+params.id_contrato+
+                        //"&p_fecha_desde="+params.fecha_desde+
+                        //"&p_fecha_hasta="+params.fecha_hasta+
+                    "&p_id_periodo="+params.id_periodo+
+                    "&p_id_user="+params.id_user;
+
+                //var win = window.open(URL, "_blank", strWindowFeatures);
+                var win = window.open(URL, "_blank");
+
+
+            }
+
+            return false;
+        });
+
+
+
 
     });
 
@@ -249,7 +279,7 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Muestra las novedades en formato de tabla cruzada (empleado/concepto).
+                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Exporta novedades en formato de tabla cruzada (empleado/concepto).
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
@@ -261,10 +291,22 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Exporta las novedades en formato .txt (admisible para BAS) para un período indicado.
+                                <span class="glyphicon glyphicon-tags" ></span>&nbsp <strong>Para uso de administración</strong> Exporta novedades en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit" name="submit" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <span class="glyphicon glyphicon-tags" ></span>&nbsp <strong>Para uso de administración</strong> Exporta novedades en formato .xls para control.
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
