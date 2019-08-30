@@ -177,6 +177,9 @@ switch ($operation)
                 }
 
 
+                $_SESSION['cart'] = $view->rta;
+
+
 
 
 //cantidad un. pr unitario importe
@@ -199,14 +202,14 @@ switch ($operation)
 
     case 'save':
 
-            foreach ($view->rta as $rg) {
+            foreach ($_SESSION['cart'] as $rg) {
 
                 $habilita = new Habilita();
                 $habilita->setOt($rg['ot']);
                 $habilita->setHabilita($rg['habilita']);
                 $habilita->setCantidad($rg['cantidad']);
                 $habilita->setUnitario($rg['unitario']);
-                $habilita->setImporte($rg['importe']);
+                $habilita->setImporte($rg['ca']);
                 $habilita->setCreatedBy(1);
                 //$habilita->setOt($_POST['ot']);
                 $rta = $habilita->save();
