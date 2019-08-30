@@ -201,6 +201,7 @@ switch ($operation)
 
             //$rta = $habilidad->save();
             //print_r(json_encode($rta));
+            print_r(json_encode(2));
             exit;
             break;
         }else{

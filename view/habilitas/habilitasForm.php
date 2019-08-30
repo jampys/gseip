@@ -40,7 +40,7 @@
                         $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
                         setTimeout(function() { $("#myElem").hide();
                             //$('#popupbox').dialog('close');
-                            $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
+                            //$('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
                         }, 2000);
 
                     }else{
