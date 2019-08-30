@@ -18,10 +18,6 @@ switch ($operation)
         //exit;
 
 
-        $view->rta = array();
-
-
-
         try {
 
             if (
@@ -65,7 +61,7 @@ switch ($operation)
 
 
             $a = array();
-
+            $view->rta = array();
             $counter = 0;
 //$file = fopen("uploads/files/SEIP 1016 Julio.txt", "r") or exit("Unable to open file!");
 //$file = $_FILES['fileToUpload']['tmp_name'];
