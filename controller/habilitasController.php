@@ -238,9 +238,9 @@ switch ($operation)
 
 
 
-            $rta['msg']= "FIN\n";
+            $rta['msg']= "FIN</br>";
             $rta['msg'].= "hola de nuevo";
-            print_r(json_encode($e));
+            print_r(json_encode($rta));
             exit;
             break;
 
