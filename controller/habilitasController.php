@@ -1,4 +1,5 @@
 ﻿<?php
+include_once("model/habilitasModel.php");
 
 if(isset($_REQUEST['operation']))
 {$operation=$_REQUEST['operation'];}
@@ -195,11 +196,33 @@ switch ($operation)
 
 
         if (isset($_POST["pinchila"])){
-            //$habilidad = new Habilidad($_POST['id_habilidad']);
-            //$habilidad->setCodigo($_POST['codigo']);
-            //$habilidad->setNombre($_POST['nombre']);
 
-            //$rta = $habilidad->save();
+            foreach ($view->rta as $rg) {
+
+                /*
+                 *
+                 * 'habilita'=> $line_1[0],
+                                    'ot'=> $line_2[1],
+                                    'cantidad'=> $line_2[4],
+                                    'unitario'=> $line_2[6],
+                                    'importe'=> $line_2[7]
+                 */
+
+                $habilita = new Habilita();
+                $habilita->setOt($rg['ot']);
+                $habilita->setHabilita($rg['habilita']);
+                $habilita->setCantidad($rg['cantidad']);
+                $habilita->setUnitario($rg['unitario']);
+                $habilita->setImporte($rg['importe']);
+                $habilita->setCreatedBy(1);
+                //$habilita->setOt($_POST['ot']);
+                $rta = $habilita->save();
+
+
+            }
+
+
+
             //print_r(json_encode($rta));
             print_r(json_encode(2));
             exit;
