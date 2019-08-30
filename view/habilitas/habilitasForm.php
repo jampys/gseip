@@ -36,16 +36,15 @@
                     //No se usa .fail() porque el resultado viene de un SP y siempre devuelve 1 o -1 (no lanza excepcion PHP)
                     alert(xhr.responseText);
                     if(data["saved"] >=0){
-                        $(".panel-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
-                        setTimeout(function() { $("#myElem").hide();
-                            //$('#popupbox').dialog('close');
-                            //$('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
-                        }, 2000);
+                        //$(".panel-footer button").prop("disabled", true); //deshabilito botones
+                        //$("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                        $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data['msg']+'</div>');
+                
 
                     }else{
                         //alert(xhr.responseText);
-                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                        //$("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                        $("#msg-container").html('<div id="myElem" class="msg alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-exclamation-triangle fa-fw"></i></i>&nbsp '+data['msg']+'</div>');
                     }
 
                 }, "json"); //}, "json");
@@ -116,7 +115,7 @@
 </form>
 
 
-<div id="myElem" class="msg" style="display:none"></div>
+<div id="msg-container">
 
 
 
