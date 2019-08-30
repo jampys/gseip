@@ -192,21 +192,15 @@ switch ($operation)
         }
 
 
+        $view->disableLayout=false;
+        $view->contentTemplate="view/habilitas/habilitasForm.php";
+        break;
 
 
-        if (isset($_POST["pinchila"])){
+    case 'save':
 
             foreach ($view->rta as $rg) {
-
-                /*
-                 *
-                 * 'habilita'=> $line_1[0],
-                                    'ot'=> $line_2[1],
-                                    'cantidad'=> $line_2[4],
-                                    'unitario'=> $line_2[6],
-                                    'importe'=> $line_2[7]
-                 */
-
+                
                 $habilita = new Habilita();
                 $habilita->setOt($rg['ot']);
                 $habilita->setHabilita($rg['habilita']);
@@ -226,13 +220,9 @@ switch ($operation)
             print_r(json_encode(2));
             exit;
             break;
-        }else{
 
-            $view->disableLayout=false;
-            $view->contentTemplate="view/habilitas/habilitasForm.php";
-            break;
 
-        }
+
 
 
 

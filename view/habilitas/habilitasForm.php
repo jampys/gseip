@@ -26,8 +26,8 @@
             //if ($("#empleado-form").valid()){
                 var params={};
                 params.action = 'habilitas';
-                params.operation = 'connection';
-                params.pinchila = 'algo';
+                params.operation = 'save';
+                //params.pinchila = 'algo';
                // params.id_empleado=$('#id_empleado').val();
 
                 //alert(params.cambio_domicilio);
