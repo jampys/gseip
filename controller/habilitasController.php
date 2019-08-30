@@ -200,7 +200,7 @@ switch ($operation)
     case 'save':
 
             foreach ($view->rta as $rg) {
-                
+
                 $habilita = new Habilita();
                 $habilita->setOt($rg['ot']);
                 $habilita->setHabilita($rg['habilita']);
