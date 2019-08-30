@@ -27,6 +27,7 @@
                 var params={};
                 params.action = 'habilitas';
                 params.operation = 'connection';
+                params.pinchila = 'algo';
                // params.id_empleado=$('#id_empleado').val();
 
                 //alert(params.cambio_domicilio);
@@ -113,6 +114,9 @@
 
 
 </form>
+
+
+<div id="myElem" class="msg" style="display:none"></div>
 
 
 
