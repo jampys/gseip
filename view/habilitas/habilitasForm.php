@@ -21,7 +21,7 @@
 
 
 
-        $(document).on('click', '#submit',function(){
+        $(document).on('click', '#save',function(){
                 alert('guardar en BD');
             //if ($("#empleado-form").valid()){
                 var params={};
@@ -103,7 +103,7 @@
     </div>
 
         <button class="btn btn-primary" id="clipboard" name="clipboard" type="button">Copiar al portapapeles</button>
-        <button class="btn btn-primary" id="submit" name="submit" type="button">Guardar BD</button>
+        <button class="btn btn-primary" id="save" name="save" type="button">Guardar BD</button>
 
     <?php }?>
 
