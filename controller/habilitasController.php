@@ -217,15 +217,15 @@ switch ($operation)
                     $habilita->setHabilita($rg['habilita']);
                     $habilita->setCantidad($rg['cantidad']);
                     $habilita->setUnitario($rg['unitario']);
-                    $habilita->setImporte($rg['ca']);
-                    $habilita->setCreatedBy(1);
+                    $habilita->setImporte($rg['importe']);
+                    $habilita->setCreatedBy($_SESSION['id_user']);
                     $habilita->save();
                     $rta['saved']++;
 
                 }catch (PDOException $e){
 
-                    //if($e->errorInfo[1] == 1062)
-                        $rta['duplicates']++;
+                    if($e->errorInfo[1] == 1062) $rta['duplicates']++;
+                    else $rta['others']++;
 
                     //print_r(json_encode(-1));
 
@@ -238,8 +238,9 @@ switch ($operation)
 
 
 
-            $rta['msg']= "FIN</br>";
-            $rta['msg'].= "hola de nuevo";
+            $rta['msg']= "Registros guardados: ".$rta['saved']."</br>";
+            $rta['msg'].= "Registros duplicados: ".$rta['duplicates']."</br>";
+            $rta['msg'].= "Otros errores: ".$rta['others']."</br>";
             print_r(json_encode($rta));
             exit;
             break;
