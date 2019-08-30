@@ -219,11 +219,12 @@ switch ($operation)
                     $habilita->setUnitario($rg['unitario']);
                     $habilita->setImporte($rg['ca']);
                     $habilita->setCreatedBy(1);
-                    $rta = $habilita->save();
+                    //$rta = $habilita->save();
+                    $e['saved'] = 4;
 
                 }catch (PDOException $e){
 
-                    print_r(json_encode(-1));
+                    //print_r(json_encode(-1));
 
                 }
 
@@ -234,8 +235,8 @@ switch ($operation)
 
 
 
-            //print_r(json_encode($rta));
-            print_r(json_encode(2));
+
+            print_r(json_encode($e));
             exit;
             break;
 

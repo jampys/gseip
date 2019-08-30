@@ -35,7 +35,7 @@
                 $.post('index.php',params,function(data, status, xhr){
                     //No se usa .fail() porque el resultado viene de un SP y siempre devuelve 1 o -1 (no lanza excepcion PHP)
                     alert(xhr.responseText);
-                    if(data >=0){
+                    if(data["saved"] >=0){
                         $(".panel-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
                         setTimeout(function() { $("#myElem").hide();
@@ -48,7 +48,7 @@
                         $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                     }
 
-                }); //}, "json");
+                }, "json"); //}, "json");
 
             //}
             return false;
