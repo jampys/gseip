@@ -20,6 +20,44 @@
         });
 
 
+
+        $(document).on('click', '#submit',function(){
+                alert('guardar en BD');
+            //if ($("#empleado-form").valid()){
+                var params={};
+                params.action = 'habilitas';
+                params.operation = 'connection';
+               // params.id_empleado=$('#id_empleado').val();
+
+                //alert(params.cambio_domicilio);
+
+                $.post('index.php',params,function(data, status, xhr){
+                    //No se usa .fail() porque el resultado viene de un SP y siempre devuelve 1 o -1 (no lanza excepcion PHP)
+                    //alert(xhr.responseText);
+                    if(data >=0){
+                        $(".panel-footer button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                        setTimeout(function() { $("#myElem").hide();
+                            //$('#popupbox').dialog('close');
+                            $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
+                        }, 2000);
+
+                    }else{
+                        //alert(xhr.responseText);
+                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                    }
+
+                }, "json");
+
+            //}
+            return false;
+        });
+
+
+
+
+
+
     });
 
 </script>
@@ -65,6 +103,7 @@
     </div>
 
         <button class="btn btn-primary" id="clipboard" name="clipboard" type="button">Copiar al portapapeles</button>
+        <button class="btn btn-primary" id="submit" name="submit" type="button">Guardar BD</button>
 
     <?php }?>
 

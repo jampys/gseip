@@ -194,14 +194,28 @@ switch ($operation)
 
 
 
+        if (isset($_POST["pinchila"])){
+            //$habilidad = new Habilidad($_POST['id_habilidad']);
+            //$habilidad->setCodigo($_POST['codigo']);
+            //$habilidad->setNombre($_POST['nombre']);
+
+            //$rta = $habilidad->save();
+            //print_r(json_encode($rta));
+            exit;
+            break;
+        }else{
+
+            $view->disableLayout=false;
+            $view->contentTemplate="view/habilitas/habilitasForm.php";
+            break;
+
+        }
 
 
 
 
 
-        $view->disableLayout=false;
-        $view->contentTemplate="view/habilitas/habilitasForm.php";
-        break;
+
 
     default : //ok
         //$view->empleados=Empleado::getEmpleados();
