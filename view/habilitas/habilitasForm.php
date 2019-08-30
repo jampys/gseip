@@ -35,11 +35,11 @@
                 $.post('index.php',params,function(data, status, xhr){
                     //No se usa .fail() porque el resultado viene de un SP y siempre devuelve 1 o -1 (no lanza excepcion PHP)
                     alert(xhr.responseText);
-                    if(data["saved"] >=0){
+                    if(true){ //data["saved"] >=0
                         //$(".panel-footer button").prop("disabled", true); //deshabilito botones
                         //$("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
                         $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data['msg']+'</div>');
-                
+
 
                     }else{
                         //alert(xhr.responseText);

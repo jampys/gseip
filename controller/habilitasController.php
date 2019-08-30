@@ -202,11 +202,11 @@ switch ($operation)
 
     case 'save':
 
-            $e = array();
-            $e['msg']= "";
-            $e['saved'] = 0;
-            $e['duplicates'] = 0;
-            $e['others'] = 0;
+            $rta = array();
+            $rta['msg']= "";
+            $rta['saved'] = 0;
+            $rta['duplicates'] = 0;
+            $rta['others'] = 0;
 
             foreach ($_SESSION['cart'] as $rg) {
 
@@ -219,10 +219,13 @@ switch ($operation)
                     $habilita->setUnitario($rg['unitario']);
                     $habilita->setImporte($rg['ca']);
                     $habilita->setCreatedBy(1);
-                    //$rta = $habilita->save();
-                    $e['saved'] = 4;
+                    $habilita->save();
+                    $rta['saved']++;
 
                 }catch (PDOException $e){
+
+                    //if($e->errorInfo[1] == 1062)
+                        $rta['duplicates']++;
 
                     //print_r(json_encode(-1));
 
@@ -235,7 +238,8 @@ switch ($operation)
 
 
 
-
+            $rta['msg']= "FIN\n";
+            $rta['msg'].= "hola de nuevo";
             print_r(json_encode($e));
             exit;
             break;
