@@ -111,33 +111,58 @@ switch ($operation)
                     //echo is_numeric($line_1[0]). "<br />";
                     //print_r($array);
                     if ($line_1[1] == "Contrato") {
-                        $counter += 1;
+                        //$counter += 1;
                         //echo $line_1[0];
 
                         $b = array();
-                        $b = array_slice($a, $k + 1, 20);
+                        $b = array_slice($a, $k + 1, 30);
 
                         foreach ($b as $k1 => $v1) {
                             $line_2 = explode(" ", $b[$k1]);
+
+                            if($line_2[0] == 'Subtotal') break;
+
                             // $array[3] se actualizará con cada valor de $array...
                             //$line_1 = explode(" ", $a[$k]);
                             //$line_2 = explode(" ", $a[$k+1]);
                             //echo is_numeric($line_1[0]). "<br />";
                             //print_r($array);
                             //if ($line_1[1] == "Contrato") echo $line_1[0];
-                            if (is_numeric($line_2[0]) && is_numeric($line_2[1])) {
+                            if (is_numeric($line_2[0]) && is_numeric($line_2[1]) && ($line_2[0]=='00010'
+                                || $line_2[0]=='00020'
+                                    || $line_2[0]=='00030'
+                                    || $line_2[0]=='00040'
+                                    || $line_2[0]=='00050'
+                                    || $line_2[0]=='00060'
+                                    || $line_2[0]=='00070'
+                                    || $line_2[0]=='00080'
+                                    || $line_2[0]=='00090'
+                                    || $line_2[0]=='00100'
+                                    || $line_2[0]=='00110'
+                                    || $line_2[0]=='00120'
+                                    || $line_2[0]=='00130'
+                                    || $line_2[0]=='00140'
+                                    || $line_2[0]=='00150'
+                                    || $line_2[0]=='00160'
+                                    || $line_2[0]=='00170'
+                                    || $line_2[0]=='00180'
+                                    || $line_2[0]=='00190'
+                                    || $line_2[0]=='00200'
+                                )
+                                ) {
                                 /*echo " " . $line_2[1] .
                                     " " . $line_2[4] .
                                     " " . $line_2[6] .
                                     " " . $line_2[7] .
                                     "<br />";*/
+                                $counter += 1;
                                 $view->rta[]= array('habilita'=> $line_1[0],
                                     'ot'=> $line_2[1],
                                     'cantidad'=> $line_2[4],
                                     'unitario'=> $line_2[6],
                                     'importe'=> $line_2[7]
                                 );
-                                break;
+                                //break;
                             } else {
                                 continue;
                             }
