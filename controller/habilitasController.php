@@ -98,6 +98,12 @@ switch ($operation)
                         //break;
                     }
 
+
+                    if ($line[0] == 'Cantidad' && $line[3] == 'detalle:' ) {
+                        $view->datos['items']= $line[5];
+                        //break;
+                    }
+
                     // https://stackoverflow.com/questions/2109325/how-do-i-strip-all-spaces-out-of-a-string-in-php?rq=1
                     if (substr(str_replace(' ', '', $c[$k1]), 0, 11) == 'CERTIFICADO') {
                         $view->datos['certificado']=

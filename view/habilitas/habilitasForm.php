@@ -91,9 +91,10 @@
 
     <?php }else{ ?>
 
-
+        <span><b>Fecha:</b>&nbsp;<?php echo $view->datos['fecha']; ?></span><br/>
     <span><b>Centro:</b>&nbsp;<?php echo $view->datos['centro']; ?></span><br/>
     <span><b>Certificado:</b>&nbsp;<?php echo $view->datos['certificado']; ?></span><br/>
+        <span><b>Cantidad de líneas detalle:</b>&nbsp;<?php echo $view->datos['items']; ?></span><br/>
     <span><b>Registros procesados:</b>&nbsp;<?php echo $counter; ?></span>
     <br/>
     <br/>
