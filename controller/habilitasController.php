@@ -62,7 +62,8 @@ switch ($operation)
 
             $a = array();
             $view->rta = array();
-            $counter = 0;
+            $view->datos = array();
+            $view->datos["counter"] = 0;
 //$file = fopen("uploads/files/SEIP 1016 Julio.txt", "r") or exit("Unable to open file!");
 //$file = $_FILES['fileToUpload']['tmp_name'];
 
@@ -140,7 +141,9 @@ switch ($operation)
                             //echo is_numeric($line_1[0]). "<br />";
                             //print_r($array);
                             //if ($line_1[1] == "Contrato") echo $line_1[0];
-                            if (is_numeric($line_2[0]) && is_numeric($line_2[1]) && ($line_2[0]=='00010'
+                            if (is_numeric($line_2[0]) && is_numeric($line_2[1])
+                                && ($line_2[5]=='UNI' || $line_2[5]=='MES' || $line_2[5]=='H')
+                                && ($line_2[0]=='00010'
                                 || $line_2[0]=='00020'
                                     || $line_2[0]=='00030'
                                     || $line_2[0]=='00040'
@@ -167,7 +170,8 @@ switch ($operation)
                                     " " . $line_2[6] .
                                     " " . $line_2[7] .
                                     "<br />";*/
-                                $counter += 1;
+                                //$counter += 1;
+                                $view->datos["counter"] +=1;
                                 $view->rta[]= array('habilita'=> $line_1[0],
                                     'posicion'=> $line_2[0],
                                     'ot'=> $line_2[1],
@@ -221,6 +225,7 @@ switch ($operation)
             $rta['duplicates'] = 0;
             $rta['others'] = 0;
             $rta['items'] = $_SESSION['head']['items']; //total de items de la habilita
+            $rta['counter'] = $_SESSION['head']['counter']; //total de items procesados de la habilita
 
             foreach ($_SESSION['cart'] as $rg) {
 

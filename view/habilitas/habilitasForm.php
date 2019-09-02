@@ -41,7 +41,7 @@
 
                     $("#puesto button").prop("disabled", false); //habilito botones
 
-                    if(data["saved"] == data["items"]){ //data["saved"] >=0
+                    if(data["saved"] == data["counter"]){ //data["saved"] >=0
                         //$(".panel-footer button").prop("disabled", true); //deshabilito botones
                         //$("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
                         $("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data['msg']+'</div>');
@@ -116,7 +116,7 @@
     <span><b>Centro:</b>&nbsp;<?php echo $view->datos['centro']; ?></span><br/>
     <span><b>Certificado:</b>&nbsp;<?php echo $view->datos['certificado']; ?></span><br/>
         <span><b>Cantidad de líneas detalle:</b>&nbsp;<?php echo $view->datos['items']; ?></span><br/>
-    <span><b>Registros procesados:</b>&nbsp;<?php echo $counter; ?></span>
+    <span><b>Registros procesados:</b>&nbsp;<?php echo $view->datos['counter']; ?></span>
     <br/>
     <br/>
 
