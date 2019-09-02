@@ -32,9 +32,15 @@
 
                 //alert(params.cambio_domicilio);
 
-                $.post('index.php',params,function(data, status, xhr){
-                    //No se usa .fail() porque el resultado viene de un SP y siempre devuelve 1 o -1 (no lanza excepcion PHP)
-                    //alert(xhr.responseText);
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                data: params,
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    $("#puesto button").prop("disabled", false); //habilito botones
+
                     if(data["saved"] == data["items"]){ //data["saved"] >=0
                         //$(".panel-footer button").prop("disabled", true); //deshabilito botones
                         //$("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
@@ -46,6 +52,26 @@
                         //$("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                         $("#msg-container").html('<div id="myElem" class="msg alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-exclamation-triangle fa-fw"></i></i>&nbsp '+data['msg']+'</div>');
                     }
+
+                },
+                /*error: function(data, textStatus, errorThrown) {
+                 //alert(data.responseText);
+                 $("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
+                 setTimeout(function() { $("#myElem").hide();
+                 }, 2000);
+                 },*/
+                beforeSend: function() {
+                    // setting a timeout
+                    $("#puesto button").prop("disabled", true); //deshabilito botones
+                    $("#msg-container").html('Guardando registros en Base de Datos...').show();
+                }
+
+            });
+
+                $.post('index.php',params,function(data, status, xhr){
+                    //No se usa .fail() porque el resultado viene de un SP y siempre devuelve 1 o -1 (no lanza excepcion PHP)
+                    //alert(xhr.responseText);
+
 
                 }, "json"); //}, "json");
 
