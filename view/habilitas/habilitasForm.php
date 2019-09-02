@@ -68,12 +68,7 @@
 
             });
 
-                $.post('index.php',params,function(data, status, xhr){
-                    //No se usa .fail() porque el resultado viene de un SP y siempre devuelve 1 o -1 (no lanza excepcion PHP)
-                    //alert(xhr.responseText);
-
-
-                }, "json"); //}, "json");
+                
 
             //}
             return false;
