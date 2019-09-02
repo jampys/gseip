@@ -8,8 +8,14 @@ class Habilita
     private $cantidad;
     private $unitario;
     private $importe;
+    private $centro;
+    private $certificado;
+    private $fecha;
+
     private $created_by;
     private $created_date;
+
+
 
     // GETTERS
     function getId()
@@ -29,6 +35,15 @@ class Habilita
 
     function getImporte()
     { return $this->importe;}
+
+    function getCentro()
+    { return $this->centro;}
+
+    function getCertificado()
+    { return $this->certificado;}
+
+    function getFecha()
+    { return $this->fecha;}
 
     function getCreatedBy()
     { return $this->created_by;}
@@ -56,6 +71,15 @@ class Habilita
     function setImporte($val)
     { $this->importe=$val;}
 
+    function setCentro($val)
+    { $this->centro=$val;}
+
+    function setCertificado($val)
+    { $this->certificado=$val;}
+
+    function setFecha($val)
+    { $this->fecha=$val;}
+
     function setCreatedBy($val)
     { $this->created_by=$val;}
 
@@ -68,7 +92,9 @@ class Habilita
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id, ot, habilita, cantidad, unitario, importe, created_by,
+            $query = "select id, ot, habilita, cantidad, unitario, importe,
+                      centro, certificado, fecha,
+                      created_by,
                       DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
                       from nov_habilitas
                       where id = :nro";
@@ -83,6 +109,9 @@ class Habilita
             $this->setCantidad($rows[0]['cantidad']);
             $this->setUnitario($rows[0]['unitario']);
             $this->setImporte($rows[0]['importe']);
+            $this->setCentro($rows[0]['centro']);
+            $this->setCertificado($rows[0]['certificado']);
+            $this->setFecha($rows[0]['fecha']);
             $this->setCreatedBy($rows[0]['created_by']);
             $this->setCreatedDate($rows[0]['created_date']);
         }
@@ -145,14 +174,17 @@ class Habilita
 
     private function insertHabilita(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_habilitas(ot, habilita, cantidad, unitario, importe, created_by , created_date)
-                values(:ot, :habilita, :cantidad, :unitario, :importe, :created_by, sysdate())";
+        $query="insert into nov_habilitas(ot, habilita, cantidad, unitario, importe, centro, certificado, fecha, created_by , created_date)
+                values(:ot, :habilita, :cantidad, :unitario, :importe, :centro, :certificado, STR_TO_DATE(:fecha, '%d.%m.%Y'), :created_by, sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':ot', $this->getOt());
         $stmt->dpBind(':habilita', $this->getHabilita());
         $stmt->dpBind(':cantidad', $this->getCantidad());
         $stmt->dpBind(':unitario', $this->getUnitario());
         $stmt->dpBind(':importe', $this->getImporte());
+        $stmt->dpBind(':centro', $this->getCentro());
+        $stmt->dpBind(':certificado', $this->getCertificado());
+        $stmt->dpBind(':fecha', $this->getFecha());
         $stmt->dpBind(':created_by', $this->getCreatedBy());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();

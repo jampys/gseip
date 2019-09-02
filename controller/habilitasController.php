@@ -92,6 +92,12 @@ switch ($operation)
                         //break;
                     }
 
+
+                    if ($line[7] == 'Fecha' || $line[7] == 'Fecha:' ) {
+                        $view->datos['fecha']= $line[8];
+                        //break;
+                    }
+
                     // https://stackoverflow.com/questions/2109325/how-do-i-strip-all-spaces-out-of-a-string-in-php?rq=1
                     if (substr(str_replace(' ', '', $c[$k1]), 0, 11) == 'CERTIFICADO') {
                         $view->datos['certificado']=
@@ -176,7 +182,7 @@ switch ($operation)
 
                 }
 
-
+                $_SESSION['head'] = $view->datos;
                 $_SESSION['cart'] = $view->rta;
 
 
@@ -218,6 +224,9 @@ switch ($operation)
                     $habilita->setCantidad($rg['cantidad']);
                     $habilita->setUnitario($rg['unitario']);
                     $habilita->setImporte($rg['importe']);
+                    $habilita->setCentro($_SESSION['head']['centro']);
+                    $habilita->setCertificado($_SESSION['head']['certificado']);
+                    $habilita->setFecha($_SESSION['head']['fecha']);
                     $habilita->setCreatedBy($_SESSION['id_user']);
                     $habilita->save();
                     $rta['saved']++;
