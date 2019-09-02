@@ -3,6 +3,7 @@
 class Habilita
 {
     private $id;
+    private $posicion;
     private $ot;
     private $habilita;
     private $cantidad;
@@ -20,6 +21,9 @@ class Habilita
     // GETTERS
     function getId()
     { return $this->id;}
+
+    function getPosicion()
+    { return $this->posicion;}
 
     function getOt()
     { return $this->ot;}
@@ -55,6 +59,9 @@ class Habilita
     //SETTERS
     function setId($val)
     { $this->id=$val;}
+
+    function setPosicion($val)
+    { $this->posicion=$val;}
 
     function setOt($val)
     {  $this->ot=$val;}
@@ -92,7 +99,7 @@ class Habilita
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id, ot, habilita, cantidad, unitario, importe,
+            $query = "select id, posicion, ot, habilita, cantidad, unitario, importe,
                       centro, certificado, fecha,
                       created_by,
                       DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
@@ -104,6 +111,7 @@ class Habilita
             $rows = $stmt ->dpFetchAll();
 
             $this->setId($rows[0]['id']);
+            $this->setPosicion($rows[0]['posicion']);
             $this->setOt($rows[0]['ot']);
             $this->setHabilita($rows[0]['habilita']);
             $this->setCantidad($rows[0]['cantidad']);
@@ -174,9 +182,10 @@ class Habilita
 
     private function insertHabilita(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_habilitas(ot, habilita, cantidad, unitario, importe, centro, certificado, fecha, created_by , created_date)
-                values(:ot, :habilita, :cantidad, :unitario, :importe, :centro, :certificado, STR_TO_DATE(:fecha, '%d.%m.%Y'), :created_by, sysdate())";
+        $query="insert into nov_habilitas(posicion, ot, habilita, cantidad, unitario, importe, centro, certificado, fecha, created_by , created_date)
+                values(:posicion, :ot, :habilita, :cantidad, :unitario, :importe, :centro, :certificado, STR_TO_DATE(:fecha, '%d.%m.%Y'), :created_by, sysdate())";
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':posicion', $this->getPosicion());
         $stmt->dpBind(':ot', $this->getOt());
         $stmt->dpBind(':habilita', $this->getHabilita());
         $stmt->dpBind(':cantidad', $this->getCantidad());

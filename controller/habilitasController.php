@@ -169,6 +169,7 @@ switch ($operation)
                                     "<br />";*/
                                 $counter += 1;
                                 $view->rta[]= array('habilita'=> $line_1[0],
+                                    'posicion'=> $line_2[0],
                                     'ot'=> $line_2[1],
                                     'cantidad'=> $line_2[4],
                                     'unitario'=> $line_2[6],
@@ -226,6 +227,7 @@ switch ($operation)
                 try{
 
                     $habilita = new Habilita();
+                    $habilita->setPosicion($rg['posicion']);
                     $habilita->setOt($rg['ot']);
                     $habilita->setHabilita($rg['habilita']);
                     $habilita->setCantidad($rg['cantidad']);
