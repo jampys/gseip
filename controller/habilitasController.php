@@ -99,16 +99,16 @@ switch ($operation)
                     }
 
 
-                    if ($line[0] == 'Cantidad' && $line[3] == 'detalle:' ) {
+                    if ($line[0] == 'Cantidad' && $line[3] == 'detalle' ) {
                         $view->datos['items']= $line[5];
-                        //break;
+                        break;
                     }
 
                     // https://stackoverflow.com/questions/2109325/how-do-i-strip-all-spaces-out-of-a-string-in-php?rq=1
                     if (substr(str_replace(' ', '', $c[$k1]), 0, 11) == 'CERTIFICADO') {
                         $view->datos['certificado']=
                             substr(preg_replace('/\s+/', '', $c[$k1]), -10);
-                        break;
+                        //break;
                     }
 
                 }
@@ -219,6 +219,7 @@ switch ($operation)
             $rta['saved'] = 0;
             $rta['duplicates'] = 0;
             $rta['others'] = 0;
+            $rta['items'] = $_SESSION['head']['items']; //total de items de la habilita
 
             foreach ($_SESSION['cart'] as $rg) {
 
