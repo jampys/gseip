@@ -103,7 +103,7 @@
     </div>
 
         <button class="btn btn-primary" id="clipboard" name="clipboard" type="button">Copiar al portapapeles</button>
-        <button class="btn btn-primary" id="save" name="save" type="button">Guardar BD</button>
+        <button class="btn btn-primary" id="save" name="save" type="button">Guardar en BD</button>
 
     <?php }?>
 
