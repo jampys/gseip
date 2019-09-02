@@ -21,7 +21,7 @@
 
 
 
-        $(document).on('click', '#save',function(){
+        $('#puesto').on('click', '#save',function(){
                 //alert('guardar en BD');
             //if ($("#empleado-form").valid()){
                 var params={};
