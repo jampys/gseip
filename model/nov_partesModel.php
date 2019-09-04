@@ -196,7 +196,6 @@ class Parte
                                         :hs_normal,
                                         :hs_50,
                                         :hs_100,
-                                        :comentarios,
                                         :created_by,
                                         @flag,
                                         @msg
@@ -211,7 +210,6 @@ class Parte
         $stmt->dpBind(':hs_normal', $this->getHsNormal());
         $stmt->dpBind(':hs_50', $this->getHs50());
         $stmt->dpBind(':hs_100', $this->getHs100());
-        $stmt->dpBind(':comentarios', $this->getComentarios());
         $stmt->dpBind(':created_by', $this->getCreatedBy());
 
         $stmt->dpExecute();

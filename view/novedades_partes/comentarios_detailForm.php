@@ -77,7 +77,7 @@
 
         <div class="form-group">
             <label class="control-label" for="servicio">Comentarios</label>
-            <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="2"><?php print $view->parte->getComentarios(); ?></textarea>
+            <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="5"><?php print $view->parte->getComentarios(); ?></textarea>
         </div>
 
         <div id="myElem" class="msg" style="display:none"></div>
