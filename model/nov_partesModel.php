@@ -13,6 +13,7 @@ class Parte
     private $hs_normal;
     private $hs_50;
     private $hs_100;
+    private $comentarios;
     private $created_by;
     private $created_date;
     private $id_periodo;
@@ -47,6 +48,9 @@ class Parte
 
     function getHs100()
     { return $this->hs_100;}
+
+    function getComentarios()
+    { return $this->comentarios;}
 
     function getCreatedBy()
     { return $this->created_by;}
@@ -90,6 +94,9 @@ class Parte
     function setHs100($val)
     {  $this->hs_100=$val;}
 
+    function setComentarios($val)
+    {  $this->comentarios=$val;}
+
     function setCreatedBy($val)
     { $this->created_by=$val;}
 
@@ -111,7 +118,7 @@ class Parte
                     TIME_FORMAT(hs_normal, '%H:%i') as hs_normal,
                     TIME_FORMAT(hs_50, '%H:%i') as hs_50,
                     TIME_FORMAT(hs_100, '%H:%i') as hs_100,
-                    created_by,
+                    comentarios, created_by,
                     DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
                     id_periodo
                     from nov_partes where id_parte = :nro";
@@ -130,6 +137,7 @@ class Parte
             $this->setHsNormal($rows[0]['hs_normal']);
             $this->setHs50($rows[0]['hs_50']);
             $this->setHs100($rows[0]['hs_100']);
+            $this->setComentarios($rows[0]['comentarios']);
             $this->setCreatedDate($rows[0]['created_date']);
             $this->setIdPeriodo($rows[0]['id_periodo']);
         }
@@ -188,6 +196,7 @@ class Parte
                                         :hs_normal,
                                         :hs_50,
                                         :hs_100,
+                                        :comentarios,
                                         :created_by,
                                         @flag,
                                         @msg
@@ -202,6 +211,7 @@ class Parte
         $stmt->dpBind(':hs_normal', $this->getHsNormal());
         $stmt->dpBind(':hs_50', $this->getHs50());
         $stmt->dpBind(':hs_100', $this->getHs100());
+        $stmt->dpBind(':comentarios', $this->getComentarios());
         $stmt->dpBind(':created_by', $this->getCreatedBy());
 
         $stmt->dpExecute();

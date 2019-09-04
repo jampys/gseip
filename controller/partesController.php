@@ -110,6 +110,7 @@ switch ($operation)
         $parte->setHsNormal( ($_POST['hs_normal']!='')? $_POST['hs_normal'] : 0);
         $parte->setHs50( ($_POST['hs_50']!='')? $_POST['hs_50'] : 0);
         $parte->setHs100( ($_POST['hs_100']!='')? $_POST['hs_100'] : 0);
+        $parte->setComentarios( ($_POST['comentarios']!='')? $_POST['comentarios'] : null);
         $parte->setCreatedBy($_SESSION['id_user']);
 
         $rta = $parte->save();

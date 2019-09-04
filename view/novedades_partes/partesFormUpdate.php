@@ -203,6 +203,24 @@
         });
 
 
+        $('#left_side').on('click', '#edit-comentarios', function(){
+            params={};
+            params.action = "parte-comentarios";
+            params.operation = "editComentarios";
+            //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
+            params.id_parte = $('#id_parte').val();
+            //params.id_contrato = $('#myModal #id_contrato').val();
+            //alert(params.id_renovacion);
+            $('#right_side').load('index.php', params,function(){
+                //alert('cargo el contenido en right side');
+                //$('#myModal').modal();
+                //$('#id_postulacion').val(params.id_postulacion);
+                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+            })
+        });
+
+
         //eliminar empleado del parte
         $('.grid-empleados').on('click', '.delete', function(){ //ok
             //alert('Funcionalidad en desarrollo');
@@ -422,6 +440,7 @@
                 params.hs_normal = $('#hs_normal').val();
                 params.hs_50 = $('#hs_50').val();
                 params.hs_100 = $('#hs_100').val();
+                params.comentarios = $('#comentarios').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.id_parte);
@@ -688,11 +707,35 @@
                                     </div>
                                 </div>
 
+
+                                <br/>
+
+
+                                <!-- seccion de comentarios -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <!--<button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>-->
+                                        <button type="button" class="btn btn-primary btn-block" id="edit-comentarios" name="edit-comentarios" title="Comentarios">Comentarios</button>
+                                    </div>
+
+                                    <div class="col-md-4">
+
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <!--<button type="button" class="btn btn-default btn-block" id="add-orden" name="add-orden" title="Agregar orden" <?php //echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >
+                                            <i class="fas fa-plus dp_green"></i>&nbsp
+                                        </button>-->
+                                    </div>
+                                </div>
+
+
                                 <div id="demo-ordenes" class="collapse">
                                     <div class="grid-ordenes">
                                         <?php include_once('view/novedades_partes/ordenesGrid.php');?>
                                     </div>
                                 </div>
+
 
                             </form>
 
@@ -716,7 +759,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" id="calcular" name="calcular" type="submit">Calcular</button>
+                <button class="btn btn-primary" id="calcular" name="calcular" type="submit">Guardar y calcular</button>
                 <button class="btn btn-default" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
             </div>
 
