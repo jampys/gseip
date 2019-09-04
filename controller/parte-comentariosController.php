@@ -25,17 +25,10 @@ switch ($operation)
         $view->contentTemplate="view/novedades_partes/empleadosGrid.php";
         break;
 
-    case 'saveEmpleado':
-        $empleado = new ParteEmpleado($_POST['id_parte_empleado']);
-        $empleado->setIdParte($_POST['id_parte']);
-        $empleado->setIdEmpleado($_POST['id_empleado']);
-        $empleado->setConductor( ($_POST['conductor']== 1)? $_POST['conductor'] : 0);
-        $empleado->setAvoidEvent( ($_POST['avoid_event']== 1)? $_POST['avoid_event'] : null);
-        $empleado->setComentario( ($_POST['comentario'])? $_POST['comentario'] : null );
-        $empleado->setCreatedBy($_SESSION['id_user']);
-        //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $rta = $empleado->save();
-        //print_r(json_encode(sQuery::dpLastInsertId()));
+    case 'saveComentarios': //ok
+        $parte = new Parte($_POST['id_parte']);
+        $parte->setComentarios( ($_POST['comentarios'])? $_POST['comentarios'] : null);
+        $rta = $parte->updateComentarios();
         print_r(json_encode($rta));
         exit;
         break;

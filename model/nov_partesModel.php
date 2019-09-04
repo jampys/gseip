@@ -331,6 +331,18 @@ order by id_convenio asc, legajo asc";
     }
 
 
+    public function updateComentarios(){
+        $stmt=new sQuery();
+        $query="update nov_partes set comentarios =:comentarios
+                where id_parte =:id_parte";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':comentarios', $this->getComentarios());
+        $stmt->dpBind(':id_parte', $this->getIdParte());
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+    }
+
+
 
 
 
