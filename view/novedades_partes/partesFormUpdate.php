@@ -703,6 +703,13 @@
                                 </div>
 
 
+                                <div id="demo-ordenes" class="collapse">
+                                    <div class="grid-ordenes">
+                                        <?php include_once('view/novedades_partes/ordenesGrid.php');?>
+                                    </div>
+                                </div>
+
+
                                 <br/>
 
 
@@ -725,11 +732,7 @@
                                 </div>
 
 
-                                <div id="demo-ordenes" class="collapse">
-                                    <div class="grid-ordenes">
-                                        <?php include_once('view/novedades_partes/ordenesGrid.php');?>
-                                    </div>
-                                </div>
+
 
 
                             </form>
