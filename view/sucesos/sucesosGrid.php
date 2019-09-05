@@ -19,7 +19,7 @@
             columnDefs: [
                 {targets: [ 1 ], type: 'date-uk', orderData: [ 1]}, //fecha
                 {targets: [ 4 ], type: 'date-uk', orderData: [ 4]}, //fecha_desde
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]}, //fecha_hasta
+                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]} //fecha_hasta
             ]
         });
 
