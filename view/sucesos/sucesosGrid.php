@@ -15,7 +15,8 @@
 
 
             "stateSave": true,
-            "order": [[1, "asc"], [4, "asc"], [5, "asc"] ], //1=fecha, 4=fecha_desde, 5=fecha_hasta
+            //"order": [[1, "asc"], [4, "asc"], [5, "asc"] ], //1=fecha, 4=fecha_desde, 5=fecha_hasta
+            "order": [[4, "desc"], [5, "desc"] ], //4=fecha_desde, 5=fecha_hasta
             columnDefs: [
                 {targets: [ 1 ], type: 'date-uk', orderData: [ 1]}, //fecha
                 {targets: [ 4 ], type: 'date-uk', orderData: [ 4]}, //fecha_desde
