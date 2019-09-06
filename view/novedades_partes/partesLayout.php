@@ -131,10 +131,10 @@
 
                             //si es una edicion o view, selecciona el concepto.
                             //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                            $('#id_periodo').selectpicker('refresh');
-                            $('#add_fecha').val('');
 
                         }
+                        $('#id_periodo').selectpicker('refresh');
+                        $('#add_fecha').val('');
 
                     },
                     error: function(data, textStatus, errorThrown) {
