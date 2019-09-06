@@ -170,6 +170,9 @@
                 $('.input-group.date').datepicker('setStartDate', fecha_desde);
                 $('.input-group.date').datepicker('setEndDate', fecha_hasta);
                 $('#add_fecha').val('');
+                
+                $('#search_fecha_desde').datepicker('update', fecha_desde);
+                $('#search_fecha_hasta').datepicker('update', fecha_hasta);
 
             });
 
