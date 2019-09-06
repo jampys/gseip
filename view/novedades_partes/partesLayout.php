@@ -120,6 +120,7 @@
                     dataType:"json",//xml,html,script,json
                     success: function(data, textStatus, jqXHR) {
 
+                        //$("#id_periodo").html('<option value="">Seleccione un período</option>');
                         if(Object.keys(data['periodos']).length > 0){
                             $.each(data['periodos'], function(indice, val){
                                 var label = data['periodos'][indice]["nombre"]+' ('+data['periodos'][indice]["fecha_desde"]+' - '+data['periodos'][indice]["fecha_hasta"]+')';
@@ -133,6 +134,7 @@
                             //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
                         }
 
+                        $("#cuadrilla").html('<option value="">Seleccione una cuadrilla</option>');
                         if(Object.keys(data['cuadrillas']).length > 0){
                             $.each(data['cuadrillas'], function(indice, val){
                                 var label = data['cuadrillas'][indice]["nombre"];
@@ -430,7 +432,7 @@
 
                         <div class="form-group col-md-3">
                             <label for="search_contrato" class="control-label">&nbsp;</label>
-                            <select class="form-control selectpicker show-tick" id="cuadrilla" name="cuadrilla" title="Seleccione una cuadrilla" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="cuadrilla" name="cuadrilla" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript  -->
                             </select>
                         </div>
