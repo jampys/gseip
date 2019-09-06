@@ -27,8 +27,9 @@ switch ($operation)
         $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
         $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        $todas = null; //($_POST['renovado']== 0)? null : 1;
-        $view->partes = Parte::getPartes($fecha_desde, $fecha_hasta, $id_contrato, $todas);
+        $id_periodo = ($_POST['id_periodo']!='')? $_POST['id_periodo'] : null;
+        //$todas = null; //($_POST['renovado']== 0)? null : 1;
+        $view->partes = Parte::getPartes($fecha_desde, $fecha_hasta, $id_contrato, $id_periodo);
         $view->contentTemplate="view/novedades_partes/partesGrid.php";
         break;
 

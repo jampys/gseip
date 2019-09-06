@@ -144,7 +144,7 @@ class Parte
     }
 
 
-    public static function getPartes($fecha_desde, $fecha_hasta, $id_contrato, $d) { //ok
+    public static function getPartes($fecha_desde, $fecha_hasta, $id_contrato, $id_periodo) { //ok
         $stmt=new sQuery();
         $query="select pa.id_parte,
                     (select count(*) from nov_parte_orden npox where npox.id_parte = pa.id_parte) as orden_count,
@@ -167,11 +167,13 @@ class Parte
                     and pa.fecha_parte between if(:fecha_desde is null, pa.fecha_parte, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
                     and if(:fecha_hasta is null, pa.fecha_parte, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
                     and pa.id_contrato =  ifnull(:id_contrato, pa.id_contrato)
+                    and pa.id_periodo =  ifnull(:id_periodo, pa.id_periodo)
                     order by pa.fecha_parte asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $fecha_desde);
         $stmt->dpBind(':fecha_hasta', $fecha_hasta);
         $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_periodo', $id_periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

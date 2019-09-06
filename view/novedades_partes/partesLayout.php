@@ -52,6 +52,7 @@
                 params.search_fecha_desde = $("#search_fecha_desde").val();
                 params.search_fecha_hasta = $("#search_fecha_hasta").val();
                 params.search_contrato = $("#add_contrato").val();
+                params.id_periodo = $("#id_periodo").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "partes";
                 params.operation = "refreshGrid";
