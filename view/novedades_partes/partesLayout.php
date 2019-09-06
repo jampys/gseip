@@ -109,6 +109,7 @@
                 params.activos = 1;
 
                 $('#id_periodo').empty();
+                $('#cuadrilla').empty();
 
 
                 $.ajax({
