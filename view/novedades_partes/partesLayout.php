@@ -101,8 +101,8 @@
                 //alert('seleccionó un contrato');
                 //throw new Error();
                 params={};
-                params.action = "nov_periodos";
-                params.operation = "getPeriodos";
+                params.action = "partes2";
+                params.operation = "getPeriodosAndCuadrillas";
                 //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
                 params.id_contrato = $('#add_contrato').val();
                 params.activos = 1;
@@ -118,13 +118,13 @@
                     dataType:"json",//xml,html,script,json
                     success: function(data, textStatus, jqXHR) {
 
-                        if(Object.keys(data).length > 0){
+                        if(Object.keys(data['periodos']).length > 0){
 
-                            $.each(data, function(indice, val){
-                                var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
-                                $("#id_periodo").append('<option value="'+data[indice]["id_periodo"]+'"'
-                                                        +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
-                                                        +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
+                            $.each(data['periodos'], function(indice, val){
+                                var label = data['periodos'][indice]["nombre"]+' ('+data['periodos'][indice]["fecha_desde"]+' - '+data['periodos'][indice]["fecha_hasta"]+')';
+                                $("#id_periodo").append('<option value="'+data['periodos'][indice]["id_periodo"]+'"'
+                                                        +' fecha_desde="'+data['periodos'][indice]["fecha_desde"]+'"'
+                                                        +' fecha_hasta="'+data['periodos'][indice]["fecha_hasta"]+'"'
                                 +'>'+label+'</option>');
 
                             });
@@ -411,18 +411,12 @@
                             </div>
                         </div>
 
-                        <!--<div class="form-group col-md-3">
+                        <div class="form-group col-md-3">
                             <label for="search_contrato" class="control-label">&nbsp;</label>
-                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un contrato</option>
-                                <?php foreach ($view->contratos as $con){
-                                    ?>
-                                    <option value="<?php echo $con['id_contrato']; ?>" >
-                                        <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
-                                    </option>
-                                <?php  } ?>
+                            <select class="form-control selectpicker show-tick" id="id_cuadrilla" name="id_cuadrilla" data-live-search="true" data-size="5">
+                                <!-- se completa dinamicamente desde javascript  -->
                             </select>
-                        </div>-->
+                        </div>
 
                         <!--<div class="form-group col-md-3">
                             <label for="search_localidad" class="control-label">Área</label>
@@ -463,9 +457,7 @@
                             </button>
                         </div>
 
-                        <div class="form-group col-md-3">
 
-                        </div>
 
                         <div class="form-group col-md-2">
                             <label for="control" class="control-label">&nbsp;</label>
