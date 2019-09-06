@@ -53,6 +53,7 @@
                 params.search_fecha_hasta = $("#search_fecha_hasta").val();
                 params.search_contrato = $("#add_contrato").val();
                 params.id_periodo = $("#id_periodo").val();
+                params.cuadrilla = $("#cuadrilla").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "partes";
                 params.operation = "refreshGrid";
@@ -134,7 +135,7 @@
                         if(Object.keys(data['cuadrillas']).length > 0){
                             $.each(data['cuadrillas'], function(indice, val){
                                 var label = data['cuadrillas'][indice]["nombre"];
-                                $("#id_cuadrilla").append('<option value="'+data['cuadrillas'][indice]["nombre"]+'"'
+                                $("#cuadrilla").append('<option value="'+data['cuadrillas'][indice]["nombre"]+'"'
                                 //+' fecha_desde="'+data['periodos'][indice]["fecha_desde"]+'"'
                                 //+' fecha_hasta="'+data['periodos'][indice]["fecha_hasta"]+'"'
                                 +'>'+label+'</option>');
@@ -145,7 +146,7 @@
                         }
 
                         $('#id_periodo').selectpicker('refresh');
-                        $('#id_cuadrilla').selectpicker('refresh');
+                        $('#cuadrilla').selectpicker('refresh');
                         $('#add_fecha').val('');
 
                     },
@@ -170,7 +171,7 @@
                 $('.input-group.date').datepicker('setStartDate', fecha_desde);
                 $('.input-group.date').datepicker('setEndDate', fecha_hasta);
                 $('#add_fecha').val('');
-                
+
                 $('#search_fecha_desde').datepicker('update', fecha_desde);
                 $('#search_fecha_hasta').datepicker('update', fecha_hasta);
 
@@ -428,7 +429,7 @@
 
                         <div class="form-group col-md-3">
                             <label for="search_contrato" class="control-label">&nbsp;</label>
-                            <select class="form-control selectpicker show-tick" id="id_cuadrilla" name="id_cuadrilla" title="Seleccione una cuadrilla" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="cuadrilla" name="cuadrilla" title="Seleccione una cuadrilla" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript  -->
                             </select>
                         </div>
