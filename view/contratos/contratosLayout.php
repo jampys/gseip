@@ -46,6 +46,22 @@
             });
 
 
+            $('#content').on('click', '.vehiculos', function(){
+                alert('presiono sobre vehiculos');
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_grupo = id;
+                params.action = "vto_grupo-vehiculo";
+                //params.operation = "etapas"; //entra en default
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                    $('#etapas_left_side #add').attr('id_grupo', id);
+                })
+
+            });
+
+
+
 
             $(document).on('click', '#new', function(){ //ok
                 params={};

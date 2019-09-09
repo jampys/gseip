@@ -20,7 +20,7 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         $view->contratos = Contrato::getContratos();
-        $view->contentTemplate="view/contratosGrid.php";
+        $view->contentTemplate="view/contratos/contratosGrid.php";
         break;
 
     case 'saveContrato': //ok
@@ -131,7 +131,7 @@ switch ($operation)
         $view->companias = Compania::getCompanias();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/contratosForm.php";
+        $view->contentTemplate="view/contratos/contratosForm.php";
         break;
 
     case 'editContrato': //ok
@@ -148,7 +148,7 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/contratosForm.php";
+        $view->contentTemplate="view/contratos/contratosForm.php";
         break;
 
     case 'editContratoEmpleado': //ok
@@ -171,19 +171,19 @@ switch ($operation)
         $view->puestos = Puesto::getPuestos();
         $view->procesos = Proceso::getProcesos();
 
-        $view->contentTemplate="view/contratosFormEmpleado.php";
+        $view->contentTemplate="view/contratos/contratosFormEmpleado.php";
         break;
 
     default : //ok
         $view->contratos = Contrato::getContratos();
-        $view->contentTemplate="view/contratosGrid.php";
+        $view->contentTemplate="view/contratos/contratosGrid.php";
         break;
 }
 
 if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);}
 else {
-    include_once('view/contratosLayout.php');
+    include_once('view/contratos/contratosLayout.php');
 }
 
 
