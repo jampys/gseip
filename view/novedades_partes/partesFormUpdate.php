@@ -202,6 +202,20 @@
             })
         });
 
+        //Abre formulario para editar comentarios del parte
+        $('#left_side').on('click', '#edit-comentarios', function(){
+            params={};
+            params.action = "parte-comentarios";
+            params.operation = "editComentarios";
+            params.id_parte = $('#id_parte').val();
+            //alert(params.id_renovacion);
+            $('#right_side').load('index.php', params,function(){
+                //alert('cargo el contenido en right side');
+                //$('#myModal').modal();
+                //$('#id_postulacion').val(params.id_postulacion);
+            })
+        });
+
 
         //eliminar empleado del parte
         $('.grid-empleados').on('click', '.delete', function(){ //ok
@@ -688,11 +702,38 @@
                                     </div>
                                 </div>
 
+
                                 <div id="demo-ordenes" class="collapse">
                                     <div class="grid-ordenes">
                                         <?php include_once('view/novedades_partes/ordenesGrid.php');?>
                                     </div>
                                 </div>
+
+
+                                <br/>
+
+
+                                <!-- seccion de comentarios -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <!--<button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>-->
+                                        <button type="button" class="btn btn-primary btn-block" id="edit-comentarios" name="edit-comentarios" title="Comentarios">Comentarios</button>
+                                    </div>
+
+                                    <div class="col-md-4">
+
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <!--<button type="button" class="btn btn-default btn-block" id="add-orden" name="add-orden" title="Agregar orden" <?php //echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >
+                                            <i class="fas fa-plus dp_green"></i>&nbsp
+                                        </button>-->
+                                    </div>
+                                </div>
+
+
+
+
 
                             </form>
 

@@ -52,6 +52,8 @@
                 params.search_fecha_desde = $("#search_fecha_desde").val();
                 params.search_fecha_hasta = $("#search_fecha_hasta").val();
                 params.search_contrato = $("#add_contrato").val();
+                params.id_periodo = $("#id_periodo").val();
+                params.cuadrilla = $("#cuadrilla").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "partes";
                 params.operation = "refreshGrid";
@@ -100,13 +102,14 @@
                 //alert('seleccionó un contrato');
                 //throw new Error();
                 params={};
-                params.action = "nov_periodos";
-                params.operation = "getPeriodos";
+                params.action = "partes2";
+                params.operation = "getPeriodosAndCuadrillas";
                 //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
                 params.id_contrato = $('#add_contrato').val();
                 params.activos = 1;
 
                 $('#id_periodo').empty();
+                $('#cuadrilla').empty();
 
 
                 $.ajax({
@@ -117,23 +120,37 @@
                     dataType:"json",//xml,html,script,json
                     success: function(data, textStatus, jqXHR) {
 
-                        if(Object.keys(data).length > 0){
-
-                            $.each(data, function(indice, val){
-                                var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
-                                $("#id_periodo").append('<option value="'+data[indice]["id_periodo"]+'"'
-                                                        +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
-                                                        +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
+                        //$("#id_periodo").html('<option value="">Seleccione un período</option>');
+                        if(Object.keys(data['periodos']).length > 0){
+                            $.each(data['periodos'], function(indice, val){
+                                var label = data['periodos'][indice]["nombre"]+' ('+data['periodos'][indice]["fecha_desde"]+' - '+data['periodos'][indice]["fecha_hasta"]+')';
+                                $("#id_periodo").append('<option value="'+data['periodos'][indice]["id_periodo"]+'"'
+                                                        +' fecha_desde="'+data['periodos'][indice]["fecha_desde"]+'"'
+                                                        +' fecha_hasta="'+data['periodos'][indice]["fecha_hasta"]+'"'
                                 +'>'+label+'</option>');
-
                             });
 
                             //si es una edicion o view, selecciona el concepto.
                             //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                            $('#id_periodo').selectpicker('refresh');
-                            $('#add_fecha').val('');
-
                         }
+
+                        $("#cuadrilla").html('<option value="">Seleccione una cuadrilla</option>');
+                        if(Object.keys(data['cuadrillas']).length > 0){
+                            $.each(data['cuadrillas'], function(indice, val){
+                                var label = data['cuadrillas'][indice]["nombre"];
+                                $("#cuadrilla").append('<option value="'+data['cuadrillas'][indice]["nombre"]+'"'
+                                //+' fecha_desde="'+data['periodos'][indice]["fecha_desde"]+'"'
+                                //+' fecha_hasta="'+data['periodos'][indice]["fecha_hasta"]+'"'
+                                +'>'+label+'</option>');
+                            });
+
+                            //si es una edicion o view, selecciona el concepto.
+                            //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
+                        }
+
+                        $('#id_periodo').selectpicker('refresh');
+                        $('#cuadrilla').selectpicker('refresh');
+                        $('#add_fecha').val('');
 
                     },
                     error: function(data, textStatus, errorThrown) {
@@ -157,6 +174,9 @@
                 $('.input-group.date').datepicker('setStartDate', fecha_desde);
                 $('.input-group.date').datepicker('setEndDate', fecha_hasta);
                 $('#add_fecha').val('');
+
+                $('#search_fecha_desde').datepicker('update', fecha_desde);
+                $('#search_fecha_hasta').datepicker('update', fecha_hasta);
 
             });
 
@@ -350,7 +370,7 @@
 
                         <div class="form-group col-md-3">
                             <label for="id_periodo" class="control-label">&nbsp;</label>
-                            <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un período" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript  -->
                             </select>
                         </div>
@@ -410,18 +430,12 @@
                             </div>
                         </div>
 
-                        <!--<div class="form-group col-md-3">
+                        <div class="form-group col-md-3">
                             <label for="search_contrato" class="control-label">&nbsp;</label>
-                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un contrato</option>
-                                <?php foreach ($view->contratos as $con){
-                                    ?>
-                                    <option value="<?php echo $con['id_contrato']; ?>" >
-                                        <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
-                                    </option>
-                                <?php  } ?>
+                            <select class="form-control selectpicker show-tick" id="cuadrilla" name="cuadrilla" data-live-search="true" data-size="5">
+                                <!-- se completa dinamicamente desde javascript  -->
                             </select>
-                        </div>-->
+                        </div>
 
                         <!--<div class="form-group col-md-3">
                             <label for="search_localidad" class="control-label">Área</label>
@@ -462,9 +476,7 @@
                             </button>
                         </div>
 
-                        <div class="form-group col-md-3">
 
-                        </div>
 
                         <div class="form-group col-md-2">
                             <label for="control" class="control-label">&nbsp;</label>

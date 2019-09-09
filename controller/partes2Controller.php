@@ -41,6 +41,16 @@ switch ($operation)
         break;
 
 
+    case 'getPeriodosAndCuadrillas': //select dependiente
+        $id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
+        $activos = (($_POST['activos']!='')? $_POST['activos'] : null );
+        $periodos = NovPeriodo::getPeriodos($id_contrato, $activos);
+        $cuadrillas = Cuadrilla::getCuadrillas($id_contrato, null);
+        print_r(json_encode(array('periodos'=>$periodos, 'cuadrillas'=>$cuadrillas)));
+        exit;
+        break;
+
+
     default :
         break;
 }
