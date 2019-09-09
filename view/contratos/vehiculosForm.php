@@ -196,7 +196,7 @@
 
             <div class="modal-body">
 
-                <input type="hidden" name="id_vencimiento" id="id_vencimiento" value="<?php print $view->grupo->getIdVencimiento() ?>">
+                <input type="hidden" name="id_vencimiento" id="id_vencimiento" value="<?php //print $view->grupo->getIdVencimiento() ?>">
                 
                 <div class="row">
 
@@ -209,7 +209,7 @@
                             </div>
 
                             <div class="grid">
-                                <?php include_once('view/grupos_vehiculos/vehiculosGrid.php');?>
+                                <?php include_once('view/contratos/vehiculosGrid.php');?>
                             </div>
 
                         </div>

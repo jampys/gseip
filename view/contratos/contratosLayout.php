@@ -46,8 +46,8 @@
             });
 
 
-            $('#content').on('click', '.vehiculos', function(){
-                alert('presiono sobre vehiculos');
+            $('#content').on('click', '.vehiculos', function(){ //ok
+                //alert('presiono sobre vehiculos');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_contrato = id;

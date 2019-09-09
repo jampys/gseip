@@ -76,7 +76,7 @@ switch ($operation)
         break;
 
 
-    default : //carga la tabla de vehiculos del grupo
+    default : //carga la tabla de vehiculos del contrato
         $view->disableLayout=true;
         $view->vehiculos = ContratoVehiculo::getContratoVehiculo($_POST['id_contrato']);
 
