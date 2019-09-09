@@ -21,7 +21,8 @@
         });
 
         setTimeout(function () { //https://datatables.net/forums/discussion/41587/scrolly-misaligned-table-headers-with-bootstrap
-            $($.fn.dataTable.tables( true ) ).DataTable().columns.adjust().draw();
+            //$($.fn.dataTable.tables( true ) ).DataTable().columns.adjust().draw();
+            t.columns.adjust();
         },200);
 
 
@@ -38,7 +39,6 @@
                 <thead>
                 <tr>
                     <th>Vehículo</th>
-                    <th>Cerf.</th>
                     <th>F. desde</th>
                     <th>F. hasta</th>
                     <th></th>
@@ -48,7 +48,6 @@
                 <?php foreach ($view->vehiculos as $ve): ?>
                     <tr data-id="<?php echo $ve['id_grupo_vehiculo']; ?>">
                         <td><span class="label label-primary" style="font-weight: normal"><?php echo $ve['matricula']; ?></span> <?php echo ($ve['nro_movil'])? '<span class="label label-default" style="font-weight: normal">Móvil: '.$ve['nro_movil'].'</span>' : '' ?></td>
-                        <td><?php echo $ve['marca']; ?></td>
                         <td><?php echo $ve['fecha_desde']; ?></td>
                         <td><?php echo $ve['fecha_hasta']; ?></td>
 
