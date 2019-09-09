@@ -2,6 +2,7 @@
 include_once("model/contrato-vehiculoModel.php");
 include_once("model/vehiculosModel.php");
 include_once("model/contratosModel.php");
+include_once("model/localidadesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -48,12 +49,13 @@ switch ($operation)
         $view->contentTemplate="view/grupos_vehiculos/vehiculo_detailForm.php";
         break;
 
-    case 'editVehiculo':
+    case 'editVehiculo': //ok
         $view->label = ($_POST['target']!='view')? 'Editar vehículo': 'Ver vehículo';
         $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
 
         //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
         $view->vehiculos = Vehiculo::getVehiculos();
+        $view->localidades = Localidad::getLocalidades();
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];

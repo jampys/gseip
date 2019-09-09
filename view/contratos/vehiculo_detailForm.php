@@ -116,8 +116,17 @@
 
 
         <div class="form-group">
-            <label class="control-label" for="certificado">Certificado</label>
-            <input class="form-control" type="text" name="certificado" id="certificado" value = "<?php //print $view->grupo_vehiculo->getCertificado() ?>" placeholder="Certificado">
+            <label class="control-label" for="id_localidad" >Ubicación</label>
+            <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" title="Seleccione la ubicación" data-live-search="true" data-size="5">
+                <?php foreach ($view->localidades as $loc){
+                    ?>
+                    <option value="<?php echo $loc['id_localidad']; ?>"
+                        <?php echo ($loc['id_localidad'] == $view->contrato_vehiculo->getIdLocalidad())? 'selected' :'' ?>
+                        >
+                        <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
+                    </option>
+                <?php  } ?>
+            </select>
         </div>
 
 
