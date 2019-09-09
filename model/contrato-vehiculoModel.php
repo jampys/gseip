@@ -50,29 +50,26 @@ class ContratoVehiculo
 
 
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor //ok
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select id_empleado_contrato, id_empleado, id_contrato, id_puesto,
+            $query="select id_vehiculo_contrato, id_vehiculo, id_contrato,
                     DATE_FORMAT(fecha_desde,  '%d/%m/%Y') as fecha_desde,
                     DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta, id_localidad
-                    from empleado_contrato where id_empleado_contrato = :nro";
+                    from vto_vehiculo_contrato where id_vehiculo_contrato = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdEmpleadoContrato($rows[0]['id_empleado_contrato']);
-            $this->setIdEmpleado($rows[0]['id_empleado']);
+            $this->setIdVehiculoContrato($rows[0]['id_vehiculo_contrato']);
+            $this->setIdVehiculo($rows[0]['id_vehiculo']);
             $this->setIdContrato($rows[0]['id_contrato']);
-            $this->setIdPuesto($rows[0]['id_puesto']);
             $this->setFechaDesde($rows[0]['fecha_desde']);
             $this->setFechaHasta($rows[0]['fecha_hasta']);
             $this->setIdLocalidad($rows[0]['id_localidad']);
 
-            $this->procesos = array();
-            $this->procesos = ContratoEmpleadoProceso::getContratoEmpleadoProceso($this->getIdEmpleadoContrato());
         }
     }
 

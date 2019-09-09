@@ -50,14 +50,14 @@ switch ($operation)
 
     case 'editVehiculo':
         $view->label = ($_POST['target']!='view')? 'Editar vehículo': 'Ver vehículo';
-        $view->grupo_vehiculo = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
+        $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
 
         //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
         $view->vehiculos = Vehiculo::getVehiculos();
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
-        $view->contentTemplate="view/grupos_vehiculos/vehiculo_detailForm.php";
+        $view->contentTemplate="view/contratos/vehiculo_detailForm.php";
         break;
 
     case 'deleteVehiculo':
@@ -75,7 +75,7 @@ switch ($operation)
         break;
 
 
-    default : //carga la tabla de vehiculos del contrato
+    default : //carga la tabla de vehiculos del contrato //ok
         $view->disableLayout=true;
         $view->contrato = new Contrato($_POST['id_contrato']);
         $view->vehiculos = ContratoVehiculo::getContratoVehiculo($_POST['id_contrato']);

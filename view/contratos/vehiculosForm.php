@@ -18,13 +18,13 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){ //ok
+        $('#etapas_left_side').on('click', '.edit', function(){
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar vehiculo: '+id);
             params={};
             params.id_grupo_vehiculo = id;
-            params.action = "vto_grupo-vehiculo";
+            params.action = "contrato-vehiculo";
             params.operation = "editVehiculo";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
@@ -34,7 +34,7 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.view', function(){ //ok
+        $('#etapas_left_side').on('click', '.view', function(){
             var id = $(this).closest('tr').attr('data-id');
             params={};
             params.id_grupo_vehiculo = id;
@@ -54,7 +54,7 @@
 
 
         //Abre formulario para ingresar un nuevo vehiculo al grupo
-        $('#etapas_left_side').on('click', '#add', function(){ //ok
+        $('#etapas_left_side').on('click', '#add', function(){
             params={};
             params.action = "vto_grupo-vehiculo";
             params.operation = "newVehiculo";
@@ -69,7 +69,7 @@
 
 
         //Guardar grupo-vehiculo luego de ingresar nuevo o editar
-        $('#myModal').on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){
             //alert('guardar grupo-vehiculo');
 
             if ($("#grupo-vehiculo-form").valid()){
@@ -137,7 +137,7 @@
         });
 
 
-        $.fn.borrarGv = function(id) { //ok
+        $.fn.borrarGv = function(id) { 
             //alert(id);
             //preparo los parametros
             params={};
