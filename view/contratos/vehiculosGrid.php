@@ -77,7 +77,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> El contrato no tiene vehículos registrados.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> El contrato no tiene vehículos asociados.
     </div>
 
 <?php } ?>

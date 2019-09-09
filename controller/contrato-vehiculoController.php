@@ -1,8 +1,7 @@
 ﻿<?php
 include_once("model/contrato-vehiculoModel.php");
 include_once("model/vehiculosModel.php");
-//include_once("model/vto_gruposVehiculosModel.php");
-//include_once("model/contratosModel.php");
+include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -78,10 +77,9 @@ switch ($operation)
 
     default : //carga la tabla de vehiculos del contrato
         $view->disableLayout=true;
+        $view->contrato = new Contrato($_POST['id_contrato']);
         $view->vehiculos = ContratoVehiculo::getContratoVehiculo($_POST['id_contrato']);
-
-        //$view->grupo = new Grupo($_POST['id_grupo']);
-        $view->label= 'Este es el titulo'; //$view->grupo->getNombre().' '.$view->grupo->getNroReferencia();
+        $view->label= $view->contrato->getNombre().' '.$view->contrato->getNroContrato();
         $view->contentTemplate="view/contratos/vehiculosForm.php";
         break;
 }
