@@ -56,7 +56,8 @@ class ContratoVehiculo
             $stmt=new sQuery();
             $query="select id_vehiculo_contrato, id_vehiculo, id_contrato,
                     DATE_FORMAT(fecha_desde,  '%d/%m/%Y') as fecha_desde,
-                    DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta, id_localidad
+                    DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                    id_localidad
                     from vto_vehiculo_contrato where id_vehiculo_contrato = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);

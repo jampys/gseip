@@ -95,8 +95,8 @@
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_grupo_vehiculo" id="id_grupo_vehiculo" value="<?php print $view->grupo_vehiculo->getIdGrupoVehiculo() ?>">
-    <input type="hidden" name="id_grupo" id="id_grupo" value="<?php print $view->grupo_vehiculo->getIdGrupo() ?>">
+    <input type="hidden" name="id_contrato_vehiculo" id="id_contrato_vehiculo" value="<?php print $view->contrato_vehiculo->getIdVehiculoContrato() ?>">
+    <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->contrato_vehiculo->getIdContrato() ?>">
 
 
         <div class="form-group required">
@@ -106,7 +106,7 @@
                 <?php foreach ($view->vehiculos as $ar){ ?>
                     <option value="<?php echo $ar['id_vehiculo']; ?>"
                             data-content="<span class='label label-primary' style='font-weight: normal'><?php echo $ar['matricula']; ?></span> <span class='label label-default' style='font-weight: normal'><?php echo $ar['nro_movil']; ?></span> <?php echo $ar['modelo']; ?>"
-                        <?php echo ($ar['id_vehiculo'] == $view->grupo_vehiculo->getIdVehiculo())? 'selected' :'' ?>
+                        <?php echo ($ar['id_vehiculo'] == $view->contrato_vehiculo->getIdVehiculo())? 'selected' :'' ?>
                         >
                         <?php //echo $ar['matricula'].' '.$ar['nro_movil'].' '.$ar['modelo']; ?>
                     </option>
@@ -117,16 +117,16 @@
 
         <div class="form-group">
             <label class="control-label" for="certificado">Certificado</label>
-            <input class="form-control" type="text" name="certificado" id="certificado" value = "<?php print $view->grupo_vehiculo->getCertificado() ?>" placeholder="Certificado">
+            <input class="form-control" type="text" name="certificado" id="certificado" value = "<?php //print $view->grupo_vehiculo->getCertificado() ?>" placeholder="Certificado">
         </div>
 
 
         <div class="form-group required">
             <label class="control-label" for="empleado">Fecha desde / hasta</label>
             <div class="input-group input-daterange">
-                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->grupo_vehiculo->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato_vehiculo->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                 <div class="input-group-addon">a</div>
-                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->grupo_vehiculo->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato_vehiculo->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
             </div>
         </div>
 

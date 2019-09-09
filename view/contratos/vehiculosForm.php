@@ -19,12 +19,12 @@
 
 
         $('#etapas_left_side').on('click', '.edit', function(){
-            alert('editar vehiculo-contrato');
+            //alert('editar vehiculo-contrato');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            //alert('editar vehiculo: '+id);
+            alert('editar vehiculo: '+id);
             params={};
-            params.id_grupo_vehiculo = id;
+            params.id_contrato_vehiculo = id;
             params.action = "contrato-vehiculo";
             params.operation = "editVehiculo";
             //alert(params.id_renovacion);
