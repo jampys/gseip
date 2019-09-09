@@ -7,6 +7,8 @@
             /*language: {
                 url: 'dataTables/Spanish.json'
             }*/
+            "fnInitComplete": function () {
+                $(this).show(); },
             "stateSave": true
         });
 
@@ -53,7 +55,7 @@
 
     <div class="table-responsive">
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
+        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Nro.</th>
@@ -67,7 +69,7 @@
             </thead>
             <tbody>
             <?php foreach ($view->contratos as $contrato): ?>
-                <tr>
+                <tr data-id="<?php echo $contrato['id_contrato'];?>">
                     <td><?php echo $contrato['nro_contrato'];?></td>
                     <td><?php echo $contrato['nombre'];?></td>
                     <td><?php echo $contrato['compania'];?></td>

@@ -50,10 +50,10 @@
                 alert('presiono sobre vehiculos');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_grupo = id;
+                params.id_contrato = id;
                 params.action = "contrato-vehiculo";
                 //params.operation = "etapas"; //entra en default
-                $('#popupbox').load('index.php', params,function(){
+                $('#popupbox1').load('index.php', params,function(){
                     $('#myModal').modal();
                     $('#etapas_left_side #add').attr('id_contrato', id);
                 })
