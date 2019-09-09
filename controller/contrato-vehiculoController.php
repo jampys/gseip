@@ -1,7 +1,7 @@
 ﻿<?php
-include_once("model/vto_grupo-vehiculoModel.php");
+include_once("model/contrato-vehiculoModel.php");
 include_once("model/vehiculosModel.php");
-include_once("model/vto_gruposVehiculosModel.php");
+//include_once("model/vto_gruposVehiculosModel.php");
 //include_once("model/contratosModel.php");
 
 $operation = "";
@@ -12,7 +12,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid': //ok
+    case 'refreshGrid':
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -24,7 +24,7 @@ switch ($operation)
         $view->contentTemplate="view/grupos_vehiculos/vehiculosGrid.php";
         break;
 
-    case 'saveVehiculo': //ok
+    case 'saveVehiculo':
         $gv = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
         $gv->setIdGrupo($_POST['id_grupo']);
         $gv->setIdVehiculo($_POST['id_vehiculo']);
@@ -38,7 +38,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newVehiculo': //ok
+    case 'newVehiculo':
         $view->label='Nuevo vehículo';
         $view->grupo_vehiculo = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
 
@@ -49,7 +49,7 @@ switch ($operation)
         $view->contentTemplate="view/grupos_vehiculos/vehiculo_detailForm.php";
         break;
 
-    case 'editVehiculo': //ok
+    case 'editVehiculo':
         $view->label = ($_POST['target']!='view')? 'Editar vehículo': 'Ver vehículo';
         $view->grupo_vehiculo = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
 
@@ -61,7 +61,7 @@ switch ($operation)
         $view->contentTemplate="view/grupos_vehiculos/vehiculo_detailForm.php";
         break;
 
-    case 'deleteVehiculo': //ok
+    case 'deleteVehiculo':
         $view->grupo_vehiculo = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
         $rta = $view->grupo_vehiculo->deleteGrupoVehiculo();
         print_r(json_encode($rta));
@@ -76,13 +76,13 @@ switch ($operation)
         break;
 
 
-    default : //carga la tabla de vehiculos del grupo //ok
+    default : //carga la tabla de vehiculos del grupo
         $view->disableLayout=true;
-        $view->vehiculos = GrupoVehiculo::getVehiculos($_POST['id_grupo']);
+        $view->vehiculos = ContratoVehiculo::getContratoVehiculo($_POST['id_contrato']);
 
-        $view->grupo = new Grupo($_POST['id_grupo']);
-        $view->label= $view->grupo->getNombre().' '.$view->grupo->getNroReferencia();
-        $view->contentTemplate="view/grupos_vehiculos/vehiculosForm.php";
+        //$view->grupo = new Grupo($_POST['id_grupo']);
+        $view->label= 'Este es el titulo'; //$view->grupo->getNombre().' '.$view->grupo->getNroReferencia();
+        $view->contentTemplate="view/contratos/vehiculosForm.php";
         break;
 }
 

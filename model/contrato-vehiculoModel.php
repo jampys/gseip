@@ -76,18 +76,16 @@ class ContratoVehiculo
         }
     }
 
-    //Devuelve todos los empleados de un determinado contrato
-    public static function getContratoVehiculo($id_contrato) {
+    //Devuelve todos los vehiculos de un determinado contrato
+    public static function getContratoVehiculo($id_contrato) { //ok
         $stmt=new sQuery();
-        $query = "select ec.id_empleado_contrato, ec.id_empleado, ec.id_contrato, ec.id_puesto,
-                  DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-                  DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                  CONCAT (em.apellido, ' ', em.nombre) as empleado,
-                  pu.nombre as puesto
-                  from empleado_contrato ec, empleados em, puestos pu
-                  where ec.id_empleado = em.id_empleado
-                  and ec.id_puesto = pu.id_puesto
-                  and ec.id_contrato = :id_contrato";
+        $query = "select vc.id_vehiculo_contrato, vc.id_vehiculo, vc.id_contrato,
+DATE_FORMAT(vc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+DATE_FORMAT(vc.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+v.matricula, v.nro_movil, v.marca, v.modelo
+from vto_vehiculo_contrato vc
+join vto_vehiculos v on v.id_vehiculo = vc.id_vehiculo
+where vc.id_contrato = :id_contrato";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
