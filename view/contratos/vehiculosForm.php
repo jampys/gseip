@@ -19,6 +19,7 @@
 
 
         $('#etapas_left_side').on('click', '.edit', function(){
+            alert('editar vehiculo-contrato');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar vehiculo: '+id);
@@ -137,7 +138,7 @@
         });
 
 
-        $.fn.borrarGv = function(id) { 
+        $.fn.borrarGv = function(id) {
             //alert(id);
             //preparo los parametros
             params={};

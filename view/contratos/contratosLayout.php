@@ -17,7 +17,7 @@
             });
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){ //ok
                 var id=$(this).attr('data-id');
                 params={};
                 params.id=id;
@@ -29,7 +29,7 @@
             });
 
 
-            $(document).on('click', '.view', function(){ //ok
+            $('#content').on('click', '.view', function(){ //ok
                 var id=$(this).attr('data-id');
                 params={};
                 params.id=id;
@@ -63,7 +63,7 @@
 
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $('#content').on('click', '#new', function(){ //ok
                 params={};
                 params.action = "contratos";
                 params.operation="newContrato";
@@ -73,7 +73,7 @@
             });
 
 
-            $(document).on('click', '.delete', function(){
+            $('#content').on('click', '.delete', function(){
                 //$('#confirm').dialog('open');
                 $("#confirm").data('id', $(this).attr('data-id')).dialog("open");
                 return false;
