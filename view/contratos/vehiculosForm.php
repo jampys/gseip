@@ -69,34 +69,34 @@
         });
 
 
-        //Guardar grupo-vehiculo luego de ingresar nuevo o editar
+        //Guardar contrato-vehiculo luego de ingresar nuevo o editar
         $('#myModal').on('click', '#submit',function(){
             //alert('guardar grupo-vehiculo');
 
             if ($("#grupo-vehiculo-form").valid()){
 
                 var params={};
-                params.action = 'vto_grupo-vehiculo';
+                params.action = 'contrato-vehiculo';
                 params.operation = 'saveVehiculo';
-                params.id_grupo_vehiculo = $('#id_grupo_vehiculo').val();
+                params.id_contrato_vehiculo = $('#id_contrato_vehiculo').val();
                 params.id_grupo = $('#id_grupo').val();
                 params.id_vehiculo = $('#id_vehiculo').val();
                 params.fecha_desde = $('#fecha_desde').val();
                 params.fecha_hasta = $('#fecha_hasta').val();
-                params.certificado = $('#certificado').val();
+                params.id_localidad = $('#id_localidad').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#grupo-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#contrato-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Vehículo guardado con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
+                        $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
-                                                $('#grupo-vehiculo-form').hide();
+                                                $('#contrato-vehiculo-form').hide();
                                               }, 2000);
                     }
 
@@ -197,7 +197,7 @@
 
             <div class="modal-body">
 
-                <input type="hidden" name="id_vencimiento" id="id_vencimiento" value="<?php //print $view->grupo->getIdVencimiento() ?>">
+                <!--<input type="hidden" name="id_contrato" id="id_contrato" value="<?php //print $view->grupo->getIdVencimiento() ?>">-->
                 
                 <div class="row">
 

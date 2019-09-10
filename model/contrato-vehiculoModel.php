@@ -116,21 +116,21 @@ order by vc.fecha_desde desc";
 
 
 
-    public function updateEmpleadoContrato(){
+    public function updateVehiculoContrato(){ //ok
 
         $stmt=new sQuery();
-        $query="update empleado_contrato
-                set id_puesto= :id_puesto,
-                fecha_desde= STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
-                fecha_hasta= STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
+        $query="update vto_vehiculo_contrato
+                set id_vehiculo = :id_vehiculo,
+                fecha_desde = STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
+                fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
                 id_localidad = :id_localidad
-                where id_empleado_contrato = :id_empleado_contrato";
+                where id_vehiculo_contrato = :id_vehiculo_contrato";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
-        $stmt->dpBind(':id_empleado_contrato', $this->getIdEmpleadoContrato());
+        $stmt->dpBind(':id_vehiculo_contrato', $this->getIdVehiculoContrato());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

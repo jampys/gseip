@@ -36,11 +36,11 @@
 
         //cancel de formulario de etapa
         $('#grupo-vehiculo-form #cancel').on('click', function(){
-            $('#grupo-vehiculo-form').hide();
+            $('#contrato-vehiculo-form').hide();
         });
 
 
-        $('#grupo-vehiculo-form').validate({ //ok
+        $('#grupo-vehiculo-form').validate({
             rules: {
                 /*codigo: {
                         required: true,
@@ -88,7 +88,7 @@
 
 
 
-<form name ="grupo-vehiculo-form" id="grupo-vehiculo-form" method="POST" action="index.php">
+<form name ="contrato-vehiculo-form" id="contrato-vehiculo-form" method="POST" action="index.php">
     <fieldset>
 
     <div class="alert alert-info">
