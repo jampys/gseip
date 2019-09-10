@@ -55,16 +55,16 @@
 
 
         //Abre formulario para ingresar un nuevo vehiculo al grupo
-        $('#etapas_left_side').on('click', '#add', function(){
+        $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
-            params.action = "vto_grupo-vehiculo";
+            params.action = "contrato-vehiculo";
             params.operation = "newVehiculo";
-            params.id_grupo = $('#etapas_left_side #add').attr('id_grupo');
+            params.id_contrato = $('#etapas_left_side #add').attr('id_contrato');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_grupo').val(params.id_grupo);
+                $('#id_contrato').val(params.id_contrato);
             })
         });
 
