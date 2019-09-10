@@ -21,7 +21,8 @@
         });
 
         setTimeout(function () { //https://datatables.net/forums/discussion/41587/scrolly-misaligned-table-headers-with-bootstrap
-            $($.fn.dataTable.tables( true ) ).DataTable().columns.adjust().draw();
+            //$($.fn.dataTable.tables( true ) ).DataTable().columns.adjust().draw();
+            t.columns.adjust();
         },200);
 
 

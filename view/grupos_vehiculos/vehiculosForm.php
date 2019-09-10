@@ -45,7 +45,7 @@
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 $("#etapas_right_side fieldset").prop("disabled", true);
-                $("#etapa-form #footer-buttons button").css('display', 'none');
+                $("#grupo-vehiculo-form #footer-buttons button").css('display', 'none');
                 //$('#myModal').modal();
                 $('.selectpicker').selectpicker('refresh');
             })
