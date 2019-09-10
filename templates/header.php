@@ -165,6 +165,10 @@
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('CUA_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=cuadrillas"><i class="fas fa-car fa-fw"></i>&nbsp;Cuadrillas</a></li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=partes"><i class="fas fa-car fa-fw"></i>&nbsp;Partes diarios cuadrilla</a></li>
 
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">HABILITAS</li>
+                            <li class=""><a href="index.php?action=habilitas">Conversores</a></li>
+
                         </ul>
                     </li>
 
@@ -172,9 +176,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">HABILITAS</li>
+                            <li class="dropdown-header">USUARIOS</li>
 
-                            <li class=""><a href="index.php?action=habilitas">Conversor</a></li>
+                            <li class="disabled"><a href="#">Usuarios <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
 
                         </ul>
