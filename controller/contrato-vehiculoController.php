@@ -12,7 +12,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -24,7 +24,7 @@ switch ($operation)
         $view->contentTemplate="view/contratos/vehiculosGrid.php";
         break;
 
-    case 'saveVehiculo':
+    case 'saveVehiculo': //ok
         $gv = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
         $gv->setIdContrato($_POST['id_contrato']);
         $gv->setIdVehiculo($_POST['id_vehiculo']);
@@ -63,14 +63,14 @@ switch ($operation)
         $view->contentTemplate="view/contratos/vehiculo_detailForm.php";
         break;
 
-    case 'deleteVehiculo':
-        $view->grupo_vehiculo = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
-        $rta = $view->grupo_vehiculo->deleteGrupoVehiculo();
+    case 'deleteVehiculo': //ok
+        $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
+        $rta = $view->contrato_vehiculo->deleteVehiculoContrato();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    case 'checkVehiculo':
+    case 'checkVehiculo': //ok
         $view->contrato_vehiculo = new ContratoVehiculo();
         $rta = $view->contrato_vehiculo->checkVehiculo($_POST['id_vehiculo'], $_POST['id_contrato'], $_POST['id_contrato_vehiculo']);
         print_r(json_encode($rta));

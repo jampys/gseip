@@ -145,18 +145,17 @@ order by vc.fecha_desde desc";
 
     }
 
-    public function insertVehiculoContrato(){
+    public function insertVehiculoContrato(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into empleado_contrato(id_empleado, id_contrato, id_puesto, fecha_desde, fecha_hasta, id_localidad)
-                values(:id_empleado, :id_contrato, :id_puesto,
+        $query="insert into vto_vehiculo_contrato(id_vehiculo, id_contrato, fecha_desde, fecha_hasta, id_localidad)
+                values(:id_vehiculo, :id_contrato,
                 STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
                 STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
                 :id_localidad)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
@@ -164,17 +163,17 @@ order by vc.fecha_desde desc";
         return $stmt->dpGetAffect();
     }
 
-    public function deleteEmpleadoContrato(){
+    public function deleteVehiculoContrato(){ //ok
         $stmt=new sQuery();
-        $query="delete from empleado_contrato where id_empleado_contrato= :id_empleado_contrato";
+        $query="delete from vto_vehiculo_contrato where id_vehiculo_contrato= :id_vehiculo_contrato";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado_contrato', $this->getIdEmpleadoContrato());
+        $stmt->dpBind(':id_vehiculo_contrato', $this->getIdVehiculoContrato());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
-    public function checkVehiculo($id_vehiculo, $id_contrato, $id_contrato_vehiculo) {
+    public function checkVehiculo($id_vehiculo, $id_contrato, $id_contrato_vehiculo) { //ok
         //verifica que el vehiculo no se repita dentro de un contrato
         $stmt=new sQuery();
         $query = "select 1

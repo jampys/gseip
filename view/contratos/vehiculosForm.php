@@ -70,7 +70,7 @@
 
 
         //Guardar contrato-vehiculo luego de ingresar nuevo o editar
-        $('#myModal').on('click', '#submit',function(){
+        $('#myModal').on('click', '#submit',function(){ //ok
             //alert('guardar grupo-vehiculo');
 
             if ($("#contrato-vehiculo-form").valid()){
@@ -142,9 +142,9 @@
             //alert(id);
             //preparo los parametros
             params={};
-            params.id_grupo_vehiculo = id;
-            params.id_grupo = $('#etapas_left_side #add').attr('id_grupo');
-            params.action = "vto_grupo-vehiculo";
+            params.id_contrato_vehiculo = id;
+            params.id_contrato = $('#etapas_left_side #add').attr('id_contrato');
+            params.action = "contrato-vehiculo";
             params.operation = "deleteVehiculo";
             //alert(params.id_grupo);
             //throw new Error();
@@ -153,10 +153,10 @@
                 //alert(xhr.responseText);
                 if(data >=0){
                     $("#confirm-ve #myElemento").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
+                    $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-ve #myElemento").hide();
-                                            $('#grupo-vehiculo-form').hide();
+                                            $('#contrato-vehiculo-form').hide();
                                             $('#confirm-ve').dialog('close');
                                           }, 2000);
                 }else{
@@ -240,7 +240,7 @@
 
 <div id="confirm-ve">
     <div class="modal-body">
-        ¿Desea eliminar el vehículo del grupo?
+        ¿Desea eliminar el vehículo del contrato?
     </div>
 
     <div id="myElemento" style="display:none">
