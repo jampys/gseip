@@ -73,13 +73,13 @@
         $('#myModal').on('click', '#submit',function(){
             //alert('guardar grupo-vehiculo');
 
-            if ($("#grupo-vehiculo-form").valid()){
+            if ($("#contrato-vehiculo-form").valid()){
 
                 var params={};
                 params.action = 'contrato-vehiculo';
                 params.operation = 'saveVehiculo';
                 params.id_contrato_vehiculo = $('#id_contrato_vehiculo').val();
-                params.id_grupo = $('#id_grupo').val();
+                params.id_contrato = $('#id_contrato').val();
                 params.id_vehiculo = $('#id_vehiculo').val();
                 params.fecha_desde = $('#fecha_desde').val();
                 params.fecha_hasta = $('#fecha_hasta').val();

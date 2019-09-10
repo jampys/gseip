@@ -35,12 +35,12 @@
 
 
         //cancel de formulario de etapa
-        $('#grupo-vehiculo-form #cancel').on('click', function(){
+        $('#contrato-vehiculo-form #cancel').on('click', function(){
             $('#contrato-vehiculo-form').hide();
         });
 
 
-        $('#grupo-vehiculo-form').validate({
+        $('#contrato-vehiculo-form').validate({
             rules: {
                 /*codigo: {
                         required: true,

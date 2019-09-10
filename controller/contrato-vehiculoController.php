@@ -20,17 +20,17 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->vehiculos = GrupoVehiculo::getVehiculos($_POST['id_grupo']);
-        $view->contentTemplate="view/grupos_vehiculos/vehiculosGrid.php";
+        $view->vehiculos = ContratoVehiculo::getVehiculos($_POST['id_contrato']);
+        $view->contentTemplate="view/contratos/vehiculosGrid.php";
         break;
 
     case 'saveVehiculo':
-        $gv = new GrupoVehiculo($_POST['id_grupo_vehiculo']);
-        $gv->setIdGrupo($_POST['id_grupo']);
+        $gv = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
+        $gv->setIdContrato($_POST['id_contrato']);
         $gv->setIdVehiculo($_POST['id_vehiculo']);
         $gv->setFechaDesde($_POST['fecha_desde']);
         $gv->setFechaHasta( ($_POST['fecha_hasta']!='')? $_POST['fecha_hasta'] : null);
-        $gv->setCertificado($_POST['certificado']);
+        $gv->setIdLocalidad($_POST['id_localidad']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $gv->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
@@ -81,7 +81,7 @@ switch ($operation)
     default : //carga la tabla de vehiculos del contrato //ok
         $view->disableLayout=true;
         $view->contrato = new Contrato($_POST['id_contrato']);
-        $view->vehiculos = ContratoVehiculo::getContratoVehiculo($_POST['id_contrato']);
+        $view->vehiculos = ContratoVehiculo::getVehiculos($_POST['id_contrato']);
         $view->label= $view->contrato->getNombre().' '.$view->contrato->getNroContrato();
         $view->contentTemplate="view/contratos/vehiculosForm.php";
         break;

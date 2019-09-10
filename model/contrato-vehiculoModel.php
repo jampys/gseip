@@ -75,7 +75,7 @@ class ContratoVehiculo
     }
 
     //Devuelve todos los vehiculos de un determinado contrato
-    public static function getContratoVehiculo($id_contrato) { //ok
+    public static function getVehiculos($id_contrato) { //ok
         $stmt=new sQuery();
         $query = "select vc.id_vehiculo_contrato, vc.id_vehiculo, vc.id_contrato,
 DATE_FORMAT(vc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
@@ -115,6 +115,15 @@ order by vc.fecha_desde desc";
     }
 
 
+    function save(){ //ok
+        if($this->id_vehiculo_contrato)
+        {$rta = $this->updateVehiculoContrato();}
+        else
+        {$rta =$this->insertVehiculoContrato();}
+        return $rta;
+    }
+
+
 
     public function updateVehiculoContrato(){ //ok
 
@@ -136,7 +145,7 @@ order by vc.fecha_desde desc";
 
     }
 
-    public function insertEmpleadoContrato(){
+    public function insertVehiculoContrato(){
 
         $stmt=new sQuery();
         $query="insert into empleado_contrato(id_empleado, id_contrato, id_puesto, fecha_desde, fecha_hasta, id_localidad)
