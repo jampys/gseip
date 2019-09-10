@@ -54,11 +54,11 @@
                     type: "post",
                     dataType: "json",
                     data: {
-                            action: "vto_grupo-vehiculo",
+                            action: "contrato-vehiculo",
                             operation: "checkVehiculo",
                             id_vehiculo: function(){ return $('#id_vehiculo').val();},
-                            id_vencimiento: function(){ return $('#myModal #id_vencimiento').val();},
-                            id_grupo_vehiculo: function(){ return $('#id_grupo_vehiculo').val();}
+                            id_contrato: function(){ return $('#myModal #id_contrato').val();},
+                            id_contrato_vehiculo: function(){ return $('#id_contrato_vehiculo').val();}
                           }
                  }
                  },
@@ -72,7 +72,7 @@
                 }, */
                 id_vehiculo: {
                  required: "Seleccione un vehículo",
-                 remote: "El vehículo se encuentra activo en un grupo"
+                 remote: "El vehículo ya se encuentra en el contrato"
                  },
                 //id_vehiculo: "Seleccione un vehículo",
                 fecha_desde: "Seleccione una fecha desde"

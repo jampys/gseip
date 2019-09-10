@@ -173,6 +173,24 @@ order by vc.fecha_desde desc";
         return $stmt->dpGetAffect();
     }
 
+
+    public function checkVehiculo($id_vehiculo, $id_contrato, $id_contrato_vehiculo) {
+        //verifica que el vehiculo no se repita dentro de un contrato
+        $stmt=new sQuery();
+        $query = "select 1
+from vto_vehiculo_contrato vvc
+where vvc.id_vehiculo = :id_vehiculo
+and vvc.id_contrato = :id_contrato
+and vvc.id_vehiculo_contrato <> :id_contrato_vehiculo";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_vehiculo', $id_vehiculo);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_contrato_vehiculo', $id_contrato_vehiculo);
+        $stmt->dpExecute();
+        return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }
+
+
 }
 
 ?>
