@@ -18,7 +18,7 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){
+        $('#etapas_left_side').on('click', '.edit', function(){ //ok
             //alert('editar vehiculo-contrato');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
@@ -35,11 +35,11 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.view', function(){
+        $('#etapas_left_side').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             params={};
-            params.id_grupo_vehiculo = id;
-            params.action = "vto_grupo-vehiculo";
+            params.id_contrato_vehiculo = id;
+            params.action = "contrato-vehiculo";
             params.operation = "editVehiculo";
             params.target = "view";
             //alert(params.id_renovacion);
