@@ -238,7 +238,7 @@ join empleados em on su.id_empleado = em.id_empleado";
 
         $stmt=new sQuery();
         $query="update sec_users set
-                user = :user,
+                user = :user
                 where id_user = :id_user";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':user', $this->getUser());
