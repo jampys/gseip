@@ -33,7 +33,7 @@
 
 
         var uploadObj = $("#fileuploader").uploadFile({
-            url: "index.php?action=uploadsPuestos&operation=upload",
+            url: "index.php?action=uploadsUsuarios&operation=upload",
             dragDrop: <?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
             autoSubmit: false,
             fileName: "myfile",
@@ -46,7 +46,7 @@
             allowedTypes: "jpg, png, pdf, txt, doc, docx",
 
             dynamicFormData: function(){
-                var data ={ "id": ($('#id_puesto').val())? $('#id_puesto').val() : objeto.id };
+                var data ={ "id": ($('#id_user').val())? $('#id_user').val() : objeto.id };
                 return data;},
 
             maxFileSize:2097152, //tamaño expresado en bytes
