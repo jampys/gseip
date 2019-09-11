@@ -47,16 +47,16 @@ switch ($operation) {
         $view->contentTemplate = "view/puestosForm.php";
         break;
 
-    case 'editPuesto':
-        $view->puesto = new Puesto($_POST['id_puesto']);
-        $view->label = $view->puesto->getNombre();
+    case 'editUsuario': //ok
+        $view->usuario = new Usuario($_POST['id_user']);
+        $view->label = $view->usuario->getUser();
 
         $view->puesto_superior = Puesto::getPuestos();
         $view->areas = Area::getAreas();
         $view->nivelesCompetencias = CompetenciasNiveles::getNivelesCompetencias();
 
         $view->disableLayout = true;
-        $view->contentTemplate = "view/puestosForm.php";
+        $view->contentTemplate = "view/usuarios/usuariosForm.php";
         break;
 
     case 'deletePuesto':
@@ -64,33 +64,6 @@ switch ($operation) {
         $rta = $puesto->deletePuesto();
         print_r(json_encode($rta));
         die;
-        break;
-
-    case 'autocompletarPuestos':
-        $view->puesto = new Puesto();
-        $rta = $view->puesto->autocompletarPuestos($_POST['term']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-
-    case 'loadDetalles': //abre la ventana modal para mostrar los detalles del puesto
-        //$view->label='Detalles del puesto';
-        $view->disableLayout = true;
-        $view->puestos = new Puesto($_POST['id_puesto']);
-        $view->label = $view->puestos->getNombre();
-
-        $view->empleados = Puesto::getEmpleadosByPuesto($_POST['id_puesto']);
-        $view->habilidades = HabilidadPuesto::getHabilidadPuesto($_POST['id_puesto'], null);
-        $view->contentTemplate = "view/puestosFormDetalles.php";
-        break;
-
-
-    case 'getHijos': //trae los puestos hijos de un puesto.
-        //$view->puesto = new Puesto();
-        $rta = Puesto::getHijos($_POST['id_puesto']);
-        print_r(json_encode($rta));
-        exit;
         break;
 
     default :

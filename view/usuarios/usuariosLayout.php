@@ -14,19 +14,19 @@
 
 
             $(document).on('click', '.edit', function(){ //ok
-                var id = $(this).closest('tr').attr('id_puesto');
+                var id = $(this).closest('tr').attr('id_user');
                 //preparo los parametros
                 params={};
-                params.id_puesto = id;
-                params.action = "puestos";
-                params.operation = "editPuesto";
+                params.id_user = id;
+                params.action = "sec_users";
+                params.operation = "editUsuario";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
 
             });
 
-            $(document).on('click', '.view', function(){ //ok
+            $(document).on('click', '.view', function(){
                 var id = $(this).closest('tr').attr('id_puesto');
                 //preparo los parametros
                 params={};
@@ -44,24 +44,8 @@
             });
 
 
-            //Al presionar el boton detalles....
-            $(document).on('click', '.detalles', function(){ //ok
-                //alert('tocó en contratos');
-                var id = $(this).closest('tr').attr('id_puesto');
-                //preparo los parametros
-                params={};
-                params.id_puesto = id;
-                params.action = "puestos";
-                params.operation = "loadDetalles";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                })
 
-            });
-
-
-
-            $(document).on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){
                 params={};
                 params.action = "puestos";
                 params.operation="newPuesto";
@@ -73,7 +57,7 @@
 
 
 
-            $(document).on('click', '.delete', function(){ //ok
+            $(document).on('click', '.delete', function(){
                 var id = $(this).closest('tr').attr('id_puesto');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
@@ -99,7 +83,7 @@
             });
 
 
-            $.fn.borrar = function(id) { //ok
+            $.fn.borrar = function(id) {
                 //alert(id);
                 //preparo los parametros
                 params={};

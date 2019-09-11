@@ -62,7 +62,8 @@ join empleados em on su.id_empleado = em.id_empleado";
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select * from sec_users where id_user = :nro";
+            $query="select *
+                    from sec_users where id_user = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
