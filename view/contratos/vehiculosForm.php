@@ -19,12 +19,13 @@
 
 
         $('#etapas_left_side').on('click', '.edit', function(){ //ok
+            //alert('editar vehiculo-contrato');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar vehiculo: '+id);
             params={};
-            params.id_grupo_vehiculo = id;
-            params.action = "vto_grupo-vehiculo";
+            params.id_contrato_vehiculo = id;
+            params.action = "contrato-vehiculo";
             params.operation = "editVehiculo";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
@@ -37,15 +38,15 @@
         $('#etapas_left_side').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             params={};
-            params.id_grupo_vehiculo = id;
-            params.action = "vto_grupo-vehiculo";
+            params.id_contrato_vehiculo = id;
+            params.action = "contrato-vehiculo";
             params.operation = "editVehiculo";
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 $("#etapas_right_side fieldset").prop("disabled", true);
-                $("#grupo-vehiculo-form #footer-buttons button").css('display', 'none');
+                $("#contrato-vehiculo-form #footer-buttons button").css('display', 'none');
                 //$('#myModal').modal();
                 $('.selectpicker').selectpicker('refresh');
             })
@@ -56,46 +57,46 @@
         //Abre formulario para ingresar un nuevo vehiculo al grupo
         $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
-            params.action = "vto_grupo-vehiculo";
+            params.action = "contrato-vehiculo";
             params.operation = "newVehiculo";
-            params.id_grupo = $('#etapas_left_side #add').attr('id_grupo');
+            params.id_contrato = $('#etapas_left_side #add').attr('id_contrato');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_grupo').val(params.id_grupo);
+                $('#id_contrato').val(params.id_contrato);
             })
         });
 
 
-        //Guardar grupo-vehiculo luego de ingresar nuevo o editar
+        //Guardar contrato-vehiculo luego de ingresar nuevo o editar
         $('#myModal').on('click', '#submit',function(){ //ok
             //alert('guardar grupo-vehiculo');
 
-            if ($("#grupo-vehiculo-form").valid()){
+            if ($("#contrato-vehiculo-form").valid()){
 
                 var params={};
-                params.action = 'vto_grupo-vehiculo';
+                params.action = 'contrato-vehiculo';
                 params.operation = 'saveVehiculo';
-                params.id_grupo_vehiculo = $('#id_grupo_vehiculo').val();
-                params.id_grupo = $('#id_grupo').val();
+                params.id_contrato_vehiculo = $('#id_contrato_vehiculo').val();
+                params.id_contrato = $('#id_contrato').val();
                 params.id_vehiculo = $('#id_vehiculo').val();
                 params.fecha_desde = $('#fecha_desde').val();
                 params.fecha_hasta = $('#fecha_hasta').val();
-                params.certificado = $('#certificado').val();
+                params.id_localidad = $('#id_localidad').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#grupo-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#contrato-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Vehículo guardado con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
+                        $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
-                                                $('#grupo-vehiculo-form').hide();
+                                                $('#contrato-vehiculo-form').hide();
                                               }, 2000);
                     }
 
@@ -137,13 +138,13 @@
         });
 
 
-        $.fn.borrarGv = function(id) { //ok
+        $.fn.borrarGv = function(id) {
             //alert(id);
             //preparo los parametros
             params={};
-            params.id_grupo_vehiculo = id;
-            params.id_grupo = $('#etapas_left_side #add').attr('id_grupo');
-            params.action = "vto_grupo-vehiculo";
+            params.id_contrato_vehiculo = id;
+            params.id_contrato = $('#etapas_left_side #add').attr('id_contrato');
+            params.action = "contrato-vehiculo";
             params.operation = "deleteVehiculo";
             //alert(params.id_grupo);
             //throw new Error();
@@ -152,10 +153,11 @@
                 //alert(xhr.responseText);
                 if(data >=0){
                     $("#confirm-ve #myElemento").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
+                    $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
+                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-ve #myElemento").hide();
-                                            $('#grupo-vehiculo-form').hide();
+                                            $('#contrato-vehiculo-form').hide();
                                             $('#confirm-ve').dialog('close');
                                           }, 2000);
                 }else{
@@ -196,7 +198,7 @@
 
             <div class="modal-body">
 
-                <input type="hidden" name="id_vencimiento" id="id_vencimiento" value="<?php print $view->grupo->getIdVencimiento() ?>">
+                <!--<input type="hidden" name="id_contrato" id="id_contrato" value="<?php //print $view->grupo->getIdVencimiento() ?>">-->
                 
                 <div class="row">
 
@@ -209,7 +211,7 @@
                             </div>
 
                             <div class="grid">
-                                <?php include_once('view/grupos_vehiculos/vehiculosGrid.php');?>
+                                <?php include_once('view/contratos/vehiculosGrid.php');?>
                             </div>
 
                         </div>
@@ -239,7 +241,7 @@
 
 <div id="confirm-ve">
     <div class="modal-body">
-        ¿Desea eliminar el vehículo del grupo?
+        ¿Desea eliminar el vehículo del contrato?
     </div>
 
     <div id="myElemento" style="display:none">

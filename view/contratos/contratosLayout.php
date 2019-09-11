@@ -17,7 +17,7 @@
             });
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){ //ok
                 var id=$(this).attr('data-id');
                 params={};
                 params.id=id;
@@ -29,7 +29,7 @@
             });
 
 
-            $(document).on('click', '.view', function(){ //ok
+            $('#content').on('click', '.view', function(){ //ok
                 var id=$(this).attr('data-id');
                 params={};
                 params.id=id;
@@ -46,8 +46,24 @@
             });
 
 
+            $('#content').on('click', '.vehiculos', function(){ //ok
+                //alert('presiono sobre vehiculos');
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_contrato = id;
+                params.action = "contrato-vehiculo";
+                //params.operation = "etapas"; //entra en default
+                $('#popupbox1').load('index.php', params,function(){
+                    $('#myModal').modal();
+                    $('#etapas_left_side #add').attr('id_contrato', id);
+                })
 
-            $(document).on('click', '#new', function(){ //ok
+            });
+
+
+
+
+            $('#content').on('click', '#new', function(){ //ok
                 params={};
                 params.action = "contratos";
                 params.operation="newContrato";
@@ -57,7 +73,7 @@
             });
 
 
-            $(document).on('click', '.delete', function(){
+            $('#content').on('click', '.delete', function(){
                 //$('#confirm').dialog('open');
                 $("#confirm").data('id', $(this).attr('data-id')).dialog("open");
                 return false;

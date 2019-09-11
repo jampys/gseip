@@ -50,44 +50,40 @@ class ContratoVehiculo
 
 
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor //ok
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select id_empleado_contrato, id_empleado, id_contrato, id_puesto,
+            $query="select id_vehiculo_contrato, id_vehiculo, id_contrato,
                     DATE_FORMAT(fecha_desde,  '%d/%m/%Y') as fecha_desde,
-                    DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta, id_localidad
-                    from empleado_contrato where id_empleado_contrato = :nro";
+                    DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                    id_localidad
+                    from vto_vehiculo_contrato where id_vehiculo_contrato = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdEmpleadoContrato($rows[0]['id_empleado_contrato']);
-            $this->setIdEmpleado($rows[0]['id_empleado']);
+            $this->setIdVehiculoContrato($rows[0]['id_vehiculo_contrato']);
+            $this->setIdVehiculo($rows[0]['id_vehiculo']);
             $this->setIdContrato($rows[0]['id_contrato']);
-            $this->setIdPuesto($rows[0]['id_puesto']);
             $this->setFechaDesde($rows[0]['fecha_desde']);
             $this->setFechaHasta($rows[0]['fecha_hasta']);
             $this->setIdLocalidad($rows[0]['id_localidad']);
 
-            $this->procesos = array();
-            $this->procesos = ContratoEmpleadoProceso::getContratoEmpleadoProceso($this->getIdEmpleadoContrato());
         }
     }
 
-    //Devuelve todos los empleados de un determinado contrato
-    public static function getContratoVehiculo($id_contrato) {
+    //Devuelve todos los vehiculos de un determinado contrato
+    public static function getVehiculos($id_contrato) { //ok
         $stmt=new sQuery();
-        $query = "select ec.id_empleado_contrato, ec.id_empleado, ec.id_contrato, ec.id_puesto,
-                  DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-                  DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                  CONCAT (em.apellido, ' ', em.nombre) as empleado,
-                  pu.nombre as puesto
-                  from empleado_contrato ec, empleados em, puestos pu
-                  where ec.id_empleado = em.id_empleado
-                  and ec.id_puesto = pu.id_puesto
-                  and ec.id_contrato = :id_contrato";
+        $query = "select vc.id_vehiculo_contrato, vc.id_vehiculo, vc.id_contrato,
+DATE_FORMAT(vc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+DATE_FORMAT(vc.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+v.matricula, v.nro_movil, v.marca, v.modelo
+from vto_vehiculo_contrato vc
+join vto_vehiculos v on v.id_vehiculo = vc.id_vehiculo
+where vc.id_contrato = :id_contrato";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
@@ -119,39 +115,47 @@ order by vc.fecha_desde desc";
     }
 
 
+    function save(){ //ok
+        if($this->id_vehiculo_contrato)
+        {$rta = $this->updateVehiculoContrato();}
+        else
+        {$rta =$this->insertVehiculoContrato();}
+        return $rta;
+    }
 
-    public function updateEmpleadoContrato(){
+
+
+    public function updateVehiculoContrato(){ //ok
 
         $stmt=new sQuery();
-        $query="update empleado_contrato
-                set id_puesto= :id_puesto,
-                fecha_desde= STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
-                fecha_hasta= STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
+        $query="update vto_vehiculo_contrato
+                set id_vehiculo = :id_vehiculo,
+                fecha_desde = STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
+                fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
                 id_localidad = :id_localidad
-                where id_empleado_contrato = :id_empleado_contrato";
+                where id_vehiculo_contrato = :id_vehiculo_contrato";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
-        $stmt->dpBind(':id_empleado_contrato', $this->getIdEmpleadoContrato());
+        $stmt->dpBind(':id_vehiculo_contrato', $this->getIdVehiculoContrato());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    public function insertEmpleadoContrato(){
+    public function insertVehiculoContrato(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into empleado_contrato(id_empleado, id_contrato, id_puesto, fecha_desde, fecha_hasta, id_localidad)
-                values(:id_empleado, :id_contrato, :id_puesto,
+        $query="insert into vto_vehiculo_contrato(id_vehiculo, id_contrato, fecha_desde, fecha_hasta, id_localidad)
+                values(:id_vehiculo, :id_contrato,
                 STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
                 STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
                 :id_localidad)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
@@ -159,14 +163,32 @@ order by vc.fecha_desde desc";
         return $stmt->dpGetAffect();
     }
 
-    public function deleteEmpleadoContrato(){
+    public function deleteVehiculoContrato(){ //ok
         $stmt=new sQuery();
-        $query="delete from empleado_contrato where id_empleado_contrato= :id_empleado_contrato";
+        $query="delete from vto_vehiculo_contrato where id_vehiculo_contrato= :id_vehiculo_contrato";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado_contrato', $this->getIdEmpleadoContrato());
+        $stmt->dpBind(':id_vehiculo_contrato', $this->getIdVehiculoContrato());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
+
+
+    public function checkVehiculo($id_vehiculo, $id_contrato, $id_contrato_vehiculo) { //ok
+        //verifica que el vehiculo no se repita dentro de un contrato
+        $stmt=new sQuery();
+        $query = "select 1
+from vto_vehiculo_contrato vvc
+where vvc.id_vehiculo = :id_vehiculo
+and vvc.id_contrato = :id_contrato
+and vvc.id_vehiculo_contrato <> :id_contrato_vehiculo";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_vehiculo', $id_vehiculo);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_contrato_vehiculo', $id_contrato_vehiculo);
+        $stmt->dpExecute();
+        return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }
+
 
 }
 
