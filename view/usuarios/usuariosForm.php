@@ -98,7 +98,7 @@
             },
             deleteCallback: function (data, pd) {
                 for (var i = 0; i < data.length; i++) {
-                    $.post("index.php", {action: "uploadsPuestos", operation: "delete", name: data[i]},
+                    $.post("index.php", {action: "uploadsUsuarios", operation: "delete", name: data[i], id: $('#id_user').val()},
                         function (resp,textStatus, jqXHR) {
                             //Show Message
                             //alert("File Deleted");

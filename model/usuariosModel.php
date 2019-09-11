@@ -307,11 +307,11 @@ join empleados em on su.id_empleado = em.id_empleado";
         return $stmt->dpFetchAll();
     }
 
-    public static function uploadsDelete($name){
+    public static function uploadsDelete($id_user){ //ok
         $stmt=new sQuery();
-        $query="delete from uploads_puesto where name =:name";
+        $query="update sec_users set profile_picture = 'uploads/profile_pictures/default.png' where id_user = :id_user";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':name', $name);
+        $stmt->dpBind(':id_user', $id_user);
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

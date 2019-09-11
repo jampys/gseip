@@ -8,7 +8,7 @@ $output_dir = $GLOBALS['ini']['upload_dir']."profile_pictures/";
 
 switch ($operation) {
 
-    case 'load':
+    case 'load': //ok
 
         $id = $_POST['id'];
         $files = Usuario::uploadsLoad($id);
@@ -117,7 +117,7 @@ switch ($operation) {
 
     case 'delete':
 
-        if( isset($_POST['name'])) {
+        if( isset($_POST['name']) && isset($_POST['id'])) {
 
             $fileName =$_POST['name'];
             $fileName=str_replace("..",".",$fileName); //required. if somebody is trying parent folder files
@@ -125,7 +125,7 @@ switch ($operation) {
 
             if (file_exists($filePath)) {
                 unlink($filePath);
-                RenovacionPersonal::uploadsDelete($fileName); //Borra el registro de la BD
+                Usuario::uploadsDelete($_POST['id']); //Borra el registro de la BD
             }
         }
 
