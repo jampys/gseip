@@ -14,10 +14,10 @@ $view->disableLayout=false;
 
 
 switch ($operation) {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout = true;
-        $view->puestos = Puesto::getPuestos();
-        $view->contentTemplate = "view/puestosGrid.php";
+        $view->usuarios = Usuario::getUsuarios();
+        $view->contentTemplate = "view/usuarios/usuariosGrid.php";
         break;
 
     case 'saveUsuario': //ok

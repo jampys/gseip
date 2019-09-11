@@ -119,8 +119,8 @@
                 var params={};
                 params.action = 'sec_users';
                 params.operation = 'saveUsuario';
-                params.id_user=$('#id_user').val();
-                //params.nombre=$('#nombre').val();
+                params.id_user = $('#id_user').val();
+                params.user = $('#user').val();
                 //params.descripcion=$('#descripcion').val();
                 //params.codigo=$('#codigo').val();
                 //params.id_puesto_superior=$('#id_puesto_superior').val();
