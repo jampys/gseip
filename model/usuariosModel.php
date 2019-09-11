@@ -295,14 +295,14 @@ join empleados em on su.id_empleado = em.id_empleado";
         return $stmt->dpGetAffect();
     }
 
-    public static function uploadsLoad($id_puesto) {
+    public static function uploadsLoad($id_user) { //ok
+        //select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_puesto
         $stmt=new sQuery();
-        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_puesto
-                  from uploads_puesto
-                  where id_puesto = :id_puesto
-                  order by fecha asc";
+        $query = "select id_user, profile_picture, DATE_FORMAT(fecha_alta,'%d/%m/%Y') as fecha
+                  from sec_users
+                  where id_user = :id_user";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_puesto', $id_puesto);
+        $stmt->dpBind(':id_user', $id_user);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

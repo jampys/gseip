@@ -69,7 +69,7 @@
                 $.ajax({
                     cache: false,
                     url: "index.php",
-                    data:{"action": "uploadsPuestos", "operation": "load", "id": $('#id_puesto').val() },
+                    data:{"action": "uploadsUsuarios", "operation": "load", "id": $('#id_user').val() },
                     type:"post",
                     dataType: "json",
                     success: function(data) {
@@ -209,7 +209,7 @@
 
 
                 <form name ="puesto" id="puesto" method="POST" action="index.php">
-                    <input type="hidden" name="id_puesto" id="id_puesto" value="<?php print $view->usuario->getIdUser() ?>">
+                    <input type="hidden" name="id_user" id="id_user" value="<?php print $view->usuario->getIdUser() ?>">
 
                     <div class="form-group required">
                         <label class="control-label" for="id_empleado">Empleado</label>
@@ -264,7 +264,7 @@
                             </div>
                     </div>
 
-                    
+
                 </form>
 
 
