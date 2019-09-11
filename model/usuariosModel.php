@@ -274,14 +274,17 @@ join empleados em on su.id_empleado = em.id_empleado";
     }
 
 
-    public static function uploadsUpload($directory, $name, $id_puesto){
+    public static function uploadsUpload($directory, $name, $id_user){ //ok
         $stmt=new sQuery();
-        $query="insert into uploads_puesto(directory, name, fecha, id_puesto)
-                values(:directory, :name, sysdate(), :id_puesto)";
+        /*$query="insert into uploads_puesto(directory, name, fecha, id_puesto)
+                values(:directory, :name, sysdate(), :id_puesto)";*/
+        $query="update sec_users set profile_picture = :name
+                where id_user = :id_user";
+
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':directory', $directory);
+        //$stmt->dpBind(':directory', $directory);
         $stmt->dpBind(':name', $name);
-        $stmt->dpBind(':id_puesto', $id_puesto);
+        $stmt->dpBind(':id_user', $id_user);
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

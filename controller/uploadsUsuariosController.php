@@ -62,7 +62,7 @@ switch ($operation) {
                 $temp1 = preg_replace('/\s+/', '_', $temp[0]); //reemplaza en el nombre del archivo los espacios en blanco por '_'
                 $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp1 . '_' .round(microtime(true)) . '.' . end($temp);
                 if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $newfilename))
-                    RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
+                    Usuario::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
                 $ret[]= $newfilename;
             }
             else  //Multiple files, file[]
@@ -74,7 +74,7 @@ switch ($operation) {
                     $temp1 = preg_replace('/\s+/', '_', $temp[0]); //reemplaza en el nombre del archivo los espacios en blanco por '_'
                     $newfilename = str_pad($id, 5, 0, STR_PAD_LEFT) . '_' . $temp1 . '_' .round(microtime(true)) . '.' . end($temp);
                     if (move_uploaded_file($_FILES["myfile"]["tmp_name"][$i], $output_dir . $newfilename))
-                        RenovacionPersonal::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
+                        Usuario::uploadsUpload($output_dir, $newfilename, $id); //inserta en la BD
                     $ret[] = $newfilename;
                 }
 
