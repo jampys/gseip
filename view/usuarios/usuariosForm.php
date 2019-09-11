@@ -115,7 +115,7 @@
 
 
         $(document).on('click', '#submit',function(){
-            if ($("#puesto").valid()){
+            //if ($("#usuario-form").valid()){
                 var params={};
                 params.action = 'puestos';
                 params.operation = 'savePuesto';
@@ -149,7 +149,7 @@
                 }, "json");
 
 
-            }
+            //}
             return false;
         });
 
@@ -162,7 +162,7 @@
 
 
 
-        $('#puesto').validate({
+        /*$('#puesto').validate({
             rules: {
                 codigo: {
                         required: true,
@@ -184,7 +184,7 @@
                 id_nivel_competencia: "Seleccione un nivel de competencia"
             }
 
-        });
+        });*/
 
 
 
@@ -208,7 +208,7 @@
             <div class="modal-body">
 
 
-                <form name ="puesto" id="puesto" method="POST" action="index.php">
+                <form name ="usuario-form" id="usuario-form" method="POST" action="index.php">
                     <input type="hidden" name="id_user" id="id_user" value="<?php print $view->usuario->getIdUser() ?>">
 
                     <div class="form-group required">
