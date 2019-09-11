@@ -115,13 +115,13 @@ switch ($operation) {
         break;
 
 
-    case 'delete':
+    case 'delete': //ok
 
         if( isset($_POST['name']) && isset($_POST['id'])) {
 
             $fileName =$_POST['name'];
             $fileName=str_replace("..",".",$fileName); //required. if somebody is trying parent folder files
-            $filePath = $output_dir. $fileName;
+            $filePath = $fileName; //$output_dir. $fileName;
 
             if (file_exists($filePath)) {
                 unlink($filePath);
