@@ -226,38 +226,29 @@ join empleados em on su.id_empleado = em.id_empleado";
 
     /* para ABM *****************************************************************************/
 
-    function save(){
-        if($this->id_puesto)
-        {$rta = $this->updatePuesto();}
+    function save(){ //ok
+        if($this->id_user)
+        {$rta = $this->updateUsuario();}
         else
-        {$rta =$this->insertPuesto();}
+        {$rta =$this->insertUsuario();}
         return $rta;
     }
 
-    public function updatePuesto(){
+    public function updateUsuario(){ //ok
 
         $stmt=new sQuery();
-        $query="update puestos set
-                nombre= :nombre,
-                descripcion= :descripcion,
-                codigo= :codigo,
-                id_puesto_superior= :id_puesto_superior,
-                id_area= :id_area,
-                id_nivel_competencia= :id_nivel_competencia
-                where id_puesto = :id_puesto";
+        $query="update sec_users set
+                user = :user,
+                where id_user = :id_user";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
-        $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':user', $this->getUser());
+        //$stmt->dpBind(':descripcion', $this->getDescripcion());
+        $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
-    private function insertPuesto(){
+    private function insertUsuario(){
 
         $stmt=new sQuery();
         $query="insert into puestos(nombre, descripcion, codigo, id_puesto_superior, id_area, id_nivel_competencia)
