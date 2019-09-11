@@ -22,6 +22,9 @@ class Usuario{
     function getPassword()
     { return $this->password;}
 
+    function getEnabled()
+    { return $this->enabled;}
+
     function getIdEmpleado()
     { return $this->id_empleado;}
 
@@ -37,6 +40,9 @@ class Usuario{
 
     function setPassword($val)
     {  $this->password=$val;}
+
+    function setEnabled($val)
+    {  $this->enabled=$val;}
 
     function setIdEmpleado($val)
     {  $this->id_empleado=$val;}
@@ -75,6 +81,7 @@ join empleados em on su.id_empleado = em.id_empleado";
             $this->setIdUser($rows[0]['id_user']);
             $this->setUser($rows[0]['user']);
             $this->setPassword($rows[0]['password']);
+            $this->setEnabled($rows[0]['enabled']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
         }
     }

@@ -226,6 +226,14 @@
                         <input class="form-control" type="text" name="user" id="user" value = "<?php print $view->usuario->getUser() ?>" placeholder="Código">
                     </div>
 
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="disabled" name="disabled" <?php echo (!$view->usuario->getEnabled() != 1)? '' :'checked' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para inhabilitar el usuario temporalmente">Inhabilitar temporalmente</a>
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre"value = "<?php print $view->puesto->getNombre() ?>" placeholder="Nombre">
