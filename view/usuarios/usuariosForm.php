@@ -65,7 +65,7 @@
             duplicateErrorStr: "no permitido. El archivo ya existe.",
             sizeErrorStr: "no permitido. Tamaño máximo permitido: ",
 
-            onLoad:function(obj){
+            onLoad:function(obj){ //ok
                 $.ajax({
                     cache: false,
                     url: "index.php",
@@ -96,7 +96,7 @@
 
                 });
             },
-            deleteCallback: function (data, pd) {
+            deleteCallback: function (data, pd) { //ok
                 for (var i = 0; i < data.length; i++) {
                     $.post("index.php", {action: "uploadsUsuarios", operation: "delete", name: data[i], id: $('#id_user').val()},
                         function (resp,textStatus, jqXHR) {
