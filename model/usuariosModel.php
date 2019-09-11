@@ -25,6 +25,12 @@ class Usuario{
     function getEnabled()
     { return $this->enabled;}
 
+    function getFechaAlta()
+    { return $this->fecha_alta;}
+
+    function getFechaBaja()
+    { return $this->fecha_baja;}
+
     function getIdEmpleado()
     { return $this->id_empleado;}
 
@@ -43,6 +49,12 @@ class Usuario{
 
     function setEnabled($val)
     {  $this->enabled=$val;}
+
+    function setFechaAlta($val)
+    {  $this->fecha_alta=$val;}
+
+    function setFechaBaja($val)
+    {  $this->fecha_baja=$val;}
 
     function setIdEmpleado($val)
     {  $this->id_empleado=$val;}
@@ -71,8 +83,11 @@ join empleados em on su.id_empleado = em.id_empleado";
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select *
-                    from sec_users where id_user = :nro";
+            $query="select us.id_user, us.user, us.password, us.enabled,
+                    DATE_FORMAT(us.fecha_alta,  '%d/%m/%Y') as fecha_alta,
+                    DATE_FORMAT(us.fecha_baja,  '%d/%m/%Y') as fecha_baja,
+                    us.id_empleado, us.profile_picture
+                    from sec_users us where us.id_user = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
@@ -82,6 +97,8 @@ join empleados em on su.id_empleado = em.id_empleado";
             $this->setUser($rows[0]['user']);
             $this->setPassword($rows[0]['password']);
             $this->setEnabled($rows[0]['enabled']);
+            $this->setFechaAlta($rows[0]['fecha_alta']);
+            $this->setFechaBaja($rows[0]['fecha_baja']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
         }
     }

@@ -18,6 +18,14 @@
             keyboard: false
         });
 
+
+        $('.input-group.date').datepicker({
+            //inline: true
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
+
         $('.image').viewer({});
 
         var objeto={};
@@ -233,6 +241,29 @@
                             </label>
                         </div>
                     </div>
+
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="fecha">Fecha alta</label>
+                            <div class="input-group date">
+                                <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print $view->usuario->getFechaAlta() ?>" placeholder="DD/MM/AAAA" disabled>
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="fecha">Fecha baja</label>
+                            <div class="input-group date">
+                                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->usuario->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                    </div>
+
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
