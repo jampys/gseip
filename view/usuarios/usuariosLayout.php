@@ -14,7 +14,7 @@
 
 
             $(document).on('click', '.edit', function(){ //ok
-                var id = $(this).closest('tr').attr('id_user');
+                var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
                 params.id_user = id;
