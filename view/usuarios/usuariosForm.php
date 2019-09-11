@@ -201,11 +201,29 @@
 
 
                 <form name ="puesto" id="puesto" method="POST" action="index.php">
-                    <input type="hidden" name="id_puesto" id="id_puesto" value="<?php print $view->puesto->getIdPuesto() ?>">
+                    <input type="hidden" name="id_puesto" id="id_puesto" value="<?php print $view->usuario->getIdUser() ?>">
 
                     <div class="form-group required">
-                        <label class="control-label" for="codigo">Código</label>
-                        <input class="form-control" type="text" name="codigo" id="codigo" value = "<?php print $view->puesto->getCodigo() ?>" placeholder="Código">
+                        <label class="control-label" for="id_empleado">Empleado</label>
+                        <!--<input type="text" class="form-control empleado-group" id="empleado" name="empleado" placeholder="Empleado">
+                        <input type="hidden" name="id_empleado" id="id_empleado" class="empleado-group"/>-->
+                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado" <?php echo ($view->usuario->getIdUser())? 'disabled' :'' ?>>
+                            <?php foreach ($view->empleados as $em){
+                                ?>
+                                <option value="<?php echo $em['id_empleado']; ?>"
+                                        data-content="<span style='font-weight: bold'><?php echo $em['legajo']; ?></span> <?php echo $em['apellido'].' '.$em['nombre']; ?>"
+                                    <?php echo ($em['id_empleado'] == $view->usuario->getIdEmpleado())? 'selected' :'' ?>
+                                    >
+                                    <?php //echo $em['legajo'].' '.$em['apellido'].' '.$em['nombre']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label class="control-label" for="user">Correo</label>
+                        <input class="form-control" type="text" name="user" id="user" value = "<?php print $view->usuario->getUser() ?>" placeholder="Código">
                     </div>
 
                     <div class="form-group required">

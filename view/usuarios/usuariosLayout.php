@@ -45,10 +45,10 @@
 
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
-                params.action = "puestos";
-                params.operation="newPuesto";
+                params.action = "sec_users";
+                params.operation="newUsuario";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })

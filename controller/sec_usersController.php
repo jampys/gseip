@@ -1,8 +1,8 @@
 ﻿<?php
 
 include_once("model/usuariosModel.php");
+include_once("model/empleadosModel.php");
 
-include_once("model/areasModel.php");
 include_once("model/competenciasNivelesModel.php");
 include_once("model/habilidad-puestoModel.php");
 
@@ -35,25 +35,21 @@ switch ($operation) {
         exit;
         break;
 
-    case 'newPuesto':
-        $view->puesto = new Puesto();
-        $view->label = 'Nuevo Puesto de trabajo';
+    case 'newUsuario': //ok
+        $view->usuario = new Usuario();
+        $view->label = 'Nuevo Usuario';
 
-        $view->puesto_superior = Puesto::getPuestos();
-        $view->areas = Area::getAreas();
-        $view->nivelesCompetencias = CompetenciasNiveles::getNivelesCompetencias();
+        $view->empleados = Empleado::getEmpleadosActivos(null);
 
         $view->disableLayout = true;
-        $view->contentTemplate = "view/puestosForm.php";
+        $view->contentTemplate = "view/usuarios/usuariosForm.php";
         break;
 
     case 'editUsuario': //ok
         $view->usuario = new Usuario($_POST['id_user']);
         $view->label = $view->usuario->getUser();
 
-        $view->puesto_superior = Puesto::getPuestos();
-        $view->areas = Area::getAreas();
-        $view->nivelesCompetencias = CompetenciasNiveles::getNivelesCompetencias();
+        $view->empleados = Empleado::getEmpleados();
 
         $view->disableLayout = true;
         $view->contentTemplate = "view/usuarios/usuariosForm.php";

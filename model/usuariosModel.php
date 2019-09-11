@@ -5,6 +5,9 @@ class Usuario{
     private $id_user;
     private $user;
     private $password;
+    private $enabled;
+    private $fecha_alta;
+    private $fecha_baja;
     private $id_empleado;
     private $profile_picture;
 
