@@ -178,7 +178,7 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">USUARIOS</li>
 
-                            <li class="disabled"><a href="#">Usuarios <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+                            <li><a href="index.php?action=sec_users">Usuarios <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
 
                         </ul>
