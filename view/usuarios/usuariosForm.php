@@ -117,32 +117,32 @@
         $(document).on('click', '#submit',function(){
             //if ($("#usuario-form").valid()){
                 var params={};
-                params.action = 'puestos';
-                params.operation = 'savePuesto';
-                params.id_puesto=$('#id_puesto').val();
-                params.nombre=$('#nombre').val();
-                params.descripcion=$('#descripcion').val();
-                params.codigo=$('#codigo').val();
-                params.id_puesto_superior=$('#id_puesto_superior').val();
-                params.id_area=$('#id_area').val();
-                params.id_nivel_competencia=$('#id_nivel_competencia').val();
+                params.action = 'sec_users';
+                params.operation = 'saveUsuario';
+                params.id_user=$('#id_user').val();
+                //params.nombre=$('#nombre').val();
+                //params.descripcion=$('#descripcion').val();
+                //params.codigo=$('#codigo').val();
+                //params.id_puesto_superior=$('#id_puesto_superior').val();
+                //params.id_area=$('#id_area').val();
+                //params.id_nivel_competencia=$('#id_nivel_competencia').val();
                 //alert(params.id_puesto_superior);
                 $.post('index.php',params,function(data, status, xhr){
 
-                    objeto.id = data; //data trae el id del puesto
+                    objeto.id = data; //data trae el id del usuario
                     //alert(data);
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
+                        $("#myElem").html('Usuario guardado con exito').addClass('alert alert-success').show();
+                        $('#content').load('index.php',{action:"sec_users", operation:"refreshGrid"});
                         setTimeout(function() { $("#myElem").hide();
                             $('#myModal').modal('hide');
                         }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar el puesto').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar el usuario').addClass('alert alert-danger').show();
                     }
 
 

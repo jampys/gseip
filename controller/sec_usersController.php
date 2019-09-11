@@ -20,16 +20,16 @@ switch ($operation) {
         $view->contentTemplate = "view/puestosGrid.php";
         break;
 
-    case 'savePuesto':
-        $puesto = new Puesto($_POST['id_puesto']);
-        $puesto->setNombre($_POST['nombre']);
-        $puesto->setDescripcion($_POST['descripcion']);
-        $puesto->setCodigo($_POST['codigo']);
-        $puesto->setIdPuestoSuperior(($_POST['id_puesto_superior']) ? $_POST['id_puesto_superior'] : null);
-        $puesto->setIdArea($_POST['id_area']);
-        $puesto->setIdNivelCompetencia($_POST['id_nivel_competencia']);
+    case 'saveUsuario': //ok
+        $usuario = new Usuario($_POST['id_user']);
+        $usuario->setUser($_POST['user']);
+        //$puesto->setDescripcion($_POST['descripcion']);
+        //$puesto->setCodigo($_POST['codigo']);
+        //$puesto->setIdPuestoSuperior(($_POST['id_puesto_superior']) ? $_POST['id_puesto_superior'] : null);
+        //$puesto->setIdArea($_POST['id_area']);
+        //$puesto->setIdNivelCompetencia($_POST['id_nivel_competencia']);
 
-        $rta = $puesto->save();
+        $rta = $usuario->save();
         //print_r(json_encode($rta));
         print_r(json_encode(sQuery::dpLastInsertId()));
         exit;
