@@ -51,7 +51,7 @@ switch ($operation)
         break;
 
     case 'editRole': //ok
-        $view->label = ($_POST['target']!='view')? 'Editar vehículo': 'Ver vehículo';
+        $view->label = ($_POST['target']!='view')? 'Editar rol': 'Ver rol';
         $view->role = new UsuarioRol($_POST['id_user']);
 
         //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
