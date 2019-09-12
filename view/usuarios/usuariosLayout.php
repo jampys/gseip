@@ -87,7 +87,7 @@
                 //alert(id);
                 //preparo los parametros
                 params={};
-                params.id_puesto = id;
+                params.id_user = id;
                 params.action = "sec_users";
                 params.operation = "deleteUsuario";
 
