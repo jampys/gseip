@@ -122,7 +122,7 @@
                 params.id_user = $('#id_user').val();
                 params.user = $('#user').val();
                 params.fecha_baja = $('#fecha_baja').val();
-                params.enabled = $('#enabled').prop('checked')? 1:0;
+                params.enabled = $('#enabled').prop('checked')? 0:1;
                 //params.id_puesto_superior=$('#id_puesto_superior').val();
                 //params.id_area=$('#id_area').val();
                 //params.id_nivel_competencia=$('#id_nivel_competencia').val();
@@ -237,7 +237,7 @@
                     <div class="form-group">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" id="disabled" name="disabled" <?php echo (!$view->usuario->getEnabled() != 1)? '' :'checked' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para inhabilitar el usuario temporalmente">Inhabilitar temporalmente</a>
+                                <input type="checkbox" id="enabled" name="enabled" <?php echo (!$view->usuario->getEnabled() != 1)? '' :'checked' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para inhabilitar el usuario temporalmente">Inhabilitar temporalmente</a>
                             </label>
                         </div>
                     </div>
