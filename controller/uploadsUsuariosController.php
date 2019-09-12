@@ -93,7 +93,7 @@ switch ($operation) {
         {
             $fileName = $_GET['filename'];
             $fileName = str_replace("..",".",$fileName); //required. if somebody is trying parent folder files
-            $file = $fileName; //$output_dir.$fileName;
+            $file = $output_dir.$fileName;
             $file = str_replace("..","",$file);
             if (file_exists($file)) {
                 $fileName = str_replace(" ","",$fileName);
