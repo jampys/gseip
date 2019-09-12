@@ -122,7 +122,7 @@
                 params.id_user = $('#id_user').val();
                 params.user = $('#user').val();
                 params.fecha_baja = $('#fecha_baja').val();
-                //params.codigo=$('#codigo').val();
+                params.enabled = $('#enabled').prop('checked')? 1:0;
                 //params.id_puesto_superior=$('#id_puesto_superior').val();
                 //params.id_area=$('#id_area').val();
                 //params.id_nivel_competencia=$('#id_nivel_competencia').val();

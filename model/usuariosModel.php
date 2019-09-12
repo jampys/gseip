@@ -239,11 +239,13 @@ join empleados em on su.id_empleado = em.id_empleado";
         $stmt=new sQuery();
         $query="update sec_users set
                 user = :user,
-                fecha_baja = STR_TO_DATE(:fecha_baja, '%d/%m/%Y')
+                fecha_baja = STR_TO_DATE(:fecha_baja, '%d/%m/%Y'),
+                enabled = :enabled
                 where id_user = :id_user";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':user', $this->getUser());
         $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
+        $stmt->dpBind(':enabled', $this->getEnabled());
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();

@@ -24,6 +24,7 @@ switch ($operation) {
         $usuario = new Usuario($_POST['id_user']);
         $usuario->setUser($_POST['user']);
         $usuario->setFechaBaja(($_POST['fecha_baja']) ? $_POST['fecha_baja'] : null);
+        $usuario->setEnabled ( ($_POST['enabled'] == 1)? 1 : null);
         //$puesto->setCodigo($_POST['codigo']);
         //
         //$puesto->setIdArea($_POST['id_area']);
