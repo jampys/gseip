@@ -44,12 +44,12 @@
             });
 
 
-            $(document).on('click', '.roles', function(){
-                alert('presiono sobre roles');
+            $(document).on('click', '.roles', function(){ //ok
+                //alert('presiono sobre roles');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_postulacion = id;
-                params.action = "etapas";
+                params.id_user = id;
+                params.action = "sec_user-rol";
                 //params.operation = "etapas"; //entra en default
                 //params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
@@ -58,7 +58,7 @@
                     //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
-                    $('#etapas_left_side #add').attr('id_postulacion', id);
+                    $('#etapas_left_side #add').attr('id_user', id);
                 })
 
             });

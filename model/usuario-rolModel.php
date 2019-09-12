@@ -64,17 +64,17 @@ class UsuarioRol
     }
 
     //Devuelve todos los roles de un determinado usuario
-    public static function getRoles($id_usuario) {
+    public static function getRoles($id_user) { //ok
         $stmt=new sQuery();
-        $query = "select vc.id_vehiculo_contrato, vc.id_vehiculo, vc.id_contrato,
-DATE_FORMAT(vc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-DATE_FORMAT(vc.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-v.matricula, v.nro_movil, v.marca, v.modelo
-from vto_vehiculo_contrato vc
-join vto_vehiculos v on v.id_vehiculo = vc.id_vehiculo
-where vc.id_contrato = :id_contrato";
+        $query = "select sur.id_user_role, sur.id_user, sur.id_role,
+DATE_FORMAT(sur.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+DATE_FORMAT(sur.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+sr.nombre
+from sec_user_role sur
+join sec_roles sr on sr.id_role = sur.id_role
+where sur.id_user = :id_user";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_user', $id_user);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
 
