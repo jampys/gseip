@@ -238,11 +238,12 @@ join empleados em on su.id_empleado = em.id_empleado";
 
         $stmt=new sQuery();
         $query="update sec_users set
-                user = :user
+                user = :user,
+                fecha_baja = STR_TO_DATE(:fecha_baja, '%d/%m/%Y')
                 where id_user = :id_user";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':user', $this->getUser());
-        //$stmt->dpBind(':descripcion', $this->getDescripcion());
+        $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -278,7 +279,7 @@ join empleados em on su.id_empleado = em.id_empleado";
         $stmt=new sQuery();
         /*$query="insert into uploads_puesto(directory, name, fecha, id_puesto)
                 values(:directory, :name, sysdate(), :id_puesto)";*/
-        $query="update sec_users set profile_picture = :profile_picture
+        $query="update sec_users set profile_picture = :profile_picture, profile_picture_date = sysdate()
                 where id_user = :id_user";
 
         $stmt->dpPrepare($query);
@@ -292,7 +293,7 @@ join empleados em on su.id_empleado = em.id_empleado";
     public static function uploadsLoad($id_user) { //ok
         //select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_puesto
         $stmt=new sQuery();
-        $query = "select id_user, profile_picture, DATE_FORMAT(fecha_alta,'%d/%m/%Y') as fecha
+        $query = "select id_user, profile_picture, DATE_FORMAT(profile_picture_date,'%d/%m/%Y') as fecha
                   from sec_users
                   where id_user = :id_user";
         $stmt->dpPrepare($query);
