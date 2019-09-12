@@ -122,10 +122,10 @@
                 params.action = 'sec_users';
                 params.operation = 'saveUsuario';
                 params.id_user = $('#id_user').val();
+                params.id_empleado = $('#id_empleado').val();
                 params.user = $('#user').val();
                 params.fecha_baja = $('#fecha_baja').val();
                 params.enabled = $('#enabled').prop('checked')? 0:1;
-                //params.id_puesto_superior=$('#id_puesto_superior').val();
                 //params.id_area=$('#id_area').val();
                 //params.id_nivel_competencia=$('#id_nivel_competencia').val();
                 //alert(params.id_puesto_superior);

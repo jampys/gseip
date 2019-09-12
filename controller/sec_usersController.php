@@ -25,7 +25,8 @@ switch ($operation) {
         $usuario->setUser($_POST['user']);
         $usuario->setFechaBaja(($_POST['fecha_baja']) ? $_POST['fecha_baja'] : null);
         $usuario->setEnabled ( ($_POST['enabled'] == 1)? 1 : null);
-        //$puesto->setCodigo($_POST['codigo']);
+        $usuario->setIdEmpleado($_POST['id_empleado']); //solo para insert
+        $usuario->setProfilePicture('uploads/profile_pictures/default.png'); //solo para insert
         //
         //$puesto->setIdArea($_POST['id_area']);
         //$puesto->setIdNivelCompetencia($_POST['id_nivel_competencia']);

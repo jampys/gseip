@@ -251,18 +251,16 @@ join empleados em on su.id_empleado = em.id_empleado";
         return $stmt->dpGetAffect();
     }
 
-    private function insertUsuario(){
+    private function insertUsuario(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into puestos(nombre, descripcion, codigo, id_puesto_superior, id_area, id_nivel_competencia)
-                values(:nombre, :descripcion, :codigo, :id_puesto_superior, :id_area, :id_nivel_competencia)";
+        $query="insert into sec_users(user, enabled, fecha_alta, id_empleado, profile_picture, profile_picture_date)
+                values(:user, :enabled, sysdate(), :id_empleado, :profile_picture, sysdate())";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
-        $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
+        $stmt->dpBind(':user', $this->getUser());
+        $stmt->dpBind(':enabled', $this->getEnabled());
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':profile_picture', $this->getProfilePicture());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
