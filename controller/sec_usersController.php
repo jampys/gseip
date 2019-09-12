@@ -61,6 +61,9 @@ switch ($operation) {
         $usuario = new Usuario($_POST['id_user']);
         try{
             $rta = $usuario->deleteUsuario();
+            //if (file_exists($usuario->getProfilePicture())) {
+            //unlink($usuario->getProfilePicture());
+            //}
         }catch (PDOException $e){
             $rta = -1;
         }
