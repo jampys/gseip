@@ -50,17 +50,17 @@ switch ($operation)
         $view->contentTemplate="view/contratos/vehiculo_detailForm.php";
         break;
 
-    case 'editVehiculo':
+    case 'editRole': //ok
         $view->label = ($_POST['target']!='view')? 'Editar vehículo': 'Ver vehículo';
-        $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
+        $view->roles = new UsuarioRol($_POST['id_user']);
 
         //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        $view->vehiculos = Vehiculo::getVehiculos();
-        $view->localidades = Localidad::getLocalidades();
+        //$view->vehiculos = Vehiculo::getVehiculos();
+        //$view->localidades = Localidad::getLocalidades();
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
-        $view->contentTemplate="view/contratos/vehiculo_detailForm.php";
+        $view->contentTemplate="view/usuarios/role_detailForm.php";
         break;
 
     case 'deleteVehiculo':

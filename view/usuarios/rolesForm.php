@@ -24,9 +24,9 @@
             //var id = $(this).attr('data-id');
             //alert('editar vehiculo: '+id);
             params={};
-            params.id_contrato_vehiculo = id;
-            params.action = "contrato-vehiculo";
-            params.operation = "editVehiculo";
+            params.id_user_role = id;
+            params.action = "sec_user_role";
+            params.operation = "editRole";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');

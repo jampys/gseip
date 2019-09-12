@@ -49,7 +49,7 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_user = id;
-                params.action = "sec_user-rol";
+                params.action = "sec_user-role";
                 //params.operation = "etapas"; //entra en default
                 //params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
