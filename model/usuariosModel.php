@@ -278,12 +278,12 @@ join empleados em on su.id_empleado = em.id_empleado";
         $stmt=new sQuery();
         /*$query="insert into uploads_puesto(directory, name, fecha, id_puesto)
                 values(:directory, :name, sysdate(), :id_puesto)";*/
-        $query="update sec_users set profile_picture = :name
+        $query="update sec_users set profile_picture = :profile_picture
                 where id_user = :id_user";
 
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':directory', $directory);
-        $stmt->dpBind(':name', $name);
+        $stmt->dpBind(':profile_picture', $directory.$name);
         $stmt->dpBind(':id_user', $id_user);
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
