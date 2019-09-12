@@ -58,13 +58,17 @@ switch ($operation) {
         break;
 
     case 'deleteUsuario': //ok
-        $usuario = new Usuario($_POST['id_user']);
+
         try{
+            sQuery::dpBeginTransaction();
+            $usuario = new Usuario($_POST['id_user']);
             $rta = $usuario->deleteUsuario();
             //if (file_exists($usuario->getProfilePicture())) {
             //unlink($usuario->getProfilePicture());
             //}
+            sQuery::dpCommit();
         }catch (PDOException $e){
+            sQuery::dpRollback();
             $rta = -1;
         }
 
