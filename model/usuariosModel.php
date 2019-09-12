@@ -100,6 +100,7 @@ join empleados em on su.id_empleado = em.id_empleado";
             $this->setFechaAlta($rows[0]['fecha_alta']);
             $this->setFechaBaja($rows[0]['fecha_baja']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
+            $this->setProfilePicture($rows[0]['profile_picture']);
         }
     }
 

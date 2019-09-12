@@ -64,10 +64,13 @@ switch ($operation) {
             $usuario = new Usuario($_POST['id_user']);
             $rta = $usuario->deleteUsuario();
             //if (file_exists($usuario->getProfilePicture())) {
-            //unlink($usuario->getProfilePicture());
+            unlink($usuario->getProfilePicture());
             //}
             sQuery::dpCommit();
-        }catch (PDOException $e){
+        }catch (PDOException $e){ //error en el query
+            sQuery::dpRollback();
+            $rta = -1;
+        }catch(Exception $e){ //error en el unlink
             sQuery::dpRollback();
             $rta = -1;
         }
