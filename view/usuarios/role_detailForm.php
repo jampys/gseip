@@ -113,12 +113,11 @@
             </select>
         </div>
 
-
-
+        
         <div class="form-group">
-            <label class="control-label" for="fecha">Fecha alta</label>
+            <label class="control-label" for="fecha_desde">Fecha desde</label>
             <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php //print $view->usuario->getFechaAlta() ?>" placeholder="DD/MM/AAAA" disabled>
+                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->role->getFechaDesde() ?>" placeholder="DD/MM/AAAA" disabled>
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -126,9 +125,9 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label" for="fecha">Fecha baja</label>
+            <label class="control-label" for="fecha_hasta">Fecha hasta</label>
             <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php //print $view->usuario->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
+                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->role->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>

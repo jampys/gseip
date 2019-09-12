@@ -52,7 +52,7 @@ switch ($operation)
 
     case 'editRole': //ok
         $view->label = ($_POST['target']!='view')? 'Editar rol': 'Ver rol';
-        $view->role = new UsuarioRol($_POST['id_user']);
+        $view->role = new UsuarioRol($_POST['id_user_role']);
 
         //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
         $view->roles = Rol::getRoles();
