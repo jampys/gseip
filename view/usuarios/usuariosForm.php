@@ -117,7 +117,7 @@
 
 
         $(document).on('click', '#submit',function(){ //ok
-            //if ($("#usuario-form").valid()){
+            if ($("#usuario-form").valid()){
                 var params={};
                 params.action = 'sec_users';
                 params.operation = 'saveUsuario';
@@ -151,7 +151,7 @@
                 }, "json");
 
 
-            //}
+            }
             return false;
         });
 
@@ -164,29 +164,27 @@
 
 
 
-        /*$('#puesto').validate({
+        $('#usuario-form').validate({ //ok
             rules: {
-                codigo: {
+                id_empleado: {required: true}
+                /*codigo: {
                         required: true,
                         digits: true,
                         maxlength: 6
-                },
-                nombre: {required: true},
-                id_area: {required: true},
-                id_nivel_competencia: {required: true}
+                },*/
+
             },
             messages:{
-                codigo: {
+                id_empleado: "Seleccione un empleado"
+                /*codigo: {
                     required: "Ingrese el código",
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
-                },
-                nombre: "Ingrese el nombre",
-                id_area: "Seleccione un área",
-                id_nivel_competencia: "Seleccione un nivel de competencia"
+                },*/
+
             }
 
-        });*/
+        });
 
 
 
