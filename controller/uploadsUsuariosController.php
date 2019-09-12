@@ -119,6 +119,8 @@ switch ($operation) {
 
         if( isset($_POST['name']) && isset($_POST['id'])) {
 
+            if($_POST['name'] == 'uploads/profile_pictures/default.png') break; //la foto por defecto nunca se elimina
+
             $fileName =$_POST['name'];
             $fileName=str_replace("..",".",$fileName); //required. if somebody is trying parent folder files
             $filePath = $fileName; //$output_dir. $fileName;
