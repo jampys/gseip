@@ -35,6 +35,7 @@
         var uploadObj = $("#fileuploader").uploadFile({
             url: "index.php?action=uploadsUsuarios&operation=upload",
             dragDrop: <?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
+            maxFileCount: 1,
             autoSubmit: false,
             fileName: "myfile",
             returnType: "json",
@@ -43,7 +44,7 @@
             showCancel: true,
             showAbort: true,
             allowDuplicates: false,
-            allowedTypes: "jpg, png, pdf, txt, doc, docx",
+            allowedTypes: "jpg, png",
 
             dynamicFormData: function(){
                 var data ={ "id": ($('#id_user').val())? $('#id_user').val() : objeto.id };
@@ -64,6 +65,7 @@
             extErrorStr: "no está permitido. Solo se permiten extensiones: ",
             duplicateErrorStr: "no permitido. El archivo ya existe.",
             sizeErrorStr: "no permitido. Tamaño máximo permitido: ",
+            maxFileCountErrorStr: " no permitido. Cantidad de imágenes permitidas:",
 
             onLoad:function(obj){ //ok
                 $.ajax({
