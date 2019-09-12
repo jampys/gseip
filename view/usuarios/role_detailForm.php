@@ -13,19 +13,19 @@
         });
 
 
-        $('.input-group.date').datepicker({
+        /*$('.input-group.date').datepicker({
             //inline: true
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
-        });
+        });*/
 
-        /*$('.input-daterange').datepicker({
+        $('.input-daterange').datepicker({ //ok
             //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
-        });*/
+        });
 
 
         $('#myModal').modal({
@@ -40,7 +40,7 @@
         });
 
 
-        $('#contrato-vehiculo-form').validate({
+        $('#contrato-vehiculo-form').validate({ //ok
             rules: {
                 /*codigo: {
                         required: true,
@@ -130,23 +130,12 @@
         </div>
 
 
-        <div class="form-group">
-            <label class="control-label" for="fecha">Fecha alta</label>
-            <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php //print $view->usuario->getFechaAlta() ?>" placeholder="DD/MM/AAAA" disabled>
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label" for="fecha">Fecha baja</label>
-            <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php //print $view->usuario->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
+        <div class="form-group required">
+            <label class="control-label" for="empleado">Fecha desde / hasta</label>
+            <div class="input-group input-daterange">
+                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato_vehiculo->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
+                <div class="input-group-addon">a</div>
+                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato_vehiculo->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
             </div>
         </div>
 
