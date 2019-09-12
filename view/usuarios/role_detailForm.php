@@ -28,19 +28,19 @@
         });*/
 
 
-        $('#myModal').modal({
+        /*$('#myModal').modal({
             backdrop: 'static',
             keyboard: false
-        });
+        });*/
 
 
         //cancel de formulario de etapa
-        $('#contrato-vehiculo-form #cancel').on('click', function(){
-            $('#contrato-vehiculo-form').hide();
+        $('#role-form #cancel').on('click', function(){
+            $('#role-form').hide();
         });
 
 
-        $('#contrato-vehiculo-form').validate({ //ok
+        $('#role-form').validate({
             rules: {
                 /*codigo: {
                         required: true,
@@ -88,15 +88,15 @@
 
 
 
-<form name ="contrato-vehiculo-form" id="contrato-vehiculo-form" method="POST" action="index.php">
+<form name ="role-form" id="role-form" method="POST" action="index.php">
     <fieldset>
 
     <div class="alert alert-info">
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_contrato_vehiculo" id="id_contrato_vehiculo" value="<?php //print $view->contrato_vehiculo->getIdVehiculoContrato() ?>">
-    <input type="hidden" name="id_contrato" id="id_contrato" value="<?php //print $view->contrato_vehiculo->getIdContrato() ?>">
+    <input type="hidden" name="id_user_role" id="id_user_role" value="<?php print $view->role->getIdUserRole() ?>">
+    <input type="hidden" name="id_user" id="id_user" value="<?php print $view->role->getIdUser() ?>">
 
 
         <div class="form-group required">
@@ -113,7 +113,7 @@
             </select>
         </div>
 
-        
+
         <div class="form-group">
             <label class="control-label" for="fecha_desde">Fecha desde</label>
             <div class="input-group date">

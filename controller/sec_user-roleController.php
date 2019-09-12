@@ -38,7 +38,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newVehiculo':
+    case 'newRole':
         $view->label='Nuevo vehículo';
         $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
 

@@ -18,8 +18,8 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){
-            //alert('editar vehiculo-contrato');
+        $('#etapas_left_side').on('click', '.edit', function(){ //ok
+            //alert('editar rol de usuario');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar vehiculo: '+id);
@@ -35,18 +35,18 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.view', function(){
+        $('#etapas_left_side').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             params={};
-            params.id_contrato_vehiculo = id;
-            params.action = "contrato-vehiculo";
-            params.operation = "editVehiculo";
+            params.id_user_role = id;
+            params.action = "sec_user-role";
+            params.operation = "editRole";
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 $("#etapas_right_side fieldset").prop("disabled", true);
-                $("#contrato-vehiculo-form #footer-buttons button").css('display', 'none');
+                $("#role-form #footer-buttons button").css('display', 'none');
                 //$('#myModal').modal();
                 $('.selectpicker').selectpicker('refresh');
             })
@@ -54,26 +54,26 @@
 
 
 
-        //Abre formulario para ingresar un nuevo vehiculo al grupo
-        $('#etapas_left_side').on('click', '#add', function(){
+        //Abre formulario para ingresar un nuevo rol al usuario
+        $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
-            params.action = "contrato-vehiculo";
-            params.operation = "newVehiculo";
-            params.id_contrato = $('#etapas_left_side #add').attr('id_contrato');
+            params.action = "sec_user-role";
+            params.operation = "newRole";
+            params.id_user = $('#etapas_left_side #add').attr('id_user');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_contrato').val(params.id_contrato);
+                $('#id_user').val(params.id_user);
             })
         });
 
 
-        //Guardar contrato-vehiculo luego de ingresar nuevo o editar
+        //Guardar rol-usuario luego de ingresar nuevo o editar
         $('#myModal').on('click', '#submit',function(){
-            //alert('guardar grupo-vehiculo');
+            //alert('guardar rol-usuario');
 
-            if ($("#contrato-vehiculo-form").valid()){
+            if ($("#role-form").valid()){
 
                 var params={};
                 params.action = 'contrato-vehiculo';
