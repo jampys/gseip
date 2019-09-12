@@ -26,7 +26,7 @@
 
             });
 
-            $(document).on('click', '.view', function(){
+            $(document).on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
