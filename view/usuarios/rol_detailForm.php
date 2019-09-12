@@ -40,7 +40,7 @@
         });
 
 
-        $('#contrato-vehiculo-form').validate({ 
+        $('#contrato-vehiculo-form').validate({
             rules: {
                 /*codigo: {
                         required: true,
