@@ -64,7 +64,7 @@ class UsuarioRol
     }
 
     //Devuelve todos los roles de un determinado usuario
-    public static function getVehiculos($id_contrato) {
+    public static function getRoles($id_usuario) {
         $stmt=new sQuery();
         $query = "select vc.id_vehiculo_contrato, vc.id_vehiculo, vc.id_contrato,
 DATE_FORMAT(vc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
@@ -162,7 +162,7 @@ order by vc.fecha_desde desc";
     }
 
 
-    public function checkVehiculo($id_vehiculo, $id_contrato, $id_contrato_vehiculo) { 
+    public function checkVehiculo($id_vehiculo, $id_contrato, $id_contrato_vehiculo) {
         //verifica que el vehiculo no se repita dentro de un contrato
         $stmt=new sQuery();
         $query = "select 1

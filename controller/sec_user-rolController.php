@@ -1,8 +1,8 @@
 ﻿<?php
-include_once("model/contrato-vehiculoModel.php");
-include_once("model/vehiculosModel.php");
-include_once("model/contratosModel.php");
-include_once("model/localidadesModel.php");
+include_once("model/usuario-rolModel.php");
+include_once("model/usuariosModel.php");
+//include_once("model/contratosModel.php");
+//include_once("model/localidadesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -78,12 +78,12 @@ switch ($operation)
         break;
 
 
-    default : //carga la tabla de vehiculos del contrato
+    default : //carga la tabla de roles del usuario //ok
         $view->disableLayout=true;
-        $view->contrato = new Contrato($_POST['id_contrato']);
-        $view->vehiculos = ContratoVehiculo::getVehiculos($_POST['id_contrato']);
-        $view->label= $view->contrato->getNombre().' '.$view->contrato->getNroContrato();
-        $view->contentTemplate="view/contratos/vehiculosForm.php";
+        $view->usuario = new Usuario($_POST['id_user']);
+        $view->roles = UsuarioRol::getRoles($_POST['id_user']);
+        $view->label= $view->usuario->getUser();
+        $view->contentTemplate="view/usuarios/RolesForm.php";
         break;
 }
 
