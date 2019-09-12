@@ -27,14 +27,14 @@
             });
 
             $(document).on('click', '.view', function(){
-                var id = $(this).closest('tr').attr('id_puesto');
+                var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_puesto = id;
-                params.action = "puestos";
-                params.operation = "editPuesto";
+                params.id_user = id;
+                params.action = "sec_users";
+                params.operation = "editUsuario";
                 $('#popupbox').load('index.php', params,function(){
-                    $("#puesto input, #puesto .selectpicker, #puesto textarea").prop("disabled", true);
+                    $("fieldset").prop("disabled", true);
                     $('.selectpicker').selectpicker('refresh');
                     $('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
