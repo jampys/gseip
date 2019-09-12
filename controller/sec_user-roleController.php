@@ -55,7 +55,7 @@ switch ($operation)
         $view->role = new UsuarioRol($_POST['id_user']);
 
         //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        $view->roles = Role::getRoles();
+        $view->roles = Rol::getRoles();
         //$view->localidades = Localidad::getLocalidades();
 
         $view->disableLayout=true;
