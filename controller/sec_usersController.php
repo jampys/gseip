@@ -1,6 +1,6 @@
 ﻿<?php
 
-include_once("model/usuariosModel.php");
+include_once("model/sec_usersModel.php");
 include_once("model/empleadosModel.php");
 
 include_once("model/competenciasNivelesModel.php");

@@ -1,6 +1,6 @@
 ﻿<?php
-include_once("model/usuario-rolModel.php");
-include_once("model/usuariosModel.php");
+include_once("model/sec_user-roleModel.php");
+include_once("model/sec_usersModel.php");
 //include_once("model/contratosModel.php");
 //include_once("model/localidadesModel.php");
 
