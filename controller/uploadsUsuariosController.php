@@ -17,7 +17,7 @@ switch ($operation) {
 
         foreach($files as $file){
 
-            $filePath = $file['directory']."/".$file['name'];
+            $filePath = $file['profile_picture']; //$file['directory']."/".$file['name'];
             if(!file_exists($filePath)){
                 $custom_error= array();
                 $custom_error['jquery-upload-file-error']= "No se encuentra el archivo en el servidor.";
