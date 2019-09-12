@@ -64,6 +64,13 @@ switch ($operation) {
         die;
         break;
 
+    case 'checkEmpleado': //ok
+        $view->usuario = new Usuario();
+        $rta = $view->usuario->checkEmpleado($_POST['id_user'], $_POST['id_empleado']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
     default :
         $view->usuarios = Usuario::getUsuarios();
         $view->contentTemplate = "view/usuarios/usuariosGrid.php";

@@ -166,10 +166,30 @@
 
         $('#usuario-form').validate({ //ok
             rules: {
-                id_empleado: {required: true},
                 user: {
                     required: true,
                     email: true
+                },
+                id_empleado: {
+                    required: true,
+                    remote: {
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            action: "sec_users",
+                            operation: "checkEmpleado",
+                            id_user: function(){ return $('#id_user').val();},
+                            id_empleado: function(){ return $('#id_empleado').val();}
+                        }
+                        /*success: function(data, textStatus, jqXHR) {
+                         console.log(textStatus, jqXHR, data);
+                         },
+                         error: function(data, textStatus, errorThrown) {
+                         console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                         }*/
+
+                    }
                 }
                 /*codigo: {
                         required: true,
@@ -179,10 +199,13 @@
 
             },
             messages:{
-                id_empleado: "Seleccione un empleado",
                 user: {
                     required: "Ingrese un correo",
                     email: "Ingrese un correo válido"
+                },
+                id_empleado: {
+                    required: "Ingrese el CUIL",
+                    remote: "El CUIL ingresado ya existe"
                 }
                 /*codigo: {
                     required: "Ingrese el código",

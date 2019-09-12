@@ -274,6 +274,20 @@ join empleados em on su.id_empleado = em.id_empleado";
         return $stmt->dpGetAffect();
     }
 
+    public function checkEmpleado($id_user, $id_empleado) { //ok
+        //verifica que el vehiculo no se encuentre activo en ninguno de los grupos
+        $stmt=new sQuery();
+        $query = "select 1
+from sec_users su
+where su.id_empleado = :id_empleado
+and su.id_user <> :id_user";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_user', $id_user);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpExecute();
+        return $output = ($stmt->dpGetAffect()==0)? true : false;
+    }
+
 
     public static function uploadsUpload($directory, $name, $id_user){ //ok
         $stmt=new sQuery();
