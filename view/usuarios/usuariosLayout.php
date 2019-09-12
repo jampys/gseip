@@ -92,6 +92,7 @@
                 params.operation = "deleteUsuario";
 
                 $.post('index.php',params,function(data, status, xhr){
+                    //alert(xhr.responseText);
                     if(data >=0){
                         $("#myElem").html('Usuario eliminado con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"sec_users", operation: "refreshGrid"});
@@ -103,7 +104,7 @@
                         $("#myElem").html('No es posible eliminar el usuario').addClass('alert alert-danger').show();
                     }
 
-                });
+                }, 'json');
 
             };
 

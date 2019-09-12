@@ -59,7 +59,12 @@ switch ($operation) {
 
     case 'deleteUsuario': //ok
         $usuario = new Usuario($_POST['id_user']);
-        $rta = $usuario->deleteUsuario();
+        try{
+            $rta = $usuario->deleteUsuario();
+        }catch (PDOException $e){
+            $rta = -1;
+        }
+
         print_r(json_encode($rta));
         die;
         break;
