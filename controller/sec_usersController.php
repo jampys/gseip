@@ -64,7 +64,7 @@ switch ($operation) {
             $usuario = new Usuario($_POST['id_user']);
             $rta = $usuario->deleteUsuario();
             //if (file_exists($usuario->getProfilePicture())) {
-            unlink($usuario->getProfilePicture());
+            unlink($usuario->getProfilePicture()); //elimina la foto del servidor
             //}
             sQuery::dpCommit();
         }catch (PDOException $e){ //error en el query
