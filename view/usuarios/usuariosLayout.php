@@ -13,7 +13,7 @@
         $(document).ready(function(){
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
@@ -26,7 +26,7 @@
 
             });
 
-            $(document).on('click', '.view', function(){ //ok
+            $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
@@ -44,7 +44,7 @@
             });
 
 
-            $(document).on('click', '.roles', function(){ //ok
+            $('#content').on('click', '.roles', function(){ //ok
                 //alert('presiono sobre roles');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -65,7 +65,7 @@
 
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $('#content').on('click', '#new', function(){ //ok
                 params={};
                 params.action = "sec_users";
                 params.operation="newUsuario";
@@ -77,7 +77,7 @@
 
 
 
-            $(document).on('click', '.delete', function(){
+            $('#content').on('click', '.delete', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [

@@ -25,7 +25,7 @@
             //alert('editar vehiculo: '+id);
             params={};
             params.id_user_role = id;
-            params.action = "sec_user_role";
+            params.action = "sec_user-role";
             params.operation = "editRole";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
