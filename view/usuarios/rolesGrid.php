@@ -31,23 +31,23 @@
 </script>
 
 
-<?php if(isset($view->vehiculos) && sizeof($view->vehiculos) > 0) {?>
+<?php if(isset($view->roles) && sizeof($view->roles) > 0) {?>
 
     <br/>
     <div class="table-responsive" id="empleados-table">
             <table id="table-vehiculos" class="table table-condensed dpTable table-hover">
                 <thead>
                 <tr>
-                    <th>Vehículo</th>
+                    <th>Rol</th>
                     <th>F. desde</th>
                     <th>F. hasta</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($view->vehiculos as $ve): ?>
-                    <tr data-id="<?php echo $ve['id_vehiculo_contrato']; ?>">
-                        <td><span class="label label-primary" style="font-weight: normal"><?php echo $ve['matricula']; ?></span> <?php echo ($ve['nro_movil'])? '<span class="label label-default" style="font-weight: normal">Móvil: '.$ve['nro_movil'].'</span>' : '' ?></td>
+                <?php foreach ($view->roles as $ve): ?>
+                    <tr data-id="<?php echo $ve['id_user_role']; ?>">
+                        <td><?php echo $ve['nombre']; ?></td>
                         <td><?php echo $ve['fecha_desde']; ?></td>
                         <td><?php echo $ve['fecha_hasta']; ?></td>
 
@@ -77,7 +77,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> El contrato no tiene vehículos asociados.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> El usuario no tiene roles otorgados.
     </div>
 
 <?php } ?>
