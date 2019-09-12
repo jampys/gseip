@@ -166,7 +166,11 @@
 
         $('#usuario-form').validate({ //ok
             rules: {
-                id_empleado: {required: true}
+                id_empleado: {required: true},
+                user: {
+                    required: true,
+                    email: true
+                }
                 /*codigo: {
                         required: true,
                         digits: true,
@@ -175,7 +179,11 @@
 
             },
             messages:{
-                id_empleado: "Seleccione un empleado"
+                id_empleado: "Seleccione un empleado",
+                user: {
+                    required: "Ingrese un correo",
+                    email: "Ingrese un correo válido"
+                }
                 /*codigo: {
                     required: "Ingrese el código",
                     digits: "Ingrese solo números",
