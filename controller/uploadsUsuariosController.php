@@ -21,13 +21,13 @@ switch ($operation) {
             if(!file_exists($filePath)){
                 $custom_error= array();
                 $custom_error['jquery-upload-file-error']= "No se encuentra el archivo en el servidor.";
-                $custom_error['name'] = $file['profile_picture']; //$file['name'];
+                $custom_error['name'] = basename($file['profile_picture']); //$file['name'];
                 $ret[] = $custom_error;
                 continue; //salta el loop
             }
 
             $details = array();
-            $details['name'] = $file['profile_picture']; //$file['name'];
+            $details['name'] = basename($file['profile_picture']); //$file['name'];
             $details['path'] = $file['profile_picture']; //$filePath;
             $details['size'] = filesize($filePath);
             $details['fecha'] = $file['fecha'];
