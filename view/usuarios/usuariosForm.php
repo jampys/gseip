@@ -204,8 +204,8 @@
                     email: "Ingrese un correo válido"
                 },
                 id_empleado: {
-                    required: "Ingrese el CUIL",
-                    remote: "El CUIL ingresado ya existe"
+                    required: "Seleccione un empleado",
+                    remote: "El empleado ya tiene usuario"
                 }
                 /*codigo: {
                     required: "Ingrese el código",
@@ -246,7 +246,8 @@
                         <label class="control-label" for="id_empleado">Empleado</label>
                         <!--<input type="text" class="form-control empleado-group" id="empleado" name="empleado" placeholder="Empleado">
                         <input type="hidden" name="id_empleado" id="id_empleado" class="empleado-group"/>-->
-                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado" <?php echo ($view->usuario->getIdUser())? 'disabled' :'' ?>>
+                        <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" <?php echo ($view->usuario->getIdUser())? 'disabled' :'' ?>>
+                            <option value="">Seleccione un empleado</option>
                             <?php foreach ($view->empleados as $em){
                                 ?>
                                 <option value="<?php echo $em['id_empleado']; ?>"
