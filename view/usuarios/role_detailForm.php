@@ -100,15 +100,14 @@
 
 
         <div class="form-group required">
-            <label for="id_vehiculo" class="control-label">Vehículo</label>
-            <select class="selectpicker form-control show-tick" id="id_vehiculo" name="id_vehiculo" data-live-search="true" data-size="5">
-                <option value="">Seleccione un Vehículo</option>
-                <?php foreach ($view->vehiculos as $ar){ ?>
-                    <option value="<?php echo $ar['id_vehiculo']; ?>"
-                            data-content="<span class='label label-primary' style='font-weight: normal'><?php echo $ar['matricula']; ?></span> <span class='label label-default' style='font-weight: normal'><?php echo $ar['nro_movil']; ?></span> <?php echo $ar['modelo']; ?>"
-                        <?php //echo ($ar['id_vehiculo'] == $view->contrato_vehiculo->getIdVehiculo())? 'selected' :'' ?>
+            <label for="id_vehiculo" class="control-label">Rol</label>
+            <select class="selectpicker form-control show-tick" id="id_role" name="id_role" data-live-search="true" data-size="5">
+                <option value="">Seleccione un Rol</option>
+                <?php foreach ($view->roles as $rol){ ?>
+                    <option value="<?php echo $rol['id_role']; ?>"
+                        <?php echo ($rol['id_role'] == $view->role->getIdRole())? 'selected' :'' ?>
                         >
-                        <?php //echo $ar['matricula'].' '.$ar['nro_movil'].' '.$ar['modelo']; ?>
+                        <?php echo $rol['nombre']; ?>
                     </option>
                 <?php  } ?>
             </select>

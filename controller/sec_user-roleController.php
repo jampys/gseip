@@ -1,7 +1,7 @@
 ﻿<?php
 include_once("model/sec_user-roleModel.php");
 include_once("model/sec_usersModel.php");
-//include_once("model/contratosModel.php");
+include_once("model/sec_rolesModel.php");
 //include_once("model/localidadesModel.php");
 
 $operation = "";
@@ -52,10 +52,10 @@ switch ($operation)
 
     case 'editRole': //ok
         $view->label = ($_POST['target']!='view')? 'Editar vehículo': 'Ver vehículo';
-        $view->roles = new UsuarioRol($_POST['id_user']);
+        $view->role = new UsuarioRol($_POST['id_user']);
 
         //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        //$view->vehiculos = Vehiculo::getVehiculos();
+        $view->roles = Role::getRoles();
         //$view->localidades = Localidad::getLocalidades();
 
         $view->disableLayout=true;
