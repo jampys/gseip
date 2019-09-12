@@ -108,7 +108,7 @@
 
             },
             downloadCallback:function(filename,pd) {
-                location.href="index.php?action=uploadsPuestos&operation=download&filename="+filename;
+                location.href="index.php?action=uploadsUsuarios&operation=download&filename="+filename;
             }
         });
 
