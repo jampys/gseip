@@ -265,11 +265,11 @@ join empleados em on su.id_empleado = em.id_empleado";
         return $stmt->dpGetAffect();
     }
 
-    function deletePuesto(){
+    function deleteUsuario(){ //ok
         $stmt=new sQuery();
-        $query="delete from puestos where id_puesto= :id";
+        $query="delete from sec_users where id_user = :id";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getIdPuesto());
+        $stmt->dpBind(':id', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

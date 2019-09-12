@@ -57,9 +57,9 @@ switch ($operation) {
         $view->contentTemplate = "view/usuarios/usuariosForm.php";
         break;
 
-    case 'deletePuesto':
-        $puesto = new Puesto($_POST['id_puesto']);
-        $rta = $puesto->deletePuesto();
+    case 'deleteUsuario': //ok
+        $usuario = new Usuario($_POST['id_user']);
+        $rta = $usuario->deleteUsuario();
         print_r(json_encode($rta));
         die;
         break;

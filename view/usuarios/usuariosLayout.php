@@ -58,7 +58,7 @@
 
 
             $(document).on('click', '.delete', function(){
-                var id = $(this).closest('tr').attr('id_puesto');
+                var id = $(this).closest('tr').attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
                         {
@@ -83,24 +83,24 @@
             });
 
 
-            $.fn.borrar = function(id) {
+            $.fn.borrar = function(id) { //ok
                 //alert(id);
                 //preparo los parametros
                 params={};
                 params.id_puesto = id;
-                params.action = "puestos";
-                params.operation = "deletePuesto";
+                params.action = "sec_users";
+                params.operation = "deleteUsuario";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElem").html('Puesto eliminado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"puestos", operation: "refreshGrid"});
+                        $("#myElem").html('Usuario eliminado con exito').addClass('alert alert-success').show();
+                        $('#content').load('index.php',{action:"sec_users", operation: "refreshGrid"});
                         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#confirm').dialog('close');
                                               }, 2000);
                     }else{
-                        $("#myElem").html('No es posible eliminar el puesto').addClass('alert alert-danger').show();
+                        $("#myElem").html('No es posible eliminar el usuario').addClass('alert alert-danger').show();
                     }
 
                 });
