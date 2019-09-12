@@ -38,7 +38,7 @@ switch ($operation) {
         echo json_encode($ret);
         break;
 
-    case 'upload':
+    case 'upload': //ok
 
         $id = $_POST['id']; //con este id (id_renovacion) hago el insert de los uploads en la BD
 
