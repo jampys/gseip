@@ -289,6 +289,9 @@
                     <td><?php echo $us['apellido'].' '.$us['nombre'];?></td>
 
                     <td class="text-center">
+                        <a class="roles" href="javascript:void(0);">
+                            <i class="far fa-list-alt fa-fw dp_blue" title="Roles"></i>
+                        </a>&nbsp;&nbsp;
                         <a class="view" title="ver" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
                         <a class="<?php echo (PrivilegedUser::dhasAction('PUE_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
                         <a class="<?php echo (PrivilegedUser::dhasAction('PUE_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>

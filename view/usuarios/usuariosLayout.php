@@ -44,6 +44,26 @@
             });
 
 
+            $(document).on('click', '.roles', function(){
+                alert('presiono sobre roles');
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_postulacion = id;
+                params.action = "etapas";
+                //params.operation = "etapas"; //entra en default
+                //params.target = "view";
+                $('#popupbox').load('index.php', params,function(){
+                    //$("fieldset").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
+                    //$('#myModalLabel').html('');
+                    $('#myModal').modal();
+                    $('#etapas_left_side #add').attr('id_postulacion', id);
+                })
+
+            });
+
+
 
             $(document).on('click', '#new', function(){ //ok
                 params={};
