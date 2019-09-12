@@ -87,7 +87,7 @@ switch ($operation) {
 
         break;
 
-    case 'download':
+    case 'download': //ok
 
         if(isset($_GET['filename']))
         {
