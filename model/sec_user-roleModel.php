@@ -95,8 +95,7 @@ where sur.id_user = :id_user";
 
         $stmt=new sQuery();
         $query="update sec_user_role
-                set id_role = :id_role,
-                fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
+                set fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
                 where id_user_role = :id_user_role";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_role', $this->getIdRole());

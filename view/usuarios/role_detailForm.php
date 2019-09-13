@@ -101,7 +101,7 @@
 
         <div class="form-group required">
             <label for="id_role" class="control-label">Rol</label>
-            <select class="selectpicker form-control show-tick" id="id_role" name="id_role" data-live-search="true" data-size="5">
+            <select class="selectpicker form-control show-tick" id="id_role" name="id_role" data-live-search="true" data-size="5" disabled>
                 <option value="">Seleccione un Rol</option>
                 <?php foreach ($view->roles as $rol){ ?>
                     <option value="<?php echo $rol['id_role']; ?>"
