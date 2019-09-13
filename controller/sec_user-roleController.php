@@ -80,7 +80,7 @@ switch ($operation)
         $view->usuario = new Usuario($_POST['id_user']);
         $view->roles = UsuarioRol::getRoles($_POST['id_user']);
         $view->label= $view->usuario->getUser();
-        $view->contentTemplate="view/usuarios/RolesForm.php";
+        $view->contentTemplate="view/usuarios/rolesForm.php";
         break;
 }
 
