@@ -261,7 +261,7 @@
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
-        <button  id="new" type="button" class="btn btn-default" <?php echo ( PrivilegedUser::dhasAction('PUE_INSERT', array(1)) )? '' : 'disabled' ?> >
+        <button  id="new" type="button" class="btn btn-default" <?php echo ( PrivilegedUser::dhasPrivilege('USR_ABM', array(1)) )? '' : 'disabled' ?> >
             <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nuevo Usuario
         </button>
     </div>
@@ -291,8 +291,8 @@
                     <td class="text-center">
                         <a class="roles" href="javascript:void(0);"><i class="far fa-list-alt fa-fw dp_blue" title="Roles"></i></a>&nbsp;&nbsp;
                         <a class="view" title="ver" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>
+                        <a class="<?php echo (PrivilegedUser::dhasPrivilege('USR_ABM', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
+                        <a class="<?php echo (PrivilegedUser::dhasPrivilege('USR_ABM', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
