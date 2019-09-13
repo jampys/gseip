@@ -110,7 +110,7 @@
 
 
 
-        $('#etapas_left_side').on('click', '.delete', function(){
+        $('#etapas_left_side').on('click', '.delete', function(){ //ok
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
@@ -137,30 +137,30 @@
         });
 
 
-        $.fn.borrarGv = function(id) {
+        $.fn.borrarGv = function(id) { //ok
             //alert(id);
             //preparo los parametros
             params={};
-            params.id_contrato_vehiculo = id;
-            params.id_contrato = $('#etapas_left_side #add').attr('id_contrato');
-            params.action = "contrato-vehiculo";
-            params.operation = "deleteVehiculo";
+            params.id_user_role = id;
+            params.id_user = $('#etapas_left_side #add').attr('id_user');
+            params.action = "sec_user-role";
+            params.operation = "deleteRole";
             //alert(params.id_grupo);
             //throw new Error();
 
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-ve #myElemento").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
+                    $("#confirm-ve #myElemento").html('Rol eliminado con exito').addClass('alert alert-success').show();
+                    $('#etapas_left_side .grid').load('index.php',{action:"sec_user-role", id_user:params.id_user, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-ve #myElemento").hide();
-                                            $('#contrato-vehiculo-form').hide();
+                                            $('#role-form').hide();
                                             $('#confirm-ve').dialog('close');
                                           }, 2000);
                 }else{
-                    $("#myElemento").html('Error al eliminar el vehículo').addClass('alert alert-danger').show();
+                    $("#myElemento").html('Error al eliminar el rol').addClass('alert alert-danger').show();
                 }
 
 

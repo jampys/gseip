@@ -60,9 +60,9 @@ switch ($operation)
         $view->contentTemplate="view/usuarios/role_detailForm.php";
         break;
 
-    case 'deleteVehiculo':
-        $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
-        $rta = $view->contrato_vehiculo->deleteVehiculoContrato();
+    case 'deleteRole': //ok
+        $view->role = new UsuarioRol($_POST['id_user_role']);
+        $rta = $view->role->deleteUserRole();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
