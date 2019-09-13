@@ -176,9 +176,15 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">USUARIOS</li>
+                            <li class="dropdown-header">SEGURIDAD</li>
 
-                            <li><a href="index.php?action=sec_users">Usuarios <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('USR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=sec_users"><i class="fas fa-users fa-fw"></i>&nbsp;Usuarios</a></li>
+                            <li class="disabled"><a href="#">Roles <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">NOVEDADES</li>
+
+                            <li class="disabled"><a href="#">Períodos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
 
                         </ul>
