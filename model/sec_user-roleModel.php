@@ -98,7 +98,7 @@ where sur.id_user = :id_user";
                 set fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
                 where id_user_role = :id_user_role";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_role', $this->getIdRole());
+        //$stmt->dpBind(':id_role', $this->getIdRole());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':id_user_role', $this->getIdUserRole());
         $stmt->dpExecute();

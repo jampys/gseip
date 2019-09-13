@@ -240,7 +240,7 @@
 
 <div id="confirm-ve">
     <div class="modal-body">
-        ¿Desea eliminar el vehículo del contrato?
+        ¿Desea eliminar el rol al usuario?
     </div>
 
     <div id="myElemento" style="display:none">
