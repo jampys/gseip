@@ -78,6 +78,7 @@
                 var params={};
                 params.action = 'sec_user-role';
                 params.operation = 'saveRole';
+                params.id_user = $('#id_user').val();
                 params.id_user_role = $('#id_user_role').val();
                 params.id_role = $('#id_role').val();
                 params.fecha_desde = $('#fecha_desde').val();
