@@ -90,7 +90,7 @@
 
                     if(data >=0){
                         $("#role-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Vehículo guardado con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Rol guardado con exito').addClass('alert alert-success').show();
                         $('#etapas_left_side .grid').load('index.php',{action:"sec_user-role", id_user:params.id_user, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
@@ -101,7 +101,7 @@
 
                 }).fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
+                    $("#myElem").html('Error al guardar el rol').addClass('alert alert-danger').show();
                 });
 
             }
