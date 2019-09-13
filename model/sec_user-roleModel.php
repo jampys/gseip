@@ -121,11 +121,11 @@ where sur.id_user = :id_user";
         return $stmt->dpGetAffect();
     }
 
-    public function deleteUserRole(){
+    public function deleteUserRole(){ //ok
         $stmt=new sQuery();
-        $query="delete from vto_vehiculo_contrato where id_vehiculo_contrato= :id_vehiculo_contrato";
+        $query="delete from sec_user_role where id_user_role = :id_user_role";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_vehiculo_contrato', $this->getIdVehiculoContrato());
+        $stmt->dpBind(':id_user_role', $this->getIdUserRole());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

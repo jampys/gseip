@@ -30,6 +30,7 @@
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
+                $("#role-form #id_role").prop("disabled", true);
                 //$('#myModal').modal();
             })
         });
