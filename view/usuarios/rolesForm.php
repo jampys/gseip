@@ -74,7 +74,7 @@
         $('#myModal').on('click', '#submit',function(){  //ok
             //alert('guardar rol-usuario');
 
-            //if ($("#role-form").valid()){
+            if ($("#role-form").valid()){
 
                 var params={};
                 params.action = 'sec_user-role';
@@ -100,12 +100,12 @@
                                               }, 2000);
                     }
 
-                }).fail(function(jqXHR, textStatus, errorThrown ) {
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar el rol').addClass('alert alert-danger').show();
+                    $("#myElem").html('No es posible guardar el rol').addClass('alert alert-danger').show();
                 });
 
-            //}
+            }
             return false;
         });
 

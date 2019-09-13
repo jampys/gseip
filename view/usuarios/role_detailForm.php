@@ -47,7 +47,7 @@
                         digits: true,
                         maxlength: 6
                 },*/
-                id_vehiculo: {
+                /*id_vehiculo: {
                  required: true,
                  remote: {
                     url: "index.php",
@@ -61,8 +61,8 @@
                             id_contrato_vehiculo: function(){ return $('#id_contrato_vehiculo').val();}
                           }
                  }
-                 },
-                fecha_desde: {required: true}
+                 },*/
+                id_role: {required: true}
             },
             messages:{
                 /*codigo: {
@@ -70,12 +70,11 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }, */
-                id_vehiculo: {
+                /*id_vehiculo: {
                  required: "Seleccione un vehículo",
                  remote: "El vehículo ya se encuentra en el contrato"
-                 },
-                //id_vehiculo: "Seleccione un vehículo",
-                fecha_desde: "Seleccione una fecha desde"
+                 },*/
+                id_role: "Seleccione un rol"
             }
 
         });
