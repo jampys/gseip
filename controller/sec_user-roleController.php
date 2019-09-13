@@ -38,16 +38,15 @@ switch ($operation)
         exit;
         break;
 
-    case 'newRole':
-        $view->label='Nuevo vehículo';
-        $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
+    case 'newRole': //ok
+        $view->label='Nuevo rol';
+        $view->role = new UsuarioRol($_POST['id_user_role']);
 
         //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        $view->vehiculos = Vehiculo::getVehiculos();
-        $view->localidades = Localidad::getLocalidades();
+        $view->roles = Rol::getRoles();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/contratos/vehiculo_detailForm.php";
+        $view->contentTemplate="view/usuarios/role_detailForm.php";
         break;
 
     case 'editRole': //ok
@@ -56,7 +55,6 @@ switch ($operation)
 
         //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
         $view->roles = Rol::getRoles();
-        //$view->localidades = Localidad::getLocalidades();
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
