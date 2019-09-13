@@ -74,7 +74,7 @@
         $('#myModal').on('click', '#submit',function(){  //ok
             //alert('guardar rol-usuario');
 
-            if ($("#role-form").valid()){
+            //if ($("#role-form").valid()){
 
                 var params={};
                 params.action = 'sec_user-role';
@@ -105,7 +105,7 @@
                     $("#myElem").html('Error al guardar el rol').addClass('alert alert-danger').show();
                 });
 
-            }
+            //}
             return false;
         });
 
