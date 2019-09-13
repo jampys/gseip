@@ -70,33 +70,31 @@
 
 
         //Guardar rol-usuario luego de ingresar nuevo o editar
-        $('#myModal').on('click', '#submit',function(){
+        $('#myModal').on('click', '#submit',function(){  //ok
             //alert('guardar rol-usuario');
 
             if ($("#role-form").valid()){
 
                 var params={};
-                params.action = 'contrato-vehiculo';
-                params.operation = 'saveVehiculo';
-                params.id_contrato_vehiculo = $('#id_contrato_vehiculo').val();
-                params.id_contrato = $('#id_contrato').val();
-                params.id_vehiculo = $('#id_vehiculo').val();
+                params.action = 'sec_user-role';
+                params.operation = 'saveRole';
+                params.id_user_role = $('#id_user_role').val();
+                params.id_role = $('#id_role').val();
                 params.fecha_desde = $('#fecha_desde').val();
                 params.fecha_hasta = $('#fecha_hasta').val();
-                params.id_localidad = $('#id_localidad').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#contrato-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#role-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Vehículo guardado con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
+                        $('#etapas_left_side .grid').load('index.php',{action:"sec_user-role", id_user:params.id_user, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
-                                                $('#contrato-vehiculo-form').hide();
+                                                $('#role-form').hide();
                                               }, 2000);
                     }
 

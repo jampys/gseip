@@ -81,78 +81,48 @@ where sur.id_user = :id_user";
     }
 
 
-
-    //Devuelve todos los contratos de un determinado vehiculo
-    public static function getContratosByVehiculo($id_vehiculo) {
-        $stmt=new sQuery();
-        $query = "select vc.id_vehiculo_contrato, vc.id_vehiculo, vc.id_contrato,
-DATE_FORMAT(vc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-DATE_FORMAT(vc.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-co.nro_contrato,
-co.nombre as contrato,
-concat(loc.ciudad, ' ', loc.provincia) as localidad,
-datediff(vc.fecha_hasta, sysdate()) as days_left
-from vto_vehiculo_contrato vc
-join contratos co on vc.id_contrato = co.id_contrato
-left join localidades loc on vc.id_localidad = loc.id_localidad
-where vc.id_vehiculo = :id_vehiculo
-order by vc.fecha_desde desc";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_vehiculo', $id_vehiculo);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
-
-
-    function save(){
-        if($this->id_vehiculo_contrato)
-        {$rta = $this->updateVehiculoContrato();}
+    function save(){ //ok
+        if($this->id_user_role)
+        {$rta = $this->updateUserRole();}
         else
-        {$rta =$this->insertVehiculoContrato();}
+        {$rta =$this->insertUserRole();}
         return $rta;
     }
 
 
 
-    public function updateVehiculoContrato(){
+    public function updateUserRole(){ //ok
 
         $stmt=new sQuery();
-        $query="update vto_vehiculo_contrato
-                set id_vehiculo = :id_vehiculo,
-                fecha_desde = STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
-                fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
-                id_localidad = :id_localidad
-                where id_vehiculo_contrato = :id_vehiculo_contrato";
+        $query="update sec_user_role
+                set id_role = :id_role,
+                fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
+                where id_user_role = :id_user_role";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
-        $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
+        $stmt->dpBind(':id_role', $this->getIdRole());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
-        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
-        $stmt->dpBind(':id_vehiculo_contrato', $this->getIdVehiculoContrato());
+        $stmt->dpBind(':id_user_role', $this->getIdUserRole());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    public function insertVehiculoContrato(){
+    public function insertUserRole(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into vto_vehiculo_contrato(id_vehiculo, id_contrato, fecha_desde, fecha_hasta, id_localidad)
-                values(:id_vehiculo, :id_contrato,
-                STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
-                STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
-                :id_localidad)";
+        $query="insert into sec_user_role(id_user, id_role, fecha_desde, fecha_hasta)
+                values(:id_user, :id_role,
+                sysdate(),
+                STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
-        $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
+        $stmt->dpBind(':id_user', $this->getIdUser());
+        $stmt->dpBind(':id_role', $this->getIdRole());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
-        $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
-    public function deleteVehiculoContrato(){
+    public function deleteUserRole(){
         $stmt=new sQuery();
         $query="delete from vto_vehiculo_contrato where id_vehiculo_contrato= :id_vehiculo_contrato";
         $stmt->dpPrepare($query);

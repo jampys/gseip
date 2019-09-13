@@ -12,7 +12,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -20,17 +20,16 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->vehiculos = ContratoVehiculo::getVehiculos($_POST['id_contrato']);
-        $view->contentTemplate="view/contratos/vehiculosGrid.php";
+        $view->roles = UsuarioRol::getRoles($_POST['id_user']);
+        $view->contentTemplate="view/usuarios/rolesGrid.php";
         break;
 
-    case 'saveVehiculo':
-        $gv = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
-        $gv->setIdContrato($_POST['id_contrato']);
-        $gv->setIdVehiculo($_POST['id_vehiculo']);
+    case 'saveRole': //ok
+        $gv = new UsuarioRol($_POST['id_user_role']);
+        $gv->setIdUser($_POST['id_user']);
+        $gv->setIdRole($_POST['id_role']);
         $gv->setFechaDesde($_POST['fecha_desde']);
         $gv->setFechaHasta( ($_POST['fecha_hasta']!='')? $_POST['fecha_hasta'] : null);
-        $gv->setIdLocalidad($_POST['id_localidad']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $gv->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
