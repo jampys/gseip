@@ -112,7 +112,7 @@ where sur.id_user = :id_user";
         $query="insert into sec_user_role(id_user, id_role, fecha_desde, fecha_hasta)
                 values(:id_user, :id_role,
                 sysdate(),
-                STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')";
+                STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpBind(':id_role', $this->getIdRole());
