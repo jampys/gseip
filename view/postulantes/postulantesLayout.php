@@ -200,13 +200,13 @@
                     <!--<div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-primary" id="search">Buscar</button>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary" id="new">Nueva renovación</button>
                     </div>-->
 
                     <div class="form-group col-md-2">
+
+                    </div>
+
+                    <!--<div class="form-group col-md-2">
                         <label for="search_renovado" class="control-label">&nbsp;</label>
                         <div class="checkbox">
                             <label>
@@ -214,7 +214,7 @@
                                 <a href="#" title="Funcionalidad en construcción">Ver todos</a>
                             </label>
                         </div>
-                    </div>
+                    </div>-->
 
 
                     <div class="form-group col-md-2">
