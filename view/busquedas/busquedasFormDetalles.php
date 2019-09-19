@@ -33,6 +33,7 @@
                             <thead>
                             <tr>
                                 <th>Postulante</th>
+                                <th>Etapa</th>
                                 <th>Aplica</th>
 
 
@@ -42,6 +43,7 @@
                             <?php foreach ($view->postulaciones as $pos): ?>
                                 <tr data-id="<?php echo $pos['id_postulacion'];?>">
                                     <td><?php echo $pos['postulante']; ?></td>
+                                    <td><?php echo $pos['etapa']; ?></td>
                                     <td><?php echo($pos['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
                                 </tr>
                             <?php endforeach; ?>
@@ -64,7 +66,7 @@
 
                 <?php } ?>
 
-                
+
 
             </div>
 
