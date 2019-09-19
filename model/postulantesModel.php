@@ -126,12 +126,11 @@ class Postulante
                   from sel_postulantes pos
                   left join localidades loc on loc.id_localidad = pos.id_localidad
                   left join sel_especialidades es on es.id_especialidad = pos.id_especialidad
-                  where if(:id_especialidad is not null, pos.id_especialidad = :id_especialidad, 1)";
+                  where if(:id_especialidad is not null, pos.id_especialidad = :id_especialidad, 1)
+                  and if(:id_localidad is not null, pos.id_localidad = :id_localidad, 1)";
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':id_localidad', $id_localidad);
+        $stmt->dpBind(':id_localidad', $id_localidad);
         $stmt->dpBind(':id_especialidad', $id_especialidad);
-        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
         //$stmt->dpBind(':renovado', $renovado);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();

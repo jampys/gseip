@@ -171,7 +171,7 @@
                     <div class="form-group col-md-3">
                         <label for="search_localidad" class="control-label">Ubicación</label>
                         <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
-                            <option value="">Seleccione una ubicacion</option>
+                            <option value="">Seleccione una localidad</option>
                             <?php foreach ($view->localidades as $loc){
                                 ?>
                                 <option value="<?php echo $loc['id_localidad']; ?>">
