@@ -89,11 +89,11 @@ switch ($operation)
 
     case 'loadDetalles': //abre la ventana modal para mostrar los postulantes de la busqueda
         $view->disableLayout=true;
-        $view->puestos = new Puesto($_POST['id_puesto']);
-        $view->label= $view->puestos->getNombre();
+        $view->busqueda = new Busqueda($_POST['id_busqueda']);
+        $view->label= $view->busqueda->getNombre();
 
-        $view->empleados = Puesto::getEmpleadosByPuesto($_POST['id_puesto']);
-        $view->habilidades = HabilidadPuesto::getHabilidadPuesto($_POST['id_puesto'], null);
+        //$view->empleados = Puesto::getEmpleadosByPuesto($_POST['id_puesto']);
+        //$view->habilidades = HabilidadPuesto::getHabilidadPuesto($_POST['id_puesto'], null);
         $view->contentTemplate="view/puestosFormDetalles.php";
         break;
 

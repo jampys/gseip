@@ -66,6 +66,22 @@
             });
 
 
+            //Al presionar el boton detalles....
+            $(document).on('click', '.detalles', function(){
+                //alert('tocó en contratos');
+                var id = $(this).closest('tr').attr('data-id');
+                //preparo los parametros
+                params={};
+                params.id_busqueda = id;
+                params.action = "busquedas";
+                params.operation = "loadDetalles";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                })
+
+            });
+
+
             $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "busquedas";
