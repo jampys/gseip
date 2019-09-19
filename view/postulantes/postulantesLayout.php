@@ -188,7 +188,7 @@
                             <?php foreach ($view->especialidades as $es){
                                 ?>
                                 <option value="<?php echo $es['id_especialidad']; ?>"
-                                    <?php echo ($es['id_especialidad'] == $view->postulante->getIdEspecialidad())? 'selected' :'' ?>
+                                    <?php //echo ($es['id_especialidad'] == $view->postulante->getIdEspecialidad())? 'selected' :'' ?>
                                     >
                                     <?php echo $es['nombre'];?>
                                 </option>

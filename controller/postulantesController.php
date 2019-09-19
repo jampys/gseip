@@ -92,7 +92,7 @@ switch ($operation)
     default : //ok
         //$view->puestos = Puesto::getPuestos(); //carga el combo para filtrar puestos
         $view->localidades = Localidad::getLocalidades(); //carga el combo para filtrar localidades (Areas)
-        //$view->especialidades = Especialidad::getEspecialidades();
+        $view->especialidades = Especialidad::getEspecialidades();
         $view->contentTemplate="view/postulantes/postulantesGrid.php";
         break;
 }
