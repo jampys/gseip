@@ -207,7 +207,7 @@
                     </div>
 
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <!--<label for="search_localidad" class="control-label">Área</label>
                         <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
                             <option value="">Seleccione un área</option>
@@ -230,7 +230,7 @@
                         <button type="button" class="form-control btn btn-primary" id="new">Nueva renovación</button>
                     </div>-->
 
-                    <div class="form-group col-md-1" style="width: 11%">
+                    <div class="form-group col-md-2">
                         <label for="search_renovado" class="control-label">&nbsp;</label>
                         <div class="checkbox">
                             <label>
@@ -241,14 +241,14 @@
                     </div>
 
 
-                    <div class="form-group col-md-1" style="width: 7%">
+                    <div class="form-group col-md-1">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                             <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>
 
-                    <div class="form-group col-md-1" style="width: 7%">
+                    <div class="form-group col-md-1">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-default" title="nueva postulación" id="new" <?php echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
