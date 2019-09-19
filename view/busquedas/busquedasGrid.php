@@ -108,11 +108,14 @@
                         <td><?php echo $rp['estado']; ?></td>
 
                         <td class="text-center">
+                            <a class="detalles" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>" title="detalles del puesto"><i class="fas fa-suitcase dp_blue"></i></a>&nbsp;&nbsp;
+
                             <?php if($rp['cant_uploads']> 0 ){ ?>
                                 <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
                                     <span class="glyphicon glyphicon-paperclip dp_gray" aria-hidden="true"></span>
                                 </a>
                             <?php } else{ ?>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
                                 <!--<a class="" href="#" title="renovar">
                                     <i class="far fa-clone"></i>
                                 </a>-->

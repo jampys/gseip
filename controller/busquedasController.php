@@ -87,6 +87,16 @@ switch ($operation)
         exit;
         break;
 
+    case 'loadDetalles': //abre la ventana modal para mostrar los postulantes de la busqueda
+        $view->disableLayout=true;
+        $view->puestos = new Puesto($_POST['id_puesto']);
+        $view->label= $view->puestos->getNombre();
+
+        $view->empleados = Puesto::getEmpleadosByPuesto($_POST['id_puesto']);
+        $view->habilidades = HabilidadPuesto::getHabilidadPuesto($_POST['id_puesto'], null);
+        $view->contentTemplate="view/puestosFormDetalles.php";
+        break;
+
     default : //ok
         $view->puestos = Puesto::getPuestos(); //carga el combo para filtrar puestos
         $view->localidades = Localidad::getLocalidades(); //carga el combo para filtrar localidades (Areas)
