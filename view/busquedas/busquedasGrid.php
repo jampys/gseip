@@ -12,16 +12,17 @@
             "fnInitComplete": function () {
                                 $(this).show(); },
             "stateSave": true,
-            "order": [[3, "asc"], [5, "asc"]], // 3=fecha_apertura, 5=puesto
+            //"order": [[3, "asc"], [5, "asc"]], // 3=fecha_apertura, 5=puesto
+            "order": [[2, "desc"], [1, "asc"]], // 2=fecha, 5=nombre
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
                 { type: 'date-uk', targets: 5 } //fecha_vencimiento
             ]*/
             columnDefs: [
-                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 5 ]}, //fecha
-                {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 5 ]}, //fecha_apertura
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 5 ]} //fecha_cierre
+                {targets: [ 2 ], type: 'date-uk', orderData: [ 2, 1 ]}, //fecha
+                {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 1 ]}
+                //{targets: [ 4 ], type: 'date-uk', orderData: [ 4, 5 ]}
             ]
         });
 
@@ -81,7 +82,7 @@
             <thead>
             <tr>
                 <th>Nro. bq.</th>
-                <th>Fecha</th>
+                <!--<th>Fecha</th>-->
                 <th>Nombre</th>
                 <th>F. apertura</th>
                 <th>F. cierre</th>
@@ -98,7 +99,7 @@
                 foreach ($view->busquedas as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_busqueda']; ?>">
                         <td><?php echo $rp['id_busqueda']; ?></td>
-                        <td><?php echo $rp['fecha']; ?></td>
+                        <!--<td><?php echo $rp['fecha']; ?></td>-->
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['fecha_apertura']; ?></td>
                         <td><?php echo $rp['fecha_cierre']; ?></td>
