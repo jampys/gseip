@@ -1,5 +1,5 @@
 <?php
-require_once("model/usuariosModel.php");
+require_once("model/sec_usersModel.php");
 
 //require("resources/libraries/phpmailer/PHPMailer.php");
 //require("resources/libraries/phpmailer/SMTP.php");
