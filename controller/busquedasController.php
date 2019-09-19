@@ -4,6 +4,7 @@ include_once("model/busquedasModel.php");
 include_once("model/puestosModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/contratosModel.php");
+include_once("model/postulacionesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -92,9 +93,9 @@ switch ($operation)
         $view->busqueda = new Busqueda($_POST['id_busqueda']);
         $view->label= $view->busqueda->getNombre();
 
-        //$view->empleados = Puesto::getEmpleadosByPuesto($_POST['id_puesto']);
+        $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
         //$view->habilidades = HabilidadPuesto::getHabilidadPuesto($_POST['id_puesto'], null);
-        $view->contentTemplate="view/puestosFormDetalles.php";
+        $view->contentTemplate="view/busquedas/busquedasFormDetalles.php";
         break;
 
     default : //ok

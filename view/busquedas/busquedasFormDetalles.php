@@ -21,9 +21,9 @@
 
 
 
-                <?php if(isset($view->empleados) && sizeof($view->empleados) > 0) {?>
+                <?php if(isset($view->postulaciones) && sizeof($view->postulaciones) > 0) {?>
 
-                    <h4><span class="label label-primary">Empleados en el puesto</span></h4>
+                    <h4><span class="label label-primary">Postulantes a la búsqueda</span></h4>
 
 
                     <div class="table-responsive fixedTable">
@@ -32,20 +32,17 @@
                         <table class="table table-condensed dataTable table-hover">
                             <thead>
                             <tr>
-                                <th>Empleado</th>
-                                <th>Contrato</th>
-                                <th>F. desde</th>
-                                <th>F. hasta</th>
+                                <th>Postulante</th>
+                                <th>Aplica</th>
+
 
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($view->empleados as $em): ?>
-                                <tr data-id="<?php echo $em['id_empleado'];?>">
-                                    <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
-                                    <td><?php echo $em['contrato']; ?></td>
-                                    <td><?php echo $em['fecha_desde']; ?></td>
-                                    <td><?php echo $em['fecha_hasta']; ?></td>
+                            <?php foreach ($view->postulaciones as $pos): ?>
+                                <tr data-id="<?php echo $pos['id_postulacion'];?>">
+                                    <td><?php echo $pos['postulante']; ?></td>
+                                    <td><?php echo($pos['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>
@@ -59,62 +56,15 @@
 
                     <br/>
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> No existen empleados en el puesto seleccionado. Para afectar un empleado a un puesto diríjase a
-                        <?php if ( PrivilegedUser::dhasPrivilege('CON_VER', array(1)) ) { ?>
-                            <a href="index.php?action=contratos">Contratos</a></p>
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> No existen candidatos para la búsqueda seleccionada. Para afectar un postulante a la búsqueda diríjase a
+                        <?php if (true /*PrivilegedUser::dhasPrivilege('CON_VER', array(1))*/ ) { ?>
+                            <a href="index.php?action=postulaciones">Postulaciones</a></p>
                         <?php } ?>
                     </div>
 
                 <?php } ?>
 
-
-                <br/>
-
-
-                <?php if(isset($view->habilidades) && sizeof($view->habilidades) > 0) {?>
-
-                    <h4><span class="label label-primary">Habilidades requeridas</span></h4>
-
-                    <div class="table-responsive fixedTable">
-
-                        <!--<table class="table table-condensed dataTable table-hover">-->
-                        <table class="table table-condensed dataTable table-hover">
-                            <thead>
-                            <tr>
-                                <th>Habilidad</th>
-                                <th>Requerida</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($view->habilidades as $hab): ?>
-                                <tr data-id="<?php echo $hab['id_habilidad'];?>">
-                                    <td><?php echo $hab['habilidad']; ?></td>
-                                    <td><?php echo $hab['requerida']; ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
-
-                    </div>
-
-
-
-                <?php }else{ ?>
-
-                    <br/>
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> No existen habiliades registradas para el puesto seleccionado. Para hacerlo diríjase a
-                        <?php if ( PrivilegedUser::dhasPrivilege('HPU_ABM', array(1)) ) { ?>
-                            <a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></p>
-                        <?php } ?>
-                    </div>
-
-                <?php } ?>
-
-
-
-
-
+                
 
             </div>
 
