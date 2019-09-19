@@ -22,7 +22,7 @@
                 params={};
                 //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                params.search_puesto = $("#search_puesto").val();
+                params.search_especialidad = $("#search_especialidad").val();
                 params.search_localidad = $("#search_localidad").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "postulantes";
@@ -184,7 +184,8 @@
 
                     <div class="form-group col-md-3">
                         <label for="id_especialidad" class="control-label">Especialidad</label>
-                        <select class="form-control selectpicker show-tick" id="search_especialidad" name="search_especialidad" title="Seleccione la especialidad" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="search_especialidad" name="search_especialidad" data-live-search="true" data-size="5">
+                            <option value="">Seleccione una especialidad</option>
                             <?php foreach ($view->especialidades as $es){
                                 ?>
                                 <option value="<?php echo $es['id_especialidad']; ?>"
