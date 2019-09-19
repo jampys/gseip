@@ -86,6 +86,7 @@
                 <th>Búsqueda</th>
                 <th>Área</th>
                 <th>Postulante</th>
+                <th>Etapa</th>
                 <th>Aplica</th>
                 <th></th>
             </tr>
@@ -99,6 +100,7 @@
                         <td><?php echo $rp['busqueda']; ?></td>
                         <td><?php echo $rp['ciudad']; ?></td>
                         <td><?php echo $rp['postulante']; ?></td>
+                        <td><?php echo $rp['etapa']; ?></td>
                         <td style="text-align: center"><?php echo($rp['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
 
                         <td class="text-center">
