@@ -184,7 +184,7 @@
 
                     <div class="form-group col-md-3">
                         <label for="id_especialidad" class="control-label">Especialidad</label>
-                        <select class="form-control selectpicker show-tick" id="id_especialidad" name="id_especialidad" title="Seleccione la especialidad" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="search_especialidad" name="search_especialidad" title="Seleccione la especialidad" data-live-search="true" data-size="5">
                             <?php foreach ($view->especialidades as $es){
                                 ?>
                                 <option value="<?php echo $es['id_especialidad']; ?>"

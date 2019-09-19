@@ -115,7 +115,7 @@ class Postulante
     }
 
 
-    public static function getPostulantes($id_puesto, $id_localidad, $todas) { //ok
+    public static function getPostulantes($id_localidad, $id_especialidad) { //ok
         $stmt=new sQuery();
         $query = "select pos.id_postulante,
                   DATE_FORMAT(pos.fecha,  '%d/%m/%Y') as fecha,
@@ -125,10 +125,11 @@ class Postulante
                   (select count(*) from uploads_postulante where id_postulante = pos.id_postulante) as cant_uploads
                   from sel_postulantes pos
                   left join localidades loc on loc.id_localidad = pos.id_localidad
-                  left join sel_especialidades es on es.id_especialidad = pos.id_especialidad";
+                  left join sel_especialidades es on es.id_especialidad = pos.id_especialidad
+                  where pos.id_localidad = ifnull(:id_localidad, id_localidad)";
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':id_empleado', $id_empleado);
-        //$stmt->dpBind(':id_grupo', $id_grupo);
+        $stmt->dpBind(':id_localidad', $id_localidad);
+        $stmt->dpBind(':id_especialidad', $id_especialidad);
         //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
         //$stmt->dpBind(':id_contrato', $id_contrato);
         //$stmt->dpBind(':renovado', $renovado);
