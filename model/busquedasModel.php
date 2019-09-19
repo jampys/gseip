@@ -145,7 +145,8 @@ class Busqueda
                   from sel_busquedas bu
                   left join puestos pu on bu.id_puesto = pu.id_puesto
                   left join localidades loc on bu.id_localidad = loc.id_localidad
-                  left join contratos co on bu.id_contrato = co.id_contrato";
+                  left join contratos co on bu.id_contrato = co.id_contrato
+                  order by bu.fecha desc";
                   //where bu.fecha_cierre is null or bu.fecha_cierre > date(sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();

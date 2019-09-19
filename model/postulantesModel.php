@@ -141,7 +141,8 @@ class Postulante
         //se usa para cargar combo de postulantes en formulario de postulacion
         $stmt=new sQuery();
         $query = "select *
-                  from sel_postulantes pos";
+                  from sel_postulantes pos
+                  order by pos.apellido asc, pos.nombre asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
