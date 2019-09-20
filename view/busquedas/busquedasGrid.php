@@ -13,15 +13,15 @@
                                 $(this).show(); },
             "stateSave": true,
             //"order": [[3, "asc"], [5, "asc"]], // 3=fecha_apertura, 5=puesto
-            "order": [[2, "desc"], [1, "asc"]], // 2=fecha, 5=nombre
+            "order": [[1, "desc"], [0, "asc"]], // 2=fecha, 5=nombre
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
                 { type: 'date-uk', targets: 5 } //fecha_vencimiento
             ]*/
             columnDefs: [
-                {targets: [ 2 ], type: 'date-uk', orderData: [ 2, 1 ]}, //fecha
-                {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 1 ]}
+                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 0 ]}, //fecha
+                {targets: [ 2 ], type: 'date-uk', orderData: [ 2, 0 ]}
                 //{targets: [ 4 ], type: 'date-uk', orderData: [ 4, 5 ]}
             ]
         });
