@@ -131,6 +131,7 @@
                 params.id_puesto = $('#id_puesto').val();
                 params.id_localidad = $('#id_localidad').val();
                 params.id_contrato = $('#id_contrato').val();
+                params.estado = $('#estado').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -265,7 +266,7 @@
                                 <?php foreach ($view->estados['enum'] as $ec){
                                     ?>
                                     <option value="<?php echo $ec; ?>"
-                                        <?php //echo ($ec == $view->empleado->getEstadoCivil() OR ($ec == $view->estados_civiles['default'] AND !$view->empleado->getIdEmpleado())  )? 'selected' :'' ?>
+                                        <?php echo ($ec == $view->busqueda->getEstado() OR ($ec == $view->estados['default'] AND !$view->busqueda->getIdBusqueda())  )? 'selected' :'' ?>
                                         >
                                         <?php echo $ec; ?>
                                     </option>

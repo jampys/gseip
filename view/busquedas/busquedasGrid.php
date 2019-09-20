@@ -81,8 +81,8 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro. bq.</th>
-                <!--<th>Fecha</th>-->
+                <!--<th>Nro. bq.</th>
+                <th>Fecha</th>-->
                 <th>Nombre</th>
                 <th>F. apertura</th>
                 <th>F. cierre</th>
@@ -98,8 +98,8 @@
             <?php if(isset($view->busquedas)) {
                 foreach ($view->busquedas as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_busqueda']; ?>">
-                        <td><?php echo $rp['id_busqueda']; ?></td>
-                        <!--<td><?php echo $rp['fecha']; ?></td>-->
+                        <!--<td><?php //echo $rp['id_busqueda']; ?></td>
+                        <td><?php //echo $rp['fecha']; ?></td>-->
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['fecha_apertura']; ?></td>
                         <td><?php echo $rp['fecha_cierre']; ?></td>

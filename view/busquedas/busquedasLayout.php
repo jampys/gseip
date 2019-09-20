@@ -67,7 +67,7 @@
 
 
             //Al presionar el boton detalles....
-            $(document).on('click', '.detalles', function(){
+            $(document).on('click', '.detalles', function(){ //ok
                 //alert('tocó en contratos');
                 var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros

@@ -170,7 +170,8 @@ class Busqueda
                       fecha_cierre = STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'),
                       id_puesto = :id_puesto,
                       id_localidad = :id_localidad,
-                      id_contrato = :id_contrato
+                      id_contrato = :id_contrato,
+                      estado = :estado
                 where id_busqueda =:id_busqueda";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
@@ -179,6 +180,7 @@ class Busqueda
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':estado', $this->getEstado());
         $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -187,8 +189,8 @@ class Busqueda
 
     private function insertBusqueda(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_busquedas(fecha, nombre, fecha_apertura, fecha_cierre, id_puesto, id_localidad, id_contrato)
-                values(sysdate(), :nombre, STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'), STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), :id_puesto, :id_localidad, :id_contrato)";
+        $query="insert into sel_busquedas(fecha, nombre, fecha_apertura, fecha_cierre, id_puesto, id_localidad, id_contrato, estado)
+                values(sysdate(), :nombre, STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'), STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), :id_puesto, :id_localidad, :id_contrato, :estado)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':fecha_apertura', $this->getFechaApertura());
@@ -196,6 +198,7 @@ class Busqueda
         $stmt->dpBind(':id_puesto', $this->getIdPuesto());
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':estado', $this->getEstado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

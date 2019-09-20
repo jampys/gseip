@@ -34,6 +34,7 @@ switch ($operation)
         $busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
         $busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
         $busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
+        $busqueda->setEstado($_POST['estado']);
 
         $rta = $busqueda->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
