@@ -86,8 +86,9 @@
 
             "stateSave": true,
             columnDefs: [
-                {targets: 2, render: $.fn.dataTable.render.ellipsis(30)} //https://datatables.net/blog/2016-02-26
-                ,{ "width": "90px", "targets":6 } //progress bar
+                {targets: 2, render: $.fn.dataTable.render.ellipsis(40)},
+                {targets: 3, render: $.fn.dataTable.render.ellipsis(25)}, //https://datatables.net/blog/2016-02-26
+                { "width": "90px", "targets":6 } //progress bar
             ]
 
         });
