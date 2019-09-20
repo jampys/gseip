@@ -48,6 +48,7 @@ switch ($operation)
         $view->puestos = Puesto::getPuestos();
         $view->localidades = Localidad::getLocalidades();
         $view->contratos = Contrato::getContratos();
+        $view->estados = Soporte::get_enum_values('sel_busquedas', 'estado');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/busquedas/busquedasForm.php";
@@ -60,6 +61,7 @@ switch ($operation)
         $view->puestos = Puesto::getPuestos();
         $view->localidades = Localidad::getLocalidades();
         $view->contratos = Contrato::getContratos();
+        $view->estados = Soporte::get_enum_values('sel_busquedas', 'estado');
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

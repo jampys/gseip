@@ -259,6 +259,20 @@
                         <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->busqueda->getNombre() ?>" placeholder="Nombre">
                     </div>
 
+                    <div class="form-group">
+                        <label for="estado" class="control-label">Estado</label>
+                            <select class="form-control selectpicker show-tick" id="estado" name="estado" title="Seleccione el estado" data-live-search="true" data-size="5">
+                                <?php foreach ($view->estados['enum'] as $ec){
+                                    ?>
+                                    <option value="<?php echo $ec; ?>"
+                                        <?php //echo ($ec == $view->empleado->getEstadoCivil() OR ($ec == $view->estados_civiles['default'] AND !$view->empleado->getIdEmpleado())  )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $ec; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                    </div>
+
                     <div class="form-group required">
                         <label class="control-label" for="fecha_apertura">Fecha apertura</label>
                         <div class="input-group date">
