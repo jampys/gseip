@@ -95,7 +95,8 @@ class Postulacion
                   join sel_busquedas bu on pos.id_busqueda = bu.id_busqueda
                   left join localidades loc on loc.id_localidad = bu.id_localidad
                   where pos.id_busqueda =  ifnull(:id_busqueda, pos.id_busqueda)
-                  and pos.id_postulante =  ifnull(:id_postulante, pos.id_postulante)";
+                  and pos.id_postulante =  ifnull(:id_postulante, pos.id_postulante)
+                  order by aplica desc, postulante asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_busqueda', $id_busqueda);
