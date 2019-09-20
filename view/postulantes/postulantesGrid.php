@@ -14,7 +14,7 @@
                                 $(this).show(); },
 
             "stateSave": true,
-            "order": [[1, "asc"], [2, "asc"]] // 1=apellido, 2=nombre
+            "order": [[0, "asc"], [1, "asc"]] // 1=apellido, 2=nombre
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
