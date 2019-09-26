@@ -81,6 +81,22 @@
         });
 
 
+        $('#postulacion-form').on('click', '#culo', function(){ //ok
+            alert('Agregar nuevo postulante');
+            //var id = $(this).closest('tr').attr('data-id');
+            //preparo los parametros
+            params={};
+            //params.id_busqueda = id;
+            params.action = "busqueda-postulante";
+            params.operation = "newPostulante";
+            $('#box1').load('index.php', params,function(){
+                //$('#myModal').modal();
+                //$('#etapas_left_side #add').attr('id_busqueda', id);
+            })
+
+        });
+
+
 
     });
 
@@ -100,7 +116,7 @@
 
 
         <div class="form-group required">
-            <label for="id_postulante" class="control-label">Postulante</label>&nbsp;<a href="#" title="nuevo postulante"><i class="far fa-plus-square fa-fw"></i></a>
+            <label for="id_postulante" class="control-label">Postulante</label>&nbsp;<a href="#" id="culo" title="nuevo postulante"><i class="far fa-plus-square fa-fw"></i></a>
             <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
                 <?php foreach ($view->postulantes as $po){
                     ?>
@@ -111,6 +127,11 @@
                     </option>
                 <?php  } ?>
             </select>
+        </div>
+
+
+        <div id="box1">
+
         </div>
 
 

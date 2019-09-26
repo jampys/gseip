@@ -38,7 +38,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newPostulacion':
+    case 'newPostulacion': //ok
         $view->label='Nueva postulación';
         $view->postulacion = new Postulacion($_POST['id_postulacion']);
 
@@ -46,6 +46,17 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->contentTemplate="view/busquedas/nPostulacion_detailForm.php";
+        break;
+
+
+    case 'newPostulante': //ok
+        //$view->label='Nueva postulación';
+        //$view->postulacion = new Postulacion($_POST['id_postulacion']);
+
+        //$view->postulantes = Postulante::getPostulantesActivos();
+
+        $view->disableLayout=true;
+        $view->contentTemplate="view/busquedas/nPostulante_detailForm.php";
         break;
 
     case 'editVehiculo':
