@@ -14,14 +14,14 @@
                                 $(this).show(); },
 
             "stateSave": true,
-            "order": [[3, "asc"]], // 3=fecha_apertura
+            "order": [[0, "desc"]], // 1=fecha
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
                 { type: 'date-uk', targets: 5 } //fecha_vencimiento
             ]*/
             columnDefs: [
-                //{targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
+                {targets: [0], type: 'date-uk', orderData: [0]} //fecha
                 //{targets: [ 3 ], type: 'date-uk', orderData: [ 3, 6 ]}, //fecha_apertura
                 //{targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]} //fecha_cierre
             ]
@@ -86,6 +86,7 @@
                 <th>Búsqueda</th>
                 <th>Área</th>
                 <th>Postulante</th>
+                <th>Etapa</th>
                 <th>Aplica</th>
                 <th></th>
             </tr>
@@ -99,6 +100,7 @@
                         <td><?php echo $rp['busqueda']; ?></td>
                         <td><?php echo $rp['ciudad']; ?></td>
                         <td><?php echo $rp['postulante']; ?></td>
+                        <td><?php echo $rp['etapa']; ?></td>
                         <td style="text-align: center"><?php echo($rp['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
 
                         <td class="text-center">

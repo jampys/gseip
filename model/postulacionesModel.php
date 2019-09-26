@@ -83,6 +83,7 @@ class Postulacion
         $stmt=new sQuery();
         $query = "select
                   (select !exists(select 1 from sel_etapas etx where  etx.id_postulacion = pos.id_postulacion and etx.aplica = '0')) as aplica,
+                  (select sex.etapa from sel_etapas sex where sex.id_postulacion = pos.id_postulacion order by sex.fecha_etapa desc limit 1  ) as etapa,
                   pos.id_postulacion, pos.id_busqueda, pos.id_postulante,
                   DATE_FORMAT(pos.fecha,  '%d/%m/%Y') as fecha,
                   pos.origen_cv, pos.expectativas, pos.propuesta_economica,
@@ -94,7 +95,8 @@ class Postulacion
                   join sel_busquedas bu on pos.id_busqueda = bu.id_busqueda
                   left join localidades loc on loc.id_localidad = bu.id_localidad
                   where pos.id_busqueda =  ifnull(:id_busqueda, pos.id_busqueda)
-                  and pos.id_postulante =  ifnull(:id_postulante, pos.id_postulante)";
+                  and pos.id_postulante =  ifnull(:id_postulante, pos.id_postulante)
+                  order by aplica desc, postulante asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_busqueda', $id_busqueda);

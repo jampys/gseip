@@ -4,6 +4,7 @@ include_once("model/busquedasModel.php");
 include_once("model/puestosModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/contratosModel.php");
+include_once("model/postulacionesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -33,6 +34,7 @@ switch ($operation)
         $busqueda->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
         $busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
         $busqueda->setIdContrato( ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null);
+        $busqueda->setEstado($_POST['estado']);
 
         $rta = $busqueda->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
@@ -47,6 +49,7 @@ switch ($operation)
         $view->puestos = Puesto::getPuestos();
         $view->localidades = Localidad::getLocalidades();
         $view->contratos = Contrato::getContratos();
+        $view->estados = Soporte::get_enum_values('sel_busquedas', 'estado');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/busquedas/busquedasForm.php";
@@ -59,6 +62,7 @@ switch ($operation)
         $view->puestos = Puesto::getPuestos();
         $view->localidades = Localidad::getLocalidades();
         $view->contratos = Contrato::getContratos();
+        $view->estados = Soporte::get_enum_values('sel_busquedas', 'estado');
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
@@ -85,6 +89,16 @@ switch ($operation)
         $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
         print_r(json_encode($rta));
         exit;
+        break;
+
+    case 'loadDetalles': //abre la ventana modal para mostrar los postulantes de la busqueda
+        $view->disableLayout=true;
+        $view->busqueda = new Busqueda($_POST['id_busqueda']);
+        $view->label= $view->busqueda->getNombre();
+
+        $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
+        //$view->habilidades = HabilidadPuesto::getHabilidadPuesto($_POST['id_puesto'], null);
+        $view->contentTemplate="view/busquedas/busquedasFormDetalles.php";
         break;
 
     default : //ok

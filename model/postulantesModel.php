@@ -115,7 +115,7 @@ class Postulante
     }
 
 
-    public static function getPostulantes($id_puesto, $id_localidad, $todas) { //ok
+    public static function getPostulantes($id_localidad, $id_especialidad) { //ok
         $stmt=new sQuery();
         $query = "select pos.id_postulante,
                   DATE_FORMAT(pos.fecha,  '%d/%m/%Y') as fecha,
@@ -125,12 +125,12 @@ class Postulante
                   (select count(*) from uploads_postulante where id_postulante = pos.id_postulante) as cant_uploads
                   from sel_postulantes pos
                   left join localidades loc on loc.id_localidad = pos.id_localidad
-                  left join sel_especialidades es on es.id_especialidad = pos.id_especialidad";
+                  left join sel_especialidades es on es.id_especialidad = pos.id_especialidad
+                  where if(:id_especialidad is not null, pos.id_especialidad = :id_especialidad, 1)
+                  and if(:id_localidad is not null, pos.id_localidad = :id_localidad, 1)";
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':id_empleado', $id_empleado);
-        //$stmt->dpBind(':id_grupo', $id_grupo);
-        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_localidad', $id_localidad);
+        $stmt->dpBind(':id_especialidad', $id_especialidad);
         //$stmt->dpBind(':renovado', $renovado);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
@@ -141,7 +141,8 @@ class Postulante
         //se usa para cargar combo de postulantes en formulario de postulacion
         $stmt=new sQuery();
         $query = "select *
-                  from sel_postulantes pos";
+                  from sel_postulantes pos
+                  order by pos.apellido asc, pos.nombre asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpExecute();

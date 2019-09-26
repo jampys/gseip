@@ -17,10 +17,10 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
         $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
-        $todas = null; //($_POST['renovado']== 0)? null : 1;
-        $view->postulantes = Postulante::getPostulantes($id_puesto, $id_localidad, $id_contrato, $todas);
+        $id_especialidad = ($_POST['search_especialidad']!='')? $_POST['search_especialidad'] : null;
+        //$todas = null; //($_POST['renovado']== 0)? null : 1;
+        $view->postulantes = Postulante::getPostulantes($id_localidad, $id_especialidad);
         $view->contentTemplate="view/postulantes/postulantesGrid.php";
         break;
 
@@ -90,9 +90,9 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->puestos = Puesto::getPuestos(); //carga el combo para filtrar puestos
+        //$view->puestos = Puesto::getPuestos(); //carga el combo para filtrar puestos
         $view->localidades = Localidad::getLocalidades(); //carga el combo para filtrar localidades (Areas)
-        $view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
+        $view->especialidades = Especialidad::getEspecialidades();
         $view->contentTemplate="view/postulantes/postulantesGrid.php";
         break;
 }

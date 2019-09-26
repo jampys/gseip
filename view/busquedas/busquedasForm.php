@@ -131,6 +131,7 @@
                 params.id_puesto = $('#id_puesto').val();
                 params.id_localidad = $('#id_localidad').val();
                 params.id_contrato = $('#id_contrato').val();
+                params.estado = $('#estado').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -257,6 +258,20 @@
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->busqueda->getNombre() ?>" placeholder="Nombre">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado" class="control-label">Estado</label>
+                            <select class="form-control selectpicker show-tick" id="estado" name="estado" title="Seleccione el estado" data-live-search="true" data-size="5">
+                                <?php foreach ($view->estados['enum'] as $ec){
+                                    ?>
+                                    <option value="<?php echo $ec; ?>"
+                                        <?php echo ($ec == $view->busqueda->getEstado() OR ($ec == $view->estados['default'] AND !$view->busqueda->getIdBusqueda())  )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $ec; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
                     </div>
 
                     <div class="form-group required">

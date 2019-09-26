@@ -22,7 +22,8 @@
                     <td><?php echo $av['tarea'];?></td>
                     <td><?php echo $av['indicador'];?></td>
                     <td><?php echo $av['cantidad'];?></td>
-                    <td><?php echo $av['user'];?></td>
+                    <td><?php $arr = explode("@", $av['user'], 2);
+                        echo $arr[0];?></td>
 
                     <td class="text-center">
                         <a class="view" href="javascript:void(0);" data-id="<?php //echo $et['id_etapa'];?>" title="ver">
