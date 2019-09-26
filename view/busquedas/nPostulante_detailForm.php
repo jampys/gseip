@@ -224,17 +224,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?php echo $view->label ?></h4>
+                <h4 class="modal-title" id="myModalLabel"><?php //echo $view->label ?></h4>
             </div>
             <div class="modal-body">
 
 
                 <form name ="postulante-form" id="postulante-form" method="POST" action="index.php">
-                    <input type="hidden" name="id_postulante" id="id_postulante" value="<?php print $view->postulante->getIdPostulante() ?>">
+                    <input type="hidden" name="id_postulante" id="id_postulante" value="<?php //print $view->postulante->getIdPostulante() ?>">
 
                     <div class="form-group required">
                         <label class="control-label" for="apellido">Apellido</label>
-                        <input class="form-control" type="text" name="apellido" id="apellido" value = "<?php print $view->postulante->getApellido() ?>" placeholder="Apellido">
+                        <input class="form-control" type="text" name="apellido" id="apellido" value = "<?php //print $view->postulante->getApellido() ?>" placeholder="Apellido">
                     </div>
 
                     <div class="form-group required">
