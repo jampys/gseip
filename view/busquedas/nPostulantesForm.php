@@ -54,23 +54,23 @@
 
 
 
-        //Abre formulario para ingresar un nuevo vehiculo al grupo
-        $('#etapas_left_side').on('click', '#add', function(){
+        //Abre formulario para ingresar un nuevo postulante a la busqueda
+        $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
-            params.action = "contrato-vehiculo";
-            params.operation = "newVehiculo";
-            params.id_contrato = $('#etapas_left_side #add').attr('id_contrato');
+            params.action = "busqueda-postulante";
+            params.operation = "newPostulacion";
+            params.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_contrato').val(params.id_contrato);
+                $('#id_busqueda').val(params.id_contrato);
             })
         });
 
 
         //Guardar contrato-vehiculo luego de ingresar nuevo o editar
-        $('#myModal').on('click', '#submit',function(){ 
+        $('#myModal').on('click', '#submit',function(){
             //alert('guardar grupo-vehiculo');
 
             if ($("#contrato-vehiculo-form").valid()){

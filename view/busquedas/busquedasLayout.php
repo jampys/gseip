@@ -77,6 +77,7 @@
                 params.operation = "loadDetalles";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
+                    $('#etapas_left_side #add').attr('id_busqueda', id);
                 })
 
             });

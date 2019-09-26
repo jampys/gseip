@@ -38,16 +38,16 @@ switch ($operation)
         exit;
         break;
 
-    case 'newVehiculo':
-        $view->label='Nuevo vehículo';
-        $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
+    case 'newPostulacion':
+        $view->label='Nueva postulación';
+        $view->postulacion = new Postulacion($_POST['id_postulacion']);
 
         //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        $view->vehiculos = Vehiculo::getVehiculos();
-        $view->localidades = Localidad::getLocalidades();
+        //$view->vehiculos = Vehiculo::getVehiculos();
+        //$view->localidades = Localidad::getLocalidades();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/contratos/vehiculo_detailForm.php";
+        $view->contentTemplate="view/busquedas/nPostulacion_detailForm.php";
         break;
 
     case 'editVehiculo':
