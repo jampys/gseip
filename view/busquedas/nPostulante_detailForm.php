@@ -218,18 +218,9 @@
 
 
 <!-- Modal -->
-<fieldset  <?php //echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?php //echo $view->label ?></h4>
-            </div>
-            <div class="modal-body">
 
 
-                <form name ="postulante-form" id="postulante-form" method="POST" action="index.php">
+
                     <input type="hidden" name="id_postulante" id="id_postulante" value="<?php //print $view->postulante->getIdPostulante() ?>">
 
                     <div class="form-group required">
@@ -239,17 +230,17 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->postulante->getNombre() ?>" placeholder="Nombre">
+                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php //print $view->postulante->getNombre() ?>" placeholder="Nombre">
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="dni">DNI</label>
-                        <input class="form-control" type="text" name="dni" id="dni" value = "<?php print $view->postulante->getDni() ?>" placeholder="DNI">
+                        <input class="form-control" type="text" name="dni" id="dni" value = "<?php //print $view->postulante->getDni() ?>" placeholder="DNI">
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="telefono">Teléfono</label>
-                        <input class="form-control" type="text" name="telefono" id="telefono" value = "<?php print $view->postulante->getTelefono() ?>" placeholder="Teléfono">
+                        <input class="form-control" type="text" name="telefono" id="telefono" value = "<?php //print $view->postulante->getTelefono() ?>" placeholder="Teléfono">
                     </div>
 
                     <div class="form-group">
@@ -296,13 +287,13 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" id="lista_negra" name="lista_negra" <?php echo (!$view->postulante->getListaNegra())? '' :'checked' ?> ><a href="#" title="Seleccione para incluir al postulante en la lista negra">Agregar a lista negra</a>
+                                <input type="checkbox" id="lista_negra" name="lista_negra" <?php //echo (!$view->postulante->getListaNegra())? '' :'checked' ?> ><a href="#" title="Seleccione para incluir al postulante en la lista negra">Agregar a lista negra</a>
                             </label>
                         </div>
-                    </div>
+                    </div>-->
 
 
                     <div class="form-group">
@@ -311,7 +302,6 @@
                     </div>
 
 
-                </form>
 
 
                 <div id="fileuploader">Upload</div>
@@ -322,17 +312,7 @@
 
 
 
-            </div>
 
-            <div class="modal-footer">
-                <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
-                <button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-</fieldset>
 
 
 

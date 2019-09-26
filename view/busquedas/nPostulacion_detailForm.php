@@ -130,6 +130,7 @@
         </div>
 
 
+        <hr/>
         <div id="box1">
 
         </div>
