@@ -73,7 +73,7 @@
                 //preparo los parametros
                 params={};
                 params.id_busqueda = id;
-                params.action = "busquedas";
+                params.action = "busqueda-postulante";
                 params.operation = "loadDetalles";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();

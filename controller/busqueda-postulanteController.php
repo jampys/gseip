@@ -1,8 +1,8 @@
 ﻿<?php
-include_once("model/contrato-vehiculoModel.php");
-include_once("model/vehiculosModel.php");
-include_once("model/contratosModel.php");
-include_once("model/localidadesModel.php");
+include_once("model/busquedasModel.php");
+include_once("model/postulacionesModel.php");
+//include_once("model/contratosModel.php");
+//include_once("model/localidadesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -12,7 +12,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid': //ok
+    case 'refreshGrid':
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -24,7 +24,7 @@ switch ($operation)
         $view->contentTemplate="view/contratos/vehiculosGrid.php";
         break;
 
-    case 'saveVehiculo': //ok
+    case 'saveVehiculo':
         $gv = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
         $gv->setIdContrato($_POST['id_contrato']);
         $gv->setIdVehiculo($_POST['id_vehiculo']);
@@ -38,7 +38,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newVehiculo': //ok
+    case 'newVehiculo':
         $view->label='Nuevo vehículo';
         $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
 
@@ -50,7 +50,7 @@ switch ($operation)
         $view->contentTemplate="view/contratos/vehiculo_detailForm.php";
         break;
 
-    case 'editVehiculo': //ok
+    case 'editVehiculo':
         $view->label = ($_POST['target']!='view')? 'Editar vehículo': 'Ver vehículo';
         $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
 
@@ -63,14 +63,14 @@ switch ($operation)
         $view->contentTemplate="view/contratos/vehiculo_detailForm.php";
         break;
 
-    case 'deleteVehiculo': //ok
+    case 'deleteVehiculo':
         $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
         $rta = $view->contrato_vehiculo->deleteVehiculoContrato();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    case 'checkVehiculo': //ok
+    case 'checkVehiculo':
         $view->contrato_vehiculo = new ContratoVehiculo();
         $rta = $view->contrato_vehiculo->checkVehiculo($_POST['id_vehiculo'], $_POST['id_contrato'], $_POST['id_contrato_vehiculo']);
         print_r(json_encode($rta));
@@ -78,12 +78,12 @@ switch ($operation)
         break;
 
 
-    default : //carga la tabla de vehiculos del contrato //ok
+    default : //carga la tabla de postulantes de la busqueda
         $view->disableLayout=true;
-        $view->contrato = new Contrato($_POST['id_contrato']);
-        $view->vehiculos = ContratoVehiculo::getVehiculos($_POST['id_contrato']);
-        $view->label= $view->contrato->getNombre().' '.$view->contrato->getNroContrato();
-        $view->contentTemplate="view/contratos/vehiculosForm.php";
+        $view->busqueda = new Busqueda($_POST['id_busqueda']);
+        $view->label= $view->busqueda->getNombre();
+        $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
+        $view->contentTemplate="view/busquedas/nPostulantesForm.php";
         break;
 }
 
