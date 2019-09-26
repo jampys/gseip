@@ -1,7 +1,7 @@
 ﻿<?php
 include_once("model/busquedasModel.php");
 include_once("model/postulacionesModel.php");
-//include_once("model/contratosModel.php");
+include_once("model/postulantesModel.php");
 //include_once("model/localidadesModel.php");
 
 $operation = "";
@@ -42,9 +42,7 @@ switch ($operation)
         $view->label='Nueva postulación';
         $view->postulacion = new Postulacion($_POST['id_postulacion']);
 
-        //$view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        //$view->vehiculos = Vehiculo::getVehiculos();
-        //$view->localidades = Localidad::getLocalidades();
+        $view->postulantes = Postulante::getPostulantesActivos();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/busquedas/nPostulacion_detailForm.php";
@@ -83,7 +81,7 @@ switch ($operation)
         $view->busqueda = new Busqueda($_POST['id_busqueda']);
         $view->label= $view->busqueda->getNombre();
         $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
-        $view->contentTemplate="view/busquedas/nPostulantesForm.php";
+        $view->contentTemplate="view/busquedas/nPostulacionesForm.php";
         break;
 }
 

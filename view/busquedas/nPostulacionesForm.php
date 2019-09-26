@@ -211,7 +211,7 @@
                             </div>
 
                             <div class="grid">
-                                <?php include_once('view/busquedas/nPostulantesGrid.php');?>
+                                <?php include_once('view/busquedas/nPostulacionesGrid.php');?>
                             </div>
 
                         </div>

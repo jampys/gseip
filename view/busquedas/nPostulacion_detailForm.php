@@ -88,27 +88,26 @@
 
 
 
-<form name ="contrato-vehiculo-form" id="contrato-vehiculo-form" method="POST" action="index.php">
+<form name ="postulacion-form" id="postulacion-form" method="POST" action="index.php">
     <fieldset>
 
     <div class="alert alert-info">
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_contrato_vehiculo" id="id_contrato_vehiculo" value="<?php print $view->contrato_vehiculo->getIdVehiculoContrato() ?>">
-    <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->contrato_vehiculo->getIdContrato() ?>">
+    <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->postulacion->getIdPostulacion() ?>">
+    <input type="hidden" name="id_busqueda" id="id_busqueda" value="<?php print $view->postulacion->getIdBusqueda() ?>">
 
 
         <div class="form-group required">
-            <label for="id_vehiculo" class="control-label">Vehículo</label>
-            <select class="selectpicker form-control show-tick" id="id_vehiculo" name="id_vehiculo" data-live-search="true" data-size="5">
-                <option value="">Seleccione un Vehículo</option>
-                <?php foreach ($view->vehiculos as $ar){ ?>
-                    <option value="<?php echo $ar['id_vehiculo']; ?>"
-                            data-content="<span class='label label-primary' style='font-weight: normal'><?php echo $ar['matricula']; ?></span> <span class='label label-default' style='font-weight: normal'><?php echo $ar['nro_movil']; ?></span> <?php echo $ar['modelo']; ?>"
-                        <?php echo ($ar['id_vehiculo'] == $view->contrato_vehiculo->getIdVehiculo())? 'selected' :'' ?>
+            <label for="id_postulante" class="control-label">Postulante</label>&nbsp;<a href="#" title="nuevo postulante"><i class="far fa-plus-square fa-fw"></i></a>
+            <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
+                <?php foreach ($view->postulantes as $po){
+                    ?>
+                    <option value="<?php echo $po['id_postulante']; ?>"
+                        <?php echo ($po['id_postulante'] == $view->postulacion->getIdPostulante())? 'selected' :'' ?>
                         >
-                        <?php //echo $ar['matricula'].' '.$ar['nro_movil'].' '.$ar['modelo']; ?>
+                        <?php echo $po['apellido']." ".$po['nombre']." ".$po['dni'];?>
                     </option>
                 <?php  } ?>
             </select>
