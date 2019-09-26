@@ -18,7 +18,7 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){ //ok
+        $('#etapas_left_side').on('click', '.edit', function(){
             //alert('editar vehiculo-contrato');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
@@ -35,7 +35,7 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.view', function(){ //ok
+        $('#etapas_left_side').on('click', '.view', function(){
             var id = $(this).closest('tr').attr('data-id');
             params={};
             params.id_contrato_vehiculo = id;
@@ -55,7 +55,7 @@
 
 
         //Abre formulario para ingresar un nuevo vehiculo al grupo
-        $('#etapas_left_side').on('click', '#add', function(){ //ok
+        $('#etapas_left_side').on('click', '#add', function(){
             params={};
             params.action = "contrato-vehiculo";
             params.operation = "newVehiculo";
@@ -70,7 +70,7 @@
 
 
         //Guardar contrato-vehiculo luego de ingresar nuevo o editar
-        $('#myModal').on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){ 
             //alert('guardar grupo-vehiculo');
 
             if ($("#contrato-vehiculo-form").valid()){
