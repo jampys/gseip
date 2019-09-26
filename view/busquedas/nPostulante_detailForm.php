@@ -115,7 +115,7 @@
 
 
 
-        $('#myModal').on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){
 
             if ($("#postulante-form").valid()){
 
@@ -163,19 +163,19 @@
 
 
 
-        $('#myModal #cancel').on('click', function(){ //ok
+        $('#myModal #cancel').on('click', function(){
            //alert('cancelar');
             //uploadObj.stopUpload();
         });
 
 
-        $('#myModal').modal({ //ok
+        $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
         });
 
 
-        $('#postulante-form').validate({ //ok
+        $('#postulante-form').validate({
             rules: {
                 apellido: {required: true},
                 nombre: {required: true},
