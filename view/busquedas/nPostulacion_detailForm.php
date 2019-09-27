@@ -34,9 +34,10 @@
         });*/
 
 
-        //cancel de formulario de etapa
+        //cancel de formulario de postulacion
         $('#postulacion-form #cancel').on('click', function(){
             $('#postulacion-form').hide();
+            return false;
         });
 
 
