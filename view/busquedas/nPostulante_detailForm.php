@@ -217,8 +217,6 @@
 
 
 
-<!-- Modal -->
-
 
 
                     <input type="hidden" name="id_postulante" id="id_postulante" value="<?php //print $view->postulante->getIdPostulante() ?>">
@@ -308,7 +306,7 @@
 
 
 
-                <div id="myElem" class="msg" style="display:none"></div>
+                <!--<div id="myElem" class="msg" style="display:none"></div>-->
 
 
 
