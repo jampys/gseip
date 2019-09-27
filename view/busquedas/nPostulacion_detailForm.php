@@ -110,15 +110,15 @@
                 $('#box1').load('index.php', params,function(){
                     //$('#myModal').modal();
                     //$('#etapas_left_side #add').attr('id_busqueda', id);
-                    $(this).addClass("highlight");
+                    $('#culo').addClass("highlight");
                     $('.panel').show();
                 })
             }else{
                 alert('cerrar');
-                $(this).removeClass("highlight");
+                $('#culo').removeClass("highlight");
                 $('.panel').hide();
             }
-            
+
         });
 
 
