@@ -1,13 +1,13 @@
 <style>
 
-    #culo:after {  /* icono de un nodo cerrado */
+    #culo:after, #culo2:after {  /* icono de un nodo cerrado */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f054";
         /*color: #5fba7d;*/
     }
 
-    #culo.highlight:after {  /* icono de un nodo abierto */
+    #culo.highlight:after, #culo2.highlight:after {  /* icono de un nodo abierto */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f078";
@@ -99,18 +99,36 @@
                 params={};
                 params.action = "busqueda-postulante";
                 params.operation = "newPostulante";
-                $('#box1').load('index.php', params,function(){
+                $('#box1 .panel-body').load('index.php', params,function(){
                     //$('#myModal').modal();
                     //$('#etapas_left_side #add').attr('id_busqueda', id);
-                    $('.panel').show();
+                    $('#box1').show();
                     $('#etapas_right_side').data('nuevo', 1);
                     //alert(nuevo);
                 })
             }else{
                 //alert('cerrar');
                 $(this).removeClass("highlight");
-                $('.panel').hide();
+                $('#box1').hide();
                 $('#etapas_right_side').data('nuevo', 0);
+            }
+
+        });
+
+
+        $('#chalampa').on('click', '#culo2', function() { //ok
+            var selected = $(this).hasClass("highlight");
+            if(!selected){
+                //alert('abrir');
+                $(this).addClass("highlight");
+                $('#box2').show();
+                $('#etapas_right_side').data('nuevo', 0);
+
+            }else{
+                //alert('cerrar');
+                $(this).removeClass("highlight");
+                $('#box2').hide();
+                $('#etapas_right_side').data('nuevo', 1);
             }
 
         });
@@ -125,10 +143,12 @@
 
 <div id="chalampa">
 
-<a href="#" id="culo" title="nuevo postulante">Nuevo postulante&nbsp;</a>
-<div class="panel panel-default" style="display: none">
-    <div class="panel-body" id="box1" style="background-color: #e5e5e5"></div>
-</div>
+    <a href="#" id="culo" title="nuevo postulante">Nuevo postulante&nbsp;</a>
+    <a href="#" id="culo2" title="postulante existente">Postulante existente&nbsp;</a>
+
+    <div class="panel panel-default" id="box1" style="display: none">
+    <div class="panel-body" style="background-color: #e5e5e5"></div>
+    </div>
 
 
 <form name ="postulacion-form" id="postulacion-form" method="POST" action="index.php">
@@ -144,20 +164,28 @@
 
 
 
-            <div class="form-group">
-                <label for="id_postulante" class="control-label">Postulante</label>
-                <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
-                    <?php foreach ($view->postulantes as $po){
-                        ?>
-                        <option value="<?php echo $po['id_postulante']; ?>"
-                            <?php echo ($po['id_postulante'] == $view->postulacion->getIdPostulante())? 'selected' :'' ?>
-                            >
-                            <?php echo $po['apellido']." ".$po['nombre']." ".$po['dni'];?>
-                        </option>
-                    <?php  } ?>
-                </select>
+        <div class="panel panel-default" id="box2" style="display: none">
+            <div class="panel-body" style="background-color: #e5e5e5">
+
+                <div class="form-group">
+                    <!--<label for="id_postulante" class="control-label">Postulante</label>-->
+                    <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
+                        <?php foreach ($view->postulantes as $po){
+                            ?>
+                            <option value="<?php echo $po['id_postulante']; ?>"
+                                <?php echo ($po['id_postulante'] == $view->postulacion->getIdPostulante())? 'selected' :'' ?>
+                                >
+                                <?php echo $po['apellido']." ".$po['nombre']." ".$po['dni'];?>
+                            </option>
+                        <?php  } ?>
+                    </select>
+
+                </div>
+
 
             </div>
+        </div>
+
 
 
 
