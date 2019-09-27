@@ -121,7 +121,7 @@
         $('#postulacion-form').on('click', '#culo', function() {
             var selected = $(this).hasClass("highlight");
             if(!selected){
-                alert('abrir');
+                //alert('abrir');
                 $(this).addClass("highlight");
                 params={};
                 params.action = "busqueda-postulante";
@@ -132,7 +132,7 @@
                     $('.panel').show();
                 })
             }else{
-                alert('cerrar');
+                //alert('cerrar');
                 $(this).removeClass("highlight");
                 $('.panel').hide();
             }
