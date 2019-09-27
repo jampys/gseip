@@ -115,7 +115,7 @@
 
 
 
-        $('#myModal').on('click', '#submit',function(){
+        /*$('#myModal').on('click', '#submit',function(){
 
             if ($("#postulante-form").valid()){
 
@@ -159,7 +159,7 @@
 
             }
             return false;
-        });
+        });*/
 
 
 
@@ -175,7 +175,7 @@
         });*/
 
 
-        $('#postulante-form').validate({
+        /*$('#postulante-form').validate({
             rules: {
                 apellido: {required: true},
                 nombre: {required: true},
@@ -207,7 +207,7 @@
 
             }
 
-        });
+        });*/
 
 
 

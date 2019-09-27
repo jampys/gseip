@@ -71,10 +71,11 @@
 
         //Guardar contrato-vehiculo luego de ingresar nuevo o editar
         $('#myModal').on('click', '#submit',function(){
-            //alert('guardar grupo-vehiculo');
+            alert('guardar postulacion');
 
-            if ($("#contrato-vehiculo-form").valid()){
+            if ($("#postulacion-form").valid()){
 
+                throw new Error();
                 var params={};
                 params.action = 'contrato-vehiculo';
                 params.operation = 'saveVehiculo';
