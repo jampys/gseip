@@ -35,8 +35,8 @@
 
 
         //cancel de formulario de etapa
-        $('#contrato-vehiculo-form #cancel').on('click', function(){
-            $('#contrato-vehiculo-form').hide();
+        $('#postulacion-form #cancel').on('click', function(){
+            $('#postulacion-form').hide();
         });
 
 
