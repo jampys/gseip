@@ -104,18 +104,18 @@
             var selected = $(this).hasClass("highlight");
             if(!selected){
                 alert('abrir');
+                $(this).addClass("highlight");
                 params={};
                 params.action = "busqueda-postulante";
                 params.operation = "newPostulante";
                 $('#box1').load('index.php', params,function(){
                     //$('#myModal').modal();
                     //$('#etapas_left_side #add').attr('id_busqueda', id);
-                    $('#culo').addClass("highlight");
                     $('.panel').show();
                 })
             }else{
                 alert('cerrar');
-                $('#culo').removeClass("highlight");
+                $(this).removeClass("highlight");
                 $('.panel').hide();
             }
 
