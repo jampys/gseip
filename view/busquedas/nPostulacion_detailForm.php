@@ -141,18 +141,26 @@
     <input type="hidden" name="id_busqueda" id="id_busqueda" value="<?php print $view->postulacion->getIdBusqueda() ?>">
 
 
-        <div class="form-group required">
-            <label for="id_postulante" class="control-label">Postulante</label>&nbsp;<a href="#" id="culo" title="nuevo postulante"><i class="far fa-plus-square fa-fw"></i></a>
-            <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
-                <?php foreach ($view->postulantes as $po){
-                    ?>
-                    <option value="<?php echo $po['id_postulante']; ?>"
-                        <?php echo ($po['id_postulante'] == $view->postulacion->getIdPostulante())? 'selected' :'' ?>
-                        >
-                        <?php echo $po['apellido']." ".$po['nombre']." ".$po['dni'];?>
-                    </option>
-                <?php  } ?>
-            </select>
+
+        <div class="row">
+            <div class="form-group col-md-11 required">
+                <label for="id_postulante" class="control-label">Postulante</label>
+                <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
+                    <?php foreach ($view->postulantes as $po){
+                        ?>
+                        <option value="<?php echo $po['id_postulante']; ?>"
+                            <?php echo ($po['id_postulante'] == $view->postulacion->getIdPostulante())? 'selected' :'' ?>
+                            >
+                            <?php echo $po['apellido']." ".$po['nombre']." ".$po['dni'];?>
+                        </option>
+                    <?php  } ?>
+                </select>
+
+            </div>
+            <div class="form-group col-md-1">
+                <label for="" class="control-label">&nbsp;</label>
+                <a href="#" id="culo" title="nuevo postulante"><i class="far fa-plus-square fa-fw"></i></a>
+            </div>
         </div>
 
 
