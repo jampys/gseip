@@ -136,27 +136,28 @@
         </div>
 
 
-        <div class="form-group">
-            <label class="control-label" for="id_localidad" >Ubicación</label>
-            <select class="form-control selectpicker show-tick" id="id_localidad" name="id_localidad" title="Seleccione la ubicación" data-live-search="true" data-size="5">
-                <?php foreach ($view->localidades as $loc){
+        <div class="form-group required">
+            <label for="origen_cv" class="control-label">Origen del CV</label>
+            <select class="form-control selectpicker show-tick" id="origen_cv" name="origen_cv" title="Seleccione el origen del CV" data-live-search="true" data-size="5">
+                <?php foreach ($view->origenes_cv['enum'] as $cv){
                     ?>
-                    <option value="<?php echo $loc['id_localidad']; ?>"
-                        <?php echo ($loc['id_localidad'] == $view->contrato_vehiculo->getIdLocalidad())? 'selected' :'' ?>
+                    <option value="<?php echo $cv; ?>"
+                        <?php echo ($cv == $view->postulacion->getOrigenCv() OR ($cv == $view->origenes_cv['default'] AND !$view->postulacion->getIdPostulacion()) )? 'selected' :'' ?>
                         >
-                        <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
+                        <?php echo $cv; ?>
                     </option>
                 <?php  } ?>
             </select>
         </div>
 
-
-        <div class="form-group required">
-            <label class="control-label" for="empleado">Fecha desde / hasta</label>
-            <div class="input-group input-daterange">
-                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato_vehiculo->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
-                <div class="input-group-addon">a</div>
-                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato_vehiculo->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+        <div class="row">
+            <div class="form-group col-md-6 required">
+                <label class="control-label" for="expectativas">Expectativas ($)</label>
+                <input class="form-control" type="text" name="expectativas" id="expectativas" value = "<?php print $view->postulacion->getExpectativas() ?>" placeholder="Expectativas">
+            </div>
+            <div class="form-group col-md-6 required">
+                <label class="control-label" for="expectativas">Propuesta económica ($)</label>
+                <input class="form-control" type="text" name="propuesta_economica" id="propuesta_economica" value = "<?php print $view->postulacion->getPropuestaEconomica() ?>" placeholder="Propuesta económica">
             </div>
         </div>
 

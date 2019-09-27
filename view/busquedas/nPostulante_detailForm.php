@@ -298,7 +298,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="comentarios">Comentarios</label>
-                        <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="3"><?php print $view->postulante->getComentarios(); ?></textarea>
+                        <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="2"><?php //print $view->postulante->getComentarios(); ?></textarea>
                     </div>
 
 
