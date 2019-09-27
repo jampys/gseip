@@ -142,8 +142,8 @@
 
 
 
-        <div class="row">
-            <div class="form-group col-md-11 required">
+
+            <div class="form-group">
                 <label for="id_postulante" class="control-label">Postulante</label>
                 <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
                     <?php foreach ($view->postulantes as $po){
@@ -155,13 +155,11 @@
                         </option>
                     <?php  } ?>
                 </select>
+                <a href="#" id="culo" title="nuevo postulante">Nuevo postulante <i class="far fa-plus-square fa-fw"></i></a>
 
             </div>
-            <div class="form-group col-md-1">
-                <label for="" class="control-label">&nbsp;</label>
-                <a href="#" id="culo" title="nuevo postulante"><i class="far fa-plus-square fa-fw"></i></a>
-            </div>
-        </div>
+
+
 
 
         <div class="panel panel-default" style="display: none">
