@@ -181,7 +181,7 @@
 
 
         <div class="panel panel-default" style="display: none">
-            <div class="panel-body" id="box1"></div>
+            <div class="panel-body" id="box1" style="background-color: #e5e5e5"></div>
         </div>
 
 
