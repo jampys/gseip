@@ -163,16 +163,16 @@
 
 
 
-        $('#myModal #cancel').on('click', function(){
+        /*$('#myModal #cancel').on('click', function(){
            //alert('cancelar');
             //uploadObj.stopUpload();
-        });
+        });*/
 
 
-        $('#myModal').modal({
+        /*$('#myModal').modal({
             backdrop: 'static',
             keyboard: false
-        });
+        });*/
 
 
         $('#postulante-form').validate({

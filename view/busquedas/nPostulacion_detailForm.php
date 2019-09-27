@@ -20,18 +20,18 @@
             todayHighlight: true
         });*/
 
-        $('.input-daterange').datepicker({ //ok
+        /*$('.input-daterange').datepicker({
             //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
-        });
+        });*/
 
 
-        $('#myModal').modal({
+        /*$('#myModal').modal({
             backdrop: 'static',
             keyboard: false
-        });
+        });*/
 
 
         //cancel de formulario de etapa
