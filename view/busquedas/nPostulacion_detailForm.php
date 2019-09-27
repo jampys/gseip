@@ -56,7 +56,7 @@
 
         //cancel de formulario de postulacion
         $('#myModal #cancel').on('click', function(){
-            $('#etapas_right_side').hide();
+            $('#chalampa').hide();
             return false;
         });
 
@@ -91,7 +91,7 @@
 
 
 
-        $('#myModal').on('click', '#culo', function() { //ok
+        $('#chalampa').on('click', '#culo', function() { //ok
             var selected = $(this).hasClass("highlight");
             if(!selected){
                 //alert('abrir');
@@ -122,6 +122,8 @@
 
 </script>
 
+
+<div id="chalampa">
 
 <a href="#" id="culo" title="nuevo postulante">Nuevo postulante&nbsp;</a>
 <div class="panel panel-default" style="display: none">
@@ -201,7 +203,7 @@
 
 
 
-
+</div>
 
 
 

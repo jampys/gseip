@@ -74,6 +74,12 @@
         $('#myModal').on('click', '#submit',function(){ //ok
             //alert('guardar postulacion');
 
+            //$('#postulacion-form').validate().resetForm(); //limpiar error input validate
+            $('#postulacion-form').find('input').closest('.form-group').removeClass('has-error');
+            $('#postulante-form').find('input').closest('.form-group').removeClass('has-error');
+            $('#postulacion-form .tooltip').remove(); //limpiar error tooltip validate
+            $('#postulante-form .tooltip').remove(); //limpiar error tooltip validate
+
             if ($("#postulacion-form").valid() && $("#postulante-form").valid() ){
 
                 //alert('paso la validacion');
