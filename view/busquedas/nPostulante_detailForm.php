@@ -217,7 +217,7 @@
 
 
 
-
+<form name ="postulante-form" id="postulante-form" method="POST" action="index.php">
 
                     <input type="hidden" name="id_postulante" id="id_postulante" value="<?php //print $view->postulante->getIdPostulante() ?>">
 
@@ -300,7 +300,7 @@
                     </div>
 
 
-
+</form>
 
                 <div id="fileuploader">Upload</div>
 

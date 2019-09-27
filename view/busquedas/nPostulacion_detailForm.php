@@ -53,8 +53,8 @@
 
 
         //cancel de formulario de postulacion
-        $('#postulacion-form #cancel').on('click', function(){
-            $('#postulacion-form').hide();
+        $('#myModal #cancel').on('click', function(){
+            $('#etapas_right_side').hide();
             return false;
         });
 
@@ -89,7 +89,7 @@
 
 
 
-        $('#postulacion-form').on('click', '#culo', function() { //ok
+        $('#myModal').on('click', '#culo', function() { //ok
             var selected = $(this).hasClass("highlight");
             if(!selected){
                 //alert('abrir');
@@ -118,13 +118,18 @@
 </script>
 
 
+<a href="#" id="culo" title="nuevo postulante">Nuevo postulante&nbsp;</a>
+<div class="panel panel-default" style="display: none">
+    <div class="panel-body" id="box1" style="background-color: #e5e5e5"></div>
+</div>
+
 
 <form name ="postulacion-form" id="postulacion-form" method="POST" action="index.php">
     <fieldset>
 
-    <div class="alert alert-info">
-        <strong><?php echo $view->label ?></strong>
-    </div>
+        <!--<div class="alert alert-info">
+        <strong><?php //echo $view->label ?></strong>
+    </div>-->
 
     <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->postulacion->getIdPostulacion() ?>">
     <input type="hidden" name="id_busqueda" id="id_busqueda" value="<?php print $view->postulacion->getIdBusqueda() ?>">
@@ -144,16 +149,10 @@
                         </option>
                     <?php  } ?>
                 </select>
-                <a href="#" id="culo" title="nuevo postulante">Nuevo postulante&nbsp;</a>
 
             </div>
 
 
-
-
-        <div class="panel panel-default" style="display: none">
-            <div class="panel-body" id="box1" style="background-color: #e5e5e5"></div>
-        </div>
 
 
         <div class="form-group required">
@@ -181,6 +180,9 @@
             </div>
         </div>
 
+    </fieldset>
+</form>
+
 
     <div id="myElem" class="msg" style="display:none"></div>
 
@@ -193,8 +195,7 @@
     </div>
 
 
-    </fieldset>
-</form>
+
 
 
 
