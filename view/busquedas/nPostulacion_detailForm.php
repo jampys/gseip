@@ -1,3 +1,21 @@
+<style>
+
+    #culo:after {  /* icono de un nodo cerrado */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f054";
+        /*color: #5fba7d;*/
+    }
+
+    #culo.highlight:after {  /* icono de un nodo abierto */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f078";
+        /*color: #5fba7d;*/
+    }
+
+</style>
+
 <script type="text/javascript">
 
 
@@ -155,7 +173,7 @@
                         </option>
                     <?php  } ?>
                 </select>
-                <a href="#" id="culo" title="nuevo postulante">Nuevo postulante <i class="far fa-plus-square fa-fw"></i></a>
+                <a href="#" id="culo" title="nuevo postulante">Nuevo postulante&nbsp;</a>
 
             </div>
 
