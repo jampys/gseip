@@ -82,7 +82,7 @@
         });
 
 
-        $('#postulacion-form').on('click', '#culo', function(){ //ok
+        /*$('#postulacion-form').on('click', '#culo', function(){
             alert('Agregar nuevo postulante');
             //var id = $(this).closest('tr').attr('data-id');
             //preparo los parametros
@@ -96,7 +96,31 @@
                 $('.panel').show();
             })
 
+        });*/
+
+
+
+        $('#postulacion-form').on('click', '#culo', function() {
+            var selected = $(this).hasClass("highlight");
+            if(!selected){
+                alert('abrir');
+                params={};
+                params.action = "busqueda-postulante";
+                params.operation = "newPostulante";
+                $('#box1').load('index.php', params,function(){
+                    //$('#myModal').modal();
+                    //$('#etapas_left_side #add').attr('id_busqueda', id);
+                    $(this).addClass("highlight");
+                    $('.panel').show();
+                })
+            }else{
+                alert('cerrar');
+                $(this).removeClass("highlight");
+                $('.panel').hide();
+            }
+            
         });
+
 
 
 
