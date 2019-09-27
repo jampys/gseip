@@ -70,12 +70,14 @@
 
 
         //Guardar contrato-vehiculo luego de ingresar nuevo o editar
-        $('#myModal').on('click', '#submit',function(){
-            alert('guardar postulacion');
+        $('#myModal').on('click', '#submit',function(){ //ok
+            //alert('guardar postulacion');
 
             if ($("#postulacion-form").valid()){
 
-                throw new Error();
+                //alert('paso la validacion');
+
+                //throw new Error();
                 var params={};
                 params.action = 'contrato-vehiculo';
                 params.operation = 'saveVehiculo';
@@ -91,19 +93,19 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#contrato-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        /*$("#contrato-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Vehículo guardado con exito').addClass('alert alert-success').show();
                         $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
                                                 $('#contrato-vehiculo-form').hide();
-                                              }, 2000);
+                                              }, 2000);*/
                     }
 
                 }).fail(function(jqXHR, textStatus, errorThrown ) {
-                    //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
+                    alert('Entro a fail '+jqXHR.responseText);
+                    //$("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
                 });
 
             }

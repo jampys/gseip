@@ -61,7 +61,7 @@
 
         $('#postulacion-form').validate({
             rules: {
-                id_postulante: {required: true}
+                id_postulante: {required: function(){return $('#dni').val()!=""}}
             },
             messages:{
                 id_postulante: "Seleccione el postulante"
