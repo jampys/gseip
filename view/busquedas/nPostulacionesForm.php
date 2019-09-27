@@ -3,7 +3,6 @@
 
     $(document).ready(function(){
 
-        var nuevo = 0;
 
         $('.selectpicker').selectpicker();
 

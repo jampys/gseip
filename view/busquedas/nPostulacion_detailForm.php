@@ -21,7 +21,7 @@
 
     $(document).ready(function(){
 
-
+        $('#etapas_right_side').data('nuevo', 0);
 
         //Necesario para que funcione el plug-in bootstrap-select
         $('.selectpicker').selectpicker({
@@ -63,7 +63,7 @@
 
         $('#postulacion-form').validate({
             rules: {
-                id_postulante: {required: true}
+                id_postulante: {required: function(){return $('#etapas_right_side').data('nuevo') == 0;}}
 
             },
             messages:{
@@ -103,14 +103,14 @@
                     //$('#myModal').modal();
                     //$('#etapas_left_side #add').attr('id_busqueda', id);
                     $('.panel').show();
-                    nuevo = 1;
+                    $('#etapas_right_side').data('nuevo', 1);
                     //alert(nuevo);
                 })
             }else{
                 //alert('cerrar');
                 $(this).removeClass("highlight");
                 $('.panel').hide();
-                nuevo = 0;
+                $('#etapas_right_side').data('nuevo', 0);
             }
 
         });

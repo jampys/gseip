@@ -177,8 +177,8 @@
 
         $('#postulante-form').validate({
             rules: {
-                apellido: {required: true},
-                nombre: {required: true},
+                apellido: {required: function(){return $('#etapas_right_side').data('nuevo') == 1;}},
+                nombre: {required: function(){return $('#etapas_right_side').data('nuevo') == 1;}},
                 dni: {
                     //required: true,
                     remote: {
