@@ -92,6 +92,7 @@
             $('#box1').load('index.php', params,function(){
                 //$('#myModal').modal();
                 //$('#etapas_left_side #add').attr('id_busqueda', id);
+                $('.panel').show();
             })
 
         });
@@ -130,9 +131,8 @@
         </div>
 
 
-        <hr/>
-        <div id="box1">
-
+        <div class="panel panel-default" style="display: none">
+            <div class="panel-body" id="box1"></div>
         </div>
 
 
