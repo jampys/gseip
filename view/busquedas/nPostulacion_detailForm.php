@@ -59,42 +59,12 @@
         });
 
 
-        $('#contrato-vehiculo-form').validate({ //ok
+        $('#postulacion-form').validate({
             rules: {
-                /*codigo: {
-                        required: true,
-                        digits: true,
-                        maxlength: 6
-                },*/
-                id_vehiculo: {
-                 required: true,
-                 remote: {
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                            action: "contrato-vehiculo",
-                            operation: "checkVehiculo",
-                            id_vehiculo: function(){ return $('#id_vehiculo').val();},
-                            id_contrato: function(){ return $('#myModal #id_contrato').val();},
-                            id_contrato_vehiculo: function(){ return $('#id_contrato_vehiculo').val();}
-                          }
-                 }
-                 },
-                fecha_desde: {required: true}
+                id_postulante: {required: true}
             },
             messages:{
-                /*codigo: {
-                    required: "Ingrese el código",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                }, */
-                id_vehiculo: {
-                 required: "Seleccione un vehículo",
-                 remote: "El vehículo ya se encuentra en el contrato"
-                 },
-                //id_vehiculo: "Seleccione un vehículo",
-                fecha_desde: "Seleccione una fecha desde"
+                id_postulante: "Seleccione el postulante"
             }
 
         });
