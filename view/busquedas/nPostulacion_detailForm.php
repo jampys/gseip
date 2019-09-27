@@ -61,10 +61,14 @@
 
         $('#postulacion-form').validate({
             rules: {
-                id_postulante: {required: function(){return $('#dni').val()!=""}}
+                id_postulante: {required: function(){return $('#dni').val()!=""}},
+                apellido: {required: function(){return $('#id_postulante').val()==""}},
+                nombre: {required: function(){return $('#id_postulante').val()==""}}
             },
             messages:{
-                id_postulante: "Seleccione el postulante"
+                id_postulante: "Seleccione el postulante",
+                apellido: "Ingrese el apellido",
+                nombre: "Ingrese el nombre"
             }
 
         });
