@@ -175,7 +175,7 @@
         });*/
 
 
-        /*$('#postulante-form').validate({
+        $('#postulante-form').validate({
             rules: {
                 apellido: {required: true},
                 nombre: {required: true},
@@ -207,7 +207,7 @@
 
             }
 
-        });*/
+        });
 
 
 

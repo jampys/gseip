@@ -21,7 +21,7 @@
 
     $(document).ready(function(){
 
-        var nuevo = 0;
+
 
         //Necesario para que funcione el plug-in bootstrap-select
         $('.selectpicker').selectpicker({
@@ -104,6 +104,7 @@
                     //$('#etapas_left_side #add').attr('id_busqueda', id);
                     $('.panel').show();
                     nuevo = 1;
+                    //alert(nuevo);
                 })
             }else{
                 //alert('cerrar');

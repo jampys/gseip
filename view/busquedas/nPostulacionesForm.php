@@ -3,6 +3,8 @@
 
     $(document).ready(function(){
 
+        var nuevo = 0;
+
         $('.selectpicker').selectpicker();
 
 
@@ -73,7 +75,7 @@
         $('#myModal').on('click', '#submit',function(){ //ok
             //alert('guardar postulacion');
 
-            if ($("#postulacion-form").valid()){
+            if ($("#postulacion-form").valid() && $("#postulante-form").valid() ){
 
                 //alert('paso la validacion');
 
