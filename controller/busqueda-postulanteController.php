@@ -35,8 +35,8 @@ switch ($operation)
 
             sQuery::dpBeginTransaction();
 
-            if($_POST['id_postulacion']){ //postulacion existente o nueva
-
+            if($_POST['id_postulante']){
+            //inserta o edita una postulacion (con postulante ya existente)
                 $postulacion = new Postulacion($_POST['id_postulacion']);
                 $postulacion->setIdBusqueda($_POST['id_busqueda']);
                 $postulacion->setIdPostulante($_POST['id_postulante']);
@@ -49,7 +49,8 @@ switch ($operation)
                 sQuery::dpCommit();
                 print_r(json_encode($rta));
 
-            }elseif ($_POST['apellido'] && $_POST['nombre']){ //trae un nuevo postulante
+            }elseif ($_POST['apellido'] && $_POST['nombre']){
+                //inserta una postulacion (creando simultaneamente un nuevo postulante)
 
                 //inserta postulante
                 $postulante = new Postulante($_POST['id_postulante']);
