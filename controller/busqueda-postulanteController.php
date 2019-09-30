@@ -150,9 +150,9 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    case 'checkVehiculo':
-        $view->contrato_vehiculo = new ContratoVehiculo();
-        $rta = $view->contrato_vehiculo->checkVehiculo($_POST['id_vehiculo'], $_POST['id_contrato'], $_POST['id_contrato_vehiculo']);
+    case 'checkPostulacion': //ok
+        $view->postulacion = new Postulacion();
+        $rta = $view->postulacion->checkPostulacion($_POST['id_postulante'], $_POST['id_busqueda'], $_POST['id_postulacion']);
         print_r(json_encode($rta));
         exit;
         break;
