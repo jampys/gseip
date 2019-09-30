@@ -63,9 +63,9 @@
 
             extErrorStr: "no está permitido. Solo se permiten extensiones: ",
             duplicateErrorStr: "no permitido. El archivo ya existe.",
-            sizeErrorStr: "no permitido. Tamaño máximo permitido: ",
+            sizeErrorStr: "no permitido. Tamaño máximo permitido: "
 
-            onLoad:function(obj){
+            /*onLoad:function(obj){
                 $.ajax({
                     cache: false,
                     url: "index.php",
@@ -109,7 +109,7 @@
             },
             downloadCallback:function(filename,pd) {
                 location.href="index.php?action=uploadsPostulantes&operation=download&filename="+filename;
-            }
+            }*/
         });
 
 
