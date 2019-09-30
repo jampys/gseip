@@ -89,6 +89,7 @@
                     //$('#myModal').modal();
                     //$('#etapas_left_side #add').attr('id_busqueda', id);
                     $('#box1').show();
+                    $('#id_postulante').val('').selectpicker('refresh');
                     $('#id_postulante_form_group').hide();
                     $('#etapas_right_side').data('nuevo', 1);
                     //alert(nuevo);
