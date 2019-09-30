@@ -135,7 +135,7 @@
 
                 params.apellido = $('#apellido').val();
                 params.nombre = $('#nombre').val();
-                //alert(params.id_postulante);
+                //alert(params.id_busqueda);
 
                 $.post('index.php',params,function(data, status, xhr){
                     alert(xhr.responseText);

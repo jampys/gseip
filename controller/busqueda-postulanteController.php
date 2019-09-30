@@ -69,6 +69,8 @@ switch ($operation)
                 $postulacion->setExpectativas($_POST['expectativas']);
                 $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
                 $postulacion->save();
+
+                sQuery::dpCommit();
                 print_r(json_encode(sQuery::dpLastInsertId()));
 
 
