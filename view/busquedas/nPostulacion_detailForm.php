@@ -75,7 +75,7 @@
         });
 
 
-        
+
 
         $('#chalampa').on('click', '#culo', function() { //ok
             var selected = $(this).hasClass("highlight");

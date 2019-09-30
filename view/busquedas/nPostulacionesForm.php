@@ -91,8 +91,10 @@
                 params.expectativas = $('#expectativas').val();
                 params.propuesta_economica = $('#propuesta_economica').val();
 
+                alert(params.id_postulante);
+
                 $.post('index.php',params,function(data, status, xhr){
-                    alert(xhr.responseText);
+                    //alert(xhr.responseText);
 
                     if(data >=0){
                         /*$("#contrato-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones

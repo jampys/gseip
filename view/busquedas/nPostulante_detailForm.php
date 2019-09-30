@@ -219,7 +219,7 @@
 
 <form name ="postulante-form" id="postulante-form" method="POST" action="index.php">
 
-                    <input type="hidden" name="id_postulante" id="id_postulante" value="<?php //print $view->postulante->getIdPostulante() ?>">
+                    <!--<input type="hidden" name="id_postulante" id="id_postulante" value="<?php //print $view->postulante->getIdPostulante() ?>">-->
 
                     <div class="form-group required">
                         <label class="control-label" for="apellido">Apellido</label>
