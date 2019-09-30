@@ -79,7 +79,7 @@
 
 
 
-        $('#chalampa').on('click', '#culo', function() { //ok
+        $('#chalampa').on('click', '#culo', function(e) { //ok
             var selected = $(this).hasClass("highlight");
             if(!selected){
                 //alert('abrir');
@@ -103,6 +103,7 @@
                 $('#id_postulante_form_group').show();
                 $('#etapas_right_side').data('nuevo', 0);
             }
+            return false;
 
         });
 
