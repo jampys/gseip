@@ -63,11 +63,13 @@
 
         $('#postulacion-form').validate({
             rules: {
-                id_postulante: {required: function(){return $('#etapas_right_side').data('nuevo') == 0;}}
+                id_postulante: {required: function(){return $('#etapas_right_side').data('nuevo') == 0;}},
+                origen_cv: {required: true}
 
             },
             messages:{
-                id_postulante: "Seleccione el postulante"
+                id_postulante: "Seleccione el postulante",
+                origen_cv: "Seleccione el origen del CV"
             }
 
         });
