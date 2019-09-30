@@ -26,16 +26,76 @@ switch ($operation)
         break;
 
     case 'savePostulacion': //ok
-        $postulacion = new Postulacion($_POST['id_postulacion']);
-        $postulacion->setIdBusqueda($_POST['id_busqueda']);
-        $postulacion->setIdPostulante($_POST['id_postulante']);
-        $postulacion->setOrigenCv($_POST['origen_cv']);
-        $postulacion->setExpectativas($_POST['expectativas']);
-        $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
 
-        $rta = $postulacion->save();
-        //print_r(json_encode(sQuery::dpLastInsertId()));
-        print_r(json_encode($rta));
+        try{
+
+            sQuery::dpBeginTransaction();
+
+            if($_POST['id_postulacion']){ //postulacion existente. La edita
+
+                $postulacion = new Postulacion($_POST['id_postulacion']);
+                $postulacion->setIdBusqueda($_POST['id_busqueda']);
+                $postulacion->setIdPostulante($_POST['id_postulante']);
+                $postulacion->setOrigenCv($_POST['origen_cv']);
+                $postulacion->setExpectativas($_POST['expectativas']);
+                $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
+
+                $rta = $postulacion->save();
+                //print_r(json_encode(sQuery::dpLastInsertId()));
+                sQuery::dpCommit();
+                print_r(json_encode($rta));
+
+            }elseif ($_POST['apellido'] && $_POST['nombre']){ //trae un nuevo postulante
+
+                //inserta postulante
+                $postulante = new Postulante($_POST['id_postulante']);
+                $postulante->setApellido($_POST['apellido']);
+                $postulante->setNombre($_POST['nombre']);
+                $postulante->setDni($_POST['dni']);
+                $postulante->setListaNegra( ($_POST['lista_negra'] == 1)? 1 : null);
+                $postulante->setTelefono($_POST['telefono']);
+                $postulante->setFormacion($_POST['formacion']);
+                $postulante->setIdEspecialidad( ($_POST['id_especialidad']!='')? $_POST['id_especialidad'] : null);
+                $postulante->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
+                $postulante->setComentarios( ($_POST['comentarios']!='')? $_POST['comentarios'] : null);
+                $postulante->save();
+                $id_postulante = sQuery::dpLastInsertId();
+
+                //inserta postulacion
+                $postulacion = new Postulacion($_POST['id_postulacion']);
+                $postulacion->setIdBusqueda($_POST['id_busqueda']);
+                $postulacion->setIdPostulante($id_postulante);
+                $postulacion->setOrigenCv($_POST['origen_cv']);
+                $postulacion->setExpectativas($_POST['expectativas']);
+                $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
+                $postulacion->save();
+                print_r(json_encode(sQuery::dpLastInsertId()));
+
+                
+            }else{ //no trae datos
+                throw new PDOException();
+            }
+
+        }catch (PDOException $e){
+
+            //if($e->errorInfo[1] == 1062) $rta['duplicates']++;
+            //else $rta['others']++;
+            sQuery::dpRollback();
+            print_r(json_encode(-1));
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         exit;
         break;
 
