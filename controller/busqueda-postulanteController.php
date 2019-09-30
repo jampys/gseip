@@ -22,7 +22,7 @@ switch ($operation)
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
         $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
-        $view->contentTemplate="view/busquedas/nPostulacionesForm.php";
+        $view->contentTemplate="view/busquedas/nPostulacionesGrid.php";
         break;
 
     case 'savePostulacion': //ok
@@ -91,7 +91,7 @@ switch ($operation)
         break;
 
 
-    default : //carga la tabla de postulantes de la busqueda
+    default : //carga la tabla de postulaciones //ok
         $view->disableLayout=true;
         $view->busqueda = new Busqueda($_POST['id_busqueda']);
         $view->label= $view->busqueda->getNombre();
