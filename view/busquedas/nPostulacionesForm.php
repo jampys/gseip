@@ -20,7 +20,7 @@
 
 
         $('#etapas_left_side').on('click', '.edit', function(){ //ok
-            alert('editar postulacion');
+            //alert('editar postulacion');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar vehiculo: '+id);
@@ -30,8 +30,7 @@
             params.operation = "editPostulacion";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
-                //$('#myModal').modal();
+                $('#postulacion-form #id_postulante').attr('disabled', true).selectpicker('refresh');
             })
         });
 
