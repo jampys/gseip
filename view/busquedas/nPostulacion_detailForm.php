@@ -138,9 +138,11 @@
                 //alert(params.id_busqueda);
 
                 $.post('index.php',params,function(data, status, xhr){
-                    alert(xhr.responseText);
+                    //alert(xhr.responseText);
+                    objeto.id = data['id_postulante']; //data trae el id del postulante
 
                     if(data['msg'] >=0){
+                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#chalampa #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
                         $('#etapas_left_side .grid').load('index.php',{action:"busqueda-postulante", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
@@ -154,7 +156,6 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     alert('Entro a fail '+jqXHR.responseText);
-                    //$("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
                 });
 
             }
