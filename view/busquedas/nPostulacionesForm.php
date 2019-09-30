@@ -31,6 +31,7 @@
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 $('#postulacion-form #id_postulante').attr('disabled', true).selectpicker('refresh');
+                $("#chalampa #culo").css('display', 'none');
             })
         });
 
@@ -45,6 +46,7 @@
             $('#etapas_right_side').load('index.php', params,function(){
                 $("#etapas_right_side fieldset").prop("disabled", true);
                 $("#chalampa #footer-buttons button").css('display', 'none');
+                $("#chalampa #culo").css('display', 'none');
                 $('.selectpicker').selectpicker('refresh');
             })
         });
