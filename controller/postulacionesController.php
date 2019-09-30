@@ -17,7 +17,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid': //ok
+    case 'refreshGrid': //para la grilla de postulaciones //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         $id_busqueda = ($_POST['search_busqueda']!='')? $_POST['search_busqueda'] : null;
@@ -43,7 +43,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newPostulacion': //ok
+    case 'newPostulacion': //OBSOLETO
         $view->label='Nueva postulación';
         $view->postulacion = new Postulacion();
 
@@ -55,7 +55,7 @@ switch ($operation)
         $view->contentTemplate="view/postulaciones/postulacionesForm.php";
         break;
 
-    case 'editPostulacion': //ok
+    case 'editPostulacion': //OBSOLETO
         $view->label = ($_POST['target'] == 'view')? 'Ver postulación':'Editar postulación';
         $view->postulacion = new Postulacion($_POST['id_postulacion']);
         
@@ -69,15 +69,7 @@ switch ($operation)
         break;
 
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
-        print_r(json_encode($rta));
-        die; // no quiero mostrar nada cuando borra , solo devuelve el control.
-        break;
-
-
-    default : //ok
+    default : //para la grilla de postulaciones //ok
         $view->busquedas = Busqueda::getBusquedasActivas(); //carga el combo para filtrar busquedas
         $view->postulantes = Postulante::getPostulantesActivos(); //carga el combo para filtrar postulantes
         //$view->contratos = Contrato::getContratos(); //carga el combo para filtrar contratos
