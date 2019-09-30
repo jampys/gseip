@@ -30,8 +30,6 @@ switch ($operation)
         $postulacion->setIdBusqueda($_POST['id_busqueda']);
         $postulacion->setIdPostulante($_POST['id_postulante']);
         $postulacion->setOrigenCv($_POST['origen_cv']);
-        //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        //$postulacion->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
         $postulacion->setExpectativas($_POST['expectativas']);
         $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
 
