@@ -177,11 +177,11 @@
         </div>
 
         <div class="row">
-            <div class="form-group col-md-6 required">
+            <div class="form-group col-md-6">
                 <label class="control-label" for="expectativas">Expectativas ($)</label>
                 <input class="form-control" type="text" name="expectativas" id="expectativas" value = "<?php print $view->postulacion->getExpectativas() ?>" placeholder="Expectativas">
             </div>
-            <div class="form-group col-md-6 required">
+            <div class="form-group col-md-6">
                 <label class="control-label" for="expectativas">Propuesta económica ($)</label>
                 <input class="form-control" type="text" name="propuesta_economica" id="propuesta_economica" value = "<?php print $view->postulacion->getPropuestaEconomica() ?>" placeholder="Propuesta económica">
             </div>
