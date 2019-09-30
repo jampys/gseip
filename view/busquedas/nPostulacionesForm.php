@@ -120,7 +120,7 @@
                                             $('#confirm-ve').dialog('close');
                                           }, 2000);
                 }else{
-                    $("#myElemento").html('Error al eliminar el vehículo').addClass('alert alert-danger').show();
+                    $("#confirm-ve #myElemento").html('No es posible eliminar la postulación').addClass('alert alert-danger').show();
                 }
 
 
