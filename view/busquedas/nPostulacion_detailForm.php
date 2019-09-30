@@ -151,12 +151,31 @@
 
         $('#postulacion-form').validate({
             rules: {
-                id_postulante: {required: function(){return $('#etapas_right_side').data('nuevo') == 0;}},
+                //id_postulante: {required: function(){return $('#etapas_right_side').data('nuevo') == 0;}},
+                id_postulante: {
+                    required: function(){return $('#etapas_right_side').data('nuevo') == 0;},
+                    remote: {
+                        url: "index.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            action: "busqueda-postulante",
+                            operation: "checkPostulacion",
+                            id_postulante: function(){ return $('#id_postulante').val();},
+                            id_busqueda: function(){ return $('#myModal #id_busqueda').val();},
+                            id_postulacion: function(){ return $('#id_postulacion').val();}
+                        }
+                    }
+                },
                 origen_cv: {required: true}
 
             },
             messages:{
-                id_postulante: "Seleccione el postulante",
+                //id_postulante: "Seleccione el postulante",
+                id_postulante: {
+                    required: "Seleccione un postulante",
+                    remote: "El postulante ya se encuentra en la búsqueda"
+                },
                 origen_cv: "Seleccione el origen del CV"
             }
 
