@@ -128,7 +128,7 @@
 
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=busquedas"><i class="far fa-clipboard fa-fw"></i>&nbsp;Búsquedas</a></li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('PTE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=postulantes"><i class="far fa-id-badge fa-fw"></i>&nbsp;Postulantes</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PTN_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=postulaciones"><i class="fas fa-tasks fa-fw"></i>&nbsp;Postulaciones</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PTN_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=postulaciones"><i class="fas fa-tasks fa-fw"></i>&nbsp;Avance de las postulaciones</a></li>
 
                         </ul>
                     </li>
