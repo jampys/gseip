@@ -21,8 +21,8 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->vehiculos = ContratoVehiculo::getVehiculos($_POST['id_contrato']);
-        $view->contentTemplate="view/contratos/vehiculosGrid.php";
+        $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
+        $view->contentTemplate="view/busquedas/nPostulacionesForm.php";
         break;
 
     case 'savePostulacion': //ok

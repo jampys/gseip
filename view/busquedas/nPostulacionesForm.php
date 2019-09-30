@@ -96,14 +96,13 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        /*$("#contrato-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Vehículo guardado con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
+                        $("#chalampa #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
+                        $('#etapas_left_side .grid').load('index.php',{action:"busqueda-postulante", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                                                //$('#myModal').modal('hide');
-                                                $('#contrato-vehiculo-form').hide();
-                                              }, 2000);*/
+                                                $('#chalampa').hide();
+                                              }, 2000);
                     }
 
                 }).fail(function(jqXHR, textStatus, errorThrown ) {
