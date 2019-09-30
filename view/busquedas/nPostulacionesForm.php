@@ -68,54 +68,6 @@
         });
 
 
-        //Guardar postulacion luego de ingresar nueva o editar
-        $('#myModal').on('click', '#submit',function(){ //ok
-            //alert('guardar postulacion');
-
-            //$('#postulacion-form').validate().resetForm(); //limpiar error input validate
-            $('#postulacion-form').find('input').closest('.form-group').removeClass('has-error');
-            $('#postulante-form').find('input').closest('.form-group').removeClass('has-error');
-            $('#postulacion-form .tooltip').remove(); //limpiar error tooltip validate
-            $('#postulante-form .tooltip').remove(); //limpiar error tooltip validate
-
-            if ($("#postulacion-form").valid() && $("#postulante-form").valid() ){
-
-                //alert('paso la validacion');
-                //throw new Error();
-                var params={};
-                params.action = 'busqueda-postulante';
-                params.operation = 'savePostulacion';
-                params.id_busqueda = $('#id_busqueda').val();
-                params.id_postulante = $('#id_postulante').val();
-                params.id_postulacion = $('#id_postulacion').val();
-
-                params.origen_cv = $('#origen_cv').val();
-                params.expectativas = $('#expectativas').val();
-                params.propuesta_economica = $('#propuesta_economica').val();
-                //alert(params.id_postulante);
-
-                $.post('index.php',params,function(data, status, xhr){
-                    //alert(xhr.responseText);
-
-                    if(data >=0){
-                        $("#chalampa #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"busqueda-postulante", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
-                        setTimeout(function() { $("#myElem").hide();
-                                                $('#chalampa').hide();
-                                              }, 2000);
-                    }
-
-                }).fail(function(jqXHR, textStatus, errorThrown ) {
-                    alert('Entro a fail '+jqXHR.responseText);
-                    //$("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
-                });
-
-            }
-            return false;
-        });
-
 
 
         $('#etapas_left_side').on('click', '.delete', function(){

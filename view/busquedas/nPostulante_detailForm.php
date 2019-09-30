@@ -19,17 +19,17 @@
             todayHighlight: true
         });*/
 
-        $('.input-group.date').datepicker({
+        /*$('.input-group.date').datepicker({
             //inline: true
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
-        });
+        });*/
 
 
         $('.image').viewer({});
 
-        var objeto={};
+        //var objeto={}; //se mueve a nPostulacion_detailForm.php
 
 
         var uploadObj = $("#fileuploader").uploadFile({
