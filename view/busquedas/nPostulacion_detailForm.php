@@ -103,6 +103,7 @@
                     //$('#myModal').modal();
                     //$('#etapas_left_side #add').attr('id_busqueda', id);
                     $('#box1').show();
+                    $('#id_postulante_form_group').hide();
                     $('#etapas_right_side').data('nuevo', 1);
                     //alert(nuevo);
                 })
@@ -110,25 +111,8 @@
                 //alert('cerrar');
                 $(this).removeClass("highlight");
                 $('#box1').hide();
+                $('#id_postulante_form_group').show();
                 $('#etapas_right_side').data('nuevo', 0);
-            }
-
-        });
-
-
-        $('#chalampa').on('click', '#culo2', function() { //ok
-            var selected = $(this).hasClass("highlight");
-            if(!selected){
-                //alert('abrir');
-                $(this).addClass("highlight");
-                $('#box2').show();
-                $('#etapas_right_side').data('nuevo', 0);
-
-            }else{
-                //alert('cerrar');
-                $(this).removeClass("highlight");
-                $('#box2').hide();
-                $('#etapas_right_side').data('nuevo', 1);
             }
 
         });
@@ -144,8 +128,7 @@
 <div id="chalampa">
 
     <a href="#" id="culo" title="nuevo postulante">Nuevo postulante&nbsp;</a>
-    <a href="#" id="culo2" title="postulante existente">Postulante existente&nbsp;</a>
-
+    
     <div class="panel panel-default" id="box1" style="display: none">
     <div class="panel-body" style="background-color: #e5e5e5"></div>
     </div>
@@ -164,30 +147,19 @@
 
 
 
-        <div class="panel panel-default" id="box2" style="display: none">
-            <div class="panel-body" style="background-color: #e5e5e5">
-
-                <div class="form-group">
-                    <!--<label for="id_postulante" class="control-label">Postulante</label>-->
-                    <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
-                        <?php foreach ($view->postulantes as $po){
-                            ?>
-                            <option value="<?php echo $po['id_postulante']; ?>"
-                                <?php echo ($po['id_postulante'] == $view->postulacion->getIdPostulante())? 'selected' :'' ?>
-                                >
-                                <?php echo $po['apellido']." ".$po['nombre']." ".$po['dni'];?>
-                            </option>
-                        <?php  } ?>
-                    </select>
-
-                </div>
-
-
-            </div>
+        <div class="form-group" id="id_postulante_form_group">
+            <!--<label for="id_postulante" class="control-label">Postulante</label>-->
+            <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
+                <?php foreach ($view->postulantes as $po){
+                    ?>
+                    <option value="<?php echo $po['id_postulante']; ?>"
+                        <?php echo ($po['id_postulante'] == $view->postulacion->getIdPostulante())? 'selected' :'' ?>
+                        >
+                        <?php echo $po['apellido']." ".$po['nombre']." ".$po['dni'];?>
+                    </option>
+                <?php  } ?>
+            </select>
         </div>
-
-
-
 
 
         <div class="form-group required">
