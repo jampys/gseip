@@ -301,7 +301,8 @@
 
         <div class="form-group" id="id_postulante_form_group">
             <!--<label for="id_postulante" class="control-label">Postulante</label>-->
-            <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" title="Seleccione el postulante" data-live-search="true" data-size="5">
+            <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" data-live-search="true" data-size="5">
+                <option value="">Seleccione un postulante</option>
                 <?php foreach ($view->postulantes as $po){
                     ?>
                     <option value="<?php echo $po['id_postulante']; ?>"
