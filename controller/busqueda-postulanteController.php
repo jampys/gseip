@@ -2,7 +2,8 @@
 include_once("model/busquedasModel.php");
 include_once("model/postulacionesModel.php");
 include_once("model/postulantesModel.php");
-//include_once("model/localidadesModel.php");
+include_once("model/localidadesModel.php");
+include_once("model/sel_especialidadesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -43,6 +44,7 @@ switch ($operation)
         $view->postulacion = new Postulacion($_POST['id_postulacion']);
 
         $view->postulantes = Postulante::getPostulantesActivos();
+        $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/busquedas/nPostulacion_detailForm.php";
@@ -50,10 +52,12 @@ switch ($operation)
 
 
     case 'newPostulante': //ok
-        //$view->label='Nueva postulación';
-        //$view->postulacion = new Postulacion($_POST['id_postulacion']);
+        //$view->label='Nuevo postulante';
+        $view->postulante = new Postulante();
 
-        //$view->postulantes = Postulante::getPostulantesActivos();
+        $view->formaciones = Soporte::get_enum_values('sel_postulantes', 'formacion');
+        $view->localidades = Localidad::getLocalidades();
+        $view->especialidades = Especialidad::getEspecialidades();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/busquedas/nPostulante_detailForm.php";

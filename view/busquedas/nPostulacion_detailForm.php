@@ -128,7 +128,7 @@
 <div id="chalampa">
 
     <a href="#" id="culo" title="nuevo postulante">Nuevo postulante&nbsp;</a>
-    
+
     <div class="panel panel-default" id="box1" style="display: none">
     <div class="panel-body" style="background-color: #e5e5e5"></div>
     </div>
