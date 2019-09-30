@@ -82,7 +82,7 @@
                 //throw new Error();
                 var params={};
                 params.action = 'busqueda-postulante';
-                params.operation = 'savePostulante';
+                params.operation = 'savePostulacion';
                 params.id_busqueda = $('#id_busqueda').val();
                 params.id_postulante = $('#id_postulante').val();
                 params.id_postulacion = $('#id_postulacion').val();
@@ -92,7 +92,7 @@
                 params.propuesta_economica = $('#propuesta_economica').val();
 
                 $.post('index.php',params,function(data, status, xhr){
-                    //alert(xhr.responseText);
+                    alert(xhr.responseText);
 
                     if(data >=0){
                         /*$("#contrato-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones

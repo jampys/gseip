@@ -75,40 +75,24 @@
         });
 
 
-        /*$('#postulacion-form').on('click', '#culo', function(){
-            alert('Agregar nuevo postulante');
-            //var id = $(this).closest('tr').attr('data-id');
-            //preparo los parametros
-            params={};
-            //params.id_busqueda = id;
-            params.action = "busqueda-postulante";
-            params.operation = "newPostulante";
-            $('#box1').load('index.php', params,function(){
-                //$('#myModal').modal();
-                //$('#etapas_left_side #add').attr('id_busqueda', id);
-                $('.panel').show();
-            })
-
-        });*/
-
-
+        
 
         $('#chalampa').on('click', '#culo', function() { //ok
             var selected = $(this).hasClass("highlight");
             if(!selected){
                 //alert('abrir');
                 $(this).addClass("highlight");
-                params={};
-                params.action = "busqueda-postulante";
-                params.operation = "newPostulante";
-                $('#box1 .panel-body').load('index.php', params,function(){
+                //params={};
+                //params.action = "busqueda-postulante";
+                //params.operation = "newPostulante";
+                //$('#box1 .panel-body').load('index.php', params,function(){
                     //$('#myModal').modal();
                     //$('#etapas_left_side #add').attr('id_busqueda', id);
                     $('#box1').show();
                     $('#id_postulante_form_group').hide();
                     $('#etapas_right_side').data('nuevo', 1);
                     //alert(nuevo);
-                })
+                //})
             }else{
                 //alert('cerrar');
                 $(this).removeClass("highlight");
@@ -132,7 +116,9 @@
     <a href="#" id="culo" title="nuevo postulante">Nuevo postulante&nbsp;</a>
 
     <div class="panel panel-default" id="box1" style="display: none">
-    <div class="panel-body" style="background-color: #e5e5e5"></div>
+        <div class="panel-body" style="background-color: #e5e5e5">
+            <?php include_once('view/busquedas/nPostulante_detailForm.php');?>
+        </div>
     </div>
 
 
