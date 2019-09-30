@@ -143,9 +143,9 @@ switch ($operation)
         $view->contentTemplate="view/busquedas/nPostulacion_detailForm.php";
         break;
 
-    case 'deleteVehiculo':
-        $view->contrato_vehiculo = new ContratoVehiculo($_POST['id_contrato_vehiculo']);
-        $rta = $view->contrato_vehiculo->deleteVehiculoContrato();
+    case 'deletePostulacion': //ok
+        $view->postulacion = new Postulacion($_POST['id_postulacion']);
+        $rta = $view->postulacion->deletePostulacion();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;

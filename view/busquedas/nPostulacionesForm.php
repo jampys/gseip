@@ -101,22 +101,22 @@
             //alert(id);
             //preparo los parametros
             params={};
-            params.id_contrato_vehiculo = id;
-            params.id_contrato = $('#etapas_left_side #add').attr('id_contrato');
-            params.action = "contrato-vehiculo";
-            params.operation = "deleteVehiculo";
+            params.id_postulacion = id;
+            params.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
+            params.action = "busqueda-postulante";
+            params.operation = "deletePostulacion";
             //alert(params.id_grupo);
             //throw new Error();
 
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-ve #myElemento").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
+                    $("#confirm-ve #myElemento").html('Postulación eliminada con exito').addClass('alert alert-success').show();
+                    $('#etapas_left_side .grid').load('index.php',{action:"busqueda-postulante", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-ve #myElemento").hide();
-                                            $('#contrato-vehiculo-form').hide();
+                                            $('#chalampa').hide();
                                             $('#confirm-ve').dialog('close');
                                           }, 2000);
                 }else{
@@ -200,7 +200,7 @@
 
 <div id="confirm-ve">
     <div class="modal-body">
-        ¿Desea eliminar el vehículo del contrato?
+        ¿Desea eliminar la postulación?
     </div>
 
     <div id="myElemento" style="display:none">

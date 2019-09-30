@@ -150,11 +150,11 @@ class Postulacion
 
     }
 
-    function deleteHabilidad(){
+    function deletePostulacion(){ //ok
         $stmt=new sQuery();
-        $query="delete from habilidades where id_habilidad =:id_habilidad";
+        $query="delete from sel_postulaciones where id_postulacion =:id_postulacion";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
