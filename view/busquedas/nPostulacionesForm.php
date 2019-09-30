@@ -91,7 +91,8 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                close: function() { $("#confirm-ve #myElemento").empty().removeClass(); }
             }).dialog('open');
             return false;
         });
