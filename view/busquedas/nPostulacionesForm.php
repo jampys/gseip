@@ -19,15 +19,15 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){
+        $('#etapas_left_side').on('click', '.edit', function(){ //ok
             //alert('editar vehiculo-contrato');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar vehiculo: '+id);
             params={};
-            params.id_contrato_vehiculo = id;
-            params.action = "contrato-vehiculo";
-            params.operation = "editVehiculo";
+            params.id_postulacion = id;
+            params.action = "busqueda-postulante";
+            params.operation = "editPostulacion";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
