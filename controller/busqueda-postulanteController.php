@@ -73,7 +73,7 @@ switch ($operation)
 
 
             }else{ //no trae datos
-                throw new PDOException();
+                throw new PDOException('Error dario: no trae datos');
             }
 
         }catch (PDOException $e){

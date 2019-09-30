@@ -129,10 +129,12 @@
                 params.id_busqueda = $('#id_busqueda').val();
                 params.id_postulante = $('#id_postulante').val();
                 params.id_postulacion = $('#id_postulacion').val();
-
                 params.origen_cv = $('#origen_cv').val();
                 params.expectativas = $('#expectativas').val();
                 params.propuesta_economica = $('#propuesta_economica').val();
+
+                params.apellido = $('#apellido').val();
+                params.nombre = $('#nombre').val();
                 //alert(params.id_postulante);
 
                 $.post('index.php',params,function(data, status, xhr){
