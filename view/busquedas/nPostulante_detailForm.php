@@ -175,7 +175,7 @@
         });*/
 
 
-        $('#postulante-form').validate({
+        $('#postulante-form').validate({ //ok
             rules: {
                 apellido: {required: function(){return $('#etapas_right_side').data('nuevo') == 1;}},
                 nombre: {required: function(){return $('#etapas_right_side').data('nuevo') == 1;}},
