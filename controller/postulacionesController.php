@@ -17,7 +17,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         $id_busqueda = ($_POST['search_busqueda']!='')? $_POST['search_busqueda'] : null;
@@ -27,7 +27,7 @@ switch ($operation)
         $view->contentTemplate="view/postulaciones/postulacionesGrid.php";
         break;
 
-    case 'savePostulacion': //ok
+    case 'savePostulacion': //OBSOLETO
         $postulacion = new Postulacion($_POST['id_postulacion']);
         $postulacion->setIdBusqueda($_POST['id_busqueda']);
         $postulacion->setIdPostulante($_POST['id_postulante']);
@@ -75,7 +75,7 @@ switch ($operation)
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
-    
+
 
     default : //ok
         $view->busquedas = Busqueda::getBusquedasActivas(); //carga el combo para filtrar busquedas

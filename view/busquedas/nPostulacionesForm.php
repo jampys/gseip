@@ -66,7 +66,7 @@
         });
 
 
-        //Guardar contrato-vehiculo luego de ingresar nuevo o editar
+        //Guardar postulacion luego de ingresar nueva o editar
         $('#myModal').on('click', '#submit',function(){ //ok
             //alert('guardar postulacion');
 
@@ -79,18 +79,17 @@
             if ($("#postulacion-form").valid() && $("#postulante-form").valid() ){
 
                 //alert('paso la validacion');
-
                 //throw new Error();
                 var params={};
-                params.action = 'contrato-vehiculo';
-                params.operation = 'saveVehiculo';
-                params.id_contrato_vehiculo = $('#id_contrato_vehiculo').val();
-                params.id_contrato = $('#id_contrato').val();
-                params.id_vehiculo = $('#id_vehiculo').val();
-                params.fecha_desde = $('#fecha_desde').val();
-                params.fecha_hasta = $('#fecha_hasta').val();
-                params.id_localidad = $('#id_localidad').val();
-                //alert(params.id_grupo);
+                params.action = 'busqueda-postulante';
+                params.operation = 'savePostulante';
+                params.id_busqueda = $('#id_busqueda').val();
+                params.id_postulante = $('#id_postulante').val();
+                params.id_postulacion = $('#id_postulacion').val();
+
+                params.origen_cv = $('#origen_cv').val();
+                params.expectativas = $('#expectativas').val();
+                params.propuesta_economica = $('#propuesta_economica').val();
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
