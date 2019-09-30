@@ -71,7 +71,7 @@ switch ($operation)
                 $postulacion->save();
                 print_r(json_encode(sQuery::dpLastInsertId()));
 
-                
+
             }else{ //no trae datos
                 throw new PDOException();
             }

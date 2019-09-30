@@ -135,7 +135,7 @@
                 //alert(params.id_postulante);
 
                 $.post('index.php',params,function(data, status, xhr){
-                    //alert(xhr.responseText);
+                    alert(xhr.responseText);
 
                     if(data >=0){
                         $("#chalampa #footer-buttons button").prop("disabled", true); //deshabilito botones
@@ -143,11 +143,13 @@
                         $('#etapas_left_side .grid').load('index.php',{action:"busqueda-postulante", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                            $('#chalampa').hide();
-                        }, 2000);
+                                                $('#chalampa').hide();
+                                              }, 2000);
+                    }else{
+                        $("#myElem").html('Error al guardar la postulación').addClass('alert alert-danger').show();
                     }
 
-                }).fail(function(jqXHR, textStatus, errorThrown ) {
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     alert('Entro a fail '+jqXHR.responseText);
                     //$("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
                 });
