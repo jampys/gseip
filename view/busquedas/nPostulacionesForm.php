@@ -35,19 +35,16 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.view', function(){
+        $('#etapas_left_side').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             params={};
-            params.id_contrato_vehiculo = id;
-            params.action = "contrato-vehiculo";
-            params.operation = "editVehiculo";
+            params.id_postulacion = id;
+            params.action = "busqueda-postulante";
+            params.operation = "editPostulacion";
             params.target = "view";
-            //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
                 $("#etapas_right_side fieldset").prop("disabled", true);
-                $("#contrato-vehiculo-form #footer-buttons button").css('display', 'none');
-                //$('#myModal').modal();
+                $("#chalampa #footer-buttons button").css('display', 'none');
                 $('.selectpicker').selectpicker('refresh');
             })
         });
