@@ -35,7 +35,7 @@ switch ($operation)
 
             sQuery::dpBeginTransaction();
 
-            if($_POST['id_postulacion']){ //postulacion existente. La edita
+            if($_POST['id_postulacion']){ //postulacion existente o nueva
 
                 $postulacion = new Postulacion($_POST['id_postulacion']);
                 $postulacion->setIdBusqueda($_POST['id_busqueda']);
