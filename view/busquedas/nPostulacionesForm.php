@@ -90,8 +90,7 @@
                 params.origen_cv = $('#origen_cv').val();
                 params.expectativas = $('#expectativas').val();
                 params.propuesta_economica = $('#propuesta_economica').val();
-
-                alert(params.id_postulante);
+                //alert(params.id_postulante);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
