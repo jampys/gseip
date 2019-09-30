@@ -20,7 +20,7 @@
 
 
         $('#etapas_left_side').on('click', '.edit', function(){ //ok
-            //alert('editar vehiculo-contrato');
+            alert('editar postulacion');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar vehiculo: '+id);
@@ -65,7 +65,7 @@
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_busqueda').val(params.id_contrato);
+                $('#id_busqueda').val(params.id_busqueda);
             })
         });
 
