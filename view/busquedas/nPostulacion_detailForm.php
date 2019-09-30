@@ -21,7 +21,7 @@
 
     $(document).ready(function(){
 
-        var objeto={};
+
 
         $('#etapas_right_side').data('nuevo', 0);
 
@@ -33,6 +33,92 @@
             $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
                              // elimine el mensaje de requerido de jquery validation
         });
+
+
+
+        $('.image').viewer({});
+        var objeto={};
+
+        var uploadObj = $("#fileuploader").uploadFile({
+            url: "index.php?action=uploadsPostulantes&operation=upload",
+            dragDrop: <?php echo ( PrivilegedUser::dhasAction('PTE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
+            autoSubmit: false,
+            fileName: "myfile",
+            returnType: "json",
+            showDelete: <?php echo ( PrivilegedUser::dhasAction('PTE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
+            showDownload:true,
+            showCancel: true,
+            showAbort: true,
+            allowDuplicates: false,
+            allowedTypes: "jpg, png, pdf, txt, doc, docx",
+
+            dynamicFormData: function(){
+                var data ={ "id": ($('#id_postulante').val())? $('#id_postulante').val() : objeto.id };
+                return data;},
+
+            maxFileSize:5242880, //5MB de tamaño expresado en bytes
+            showPreview:true,
+            previewHeight: "75px",
+            previewWidth: "auto",
+            uploadQueueOrder:'bottom', //el orden en que se muestran los archivos subidos.
+            showFileCounter: false, //muestra el nro de archivos subidos
+            downloadStr: "<i class='fas fa-download'></i>",
+            deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
+            dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
+            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Subir",
+            cancelStr: "<i class='fas fa-minus-square'></i>",
+
+            extErrorStr: "no está permitido. Solo se permiten extensiones: ",
+            duplicateErrorStr: "no permitido. El archivo ya existe.",
+            sizeErrorStr: "no permitido. Tamaño máximo permitido: "
+
+            /*onLoad:function(obj){
+             $.ajax({
+             cache: false,
+             url: "index.php",
+             data:{"action": "uploadsPostulantes", "operation": "load", "id": $('#id_postulante').val() },
+             type:"post",
+             dataType: "json",
+             success: function(data) {
+
+             //alert('todo ok '+data);
+             for(var i=0;i<data.length;i++) {
+             if(data[i]['jquery-upload-file-error']) {
+             //alert('encontro el error');
+             obj.dpErrorOnLoad(data[i]["name"], data[i]['jquery-upload-file-error']);
+             }
+             else{
+             obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"], data[i]["fecha"]);
+             }
+
+             }
+
+             $('#myModal img').addClass('image').css('cursor', 'zoom-in');
+             $('.image').viewer({});
+
+             },
+             error: function(e) {
+             alert('errrorrrr '+ e.responseText);
+             }
+
+             });
+             },
+             deleteCallback: function (data, pd) {
+             for (var i = 0; i < data.length; i++) {
+             $.post("index.php", {action: "uploadsPostulantes", operation: "delete", name: data[i]},
+             function (resp,textStatus, jqXHR) {
+             //Show Message
+             //alert("File Deleted");
+             });
+             }
+             pd.statusbar.hide(); //You choice.
+
+             },
+             downloadCallback:function(filename,pd) {
+             location.href="index.php?action=uploadsPostulantes&operation=download&filename="+filename;
+             }*/
+        });
+
 
 
         /*$('.input-group.date').datepicker({
