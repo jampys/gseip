@@ -140,7 +140,7 @@
                 $.post('index.php',params,function(data, status, xhr){
                     alert(xhr.responseText);
 
-                    if(data >=0){
+                    if(data['msg'] >=0){
                         $("#chalampa #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
                         $('#etapas_left_side .grid').load('index.php',{action:"busqueda-postulante", id_busqueda:params.id_busqueda, operation:"refreshGrid"});

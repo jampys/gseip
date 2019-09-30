@@ -29,6 +29,10 @@ switch ($operation)
 
         try{
 
+            $rta = array();
+            $rta['msg']= "";
+            $rta['id_postulante'] = "";
+
             sQuery::dpBeginTransaction();
 
             if($_POST['id_postulacion']){ //postulacion existente. La edita
@@ -40,7 +44,7 @@ switch ($operation)
                 $postulacion->setExpectativas($_POST['expectativas']);
                 $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
 
-                $rta = $postulacion->save();
+                $rta['msg'] = $postulacion->save();
                 //print_r(json_encode(sQuery::dpLastInsertId()));
                 sQuery::dpCommit();
                 print_r(json_encode($rta));
@@ -59,19 +63,20 @@ switch ($operation)
                 $postulante->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
                 $postulante->setComentarios( ($_POST['comentarios']!='')? $_POST['comentarios'] : null);
                 $postulante->save();
-                $id_postulante = sQuery::dpLastInsertId();
+                $rta['id_postulante'] = sQuery::dpLastInsertId();
 
                 //inserta postulacion
                 $postulacion = new Postulacion($_POST['id_postulacion']);
                 $postulacion->setIdBusqueda($_POST['id_busqueda']);
-                $postulacion->setIdPostulante($id_postulante);
+                $postulacion->setIdPostulante($rta['id_postulante']);
                 $postulacion->setOrigenCv($_POST['origen_cv']);
                 $postulacion->setExpectativas($_POST['expectativas']);
                 $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
                 $postulacion->save();
 
+                $rta['msg'] = 1;
                 sQuery::dpCommit();
-                print_r(json_encode(sQuery::dpLastInsertId()));
+                print_r(json_encode($rta));
 
 
             }else{ //no trae datos
@@ -82,8 +87,9 @@ switch ($operation)
 
             //if($e->errorInfo[1] == 1062) $rta['duplicates']++;
             //else $rta['others']++;
+            $rta['msg'] = -1;
             sQuery::dpRollback();
-            print_r(json_encode(-1));
+            print_r(json_encode($rta));
 
         }
 
