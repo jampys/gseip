@@ -56,7 +56,7 @@
                                 <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
-                            <a class="<?php echo (PrivilegedUser::dhasPrivilege('PTN_UPDATE', array(1)))? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
+                            <a class="<?php echo (PrivilegedUser::dhasAction('PTN_UPDATE', array(1)))? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
                                 <span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
