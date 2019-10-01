@@ -26,7 +26,7 @@
             //alert('editar vehiculo: '+id);
             params={};
             params.id_postulacion = id;
-            params.action = "busqueda-postulante";
+            params.action = "postulaciones2";
             params.operation = "editPostulacion";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
@@ -40,7 +40,7 @@
             var id = $(this).closest('tr').attr('data-id');
             params={};
             params.id_postulacion = id;
-            params.action = "busqueda-postulante";
+            params.action = "postulaciones2";
             params.operation = "editPostulacion";
             params.target = "view";
             $('#etapas_right_side').load('index.php', params,function(){
@@ -56,7 +56,7 @@
         //Abre formulario para ingresar un nuevo postulante a la busqueda
         $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
-            params.action = "busqueda-postulante";
+            params.action = "postulaciones2";
             params.operation = "newPostulacion";
             params.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
             //alert(params.id_renovacion);
@@ -104,7 +104,7 @@
             params={};
             params.id_postulacion = id;
             params.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
-            params.action = "busqueda-postulante";
+            params.action = "postulaciones2";
             params.operation = "deletePostulacion";
             //alert(params.id_grupo);
             //throw new Error();
@@ -113,7 +113,7 @@
                 //alert(xhr.responseText);
                 if(data >=0){
                     $("#confirm-ve #myElemento").html('Postulación eliminada con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"busqueda-postulante", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
+                    $('#etapas_left_side .grid').load('index.php',{action:"postulaciones2", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-ve #myElemento").hide();

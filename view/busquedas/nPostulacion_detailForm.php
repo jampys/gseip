@@ -159,7 +159,7 @@
                         type: "post",
                         dataType: "json",
                         data: {
-                            action: "busqueda-postulante",
+                            action: "postulaciones2",
                             operation: "checkPostulacion",
                             id_postulante: function(){ return $('#id_postulante').val();},
                             id_busqueda: function(){ return $('#myModal #id_busqueda').val();},
@@ -190,7 +190,7 @@
                 //alert('abrir');
                 $(this).addClass("highlight");
                 //params={};
-                //params.action = "busqueda-postulante";
+                //params.action = "postulaciones2";
                 //params.operation = "newPostulante";
                 //$('#box1 .panel-body').load('index.php', params,function(){
                     //$('#myModal').modal();
@@ -229,7 +229,7 @@
                 //alert('paso la validacion');
                 //throw new Error();
                 var params={};
-                params.action = 'busqueda-postulante';
+                params.action = 'postulaciones2';
                 params.operation = 'savePostulacion';
                 params.id_busqueda = $('#id_busqueda').val();
                 params.id_postulante = $('#id_postulante').val();
@@ -250,7 +250,7 @@
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#chalampa #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"busqueda-postulante", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
+                        $('#etapas_left_side .grid').load('index.php',{action:"postulaciones2", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#chalampa').hide();
