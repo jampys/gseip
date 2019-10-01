@@ -32,7 +32,7 @@
             });
 
 
-            $('#content').on('click', '.edit', function(){ //ok
+            /*$('#content').on('click', '.edit', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_postulacion = id;
@@ -44,10 +44,10 @@
                     $('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                     $('#id_postulante').prop('disabled', true).selectpicker('refresh');
                 })
-            });
+            });*/
 
 
-            $('#content').on('click', '.view', function(){ //ok
+            /*$('#content').on('click', '.view', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_postulacion = id;
@@ -62,7 +62,7 @@
                     $('#myModal').modal();
                 })
 
-            });
+            });*/
 
 
             $(document).on('click', '.etapas', function(){ //ok
@@ -85,18 +85,18 @@
             });
 
 
-            $(document).on('click', '#new', function(){ //ok
+            /*$(document).on('click', '#new', function(){
                 params={};
                 params.action = "postulaciones";
                 params.operation="newPostulacion";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
-            });
+            });*/
 
 
 
-            $(document).on('click', '#example .delete', function(){
+            /*$(document).on('click', '#example .delete', function(){
                 alert('Funcionalidad en desarrollo');
                 throw new Error();
                 var id = $(this).closest('tr').attr('data-id');
@@ -120,10 +120,10 @@
                     ]
                 }).dialog('open');
                 return false;
-            });
+            });*/
 
 
-            $.fn.borrar = function(id) {
+            /*$.fn.borrar = function(id) {
                 //alert(id);
                 //preparo los parametros
                 params={};
@@ -145,7 +145,7 @@
 
                 });
 
-            };
+            };*/
 
         });
 
@@ -207,17 +207,8 @@
                     </div>
 
 
-                    <div class="form-group col-md-2">
-                        <!--<label for="search_localidad" class="control-label">Área</label>
-                        <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un área</option>
-                            <?php foreach ($view->localidades as $loc){
-                                ?>
-                                <option value="<?php echo $loc['id_localidad']; ?>">
-                                    <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>-->
+                    <div class="form-group col-md-4">
+
                     </div>
 
 
@@ -230,7 +221,7 @@
                         <button type="button" class="form-control btn btn-primary" id="new">Nueva renovación</button>
                     </div>-->
 
-                    <div class="form-group col-md-2">
+                    <!--<div class="form-group col-md-2">
                         <label for="search_renovado" class="control-label">&nbsp;</label>
                         <div class="checkbox">
                             <label>
@@ -238,22 +229,22 @@
                                 <a href="#" title="Funcionalidad en contrucción">Ver todos</a>
                             </label>
                         </div>
-                    </div>
+                    </div>-->
 
 
-                    <div class="form-group col-md-1">
+                    <div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                             <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>
 
-                    <div class="form-group col-md-1">
+                    <!--<div class="form-group col-md-1">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-default" title="nueva postulación" id="new" <?php echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                         </button>
-                    </div>
+                    </div>-->
 
 
 
