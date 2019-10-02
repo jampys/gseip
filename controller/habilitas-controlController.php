@@ -17,14 +17,17 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid': //para la grilla de postulaciones
+    case 'refreshGrid': //para la grilla de consulta de habilitas //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        $id_busqueda = ($_POST['search_busqueda']!='')? $_POST['search_busqueda'] : null;
-        $id_postulante = ($_POST['search_postulante']!='')? $_POST['search_postulante'] : null;
-        $todas = null; //($_POST['renovado']== 0)? null : 1;
-        $view->postulaciones = Postulacion::getPostulaciones($id_busqueda, $id_postulante, $todas);
-        $view->contentTemplate="view/postulaciones/postulacionesGrid.php";
+
+        $view->habilita = new Habilita();
+        $view->habilita->setOt( ($_POST['search_busqueda']=='ot')? $_POST['search_input'] : null  );
+        $view->habilita->setHabilita( ($_POST['search_busqueda']=='habilita')? $_POST['search_input'] : null  );
+        $view->habilita->setCertificado( ($_POST['search_busqueda']=='certificado')? $_POST['search_input'] : null  );
+
+        $view->habilitas = Habilita::getHabilitas();
+        $view->contentTemplate="view/habilitas-control/habilitasGrid.php";
         break;
 
     case 'savePostulacion': //OBSOLETO

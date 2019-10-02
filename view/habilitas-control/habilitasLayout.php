@@ -16,7 +16,7 @@
 
 
             $(document).on('click', '#search', function(){ //ok
-                alert('presiono en buscar');
+                //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
