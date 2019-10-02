@@ -88,18 +88,22 @@
                 <th>Postulante</th>
                 <th>Etapa</th>
                 <th>Aplica</th>
+                <th>Etapa</th>
+                <th>Aplica</th>
             </tr>
             </thead>
             <tbody>
 
             <?php if(isset($view->habilitas)) {
                 foreach ($view->habilitas as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_postulacion']; ?>">
-                        <td><?php echo $rp['fecha']; ?></td>
-                        <td><?php echo $rp['busqueda']; ?></td>
-                        <td><?php echo $rp['ciudad']; ?></td>
-                        <td><?php echo $rp['postulante']; ?></td>
-                        <td><?php echo $rp['etapa']; ?></td>
+                    <tr data-id="<?php echo $rp['id']; ?>">
+                        <td><?php echo $rp['ot']; ?></td>
+                        <td><?php echo $rp['habilita']; ?></td>
+                        <td><?php echo $rp['cantidad']; ?></td>
+                        <td><?php echo $rp['unitario']; ?></td>
+                        <td><?php echo $rp['importe']; ?></td>
+                        <td><?php echo $rp['centro']; ?></td>
+                        <td><?php echo $rp['certificado']; ?></td>
                         <td></td>
 
                     </tr>
