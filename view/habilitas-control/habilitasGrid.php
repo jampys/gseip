@@ -82,6 +82,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
+                <th>Id</th>
                 <th>OT</th>
                 <th>Hab.</th>
                 <th>Cant.</th>
@@ -89,11 +90,8 @@
                 <th>Imp.</th>
                 <th>CC</th>
                 <th>Cerf.</th>
-                <th>Per.</th>
-                <th>Pte.</th>
-                <th>Fecha</th>
-                <th>Cuadrilla</th>
-                <th>Área</th>
+                <th>Cant.</th>
+
             </tr>
             </thead>
             <tbody>
@@ -101,6 +99,7 @@
             <?php if(isset($view->habilitas)) {
                 foreach ($view->habilitas as $rp):   ?>
                     <tr data-id="<?php echo $rp['id']; ?>">
+                        <td><?php echo $rp['id']; ?></td>
                         <td><?php echo $rp['ot']; ?></td>
                         <td><?php echo $rp['habilita']; ?></td>
                         <td><?php echo $rp['cantidad']; ?></td>
@@ -108,11 +107,7 @@
                         <td><?php echo $rp['importe']; ?></td>
                         <td><?php echo $rp['centro']; ?></td>
                         <td><?php echo $rp['certificado']; ?></td>
-                        <td><?php echo $rp['periodo']; ?></td>
-                        <td><?php echo $rp['id_parte']; ?></td>
-                        <td><?php echo $rp['fecha_parte']; ?></td>
-                        <td><?php echo $rp['cuadrilla']; ?></td>
-                        <td><?php echo $rp['area']; ?></td>
+                        <td><?php echo $rp['cantidad']; ?></td>
 
                     </tr>
                 <?php endforeach; } ?>

@@ -133,7 +133,8 @@ np.id_parte,
 DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
 np.cuadrilla,
 per.nombre as periodo,
-na.nombre as area
+na.nombre as area,
+count(*) as cantidad
 from nov_habilitas nh
 left join nov_parte_orden npo on npo.orden_nro = nh.ot
 left join nov_partes np on np.id_parte = npo.id_parte
