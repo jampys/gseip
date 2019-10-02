@@ -82,6 +82,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
+                <th></th>
                 <th>Id</th>
                 <th>OT</th>
                 <th>Hab.</th>
@@ -99,6 +100,7 @@
             <?php if(isset($view->habilitas)) {
                 foreach ($view->habilitas as $rp):   ?>
                     <tr data-id="<?php echo $rp['id']; ?>">
+                        <td></td>
                         <td><?php echo $rp['id']; ?></td>
                         <td><?php echo $rp['ot']; ?></td>
                         <td><?php echo $rp['habilita']; ?></td>

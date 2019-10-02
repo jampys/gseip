@@ -128,7 +128,7 @@ class Habilita
 
     public function getHabilitas() {
         $stmt=new sQuery();
-        $query = "select nh.id, nh.habilita, nh.ot, nh.cantidad, nh.unitario, nh.importe, nh.centro, nh.certificado, nh.fecha,
+        /*$query = "select nh.id, nh.habilita, nh.ot, nh.cantidad, nh.unitario, nh.importe, nh.centro, nh.certificado, nh.fecha,
 np.id_parte,
 DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
 np.cuadrilla,
@@ -144,7 +144,19 @@ where nh.ot like :ot
 and nh.habilita like :habilita
 and nh.certificado like :certificado
 group by nh.id
+order by nh.habilita asc";*/
+        $query = "select nh.id, nh.habilita, nh.ot, nh.cantidad, nh.unitario, nh.importe, nh.centro, nh.certificado,
+DATE_FORMAT(nh.fecha,  '%d/%m/%Y') as fecha,
+(select count(*)
+from nov_parte_orden npox
+where npox.orden_nro = nh.ot
+) as cantidad
+from nov_habilitas nh
+where nh.ot like :ot
+and nh.habilita like :habilita
+and nh.certificado like :certificado
 order by nh.habilita asc";
+
         $stmt->dpPrepare($query);
         $stmt->dpBind(':ot', "%".$this->getOt()."%"); //2006589385
         $stmt->dpBind(':habilita', "%".$this->getHabilita()."%"); //4503848515
