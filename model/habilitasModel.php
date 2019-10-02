@@ -126,7 +126,7 @@ class Habilita
     }
 
 
-    public function getHabilitas() {
+    public function getHabilitas() { //ok
         $stmt=new sQuery();
         /*$query = "select nh.id, nh.habilita, nh.ot, nh.cantidad, nh.unitario, nh.importe, nh.centro, nh.certificado, nh.fecha,
 np.id_parte,
@@ -161,6 +161,29 @@ order by nh.habilita asc";
         $stmt->dpBind(':ot', "%".$this->getOt()."%"); //2006589385
         $stmt->dpBind(':habilita', "%".$this->getHabilita()."%"); //4503848515
         $stmt->dpBind(':certificado', "%".$this->getCertificado()."%"); //0000223503
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+    public static function getHijos($id) { //ok
+        $stmt=new sQuery();
+        $query = "select np.id_parte,
+DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+np.cuadrilla,
+per.nombre as periodo,
+na.nombre as area,
+npo.nro_parte_diario
+from nov_habilitas nh
+left join nov_parte_orden npo on npo.orden_nro = nh.ot
+left join nov_partes np on np.id_parte = npo.id_parte
+left join nov_periodos per on per.id_periodo = np.id_periodo
+left join nov_areas na on na.id_area = np.id_area
+where nh.id = :id
+order by nh.id asc, id_parte asc";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id', $id);  //1762
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

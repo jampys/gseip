@@ -60,6 +60,67 @@
         });
 
 
+
+
+
+
+        $('#example').on('click', 'td.details-control', function (e) {
+
+
+            tr = $(this).closest('tr');
+            var row = table.row( tr );
+
+            params={};
+            params.action = "puestos";
+            params.operation = "getHijos";
+            params.id_puesto = $(this).closest('tr').attr('data-id');
+
+            //alert(params.id_puesto);
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                data: params,
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    //alert(Object.keys(data).length);
+
+                    if ( row.child.isShown() ) {
+                        //alert('verde');
+                        // This row is already open - close it
+                        //tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
+                        row.child.hide();
+                        tr.removeClass('shown');
+                        tr.attr('id_puesto', tr.attr('data-id')); //al cerrar el arbol.
+                    }
+                    else {
+                        // Open this row
+                        //alert('rojo');
+                        //tr.find('td').eq(0).html('<i class="fas fa-minus-circle fa-fw"></i>').removeClass('dp_green').addClass('dp_red');
+                        row.child( format(data )).show();
+                        tr.addClass('shown');
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
+
+
+
+
+        } );
+
+
+
+
+
+
+
         //$(document).on("click", ".pdf", function(){
         $('.table-responsive').on("click", ".pdf", function(){
             alert('Funcionalidad en contrucción');

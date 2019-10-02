@@ -30,6 +30,13 @@ switch ($operation)
         $view->contentTemplate="view/habilitas-control/habilitasGrid.php";
         break;
 
+    case 'getHijos': //trae los puestos hijos de un puesto.
+        //$view->puesto = new Puesto();
+        $rta=Puesto::getHijos($_POST['id_puesto']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
     case 'savePostulacion': //OBSOLETO
         $postulacion = new Postulacion($_POST['id_postulacion']);
         $postulacion->setIdBusqueda($_POST['id_busqueda']);
