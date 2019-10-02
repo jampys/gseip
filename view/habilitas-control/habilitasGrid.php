@@ -84,7 +84,7 @@
                         //tr.find('td').eq(0).html('<i class="fas fa-plus-circle fa-fw"></i>').removeClass('dp_red').addClass('dp_green');
                         row.child.hide();
                         tr.removeClass('shown');
-                        tr.attr('id_puesto', tr.attr('data-id')); //al cerrar el arbol.
+                        tr.attr('id', tr.attr('data-id')); //al cerrar el arbol.
                     }
                     else {
                         // Open this row
