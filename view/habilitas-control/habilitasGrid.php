@@ -54,18 +54,11 @@
         });
 
 
-        $('#confirm').dialog({
-            autoOpen: false
-            //modal: true,
-        });
-
-
 
 
 
 
         $('#example').on('click', 'td.details-control', function (e) {
-
 
             tr = $(this).closest('tr');
             var row = table.row( tr );
@@ -117,9 +110,44 @@
 
 
 
+        /* Formatting function for row details - modify as you need */
+        function format ( d ) {
+            //https://stackoverflow.com/questions/8749236/create-table-with-jquery-append
+
+            var subTabla ='';
+
+            if(Object.keys(d).length > 0 ){
+
+                var subTabla = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">';
+
+                $.each(d, function(indice, val){
+                    //alert('entro al bucle');
+                    var clase = (d[indice]['hijos']> 0)? 'hijo' : 'no-hijo';
+
+                    subTabla +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
+                    '<td class="'+clase+'">'+
+                    '<td><span class="seleccionable">'+ d[indice]['nombre']+'</span></td>'+
+                    '</tr>');
+                });
+
+                subTabla +=('</table>');
+
+            }
+
+            return subTabla;
+
+        }
 
 
 
+
+        $('#confirm').dialog({
+            autoOpen: false
+            //modal: true,
+        });
+
+
+        
 
         //$(document).on("click", ".pdf", function(){
         $('.table-responsive').on("click", ".pdf", function(){
