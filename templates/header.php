@@ -168,6 +168,7 @@
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">HABILITAS</li>
                             <li class=""><a href="index.php?action=habilitas">Conversores</a></li>
+                            <li class=""><a href="index.php?action=habilitas-control">Consulta</a></li>
 
                         </ul>
                     </li>
