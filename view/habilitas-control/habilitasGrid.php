@@ -82,14 +82,18 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
+                <th>OT</th>
+                <th>Hab.</th>
+                <th>Cant.</th>
+                <th>Un.</th>
+                <th>Imp.</th>
+                <th>CC</th>
+                <th>Cerf.</th>
+                <th>Per.</th>
+                <th>Pte.</th>
                 <th>Fecha</th>
-                <th>Búsqueda</th>
+                <th>Cuadrilla</th>
                 <th>Área</th>
-                <th>Postulante</th>
-                <th>Etapa</th>
-                <th>Aplica</th>
-                <th>Etapa</th>
-                <th>Aplica</th>
             </tr>
             </thead>
             <tbody>
@@ -104,7 +108,11 @@
                         <td><?php echo $rp['importe']; ?></td>
                         <td><?php echo $rp['centro']; ?></td>
                         <td><?php echo $rp['certificado']; ?></td>
-                        <td></td>
+                        <td><?php echo $rp['periodo']; ?></td>
+                        <td><?php echo $rp['id_parte']; ?></td>
+                        <td><?php echo $rp['fecha_parte']; ?></td>
+                        <td><?php echo $rp['cuadrilla']; ?></td>
+                        <td><?php echo $rp['area']; ?></td>
 
                     </tr>
                 <?php endforeach; } ?>
