@@ -1,4 +1,30 @@
-﻿<script type="text/javascript">
+﻿<style>
+
+    td.details-control {
+        cursor: pointer;
+        width: 20px;
+        text-align: center;
+    }
+
+    td.details-control:before { /* icono de un nodo padre cerrado */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f055";
+        color: #5fba7d;
+    }
+
+    tr.shown td.details-control:before {  /* icono de un nodo padre abierto */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f056";
+        color: #DD2C00;
+    }
+
+
+
+</style>
+
+<script type="text/javascript">
 
 
     $(document).ready(function(){
@@ -100,7 +126,7 @@
             <?php if(isset($view->habilitas)) {
                 foreach ($view->habilitas as $rp):   ?>
                     <tr data-id="<?php echo $rp['id']; ?>">
-                        <td></td>
+                        <td class="<?php echo ($rp['cantidad']> 0 )? 'details-control' : ''; ?>"></td>
                         <td><?php echo $rp['id']; ?></td>
                         <td><?php echo $rp['ot']; ?></td>
                         <td><?php echo $rp['habilita']; ?></td>
