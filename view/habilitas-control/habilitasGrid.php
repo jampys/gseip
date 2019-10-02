@@ -137,7 +137,7 @@
                     '<td>'+ d[indice]['area']+'</td>'+
                     '<td>'+ d[indice]['periodo']+'</td>'+
                     '</tr>');*/
-                    subTabla +=('<tr style="text-align:center" data-id="'+ d[indice]['id']+'">'+
+                    subTabla +=('<tr data-id="'+ d[indice]['id']+'">'+
                     '<td>'+ d[indice]['fecha_parte']+'&nbsp;&nbsp;'+
                             d[indice]['nro_parte_diario']+'&nbsp;&nbsp;'+
                             d[indice]['cuadrilla']+'&nbsp;&nbsp;'+
