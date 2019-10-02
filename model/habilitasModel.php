@@ -150,7 +150,7 @@ DATE_FORMAT(nh.fecha,  '%d/%m/%Y') as fecha,
 (select count(*)
 from nov_parte_orden npox
 where npox.orden_nro = nh.ot
-) as cantidad
+) as count
 from nov_habilitas nh
 where nh.ot like :ot
 and nh.habilita like :habilita

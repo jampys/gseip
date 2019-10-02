@@ -216,14 +216,16 @@
             <tr>
                 <th></th>
                 <th>Id</th>
-                <th>OT</th>
-                <th>Hab.</th>
-                <th>Cant.</th>
-                <th>Un.</th>
-                <th>Imp.</th>
+                <th>Nro. OT</th>
+                <th>Nro. Habilita</th>
+                <th>Cant. Un.</th>
+                <th>Pr. Unitario</th>
+                <th>Importe</th>
                 <th>CC</th>
-                <th>Cerf.</th>
-                <th>Cant.</th>
+                <th>Cerfificado</th>
+                <th>Centro</th>
+                <th>Fecha</th>
+                <th>Partes</th>
 
             </tr>
             </thead>
@@ -232,7 +234,7 @@
             <?php if(isset($view->habilitas)) {
                 foreach ($view->habilitas as $rp):   ?>
                     <tr data-id="<?php echo $rp['id']; ?>">
-                        <td class="<?php echo ($rp['cantidad']> 0 )? 'details-control' : ''; ?>"></td>
+                        <td class="<?php echo ($rp['count']> 0 )? 'details-control' : ''; ?>"></td>
                         <td><?php echo $rp['id']; ?></td>
                         <td><?php echo $rp['ot']; ?></td>
                         <td><?php echo $rp['habilita']; ?></td>
@@ -241,7 +243,9 @@
                         <td><?php echo $rp['importe']; ?></td>
                         <td><?php echo $rp['centro']; ?></td>
                         <td><?php echo $rp['certificado']; ?></td>
-                        <td><?php echo $rp['cantidad']; ?></td>
+                        <td><?php echo $rp['centro']; ?></td>
+                        <td><?php echo $rp['fecha']; ?></td>
+                        <td><?php echo $rp['count']; ?></td>
 
                     </tr>
                 <?php endforeach; } ?>
