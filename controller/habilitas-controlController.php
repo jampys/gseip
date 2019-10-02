@@ -32,7 +32,7 @@ switch ($operation)
 
     case 'getHijos': //trae los puestos hijos de un puesto.
         //$view->puesto = new Puesto();
-        $rta=Puesto::getHijos($_POST['id_puesto']);
+        $rta = Habilita::getHijos($_POST['id']);
         print_r(json_encode($rta));
         exit;
         break;

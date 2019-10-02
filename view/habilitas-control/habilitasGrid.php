@@ -29,9 +29,9 @@
 
     $(document).ready(function(){
 
-        //$('[data-toggle="tooltip"]').tooltip();
+        var tr; //tr es la fila (nodo raiz del arbol)
 
-        $('#example').DataTable({
+        var table = $('#example').DataTable({
             /*language: {
              url: 'dataTables/Spanish.json'
              }*/
@@ -64,9 +64,9 @@
             var row = table.row( tr );
 
             params={};
-            params.action = "puestos";
+            params.action = "habilitas-control";
             params.operation = "getHijos";
-            params.id_puesto = $(this).closest('tr').attr('data-id');
+            params.id = $(this).closest('tr').attr('data-id');
 
             //alert(params.id_puesto);
             $.ajax({
@@ -147,7 +147,7 @@
         });
 
 
-        
+
 
         //$(document).on("click", ".pdf", function(){
         $('.table-responsive').on("click", ".pdf", function(){
