@@ -34,7 +34,7 @@
 
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_busqueda = id;
@@ -48,7 +48,7 @@
                 })
             });
 
-            $(document).on('click', '.view', function(){ //ok
+            $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_busqueda = id;
@@ -67,16 +67,17 @@
 
 
             //Al presionar el boton detalles....
-            $(document).on('click', '.detalles', function(){ //ok
+            $('#content').on('click', '.detalles', function(){ //ok
                 //alert('tocó en contratos');
                 var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
                 params.id_busqueda = id;
-                params.action = "busquedas";
+                params.action = "postulaciones2";
                 params.operation = "loadDetalles";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
+                    $('#etapas_left_side #add').attr('id_busqueda', id);
                 })
 
             });
