@@ -118,15 +118,32 @@
 
             if(Object.keys(d).length > 0 ){
 
-                var subTabla = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">';
+                subTabla = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; margin-left: 20px">';
+
+                /*subTabla += '<tr style="font-weight: bold; text-align: center">'+
+                                '<td>F. parte</td>'+
+                                '<td>Nro. parte</td>'+
+                                '<td>Cuadrilla</td>'+
+                                '<td>Área</td>'+
+                                '<td>Período</td>'+
+                            '</tr>';*/
 
                 $.each(d, function(indice, val){
                     //alert('entro al bucle');
-                    var clase = (d[indice]['hijos']> 0)? 'hijo' : 'no-hijo';
-
-                    subTabla +=('<tr data-id="'+ d[indice]['id_puesto']+'">'+
-                    '<td class="'+clase+'">'+
-                    '<td><span class="seleccionable">'+ d[indice]['nombre']+'</span></td>'+
+                    /*subTabla +=('<tr style="text-align:center" data-id="'+ d[indice]['id']+'">'+
+                    '<td>'+ d[indice]['fecha_parte']+'</td>'+
+                    '<td>'+ d[indice]['nro_parte_diario']+'</td>'+
+                    '<td>'+ d[indice]['cuadrilla']+'</td>'+
+                    '<td>'+ d[indice]['area']+'</td>'+
+                    '<td>'+ d[indice]['periodo']+'</td>'+
+                    '</tr>');*/
+                    subTabla +=('<tr style="text-align:center" data-id="'+ d[indice]['id']+'">'+
+                    '<td>'+ d[indice]['fecha_parte']+'&nbsp;&nbsp;'+
+                            d[indice]['nro_parte_diario']+'&nbsp;&nbsp;'+
+                            d[indice]['cuadrilla']+'&nbsp;&nbsp;'+
+                            d[indice]['area']+'&nbsp;&nbsp;'+
+                            d[indice]['periodo']+
+                            '</td>'+
                     '</tr>');
                 });
 

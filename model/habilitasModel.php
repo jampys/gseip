@@ -168,7 +168,7 @@ order by nh.habilita asc";
 
     public static function getHijos($id) { //ok
         $stmt=new sQuery();
-        $query = "select np.id_parte,
+        $query = "select nh.id, np.id_parte,
 DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
 np.cuadrilla,
 per.nombre as periodo,
