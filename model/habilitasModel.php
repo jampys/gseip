@@ -126,7 +126,7 @@ class Habilita
     }
 
 
-    public static function getHabilitas() {
+    public function getHabilitas() {
         $stmt=new sQuery();
         $query = "select nh.id, nh.habilita, nh.ot, nh.cantidad, nh.unitario, nh.importe, nh.centro, nh.certificado, nh.fecha,
 np.id_parte, np.fecha_parte, np.cuadrilla,
@@ -137,17 +137,15 @@ left join nov_parte_orden npo on npo.orden_nro = nh.ot
 left join nov_partes np on np.id_parte = npo.id_parte
 left join nov_periodos per on per.id_periodo = np.id_periodo
 left join nov_areas na on na.id_area = np.id_area
-where nh.ot like '%%'
-and nh.habilita like '%%'
-and nh.certificado like'%0000223503%'
+where nh.ot like :ot
+and nh.habilita like :habilita
+and nh.certificado like :certificado
 group by nh.id
 order by nh.habilita asc";
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':id_postulacion', $id_postulacion);
-        //$stmt->dpBind(':id_grupo', $id_grupo);
-        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
-        //$stmt->dpBind(':renovado', $renovado);
+        $stmt->dpBind(':ot', "%".$this->getOt()."%"); //4503848515
+        $stmt->dpBind(':habilita', "%".$this->getHabilita()."%");
+        $stmt->dpBind(':certificado', "%".$this->getCertificado()."%"); //0000223503
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
