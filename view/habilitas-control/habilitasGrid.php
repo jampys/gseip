@@ -223,7 +223,7 @@
                 <th>Importe</th>
                 <th>CC</th>
                 <th>Cerfificado</th>
-                <th>Centro</th>
+                <th>Período</th>
                 <th>Fecha</th>
                 <th>Partes</th>
 
@@ -243,7 +243,7 @@
                         <td><?php echo $rp['importe']; ?></td>
                         <td><?php echo $rp['centro']; ?></td>
                         <td><?php echo $rp['certificado']; ?></td>
-                        <td><?php echo $rp['centro']; ?></td>
+                        <td><?php echo $rp['periodo']; ?></td>
                         <td><?php echo $rp['fecha']; ?></td>
                         <td><?php echo $rp['count']; ?></td>
 

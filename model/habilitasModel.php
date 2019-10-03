@@ -150,7 +150,15 @@ DATE_FORMAT(nh.fecha,  '%d/%m/%Y') as fecha,
 (select count(*)
 from nov_parte_orden npox
 where npox.orden_nro = nh.ot
-) as count
+) as count,
+(select perx.nombre
+from nov_parte_orden npox
+join nov_partes npx on npox.id_parte = npx.id_parte
+join nov_periodos perx on perx.id_periodo = npx.id_periodo
+where npox.orden_nro = nh.ot
+order by perx.fecha_desde desc
+limit 1
+) as periodo
 from nov_habilitas nh
 where nh.ot like :ot
 and nh.habilita like :habilita
