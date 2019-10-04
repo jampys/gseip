@@ -80,7 +80,7 @@
 
                 <br/>
 
-                <h4><span class="label label-primary">Habilidades requeridas</span></h4>
+                <h4><span class="label label-primary">Vencimientos obligatorios</span></h4>
 
 
                 <?php if(isset($view->habilidades) && sizeof($view->habilidades) > 0) {?>
@@ -113,10 +113,7 @@
 
                     <br/>
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> No existen habiliades registradas para el puesto seleccionado. Para hacerlo diríjase a
-                        <?php if ( PrivilegedUser::dhasPrivilege('HPU_ABM', array(1)) ) { ?>
-                            <a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></p>
-                        <?php } ?>
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> No es posible cargar los vencimientos obligatorios del empleado.
                     </div>
 
                 <?php } ?>
