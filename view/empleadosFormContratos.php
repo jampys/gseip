@@ -11,7 +11,7 @@
             item.id_empleado = $('#id_empleado').val();
             item.id_vencimiento = $(this).attr('id_vencimiento');
 
-            alert(item.id_empleado_vencimiento);
+            alert(item.id_vencimiento);
             throw new Error();
 
             if(jsonCompetencias[item.id_competencia]) {
@@ -176,7 +176,7 @@
 
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" value="" <?php echo ($v['id_empleado_vencimiento'])? 'checked' : ''; ?>
+                                                <input type="checkbox" value="<?php echo $v['id_empleado_vencimiento'] ?>" <?php echo ($v['id_empleado_vencimiento'])? 'checked' : ''; ?>
                                                        id_vencimiento="<?php echo $v['id_vencimiento'] ?>"
                                                     >
 
