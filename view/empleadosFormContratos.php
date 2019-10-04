@@ -9,11 +9,9 @@
             <div class="modal-body">
 
 
-
+                <h4><span class="label label-primary">Contratos</span></h4>
 
                 <?php if(isset($view->contratos) && sizeof($view->contratos) > 0) {?>
-
-                    <h4><span class="label label-primary">Contratos</span></h4>
 
                     <table class="table table-condensed dataTable table-hover">
                         <thead>
@@ -71,6 +69,53 @@
                         <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado no se encuentra afectado a ningún contrato. Para afectar un empleado a un contrato diríjase a
                         <?php if ( PrivilegedUser::dhasPrivilege('CON_VER', array(1)) ) { ?>
                             <a href="index.php?action=contratos">Contratos</a></p>
+                        <?php } ?>
+                    </div>
+
+                <?php } ?>
+
+
+
+
+
+                <br/>
+
+                <h4><span class="label label-primary">Habilidades requeridas</span></h4>
+
+
+                <?php if(isset($view->habilidades) && sizeof($view->habilidades) > 0) {?>
+
+                    <div class="table-responsive fixedTable">
+
+                        <!--<table class="table table-condensed dataTable table-hover">-->
+                        <table class="table table-condensed dataTable table-hover">
+                            <thead>
+                            <tr>
+                                <th>Habilidad</th>
+                                <th>Requerida</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($view->habilidades as $hab): ?>
+                                <tr data-id="<?php echo $hab['id_habilidad'];?>">
+                                    <td><?php echo $hab['habilidad']; ?></td>
+                                    <td><?php echo $hab['requerida']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+
+                <?php }else{ ?>
+
+                    <br/>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> No existen habiliades registradas para el puesto seleccionado. Para hacerlo diríjase a
+                        <?php if ( PrivilegedUser::dhasPrivilege('HPU_ABM', array(1)) ) { ?>
+                            <a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></p>
                         <?php } ?>
                     </div>
 
