@@ -13,10 +13,12 @@
 
                 <?php if(isset($view->contratos) && sizeof($view->contratos) > 0) {?>
 
+                    <h4><span class="label label-primary">Contratos</span></h4>
+
                     <table class="table table-condensed dataTable table-hover">
                         <thead>
                         <tr>
-                            <th>Contrato</th>
+                            <th>Nombre</th>
                             <th>Ubicación</th>
                             <th>F. afect.</th>
                             <th>F. desaf.</th>
