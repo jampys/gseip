@@ -10,17 +10,17 @@
             item.id_empleado_vencimiento = $(this).val();
             item.id_empleado = $('#id_empleado').val();
             item.id_vencimiento = $(this).attr('id_vencimiento');
+            item.operation = '';
 
-            alert(item.id_vencimiento);
-            throw new Error();
-
-            if(jsonCompetencias[item.id_competencia]) {
-                jsonCompetencias[item.id_competencia].id_puntaje_competencia =item.id_puntaje_competencia;
-                //alert('el elemento existe '+jsonCompetencias[item.id_competencia].id_puntaje);
+            
+            if(jsonCompetencias[item.id_vencimiento]) { //lo modifica
+                if(this.checked) jsonCompetencias[item.id_vencimiento].operation = 'checked';
+                else jsonCompetencias[item.id_vencimiento].operacion = 'unchecked';
             }
             else { //si no existe, lo agrega
-                jsonCompetencias[item.id_competencia] =item;
-                //alert('el elemento No existe '+jsonCompetencias[item.id_competencia].id_puntaje);
+                jsonCompetencias[item.id_vencimiento] = item;
+                if(this.checked) jsonCompetencias[item.id_vencimiento].operation = 'checked';
+                else jsonCompetencias[item.id_vencimiento].operation = 'unchecked';
             }
 
         });
