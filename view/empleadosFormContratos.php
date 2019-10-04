@@ -1,3 +1,80 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        var jsonCompetencias = [];
+
+        // Al presionar alguno de los select de puntajes
+        $('#modalEac').on('change', ".selectpicker", function(e){
+            //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
+            item = {};
+            item.id_evaluacion_competencia = $(this).attr('id_evaluacion_competencia');
+            item.id_competencia = $(this).attr('id');
+            item.id_puntaje_competencia = $(this).val();
+            //item.id_empleado = $('#id_empleado').val();
+            //item.id_empleado = $('#popupbox').data('id_empleado');
+            //item.id_plan_evaluacion = $('#popupbox').data('id_plan_evaluacion');
+            //item.periodo = $('#periodo').val();
+            item.id_empleado = $('#id_empleado').val();
+            item.id_plan_evaluacion = $('#id_plan_evaluacion').val();
+            item.periodo = $('#periodo').val();
+
+            if(jsonCompetencias[item.id_competencia]) {
+                jsonCompetencias[item.id_competencia].id_puntaje_competencia =item.id_puntaje_competencia;
+                //alert('el elemento existe '+jsonCompetencias[item.id_competencia].id_puntaje);
+            }
+            else { //si no existe, lo agrega
+                jsonCompetencias[item.id_competencia] =item;
+                //alert('el elemento No existe '+jsonCompetencias[item.id_competencia].id_puntaje);
+            }
+
+        });
+
+
+        //Al guardar una evaluacion de competencias
+        $('#modalEac').on('click', '#submit',function(){
+            //alert('guardar evaluacion desempeño');
+            //if ($("#eac-form").valid()){
+            var params={};
+            params.action = 'evaluaciones';
+            params.operation = 'saveEac';
+            params.periodo = $('#periodo').val();
+            params.cerrado = $('#cerrado').val();
+            //alert(params.id_compania);
+
+            var jsonCompetenciasIx = $.map(jsonCompetencias, function(item){ return item;} );
+            params.vCompetencias = JSON.stringify(jsonCompetenciasIx);
+
+
+            $.post('index.php',params,function(data, status, xhr){
+                //No se usa .fail() porque el resultado viene de una transaccion (try catch) que siempre devuelve 1 o -1
+                //alert(xhr.responseText);
+                if(data >=0){
+                    $(".modal-footer button").prop("disabled", true); //deshabilito botones
+                    $("#myElem").html('Evaluación de competencias guardada con exito').addClass('alert alert-success').show();
+                    $("#search").trigger("click");
+                    setTimeout(function() { $("#myElem").hide();
+                        $('#modalEac').modal('hide');
+                    }, 2000);
+
+                }else{
+                    $("#myElem").html('Error al guardar evaluación de competencias').addClass('alert alert-danger').show();
+                }
+
+            }, 'json');
+
+            //}
+            return false;
+        });
+
+
+
+
+    });
+
+</script>
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
