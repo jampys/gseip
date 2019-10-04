@@ -85,7 +85,7 @@
 
                 <?php if(isset($view->vencimientos) && sizeof($view->vencimientos) > 0) {?>
 
-                    <div class="table-responsive fixedTable">
+
 
 
                         <form name ="etapa-form" id="etapa-form" method="POST" action="index.php">
@@ -98,13 +98,28 @@
                                 <input type="hidden" name="id_etapa" id="id_etapa" value="<?php //print $view->etapa->getIdEtapa() ?>">
                                 <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php //print $view->etapa->getIdPostulacion() ?>">
 
+                                <div class="table-responsive fixedTable">
+
+                                    <?php foreach ($view->vencimientos as $v): ?>
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="" <?php echo ($v['id_empleado_vencimiento'])? 'checked' : ''; ?> >
+                                                <?php echo $v['nombre']; ?>
+                                            </label>
+                                        </div>
+
+                                    <?php endforeach; ?>
+
+                                </div>
+
 
 
 
                                 <div id="myElem" class="msg" style="display:none"></div>
 
 
-
+                                <br/>
                                 <div id="footer-buttons" class="pull-right">
                                     <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
                                     <!--<button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>-->
@@ -126,7 +141,6 @@
 
                 <?php } ?>
 
-            </div>
 
 
 
