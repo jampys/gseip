@@ -83,29 +83,37 @@
                 <h4><span class="label label-primary">Vencimientos obligatorios</span></h4>
 
 
-                <?php if(isset($view->habilidades) && sizeof($view->habilidades) > 0) {?>
+                <?php if(isset($view->vencimientos) && sizeof($view->vencimientos) > 0) {?>
 
                     <div class="table-responsive fixedTable">
 
-                        <!--<table class="table table-condensed dataTable table-hover">-->
-                        <table class="table table-condensed dataTable table-hover">
-                            <thead>
-                            <tr>
-                                <th>Habilidad</th>
-                                <th>Requerida</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($view->habilidades as $hab): ?>
-                                <tr data-id="<?php echo $hab['id_habilidad'];?>">
-                                    <td><?php echo $hab['habilidad']; ?></td>
-                                    <td><?php echo $hab['requerida']; ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
 
-                    </div>
+                        <form name ="etapa-form" id="etapa-form" method="POST" action="index.php">
+                            <fieldset>
+
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> No tiene objetivos fijados para el período vigente.
+                                </div>
+
+                                <input type="hidden" name="id_etapa" id="id_etapa" value="<?php //print $view->etapa->getIdEtapa() ?>">
+                                <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php //print $view->etapa->getIdPostulacion() ?>">
+
+
+
+
+                                <div id="myElem" class="msg" style="display:none"></div>
+
+
+
+                                <div id="footer-buttons" class="pull-right">
+                                    <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+                                    <!--<button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>-->
+                                    <button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>
+                                </div>
+
+
+                            </fieldset>
+                        </form>
 
 
 
