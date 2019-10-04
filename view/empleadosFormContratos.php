@@ -4,19 +4,15 @@
         var jsonCompetencias = [];
 
         // Al presionar alguno de los select de puntajes
-        $('#modalEac').on('change', ".selectpicker", function(e){
+        $(':checkbox').on('click', function(e){
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
-            item.id_evaluacion_competencia = $(this).attr('id_evaluacion_competencia');
-            item.id_competencia = $(this).attr('id');
-            item.id_puntaje_competencia = $(this).val();
-            //item.id_empleado = $('#id_empleado').val();
-            //item.id_empleado = $('#popupbox').data('id_empleado');
-            //item.id_plan_evaluacion = $('#popupbox').data('id_plan_evaluacion');
-            //item.periodo = $('#periodo').val();
+            item.id_empleado_vencimiento = $(this).val();
             item.id_empleado = $('#id_empleado').val();
-            item.id_plan_evaluacion = $('#id_plan_evaluacion').val();
-            item.periodo = $('#periodo').val();
+            item.id_vencimiento = $(this).attr('id_vencimiento');
+
+            alert(item.id_empleado_vencimiento);
+            throw new Error();
 
             if(jsonCompetencias[item.id_competencia]) {
                 jsonCompetencias[item.id_competencia].id_puntaje_competencia =item.id_puntaje_competencia;
@@ -172,8 +168,7 @@
                                     <i class="fas fa-info-circle"></i> No tiene objetivos fijados para el período vigente.
                                 </div>
 
-                                <input type="hidden" name="id_etapa" id="id_etapa" value="<?php //print $view->etapa->getIdEtapa() ?>">
-                                <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php //print $view->etapa->getIdPostulacion() ?>">
+                                <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
 
                                 <div class="table-responsive fixedTable">
 
@@ -181,7 +176,10 @@
 
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" value="" <?php echo ($v['id_empleado_vencimiento'])? 'checked' : ''; ?> >
+                                                <input type="checkbox" value="" <?php echo ($v['id_empleado_vencimiento'])? 'checked' : ''; ?>
+                                                       id_vencimiento="<?php echo $v['id_vencimiento'] ?>"
+                                                    >
+
                                                 <?php echo $v['nombre']; ?>
                                             </label>
                                         </div>
