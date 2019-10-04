@@ -126,23 +126,73 @@ class Habilita
     }
 
 
-    public static function getEtapas($id_postulacion) {
+    public function getHabilitas() { //ok
         $stmt=new sQuery();
-        $query = "select et.id_etapa, et.id_postulacion,
-                  DATE_FORMAT(et.fecha, '%d/%m/%Y') as fecha,
-                  DATE_FORMAT(et.fecha_etapa, '%d/%m/%y') as fecha_etapa,
-                  et.etapa, et.aplica, et.motivo, et.modo_contacto, et.comentarios, et.id_user,
-                  us.user
-                  from sel_etapas et
-                  join sec_users us on et.id_user = us.id_user
-                  where et.id_postulacion = :id_postulacion
-                  order by et.fecha_etapa asc";
+        /*$query = "select nh.id, nh.habilita, nh.ot, nh.cantidad, nh.unitario, nh.importe, nh.centro, nh.certificado, nh.fecha,
+np.id_parte,
+DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+np.cuadrilla,
+per.nombre as periodo,
+na.nombre as area,
+count(*) as cantidad
+from nov_habilitas nh
+left join nov_parte_orden npo on npo.orden_nro = nh.ot
+left join nov_partes np on np.id_parte = npo.id_parte
+left join nov_periodos per on per.id_periodo = np.id_periodo
+left join nov_areas na on na.id_area = np.id_area
+where nh.ot like :ot
+and nh.habilita like :habilita
+and nh.certificado like :certificado
+group by nh.id
+order by nh.habilita asc";*/
+        $query = "select nh.id, nh.habilita, nh.ot, nh.cantidad, nh.unitario, nh.importe, nh.centro, nh.certificado,
+DATE_FORMAT(nh.fecha,  '%d/%m/%Y') as fecha,
+(select count(*)
+from nov_parte_orden npox
+where npox.orden_nro = nh.ot
+) as count,
+(select perx.nombre
+from nov_parte_orden npox
+join nov_partes npx on npox.id_parte = npx.id_parte
+join nov_periodos perx on perx.id_periodo = npx.id_periodo
+where npox.orden_nro = nh.ot
+order by perx.fecha_desde desc
+limit 1
+) as periodo
+from nov_habilitas nh
+where nh.ot like :ot
+and nh.habilita like :habilita
+and nh.certificado like :certificado
+order by nh.habilita asc";
+
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_postulacion', $id_postulacion);
-        //$stmt->dpBind(':id_grupo', $id_grupo);
-        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
-        //$stmt->dpBind(':renovado', $renovado);
+        $stmt->dpBind(':ot', "%".$this->getOt()."%"); //2006589385
+        $stmt->dpBind(':habilita', "%".$this->getHabilita()."%"); //4503848515
+        $stmt->dpBind(':certificado', "%".$this->getCertificado()."%"); //0000223503
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+    public static function getHijos($id) { //ok
+        //Devuelve los partes involucrados en una OT
+        $stmt=new sQuery();
+        $query = "select nh.id, np.id_parte,
+DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+np.cuadrilla,
+per.nombre as periodo,
+na.nombre as area,
+npo.nro_parte_diario
+from nov_habilitas nh
+left join nov_parte_orden npo on npo.orden_nro = nh.ot
+left join nov_partes np on np.id_parte = npo.id_parte
+left join nov_periodos per on per.id_periodo = np.id_periodo
+left join nov_areas na on na.id_area = np.id_area
+where nh.id = :id
+order by nh.id asc, id_parte asc";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id', $id);  //1762
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
