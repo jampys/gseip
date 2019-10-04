@@ -95,14 +95,15 @@ switch ($operation)
         break;
 
 
-    case 'loadContratos': //abre la ventana modal para mostrar los contratos del empleado
-        $view->label='Contratos';
-        $view->disableLayout=true;
+    case 'loadContratos': //abre la ventana modal para mostrar los detalles del empleado
+        $view->empleado = new Empleado($_POST['id_empleado']);
+        $view->label = $view->empleado->getApellido().' '.$view->empleado->getNombre();
 
         $view->contratos = ContratoEmpleado::getContratosByEmpleado($_POST['id_empleado']);
         //$view->puestos = Puesto::getPuestos();
         //$view->procesos = Proceso::getProcesos();
 
+        $view->disableLayout=true;
         $view->contentTemplate="view/empleadosFormContratos.php";
         break;
 
