@@ -49,7 +49,7 @@
                     $("#myElem").html('Vencimientos guardados con exito').addClass('alert alert-success').show();
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#myElem").hide();
-                                            $('#modalEac').modal('hide');
+                                            //$('#modalEac').modal('hide');
                                           }, 2000);
 
                 }else{
