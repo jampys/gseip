@@ -85,10 +85,9 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro. rnv</th>
-                <th>Fecha</th>
+                <th>Legajo</th>
+                <th>Empleado</th>
                 <th>vencimiento</th>
-                <th>empleado / grupo</th>
                 <th>F. emisión</th>
                 <th>F. vto.</th>
                 <th style="display: none">Priority</th>
@@ -102,11 +101,10 @@
             <?php if(isset($view->renovaciones_personal)) {
                 foreach ($view->renovaciones_personal as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_renovacion']; ?>" style="background-color: <?php echo $rp['color']; ?>" >
-                        <td><?php echo $rp['id_renovacion']; ?></td>
-                        <td><?php echo $rp['created_date']; ?></td>
+                        <td><?php echo $rp['legajo']; ?></td>
+                        <td><?php echo $rp['apellido'].' '.$rp['nombre']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
-                        <td><?php echo ($rp['id_empleado'])? $rp['empleado'] : $rp['grupo']; ?></td>
-                        <td><?php echo $rp['fecha_emision']; ?></td>
+                        <td><?php echo ($rp['fecha_emision'])? $rp['fecha_emision'] : '<span class="text-danger">sin datos</span>' ; ?></td>
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td style="display: none"><?php echo $rp['priority']; ?></td>
                         <td style="display: none"><?php echo $rp['id_rnv_renovacion']; ?></td>

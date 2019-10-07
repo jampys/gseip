@@ -15,7 +15,7 @@
             $('.selectpicker').selectpicker();
 
 
-            $(document).on('click', '#search', function(){
+            $(document).on('click', '#search', function(){ //ok
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
@@ -27,7 +27,7 @@
                 params.id_contrato = $("#search_contrato").val();
                 params.id_subcontratista = $("#search_subcontratista").val();
                 params.renovado = $('#search_renovado').prop('checked')? 1:0;
-                params.action = "renovacionesPersonal";
+                params.action = "renovacionesPersonalAuditoria";
                 params.operation = "refreshGrid";
                 //alert(params.id_grupo);
                 //alert(params.renovado);
