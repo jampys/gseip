@@ -58,7 +58,7 @@ class EmpleadoVencimiento
 
     public static function getEmpleadoVencimiento($id_empleado) { //ok
         $stmt=new sQuery();
-        $query = "select *
+        $query = "select v.id_vencimiento, v.nombre, ev.id_empleado_vencimiento, ev.id_empleado, ev.created_date
 from vto_vencimiento_p v
 left join empleado_vencimiento ev on v.id_vencimiento = ev.id_vencimiento and ev.id_empleado = :id_empleado
 order by v.nombre asc";
