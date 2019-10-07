@@ -165,7 +165,7 @@
                             <fieldset>
 
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> No tiene objetivos fijados para el período vigente.
+                                    <i class="fas fa-info-circle"></i> Seleccionar los objetivos requeridos para el empleado.
                                 </div>
 
                                 <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
