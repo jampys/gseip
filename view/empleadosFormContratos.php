@@ -27,7 +27,7 @@
 
 
         //Al guardar los vencimientos
-        $('#modalEac').on('click', '#submit',function(){
+        $('#myModal').on('click', '#submit',function(){
             //alert('guardar evaluacion desempeño');
             //if ($("#eac-form").valid()){
             var params={};
@@ -45,9 +45,9 @@
                 //No se usa .fail() porque el resultado viene de una transaccion (try catch) que siempre devuelve 1 o -1
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $(".modal-footer button").prop("disabled", true); //deshabilito botones
+                    //$(".modal-footer button").prop("disabled", true); //deshabilito botones
                     $("#myElem").html('Vencimientos guardados con exito').addClass('alert alert-success').show();
-                    $("#search").trigger("click");
+                    //$("#search").trigger("click");
                     setTimeout(function() { $("#myElem").hide();
                                             $('#modalEac').modal('hide');
                                           }, 2000);
@@ -196,7 +196,7 @@
 
                                 <br/>
                                 <div id="footer-buttons" class="pull-right">
-                                    <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+                                    <button class="btn btn-primary" id="submit" name="submit" type="button">Guardar</button>
                                     <!--<button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>-->
                                 </div>
 
