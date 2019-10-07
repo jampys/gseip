@@ -26,7 +26,7 @@
         });
 
 
-        //Al guardar una evaluacion de competencias
+        //Al guardar los vencimientos
         $('#modalEac').on('click', '#submit',function(){
             //alert('guardar evaluacion desempeño');
             //if ($("#eac-form").valid()){
