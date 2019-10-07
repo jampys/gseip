@@ -31,10 +31,10 @@
             //alert('guardar evaluacion desempeño');
             //if ($("#eac-form").valid()){
             var params={};
-            params.action = 'evaluaciones';
-            params.operation = 'saveEac';
-            params.periodo = $('#periodo').val();
-            params.cerrado = $('#cerrado').val();
+            params.action = 'empleados';
+            params.operation = 'saveVencimientos';
+            //params.periodo = $('#periodo').val();
+            //params.cerrado = $('#cerrado').val();
             //alert(params.id_compania);
 
             var jsonCompetenciasIx = $.map(jsonCompetencias, function(item){ return item;} );
@@ -46,14 +46,14 @@
                 //alert(xhr.responseText);
                 if(data >=0){
                     $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                    $("#myElem").html('Evaluación de competencias guardada con exito').addClass('alert alert-success').show();
+                    $("#myElem").html('Vencimientos guardados con exito').addClass('alert alert-success').show();
                     $("#search").trigger("click");
                     setTimeout(function() { $("#myElem").hide();
-                        $('#modalEac').modal('hide');
-                    }, 2000);
+                                            $('#modalEac').modal('hide');
+                                          }, 2000);
 
                 }else{
-                    $("#myElem").html('Error al guardar evaluación de competencias').addClass('alert alert-danger').show();
+                    $("#myElem").html('No es posible guardar los vencimientos').addClass('alert alert-danger').show();
                 }
 
             }, 'json');
