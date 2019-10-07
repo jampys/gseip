@@ -190,11 +190,11 @@
 
 
 
-
+                                <br/>
+                                
                                 <div id="myElem" class="msg" style="display:none"></div>
 
 
-                                <br/>
                                 <div id="footer-buttons" class="pull-right">
                                     <button class="btn btn-primary" id="submit" name="submit" type="button">Guardar</button>
                                     <!--<button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>-->
