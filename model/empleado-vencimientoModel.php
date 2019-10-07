@@ -69,16 +69,16 @@ order by v.nombre asc";
     }
 
 
-    function save(){
+    /*function save(){
         if($this->id_cuadrilla_empleado)
         {$rta = $this->updateCuadrillaEmpleado();}
         else
         {$rta =$this->insertCuadrillaEmpleado();}
         return $rta;
-    }
+    }*/
 
 
-    public function updateCuadrillaEmpleado(){
+    /*public function updateCuadrillaEmpleado(){
         $stmt=new sQuery();
         $query="update nov_cuadrilla_empleado set id_empleado = :id_empleado,
                 conductor = :conductor
@@ -89,27 +89,26 @@ order by v.nombre asc";
         $stmt->dpBind(':conductor', $this->getConductor());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-    }
+    }*/
 
 
-    private function insertCuadrillaEmpleado(){
+    private function insertEmpleadoVencimiento(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_cuadrilla_empleado(fecha, id_cuadrilla, id_empleado, conductor)
-                values(sysdate(), :id_cuadrilla, :id_empleado, :conductor)";
+        $query="insert into empleado_vencimiento(id_empleado, id_vencimiento, created_date)
+                values(:id_empleado, :id_vencimiento, sysdate())";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':conductor', $this->getConductor());
+        $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
-    function deleteCuadrillaEmpleado(){
+    function deleteEmpleadoVencimiento(){ //ok
         $stmt=new sQuery();
-        $query="delete from nov_cuadrilla_empleado where id_cuadrilla_empleado = :id_cuadrilla_empleado";
+        $query="delete from empleado_vencimiento where id_empleado_vencimiento = :id_empleado_vencimiento";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_cuadrilla_empleado', $this->getIdCuadrillaEmpleado());
+        $stmt->dpBind(':id_empleado_vencimiento', $this->getIdEmpleadoVencimiento());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

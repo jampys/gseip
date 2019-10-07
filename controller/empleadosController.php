@@ -118,10 +118,10 @@ switch ($operation)
             $empleado = new Empleado($_POST['id_empleado']);
             $id_empleado = $empleado->getIdEmpleado();
 
-            $vVencimientos = json_decode($_POST["vEmpleados"], true);
+            $vVencimientos = json_decode($_POST["vCompetencias"], true);
             //print_r($vEmpleados);
 
-            foreach ($vEmpleados as $vE) {
+            foreach ($vVencimientos as $vE) {
 
                 //$c = new HabilidadEmpleado();
                 //$c->setIdHabilidad($vH['id_habilidad']);
@@ -130,19 +130,14 @@ switch ($operation)
 
                 //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
                 //echo "id_contrato :".$id." - procesos: ".$vE['id_proceso'];
-                $empleado_contrato = new ContratoEmpleado();
-                $empleado_contrato->setIdEmpleadoContrato($vE['id_empleado_contrato']);
-                $empleado_contrato->setIdEmpleado($vE['id_empleado']);
-                $empleado_contrato->setIdContrato($id_contrato);
-                $empleado_contrato->setIdPuesto($vE['id_puesto']);
-                $empleado_contrato->setFechaDesde($vE['fecha_desde']);
-                $empleado_contrato->setFechaHasta(($vE['fecha_hasta'])? $vE['fecha_hasta']: null); //fecha_desde puede ser null
-                $empleado_contrato->setIdLocalidad(($vE['id_localidad'])? $vE['id_localidad']: null);
-
+                $empleado_vencimiento = new EmpleadoVencimiento($vE['id_empleado_vencimiento']);
+                //$empleado_vencimiento->setIdEmpleadoContrato($vE['id_empleado_contrato']);
+                $empleado_vencimiento->setIdEmpleado($vE['id_empleado']);
+                $empleado_vencimiento->setIdVencimiento($vE['id_vencimiento']);
                 //echo 'id empleado contrato: '.$vE['id_empleado_contrato'].'---';
 
                 //echo $vE['operacion'];
-                if($vE['operacion']=='insert') {
+                if($vE['operation']=='checked' && !$vE['id_empleado_vencimiento']) { //insert
                     $empleado_contrato->insertEmpleadoContrato();
                     $id_empleado_contrato = sQuery::dpLastInsertId();
                     if($vE['id_proceso']){
