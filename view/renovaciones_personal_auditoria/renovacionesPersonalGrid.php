@@ -150,10 +150,10 @@
         </table>
 
 
-        <br/>
+        <!--<br/>
         <div class="pull-right pdf">
             <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
-        </div>
+        </div>-->
 
     </div>
 
@@ -163,7 +163,7 @@
 
 
 
-<div id="confirm">
+<!--<div id="confirm">
     <div class="modal-body">
         ¿Desea eliminar la renovación?
     </div>
@@ -172,7 +172,7 @@
 
     </div>
 
-</div>
+</div>-->
 
 
 

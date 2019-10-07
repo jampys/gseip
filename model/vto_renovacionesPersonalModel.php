@@ -218,6 +218,42 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
+
+
+    public static function getRenovacionesPersonalAuditoria($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado) { //ok
+        $stmt=new sQuery();
+        $query = "select v.id_vencimiento, v.nombre as vencimiento,
+em.id_empleado, em.legajo, em.apellido, em.nombre,
+ev.id_empleado_vencimiento,
+vrp.*
+from vto_vencimiento_p v
+join empleados em
+left join empleado_vencimiento ev on v.id_vencimiento = ev.id_vencimiento and ev.id_empleado = em.id_empleado
+left join vto_renovacion_p vrp on vrp.id_vencimiento = ev.id_vencimiento and vrp.id_empleado = ev.id_empleado and vrp.id_rnv_renovacion is null
+where em.id_empleado = 229";
+
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_empleado', $id_empleado);
+        //$stmt->dpBind(':id_grupo', $id_grupo);
+        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        //$stmt->dpBind(':id_subcontratista', $id_subcontratista);
+        //$stmt->dpBind(':renovado', $renovado);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     function save(){ //ok
         if($this->id_renovacion)
         {$rta = $this->updateRenovacion();}
