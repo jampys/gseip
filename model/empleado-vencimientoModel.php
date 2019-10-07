@@ -92,7 +92,7 @@ order by v.nombre asc";
     }*/
 
 
-    private function insertEmpleadoVencimiento(){ //ok
+    public function insertEmpleadoVencimiento(){ //ok
         $stmt=new sQuery();
         $query="insert into empleado_vencimiento(id_empleado, id_vencimiento, created_date)
                 values(:id_empleado, :id_vencimiento, sysdate())";
@@ -104,7 +104,7 @@ order by v.nombre asc";
     }
 
 
-    function deleteEmpleadoVencimiento(){ //ok
+    public function deleteEmpleadoVencimiento(){ //ok
         $stmt=new sQuery();
         $query="delete from empleado_vencimiento where id_empleado_vencimiento = :id_empleado_vencimiento";
         $stmt->dpPrepare($query);
