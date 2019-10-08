@@ -90,7 +90,8 @@
                 <th>vencimiento</th>
                 <th>Requerido</th>
                 <th>F. vto.</th>
-                <th></th>
+                <th>Deshabilitado</th>
+                <th>Estado</th>
 
             </tr>
             </thead>
@@ -102,11 +103,18 @@
                         <td><?php echo $rp['legajo']; ?></td>
                         <td><?php echo $rp['apellido'].' '.$rp['nombre']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
-                        <td style="text-align: center"><?php echo ($rp['id_empleado_vencimiento'])? '<i class="far fa-check-square dp_green"></i>' : '<i class="far fa-minus-square dp_red"></i>' ; ?></td>
-                        <td><?php echo ($rp['fecha_emision'])? $rp['fecha_emision'] : '<span class="text-danger">sin datos</span>' ; ?></td>
-
-
+                        <td style="text-align: center"><?php echo ($rp['id_empleado_vencimiento'])? 'SI' : 'NO' ; ?></td>
+                        <td><?php echo $rp['fecha_vencimiento']; ?></td>
+                        <td><?php echo $rp['disabled']; ?></td>
                         <td class="text-center">
+                            <?php if($rp['id_empleado_vencimiento'] && (!$rp['id_renovacion'] || $rp['disabled']) ){ ?>
+                                <i class="fas fa-exclamation-triangle dp_red"></i>
+                            <?php } else{ ?>
+                                <i class="fas fa-check dp_green"></i>
+                            <?php } ?>
+                        </td>
+
+                        <!--<td class="text-center">
                             <?php if($rp['cant_uploads']> 0 ){ ?>
                                 <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
                                     <span class="glyphicon glyphicon-paperclip dp_gray" aria-hidden="true"></span>
@@ -129,16 +137,16 @@
                                 </a>
                             <?php } ?>&nbsp;&nbsp;
 
-                            <!-- si tiene permiso y no fue renovado -->
+
                             <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
-                            <!-- si tiene permiso y no fue renovado -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) && !$rp['id_rnv_renovacion'] )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+
+                            <a class="<?php //echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) && !$rp['id_rnv_renovacion'] )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                             </a>
-                        </td>
+                        </td>-->
                     </tr>
                 <?php endforeach; } ?>
             </tbody>
