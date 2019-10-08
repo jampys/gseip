@@ -18,7 +18,7 @@ switch ($operation)
         $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
         $id_grupo = ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? $_POST['id_vencimiento'] : null;
-        $id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
+        $id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'v.id_vencimiento';
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $id_subcontratista = ($_POST['id_subcontratista']!='')? $_POST['id_subcontratista'] : null;
         $renovado = ($_POST['renovado']== 0)? null : 1;
