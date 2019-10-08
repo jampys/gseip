@@ -14,20 +14,20 @@
                                 $(this).show(); },
 
 
-            "stateSave": true,
-            "order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
+            "stateSave": true
+            //"order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
             /*"columnDefs": [
                 { type: 'date-uk', targets: 1 }, //fecha
                 { type: 'date-uk', targets: 4 }, //fecha_emision
                 { type: 'date-uk', targets: 5 } //fecha_vencimiento
             ]*/
-            columnDefs: [
+            /*columnDefs: [
                 {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
                 {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]}, //fecha_emision
                 {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 6 ]}, //fecha_vencimiento
                 {targets: [ 6 ], orderData: [ 6]}, //priority
                 {targets: [ 7 ], orderData: [ 7]} //renovacion
-            ]
+            ]*/
         });
 
 
@@ -88,10 +88,8 @@
                 <th>Legajo</th>
                 <th>Empleado</th>
                 <th>vencimiento</th>
-                <th>F. emisión</th>
+                <th>Requerido</th>
                 <th>F. vto.</th>
-                <th style="display: none">Priority</th>
-                <th style="display: none">Rnv</th>
                 <th></th>
 
             </tr>
@@ -104,10 +102,9 @@
                         <td><?php echo $rp['legajo']; ?></td>
                         <td><?php echo $rp['apellido'].' '.$rp['nombre']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
+                        <td style="text-align: center"><?php echo ($rp['id_empleado_vencimiento'])? '<i class="far fa-check-square dp_green"></i>' : '<i class="far fa-minus-square dp_red"></i>' ; ?></td>
                         <td><?php echo ($rp['fecha_emision'])? $rp['fecha_emision'] : '<span class="text-danger">sin datos</span>' ; ?></td>
-                        <td><?php echo $rp['fecha_vencimiento']; ?></td>
-                        <td style="display: none"><?php echo $rp['priority']; ?></td>
-                        <td style="display: none"><?php echo $rp['id_rnv_renovacion']; ?></td>
+
 
                         <td class="text-center">
                             <?php if($rp['cant_uploads']> 0 ){ ?>

@@ -225,7 +225,10 @@ order by priority, id_rnv_renovacion asc";
         $query = "select v.id_vencimiento, v.nombre as vencimiento,
 em.id_empleado, em.legajo, em.apellido, em.nombre,
 ev.id_empleado_vencimiento,
-vrp.id_renovacion, vrp.fecha_emision, vrp.fecha_vencimiento, vrp.id_rnv_renovacion, vrp.referencia, vrp.comentarios, vrp.disabled
+vrp.id_renovacion, vrp.fecha_emision,
+DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
+vrp.id_rnv_renovacion, vrp.referencia, vrp.comentarios,
+DATE_FORMAT(vrp.disabled,  '%d/%m/%Y') as disabled
 from vto_vencimiento_p v
 join empleados em
 left join empleado_vencimiento ev on v.id_vencimiento = ev.id_vencimiento and ev.id_empleado = em.id_empleado
