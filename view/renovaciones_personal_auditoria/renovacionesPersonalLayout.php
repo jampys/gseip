@@ -29,7 +29,7 @@
                 params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "renovacionesPersonalAuditoria";
                 params.operation = "refreshGrid";
-                //alert(params.id_grupo);
+                //alert(params.id_empleado);
                 //alert(params.renovado);
                 $('#content').load('index.php', params);
             });

@@ -233,11 +233,11 @@ from vto_vencimiento_p v
 join empleados em
 left join empleado_vencimiento ev on v.id_vencimiento = ev.id_vencimiento and ev.id_empleado = em.id_empleado
 left join vto_renovacion_p vrp on vrp.id_vencimiento = ev.id_vencimiento and vrp.id_empleado = ev.id_empleado and vrp.id_rnv_renovacion is null
-where em.id_empleado = ifnull(:id_empleado, em.id_empleado)
-and vrp.id_vencimiento in ($id_vencimiento)";
+where em.id_empleado = ifnull(:id_empleado, em.id_empleado)";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
+        //and vrp.id_vencimiento in ($id_vencimiento)
         //$stmt->dpBind(':id_grupo', $id_grupo);
         //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
         //$stmt->dpBind(':id_contrato', $id_contrato);
