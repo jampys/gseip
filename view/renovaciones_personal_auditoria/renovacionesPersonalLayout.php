@@ -35,6 +35,19 @@
             });
 
 
+            $(document).on('click', '#new', function(){ //ok
+                params={};
+                params.action = "renovacionesPersonal";
+                params.operation="newRenovacion";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                });
+
+                return false;
+
+            });
+
+
 
 
         });

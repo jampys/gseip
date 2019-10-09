@@ -116,7 +116,9 @@
                             &nbsp;
 
                             <?php if($rp['id_empleado_vencimiento'] && !$rp['id_renovacion']){ ?>
-                                <span class="dp_red">No hay datos</span>
+                                <a id="new" class="<?php echo (PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) )? '': 'disabled' ?>" href="">
+                                    <span class="dp_red">No hay datos</span>
+                                </a>
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['disabled']){ ?>
                                 <span class="dp_red">Deshabilitado</span>
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']< 0){  ?>
