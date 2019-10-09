@@ -35,16 +35,32 @@
             });
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){
                 params={};
                 params.action = "renovacionesPersonal";
                 params.operation="newRenovacion";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 });
-
                 return false;
 
+            });
+
+
+
+            $(document).on('click', '.renovar', function(){
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_renovacion = id;
+                params.action = "renovacionesPersonal";
+                params.operation = "renovRenovacion";
+                //alert(params.id_renovacion);
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
+                });
+                return false;
             });
 
 

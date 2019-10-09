@@ -122,7 +122,9 @@
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['disabled']){ ?>
                                 <span class="dp_red">Deshabilitado</span>
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']< 0){  ?>
-                                <span class="dp_red">Vencido</span>
+                                <a id="renovar" class="<?php echo (PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) )? '': 'disabled' ?>" href="">
+                                    <span class="dp_red">Vencido</span>
+                                </a>
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']> 0){  ?>
                                 <span class="dp_green">Actualizada</span>
                             <?php } elseif(!$rp['id_empleado_vencimiento']){  ?>
