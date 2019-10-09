@@ -92,6 +92,7 @@
                 <th>Fecha. Vto.</th>
                 <th>Deshabilitado</th>
                 <th style="text-align: center">Estado</th>
+                <th></th>
 
             </tr>
             </thead>
@@ -113,6 +114,19 @@
                                 <i class="fas fa-check dp_green"></i>
                             <?php } ?>
                         </td>
+
+                        <td>
+
+                            <?php if($rp['id_empleado_vencimiento'] && !$rp['id_renovacion']){ ?>
+                                <span class="dp_red">No hay datos</span>
+                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['disabled']){ ?>
+                                <span class="dp_red">Deshabilitado</span>
+                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']< 0){  ?>
+                                <span class="dp_red">Vencido</span>
+                            <?php }?>
+
+                        </td>
+
 
                         <!--<td class="text-center">
                             <?php if($rp['cant_uploads']> 0 ){ ?>
