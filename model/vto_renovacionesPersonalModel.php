@@ -228,7 +228,8 @@ ev.id_empleado_vencimiento,
 vrp.id_renovacion, vrp.fecha_emision,
 DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
 vrp.id_rnv_renovacion, vrp.referencia, vrp.comentarios,
-DATE_FORMAT(vrp.disabled,  '%d/%m/%Y') as disabled
+DATE_FORMAT(vrp.disabled,  '%d/%m/%Y') as disabled,
+datediff(vrp.fecha_vencimiento, sysdate()) as isVencida
 from vto_vencimiento_p v
 join empleados em
 left join empleado_vencimiento ev on v.id_vencimiento = ev.id_vencimiento and ev.id_empleado = em.id_empleado

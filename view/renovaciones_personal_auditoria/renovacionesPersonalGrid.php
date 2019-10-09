@@ -87,11 +87,11 @@
             <tr>
                 <th>Legajo</th>
                 <th>Empleado</th>
-                <th>vencimiento</th>
-                <th>Requerido</th>
-                <th>F. vto.</th>
+                <th>Vencimiento</th>
+                <th style="text-align: center">Requerido</th>
+                <th>Fecha. Vto.</th>
                 <th>Deshabilitado</th>
-                <th>Estado</th>
+                <th style="text-align: center">Estado</th>
 
             </tr>
             </thead>
@@ -107,7 +107,7 @@
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td><?php echo $rp['disabled']; ?></td>
                         <td class="text-center">
-                            <?php if($rp['id_empleado_vencimiento'] && (!$rp['id_renovacion'] || $rp['disabled']) ){ ?>
+                            <?php if($rp['id_empleado_vencimiento'] && (!$rp['id_renovacion'] || $rp['disabled'] || $rp['isVencida']< 0  ) ){ ?>
                                 <i class="fas fa-exclamation-triangle dp_red"></i>
                             <?php } else{ ?>
                                 <i class="fas fa-check dp_green"></i>
