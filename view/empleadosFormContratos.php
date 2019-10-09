@@ -45,11 +45,12 @@
                 //No se usa .fail() porque el resultado viene de una transaccion (try catch) que siempre devuelve 1 o -1
                 //alert(xhr.responseText);
                 if(data >=0){
-                    //$(".modal-footer button").prop("disabled", true); //deshabilito botones
+                    $("#myModal button").prop("disabled", true); //deshabilito botones
                     $("#myElem").html('Vencimientos guardados con exito').addClass('alert alert-success').show();
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#myElem").hide();
                                             //$('#modalEac').modal('hide');
+                                            $("#myModal button").prop("disabled", false); //habilito botones
                                           }, 2000);
 
                 }else{
