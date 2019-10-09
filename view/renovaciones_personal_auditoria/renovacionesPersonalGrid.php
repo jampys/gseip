@@ -99,7 +99,11 @@
 
             <?php if(isset($view->renovaciones_personal)) {
                 foreach ($view->renovaciones_personal as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_renovacion']; ?>" style="background-color: <?php echo $rp['color']; ?>" >
+                    <tr data-id="<?php echo $rp['id_renovacion']; ?>"
+                        id_empleado="<?php echo $rp['id_empleado']; ?>"
+                        id_vencimiento="<?php echo $rp['id_vencimiento']; ?>"
+
+                        style="background-color: <?php echo $rp['color']; ?>" >
                         <td><?php echo $rp['legajo']; ?></td>
                         <td><?php echo $rp['apellido'].' '.$rp['nombre']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
@@ -116,17 +120,23 @@
                             &nbsp;
 
                             <?php if($rp['id_empleado_vencimiento'] && !$rp['id_renovacion']){ ?>
-                                <a id="new" class="<?php echo (PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) )? '': 'disabled' ?>" href="">
+                                <a class="new <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="">
                                     <span class="dp_red">No hay datos</span>
                                 </a>
+
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['disabled']){ ?>
-                                <span class="dp_red">Deshabilitado</span>
+                                <a class="edit <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="">
+                                    <span class="dp_red">Deshabilitado</span>
+                                </a>
+
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']< 0){  ?>
-                                <a id="renovar" class="<?php echo (PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) )? '': 'disabled' ?>" href="">
+                                <a class="renovar <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="">
                                     <span class="dp_red">Vencido</span>
                                 </a>
+
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']> 0){  ?>
                                 <span class="dp_green">Actualizada</span>
+
                             <?php } elseif(!$rp['id_empleado_vencimiento']){  ?>
                                 <span class="dp_green">No aplica</span>
                             <?php }?>

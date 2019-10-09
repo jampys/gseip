@@ -35,12 +35,16 @@
             });
 
 
-            $(document).on('click', '#new', function(){
+            $('#content').on('click', '.new', function(){ //ok
                 params={};
+                params.id_empleado = $(this).closest('tr').attr('id_empleado');
+                params.id_vencimiento = $(this).closest('tr').attr('id_vencimiento');
                 params.action = "renovacionesPersonal";
                 params.operation="newRenovacion";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
+                    $('#id_empleado').val(params.id_empleado).prop('disabled', true).selectpicker('refresh');
+                    $('#id_vencimiento').val(params.id_vencimiento).prop('disabled', true).selectpicker('refresh');
                 });
                 return false;
 
@@ -48,7 +52,7 @@
 
 
 
-            $(document).on('click', '.renovar', function(){
+            $(document).on('click', '.renovar', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -62,6 +66,23 @@
                 });
                 return false;
             });
+
+
+            $(document).on('click', '.edit', function(){ //ok
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_renovacion = id;
+                params.action = "renovacionesPersonal";
+                params.operation = "editRenovacion";
+                //alert(params.id_renovacion);
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
+                });
+                return false;
+            });
+
 
 
 
