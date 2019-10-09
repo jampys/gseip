@@ -91,8 +91,7 @@
                 <th style="text-align: center">Requerido</th>
                 <th>Fecha. Vto.</th>
                 <th>Deshabilitado</th>
-                <th style="text-align: center">Estado</th>
-                <th></th>
+                <th>Estado</th>
 
             </tr>
             </thead>
@@ -107,15 +106,14 @@
                         <td style="text-align: center"><?php echo ($rp['id_empleado_vencimiento'])? 'SI' : 'NO' ; ?></td>
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td><?php echo $rp['disabled']; ?></td>
-                        <td class="text-center">
+                        <td>
                             <?php if($rp['id_empleado_vencimiento'] && (!$rp['id_renovacion'] || $rp['disabled'] || $rp['isVencida']< 0  ) ){ ?>
                                 <i class="fas fa-exclamation-triangle dp_red"></i>
                             <?php } else{ ?>
                                 <i class="fas fa-check dp_green"></i>
                             <?php } ?>
-                        </td>
 
-                        <td>
+                            &nbsp;
 
                             <?php if($rp['id_empleado_vencimiento'] && !$rp['id_renovacion']){ ?>
                                 <span class="dp_red">No hay datos</span>
@@ -123,9 +121,14 @@
                                 <span class="dp_red">Deshabilitado</span>
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']< 0){  ?>
                                 <span class="dp_red">Vencido</span>
+                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']> 0){  ?>
+                                <span class="dp_green">Actualizada</span>
+                            <?php } elseif(!$rp['id_empleado_vencimiento']){  ?>
+                                <span class="dp_green">No aplica</span>
                             <?php }?>
 
                         </td>
+
 
 
                         <!--<td class="text-center">
