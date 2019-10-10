@@ -120,17 +120,17 @@
                             &nbsp;
 
                             <?php if($rp['id_empleado_vencimiento'] && !$rp['id_renovacion']){ ?>
-                                <a class="new <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="">
+                                <a class="new <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Cargar vencimiento">
                                     <span class="dp_red">No hay datos</span>
                                 </a>
 
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['disabled']){ ?>
-                                <a class="edit <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="">
+                                <a class="edit <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Habilitar vencimiento">
                                     <span class="dp_red">Deshabilitado</span>
                                 </a>
 
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']< 0){  ?>
-                                <a class="renovar <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="">
+                                <a class="renovar <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Renovar vencimiento">
                                     <span class="dp_red">Vencido</span>
                                 </a>
 
