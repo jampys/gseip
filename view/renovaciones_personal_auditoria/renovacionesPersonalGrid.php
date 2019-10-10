@@ -111,7 +111,7 @@
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td><?php echo $rp['disabled']; ?></td>
                         <td>
-                            <?php if($rp['id_empleado_vencimiento'] && (!$rp['id_renovacion'] || $rp['disabled'] || $rp['isVencida']< 0  ) ){ ?>
+                            <?php if($rp['id_empleado_vencimiento'] && (!$rp['id_renovacion'] || $rp['disabled'] || $rp['isVencida']<= 0  ) ){ ?>
                                 <i class="fas fa-exclamation-triangle dp_red"></i>
                             <?php } else{ ?>
                                 <i class="fas fa-check dp_green"></i>
@@ -129,7 +129,7 @@
                                     <span class="dp_red">Desactivado</span>
                                 </a>
 
-                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']< 0){ $view->details['vencidos']++;  ?>
+                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']<= 0){ $view->details['vencidos']++;  ?>
                                 <a class="renovar <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Renovar vencimiento">
                                     <span class="dp_red">Vencido</span>
                                 </a>
