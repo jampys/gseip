@@ -47,7 +47,7 @@
                 if(data >=0){
                     $("#myModal button").prop("disabled", true); //deshabilito botones
                     $("#myElem").html('Vencimientos guardados con exito').addClass('alert alert-success').show();
-                    //$("#search").trigger("click");
+                    $("#search").trigger("click");
                     setTimeout(function() { $("#myElem").hide();
                                             //$('#modalEac').modal('hide');
                                             $("#myModal button").prop("disabled", false); //habilito botones
