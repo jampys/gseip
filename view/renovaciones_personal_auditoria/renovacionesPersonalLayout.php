@@ -52,7 +52,7 @@
 
 
 
-            $(document).on('click', '.renovar', function(){ //ok
+            $('#content').on('click', '.renovar', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -68,7 +68,7 @@
             });
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
