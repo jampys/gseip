@@ -13,7 +13,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
         $id_grupo = ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null;
@@ -24,6 +24,14 @@ switch ($operation)
         $renovado = ($_POST['renovado']== 0)? null : 1;
         $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonalAuditoria($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
         $view->contentTemplate="view/renovaciones_personal_auditoria/renovacionesPersonalGrid.php";
+
+        $view->details = array();
+        $view->details['actualizados'] = 0;
+        $view->details['no_aplica'] = 0;
+        $view->details['vencidos'] = 0;
+        $view->details['desactivados'] = 0;
+        $view->details['sin_datos'] = 0;
+
         break;
 
 

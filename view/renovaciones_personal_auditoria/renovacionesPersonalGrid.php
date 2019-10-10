@@ -74,7 +74,7 @@
 
 <!--<div class="col-md-1"></div>-->
 
-<div class="col-md-12">
+<div class="col-md-10">
 
 
 
@@ -119,25 +119,25 @@
 
                             &nbsp;
 
-                            <?php if($rp['id_empleado_vencimiento'] && !$rp['id_renovacion']){ ?>
+                            <?php if($rp['id_empleado_vencimiento'] && !$rp['id_renovacion']){ $view->details['sin_datos']++; ?>
                                 <a class="new <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Cargar vencimiento">
                                     <span class="dp_red">No hay datos</span>
                                 </a>
 
-                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['disabled']){ ?>
+                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['disabled']){ $view->details['desactivados']++; ?>
                                 <a class="edit <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Habilitar vencimiento">
-                                    <span class="dp_red">Deshabilitado</span>
+                                    <span class="dp_red">Desactivado</span>
                                 </a>
 
-                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']< 0){  ?>
+                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']< 0){ $view->details['vencidos']++;  ?>
                                 <a class="renovar <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Renovar vencimiento">
                                     <span class="dp_red">Vencido</span>
                                 </a>
 
-                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']> 0){  ?>
-                                <span class="dp_green">Actualizada</span>
+                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']> 0){ $view->details['actualizados']++;  ?>
+                                <span class="dp_green">Actualizado</span>
 
-                            <?php } elseif(!$rp['id_empleado_vencimiento']){  ?>
+                            <?php } elseif(!$rp['id_empleado_vencimiento']){ $view->details['no_aplica']++;  ?>
                                 <span class="dp_green">No aplica</span>
                             <?php }?>
 
@@ -189,11 +189,22 @@
             <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
         </div>-->
 
+
+
     </div>
 
 </div>
 
-<!--<div class="col-md-1"></div>-->
+<div class="col-md-2">
+
+    <b>Total registros:</b>&nbsp;<span><?php echo sizeof($view->renovaciones_personal); ?></span><br/>
+    <b>Actualizados:</b>&nbsp;<span class="dp_green"><?php echo ($view->details['actualizados'])? $view->details['actualizados'] : 0; ?></span><br/>
+    <b>No aplica:</b>&nbsp;<span class="dp_green"><?php echo ($view->details['no_aplica'])? $view->details['no_aplica'] : 0; ?></span><br/>
+    <b>Vencidos:</b>&nbsp;<span class="dp_red"><?php echo ($view->details['vencidos'])? $view->details['vencidos'] : 0; ?></span><br/>
+    <b>Desactivados:</b>&nbsp;<span class="dp_red"><?php echo ($view->details['desactivados'])? $view->details['desactivados'] : 0; ?></span><br/>
+    <b>Sin datos:</b>&nbsp;<span class="dp_red"><?php echo ($view->details['sin_datos'])? $view->details['sin_datos'] : 0; ?></span><br/>
+
+</div>
 
 
 
