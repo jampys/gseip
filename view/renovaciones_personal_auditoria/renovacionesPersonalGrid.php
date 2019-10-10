@@ -107,7 +107,24 @@
                         <td><?php echo $rp['legajo']; ?></td>
                         <td><?php echo $rp['apellido'].' '.$rp['nombre']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
-                        <td style="text-align: center"><?php echo ($rp['id_empleado_vencimiento'])? 'SI' : 'NO' ; ?></td>
+                        <td style="text-align: center">
+
+
+                        <a class="new <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Cargar vencimiento">
+                            <span class="requerido">
+                                <?php echo ($rp['id_empleado_vencimiento'])? 'SI' : 'NO' ; ?>
+                            </span>
+                        </a>
+
+
+                        </td>
+
+
+
+
+
+
+
                         <td><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td><?php echo $rp['disabled']; ?></td>
                         <td>

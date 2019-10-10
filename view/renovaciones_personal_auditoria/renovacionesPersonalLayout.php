@@ -84,6 +84,22 @@
             });
 
 
+            $('#content').on('click', '.requerido', function(){ //ok
+                //alert('tocó en contratos');
+                var id = $(this).attr('data-id');
+                //preparo los parametros
+                params={};
+                params.id_empleado = $(this).closest('tr').attr('id_empleado');
+                params.action = "empleados";
+                params.operation = "loadContratos";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                });
+                return false;
+
+            });
+
+
 
 
 
