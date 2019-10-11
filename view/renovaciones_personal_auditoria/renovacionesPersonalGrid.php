@@ -214,12 +214,21 @@
 
 <div class="col-md-2">
 
-    <b>Total registros:</b>&nbsp;<span><?php echo sizeof($view->renovaciones_personal); ?></span><br/>
-    <b>Actualizados:</b>&nbsp;<span class="dp_green"><?php echo ($view->details['actualizados'])? $view->details['actualizados'] : 0; ?></span><br/>
-    <b>No aplica:</b>&nbsp;<span class="dp_green"><?php echo ($view->details['no_aplica'])? $view->details['no_aplica'] : 0; ?></span><br/>
-    <b>Vencidos:</b>&nbsp;<span class="dp_red"><?php echo ($view->details['vencidos'])? $view->details['vencidos'] : 0; ?></span><br/>
-    <b>Desactivados:</b>&nbsp;<span class="dp_red"><?php echo ($view->details['desactivados'])? $view->details['desactivados'] : 0; ?></span><br/>
-    <b>Sin datos:</b>&nbsp;<span class="dp_red"><?php echo ($view->details['sin_datos'])? $view->details['sin_datos'] : 0; ?></span><br/>
+    <div class="panel panel-default">
+        <div class="panel-body" style="background-color: #e5e5e5">
+
+
+            <b>Total registros:</b>&nbsp;<span><?php echo sizeof($view->renovaciones_personal); ?></span><br/>
+            <b>Actualizados:</b>&nbsp;<span class="dp_green"><?php echo ($view->details['actualizados'])? $view->details['actualizados'] : 0; ?></span><br/>
+            <b>No aplica:</b>&nbsp;<span class="dp_green"><?php echo ($view->details['no_aplica'])? $view->details['no_aplica'] : 0; ?></span><br/>
+            <b>Vencidos:</b>&nbsp;<span class="dp_red"><?php echo ($view->details['vencidos'])? $view->details['vencidos'] : 0; ?></span><br/>
+            <b>Desactivados:</b>&nbsp;<span class="dp_red"><?php echo ($view->details['desactivados'])? $view->details['desactivados'] : 0; ?></span><br/>
+            <b>Sin datos:</b>&nbsp;<span class="dp_red"><?php echo ($view->details['sin_datos'])? $view->details['sin_datos'] : 0; ?></span><br/>
+
+        </div>
+    </div>
+
+
 
 </div>
 
