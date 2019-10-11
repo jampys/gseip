@@ -138,7 +138,7 @@
 
                             <?php if($rp['id_empleado_vencimiento'] && !$rp['id_renovacion']){ $view->details['sin_datos']++; ?>
                                 <a class="new <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Cargar vencimiento">
-                                    <span class="dp_red">No hay datos</span>
+                                    <span class="dp_red">Sin datos</span>
                                 </a>
 
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['disabled']){ $view->details['desactivados']++; ?>
