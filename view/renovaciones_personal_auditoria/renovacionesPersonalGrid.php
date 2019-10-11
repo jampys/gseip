@@ -152,7 +152,7 @@
                                 </a>
 
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']> 0){ $view->details['actualizados']++;  ?>
-                                <span class="dp_green">Actualizado</span>
+                                <span class="dp_green">Vigente</span>
 
                             <?php } elseif(!$rp['id_empleado_vencimiento']){ $view->details['no_aplica']++;  ?>
                                 <span class="dp_green">No aplica</span>
@@ -219,7 +219,7 @@
 
 
             <b>Total registros:</b>&nbsp;<span><?php echo sizeof($view->renovaciones_personal); ?></span><br/>
-            <b>Actualizados:</b>&nbsp;<span class="dp_green"><?php echo ($view->details['actualizados'])? $view->details['actualizados'] : 0; ?></span><br/>
+            <b>Vigentes:</b>&nbsp;<span class="dp_green"><?php echo ($view->details['actualizados'])? $view->details['actualizados'] : 0; ?></span><br/>
             <b>No aplica:</b>&nbsp;<span class="dp_green"><?php echo ($view->details['no_aplica'])? $view->details['no_aplica'] : 0; ?></span><br/>
             <b>Vencidos:</b>&nbsp;<span class="dp_red"><?php echo ($view->details['vencidos'])? $view->details['vencidos'] : 0; ?></span><br/>
             <b>Desactivados:</b>&nbsp;<span class="dp_red"><?php echo ($view->details['desactivados'])? $view->details['desactivados'] : 0; ?></span><br/>
