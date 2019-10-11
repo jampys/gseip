@@ -110,7 +110,7 @@
                         <td style="text-align: center">
 
 
-                        <a class="new <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Cargar vencimiento">
+                        <a class="new <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="modificar vencimientos">
                             <span class="requerido">
                                 <?php echo ($rp['id_empleado_vencimiento'])? 'SI' : 'NO' ; ?>
                             </span>
