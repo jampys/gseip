@@ -90,7 +90,7 @@
                 <th>Vencimiento</th>
                 <th style="text-align: center">Requerido</th>
                 <th>Fecha. Vto.</th>
-                <th>Deshabilitado</th>
+                <th>Desactivado</th>
                 <th>Estado</th>
 
             </tr>
