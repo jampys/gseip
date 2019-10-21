@@ -222,7 +222,7 @@ order by priority, id_rnv_renovacion asc";
 
     public static function getRenovacionesPersonalAuditoria($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado) { //ok
         $stmt=new sQuery();
-        $query = "select v.id_vencimiento, v.nombre as vencimiento,
+        /*$query = "select v.id_vencimiento, v.nombre as vencimiento,
 em.id_empleado, em.legajo, em.apellido, em.nombre,
 ev.id_empleado_vencimiento,
 vrp.id_renovacion, vrp.fecha_emision,
@@ -234,6 +234,24 @@ from vto_vencimiento_p v
 join empleados em
 left join empleado_vencimiento ev on v.id_vencimiento = ev.id_vencimiento and ev.id_empleado = em.id_empleado
 left join vto_renovacion_p vrp on vrp.id_vencimiento = ev.id_vencimiento and vrp.id_empleado = ev.id_empleado and vrp.id_rnv_renovacion is null
+left join empleado_contrato ec on ec.id_empleado = em.id_empleado
+where em.id_empleado = ifnull(:id_empleado, em.id_empleado)
+and if(:id_contrato is not null, ec.id_contrato = :id_contrato, 1)
+and v.id_vencimiento in ($id_vencimiento)
+and em.fecha_baja is null
+group by v.id_vencimiento, em.id_empleado";*/
+        $query = "select v.id_vencimiento, v.nombre as vencimiento,
+em.id_empleado, em.legajo, em.apellido, em.nombre,
+ev.id_empleado_vencimiento,
+vrp.id_renovacion, vrp.fecha_emision,
+DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
+vrp.id_rnv_renovacion, vrp.referencia, vrp.comentarios,
+DATE_FORMAT(vrp.disabled,  '%d/%m/%Y') as disabled,
+datediff(vrp.fecha_vencimiento, sysdate()) as isVencida
+from vto_vencimiento_p v
+join empleados em
+left join empleado_vencimiento ev on ev.id_vencimiento = v.id_vencimiento and ev.id_empleado = em.id_empleado
+left join vto_renovacion_p vrp on vrp.id_vencimiento = v.id_vencimiento and vrp.id_empleado = em.id_empleado and vrp.id_rnv_renovacion is null
 left join empleado_contrato ec on ec.id_empleado = em.id_empleado
 where em.id_empleado = ifnull(:id_empleado, em.id_empleado)
 and if(:id_contrato is not null, ec.id_contrato = :id_contrato, 1)
