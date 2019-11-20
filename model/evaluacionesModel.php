@@ -30,7 +30,7 @@ exists(select 1 from ead_evaluacion_conclusion where id_empleado = em.id_emplead
 func_es_inmediato_superior(em.id_empleado, ec.id_contrato) as isInSup,
 func_es_superior(em.id_empleado) as isSup
 from v_sec_empleados_control em
-join empleado_contrato ec on em.id_empleado = ec.id_empleado
+join empleado_contrato ec on em.id_empleado = ec.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta >= sysdate() )
 join contratos co on ec.id_contrato = co.id_contrato
 join companias cia on co.id_compania = cia.id_compania
 join puestos pu on ec.id_puesto = pu.id_puesto
