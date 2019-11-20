@@ -145,7 +145,7 @@ class PrivilegedUser
 from sec_user_role sur, sec_roles sr
 where sur.id_role = sr.id_role
 and sur.id_user = :id_user
-and sur.fecha_hasta is null";
+and (sur.fecha_hasta is null or sur.fecha_hasta >= sysdate())";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_user', $this->id_user);
