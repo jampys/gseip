@@ -116,7 +116,7 @@
 
 
 
-        $(document).on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){ //ok
             if ($("#usuario-form").valid()){
                 var params={};
                 params.action = 'sec_users';
