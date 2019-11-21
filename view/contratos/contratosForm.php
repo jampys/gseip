@@ -114,8 +114,7 @@
         $('#contrato-form').validate({ //ok
             rules: {
                 nro_contrato: {
-                    required: true,
-                    digits: true},
+                    required: true},
                 compania: {required: true},
                 nombre: {required: true},
                 id_responsable: {required: true},
@@ -124,8 +123,7 @@
             },
             messages:{
                 nro_contrato: {
-                    required: "Ingrese nro. de contrato",
-                    digits: "Ingrese solo números"
+                    required: "Ingrese nro. de contrato"
                 },
                 compania: "Ingrese la compañía",
                 nombre: "Ingrese un nombre",
