@@ -29,7 +29,7 @@ switch ($operation)
         $empleado->setCuil($_POST['cuil']);
         $empleado->setFechaNacimiento($_POST['fecha_nacimiento']);
         $empleado->setFechaAlta($_POST['fecha_alta']);
-        $empleado->setFechaBaja($_POST['fecha_baja']);
+        $empleado->setFechaBaja( ($_POST['fecha_baja'])? $_POST['fecha_baja'] : null );
         $empleado->setDireccion($_POST['direccion']);
         $empleado->setIdLocalidad($_POST['localidad']);
         $empleado->setTelefono($_POST['telefono']);
