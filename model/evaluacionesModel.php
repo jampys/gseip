@@ -62,7 +62,9 @@ co.nombre as contrato, pu.nombre as puesto,
 pe.id_plan_evaluacion, pe.periodo, pe.cerrado,
 1 as hasAllEac,
 1 as hasAllEaag,
-1 as hasAllEao
+1 as hasAllEao,
+func_es_inmediato_superior(em.id_empleado, ec.id_contrato) as isInSup,
+func_es_superior(em.id_empleado) as isSup
 from v_sec_empleados_evaluacion em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join contratos co on ec.id_contrato = co.id_contrato
