@@ -92,7 +92,10 @@ class Vehiculo
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select ve.*
+            $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_ano, ve.tetra,
+                    ve.propietario, ve.leasing,
+                    DATE_FORMAT(ve.fecha_baja,  '%d/%m/%Y') as fecha_baja,
+                    ve.responsable, ve.id_object
                     from vto_vehiculos ve
                     where ve.id_vehiculo = :nro";
             $stmt->dpPrepare($query);
@@ -118,9 +121,10 @@ class Vehiculo
     public static function getVehiculos() { //ok
         $stmt=new sQuery();
         $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_ano, ve.tetra, ve.propietario,
-ve.fecha_baja, ve.responsable
-from vto_vehiculos ve
-order by ve.fecha_baja asc, ve.nro_movil asc";
+                DATE_FORMAT(ve.fecha_baja,  '%d/%m/%Y') as fecha_baja,
+                ve.responsable
+                from vto_vehiculos ve
+                order by ve.fecha_baja asc, ve.nro_movil asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
