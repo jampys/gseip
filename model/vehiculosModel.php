@@ -120,10 +120,12 @@ class Vehiculo
 
     public static function getVehiculos() { //ok
         $stmt=new sQuery();
-        $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_ano, ve.tetra, ve.propietario,
+        $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_ano, ve.tetra,
                 DATE_FORMAT(ve.fecha_baja,  '%d/%m/%Y') as fecha_baja,
-                ve.responsable
+                ve.responsable,
+                co.nombre as propietario
                 from vto_vehiculos ve
+                left join companias co on co.id_compania = ve.propietario
                 order by ve.fecha_baja asc, ve.nro_movil asc";
 
         $stmt->dpPrepare($query);
