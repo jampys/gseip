@@ -29,8 +29,8 @@ func_eval_eao_count (em.id_empleado, pe.periodo) as hasAllEao,
 exists(select 1 from ead_evaluacion_conclusion where id_empleado = em.id_empleado and periodo = pe.periodo) as hasEaconcl,
 func_es_inmediato_superior(em.id_empleado, ec.id_contrato) as isInSup,
 func_es_superior(em.id_empleado) as isSup
-from v_sec_empleados_control em
-join empleado_contrato ec on em.id_empleado = ec.id_empleado
+from v_sec_empleados_evaluacion em
+join empleado_contrato ec on em.id_empleado = ec.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta >= sysdate() )
 join contratos co on ec.id_contrato = co.id_contrato
 join companias cia on co.id_compania = cia.id_compania
 join puestos pu on ec.id_puesto = pu.id_puesto
@@ -62,8 +62,10 @@ co.nombre as contrato, pu.nombre as puesto,
 pe.id_plan_evaluacion, pe.periodo, pe.cerrado,
 1 as hasAllEac,
 1 as hasAllEaag,
-1 as hasAllEao
-from v_sec_empleados_control em
+1 as hasAllEao,
+func_es_inmediato_superior(em.id_empleado, ec.id_contrato) as isInSup,
+func_es_superior(em.id_empleado) as isSup
+from v_sec_empleados_evaluacion em
 join empleado_contrato ec on em.id_empleado = ec.id_empleado
 join contratos co on ec.id_contrato = co.id_contrato
 join companias cia on co.id_compania = cia.id_compania

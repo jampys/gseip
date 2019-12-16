@@ -116,7 +116,7 @@
 
 
 
-        $(document).on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){ //ok
             if ($("#usuario-form").valid()){
                 var params={};
                 params.action = 'sec_users';
@@ -263,7 +263,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="user">Correo</label>
-                        <input class="form-control" type="text" name="user" id="user" value = "<?php print $view->usuario->getUser() ?>" placeholder="Código">
+                        <input class="form-control" type="text" name="user" id="user" value = "<?php print $view->usuario->getUser() ?>" placeholder="Correo electrónico">
                     </div>
 
                     <div class="form-group">

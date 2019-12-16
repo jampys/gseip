@@ -197,7 +197,7 @@
 
 
                                 <div id="footer-buttons" class="pull-right">
-                                    <button class="btn btn-primary" id="submit" name="submit" type="button">Guardar</button>
+                                    <button class="btn btn-primary" id="submit" name="submit" type="button" <?php echo ( PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '' : 'disabled' ?> >Guardar</button>
                                     <!--<button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>-->
                                 </div>
 
