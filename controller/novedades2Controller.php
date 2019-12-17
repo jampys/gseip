@@ -53,7 +53,7 @@ switch ($operation)
 }
 
 
-if ($view->disableLayout==true) {
+if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {
