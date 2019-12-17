@@ -1,7 +1,5 @@
 <style>
-    #brand-image{
-        height: 120%;
-    }
+
 
 </style>
 

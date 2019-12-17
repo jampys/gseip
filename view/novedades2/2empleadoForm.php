@@ -1,7 +1,5 @@
 <style>
-    #brand-image{
-        height: 120%;
-    }
+
 
     ul{
         list-style-type: none;
