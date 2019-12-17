@@ -3,6 +3,10 @@
         height: 120%;
     }
 
+    ul{
+        list-style-type: none;
+    }
+
 </style>
 
 
@@ -115,16 +119,18 @@
 
 
                         <div class="form-group">
-                            <!-- <label for="add_contrato" class="control-label">Nuevos partes</label>-->
-                            <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un contrato</option>
+
+                            <ul>
                                 <?php foreach ($view->empleados as $con){
                                     ?>
-                                    <option value="<?php echo $con['id_empleado']; ?>" >
-                                        <?php echo $con['nombre'];?>
-                                    </option>
+                                    <li value="<?php echo $con['id_empleado']; ?>" >
+                                        <a href="#">
+                                            <?php echo $con['nombre'];?>
+                                        </a>
+
+                                    </li>
                                 <?php  } ?>
-                            </select>
+                            </ul>
                         </div>
 
 

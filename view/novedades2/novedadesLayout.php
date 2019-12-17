@@ -43,7 +43,7 @@
 
 
             $(document).on('click', '#new', function(){
-                alert('presiono en buscar');
+                //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
