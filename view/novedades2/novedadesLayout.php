@@ -42,7 +42,7 @@
             //$('#search_fecha_desde').datepicker('setDate', new Date()); //pone por defecto el rango en la fecha actual
 
 
-            $(document).on('click', '#new', function(){
+            /*$(document).on('click', '#new', function(){
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
@@ -61,7 +61,7 @@
                 //$('#content').load('index.php', params);
                 window.location.href = "index.php?action=novedades2&operation=newParte";
                 return false;
-            });
+            });*/
 
 
 

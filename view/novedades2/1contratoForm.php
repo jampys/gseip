@@ -107,7 +107,7 @@
 
 
 
-            <form id="add-form" name="add-form">
+            <form id="add-form" name="add-form" action="index.php?action=novedades2&operation=newParte" method="post">
 
                 <div class="row">
 
@@ -136,7 +136,7 @@
 
                     <div class="form-group col-md-2">
                         <!--<label for="search">&nbsp;</label>-->
-                        <button type="button" class="form-control btn btn-default" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
+                        <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>
