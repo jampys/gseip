@@ -117,20 +117,29 @@
                     <div class="col-md-3">
 
 
-                        <div class="form-group">
 
-                            <ul>
-                                <?php foreach ($view->empleados as $con){
-                                    ?>
-                                    <li value="<?php echo $con['id_empleado']; ?>" >
-                                        <a href="#">
-                                            <?php echo $con['nombre'];?>
-                                        </a>
 
-                                    </li>
-                                <?php  } ?>
-                            </ul>
-                        </div>
+                        <table class="table table-condensed dataTable table-hover">
+                            <thead>
+                            <!--<tr>
+                                <th>Empleado</th>
+                                <th>Contrato</th>
+                                <th>F. desde</th>
+                                <th>F. hasta</th>
+
+                            </tr>-->
+                            </thead>
+                            <tbody>
+                            <?php foreach ($view->empleados as $em): ?>
+                                <tr data-id="<?php echo $em['id_empleado'];?>">
+                                    <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+
+
 
 
 
