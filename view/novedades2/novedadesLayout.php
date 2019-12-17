@@ -55,11 +55,11 @@
                 params.id_periodo = $("#id_periodo").val();
                 params.cuadrilla = $("#cuadrilla").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
-                params.action = "partes";
-                params.operation = "refreshGrid";
+                //params.action = "novedades2";
+                //params.operation = "newParte";
                 //alert(params.id_grupo);
                 //$('#content').load('index.php', params);
-                window.location.href = "index.php?action=login";
+                window.location.href = "index.php?action=novedades2&operation=newParte";
                 return false;
             });
 
