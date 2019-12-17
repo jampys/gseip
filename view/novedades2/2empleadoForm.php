@@ -132,7 +132,7 @@
                             <tbody>
                             <?php foreach ($view->empleados as $em): ?>
                                 <tr data-id="<?php echo $em['id_empleado'];?>">
-                                    <td><?php echo $em['apellido'].' '.$em['nombre']; ?></td>
+                                    <td><a href="#"><?php echo $em['apellido'].' '.$em['nombre']; ?></td><a>
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>
