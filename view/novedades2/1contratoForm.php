@@ -102,6 +102,7 @@
         <div class="col-md-12">
 
 
+            <br/>
             <h4>Novedades 2</h4>
             <hr class="hr-primary"/>
 
