@@ -121,6 +121,9 @@
 
                     <div class="col-md-3"> <!-- panel izquierdo -->
 
+                        <input type="hidden" name="fecha_desde" id="fecha_desde" value="<?php print $view->periodo->getFechaDesde() ?>">
+                        <input type="hidden" name="fecha_hasta" id="fecha_hasta" value="<?php print $view->periodo->getFechaHasta() ?>">
+
 
                         <div class="form-group required">
                             <!--<label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>-->

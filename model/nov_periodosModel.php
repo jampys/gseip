@@ -56,6 +56,32 @@ class NovPeriodo
     { $this->closedDate=$val;}
 
 
+    function __construct($nro=0){ //constructor //ok
+
+        if ($nro!=0){
+            $stmt=new sQuery();
+            $query = "select id_periodo, nombre, id_contrato,
+                      DATE_FORMAT(fecha_desde, '%d/%m/%Y') as fecha_desde,
+                      DATE_FORMAT(fecha_hasta, '%d/%m/%Y') as fecha_hasta,
+                      created_date, closed_date
+                      from nov_periodos
+                      where id_periodo = :nro";
+            $stmt->dpPrepare($query);
+            $stmt->dpBind(':nro', $nro);
+            $stmt->dpExecute();
+            $rows = $stmt ->dpFetchAll();
+
+            $this->setIdPeriodo($rows[0]['id_periodo']);
+            $this->setNombre($rows[0]['nombre']);
+            $this->setIdContrato($rows[0]['id_contrato']);
+            $this->setFechaDesde($rows[0]['fecha_desde']);
+            $this->setFechaHasta($rows[0]['fecha_hasta']);
+            $this->setCreatedDate($rows[0]['created_date']);
+            $this->setClosedDate($rows[0]['closed_date']);
+        }
+    }
+
+
     public static function getPeriodos($id_contrato = null, $activos = null) {
         //Trae los periodos por contrato
         //si se llama sin parametro, trae solo los periodos activos
