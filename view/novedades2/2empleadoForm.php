@@ -119,7 +119,18 @@
 
                 <div class="row">
 
-                    <div class="col-md-3">
+                    <div class="col-md-3"> <!-- panel izquierdo -->
+
+
+                        <div class="form-group required">
+                            <!--<label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>-->
+                                <div class="input-group date">
+                                    <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php //print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                        </div>
 
 
 
