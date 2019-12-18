@@ -1,14 +1,6 @@
 <style>
 
 
-    ul{
-        list-style-type: none;
-    }
-
-
-    .fixedTable{
-        max-height: 80%;       /* sobrescribe .fixedTable de dario.css         */
-    }
 
 </style>
 
@@ -123,100 +115,63 @@
 
 
 
-        <!--<div class="col-md-1"></div>-->
 
 
-        <div class="col-md-12">
+                        <form name ="empleado-form" id="empleado-form" method="POST" action="index.php">
 
 
-            <br/>
-            <h4>Novedades 2 (2da parte) <?php print $view->periodo->getNombre()." (".$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")" ?></h4>
-            <hr class="hr-primary"/>
+                                <div class="alert alert-info">
+                                    <strong><?php echo $view->label; ?></strong>
+                                </div>
+
+                                <!--<input type="hidden" name="id_parte" id="id_parte" value="<?php //print $view->empleado->getIdParte() ?>">-->
+                                <input type="hidden" name="id_parte_empleado" id="id_parte_empleado" value="<?php print $view->empleado->getIdParteEmpleado() ?>">
+
+
+                                <div class="form-group required">
+                                    <label for="id_empleado" class="control-label">Empleado</label>
+                                    <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
+                                        <?php foreach ($view->empleados as $em){
+                                            ?>
+                                            <option value="<?php echo $em['id_empleado']; ?>"
+                                                <?php echo ($em['id_empleado'] == $view->empleado->getIdEmpleado())? 'selected' :'' ?>
+                                                >
+                                                <?php echo $em['apellido'].' '.$em['nombre'];?>
+                                            </option>
+                                        <?php  } ?>
+                                    </select>
+                                </div>
 
 
 
 
-
-                <div class="row">
-
-                    <div class="col-md-3" id="left_side"> <!-- panel izquierdo -->
-
-                        <input type="hidden" name="fecha_desde" id="fecha_desde" value="<?php print $view->periodo->getFechaDesde() ?>">
-                        <input type="hidden" name="fecha_hasta" id="fecha_hasta" value="<?php print $view->periodo->getFechaHasta() ?>">
-
-
-                        <div class="form-group required">
-                            <!--<label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>-->
-                                <div class="input-group date">
-                                    <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "<?php //print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-th"></span>
+                                <div class="form-group required">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="conductor" name="conductor" <?php echo ($view->empleado->getConductor()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Marcar la persona que maneja">Conductor</a>
+                                        </label>
                                     </div>
                                 </div>
-                        </div>
+
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="avoid_event" name="avoid_event" <?php echo ($view->empleado->getAvoidEvent()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Si hay un evento evita el curso definido para éste y calcula conceptos de manera normal">Evitar evento</a>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="servicio">Comentario</label>
+                                    <textarea class="form-control" name="comentario" id="comentario" placeholder="Comentario" rows="2"><?php print $view->empleado->getComentario(); ?></textarea>
+                                </div>
 
 
 
-                        <div class="table-responsive fixedTable">
-                            <table class="table table-condensed dataTable table-hover">
-                                <thead>
-                                <!--<tr>
-                                    <th>Empleado</th>
-                                    <th>Contrato</th>
-                                    <th>F. desde</th>
-                                    <th>F. hasta</th>
-
-                                </tr>-->
-                                </thead>
-                                <tbody>
-                                <?php foreach ($view->empleados as $em): ?>
-                                    <tr data-id="<?php echo $em['id_empleado'];?>">
-                                        <td><a href="#"><?php echo $em['apellido'].' '.$em['nombre']; ?></td><a>
-                                    </tr>
-                                <?php endforeach; ?>
-                                </tbody>
-                            </table>
-
-                        </div>
+                        </form>
 
 
 
-                    </div>
-
-
-
-                    <div class="col-md-3" id="center_side">
-
-                    </div>
-
-
-
-
-
-
-
-
-
-                </div>
-
-
-
-
-
-
-
-
-        </div>
-
-
-        <!--<div class="col-md-1"></div>-->
-
-
-
-
-    <div id="myElem" class="msg" style="display:none">
-
-    </div>
 
 
 
