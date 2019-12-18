@@ -64,7 +64,7 @@
             });*/
 
 
-            
+
 
             //Select dependiente: al seleccionar contrato carga periodos vigentes
             $('#add-form').on('change', '#add_contrato', function(e){
