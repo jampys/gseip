@@ -41,6 +41,26 @@
 
 
 
+        //al hacer click en un empleado carga el panel central con los datos...
+        $('.grid-empleados').on('click', '.edit', function(){
+            //alert('editar empleado del parte');
+            var id = $(this).closest('tr').attr('data-id');
+            //var id = $(this).attr('data-id');
+            //alert('editar etapa: '+id);
+            params={};
+            params.id_parte_empleado = id;
+            params.action = "parte-empleado";
+            params.operation = "editEmpleado";
+            params.id_contrato = $('#myModal #id_contrato').val();
+            //alert(params.id_contrato);
+            $('#right_side').load('index.php', params,function(){
+                //alert('cargo el contenido en right side');
+                //$('#myModal').modal();
+                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+            })
+        });
+
 
 
 
