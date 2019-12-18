@@ -19,6 +19,15 @@
 
     $(document).ready(function(){
 
+        //restringe el selector de fechas al periodo seleccionado
+        var fecha_desde = $('#fecha_desde').val();
+        var fecha_hasta = $('#fecha_hasta').val();
+        //$('#add_fecha').datepicker('setStartDate', '18/05/2019');
+        //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
+        $('.input-group.date').datepicker('setStartDate', fecha_desde);
+        $('.input-group.date').datepicker('setEndDate', fecha_hasta);
+        $('#add_fecha').val('');
+
 
 
         $('#code_form').validate({
