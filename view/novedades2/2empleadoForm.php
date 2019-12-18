@@ -5,6 +5,11 @@
         list-style-type: none;
     }
 
+
+    .fixedTable{
+        max-height: 80%;       /* sobrescribe .fixedTable de dario.css         */
+    }
+
 </style>
 
 
@@ -118,25 +123,27 @@
 
 
 
+                        <div class="table-responsive fixedTable">
+                            <table class="table table-condensed dataTable table-hover">
+                                <thead>
+                                <!--<tr>
+                                    <th>Empleado</th>
+                                    <th>Contrato</th>
+                                    <th>F. desde</th>
+                                    <th>F. hasta</th>
 
-                        <table class="table table-condensed dataTable table-hover">
-                            <thead>
-                            <!--<tr>
-                                <th>Empleado</th>
-                                <th>Contrato</th>
-                                <th>F. desde</th>
-                                <th>F. hasta</th>
+                                </tr>-->
+                                </thead>
+                                <tbody>
+                                <?php foreach ($view->empleados as $em): ?>
+                                    <tr data-id="<?php echo $em['id_empleado'];?>">
+                                        <td><a href="#"><?php echo $em['apellido'].' '.$em['nombre']; ?></td><a>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
 
-                            </tr>-->
-                            </thead>
-                            <tbody>
-                            <?php foreach ($view->empleados as $em): ?>
-                                <tr data-id="<?php echo $em['id_empleado'];?>">
-                                    <td><a href="#"><?php echo $em['apellido'].' '.$em['nombre']; ?></td><a>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                        </div>
 
 
 
