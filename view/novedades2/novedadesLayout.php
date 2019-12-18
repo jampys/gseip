@@ -21,48 +21,6 @@
             });
 
 
-            $('.input-group.date').datepicker({ //ok para fecha (nuevo)
-                //inline: true
-                format:"dd/mm/yyyy",
-                language: 'es',
-                todayHighlight: true,
-                autoclose: true
-            }); //.datepicker('setDate', new Date()); //pone por defecto la fecha actual
-            //$('.input-group.date').datepicker('setDate', new Date());
-
-            $('.input-daterange').datepicker({ //ok para fecha desde-hasta (buscar)
-                //todayBtn: "linked",
-                orientation: "bottom",
-                format:"dd/mm/yyyy",
-                language: 'es',
-                todayHighlight: true,
-                autoclose: true
-            });
-
-            //$('#search_fecha_desde').datepicker('setDate', new Date()); //pone por defecto el rango en la fecha actual
-
-
-            /*$(document).on('click', '#new', function(){
-                //alert('presiono en buscar');
-                //var id = $(this).attr('data-id');
-                //preparo los parametros
-                params={};
-                //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-                //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                params.search_fecha_desde = $("#search_fecha_desde").val();
-                params.search_fecha_hasta = $("#search_fecha_hasta").val();
-                params.search_contrato = $("#add_contrato").val();
-                params.id_periodo = $("#id_periodo").val();
-                params.cuadrilla = $("#cuadrilla").val();
-                //params.renovado = $('#search_renovado').prop('checked')? 1:0;
-                //params.action = "novedades2";
-                //params.operation = "newParte";
-                //alert(params.id_grupo);
-                //$('#content').load('index.php', params);
-                window.location.href = "index.php?action=novedades2&operation=newParte";
-                return false;
-            });*/
-
 
 
 

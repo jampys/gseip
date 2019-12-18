@@ -19,6 +19,17 @@
 
     $(document).ready(function(){
 
+
+        $('.input-group.date').datepicker({ //ok para fecha (nuevo)
+            //inline: true
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true,
+            autoclose: true
+        }); //.datepicker('setDate', new Date()); //pone por defecto la fecha actual
+        //$('.input-group.date').datepicker('setDate', new Date());
+
+
         //restringe el selector de fechas al periodo seleccionado
         var fecha_desde = $('#fecha_desde').val();
         var fecha_hasta = $('#fecha_hasta').val();
@@ -26,7 +37,7 @@
         //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
         $('.input-group.date').datepicker('setStartDate', fecha_desde);
         $('.input-group.date').datepicker('setEndDate', fecha_hasta);
-        $('#add_fecha').datepicker('setDate', new Date()); //pone por defecto la fecha actual
+        //$('#add_fecha').datepicker('setDate', new Date()); //pone por defecto la fecha actual
 
 
 
@@ -119,7 +130,7 @@
 
 
             <br/>
-            <h4>Novedades 2 (2da parte)</h4>
+            <h4>Novedades 2 (2da parte) <?php print $view->periodo->getNombre()." (".$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")" ?></h4>
             <hr class="hr-primary"/>
 
 
