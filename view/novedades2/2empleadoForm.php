@@ -43,12 +43,13 @@
 
         //al hacer click en un empleado carga el panel central con los datos...
         $('#table_empleados').on('click', 'a', function(){
+
             //alert('editar empleado del parte');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            alert('editar etapa: '+id);
+            //alert('editar etapa: '+id);
             params={};
-            params.id_parte_empleado = id;
+            params.id_empleado = id;
             params.action = "novedades2";
             params.operation = "editParte";
             params.id_contrato = $('#myModal #id_contrato').val();
@@ -60,6 +61,8 @@
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
         });
+
+        return false;
 
 
 
