@@ -50,9 +50,9 @@
             //alert('editar etapa: '+id);
             params={};
             params.id_empleado = id;
+            params.id_contrato = $('#id_contrato').val();
             params.action = "novedades2";
             params.operation = "editParte";
-            params.id_contrato = $('#id_contrato').val();
             //alert(params.id_contrato);
             $('#center_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
