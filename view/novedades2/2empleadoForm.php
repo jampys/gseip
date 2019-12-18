@@ -49,8 +49,8 @@
             alert('editar etapa: '+id);
             params={};
             params.id_parte_empleado = id;
-            params.action = "parte-empleado";
-            params.operation = "editEmpleado";
+            params.action = "novedades2";
+            params.operation = "editParte";
             params.id_contrato = $('#myModal #id_contrato').val();
             //alert(params.id_contrato);
             $('#center_side').load('index.php', params,function(){
