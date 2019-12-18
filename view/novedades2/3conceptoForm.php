@@ -35,6 +35,27 @@
 
 
 
+                            <div class="form-group required">
+                                <label class="control-label" for="id_empleado">Cuadrilla</label>
+                                <!--<input type="text" class="form-control empleado-group" id="empleado" name="empleado" placeholder="Empleado">
+                                <input type="hidden" name="id_empleado" id="id_empleado" class="empleado-group"/>-->
+                                <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
+                                    <?php foreach ($view->cuadrillas as $em){
+                                        ?>
+                                        <option value="<?php echo $em['id_cuadrilla']; ?>"
+                                            <?php //echo ($sup['codigo'] == $view->puesto->getCodigoSuperior())? 'selected' :'' ?>
+                                            >
+                                            <?php echo $em['nombre']; ?>
+                                        </option>
+                                    <?php  } ?>
+                                </select>
+                            </div>
+
+
+
+
+
+
 
 
 
