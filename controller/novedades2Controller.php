@@ -32,6 +32,7 @@ switch ($operation)
 
         $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
+        $view->contrato = New Contrato($_POST['add_contrato']);
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
@@ -46,8 +47,7 @@ switch ($operation)
         //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
         //$view->parte = new Parte();
         $view->label = "hayyy";
-        //$view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
-        //$view->periodo = New NovPeriodo($_POST['id_periodo']);
+        $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], null);
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
