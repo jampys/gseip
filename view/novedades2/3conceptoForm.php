@@ -28,10 +28,12 @@
             params.id_parte_orden = id;
             params.action = "parte-orden";
             params.operation = "editOrden";
+            params.target = "edit";
             params.origin = "nov2";
             /*$('#right_side').load('index.php', params,function(){
             })*/
             $('#popupbox').load('index.php', params,function(){
+                $('#myModal .alert').hide(); //oculta el alert del form orden_detailForm.php
                 $('#myModal').modal();
             });
         });
