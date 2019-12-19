@@ -22,14 +22,17 @@
 
 
         //Abre formulario para ingresar una nueva orden al parte
-        $('#left_side').on('click', '#add-orden', function(){
+        $('#right_side').on('click', '#add-orden', function(){ //ok
             params={};
             params.action = "parte-orden";
             params.operation = "newOrden";
+            params.origin = "nov2";
             params.id_parte = $('#id_parte').val();
             //alert(params.id_renovacion);
-            $('#right_side').load('index.php', params,function(){
-            })
+            $('#popupbox').load('index.php', params,function(){
+                $('#myModal .alert').hide(); //oculta el alert del form orden_detailForm.php
+                $('#myModal').modal();
+            });
         });
 
 
@@ -53,7 +56,7 @@
 
 
         //para ver orden de un parte
-        $('.grid-ordenes').on('click', '.view', function(){
+        $('.grid-ordenes').on('click', '.view', function(){ //ok
             //alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
             params={};
@@ -63,16 +66,18 @@
             params.target = "view";
             params.origin = "nov2";
             //alert(params.id_renovacion);
-            $('#right_side').load('index.php', params,function(){
+            $('#popupbox').load('index.php', params,function(){
+                $('#myModal .alert').hide(); //oculta el alert del form orden_detailForm.php
                 $("#right_side fieldset").prop("disabled", true);
                 $("#orden-form #footer-buttons button").css('display', 'none');
                 $('.selectpicker').selectpicker('refresh');
-            })
+                $('#myModal').modal();
+            });
         });
 
 
         //para clonar orden de un parte
-        $('.grid-ordenes').on('click', '.clone', function(){ 
+        $('.grid-ordenes').on('click', '.clone', function(){ //ok
             //alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
             params={};
@@ -80,12 +85,12 @@
             params.action = "parte-orden";
             params.operation = "editOrden";
             params.target = "clone";
+            params.origin = "nov2";
             //alert(params.id_renovacion);
-            $('#right_side').load('index.php', params,function(){
-                //$("#right_side fieldset").prop("disabled", true);
-                //$("#orden-form #footer-buttons button").css('display', 'none');
-                $('.selectpicker').selectpicker('refresh');
-            })
+            $('#popupbox').load('index.php', params,function(){
+                $('#myModal .alert').hide(); //oculta el alert del form orden_detailForm.php
+                $('#myModal').modal();
+            });
         });
 
 
