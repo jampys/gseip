@@ -187,7 +187,7 @@
 
 
     <div class="col-md-6" id="right_side">
-        
+
 
         <!-- seccion de ordenes -->
         <div class="row">
