@@ -68,7 +68,8 @@
                         setTimeout(function() { $("#orden-form #myElem").hide();
                                                 //$('#myModal').modal('hide');
                                                 //$('#orden-form').hide();
-                                                $("#orden-form #cancel").trigger("click"); //
+                                                $("#orden-form #cancel").trigger("click"); //para la modal (nov2)
+                                                $('#orden-form').hide(); //para la comun (nov)
                                               }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar la órden').addClass('alert alert-danger').show();
