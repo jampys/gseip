@@ -9,26 +9,12 @@
             keyboard: false
         });
 
-
-        $('#habilidad').validate({
-            rules: {
-                codigo: {
-                        required: true,
-                        digits: true,
-                        maxlength: 3
-                },
-                nombre: {required: true}
-            },
-            messages:{
-                codigo: {
-                    required: "Ingrese el código",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 3 dígitos"
-                },
-                nombre: "Ingrese el nombre"
-            }
-
+        $('#orden-form #cancel').on('click', function(){
+            $('#myModal').modal('hide');
         });
+
+
+
 
 
 

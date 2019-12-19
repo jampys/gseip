@@ -25,11 +25,10 @@
         });
 
 
-        //cancel de formulario de parte-orden
-        $('#orden-form #cancel').on('click', function(){
-            //alert('cancelar form parte-orden');
+        //cancel de formulario de parte-orden. Se movió a partesFormUpdate.php
+        /*$('#orden-form #cancel').on('click', function(){
             $('#orden-form').hide();
-        });
+        });*/
 
 
 

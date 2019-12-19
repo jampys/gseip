@@ -510,6 +510,12 @@
         });
 
 
+        //cancel de formulario de parte-orden. Movido desde orden_detailForm.php
+        $('#myModal').on('click', '#orden-form #cancel', function(){
+            $('#orden-form').hide();
+         });
+
+
 
 
 
