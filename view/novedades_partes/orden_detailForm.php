@@ -68,7 +68,7 @@
                         setTimeout(function() { $("#myElem").hide();
                             //$('#myModal').modal('hide');
                             //$('#orden-form').hide();
-                            $("#cancel").trigger("click");
+                            $("#orden-form #cancel").trigger("click"); //
                         }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar la órden').addClass('alert alert-danger').show();
