@@ -65,11 +65,11 @@
                         $("#orden-form #myElem").html('Orden guardada con exito').addClass('alert alert-success').show();
                         $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
-                        setTimeout(function() { $("#myElem").hide();
-                            //$('#myModal').modal('hide');
-                            //$('#orden-form').hide();
-                            $("#orden-form #cancel").trigger("click"); //
-                        }, 2000);
+                        setTimeout(function() { $("#orden-form #myElem").hide();
+                                                //$('#myModal').modal('hide');
+                                                //$('#orden-form').hide();
+                                                $("#orden-form #cancel").trigger("click"); //
+                                              }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar la órden').addClass('alert alert-danger').show();
                     }
