@@ -168,7 +168,7 @@
 
 
     <div id="myElem" class="msg" style="display:none"></div>
-    
+
 
     <div id="footer-buttons" class="pull-right">
         <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
