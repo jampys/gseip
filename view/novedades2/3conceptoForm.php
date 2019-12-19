@@ -73,7 +73,7 @@
             //alert(params.id_renovacion);
             $('#popupbox').load('index.php', params,function(){
                 $('#myModal .alert').hide(); //oculta el alert del form orden_detailForm.php
-                $("#right_side fieldset").prop("disabled", true);
+                $("#myModal fieldset").prop("disabled", true);
                 $("#orden-form #footer-buttons button").css('display', 'none');
                 $('.selectpicker').selectpicker('refresh');
                 $('#myModal').modal();
