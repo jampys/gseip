@@ -45,15 +45,29 @@
 
 
 
-    <div class="form-group required">
-        <label class="control-label" for="id_empleado">Cuadrilla</label>
-        <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
-            <?php foreach ($view->cuadrillas as $em){
+    <div class="form-group">
+        <!--<label class="control-label" for="id_empleado">Cuadrilla</label>-->
+        <select id="id_cuadrilla" name="id_cuadrilla" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione una cuadrilla">
+            <?php foreach ($view->cuadrillas as $cu){
                 ?>
-                <option value="<?php echo $em['id_cuadrilla']; ?>"
+                <option value="<?php echo $cu['id_cuadrilla']; ?>"
                     <?php //echo ($sup['codigo'] == $view->puesto->getCodigoSuperior())? 'selected' :'' ?>
                     >
-                    <?php echo $em['nombre']; ?>
+                    <?php echo $cu['nombre']; ?>
+                </option>
+            <?php  } ?>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <!--<label for="id_evento" class="control-label">Evento</label>-->
+        <select class="selectpicker form-control show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
+            <option value="">Seleccione un evento</option>
+            <?php foreach ($view->eventos as $ar){ ?>
+                <option value="<?php echo $ar['id_evento']; ?>"
+                    <?php //echo ($ar['id_evento'] == $view->parte->getIdEvento())? 'selected' :'' ?>
+                    >
+                    <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
                 </option>
             <?php  } ?>
         </select>
@@ -68,16 +82,10 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" id="avoid_event" name="avoid_event" <?php //echo ($view->empleado->getAvoidEvent()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Si hay un evento evita el curso definido para éste y calcula conceptos de manera normal">Evitar evento</a>
-            </label>
-        </div>
-    </div>
+
 
     <div class="form-group">
-        <label class="control-label" for="servicio">Comentario</label>
+        <!--<label class="control-label" for="servicio">Comentario</label>-->
         <textarea class="form-control" name="comentario" id="comentario" placeholder="Comentario" rows="2"><?php //print $view->empleado->getComentario(); ?></textarea>
     </div>
 

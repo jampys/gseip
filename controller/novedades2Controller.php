@@ -48,6 +48,7 @@ switch ($operation)
         //$view->parte = new Parte();
         $view->label = "hayyy";
         $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], null);
+        $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
