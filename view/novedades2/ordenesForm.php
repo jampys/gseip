@@ -91,10 +91,7 @@
                         <div class="row">
 
                             <div class="col-md-6">
-                                <!--<div class="form-group">
-                    <label class="control-label" for="hs_normal">Hora inicio</label>
-                    <input class="form-control hs-group" type="time" name="hora_inicio" id="hora_inicio" value = "<?php //print $view->orden->getHoraInicio() ?>" placeholder="hh:mm">
-                </div>-->
+
                                 <div class="form-group">
                                     <label class="control-label" for="hs_normal">Hora inicio</label>
                                     <div class="input-group bootstrap-timepicker timepicker">
@@ -105,10 +102,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <!--<div class="form-group">
-                    <label class="control-label" for="hs_50">Hora fin</label>
-                    <input class="form-control hs-group" type="time" name="hora_fin" id="hora_fin" value = "<?php //print $view->orden->getHoraFin() ?>" placeholder="hh:mm">
-                </div>-->
+                  
                                 <div class="form-group">
                                     <label class="control-label" for="hs_50">Hora fin</label>
                                     <div class="input-group bootstrap-timepicker timepicker">
