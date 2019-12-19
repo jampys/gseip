@@ -357,6 +357,20 @@
 
 
 
+<div id="confirm-ord">
+    <div class="modal-body">
+        ¿Desea eliminar la orden?
+    </div>
+
+    <div id="myElemento" style="display:none">
+
+    </div>
+
+</div>
+
+
+
+
 
 
 
