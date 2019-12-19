@@ -139,7 +139,7 @@
 
 
 
-                    <div class="col-md-3" id="center_side">
+                    <div class="col-md-4" id="center_side">
 
                     </div>
 
