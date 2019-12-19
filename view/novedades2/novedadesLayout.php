@@ -134,6 +134,9 @@
 </div>
 
 
+<div id="popupbox"></div>
+
+
 
 
 <?php require_once('templates/footer.php'); ?>
