@@ -99,6 +99,63 @@
         </select>
     </div>
 
+
+
+    <div class="row">
+
+
+        <div class="form-group col-md-6">
+            <!-- <label for="add_contrato" class="control-label">Nuevos partes</label>-->
+            <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5">
+                <option value="">Seleccione un concepto</option>
+                <?php foreach ($view->contratos as $con){
+                    ?>
+                    <option value="<?php echo $con['id_contrato']; ?>" >
+                        <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+
+        <div class="form-group col-md-3">
+            <!-- <label for="id_periodo" class="control-label">&nbsp;</label>-->
+            <input class="form-control" type="text" name="referencia" id="referencia" value = "<?php //print $view->renovacion->getReferencia() ?>" placeholder="Cantidad">
+        </div>
+
+
+
+        <div class="form-group col-md-3">
+            <!--<label for="search">&nbsp;</label>-->
+            <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
+                <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+            </button>
+        </div>
+
+
+    </div>
+
+
+
+
+    <div class="table-responsive" id="empleados-table">
+        <table id="culin" class="table table-condensed dpTable table-hover">
+            <thead>
+            <tr>
+                <th>Concepto</th>
+                <th>Cant.</th>
+                <th>Elim.</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- se genera dinamicamente desde javascript -->
+            </tbody>
+        </table>
+    </div>
+
+
+
+
     <hr/>
 
 

@@ -140,7 +140,12 @@
 
 
                     <div class="col-md-4" id="center_side">
+                        <!--se carga con un load -->
+                    </div>
 
+
+                    <div class="col-md-4" id="right_side">
+                        <!--se carga con un load -->
                     </div>
 
 
