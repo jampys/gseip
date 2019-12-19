@@ -21,14 +21,14 @@
 
 
 
-        $('.grid-ordenes').on('click', '.edit', function(){
-            alert('editar orden del parte');
+        $('.grid-ordenes').on('click', '.edit', function(){ //ok
+            //alert('editar orden del parte');
             var id = $(this).closest('tr').attr('data-id');
             params={};
             params.id_parte_orden = id;
             params.action = "parte-orden";
             params.operation = "editOrden";
-            params.target = "edit";
+            params.origin = "nov2";
             /*$('#right_side').load('index.php', params,function(){
             })*/
             $('#popupbox').load('index.php', params,function(){

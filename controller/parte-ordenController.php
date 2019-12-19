@@ -69,7 +69,8 @@ switch ($operation)
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];
-        $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
+        if($_POST['origin'] == 'nov2') $view->contentTemplate="view/novedades2/ordenesForm.php";
+        else $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
         break;
 
     case 'deleteOrden': //ok
