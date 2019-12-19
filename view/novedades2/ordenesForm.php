@@ -102,7 +102,7 @@
                             </div>
 
                             <div class="col-md-6">
-                  
+
                                 <div class="form-group">
                                     <label class="control-label" for="hs_50">Hora fin</label>
                                     <div class="input-group bootstrap-timepicker timepicker">
