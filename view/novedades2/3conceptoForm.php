@@ -19,6 +19,11 @@
                              // elimine el mensaje de requerido de jquery validation
         });
 
+        $('#confirm-ord').dialog({ //#confirm-emp, #confirm-ord, #confirm-con
+            autoOpen: false
+            //modal: true,
+        });
+
 
 
         //Abre formulario para ingresar una nueva orden al parte
