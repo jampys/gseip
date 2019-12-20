@@ -12,6 +12,7 @@ include_once("model/vehiculosModel.php");
 include_once("model/nov_eventosCuadrillaModel.php");
 include_once("model/empleadosModel.php");
 include_once("model/nov_periodosModel.php");
+include_once("model/nov_sucesosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -51,10 +52,11 @@ switch ($operation)
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         $view->ordenes = ParteOrden::getParteOrden(2104); //$_POST['id_parte']
 
+        $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
         $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
         $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
+        $view->sucesos = Suceso::getSucesos($_POST['id_empleado'], $eventos, $_POST['fecha'], $_POST['fecha'], null);
         //$view->params = array('fecha_parte' => $_POST['fecha_parte'], 'id_periodo' => $_POST['id_periodo']);
 
         $view->disableLayout=true;
