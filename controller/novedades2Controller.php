@@ -51,10 +51,11 @@ switch ($operation)
         $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], null);
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         $view->ordenes = ParteOrden::getParteOrden(2104); //$_POST['id_parte']
+        $view->periodo = New NovPeriodo($_POST['id_periodo']);
 
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
-        $fecha_desde = ($_POST['fecha']!='')? $_POST['fecha'] : null;
-        $fecha_hasta = ($_POST['fecha']!='')? $_POST['fecha'] : null;
+        $fecha_desde = $view->periodo->getFechaDesde(); //($_POST['fecha']!='')? $_POST['fecha'] : null;
+        $fecha_hasta = $view->periodo->getFechaHasta(); //($_POST['fecha']!='')? $_POST['fecha'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $view->sucesos = Suceso::getSucesos($_POST['id_empleado'], $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
         //$view->params = array('fecha_parte' => $_POST['fecha_parte'], 'id_periodo' => $_POST['id_periodo']);
