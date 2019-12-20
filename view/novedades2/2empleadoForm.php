@@ -51,6 +51,7 @@
             params={};
             params.id_empleado = id;
             params.id_contrato = $('#id_contrato').val();
+            params.id_periodo = $('#id_periodo').val();
             params.action = "novedades2";
             params.operation = "editParte";
             params.fecha = $('#add_fecha').val();
@@ -93,9 +94,10 @@
 
                 <div class="row">
 
-                    <div class="col-md-3" id="left_side"> <!-- panel izquierdo -->
+                    <div class="col-md-3" id="panel-empleados"> <!-- panel izquierdo -->
 
                         <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->contrato->getIdContrato() ?>"
+                        <input type="hidden" name="id_periodo" id="id_periodo" value="<?php print $view->periodo->getIdPeriodo() ?>">
                         <input type="hidden" name="fecha_desde" id="fecha_desde" value="<?php print $view->periodo->getFechaDesde() ?>">
                         <input type="hidden" name="fecha_hasta" id="fecha_hasta" value="<?php print $view->periodo->getFechaHasta() ?>">
 
@@ -140,7 +142,7 @@
 
 
 
-                    <div class="col-md-9" id="center_side">
+                    <div class="col-md-9" id="panel-conceptos">
                         <!--se carga con un load -->
                     </div>
 
