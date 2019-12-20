@@ -1,4 +1,4 @@
-<?php if(isset($view->ordenes) && sizeof($view->ordenes) > 0) {?>
+<?php if(isset($view->sucesos) && sizeof($view->sucesos) > 0) {?>
 
     <table class="table table-condensed dataTable table-hover">
         <thead>
@@ -12,11 +12,11 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($view->ordenes as $em): ?>
-            <tr data-id="<?php echo $em['id_parte_orden'];?>">
-                <td><?php echo $em['nro_parte_diario'];?></td>
-                <td><?php echo $em['orden_tipo'];?></td>
-                <td><?php echo $em['orden_nro'];?></td>
+        <?php foreach ($view->sucesos as $em): ?>
+            <tr data-id="<?php echo $em['id_suceso'];?>">
+                <td><?php echo $em['evento'];?></td>
+                <td><?php echo $em['fecha_desde'];?></td>
+                <td><?php echo $em['fecha_hasta'];?></td>
                 <!--<td style="text-align: center"><?php //echo($et['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
                 <td><?php //echo $et['user'];?></td>-->
 
@@ -48,7 +48,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> El parte no tiene órdenes registradas.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado no tiene sucesos.
     </div>
 
 <?php } ?>
