@@ -26,8 +26,11 @@
             language: 'es',
             todayHighlight: true,
             autoclose: true
-        }); //.datepicker('setDate', new Date()); //pone por defecto la fecha actual
+        })//.datepicker('setDate', new Date()); //pone por defecto la fecha actual
         //$('.input-group.date').datepicker('setDate', new Date());
+            .on('changeDate', function (ev) {
+                //alert('cambio la fecha');
+        });
 
 
         //restringe el selector de fechas al periodo seleccionado
