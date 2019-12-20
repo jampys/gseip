@@ -354,6 +354,32 @@
             </div>
         </div>
 
+        <br/>
+
+        <!-- seccion de sucesos -->
+        <div class="row">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-sucesos" title="Mostrar sucesos">Sucesos</button>
+            </div>
+
+            <div class="col-md-4">
+
+            </div>
+
+            <div class="col-md-4">
+                <button type="button" class="btn btn-default btn-block" id="add-suceso" name="add-suceso" title="Agregar suceso" <?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >
+                    <i class="fas fa-plus dp_green"></i>&nbsp
+                </button>
+            </div>
+        </div>
+
+
+        <div id="demo-sucesos" class="collapse">
+            <div class="grid-sucesos">
+                <?php include_once('view/novedades_partes/ordenesGrid.php');?>
+            </div>
+        </div>
+
 
     </div>
 
