@@ -51,7 +51,7 @@
             params={};
             params.id_empleado = id;
             params.id_contrato = $('#id_contrato').val();
-            params.id_periodo = $('#panel-empleados #id_periodo').val();
+            params.id_periodo = $('#id_periodo').val();
             params.action = "novedades2";
             params.operation = "editParte";
             params.fecha = $('#add_fecha').val();
