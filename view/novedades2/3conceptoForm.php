@@ -376,7 +376,7 @@
 
         <div id="demo-sucesos" class="collapse">
             <div class="grid-sucesos">
-                <?php include_once('view/novedades_partes/ordenesGrid.php');?>
+                <?php include_once('view/novedades2/sucesosGrid.php');?>
             </div>
         </div>
 
