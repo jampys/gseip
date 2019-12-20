@@ -51,11 +51,11 @@
             params={};
             params.id_empleado = id;
             params.id_contrato = $('#id_contrato').val();
-            params.id_periodo = $('#id_periodo').val();
+            params.id_periodo = $('#panel-empleados #id_periodo').val();
             params.action = "novedades2";
             params.operation = "editParte";
             params.fecha = $('#add_fecha').val();
-            //alert(params.id_contrato);
+            alert(params.id_periodo);
             $('#center_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
