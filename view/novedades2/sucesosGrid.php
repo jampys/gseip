@@ -44,7 +44,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado no tiene sucesos.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado no registra sucesos durante el período.
     </div>
 
 <?php } ?>
