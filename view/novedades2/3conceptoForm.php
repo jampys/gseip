@@ -164,6 +164,122 @@
 
 
 
+
+
+
+
+        $('.grid-sucesos').on('click', '.edit', function(){ //ok
+            var id = $(this).closest('tr').attr('data-id');
+            params={};
+            params.id_suceso = id;
+            params.action = "sucesos";
+            params.operation = "editSuceso";
+            params.target = "edit";
+            //alert(params.id_renovacion);
+            $('#popupbox').load('index.php', params,function(){
+                $('#myModal').modal();
+                $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                $('#id_evento').prop('disabled', true).selectpicker('refresh');
+            })
+        });
+
+
+
+        $('.grid-sucesos').on('click', '.view', function(){ //ok
+            var id = $(this).closest('tr').attr('data-id');
+            params={};
+            params.id_suceso = id;
+            params.action = "sucesos";
+            params.operation = "editSuceso";
+            params.target = "view";
+            $('#popupbox').load('index.php', params,function(){
+                $("fieldset").prop("disabled", true);
+                $('.selectpicker').selectpicker('refresh');
+                $('.modal-footer').css('display', 'none');
+                //$('#myModalLabel').html('');
+                $('#myModal').modal();
+            })
+
+        });
+
+
+
+        $('#right_side').on('click', '#add-suceso', function(){ //ok
+            params={};
+            params.action = "sucesos";
+            params.operation="newSuceso";
+            $('#popupbox').load('index.php', params,function(){
+                $('#myModal').modal();
+            })
+        });
+
+
+
+        /*$(document).on('click', '#cancel',function(){
+            $('#myModal').modal('hide');
+        });*/
+
+
+
+
+        $('.grid-sucesos').on('click', '.delete', function(){
+            //alert('Funcionalidad en desarrollo');
+            //throw new Error();
+            var id = $(this).closest('tr').attr('data-id');
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
+                buttons: [
+                    {
+                        text: "Aceptar",
+                        click: function() {
+                            $.fn.borrar(id);
+                        },
+                        class:"btn btn-danger"
+                    },
+                    {
+                        text: "Cancelar",
+                        click: function() {
+                            $(this).dialog("close");
+                        },
+                        class:"btn btn-default"
+                    }
+
+                ]
+            }).dialog('open');
+            return false;
+        });
+
+
+        $.fn.borrar = function(id) { //ok
+            //alert(id);
+            //preparo los parametros
+            params={};
+            params.id_suceso = id;
+            params.action = "sucesos";
+            params.operation = "deleteSuceso";
+
+            $.post('index.php',params,function(data, status, xhr){
+                if(data >=0){
+                    $("#myElemento").html('Suceso eliminado con exito').addClass('alert alert-success').show();
+                    //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
+                    $("#search").trigger("click");
+                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
+                    setTimeout(function() { $("#myElemento").hide();
+                        $('#confirm').dialog('close');
+                    }, 2000);
+                }else{
+                    $("#myElemento").html('Error al eliminar el suceso').addClass('alert alert-danger').show();
+                }
+
+            }, 'json');
+
+        };
+
+
+
+
+
+
+
     });
 
 </script>
@@ -391,6 +507,19 @@
 <div id="confirm-ord">
     <div class="modal-body">
         ¿Desea eliminar la orden?
+    </div>
+
+    <div id="myElemento" style="display:none">
+
+    </div>
+
+</div>
+
+
+
+<div id="confirm">
+    <div class="modal-body">
+        ¿Desea eliminar el suceso?
     </div>
 
     <div id="myElemento" style="display:none">
