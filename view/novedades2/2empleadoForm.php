@@ -55,7 +55,7 @@
             params.action = "novedades2";
             params.operation = "editParte";
             params.fecha = $('#add_fecha').val();
-            alert(params.id_periodo);
+            //alert(params.id_periodo);
             $('#center_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
