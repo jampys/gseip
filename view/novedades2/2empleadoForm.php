@@ -30,6 +30,21 @@
         //$('.input-group.date').datepicker('setDate', new Date());
             .on('changeDate', function (ev) {
                 //alert('cambio la fecha');
+                params={};
+                //params.id_empleado = id;
+                //params.id_contrato = $('#id_contrato').val();
+                //params.id_periodo = $('#id_periodo').val();
+                params.action = "novedades2";
+                params.operation = "tableEmpleados";
+                params.fecha = $('#add_fecha').val();
+                //alert(params.id_periodo);
+                $('#table_empleados').load('index.php', params,function(){
+                    //alert('cargo el contenido en right side');
+                    //$('#myModal').modal();
+                    //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                    //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+                })
+
         });
 
 
@@ -118,25 +133,8 @@
 
 
                         <div class="table-responsive fixedTable" id="table_empleados">
-                            <table class="table table-condensed dataTable table-hover">
-                                <thead>
-                                <!--<tr>
-                                    <th>Empleado</th>
-                                    <th>Contrato</th>
-                                    <th>F. desde</th>
-                                    <th>F. hasta</th>
 
-                                </tr>-->
-                                </thead>
-                                <tbody>
-                                <?php foreach ($view->empleados as $em): ?>
-                                    <tr data-id="<?php echo $em['id_empleado'];?>">
-                                        <td><a href="#"><?php echo $em['apellido'].' '.$em['nombre']; ?></a></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                                </tbody>
-                            </table>
-
+                            <!--se carga con un load luego de seleccionar la fecha -->
                         </div>
 
 

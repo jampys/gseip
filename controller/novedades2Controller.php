@@ -44,6 +44,20 @@ switch ($operation)
         break;
 
 
+    case 'tableEmpleados': //ok
+        //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
+        //$view->parte = new Parte();
+
+        $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
+
+
+        $view->disableLayout=true;
+        $view->contentTemplate="view/novedades2/empleadosGrid.php";
+        break;
+
+
+
+
     case 'editParte': //ok
         //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
         //$view->parte = new Parte();
