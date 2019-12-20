@@ -56,7 +56,7 @@
             params.operation = "editParte";
             params.fecha = $('#add_fecha').val();
             //alert(params.id_periodo);
-            $('#center_side').load('index.php', params,function(){
+            $('#panel-conceptos').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
@@ -64,7 +64,7 @@
             })
         });
 
-        return false;
+        //return false;
 
 
 
