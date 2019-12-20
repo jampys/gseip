@@ -19,7 +19,7 @@
                              // elimine el mensaje de requerido de jquery validation
         });
 
-        $('#confirm-ord').dialog({ //#confirm-emp, #confirm-ord, #confirm-con
+        $('#confirm-ord, #confirm-suc').dialog({ //#confirm-emp, #confirm-ord, #confirm-con
             autoOpen: false
             //modal: true,
         });
@@ -517,7 +517,7 @@
 
 
 
-<div id="confirm">
+<div id="confirm-suc">
     <div class="modal-body">
         ¿Desea eliminar el suceso?
     </div>
