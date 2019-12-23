@@ -388,7 +388,7 @@
                 <div class="form-group col-md-3">
                     <!--<label for="search">&nbsp;</label>-->
                     <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
-                        <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+                        <i class="fas fa-plus dp_green"></i>
                     </button>
                 </div>
 
