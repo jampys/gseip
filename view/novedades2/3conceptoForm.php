@@ -11,6 +11,8 @@
 
     $(document).ready(function(){
 
+        $('.collapse').collapse(); //https://bootstrapdocs.com/v3.3.4/docs/javascript/#collapse
+
         $('.selectpicker').selectpicker({
             //propiedades del selectpicker
 
