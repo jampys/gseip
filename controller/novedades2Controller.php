@@ -59,9 +59,10 @@ switch ($operation)
 
 
     case 'editParte': //ok
-        //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
-        //$view->parte = new Parte();
-        $view->label = "hayyy";
+        $view->empleado = New Empleado($_POST['id_empleado']);
+        $view->label = $view->empleado->getApellido()." ".$view->empleado->getNombre();
+        $view->label.= ($_POST['id_parte'])? " - Parte nro. ".$_POST['id_parte']: "";
+
         $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], null);
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         $view->ordenes = ParteOrden::getParteOrden($_POST['id_parte']); //2104
