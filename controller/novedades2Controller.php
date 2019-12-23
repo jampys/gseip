@@ -48,7 +48,7 @@ switch ($operation)
         //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
         //$view->parte = new Parte();
 
-        $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
+        $view->empleados = Parte::getEmpleados($_POST['fecha'], $_POST['id_contrato']);
 
 
         $view->disableLayout=true;

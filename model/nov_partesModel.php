@@ -358,6 +358,30 @@ order by id_convenio asc, legajo asc";
     }
 
 
+    public static function getEmpleados($fecha, $id_contrato) { //ok
+        //trae los empleados activos de un contrato, para la fecha indicada, tambien el nro de parte.
+        $stmt=new sQuery();
+        $query="select em.id_empleado, em.legajo, em.apellido, em.nombre, np.id_parte, npe.id_parte_empleado
+                      from v_sec_empleados em
+                      join empleado_contrato ec on (ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta > sysdate()))
+					  left join nov_parte_empleado npe join nov_partes np on np.id_parte = npe.id_parte on
+								(
+                                np.id_contrato = :id_contrato
+                                and np.fecha_parte = STR_TO_DATE(:fecha, '%d/%m/%Y')
+                                and npe.id_empleado = em.id_empleado
+                                )
+                      where em.fecha_baja is null
+                      and ec.id_contrato = :id_contrato
+                      order by em.apellido, em.nombre";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':fecha', $fecha);
+        //$stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
 
 }
 

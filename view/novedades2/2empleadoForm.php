@@ -37,6 +37,7 @@
                 params.action = "novedades2";
                 params.operation = "tableEmpleados";
                 params.fecha = $('#add_fecha').val();
+                params.id_contrato = $('#id_contrato').val();
                 //alert(params.id_periodo);
                 $('#table_empleados').load('index.php', params,function(){
                     //alert('cargo el contenido en right side');
