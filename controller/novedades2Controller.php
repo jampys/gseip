@@ -67,7 +67,7 @@ switch ($operation)
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         $view->ordenes = ParteOrden::getParteOrden($_POST['id_parte']); //2104
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
-        $view->conceptos = New ParteEmpleadoConcepto($_POST['id_parte_empleado']);
+        $view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
 
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
         $fecha_desde = $view->periodo->getFechaDesde(); //($_POST['fecha']!='')? $_POST['fecha'] : null;
