@@ -208,9 +208,11 @@
 
         $('#right_side').on('click', '#add-suceso', function(){ //ok
             params={};
+            params.id_empleado = $('#id_empleado').val();
             params.action = "sucesos";
             params.operation="newSuceso";
             $('#popupbox').load('index.php', params,function(){
+                $('#myModal #id_empleado').val(params.id_empleado).prop('disabled', true).selectpicker('refresh');
                 $('#myModal').modal();
             })
         });
