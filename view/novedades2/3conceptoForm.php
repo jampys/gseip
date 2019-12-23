@@ -398,7 +398,7 @@
 
 
 
-            <div class="table-responsive" id="empleados-table">
+            <!--<div class="table-responsive" id="empleados-table">
                 <table id="culin" class="table table-condensed dpTable table-hover">
                     <thead>
                     <tr>
@@ -409,10 +409,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- se genera dinamicamente desde javascript -->
+
                     </tbody>
                 </table>
-            </div>
+            </div>-->
+            <?php include_once('view/novedades2/conceptosGrid.php');?>
 
 
 
