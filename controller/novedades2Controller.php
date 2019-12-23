@@ -64,7 +64,7 @@ switch ($operation)
         $view->label = "hayyy";
         $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], null);
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
-        $view->ordenes = ParteOrden::getParteOrden(2104); //$_POST['id_parte']
+        $view->ordenes = ParteOrden::getParteOrden($_POST['id_parte']); //2104
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
 
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';

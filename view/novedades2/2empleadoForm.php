@@ -69,11 +69,13 @@
             //alert('editar etapa: '+id);
             params={};
             params.id_empleado = id;
+            params.id_parte = $(this).closest('tr').attr('id_parte');
+            params.id_parte_empleado = $(this).closest('tr').attr('id_parte_empleado');
             params.id_contrato = $('#id_contrato').val();
             params.id_periodo = $('#id_periodo').val();
+            params.fecha = $('#add_fecha').val();
             params.action = "novedades2";
             params.operation = "editParte";
-            params.fecha = $('#add_fecha').val();
             //alert(params.id_periodo);
             $('#panel-conceptos').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
