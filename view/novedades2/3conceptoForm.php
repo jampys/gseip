@@ -400,23 +400,23 @@
 
 
 
+            <div class="table-responsive fixedTable">
 
-            <!--<div class="table-responsive" id="empleados-table">
-                <table id="culin" class="table table-condensed dpTable table-hover">
+                <table class="table table-condensed dataTable table-hover">
                     <thead>
-                    <tr>
-                        <th>Concepto</th>
-                        <th>Cant.</th>
-                        <th>Elim.</th>
-                        <th></th>
-                    </tr>
+                        <tr>
+                        </tr>
                     </thead>
                     <tbody>
-
+               
                     </tbody>
                 </table>
-            </div>-->
-            <?php include_once('view/novedades2/conceptosGrid.php');?>
+
+
+            </div>
+
+
+            <?php //include_once('view/novedades2/conceptosGrid.php');?>
 
 
 
