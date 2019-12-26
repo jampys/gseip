@@ -205,6 +205,7 @@ and vgv.id_grupo in (
                     from vto_grupo_vehiculo vgvx
                     join vto_grupos_v vgx on vgx.id_grupo = vgvx.id_grupo
                     and vgvx.id_vehiculo = ifnull(:id_vehiculo, vgvx.id_vehiculo)
+                    and (vgvx.fecha_hasta is null or vgvx.fecha_hasta >= sysdate())
                     group by vgx.id_grupo
                     )
 )
