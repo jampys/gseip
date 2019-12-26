@@ -302,9 +302,6 @@
                  '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
                  '</tr>');
 
-
-
-
             }
 
         };
@@ -313,7 +310,7 @@
         $.ajax({
             url:"index.php",
             type:"post",
-            data:{"action": "contratos", "operation": "editContratoEmpleado", "id_contrato": $('#id_contrato').val()},
+            data:{"action": "novedades2", "operation": "loadConceptos", "id_parte_empleado": $('#id_parte_empleado').val()},
             dataType:"json",//xml,html,script,json
             success: function(data, textStatus, jqXHR) {
 
@@ -321,19 +318,19 @@
 
                     //alert(data[indice]['id_proceso']);
                     var id = data[indice]['id_empleado'];
-                    jsonEmpleados[id] = data[indice];
+                    jsonConceptos[id] = data[indice];
 
-                    var arr = [];
-                    $.each(data[indice]['id_proceso'], function(i, v){
-                        arr.push(data[indice]['id_proceso'][i]['id_proceso']);
-                    });
+                    //var arr = [];
+                    //$.each(data[indice]['id_proceso'], function(i, v){
+                    //    arr.push(data[indice]['id_proceso'][i]['id_proceso']);
+                    //});
                     //alert(arr);
-                    jsonEmpleados[id]['id_proceso'] = arr;
-                    jsonEmpleados[id]['id_proceso_old'] = arr;
+                    //jsonEmpleados[id]['id_proceso'] = arr;
+                    //jsonEmpleados[id]['id_proceso_old'] = arr;
 
                 });
 
-                $.cargarTablaEmpleados();
+                $.cargarTablaConceptos();
             }
 
         });

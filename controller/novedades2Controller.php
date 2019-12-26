@@ -87,7 +87,7 @@ switch ($operation)
         print_r(json_encode($view->conceptos));
         exit;
         break;
-    
+
 
 
     default : //ok
