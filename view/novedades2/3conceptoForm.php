@@ -280,6 +280,66 @@
 
 
 
+        /**************************************************************************************/
+        var jsonConceptos = [];
+
+        $.cargarTablaConceptos = function(){
+
+            $('#conceptos-table tbody tr').remove();
+
+            for (var i in jsonConceptos) {
+
+                if (jsonConceptos[i].operacion == 'delete') { //para no mostrar los eliminados
+                    continue;
+                }
+
+                $('#empleados-table tbody').append('<tr id_empleado='+jsonEmpleados[i].id_empleado+'>' +
+                 '<td>'+jsonEmpleados[i].empleado+'</td>' +
+                 //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
+                 '<td>'+jsonEmpleados[i].puesto+'</td>' +
+                 '<td class="text-center"><a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
+                 '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
+                 '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                 '</tr>');
+
+
+
+
+            }
+
+        };
+
+
+        $.ajax({
+            url:"index.php",
+            type:"post",
+            data:{"action": "contratos", "operation": "editContratoEmpleado", "id_contrato": $('#id_contrato').val()},
+            dataType:"json",//xml,html,script,json
+            success: function(data, textStatus, jqXHR) {
+
+                $.each(data, function(indice, val){ //carga el array de empleados
+
+                    //alert(data[indice]['id_proceso']);
+                    var id = data[indice]['id_empleado'];
+                    jsonEmpleados[id] = data[indice];
+
+                    var arr = [];
+                    $.each(data[indice]['id_proceso'], function(i, v){
+                        arr.push(data[indice]['id_proceso'][i]['id_proceso']);
+                    });
+                    //alert(arr);
+                    jsonEmpleados[id]['id_proceso'] = arr;
+                    jsonEmpleados[id]['id_proceso_old'] = arr;
+
+                });
+
+                $.cargarTablaEmpleados();
+            }
+
+        });
+
+
+
 
 
 
@@ -402,13 +462,13 @@
 
             <div class="table-responsive fixedTable">
 
-                <table class="table table-condensed dataTable table-hover">
+                <table class="table table-condensed dataTable table-hover" id="conceptos-table">
                     <thead>
                         <tr>
                         </tr>
                     </thead>
                     <tbody>
-               
+
                     </tbody>
                 </table>
 
