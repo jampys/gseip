@@ -283,7 +283,7 @@
         /**************************************************************************************/
         var jsonConceptos = [];
 
-        $('.editable').keypress(function(e) {
+        $('#conceptos-table').on('keypress', '.editable', function(e) {
             if (!(e.which >= 48 && e.which <= 57)) {
                 return false;
             }
