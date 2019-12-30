@@ -289,6 +289,24 @@
             }
         });
 
+
+
+        $('body').on('focus', '[contenteditable]', function() {
+            const $this = $(this);
+            $this.data('before', $this.html());
+        }).on('blur keyup paste input', '[contenteditable]', function() {
+            const $this = $(this);
+            if ($this.data('before') !== $this.html()) {
+                $this.data('before', $this.html());
+                //$this.trigger('change');
+                alert('cambiooooo');
+            }
+        });
+
+
+
+
+
         $.cargarTablaConceptos = function(){
 
             if(Object.keys(jsonConceptos).length <= 0){
