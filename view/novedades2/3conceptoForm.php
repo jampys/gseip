@@ -1,8 +1,6 @@
 <style>
 
-    .editable{
-        padding: 1px; /* padding entre el td y el div que tiene adentro */
-    }
+    
 
 
 
