@@ -198,9 +198,16 @@ and vrv.id_grupo = ifnull(:id_grupo, vrv.id_grupo) -- filtro por grupo
 and ifnull(:renovado, vrv.id_rnv_renovacion is null)
 and ifnull(:renovado, vrv.disabled is null)
 and vrv.id_vehiculo is null
-and :id_vehiculo is null -- filtro vehiculos: no debe traer registros cuando se filtra por vehiculo
 and :id_contrato is null -- filtro contratos: no debe traer registros cuando se filtra por contrato
 and :id_subcontratista is null -- filtro subcontratistas: no debe traer registros cuando se filtra por subcontratista
+and vgv.id_grupo in (
+                    select vgx.id_grupo
+                    from vto_grupo_vehiculo vgvx
+                    join vto_grupos_v vgx on vgx.id_grupo = vgvx.id_grupo
+                    and vgvx.id_vehiculo = ifnull(:id_vehiculo, vgvx.id_vehiculo)
+                    and (vgvx.fecha_hasta is null or vgvx.fecha_hasta >= sysdate())
+                    group by vgx.id_grupo
+                    )
 )
 
 order by priority, id_rnv_renovacion asc";
