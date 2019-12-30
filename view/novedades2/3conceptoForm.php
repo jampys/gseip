@@ -361,7 +361,7 @@
 
 
             <!--<input type="hidden" name="id_parte" id="id_parte" value="<?php //print $view->empleado->getIdParte() ?>">-->
-            <input type="hidden" name="id_parte_empleado" id="id_parte_empleado" value="<?php //print $view->empleado->getIdParteEmpleado() ?>">
+            <input type="hidden" name="id_parte_empleado" id="id_parte_empleado" value="<?php print $view->params['id_parte_empleado'] ?>">
             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
 
 
