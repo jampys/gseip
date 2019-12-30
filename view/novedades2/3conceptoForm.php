@@ -291,8 +291,7 @@
                                                  '<i class="fas fa-exclamation-triangle fa-fw"></i> El parte aún tiene conceptos registrados.'+
                                                  '</div>');
 
-
-                return;
+                    return; //finaliza la ejecucion de la funcion.
             }
 
             $('#conceptos-table tbody tr').remove();
