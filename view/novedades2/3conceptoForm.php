@@ -308,9 +308,11 @@
                 '<td>'+jsonConceptos[i].concepto+'</td>' +
                 '<td>'+jsonConceptos[i].codigo+'</td>' +
                 '<td>'+jsonConceptos[i].cantidad+'</td>' +
-                '<td class="text-center"><a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
-                 //'<td class="text-center"><a class="<?php //echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
-                 //'<td class="text-center"><a class="<?php //echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center">'+
+                '</td>'+
+                '<a class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' && $ctos['tipo_calculo']=='M')? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">'+
+                '<span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>'+
+                '</a>'+
                  '</tr>');
 
             }
