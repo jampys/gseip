@@ -60,7 +60,7 @@ switch ($operation)
 
     case 'editParte': //ok
         $view->empleado = New Empleado($_POST['id_empleado']);
-        $view->label = $view->empleado->getApellido()." ".$view->empleado->getNombre();
+        $view->label = $view->empleado->getLegajo().' '.$view->empleado->getApellido()." ".$view->empleado->getNombre();
         $view->label.= ($_POST['id_parte'])? " - Parte nro. ".$_POST['id_parte']: "";
 
         $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], null);
