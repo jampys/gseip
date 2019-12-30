@@ -306,6 +306,14 @@
         });
 
 
+        $.validator.addMethod("cMaxLength", $.validator.methods.maxlength, "Máx 50 caracteres");
+        jQuery.validator.addClassRules({
+            editable: {
+                cMaxLength: 1
+            }
+        });
+
+
 
 
 
@@ -387,12 +395,13 @@
             //params.vConceptos = JSON.stringify(jsonConceptosIx);
             var culito =  [];
             culito = JSON.stringify(jsonConceptosIx);
-            alert(culito);
+            //alert(culito);
 
 
-            throw new Error();
 
-            if ($("#orden-form").valid()){
+            if ($("#empleado-form").valid()){
+
+                throw new Error();
 
                 var params={};
                 params.action = 'parte-orden';
