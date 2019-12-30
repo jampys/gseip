@@ -285,6 +285,16 @@
 
         $.cargarTablaConceptos = function(){
 
+            if(Object.keys(jsonConceptos).length <= 0){
+
+                $('#conceptos-container').append('<div class="alert alert-warning">'+
+                                                 '<i class="fas fa-exclamation-triangle fa-fw"></i> El parte aún tiene conceptos registrados.'+
+                                                 '</div>');
+
+
+                return;
+            }
+
             $('#conceptos-table tbody tr').remove();
 
             for (var i in jsonConceptos) {
@@ -457,7 +467,7 @@
 
 
 
-            <div class="table-responsive fixedTable">
+            <div class="table-responsive fixedTable" id="conceptos-container">
 
                 <table class="table table-condensed dataTable table-hover" id="conceptos-table">
                     <thead>
