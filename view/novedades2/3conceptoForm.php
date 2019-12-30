@@ -377,6 +377,68 @@
 
 
 
+        $('#empleado-form').on('click', '#submit',function(e){ //ok
+            e.preventDefault();
+
+            var jsonConceptosIx = [];
+            for ( var item in jsonConceptos ){
+                jsonConceptosIx.push( jsonConceptos[ item ] );
+            }
+            //params.vConceptos = JSON.stringify(jsonConceptosIx);
+            var culito =  [];
+            culito = JSON.stringify(jsonConceptosIx);
+            alert(culito);
+
+
+            throw new Error();
+
+            if ($("#orden-form").valid()){
+
+                var params={};
+                params.action = 'parte-orden';
+                params.operation = 'saveOrden';
+                params.id_parte = $('#id_parte').val();
+                params.id_parte_orden = $('#id_parte_orden').val();
+                params.nro_parte_diario = $('#nro_parte_diario').val();
+                params.orden_tipo = $('#orden_tipo').val();
+                params.orden_nro = $('#orden_nro').val();
+                params.hora_inicio = $('#hora_inicio').val();
+                params.hora_fin = $('#hora_fin').val();
+                params.servicio = $('#servicio').val();
+                //params.conductor = $('input[name=conductor]:checked').val();
+                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                //alert(params.aplica);
+
+                $.post('index.php',params,function(data, status, xhr){
+
+                    //alert(objeto.id);
+                    //alert(xhr.responseText);
+
+                    if(data >=0){
+                        $("#orden-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#orden-form #myElem").html('Orden guardada con exito').addClass('alert alert-success').show();
+                        $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
+                        //$("#search").trigger("click");
+                        setTimeout(function() { $("#orden-form #myElem").hide();
+                            //$('#myModal').modal('hide');
+                            //$('#orden-form').hide();
+                            $("#orden-form #cancel").trigger("click"); //para la modal (nov2)
+                            $('#orden-form').hide(); //para la comun (nov)
+                        }, 2000);
+                    }else{
+                        $("#myElem").html('Error al guardar la órden').addClass('alert alert-danger').show();
+                    }
+
+                }, 'json');
+
+            }
+            return false;
+        });
+
+
+
+
 
 
 
