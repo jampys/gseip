@@ -299,7 +299,9 @@
             if ($this.data('before') !== $this.html()) {
                 $this.data('before', $this.html());
                 //$this.trigger('change');
-                alert('cambiooooo');
+                //alert('cambiooooo');
+                var id = $(this).closest('tr').attr('id_parte_empleado_concepto');
+                jsonConceptos[id].cantidad = $this.html();
             }
         });
 
