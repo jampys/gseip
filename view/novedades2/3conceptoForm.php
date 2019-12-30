@@ -294,12 +294,12 @@
                 }
 
                 $('#conceptos-table tbody').append('<tr id_empleado='+jsonConceptos[i].id_empleado+'>' +
-                 '<td>'+jsonConceptos[i].empleado+'</td>' +
+                 '<td>'+jsonConceptos[i].legajo+'</td>' +
                  //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
-                 '<td>'+jsonConceptos[i].puesto+'</td>' +
+                 '<td>'+jsonConceptos[i].legajo+'</td>' +
                  '<td class="text-center"><a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
-                 '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
-                 '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                 '<td class="text-center"><a class="<?php //echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
+                 '<td class="text-center"><a class="<?php //echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
                  '</tr>');
 
             }
@@ -317,7 +317,7 @@
                 $.each(data, function(indice, val){ //carga el array de empleados
 
                     //alert(data[indice]['id_proceso']);
-                    var id = data[indice]['id_empleado'];
+                    var id = data[indice]['id_parte_empleado_concepto'];
                     jsonConceptos[id] = data[indice];
 
                     //var arr = [];
