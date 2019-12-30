@@ -341,7 +341,7 @@
                  '<td>'+jsonConceptos[i].convenio+'</td>' +
                  '<td>'+jsonConceptos[i].concepto+'</td>' +
                  '<td>'+jsonConceptos[i].codigo+'</td>' +
-                 '<td contenteditable="true" class="editable">'+jsonConceptos[i].cantidad+'</td>' +
+                 '<td contenteditable="true" class="editable" id="prog_'+jsonConceptos[i].id_parte_empleado_concept+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concept+'">'+jsonConceptos[i].cantidad+'</td>' +
                  '<td class="text-center">'+
                      '<a class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) /*&& $view->target!='view' && $ctos['tipo_calculo']=='M'*/)? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">'+
                          '<span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>'+
