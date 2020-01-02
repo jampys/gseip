@@ -363,7 +363,7 @@
                         '<span class="input-group-addon input-sm"><i class="glyphicon glyphicon-time"></i></span>'+
                     '</div>'+
                  '</div></td>' +
-                 '<td><div contenteditable="true" class="editable" id="prog_'+jsonConceptos[i].id_parte_empleado_concept+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concept+'">'+jsonConceptos[i].cantidad+'</div></td>' +
+                 '<td><div contenteditable="true" class="editable" id="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concept+'">'+jsonConceptos[i].cantidad+'</div></td>' +
                  '<td class="text-center">'+
                      '<a class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) /*&& $view->target!='view' && $ctos['tipo_calculo']=='M'*/)? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">'+
                          '<span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>'+
