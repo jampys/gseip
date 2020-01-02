@@ -215,8 +215,9 @@
 
 
         //Guardar postulacion luego de ingresar nueva o editar
-        $('#myModal').on('click', '#submit',function(){ //ok
+        $('#etapas_right_side').on('click', '#submit',function(){ //ok
             //alert('guardar postulacion');
+            //throw new Error();
 
             //$('#postulacion-form').validate().resetForm(); //limpiar error input validate
             $('#postulacion-form').find('input').closest('.form-group').removeClass('has-error');
