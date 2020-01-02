@@ -357,19 +357,27 @@
                 $('#conceptos-table tbody').append('<tr id_parte_empleado_concepto='+jsonConceptos[i].id_parte_empleado_concepto+'>' +
                  '<td>'+jsonConceptos[i].convenio+'</td>' +
                  '<td>'+jsonConceptos[i].concepto+'</td>' +
-                 '<td class="col-md-3 culito"><div class="form-group">'+
-                    '<div class="input-group bootstrap-timepicker timepicker">'+
-                        '<input type="text" class="culito form-control input-sm" value = "<?php //print $view->parte->getHs50() ?>" >'+
-                        '<span class="input-group-addon input-sm"><i class="glyphicon glyphicon-time"></i></span>'+
-                    '</div>'+
-                 '</div></td>' +
-                 '<td><div contenteditable="true" class="editable" id="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'">'+jsonConceptos[i].cantidad+'</div></td>' +
+                 '<td>'+jsonConceptos[i].codigo+'</td>' +
+                 '<td class="col-md-3 culito">' +
+                    '<div class="form-group">'+
+                        '<div class="input-group bootstrap-timepicker timepicker">'+
+                            '<input type="text" class="culito form-control input-sm" value = "'+jsonConceptos[i].cantidad+'" id="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" >'+
+                            '<span class="input-group-addon input-sm"><i class="glyphicon glyphicon-time"></i></span>'+
+                        '</div>'+
+                    '</div>' +
+                '</td>' +
+                 //'<td><div contenteditable="true" class="editable" id="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'">'+jsonConceptos[i].cantidad+'</div></td>' +
                  '<td class="text-center">'+
                      '<a class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) /*&& $view->target!='view' && $ctos['tipo_calculo']=='M'*/)? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">'+
                          '<span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>'+
                      '</a>'+
                  '</td>'+
                  '</tr>');
+
+                $("#prog_"+jsonConceptos[i].id_parte_empleado_concepto).timepicker({
+                    showMeridian: false
+                    //defaultTime: false
+                });
 
             }
 
@@ -401,10 +409,7 @@
 
                 $.cargarTablaConceptos();
 
-                $('.culito').timepicker({
-                    showMeridian: false
-                    //defaultTime: false
-                });
+
             }
 
         });
