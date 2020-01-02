@@ -588,7 +588,7 @@
                 <div class="form-group col-md-2">
                     <!--<label for="search">&nbsp;</label>-->
                     <button type="submit" class="form-control btn btn-default" title="agregar concepto" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
-                        <i class="fas fa-arrow-circle-down fa-lg dp_green"></i>
+                        <i class="fas fa-arrow-down dp_green"></i>
                     </button>
                 </div>
 
