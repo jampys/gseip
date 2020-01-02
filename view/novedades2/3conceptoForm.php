@@ -178,12 +178,6 @@
 
 
 
-
-
-
-
-
-
         $('.grid-sucesos').on('click', '.edit', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             params={};
@@ -297,12 +291,13 @@
         /**************************************************************************************/
         var jsonConceptos = [];
 
-        $('#conceptos-container').on('keypress', '.editable', function(e) {
+
+        //OBSOLETO. No se va a usar. Se reemplaza por el timepicker
+        /*$('#conceptos-container').on('keypress', '.editable', function(e) {
             if (!(e.which >= 48 && e.which <= 57)) {
                 return false;
             }
         });
-
 
 
         $('body').on('focus', '[contenteditable]', function() {
@@ -325,12 +320,13 @@
             editable: {
                 cMaxLength: 1
             }
+        });*/
+
+        $('#cantidad').timepicker({
+            showMeridian: false,
+            //defaultTime: false
+            defaultTime: '00:00 AM'
         });
-
-
-
-
-
 
 
 
@@ -580,14 +576,16 @@
                     </select>
                 </div>
 
-                <div class="form-group col-md-3">
-                    <!-- <label for="id_periodo" class="control-label">&nbsp;</label>-->
-                    <input class="form-control" type="text" name="referencia" id="referencia" value = "<?php //print $view->renovacion->getReferencia() ?>" placeholder="Cantidad">
+                <div class="form-group col-md-4">
+                    <div class="input-group bootstrap-timepicker timepicker">
+                        <input type="text" class="form-control input-small hs-group" name="cantidad" id="cantidad" value = "<?php //print $view->parte->getHs100() ?>" >
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                    </div>
                 </div>
 
 
 
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <!--<label for="search">&nbsp;</label>-->
                     <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
                         <i class="fas fa-plus dp_green"></i>
