@@ -361,7 +361,7 @@
                  '<td class="col-md-3 culito">' +
                     '<div class="form-group">'+
                         '<div class="input-group bootstrap-timepicker timepicker">'+
-                            '<input type="text" class="culito form-control input-sm" value = "'+jsonConceptos[i].cantidad+'" id="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" >'+
+                            '<input type="text" class="form-control input-sm" value = "'+jsonConceptos[i].cantidad+'" id="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" >'+
                             '<span class="input-group-addon input-sm"><i class="glyphicon glyphicon-time"></i></span>'+
                         '</div>'+
                     '</div>' +
