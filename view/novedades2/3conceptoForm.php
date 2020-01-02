@@ -536,7 +536,7 @@
             <div class="form-group required">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" id="conductor" name="conductor" <?php //echo ($view->empleado->getConductor()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Marcar la persona que maneja">Conductor</a>
+                        <input type="checkbox" id="conductor" name="conductor" <?php echo ($view->parte_empleado->getConductor()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Marcar la persona que maneja">Conductor</a>
                     </label>
                 </div>
             </div>
