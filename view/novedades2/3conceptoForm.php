@@ -422,7 +422,7 @@
             //var first_key = Object.keys(jsonConceptos)[0];
             var last_key = Object.keys(jsonConceptos).length - 1;
             var last = Object.keys(jsonConceptos)[last_key];
-          
+
             var id = '';
             if (last > 0 ) id = -1;
             else id = last - 1;
@@ -439,9 +439,7 @@
             item.created_date = null;
             item.tipo_calculo = 'M';
             item.motivo = null;
-            //var id = $(this).closest('tr').attr('data-id');
-            //alert(id);
-            jsonConceptos[id] = item;
+            jsonConceptos[id] = item; //se agrega el item al final del array asociativo
 
             $.cargarTablaConceptos();
 
