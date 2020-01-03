@@ -419,12 +419,17 @@
 
         //al presionar el boton para agregar conceptos
         $('#left_side').on('click', '#new', function(){ //ok
-            alert('agregar nuevo concepto');
+            var first = Object.keys(jsonConceptos)[0];
+            var before_first = first -1;
+            //alert(jsonConceptos[key].cantidad);
             item = {};
             var id = -1;
             item.id_parte_empleado_concepto = id;
             item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
             item.id_concepto_convenio_contrato = $("#id_concepto_convenio_contrato").val();
+            item.convenio = null;
+            item.concepto = null;
+            item.codigo = item.id_concepto_convenio_contrato;
             item.cantidad = $("#cantidad").val();
             item.created_by = null;
             item.created_date = null;
