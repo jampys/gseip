@@ -417,6 +417,31 @@
 
 
 
+        //al presionar el boton para agregar conceptos
+        $('#left_side').on('click', '#new', function(){ //ok
+            alert('agregar nuevo concepto');
+            item = {};
+            var id = -1;
+            item.id_parte_empleado_concepto = id;
+            item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
+            item.id_concepto_convenio_contrato = $("#id_concepto_convenio_contrato").val();
+            item.cantidad = $("#cantidad").val();
+            item.created_by = null;
+            item.created_date = null;
+            item.tipo_calculo = 'M';
+            item.motivo = null;
+            jsonConceptos[id] = item;
+
+            $.cargarTablaConceptos();
+
+            return false;
+
+        });
+
+
+
+
+
 
         $('#empleado-form').on('click', '#submit',function(e){ //ok
             e.preventDefault();
@@ -428,7 +453,7 @@
             //params.vConceptos = JSON.stringify(jsonConceptosIx);
             var culito =  [];
             culito = JSON.stringify(jsonConceptosIx);
-            //alert(culito);
+            alert(culito);
 
 
 
@@ -570,7 +595,7 @@
 
                 <div class="form-group col-md-6">
                     <!-- <label for="add_contrato" class="control-label">Nuevos partes</label>-->
-                    <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5">
+                    <select class="form-control selectpicker show-tick" id="id_concepto_convenio_contrato" name="id_concepto_convenio_contrato" data-live-search="true" data-size="5">
                         <option value="">Seleccione un concepto</option>
                         <?php foreach ($view->conceptos as $con){
                             ?>
