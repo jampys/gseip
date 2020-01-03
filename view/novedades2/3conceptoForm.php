@@ -456,7 +456,7 @@
             var id = $(this).closest('tr').attr('id_parte_empleado_concepto');
             alert(jsonConceptos[id].id_parte_empleado_concepto);
             //throw  new Error();
-            if(jsonConceptos[id].id_parte_empleado_concepto >= 0 ){ //si no esta en la BD
+            if(jsonConceptos[id].id_parte_empleado_concepto < 0 ){ //si no esta en la BD
                 delete jsonConceptos[id]; //lo elimina del array
             }else{ //si esta en la BD, lo marca para eliminar
                 jsonConceptos[id].operacion = 'delete';
