@@ -419,26 +419,27 @@
 
         //al presionar el boton para agregar conceptos
         $('#left_side').on('click', '#new', function(){ //ok
-            //var first = Object.keys(jsonConceptos)[0];
+            //var first_key = Object.keys(jsonConceptos)[0];
             var last_key = Object.keys(jsonConceptos).length - 1;
             var last = Object.keys(jsonConceptos)[last_key];
-            alert(last);
-            //alert(last);
+          
             var id = '';
             if (last > 0 ) id = -1;
             else id = last - 1;
             item = {};
+            item.operacion = 'insert';
             item.id_parte_empleado_concepto = id;
             item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
             item.id_concepto_convenio_contrato = $("#id_concepto_convenio_contrato").val();
-            item.convenio = null;
-            item.concepto = null;
-            item.codigo = item.id_concepto_convenio_contrato;
+            item.convenio = $("#id_concepto_convenio_contrato option:selected").attr('convenio');
+            item.concepto = $("#id_concepto_convenio_contrato option:selected").attr('concepto');
+            item.codigo = $("#id_concepto_convenio_contrato option:selected").attr('codigo');
             item.cantidad = $("#cantidad").val();
             item.created_by = null;
             item.created_date = null;
             item.tipo_calculo = 'M';
             item.motivo = null;
+            //var id = $(this).closest('tr').attr('data-id');
             //alert(id);
             jsonConceptos[id] = item;
 
@@ -609,7 +610,11 @@
                         <option value="">Seleccione un concepto</option>
                         <?php foreach ($view->conceptos as $con){
                             ?>
-                            <option value="<?php echo $con['id_concepto_convenio_contrato']; ?>" >
+                            <option value="<?php echo $con['id_concepto_convenio_contrato']; ?>"
+                                    convenio = "<?php echo $con['convenio']; ?>"
+                                    concepto = "<?php echo $con['concepto']; ?>"
+                                    codigo = "<?php echo $con['codigo']; ?>"
+                                >
                                 <?php echo $con['concepto'].' ('.$con['codigo'].') '.$con['convenio'];?>
                             </option>
                         <?php  } ?>
