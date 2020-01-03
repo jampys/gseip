@@ -460,7 +460,7 @@
             }else{ //si esta en la BD, lo marca para eliminar
                 jsonConceptos[id].operacion = 'delete';
             }
-            
+
             $.cargarTablaConceptos();
             return false;
         });
