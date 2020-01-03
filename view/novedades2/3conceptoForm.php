@@ -510,7 +510,7 @@
                     <?php foreach ($view->cuadrillas as $cu){
                         ?>
                         <option value="<?php echo $cu['id_cuadrilla']; ?>"
-                            <?php //echo ($sup['codigo'] == $view->puesto->getCodigoSuperior())? 'selected' :'' ?>
+                            <?php echo ($cu['id_cuadrilla'] == $view->parte->getIdCuadrilla())? 'selected' :'' ?>
                             >
                             <?php echo $cu['nombre']; ?>
                         </option>

@@ -17,6 +17,7 @@ class Parte
     private $created_by;
     private $created_date;
     private $id_periodo;
+    private $id_cuadrilla;
 
     // GETTERS
     function getIdParte()
@@ -60,6 +61,9 @@ class Parte
 
     function getIdPeriodo()
     { return $this->id_periodo;}
+
+    function getIdCuadrilla()
+    { return $this->id_cuadrilla;}
 
 
 
@@ -106,6 +110,9 @@ class Parte
     function setIdPeriodo($val)
     {  $this->id_periodo=$val;}
 
+    function setIdCuadrilla($val)
+    {  $this->id_cuadrilla=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -120,7 +127,7 @@ class Parte
                     TIME_FORMAT(hs_100, '%H:%i') as hs_100,
                     comentarios, created_by,
                     DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
-                    id_periodo
+                    id_periodo, id_cuadrilla
                     from nov_partes where id_parte = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -140,6 +147,7 @@ class Parte
             $this->setComentarios($rows[0]['comentarios']);
             $this->setCreatedDate($rows[0]['created_date']);
             $this->setIdPeriodo($rows[0]['id_periodo']);
+            $this->setIdCuadrilla($rows[0]['id_cuadrilla']);
         }
     }
 
