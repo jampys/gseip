@@ -373,6 +373,11 @@
                 $("#prog_"+jsonConceptos[i].id_parte_empleado_concepto).timepicker({
                     showMeridian: false
                     //defaultTime: false
+                }).on('changeTime.timepicker', function(e) {
+                    var id = $(this).closest('tr').attr('id_parte_empleado_concepto');
+                    jsonConceptos[id].cantidad = e.time.value;
+                    //alert(jsonConceptos[id].cantidad);
+
                 });
 
             }
