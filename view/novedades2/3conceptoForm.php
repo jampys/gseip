@@ -419,12 +419,16 @@
 
         //al presionar el boton para agregar conceptos
         $('#left_side').on('click', '#new', function(){ //ok
-            var first = Object.keys(jsonConceptos)[0];
+            //var first = Object.keys(jsonConceptos)[0];
+            var last_key = Object.keys(jsonConceptos).length - 1;
+            var last = Object.keys(jsonConceptos)[last_key];
+            alert(last);
+            //alert(last);
             var id = '';
-            if (first > 0 ) id = -1;
-            else id = first - 1;
+            if (last > 0 ) id = -1;
+            else id = last - 1;
             item = {};
-            item.id_parte_empleado_concepto = null;
+            item.id_parte_empleado_concepto = id;
             item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
             item.id_concepto_convenio_contrato = $("#id_concepto_convenio_contrato").val();
             item.convenio = null;
@@ -435,6 +439,7 @@
             item.created_date = null;
             item.tipo_calculo = 'M';
             item.motivo = null;
+            //alert(id);
             jsonConceptos[id] = item;
 
             $.cargarTablaConceptos();
