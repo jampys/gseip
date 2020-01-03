@@ -570,7 +570,7 @@
                         <?php foreach ($view->conceptos as $con){
                             ?>
                             <option value="<?php echo $con['id_concepto_convenio_contrato']; ?>" >
-                                <?php echo $con['concepto'].' '.$con['codigo'];?>
+                                <?php echo $con['concepto'].' ('.$con['codigo'].') '.$con['convenio'];?>
                             </option>
                         <?php  } ?>
                     </select>

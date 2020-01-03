@@ -70,7 +70,7 @@ switch ($operation)
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $view->parte_empleado = new ParteEmpleado($_POST['id_parte_empleado']);
         $view->parte = new Parte($_POST['id_parte']);
-        $view->conceptos = new Parte($_POST['id_contrato'], $view->empleado->getIdConvenio());
+        $view->conceptos = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $view->empleado->getIdConvenio());
         //$view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
 
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
