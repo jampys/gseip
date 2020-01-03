@@ -567,10 +567,10 @@
                     <!-- <label for="add_contrato" class="control-label">Nuevos partes</label>-->
                     <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5">
                         <option value="">Seleccione un concepto</option>
-                        <?php foreach ($view->contratos as $con){
+                        <?php foreach ($view->conceptos as $con){
                             ?>
-                            <option value="<?php echo $con['id_contrato']; ?>" >
-                                <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                            <option value="<?php echo $con['id_concepto_convenio_contrato']; ?>" >
+                                <?php echo $con['concepto'].' '.$con['codigo'];?>
                             </option>
                         <?php  } ?>
                     </select>

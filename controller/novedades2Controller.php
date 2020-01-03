@@ -13,6 +13,7 @@ include_once("model/nov_eventosCuadrillaModel.php");
 include_once("model/empleadosModel.php");
 include_once("model/nov_periodosModel.php");
 include_once("model/nov_sucesosModel.php");
+include_once("model/nov_concepto-convenio-contratoModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -69,6 +70,7 @@ switch ($operation)
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $view->parte_empleado = new ParteEmpleado($_POST['id_parte_empleado']);
         $view->parte = new Parte($_POST['id_parte']);
+        $view->conceptos = new Parte($_POST['id_contrato'], $view->empleado->getIdConvenio());
         //$view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
 
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
