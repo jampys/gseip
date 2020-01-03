@@ -420,11 +420,11 @@
         //al presionar el boton para agregar conceptos
         $('#left_side').on('click', '#new', function(){ //ok
             var first = Object.keys(jsonConceptos)[0];
-            var before_first = first -1;
-            //alert(jsonConceptos[key].cantidad);
+            var id = '';
+            if (first > 0 ) id = -1;
+            else id = first - 1;
             item = {};
-            var id = -1;
-            item.id_parte_empleado_concepto = id;
+            item.id_parte_empleado_concepto = null;
             item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
             item.id_concepto_convenio_contrato = $("#id_concepto_convenio_contrato").val();
             item.convenio = null;
