@@ -487,8 +487,8 @@
 
         $('#empleado-form').on('click', '#submit',function(e){
             e.preventDefault();
-            //alert('guardar contrato');
-            if ($("#contrato-form").valid()){
+            alert('guardar conceptos');
+            //if ($("#contrato-form").valid()){
                 var params={};
                 params.action = 'contratos';
                 params.operation = 'saveContrato';
@@ -524,7 +524,7 @@
                     }
                 }, 'json');
 
-            }
+            //}
             return false;
         });
 
