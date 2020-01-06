@@ -493,7 +493,7 @@
                 params.action = 'novedades2';
                 params.operation = 'saveParte';
                 params.id_parte = $('#id_parte').val();
-                params.fecha_parte = $('#fecha_parte').val();
+                params.fecha_parte = $('#add_fecha').val();
                 params.id_contrato=$('#id_contrato').val();
                 params.id_cuadrilla = $('#id_cuadrilla').val();
                 params.id_periodo = $('#id_periodo').val();
@@ -504,7 +504,7 @@
                 params.id_evento = $('#id_evento').val();
                 params.conductor = $('#conductor').val();
 
-                alert(params.id_contrato);
+                alert(params.id_periodo);
                 throw new Error();
 
                 /*var jsonEmpleadosIx = [];
