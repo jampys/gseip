@@ -497,15 +497,14 @@
                 params.id_contrato=$('#id_contrato').val();
                 params.id_cuadrilla = $('#id_cuadrilla').val();
                 params.id_periodo = $('#id_periodo').val();
-                params.comentarios = $('#comentarios').val();
+                params.comentarios = $('#comentario').val();
 
                 params.id_parte_empleado = $('#id_parte_empleado').val();
                 params.id_empleado = $('#id_empleado').val();
                 params.id_evento = $('#id_evento').val();
-                params.conductor = $('#conductor').val();
-
-                alert(params.id_periodo);
-                throw new Error();
+                params.conductor = $('#conductor').prop('checked')? 1:0;
+                //alert(params.id_parte_empleado);
+                //throw new Error();
 
                 /*var jsonEmpleadosIx = [];
                 for ( var item in jsonEmpleados ){
@@ -520,7 +519,7 @@
                     if(data >=0){
                         $(".panel-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Parte guardado con exito').addClass('alert alert-success').show();
-                        setTimeout(function() { //$("#myElem").hide();
+                        setTimeout(function() { $("#myElem").hide();
                                                 //$('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
                                               }, 2000);
 
