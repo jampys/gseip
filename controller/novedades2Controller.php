@@ -155,7 +155,7 @@ switch ($operation)
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $view->sucesos = Suceso::getSucesos($_POST['id_empleado'], $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
         //$view->params = array('fecha_parte' => $_POST['fecha_parte'], 'id_periodo' => $_POST['id_periodo']);
-        $view->params = array('id_parte_empleado' => $_POST['id_parte_empleado']);
+        $view->params = array('id_parte_empleado' => $_POST['id_parte_empleado'], 'id_contrato' => $_POST['id_contrato']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/novedades2/3conceptoForm.php";

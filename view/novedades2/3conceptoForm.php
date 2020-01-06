@@ -504,7 +504,7 @@
                 params.id_evento = $('#id_evento').val();
                 params.conductor = $('#conductor').val();
 
-                alert(params.id_parte);
+                alert(params.id_contrato);
                 throw new Error();
 
                 /*var jsonEmpleadosIx = [];
@@ -560,6 +560,7 @@
 
             <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
             <input type="hidden" name="id_parte_empleado" id="id_parte_empleado" value="<?php print $view->params['id_parte_empleado'] ?>">
+            <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->params['id_contrato'] ?>">
             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
 
 
