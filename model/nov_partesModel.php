@@ -236,36 +236,50 @@ class Parte
     }
 
 
-    public function updateParte2(){
+    public function updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor){
         //para novedades2.
         $stmt=new sQuery();
-        $query = 'CALL sp_calcularNovedades2(:id_parte,
+        $query = 'CALL sp_updateParte(:id_parte,
+                                        :fecha_parte,
+                                        :id_contrato,
                                         :id_area,
                                         :id_vehiculo,
+                                        :id_cuadrilla,
+                                        :id_periodo,
+                                        :comentarios,
+                                        :id_parte_empleado,
+                                        :id_empleado,
                                         :id_evento,
-                                        :hs_normal,
-                                        :hs_50,
-                                        :hs_100,
+                                        :conductor,
                                         :created_by,
                                         @flag,
+                                        @id_parte,
+                                        @id_parte_empleado,
                                         @msg
                                     )';
 
         $stmt->dpPrepare($query);
 
         $stmt->dpBind(':id_parte', $this->getIdParte());
+        $stmt->dpBind(':fecha_parte', $this->getFechaParte());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':id_area', $this->getIdArea());
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
-        $stmt->dpBind(':id_evento', $this->getIdEvento());
-        $stmt->dpBind(':hs_normal', $this->getHsNormal());
-        $stmt->dpBind(':hs_50', $this->getHs50());
-        $stmt->dpBind(':hs_100', $this->getHs100());
+        $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
+        $stmt->dpBind(':id_periodo', $this->getIdPeriodo());
+        $stmt->dpBind(':comentarios', $this->getComentarios());
+
+        $stmt->dpBind(':id_parte_empleado', $id_parte_empleado);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_evento', $id_evento);
+        $stmt->dpBind(':conductor', $conductor);
+
         $stmt->dpBind(':created_by', $this->getCreatedBy());
 
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();
-        $query = "select @flag as flag, @msg as msg";
+        $query = "select @flag as flag, @id_parte as id_parte, @id_parte_empleado as id_parte_empleado, @msg as msg";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         //$flag = $stmt->dpFetchAll();

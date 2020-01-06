@@ -490,23 +490,26 @@
             alert('guardar conceptos');
             //if ($("#contrato-form").valid()){
                 var params={};
-                params.action = 'contratos';
-                params.operation = 'saveContrato';
+                params.action = 'novedades2';
+                params.operation = 'saveParte';
+                params.id_parte = $('#id_parte').val();
+                params.fecha_parte = $('#fecha_parte').val();
                 params.id_contrato=$('#id_contrato').val();
-                params.nro_contrato=$('#nro_contrato').val();
-                params.nombre=$('#nombre').val();
-                params.fecha_desde=$('#fecha_desde').val();
-                params.fecha_hasta=$('#fecha_hasta').val();
-                params.id_localidad=$('#id_localidad').val();
-                params.id_responsable=$('#id_responsable').val();
-                params.id_compania=$('#compania').val();
+                params.id_cuadrilla = $('#id_cuadrilla').val();
+                params.id_periodo = $('#id_periodo').val();
+                params.comentarios = $('#comentarios').val();
+
+                params.id_parte_empleado = $('#id_parte_empleado').val();
+                params.id_empleado = $('#id_empleado').val();
+                params.id_evento = $('#id_evento').val();
+                params.conductor = $('#conductor').val();
                 //alert(params.id_responsable);
 
-                var jsonEmpleadosIx = [];
+                /*var jsonEmpleadosIx = [];
                 for ( var item in jsonEmpleados ){
                     jsonEmpleadosIx.push( jsonEmpleados[ item ] );
                 }
-                params.vEmpleados = JSON.stringify(jsonEmpleadosIx);
+                params.vEmpleados = JSON.stringify(jsonEmpleadosIx);*/
 
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -514,13 +517,13 @@
                     //alert(xhr.responseText);
                     if(data >=0){
                         $(".panel-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
-                        setTimeout(function() { $("#myElem").hide();
-                            $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
-                        }, 2000);
+                        $("#myElem").html('Parte guardado con exito').addClass('alert alert-success').show();
+                        setTimeout(function() { //$("#myElem").hide();
+                                                //$('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
+                                              }, 2000);
 
                     }else{
-                        $("#myElem").html('Error al guardar el contrato').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar el parte').addClass('alert alert-danger').show();
                     }
                 }, 'json');
 
