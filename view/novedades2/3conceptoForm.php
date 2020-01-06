@@ -379,7 +379,7 @@
             }
 
             //if(Object.keys(jsonConceptos).length <= 0){
-            alert(counter);
+            //alert(counter);
             if(counter <= 0){
 
                 $('#conceptos-container').append('<div class="alert alert-warning">'+
@@ -391,7 +391,7 @@
 
         };
 
-        
+
 
 
         $.ajax({
