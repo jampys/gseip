@@ -420,13 +420,17 @@
         //al presionar el boton para agregar conceptos
         $('#left_side').on('click', '#new', function(){ //ok
             //var first_key = Object.keys(jsonConceptos)[0];
-            var last_key = Object.keys(jsonConceptos).length - 1;
-            var last = Object.keys(jsonConceptos)[last_key];
-            //alert(last_key);
-
             var id = '';
-            if (last > 0 ) id = -1;
-            else id = last - 1;
+            if(Object.keys(jsonConceptos).length == 0){
+                id = -1;
+            }
+            else{
+                var last_key = Object.keys(jsonConceptos).length - 1;
+                var last = Object.keys(jsonConceptos)[last_key];
+                if (last > 0 ) id = -1;
+                else id = last - 1;
+            }
+
             item = {};
             item.operacion = 'insert';
             item.id_parte_empleado_concepto = id;
