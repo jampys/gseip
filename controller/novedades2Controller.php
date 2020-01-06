@@ -31,17 +31,19 @@ switch ($operation)
 
             sQuery::dpBeginTransaction();
 
-            $contrato = new Contrato($_POST['id_contrato']);
-            $contrato->setNroContrato($_POST['nro_contrato']);
-            $contrato->setNombre($_POST['nombre']);
-            $contrato->setFechaDesde($_POST['fecha_desde']);
-            $contrato->setFechaHasta($_POST['fecha_hasta']);
-            $contrato->setIdResponsable($_POST['id_responsable']);
-            $contrato->setIdCompania($_POST['id_compania']);
-            $contrato->save(); //si falla sale por el catch
+            $parte = new Parte($_POST['id_parte']);
+            $parte->setFechaParte($_POST['fecha_parte']);
+            $parte->setIdContrato($_POST['id_contrato']);
+            $parte->setIdArea(null);
+            $parte->setIdVehiculo(null);
+            $parte->setIdCuadrilla($_POST['id_cuadrilla']);
+            $parte->setIdPeriodo($_POST['id_periodo']);
+            $parte->setComentarios($_POST['comentarios']);
+            //$parte->save(); //si falla sale por el catch
+            $rta = $parte->updateParte2();
 
             //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
-            $id_contrato = (!$contrato->getIdContrato())? sQuery::dpLastInsertId(): $contrato->getIdContrato();
+            //$id_contrato = (!$contrato->getIdContrato())? sQuery::dpLastInsertId(): $contrato->getIdContrato();
 
             $vEmpleados = json_decode($_POST["vEmpleados"], true);
             //print_r($vEmpleados);
@@ -70,35 +72,10 @@ switch ($operation)
                 if($vE['operacion']=='insert') {
                     $empleado_contrato->insertEmpleadoContrato();
                     $id_empleado_contrato = sQuery::dpLastInsertId();
-                    if($vE['id_proceso']){
-                        foreach($vE['id_proceso'] as $p){ //si se agregaron procesos
-                            //echo $p." ";
-                            $contrato_empleado_proceso = new ContratoEmpleadoProceso();
-                            $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
-                            $contrato_empleado_proceso->setIdProceso($p);
-                            $contrato_empleado_proceso->contratoEmpleadoProceso(); //si falla sale por el catch
-                        }
-
-                    }
-
-
                 }
                 else if( $vE['operacion']=='update') {
                     $empleado_contrato->updateEmpleadoContrato();
                     $id_empleado_contrato = $empleado_contrato->getIdEmpleadoContrato();
-                    if($vE['id_proceso']){ // si se editaron procesos
-                        foreach($vE['id_proceso'] as $p){
-                            //echo $p." ";
-                            $contrato_empleado_proceso = new ContratoEmpleadoProceso();
-                            $contrato_empleado_proceso->setIdEmpleadoContrato($id_empleado_contrato);
-                            $contrato_empleado_proceso->setIdProceso($p);
-                            $contrato_empleado_proceso->contratoEmpleadoProceso(); //si falla sale por el catch
-                            //echo 'operacion: '.$vE['operacion'].' - id_empleado_contrato: '.$contrato_empleado_proceso->getIdEmpleadoContrato().' - id_proceso: '.$contrato_empleado_proceso->getIdProceso();
-                        }
-
-                    }
-
-
                 }
                 else if( $vE['operacion']=='delete') {
                     //Elimina en cascada los registros hijos de la tabla empleado_contrato_proceso
