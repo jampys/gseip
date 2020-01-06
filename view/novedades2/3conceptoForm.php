@@ -485,60 +485,43 @@
 
 
 
-        $('#empleado-form').on('click', '#submit',function(e){ //ok
+        $('#empleado-form').on('click', '#submit',function(e){
             e.preventDefault();
-
-            var jsonConceptosIx = [];
-            for ( var item in jsonConceptos ){
-                jsonConceptosIx.push( jsonConceptos[ item ] );
-            }
-            //params.vConceptos = JSON.stringify(jsonConceptosIx);
-            var culito =  [];
-            culito = JSON.stringify(jsonConceptosIx);
-            alert(culito);
-
-
-
-            if ($("#empleado-form").valid()){
-
-                throw new Error();
-
+            //alert('guardar contrato');
+            if ($("#contrato-form").valid()){
                 var params={};
-                params.action = 'parte-orden';
-                params.operation = 'saveOrden';
-                params.id_parte = $('#id_parte').val();
-                params.id_parte_orden = $('#id_parte_orden').val();
-                params.nro_parte_diario = $('#nro_parte_diario').val();
-                params.orden_tipo = $('#orden_tipo').val();
-                params.orden_nro = $('#orden_nro').val();
-                params.hora_inicio = $('#hora_inicio').val();
-                params.hora_fin = $('#hora_fin').val();
-                params.servicio = $('#servicio').val();
-                //params.conductor = $('input[name=conductor]:checked').val();
-                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                //params.disabled = $('#disabled').prop('checked')? 1:0;
-                //alert(params.aplica);
+                params.action = 'contratos';
+                params.operation = 'saveContrato';
+                params.id_contrato=$('#id_contrato').val();
+                params.nro_contrato=$('#nro_contrato').val();
+                params.nombre=$('#nombre').val();
+                params.fecha_desde=$('#fecha_desde').val();
+                params.fecha_hasta=$('#fecha_hasta').val();
+                params.id_localidad=$('#id_localidad').val();
+                params.id_responsable=$('#id_responsable').val();
+                params.id_compania=$('#compania').val();
+                //alert(params.id_responsable);
+
+                var jsonEmpleadosIx = [];
+                for ( var item in jsonEmpleados ){
+                    jsonEmpleadosIx.push( jsonEmpleados[ item ] );
+                }
+                params.vEmpleados = JSON.stringify(jsonEmpleadosIx);
+
 
                 $.post('index.php',params,function(data, status, xhr){
-
-                    //alert(objeto.id);
+                    //No se usa .fail() porque el resultado viene de una transaccion (try catch) que siempre devuelve 1 o -1
                     //alert(xhr.responseText);
-
                     if(data >=0){
-                        $("#orden-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#orden-form #myElem").html('Orden guardada con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
-                        setTimeout(function() { $("#orden-form #myElem").hide();
-                            //$('#myModal').modal('hide');
-                            //$('#orden-form').hide();
-                            $("#orden-form #cancel").trigger("click"); //para la modal (nov2)
-                            $('#orden-form').hide(); //para la comun (nov)
+                        $(".panel-footer button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Contrato guardado con exito').addClass('alert alert-success').show();
+                        setTimeout(function() { $("#myElem").hide();
+                            $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
                         }, 2000);
-                    }else{
-                        $("#myElem").html('Error al guardar la órden').addClass('alert alert-danger').show();
-                    }
 
+                    }else{
+                        $("#myElem").html('Error al guardar el contrato').addClass('alert alert-danger').show();
+                    }
                 }, 'json');
 
             }
