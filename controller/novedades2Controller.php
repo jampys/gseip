@@ -39,13 +39,14 @@ switch ($operation)
             $parte->setIdCuadrilla($_POST['id_cuadrilla']);
             $parte->setIdPeriodo($_POST['id_periodo']);
             $parte->setComentarios($_POST['comentarios']);
+            $parte->setCreatedBy($_SESSION['id_user']);
             //$parte->save(); //si falla sale por el catch
-            $rta = $parte->updateParte2();
+            $rta = $parte->updateParte2($_POST['id_parte_empleado'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['conductor']);
 
             //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
             //$id_contrato = (!$contrato->getIdContrato())? sQuery::dpLastInsertId(): $contrato->getIdContrato();
 
-            $vEmpleados = json_decode($_POST["vEmpleados"], true);
+            /*$vEmpleados = json_decode($_POST["vEmpleados"], true);
             //print_r($vEmpleados);
 
             foreach ($vEmpleados as $vE) {
@@ -83,7 +84,7 @@ switch ($operation)
                 }
 
 
-            }
+            }*/
 
             //Devuelve el resultado a la vista
             sQuery::dpCommit();
