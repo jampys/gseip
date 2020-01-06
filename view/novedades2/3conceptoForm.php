@@ -515,7 +515,8 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     //No se usa .fail() porque el resultado viene de una transaccion (try catch) que siempre devuelve 1 o -1
-                    //alert(xhr.responseText);
+                    alert(xhr.responseText);
+                    //alert(data[0]['id_parte']);
                     if(data >=0){
                         $(".panel-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Parte guardado con exito').addClass('alert alert-success').show();

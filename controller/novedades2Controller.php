@@ -88,7 +88,7 @@ switch ($operation)
 
             //Devuelve el resultado a la vista
             sQuery::dpCommit();
-            print_r(json_encode(1));
+            print_r(json_encode($rta));
 
         }
         catch(Exception $e){
