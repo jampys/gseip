@@ -487,7 +487,7 @@
 
         $('#empleado-form').on('click', '#submit',function(e){
             e.preventDefault();
-            alert('guardar conceptos');
+            //alert('guardar conceptos');
             //if ($("#contrato-form").valid()){
                 var params={};
                 params.action = 'novedades2';
@@ -503,7 +503,9 @@
                 params.id_empleado = $('#id_empleado').val();
                 params.id_evento = $('#id_evento').val();
                 params.conductor = $('#conductor').val();
-                //alert(params.id_responsable);
+
+                alert(params.id_parte);
+                throw new Error();
 
                 /*var jsonEmpleadosIx = [];
                 for ( var item in jsonEmpleados ){
@@ -556,7 +558,7 @@
             </div>
 
 
-            <!--<input type="hidden" name="id_parte" id="id_parte" value="<?php //print $view->empleado->getIdParte() ?>">-->
+            <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
             <input type="hidden" name="id_parte_empleado" id="id_parte_empleado" value="<?php print $view->params['id_parte_empleado'] ?>">
             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
 
