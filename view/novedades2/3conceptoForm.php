@@ -333,22 +333,17 @@
 
         $.cargarTablaConceptos = function(){
 
-            if(Object.keys(jsonConceptos).length <= 0){
+            var counter = 0; //para contar los elementos
 
-                $('#conceptos-container').append('<div class="alert alert-warning">'+
-                                                 '<i class="fas fa-exclamation-triangle fa-fw"></i> El parte aún tiene conceptos registrados.'+
-                                                 '</div>');
-
-                    return; //finaliza la ejecucion de la funcion.
-            }
-
-            $('#conceptos-table tbody tr').remove();
+            $('#conceptos-table tbody tr').remove(); //elimina los elementos de la tabla de conceptos
+            $('#conceptos-container .alert').remove(); //elimina el mensaje de alerta
 
             for (var i in jsonConceptos) {
 
                 if (jsonConceptos[i].operacion == 'delete') { //para no mostrar los eliminados
                     continue;
                 }
+                counter ++;
 
                 $('#conceptos-table tbody').append('<tr id_parte_empleado_concepto='+jsonConceptos[i].id_parte_empleado_concepto+'>' +
                  '<td>'+jsonConceptos[i].convenio+'</td>' +
@@ -380,9 +375,23 @@
 
                 });
 
+
+            }
+
+            //if(Object.keys(jsonConceptos).length <= 0){
+            alert(counter);
+            if(counter <= 0){
+
+                $('#conceptos-container').append('<div class="alert alert-warning">'+
+                '<i class="fas fa-exclamation-triangle fa-fw"></i> El parte aún tiene conceptos registrados.'+
+                '</div>');
+
+                //return; //finaliza la ejecucion de la funcion.
             }
 
         };
+
+        
 
 
         $.ajax({
