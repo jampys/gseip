@@ -236,6 +236,48 @@ class Parte
     }
 
 
+    public function updateParte2(){
+        //para novedades2.
+        $stmt=new sQuery();
+        $query = 'CALL sp_calcularNovedades2(:id_parte,
+                                        :id_area,
+                                        :id_vehiculo,
+                                        :id_evento,
+                                        :hs_normal,
+                                        :hs_50,
+                                        :hs_100,
+                                        :created_by,
+                                        @flag,
+                                        @msg
+                                    )';
+
+        $stmt->dpPrepare($query);
+
+        $stmt->dpBind(':id_parte', $this->getIdParte());
+        $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
+        $stmt->dpBind(':id_evento', $this->getIdEvento());
+        $stmt->dpBind(':hs_normal', $this->getHsNormal());
+        $stmt->dpBind(':hs_50', $this->getHs50());
+        $stmt->dpBind(':hs_100', $this->getHs100());
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
+
+        $stmt->dpExecute();
+
+        $stmt->dpCloseCursor();
+        $query = "select @flag as flag, @msg as msg";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        //$flag = $stmt->dpFetchAll();
+        //return ($flag)? intval($flag[0]['flag']) : -1;
+        return $stmt->dpFetchAll(); //retorna array bidimensional con flag y msg
+    }
+
+
+
+
+
+
     public function insertParte(){ //ok
 
         $stmt=new sQuery();
