@@ -503,7 +503,7 @@
                 params.id_empleado = $('#id_empleado').val();
                 params.id_evento = $('#id_evento').val();
                 params.conductor = $('#conductor').prop('checked')? 1:0;
-                //alert(params.id_parte_empleado);
+                //alert(params.comentario);
                 //throw new Error();
 
                 /*var jsonEmpleadosIx = [];
@@ -689,7 +689,7 @@
 
             <div class="form-group">
                 <!--<label class="control-label" for="servicio">Comentario</label>-->
-                <textarea class="form-control" name="comentario" id="comentario" placeholder="Comentario" rows="2"><?php //print $view->empleado->getComentario(); ?></textarea>
+                <textarea class="form-control" name="comentario" id="comentario" placeholder="Comentario" rows="2"><?php print $view->parte_empleado->getComentario(); ?></textarea>
             </div>
 
 
