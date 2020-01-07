@@ -236,7 +236,7 @@ class Parte
     }
 
 
-    public function updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor){
+    public function updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario){
         //para novedades2.
         $stmt=new sQuery();
         $query = 'CALL sp_updateParte(:id_parte,
@@ -246,11 +246,11 @@ class Parte
                                         :id_vehiculo,
                                         :id_cuadrilla,
                                         :id_periodo,
-                                        :comentarios,
                                         :id_parte_empleado,
                                         :id_empleado,
                                         :id_evento,
                                         :conductor,
+                                        :comentario,
                                         :created_by,
                                         @flag,
                                         @id_parte,
@@ -267,12 +267,12 @@ class Parte
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
         $stmt->dpBind(':id_periodo', $this->getIdPeriodo());
-        $stmt->dpBind(':comentarios', $this->getComentarios());
 
         $stmt->dpBind(':id_parte_empleado', $id_parte_empleado);
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpBind(':id_evento', $id_evento);
         $stmt->dpBind(':conductor', $conductor);
+        $stmt->dpBind(':comentario', $comentario);
 
         $stmt->dpBind(':created_by', $this->getCreatedBy());
 

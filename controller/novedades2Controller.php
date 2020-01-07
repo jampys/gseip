@@ -38,14 +38,15 @@ switch ($operation)
             $parte->setIdVehiculo(null);
             $parte->setIdCuadrilla($_POST['id_cuadrilla']);
             $parte->setIdPeriodo($_POST['id_periodo']);
-            $parte->setComentarios($_POST['comentarios']);
+            //$parte->setComentarios($_POST['comentarios']);
             $parte->setCreatedBy($_SESSION['id_user']);
             //$parte->save(); //si falla sale por el catch
             $id_parte_empleado = $_POST['id_parte_empleado'];
             $id_empleado = $_POST['id_empleado'];
             $id_evento = ($_POST['id_evento'])? $_POST['id_evento'] : null;
             $conductor = $_POST['conductor'];
-            $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor);
+            $comentario = $_POST['comentario'];
+            $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
 
             //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
             //$id_contrato = (!$contrato->getIdContrato())? sQuery::dpLastInsertId(): $contrato->getIdContrato();

@@ -497,7 +497,7 @@
                 params.id_contrato=$('#id_contrato').val();
                 params.id_cuadrilla = $('#id_cuadrilla').val();
                 params.id_periodo = $('#id_periodo').val();
-                params.comentarios = $('#comentario').val();
+                params.comentario = $('#comentario').val();
 
                 params.id_parte_empleado = $('#id_parte_empleado').val();
                 params.id_empleado = $('#id_empleado').val();
