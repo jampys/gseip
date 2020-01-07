@@ -521,7 +521,7 @@
                         $(".panel-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Parte guardado con exito').addClass('alert alert-success').show();
                         setTimeout(function() { $("#myElem").hide();
-                                                $('#table_empleados').load('index.php',{action:"novedades2", operation:"table_empleados"});
+                                                //$('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados"});
                                               }, 2000);
 
                     }else{
