@@ -41,6 +41,7 @@
                 //alert(params.id_periodo);
                 $('#table_empleados').load('index.php', params,function(){
                     //alert('cargo el contenido en right side');
+                    $("#contenedor").hide("");
                     //$('#myModal').modal();
                     //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                     //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
