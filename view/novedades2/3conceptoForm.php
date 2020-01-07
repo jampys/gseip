@@ -527,7 +527,7 @@
                                               }, 1000);
 
                     }else{
-                        $("#myElem").html('Error al guardar el parte').addClass('alert alert-danger').show();
+                        $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').show();
                     }
                 }, 'json');
 
