@@ -36,7 +36,7 @@ switch ($operation)
             $parte->setIdContrato($_POST['id_contrato']);
             $parte->setIdArea(null);
             $parte->setIdVehiculo(null);
-            $parte->setIdCuadrilla($_POST['id_cuadrilla']);
+            $parte->setIdCuadrilla( ($_POST['id_cuadrilla'])? $_POST['id_cuadrilla'] : null );
             $parte->setIdPeriodo($_POST['id_periodo']);
             //$parte->setComentarios($_POST['comentarios']);
             $parte->setCreatedBy($_SESSION['id_user']);
