@@ -25,7 +25,7 @@
 
     $(document).ready(function(){
 
-        $('.collapse').collapse(); //https://bootstrapdocs.com/v3.3.4/docs/javascript/#collapse
+        //$('.collapse').collapse(); //https://bootstrapdocs.com/v3.3.4/docs/javascript/#collapse
 
         $('.selectpicker').selectpicker({
             //propiedades del selectpicker
@@ -719,7 +719,8 @@
         <!-- seccion de ordenes -->
         <div class="row">
             <div class="col-md-4">
-                <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>
+                <!--<button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>-->
+                <button type="button" class="btn btn-primary btn-block" title="Mostrar órdenes">Órdenes</button>
             </div>
 
             <div class="col-md-4">
@@ -734,7 +735,8 @@
         </div>
 
 
-        <div id="demo-ordenes" class="collapse">
+        <!--<div id="demo-ordenes" class="collapse">-->
+        <div id="demo-ordenes">
             <div class="grid-ordenes">
                 <?php include_once('view/novedades_partes/ordenesGrid.php');?>
             </div>
@@ -745,7 +747,8 @@
         <!-- seccion de sucesos -->
         <div class="row">
             <div class="col-md-4">
-                <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-sucesos" title="Mostrar sucesos">Sucesos</button>
+                <!--<button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-sucesos" title="Mostrar sucesos">Sucesos</button>-->
+                <button type="button" class="btn btn-primary btn-block" title="Mostrar sucesos">Sucesos</button>
             </div>
 
             <div class="col-md-4">
@@ -760,7 +763,8 @@
         </div>
 
 
-        <div id="demo-sucesos" class="collapse">
+        <!--<div id="demo-sucesos" class="collapse">-->
+        <div id="demo-sucesos">
             <div class="grid-sucesos">
                 <?php include_once('view/novedades2/sucesosGrid.php');?>
             </div>
