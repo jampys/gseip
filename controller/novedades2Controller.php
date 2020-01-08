@@ -48,8 +48,6 @@ switch ($operation)
             $comentario = $_POST['comentario'];
             $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
 
-            //si es un insert tomo el ultimo id insertado, si es un update, el id del contrato.
-            //$id_contrato = (!$contrato->getIdContrato())? sQuery::dpLastInsertId(): $contrato->getIdContrato();
 
             /*$vEmpleados = json_decode($_POST["vEmpleados"], true);
             //print_r($vEmpleados);
