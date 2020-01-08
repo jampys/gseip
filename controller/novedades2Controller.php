@@ -53,7 +53,7 @@ switch ($operation)
             $id_parte_empleado = $rta[0]['id_parte_empleado'];
 
             $vConceptos = json_decode($_POST["vConceptos"], true);
-            print_r($vConceptos);
+            //print_r($vConceptos);
             //throw new Exception();
 
             foreach ($vConceptos as $vC) {

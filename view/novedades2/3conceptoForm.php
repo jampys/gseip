@@ -520,7 +520,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     //No se usa .fail() porque el resultado viene de una transaccion (try catch) que siempre devuelve 1 o -1
-                    alert(xhr.responseText);
+                    //alert(xhr.responseText);
                     //alert(data[0]['msg']);
                     if(data[0]['flag'] >=0){
                         $(".panel-footer button").prop("disabled", true); //deshabilito botones
@@ -534,7 +534,7 @@
                     }else{
                         $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').show();
                     }
-                });
+                }, 'json');
 
             //}
             return false;
