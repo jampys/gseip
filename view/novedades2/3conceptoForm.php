@@ -635,8 +635,8 @@
 
                 <div class="form-group col-md-6">
                     <!-- <label for="add_contrato" class="control-label">Nuevos partes</label>-->
-                    <select class="form-control selectpicker show-tick" id="id_concepto_convenio_contrato" name="id_concepto_convenio_contrato" data-live-search="true" data-size="5">
-                        <option value="">Seleccione un concepto</option>
+                    <select class="form-control selectpicker show-tick" id="id_concepto_convenio_contrato" name="id_concepto_convenio_contrato" data-live-search="true" data-size="5" title="Seleccione un concepto">
+                        <!--<option value="">Seleccione un concepto</option>-->
                         <?php foreach ($view->conceptos as $con){
                             ?>
                             <option value="<?php echo $con['id_concepto_convenio_contrato']; ?>"
