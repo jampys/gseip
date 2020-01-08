@@ -82,7 +82,7 @@ switch ($operation)
 
                 //echo 'id empleado contrato: '.$vE['id_empleado_contrato'].'---';
 
-                echo 'AAAAAAAAAAAAAAAAAAAA: '.$vC['operacion'];
+                //echo 'AAAAAAAAAAAAAAAAAAAA: '.$vC['operacion'];
                 if($vC['operacion']=='insert') {
                     $c->insertParteEmpleadoConcepto();
                     //$id_empleado_contrato = sQuery::dpLastInsertId();
@@ -101,15 +101,15 @@ switch ($operation)
 
             //Devuelve el resultado a la vista
             sQuery::dpCommit();
-            //print_r(json_encode($rta));
-            print_r(json_encode(1));
+            print_r(json_encode($rta));
+            //print_r(json_encode(1));
 
         }
         catch(Exception $e){
             //echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
-            print_r(json_encode(-1));
-            //print_r(json_encode($rta));
+           //print_r(json_encode(-1));
+            print_r(json_encode($rta));
         }
 
         exit;
