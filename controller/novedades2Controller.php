@@ -48,11 +48,15 @@ switch ($operation)
             $comentario = $_POST['comentario'];
             $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
 
+            //obtengo el id_parte y id_parte_empleado devueltos por el SP
+            $id_parte = $rta[0]['id_parte'];
+            $id_parte_empleado = $rta[0]['id_parte_empleado'];
 
-            /*$vEmpleados = json_decode($_POST["vEmpleados"], true);
-            //print_r($vEmpleados);
+            $vConceptos = json_decode($_POST["vConceptos"], true);
+            print_r($vConceptos);
+            //throw new Exception();
 
-            foreach ($vEmpleados as $vE) {
+            foreach ($vConceptos as $vC) {
 
                 //$c = new HabilidadEmpleado();
                 //$c->setIdHabilidad($vH['id_habilidad']);
@@ -61,33 +65,34 @@ switch ($operation)
 
                 //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
                 //echo "id_contrato :".$id." - procesos: ".$vE['id_proceso'];
-                $empleado_contrato = new ContratoEmpleado();
-                $empleado_contrato->setIdEmpleadoContrato($vE['id_empleado_contrato']);
-                $empleado_contrato->setIdEmpleado($vE['id_empleado']);
-                $empleado_contrato->setIdContrato($id_contrato);
-                $empleado_contrato->setIdPuesto($vE['id_puesto']);
-                $empleado_contrato->setFechaDesde($vE['fecha_desde']);
-                $empleado_contrato->setFechaHasta(($vE['fecha_hasta'])? $vE['fecha_hasta']: null); //fecha_desde puede ser null
-                $empleado_contrato->setIdLocalidad(($vE['id_localidad'])? $vE['id_localidad']: null);
+                $c = new ParteEmpleadoConcepto();
+                $c->setIdParteEmpleado($id_parte_empleado);
+                $c->setIdConceptoConvenioContrato($vC['id_concepto_convenio_contrato']);
+                $c->setCantidad($vC['cantidad']);
+                $c->setCreatedBy($_SESSION['id_user']);
+                //$c->setCreatedDate();
+                $c->setTipoCalculo($vC['tipo_calculo']);
+                //$c->setFechaHasta(($vE['fecha_hasta'])? $vE['fecha_hasta']: null); //fecha_desde puede ser null
+                //$c->setIdLocalidad(($vE['id_localidad'])? $vE['id_localidad']: null);
 
                 //echo 'id empleado contrato: '.$vE['id_empleado_contrato'].'---';
 
                 //echo $vE['operacion'];
-                if($vE['operacion']=='insert') {
-                    $empleado_contrato->insertEmpleadoContrato();
-                    $id_empleado_contrato = sQuery::dpLastInsertId();
+                if($vC['operacion']=='insert') {
+                    $c->insertParteEmpleadoConcepto();
+                    //$id_empleado_contrato = sQuery::dpLastInsertId();
                 }
-                else if( $vE['operacion']=='update') {
-                    $empleado_contrato->updateEmpleadoContrato();
-                    $id_empleado_contrato = $empleado_contrato->getIdEmpleadoContrato();
+                else if( $vC['operacion']=='update') {
+                    $c->updateParteEmpleadoConcepto();
+                    //$id_empleado_contrato = $empleado_contrato->getIdEmpleadoContrato();
                 }
-                else if( $vE['operacion']=='delete') {
+                else if( $vC['operacion']=='delete') {
                     //Elimina en cascada los registros hijos de la tabla empleado_contrato_proceso
-                    $empleado_contrato->deleteEmpleadoContrato(); //si falla sale por el catch
+                    $c->deleteParteEmpleadoConcepto(); //si falla sale por el catch
                 }
 
 
-            }*/
+            }
 
             //Devuelve el resultado a la vista
             sQuery::dpCommit();
