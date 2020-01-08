@@ -53,6 +53,7 @@ switch ($operation)
             //obtengo el id_parte y id_parte_empleado devueltos por el SP
             $id_parte = $rta[0]['id_parte'];
             $id_parte_empleado = $rta[0]['id_parte_empleado'];
+            print_r($rta);
 
             $vConceptos = json_decode($_POST["vConceptos"], true);
             //print_r($vConceptos);
