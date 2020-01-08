@@ -53,7 +53,7 @@ switch ($operation)
             //obtengo el id_parte y id_parte_empleado devueltos por el SP
             $id_parte = $rta[0]['id_parte'];
             $id_parte_empleado = $rta[0]['id_parte_empleado'];
-            print_r($rta);
+            //print_r($rta);
 
             $vConceptos = json_decode($_POST["vConceptos"], true);
             //print_r($vConceptos);
@@ -80,7 +80,7 @@ switch ($operation)
 
                 //echo 'id empleado contrato: '.$vE['id_empleado_contrato'].'---';
 
-                //echo $vE['operacion'];
+                echo 'AAAAAAAAAAAAAAAAAAAA: '.$vC['operacion'];
                 if($vC['operacion']=='insert') {
                     $c->insertParteEmpleadoConcepto();
                     //$id_empleado_contrato = sQuery::dpLastInsertId();
@@ -103,7 +103,7 @@ switch ($operation)
 
         }
         catch(Exception $e){
-            echo $e->getMessage(); //habilitar para ver el mensaje de error
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
             //print_r(json_encode(-1));
             print_r(json_encode($rta));
