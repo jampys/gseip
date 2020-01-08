@@ -511,11 +511,11 @@
                 //alert(params.comentario);
                 //throw new Error();
 
-                /*var jsonEmpleadosIx = [];
-                for ( var item in jsonEmpleados ){
-                    jsonEmpleadosIx.push( jsonEmpleados[ item ] );
+                var jsonConceptosIx = [];
+                for ( var item in jsonConceptos ){
+                    jsonConceptosIx.push( jsonConceptos[ item ] );
                 }
-                params.vEmpleados = JSON.stringify(jsonEmpleadosIx);*/
+                params.vConceptos = JSON.stringify(jsonConceptosIx);
 
 
                 $.post('index.php',params,function(data, status, xhr){
