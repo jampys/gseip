@@ -27,6 +27,8 @@ switch ($operation)
 
     case 'saveParte': //ok
 
+        $rta = array();
+
         try{
 
             sQuery::dpBeginTransaction();
@@ -100,9 +102,10 @@ switch ($operation)
 
         }
         catch(Exception $e){
-            //echo $e->getMessage(); //habilitar para ver el mensaje de error
+            echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
-            print_r(json_encode(-1));
+            //print_r(json_encode(-1));
+            print_r(json_encode($rta));
         }
 
         exit;
