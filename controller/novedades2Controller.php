@@ -69,7 +69,7 @@ switch ($operation)
                 //echo "id_contrato :".$id." - id_empleado: ".$vE['id_empleado'];
                 //echo "id_contrato :".$id." - procesos: ".$vE['id_proceso'];
                 $c = new ParteEmpleadoConcepto();
-                $c->setIdParteEmpleadoConcepto($vC['id_concepto_convenio_concepto']);
+                $c->setIdParteEmpleadoConcepto($vC['id_parte_empleado_concepto']);
                 $c->setIdParteEmpleado($id_parte_empleado);
                 $c->setIdConceptoConvenioContrato($vC['id_concepto_convenio_contrato']);
                 $c->setCantidad($vC['cantidad']);
