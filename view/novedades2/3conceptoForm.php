@@ -42,6 +42,11 @@
 
 
 
+        $('#empleado-form').on('click', '#cancel', function(){
+            $('#contenedor').hide();
+        });
+
+
         //Abre formulario para ingresar una nueva orden al parte
         $('#right_side').on('click', '#add-orden', function(){ //ok
             params={};
