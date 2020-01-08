@@ -83,7 +83,9 @@
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            })
+            });
+
+            return false;
         });
 
         //return false;
