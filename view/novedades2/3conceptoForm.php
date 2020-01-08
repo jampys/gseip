@@ -434,6 +434,10 @@
 
         //al presionar el boton para agregar conceptos
         $('#left_side').on('click', '#new', function(){ //ok
+
+            //id_concepto_convenio_contrato
+            if(!$('#id_concepto_convenio_contrato').val()) return false; //para evitar agregar conceptos en blanco.
+
             //var first_key = Object.keys(jsonConceptos)[0];
             var id = '';
             if(Object.keys(jsonConceptos).length == 0){
