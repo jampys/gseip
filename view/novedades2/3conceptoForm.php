@@ -376,7 +376,8 @@
                 }).on('changeTime.timepicker', function(e) {
                     var id = $(this).closest('tr').attr('id_parte_empleado_concepto');
                     jsonConceptos[id].cantidad = e.time.value;
-                    //alert(jsonConceptos[id].cantidad);
+                    if (jsonConceptos[id].id_parte_empleado) jsonConceptos[id].operacion = 'update';
+                    //alert(jsonConceptos[id].operacion);
 
                 });
 
