@@ -569,7 +569,8 @@
 
             <div class="form-group">
                 <!--<label class="control-label" for="id_empleado">Cuadrilla</label>-->
-                <select id="id_cuadrilla" name="id_cuadrilla" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione una cuadrilla">
+                <select id="id_cuadrilla" name="id_cuadrilla" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                    <option value="">Seleccione una cuadrilla</option>
                     <?php foreach ($view->cuadrillas as $cu){
                         ?>
                         <option value="<?php echo $cu['id_cuadrilla']; ?>"
