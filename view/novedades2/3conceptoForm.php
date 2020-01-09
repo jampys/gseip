@@ -399,7 +399,7 @@
 
 
 
-
+        //carga los conceptos cuando se selecciona un empleado
         $.ajax({
             url:"index.php",
             type:"post",
