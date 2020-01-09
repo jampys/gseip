@@ -37,36 +37,23 @@ class Ruta
 
 
 
-    function Contrato($id_contrato = 0){ //constructor ok
+    function Ruta($id_ruta = 0){ //constructor ok
 
-        if ($id_contrato!= 0){
+        if ($id_ruta!= 0){
 
             $stmt=new sQuery();
-            $query="select co.id_contrato, co.nro_contrato,
-                    DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-                    DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                    re.apellido, re.nombre, cia.razon_social,
-                    co.id_responsable, co.id_compania, co.nombre, co.id_domain
-                    from contratos co, empleados re, companias cia
-                    where co.id_responsable = re.id_empleado
-                    and co.id_compania = cia.id_compania
-                    and co.id_contrato = :id_contrato";
+            $query="select ru.id_ruta, ru.id_contrato, ru.id_convenio, ru.nombre
+                    from nov_rutas ru
+                    where ru.id_ruta = :id_ruta";
             $stmt->dpPrepare($query);
-            $stmt->dpBind(':id_contrato', $id_contrato);
+            $stmt->dpBind(':id_ruta', $id_ruta);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
+            $this->setIdRuta($rows[0]['id_ruta']);
             $this->setIdContrato($rows[0]['id_contrato']);
-            $this->setNroContrato($rows[0]['nro_contrato']);
+            $this->setIdConvenio($rows[0]['id_convenio']);
             $this->setNombre($rows[0]['nombre']);
-            $this->setFechaDesde($rows[0]['fecha_desde']);
-            $this->setFechaHasta($rows[0]['fecha_hasta']);
-            $this->setIdResponsable($rows[0]['id_responsable']);
-            $this->setIdCompania($rows[0]['id_compania']);
-
-            $this->responsable = new Empleado($rows[0]['id_responsable']);
-            $this->setDomain($rows[0]['id_domain']);
-
         }
     }
 
