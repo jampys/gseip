@@ -447,7 +447,11 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
-                    if(data.length <= 0 ) return false; //Si la ruta no tiene conceptos. Sale
+                    //Si la ruta no tiene conceptos. Sale
+                    if(data.length <= 0 ){
+                        alert('la ruta no tiene definidos los conceptos');
+                        return false;
+                    }
 
                     //eliminar los elementos de jsonConceptos que estan guardados en BD.
                     for (var i in jsonConceptos) {
