@@ -8,7 +8,8 @@ include_once("model/nov_areasModel.php");
 include_once("model/contratosModel.php");
 
 include_once("model/cuadrillasModel.php");
-include_once("model/vehiculosModel.php");
+include_once("model/cuadrilla-empleadoModel.php");
+//include_once("model/vehiculosModel.php");
 include_once("model/nov_eventosCuadrillaModel.php");
 include_once("model/empleadosModel.php");
 include_once("model/nov_periodosModel.php");
@@ -166,6 +167,7 @@ switch ($operation)
         $view->conceptos = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $view->empleado->getIdConvenio());
         $view->rutas = Ruta::getRutas($_POST['id_contrato'], $view->empleado->getIdConvenio());
         $view->areas = NovArea::getAreas($_POST['id_contrato']);
+        $view->defaults = CuadrillaEmpleado::getEmpleadoDefaults($_POST['id_empleado']);
         //$view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
 
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
