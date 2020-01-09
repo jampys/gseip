@@ -1,52 +1,38 @@
 <?php
 
-class ContratoVehiculo
+class RutaConcepto
 {
-    private $id_vehiculo_contrato;
-    private $id_vehiculo;
-    private $id_contrato;
-    private $fecha_desde;
-    private $fecha_hasta;
-    private $id_localidad;
+    private $id_ruta_concepto;
+    private $id_ruta;
+    private $id_concepto_convenio_contrato;
+    private $cantidad;
 
     //GETTERS
-    function getIdVehiculoContrato()
-    { return $this->id_vehiculo_contrato;}
+    function getIdRutaConcepto()
+    { return $this->id_ruta_concepto;}
 
-    function getIdVehiculo()
-    { return $this->id_vehiculo;}
+    function getIdRuta()
+    { return $this->id_ruta;}
 
-    function getIdContrato()
-    { return $this->id_contrato;}
+    function getIdConceptoConvenioContrato()
+    { return $this->id_concepto_convenio_contrato;}
 
-    function getFechaDesde()
-    { return $this->fecha_desde;}
-
-    function getFechaHasta()
-    { return $this->fecha_hasta;}
-
-    function getIdLocalidad()
-    { return $this->id_localidad;}
+    function getCantidad()
+    { return $this->cantidad;}
 
 
     //SETTERS
-    function setIdVehiculoContrato($val)
-    { $this->id_vehiculo_contrato=$val;}
+    function setIdRutaConcepto($val)
+    { $this->id_ruta_concepto=$val;}
 
-    function setIdVehiculo($val)
-    { $this->id_vehiculo=$val;}
+    function setIdRuta($val)
+    { $this->id_ruta=$val;}
 
-    function setIdContrato($val)
-    {  $this->id_contrato=$val;}
+    function setIdConceptoConvenioContrato($val)
+    {  $this->id_concepto_convenio_contrato=$val;}
 
-    function setFechaDesde($val)
-    {  $this->fecha_desde=$val;}
-
-    function setFechaHasta($val)
-    {  $this->fecha_hasta=$val;}
-
-    function setIdLocalidad($val)
-    {  $this->id_localidad=$val;}
+    function setCantidad($val)
+    {  $this->cantidad=$val;}
 
 
 
@@ -54,38 +40,30 @@ class ContratoVehiculo
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select id_vehiculo_contrato, id_vehiculo, id_contrato,
-                    DATE_FORMAT(fecha_desde,  '%d/%m/%Y') as fecha_desde,
-                    DATE_FORMAT(fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                    id_localidad
-                    from vto_vehiculo_contrato where id_vehiculo_contrato = :nro";
+            $query="select nrc.id_ruta_concepto, nrc.id_ruta, nrc.id_concepto_convenio_contrato, nrc.cantidad
+                    from nov_ruta_concepto nrc
+                    where id_ruta_concepto = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdVehiculoContrato($rows[0]['id_vehiculo_contrato']);
-            $this->setIdVehiculo($rows[0]['id_vehiculo']);
-            $this->setIdContrato($rows[0]['id_contrato']);
-            $this->setFechaDesde($rows[0]['fecha_desde']);
-            $this->setFechaHasta($rows[0]['fecha_hasta']);
-            $this->setIdLocalidad($rows[0]['id_localidad']);
+            $this->setIdRutaConcepto($rows[0]['id_ruta_concepto']);
+            $this->setIdRuta($rows[0]['id_ruta']);
+            $this->setIdConceptoConvenioContrato($rows[0]['id_concepto_convenio_contrato']);
+            $this->setCantidad($rows[0]['cantidad']);
 
         }
     }
 
-    //Devuelve todos los vehiculos de un determinado contrato
-    public static function getVehiculos($id_contrato) { //ok
+    //Devuelve todos los conceptos de una determinada ruta
+    public static function getConceptos($id_ruta) { //ok
         $stmt=new sQuery();
-        $query = "select vc.id_vehiculo_contrato, vc.id_vehiculo, vc.id_contrato,
-DATE_FORMAT(vc.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-DATE_FORMAT(vc.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-v.matricula, v.nro_movil, v.marca, v.modelo
-from vto_vehiculo_contrato vc
-join vto_vehiculos v on v.id_vehiculo = vc.id_vehiculo
-where vc.id_contrato = :id_contrato";
+        $query = "select nrc.id_ruta_concepto, nrc.id_ruta, nrc.id_concepto_convenio_contrato, nrc.cantidad
+from nov_ruta_concepto nrc
+where nrc.id_ruta = :id_ruta";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_ruta', $id_ruta);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
 
@@ -115,7 +93,7 @@ order by vc.fecha_desde desc";
     }
 
 
-    function save(){ //ok
+    function save(){
         if($this->id_vehiculo_contrato)
         {$rta = $this->updateVehiculoContrato();}
         else
@@ -125,7 +103,7 @@ order by vc.fecha_desde desc";
 
 
 
-    public function updateVehiculoContrato(){ //ok
+    public function updateVehiculoContrato(){
 
         $stmt=new sQuery();
         $query="update vto_vehiculo_contrato
@@ -145,7 +123,7 @@ order by vc.fecha_desde desc";
 
     }
 
-    public function insertVehiculoContrato(){ //ok
+    public function insertVehiculoContrato(){
 
         $stmt=new sQuery();
         $query="insert into vto_vehiculo_contrato(id_vehiculo, id_contrato, fecha_desde, fecha_hasta, id_localidad)
@@ -163,7 +141,7 @@ order by vc.fecha_desde desc";
         return $stmt->dpGetAffect();
     }
 
-    public function deleteVehiculoContrato(){ //ok
+    public function deleteVehiculoContrato(){
         $stmt=new sQuery();
         $query="delete from vto_vehiculo_contrato where id_vehiculo_contrato= :id_vehiculo_contrato";
         $stmt->dpPrepare($query);
@@ -173,7 +151,7 @@ order by vc.fecha_desde desc";
     }
 
 
-    public function checkVehiculo($id_vehiculo, $id_contrato, $id_contrato_vehiculo) { //ok
+    public function checkVehiculo($id_vehiculo, $id_contrato, $id_contrato_vehiculo) {
         //verifica que el vehiculo no se repita dentro de un contrato
         $stmt=new sQuery();
         $query = "select 1
