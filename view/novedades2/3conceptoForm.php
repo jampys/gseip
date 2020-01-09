@@ -661,6 +661,20 @@
             </div>
 
             <div class="form-group">
+                <!--<label for="default_id_area" class="control-label">Área</label>-->
+                <select class="form-control selectpicker show-tick" id="default_id_area" name="default_id_area" title="Seleccione el área" data-live-search="true" data-size="5">
+                    <?php foreach ($view->areas as $ar){
+                        ?>
+                        <option value="<?php echo $ar['id_area']; ?>"
+                            <?php //echo ($ar['id_area'] == $view->cuadrilla->getDefaultIdArea())? 'selected' :'' ?>
+                            >
+                            <?php echo $ar['codigo']." ".$ar['nombre'];?>
+                        </option>
+                    <?php  } ?>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <!--<label for="id_evento" class="control-label">Evento</label>-->
                 <select class="selectpicker form-control show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
                     <option value="">Seleccione un evento</option>

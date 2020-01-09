@@ -165,6 +165,7 @@ switch ($operation)
         $view->parte = new Parte($_POST['id_parte']);
         $view->conceptos = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $view->empleado->getIdConvenio());
         $view->rutas = Ruta::getRutas($_POST['id_contrato'], $view->empleado->getIdConvenio());
+        $view->areas = NovArea::getAreas($_POST['id_contrato']);
         //$view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
 
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
