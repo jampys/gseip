@@ -653,7 +653,8 @@
                     <?php foreach ($view->cuadrillas as $cu){
                         ?>
                         <option value="<?php echo $cu['id_cuadrilla']; ?>"
-                            <?php echo ($cu['id_cuadrilla'] == $view->parte->getIdCuadrilla())? 'selected' :'' ?>
+                            <?php //echo ($cu['id_cuadrilla'] == $view->parte->getIdCuadrilla())? 'selected' :'' ?>
+                            <?php echo ( ($cu['id_cuadrilla'] == $view->parte->getIdCuadrilla()) || (!$view->parte->getIdParte() && $cu['id_cuadrilla'] == $view->defaults[0]['id_cuadrilla'])  )? 'selected' :'' ?>
                             >
                             <?php echo $cu['nombre']; ?>
                         </option>
@@ -667,7 +668,8 @@
                     <?php foreach ($view->areas as $ar){
                         ?>
                         <option value="<?php echo $ar['id_area']; ?>"
-                            <?php echo ($ar['id_area'] == $view->parte->getIdArea())? 'selected' :'' ?>
+                            <?php //echo ($ar['id_area'] == $view->parte->getIdArea())? 'selected' :'' ?>
+                            <?php echo ( ($ar['id_area'] == $view->parte->getIdArea()) || (!$view->parte->getIdParte() && $ar['id_area'] == $view->defaults[0]['default_id_area'])  )? 'selected' :'' ?>
                             >
                             <?php echo $ar['codigo']." ".$ar['nombre'];?>
                         </option>
@@ -693,7 +695,9 @@
             <div class="form-group required">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" id="conductor" name="conductor" <?php echo ($view->parte_empleado->getConductor()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Marcar la persona que maneja">Conductor</a>
+                        <input type="checkbox" id="conductor" name="conductor" <?php //echo ($view->parte_empleado->getConductor()== 1)? 'checked' :'' ?>
+                                                                               <?php echo ( ($view->parte_empleado->getConductor()== 1) || (!$view->parte->getIdParte() && 1 == $view->defaults[0]['conductor'])  )? 'checked' :'' ?>
+                            ><a href="#" title="Marcar la persona que maneja">Conductor</a>
                     </label>
                 </div>
             </div>
