@@ -59,9 +59,13 @@ class RutaConcepto
     //Devuelve todos los conceptos de una determinada ruta
     public static function getConceptos($id_ruta) { //ok
         $stmt=new sQuery();
-        $query = "select nrc.id_ruta_concepto, nrc.id_ruta, nrc.id_concepto_convenio_contrato, nrc.cantidad
-                  from nov_ruta_concepto nrc
-                  where nrc.id_ruta = :id_ruta";
+        $query = "select nrc.id_ruta_concepto, nrc.id_ruta, nrc.id_concepto_convenio_contrato, nrc.cantidad,
+nc.codigo as convenio, nccc.descripcion as concepto, nccc.codigo
+from nov_ruta_concepto nrc
+join nov_rutas nr on nr.id_ruta = nrc.id_ruta
+join nov_convenios nc on nc.id_convenio = nr.id_convenio
+join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato = nrc.id_concepto_convenio_contrato
+where nrc.id_ruta = :id_ruta";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_ruta', $id_ruta);
         $stmt->dpExecute();

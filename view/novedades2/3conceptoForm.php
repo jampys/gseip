@@ -447,19 +447,37 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
+                    if(data.length <= 0 ) return false; //Si la ruta no tiene conceptos. Sale
+
+                    //eliminar los elementos de jsonConceptos que estan guardados en BD.
+                    for (var i in jsonConceptos) {
+
+                        if (jsonConceptos[i].id_parte_empleado_concepto >= 0 ) {
+                            //continue;
+                            jsonConceptos[i].operacion = 'delete';
+                        }
+                    }
+
+
+                    var ix = -1;
                     $.each(data, function(indice, val){ //carga el array de empleados
 
-                        //alert(data[indice]['id_proceso']);
-                        var id = data[indice]['id_parte_empleado_concepto'];
-                        jsonConceptos[id] = data[indice];
-
-                        //var arr = [];
-                        //$.each(data[indice]['id_proceso'], function(i, v){
-                        //    arr.push(data[indice]['id_proceso'][i]['id_proceso']);
-                        //});
-                        //alert(arr);
-                        //jsonEmpleados[id]['id_proceso'] = arr;
-                        //jsonEmpleados[id]['id_proceso_old'] = arr;
+                        item = {};
+                        item.operacion = 'insert';
+                        //item.id_parte_empleado_concepto = id;
+                        item.id_parte_empleado_concepto = ix;
+                        item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
+                        item.id_concepto_convenio_contrato = data[indice]['id_concepto_convenio_contrato'];
+                        item.convenio = data[indice]['convenio'];
+                        item.concepto = data[indice]['concepto'];
+                        item.codigo = data[indice]['codigo'];
+                        item.cantidad = data[indice]['cantidad'];
+                        item.created_by = null;
+                        item.created_date = null;
+                        item.tipo_calculo = 'M';
+                        item.motivo = null;
+                        jsonConceptos[ix] = item;
+                        ix--;
 
                     });
 
