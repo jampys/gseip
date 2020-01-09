@@ -58,40 +58,21 @@ class Ruta
     }
 
 
-    public static function getContratos() { //ok
+    public static function getRutas($id_contrato, $id_convenio) {
         $stmt=new sQuery();
-        $query = "select co.id_contrato, co.nro_contrato, co.nombre,
-                  DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-                  DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                  CONCAT(re.apellido, ' ', re.nombre) as responsable,
-                  cia.nombre as compania, co.id_domain
-                  from contratos co, empleados re, companias cia
-                  where co.id_responsable = re.id_empleado
-                  and co.id_compania = cia.id_compania";
+        $query = "select ru.id_ruta, ru.id_contrato, ru.id_convenio, ru.nombre
+                  from nov_rutas ru
+                  where ru.id_contrato = ifnull(:id_contrato, ru.id_contrato)
+                  and ru.id_convenio = ifnull(:id_convenio, ru.id_convenio)";
         $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
-
-    public static function getContratosControl() { //ok
-        //solo los contratos activos y sobre los que tiene control el usuario
-        $stmt=new sQuery();
-        $query = "select co.id_contrato, co.nro_contrato, co.nombre,
-                  DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-                  DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                  CONCAT(re.apellido, ' ', re.nombre) as responsable,
-                  cia.nombre as compania, co.id_domain
-                  from v_sec_contratos_control co, empleados re, companias cia
-                  where co.id_responsable = re.id_empleado
-                  and co.id_compania = cia.id_compania
-                  and (co.fecha_hasta is null or co.fecha_hasta >= sysdate()  ) ";
-        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_convenio', $id_convenio);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
 
-    function save(){ //ok
+    function save(){
         if($this->id_contrato)
         {$rta = $this->updateContrato();}
         else
@@ -99,7 +80,7 @@ class Ruta
         return $rta;
     }
 
-    public function updateContrato(){ //ok
+    public function updateContrato(){
 
         $stmt=new sQuery();
         $query="update contratos set
@@ -123,7 +104,7 @@ class Ruta
 
     }
 
-    private function insertContrato(){ //ok
+    private function insertContrato(){
 
         $stmt=new sQuery();
         $query="insert into contratos(nro_contrato, nombre, fecha_desde, fecha_hasta, id_responsable, id_compania)
