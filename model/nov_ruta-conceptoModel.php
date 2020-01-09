@@ -60,8 +60,8 @@ class RutaConcepto
     public static function getConceptos($id_ruta) { //ok
         $stmt=new sQuery();
         $query = "select nrc.id_ruta_concepto, nrc.id_ruta, nrc.id_concepto_convenio_contrato, nrc.cantidad
-from nov_ruta_concepto nrc
-where nrc.id_ruta = :id_ruta";
+                  from nov_ruta_concepto nrc
+                  where nrc.id_ruta = :id_ruta";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_ruta', $id_ruta);
         $stmt->dpExecute();
