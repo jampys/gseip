@@ -453,12 +453,13 @@
                         return false;
                     }
 
-                    //eliminar los elementos de jsonConceptos que estan guardados en BD.
+                    //eliminar los elementos de jsonConceptos
                     for (var i in jsonConceptos) {
 
-                        if (jsonConceptos[i].id_parte_empleado_concepto >= 0 ) {
-                            //continue;
+                        if (jsonConceptos[i].id_parte_empleado_concepto >= 0 ) { //si esta en la BD
                             jsonConceptos[i].operacion = 'delete';
+                        }else{
+                            delete jsonConceptos[i];
                         }
                     }
 
