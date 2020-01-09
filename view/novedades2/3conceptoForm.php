@@ -667,7 +667,7 @@
                     <?php foreach ($view->areas as $ar){
                         ?>
                         <option value="<?php echo $ar['id_area']; ?>"
-                            <?php //echo ($ar['id_area'] == $view->cuadrilla->getDefaultIdArea())? 'selected' :'' ?>
+                            <?php echo ($ar['id_area'] == $view->parte->getIdArea())? 'selected' :'' ?>
                             >
                             <?php echo $ar['codigo']." ".$ar['nombre'];?>
                         </option>
