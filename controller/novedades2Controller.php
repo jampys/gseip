@@ -38,13 +38,13 @@ switch ($operation)
             $parte = new Parte($_POST['id_parte']);
             $parte->setFechaParte($_POST['fecha_parte']);
             $parte->setIdContrato($_POST['id_contrato']);
-            $parte->setIdArea(null);
+            $parte->setIdArea( ($_POST['id_area'])? $_POST['id_area'] : null );
             $parte->setIdVehiculo(null);
             $parte->setIdCuadrilla( ($_POST['id_cuadrilla'])? $_POST['id_cuadrilla'] : null );
             $parte->setIdPeriodo($_POST['id_periodo']);
             //$parte->setComentarios($_POST['comentarios']);
             $parte->setCreatedBy($_SESSION['id_user']);
-            //$parte->save(); //si falla sale por el catch
+
             $id_parte_empleado = $_POST['id_parte_empleado'];
             $id_empleado = $_POST['id_empleado'];
             $id_evento = ($_POST['id_evento'])? $_POST['id_evento'] : null;

@@ -574,6 +574,7 @@
                 params.fecha_parte = $('#add_fecha').val();
                 params.id_contrato=$('#id_contrato').val();
                 params.id_cuadrilla = $('#id_cuadrilla').val();
+                params.id_area = $('#id_area').val();
                 params.id_periodo = $('#id_periodo').val();
                 params.comentario = $('#comentario').val();
 
@@ -662,7 +663,7 @@
 
             <div class="form-group">
                 <!--<label for="default_id_area" class="control-label">Área</label>-->
-                <select class="form-control selectpicker show-tick" id="default_id_area" name="default_id_area" title="Seleccione el área" data-live-search="true" data-size="5">
+                <select class="form-control selectpicker show-tick" id="id_area" name="id_area" title="Seleccione un área" data-live-search="true" data-size="5">
                     <?php foreach ($view->areas as $ar){
                         ?>
                         <option value="<?php echo $ar['id_area']; ?>"

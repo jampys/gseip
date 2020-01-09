@@ -266,6 +266,7 @@ class Parte
         $stmt->dpBind(':id_area', $this->getIdArea());
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
+        $stmt->dpBind(':id_area', $this->getIdArea());
         $stmt->dpBind(':id_periodo', $this->getIdPeriodo());
 
         $stmt->dpBind(':id_parte_empleado', $id_parte_empleado);
