@@ -14,6 +14,7 @@ include_once("model/empleadosModel.php");
 include_once("model/nov_periodosModel.php");
 include_once("model/nov_sucesosModel.php");
 include_once("model/nov_concepto-convenio-contratoModel.php");
+include_once("model/nov_rutasModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -162,6 +163,7 @@ switch ($operation)
         $view->parte_empleado = new ParteEmpleado($_POST['id_parte_empleado']);
         $view->parte = new Parte($_POST['id_parte']);
         $view->conceptos = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $view->empleado->getIdConvenio());
+        $view->rutas = Ruta::getRutas($_POST['id_contrato'], $view->empleado->getIdConvenio());
         //$view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
 
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
