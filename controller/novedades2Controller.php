@@ -15,6 +15,7 @@ include_once("model/nov_periodosModel.php");
 include_once("model/nov_sucesosModel.php");
 include_once("model/nov_concepto-convenio-contratoModel.php");
 include_once("model/nov_rutasModel.php");
+include_once("model/nov_ruta-conceptoModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -182,6 +183,14 @@ switch ($operation)
     case 'loadConceptos': //ok
         //$view->contratoEmpleado = ContratoEmpleado::getContratoEmpleado($_POST['id_contrato']);
         $view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
+        print_r(json_encode($view->conceptos));
+        exit;
+        break;
+
+
+    case 'loadConceptosRutas':
+        //$view->contratoEmpleado = ContratoEmpleado::getContratoEmpleado($_POST['id_contrato']);
+        $view->conceptos = RutaConcepto::getConceptos($_POST['id_ruta']);
         print_r(json_encode($view->conceptos));
         exit;
         break;

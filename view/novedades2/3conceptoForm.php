@@ -432,6 +432,52 @@
 
 
 
+
+        //al seleccionar (cambiar) una ruta
+        $('#empleado-form').on('change', '#id_ruta', function(){
+
+            var id_ruta = $(this).val();
+            //alert(id_ruta);
+            //return false;
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                data:{"action": "novedades2", "operation": "loadConceptosRutas", "id_ruta": id_ruta},
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    $.each(data, function(indice, val){ //carga el array de empleados
+
+                        //alert(data[indice]['id_proceso']);
+                        var id = data[indice]['id_parte_empleado_concepto'];
+                        jsonConceptos[id] = data[indice];
+
+                        //var arr = [];
+                        //$.each(data[indice]['id_proceso'], function(i, v){
+                        //    arr.push(data[indice]['id_proceso'][i]['id_proceso']);
+                        //});
+                        //alert(arr);
+                        //jsonEmpleados[id]['id_proceso'] = arr;
+                        //jsonEmpleados[id]['id_proceso_old'] = arr;
+
+                    });
+
+                    $.cargarTablaConceptos();
+
+
+                }
+
+            });
+
+            return false;
+
+        });
+
+
+
+
+
         //al presionar el boton para agregar conceptos
         $('#left_side').on('click', '#new', function(){ //ok
 
