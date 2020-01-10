@@ -63,7 +63,8 @@ class Ruta
         $query = "select ru.id_ruta, ru.id_contrato, ru.id_convenio, ru.nombre
                   from nov_rutas ru
                   where ru.id_contrato = ifnull(:id_contrato, ru.id_contrato)
-                  and ru.id_convenio = ifnull(:id_convenio, ru.id_convenio)";
+                  and ru.id_convenio = ifnull(:id_convenio, ru.id_convenio)
+                  order by ru.nombre asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':id_convenio', $id_convenio);
