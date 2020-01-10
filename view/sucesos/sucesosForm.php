@@ -260,6 +260,8 @@
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
+                                                $("#suceso-form #cancel").trigger("click"); //para la modal (nov2)
+                                                $('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
                                                 $('#myModal').modal('hide');
                                               }, 2000);
                     }else{
