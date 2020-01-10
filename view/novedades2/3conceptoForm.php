@@ -164,13 +164,15 @@
                 //alert(xhr.responseText);
                 if(data >=0){
                     $("#confirm-ord #myElemento").html('Orden eliminada con exito').addClass('alert alert-success').show();
-                    $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
+                    //$('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
                     setTimeout(function() { $("#confirm-ord #myElemento").hide();
-                        $('#orden-form').hide();
-                        $('#confirm-ord').dialog('close');
-                    }, 2000);
+                                            //$('#orden-form').hide();
+                                            $('.grid-ordenes').load('index.php',{action:"parte-orden", operation: "refreshGrid", id_parte: params.id_parte}); //para la modal (nov2)
+                                            $('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados", fecha: $('#add_fecha').val(), id_contrato: $('#id_contrato').val()});
+                                            $('#confirm-ord').dialog('close');
+                                          }, 1000);
                 }else{
                     $("#confirm-ord #myElemento").html('Error al eliminar la orden').addClass('alert alert-danger').show();
                 }

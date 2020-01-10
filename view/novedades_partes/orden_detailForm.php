@@ -70,6 +70,7 @@
                                                 //$('#orden-form').hide();
                                                 $("#orden-form #cancel").trigger("click"); //para la modal (nov2)
                                                 $('.grid-ordenes').load('index.php',{action:"parte-orden", operation: "refreshGrid", id_parte: params.id_parte}); //para la modal (nov2)
+                                                $('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados", fecha: $('#add_fecha').val(), id_contrato: $('#id_contrato').val()}); //para la modal (nov2)
                                                 $('#orden-form').hide(); //para la comun (nov)
                                               }, 2000);
                     }else{
