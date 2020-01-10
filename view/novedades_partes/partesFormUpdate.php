@@ -206,6 +206,7 @@
             params.action = "parte-comentarios";
             params.operation = "editComentarios";
             params.id_parte = $('#id_parte').val();
+            params.id_periodo = $('#id_periodo').val();
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
