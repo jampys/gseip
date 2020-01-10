@@ -54,7 +54,7 @@ switch ($operation)
         $view->empleados = ParteEmpleado::getParteEmpleado($_POST['id_parte']);
 
         $view->disableLayout=true;
-        //$view->target = $_POST['target'];
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/novedades_partes/concepto_detailForm.php";
         break;
 
