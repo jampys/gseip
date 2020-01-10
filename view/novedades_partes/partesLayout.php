@@ -202,7 +202,6 @@
             });
 
             //para ver un parte
-            //$(document).on('click', '.view', function(){
             $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -211,10 +210,9 @@
                 params.operation = "editParte";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
-                    //$("fieldset").prop("disabled", true);
-                    $("#parte-form input, #parte-form .selectpicker").prop("disabled", true);
-                    $('.selectpicker').selectpicker('refresh');
-                    $('.modal-footer').css('display', 'none');
+                    //$("#parte-form input, #parte-form .selectpicker").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
                 })
 
