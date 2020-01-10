@@ -195,7 +195,7 @@
             //alert(params.id_renovacion);
             $('#popupbox').load('index.php', params,function(){
                 $('#myModal').modal();
-                $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
                 $('#id_evento').prop('disabled', true).selectpicker('refresh');
             })
         });
