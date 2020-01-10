@@ -712,7 +712,7 @@
 
             <div class="form-group">
                 <label for="id_evento" class="control-label">Conceptos</label>
-                <select class="selectpicker form-control show-tick" id="id_ruta" name="id_ruta" data-live-search="true" data-size="5" title="Seleccione la ruta">
+                <select class="selectpicker form-control show-tick" id="id_ruta" name="id_ruta" data-live-search="true" data-size="5" title="Rutas predefinidas">
                     <!--<option value="">Seleccione una ruta</option>-->
                     <?php foreach ($view->rutas as $ru){ ?>
                         <option value="<?php echo $ru['id_ruta']; ?>"
