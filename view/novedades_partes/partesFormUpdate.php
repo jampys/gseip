@@ -96,11 +96,9 @@
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
-                $("#right_side fieldset").prop("disabled", true);
-                $("#empleado-form #footer-buttons button").css('display', 'none');
-                //$('#myModal').modal();
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                $('.selectpicker').selectpicker('refresh');
+                //$("#right_side fieldset").prop("disabled", true);
+                //$("#empleado-form #footer-buttons button").css('display', 'none');
+                //$('.selectpicker').selectpicker('refresh');
             })
         });
 
