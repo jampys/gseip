@@ -207,12 +207,13 @@ switch ($operation)
         //$fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
         //$id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
+        $id_empleado = $_POST['id_empleado'];
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
         $fecha_desde = $view->periodo->getFechaDesde(); //($_POST['fecha']!='')? $_POST['fecha'] : null;
         $fecha_hasta = $view->periodo->getFechaHasta(); //($_POST['fecha']!='')? $_POST['fecha'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
-        $view->contentTemplate="view/sucesos/sucesosGrid.php";
+        $view->contentTemplate="view/novedades2/sucesosGrid.php";
         break;
 
 
