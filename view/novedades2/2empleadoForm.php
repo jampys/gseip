@@ -109,7 +109,7 @@
 
 
             <br/>
-            <h4>Novedades 2 (2da parte) <?php print $view->periodo->getNombre()." (".$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")" ?></h4>
+            <h4><?php print $view->periodo->getNombre()." (".$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")" ?></h4>
             <hr class="hr-primary"/>
 
 

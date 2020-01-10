@@ -101,7 +101,7 @@
 
 
             <br/>
-            <h4>Novedades 2</h4>
+            <h4>Carga de novedades</h4>
             <hr class="hr-primary"/>
 
 
