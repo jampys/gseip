@@ -48,6 +48,7 @@ switch ($operation)
                 $p = new Parte();
                 $p->setFechaParte($_POST["fecha_parte"]);
                 $p->setIdPeriodo($_POST['id_periodo']);
+                $p->setIdCuadrilla( ($vC['id_cuadrilla'])? $vC['id_cuadrilla'] : null );
                 $p->setCuadrilla(($vC['cuadrilla'] != '')? $vC['cuadrilla'] : null);
                 $p->setIdArea(($vC['id_area'] != '')? $vC['id_area'] : null);
                 $p->setIdVehiculo(($vC['id_vehiculo'] != '')? $vC['id_vehiculo'] : null);

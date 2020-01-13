@@ -296,10 +296,11 @@ class Parte
     public function insertParte(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into nov_partes(fecha_parte, cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, created_by, created_date, id_periodo)
-                values(STR_TO_DATE(:fecha_parte, '%d/%m/%Y'), :cuadrilla, :id_area, :id_vehiculo, :id_evento, :id_contrato, :created_by, sysdate(), :id_periodo)";
+        $query="insert into nov_partes(fecha_parte, id_cuadrilla, cuadrilla, id_area, id_vehiculo, id_evento, id_contrato, created_by, created_date, id_periodo)
+                values(STR_TO_DATE(:fecha_parte, '%d/%m/%Y'), :id_cuadrilla, :cuadrilla, :id_area, :id_vehiculo, :id_evento, :id_contrato, :created_by, sysdate(), :id_periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_parte', $this->getFechaParte());
+        $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
         $stmt->dpBind(':cuadrilla', $this->getCuadrilla());
         $stmt->dpBind(':id_area', $this->getIdArea());
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
