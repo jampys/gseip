@@ -10,7 +10,6 @@ class ParteEmpleado
     private $created_date; //fecha de registro en el sistema
     private $avoid_event;
     private $comentario;
-    private $id_evento;
 
     // GETTERS
     function getIdParteEmpleado()
@@ -36,9 +35,6 @@ class ParteEmpleado
 
     function getComentario()
     { return $this->comentario;}
-
-    function getIdEvento()
-    { return $this->id_evento;}
 
 
     //SETTERS
@@ -66,8 +62,6 @@ class ParteEmpleado
     function setComentario($val)
     { $this->comentario=$val;}
 
-    function setIdEvento($val)
-    { $this->id_evento=$val;}
 
 
     function __construct($nro=0){ //constructor //ok
@@ -75,7 +69,7 @@ class ParteEmpleado
         if ($nro!=0){
             $stmt=new sQuery();
             $query = "select id_parte_empleado,
-                      id_parte, id_empleado, conductor, avoid_event, comentario, id_evento
+                      id_parte, id_empleado, conductor, avoid_event, comentario
                       from nov_parte_empleado
                       where id_parte_empleado = :nro";
             $stmt->dpPrepare($query);
@@ -89,7 +83,6 @@ class ParteEmpleado
             $this->setConductor($rows[0]['conductor']);
             $this->setAvoidEvent($rows[0]['avoid_event']);
             $this->setComentario($rows[0]['comentario']);
-            $this->setIdEvento($rows[0]['id_evento']);
         }
     }
 
