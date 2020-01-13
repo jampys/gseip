@@ -451,6 +451,7 @@ order by id_convenio asc, legajo asc";
                                 )
                       left join nov_cuadrillas cu on np.id_cuadrilla = cu.id_cuadrilla
                       where em.fecha_baja is null
+                      and em.fecha_alta <= STR_TO_DATE(:fecha, '%d/%m/%Y')
                       and ec.id_contrato = :id_contrato
                       order by cu.nombre_corto asc, em.apellido, em.nombre";
         $stmt->dpPrepare($query);
