@@ -59,7 +59,7 @@ switch ($operation)
         $view->conductor = Soporte::get_enum_values('nov_parte_empleado', 'conductor');
 
         $view->disableLayout=true;
-        //$view->target = $_POST['target'];
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/novedades_partes/empleado_detailForm.php";
         break;
 

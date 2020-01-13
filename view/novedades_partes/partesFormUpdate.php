@@ -96,11 +96,9 @@
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
-                $("#right_side fieldset").prop("disabled", true);
-                $("#empleado-form #footer-buttons button").css('display', 'none');
-                //$('#myModal').modal();
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                $('.selectpicker').selectpicker('refresh');
+                //$("#right_side fieldset").prop("disabled", true);
+                //$("#empleado-form #footer-buttons button").css('display', 'none');
+                //$('.selectpicker').selectpicker('refresh');
             })
         });
 
@@ -116,9 +114,9 @@
             params.target = "view";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
-                $("#right_side fieldset").prop("disabled", true);
-                $("#orden-form #footer-buttons button").css('display', 'none');
-                $('.selectpicker').selectpicker('refresh');
+                //$("#right_side fieldset").prop("disabled", true);
+                //$("#orden-form #footer-buttons button").css('display', 'none');
+                //$('.selectpicker').selectpicker('refresh');
             })
         });
 
@@ -152,8 +150,8 @@
             params.target = "view";
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
-                $("#right_side fieldset").prop("disabled", true);
-                $("#concepto-form #footer-buttons button").css('display', 'none');
+                //$("#right_side fieldset").prop("disabled", true);
+                //$("#concepto-form #footer-buttons button").css('display', 'none');
                 $('#id_parte_empleado').trigger('change'); //para cargar el combo de conceptos
                 $('.selectpicker').selectpicker('refresh');
             })
@@ -208,6 +206,7 @@
             params.action = "parte-comentarios";
             params.operation = "editComentarios";
             params.id_parte = $('#id_parte').val();
+            params.id_periodo = $('#id_periodo').val();
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -510,6 +509,12 @@
         });
 
 
+        //cancel de formulario de parte-orden. Movido desde orden_detailForm.php
+        $('#myModal').on('click', '#orden-form #cancel', function(){
+            $('#orden-form').hide();
+         });
+
+
 
 
 
@@ -757,7 +762,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" id="calcular" name="calcular" type="submit">Calcular</button>
+                <button class="btn btn-primary" id="calcular" name="calcular" type="submit" <?php echo ($view->target!='view' )? '' : 'disabled' ?> >Calcular</button>
                 <button class="btn btn-default" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
             </div>
 

@@ -236,8 +236,8 @@ class Suceso
                   left join nov_periodos pe2 on pe2.id_periodo = su.id_periodo2
                   where su.id_empleado = ifnull(:id_empleado, su.id_empleado)
                   and su.id_evento in ($eventos)
-                  and su.fecha_desde <= if(:fecha_desde is null, su.fecha_desde, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
-                  and su.fecha_hasta >= if(:fecha_hasta is null, su.fecha_hasta, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
+                  and su.fecha_desde <= if(:fecha_desde is null, su.fecha_desde, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
+                  and su.fecha_hasta >= if(:fecha_hasta is null, su.fecha_hasta, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
                   and if(:id_contrato is not null, ec.id_contrato = :id_contrato, (ec.id_contrato = ec.id_contrato or ec.id_contrato is null))
                   group by su.id_suceso";
 

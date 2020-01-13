@@ -1,9 +1,7 @@
 ﻿<?php
 include_once("model/nov_partesModel.php");
+include_once("model/nov_periodosModel.php");
 
-//include_once("model/puestosModel.php");
-//include_once("model/localidadesModel.php");
-//include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -48,8 +46,7 @@ switch ($operation)
         $view->label = 'Comentarios';
         $view->parte = new Parte($_POST['id_parte']);
 
-        //$view->empleados = Empleado::getEmpleadosActivos($_POST['id_contrato']);
-        //$view->conductor = Soporte::get_enum_values('nov_parte_empleado', 'conductor');
+        $view->periodo = New NovPeriodo($_POST['id_periodo']);
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];

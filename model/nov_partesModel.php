@@ -17,6 +17,7 @@ class Parte
     private $created_by;
     private $created_date;
     private $id_periodo;
+    private $id_cuadrilla;
 
     // GETTERS
     function getIdParte()
@@ -60,6 +61,9 @@ class Parte
 
     function getIdPeriodo()
     { return $this->id_periodo;}
+
+    function getIdCuadrilla()
+    { return $this->id_cuadrilla;}
 
 
 
@@ -106,6 +110,9 @@ class Parte
     function setIdPeriodo($val)
     {  $this->id_periodo=$val;}
 
+    function setIdCuadrilla($val)
+    {  $this->id_cuadrilla=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -120,7 +127,7 @@ class Parte
                     TIME_FORMAT(hs_100, '%H:%i') as hs_100,
                     comentarios, created_by,
                     DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
-                    id_periodo
+                    id_periodo, id_cuadrilla
                     from nov_partes where id_parte = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -140,6 +147,7 @@ class Parte
             $this->setComentarios($rows[0]['comentarios']);
             $this->setCreatedDate($rows[0]['created_date']);
             $this->setIdPeriodo($rows[0]['id_periodo']);
+            $this->setIdCuadrilla($rows[0]['id_cuadrilla']);
         }
     }
 
@@ -226,6 +234,63 @@ class Parte
         //return ($flag)? intval($flag[0]['flag']) : -1;
         return $stmt->dpFetchAll(); //retorna array bidimensional con flag y msg
     }
+
+
+    public function updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario){
+        //para novedades2.
+        $stmt=new sQuery();
+        $query = 'CALL sp_updateParte(:id_parte,
+                                        :fecha_parte,
+                                        :id_contrato,
+                                        :id_area,
+                                        :id_vehiculo,
+                                        :id_cuadrilla,
+                                        :id_periodo,
+                                        :id_parte_empleado,
+                                        :id_empleado,
+                                        :id_evento,
+                                        :conductor,
+                                        :comentario,
+                                        :created_by,
+                                        @flag,
+                                        @id_parte,
+                                        @id_parte_empleado,
+                                        @msg
+                                    )';
+
+        $stmt->dpPrepare($query);
+
+        $stmt->dpBind(':id_parte', $this->getIdParte());
+        $stmt->dpBind(':fecha_parte', $this->getFechaParte());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
+        $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
+        $stmt->dpBind(':id_area', $this->getIdArea());
+        $stmt->dpBind(':id_periodo', $this->getIdPeriodo());
+
+        $stmt->dpBind(':id_parte_empleado', $id_parte_empleado);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_evento', $id_evento);
+        $stmt->dpBind(':conductor', $conductor);
+        $stmt->dpBind(':comentario', $comentario);
+
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
+
+        $stmt->dpExecute();
+
+        $stmt->dpCloseCursor();
+        $query = "select @flag as flag, @id_parte as id_parte, @id_parte_empleado as id_parte_empleado, @msg as msg";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        //$flag = $stmt->dpFetchAll();
+        //return ($flag)? intval($flag[0]['flag']) : -1;
+        return $stmt->dpFetchAll(); //retorna array bidimensional con flag y msg
+    }
+
+
+
+
 
 
     public function insertParte(){ //ok
@@ -355,6 +420,31 @@ order by id_convenio asc, legajo asc";
         $stmt->dpBind(':id', $this->getIdPuesto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
+    }
+
+
+    public static function getEmpleados($fecha, $id_contrato) { //ok
+        //trae los empleados activos de un contrato, para la fecha indicada, tambien el nro de parte.
+        $stmt=new sQuery();
+        $query="select em.id_empleado, em.legajo, em.apellido, em.nombre, np.id_parte, npe.id_parte_empleado, np.last_calc_status,
+                      (select count(*) from nov_parte_orden npox where npox.id_parte = np.id_parte) as orden_count
+                      from v_sec_empleados em
+                      join empleado_contrato ec on (ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta > sysdate()))
+					  left join nov_parte_empleado npe join nov_partes np on np.id_parte = npe.id_parte on
+								(
+                                np.id_contrato = :id_contrato
+                                and np.fecha_parte = STR_TO_DATE(:fecha, '%d/%m/%Y')
+                                and npe.id_empleado = em.id_empleado
+                                )
+                      where em.fecha_baja is null
+                      and ec.id_contrato = :id_contrato
+                      order by em.apellido, em.nombre";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':fecha', $fecha);
+        //$stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
     }
 
 

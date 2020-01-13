@@ -106,7 +106,7 @@
                 params.operation = "getPeriodosAndCuadrillas";
                 //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
                 params.id_contrato = $('#add_contrato').val();
-                params.activos = 1;
+                //params.activos = 1;
 
                 $('#id_periodo').empty();
                 $('#cuadrilla').empty();
@@ -202,7 +202,6 @@
             });
 
             //para ver un parte
-            //$(document).on('click', '.view', function(){
             $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -211,10 +210,9 @@
                 params.operation = "editParte";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
-                    //$("fieldset").prop("disabled", true);
-                    $("#parte-form input, #parte-form .selectpicker").prop("disabled", true);
-                    $('.selectpicker').selectpicker('refresh');
-                    $('.modal-footer').css('display', 'none');
+                    //$("#parte-form input, #parte-form .selectpicker").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
                 })
 
@@ -357,8 +355,8 @@
 
                         <div class="form-group col-md-3">
                             <label for="add_contrato" class="control-label">Nuevos partes</label>
-                            <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un contrato</option>
+                            <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5" title="Seleccione un contrato">
+                                <!--<option value="">Seleccione un contrato</option>-->
                                 <?php foreach ($view->contratos as $con){
                                     ?>
                                     <option value="<?php echo $con['id_contrato']; ?>" >

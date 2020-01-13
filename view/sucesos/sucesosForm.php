@@ -231,20 +231,20 @@
                 var params={};
                 params.action = 'sucesos';
                 params.operation = 'saveSuceso';
-                params.id_suceso = $('#id_suceso').val();
-                params.id_empleado = $('#id_empleado').val();
-                params.id_evento = $('#id_evento').val();
-                params.fecha_desde = $('#fecha_desde').val();
-                params.fecha_hasta = $('#fecha_hasta').val();
-                params.observaciones = $('#observaciones').val();
-                params.id_periodo1 = $('#id_periodo1').val();
-                params.cantidad1 = $('#cantidad1').val();
-                params.id_periodo2 = $('#id_periodo2').val();
-                params.cantidad2 = $('#cantidad2').val();
-                params.fd1 = $('#fd1').val();
-                params.fh1 = $('#fh1').val();
-                params.fd2 = $('#fd2').val();
-                params.fh2 = $('#fh2').val();
+                params.id_suceso = $('#myModal #id_suceso').val();
+                params.id_empleado = $('#myModal #id_empleado').val();
+                params.id_evento = $('#myModal #id_evento').val();
+                params.fecha_desde = $('#myModal #fecha_desde').val();
+                params.fecha_hasta = $('#myModal #fecha_hasta').val();
+                params.observaciones = $('#myModal #observaciones').val();
+                params.id_periodo1 = $('#myModal #id_periodo1').val();
+                params.cantidad1 = $('#myModal #cantidad1').val();
+                params.id_periodo2 = $('#myModal #id_periodo2').val();
+                params.cantidad2 = $('#myModal #cantidad2').val();
+                params.fd1 = $('#myModal #fd1').val();
+                params.fh1 = $('#myModal #fh1').val();
+                params.fd2 = $('#myModal #fd2').val();
+                params.fh2 = $('#myModal #fh2').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -256,10 +256,12 @@
                     if(data >=0){
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Suceso guardado con exito').addClass('alert alert-success').show();
+                        $("#myModal #myElem").html('Suceso guardado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
+                                                $("#suceso-form #cancel").trigger("click"); //para la modal (nov2)
+                                                $('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: params.id_empleado, id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
                                                 $('#myModal').modal('hide');
                                               }, 2000);
                     }else{

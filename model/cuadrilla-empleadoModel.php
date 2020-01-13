@@ -85,6 +85,20 @@ class CuadrillaEmpleado
     }
 
 
+    public static function getEmpleadoDefaults($id_empleado) {
+        $stmt=new sQuery();
+        $query = "select *
+from nov_cuadrilla_empleado nce
+join nov_cuadrillas nc on nc.id_cuadrilla = nce.id_cuadrilla
+where nce.id_empleado = :id_empleado
+limit 1";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
     function save(){ //ok
         if($this->id_cuadrilla_empleado)
         {$rta = $this->updateCuadrillaEmpleado();}

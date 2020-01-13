@@ -25,11 +25,10 @@
         });
 
 
-        //cancel de formulario de parte-orden
-        $('#orden-form #cancel').on('click', function(){
-            //alert('cancelar form parte-orden');
+        //cancel de formulario de parte-orden. Se movió a partesFormUpdate.php
+        /*$('#orden-form #cancel').on('click', function(){
             $('#orden-form').hide();
-        });
+        });*/
 
 
 
@@ -63,13 +62,17 @@
 
                     if(data >=0){
                         $("#orden-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Orden guardada con exito').addClass('alert alert-success').show();
+                        $("#orden-form #myElem").html('Orden guardada con exito').addClass('alert alert-success').show();
                         $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
                         //$("#search").trigger("click");
-                        setTimeout(function() { $("#myElem").hide();
-                            //$('#myModal').modal('hide');
-                            $('#orden-form').hide();
-                        }, 2000);
+                        setTimeout(function() { $("#orden-form #myElem").hide();
+                                                //$('#myModal').modal('hide');
+                                                //$('#orden-form').hide();
+                                                $("#orden-form #cancel").trigger("click"); //para la modal (nov2)
+                                                $('.grid-ordenes').load('index.php',{action:"parte-orden", operation: "refreshGrid", id_parte: params.id_parte}); //para la modal (nov2)
+                                                $('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados", fecha: $('#add_fecha').val(), id_contrato: $('#id_contrato').val()}); //para la modal (nov2)
+                                                $('#orden-form').hide(); //para la comun (nov)
+                                              }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar la órden').addClass('alert alert-danger').show();
                     }
@@ -203,7 +206,7 @@
 
 
     <div id="footer-buttons" class="pull-right">
-        <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+        <button class="btn btn-primary" id="submit" name="submit" type="submit" <?php echo ($view->target!='view' )? '' : 'disabled' ?> >Guardar</button>
         <!--<button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>-->
         <button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>
     </div>

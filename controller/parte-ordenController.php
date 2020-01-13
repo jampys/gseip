@@ -51,8 +51,10 @@ switch ($operation)
         $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
 
         $view->disableLayout=true;
-        //$view->target = $_POST['target'];
-        $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
+
+        //$view->contentTemplate="view/novedades_partes/orden_detailForm.php";
+        if($_POST['origin'] == 'nov2') $view->contentTemplate="view/novedades2/ordenesForm.php";
+        else $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
         break;
 
     case 'editOrden': //ok
@@ -68,8 +70,10 @@ switch ($operation)
         $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
 
         $view->disableLayout=true;
-        //$view->target = $_POST['target'];
-        $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
+        $view->target = $_POST['target'];
+        //$view->contentTemplate="view/novedades_partes/orden_detailForm.php";
+        if($_POST['origin'] == 'nov2') $view->contentTemplate="view/novedades2/ordenesForm.php";
+        else $view->contentTemplate="view/novedades_partes/orden_detailForm.php";
         break;
 
     case 'deleteOrden': //ok
