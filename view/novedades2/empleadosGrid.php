@@ -19,7 +19,7 @@
                 <a href="#"><?php echo $em['apellido'].' '.$em['nombre']; ?></a>
             </td>
             <td style="text-align: center">
-                <?php echo($em['id_parte'])? '<i class="fa fa-car-side fa-fw dp_green" title="parte calculado"></i>':'<i class="fa fa-car fa-fw dp_yellow" title="parte sin calcular"></i>'; ?>&nbsp;&nbsp;
+                <?php echo($em['id_parte'])? '<i class="fa fa-car-side fa-fw dp_green" title="con parte"></i>':'<i class="fa fa-car fa-fw dp_yellow" title="sin parte"></i>'; ?>&nbsp;&nbsp;
                 <?php echo($em['id_parte'] && $em['orden_count']>0)? '<i class="fas fa-clipboard-check fa-fw dp_green" title="parte con órdenes"></i>':'<i class="fas fa-clipboard fa-fw dp_yellow" title="parte sin órdenes"></i>'; ?>
             </td>
         </tr>
