@@ -823,7 +823,7 @@
         <div class="row">
             <div class="col-md-4">
                 <!--<button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>-->
-                <button type="button" class="btn btn-primary btn-block" title="Mostrar órdenes">Órdenes</button>
+                <button type="button" class="btn btn-primary btn-block" title="Órdenes del parte">Órdenes</button>
             </div>
 
             <div class="col-md-4">
@@ -851,7 +851,7 @@
         <div class="row">
             <div class="col-md-4">
                 <!--<button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-sucesos" title="Mostrar sucesos">Sucesos</button>-->
-                <button type="button" class="btn btn-primary btn-block" title="Mostrar sucesos">Sucesos</button>
+                <button type="button" class="btn btn-primary btn-block" title="Sucesos del período">Sucesos</button>
             </div>
 
             <div class="col-md-4">
