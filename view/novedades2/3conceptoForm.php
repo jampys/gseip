@@ -504,24 +504,30 @@
 
 
         //al seleccionar dia anterior
-        $('#empleado-form').on('change', '#id_ruta', function(){
+        $('#empleado-form').on('click', '#dia_anterior', function(){
+            //alert($('#id_contrato').val());
+            //throw new Error();
 
-            var id_ruta = $(this).val();
+            //var id_ruta = $(this).val();
             //alert(id_ruta);
             //return false;
 
             $.ajax({
                 url:"index.php",
                 type:"post",
-                data:{"action": "novedades2", "operation": "loadConceptosRutas", "id_ruta": id_ruta},
+                data:{action: "novedades2", operation: "loadDiaAnterior", id_empleado: $('#id_empleado').val(), id_contrato: $('#id_contrato').val(), fecha_parte: $('#add_fecha').val()},
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
-                    //Si la ruta no tiene conceptos. Sale
-                    if(data.length <= 0 ){
-                        alert('la ruta no tiene definidos los conceptos');
-                        return false;
-                    }
+                    $('#id_cuadrilla').val(data['parte'][0]['id_cuadrilla']);
+                    $('#id_area').val(data['parte'][0]['id_area']);
+                    $('#id_evento').val(data['parte'][0]['id_evento']);
+                    $("#conductor").prop('checked', (data['parte'][0]['conductor']==1)? true:false);
+                    $('.selectpicker').selectpicker('refresh');
+
+                    //throw new Error();
+
+
 
                     //eliminar los elementos de jsonConceptos
                     for (var i in jsonConceptos) {
@@ -707,7 +713,7 @@
 
             <div class="alert alert-info">
                 <strong><?php echo $view->label; ?></strong>
-                <a id="back" class="pull-right" href="#" title="día anterior"><i class="fas fa-clone fa-fw"></i></a>
+                <a id="dia_anterior" class="pull-right" href="#" title="día anterior"><i class="fas fa-clone fa-fw"></i></a>
             </div>
 
 

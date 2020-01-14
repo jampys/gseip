@@ -464,7 +464,7 @@ order by id_convenio asc, legajo asc";
     }
 
 
-    public static function getParteAnterior($id_empleado, $fecha, $id_contrato) {
+    public static function getParteAnterior($id_empleado, $fecha_parte, $id_contrato) {
         //trae el ultimo parte del empleado
         $stmt=new sQuery();
         $query="select *
@@ -477,7 +477,7 @@ order by np.fecha_parte desc
 limit 1";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':fecha', $fecha);
+        $stmt->dpBind(':fecha_parte', $fecha_parte);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
