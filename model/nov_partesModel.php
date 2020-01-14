@@ -464,6 +464,26 @@ order by id_convenio asc, legajo asc";
     }
 
 
+    public static function getParteAnterior($id_empleado, $fecha, $id_contrato) {
+        //trae el ultimo parte del empleado
+        $stmt=new sQuery();
+        $query="select *
+from nov_parte_empleado npe
+join nov_partes np on np.id_parte = npe.id_parte
+where npe.id_empleado = :id_empleado
+and np.fecha_parte < STR_TO_DATE(:fecha_parte, '%d/%m/%Y')
+and np.id_contrato = :id_contrato
+order by np.fecha_parte desc
+limit 1";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':fecha', $fecha);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
 
 }
 
