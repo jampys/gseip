@@ -504,13 +504,7 @@
 
 
         //al seleccionar dia anterior
-        $('#empleado-form').on('click', '#dia_anterior', function(){
-            //alert($('#id_contrato').val());
-            //throw new Error();
-
-            //var id_ruta = $(this).val();
-            //alert(id_ruta);
-            //return false;
+        $('#empleado-form').on('click', '#dia_anterior', function(){ //ok
 
             $.ajax({
                 url:"index.php",
@@ -524,9 +518,6 @@
                     $('#id_evento').val(data['parte'][0]['id_evento']);
                     $("#conductor").prop('checked', (data['parte'][0]['conductor']==1)? true:false);
                     $('.selectpicker').selectpicker('refresh');
-
-                    //throw new Error();
-
 
 
                     //eliminar los elementos de jsonConceptos

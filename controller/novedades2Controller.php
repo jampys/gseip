@@ -191,14 +191,14 @@ switch ($operation)
         break;
 
 
-    case 'loadConceptosRutas':
+    case 'loadConceptosRutas': //ok
         //$view->contratoEmpleado = ContratoEmpleado::getContratoEmpleado($_POST['id_contrato']);
         $view->conceptos = RutaConcepto::getConceptos($_POST['id_ruta']);
         print_r(json_encode($view->conceptos));
         exit;
         break;
 
-    case 'loadDiaAnterior':
+    case 'loadDiaAnterior': //ok
         $view->parte = Parte::getParteAnterior($_POST['id_empleado'], $_POST['fecha_parte'], $_POST['id_contrato']);
         $view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($view->parte[0]['id_parte_empleado']);
         //print_r(json_encode($view->conceptos));
@@ -207,7 +207,7 @@ switch ($operation)
         break;
 
 
-    case 'sucesosRefreshGrid':
+    case 'sucesosRefreshGrid': //ok
         $view->disableLayout=true;
         //$id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
         //$eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
