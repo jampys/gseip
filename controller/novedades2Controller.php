@@ -200,7 +200,7 @@ switch ($operation)
 
     case 'loadDiaAnterior':
         $view->parte = Parte::getParteAnterior($_POST['id_empleado'], $_POST['fecha_parte'], $_POST['id_contrato']);
-        $view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
+        $view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($view->parte[0]['id_parte_empleado']);
         //print_r(json_encode($view->conceptos));
         print_r(json_encode(array('parte'=>$view->parte, 'conceptos'=>$view->conceptos)));
         exit;

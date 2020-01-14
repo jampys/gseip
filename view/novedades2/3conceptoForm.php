@@ -541,18 +541,18 @@
 
 
                     var ix = -1;
-                    $.each(data, function(indice, val){ //carga el array de empleados
+                    $.each(data['conceptos'], function(indice, val){ //carga el array de empleados
 
                         item = {};
                         item.operacion = 'insert';
                         //item.id_parte_empleado_concepto = id;
                         item.id_parte_empleado_concepto = ix;
                         item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
-                        item.id_concepto_convenio_contrato = data[indice]['id_concepto_convenio_contrato'];
-                        item.convenio = data[indice]['convenio'];
-                        item.concepto = data[indice]['concepto'];
-                        item.codigo = data[indice]['codigo'];
-                        item.cantidad = data[indice]['cantidad'];
+                        item.id_concepto_convenio_contrato = data['conceptos'][indice]['id_concepto_convenio_contrato'];
+                        item.convenio = data['conceptos'][indice]['convenio'];
+                        item.concepto = data['conceptos'][indice]['concepto'];
+                        item.codigo = data['conceptos'][indice]['codigo'];
+                        item.cantidad = data['conceptos'][indice]['cantidad'];
                         item.created_by = null;
                         item.created_date = null;
                         item.tipo_calculo = 'M';
