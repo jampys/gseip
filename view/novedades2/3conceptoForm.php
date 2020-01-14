@@ -707,6 +707,7 @@
 
             <div class="alert alert-info">
                 <strong><?php echo $view->label; ?></strong>
+                <a id="back" class="pull-right" href="#" title="día anterior"><i class="fas fa-clone fa-fw"></i></a>
             </div>
 
 
