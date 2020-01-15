@@ -132,7 +132,8 @@ class Contrato
                   from v_sec_contratos_control co, empleados re, companias cia
                   where co.id_responsable = re.id_empleado
                   and co.id_compania = cia.id_compania
-                  and (co.fecha_hasta is null or co.fecha_hasta >= sysdate()  ) ";
+                  and (co.fecha_hasta is null or co.fecha_hasta >= sysdate()  )
+                  order by co.nombre";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
