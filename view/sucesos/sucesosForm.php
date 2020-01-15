@@ -62,8 +62,8 @@
             var ischecked= $(this).is(':checked');
             if(ischecked) {
                 //alert('uncheckd ' + $(this).val());
-                $('#fd1').datepicker('update', $('#fecha_desde').val());
-                $('#fh1').datepicker('update', $('#fecha_hasta').val());
+                $('#fd1').datepicker('update', $('#myModal #fecha_desde').val());
+                $('#fh1').datepicker('update', $('#myModal #fecha_hasta').val());
                 $('#cantidad1').val($('#dias').val());
                 $('#id_periodo2').val("").selectpicker('refresh');
                 $('#fd2').val("");
