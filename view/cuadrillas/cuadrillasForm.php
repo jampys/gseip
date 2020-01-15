@@ -189,7 +189,8 @@
 
                     <div class="form-group">
                         <label for="default_id_vehiculo" class="control-label">Vehículo (por defecto)</label>
-                        <select class="form-control selectpicker show-tick" id="default_id_vehiculo" name="default_id_vehiculo" title="Seleccione el vehículo" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="default_id_vehiculo" name="default_id_vehiculo" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un vehículo</option>
                             <?php foreach ($view->vehiculos as $ve){
                                 ?>
                                 <option value="<?php echo $ve['id_vehiculo']; ?>"
@@ -203,7 +204,8 @@
 
                     <div class="form-group">
                         <label for="default_id_area" class="control-label">Área (por defecto)</label>
-                        <select class="form-control selectpicker show-tick" id="default_id_area" name="default_id_area" title="Seleccione el área" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="default_id_area" name="default_id_area" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un área</option>
                             <?php foreach ($view->areas as $ar){
                                 ?>
                                 <option value="<?php echo $ar['id_area']; ?>"
