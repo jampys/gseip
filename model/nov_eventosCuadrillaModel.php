@@ -37,7 +37,9 @@ class EventosCuadrilla
 
     public static function getEventosCuadrilla() {
         $stmt=new sQuery();
-        $stmt->dpPrepare("select * from nov_eventos_c");
+        $stmt->dpPrepare("select *
+                          from nov_eventos_c
+                          order by enabled desc, nombre asc");
         $stmt->dpExecute();
         return $stmt->dpFetchAll(); // retorna todos los eventos de liquidacion
     }
