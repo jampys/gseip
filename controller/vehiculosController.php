@@ -62,6 +62,7 @@ switch ($operation)
         $view->contratos = $view->vehiculo->getContratosByVehiculo();
         $view->companias = Compania::getCompanias();
         $view->empleados = Empleado::getEmpleadosActivos(null); //carga el combo de responsable
+        $view->target = $_POST['target'];
 
         $view->disableLayout=true;
         $view->contentTemplate="view/vehiculos/vehiculosForm.php";

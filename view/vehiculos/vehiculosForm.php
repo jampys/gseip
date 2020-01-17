@@ -103,7 +103,7 @@
 
 
 <!-- Modal -->
-<fieldset <?php echo ( PrivilegedUser::dhasAction('VEH_UPDATE', array(1)) )? '' : 'disabled' ?>>
+<fieldset <?php //echo ( PrivilegedUser::dhasAction('VEH_UPDATE', array(1)) )? '' : 'disabled' ?>>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -240,7 +240,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+                <button class="btn btn-primary" id="submit" name="submit" type="submit" <?php echo ( PrivilegedUser::dhasAction('VEH_UPDATE', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >Guardar</button>
                 <button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
             </div>
 
