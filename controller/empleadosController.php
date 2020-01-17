@@ -76,6 +76,7 @@ switch ($operation)
         $view->domicilios = $view->empleado->getDomiciliosByEmpleado();
 
         $view->disableLayout=true;
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/empleadosForm.php";
         break;
 

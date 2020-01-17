@@ -128,7 +128,7 @@
     </div>
 
 
-    <fieldset <?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', $view->empleado->getDomain()) )? '' : 'disabled' ?>>
+    <fieldset <?php //echo ( PrivilegedUser::dhasAction('EMP_UPDATE', $view->empleado->getDomain()) )? '' : 'disabled' ?>>
     <div class="panel-body">
 
     <form class="form-horizontal" name ="empleado-form" id="empleado-form" method="POST" action="index.php">
@@ -402,7 +402,7 @@
 
     <div class="panel-footer clearfix">
         <div class="button-group pull-right">
-            <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+            <button class="btn btn-primary" id="submit" name="submit" type="submit" <?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', $view->empleado->getDomain()) && $view->target!='view' && $view->parte->getIdParte() )? '' : 'disabled' ?> >Guardar</button>
             <button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>
         </div>
     </div>

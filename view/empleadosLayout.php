@@ -41,11 +41,11 @@
                 params.id=id;
                 params.action = "empleados";
                 params.operation = "editEmpleado";
+                params.target = 'view';
                 $('#content').load('index.php', params,function(){
-                    $("#empleado-form input, #empleado-form .selectpicker").prop("disabled", true);
-                    $('.selectpicker').selectpicker('refresh');
-                    $('.panel-footer').css('display', 'none');
-                    //$('.panel-heading .pull-left').html('');
+                    //$("#empleado-form input, #empleado-form .selectpicker").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.panel-footer').css('display', 'none');
                 });
 
             });
