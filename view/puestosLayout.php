@@ -33,11 +33,11 @@
                 params.id_puesto = id;
                 params.action = "puestos";
                 params.operation = "editPuesto";
+                params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
-                    $("#puesto input, #puesto .selectpicker, #puesto textarea").prop("disabled", true);
-                    $('.selectpicker').selectpicker('refresh');
-                    $('.modal-footer').css('display', 'none');
-                    //$('#myModalLabel').html('');
+                    //$("#puesto input, #puesto .selectpicker, #puesto textarea").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
                 })
 
