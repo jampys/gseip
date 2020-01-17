@@ -68,7 +68,7 @@ switch ($operation)
         $view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
 
         $view->disableLayout=true;
-        //$view->target = $_POST['target'];
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
         break;
 
