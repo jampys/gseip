@@ -158,9 +158,9 @@
                         <ul class="dropdown-menu">
 
                             <li class="dropdown-header">ACTIVIDAD CUADRILLA</li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=novedades2"><i class="fas fa-newspaper fa-fw"></i>&nbsp;Carga de novedades</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=partes"><i class="fas fa-newspaper fa-fw"></i>&nbsp;Consulta de novedades</a></li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('CUA_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=cuadrillas"><i class="fas fa-car fa-fw"></i>&nbsp;Cuadrillas</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=novedades2"><i class="fas fa-car fa-fw"></i>&nbsp;Carga de novedades</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=partes"><i class="fas fa-car fa-fw"></i>&nbsp;Consulta de novedades</a></li>
 
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">SUCESOS DE PERSONAL</li>

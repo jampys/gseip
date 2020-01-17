@@ -72,7 +72,8 @@ class ParteEmpleadoConcepto
 
             $stmt=new sQuery();
             $query="select id_parte_empleado_concepto,
-                    id_parte_empleado, id_concepto_convenio_contrato, cantidad,
+                    id_parte_empleado, id_concepto_convenio_contrato,
+                    sec_to_time(cantidad*60*60) as cantidad,
                     tipo_calculo, motivo
                     from nov_parte_empleado_concepto where id_parte_empleado_concepto = :nro";
             $stmt->dpPrepare($query);
@@ -96,7 +97,8 @@ class ParteEmpleadoConcepto
         $stmt=new sQuery();
         $query="select npe.id_parte, npe.id_parte_empleado, npe.id_empleado,
 npec.id_parte_empleado_concepto, npec.id_concepto_convenio_contrato,
-npec.cantidad, npec.tipo_calculo,
+sec_to_time(npec.cantidad*60*60) as cantidad,
+npec.tipo_calculo,
 nccto.nombre as concepto,
 ncnio.codigo as convenio,
 nccc.codigo,
@@ -122,7 +124,8 @@ order by npe.id_empleado asc, nccto.nombre asc, npec.cantidad desc ";
         $stmt=new sQuery();
         $query="select npe.id_parte, npe.id_parte_empleado, npe.id_empleado,
 npec.id_parte_empleado_concepto, npec.id_concepto_convenio_contrato,
-npec.cantidad, npec.tipo_calculo,
+sec_to_time(npec.cantidad*60*60) as cantidad,
+npec.tipo_calculo,
 nccto.nombre as concepto,
 ncnio.codigo as convenio,
 nccc.codigo,
@@ -157,7 +160,7 @@ order by npe.id_empleado asc, nccto.nombre asc, npec.cantidad desc ";
         $stmt=new sQuery();
         $query="update nov_parte_empleado_concepto set id_parte_empleado = :id_parte_empleado,
                 id_concepto_convenio_contrato = :id_concepto_convenio_contrato,
-                cantidad = :cantidad,
+                cantidad = time_to_sec(:cantidad) / (60 * 60),
                 motivo = :motivo
                 where id_parte_empleado_concepto = :id_parte_empleado_concepto";
         $stmt->dpPrepare($query);
@@ -175,7 +178,7 @@ order by npe.id_empleado asc, nccto.nombre asc, npec.cantidad desc ";
 
         $stmt=new sQuery();
         $query="insert into nov_parte_empleado_concepto(id_parte_empleado, id_concepto_convenio_contrato, cantidad, created_by, created_date, tipo_calculo, motivo)
-                values(:id_parte_empleado, :id_concepto_convenio_contrato, :cantidad, :created_by, sysdate(), :tipo_calculo, :motivo)";
+                values(:id_parte_empleado, :id_concepto_convenio_contrato, time_to_sec(:cantidad) / (60 * 60), :created_by, sysdate(), :tipo_calculo, :motivo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_parte_empleado', $this->getIdParteEmpleado());
         $stmt->dpBind(':id_concepto_convenio_contrato', $this->getIdConceptoConvenioContrato());

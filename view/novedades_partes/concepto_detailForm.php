@@ -26,6 +26,13 @@
         });
 
 
+        $('#cantidad').timepicker({
+            showMeridian: false,
+            //defaultTime: false
+            defaultTime: '00:00 AM'
+        });
+
+
 
         $('#concepto-form').on('change', '#id_parte_empleado', function(e){ //ok
 
@@ -190,9 +197,17 @@
         </div>
 
 
-        <div class="form-group required">
+        <!--<div class="form-group required">
             <label class="control-label" for="cantidad">Cantidad</label>
-            <input class="form-control" type="text" name="cantidad" id="cantidad" value = "<?php print $view->concepto->getCantidad() ?>" placeholder="Duración">
+            <input class="form-control" type="text" name="cantidad" id="cantidad" value = "<?php //print $view->concepto->getCantidad() ?>" placeholder="Duración">
+        </div>-->
+
+        <div class="form-group required">
+            <label class="control-label" for="hs_50">Cantidad</label>
+            <div class="input-group bootstrap-timepicker timepicker">
+                <input type="text" class="form-control input-small hs-group" name="cantidad" id="cantidad" value = "<?php print $view->concepto->getCantidad() ?>" >
+                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+            </div>
         </div>
 
 

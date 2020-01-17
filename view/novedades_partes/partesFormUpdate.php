@@ -579,6 +579,7 @@
                                         <option value="">Seleccione un evento</option>
                                         <?php foreach ($view->eventos as $ar){ ?>
                                             <option value="<?php echo $ar['id_evento']; ?>"
+                                                <?php echo ($ar['enabled'])? '':'disabled'; ?>
                                                 <?php echo ($ar['id_evento'] == $view->parte->getIdEvento())? 'selected' :'' ?>
                                                 >
                                                 <?php echo $ar['codigo'].' '.$ar['nombre']; ?>

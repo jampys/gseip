@@ -56,6 +56,17 @@ class Soporte{
     }
 
 
+    public static function timeToDecimal($time){ //no se usa
+        //https://stackoverflow.com/questions/4834202/convert-time-in-hhmmss-format-to-seconds-only
+
+        $parsed = date_parse($time);
+        $seconds = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
+
+        return $seconds /(60*60);
+
+    }
+
+
 
 
 

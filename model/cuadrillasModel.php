@@ -119,7 +119,7 @@ class Cuadrilla
                   from nov_cuadrillas cu
                   join v_sec_contratos_control co on cu.id_contrato = co.id_contrato
                   left join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
-                  join nov_areas ar on cu.default_id_area = ar.id_area
+                  left join nov_areas ar on cu.default_id_area = ar.id_area
                   where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
                   order by cu.nombre";
         $stmt->dpPrepare($query);

@@ -76,16 +76,6 @@
 
 
 
-        $(document).on('click', '#regresar',function(){
-            //alert('regresar');
-            window.location.href = "index.php?action=login";
-            return false;
-        });
-
-
-
-
-
 
 
     });

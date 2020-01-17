@@ -88,7 +88,12 @@
             return false;
         });
 
-        //return false;
+
+        $(document).on('click', '#back',function(){
+            //alert('regresar');
+            window.location.href = "index.php?action=novedades2";
+            return false;
+        });
 
 
 
@@ -109,7 +114,9 @@
 
 
             <br/>
+            <a id="back" class="pull-right" href="#" title="seleccionar otro período"><i class="fa fa-arrow-left fa-fw"></i>&nbsp; Períodos</a>
             <h4><?php print $view->periodo->getNombre()." (".$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")" ?></h4>
+
             <hr class="hr-primary"/>
 
 

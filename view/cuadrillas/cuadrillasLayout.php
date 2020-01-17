@@ -179,7 +179,7 @@
             <div class="row clearfix">
                 <form id="search_form" name="search_form">
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label for="search_contrato" class="control-label">Contrato</label>
                         <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                             <option value="">Seleccione el contrato</option>
@@ -202,21 +202,21 @@
                     </div>-->
 
 
-                    <div class="form-group col-md-1">
+                    <div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                             <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>
 
-                    <div class="form-group col-md-1">
+                    <div class="form-group col-md-2">
                         <label for="search">&nbsp;</label>
                         <button type="button" class="form-control btn btn-default dp_green" title="nueva cuadrilla" id="new" <?php echo ( PrivilegedUser::dhasAction('CUA_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus fa-lg"></span>
                         </button>
                     </div>
 
-                    <div class="form-group col-md-7">
+                    <div class="form-group col-md-4">
 
                     </div>
 

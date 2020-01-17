@@ -503,6 +503,70 @@
 
 
 
+        //al seleccionar dia anterior
+        $('#empleado-form').on('click', '#dia_anterior', function(){ //ok
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                data:{action: "novedades2", operation: "loadDiaAnterior", id_empleado: $('#id_empleado').val(), id_contrato: $('#id_contrato').val(), fecha_parte: $('#add_fecha').val()},
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    $('#id_cuadrilla').val(data['parte'][0]['id_cuadrilla']);
+                    $('#id_area').val(data['parte'][0]['id_area']);
+                    $('#id_evento').val(data['parte'][0]['id_evento']);
+                    $("#conductor").prop('checked', (data['parte'][0]['conductor']==1)? true:false);
+                    $('.selectpicker').selectpicker('refresh');
+
+
+                    //eliminar los elementos de jsonConceptos
+                    for (var i in jsonConceptos) {
+
+                        if (jsonConceptos[i].id_parte_empleado_concepto >= 0 ) { //si esta en la BD
+                            jsonConceptos[i].operacion = 'delete';
+                        }else{
+                            delete jsonConceptos[i];
+                        }
+                    }
+
+
+                    var ix = -1;
+                    $.each(data['conceptos'], function(indice, val){ //carga el array de empleados
+
+                        item = {};
+                        item.operacion = 'insert';
+                        //item.id_parte_empleado_concepto = id;
+                        item.id_parte_empleado_concepto = ix;
+                        item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
+                        item.id_concepto_convenio_contrato = data['conceptos'][indice]['id_concepto_convenio_contrato'];
+                        item.convenio = data['conceptos'][indice]['convenio'];
+                        item.concepto = data['conceptos'][indice]['concepto'];
+                        item.codigo = data['conceptos'][indice]['codigo'];
+                        item.cantidad = data['conceptos'][indice]['cantidad'];
+                        item.created_by = null;
+                        item.created_date = null;
+                        item.tipo_calculo = 'M';
+                        item.motivo = null;
+                        jsonConceptos[ix] = item;
+                        ix--;
+
+                    });
+
+                    $.cargarTablaConceptos();
+
+
+                }
+
+            });
+
+            return false;
+
+        });
+
+
+
+
 
         //al presionar el boton para agregar conceptos
         $('#left_side').on('click', '#new', function(){ //ok
@@ -640,6 +704,7 @@
 
             <div class="alert alert-info">
                 <strong><?php echo $view->label; ?></strong>
+                <a id="dia_anterior" class="pull-right" href="#" title="día anterior"><i class="fas fa-clone fa-fw"></i></a>
             </div>
 
 
@@ -688,6 +753,7 @@
                     <option value="">Seleccione un evento</option>
                     <?php foreach ($view->eventos as $ar){ ?>
                         <option value="<?php echo $ar['id_evento']; ?>"
+                            <?php echo ($ar['enabled'])? '':'disabled'; ?>
                             <?php echo ($ar['id_evento'] == $view->parte->getIdEvento())? 'selected' :'' ?>
                             >
                             <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
@@ -823,7 +889,7 @@
         <div class="row">
             <div class="col-md-4">
                 <!--<button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>-->
-                <button type="button" class="btn btn-primary btn-block" title="Mostrar órdenes">Órdenes</button>
+                <button type="button" class="btn btn-primary btn-block" title="Órdenes del parte">Órdenes</button>
             </div>
 
             <div class="col-md-4">
@@ -851,7 +917,7 @@
         <div class="row">
             <div class="col-md-4">
                 <!--<button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-sucesos" title="Mostrar sucesos">Sucesos</button>-->
-                <button type="button" class="btn btn-primary btn-block" title="Mostrar sucesos">Sucesos</button>
+                <button type="button" class="btn btn-primary btn-block" title="Sucesos del período">Sucesos</button>
             </div>
 
             <div class="col-md-4">

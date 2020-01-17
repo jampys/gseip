@@ -156,7 +156,8 @@ switch ($operation)
     case 'editParte': //ok
         $view->empleado = New Empleado($_POST['id_empleado']);
         $view->label = $view->empleado->getLegajo().' '.$view->empleado->getApellido()." ".$view->empleado->getNombre();
-        $view->label.= ($_POST['id_parte'])? " - Parte nro. ".$_POST['id_parte']: "";
+        $view->label.= "&nbsp";
+        $view->label.= ($_POST['id_parte'])? "<span class='dp_blue'>[Parte Nro. ".$_POST['id_parte']."]</span>": "<span class='dp_yellow'>[sin parte]</span>";
 
         $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], null);
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
@@ -191,15 +192,23 @@ switch ($operation)
         break;
 
 
-    case 'loadConceptosRutas':
+    case 'loadConceptosRutas': //ok
         //$view->contratoEmpleado = ContratoEmpleado::getContratoEmpleado($_POST['id_contrato']);
         $view->conceptos = RutaConcepto::getConceptos($_POST['id_ruta']);
         print_r(json_encode($view->conceptos));
         exit;
         break;
 
+    case 'loadDiaAnterior': //ok
+        $view->parte = Parte::getParteAnterior($_POST['id_empleado'], $_POST['fecha_parte'], $_POST['id_contrato']);
+        $view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($view->parte[0]['id_parte_empleado']);
+        //print_r(json_encode($view->conceptos));
+        print_r(json_encode(array('parte'=>$view->parte, 'conceptos'=>$view->conceptos)));
+        exit;
+        break;
 
-    case 'sucesosRefreshGrid':
+
+    case 'sucesosRefreshGrid': //ok
         $view->disableLayout=true;
         //$id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
         //$eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';

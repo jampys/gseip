@@ -81,9 +81,9 @@
         $('#cuadrilla-form').validate({ //ok
             rules: {
                 nombre: {required: true},
-                id_contrato: {required: true},
+                id_contrato: {required: true}
                 //default_id_vehiculo: {required: true},
-                default_id_area: {required: true}
+                //default_id_area: {required: true}
                 /*fecha_emision: {
                     required: true,
                     remote: {
@@ -125,9 +125,9 @@
             },
             messages:{
                 nombre: "Ingrese el nombre",
-                id_contrato: "Seleccione el contrato",
+                id_contrato: "Seleccione el contrato"
                 //default_id_vehiculo: "Seleccione el vehículo",
-                default_id_area: "Seleccione el área"
+                //default_id_area: "Seleccione el área"
                 /*fecha_emision: {
                     required: "Ingrese la fecha de emisión",
                     remote: "La fecha de emisión debe ser mayor"
@@ -189,7 +189,8 @@
 
                     <div class="form-group">
                         <label for="default_id_vehiculo" class="control-label">Vehículo (por defecto)</label>
-                        <select class="form-control selectpicker show-tick" id="default_id_vehiculo" name="default_id_vehiculo" title="Seleccione el vehículo" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="default_id_vehiculo" name="default_id_vehiculo" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un vehículo</option>
                             <?php foreach ($view->vehiculos as $ve){
                                 ?>
                                 <option value="<?php echo $ve['id_vehiculo']; ?>"
@@ -201,9 +202,10 @@
                         </select>
                     </div>
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label for="default_id_area" class="control-label">Área (por defecto)</label>
-                        <select class="form-control selectpicker show-tick" id="default_id_area" name="default_id_area" title="Seleccione el área" data-live-search="true" data-size="5">
+                        <select class="form-control selectpicker show-tick" id="default_id_area" name="default_id_area" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un área</option>
                             <?php foreach ($view->areas as $ar){
                                 ?>
                                 <option value="<?php echo $ar['id_area']; ?>"
