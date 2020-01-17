@@ -1,4 +1,14 @@
-﻿<script type="text/javascript">
+﻿<style>
+
+    #habilidades-table tbody td{
+        padding-bottom: 1px;
+        padding-top: 1px;
+    }
+
+</style>
+
+
+<script type="text/javascript">
 
 
     $(document).ready(function(){
