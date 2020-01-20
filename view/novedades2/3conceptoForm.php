@@ -614,7 +614,7 @@
         $('#conceptos-table').on('click', '.delete', function(e){ //ok
             //alert('eliminar concepto');
             var id = $(this).closest('tr').attr('id_parte_empleado_concepto');
-            alert('id eliminado: '+jsonConceptos[id].id_parte_empleado_concepto);
+            //alert('id eliminado: '+jsonConceptos[id].id_parte_empleado_concepto);
             //throw  new Error();
             if(jsonConceptos[id].id_parte_empleado_concepto < 0 ){ //si no esta en la BD
                 delete jsonConceptos[id]; //lo elimina del array
