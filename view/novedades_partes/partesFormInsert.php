@@ -257,14 +257,12 @@
                             </div>
 
 
-
-
                         </div>
 
 
-
-
                     <?php endforeach; ?>
+
+                    <div id="myElem" class="msg" style="display:none"></div>
 
                 <?php }else{ ?>
 
@@ -277,7 +275,7 @@
 
 
 
-                <div id="myElem" class="msg" style="display:none"></div>
+
 
 
 
