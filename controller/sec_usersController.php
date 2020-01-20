@@ -52,6 +52,7 @@ switch ($operation) {
         $view->label = $view->usuario->getUser();
 
         $view->empleados = Empleado::getEmpleados();
+        $view->target = $_POST['target'];
 
         $view->disableLayout = true;
         $view->contentTemplate = "view/usuarios/usuariosForm.php";
