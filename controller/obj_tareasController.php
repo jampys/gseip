@@ -54,7 +54,7 @@ switch ($operation)
         $view->label = ($_POST['target']!='view')? '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> '.$view->tarea->getNombre() : '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> '.$view->tarea->getNombre();
 
         $view->disableLayout=true;
-        //$view->target = $_POST['target'];
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/objetivos/tarea_detailForm.php";
         break;
 

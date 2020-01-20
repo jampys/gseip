@@ -170,6 +170,7 @@ switch ($operation)
         $view->localidades = Localidad::getLocalidades();
         $view->puestos = Puesto::getPuestos();
         $view->procesos = Proceso::getProcesos();
+        $view->target = $_POST['target'];
 
         $view->contentTemplate="view/contratos/contratosFormEmpleado.php";
         break;

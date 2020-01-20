@@ -62,7 +62,7 @@ switch ($operation)
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
 
         $view->disableLayout=true;
-        //$view->target = $_POST['target'];
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/objetivos/avance_detailForm.php";
         break;
 

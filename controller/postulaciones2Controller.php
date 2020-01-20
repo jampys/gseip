@@ -138,6 +138,7 @@ switch ($operation)
 
         $view->postulantes = Postulante::getPostulantesActivos();
         $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
+        $view->target = $_POST['target'];
 
         $view->disableLayout=true;
         $view->contentTemplate="view/busquedas/nPostulacion_detailForm.php";

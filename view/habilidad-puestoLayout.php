@@ -113,10 +113,11 @@
                 params.id_habilidad_puesto = id;
                 params.action = "habilidad-puesto";
                 params.operation = "editHabilidadPuesto";
+                params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
-                    $("#habilidad-puesto input, #habilidad-puesto select, #habilidad-puesto textarea").prop("disabled", true);
-                    $('.modal-footer').css('display', 'none');
-                    $('#myModalLabel').html('');
+                    //$("#habilidad-puesto input, #habilidad-puesto select, #habilidad-puesto textarea").prop("disabled", true);
+                    //$('.modal-footer').css('display', 'none');
+                    //$('#myModalLabel').html('');
                     $('#myModalUpdate').modal();
                 })
             });

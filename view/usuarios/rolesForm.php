@@ -45,12 +45,10 @@
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
-                $("#etapas_right_side fieldset").prop("disabled", true);
-                $("#role-form #footer-buttons button").css('display', 'none');
-                //$('#myModal').modal();
-                $('.selectpicker').selectpicker('refresh');
-            })
+                //$("#etapas_right_side fieldset").prop("disabled", true);
+                //$("#role-form #footer-buttons button").css('display', 'none');
+                //$('.selectpicker').selectpicker('refresh');
+            });
         });
 
 

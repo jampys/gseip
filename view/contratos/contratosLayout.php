@@ -37,12 +37,9 @@
                 params.operation = "editContrato";
                 params.target = 'view';
                 $('#content').load('index.php', params,function(){
-                    //$("#contrato-form input, #contrato-form .selectpicker").prop("disabled", true);
-                    //$('.selectpicker').selectpicker('refresh');
-                    $('.panel-footer').css('display', 'none');
-                    //$('.panel-heading .pull-left').html('');
-                    //$('#contrato-form').data('operation', 'view');
-                })
+                    //$('.panel-footer').css('display', 'none');
+
+                });
             });
 
 

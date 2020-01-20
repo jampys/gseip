@@ -55,6 +55,7 @@ switch ($operation)
         $view->areas = Area::getAreas();
         $view->nivelesCompetencias = CompetenciasNiveles::getNivelesCompetencias();
 
+        $view->target = $_POST['target'];
         $view->disableLayout=true;
         $view->contentTemplate="view/puestosForm.php";
         break;

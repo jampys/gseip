@@ -74,6 +74,7 @@ switch ($operation)
         $view->label='Editar Habilidad Puesto';
         $view->habilidadPuesto = new HabilidadPuesto($_POST['id_habilidad_puesto']);
         $view->requerida = Soporte::get_enum_values('habilidad_puesto', 'requerida');
+        $view->target = $_POST['target'];
 
         $view->disableLayout=true;
         $view->contentTemplate="view/habilidad-puestoFormUpdate.php";

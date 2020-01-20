@@ -56,7 +56,7 @@ switch ($operation)
         $view->roles = Rol::getRoles();
 
         $view->disableLayout=true;
-        //$view->target = $_POST['target'];
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/usuarios/role_detailForm.php";
         break;
 

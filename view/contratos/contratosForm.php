@@ -53,8 +53,8 @@
                     //'<td>'+jsonEmpleados[i].empleado+' '+jsonEmpleados[i].operacion+'</td>' +
                 '<td>'+jsonEmpleados[i].puesto+'</td>' +
                 '<td class="text-center"><a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>' +
-                '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
-                '<td class="text-center"><a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="<?php //echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>' +
+                '<td class="text-center"><a class="<?php //echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>' +
                 '</tr>');*/
 
                 var fecha_hasta = (jsonEmpleados[i].fecha_hasta === null)? '':jsonEmpleados[i].fecha_hasta;
@@ -294,6 +294,7 @@
             params={};
             params.action = "contratos";
             params.operation="loadEmpleado";
+            params.target = "view";
             params.id_empleado = id;
             $('#popupbox1').load('index.php', params,function(){
                 $('#id_empleado').val(jsonEmpleados[id].id_empleado);
@@ -305,10 +306,9 @@
                 $('#myModal #id_localidad').val(jsonEmpleados[id].id_localidad);
                 $('.selectpicker').selectpicker('refresh'); //refresh de puesto y procesos
                 //deshabilito campos
-                $("#empleado-form input, #empleado-form .selectpicker, #empleado-form textarea").prop("disabled", true);
-                $('.selectpicker').selectpicker('refresh');
-                $('.modal-footer').css('display', 'none');
-                //$('#myModalLabel').html('');
+                //$("#empleado-form input, #empleado-form .selectpicker, #empleado-form textarea").prop("disabled", true);
+                //$('.selectpicker').selectpicker('refresh');
+                //$('.modal-footer').css('display', 'none');
                 $('#myModal').modal();
 
             });
@@ -432,7 +432,7 @@
 
     <form class="form-horizontal" name ="contrato-form" id="contrato-form" method="POST" action="index.php">
 
-        <fieldset <?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? '' : 'disabled' ?>>
+        <fieldset <?php //echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? '' : 'disabled' ?>>
 
             <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->contrato->getIdContrato() ?>">
 
@@ -468,17 +468,6 @@
             </div>
 
 
-            <!--
-    <div class="form-group required">
-        <label for="id_responsable" class="col-md-3 control-label">Responsable</label>
-        <div class="col-md-7">
-            <select id="id_responsable" name="id_responsable" class="form-control selectpicker" data-live-search="true" title="<?php echo ($view->contrato->getIdResponsable())? "": "Seleccione un responsable";     ?>">
-                <option value = "<?php print $view->contrato->getIdResponsable() ?>">
-                    <?php print $view->responsable; ?>
-                </option>
-            </select>
-        </div>
-    </div> -->
 
             <div class="form-group required">
                 <label for="id_responsable" class="col-md-3 control-label">Responsable</label>
@@ -520,7 +509,7 @@
 
         <div class="clearfix">
             <h4 class="pull-left">Empleados</h4>
-            <button class="btn btn-default pull-right" id="add-empleado" >
+            <button class="btn btn-default pull-right" id="add-empleado"  <?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? '' : 'disabled' ?> >
                 <span class="glyphicon glyphicon-plus dp_green"></span> Agregar empleado
             </button>
         </div>
@@ -565,7 +554,7 @@
 
     <div class="panel-footer clearfix">
         <div class="button-group pull-right">
-            <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+            <button class="btn btn-primary" id="submit" name="submit" type="submit" <?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? '' : 'disabled' ?> >Guardar</button>
             <button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>
         </div>
     </div>

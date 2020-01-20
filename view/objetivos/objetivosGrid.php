@@ -264,8 +264,8 @@
             <tbody>
 
             <?php if(isset($view->objetivos)) {
-                foreach ($view->objetivos as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_objetivo']; ?>"
+                foreach ($view->objetivos as $rp):  if($rp['id_objetivo_superior'] && $view->todos==0) continue;  ?>
+                    <tr data-id="<?php echo $rp['id_objetivo'];  ?>"
                         id_objetivo="<?php echo $rp['id_objetivo'];?>"
                         cerrado="<?php echo $rp['cerrado']; ?>"
                         >

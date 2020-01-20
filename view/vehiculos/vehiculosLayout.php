@@ -33,11 +33,11 @@
                 params.id_vehiculo = id;
                 params.action = "vehiculos";
                 params.operation = "editVehiculo";
+                params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
-                    $("#vehiculo-form input, #vehiculo-form .selectpicker, #vehiculo-form textarea").prop("disabled", true);
-                    $('.selectpicker').selectpicker('refresh');
-                    $('.modal-footer').css('display', 'none');
-                    //$('#myModalLabel').html('');
+                    //$("#vehiculo-form input, #vehiculo-form .selectpicker, #vehiculo-form textarea").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
                 })
 

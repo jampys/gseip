@@ -29,6 +29,7 @@
                 params.search_indicador = $("#search_indicador").val();
                 params.search_responsable_ejecucion = $("#search_responsable_ejecucion").val();
                 params.search_responsable_seguimiento = $("#search_responsable_seguimiento").val();
+                params.todos = $('#search_todos').prop('checked')? 1:0;
 
 
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
@@ -64,10 +65,8 @@
                 params.operation = "editObjetivo";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
-                    $("fieldset").prop("disabled", true);
-                    //$('.selectpicker').selectpicker('refresh');
-                    $('.modal-footer').css('display', 'none');
-                    //$('#myModalLabel').html('');
+                    //$("fieldset").prop("disabled", true);
+                    //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
                 })
             });
@@ -332,7 +331,13 @@
 
 
                         <div class="form-group col-md-1">
-
+                            <!--<label for="search_renovado" class="control-label">&nbsp;</label>-->
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="search_todos" name="search_todos">
+                                    <a href="#" title="Seleccione para visualizar todos los objetivos">Todos</a>
+                                </label>
+                            </div>
                         </div>
 
 
