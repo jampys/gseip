@@ -26,6 +26,15 @@
         });
 
 
+        $(document).on('click', '#new, #new1', function () {
+            alert('submit');
+            var form = $('#add-form');
+            var action = 'index.php?action=novedades2&operation=newParte'; //$(this).data('action');
+            form.attr('action', action);
+            form.submit();
+        });
+
+
         $(document).on('click', '#enviar',function(){
 
             if ($("#code_form").valid()){
@@ -97,7 +106,7 @@
 
 
 
-            <form id="add-form" name="add-form" action="index.php?action=novedades2&operation=newParte" method="post">
+            <form id="add-form" name="add-form" action="#" method="post">
 
                 <div class="row">
 
@@ -126,7 +135,37 @@
 
                     <div class="form-group col-md-2">
                         <!--<label for="search">&nbsp;</label>-->
-                        <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
+                        <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new"  <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
+                            <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+                        </button>
+                    </div>
+
+                    <div class="form-group col-md-4">
+
+                    </div>
+
+
+
+
+                </div>
+
+
+                <div class="row">
+
+
+                    <div class="form-group col-md-3">
+
+                    </div>
+
+                    <div class="form-group col-md-3">
+
+                    </div>
+
+
+
+                    <div class="form-group col-md-2">
+                        <!--<label for="search">&nbsp;</label>-->
+                        <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new1" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>
