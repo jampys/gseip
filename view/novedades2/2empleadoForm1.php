@@ -33,7 +33,7 @@
                 params={};
                 params.action = "partes";
                 params.operation="newParte";
-                params.add_contrato = $("#add_contrato").val();
+                params.add_contrato = $("#id_contrato").val();
                 params.fecha_parte = $("#add_fecha").val(); //para mostrar en el titulo del modal
                 params.id_periodo = $("#id_periodo").val();
                 params.contrato = $("#add_contrato option:selected").text(); //para mostrar en el titulo del modal
@@ -41,9 +41,9 @@
                 /*$('#popupbox').load('index.php', params,function(){
                  $('#myModal').modal();
                  });*/
-                $("#content").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Obteniendo informacion de cuadrillas...').addClass('alert alert-info').show();
-                $('#content').load('index.php', params,function(){
-                    $("#content").removeClass('alert alert-info');
+                $("#chulito").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Obteniendo informacion de cuadrillas...').addClass('alert alert-info').show();
+                $('#chulito').load('index.php', params,function(){
+                    $("#chulito").removeClass('alert alert-info');
                 });
 
 
@@ -145,13 +145,6 @@
 
 
 
-                        <div class="table-responsive fixedTable" id="table_empleados">
-
-                            <!--se carga con un load luego de seleccionar la fecha -->
-                        </div>
-
-
-
                     </div>
 
 
@@ -163,14 +156,28 @@
 
 
 
+                </div>
 
 
 
 
+
+
+
+
+
+            <div class="row">
+
+                <div class="col-md-12" id="chulito">
 
 
 
                 </div>
+
+
+
+
+            </div>
 
 
 
