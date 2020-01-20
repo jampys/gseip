@@ -122,7 +122,7 @@ switch ($operation)
 
 
 
-    case 'newParte': //ok
+    case 'newParte': //ok //carga novedades por persona
         //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
         //$view->parte = new Parte();
 
@@ -139,7 +139,7 @@ switch ($operation)
         break;
 
 
-    case 'newParte1': //ok
+    case 'newParte1': //ok  //carga novedades por cuadrilla
         //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
         //$view->parte = new Parte();
 

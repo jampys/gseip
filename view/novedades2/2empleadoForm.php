@@ -115,7 +115,7 @@
 
             <br/>
             <a id="back" class="pull-right" href="#" title="seleccionar otro período"><i class="fa fa-arrow-left fa-fw"></i>&nbsp; Períodos</a>
-            <h4><?php print $view->periodo->getNombre()." (".$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")" ?></h4>
+            <h4><i class="fas fa-male fa-lg"></i>&nbsp;<?php print $view->periodo->getNombre()." (".$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")" ?></h4>
 
             <hr class="hr-primary"/>
 
