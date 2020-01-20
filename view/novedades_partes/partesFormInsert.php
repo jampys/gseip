@@ -84,7 +84,8 @@
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
+                                                //$('#myModal').modal('hide');
+                                                $("#add_fecha").trigger("changeDate");
                                               }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar los partes').addClass('alert alert-danger').show();
@@ -108,25 +109,7 @@
         });
 
 
-
-        /*$('#myModal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });*/
-
-
-        /*$('#busqueda-form').validate({
-            rules: {
-                nombre: {required: true},
-                fecha_apertura: {required: true}
-            },
-            messages:{
-                nombre: "Ingrese el nombre",
-                fecha_apertura: "Seleccione la fecha de apertura"
-            }
-
-        });*/
-
+        
 
         //Al presionar el boton con el nombre de la cuadrilla
         //$('.cu_cuadrilla .btn-primary').on('click', function(){ //ok
@@ -161,7 +144,7 @@
 
 
 
-          
+
 
                 <input type="hidden" name="fecha_parte" id="fecha_parte" value="<?php print $view->params['fecha_parte'] ?>">
                 <input type="hidden" name="id_periodo" id="id_periodo" value="<?php print $view->params['id_periodo'] ?>">

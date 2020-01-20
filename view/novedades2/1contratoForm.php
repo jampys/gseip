@@ -27,7 +27,7 @@
 
 
         $(document).on('click', '#new, #new1', function () {
-            alert('submit');
+            //alert('submit');
             var form = $('#add-form');
             var action = $(this).attr('action');
             form.attr('action', action);
