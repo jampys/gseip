@@ -163,8 +163,10 @@
 
             });
 
+
+
             //Al seleccionar el periodo restringe el rango de fechas del datepicker
-            $('#add-form').on('change', '#id_periodo', function(e){
+            /*$('#add-form').on('change', '#id_periodo', function(e){
                 //alert('seleccionó un periodo');
                 //throw new Error();
                 var fecha_desde = $('#id_periodo option:selected').attr('fecha_desde');
@@ -178,7 +180,7 @@
                 $('#search_fecha_desde').datepicker('update', fecha_desde);
                 $('#search_fecha_hasta').datepicker('update', fecha_hasta);
 
-            });
+            });*/
 
 
 
@@ -354,7 +356,7 @@
                     <form id="add-form" name="add-form">
 
                         <div class="form-group col-md-3">
-                            <label for="add_contrato" class="control-label">Nuevos partes</label>
+                            <!--<label for="add_contrato" class="control-label">Nuevos partes</label>-->
                             <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5" title="Seleccione un contrato">
                                 <!--<option value="">Seleccione un contrato</option>-->
                                 <?php foreach ($view->contratos as $con){
@@ -367,13 +369,13 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="id_periodo" class="control-label">&nbsp;</label>
+                            <!--<label for="id_periodo" class="control-label">&nbsp;</label>-->
                             <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un período" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript  -->
                             </select>
                         </div>
 
-                        <div class="form-group col-md-3">
+                        <!--<div class="form-group col-md-3">
                             <label class="control-label" for="add_fecha">&nbsp;</label>
                             <div class="input-group date">
                                 <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "" placeholder="DD/MM/AAAA">
@@ -381,28 +383,18 @@
                                     <span class="glyphicon glyphicon-th"></span>
                                 </div>
                             </div>
-                        </div>
-
+                        </div>-->
 
 
 
                         <!--<div class="form-group col-md-2">
                             <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary" id="search">Buscar</button>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary" id="new">Nueva renovación</button>
-                        </div>-->
-
-                        <div class="form-group col-md-2">
-                            <label for="search">&nbsp;</label>
                             <button type="button" class="form-control btn btn-default" title="nuevo parte" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                             </button>
-                        </div>
+                        </div>-->
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-7">
 
                         </div>
 
@@ -420,7 +412,7 @@
                     <form id="search_form" name="search_form">
 
                         <div class="form-group col-md-3">
-                            <label for="search_vencimiento" class="control-label">Buscar partes</label>
+                            <!--<label for="search_vencimiento" class="control-label">Buscar partes</label>-->
                             <div class="input-group input-daterange">
                                 <input class="form-control" type="text" name="search_fecha_desde" id="search_fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                                 <div class="input-group-addon">a</div>
@@ -428,47 +420,17 @@
                             </div>
                         </div>
 
+
                         <div class="form-group col-md-3">
-                            <label for="search_contrato" class="control-label">&nbsp;</label>
+                            <!--<label for="search_contrato" class="control-label">&nbsp;</label>-->
                             <select class="form-control selectpicker show-tick" id="cuadrilla" name="cuadrilla" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript  -->
                             </select>
                         </div>
 
-                        <!--<div class="form-group col-md-3">
-                            <label for="search_localidad" class="control-label">Área</label>
-                            <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un área</option>
-                                <?php foreach ($view->areas as $ar){
-                                    ?>
-                                    <option value="<?php echo $ar['id_area']; ?>">
-                                        <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
-                        </div>-->
-
-                        <!--<div class="form-group col-md-2">
-                            <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary" id="search">Buscar</button>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="search">&nbsp;</label>
-                            <button type="button" class="form-control btn btn-primary" id="new">Nueva renovación</button>
-                        </div>-->
-
-                        <!--<div class="form-group col-md-2">
-                            <label for="search_renovado" class="control-label">&nbsp;</label>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="search_renovado" name="search_renovado">
-                                    <a href="#" title="Funcionalidad en construcción">Ver todos</a>
-                                </label>
-                            </div>
-                        </div>-->
 
                         <div class="form-group col-md-2">
-                            <label for="search">&nbsp;</label>
+                            <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" title="Buscar partes" id="search">
                                 <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                             </button>
@@ -477,14 +439,14 @@
 
 
                         <div class="form-group col-md-2">
-                            <label for="control" class="control-label">&nbsp;</label>
+                            <!--<label for="search">&nbsp;</label>-->
                             <button id="control" class="form-control btn btn-default" href="#" title="Controlar novedades">
                                 <span class="glyphicon glyphicon-check fa-lg dp_blue">
                             </button>
                         </div>
 
                         <div class="form-group col-md-2">
-                            <label for="txt" class="control-label">&nbsp;</label>
+                            <!--<label for="search">&nbsp;</label>-->
                             <button id="txt" class="form-control btn btn-default" href="#" title="Exportar novedades"><i class="fas fa-file-export fa-fw fa-lg dp_blue"></i></button>
                         </div>
 

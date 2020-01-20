@@ -274,17 +274,11 @@
                 <?php } ?>
 
 
+    
 
 
 
-
-
-
-
-
-
-
-
+                <br/>
 
 
                 <div class="button-group pull-right">
