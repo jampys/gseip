@@ -29,7 +29,7 @@
         $(document).on('click', '#new, #new1', function () {
             alert('submit');
             var form = $('#add-form');
-            var action = 'index.php?action=novedades2&operation=newParte'; //$(this).data('action');
+            var action = $(this).attr('action');
             form.attr('action', action);
             form.submit();
         });
@@ -135,7 +135,10 @@
 
                     <div class="form-group col-md-2">
                         <!--<label for="search">&nbsp;</label>-->
-                        <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new"  <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
+                        <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new"
+                            <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>
+                            action="index.php?action=novedades2&operation=newParte"
+                            >
                             <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>
@@ -165,7 +168,10 @@
 
                     <div class="form-group col-md-2">
                         <!--<label for="search">&nbsp;</label>-->
-                        <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new1" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
+                        <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new1"
+                            <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>
+                                action="index.php?action=novedades2&operation=newParte1"
+                            >
                             <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>

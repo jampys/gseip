@@ -139,6 +139,23 @@ switch ($operation)
         break;
 
 
+    case 'newParte1': //ok
+        //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
+        //$view->parte = new Parte();
+
+        $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
+        $view->periodo = New NovPeriodo($_POST['id_periodo']);
+        $view->contrato = New Contrato($_POST['add_contrato']);
+        //$view->vehiculos = Vehiculo::getVehiculos();
+        //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
+        //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
+        //$view->params = array('fecha_parte' => $_POST['fecha_parte'], 'id_periodo' => $_POST['id_periodo']);
+
+        //$view->disableLayout=true;
+        $view->contentTemplate="view/novedades2/2empleadoForm1.php";
+        break;
+
+
     case 'tableEmpleados': //ok
         //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
         //$view->parte = new Parte();
