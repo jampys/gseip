@@ -57,7 +57,7 @@ switch ($operation)
         $view->vehiculos = Vehiculo::getVehiculos();
 
         $view->disableLayout=true;
-        //$view->target = $_POST['target'];
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/grupos_vehiculos/vehiculo_detailForm.php";
         break;
 
