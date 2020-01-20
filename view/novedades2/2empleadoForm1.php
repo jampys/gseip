@@ -41,7 +41,8 @@
                 /*$('#popupbox').load('index.php', params,function(){
                  $('#myModal').modal();
                  });*/
-                $("#chulito").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Obteniendo informacion de cuadrillas...').addClass('alert alert-info').show();
+                //$("#chulito").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Obteniendo informacion de cuadrillas...').addClass('alert alert-info').show();
+                $("#chulito").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Obteniendo informacion de cuadrillas...');
                 $('#chulito').load('index.php', params,function(){
                     $("#chulito").removeClass('alert alert-info');
                 });
