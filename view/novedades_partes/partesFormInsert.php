@@ -156,16 +156,12 @@
 
 <div class="col-md-12">
 
-<div class="panel panel-default" id="myModal">
-
-            <div class="panel-heading">
-                <h4 class="pull-left"><span><?php echo $view->label ?></span></h4>
-                <a id="back" class="pull-right" href="#"><i class="fas fa-arrow-left fa-fw"></i>&nbsp;Volver </a>
-                <div class="clearfix"></div>
-            </div>
+<div id="myModal">
 
 
-            <div class="panel-body">
+
+
+          
 
                 <input type="hidden" name="fecha_parte" id="fecha_parte" value="<?php print $view->params['fecha_parte'] ?>">
                 <input type="hidden" name="id_periodo" id="id_periodo" value="<?php print $view->params['id_periodo'] ?>">
@@ -307,14 +303,14 @@
 
 
 
-            </div>
 
-            <div class="panel-footer clearfix">
+
+
                 <div class="button-group pull-right">
                     <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
                     <button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>
                 </div>
-            </div>
+
 
 
 
