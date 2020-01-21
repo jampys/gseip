@@ -648,7 +648,7 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-default btn-block" id="add-empleado" name="add-empleado" title="Agregar empleado" <?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >
+                                        <button type="button" class="btn btn-default btn-block" id="add-empleado" name="add-empleado" title="Agregar empleado" <?php //echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?>disabled >
                                             <i class="fas fa-plus dp_green"></i>&nbsp
                                         </button>
                                 </div>
@@ -675,7 +675,7 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-default btn-block" id="add-concepto" name="add-concepto" title="Agregar concepto" <?php echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?> >
+                                        <button type="button" class="btn btn-default btn-block" id="add-concepto" name="add-concepto" title="Agregar concepto" <?php //echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?>disabled >
                                             <i class="fas fa-plus dp_green"></i>&nbsp
                                         </button>
                                     </div>
