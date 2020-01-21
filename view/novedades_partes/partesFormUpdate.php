@@ -763,7 +763,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" id="calcular" name="calcular" type="submit" <?php echo ($view->target!='view' )? '' : 'disabled' ?> >Calcular</button>
+                <!--<button class="btn btn-primary" id="calcular" name="calcular" type="submit" <?php //echo ($view->target!='view' )? '' : 'disabled' ?> >Calcular</button>-->
                 <button class="btn btn-default" id="salir" name="salir" type="button" data-dismiss="modal">Salir</button>
             </div>
 
