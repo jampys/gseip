@@ -178,7 +178,7 @@ order by npe.id_empleado asc, nccto.nombre asc, npec.cantidad desc ";
         // time_to_sec(:cantidad) / (60 * 60)
         $stmt=new sQuery();
         $query="insert into nov_parte_empleado_concepto(id_parte_empleado, id_concepto_convenio_contrato, cantidad, created_by, created_date, tipo_calculo, motivo)
-                values(:id_parte_empleado, :id_concepto_convenio_contrato, :cantidad, :created_by, sysdate(), :tipo_calculo, :motivo)";
+                values(:id_parte_empleado, :id_concepto_convenio_contrato, time_to_sec(:cantidad) / (60 * 60), :created_by, sysdate(), :tipo_calculo, :motivo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_parte_empleado', $this->getIdParteEmpleado());
         $stmt->dpBind(':id_concepto_convenio_contrato', $this->getIdConceptoConvenioContrato());
