@@ -182,8 +182,9 @@ switch ($operation)
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $view->parte_empleado = new ParteEmpleado($_POST['id_parte_empleado']);
         $view->parte = new Parte($_POST['id_parte']);
-        $view->conceptos = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $view->empleado->getIdConvenio());
-        $view->rutas = Ruta::getRutas($_POST['id_contrato'], $view->empleado->getIdConvenio());
+        $id_convenio = ($view->empleado->getIdConvenio())? $view->empleado->getIdConvenio() : -1;
+        $view->conceptos = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $id_convenio);
+        $view->rutas = Ruta::getRutas($_POST['id_contrato'], $id_convenio);
         $view->areas = NovArea::getAreas($_POST['id_contrato']);
         $view->defaults = CuadrillaEmpleado::getEmpleadoDefaults($_POST['id_empleado']);
         //$view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
