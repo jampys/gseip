@@ -382,7 +382,7 @@
                     if (jsonConceptos[id].id_parte_empleado) jsonConceptos[id].operacion = 'update';
                     //alert(jsonConceptos[id].operacion);
 
-                });
+                }).timepicker('setTime', jsonConceptos[i].cantidad);
 
 
             }
