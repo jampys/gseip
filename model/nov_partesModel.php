@@ -156,6 +156,7 @@ class Parte
         $stmt=new sQuery();
         $query="select pa.id_parte,
                     (select count(*) from nov_parte_orden npox where npox.id_parte = pa.id_parte) as orden_count,
+                    (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = pa.id_parte) as concept_count,
                     DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
                     DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
                     pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.last_calc_status,
@@ -442,7 +443,7 @@ order by id_convenio asc, legajo asc";
                       order by em.apellido, em.nombre";*/
         $query="select em.id_empleado, em.legajo, em.apellido, em.nombre, np.id_parte, npe.id_parte_empleado, np.last_calc_status, cu.nombre_corto,
                       (select count(*) from nov_parte_orden npox where npox.id_parte = np.id_parte) as orden_count,
-                      (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = np.id_parte) as concept_count
+                      (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = np.id_parte and npex.id_empleado = em.id_empleado) as concept_count
                       from v_sec_empleados em
                       join empleado_contrato ec on (ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta > sysdate()))
 					  left join nov_parte_empleado npe join nov_partes np on np.id_parte = npe.id_parte on
