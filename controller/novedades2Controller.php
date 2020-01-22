@@ -123,12 +123,11 @@ switch ($operation)
 
 
     case 'newParte': //ok //carga novedades por persona
-        //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
         //$view->parte = new Parte();
-
         $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $view->contrato = New Contrato($_POST['add_contrato']);
+        $view->label='<i class="fas fa-male fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
@@ -140,12 +139,11 @@ switch ($operation)
 
 
     case 'newParte1': //ok  //carga novedades por cuadrilla
-        //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
         //$view->parte = new Parte();
-
         $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $view->contrato = New Contrato($_POST['add_contrato']);
+        $view->label='<i class="fas fa-car fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
