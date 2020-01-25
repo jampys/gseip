@@ -31,21 +31,22 @@
             .on('changeDate', function (ev) {
                 //alert('cambio la fecha');
                 params={};
-                //params.id_empleado = id;
-                //params.id_contrato = $('#id_contrato').val();
-                //params.id_periodo = $('#id_periodo').val();
-                params.action = "novedades2";
-                params.operation = "tableEmpleados";
-                params.fecha = $('#add_fecha').val();
-                params.id_contrato = $('#id_contrato').val();
-                //alert(params.id_periodo);
-                $('#table_empleados').load('index.php', params,function(){
-                    //alert('cargo el contenido en right side');
-                    $("#contenedor").hide("");
-                    //$('#myModal').modal();
-                    //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                    //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+                params.action = "partes";
+                params.operation="newParte";
+                params.add_contrato = $("#id_contrato").val();
+                params.fecha_parte = $("#add_fecha").val(); //para mostrar en el titulo del modal
+                params.id_periodo = $("#id_periodo").val();
+                params.contrato = $("#add_contrato option:selected").text(); //para mostrar en el titulo del modal
+
+                /*$('#popupbox').load('index.php', params,function(){
+                 $('#myModal').modal();
+                 });*/
+                //$("#chulito").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Obteniendo informacion de cuadrillas...').addClass('alert alert-info').show();
+                $("#chulito").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Obteniendo informacion de cuadrillas...');
+                $('#chulito').load('index.php', params,function(){
+                    $("#chulito").removeClass('alert alert-info');
                 });
+
 
         });
 
@@ -145,13 +146,6 @@
 
 
 
-                        <div class="table-responsive fixedTable" id="table_empleados">
-
-                            <!--se carga con un load luego de seleccionar la fecha -->
-                        </div>
-
-
-
                     </div>
 
 
@@ -163,14 +157,28 @@
 
 
 
+                </div>
 
 
 
 
+
+
+
+
+
+            <div class="row">
+
+                <div class="col-md-12" id="chulito">
 
 
 
                 </div>
+
+
+
+
+            </div>
 
 
 

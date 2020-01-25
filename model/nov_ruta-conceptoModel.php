@@ -59,7 +59,8 @@ class RutaConcepto
     //Devuelve todos los conceptos de una determinada ruta
     public static function getConceptos($id_ruta) { //ok
         $stmt=new sQuery();
-        $query = "select nrc.id_ruta_concepto, nrc.id_ruta, nrc.id_concepto_convenio_contrato, nrc.cantidad,
+        $query = "select nrc.id_ruta_concepto, nrc.id_ruta, nrc.id_concepto_convenio_contrato,
+sec_to_time(nrc.cantidad*60*60) as cantidad,
 nc.codigo as convenio, ncon.nombre as concepto, nccc.codigo
 from nov_ruta_concepto nrc
 join nov_rutas nr on nr.id_ruta = nrc.id_ruta

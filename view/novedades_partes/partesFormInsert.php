@@ -84,7 +84,8 @@
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
+                                                //$('#myModal').modal('hide');
+                                                $("#add_fecha").trigger("changeDate");
                                               }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar los partes').addClass('alert alert-danger').show();
@@ -108,25 +109,7 @@
         });
 
 
-
-        /*$('#myModal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });*/
-
-
-        /*$('#busqueda-form').validate({
-            rules: {
-                nombre: {required: true},
-                fecha_apertura: {required: true}
-            },
-            messages:{
-                nombre: "Ingrese el nombre",
-                fecha_apertura: "Seleccione la fecha de apertura"
-            }
-
-        });*/
-
+        
 
         //Al presionar el boton con el nombre de la cuadrilla
         //$('.cu_cuadrilla .btn-primary').on('click', function(){ //ok
@@ -156,16 +139,12 @@
 
 <div class="col-md-12">
 
-<div class="panel panel-default" id="myModal">
-
-            <div class="panel-heading">
-                <h4 class="pull-left"><span><?php echo $view->label ?></span></h4>
-                <a id="back" class="pull-right" href="#"><i class="fas fa-arrow-left fa-fw"></i>&nbsp;Volver </a>
-                <div class="clearfix"></div>
-            </div>
+<div id="myModal">
 
 
-            <div class="panel-body">
+
+
+
 
                 <input type="hidden" name="fecha_parte" id="fecha_parte" value="<?php print $view->params['fecha_parte'] ?>">
                 <input type="hidden" name="id_periodo" id="id_periodo" value="<?php print $view->params['id_periodo'] ?>">
@@ -278,14 +257,12 @@
                             </div>
 
 
-
-
                         </div>
 
 
-
-
                     <?php endforeach; ?>
+
+                    <div id="myElem" class="msg" style="display:none"></div>
 
                 <?php }else{ ?>
 
@@ -298,23 +275,17 @@
 
 
 
-                <div id="myElem" class="msg" style="display:none"></div>
 
 
 
+                <br/>
 
 
-
-
-
-            </div>
-
-            <div class="panel-footer clearfix">
                 <div class="button-group pull-right">
                     <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
                     <button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>
                 </div>
-            </div>
+
 
 
 

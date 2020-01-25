@@ -122,13 +122,12 @@ switch ($operation)
 
 
 
-    case 'newParte': //ok
-        //$view->label='Nuevo parte: '.$_POST['fecha_parte'].' '.$_POST['contrato'];
+    case 'newParte': //ok //carga novedades por persona
         //$view->parte = new Parte();
-
         $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $view->contrato = New Contrato($_POST['add_contrato']);
+        $view->label='<i class="fas fa-male fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
@@ -136,6 +135,22 @@ switch ($operation)
 
         //$view->disableLayout=true;
         $view->contentTemplate="view/novedades2/2empleadoForm.php";
+        break;
+
+
+    case 'newParte1': //ok  //carga novedades por cuadrilla
+        //$view->parte = new Parte();
+        $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
+        $view->periodo = New NovPeriodo($_POST['id_periodo']);
+        $view->contrato = New Contrato($_POST['add_contrato']);
+        $view->label='<i class="fas fa-car fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
+        //$view->vehiculos = Vehiculo::getVehiculos();
+        //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
+        //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
+        //$view->params = array('fecha_parte' => $_POST['fecha_parte'], 'id_periodo' => $_POST['id_periodo']);
+
+        //$view->disableLayout=true;
+        $view->contentTemplate="view/novedades2/2empleadoForm1.php";
         break;
 
 
@@ -165,8 +180,9 @@ switch ($operation)
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $view->parte_empleado = new ParteEmpleado($_POST['id_parte_empleado']);
         $view->parte = new Parte($_POST['id_parte']);
-        $view->conceptos = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $view->empleado->getIdConvenio());
-        $view->rutas = Ruta::getRutas($_POST['id_contrato'], $view->empleado->getIdConvenio());
+        $id_convenio = ($view->empleado->getIdConvenio())? $view->empleado->getIdConvenio() : -1;
+        $view->conceptos = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $id_convenio);
+        $view->rutas = Ruta::getRutas($_POST['id_contrato'], $id_convenio);
         $view->areas = NovArea::getAreas($_POST['id_contrato']);
         $view->defaults = CuadrillaEmpleado::getEmpleadoDefaults($_POST['id_empleado']);
         //$view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);

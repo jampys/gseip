@@ -382,7 +382,7 @@
                     if (jsonConceptos[id].id_parte_empleado) jsonConceptos[id].operacion = 'update';
                     //alert(jsonConceptos[id].operacion);
 
-                });
+                }).timepicker('setTime', jsonConceptos[i].cantidad);
 
 
             }
@@ -599,7 +599,7 @@
             item.created_date = null;
             item.tipo_calculo = 'M';
             item.motivo = null;
-            alert('id asignado: '+item.id_parte_empleado_concepto);
+            //alert('id asignado: '+item.id_parte_empleado_concepto);
             jsonConceptos[id] = item; //se agrega el item al final del array asociativo
 
             $.cargarTablaConceptos();
@@ -614,7 +614,7 @@
         $('#conceptos-table').on('click', '.delete', function(e){ //ok
             //alert('eliminar concepto');
             var id = $(this).closest('tr').attr('id_parte_empleado_concepto');
-            alert('id eliminado: '+jsonConceptos[id].id_parte_empleado_concepto);
+            //alert('id eliminado: '+jsonConceptos[id].id_parte_empleado_concepto);
             //throw  new Error();
             if(jsonConceptos[id].id_parte_empleado_concepto < 0 ){ //si no esta en la BD
                 delete jsonConceptos[id]; //lo elimina del array

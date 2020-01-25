@@ -30,11 +30,11 @@
                             <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
                         </a>&nbsp;&nbsp;
 
-                        <a class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' && $ctos['tipo_calculo']=='M')? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
+                        <a class="<?php //echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' && $ctos['tipo_calculo']=='M')? 'edit' : 'disabled' ?>disabled" href="javascript:void(0);" title="editar">
                             <span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span>
                         </a>&nbsp;&nbsp;
 
-                        <a class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' && $ctos['tipo_calculo']=='M' /*&& $et['id_user'] == $_SESSION['id_user'] */ )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+                        <a class="<?php //echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' && $ctos['tipo_calculo']=='M' /*&& $et['id_user'] == $_SESSION['id_user'] */ )? 'delete' : 'disabled' ?>disabled" title="borrar" href="javascript:void(0);">
                             <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                         </a>
                     </td>

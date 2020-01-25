@@ -85,7 +85,7 @@
                 <th>Contrato</th>
                 <th>Cuadrilla</th>
                 <th>Área</th>
-                <th>Móvil</th>
+                <!--<th>Móvil</th>-->
                 <th>Evento</th>
                 <th></th>
                 <th>Usr.</th>
@@ -102,11 +102,11 @@
                         <td><?php echo $rp['contrato']; ?></td>
                         <td><?php echo $rp['cuadrilla']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
-                        <td><?php echo $rp['vehiculo']; ?></td>
+                        <!--<td><?php //echo $rp['vehiculo']; ?></td>-->
                         <td class="text-danger"><?php echo $rp['evento']; ?></td>
                         <td style="text-align: center">
-                            <?php echo($rp['id_parte'])? '<i class="fas fa-car-side fa-fw dp_green" title="con parte"></i>':'<i class="fas fa-car fa-fw dp_yellow" title="sin parte"></i>'; ?>&nbsp;&nbsp;
-                            <?php echo($rp['last_calc_status'])? '<i class="fas fa-calculator fa-fw dp_green" title="parte calculado"></i>':'<i class="fas fa-calculator fa-fw dp_yellow" title="parte sin calcular"></i>'; ?>&nbsp;&nbsp;
+                            <?php echo($rp['id_parte'])? '<i class="fas fa-car-side fa-fw dp_green" title="con parte"></i>':'<i class="fas fa-car fa-fw dp_yellow" title="sin parte"></i>'; ?>&nbsp;
+                            <?php echo($rp['concept_count']>0)? '<i class="fas fa-calculator fa-fw dp_green" title="parte con conceptos"></i>':'<i class="fas fa-calculator fa-fw dp_yellow" title="parte sin conceptos"></i>'; ?>&nbsp;
                             <?php echo($rp['orden_count']>0)? '<i class="fas fa-clipboard-check fa-fw dp_green" title="parte con órdenes"></i>':'<i class="fas fa-clipboard fa-fw dp_yellow" title="parte sin órdenes"></i>'; ?>
                         </td>
                         <td><?php $arr = explode("@", $rp['user'], 2);
