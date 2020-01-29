@@ -114,7 +114,7 @@ class Cuadrilla
                    where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1, 1) as empleado_2,
                   cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.actividad,
                   co.nombre as contrato,
-                  concat(cast(ve.nro_movil as char), ' ', ve.modelo) as vehiculo,
+                  ve.nro_movil as vehiculo,
                   concat(ar.codigo, ' ', ar.nombre) as area
                   from nov_cuadrillas cu
                   join v_sec_contratos_control co on cu.id_contrato = co.id_contrato
