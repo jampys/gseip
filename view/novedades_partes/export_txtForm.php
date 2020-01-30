@@ -202,7 +202,7 @@
                 //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
                 //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_crossTab_novedades.rptdesign&p_id_contrato="+params.id_contrato+"&p_fecha_desde="+params.fecha_desde+"&p_fecha_hasta="+params.fecha_hasta+"&p_id_user="+params.id_user;
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_nov_control_administracion.rptdesign&p_id_contrato="+params.id_contrato+
+                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_nov_control_administracion_"+params.id_contrato+".rptdesign&p_id_contrato="+params.id_contrato+
                         //"&p_fecha_desde="+params.fecha_desde+
                         //"&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_periodo="+params.id_periodo+
