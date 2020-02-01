@@ -667,7 +667,7 @@
                     //alert(xhr.responseText);
                     //alert(data[0]['flag']);
                     if(data[0]['flag'] >=0){
-                        $(".panel-footer button").prop("disabled", true); //deshabilito botones
+                        $("#empleado-form button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Parte guardado con exito').addClass('alert alert-success').show();
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados"});

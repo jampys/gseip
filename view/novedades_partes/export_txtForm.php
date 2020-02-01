@@ -288,7 +288,7 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Exporta novedades en formato .xls para control.
+                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Exporta novedades en formato de tabla cruzada (empleado/concepto).
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit2" name="submit2" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
