@@ -456,7 +456,7 @@ order by id_convenio asc, legajo asc";
                       where em.fecha_baja is null
                       and em.fecha_alta <= STR_TO_DATE(:fecha, '%d/%m/%Y')
                       and ec.id_contrato = :id_contrato
-                      order by cu.nombre_corto asc, npe.conductor desc, em.apellido, em.nombre";
+                      order by isnull(np.id_parte) desc, cu.nombre_corto asc, npe.conductor desc, em.apellido, em.nombre";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha', $fecha);
         //$stmt->dpBind(':fecha_hasta', $fecha_hasta);
