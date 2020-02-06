@@ -57,7 +57,7 @@
             params.operation = "getPeriodosAndEmpleados";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
             params.id_contrato = $('#id_contrato').val();
-            params.activos = 1;
+            //params.activos = 1;
 
             $('#myModal #id_periodo').empty();
 
