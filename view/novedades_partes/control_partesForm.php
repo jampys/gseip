@@ -60,6 +60,7 @@
             //params.activos = 1;
 
             $('#myModal #id_periodo').empty();
+            $('#myModal #id_empleado').empty();
 
 
             $.ajax({
