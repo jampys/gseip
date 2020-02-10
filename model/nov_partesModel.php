@@ -428,20 +428,7 @@ order by id_convenio asc, legajo asc";
     public static function getEmpleados($fecha, $id_contrato) { //ok
         //trae los empleados activos de un contrato, para la fecha indicada, tambien el nro de parte.
         $stmt=new sQuery();
-        /*$query="select em.id_empleado, em.legajo, em.apellido, em.nombre, np.id_parte, npe.id_parte_empleado, np.last_calc_status,
-                      (select count(*) from nov_parte_orden npox where npox.id_parte = np.id_parte) as orden_count
-                      from v_sec_empleados em
-                      join empleado_contrato ec on (ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta > sysdate()))
-					  left join nov_parte_empleado npe join nov_partes np on np.id_parte = npe.id_parte on
-								(
-                                np.id_contrato = :id_contrato
-                                and np.fecha_parte = STR_TO_DATE(:fecha, '%d/%m/%Y')
-                                and npe.id_empleado = em.id_empleado
-                                )
-                      where em.fecha_baja is null
-                      and ec.id_contrato = :id_contrato
-                      order by em.apellido, em.nombre";*/
-        $query="select em.id_empleado, em.legajo, em.apellido, em.nombre, np.id_parte, npe.id_parte_empleado, np.last_calc_status, cu.nombre_corto,
+        /*$query="select em.id_empleado, em.legajo, em.apellido, em.nombre, np.id_parte, npe.id_parte_empleado, np.last_calc_status, cu.nombre_corto,
                       (select count(*) from nov_parte_orden npox where npox.id_parte = np.id_parte) as orden_count,
                       (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = np.id_parte and npex.id_empleado = em.id_empleado) as concept_count
                       from v_sec_empleados em
@@ -456,6 +443,20 @@ order by id_convenio asc, legajo asc";
                       where em.fecha_baja is null
                       and em.fecha_alta <= STR_TO_DATE(:fecha, '%d/%m/%Y')
                       and ec.id_contrato = :id_contrato
+                      order by isnull(np.id_parte) desc, cu.nombre_corto asc, npe.conductor desc, em.apellido, em.nombre";*/
+        $query="select em.id_empleado, em.legajo, em.apellido, em.nombre, np.id_parte, npe.id_parte_empleado, np.last_calc_status, cu.nombre_corto,
+                      (select count(*) from nov_parte_orden npox where npox.id_parte = np.id_parte) as orden_count,
+                      (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = np.id_parte and npex.id_empleado = em.id_empleado) as concept_count
+                      from v_sec_empleados em
+                      join empleado_contrato ec on (ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta >= STR_TO_DATE(:fecha, '%d/%m/%Y')) and ec.fecha_desde <= STR_TO_DATE(:fecha, '%d/%m/%Y'))
+					  left join nov_parte_empleado npe join nov_partes np on np.id_parte = npe.id_parte on
+								(
+                                np.id_contrato = :id_contrato
+                                and np.fecha_parte = STR_TO_DATE(:fecha, '%d/%m/%Y')
+                                and npe.id_empleado = em.id_empleado
+                                )
+                      left join nov_cuadrillas cu on np.id_cuadrilla = cu.id_cuadrilla
+                      where ec.id_contrato = :id_contrato
                       order by isnull(np.id_parte) desc, cu.nombre_corto asc, npe.conductor desc, em.apellido, em.nombre";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha', $fecha);
