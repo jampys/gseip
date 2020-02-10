@@ -559,19 +559,19 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label for="id_vehiculo" class="control-label">Vehículo</label>
                                     <select class="selectpicker form-control show-tick" id="id_vehiculo" name="id_vehiculo" data-live-search="true" data-size="5">
                                         <option value="">Seleccione un Vehículo</option>
-                                        <?php foreach ($view->vehiculos as $ar){ ?>
-                                            <option value="<?php echo $ar['id_vehiculo']; ?>"
-                                                <?php echo ($ar['id_vehiculo'] == $view->parte->getIdVehiculo())? 'selected' :'' ?>
+                                        <?php //foreach ($view->vehiculos as $ar){ ?>
+                                            <option value="<?php //echo $ar['id_vehiculo']; ?>"
+                                                <?php //echo ($ar['id_vehiculo'] == $view->parte->getIdVehiculo())? 'selected' :'' ?>
                                                 >
-                                                <?php echo $ar['nro_movil'].' '.$ar['modelo']; ?>
+                                                <?php //echo $ar['nro_movil'].' '.$ar['modelo']; ?>
                                             </option>
-                                        <?php  } ?>
+                                        <?php  //} ?>
                                     </select>
-                                </div>
+                                </div>-->
 
                                 <div class="form-group">
                                     <label for="id_evento" class="control-label">Evento</label>
