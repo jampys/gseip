@@ -48,7 +48,7 @@
                 <tbody>
                 <?php foreach ($view->vehiculos as $ve): ?>
                     <tr data-id="<?php echo $ve['id_grupo_vehiculo']; ?>">
-                        <td><span class="label label-primary" style="font-weight: normal"><?php echo $ve['matricula']; ?></span> <?php echo ($ve['nro_movil'])? '<span class="label label-default" style="font-weight: normal">Móvil: '.$ve['nro_movil'].'</span>' : '' ?></td>
+                        <td><span class="label label-primary" style="font-weight: normal"><?php echo $ve['matricula']; ?></span> <?php echo ($ve['nro_movil'])? '<span class="label label-default" style="font-weight: normal">'.$ve['nro_movil'].'</span>' : '' ?></td>
                         <td><?php echo $ve['certificado']; ?></td>
                         <td><?php echo $ve['fecha_desde']; ?></td>
                         <td><?php echo $ve['fecha_hasta']; ?></td>
