@@ -288,7 +288,9 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Exporta novedades en formato de tabla cruzada (empleado/concepto).
+                                <span class="glyphicon glyphicon-tags"></span>
+                                &nbsp;<strong>Tabla empleados/conceptos:</strong>
+                                Exporta novedades en formato de tabla cruzada (empleados/conceptos).
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit2" name="submit2" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
@@ -300,7 +302,11 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp <strong>Para uso de administración</strong> Exporta novedades en formato .txt (admisible para BAS).
+                                <span class="glyphicon glyphicon-tags" ></span>
+                                &nbsp;<strong>Archivo de texto</strong>
+                                <strong class="dp_orange">(RRHH)</strong>
+                                <strong>:</strong>
+                                Exporta novedades en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit" name="submit" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
