@@ -152,7 +152,10 @@
                                 </a>
 
                             <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']> 0){ $view->details['actualizados']++;  ?>
-                                <span class="dp_green">Vigente</span>
+                                <!--<span class="dp_green">Vigente</span>-->
+                                <a class="edit <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Habilitar vencimiento">
+                                    <span class="dp_green">Vigente</span>
+                                </a>
 
                             <?php } elseif(!$rp['id_empleado_vencimiento']){ $view->details['no_aplica']++;  ?>
                                 <span class="dp_green">No aplica</span>
