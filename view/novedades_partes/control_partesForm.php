@@ -416,7 +416,7 @@
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
                                 &nbsp;<strong>Detalle de concepto:</strong>
-                                &nbsp;Muestra los partes involucrados para un período, empleado y concepto indicados.
+                                Muestra los partes involucrados para un período, empleado y concepto indicados.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
@@ -430,7 +430,7 @@
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
                                 &nbsp;<strong>Conceptos del período:</strong>
-                                &nbsp;Muestra todos los conceptos involucrados para un período y empleado indicados.
+                                Muestra todos los conceptos involucrados para un período y empleado indicados.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit5" name="submit5" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
@@ -444,7 +444,7 @@
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
                                 &nbsp;<strong>Partes del período:</strong>
-                                &nbsp;Muestra los partes, tipos  y  números de órden para un período indicado.
+                                Muestra los partes, tipos  y  números de órden para un período indicado.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit2" name="submit2" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
@@ -458,7 +458,7 @@
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
                                 &nbsp;<strong>Pendientes:</strong>
-                                &nbsp;Muestra los empleados sin parte ni suceso para un período indicado.
+                                Muestra los empleados sin parte ni suceso para un período indicado.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit3" name="submit3" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
@@ -472,7 +472,7 @@
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
                                 &nbsp;<strong>Cuadrillas:</strong>
-                                &nbsp;Muestra la conformación de cuadrillas para un período indicado.
+                                Muestra la conformación de cuadrillas para un período indicado.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit4" name="submit4" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
