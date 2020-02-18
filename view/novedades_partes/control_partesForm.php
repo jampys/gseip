@@ -197,7 +197,7 @@
             $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
             $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
             $('#id_empleado').attr('validar', 1);
-            //$('#id_concepto').attr('validar', 1);
+            $('#id_concepto').attr('validar', 0);
 
 
             if ($("#txt-form").valid()){
