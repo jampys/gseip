@@ -441,7 +441,8 @@
                         <div class="form-group col-md-2">
                             <!--<label for="search">&nbsp;</label>-->
                             <button id="control" class="form-control btn btn-default" href="#" title="Controlar novedades">
-                                <span class="glyphicon glyphicon-check fa-lg dp_blue">
+                                <!--<span class="glyphicon glyphicon-check fa-lg dp_blue">-->
+                                    <i class="fas fa-tasks fa-lg dp_blue"></i>
                             </button>
                         </div>
 
