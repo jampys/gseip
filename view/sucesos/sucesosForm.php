@@ -34,8 +34,8 @@
         //solo ocurre al cambiar el valor de fecha_desde y fecha_hasta. Restringe el rango de fechas de fd1, fh1, fd2, fh2
         $('#fecha_desde, #fecha_hasta').on('changeDate', function(){
             //alert('cambio las fechas de arriba');
-            var fecha_desde = $('#fecha_desde').val();
-            var fecha_hasta = $('#fecha_hasta').val();
+            var fecha_desde = $('#myModal #fecha_desde').val();
+            var fecha_hasta = $('#myModal #fecha_hasta').val();
             //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
             $('#fd1, #fd2').datepicker('setStartDate', fecha_desde);
             $('#fh1, #fh2').datepicker('setEndDate', fecha_hasta);

@@ -52,7 +52,7 @@
             params.operation = "getPeriodos";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
             params.id_contrato = $('#id_contrato').val();
-            params.activos = 1;
+            //params.activos = 1;
 
             $('#myModal #id_periodo').empty();
 
@@ -148,7 +148,7 @@
 
 
         //al presionar boton de exportar en pdf
-        $('#myModal').on("click", "#submit1", function(){
+        $('#myModal').on("click", "#submit1", function(){ //Desactivado temporalmente 31/01/2020
 
             if ($("#txt-form").valid()){
 
@@ -156,15 +156,12 @@
                 //params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
                 //var attr = $('#search_empleado option:selected').attr('id_grupo');
                 //params.id_grupo = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_grupo') : '';
-                //params.id_vencimiento = $("#search_vencimiento").val();
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                 //params.renovado = $('#search_renovado').prop('checked')? 1 : '';
 
                 params={};
                 //params.action = 'partes';
                 //params.operation = 'checkExportTxt';
-                //params.fecha_desde = $("#myModal #fecha_desde").val();
-                //params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.id_periodo = $("#myModal #id_periodo").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
@@ -202,7 +199,7 @@
                 //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
                 //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_crossTab_novedades.rptdesign&p_id_contrato="+params.id_contrato+"&p_fecha_desde="+params.fecha_desde+"&p_fecha_hasta="+params.fecha_hasta+"&p_id_user="+params.id_user;
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_nov_control_administracion.rptdesign&p_id_contrato="+params.id_contrato+
+                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_nov_control_administracion_"+params.id_contrato+".rptdesign&p_id_contrato="+params.id_contrato+
                         //"&p_fecha_desde="+params.fecha_desde+
                         //"&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_periodo="+params.id_periodo+
@@ -276,7 +273,7 @@
                     </div>
 
 
-                    <div class="alert alert-info" role="alert">
+                    <!--<div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags" ></span>&nbsp Exporta novedades en formato de tabla cruzada (empleado/concepto).
@@ -285,16 +282,18 @@
                                 <button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
 
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp <strong>Para uso de administración</strong> Exporta novedades en formato .txt (admisible para BAS).
+                                <span class="glyphicon glyphicon-tags"></span>
+                                &nbsp;<strong>Tabla empleados/conceptos:</strong>
+                                Exporta novedades en formato de tabla cruzada (empleados/conceptos).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit" name="submit" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -303,10 +302,14 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp <strong>Para uso de administración</strong> Exporta novedades en formato .xls para control.
+                                <span class="glyphicon glyphicon-tags" ></span>
+                                &nbsp;<strong>Archivo de texto</strong>
+                                <strong class="dp_orange">(RRHH)</strong>
+                                <strong>:</strong>
+                                Exporta novedades en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit" name="submit" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>

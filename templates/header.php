@@ -141,7 +141,7 @@
                             <li class="dropdown-header">PERSONAL</li>
 
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=renovacionesPersonal"><i class="far fa-calendar-check fa-fw"></i>&nbsp;Vencimientos de personal</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=renovacionesPersonalAuditoria"><i class="fas fa-history fa-fw"></i>&nbsp;Auditoría</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=renovacionesPersonalAuditoria"><i class="fas fa-history fa-fw"></i>&nbsp;Auditoría de personal</a></li>
 
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">VEHICULAR</li>

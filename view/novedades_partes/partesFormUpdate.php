@@ -546,7 +546,7 @@
                                 <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
                                 <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->parte->getIdContrato() ?>">
 
-                                <div class="form-group required">
+                                <div class="form-group">
                                     <label for="id_area" class="control-label">Área</label>
                                     <select class="selectpicker form-control show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5" title="Seleccione un área">
                                         <?php foreach ($view->areas as $ar){ ?>
@@ -559,19 +559,19 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label for="id_vehiculo" class="control-label">Vehículo</label>
                                     <select class="selectpicker form-control show-tick" id="id_vehiculo" name="id_vehiculo" data-live-search="true" data-size="5">
                                         <option value="">Seleccione un Vehículo</option>
-                                        <?php foreach ($view->vehiculos as $ar){ ?>
-                                            <option value="<?php echo $ar['id_vehiculo']; ?>"
-                                                <?php echo ($ar['id_vehiculo'] == $view->parte->getIdVehiculo())? 'selected' :'' ?>
+                                        <?php //foreach ($view->vehiculos as $ar){ ?>
+                                            <option value="<?php //echo $ar['id_vehiculo']; ?>"
+                                                <?php //echo ($ar['id_vehiculo'] == $view->parte->getIdVehiculo())? 'selected' :'' ?>
                                                 >
-                                                <?php echo $ar['nro_movil'].' '.$ar['modelo']; ?>
+                                                <?php //echo $ar['nro_movil'].' '.$ar['modelo']; ?>
                                             </option>
-                                        <?php  } ?>
+                                        <?php  //} ?>
                                     </select>
-                                </div>
+                                </div>-->
 
                                 <div class="form-group">
                                     <label for="id_evento" class="control-label">Evento</label>
@@ -590,51 +590,41 @@
 
 
 
-                                <div class="row">
+                                <!--<div class="row">
 
                                     <div class="col-md-4">
-                                        <!--<div class="form-group">
-                                            <label class="control-label" for="hs_normal">Hs. Normal</label>
-                                            <input class="form-control hs-group" type="text" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" placeholder="hh:mm">
-                                        </div>-->
                                         <div class="form-group">
                                             <label class="control-label" for="hs_normal">Hs. Normal</label>
                                             <div class="input-group bootstrap-timepicker timepicker">
-                                                <input type="text" class="form-control input-small hs-group" name="hs_normal" id="hs_normal" value = "<?php print $view->parte->getHsNormal() ?>" >
+                                                <input type="text" class="form-control input-small hs-group" name="hs_normal" id="hs_normal" value = "<?php //print $view->parte->getHsNormal() ?>" >
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
-                                        <!--<div class="form-group">
-                                            <label class="control-label" for="hs_50">Hs. 50%</label>
-                                            <input class="form-control hs-group" type="text" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" placeholder="hh:mm">
-                                        </div>-->
                                         <div class="form-group">
                                             <label class="control-label" for="hs_50">Hs. 50%</label>
                                             <div class="input-group bootstrap-timepicker timepicker">
-                                                <input type="text" class="form-control input-small hs-group" name="hs_50" id="hs_50" value = "<?php print $view->parte->getHs50() ?>" >
+                                                <input type="text" class="form-control input-small hs-group" name="hs_50" id="hs_50" value = "<?php //print $view->parte->getHs50() ?>" >
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
-                                        <!--<div class="form-group">
-                                            <label class="control-label" for="hs_100">Hs. 100%</label>
-                                            <input class="form-control hs-group" type="text" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" placeholder="hh:mm">
-                                        </div>-->
                                         <div class="form-group">
                                             <label class="control-label" for="hs_100">Hs. 100%</label>
                                             <div class="input-group bootstrap-timepicker timepicker">
-                                                <input type="text" class="form-control input-small hs-group" name="hs_100" id="hs_100" value = "<?php print $view->parte->getHs100() ?>" >
+                                                <input type="text" class="form-control input-small hs-group" name="hs_100" id="hs_100" value = "<?php //print $view->parte->getHs100() ?>" >
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                             </div>
                                         </div>
                                     </div>
 
-                                </div>
+                                </div>-->
+
+                                <br/>
 
 
                                 <!-- seccion de empleados -->

@@ -57,9 +57,10 @@
             params.operation = "getPeriodosAndEmpleados";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
             params.id_contrato = $('#id_contrato').val();
-            params.activos = 1;
+            //params.activos = 1;
 
             $('#myModal #id_periodo').empty();
+            $('#myModal #id_empleado').empty();
 
 
             $.ajax({
@@ -178,6 +179,44 @@
                     "&p_id_periodo="+params.id_periodo+
                     "&p_id_empleado="+params.id_empleado+
                     "&p_id_concepto_convenio_contrato="+params.id_concepto_convenio_contrato+
+                    "&p_id_user="+params.id_user;
+                var win = window.open(URL, "_blank");
+
+            }
+
+
+            return false;
+        });
+
+
+
+        //reporte: conceptos en enpleado
+        $('#myModal').on("click", "#submit5", function(){
+            //alert('Crosstab sucesos');
+            //$('#txt-form').validate().resetForm(); //limpiar error input validate
+            $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
+            $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
+            $('#id_empleado').attr('validar', 1);
+            $('#id_concepto').attr('validar', 0);
+
+
+            if ($("#txt-form").valid()){
+
+                params={};
+                //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
+                params.id_contrato = $("#myModal #id_contrato").val();
+                params.id_periodo = $("#myModal #id_periodo").val();
+                params.id_empleado = $("#myModal #id_empleado").val();
+                params.id_concepto_convenio_contrato = $("#myModal #id_concepto").val();
+                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
+                var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
+                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_conceptos2.rptdesign"+
+                        //"&p_fecha_desde="+params.fecha_desde+
+                        //"&p_fecha_hasta="+params.fecha_hasta+
+                    "&p_id_contrato="+params.id_contrato+
+                    "&p_id_periodo="+params.id_periodo+
+                    "&p_id_empleado="+params.id_empleado+
+                    //"&p_id_concepto_convenio_contrato="+params.id_concepto_convenio_contrato+
                     "&p_id_user="+params.id_user;
                 var win = window.open(URL, "_blank");
 
@@ -375,7 +414,9 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Muestra los partes involucrados para un período, empleado y concepto indicados.
+                                <span class="glyphicon glyphicon-tags"></span>
+                                &nbsp;<strong>Detalle de concepto:</strong>
+                                Muestra los partes involucrados para un período, empleado y concepto indicados.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
@@ -387,7 +428,23 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Muestra los partes, tipos  y  números de órden para un período indicado.
+                                <span class="glyphicon glyphicon-tags"></span>
+                                &nbsp;<strong>Conceptos del período:</strong>
+                                Muestra todos los conceptos involucrados para un período y empleado indicados.
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="submit5" name="submit5" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <span class="glyphicon glyphicon-tags"></span>
+                                &nbsp;<strong>Partes del período:</strong>
+                                Muestra los partes, tipos  y  números de órden para un período indicado.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit2" name="submit2" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
@@ -399,7 +456,9 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Muestra los empleados sin parte ni suceso para un período indicado.
+                                <span class="glyphicon glyphicon-tags"></span>
+                                &nbsp;<strong>Pendientes:</strong>
+                                Muestra los empleados sin parte ni suceso para un período indicado.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit3" name="submit3" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
@@ -411,7 +470,9 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Muestra la conformación de cuadrillas para un período indicado.
+                                <span class="glyphicon glyphicon-tags"></span>
+                                &nbsp;<strong>Cuadrillas:</strong>
+                                Muestra la conformación de cuadrillas para un período indicado.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit4" name="submit4" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>

@@ -85,7 +85,7 @@
                 <!--<th>Nro. cuad.</th>-->
                 <th>Nombre</th>
                 <th>Contrato</th>
-                <th>Vehículo</th>
+                <th>Móvil</th>
                 <th>Área</th>
                 <th></th>
 

@@ -83,7 +83,7 @@
                 <th>Fecha pte.</th>
                 <th>Nro.</th>
                 <th>Contrato</th>
-                <th>Cuadrilla</th>
+                <th>Cuadrilla / Empleado</th>
                 <th>Área</th>
                 <!--<th>Móvil</th>-->
                 <th>Evento</th>

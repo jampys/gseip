@@ -137,22 +137,6 @@
         </div>
 
 
-        <!--<div class="form-group required">
-            <label for="conductor" class="control-label">Conductor</label>
-
-            <div class="input-group">
-
-                <?php //foreach($view->conductor['enum'] as $val){ ?>
-                    <label class="radio-inline">
-                        <input type="radio" name="conductor" value="<?php //echo $val ?>"
-                            <?php //echo ($val == $view->empleado->getConductor() OR ($val == $view->conductor['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
-                            ><?php //echo ($val==1)? 'Si':'No' ?>
-                    </label>
-                <?php //} ?>
-
-            </div>
-        </div>-->
-
 
         <div class="form-group required">
             <div class="checkbox">
@@ -162,13 +146,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <!--<div class="form-group">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" id="avoid_event" name="avoid_event" <?php echo ($view->empleado->getAvoidEvent()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Si hay un evento evita el curso definido para éste y calcula conceptos de manera normal">Evitar evento</a>
+                    <input type="checkbox" id="avoid_event" name="avoid_event" <?php //echo ($view->empleado->getAvoidEvent()== 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Si hay un evento evita el curso definido para éste y calcula conceptos de manera normal">Evitar evento</a>
                 </label>
             </div>
-        </div>
+        </div>-->
 
         <div class="form-group">
             <label class="control-label" for="servicio">Comentario</label>
