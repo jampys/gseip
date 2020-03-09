@@ -20,13 +20,13 @@
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-                params.id_grupo = $('#search_empleado option:selected').attr('id_grupo');
+                params.id_vehiculo = $('#search_vehiculo option:selected').attr('id_vehiculo');
+                params.id_grupo = $('#search_vehiculo option:selected').attr('id_grupo');
                 params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                 params.id_contrato = $("#search_contrato").val();
                 params.id_subcontratista = $("#search_subcontratista").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
-                params.action = "renovacionesPersonalAuditoria";
+                params.action = "renovacionesVehiculosAuditoria";
                 params.operation = "refreshGrid";
                 //alert(params.id_empleado);
                 $('#content').load('index.php', params);
@@ -35,13 +35,13 @@
 
             $('#content').on('click', '.new', function(){ //ok
                 params={};
-                params.id_empleado = $(this).closest('tr').attr('id_empleado');
+                params.id_vehiculo = $(this).closest('tr').attr('id_vehiculo');
                 params.id_vencimiento = $(this).closest('tr').attr('id_vencimiento');
-                params.action = "renovacionesPersonal";
+                params.action = "renovacionesVehiculos";
                 params.operation="newRenovacion";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_empleado').val(params.id_empleado).prop('disabled', true).selectpicker('refresh');
+                    $('#id_vehiculo').val(params.id_vehiculo).prop('disabled', true).selectpicker('refresh');
                     $('#id_vencimiento').val(params.id_vencimiento).prop('disabled', true).selectpicker('refresh');
                 });
                 return false;
@@ -54,12 +54,12 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
+                params.action = "renovacionesVehiculos";
                 params.operation = "renovRenovacion";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#id_vehiculo').prop('disabled', true).selectpicker('refresh');
                     $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
                 });
                 return false;
@@ -70,12 +70,12 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
+                params.action = "renovacionesVehiculos";
                 params.operation = "editRenovacion";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#id_vehiculo').prop('disabled', true).selectpicker('refresh');
                     $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
                 });
                 return false;
@@ -87,8 +87,8 @@
                 var id = $(this).attr('data-id');
                 //preparo los parametros
                 params={};
-                params.id_empleado = $(this).closest('tr').attr('id_empleado');
-                params.action = "empleados";
+                params.id_vehiculo = $(this).closest('tr').attr('id_vehiculo');
+                params.action = "vehiculos";
                 params.operation = "loadContratos";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
@@ -140,16 +140,16 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="search_empleado" class="control-label">Empleado / Grupo</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un empleado o grupo</option>
-                                <?php foreach ($view->empleadosGrupos as $eg){
+                            <select class="form-control selectpicker show-tick" id="search_vehiculo" name="search_vehiculo" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un vehiculo o grupo</option>
+                                <?php foreach ($view->vehiculosGrupos as $vg){
                                     ?>
                                     <option value=""
-                                            id_empleado="<?php echo $eg['id_empleado']; ?>"
-                                            id_grupo="<?php echo $eg['id_grupo']; ?>"
-                                            data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
+                                            id_vehiculo="<?php echo $vg['id_vehiculo']; ?>"
+                                            id_grupo="<?php echo $vg['id_grupo']; ?>"
+                                            data-icon="<?php echo ($vg['id_vehiculo'])? "fas fa-user fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
                                         >
-                                        <?php echo $eg['descripcion'] ;?>
+                                        <?php echo $vg['descripcion'] ;?>
                                     </option>
                                 <?php  } ?>
                             </select>
