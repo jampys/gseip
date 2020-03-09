@@ -226,10 +226,10 @@ order by priority, id_rnv_renovacion asc";
 
 
 
-    public static function getRenovacionesVehiculosAuditoria($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado) { //ok
+    public static function getRenovacionesVehiculosAuditoria($id_vehiculo, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado) { //ok
         $stmt=new sQuery();
         $query = "select v.id_vencimiento, v.nombre as vencimiento,
-em.id_empleado, em.legajo, em.apellido, em.nombre,
+ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.modelo,
 ev.id_empleado_vencimiento,
 vrp.id_renovacion, vrp.fecha_emision,
 DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
@@ -237,19 +237,18 @@ vrp.id_rnv_renovacion, vrp.referencia, vrp.comentarios,
 DATE_FORMAT(vrp.disabled,  '%d/%m/%Y') as disabled,
 datediff(vrp.fecha_vencimiento, sysdate()) as isVencida
 from vto_vencimiento_p v
-join empleados em
-left join empleado_vencimiento ev on ev.id_vencimiento = v.id_vencimiento and ev.id_empleado = em.id_empleado
-left join vto_renovacion_p vrp on vrp.id_vencimiento = v.id_vencimiento and vrp.id_empleado = em.id_empleado and vrp.id_rnv_renovacion is null
-left join empleado_contrato ec on ec.id_empleado = em.id_empleado
-where em.id_empleado = ifnull(:id_empleado, em.id_empleado)
-and if(:id_contrato is not null, ec.id_contrato = :id_contrato, 1)
+join vto_vehiculos ve
+left join vto_vehiculo_vencimiento vv on vv.id_vencimiento = v.id_vencimiento and vv.id_empleado = ve.id_vehiculo
+left join vto_renovacion_v vrv on vrv.id_vencimiento = v.id_vencimiento and vrv.id_vehiculo = ve.id_vehiculo and vrv.id_rnv_renovacion is null
+left join vto_vehiculo_contrato vc on vc.id_vehiculo = ve.id_vehiculo
+where ve.id_vehiculo = ifnull(:id_vehiculo, ve.id_vehiculo)
+and if(:id_contrato is not null, vc.id_contrato = :id_contrato, 1)
 and v.id_vencimiento in ($id_vencimiento)
-and em.fecha_baja is null
-group by v.id_vencimiento, em.id_empleado";
+and ve.fecha_baja is null
+group by v.id_vencimiento, ve.id_vehiculo";
 
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        //
+        $stmt->dpBind(':id_vehiculo', $id_vehiculo);
         //$stmt->dpBind(':id_grupo', $id_grupo);
         //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
         $stmt->dpBind(':id_contrato', $id_contrato);
