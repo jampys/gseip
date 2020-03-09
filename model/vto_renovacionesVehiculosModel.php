@@ -236,7 +236,7 @@ DATE_FORMAT(vrv.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
 vrv.id_rnv_renovacion, vrv.referencia, vrv.comentarios,
 DATE_FORMAT(vrv.disabled,  '%d/%m/%Y') as disabled,
 datediff(vrv.fecha_vencimiento, sysdate()) as isVencida
-from vto_vencimiento_p v
+from vto_vencimiento_v v
 join vto_vehiculos ve
 left join vto_vehiculo_vencimiento vv on vv.id_vencimiento = v.id_vencimiento and vv.id_vehiculo = ve.id_vehiculo
 left join vto_renovacion_v vrv on vrv.id_vencimiento = v.id_vencimiento and vrv.id_vehiculo = ve.id_vehiculo and vrv.id_rnv_renovacion is null
