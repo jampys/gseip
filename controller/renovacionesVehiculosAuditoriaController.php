@@ -23,7 +23,7 @@ switch ($operation)
         $id_subcontratista = ($_POST['id_subcontratista']!='')? $_POST['id_subcontratista'] : null;
         $renovado = ($_POST['renovado']== 0)? null : 1;
         $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonalAuditoria($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
-        $view->contentTemplate="view/renovaciones_personal_auditoria/renovacionesVehiculosGrid.php";
+        $view->contentTemplate="view/renovaciones_vehiculos_auditoria/renovacionesVehiculosGrid.php";
 
         $view->details = array();
         $view->details['actualizados'] = 0;
@@ -42,7 +42,7 @@ switch ($operation)
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
         $view->subcontratistas = Subcontratista::getSubcontratistas(); //carga el combo para filtrar subcontratistas
         //$view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal(null, null, null, null, null);
-        $view->contentTemplate="view/renovaciones_personal_auditoria/renovacionesVehiculosGrid.php";
+        $view->contentTemplate="view/renovaciones_vehiculos_auditoria/renovacionesVehiculosGrid.php";
         break;
 }
 
@@ -51,7 +51,7 @@ if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {
-    include_once('view/renovaciones_personal_auditoria/renovacionesVehiculosLayout.php');
+    include_once('view/renovaciones_vehiculos_auditoria/renovacionesVehiculosLayout.php');
 }
 
 
