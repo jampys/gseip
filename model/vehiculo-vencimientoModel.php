@@ -56,14 +56,14 @@ class VehiculoVencimiento
     }
 
 
-    public static function getEmpleadoVencimiento($id_empleado) { //ok
+    public static function getVehiculoVencimiento($id_vehiculo) { //ok
         $stmt=new sQuery();
-        $query = "select v.id_vencimiento, v.nombre, ev.id_empleado_vencimiento, ev.id_empleado, ev.created_date
-from vto_vencimiento_p v
-left join empleado_vencimiento ev on v.id_vencimiento = ev.id_vencimiento and ev.id_empleado = :id_empleado
+        $query = "select v.id_vencimiento, v.nombre, vv.id_vehiculo_vencimiento, vv.id_vehiculo, ev.created_date
+from vto_vencimiento_v v
+left join vehiculo_vencimiento vv on v.id_vencimiento = vv.id_vencimiento and vv.id_vehiculo = :id_vehiculo
 order by v.nombre asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_empleado', $id_vehiculo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
