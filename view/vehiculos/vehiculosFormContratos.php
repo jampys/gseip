@@ -191,7 +191,7 @@
                                 <i class="fas fa-info-circle"></i> Seleccionar los vencimientos requeridos para el empleado.
                             </div>
 
-                            <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">
+                            <input type="hidden" name="id_vehiculo" id="id_vehiculo" value="<?php print $view->vehiculo->getIdVehiculo() ?>">
 
                             <div class="table-responsive fixedTable">
 
@@ -199,7 +199,7 @@
 
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="<?php echo $v['id_empleado_vencimiento'] ?>" <?php echo ($v['id_empleado_vencimiento'])? 'checked' : ''; ?>
+                                            <input type="checkbox" value="<?php echo $v['id_vehiculo_vencimiento'] ?>" <?php echo ($v['id_vehiculo_vencimiento'])? 'checked' : ''; ?>
                                                    id_vencimiento="<?php echo $v['id_vencimiento'] ?>"
                                                 >
 
