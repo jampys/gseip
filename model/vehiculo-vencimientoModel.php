@@ -92,23 +92,23 @@ order by v.nombre asc";
     }*/
 
 
-    public function insertEmpleadoVencimiento(){ //ok
+    public function insertVehiculoVencimiento(){ //ok
         $stmt=new sQuery();
-        $query="insert into empleado_vencimiento(id_empleado, id_vencimiento, created_date)
-                values(:id_empleado, :id_vencimiento, sysdate())";
+        $query="insert into vehiculo_vencimiento(id_vehiculo, id_vencimiento, created_date)
+                values(:id_vehiculo, :id_vencimiento, sysdate())";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
         $stmt->dpBind(':id_vencimiento', $this->getIdVencimiento());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
 
-    public function deleteEmpleadoVencimiento(){ //ok
+    public function deleteVehiculoVencimiento(){ //ok
         $stmt=new sQuery();
-        $query="delete from empleado_vencimiento where id_empleado_vencimiento = :id_empleado_vencimiento";
+        $query="delete from vehiculo_vencimiento where id_vehiculo_vencimiento = :id_vehiculo_vencimiento";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado_vencimiento', $this->getIdEmpleadoVencimiento());
+        $stmt->dpBind(':id_vehiculo_vencimiento', $this->getIdVehiculoVencimiento());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
