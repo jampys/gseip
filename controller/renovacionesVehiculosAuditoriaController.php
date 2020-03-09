@@ -1,7 +1,7 @@
 ﻿<?php
 
-include_once("model/vto_renovacionesPersonalModel.php");
-include_once("model/vto_vencimientosPersonalModel.php");
+include_once("model/vto_renovacionesVehiculosModel.php");
+include_once("model/vto_vencimientosVehiculosModel.php");
 include_once("model/contratosModel.php");
 include_once("model/subcontratistasModel.php");
 
@@ -15,14 +15,14 @@ switch ($operation)
 {
     case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
+        $id_vehiculo = ($_POST['id_vehiculo']!='')? $_POST['id_vehiculo'] : null;
         $id_grupo = ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? $_POST['id_vencimiento'] : null;
         $id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'v.id_vencimiento';
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $id_subcontratista = ($_POST['id_subcontratista']!='')? $_POST['id_subcontratista'] : null;
         $renovado = ($_POST['renovado']== 0)? null : 1;
-        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonalAuditoria($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
+        $view->renovaciones_vehiculos = RenovacionVehicular::getRenovacionesVehiculosAuditoria($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
         $view->contentTemplate="view/renovaciones_vehiculos_auditoria/renovacionesVehiculosGrid.php";
 
         $view->details = array();
