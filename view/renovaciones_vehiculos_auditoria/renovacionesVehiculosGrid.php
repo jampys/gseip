@@ -97,22 +97,22 @@
             </thead>
             <tbody>
 
-            <?php if(isset($view->renovaciones_personal)) {
-                foreach ($view->renovaciones_personal as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_renovacion']; ?>"
-                        id_empleado="<?php echo $rp['id_empleado']; ?>"
-                        id_vencimiento="<?php echo $rp['id_vencimiento']; ?>"
+            <?php if(isset($view->renovaciones_vehiculos)) {
+                foreach ($view->renovaciones_vehiculos as $rv):   ?>
+                    <tr data-id="<?php echo $rv['id_renovacion']; ?>"
+                        id_vehiculo="<?php echo $rv['id_vehiculo']; ?>"
+                        id_vencimiento="<?php echo $rv['id_vencimiento']; ?>"
 
-                        style="background-color: <?php echo $rp['color']; ?>" >
-                        <td><?php echo $rp['legajo']; ?></td>
-                        <td><?php echo $rp['apellido'].' '.$rp['nombre']; ?></td>
-                        <td><?php echo $rp['vencimiento']; ?></td>
+                        style="background-color: <?php echo $rv['color']; ?>" >
+                        <td><?php echo $rv['legajo']; ?></td>
+                        <td><?php echo $rv['apellido'].' '.$rv['nombre']; ?></td>
+                        <td><?php echo $rv['vencimiento']; ?></td>
                         <td style="text-align: center">
 
 
                         <a class="new <?php echo (PrivilegedUser::dhasPrivilege('EMP_ABM', array(1)) )? '': 'disabled' ?>" href="" title="modificar vencimientos">
                             <span class="requerido">
-                                <?php echo ($rp['id_empleado_vencimiento'])? 'SI' : 'NO' ; ?>
+                                <?php echo ($rv['id_vehiculo_vencimiento'])? 'SI' : 'NO' ; ?>
                             </span>
                         </a>
 
@@ -125,10 +125,10 @@
 
 
 
-                        <td><?php echo $rp['fecha_vencimiento']; ?></td>
-                        <td><?php echo $rp['disabled']; ?></td>
+                        <td><?php echo $rv['fecha_vencimiento']; ?></td>
+                        <td><?php echo $rv['disabled']; ?></td>
                         <td>
-                            <?php if($rp['id_empleado_vencimiento'] && (!$rp['id_renovacion'] || $rp['disabled'] || $rp['isVencida']<= 0  ) ){ ?>
+                            <?php if($rv['id_vehiculo_vencimiento'] && (!$rv['id_renovacion'] || $rv['disabled'] || $rv['isVencida']<= 0  ) ){ ?>
                                 <i class="fas fa-exclamation-triangle dp_red"></i>
                             <?php } else{ ?>
                                 <i class="fas fa-check dp_green"></i>
@@ -136,28 +136,28 @@
 
                             &nbsp;
 
-                            <?php if($rp['id_empleado_vencimiento'] && !$rp['id_renovacion']){ $view->details['sin_datos']++; ?>
+                            <?php if($rv['id_vehiculo_vencimiento'] && !$rv['id_renovacion']){ $view->details['sin_datos']++; ?>
                                 <a class="new <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Cargar vencimiento">
                                     <span class="dp_red">Sin datos</span>
                                 </a>
 
-                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['disabled']){ $view->details['desactivados']++; ?>
+                            <?php } elseif($rv['id_vehiculo_vencimiento'] && $rv['disabled']){ $view->details['desactivados']++; ?>
                                 <a class="edit <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Habilitar vencimiento">
                                     <span class="dp_red">Desactivado</span>
                                 </a>
 
-                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']<= 0){ $view->details['vencidos']++;  ?>
+                            <?php } elseif($rv['id_vehiculo_vencimiento'] && $rv['isVencida']<= 0){ $view->details['vencidos']++;  ?>
                                 <a class="renovar <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Renovar vencimiento">
                                     <span class="dp_red">Vencido</span>
                                 </a>
 
-                            <?php } elseif($rp['id_empleado_vencimiento'] && $rp['isVencida']> 0){ $view->details['actualizados']++;  ?>
+                            <?php } elseif($rv['id_vehiculo_vencimiento'] && $rv['isVencida']> 0){ $view->details['actualizados']++;  ?>
                                 <!--<span class="dp_green">Vigente</span>-->
                                 <a class="edit <?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>" href="" title="Habilitar vencimiento">
                                     <span class="dp_green">Vigente</span>
                                 </a>
 
-                            <?php } elseif(!$rp['id_empleado_vencimiento']){ $view->details['no_aplica']++;  ?>
+                            <?php } elseif(!$rv['id_empleado_vencimiento']){ $view->details['no_aplica']++;  ?>
                                 <span class="dp_green">No aplica</span>
                             <?php }?>
 
@@ -166,8 +166,8 @@
 
 
                         <!--<td class="text-center">
-                            <?php if($rp['cant_uploads']> 0 ){ ?>
-                                <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
+                            <?php if($rv['cant_uploads']> 0 ){ ?>
+                                <a href="#" title="<?php echo $rv['cant_uploads']; ?> adjuntos" >
                                     <span class="glyphicon glyphicon-paperclip dp_gray" aria-hidden="true"></span>
                                 </a>
                             <?php } else{ ?>
@@ -178,8 +178,8 @@
                                 <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
-                            <?php if($rp['id_rnv_renovacion']){ ?>
-                                <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rp['id_rnv_renovacion']; ?>" >
+                            <?php if($rv['id_rnv_renovacion']){ ?>
+                                <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rv['id_rnv_renovacion']; ?>" >
                                     <span class="glyphicon glyphicon-ok-sign dp_blue" aria-hidden="true"></span>
                                 </a>
                             <?php } else{ ?>
@@ -189,7 +189,7 @@
                             <?php } ?>&nbsp;&nbsp;
 
 
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rv['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
