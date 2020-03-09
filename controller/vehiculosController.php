@@ -5,6 +5,7 @@ include_once("model/contratosModel.php");
 include_once("model/companiasModel.php");
 include_once("model/empleadosModel.php");
 include_once("model/contrato-vehiculoModel.php");
+include_once("model/vehiculo-vencimientoModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -100,6 +101,7 @@ switch ($operation)
 
         $view->contratos = ContratoVehiculo::getContratosByVehiculo($_POST['id_vehiculo']);
         $view->seguros = $view->vehiculo->getSeguroVehicular();
+        $view->vencimientos = VehiculoVencimiento::getVehiculoVencimiento($_POST['id_vehiculo']);
 
         $view->contentTemplate="view/vehiculos/vehiculosFormContratos.php";
         break;
