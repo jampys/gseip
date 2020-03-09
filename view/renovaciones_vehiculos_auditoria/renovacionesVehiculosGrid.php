@@ -85,8 +85,8 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Legajo</th>
-                <th>Empleado</th>
+                <th>Nro.</th>
+                <th>Vehículo</th>
                 <th>Vencimiento</th>
                 <th style="text-align: center">Requerido</th>
                 <th>Fecha. Vto.</th>
@@ -104,8 +104,8 @@
                         id_vencimiento="<?php echo $rv['id_vencimiento']; ?>"
 
                         style="background-color: <?php echo $rv['color']; ?>" >
-                        <td><?php echo $rv['legajo']; ?></td>
-                        <td><?php echo $rv['apellido'].' '.$rv['nombre']; ?></td>
+                        <td><?php echo $rv['nro_movil']; ?></td>
+                        <td><?php echo $rv['matricula'].' '.$rv['modelo']; ?></td>
                         <td><?php echo $rv['vencimiento']; ?></td>
                         <td style="text-align: center">
 
