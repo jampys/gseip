@@ -94,7 +94,7 @@ order by v.nombre asc";
 
     public function insertVehiculoVencimiento(){ //ok
         $stmt=new sQuery();
-        $query="insert into vehiculo_vencimiento(id_vehiculo, id_vencimiento, created_date)
+        $query="insert into vto_vehiculo_vencimiento(id_vehiculo, id_vencimiento, created_date)
                 values(:id_vehiculo, :id_vencimiento, sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vehiculo', $this->getIdVehiculo());
@@ -106,7 +106,7 @@ order by v.nombre asc";
 
     public function deleteVehiculoVencimiento(){ //ok
         $stmt=new sQuery();
-        $query="delete from vehiculo_vencimiento where id_vehiculo_vencimiento = :id_vehiculo_vencimiento";
+        $query="delete from vto_vehiculo_vencimiento where id_vehiculo_vencimiento = :id_vehiculo_vencimiento";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vehiculo_vencimiento', $this->getIdVehiculoVencimiento());
         $stmt->dpExecute();
