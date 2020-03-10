@@ -7,8 +7,8 @@
         $(':checkbox').on('click', function(e){
             //Solo guarda en el array los elementos que cambiaron, no es necesario tener los que vienen de la BD.
             item = {};
-            item.id_empleado_vencimiento = $(this).val();
-            item.id_empleado = $('#id_empleado').val();
+            item.id_vehiculo_vencimiento = $(this).val();
+            item.id_vehiculo = $('#id_vehiculo').val();
             item.id_vencimiento = $(this).attr('id_vencimiento');
             item.operation = '';
 
@@ -31,7 +31,7 @@
             //alert('guardar evaluacion desempeño');
             //if ($("#eac-form").valid()){
             var params={};
-            params.action = 'empleados';
+            params.action = 'vehiculos';
             params.operation = 'saveVencimientos';
             //params.periodo = $('#periodo').val();
             //params.cerrado = $('#cerrado').val();
