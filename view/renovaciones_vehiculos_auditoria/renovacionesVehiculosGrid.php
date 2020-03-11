@@ -85,7 +85,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro.</th>
+                <th>Móvil</th>
                 <th>Vehículo</th>
                 <th>Vencimiento</th>
                 <th style="text-align: center">Requerido</th>

@@ -47,7 +47,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro.</th>
+                <th>Móvil</th>
                 <th>Matricula</th>
                 <th>Marca</th>
                 <th>Modelo</th>
