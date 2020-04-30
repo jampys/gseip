@@ -10,13 +10,14 @@
             events: function(start, end, timezone, callback) {
                 $.ajax({
                     url: 'index.php',
+                    type: 'POST',
                     dataType: 'json',
                     data: {
                         // our hypothetical feed requires UNIX timestamps
                         action: 'nov_calendar',
-                        operation: 'get',
-                        start: start.unix(),
-                        end: end.unix()
+                        operation: 'get'
+                        //start: start.format(),
+                        //end: end.format()
                     },
                     success: function(doc) {
                         var events = [];
