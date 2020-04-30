@@ -32,15 +32,18 @@
 
 </script>
 
-<div class="col-md-1"></div>
+<div class="col-md-3">
 
-<div class="col-md-10">
+    panel izquierdo
+</div>
+
+<div class="col-md-9">
 
    HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 </div>
 
-<div class="col-md-1"></div>
+
 
 
 

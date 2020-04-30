@@ -44,7 +44,7 @@ if ($view->disableLayout==true) {
     include_once ($view->contentTemplate);
 }
 else {
-    //include_once('view/busquedas/busquedasLayout.php');
+    include_once('view/calendar/calendarLayout.php');
 }
 
 
