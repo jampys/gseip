@@ -21,15 +21,18 @@ class Calendar
     { $this->nombre=$val;}
 
 
-    public static function getFeriados() {
+    public static function getFeriados($start, $end) {
         $stmt=new sQuery();
-        $query = "select id_etapa, id_postulacion,
+        /*$query = "select id_etapa, id_postulacion,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
                       DATE_FORMAT(fecha_etapa, '%d/%m/%Y') as fecha_etapa,
                       etapa, aplica, motivo, modo_contacto, comentarios, id_user
                       from sel_etapas
-                      where id_etapa = :nro";
+                      where id_etapa = :nro";*/
+        $query = "SELECT * FROM gestion.tmp_calendar
+where fecha between '2020-04-30' and '2020-12-31'";
         $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll(); // retorna todas las areas
     }

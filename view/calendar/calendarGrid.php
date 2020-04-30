@@ -6,7 +6,32 @@
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: [ 'dayGrid' ],
-            locale: 'es'//lang: 'es'
+            locale: 'es',//lang: 'es'
+            events: function(start, end, timezone, callback) {
+                $.ajax({
+                    url: 'index.php',
+                    dataType: 'json',
+                    data: {
+                        // our hypothetical feed requires UNIX timestamps
+                        action: 'nov_calendar',
+                        operation: 'get'
+                        start: start.unix(),
+                        end: end.unix()
+                    },
+                    success: function(doc) {
+                        var events = [];
+                        $(doc).find('event').each(function() {
+                            events.push({
+                                title: $(this).attr('title'),
+                                start: $(this).attr('start') // will be parsed
+                            });
+                        });
+                        callback(events);
+                    }
+                });
+            }
+
+
         });
 
         calendar.render();
@@ -15,12 +40,6 @@
 
 
     $(document).ready(function(){
-
-
-
-
-
-
 
     });
 

@@ -1,5 +1,5 @@
 ﻿<?php
-//include_once("model/nov_periodosModel.php");
+include_once("model/calendarModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -17,10 +17,12 @@ switch ($operation)
         exit;
         break;
 
-    case 'getPeriodos1': //select dependiente
-        $id_empleado = (($_POST['id_empleado']!='')? $_POST['id_empleado'] : null );
-        $activos = (($_POST['activos']!='')? $_POST['activos'] : null );
-        $rta = NovPeriodo::getPeriodos1($id_empleado, $activos);
+    case 'get': //trae los feriados //ok
+        //$id_empleado = (($_POST['id_empleado']!='')? $_POST['id_empleado'] : null );
+        //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
+        $start = $_POST['start'];
+        $end = $_POST['end'];
+        $rta = Calendar::getFeriados($start, $end);
         print_r(json_encode($rta));
         exit;
         break;
