@@ -23,12 +23,6 @@ class Calendar
 
     public static function getFeriados($start, $end) {
         $stmt=new sQuery();
-        /*$query = "select id_etapa, id_postulacion,
-                      DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      DATE_FORMAT(fecha_etapa, '%d/%m/%Y') as fecha_etapa,
-                      etapa, aplica, motivo, modo_contacto, comentarios, id_user
-                      from sel_etapas
-                      where id_etapa = :nro";*/
         $query = "SELECT descripcion as title, fecha as start, fecha as end
 FROM tmp_calendar
 where descripcion is not null
@@ -37,7 +31,7 @@ and fecha between :start and :end";
         $stmt->dpBind(':start', $start);
         $stmt->dpBind(':end', $end);
         $stmt->dpExecute();
-        return $stmt->dpFetchAll(); // retorna todas las areas
+        return $stmt->dpFetchAll();
     }
 
 
@@ -46,7 +40,6 @@ and fecha between :start and :end";
 
     public static function getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
         $stmt=new sQuery();
-        // el join con contratos activos, y el group
         $query = "select su.id_suceso, su.id_evento, su.id_empleado,
                   DATE_FORMAT(su.created_date,  '%d/%m/%Y') as created_date,
                   su.fecha_desde,
