@@ -5,8 +5,17 @@
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: [ 'dayGrid' ],
             locale: 'es',//lang: 'es'
+            plugins: [ 'interaction', 'dayGrid' ],
+            header: {
+                left: 'prevYear,prev,next,nextYear today',
+                center: 'title',
+                right: 'dayGridMonth,dayGridWeek,dayGridDay'
+            },
+            //defaultDate: '2020-02-12',
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
 
             events: function(info, successCallback, failureCallback) { //https://fullcalendar.io/docs/events-function
                 $.ajax({
