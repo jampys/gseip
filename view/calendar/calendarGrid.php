@@ -26,7 +26,7 @@
                             events.push({
                                 title: data[index].title,
                                 start: data[index].start,
-                                end: '2020-05-02'
+                                end: data[index].end
                             });
                         });
                         successCallback(events);
