@@ -1,31 +1,24 @@
 ﻿<script type="text/javascript">
 
 
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: [ 'dayGrid' ]
+        });
+
+        calendar.render();
+    });
+
+    
+
     $(document).ready(function(){
 
 
 
-        $('#confirm').dialog({
-            autoOpen: false,
-            //modal: true,
-            buttons: [
-                        {
-                        text: "Aceptar",
-                        click: function() {
-                            $.fn.borrar($('#confirm').data('id'));
-                        },
-                        class:"ui-button-danger"
-                    },
-                    {
-                        text: "Cancelar",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"ui-button-danger"
-                    }
 
-                    ]
-        });
+
 
 
     });
@@ -39,7 +32,7 @@
 
 <div class="col-md-9">
 
-   HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    <div id='calendar'></div>
 
 </div>
 

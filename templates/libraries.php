@@ -83,9 +83,12 @@
 
 
     <!-- incluyo la libreria fullcalendar -->
+
+
     <link href='resources/libraries/fullcalendar/packages/core/main.css' rel='stylesheet' />
     <link href='resources/libraries/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
     <script src='resources/libraries/fullcalendar/packages/core/main.js'></script>
+    <script src='resources/libraries/fullcalendar/packages/interaction/main.js'></script>
     <script src='resources/libraries/fullcalendar/packages/daygrid/main.js'></script>
 
 
