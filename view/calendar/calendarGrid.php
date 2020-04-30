@@ -8,29 +8,28 @@
             plugins: [ 'dayGrid' ],
             locale: 'es',//lang: 'es'
 
-            events: function(info, callback, fail) {
+            events: function(info, successCallback, failureCallback) {
                 $.ajax({
                     url: 'index.php',
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        // our hypothetical feed requires UNIX timestamps
+                        start: info.start.valueOf(),
+                        end: info.end.valueOf(),
                         action: 'nov_calendar',
                         operation: 'get'
-                        //start: start.format(),
-                        //end: end.format()
                     },
-                    success: function(doc) {
+                    success: function(data) {
                         var events = [];
-                        //$(doc).find('event').each(function() {
-                        $(doc).each(function() {
+                        //$(data).find('event').each(function() {
+                        $(data).each(function() {
                             events.push({
                                 title: 'culo', //$(this).attr('title'),
                                 start: '2020-05-01',//$(this).attr('start') // will be parsed
                                 end: '2020-05-01'
                             });
                         });
-                        callback(events);
+                        successCallback(events);
                     }
                 });
             }
