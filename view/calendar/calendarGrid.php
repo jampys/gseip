@@ -26,6 +26,8 @@
 
 </script>
 
+
+<br/>
 <div class="col-md-3">
 
     panel izquierdo
