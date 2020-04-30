@@ -34,8 +34,8 @@ switch ($operation)
         //$view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
         //$view->localidades = Localidad::getLocalidades();
         //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
-        $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/etapasForm.php";
+        //$view->disableLayout=true;
+        $view->contentTemplate="view/calendar/calendarGrid.php";
         break;
 }
 
