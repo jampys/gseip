@@ -12,6 +12,7 @@
                 center: 'title',
                 right: 'dayGridMonth,dayGridWeek,dayGridDay'
             },
+            defaultView: 'dayGridMonth',
             //defaultDate: '2020-02-12',
             navLinks: true, // can click day/week names to navigate views
             editable: true,
@@ -30,14 +31,21 @@
                     },
                     success: function(data) {
                         var events = [];
-                        //$(data).find('event').each(function() {
+
+                        //feriados
                         $(data['feriados']).each(function(index) {
                             events.push({
                                 title: data['feriados'][index].title,
                                 start: data['feriados'][index].start,
-                                end: data['feriados'][index].end
+                                end: data['feriados'][index].end,
+                                color: 'gray' // override!
                             });
                         });
+
+                        //sucesos
+
+                        //novedades
+
                         successCallback(events);
                     }
                 }).fail(function(jqXHR, textStatus, errorThrown){
