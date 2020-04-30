@@ -30,8 +30,9 @@ class Calendar
                       from sel_etapas
                       where id_etapa = :nro";*/
         $query = "SELECT descripcion as title, fecha as start, fecha as end
-FROM gestion.tmp_calendar
-where fecha between '2020-04-30' and '2020-05-02'";
+FROM tmp_calendar
+where 1 = 1
+and fecha between '2020-04-30' and '2020-05-02'";
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
