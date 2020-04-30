@@ -14,7 +14,7 @@
                     data: {
                         // our hypothetical feed requires UNIX timestamps
                         action: 'nov_calendar',
-                        operation: 'get'
+                        operation: 'get',
                         start: start.unix(),
                         end: end.unix()
                     },
