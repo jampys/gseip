@@ -7,7 +7,8 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: [ 'dayGrid' ],
             locale: 'es',//lang: 'es'
-            events: function(start, end, timezone, callback) {
+
+            events: function(info, callback, fail) {
                 $.ajax({
                     url: 'index.php',
                     type: 'POST',
@@ -21,16 +22,20 @@
                     },
                     success: function(doc) {
                         var events = [];
-                        $(doc).find('event').each(function() {
+                        //$(doc).find('event').each(function() {
+                        $(doc).each(function() {
                             events.push({
-                                title: $(this).attr('title'),
-                                start: $(this).attr('start') // will be parsed
+                                title: 'culo', //$(this).attr('title'),
+                                start: '2020-05-01',//$(this).attr('start') // will be parsed
+                                end: '2020-05-01'
                             });
                         });
                         callback(events);
                     }
                 });
             }
+
+
 
 
         });
