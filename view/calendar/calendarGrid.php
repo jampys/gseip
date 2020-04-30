@@ -5,13 +5,14 @@
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: [ 'dayGrid' ]
+            plugins: [ 'dayGrid' ],
+            locale: 'es'//lang: 'es'
         });
 
         calendar.render();
     });
 
-    
+
 
     $(document).ready(function(){
 
