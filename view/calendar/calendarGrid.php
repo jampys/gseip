@@ -22,9 +22,9 @@
                     success: function(data) {
                         var events = [];
                         //$(data).find('event').each(function() {
-                        $(data).each(function() {
+                        $(data).each(function(index) {
                             events.push({
-                                title: 'culito',
+                                title: data[index].title,
                                 start: '2020-05-01',//$(this).attr('start') // will be parsed
                                 end: '2020-05-01'
                             });
