@@ -31,11 +31,11 @@
                     success: function(data) {
                         var events = [];
                         //$(data).find('event').each(function() {
-                        $(data).each(function(index) {
+                        $(data['feriados']).each(function(index) {
                             events.push({
-                                title: data[index].title,
-                                start: data[index].start,
-                                end: data[index].end
+                                title: data['feriados'][index].title,
+                                start: data['feriados'][index].start,
+                                end: data['feriados'][index].end
                             });
                         });
                         successCallback(events);

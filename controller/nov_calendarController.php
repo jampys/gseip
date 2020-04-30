@@ -22,8 +22,10 @@ switch ($operation)
         //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
         $start = $_POST['start'];
         $end = $_POST['end'];
-        $rta = Calendar::getFeriados($start, $end);
-        print_r(json_encode($rta));
+        $feriados = Calendar::getFeriados($start, $end);
+        print_r(json_encode(array(
+            'feriados'=>$feriados
+        )));
         exit;
         break;
 
