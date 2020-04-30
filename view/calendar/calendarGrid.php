@@ -45,9 +45,9 @@
                         //sucesos
                         $(data['sucesos']).each(function(index) {
                             events.push({
-                                title: data['sucesos'][index].title,
-                                start: data['sucesos'][index].start,
-                                end: data['sucesos'][index].end
+                                title: data['sucesos'][index].evento,
+                                start: data['sucesos'][index].fecha_desde,
+                                end: data['sucesos'][index].fecha_hasta
                                 //color: 'gray' // override!
                             });
                         });
