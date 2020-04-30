@@ -51,7 +51,7 @@ and fecha between '2020-04-30' and '2020-05-02'";
                   su.fecha_desde,
                   su.fecha_hasta,
                   su.observaciones,
-                  CONCAT(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
+                  CONCAT(em.apellido, ' ', em.nombre) as empleado,
                   ev.nombre as evento,
                   ev.codigo as txt_evento,
                   em.legajo as txt_legajo,

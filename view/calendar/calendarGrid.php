@@ -46,10 +46,10 @@
                         //alert(Object.keys(data['sucesos']).length);
                         $(data['sucesos']).each(function(index) {
                             events.push({
-                                title: data['sucesos'][index].evento,
+                                title: data['sucesos'][index].empleado+' '+data['sucesos'][index].evento,
                                 start: data['sucesos'][index].fecha_desde,
-                                end: data['sucesos'][index].fecha_hasta
-                                //color: 'gray' // override!
+                                end: data['sucesos'][index].fecha_hasta,
+                                color: '#fdd835' // override!
                             });
                         });
 
