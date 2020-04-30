@@ -25,8 +25,8 @@
                         $(data).each(function(index) {
                             events.push({
                                 title: data[index].title,
-                                start: '2020-05-01',//$(this).attr('start') // will be parsed
-                                end: '2020-05-01'
+                                start: data[index].start,
+                                end: data[index].end
                             });
                         });
                         successCallback(events);
