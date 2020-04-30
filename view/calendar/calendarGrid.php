@@ -43,6 +43,14 @@
                         });
 
                         //sucesos
+                        $(data['sucesos']).each(function(index) {
+                            events.push({
+                                title: data['sucesos'][index].title,
+                                start: data['sucesos'][index].start,
+                                end: data['sucesos'][index].end
+                                //color: 'gray' // override!
+                            });
+                        });
 
                         //novedades
 
