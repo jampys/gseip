@@ -43,6 +43,7 @@
                         });
 
                         //sucesos
+                        //alert(Object.keys(data['sucesos']).length);
                         $(data['sucesos']).each(function(index) {
                             events.push({
                                 title: data['sucesos'][index].evento,
