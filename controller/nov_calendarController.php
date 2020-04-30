@@ -19,10 +19,9 @@ switch ($operation)
         break;
 
     case 'get': //trae los feriados //ok
-        //$id_empleado = (($_POST['id_empleado']!='')? $_POST['id_empleado'] : null );
-        //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
-        $start = date("Y-m-d", $_POST['start']/1000); //$_POST['start'];
-        $end = date("Y-m-d", $_POST['end']/1000); //$_POST['end']; 
+
+        $start = date("Y-m-d", $_POST['start']/1000); //$_POST['start']; //convierte de milisegundos a yyyy-mm-dd
+        $end = date("Y-m-d", $_POST['end']/1000); //$_POST['end'];
 
         $feriados = Calendar::getFeriados($start, $end);
 
@@ -31,7 +30,7 @@ switch ($operation)
         $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
         $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        $sucesos = Calendar::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, 21);
+        $sucesos = Calendar::getSucesos($id_empleado, $eventos, $start, $end, 21);
 
         print_r(json_encode(array(
             'feriados'=>$feriados,
