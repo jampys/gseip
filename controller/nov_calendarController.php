@@ -1,5 +1,6 @@
 ﻿<?php
 include_once("model/calendarModel.php");
+include_once("model/nov_sucesosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -22,9 +23,19 @@ switch ($operation)
         //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
         $start = $_POST['start'];
         $end = $_POST['end'];
+
         $feriados = Calendar::getFeriados($start, $end);
+
+        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
+        $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
+        $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
+        $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
+        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, 21);
+
         print_r(json_encode(array(
-            'feriados'=>$feriados
+            'feriados'=>$feriados,
+            'sucesos'=>$sucesos
         )));
         exit;
         break;
