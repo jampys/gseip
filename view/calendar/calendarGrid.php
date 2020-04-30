@@ -31,6 +31,8 @@
                         });
                         successCallback(events);
                     }
+                }).fail(function(jqXHR, textStatus, errorThrown){
+                    alert(jqXHR.responseText);
                 });
             }
 
