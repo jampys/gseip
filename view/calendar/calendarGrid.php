@@ -24,7 +24,7 @@
                         //$(data).find('event').each(function() {
                         $(data).each(function() {
                             events.push({
-                                title: 'culo', //$(this).attr('title'),
+                                title: 'culito',
                                 start: '2020-05-01',//$(this).attr('start') // will be parsed
                                 end: '2020-05-01'
                             });

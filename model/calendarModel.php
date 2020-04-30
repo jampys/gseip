@@ -29,7 +29,8 @@ class Calendar
                       etapa, aplica, motivo, modo_contacto, comentarios, id_user
                       from sel_etapas
                       where id_etapa = :nro";*/
-        $query = "SELECT * FROM gestion.tmp_calendar
+        $query = "SELECT descripcion as title, fecha as start, fecha as end
+FROM gestion.tmp_calendar
 where fecha between '2020-04-30' and '2020-05-02'";
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_contrato', $id_contrato);
