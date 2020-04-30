@@ -224,6 +224,43 @@ order by priority, id_rnv_renovacion asc";
     }
 
 
+
+
+    public static function getRenovacionesVehiculosAuditoria($id_vehiculo, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado) { //ok
+        $stmt=new sQuery();
+        $query = "select v.id_vencimiento, v.nombre as vencimiento,
+ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.modelo,
+vv.id_vehiculo_vencimiento,
+vrv.id_renovacion, vrv.fecha_emision,
+DATE_FORMAT(vrv.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
+vrv.id_rnv_renovacion, vrv.referencia, vrv.comentarios,
+DATE_FORMAT(vrv.disabled,  '%d/%m/%Y') as disabled,
+datediff(vrv.fecha_vencimiento, sysdate()) as isVencida
+from vto_vencimiento_v v
+join vto_vehiculos ve
+left join vto_vehiculo_vencimiento vv on vv.id_vencimiento = v.id_vencimiento and vv.id_vehiculo = ve.id_vehiculo
+left join vto_renovacion_v vrv on vrv.id_vencimiento = v.id_vencimiento and vrv.id_vehiculo = ve.id_vehiculo and vrv.id_rnv_renovacion is null
+left join vto_vehiculo_contrato vc on vc.id_vehiculo = ve.id_vehiculo
+where ve.id_vehiculo = ifnull(:id_vehiculo, ve.id_vehiculo)
+and if(:id_contrato is not null, vc.id_contrato = :id_contrato, 1)
+and v.id_vencimiento in ($id_vencimiento)
+and ve.fecha_baja is null
+group by v.id_vencimiento, ve.id_vehiculo";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_vehiculo', $id_vehiculo);
+        //$stmt->dpBind(':id_grupo', $id_grupo);
+        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        //$stmt->dpBind(':id_subcontratista', $id_subcontratista);
+        //$stmt->dpBind(':renovado', $renovado);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
+
     function save(){ //ok
         if($this->id_renovacion)
         {$rta = $this->updateRenovacion();}
