@@ -21,8 +21,8 @@ switch ($operation)
     case 'get': //trae los feriados //ok
         //$id_empleado = (($_POST['id_empleado']!='')? $_POST['id_empleado'] : null );
         //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
-        $start = $_POST['start'];
-        $end = $_POST['end'];
+        $start = date("Y-m-d", $_POST['start']/1000); //$_POST['start'];
+        $end = date("Y-m-d", $_POST['end']/1000); //$_POST['end']; 
 
         $feriados = Calendar::getFeriados($start, $end);
 
