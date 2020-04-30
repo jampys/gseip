@@ -8,7 +8,7 @@
             plugins: [ 'dayGrid' ],
             locale: 'es',//lang: 'es'
 
-            events: function(info, successCallback, failureCallback) {
+            events: function(info, successCallback, failureCallback) { //https://fullcalendar.io/docs/events-function
                 $.ajax({
                     url: 'index.php',
                     type: 'POST',
@@ -26,7 +26,7 @@
                             events.push({
                                 title: data[index].title,
                                 start: data[index].start,
-                                end: data[index].end
+                                end: '2020-05-02'
                             });
                         });
                         successCallback(events);
