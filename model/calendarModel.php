@@ -32,9 +32,10 @@ class Calendar
         $query = "SELECT descripcion as title, fecha as start, fecha as end
 FROM tmp_calendar
 where descripcion is not null
-and fecha between '2020-04-30' and '2020-05-02'";
+and fecha between :start and :end";
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':start', $start);
+        $stmt->dpBind(':end', $end);
         $stmt->dpExecute();
         return $stmt->dpFetchAll(); // retorna todas las areas
     }
