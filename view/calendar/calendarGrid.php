@@ -119,7 +119,14 @@
 <br/>
 <div class="col-md-3">
 
-    panel izquierdo
+    <div class="radio">
+        <label><input type="radio" name="optradio" checked>Vista empleado</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="optradio">Vista cuadrilla</label>
+    </div>
+
+
 </div>
 
 <div class="col-md-9">
