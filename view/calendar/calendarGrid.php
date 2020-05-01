@@ -18,14 +18,13 @@
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
-            eventRender: function(info) {
+            eventRender: function(info) { //https://fullcalendar.io/docs/eventRender
                 $(info.el).popover({
                     title: info.event.title,
                     placement:'top',
                     trigger : 'hover',
                     html:true,
-                    content: '<p>'+info.event.extendedProps.details+'</p>'
-                                +info.event.start,
+                    content: format(info),
                     container:'body'
                 }).popover('show');
             },
@@ -51,6 +50,7 @@
                                 start: data['feriados'][index].start,
                                 end: data['feriados'][index].end,
                                 extendedProps: {
+                                    tipo_evento: data['feriados'][index].tipo_evento,
                                     details: data['feriados'][index].details
                                 },
                                 color: 'gray' // override!
@@ -85,6 +85,13 @@
 
         calendar.render();
     });
+
+
+    function format(info){
+        //return '<p>'+info.event.extendedProps.details+'</p>'
+        //+info.event.start
+        if(info.event.tipo_evento == 'feriado') return 'es un feriado';
+    }
 
 
 

@@ -23,10 +23,10 @@ class Calendar
 
     public static function getFeriados($start, $end) {
         $stmt=new sQuery();
-        $query = "SELECT descripcion as title, fecha as start, fecha as end, feriado as details
-FROM tmp_calendar
-where descripcion is not null
-and fecha between :start and :end";
+        $query = "select 'feriado' as tipo_evento, descripcion as title, fecha as start, fecha as end, feriado as details
+                  from tmp_calendar
+                  where descripcion is not null
+                  and fecha between :start and :end";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':start', $start);
         $stmt->dpBind(':end', $end);
@@ -40,7 +40,7 @@ and fecha between :start and :end";
 
     public static function getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
         $stmt=new sQuery();
-        $query = "select su.id_suceso, su.id_evento, su.id_empleado,
+        $query = "select 'suceso' as tipo_evento, su.id_suceso, su.id_evento, su.id_empleado,
                   DATE_FORMAT(su.created_date,  '%d/%m/%Y') as created_date,
                   su.fecha_desde,
                   su.fecha_hasta,
