@@ -39,6 +39,9 @@
                                 title: data['feriados'][index].title,
                                 start: data['feriados'][index].start,
                                 end: data['feriados'][index].end,
+                                extendedProps: {
+                                    description: 'BioChemistry'
+                                },
                                 color: 'gray' // override!
                             });
                         });
