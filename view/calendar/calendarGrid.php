@@ -42,7 +42,7 @@
                         action: 'nov_calendar',
                         operation: 'get',
                         id_contrato : $('#id_contrato').val(),
-                        id_suceso : ($("#id_suceso").val()!= null)? $("#id_suceso").val() : ''
+                        sucesos : ($("#id_suceso").val()!= null)? $("#id_suceso").val() : ''
                     },
                     success: function(data) {
                         var events = [];

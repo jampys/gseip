@@ -27,7 +27,8 @@ switch ($operation)
         //$fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
         //$fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
-        $sucesos = Calendar::getSucesos($id_empleado, $eventos, $start, $end, $id_contrato);
+        $selected_sucesos = ($_POST['sucesos']!='')? implode(",", $_POST['sucesos'])  : 'su.id_evento';
+        $sucesos = Calendar::getSucesos($id_empleado, $selected_sucesos, $start, $end, $id_contrato);
 
         print_r(json_encode(array(
             'feriados'=>$feriados,
