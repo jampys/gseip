@@ -2,6 +2,7 @@
 include_once("model/calendarModel.php");
 //include_once("model/nov_sucesosModel.php");
 include_once("model/contratosModel.php");
+include_once("model/nov_eventosCuadrillaModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -45,6 +46,7 @@ switch ($operation)
 
     default : //carga la tabla de etapas de la postulacion
         $view->contratos = Contrato::getContratosControl();
+        $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->postulacion = new Postulacion($_POST['id_postulacion']);
         //$view->label='Etapas de la postulación';
         //$view->etapas = Etapa::getEtapas($_POST['id_postulacion']);

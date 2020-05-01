@@ -122,11 +122,6 @@
 
     <form name ="calendar-form" id="txt-form" method="POST" action="index.php">
 
-
-        <div class="radio">
-            <label><input type="radio" name="optradio" checked>Vista empleado</label>
-        </div>
-
         <div class="form-group">
             <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" title="Seleccione un contrato" data-live-search="true" data-size="5">
                 <?php foreach ($view->contratos as $con){
@@ -136,6 +131,32 @@
                     </option>
                 <?php  } ?>
             </select>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-2">
+                <div class="checkbox">
+                    <label><input type="checkbox" value=""></label>
+                </div>
+            </div>
+            <div class="form-group col-md-10">
+                <select class="selectpicker form-control show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
+                    <option value="">Todos los eventos</option>
+                    <?php foreach ($view->eventos as $ar){ ?>
+                        <option value="<?php echo $ar['id_evento']; ?>"
+                            <?php //echo ($ar['enabled'])? '':'disabled'; ?>
+                            <?php //echo ($ar['id_evento'] == $view->parte->getIdEvento())? 'selected' :'' ?>
+                            >
+                            <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
+                        </option>
+                    <?php  } ?>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="radio">
+            <label><input type="radio" name="optradio" checked>Vista empleado</label>
         </div>
 
 
