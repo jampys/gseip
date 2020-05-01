@@ -40,7 +40,8 @@
                         start: info.start.valueOf(),
                         end: info.end.valueOf(),
                         action: 'nov_calendar',
-                        operation: 'get'
+                        operation: 'get',
+                        id_contrato : $('#id_contrato').val()
                     },
                     success: function(data) {
                         var events = [];
