@@ -19,14 +19,15 @@
             editable: true,
             eventLimit: true, // allow "more" link when too many events
             eventRender: function(info) { //https://fullcalendar.io/docs/eventRender
-                $(info.el).popover({
+                var pop = $(info.el).popover({
                     title: info.event.title,
                     placement:'top',
                     trigger : 'hover',
                     html:true,
-                    content: format(info),
+                    //content: format(info),
                     container:'body'
                 }).popover('show');
+                pop.attr("data-content", format(info));
             },
 
             events: function(info, successCallback, failureCallback) { //https://fullcalendar.io/docs/events-function
