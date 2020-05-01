@@ -138,7 +138,7 @@
                     if(Object.keys(data["empleados"]).length > 0){
                         $.each(data["empleados"], function(indice, val){
                             var label = data["empleados"][indice]["apellido"]+' '+data["empleados"][indice]["nombre"];
-                            $("#myModal #id_empleado").append('<option value="'+data["empleados"][indice]["id_empleado"]+'"'
+                            $("#id_empleado").append('<option value="'+data["empleados"][indice]["id_empleado"]+'"'
                             +' id_convenio="'+data["empleados"][indice]["id_convenio"]+'"'
                                 //+' fecha_hasta="'+data["periodos"][indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
