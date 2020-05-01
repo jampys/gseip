@@ -18,6 +18,15 @@
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
+            eventRender: function(info) {
+                $(info.el).popover({
+                    title: info.event.extendedProps.description,
+                    placement:'top',
+                    trigger : 'hover',
+                    //content: startTime + " to " + endTime + " " + location,
+                    container:'body'
+                }).popover('show');
+            },
 
             events: function(info, successCallback, failureCallback) { //https://fullcalendar.io/docs/events-function
                 $.ajax({
