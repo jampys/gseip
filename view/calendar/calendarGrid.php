@@ -23,7 +23,9 @@
                     title: info.event.title,
                     placement:'top',
                     trigger : 'hover',
-                    content: info.event.extendedProps.details+' '+info.event.start,
+                    html:true,
+                    content: '<p>'+info.event.extendedProps.details+'</p>'
+                                +info.event.start,
                     container:'body'
                 }).popover('show');
             },
