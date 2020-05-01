@@ -136,7 +136,7 @@
         <div class="row">
             <div class="form-group col-md-2">
                 <div class="checkbox">
-                    <label><input type="checkbox" value=""></label>
+                    <label><input type="checkbox" value="" title="Marcar para mostrar enventos en el calendario" checked></label>
                 </div>
             </div>
             <div class="form-group col-md-10">
@@ -156,7 +156,7 @@
 
 
         <div class="radio">
-            <label><input type="radio" name="optradio" checked>Vista empleado</label>
+            <label><input type="radio" name="optradio" checked><b>Vista empleado</b></label>
         </div>
 
 
@@ -173,7 +173,7 @@
 
 
         <div class="radio">
-            <label><input type="radio" name="optradio">Vista cuadrilla</label>
+            <label><input type="radio" name="optradio"><b>Vista cuadrilla</b></label>
         </div>
 
 
