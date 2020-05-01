@@ -55,7 +55,8 @@
                                     tipo_evento: data['feriados'][index].tipo_evento,
                                     details: data['feriados'][index].details
                                 },
-                                color: 'gray' // override!
+                                color: '#ff9f89', // override!
+                                rendering: 'background'
                             });
                         });
 
