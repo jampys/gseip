@@ -20,10 +20,10 @@
             eventLimit: true, // allow "more" link when too many events
             eventRender: function(info) {
                 $(info.el).popover({
-                    title: info.event.extendedProps.description,
+                    title: info.event.title,
                     placement:'top',
                     trigger : 'hover',
-                    //content: startTime + " to " + endTime + " " + location,
+                    content: info.event.extendedProps.description,
                     container:'body'
                 }).popover('show');
             },
