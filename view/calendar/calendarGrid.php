@@ -136,6 +136,7 @@
 
                     //completo select de empleados
                     if(Object.keys(data["empleados"]).length > 0){
+                        $('#id_empleado').html('<option value="">Todos los empleados</option>');
                         $.each(data["empleados"], function(indice, val){
                             var label = data["empleados"][indice]["apellido"]+' '+data["empleados"][indice]["nombre"];
                             $("#id_empleado").append('<option value="'+data["empleados"][indice]["id_empleado"]+'"'
@@ -180,7 +181,7 @@
 
 
         <div class="form-group">
-            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
+            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" data-live-search="true" data-size="5">
                 <!-- se completa dinamicamente desde javascript  -->
             </select>
         </div>
