@@ -250,7 +250,7 @@
                 <div class="form-group required">
                     <!--<select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5" data-show-subtext="true">-->
                     <select multiple class="form-control selectpicker show-tick" id="id_suceso" name="id_suceso" title="Todos los sucesos" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
-                        <option value="">Todos los sucesos</option>
+                        <!--<option value="">Todos los sucesos</option>-->
                         <?php foreach ($view->sucesos as $ev){ ?>
                             <option value="<?php echo $ev['id_evento']; ?>" data-subtext="<?php echo $ev['tipo_liquidacion'] ;?>"
                                 <?php //echo ($ev['id_evento'] == $view->suceso->getIdEvento())? 'selected' :'' ?>
