@@ -23,7 +23,7 @@
                     title: info.event.title,
                     placement:'top',
                     trigger : 'hover',
-                    content: info.event.extendedProps.details,
+                    content: info.event.extendedProps.details+' '+info.event.start,
                     container:'body'
                 }).popover('show');
             },
