@@ -64,7 +64,7 @@
                             events.push({
                                 title: data['sucesos'][index].empleado+' '+data['sucesos'][index].evento,
                                 start: data['sucesos'][index].fecha_desde,
-                                end: data['sucesos'][index].fecha_hasta,
+                                end: data['sucesos'][index].fecha_hasta+' 23:59:00',
                                 color: '#fdd835', // override!
                                 textColor: 'black',
                                 extendedProps: {
