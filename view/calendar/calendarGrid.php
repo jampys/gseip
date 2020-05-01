@@ -189,6 +189,13 @@
 
     <form name ="calendar-form" id="calendar-form" method="POST" action="index.php">
 
+        <div class="alert alert-info fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <span class="glyphicon glyphicon-tags" ></span>&nbsp  Debe seleccionar un contrato para visualizar eventos en el calendario.
+        </div>
+
+
+
         <div class="form-group">
             <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" title="Seleccione un contrato" data-live-search="true" data-size="5">
                 <?php foreach ($view->contratos as $con){
