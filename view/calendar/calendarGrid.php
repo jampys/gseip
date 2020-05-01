@@ -112,6 +112,51 @@
 
     $(document).ready(function(){
 
+
+        //Select dependiente: al seleccionar contrato carga periodos vigentes
+        $('#myModal').on('change', '#id_contrato', function(e){
+            //alert('seleccionó un contrato');
+            //throw new Error();
+            params={};
+            params.action = "partes2";
+            params.operation = "getPeriodosAndEmpleados";
+            //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
+            params.id_contrato = $('#id_contrato').val();
+
+            $('#myModal #id_empleado').empty();
+
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
+                data: params,
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    //completo select de empleados
+                    if(Object.keys(data["empleados"]).length > 0){
+                        $.each(data["empleados"], function(indice, val){
+                            var label = data["empleados"][indice]["apellido"]+' '+data["empleados"][indice]["nombre"];
+                            $("#myModal #id_empleado").append('<option value="'+data["empleados"][indice]["id_empleado"]+'"'
+                            +' id_convenio="'+data["empleados"][indice]["id_convenio"]+'"'
+                                //+' fecha_hasta="'+data["periodos"][indice]["fecha_hasta"]+'"'
+                            +'>'+label+'</option>');
+                        });
+                        $('#myModal #id_empleado').selectpicker('refresh');
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
+
+        });
+
     });
 
 </script>
@@ -132,6 +177,14 @@
                 <?php  } ?>
             </select>
         </div>
+
+
+        <div class="form-group">
+            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
+                <!-- se completa dinamicamente desde javascript  -->
+            </select>
+        </div>
+
 
         <div class="row">
             <div class="form-group col-md-2">
