@@ -23,7 +23,7 @@ class Calendar
 
     public static function getFeriados($start, $end) {
         $stmt=new sQuery();
-        $query = "SELECT descripcion as title, fecha as start, fecha as end
+        $query = "SELECT descripcion as title, fecha as start, fecha as end, feriado as details
 FROM tmp_calendar
 where descripcion is not null
 and fecha between :start and :end";

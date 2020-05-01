@@ -23,7 +23,7 @@
                     title: info.event.title,
                     placement:'top',
                     trigger : 'hover',
-                    content: info.event.extendedProps.description,
+                    content: info.event.extendedProps.details,
                     container:'body'
                 }).popover('show');
             },
@@ -49,7 +49,7 @@
                                 start: data['feriados'][index].start,
                                 end: data['feriados'][index].end,
                                 extendedProps: {
-                                    description: 'BioChemistry'
+                                    details: data['feriados'][index].details
                                 },
                                 color: 'gray' // override!
                             });
