@@ -42,6 +42,7 @@
                         action: 'nov_calendar',
                         operation: 'get',
                         id_contrato : $('#id_contrato').val(),
+                        id_empleado : $('#id_empleado').val(),
                         sucesos : ($("#id_suceso").val()!= null)? $("#id_suceso").val() : ''
                     },
                     success: function(data) {
@@ -95,7 +96,7 @@
         calendar.render();
 
 
-        $('#id_suceso, #id_evento, #id_contrato').on('change', function(){
+        $('#id_suceso, #id_evento, #id_contrato, #id_empleado').on('change', function(){
             alert('apapapaapapa');
             calendar.refetchEvents();
 
