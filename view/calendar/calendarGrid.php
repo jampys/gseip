@@ -114,7 +114,7 @@
 
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
-        $('#myModal').on('change', '#id_contrato', function(e){
+        $(document).on('change', '#id_contrato', function(e){
             //alert('seleccionó un contrato');
             //throw new Error();
             params={};
