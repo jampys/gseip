@@ -1,7 +1,7 @@
 ﻿<script type="text/javascript">
 
+    $(document).ready(function(){
 
-    document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -94,13 +94,14 @@
 
         calendar.render();
 
-        var hola = document.getElementById('id_suceso');
-        hola.addEventListener('change', function(){
+        
+        $(document).on('change', '#id_suceso', function(){
             alert('apapapaapapa');
-            //calendar.render();
             calendar.refetchEvents();
+
         });
-    });
+
+
 
 
     function format(info){
@@ -118,7 +119,7 @@
 
 
 
-    $(document).ready(function(){
+
 
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
