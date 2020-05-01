@@ -14,6 +14,7 @@
             },
             defaultView: 'dayGridMonth',
             //defaultDate: '2020-02-12',
+            displayEventTime: false,
             businessHours: true, // sabado y domingo con background gris
             navLinks: true, // can click day/week names to navigate views
             editable: true,
