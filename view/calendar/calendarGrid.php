@@ -233,6 +233,19 @@
                 </div>
             </div>
             <div class="form-group col-md-10">
+                <span class="form-control">Novedades</span>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="form-group col-md-2">
+                <div class="checkbox">
+                    <label><input type="checkbox" value=""></label>
+                </div>
+            </div>
+            <div class="form-group col-md-10">
                 <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php //print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
             </div>
         </div>
