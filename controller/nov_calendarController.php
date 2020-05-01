@@ -39,7 +39,8 @@ switch ($operation)
         $id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
         //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
         $rta = Empleado::getEmpleadosControl($id_contrato);
-        print_r(json_encode($rta));
+        //print_r(json_encode($rta));
+        print_r(json_encode(array('empleados'=>$rta)));
         exit;
         break;
 
