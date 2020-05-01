@@ -98,8 +98,7 @@
         hola.addEventListener('change', function(){
             alert('apapapaapapa');
             //calendar.render();
-            calendar.changeView('month');
-            //$('#calendar').fullCalendar('changeView', 'month', $(this).attr("id"));
+            calendar.refetchEvents();
         });
     });
 
