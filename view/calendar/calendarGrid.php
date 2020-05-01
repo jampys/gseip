@@ -124,6 +124,7 @@
             params.id_contrato = $('#id_contrato').val();
 
             $('#id_empleado').empty();
+            $('#id_cuadrilla').empty();
 
 
             $.ajax({
@@ -145,6 +146,17 @@
                             +'>'+label+'</option>');
                         });
                         $('#id_empleado').selectpicker('refresh');
+                    }
+
+                    //completo select de cuadrillas
+                    if(Object.keys(data["cuadrillas"]).length > 0){
+                        $('#id_cuadrilla').html('<option value="">Todas las cuadrillas</option>');
+                        $.each(data["cuadrillas"], function(indice, val){
+                            var label = data["cuadrillas"][indice]["nombre"];
+                            $("#id_cuadrilla").append('<option value="'+data["cuadrillas"][indice]["id_cuadrilla"]+'"'
+                            +'>'+label+'</option>');
+                        });
+                        $('#id_cuadrilla').selectpicker('refresh');
                     }
 
                 },
