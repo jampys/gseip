@@ -231,6 +231,23 @@
         </div>
 
 
+        <div class="row">
+            <div class="form-group col-md-2">
+                <div class="checkbox">
+                    <label><input type="checkbox" value="" title="Marcar para mostrar enventos en el calendario" checked></label>
+                </div>
+            </div>
+            <div class="form-group col-md-10">
+                <div class="form-group">
+                    <select class="form-control selectpicker show-tick" id="id_cuadrilla" name="id_cuadrilla" data-live-search="true" data-size="5">
+                        <!-- se completa dinamicamente desde javascript  -->
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+
 
 
     </form>
