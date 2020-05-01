@@ -30,7 +30,7 @@ switch ($operation)
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
         $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
         $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
-        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $sucesos = Calendar::getSucesos($id_empleado, $eventos, $start, $end, $id_contrato);
 
         print_r(json_encode(array(
