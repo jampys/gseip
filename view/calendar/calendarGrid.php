@@ -119,12 +119,20 @@
 <br/>
 <div class="col-md-3">
 
-    <div class="radio">
-        <label><input type="radio" name="optradio" checked>Vista empleado</label>
-    </div>
-    <div class="radio">
-        <label><input type="radio" name="optradio">Vista cuadrilla</label>
-    </div>
+    <form name ="calendar-form" id="txt-form" method="POST" action="index.php">
+
+
+        <div class="radio">
+            <label><input type="radio" name="optradio" checked>Vista empleado</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="optradio">Vista cuadrilla</label>
+        </div>
+
+
+
+
+    </form>
 
 
 </div>
