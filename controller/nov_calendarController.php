@@ -4,6 +4,7 @@ include_once("model/calendarModel.php");
 include_once("model/contratosModel.php");
 include_once("model/nov_eventosCuadrillaModel.php");
 include_once("model/empleadosModel.php");
+include_once("model/cuadrillasModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -36,11 +37,12 @@ switch ($operation)
         break;
 
     case 'getEmpleados': //select dependiente
-        $id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
+        $id_contrato = $_POST['id_contrato'];
         //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
-        $rta = Empleado::getEmpleadosControl($id_contrato);
+        $empleados = Empleado::getEmpleadosControl($id_contrato);
+        $cuadrillas = Cuadrilla::getCuadrillas($id_contrato, null);
         //print_r(json_encode($rta));
-        print_r(json_encode(array('empleados'=>$rta)));
+        print_r(json_encode(array('empleados'=>$empleados, 'cuadrillas'=>$cuadrillas)));
         exit;
         break;
 
