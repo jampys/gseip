@@ -50,7 +50,8 @@
                                 title: data['sucesos'][index].empleado+' '+data['sucesos'][index].evento,
                                 start: data['sucesos'][index].fecha_desde,
                                 end: data['sucesos'][index].fecha_hasta,
-                                color: '#fdd835' // override!
+                                color: '#fdd835', // override!
+                                textColor: 'black'
                             });
                         });
 
