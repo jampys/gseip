@@ -98,7 +98,7 @@
         //return '<p>'+info.event.extendedProps.details+'</p>'
         //+info.event.start
         if(info.event.extendedProps.tipo_evento == 'feriado') {
-            return 'es un feriado';
+            return '<p>'+info.event.extendedProps.details+'</p>';
         }
         else if(info.event.extendedProps.tipo_evento == 'suceso') {
             let s = new Date(info.event.start).toLocaleDateString('en-GB'); //formato dd/mm/yyyy
