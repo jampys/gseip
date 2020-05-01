@@ -125,6 +125,19 @@
         <div class="radio">
             <label><input type="radio" name="optradio" checked>Vista empleado</label>
         </div>
+
+        <div class="form-group">
+            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" title="Seleccione un contrato" data-live-search="true" data-size="5">
+                <?php foreach ($view->contratos as $con){
+                    ?>
+                    <option value="<?php echo $con['id_contrato']; ?>" >
+                        <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+
+
         <div class="radio">
             <label><input type="radio" name="optradio">Vista cuadrilla</label>
         </div>
