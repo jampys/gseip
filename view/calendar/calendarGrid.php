@@ -65,7 +65,11 @@
                                 start: data['sucesos'][index].fecha_desde,
                                 end: data['sucesos'][index].fecha_hasta,
                                 color: '#fdd835', // override!
-                                textColor: 'black'
+                                textColor: 'black',
+                                extendedProps: {
+                                    tipo_evento: data['sucesos'][index].tipo_evento
+                                    //details: data['sucesos'][index].details
+                                }
                             });
                         });
 
@@ -90,7 +94,12 @@
     function format(info){
         //return '<p>'+info.event.extendedProps.details+'</p>'
         //+info.event.start
-        if(info.event.tipo_evento == 'feriado') return 'es un feriado';
+        if(info.event.extendedProps.tipo_evento == 'feriado') {
+            return 'es un feriado';
+        }
+        else if(info.event.extendedProps.tipo_evento == 'suceso') {
+            return 'es un suceso';
+        }
     }
 
 
