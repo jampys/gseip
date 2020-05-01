@@ -95,7 +95,7 @@
         calendar.render();
 
 
-        $('#left-panel').on('change', '.refresh', function(){
+        $('#calendar-form').on('change', '.refresh', function(){
             alert('apapapaapapa');
             calendar.refetchEvents();
 
@@ -185,9 +185,9 @@
 
 
 <br/>
-<div class="col-md-3" id="left-panel">
+<div class="col-md-3">
 
-    <form name ="calendar-form" id="txt-form" method="POST" action="index.php">
+    <form name ="calendar-form" id="calendar-form" method="POST" action="index.php">
 
         <div class="form-group">
             <select class="form-control selectpicker show-tick refresh" id="id_contrato" name="id_contrato" title="Seleccione un contrato" data-live-search="true" data-size="5">
@@ -215,7 +215,7 @@
                 </div>
             </div>
             <div class="form-group col-md-10">
-                <select class="selectpicker form-control show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
+                <select class="selectpicker form-control show-tick refresh" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
                     <option value="">Todos los eventos</option>
                     <?php foreach ($view->eventos as $ar){ ?>
                         <option value="<?php echo $ar['id_evento']; ?>"
