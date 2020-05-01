@@ -118,12 +118,12 @@
             //alert('seleccionó un contrato');
             //throw new Error();
             params={};
-            params.action = "partes2";
-            params.operation = "getPeriodosAndEmpleados";
+            params.action = "nov_calendar";
+            params.operation = "getEmpleados";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
             params.id_contrato = $('#id_contrato').val();
 
-            $('#myModal #id_empleado').empty();
+            $('#id_empleado').empty();
 
 
             $.ajax({
@@ -143,7 +143,7 @@
                                 //+' fecha_hasta="'+data["periodos"][indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
                         });
-                        $('#myModal #id_empleado').selectpicker('refresh');
+                        $('#id_empleado').selectpicker('refresh');
                     }
 
                 },

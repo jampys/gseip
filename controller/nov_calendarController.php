@@ -3,6 +3,7 @@ include_once("model/calendarModel.php");
 //include_once("model/nov_sucesosModel.php");
 include_once("model/contratosModel.php");
 include_once("model/nov_eventosCuadrillaModel.php");
+include_once("model/empleadosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -12,13 +13,6 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'getPeriodos': //select dependiente
-        $id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
-        $activos = (($_POST['activos']!='')? $_POST['activos'] : null );
-        $rta = NovPeriodo::getPeriodos($id_contrato, $activos);
-        print_r(json_encode($rta));
-        exit;
-        break;
 
     case 'get': //trae los feriados //ok
 
@@ -38,6 +32,14 @@ switch ($operation)
             'feriados'=>$feriados,
             'sucesos'=>$sucesos
         )));
+        exit;
+        break;
+
+    case 'getEmpleados': //select dependiente
+        $id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
+        //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
+        $rta = Empleado::getEmpleadosControl($id_contrato);
+        print_r(json_encode($rta));
         exit;
         break;
 
