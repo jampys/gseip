@@ -95,7 +95,7 @@
         calendar.render();
 
 
-        $('#calendar-form').on('change', '.refresh', function(){
+        $('#id_suceso, #id_evento, #id_contrato').on('change', function(){
             alert('apapapaapapa');
             calendar.refetchEvents();
 
@@ -190,7 +190,7 @@
     <form name ="calendar-form" id="calendar-form" method="POST" action="index.php">
 
         <div class="form-group">
-            <select class="form-control selectpicker show-tick refresh" id="id_contrato" name="id_contrato" title="Seleccione un contrato" data-live-search="true" data-size="5">
+            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" title="Seleccione un contrato" data-live-search="true" data-size="5">
                 <?php foreach ($view->contratos as $con){
                     ?>
                     <option value="<?php echo $con['id_contrato']; ?>" >
@@ -202,7 +202,7 @@
 
 
         <div class="form-group">
-            <select class="form-control selectpicker show-tick refresh" id="id_empleado" name="id_empleado" data-live-search="true" data-size="5">
+            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" data-live-search="true" data-size="5">
                 <!-- se completa dinamicamente desde javascript  -->
             </select>
         </div>
@@ -215,7 +215,7 @@
                 </div>
             </div>
             <div class="form-group col-md-10">
-                <select class="selectpicker form-control show-tick refresh" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
+                <select class="selectpicker form-control show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
                     <option value="">Todos los eventos</option>
                     <?php foreach ($view->eventos as $ar){ ?>
                         <option value="<?php echo $ar['id_evento']; ?>"
@@ -257,7 +257,7 @@
             <div class="form-group col-md-10">
                 <div class="form-group required">
                     <!--<select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5" data-show-subtext="true">-->
-                    <select multiple class="form-control selectpicker show-tick refresh" id="id_suceso" name="id_suceso" title="Todos los sucesos" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
+                    <select multiple class="form-control selectpicker show-tick" id="id_suceso" name="id_suceso" title="Todos los sucesos" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
                         <!--<option value="">Todos los sucesos</option>-->
                         <?php foreach ($view->sucesos as $ev){ ?>
                             <option value="<?php echo $ev['id_evento']; ?>" data-subtext="<?php echo $ev['tipo_liquidacion'] ;?>"
