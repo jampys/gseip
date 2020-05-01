@@ -98,10 +98,9 @@
             return 'es un feriado';
         }
         else if(info.event.extendedProps.tipo_evento == 'suceso') {
-            let s = new Date(info.event.start).toLocaleDateString('en-GB'); //formato dd/mm/yyyy
-            let e = new Date(info.event.end).toLocaleDateString('en-GB');
-            return '<p><b>Desde:</b> '+s+'</p>'+
-                    '<p><b>Hasta:</b> '+e+'</p>';
+            //let s = new Date(info.event.start).toLocaleDateString('en-GB'); //formato dd/mm/yyyy
+            let e = new Date(info.event.end);
+            return e;
         }
     }
 

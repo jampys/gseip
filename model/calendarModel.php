@@ -49,8 +49,6 @@ class Calendar
                   ev.nombre as evento,
                   ev.codigo as txt_evento,
                   em.legajo as txt_legajo,
-                  su.fecha_desde as txt_fecha_desde,
-                  su.fecha_hasta as txt_fecha_hasta,
                   pe1.closed_date as closed_date_1,
                   if(pe2.created_date, pe2.closed_date, 1) as closed_date_2
                   from v_sec_nov_sucesos su
