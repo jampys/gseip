@@ -198,7 +198,7 @@
                         });
                         $('#id_concepto').selectpicker('refresh');
                     }
-                    
+
                 })
                 .catch(function(data, textStatus, errorThrown){
 
