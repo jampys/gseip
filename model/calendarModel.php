@@ -79,7 +79,7 @@ class Calendar
     public static function getNovedadesEmpleado($empleados, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
         $stmt=new sQuery();
         $query = "select npe.id_empleado,
-em.legajo, em.apellido, em.nombre,
+CONCAT (em.legajo, '\n', em.apellido, ' ', em.nombre) as empleado,
 np.id_parte, np.fecha_parte, np.cuadrilla,
 na.nombre as area,
 nec.nombre as evento
