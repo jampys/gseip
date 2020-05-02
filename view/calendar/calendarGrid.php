@@ -181,6 +181,24 @@
                         $('#id_cuadrilla').selectpicker('refresh');
                     }
 
+                    params.action = "parte-empleado-concepto";
+                    params.operation = "getConceptos";
+                    return getData('index.php', params);
+
+                })
+                .then(function(data){
+
+                    //completo select de conceptos
+                    $('#id_concepto').empty();
+                    if(Object.keys(data).length > 0){
+                        $.each(data, function(indice, val){
+                            var label = data[indice]["concepto"]+' ('+data[indice]["codigo"]+') '+data[indice]["convenio"];
+                            $("#id_concepto").append('<option value="'+data[indice]["id_concepto_convenio_contrato"]+'">'+label+'</option>');
+
+                        });
+                        $('#id_concepto').selectpicker('refresh');
+                    }
+                    
                 })
                 .catch(function(data, textStatus, errorThrown){
 
@@ -193,7 +211,7 @@
 
 
         //Select dependiente: al seleccionar emppleado carga conceptos
-        $(document).on('change', '#id_empleado', function(e){ //ok
+        /*$(document).on('change', '#id_empleado', function(e){ //ok
 
             params={};
             params.action = "parte-empleado-concepto";
@@ -225,13 +243,7 @@
                 });
 
 
-
-
-
-
-
-
-            });
+            });*/
 
 
 
