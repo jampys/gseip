@@ -45,8 +45,8 @@
                         action: 'nov_calendar',
                         operation: 'get',
                         radio_vista: $("input[name='radio_vista']:checked").val(),
-                        check_concepto: $('#check_concepto').is(':checked'),
-                        check_suceso: $('#check_suceso').is(':checked'),
+                        check_concepto: ($('#check_concepto').is(':checked'))? 1:0,
+                        check_suceso: ($('#check_suceso').is(':checked'))? 1:0,
                         id_contrato : $('#id_contrato').val(),
                         empleados : ($("#id_empleado").val()!= null)? $("#id_empleado").val() : '',
                         sucesos : ($("#id_suceso").val()!= null)? $("#id_suceso").val() : ''
