@@ -225,13 +225,6 @@
         </div>
 
 
-        <div class="form-group">
-            <!--<select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" data-live-search="true" data-size="5">-->
-            <select multiple class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Todos los empleados" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
-                <!-- se completa dinamicamente desde javascript  -->
-            </select>
-        </div>
-
 
         <div class="row">
             <div class="form-group col-md-2">
@@ -257,6 +250,14 @@
 
         <div class="radio">
             <label><input type="radio" name="optradio" checked><b>Vista empleado</b></label>
+        </div>
+
+
+        <div class="form-group">
+            <!--<select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" data-live-search="true" data-size="5">-->
+            <select multiple class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Todos los empleados" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
+                <!-- se completa dinamicamente desde javascript  -->
+            </select>
         </div>
 
 
