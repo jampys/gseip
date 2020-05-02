@@ -193,40 +193,47 @@
 
 
         //Select dependiente: al seleccionar emppleado carga conceptos
-        $('#myModal').on('change', '#id_empleado', function(e){ //ok
+        $(document).on('change', '#id_empleado', function(e){ //ok
 
             params={};
             params.action = "parte-empleado-concepto";
             params.operation = "getConceptos";
-            params.id_convenio = $('#myModal #id_empleado option:selected').attr('id_convenio');
-            params.id_contrato = $('#myModal #id_contrato').val();
-
-            $('#myModal #id_concepto').empty();
+            params.id_convenio = $('#id_empleado option:selected').attr('id_convenio');
+            params.id_contrato = $('#id_contrato').val();
 
 
-            $.ajax({
-                url:"index.php",
-                type:"post",
-                data: params,
-                dataType:"json",//xml,html,script,json
-                success: function(data, textStatus, jqXHR) {
+            getData('index.php', params)
+                .then(function(data){
 
+                    //completo select de conceptos
+                    $('#id_concepto').empty();
                     if(Object.keys(data).length > 0){
                         $.each(data, function(indice, val){
                             var label = data[indice]["concepto"]+' ('+data[indice]["codigo"]+') '+data[indice]["convenio"];
                             $("#id_concepto").append('<option value="'+data[indice]["id_concepto_convenio_contrato"]+'">'+label+'</option>');
 
                         });
-                        $('#myModal #id_concepto').selectpicker('refresh');
+                        $('#id_concepto').selectpicker('refresh');
                     }
 
-                },
-                error: function(data, textStatus, errorThrown) {
-                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+
+
+                })
+                .catch(function(data, textStatus, errorThrown){
+
                     alert(data.responseText);
-                }
+                });
+
+
+
+
+
+
+
 
             });
+
+
 
 
         });
@@ -236,7 +243,7 @@
 
 
 
-    });
+
 
 </script>
 
