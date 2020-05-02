@@ -155,7 +155,7 @@
                     if(Object.keys(data).length > 0){
                         //$('#id_empleado').html('<option value="">Todos los empleados</option>');
                         $.each(data, function(index, val){
-                            var label = data[index]["apellido"]+' '+data[index]["nombre"];
+                            var label = data[index]["legajo"]+' '+data[index]["apellido"]+' '+data[index]["nombre"];
                             $("#id_empleado").append('<option value="'+data[index]["id_empleado"]+'"'
                             +' id_convenio="'+data[index]["id_convenio"]+'"'
                             +'>'+label+'</option>');
