@@ -122,8 +122,8 @@
 
 // *********evento al cambiar los filtros de busqueda ********************/
 
-        $('#id_suceso, #id_evento, #id_contrato, #id_empleado').on('change', function(){
-            //alert('apapapaapapa');
+        $('#id_suceso, #id_evento, #id_contrato, #id_empleado, #check_suceso, #check_concepto, #id_concepto, #id_cuadrilla').on('change', function(){
+            alert('apapapaapapa');
             calendar.refetchEvents();
 
         });
