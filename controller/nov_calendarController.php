@@ -37,6 +37,8 @@ switch ($operation)
         $selected_sucesos = ($_POST['sucesos']!='')? implode(",", $_POST['sucesos'])  : 'su.id_evento';
         $sucesos = Calendar::getSucesos($empleados, $selected_sucesos, $start, $end, $id_contrato);
 
+        $novedades_empleado = Calendar::getNovedadesEmpleado($empleados, null, null, null, null );
+
         print_r(json_encode(array(
             'feriados'=>$feriados,
             'sucesos'=>$sucesos

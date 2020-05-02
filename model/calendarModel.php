@@ -76,6 +76,30 @@ class Calendar
 
 
 
+    public static function getNovedadesEmpleado($empleados, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
+        $stmt=new sQuery();
+        $query = "select npe.id_empleado,
+em.legajo, em.apellido, em.nombre,
+np.id_parte, np.fecha_parte, np.cuadrilla,
+na.nombre as area,
+nec.nombre as evento
+from nov_partes np
+join nov_parte_empleado npe on npe.id_parte = np.id_parte
+join empleados em on em.id_empleado = npe.id_empleado
+left join nov_areas na on na.id_area = np.id_area
+left join nov_eventos_c nec on nec.id_evento = np.id_evento
+order by np.id_parte asc";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
 }
 
 
