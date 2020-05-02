@@ -35,13 +35,12 @@ switch ($operation)
         }
 
 
-        $sucesos = Calendar::getSucesos($empleados, $selected_sucesos, $start, $end, $id_contrato);
 
-        $novedades_empleado = Calendar::getNovedadesEmpleado($empleados, null, null, null, null );
+        //$novedades_empleado = Calendar::getNovedadesEmpleado($empleados, null, null, null, null );
 
         print_r(json_encode(array(
             'feriados'=>Calendar::getFeriados($start, $end),
-            'sucesos'=>($_POST['id_contrato']!='')? $_POST['id_contrato'] : null
+            'sucesos'=>($_POST['radio_vista'] && $_POST['check_suceso'] )? Calendar::getSucesos($empleados, $selected_sucesos, $start, $end, $id_contrato) : ''
         )));
         exit;
         break;
