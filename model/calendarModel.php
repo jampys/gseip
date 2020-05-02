@@ -57,7 +57,7 @@ class Calendar
                   left join empleado_contrato ec on su.id_empleado = ec.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta >= sysdate() )
                   join nov_periodos pe1 on pe1.id_periodo = su.id_periodo1
                   left join nov_periodos pe2 on pe2.id_periodo = su.id_periodo2
-                  where su.id_empleado in ($empleados)
+                  where su.id_empleado in (ifnull($empleados, su.id_empleado))
                   and su.id_evento in ($eventos)
                   and su.fecha_desde <= if(:fecha_desde is null, su.fecha_desde, :fecha_hasta)
                   and su.fecha_hasta >= if(:fecha_hasta is null, su.fecha_hasta, :fecha_desde)

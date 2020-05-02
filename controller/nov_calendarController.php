@@ -19,7 +19,7 @@ switch ($operation)
 
         $start = date("Y-m-d", $_POST['start']/1000); //$_POST['start']; //convierte de milisegundos a yyyy-mm-dd
         $end = date("Y-m-d", $_POST['end']/1000); //$_POST['end'];
-        $empleados = ($_POST['empleados']!='')? implode(",", $_POST['empleados'])  : 'su.id_empleado';
+        $empleados = ($_POST['empleados']!='')? implode(",", $_POST['empleados'])  : 'null';
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $selected_sucesos = ($_POST['sucesos']!='')? implode(",", $_POST['sucesos'])  : 'su.id_evento';
@@ -40,7 +40,7 @@ switch ($operation)
         print_r(json_encode(array(
             'feriados'=>Calendar::getFeriados($start, $end),
             'sucesos'=>($_POST['radio_vista']=='empleado' && $_POST['check_suceso']==1)? Calendar::getSucesos($empleados, $selected_sucesos, $start, $end, $id_contrato) : '',
-            'novedades_empleado'=>Calendar::getNovedadesEmpleado($empleados, null, null, null, 21)
+            'novedades_empleado'=>''//Calendar::getNovedadesEmpleado($empleados, null, null, null, 21)
         )));
         exit;
         break;
