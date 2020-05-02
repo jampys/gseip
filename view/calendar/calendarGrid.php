@@ -149,16 +149,15 @@
 
             getData('index.php', params)
                 .then(function(data){
-                    
+
                     //completo select de empleados
                     $('#id_empleado').empty();
-                    if(Object.keys(data["empleados"]).length > 0){
+                    if(Object.keys(data).length > 0){
                         $('#id_empleado').html('<option value="">Todos los empleados</option>');
-                        $.each(data["empleados"], function(indice, val){
-                            var label = data["empleados"][indice]["apellido"]+' '+data["empleados"][indice]["nombre"];
-                            $("#id_empleado").append('<option value="'+data["empleados"][indice]["id_empleado"]+'"'
-                            +' id_convenio="'+data["empleados"][indice]["id_convenio"]+'"'
-                                //+' fecha_hasta="'+data["periodos"][indice]["fecha_hasta"]+'"'
+                        $.each(data, function(index, val){
+                            var label = data[index]["apellido"]+' '+data[index]["nombre"];
+                            $("#id_empleado").append('<option value="'+data[index]["id_empleado"]+'"'
+                            +' id_convenio="'+data[index]["id_convenio"]+'"'
                             +'>'+label+'</option>');
                         });
                         $('#id_empleado').selectpicker('refresh');
