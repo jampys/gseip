@@ -78,6 +78,7 @@ class Calendar
 
 
     public static function getNovedadesEmpleado($empleados, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
+        $empleados = ($empleados!='')? implode(",", $empleados)  : 'npe.id_empleado';
         $stmt=new sQuery();
         $query = "select npe.id_empleado,
 CONCAT (em.legajo, '\n', em.apellido, ' ', em.nombre) as empleado,
@@ -89,7 +90,7 @@ join nov_parte_empleado npe on npe.id_parte = np.id_parte
 join empleados em on em.id_empleado = npe.id_empleado
 left join nov_areas na on na.id_area = np.id_area
 left join nov_eventos_c nec on nec.id_evento = np.id_evento
-where npe.id_empleado in (ifnull($empleados, npe.id_empleado))
+where npe.id_empleado in ($empleados)
 order by np.id_parte asc";
 
         $stmt->dpPrepare($query);
