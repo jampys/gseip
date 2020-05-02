@@ -48,9 +48,19 @@ switch ($operation)
         $id_contrato = $_POST['id_contrato'];
         //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
         $empleados = Empleado::getEmpleadosControl($id_contrato);
+        //$cuadrillas = Cuadrilla::getCuadrillas($id_contrato, null);
+        //print_r(json_encode($rta));
+        print_r(json_encode(array('empleados'=>$empleados)));
+        exit;
+        break;
+
+    case 'getCuadrillas': //select dependiente
+        $id_contrato = $_POST['id_contrato'];
+        //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
+        //$empleados = Empleado::getEmpleadosControl($id_contrato);
         $cuadrillas = Cuadrilla::getCuadrillas($id_contrato, null);
         //print_r(json_encode($rta));
-        print_r(json_encode(array('empleados'=>$empleados, 'cuadrillas'=>$cuadrillas)));
+        print_r(json_encode(array('cuadrillas'=>$cuadrillas)));
         exit;
         break;
 

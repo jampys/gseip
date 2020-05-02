@@ -127,31 +127,51 @@
 
  // *************** llamadas asincronicas para poblar los filtros de busqueda ************/
 
+        function getData(url, params){
 
 
-        //Select dependiente: al seleccionar contrato carga periodos vigentes
+            var jqxhr = $.ajax({
+                url:"index.php",
+                type:"post",
+                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
+                data: params,
+                dataType:"json"//xml,html,script,json
+                /*success: function(data, textStatus, jqXHR) {
+
+
+
+                 },
+                 error: function(data, textStatus, errorThrown) {
+                 //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                 alert(data.responseText);
+                 }*/
+
+            });
+
+            return jqxhr ;
+
+        }
+
+
+
+
         $(document).on('change', '#id_contrato', function(e){
             //alert('seleccionó un contrato');
             //throw new Error();
+
             params={};
             params.action = "nov_calendar";
             params.operation = "getEmpleados";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
             params.id_contrato = $('#id_contrato').val();
 
-            $('#id_empleado').empty();
-            $('#id_cuadrilla').empty();
+            getData('index.php', params)
+                .then(function(data){
 
 
-            $.ajax({
-                url:"index.php",
-                type:"post",
-                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
-                data: params,
-                dataType:"json",//xml,html,script,json
-                success: function(data, textStatus, jqXHR) {
 
                     //completo select de empleados
+                    $('#id_empleado').empty();
                     if(Object.keys(data["empleados"]).length > 0){
                         $('#id_empleado').html('<option value="">Todos los empleados</option>');
                         $.each(data["empleados"], function(indice, val){
@@ -164,7 +184,15 @@
                         $('#id_empleado').selectpicker('refresh');
                     }
 
+                    params.operation = "getCuadrillas";
+                    return getData('index.php', params);
+
+
+
+                }).then(function(data){
+
                     //completo select de cuadrillas
+                    $('#id_cuadrilla').empty();
                     if(Object.keys(data["cuadrillas"]).length > 0){
                         $('#id_cuadrilla').html('<option value="">Todas las cuadrillas</option>');
                         $.each(data["cuadrillas"], function(indice, val){
@@ -175,20 +203,20 @@
                         $('#id_cuadrilla').selectpicker('refresh');
                     }
 
-                },
-                error: function(data, textStatus, errorThrown) {
-                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                    alert(data.responseText);
-                }
+                })
+                .catch(function(data, textStatus, errorThrown){
 
-            });
+                    alert(data.responseText);
+                })
+
 
 
         });
 
 
 
-        
+
+
 
     });
 
