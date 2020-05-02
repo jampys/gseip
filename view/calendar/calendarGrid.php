@@ -42,6 +42,7 @@
                         end: info.end.valueOf(),
                         action: 'nov_calendar',
                         operation: 'get',
+                        vista: $("input[name='radio_vista']:checked").val(),
                         id_contrato : $('#id_contrato').val(),
                         empleados : ($("#id_empleado").val()!= null)? $("#id_empleado").val() : '',
                         sucesos : ($("#id_suceso").val()!= null)? $("#id_suceso").val() : ''
