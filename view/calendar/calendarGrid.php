@@ -285,27 +285,22 @@
 
 
 
-        <div class="row">
-            <div class="form-group col-md-2">
-                <div class="checkbox">
-                    <label><input type="checkbox" value="" title="Marcar para mostrar enventos en el calendario" checked></label>
-                </div>
-            </div>
-            <div class="form-group col-md-10">
-                <select class="selectpicker form-control show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
-                    <option value="">Todos los eventos</option>
-                    <?php foreach ($view->eventos as $ar){ ?>
-                        <option value="<?php echo $ar['id_evento']; ?>"
-                            <?php //echo ($ar['enabled'])? '':'disabled'; ?>
-                            <?php //echo ($ar['id_evento'] == $view->parte->getIdEvento())? 'selected' :'' ?>
-                            >
-                            <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
-                        </option>
-                    <?php  } ?>
-                </select>
-            </div>
+        <div class="form-group">
+            <!--<select class="selectpicker form-control show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5">-->
+            <select multiple class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Todos los eventos" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
+                <!--<option value="">Todos los eventos</option>-->
+                <?php foreach ($view->eventos as $ar){ ?>
+                    <option value="<?php echo $ar['id_evento']; ?>"
+                        <?php //echo ($ar['enabled'])? '':'disabled'; ?>
+                        <?php //echo ($ar['id_evento'] == $view->parte->getIdEvento())? 'selected' :'' ?>
+                        >
+                        <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
+                    </option>
+                <?php  } ?>
+            </select>
         </div>
 
+        <hr/>
 
         <div class="radio">
             <label><input type="radio" name="optradio" checked><b>Vista empleado</b></label>
