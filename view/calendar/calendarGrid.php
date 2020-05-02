@@ -33,6 +33,8 @@
             },
 
             events: function(info, successCallback, failureCallback) { //https://fullcalendar.io/docs/events-function
+
+                //alert($('#check_concepto').is(':checked'));
                 $.ajax({
                     url: 'index.php',
                     type: 'POST',
@@ -42,7 +44,8 @@
                         end: info.end.valueOf(),
                         action: 'nov_calendar',
                         operation: 'get',
-                        vista: $("input[name='radio_vista']:checked").val(),
+                        radio_vista: $("input[name='radio_vista']:checked").val(),
+                        check_concepto: $('#check_concepto').is(':checked'),
                         id_contrato : $('#id_contrato').val(),
                         empleados : ($("#id_empleado").val()!= null)? $("#id_empleado").val() : '',
                         sucesos : ($("#id_suceso").val()!= null)? $("#id_suceso").val() : ''
@@ -331,7 +334,7 @@
         <div class="row">
             <div class="form-group col-md-2">
                 <div class="checkbox">
-                    <label><input type="checkbox" value="" checked></label>
+                    <label><input type="checkbox" id="check_concepto" value="" checked></label>
                 </div>
             </div>
             <div class="form-group col-md-10">
