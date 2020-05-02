@@ -188,6 +188,46 @@
                 })
 
 
+        });
+
+
+
+        //Select dependiente: al seleccionar emppleado carga conceptos
+        $('#myModal').on('change', '#id_empleado', function(e){ //ok
+
+            params={};
+            params.action = "parte-empleado-concepto";
+            params.operation = "getConceptos";
+            params.id_convenio = $('#myModal #id_empleado option:selected').attr('id_convenio');
+            params.id_contrato = $('#myModal #id_contrato').val();
+
+            $('#myModal #id_concepto').empty();
+
+
+            $.ajax({
+                url:"index.php",
+                type:"post",
+                data: params,
+                dataType:"json",//xml,html,script,json
+                success: function(data, textStatus, jqXHR) {
+
+                    if(Object.keys(data).length > 0){
+                        $.each(data, function(indice, val){
+                            var label = data[indice]["concepto"]+' ('+data[indice]["codigo"]+') '+data[indice]["convenio"];
+                            $("#id_concepto").append('<option value="'+data[indice]["id_concepto_convenio_contrato"]+'">'+label+'</option>');
+
+                        });
+                        $('#myModal #id_concepto').selectpicker('refresh');
+                    }
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    alert(data.responseText);
+                }
+
+            });
+
 
         });
 
@@ -261,7 +301,7 @@
         </div>
 
 
-        <div class="row">
+        <!--<div class="row">
             <div class="form-group col-md-2">
                 <div class="checkbox">
                     <label><input type="checkbox" value=""></label>
@@ -269,6 +309,23 @@
             </div>
             <div class="form-group col-md-10">
                 <span class="form-control">Novedades</span>
+            </div>
+        </div>-->
+
+
+        <div class="row">
+            <div class="form-group col-md-2">
+                <div class="checkbox">
+                    <label><input type="checkbox" value=""></label>
+                </div>
+            </div>
+            <div class="form-group col-md-10">
+                <div class="form-group">
+                    <!--<select class="form-control selectpicker show-tick" id="id_concepto" name="id_concepto" title="Seleccione un concepto" data-live-search="true" data-size="5">-->
+                    <select multiple class="form-control selectpicker show-tick" id="id_concepto" name="id_concepto" title="Todos los conceptos" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
+                        <!-- se completa dinamicamente desde javascript  -->
+                    </select>
+                </div>
             </div>
         </div>
 
