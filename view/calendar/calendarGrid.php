@@ -153,7 +153,7 @@
                     //completo select de empleados
                     $('#id_empleado').empty();
                     if(Object.keys(data).length > 0){
-                        $('#id_empleado').html('<option value="">Todos los empleados</option>');
+                        //$('#id_empleado').html('<option value="">Todos los empleados</option>');
                         $.each(data, function(index, val){
                             var label = data[index]["apellido"]+' '+data[index]["nombre"];
                             $("#id_empleado").append('<option value="'+data[index]["id_empleado"]+'"'
@@ -172,7 +172,7 @@
                     //completo select de cuadrillas
                     $('#id_cuadrilla').empty();
                     if(Object.keys(data).length > 0){
-                        $('#id_cuadrilla').html('<option value="">Todas las cuadrillas</option>');
+                        //$('#id_cuadrilla').html('<option value="">Todas las cuadrillas</option>');
                         $.each(data, function(index, val){
                             var label = data[index]["nombre"];
                             $("#id_cuadrilla").append('<option value="'+data[index]["id_cuadrilla"]+'"'
@@ -310,7 +310,8 @@
             </div>
             <div class="form-group col-md-10">
                 <div class="form-group">
-                    <select class="form-control selectpicker show-tick" id="id_cuadrilla" name="id_cuadrilla" data-live-search="true" data-size="5">
+                    <!--<select class="form-control selectpicker show-tick" id="id_cuadrilla" name="id_cuadrilla" title="Todas las cuadrillas" data-live-search="true" data-size="5">-->
+                    <select multiple class="form-control selectpicker show-tick" id="id_cuadrilla" name="id_cuadrilla" title="Todas las cuadrillas" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
                         <!-- se completa dinamicamente desde javascript  -->
                     </select>
                 </div>
