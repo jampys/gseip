@@ -46,6 +46,7 @@
                         operation: 'get',
                         radio_vista: $("input[name='radio_vista']:checked").val(),
                         check_concepto: $('#check_concepto').is(':checked'),
+                        check_suceso: $('#check_suceso').is(':checked'),
                         id_contrato : $('#id_contrato').val(),
                         empleados : ($("#id_empleado").val()!= null)? $("#id_empleado").val() : '',
                         sucesos : ($("#id_suceso").val()!= null)? $("#id_suceso").val() : ''
@@ -352,7 +353,7 @@
         <div class="row">
             <div class="form-group col-md-2">
                 <div class="checkbox">
-                    <label><input type="checkbox" value="" checked></label>
+                    <label><input type="checkbox" id="check_suceso" value="" checked></label>
                 </div>
             </div>
             <div class="form-group col-md-10">
@@ -378,22 +379,17 @@
         </div>
 
 
-        <div class="row">
-            <div class="form-group col-md-2">
-                <div class="checkbox">
-                    <label><input type="checkbox" value="" title="Marcar para mostrar enventos en el calendario" checked></label>
-                </div>
-            </div>
-            <div class="form-group col-md-10">
-                <div class="form-group">
-                    <!--<select class="form-control selectpicker show-tick" id="id_cuadrilla" name="id_cuadrilla" title="Todas las cuadrillas" data-live-search="true" data-size="5">-->
-                    <select multiple class="form-control selectpicker show-tick" id="id_cuadrilla" name="id_cuadrilla" title="Todas las cuadrillas" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
-                        <!-- se completa dinamicamente desde javascript  -->
-                    </select>
-                </div>
-
+        <div class="form-group">
+            <div class="form-group">
+                <!--<select class="form-control selectpicker show-tick" id="id_cuadrilla" name="id_cuadrilla" title="Todas las cuadrillas" data-live-search="true" data-size="5">-->
+                <select multiple class="form-control selectpicker show-tick" id="id_cuadrilla" name="id_cuadrilla" title="Todas las cuadrillas" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
+                    <!-- se completa dinamicamente desde javascript  -->
+                </select>
             </div>
         </div>
+
+
+
 
 
 
