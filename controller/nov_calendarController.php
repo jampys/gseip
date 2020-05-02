@@ -44,20 +44,17 @@ switch ($operation)
         exit;
         break;
 
-    case 'getEmpleados': //select dependiente
+    case 'getEmpleados': //select dependiente //ok
         $id_contrato = $_POST['id_contrato'];
         $rta = Empleado::getEmpleadosControl($id_contrato);
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'getCuadrillas': //select dependiente
+    case 'getCuadrillas': //select dependiente //ok
         $id_contrato = $_POST['id_contrato'];
-        //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
-        //$empleados = Empleado::getEmpleadosControl($id_contrato);
-        $cuadrillas = Cuadrilla::getCuadrillas($id_contrato, null);
-        //print_r(json_encode($rta));
-        print_r(json_encode(array('cuadrillas'=>$cuadrillas)));
+        $rta = Cuadrilla::getCuadrillas($id_contrato, null);
+        print_r(json_encode($rta));
         exit;
         break;
 

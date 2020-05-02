@@ -167,16 +167,15 @@
                     return getData('index.php', params);
 
 
-
                 }).then(function(data){
 
                     //completo select de cuadrillas
                     $('#id_cuadrilla').empty();
-                    if(Object.keys(data["cuadrillas"]).length > 0){
+                    if(Object.keys(data).length > 0){
                         $('#id_cuadrilla').html('<option value="">Todas las cuadrillas</option>');
-                        $.each(data["cuadrillas"], function(indice, val){
-                            var label = data["cuadrillas"][indice]["nombre"];
-                            $("#id_cuadrilla").append('<option value="'+data["cuadrillas"][indice]["id_cuadrilla"]+'"'
+                        $.each(data, function(index, val){
+                            var label = data[index]["nombre"];
+                            $("#id_cuadrilla").append('<option value="'+data[index]["id_cuadrilla"]+'"'
                             +'>'+label+'</option>');
                         });
                         $('#id_cuadrilla').selectpicker('refresh');
