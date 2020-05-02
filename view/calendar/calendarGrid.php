@@ -330,7 +330,7 @@
         <div class="row">
             <div class="form-group col-md-2">
                 <div class="checkbox">
-                    <label><input type="checkbox" value=""></label>
+                    <label><input type="checkbox" value="" checked></label>
                 </div>
             </div>
             <div class="form-group col-md-10">
@@ -348,7 +348,7 @@
         <div class="row">
             <div class="form-group col-md-2">
                 <div class="checkbox">
-                    <label><input type="checkbox" value=""></label>
+                    <label><input type="checkbox" value="" checked></label>
                 </div>
             </div>
             <div class="form-group col-md-10">
