@@ -29,8 +29,7 @@ switch ($operation)
             )));
             exit;
         }
-
-        //$id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
+        
         $empleados = ($_POST['empleados']!='')? implode(",", $_POST['empleados'])  : 'su.id_empleado';
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
