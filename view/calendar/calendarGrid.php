@@ -2,8 +2,9 @@
 
     $(document).ready(function(){
 
-        var calendarEl = document.getElementById('calendar');
+   // ***********fullcalendar *************************************************//
 
+        var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             locale: 'es',//lang: 'es'
             plugins: [ 'interaction', 'dayGrid' ],
@@ -96,14 +97,8 @@
         calendar.render();
 
 
-        $('#id_suceso, #id_evento, #id_contrato, #id_empleado').on('change', function(){
-            alert('apapapaapapa');
-            calendar.refetchEvents();
 
-        });
-
-
-
+// ********funcion que formatea el detalle de los eventos que se muestran en un popover *************/
 
     function format(info){
         //return '<p>'+info.event.extendedProps.details+'</p>'
@@ -120,6 +115,17 @@
 
 
 
+// *********evento al cambiar los filtros de busqueda ********************/
+
+        $('#id_suceso, #id_evento, #id_contrato, #id_empleado').on('change', function(){
+            alert('apapapaapapa');
+            calendar.refetchEvents();
+
+        });
+
+
+
+ // *************** llamadas asincronicas para poblar los filtros de busqueda ************/
 
 
 
@@ -179,6 +185,10 @@
 
 
         });
+
+
+
+        
 
     });
 
