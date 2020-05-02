@@ -128,37 +128,19 @@
  // *************** llamadas asincronicas para poblar los filtros de busqueda ************/
 
         function getData(url, params){
-
-
             var jqxhr = $.ajax({
                 url:"index.php",
                 type:"post",
-                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
                 data: params,
                 dataType:"json"//xml,html,script,json
-                /*success: function(data, textStatus, jqXHR) {
-
-
-
-                 },
-                 error: function(data, textStatus, errorThrown) {
-                 //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                 alert(data.responseText);
-                 }*/
-
             });
-
             return jqxhr ;
-
         }
-
-
 
 
         $(document).on('change', '#id_contrato', function(e){
             //alert('seleccionó un contrato');
             //throw new Error();
-
             params={};
             params.action = "nov_calendar";
             params.operation = "getEmpleados";
@@ -167,9 +149,7 @@
 
             getData('index.php', params)
                 .then(function(data){
-
-
-
+                    
                     //completo select de empleados
                     $('#id_empleado').empty();
                     if(Object.keys(data["empleados"]).length > 0){
