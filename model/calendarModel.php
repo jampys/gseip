@@ -39,6 +39,7 @@ class Calendar
 
 
     public static function getSucesos($empleados, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
+        $empleados = ($empleados!='')? implode(",", $empleados)  : 'su.id_empleado';
         $stmt=new sQuery();
         $query = "select 'suceso' as tipo_evento, su.id_suceso, su.id_evento, su.id_empleado,
                   DATE_FORMAT(su.created_date,  '%d/%m/%Y') as created_date,
@@ -57,7 +58,7 @@ class Calendar
                   left join empleado_contrato ec on su.id_empleado = ec.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta >= sysdate() )
                   join nov_periodos pe1 on pe1.id_periodo = su.id_periodo1
                   left join nov_periodos pe2 on pe2.id_periodo = su.id_periodo2
-                  where su.id_empleado in (ifnull($empleados, su.id_empleado))
+                  where su.id_empleado in ($empleados)
                   and su.id_evento in ($eventos)
                   and su.fecha_desde <= if(:fecha_desde is null, su.fecha_desde, :fecha_hasta)
                   and su.fecha_hasta >= if(:fecha_hasta is null, su.fecha_hasta, :fecha_desde)
