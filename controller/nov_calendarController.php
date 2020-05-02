@@ -19,12 +19,11 @@ switch ($operation)
 
         $start = date("Y-m-d", $_POST['start']/1000); //$_POST['start']; //convierte de milisegundos a yyyy-mm-dd
         $end = date("Y-m-d", $_POST['end']/1000); //$_POST['end'];
-        $feriados = Calendar::getFeriados($start, $end);
 
         //mientras no se seleccione un contrato, solo cargará los feriados
         if(!$_POST['id_contrato']){
             print_r(json_encode(array(
-                'feriados'=>$feriados,
+                'feriados'=>Calendar::getFeriados($start, $end),
                 'sucesos'=>''
             )));
             exit;
@@ -39,7 +38,7 @@ switch ($operation)
         $novedades_empleado = Calendar::getNovedadesEmpleado($empleados, null, null, null, null );
 
         print_r(json_encode(array(
-            'feriados'=>$feriados,
+            'feriados'=>Calendar::getFeriados($start, $end),
             'sucesos'=>$sucesos
         )));
         exit;
