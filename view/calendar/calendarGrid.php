@@ -303,7 +303,7 @@
         <hr/>
 
         <div class="radio">
-            <label><input type="radio" name="optradio" checked><b>Vista empleado</b></label>
+            <label><input type="radio" name="radio_vista" value="empleado" checked><b>Vista empleado</b></label>
         </div>
 
 
@@ -370,7 +370,7 @@
 
 
         <div class="radio">
-            <label><input type="radio" name="optradio"><b>Vista cuadrilla</b></label>
+            <label><input type="radio" name="radio_vista" value="cuadrilla"><b>Vista cuadrilla</b></label>
         </div>
 
 
