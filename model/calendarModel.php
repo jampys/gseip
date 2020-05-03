@@ -130,6 +130,34 @@ order by np.id_parte asc";
 
 
 
+    public static function getNovedadesCuadrilla($cuadrillas, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
+        $cuadrillas = ($cuadrillas!='')? implode(",", $cuadrillas)  : 'np.id_cuadrilla';
+        $eventos = ($eventos!='')? implode(",", $eventos)  : 'null';
+        $stmt=new sQuery();
+        $query = "select np.id_parte, np.fecha_parte, np.cuadrilla, np.comentarios, np.id_cuadrilla,
+GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre, ' ', if(npe.conductor=1, '(C)', '')    ) SEPARATOR '\n') as empleados,
+na.nombre as area,
+nec.nombre as evento
+from nov_partes np
+join nov_parte_empleado npe on npe.id_parte = np.id_parte
+join empleados em on em.id_empleado = npe.id_empleado
+left join nov_areas na on na.id_area = np.id_area
+left join nov_eventos_c nec on nec.id_evento = np.id_evento
+where np.id_contrato = :id_contrato
+and np.id_cuadrilla in ($cuadrillas)
+and if(LENGTH($eventos)>0, np.id_evento in ($eventos), 1)
+group by fecha_parte, cuadrilla";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
 }
 
 
