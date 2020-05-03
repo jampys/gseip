@@ -82,7 +82,7 @@ class Calendar
         $eventos = ($eventos!='')? implode(",", $eventos)  : 'null';
         $stmt=new sQuery();
         $query = "select 'novedad_empleado' as tipo_evento, npe.id_empleado,
-CONCAT (em.apellido, ' ', em.nombre) as empleado,
+CONCAT (em.apellido, ' ', em.nombre) as empleado, em.legajo,
 np.id_parte, np.fecha_parte, np.cuadrilla, np.id_evento,
 na.nombre as area,
 nec.nombre as evento

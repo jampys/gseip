@@ -77,7 +77,7 @@
                                 title: data['sucesos'][index].empleado+' '+data['sucesos'][index].evento,
                                 start: data['sucesos'][index].fecha_desde+'T00:00:00',
                                 end: data['sucesos'][index].fecha_hasta+'T23:59:00',
-                                color: '#ff751a', // override!
+                                color: '#ff9900', // override!
                                 //textColor: 'gray',
                                 extendedProps: {
                                     tipo_evento: data['sucesos'][index].tipo_evento
@@ -96,8 +96,11 @@
                                 color: (data['novedades_empleado'][index].id_evento)? 'tomato':'',
                                 //textColor: 'gray',
                                 extendedProps: {
-                                    cuadrilla: data['novedades_empleado'][index].cuadrilla
-                                    //details: data['sucesos'][index].details
+                                    tipo_evento: data['novedades_empleado'][index].tipo_evento,
+                                    legajo: data['novedades_empleado'][index].legajo,
+                                    cuadrilla: data['novedades_empleado'][index].cuadrilla,
+                                    area: data['novedades_empleado'][index].area,
+                                    evento: data['novedades_empleado'][index].evento
                                 }
                             });
                         });
@@ -132,6 +135,12 @@
             msg += '<span>Hasta: '+e+'</span>';
             return msg;
         }
+        else if(info.event.extendedProps.tipo_evento == 'novedad_empleado') {
+            msg = (info.event.extendedProps.cuadrilla)? '<span>'+info.event.extendedProps.cuadrilla+'</span><br/>' : '';
+            msg += (info.event.extendedProps.area)? '<span>'+info.event.extendedProps.area+'</span><br/>' : '';
+            msg += (info.event.extendedProps.evento)? '<span>'+info.event.extendedProps.evento+'</span>' : '';
+            return msg;
+        }
     }
 
 
@@ -139,7 +148,7 @@
 // *********evento al cambiar los filtros de busqueda ********************/
 
         $('#id_suceso, #id_evento, #id_contrato, #id_empleado, #check_suceso, #check_concepto, #id_concepto, #id_cuadrilla').on('change', function(){
-            alert('apapapaapapa');
+            //alert('apapapaapapa');
             calendar.refetchEvents();
 
         });
