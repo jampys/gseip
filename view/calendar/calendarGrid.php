@@ -65,8 +65,8 @@
                                     tipo_evento: data['feriados'][index].tipo_evento,
                                     details: data['feriados'][index].details
                                 },
-                                color: '#ff9f89', // override!
-                                rendering: 'background'
+                                color: 'gray' // #ff9f89
+                                //rendering: 'background'
                             });
                         });
 
@@ -121,15 +121,16 @@
 // ********funcion que formatea el detalle de los eventos que se muestran en un popover *************/
 
     function format(info){
-        //return '<p>'+info.event.extendedProps.details+'</p>'
-        //+info.event.start
+        let msg = '';
         if(info.event.extendedProps.tipo_evento == 'feriado') {
-            return '<p>'+info.event.extendedProps.details+'</p>';
+            return '<span>'+info.event.extendedProps.details+'</span>';
         }
         else if(info.event.extendedProps.tipo_evento == 'suceso') {
             let s = new Date(info.event.start).toLocaleDateString('en-GB'); //formato dd/mm/yyyy
             let e = new Date(info.event.end).toLocaleDateString('en-GB');
-            return e;
+            msg = '<span>Desde: '+s+'</span><br/>';
+            msg += '<span>Hasta: '+e+'</span>';
+            return msg;
         }
     }
 
