@@ -93,7 +93,7 @@
                                 title: data['novedades_empleado'][index].empleado,
                                 start: data['novedades_empleado'][index].fecha_parte+'T00:00:00',
                                 end: data['novedades_empleado'][index].fecha_parte+'T23:59:00',
-                                //color: '#ff751a', // override!
+                                color: (data['novedades_empleado'][index].id_evento)? 'tomato':'',
                                 //textColor: 'gray',
                                 extendedProps: {
                                     cuadrilla: data['novedades_empleado'][index].cuadrilla

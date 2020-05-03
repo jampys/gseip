@@ -83,7 +83,7 @@ class Calendar
         $stmt=new sQuery();
         $query = "select npe.id_empleado,
 CONCAT (em.apellido, ' ', em.nombre) as empleado,
-np.id_parte, np.fecha_parte, np.cuadrilla,
+np.id_parte, np.fecha_parte, np.cuadrilla, np.id_evento,
 na.nombre as area,
 nec.nombre as evento
 from nov_partes np
