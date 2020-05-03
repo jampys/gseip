@@ -102,7 +102,7 @@ np.id_parte, np.fecha_parte, np.cuadrilla, np.id_evento,
 na.nombre as area,
 nec.nombre as evento,
 npec.cantidad, nc.nombre as concepto, nccc.codigo, nconv.codigo as convenio,
-group_concat(concat(nconv.codigo, ' ', nc.nombre, ' ', nccc.codigo, ' ', npec.cantidad) separator ',') as concepto_detallado
+group_concat(concat(nconv.codigo, ' ', nc.nombre, ' ', nccc.codigo, ' ', npec.cantidad) separator ',') as conceptos
 from nov_partes np
 join nov_parte_empleado npe on npe.id_parte = np.id_parte
 join empleados em on em.id_empleado = npe.id_empleado

@@ -100,7 +100,8 @@
                                     legajo: data['novedades_empleado'][index].legajo,
                                     cuadrilla: data['novedades_empleado'][index].cuadrilla,
                                     area: data['novedades_empleado'][index].area,
-                                    evento: data['novedades_empleado'][index].evento
+                                    evento: data['novedades_empleado'][index].evento,
+                                    conceptos: data['novedades_empleado'][index].conceptos
                                 }
                             });
                         });
@@ -139,6 +140,7 @@
             msg = (info.event.extendedProps.cuadrilla)? '<span>'+info.event.extendedProps.cuadrilla+'</span><br/>' : '';
             msg += (info.event.extendedProps.area)? '<span>'+info.event.extendedProps.area+'</span><br/>' : '';
             msg += (info.event.extendedProps.evento)? '<span>'+info.event.extendedProps.evento+'</span>' : '';
+            msg += (info.event.extendedProps.conceptos)? '<span>'+info.event.extendedProps.conceptos+'</span>' : '';
             return msg;
         }
     }
