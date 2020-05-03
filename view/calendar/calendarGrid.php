@@ -165,6 +165,12 @@
             msg += (info.event.extendedProps.conceptos)? '<span>'+info.event.extendedProps.conceptos+'</span>' : '';
             return msg;
         }
+        else if(info.event.extendedProps.tipo_evento == 'novedad_cuadrilla') {
+            msg += (info.event.extendedProps.area)? '<span>'+info.event.extendedProps.area+'</span><br/>' : '';
+            msg += (info.event.extendedProps.integrantes)? '<span>'+info.event.extendedProps.integrantes+'</span><br/>' : '';
+            msg += (info.event.extendedProps.evento)? '<span>'+info.event.extendedProps.evento+'</span>' : '';
+            return msg;
+        }
     }
 
 
@@ -402,7 +408,7 @@
         <div class="row">
             <div class="form-group col-md-2">
                 <div class="checkbox">
-                    <label><input type="checkbox" id="check_suceso" value="" checked></label>
+                    <label><input type="checkbox" id="check_suceso" value=""></label>
                 </div>
             </div>
             <div class="form-group col-md-10">

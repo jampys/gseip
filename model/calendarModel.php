@@ -135,7 +135,7 @@ order by np.id_parte asc";
         $eventos = ($eventos!='')? implode(",", $eventos)  : 'null';
         $stmt=new sQuery();
         $query = "select 'novedad_cuadrilla' as tipo_evento, np.id_parte, np.fecha_parte, np.cuadrilla, np.comentarios, np.id_cuadrilla, np.id_evento,
-GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre, ' ', if(npe.conductor=1, '(C)', '')    ) SEPARATOR '\n') as integrantes,
+GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre, ' ', if(npe.conductor=1, '(C)', '')    ) SEPARATOR '<br/>') as integrantes,
 na.nombre as area,
 nec.nombre as evento
 from nov_partes np
