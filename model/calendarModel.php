@@ -77,7 +77,7 @@ class Calendar
 
 
 
-    public static function getNovedadesEmpleado($empleados, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
+    public static function getNovedadesEmpleado($empleados, $eventos, $fecha_desde, $fecha_hasta, $id_contrato, $conceptos) { //ok
         $empleados = ($empleados!='')? implode(",", $empleados)  : 'npe.id_empleado';
         $eventos = ($eventos!='')? implode(",", $eventos)  : 'null';
         $stmt=new sQuery();
@@ -116,6 +116,7 @@ where np.id_contrato = :id_contrato
 and npe.id_empleado in ($empleados)
 and np.fecha_parte between :fecha_desde and :fecha_hasta
 and if(LENGTH($eventos)>0, np.id_evento in ($eventos), 1)
+and nccc.id_concepto_convenio_contrato in ($conceptos)
 group by np.id_parte, npe.id_empleado
 order by np.id_parte asc";
 

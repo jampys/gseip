@@ -50,7 +50,8 @@
                         id_contrato : $('#id_contrato').val(),
                         eventos : ($("#id_evento").val()!= null)? $("#id_evento").val() : '',
                         empleados : ($("#id_empleado").val()!= null)? $("#id_empleado").val() : '',
-                        sucesos : ($("#id_suceso").val()!= null)? $("#id_suceso").val() : ''
+                        sucesos : ($("#id_suceso").val()!= null)? $("#id_suceso").val() : '',
+                        conceptos : ($("#id_concepto").val()!= null)? $("#id_suceso").val() : ''
                     },
                     success: function(data) {
                         var events = [];
