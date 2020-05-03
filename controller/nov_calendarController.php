@@ -40,7 +40,7 @@ switch ($operation)
         print_r(json_encode(array(
             'feriados'=>Calendar::getFeriados($start, $end),
             'sucesos'=>($_POST['radio_vista']=='empleado' && $_POST['check_suceso']==1)? Calendar::getSucesos($_POST['empleados'], $selected_sucesos, $start, $end, $id_contrato) : '',
-            'novedades_empleado'=>Calendar::getNovedadesEmpleado($_POST['empleados'], $_POST['eventos'], $start, $end, $id_contrato)
+            'novedades_empleado'=>($_POST['radio_vista']=='empleado' && $_POST['check_concepto']==1)? Calendar::getNovedadesEmpleado($_POST['empleados'], $_POST['eventos'], $start, $end, $id_contrato) : ''
         )));
         exit;
         break;
