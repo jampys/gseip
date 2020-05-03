@@ -139,7 +139,7 @@
         else if(info.event.extendedProps.tipo_evento == 'novedad_empleado') {
             msg = (info.event.extendedProps.cuadrilla)? '<span>'+info.event.extendedProps.cuadrilla+'</span><br/>' : '';
             msg += (info.event.extendedProps.area)? '<span>'+info.event.extendedProps.area+'</span><br/>' : '';
-            msg += (info.event.extendedProps.evento)? '<span>'+info.event.extendedProps.evento+'</span>' : '';
+            msg += (info.event.extendedProps.evento)? '<span>'+info.event.extendedProps.evento+'</span><br/>' : '';
             msg += (info.event.extendedProps.conceptos)? '<span>'+info.event.extendedProps.conceptos+'</span>' : '';
             return msg;
         }
