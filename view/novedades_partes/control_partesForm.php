@@ -402,15 +402,17 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label class="control-label" for="empleado">Fecha desde / hasta</label>
                         <div class="input-group input-daterange">
                             <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly disabled>
                             <div class="input-group-addon">a</div>
                             <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly disabled>
                         </div>
-                    </div>
+                    </div>-->
 
+                    <br/>
+                    
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
