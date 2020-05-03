@@ -144,6 +144,7 @@ join empleados em on em.id_empleado = npe.id_empleado
 left join nov_areas na on na.id_area = np.id_area
 left join nov_eventos_c nec on nec.id_evento = np.id_evento
 where np.id_contrato = :id_contrato
+and np.fecha_parte between :fecha_desde and :fecha_hasta
 and np.id_cuadrilla in ($cuadrillas)
 and if(LENGTH($eventos)>0, np.id_evento in ($eventos), 1)
 group by fecha_parte, cuadrilla";
