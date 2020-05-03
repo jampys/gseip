@@ -111,7 +111,7 @@
 
                         //novedades cuadrilla
                         //alert(Object.keys(data['sucesos']).length);
-                        $(data['novedades_empleado']).each(function(index) {
+                        $(data['novedades_cuadrilla']).each(function(index) {
                             events.push({
                                 title: data['novedades_cuadrilla'][index].cuadrilla,
                                 start: data['novedades_cuadrilla'][index].fecha_parte+'T00:00:00',
