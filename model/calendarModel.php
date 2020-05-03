@@ -79,6 +79,7 @@ class Calendar
 
     public static function getNovedadesEmpleado($empleados, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
         $empleados = ($empleados!='')? implode(",", $empleados)  : 'npe.id_empleado';
+        $eventos = ($eventos!='')? implode(",", $empleados)  : 'null';
         $stmt=new sQuery();
         $query = "select npe.id_empleado,
 CONCAT (em.legajo, '\n', em.apellido, ' ', em.nombre) as empleado,
@@ -90,12 +91,14 @@ join nov_parte_empleado npe on npe.id_parte = np.id_parte
 join empleados em on em.id_empleado = npe.id_empleado
 left join nov_areas na on na.id_area = np.id_area
 left join nov_eventos_c nec on nec.id_evento = np.id_evento
-where npe.id_empleado in ($empleados)
+where np.id_contrato = :id_contrato
+and npe.id_empleado in ($empleados)
+and if($eventos is not null, np.id_evento in ($eventos), 1)
 order by np.id_parte asc";
 
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':fecha_desde', $fecha_desde);
-        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        //$stmt->dpBind(':fecha_desde', $fecha_desde);
+        //$stmt->dpBind(':fecha_hasta', $fecha_hasta);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
