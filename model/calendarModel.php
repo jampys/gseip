@@ -134,8 +134,8 @@ order by np.id_parte asc";
         $cuadrillas = ($cuadrillas!='')? implode(",", $cuadrillas)  : 'np.id_cuadrilla';
         $eventos = ($eventos!='')? implode(",", $eventos)  : 'null';
         $stmt=new sQuery();
-        $query = "select np.id_parte, np.fecha_parte, np.cuadrilla, np.comentarios, np.id_cuadrilla,
-GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre, ' ', if(npe.conductor=1, '(C)', '')    ) SEPARATOR '\n') as empleados,
+        $query = "select select 'novedad_cuadrilla' as tipo_evento, np.id_parte, np.fecha_parte, np.cuadrilla, np.comentarios, np.id_cuadrilla,
+GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre, ' ', if(npe.conductor=1, '(C)', '')    ) SEPARATOR '\n') as integrantes,
 na.nombre as area,
 nec.nombre as evento
 from nov_partes np

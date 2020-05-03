@@ -108,6 +108,26 @@
                             });
                         });
 
+
+                        //novedades cuadrilla
+                        //alert(Object.keys(data['sucesos']).length);
+                        $(data['novedades_empleado']).each(function(index) {
+                            events.push({
+                                title: data['novedades_cuadrilla'][index].cuadrilla,
+                                start: data['novedades_cuadrilla'][index].fecha_parte+'T00:00:00',
+                                end: data['novedades_cuadrilla'][index].fecha_parte+'T23:59:00',
+                                color: (data['novedades_cuadrilla'][index].id_evento)? 'tomato':'',
+                                //textColor: 'gray',
+                                extendedProps: {
+                                    tipo_evento: data['novedades_cuadrilla'][index].tipo_evento,
+                                    area: data['novedades_cuadrilla'][index].area,
+                                    evento: data['novedades_cuadrilla'][index].evento,
+                                    integrantes: data['novedades_cuadrilla'][index].integrantes
+                                }
+                            });
+                        });
+
+
                         successCallback(events);
                     }
                 }).fail(function(jqXHR, textStatus, errorThrown){
