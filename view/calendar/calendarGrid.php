@@ -48,6 +48,7 @@
                         check_concepto: ($('#check_concepto').is(':checked'))? 1:0,
                         check_suceso: ($('#check_suceso').is(':checked'))? 1:0,
                         id_contrato : $('#id_contrato').val(),
+                        eventos : ($("#id_evento").val()!= null)? $("#id_evento").val() : '',
                         empleados : ($("#id_empleado").val()!= null)? $("#id_empleado").val() : '',
                         sucesos : ($("#id_suceso").val()!= null)? $("#id_suceso").val() : ''
                     },
