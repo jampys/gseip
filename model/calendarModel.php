@@ -79,12 +79,10 @@ class Calendar
 
     public static function getNovedadesEmpleado($empleados, $eventos, $fecha_desde, $fecha_hasta, $id_contrato, $conceptos) { //ok
         $empleados = ($empleados!='')? implode(",", $empleados)  : 'npe.id_empleado';
-        //con eventos se hace de esta manera porque hay partes con eventos en null, y al usar
-        //la condicion np.id_evento in (np.id_evento) no trae los registros con id_evento en null
         $e = sizeof($eventos);
-        $eventos = implode(",", $eventos);
-
+        $eventos = ($eventos!='')? implode(",", $eventos)  : 'null';
         $stmt=new sQuery();
+
         $query = "select 'novedad_empleado' as tipo_evento, npe.id_empleado,
 CONCAT (em.apellido, ' ', em.nombre) as empleado, em.legajo,
 np.id_parte, np.fecha_parte, np.cuadrilla, np.id_evento,
@@ -104,7 +102,7 @@ join nov_convenios nconv on nconv.id_convenio = nccc.id_convenio
 where np.id_contrato = :id_contrato
 and npe.id_empleado in ($empleados)
 and np.fecha_parte between :fecha_desde and :fecha_hasta
-and if($e >0, np.id_evento in ($eventos), 1)
+and if($e > 0, np.id_evento in ($eventos), 1)
 and nccc.id_concepto_convenio_contrato in ($conceptos)
 group by np.id_parte, npe.id_empleado
 order by np.id_parte asc";
@@ -120,8 +118,11 @@ order by np.id_parte asc";
 
 
     public static function getNovedadesCuadrilla($cuadrillas, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
+        $c = sizeof($cuadrillas);
         $cuadrillas = ($cuadrillas!='')? implode(",", $cuadrillas)  : 'null';
+        $e = sizeof($eventos);
         $eventos = ($eventos!='')? implode(",", $eventos)  : 'null';
+
         $stmt=new sQuery();
         $query = "select 'novedad_cuadrilla' as tipo_evento, np.id_parte, np.fecha_parte, np.cuadrilla, np.comentarios, np.id_cuadrilla, np.id_evento,
 GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre, ' ', if(npe.conductor=1, '(C)', '')    ) SEPARATOR '<br/>') as integrantes,
@@ -134,8 +135,8 @@ left join nov_areas na on na.id_area = np.id_area
 left join nov_eventos_c nec on nec.id_evento = np.id_evento
 where np.id_contrato = :id_contrato
 and np.fecha_parte between :fecha_desde and :fecha_hasta
-and if(LENGTH($eventos)>0, np.id_evento in ($eventos), 1)
-and if(LENGTH($cuadrillas)>0, np.id_cuadrilla in ($cuadrillas), 1)
+and if($e > 0, np.id_evento in ($eventos), 1)
+and if($c > 0, np.id_cuadrilla in ($cuadrillas), 1)
 group by fecha_parte, cuadrilla";
 
         $stmt->dpPrepare($query);
