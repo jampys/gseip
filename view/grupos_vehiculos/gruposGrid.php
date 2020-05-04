@@ -4,17 +4,18 @@
     $(document).ready(function(){
 
         $('#example').DataTable({
+            responsive: true,
             /*language: {
                 url: 'dataTables/Spanish.json'
             }*/
             "stateSave": true,
             "order": [[5, "asc"], [0, "asc"]], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
-            /*columnDefs: [
-                        {targets: 1, render: $.fn.dataTable.render.ellipsis( 20)}
-
-                        ]*/
             "fnInitComplete": function () {
-                $(this).show(); }
+                $(this).show();
+            },
+            columnDefs: [
+                { responsivePriority: 1, targets: 5 }
+            ]
         });
 
 
@@ -42,9 +43,9 @@
         </button>
     </div>
 
-    <div class="table-responsive">
+    <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Nro.</th>
@@ -92,7 +93,7 @@
 
     </div>
 
-</div>
+<!--</div>-->
 
 <div class="col-md-1"></div>
 
