@@ -4,12 +4,16 @@
     $(document).ready(function(){
 
         $('#example').DataTable({
+            responsive: true,
             /*language: {
                 url: 'dataTables/Spanish.json'
             }*/
             "fnInitComplete": function () {
                 $(this).show(); },
-            "stateSave": true
+            "stateSave": true,
+            columnDefs: [
+                { responsivePriority: 1, targets: 7 } //action buttons
+            ]
         });
 
 
@@ -53,9 +57,9 @@
         </button>
     </div>
 
-    <div class="table-responsive">
+    <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Leg.</th>
@@ -88,7 +92,7 @@
             </tbody>
         </table>
 
-    </div>
+    <!--</div>-->
 
 </div>
 
