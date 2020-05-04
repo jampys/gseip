@@ -28,6 +28,9 @@
     <script src="dataTables/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
     <script src="dataTables/ellipsis.js" type="text/javascript"></script>
     <script type="text/javascript" src="dataTables/plugins/date-uk.js"></script>
+    <!-- extension responsive para DataTables -->
+    <link rel="stylesheet" type="text/css" href="dataTables/extensions/responsive/responsive.dataTables.css">
+    <script src="dataTables/extensions/responsive/dataTables.responsive.min.js"></script>
 
 
     <!-- bootstrap -->
