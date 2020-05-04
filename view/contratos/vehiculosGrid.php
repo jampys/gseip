@@ -34,8 +34,8 @@
 <?php if(isset($view->vehiculos) && sizeof($view->vehiculos) > 0) {?>
 
     <br/>
-    <div class="table-responsive" id="empleados-table">
-            <table id="table-vehiculos" class="table table-condensed dpTable table-hover">
+    <div id="empleados-table">
+            <table id="table-vehiculos" class="table table-condensed dpTable table-hover dt-responsive nowrap">
                 <thead>
                 <tr>
                     <th>Vehículo</th>
