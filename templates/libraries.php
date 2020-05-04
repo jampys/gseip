@@ -10,7 +10,8 @@
     <script src="resources/libraries/jquery/jquery-3.3.1.js" type="text/javascript"></script>
 
     <!-- jquery ui-->
-    <script src="resources/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="resources/libraries/jquery-ui/jquery-ui.css">
+    <script src="resources/libraries/jquery-ui/jquery-ui.js"></script>
 
     <!-- jquery ui bootstrap -->
     <link rel="stylesheet" href="jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css">
