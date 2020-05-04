@@ -6,7 +6,8 @@
     <link rel="shortcut icon" href="resources/img/seip_favicon50x50.png">
 
 <!-- incluyo la libreria jQuery -->
-    <script src="dataTables/js/jquery-1.12.4.js" type="text/javascript"></script>
+    <!--<script src="dataTables/js/jquery-1.12.4.js" type="text/javascript"></script>-->
+    <script src="resources/libraries/jquery/jquery-3.3.1.js" type="text/javascript"></script>
 
     <!-- jquery ui-->
     <script src="resources/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
@@ -22,23 +23,24 @@
 
 
     <!-- dataTables --->
-    <link type="text/css" href="dataTables/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" href="dataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <!--<script src="dataTables/js/jquery-1.12.4.js" type="text/javascript"></script>-->
     <script src="dataTables/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="dataTables/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
     <script src="dataTables/ellipsis.js" type="text/javascript"></script>
     <script type="text/javascript" src="dataTables/plugins/date-uk.js"></script>
+    <!-- extension responsive para DataTables -->
+    <link rel="stylesheet" type="text/css" href="dataTables/extensions/responsive/responsive.dataTables.css">
+    <script src="dataTables/extensions/responsive/dataTables.responsive.min.js"></script>
 
 
     <!-- bootstrap -->
     <link href="resources/libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="resources/libraries/bootstrap/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         var datepicker = $.fn.datepicker.noConflict(); // return $.fn.datepicker to previously assigned value
         $.fn.bootstrapDP = datepicker;                 // give $().bootstrapDP the bootstrap-datepicker functionality
-    </script>
+    </script>-->
 
 
 
@@ -80,6 +82,18 @@
     <!-- incluyo el plug-in highcharts -->
     <script src="resources/libraries/highcharts/highcharts.js"></script>
     <script src="resources/libraries/highcharts/histogram-bellcurve.js"></script>
+
+
+    <!-- incluyo la libreria fullcalendar -->
+
+
+    <link href='resources/libraries/fullcalendar/packages/core/main.css' rel='stylesheet' />
+    <link href='resources/libraries/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+
+    <script src='resources/libraries/fullcalendar/packages/core/main.js'></script>
+    <script src='resources/libraries/fullcalendar/packages/core/locales-all.js'></script>
+    <script src='resources/libraries/fullcalendar/packages/interaction/main.js'></script>
+    <script src='resources/libraries/fullcalendar/packages/daygrid/main.js'></script>
 
 
     <!-- librerias css propias -->

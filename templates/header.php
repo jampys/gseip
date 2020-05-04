@@ -168,6 +168,10 @@
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('SUC_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=sucesos"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Sucesos</a></li>
 
                             <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">CALENDARIO</li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=nov_calendar"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;Calendario de eventos</a></li>
+
+                            <li role="separator" class="divider"></li>
                             <li class="dropdown-header">HABILITAS</li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=habilitas">Conversores</a></li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=habilitas-control">Consultas</a></li>
