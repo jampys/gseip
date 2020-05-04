@@ -232,7 +232,7 @@
             $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
         });
 
-        $(document).on('click', '#back',function(){
+        $('#contrato').on('click', '#back',function(){
             $("#cancel").trigger("click");
         });
 
