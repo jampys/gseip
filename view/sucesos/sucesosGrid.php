@@ -6,21 +6,21 @@
         //$('[data-toggle="tooltip"]').tooltip();
 
         $('#example').DataTable({
+            responsive: true,
             /*language: {
              url: 'dataTables/Spanish.json'
              }*/
-
             "fnInitComplete": function () {
-                                $(this).show(); },
-
-
+                                $(this).show();
+            },
             "stateSave": true,
             //"order": [[1, "asc"], [4, "asc"], [5, "asc"] ], //1=fecha, 4=fecha_desde, 5=fecha_hasta
             "order": [[4, "desc"], [5, "desc"] ], //4=fecha_desde, 5=fecha_hasta
             columnDefs: [
                 {targets: [ 1 ], type: 'date-uk', orderData: [ 1]}, //fecha
                 {targets: [ 4 ], type: 'date-uk', orderData: [ 4]}, //fecha_desde
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]} //fecha_hasta
+                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]}, //fecha_hasta
+                { responsivePriority: 1, targets: 6 }
             ]
         });
 
@@ -40,13 +40,9 @@
 
 <div class="col-md-12">
 
+    <!--<div class="table-responsive">-->
 
-
-
-
-    <div class="table-responsive">
-
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Nro. Suceso</th>
@@ -100,7 +96,7 @@
             <a href="#" title="descargar txt"><i class="far fa-file-alt fa-fw fa-2x"></i></a>
         </div>-->
 
-    </div>
+    <!--</div>-->
 
 </div>
 
