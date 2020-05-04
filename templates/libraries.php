@@ -23,7 +23,6 @@
 
 
     <!-- dataTables --->
-    <link type="text/css" href="dataTables/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" href="dataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <script src="dataTables/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="dataTables/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
