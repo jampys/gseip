@@ -7,7 +7,7 @@
 
 <!-- incluyo la libreria jQuery -->
     <!--<script src="dataTables/js/jquery-1.12.4.js" type="text/javascript"></script>-->
-    <script src="dataTables/js/jquery-3.3.1.js" type="text/javascript"></script>
+    <script src="resources/libraries/jquery/jquery-3.3.1.js" type="text/javascript"></script>
 
     <!-- jquery ui-->
     <script src="resources/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
