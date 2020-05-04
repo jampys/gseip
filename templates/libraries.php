@@ -14,7 +14,7 @@
     <script src="resources/libraries/jquery-ui/jquery-ui.js"></script>
 
     <!-- jquery ui bootstrap -->
-    <link rel="stylesheet" href="jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css">
+    <link rel="stylesheet" href="resources/libraries/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css">
 
 
     <!-- incluyo la libreria jQuery validation -->
