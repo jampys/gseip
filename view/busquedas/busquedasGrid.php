@@ -6,6 +6,7 @@
         //$('[data-toggle="tooltip"]').tooltip();
 
         $('#example').DataTable({
+            responsive: true,
             /*language: {
              url: 'dataTables/Spanish.json'
              },*/
@@ -14,15 +15,10 @@
             "stateSave": true,
             //"order": [[3, "asc"], [5, "asc"]], // 3=fecha_apertura, 5=puesto
             "order": [[1, "desc"], [0, "asc"]], // 2=fecha, 5=nombre
-            /*"columnDefs": [
-                { type: 'date-uk', targets: 1 }, //fecha
-                { type: 'date-uk', targets: 4 }, //fecha_emision
-                { type: 'date-uk', targets: 5 } //fecha_vencimiento
-            ]*/
             columnDefs: [
                 {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 0 ]}, //fecha
-                {targets: [ 2 ], type: 'date-uk', orderData: [ 2, 0 ]}
-                //{targets: [ 4 ], type: 'date-uk', orderData: [ 4, 5 ]}
+                {targets: [ 2 ], type: 'date-uk', orderData: [ 2, 0 ]},
+                { responsivePriority: 1, targets: 7 }
             ]
         });
 
@@ -76,9 +72,9 @@
 
 
 
-    <div class="table-responsive">
+    <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <!--<th>Nro. bq.</th>
@@ -147,7 +143,7 @@
             <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
         </div>
 
-    </div>
+    <!--</div>-->
 
 </div>
 
