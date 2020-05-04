@@ -4,10 +4,14 @@
     $(document).ready(function(){
 
         $('#example').DataTable({
+            responsive: true,
             /*language: {
                 url: 'dataTables/Spanish.json'
             }*/
-            "stateSave": true
+            "stateSave": true,
+            columnDefs: [
+                { responsivePriority: 1, targets: 4 }
+            ]
         });
 
 
@@ -29,9 +33,9 @@
 <div class="col-md-12">
 
 
-    <div class="table-responsive">
+    <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>Apellido</th>
@@ -107,9 +111,7 @@
             </tbody>
         </table>
 
-
-
-    </div>
+    <!--</div>-->
 
 </div>
 
