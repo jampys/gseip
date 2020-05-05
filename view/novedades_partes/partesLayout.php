@@ -285,11 +285,12 @@
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
                         $("#myElemento").html('Parte eliminado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
+                        //$('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
+                        $("#search").trigger("click");
                         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElemento").hide();
-                            $('#confirm').dialog('close');
-                        }, 2000);
+                                                $('#confirm').dialog('close');
+                                              }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
