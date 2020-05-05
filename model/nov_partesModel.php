@@ -165,7 +165,7 @@ class Parte
                     ve.nro_movil as vehiculo,
                     concat(nec.codigo, ' ', nec.nombre) as evento,
                     co.nombre as contrato,
-                    us.user,
+                    us.user, pa.created_by,
                     pa.id_periodo, pe.closed_date
                     from nov_partes pa
                     left join nov_areas ar on pa.id_area = ar.id_area

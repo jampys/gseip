@@ -117,7 +117,16 @@
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para eliminar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('PAR_DELETE', array(1)) && !$rp['closed_date'] )? 'delete' : 'disabled' ?>" title="borrar parte" href="javascript:void(0);">
+                            <a class="<?php echo (
+                                                    !$rp['closed_date'] &&
+                                                    ((PrivilegedUser::dhasAction('PAR_DELETE', array(1)) && $rp['created_by'] == $_SESSION['id_user'])
+                                                        ||
+                                                    (PrivilegedUser::dhasAction('USR_ABM', array(0))) //solo el administrador
+                                                    )
+
+                            )? 'delete':'disabled';
+
+                                ?>" title="borrar parte" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                             </a>
                         </td>
