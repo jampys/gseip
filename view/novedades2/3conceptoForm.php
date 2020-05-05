@@ -726,11 +726,11 @@
                 if(data >=0){
                     $("#myElemento").html('Parte eliminado con exito').addClass('alert alert-success').show();
                     //$('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
-                    $("#search").trigger("click");
+                    $("#add_fecha").trigger("changeDate");
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     setTimeout(function() { $("#myElemento").hide();
-                        $('#confirm').dialog('close');
-                    }, 2000);
+                                            $('#confirm-parte').dialog('close');
+                                          }, 1000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
