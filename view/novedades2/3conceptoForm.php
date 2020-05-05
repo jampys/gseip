@@ -870,6 +870,12 @@
             <div id="myElem" class="msg" style="display:none"></div>
 
 
+            <?php if($view->parte->getIdParte()){ ?>
+            <div class="pull-left">
+                <button class="btn btn-danger" id="delete" name="delete" type="submit" <?php print ($view->periodo->getClosedDate())? 'disabled':''; ?> >Eliminar</button>
+            </div>
+            <?php } ?>
+
             <div id="footer-buttons" class="pull-right">
                 <button class="btn btn-primary" id="submit" name="submit" type="submit" <?php print ($view->periodo->getClosedDate())? 'disabled':''; ?> >Guardar</button>
                 <!--<button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>-->
