@@ -691,7 +691,7 @@
             //throw new Error();
             //var id = $(this).closest('tr').attr('data-id');
             var id = $('#empleado-form #id_parte').val();
-            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm-parte').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
