@@ -1,19 +1,19 @@
 ﻿<style>
 
-    td.details-control {
+    span.details-control {
         cursor: pointer;
         width: 20px;
         text-align: center;
     }
 
-    td.details-control:before { /* icono de un nodo padre cerrado */
+    span.details-control:before { /* icono de un nodo padre cerrado */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f055";
         color: #5fba7d;
     }
 
-    tr.shown td.details-control:before {  /* icono de un nodo padre abierto */
+    tr.shown span.details-control:before {  /* icono de un nodo padre abierto */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f056";
@@ -77,6 +77,7 @@
 
 
         var table = $('#example').DataTable({
+            responsive: true,
             /*language: {
              url: 'dataTables/Spanish.json'
              }*/
@@ -88,7 +89,7 @@
             columnDefs: [
                 {targets: 2, render: $.fn.dataTable.render.ellipsis(40)},
                 {targets: 3, render: $.fn.dataTable.render.ellipsis(25)}, //https://datatables.net/blog/2016-02-26
-                { "width": "90px", "targets":6 } //progress bar
+                {targets: 6, width: "90px"} //progress bar
             ]
 
         });
@@ -107,7 +108,7 @@
         });
 
 
-        $('#example').on('click', 'td.details-control', function (e) {
+        $('#example').on('click', 'span.details-control', function (e) {
 
             tr = $(this).closest('tr');
             var row = table.row( tr );
@@ -248,10 +249,9 @@
 
     <div class="table-responsive">
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th></th>
                 <th>Código</th>
                 <th>Objetivo</th>
                 <th>Puesto</th>
@@ -269,9 +269,15 @@
                         id_objetivo="<?php echo $rp['id_objetivo'];?>"
                         cerrado="<?php echo $rp['cerrado']; ?>"
                         >
-                        <td class="<?php echo ($rp['hijos']> 0 )? 'details-control' : ''; ?>"></td>
-                        <td><span class="<?php echo ($rp['hijos']> 0 )? 'seleccionable' : ''; ?>"><?php echo $rp['codigo'];?></span></td>
-                        <td><?php echo $rp['nombre']; ?></td>
+                        <td>
+
+                            <span class="<?php echo ($rp['hijos']> 0 )? 'seleccionable' : ''; ?>">
+                                <?php echo $rp['codigo'];?>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="<?php echo ($rp['hijos']> 0 )? 'details-control' : ''; ?>"></span>&nbsp;
+                            <?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['puesto']; ?></td>
                         <td><?php echo $rp['responsable_ejecucion']; ?></td>
                         <td><?php echo $rp['contrato']; ?></td>
