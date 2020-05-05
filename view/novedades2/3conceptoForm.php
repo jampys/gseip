@@ -931,7 +931,7 @@
             <div class="pull-left">
                 <button class="btn btn-danger" id="delete" name="delete" type="submit"
                     <?php print (
-                                    !$view->parte->getClosedDate() &&
+                                    !$view->periodo->getClosedDate() &&
                                     ((PrivilegedUser::dhasAction('PAR_DELETE', array(1)) && $view->parte->getCreatedBy() == $_SESSION['id_user'])
                                         ||
                                         (PrivilegedUser::dhasAction('PAR_DELETE', array(0)))
