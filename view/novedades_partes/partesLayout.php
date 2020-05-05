@@ -248,8 +248,8 @@
 
 
             $(document).on('click', '#example .delete', function(){
-                alert('Funcionalidad en desarrollo');
-                throw new Error();
+                //alert('Funcionalidad en desarrollo');
+                //throw new Error();
                 var id = $(this).closest('tr').attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
@@ -278,23 +278,25 @@
                 //alert(id);
                 //preparo los parametros
                 params={};
-                params.id_habilidad_empleado = id;
-                params.action = "habilidad-empleado";
-                params.operation = "deleteHabilidadEmpleado";
+                params.id_parte = id;
+                params.action = "partes";
+                params.operation = "deleteParte";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
-                        $("#search").trigger("click");
-                    }else{
-                        $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
+                        $("#myElemento").html('Parte eliminado con exito').addClass('alert alert-success').show();
+                        $('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
+                        $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
+                        setTimeout(function() { $("#myElemento").hide();
+                            $('#confirm').dialog('close');
+                        }, 2000);
                     }
-                    setTimeout(function() { $("#myElemento").hide();
-                        $('#confirm').dialog('close');
-                    }, 2000);
 
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#myElemento").html('No es posible eliminar el parte').addClass('alert alert-danger').show();
                 });
+
 
             };
 

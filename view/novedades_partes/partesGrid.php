@@ -138,7 +138,7 @@
 
 <div id="confirm">
     <div class="modal-body">
-        ¿Desea eliminar la renovación?
+        ¿Desea eliminar el parte?
     </div>
 
     <div id="myElemento" style="display:none">

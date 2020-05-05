@@ -412,14 +412,12 @@ order by id_convenio asc, legajo asc";
     }
 
 
-
-
-
-    function deletePuesto(){
+    function deleteParte(){ //ok
         $stmt=new sQuery();
-        $query="delete from puestos where id_puesto= :id";
+        $query="delete
+                from nov_partes where id_parte = :id";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getIdPuesto());
+        $stmt->dpBind(':id', $this->getIdParte());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
