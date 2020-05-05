@@ -23,7 +23,7 @@ switch ($operation)
         //$selectedEventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $selected_sucesos = ($_POST['sucesos']!='')? implode(",", $_POST['sucesos'])  : 'su.id_evento';
-        $selected_conceptos = ($_POST['conceptos']!='')? implode(",", $_POST['conceptos'])  : 'nccc.id_concepto_convenio_contrato';
+        //$selected_conceptos = ($_POST['conceptos']!='')? implode(",", $_POST['conceptos'])  : 'nccc.id_concepto_convenio_contrato';
 
 
         //mientras no se seleccione un contrato, solo cargará los feriados
@@ -42,7 +42,7 @@ switch ($operation)
         print_r(json_encode(array(
             'feriados'=>Calendar::getFeriados($start, $end),
             'sucesos'=>($_POST['radio_vista']=='empleado' && $_POST['check_suceso']==1)? Calendar::getSucesos($_POST['empleados'], $selected_sucesos, $start, $end, $id_contrato) : '',
-            'novedades_empleado'=>($_POST['radio_vista']=='empleado' && $_POST['check_concepto']==1)? Calendar::getNovedadesEmpleado($_POST['empleados'], $_POST['eventos'], $start, $end, $id_contrato, $selected_conceptos) : '',
+            'novedades_empleado'=>($_POST['radio_vista']=='empleado' && $_POST['check_concepto']==1)? Calendar::getNovedadesEmpleado($_POST['empleados'], $_POST['eventos'], $start, $end, $id_contrato, $_POST['conceptos']) : '',
             'novedades_cuadrilla'=>($_POST['radio_vista']=='cuadrilla')? Calendar::getNovedadesCuadrilla($_POST['cuadrillas'], $_POST['eventos'], $start, $end, $id_contrato) : ''
         )));
         exit;

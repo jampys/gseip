@@ -81,6 +81,10 @@ class Calendar
         $empleados = ($empleados!='')? implode(",", $empleados)  : 'npe.id_empleado';
         $e = sizeof($eventos);
         $eventos = ($eventos!='')? implode(",", $eventos)  : 'null';
+        $c = sizeof($conceptos);
+        $conceptos = ($_POST['conceptos']!='')? implode(",", $conceptos)  : 'null';
+
+
         $stmt=new sQuery();
 
         /*$query = "select 'novedad_empleado' as tipo_evento, npe.id_empleado,
@@ -118,7 +122,6 @@ join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato =
 join nov_conceptos nc on nc.id_concepto = nccc.id_concepto
 join nov_convenios nconv on nconv.id_convenio = nccc.id_convenio
 where npec.id_parte_empleado = npe.id_parte_empleado
-and nccc.id_concepto_convenio_contrato in ($conceptos)
 )as conceptos
 from nov_partes np
 join nov_parte_empleado npe on npe.id_parte = np.id_parte
@@ -129,6 +132,14 @@ where np.id_contrato = :id_contrato
 and npe.id_empleado in ($empleados)
 and np.fecha_parte between :fecha_desde and :fecha_hasta
 and if($e > 0, np.id_evento in ($eventos), 1)
+and if($c > 0, exists(
+                    select 1
+                    from nov_parte_empleado_concepto npec
+                    join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato = npec.id_concepto_convenio_contrato
+                    where npec.id_parte_empleado = npe.id_parte_empleado
+                    and if($c > 0, nccc.id_concepto_convenio_contrato in ($conceptos), 1)
+                    ), 1)
+
 group by np.id_parte, npe.id_empleado
 order by np.id_parte asc";
 
