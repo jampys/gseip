@@ -938,7 +938,7 @@
                                     )
 
 
-                                )? 'disabled':'';
+                                )? '':'disabled';
                                 ?>>Eliminar</button>
             </div>
             <?php } ?>
