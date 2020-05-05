@@ -35,7 +35,7 @@
                              // elimine el mensaje de requerido de jquery validation
         });
 
-        $('#confirm-ord, #confirm-suc').dialog({ //#confirm-emp, #confirm-ord, #confirm-con
+        $('#confirm-ord, #confirm-suc, #confirm-parte').dialog({ //#confirm-emp, #confirm-ord, #confirm-con
             autoOpen: false
             //modal: true,
         });
@@ -685,6 +685,63 @@
         });
 
 
+        //Eliminar parte
+        $('#empleado-form').on('click', '#delete', function(){
+            //alert('Funcionalidad en desarrollo');
+            //throw new Error();
+            //var id = $(this).closest('tr').attr('data-id');
+            var id = $('#empleado-form #id_parte').val();
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
+                buttons: [
+                    {
+                        text: "Aceptar",
+                        click: function() {
+                            $.fn.borrar(id);
+                        },
+                        class:"btn btn-danger"
+                    },
+                    {
+                        text: "Cancelar",
+                        click: function() {
+                            $(this).dialog("close");
+                        },
+                        class:"btn btn-default"
+                    }
+
+                ]
+            }).dialog('open');
+            return false;
+        });
+
+
+        $.fn.borrar = function(id) {
+            //alert(id);
+            //preparo los parametros
+            params={};
+            params.id_parte = id;
+            params.action = "partes";
+            params.operation = "deleteParte";
+
+            $.post('index.php',params,function(data, status, xhr){
+                if(data >=0){
+                    $("#myElemento").html('Parte eliminado con exito').addClass('alert alert-success').show();
+                    //$('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
+                    $("#search").trigger("click");
+                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
+                    setTimeout(function() { $("#myElemento").hide();
+                        $('#confirm').dialog('close');
+                    }, 2000);
+                }
+
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                $("#myElemento").html('No es posible eliminar el parte').addClass('alert alert-danger').show();
+            });
+
+
+        };
+
+
 
 
 
@@ -971,6 +1028,18 @@
 <div id="confirm-suc">
     <div class="modal-body">
         ¿Desea eliminar el suceso?
+    </div>
+
+    <div id="myElemento" style="display:none">
+
+    </div>
+
+</div>
+
+
+<div id="confirm-parte">
+    <div class="modal-body">
+        ¿Desea eliminar el el parte?
     </div>
 
     <div id="myElemento" style="display:none">
