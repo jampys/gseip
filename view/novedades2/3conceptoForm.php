@@ -934,7 +934,7 @@
                                     !$view->periodo->getClosedDate() &&
                                     ((PrivilegedUser::dhasAction('PAR_DELETE', array(1)) && $view->parte->getCreatedBy() == $_SESSION['id_user'])
                                         ||
-                                        (PrivilegedUser::dhasAction('USR_ABM', array(0))) //solo el administrador
+                                        (PrivilegedUser::dhasPrivilege('USR_ABM', array(0))) //solo el administrador
                                     )
 
 
