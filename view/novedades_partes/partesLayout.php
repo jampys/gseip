@@ -246,7 +246,7 @@
             });
 
 
-
+            //eliminar parte
             $(document).on('click', '#example .delete', function(){
                 //alert('Funcionalidad en desarrollo');
                 //throw new Error();
@@ -290,7 +290,7 @@
                         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElemento").hide();
                                                 $('#confirm').dialog('close');
-                                              }, 2000);
+                                              }, 1000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
