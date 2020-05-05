@@ -148,6 +148,7 @@ class Parte
             $this->setCreatedDate($rows[0]['created_date']);
             $this->setIdPeriodo($rows[0]['id_periodo']);
             $this->setIdCuadrilla($rows[0]['id_cuadrilla']);
+            $this->setCreatedBy($rows[0]['created_by']);
         }
     }
 
