@@ -88,9 +88,9 @@
             "stateSave": true,
             columnDefs: [
                 { targets: 0, responsivePriority: 1 }, //codigo
-                { targets: 1, responsivePriority: 2, render: $.fn.dataTable.render.ellipsis(160) }, //nombre objetivo
+                { targets: 1, responsivePriority: 2}, //nombre objetivo
                 { targets: 5, width: "90px", responsivePriority: 4}, //progress bar
-                { targets: 6, responsivePriority: 3 }, //action buttons
+                { targets: 6, responsivePriority: 3 } //action buttons
                 //{targets: 2, render: $.fn.dataTable.render.ellipsis(60)},
                 //{targets: 2, render: $.fn.dataTable.render.ellipsis(25)}, //https://datatables.net/blog/2016-02-26
 
@@ -251,7 +251,7 @@
 <div class="col-md-12">
 
 
-    <div class="table-responsive">
+    <!--<div class="table-responsive">-->
 
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
@@ -341,7 +341,7 @@
 
 
 
-    </div>
+    <!--</div>-->
 
 </div>
 
