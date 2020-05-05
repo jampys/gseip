@@ -87,8 +87,9 @@
              }*/
             "stateSave": true,
             columnDefs: [
-                { responsivePriority: 1, targets: 5 },
-                { responsivePriority: 2, targets: 1 }
+                { responsivePriority: 1, targets: 0 },
+                { responsivePriority: 2, targets: 1 },
+                { responsivePriority: 3, targets: 5 }
             ],
             "fnInitComplete": function () {
                 $(this).show(); }
