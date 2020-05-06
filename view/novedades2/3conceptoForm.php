@@ -229,8 +229,9 @@
             params.action = "sucesos";
             params.operation="newSuceso";
             $('#popupbox').load('index.php', params,function(){
-                $('#myModal #id_empleado').val(params.id_empleado).trigger('change').prop('disabled', true);
-                $('.selectpicker').selectpicker('refresh');
+                //$('#myModal #id_empleado').val(params.id_empleado).trigger('change').prop('disabled', true);
+                //$('.selectpicker').selectpicker('refresh');
+                $('#myModal #id_empleado').selectpicker('val', params.id_empleado).prop('disabled', true); //https://developer.snapappointments.com/bootstrap-select/methods/
                 $('#myModal').modal();
             })
         });
