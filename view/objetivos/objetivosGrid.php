@@ -81,10 +81,9 @@
             /*language: {
              url: 'dataTables/Spanish.json'
              }*/
-
-            /*"fnInitComplete": function () {
-             $(this).show(); }*/
-
+            "fnInitComplete": function () {
+             $(this).show();
+            },
             "stateSave": true,
             columnDefs: [
                 { targets: 0, responsivePriority: 1 }, //codigo
@@ -253,7 +252,7 @@
 
     <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Código</th>
