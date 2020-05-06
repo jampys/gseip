@@ -226,7 +226,7 @@
         });
 
 
-        $('#confirm-tarea, #confirm-avance').dialog({
+        $('#confirm').dialog({
             autoOpen: false
             //modal: true,
         });
@@ -367,7 +367,7 @@
             //alert('Eliminar tarea');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            $('#confirm-tarea').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -385,7 +385,10 @@
                     }
 
                 ],
-                close: function() { $("#confirm-tarea #myElem").empty().removeClass(); }
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar la actividad?'));
+                },
+                close: function() { $("#confirm #myElemento").empty().removeClass(); }
             }).dialog('open');
             return false;
         });
@@ -405,20 +408,20 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-tarea #myElem").html('Actividad eliminada con exito').addClass('alert alert-success').show();
-                    $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
+                    $("#confirm #myElemento").html('Actividad eliminada con exito').addClass('alert alert-success').show();
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-tarea #myElem").hide();
+                    setTimeout(function() { $("#confirm #myElemento").hide();
                                             $('#tarea-form').hide();
-                                            $('#confirm-tarea').dialog('close');
+                                            $('#confirm').dialog('close');
+                                            $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
                                             drawChart();
                                           }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                 //alert('Entro a fail '+jqXHR.responseText);
-                $("#confirm-tarea #myElem").html('No es posible eliminar la actividad').addClass('alert alert-danger').show();
+                $("#confirm #myElemento").html('No es posible eliminar la actividad').addClass('alert alert-danger').show();
             });
 
         };
@@ -432,7 +435,7 @@
             //alert(v_id_tarea);
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            $('#confirm-avance').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -450,7 +453,10 @@
                     }
 
                 ],
-                close: function() { $("#confirm-avance #myElem").empty().removeClass(); }
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar el avance?'));
+                },
+                close: function() { $("#confirm #myElemento").empty().removeClass(); }
             }).dialog('open');
             return false;
         });
@@ -470,20 +476,20 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-avance #myElem").html('Avance eliminado con exito').addClass('alert alert-success').show();
-                    $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: v_id_tarea, operation:"refreshGrid"});
+                    $("#confirm #myElemento").html('Avance eliminado con exito').addClass('alert alert-success').show();
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-avance #myElem").hide();
+                    setTimeout(function() { $("#confirm #myElemento").hide();
                                             $('#avance-form').hide();
-                                            $('#confirm-avance').dialog('close');
+                                            $('#confirm').dialog('close');
+                                            $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: v_id_tarea, operation:"refreshGrid"});
                                             drawChart();
                                           }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                 //alert('Entro a fail '+jqXHR.responseText);
-                $("#confirm-avance #myElem").html('No es posible eliminar el avance').addClass('alert alert-danger').show();
+                $("#confirm #myElemento").html('No es posible eliminar el avance').addClass('alert alert-danger').show();
             });
 
         };
@@ -657,29 +663,5 @@
 
 
 
-<div id="confirm-tarea">
-    <div class="modal-body">
-        ¿Desea eliminar la actividad?
-    </div>
-
-    <div id="myElem" class="msg" style="display:none">
-
-    </div>
-
-</div>
-
-
-
-
-<div id="confirm-avance">
-    <div class="modal-body">
-        ¿Desea eliminar el avance?
-    </div>
-
-    <div id="myElem" class="msg" style="display:none">
-
-    </div>
-
-</div>
 
 
