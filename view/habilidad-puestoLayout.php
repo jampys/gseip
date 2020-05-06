@@ -161,7 +161,11 @@
                         }
 
                     ],
-                    close: function() { $("#myElem").empty().removeClass(); }
+
+                    open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar la habillidad del puesto?'));
+                    },
+                    close: function() { $("#myElemento").empty().removeClass(); }
                 }).dialog('open');
                 return false;
             });
@@ -177,18 +181,19 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElem").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
+                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidad-puesto", operation: "buscar", id_puesto: $("#id_puesto").val(), id_habilidad: $("#id_habilidad").val()});
-                        $("#search").trigger("click");
+
                         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                        setTimeout(function() { $("#myElem").hide();
+                        setTimeout(function() { $("#myElemento").hide();
                                                 $('#confirm').dialog('close');
+                                                $("#search").trigger("click");
                                               }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
+                    $("#myElemento").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
                 });
 
             };
