@@ -29,8 +29,7 @@
         });
 
 
-        //$(document).on("click", ".pdf", function(){
-        $('.table-responsive').on("click", ".pdf", function(){
+        $('#content').on("click", ".pdf", function(){
             alert('Funcionalidad en contrucción');
             /*params={};
             var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
@@ -137,13 +136,6 @@
 
 
 <div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar la renovación?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
 
 </div>
 

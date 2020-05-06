@@ -12,7 +12,7 @@
         });
 
 
-        $('#confirm-etp').dialog({
+        $('#confirm').dialog({
             autoOpen: false
             //modal: true,
         });
@@ -125,7 +125,7 @@
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            $('#confirm-etp').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -142,7 +142,10 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar la etapa?'));
+                }
             }).dialog('open');
             return false;
         });
@@ -161,12 +164,12 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-etp #myElemento").html('Etapa eliminada con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                    $("#confirm #myElemento").html('Etapa eliminada con exito').addClass('alert alert-success').show();
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-etp #myElemento").hide();
+                    setTimeout(function() { $("#confirm #myElemento").hide();
                                             $('#etapa-form').hide();
-                                            $('#confirm-etp').dialog('close');
+                                            $('#confirm').dialog('close');
+                                            $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
                                           }, 2000);
                 }else{
                     $("#myElemento").html('Error al eliminar la etapa').addClass('alert alert-danger').show();
@@ -243,17 +246,5 @@
     </div>
 </div>
 
-
-
-<div id="confirm-etp">
-    <div class="modal-body">
-        ¿Desea eliminar la etapa?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
-</div>
 
 
