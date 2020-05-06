@@ -9,7 +9,8 @@
                 url: 'dataTables/Spanish.json'
             }*/
             "fnInitComplete": function () {
-                $(this).show(); },
+                $(this).show();
+            },
             "stateSave": true,
             columnDefs: [
                 { responsivePriority: 1, targets: 7 } //action buttons
