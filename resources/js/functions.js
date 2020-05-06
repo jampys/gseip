@@ -102,16 +102,3 @@ function confirmMessage(d){
             '</div>';
 }
 
-/*
- <div id="confirm" style="display: none">
- <div class="modal-body">
- ¿Desea eliminar el parte?
- Se elimiminará el parte completo, incluyendo empleados, conceptos y ordenes.
- </div>
-
- <div id="myElemento" style="display:none">
-
- </div>
-
- </div>
- */
