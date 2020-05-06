@@ -12,7 +12,7 @@
         });
 
 
-        $('#confirm-etp').dialog({
+        $('#confirm').dialog({
             autoOpen: false
             //modal: true,
         });
@@ -125,7 +125,7 @@
         $('#empleados_left_side').on('click', '.delete', function(){
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            $('#confirm-etp').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -142,7 +142,10 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar el empleado?'));
+                }
             }).dialog('open');
             return false;
         });
@@ -161,13 +164,13 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-etp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
-                    $('#empleados_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla: params.id_cuadrilla, operation:"refreshGrid"});
+                    $("#confirm #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
                     //$("#search").trigger("click");
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                    setTimeout(function() { $("#confirm-etp #myElemento").hide();
+                    setTimeout(function() { $("#confirm #myElemento").hide();
                                             $('#empleado-form').hide();
-                                            $('#confirm-etp').dialog('close');
+                                            $('#confirm').dialog('close');
+                                            $('#empleados_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla: params.id_cuadrilla, operation:"refreshGrid"});
                                           }, 2000);
                 }else{
                     $("#myElemento").html('Error al eliminar el empleado').addClass('alert alert-danger').show();
@@ -245,15 +248,5 @@
 
 
 
-<div id="confirm-etp">
-    <div class="modal-body">
-        ¿Desea eliminar el empleado?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
-</div>
 
 
