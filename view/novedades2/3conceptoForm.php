@@ -708,7 +708,11 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar el parte? '+
+                    'Se elimiminará el parte completo, incluyendo empleados, conceptos y ordenes.'));
+                }
             }).dialog('open');
             return false;
         });
@@ -726,11 +730,11 @@
                 if(data >=0){
                     $("#myElemento").html('Parte eliminado con exito').addClass('alert alert-success').show();
                     //$('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
-                    $("#add_fecha").trigger("changeDate");
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     setTimeout(function() { $("#myElemento").hide();
                                             $('#confirm-parte').dialog('close');
-                                          }, 1000);
+                                            $("#add_fecha").trigger("changeDate");
+                                          }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
@@ -1048,15 +1052,6 @@
 
 
 <div id="confirm-parte">
-    <div class="modal-body">
-        ¿Desea eliminar el parte?
-        Se elimiminará el parte completo, incluyendo empleados, conceptos y ordenes.
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
 </div>
 
 
