@@ -303,7 +303,7 @@
 
 
         //reporte de control de cuadrillas
-        $('#myModal').on("click", "#submit4", function(){
+        /*$('#myModal').on("click", "#submit4", function(){
             //alert('Crosstab sucesos');
             //$('#txt-form').validate().resetForm(); //limpiar error input validate
             $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
@@ -317,9 +317,9 @@
                 params={};
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.id_periodo = $("#myModal #id_periodo").val();
-                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
+                params.id_user = "<?php //echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_cuadrillas2.rptdesign"+
+                var URL="<?php //echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_cuadrillas2.rptdesign"+
                         //"&p_fecha_desde="+params.fecha_desde+
                         //"&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_contrato="+params.id_contrato+
@@ -333,7 +333,7 @@
 
 
             return false;
-        });
+        });*/
 
 
 
@@ -469,7 +469,7 @@
                     </div>
 
 
-                    <div class="alert alert-info" role="alert">
+                    <!--<div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
@@ -480,7 +480,7 @@
                                 <button class="btn btn-primary" id="submit4" name="submit4" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
 
                 </form>
