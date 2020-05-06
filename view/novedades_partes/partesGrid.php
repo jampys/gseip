@@ -145,7 +145,7 @@
 
 
 
-<div id="confirm">
+<div id="confirm" style="display: none">
     <div class="modal-body">
         ¿Desea eliminar el parte?
         Se elimiminará el parte completo, incluyendo empleados, conceptos y ordenes.
