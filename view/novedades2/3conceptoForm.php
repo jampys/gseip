@@ -294,6 +294,35 @@
 
         };
 
+        /*
+
+         $.fn.borrar = function(id) {
+         //alert(id);
+         //preparo los parametros
+         params={};
+         params.id_parte = id;
+         params.action = "partes";
+         params.operation = "deleteParte";
+
+         $.post('index.php',params,function(data, status, xhr){
+         if(data >=0){
+         $("#myElemento").html('Parte eliminado con exito').addClass('alert alert-success').show();
+         //$('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
+         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
+         setTimeout(function() { $("#myElemento").hide();
+         $('#confirm-parte').dialog('close');
+         $("#add_fecha").trigger("changeDate");
+         }, 2000);
+         }
+
+         }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+         //alert('Entro a fail '+jqXHR.responseText);
+         $("#myElemento").html('No es posible eliminar el parte').addClass('alert alert-danger').show();
+         });
+
+
+         };*/
+
 
 
         /**************************************************************************************/
