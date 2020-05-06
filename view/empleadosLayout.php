@@ -11,7 +11,7 @@
     <script type="text/javascript">
 
         $(document).ready(function(){
-            
+
             //añado la posibilidad de editar al presionar sobre edit
             $(document).on('click', '.edit', function(){
                 //this = es el elemento sobre el que se hizo click en este caso el link

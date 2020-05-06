@@ -93,6 +93,9 @@
                         }
 
                     ],
+                    open: function() {
+                        $(this).html(confirmMessage('¿Desea eliminar el puesto de trabajo?'));
+                    },
                     close: function() { $("#myElem").empty().removeClass(); }
                 }).dialog('open');
                 return false;
@@ -110,10 +113,10 @@
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
                         $("#myElem").html('Puesto eliminado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"puestos", operation: "refreshGrid"});
                         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#confirm').dialog('close');
+                                                $('#content').load('index.php',{action:"puestos", operation: "refreshGrid"});
                                               }, 2000);
                     }else{
                         $("#myElem").html('No es posible eliminar el puesto').addClass('alert alert-danger').show();
