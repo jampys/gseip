@@ -253,7 +253,7 @@
                     {
                         text: "Aceptar",
                         click: function() {
-                            $.fn.borrar(id);
+                            $.fn.borrarS(id);
                         },
                         class:"btn btn-danger"
                     },
@@ -274,7 +274,7 @@
         });
 
 
-        $.fn.borrar = function(id) { //ok
+        $.fn.borrarS = function(id) { //ok
             //alert(id);
             //preparo los parametros
             params={};
@@ -703,7 +703,7 @@
                     {
                         text: "Aceptar",
                         click: function() {
-                            $.fn.borrar(id);
+                            $.fn.borrarP(id);
                         },
                         class:"btn btn-danger"
                     },
@@ -725,7 +725,7 @@
         });
 
 
-        $.fn.borrar = function(id) {
+        $.fn.borrarP = function(id) {
             //alert(id);
             //preparo los parametros
             params={};
