@@ -35,7 +35,7 @@
                              // elimine el mensaje de requerido de jquery validation
         });
 
-        $('#confirm-ord, #confirm-suc, #confirm-parte').dialog({ //#confirm-emp, #confirm-ord, #confirm-con
+        $('#confirm').dialog({ //#confirm-emp, #confirm-ord, #confirm-con
             autoOpen: false
             //modal: true,
         });
@@ -126,7 +126,7 @@
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            $('#confirm-ord').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -143,7 +143,10 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar la orden?'));
+                }
             }).dialog('open');
             return false;
         });
@@ -163,18 +166,17 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-ord #myElemento").html('Orden eliminada con exito').addClass('alert alert-success').show();
-                    //$('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
+                    $("#confirm #myElemento").html('Orden eliminada con exito').addClass('alert alert-success').show();
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-ord #myElemento").hide();
+                    setTimeout(function() { $("#confirm #myElemento").hide();
                                             //$('#orden-form').hide();
                                             $('.grid-ordenes').load('index.php',{action:"parte-orden", operation: "refreshGrid", id_parte: params.id_parte}); //para la modal (nov2)
+                                            $('#confirm').dialog('close');
                                             $('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados", fecha: $('#add_fecha').val(), id_contrato: $('#id_contrato').val()});
-                                            $('#confirm-ord').dialog('close');
-                                          }, 1000);
+                                          }, 2000);
                 }else{
-                    $("#confirm-ord #myElemento").html('Error al eliminar la orden').addClass('alert alert-danger').show();
+                    $("#confirm #myElemento").html('Error al eliminar la orden').addClass('alert alert-danger').show();
                 }
 
 
@@ -241,7 +243,7 @@
 
 
 
-
+        //eliminar un suceso
         $('.grid-sucesos').on('click', '.delete', function(){
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
@@ -263,7 +265,10 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar el suceso?'));
+                }
             }).dialog('open');
             return false;
         });
@@ -281,47 +286,20 @@
                 if(data >=0){
                     $("#myElemento").html('Suceso eliminado con exito').addClass('alert alert-success').show();
                     //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
-                    $("#search").trigger("click");
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     setTimeout(function() { $("#myElemento").hide();
-                        $('#confirm').dialog('close');
-                    }, 2000);
-                }else{
-                    $("#myElemento").html('Error al eliminar el suceso').addClass('alert alert-danger').show();
-                }
+                                            $('#confirm').dialog('close');
+                                            $("#search").trigger("click");
+                                          }, 2000);
+                    }
 
-            }, 'json');
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                $("#myElemento").html('No es posible eliminar el suceso').addClass('alert alert-danger').show();
+            });
 
         };
 
-        /*
-
-         $.fn.borrar = function(id) {
-         //alert(id);
-         //preparo los parametros
-         params={};
-         params.id_parte = id;
-         params.action = "partes";
-         params.operation = "deleteParte";
-
-         $.post('index.php',params,function(data, status, xhr){
-         if(data >=0){
-         $("#myElemento").html('Parte eliminado con exito').addClass('alert alert-success').show();
-         //$('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
-         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-         setTimeout(function() { $("#myElemento").hide();
-         $('#confirm-parte').dialog('close');
-         $("#add_fecha").trigger("changeDate");
-         }, 2000);
-         }
-
-         }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
-         //alert('Entro a fail '+jqXHR.responseText);
-         $("#myElemento").html('No es posible eliminar el parte').addClass('alert alert-danger').show();
-         });
-
-
-         };*/
 
 
 
@@ -720,7 +698,7 @@
             //throw new Error();
             //var id = $(this).closest('tr').attr('data-id');
             var id = $('#empleado-form #id_parte').val();
-            $('#confirm-parte').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -761,7 +739,7 @@
                     //$('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     setTimeout(function() { $("#myElemento").hide();
-                                            $('#confirm-parte').dialog('close');
+                                            $('#confirm').dialog('close');
                                             $("#add_fecha").trigger("changeDate");
                                           }, 2000);
                 }
@@ -1056,32 +1034,8 @@
 
 
 
-<div id="confirm-ord">
-    <div class="modal-body">
-        ¿Desea eliminar la orden?
-    </div>
+<div id="confirm">
 
-    <div id="myElemento" style="display:none">
-
-    </div>
-
-</div>
-
-
-
-<div id="confirm-suc">
-    <div class="modal-body">
-        ¿Desea eliminar el suceso?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
-</div>
-
-
-<div id="confirm-parte">
 </div>
 
 
