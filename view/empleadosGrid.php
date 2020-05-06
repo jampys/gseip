@@ -99,10 +99,8 @@
 <div class="col-md-1"></div>
 
 
-<div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar el cliente?
-    </div>
+<div id="confirm" style="display: none">
+
 </div>
 
     <!--<button type="button" class="btn btn-primary" id="delete">Delete</button>
