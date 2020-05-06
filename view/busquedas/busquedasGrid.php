@@ -69,9 +69,6 @@
 <div class="col-md-12">
 
 
-
-
-
     <!--<div class="table-responsive">-->
 
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
@@ -152,13 +149,6 @@
 
 
 <div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar la renovación?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
 
 </div>
 

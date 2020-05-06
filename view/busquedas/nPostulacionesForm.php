@@ -13,7 +13,7 @@
         });
 
 
-        $('#confirm-ve').dialog({
+        $('#confirm').dialog({
             autoOpen: false
             //modal: true,
         });
@@ -74,7 +74,7 @@
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
-            $('#confirm-ve').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -92,7 +92,10 @@
                     }
 
                 ],
-                close: function() { $("#confirm-ve #myElemento").empty().removeClass(); }
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar la postulación?'));
+                },
+                close: function() { $("#confirm #myElemento").empty().removeClass(); }
             }).dialog('open');
             return false;
         });
@@ -112,16 +115,16 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-ve #myElemento").html('Postulación eliminada con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"postulaciones2", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
+                    $("#confirm #myElemento").html('Postulación eliminada con exito').addClass('alert alert-success').show();
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-ve #myElemento").hide();
+                    setTimeout(function() { $("#confirm #myElemento").hide();
                                             $('#chalampa').hide();
-                                            $('#confirm-ve').dialog('close');
+                                            $('#confirm').dialog('close');
+                                            $('#etapas_left_side .grid').load('index.php',{action:"postulaciones2", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
                                           }, 2000);
                 }else{
-                    $("#confirm-ve #myElemento").html('No es posible eliminar la postulación').addClass('alert alert-danger').show();
+                    $("#confirm #myElemento").html('No es posible eliminar la postulación').addClass('alert alert-danger').show();
                 }
 
 
@@ -198,16 +201,5 @@
 </div>
 
 
-
-<div id="confirm-ve">
-    <div class="modal-body">
-        ¿Desea eliminar la postulación?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
-</div>
 
 
