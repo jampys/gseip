@@ -931,9 +931,10 @@
             <div id="myElem" class="msg" style="display:none"></div>
 
 
+            <!-- boton para eliminar el parte -->
             <?php if($view->parte->getIdParte()){ ?>
             <div class="pull-left">
-                <button class="btn btn-danger" id="delete" name="delete" type="submit"
+                <button class="btn btn-danger" id="delete" name="delete" type="submit" title="Eliminar parte"
                     <?php print (
                                     !$view->periodo->getClosedDate() &&
                                     ((PrivilegedUser::dhasAction('PAR_DELETE', array(1)) && $view->parte->getCreatedBy() == $_SESSION['id_user'])
@@ -943,7 +944,7 @@
 
 
                                 )? '':'disabled';
-                                ?>>Eliminar</button>
+                                ?>><i class="far fa-trash-alt fa-lg" aria-hidden="true"></i></button>
             </div>
             <?php } ?>
 
