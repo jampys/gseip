@@ -86,13 +86,6 @@
 
 
 <div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar el usuario?
-    </div>
-
-    <div id="myElem" class="msg" style="display:none">
-
-    </div>
 
 </div>
 
