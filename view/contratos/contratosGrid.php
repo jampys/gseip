@@ -97,17 +97,11 @@
 <div class="col-md-1"></div>
 
 
-<div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar el contrato?
-    </div>
-</div>
-
-
-
-<div id="myElemento" class="msg" style="display:none">
+<div id="confirm" style="display: none">
 
 </div>
+
+
 
 
 
