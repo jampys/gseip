@@ -73,13 +73,6 @@
 
 
 <div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar la habillidad?
-    </div>
-
-    <div id="myElem" class="msg" style="display:none">
-
-    </div>
 
 </div>
 

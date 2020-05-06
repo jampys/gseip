@@ -96,7 +96,7 @@
                     open: function() {
                         $(this).html(confirmMessage('¿Desea eliminar el puesto de trabajo?'));
                     },
-                    close: function() { $("#myElem").empty().removeClass(); }
+                    close: function() { $("#myElemento").empty().removeClass(); }
                 }).dialog('open');
                 return false;
             });
