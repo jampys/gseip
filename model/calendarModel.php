@@ -173,7 +173,8 @@ where np.id_contrato = :id_contrato
 and np.fecha_parte between :fecha_desde and :fecha_hasta
 and if($e > 0, np.id_evento in ($eventos), 1)
 and if($c > 0, np.id_cuadrilla in ($cuadrillas), 1)
-group by fecha_parte, cuadrilla";
+group by fecha_parte, cuadrilla
+order by np.cuadrilla asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $fecha_desde);
