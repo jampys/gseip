@@ -287,10 +287,12 @@
                     $("#myElemento").html('Suceso eliminado con exito').addClass('alert alert-success').show();
                     //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                    setTimeout(function() { $("#myElemento").hide();
+                    setTimeout(function() { $("#confirm #myElemento").hide();
+                                            //$('#orden-form').hide();
+                                            //$('.grid-sucesos').load('index.php',{action:"parte-orden", operation: "refreshGrid", id_parte: params.id_parte}); //para la modal (nov2)
                                             $('#confirm').dialog('close');
-                                            $("#search").trigger("click");
-                                          }, 2000);
+                                            $('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados", fecha: $('#add_fecha').val(), id_contrato: $('#id_contrato').val()});
+                                         }, 2000);
                     }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
