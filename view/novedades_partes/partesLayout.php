@@ -10,6 +10,7 @@
 
     <script type="text/javascript">
 
+
         $(document).ready(function(){
 
             $('.selectpicker').selectpicker({ //ok
@@ -268,7 +269,11 @@
                             class:"btn btn-default"
                         }
 
-                    ]
+                    ],
+                    open: function() {
+                        $(this).html(confirmMessage('¿Desea eliminar el parte? '+
+                                                    'Se elimiminará el parte completo, incluyendo empleados, conceptos y ordenes.'));
+                    }
                 }).dialog('open');
                 return false;
             });
@@ -286,11 +291,11 @@
                     if(data >=0){
                         $("#myElemento").html('Parte eliminado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
-                        $("#search").trigger("click");
                         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElemento").hide();
                                                 $('#confirm').dialog('close');
-                                              }, 1000);
+                                                $("#search").trigger("click");
+                                              }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {

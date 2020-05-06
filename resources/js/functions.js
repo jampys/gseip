@@ -92,3 +92,26 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
 });
 
 NS={};
+
+
+function confirmMessage(d){
+    return '<div class="modal-body">'+
+                    d
+            +'</div>'+
+            '<div id="myElemento" style="display:none">'+
+            '</div>';
+}
+
+/*
+ <div id="confirm" style="display: none">
+ <div class="modal-body">
+ ¿Desea eliminar el parte?
+ Se elimiminará el parte completo, incluyendo empleados, conceptos y ordenes.
+ </div>
+
+ <div id="myElemento" style="display:none">
+
+ </div>
+
+ </div>
+ */
