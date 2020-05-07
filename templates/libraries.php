@@ -60,15 +60,14 @@
     <!-- plug-in jQuery Upload File -->
     <!--<link href="http://hayageek.github.io/jQuery-Upload-File/4.0.11/uploadfile.css" rel="stylesheet">
     <script src="http://hayageek.github.io/jQuery-Upload-File/4.0.11/jquery.uploadfile.min.js"></script>-->
-    <link href="jQuery Upload File/uploadfile.css" rel="stylesheet">
-    <script src="jQuery Upload File/jquery.uploadfile.js"></script>
-    <script src="jQuery Upload File/jquery.form.js"></script>
+    <link href="resources/libraries/jQuery Upload File/uploadfile.css" rel="stylesheet">
+    <script src="resources/libraries/jQuery Upload File/jquery.uploadfile.js"></script>
+    <script src="resources/libraries/jQuery Upload File/jquery.form.js"></script>
 
 
     <!-- plug-in simple jQuery image viewing https://www.npmjs.com/package/imageviewer -->
-
-    <link  href="ViewerImg/viewer.css" rel="stylesheet">
-    <script src="ViewerImg/viewer.js"></script>
+    <link  href="resources/libraries/ViewerImg/viewer.css" rel="stylesheet">
+    <script src="resources/libraries/ViewerImg/viewer.js"></script>
 
 
     <!-- plug-in fontawesome -->
