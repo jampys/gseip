@@ -8,3 +8,5 @@ php_value short_open_tag 1
 ErrorDocument 403 /gseip/error/error-403.html
 
 ErrorDocument 404 /gseip/error/error-404.html
+
+ErrorDocument 500 /gseip/error/error-500.html
