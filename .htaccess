@@ -2,11 +2,10 @@
 Options All -Indexes
 
 #para proteger el archivo .htaccess
-<FilesMatch "view\.(php)$">
+<FilesMatch "\.(htaccess|htpasswd|ini|phps|log|bak|txt|gitignore)$">
  Order Allow,Deny
  Deny from all
 </FilesMatch>
-
 
 #para permitir en php en uso del short_open_tag: <?
 php_value short_open_tag 1
