@@ -24,14 +24,14 @@
 
 
     <!-- dataTables --->
-    <link type="text/css" href="dataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <script src="dataTables/js/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="dataTables/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-    <script src="dataTables/ellipsis.js" type="text/javascript"></script>
-    <script type="text/javascript" src="dataTables/plugins/date-uk.js"></script>
+    <link type="text/css" href="resources/libraries/dataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <script src="resources/libraries/dataTables/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="resources/libraries/dataTables/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script src="resources/libraries/dataTables/ellipsis.js" type="text/javascript"></script>
+    <script src="resources/libraries/dataTables/plugins/date-uk.js" type="text/javascript"></script>
     <!-- extension responsive para DataTables -->
-    <link rel="stylesheet" type="text/css" href="dataTables/extensions/responsive/responsive.dataTables.css">
-    <script src="dataTables/extensions/responsive/dataTables.responsive.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/libraries/dataTables/extensions/responsive/responsive.dataTables.css">
+    <script src="resources/libraries/dataTables/extensions/responsive/dataTables.responsive.min.js"></script>
 
 
     <!-- bootstrap -->
