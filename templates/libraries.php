@@ -18,9 +18,9 @@
 
 
     <!-- incluyo la libreria jQuery validation -->
-    <script type="text/javascript" src="validation/jquery.validate.js"></script>
-    <script type="text/javascript" src="validation/additional-methods.js"></script>
-    <script type="text/javascript" src="validation/jquery-validate.bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="resources/libraries/validation/jquery.validate.js"></script>
+    <script type="text/javascript" src="resources/libraries/validation/additional-methods.js"></script>
+    <script type="text/javascript" src="resources/libraries/validation/jquery-validate.bootstrap-tooltip.js"></script>
 
 
     <!-- dataTables --->
@@ -86,8 +86,6 @@
 
 
     <!-- incluyo la libreria fullcalendar -->
-
-
     <link href='resources/libraries/fullcalendar/packages/core/main.css' rel='stylesheet' />
     <link href='resources/libraries/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
 
