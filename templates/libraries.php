@@ -46,15 +46,15 @@
 
 
     <!-- bootstrap-datepicker-->
-    <link type="text/css" href="bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
-    <script src="bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-    <script src="bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
+    <link type="text/css" href="resources/libraries/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
+    <script src="resources/libraries/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="resources/libraries/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
 
 
     <!-- bootstrap-select-->
-    <link rel="stylesheet" href="bootstrap-select/dist/css/bootstrap-select.min.css">
-    <script src="bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="bootstrap-select/dist/js/i18n/defaults-es_ES.min.js"></script>
+    <link rel="stylesheet" href="resources/libraries/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <script src="resources/libraries/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="resources/libraries/bootstrap-select/dist/js/i18n/defaults-es_ES.min.js"></script>
 
 
     <!-- plug-in jQuery Upload File -->

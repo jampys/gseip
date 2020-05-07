@@ -2,10 +2,6 @@
 Options All -Indexes
 
 
-
-
-
-
 #para permitir en php en uso del short_open_tag: <?
 php_value short_open_tag 1
 
