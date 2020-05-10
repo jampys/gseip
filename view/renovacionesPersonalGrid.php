@@ -19,8 +19,8 @@
                 {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
                 {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]}, //fecha_emision
                 {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 6 ]}, //fecha_vencimiento
-                {targets: [ 6 ], orderData: [ 6]}, //priority
-                {targets: [ 7 ], orderData: [ 7]}, //renovacion
+                {targets: [ 6 ], orderData: [ 6], visible: false}, //priority
+                {targets: [ 7 ], orderData: [ 7], visible: false}, //renovacion
                 { responsivePriority: 1, targets: 8 }
             ]
         });
