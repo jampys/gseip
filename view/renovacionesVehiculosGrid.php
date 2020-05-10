@@ -19,8 +19,8 @@
                 {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
                 {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]}, //fecha_emision
                 {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 6 ]}, //fecha_vencimiento
-                {targets: [ 6 ], orderData: [ 6]}, //priority
-                {targets: [ 7 ], orderData: [ 7]}, //renovacion
+                {targets: [ 6 ], orderData: [ 6], visible: false}, //priority
+                {targets: [ 7 ], orderData: [ 7], visible: false}, //renovacion
                 { responsivePriority: 1, targets: 8 }
             ]
         });
@@ -92,13 +92,13 @@
 
             <?php if(isset($view->renovaciones_vehiculos)) {
                 foreach ($view->renovaciones_vehiculos as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_renovacion']; ?>" style="background-color: <?php echo $rp['color']; ?>" >
+                    <tr data-id="<?php echo $rp['id_renovacion']; ?>">
                         <td><?php echo $rp['id_renovacion']; ?></td>
                         <td><?php echo $rp['created_date']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
                         <td><?php echo ($rp['id_vehiculo'])? $rp['vehiculo'] : $rp['grupo']; ?></td>
                         <td><?php echo $rp['fecha_emision']; ?></td>
-                        <td><?php echo $rp['fecha_vencimiento']; ?></td>
+                        <td style="background-color: <?php echo $rp['color']; ?>"><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td style="display: none"><?php echo $rp['priority']; ?></td>
                         <td style="display: none"><?php echo $rp['id_rnv_renovacion']; ?></td>
 

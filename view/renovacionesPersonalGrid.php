@@ -96,13 +96,13 @@
 
             <?php if(isset($view->renovaciones_personal)) {
                 foreach ($view->renovaciones_personal as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_renovacion']; ?>" style="background-color: <?php echo $rp['color']; ?>" >
+                    <tr data-id="<?php echo $rp['id_renovacion']; ?>">
                         <td><?php echo $rp['id_renovacion']; ?></td>
                         <td><?php echo $rp['created_date']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
                         <td><?php echo ($rp['id_empleado'])? $rp['empleado'] : $rp['grupo']; ?></td>
                         <td><?php echo $rp['fecha_emision']; ?></td>
-                        <td><?php echo $rp['fecha_vencimiento']; ?></td>
+                        <td style="background-color: <?php echo $rp['color']; ?>"><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td style="display: none"><?php echo $rp['priority']; ?></td>
                         <td style="display: none"><?php echo $rp['id_rnv_renovacion']; ?></td>
 
