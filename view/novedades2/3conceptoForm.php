@@ -649,7 +649,7 @@
             //if ($("#contrato-form").valid()){
                 var params={};
                 params.action = 'novedades2';
-                params.operation = 'saveParte';
+                params.operation = 'saveParteR';
                 params.id_parte = $('#id_parte').val();
                 params.fecha_parte = $('#add_fecha').val();
                 params.id_contrato=$('#id_contrato').val();
