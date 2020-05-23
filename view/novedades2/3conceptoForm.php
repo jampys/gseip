@@ -674,7 +674,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     //No se usa .fail() porque el resultado viene de una transaccion (try catch) que siempre devuelve 1 o -1
-                    //alert(xhr.responseText);
+                    alert(xhr.responseText);
                     //alert(data[0]['flag']);
                     if(data[0]['flag'] >=0){
                         $("#empleado-form button").prop("disabled", true); //deshabilito botones
@@ -686,8 +686,7 @@
                                               }, 1000);
 
                     }else{
-                        //$("#myElem").html(data[0]['msg']).addClass('alert alert-danger').show();
-                        alert(xhr.responseText);
+                        $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').show();
                     }
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                         alert('Entro a fail '+jqXHR.responseText);
