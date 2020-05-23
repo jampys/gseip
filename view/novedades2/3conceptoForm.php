@@ -686,7 +686,8 @@
                                               }, 1000);
 
                     }else{
-                        $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').show();
+                        //$("#myElem").html(data[0]['msg']).addClass('alert alert-danger').show();
+                        alert(xhr.responseText);
                     }
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                         alert('Entro a fail '+jqXHR.responseText);
