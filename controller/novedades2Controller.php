@@ -137,9 +137,9 @@ switch ($operation)
                 $startDate->modify('+1 day');
                 //chequear que ya no exista una novedad para esa fecha y empleado
 
-                //$parte = new Parte($_POST['id_parte']);
                 $parte = new Parte($_POST['id_parte']);
-                $parte->setFechaParte($_POST['fecha_parte']);
+                //$parte->setFechaParte($_POST['fecha_parte']);
+                $parte->setFechaParte($startDate->format('d/m/Y'));
                 $parte->setIdContrato($_POST['id_contrato']);
                 $parte->setIdArea(($_POST['id_area']) ? $_POST['id_area'] : null);
                 $parte->setIdVehiculo(null);
