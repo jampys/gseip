@@ -6,20 +6,15 @@
     $(document).ready(function(){
 
         var t = $('#culin').DataTable({
+            responsive: true,
             sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
-            "columnDefs": [
-                {"width": "44%", "targets": 0}, //empleado
-                {"width": "34%", "targets": 1}, //puesto
-                //{"width": "11%", "targets": 2}, //fecha_desde
-                //{"width": "11%", "targets": 3}, //fecha_hasta
-                {"width": "10%", "targets": 4} //ver
-                //{"width": "5%", "targets": 5}, //editar
-                //{"width": "5%", "targets": 6} //eliminar
+            columnDefs: [
+                { responsivePriority: 1, targets: 4 }
             ]
 
         });
@@ -237,7 +232,7 @@
             $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
         });
 
-        $(document).on('click', '#back',function(){
+        $('#contrato').on('click', '#back',function(){
             $("#cancel").trigger("click");
         });
 
@@ -515,8 +510,8 @@
         </div>
 
 
-    <div class="table-responsive" id="empleados-table">
-        <table id="culin" class="table table-condensed dpTable table-hover">
+    <div id="empleados-table">
+        <table id="culin" class="table table-condensed dpTable table-hover dt-responsive nowrap">
             <thead>
             <tr>
                 <th>Empleado</th>

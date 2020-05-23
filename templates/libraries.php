@@ -10,27 +10,28 @@
     <script src="resources/libraries/jquery/jquery-3.3.1.js" type="text/javascript"></script>
 
     <!-- jquery ui-->
-    <script src="resources/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="resources/libraries/jquery-ui/jquery-ui.css">
+    <script src="resources/libraries/jquery-ui/jquery-ui.js"></script>
 
     <!-- jquery ui bootstrap -->
-    <link rel="stylesheet" href="jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css">
+    <link rel="stylesheet" href="resources/libraries/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css">
 
 
     <!-- incluyo la libreria jQuery validation -->
-    <script type="text/javascript" src="validation/jquery.validate.js"></script>
-    <script type="text/javascript" src="validation/additional-methods.js"></script>
-    <script type="text/javascript" src="validation/jquery-validate.bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="resources/libraries/validation/jquery.validate.js"></script>
+    <script type="text/javascript" src="resources/libraries/validation/additional-methods.js"></script>
+    <script type="text/javascript" src="resources/libraries/validation/jquery-validate.bootstrap-tooltip.js"></script>
 
 
     <!-- dataTables --->
-    <link type="text/css" href="dataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <script src="dataTables/js/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="dataTables/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-    <script src="dataTables/ellipsis.js" type="text/javascript"></script>
-    <script type="text/javascript" src="dataTables/plugins/date-uk.js"></script>
+    <link type="text/css" href="resources/libraries/dataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <script src="resources/libraries/dataTables/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="resources/libraries/dataTables/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script src="resources/libraries/dataTables/ellipsis.js" type="text/javascript"></script>
+    <script src="resources/libraries/dataTables/plugins/date-uk.js" type="text/javascript"></script>
     <!-- extension responsive para DataTables -->
-    <link rel="stylesheet" type="text/css" href="dataTables/extensions/responsive/responsive.dataTables.css">
-    <script src="dataTables/extensions/responsive/dataTables.responsive.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/libraries/dataTables/extensions/responsive/responsive.dataTables.css">
+    <script src="resources/libraries/dataTables/extensions/responsive/dataTables.responsive.min.js"></script>
 
 
     <!-- bootstrap -->
@@ -45,29 +46,28 @@
 
 
     <!-- bootstrap-datepicker-->
-    <link type="text/css" href="bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
-    <script src="bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-    <script src="bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
+    <link type="text/css" href="resources/libraries/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
+    <script src="resources/libraries/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="resources/libraries/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
 
 
     <!-- bootstrap-select-->
-    <link rel="stylesheet" href="bootstrap-select/dist/css/bootstrap-select.min.css">
-    <script src="bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="bootstrap-select/dist/js/i18n/defaults-es_ES.min.js"></script>
+    <link rel="stylesheet" href="resources/libraries/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <script src="resources/libraries/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="resources/libraries/bootstrap-select/dist/js/i18n/defaults-es_ES.min.js"></script>
 
 
     <!-- plug-in jQuery Upload File -->
     <!--<link href="http://hayageek.github.io/jQuery-Upload-File/4.0.11/uploadfile.css" rel="stylesheet">
     <script src="http://hayageek.github.io/jQuery-Upload-File/4.0.11/jquery.uploadfile.min.js"></script>-->
-    <link href="jQuery Upload File/uploadfile.css" rel="stylesheet">
-    <script src="jQuery Upload File/jquery.uploadfile.js"></script>
-    <script src="jQuery Upload File/jquery.form.js"></script>
+    <link href="resources/libraries/jQuery Upload File/uploadfile.css" rel="stylesheet">
+    <script src="resources/libraries/jQuery Upload File/jquery.uploadfile.js"></script>
+    <script src="resources/libraries/jQuery Upload File/jquery.form.js"></script>
 
 
     <!-- plug-in simple jQuery image viewing https://www.npmjs.com/package/imageviewer -->
-
-    <link  href="ViewerImg/viewer.css" rel="stylesheet">
-    <script src="ViewerImg/viewer.js"></script>
+    <link  href="resources/libraries/ViewerImg/viewer.css" rel="stylesheet">
+    <script src="resources/libraries/ViewerImg/viewer.js"></script>
 
 
     <!-- plug-in fontawesome -->
@@ -85,8 +85,6 @@
 
 
     <!-- incluyo la libreria fullcalendar -->
-
-
     <link href='resources/libraries/fullcalendar/packages/core/main.css' rel='stylesheet' />
     <link href='resources/libraries/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
 

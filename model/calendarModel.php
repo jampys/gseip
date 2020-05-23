@@ -81,9 +81,13 @@ class Calendar
         $empleados = ($empleados!='')? implode(",", $empleados)  : 'npe.id_empleado';
         $e = sizeof($eventos);
         $eventos = ($eventos!='')? implode(",", $eventos)  : 'null';
+        $c = sizeof($conceptos);
+        $conceptos = ($_POST['conceptos']!='')? implode(",", $conceptos)  : 'null';
+
+
         $stmt=new sQuery();
 
-        $query = "select 'novedad_empleado' as tipo_evento, npe.id_empleado,
+        /*$query = "select 'novedad_empleado' as tipo_evento, npe.id_empleado,
 CONCAT (em.apellido, ' ', em.nombre) as empleado, em.legajo,
 np.id_parte, np.fecha_parte, np.cuadrilla, np.id_evento,
 na.nombre as area,
@@ -104,6 +108,38 @@ and npe.id_empleado in ($empleados)
 and np.fecha_parte between :fecha_desde and :fecha_hasta
 and if($e > 0, np.id_evento in ($eventos), 1)
 and nccc.id_concepto_convenio_contrato in ($conceptos)
+group by np.id_parte, npe.id_empleado
+order by np.id_parte asc";*/
+
+        $query="select 'novedad_empleado' as tipo_evento, npe.id_empleado,
+CONCAT (em.apellido, ' ', em.nombre) as empleado, em.legajo,
+np.id_parte, np.fecha_parte, np.cuadrilla, np.id_evento,
+na.nombre as area,
+nec.nombre as evento,
+(select group_concat(concat(nconv.codigo, ' ', nc.nombre, ' ', nccc.codigo, ' ', npec.cantidad) separator '<br/>')
+from nov_parte_empleado_concepto npec
+join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato = npec.id_concepto_convenio_contrato
+join nov_conceptos nc on nc.id_concepto = nccc.id_concepto
+join nov_convenios nconv on nconv.id_convenio = nccc.id_convenio
+where npec.id_parte_empleado = npe.id_parte_empleado
+)as conceptos
+from nov_partes np
+join nov_parte_empleado npe on npe.id_parte = np.id_parte
+join empleados em on em.id_empleado = npe.id_empleado
+left join nov_areas na on na.id_area = np.id_area
+left join nov_eventos_c nec on nec.id_evento = np.id_evento
+where np.id_contrato = :id_contrato
+and npe.id_empleado in ($empleados)
+and np.fecha_parte between :fecha_desde and :fecha_hasta
+and if($e > 0, np.id_evento in ($eventos), 1)
+and if($c > 0, exists(
+                    select 1
+                    from nov_parte_empleado_concepto npec
+                    join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato = npec.id_concepto_convenio_contrato
+                    where npec.id_parte_empleado = npe.id_parte_empleado
+                    and if($c > 0, nccc.id_concepto_convenio_contrato in ($conceptos), 1)
+                    ), 1)
+
 group by np.id_parte, npe.id_empleado
 order by np.id_parte asc";
 
@@ -137,7 +173,8 @@ where np.id_contrato = :id_contrato
 and np.fecha_parte between :fecha_desde and :fecha_hasta
 and if($e > 0, np.id_evento in ($eventos), 1)
 and if($c > 0, np.id_cuadrilla in ($cuadrillas), 1)
-group by fecha_parte, cuadrilla";
+group by fecha_parte, cuadrilla
+order by np.cuadrilla asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $fecha_desde);

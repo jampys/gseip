@@ -4,20 +4,20 @@
     /* https://fontawesome.com/how-to-use/on-the-web/advanced/css-pseudo-elements */
     /*https://datatables.net/examples/api/row_details.html*/
 
-    td.details-control {
+    span.details-control {
         cursor: pointer;
         width: 20px;
         text-align: center;
     }
 
-    td.details-control:before { /* icono de un nodo padre cerrado */
+    span.details-control:before { /* icono de un nodo padre cerrado */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f055";
         color: #5fba7d;
     }
 
-    tr.shown td.details-control:before {  /* icono de un nodo padre abierto */
+    tr.shown span.details-control:before {  /* icono de un nodo padre abierto */
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f056";
@@ -81,14 +81,16 @@
 
 
         var table = $('#example').DataTable({
+            responsive: true,
             /*language: {
              url: 'dataTables/Spanish.json'
              }*/
             "stateSave": true,
-            /*columnDefs: [
-             {targets: 1, render: $.fn.dataTable.render.ellipsis( 20)}
-
-             ]*/
+            columnDefs: [
+                { responsivePriority: 1, targets: 0 },
+                { responsivePriority: 2, targets: 1 },
+                { responsivePriority: 3, targets: 5 }
+            ],
             "fnInitComplete": function () {
                 $(this).show(); }
         });
@@ -107,8 +109,8 @@
 
 
         // Add event listener for opening and closing details
-        //$('#example tbody').on('click', 'td.details-control', function () {
-        $('#example').on('click', 'td.details-control', function (e) {
+        //$('#example tbody').on('click', 'span.details-control', function () {
+        $('#example').on('click', 'span.details-control', function (e) {
 
 
             tr = $(this).closest('tr');
@@ -266,12 +268,11 @@
         </button>
     </div>
 
-    <div class="table-responsive">
+    <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th></th>
                 <th>Cod.</th>
                 <th>Nombre</th>
                 <th>Área</th>
@@ -284,9 +285,14 @@
             <?php foreach ($view->puestos as $puesto):   ?>
                 <tr data-id="<?php echo $puesto['id_puesto'];?>" id_puesto="<?php echo $puesto['id_puesto'];?>">
 
-                    <td class="<?php echo ($puesto['hijos']> 0 )? 'details-control' : ''; ?>"></td>
+
                     <td><?php echo $puesto['codigo'];?></td>
-                    <td><span class="<?php echo ($puesto['hijos']> 0 )? 'seleccionable' : ''; ?>"><?php echo $puesto['nombre'];?></span></td>
+                    <td>
+                        <span class="<?php echo ($puesto['hijos']> 0 )? 'details-control' : ''; ?>">&nbsp;
+                        </span><span class="<?php echo ($puesto['hijos']> 0 )? 'seleccionable' : ''; ?>">
+                            <?php echo $puesto['nombre'];?>
+                        </span>
+                    </td>
                     <td><?php echo $puesto['area'];?></td>
                     <td><?php echo $puesto['nivel_competencia'];?></td>
                     <td><?php echo $puesto['nombre_superior'];?></td>
@@ -313,7 +319,7 @@
             </tbody>
         </table>
 
-    </div>
+    <!--</div>-->
 
 </div>
 
@@ -322,13 +328,6 @@
 
 
 <div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar el puesto de trabajo?
-    </div>
-
-    <div id="myElem" class="msg" style="display:none">
-
-    </div>
 
 </div>
 

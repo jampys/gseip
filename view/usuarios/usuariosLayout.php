@@ -97,7 +97,10 @@
                         }
 
                     ],
-                    close: function() { $("#myElem").empty().removeClass(); }
+                    open: function() {
+                        $(this).html(confirmMessage('¿Desea eliminar el usuario?'));
+                    },
+                    close: function() { $("#myElemento").empty().removeClass(); }
                 }).dialog('open');
                 return false;
             });
@@ -114,14 +117,14 @@
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
                     if(data >=0){
-                        $("#myElem").html('Usuario eliminado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"sec_users", operation: "refreshGrid"});
+                        $("#myElemento").html('Usuario eliminado con exito').addClass('alert alert-success').show();
                         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                        setTimeout(function() { $("#myElem").hide();
+                        setTimeout(function() { $("#myElemento").hide();
                                                 $('#confirm').dialog('close');
+                                                $('#content').load('index.php',{action:"sec_users", operation: "refreshGrid"});
                                               }, 2000);
                     }else{
-                        $("#myElem").html('No es posible eliminar el usuario').addClass('alert alert-danger').show();
+                        $("#myElemento").html('No es posible eliminar el usuario').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');

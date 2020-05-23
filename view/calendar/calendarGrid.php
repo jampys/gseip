@@ -363,7 +363,7 @@
         <hr/>
 
         <div class="radio">
-            <label><input type="radio" name="radio_vista" value="empleado" checked><b>Vista empleado</b></label>
+            <label><input type="radio" name="radio_vista" value="empleado" checked><b>Vista por empleado</b></label>
         </div>
 
 
@@ -390,7 +390,7 @@
         <div class="row">
             <div class="form-group col-md-2">
                 <div class="checkbox">
-                    <label><input type="checkbox" id="check_concepto" value="" checked></label>
+                    <label><input type="checkbox" id="check_concepto" title="Marcar para mostrar novedades" value="" checked></label>
                 </div>
             </div>
             <div class="form-group col-md-10">
@@ -408,7 +408,7 @@
         <div class="row">
             <div class="form-group col-md-2">
                 <div class="checkbox">
-                    <label><input type="checkbox" id="check_suceso" value=""></label>
+                    <label><input type="checkbox" id="check_suceso" title="Marcar para mostrar sucesos" value=""></label>
                 </div>
             </div>
             <div class="form-group col-md-10">
@@ -430,7 +430,7 @@
 
 
         <div class="radio">
-            <label><input type="radio" name="radio_vista" value="cuadrilla"><b>Vista cuadrilla</b></label>
+            <label><input type="radio" name="radio_vista" value="cuadrilla"><b>Vista por cuadrilla</b></label>
         </div>
 
 

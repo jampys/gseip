@@ -228,9 +228,9 @@ switch ($operation)
         exit;
         break;
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
+    case 'deleteParte': //ok
+        $parte = new Parte($_POST['id_parte']);
+        $rta = $parte->deleteParte();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;

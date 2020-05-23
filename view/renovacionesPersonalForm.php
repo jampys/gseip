@@ -148,9 +148,9 @@
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Renovación guardada con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
-                        $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
+                                                $("#search").trigger("click");
                                               }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar la renovación').addClass('alert alert-danger').show();

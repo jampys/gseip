@@ -35,7 +35,7 @@
                              // elimine el mensaje de requerido de jquery validation
         });
 
-        $('#confirm-ord, #confirm-suc').dialog({ //#confirm-emp, #confirm-ord, #confirm-con
+        $('#confirm').dialog({ //#confirm-emp, #confirm-ord, #confirm-con
             autoOpen: false
             //modal: true,
         });
@@ -126,7 +126,7 @@
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            $('#confirm-ord').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -143,7 +143,10 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar la orden?'));
+                }
             }).dialog('open');
             return false;
         });
@@ -163,18 +166,17 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-ord #myElemento").html('Orden eliminada con exito').addClass('alert alert-success').show();
-                    //$('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
+                    $("#confirm #myElemento").html('Orden eliminada con exito').addClass('alert alert-success').show();
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-ord #myElemento").hide();
+                    setTimeout(function() { $("#confirm #myElemento").hide();
                                             //$('#orden-form').hide();
                                             $('.grid-ordenes').load('index.php',{action:"parte-orden", operation: "refreshGrid", id_parte: params.id_parte}); //para la modal (nov2)
+                                            $('#confirm').dialog('close');
                                             $('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados", fecha: $('#add_fecha').val(), id_contrato: $('#id_contrato').val()});
-                                            $('#confirm-ord').dialog('close');
-                                          }, 1000);
+                                          }, 2000);
                 }else{
-                    $("#confirm-ord #myElemento").html('Error al eliminar la orden').addClass('alert alert-danger').show();
+                    $("#confirm #myElemento").html('Error al eliminar la orden').addClass('alert alert-danger').show();
                 }
 
 
@@ -227,8 +229,9 @@
             params.action = "sucesos";
             params.operation="newSuceso";
             $('#popupbox').load('index.php', params,function(){
-                $('#myModal #id_empleado').val(params.id_empleado).trigger('change').prop('disabled', true);
-                $('.selectpicker').selectpicker('refresh');
+                //$('#myModal #id_empleado').val(params.id_empleado).trigger('change').prop('disabled', true);
+                //$('.selectpicker').selectpicker('refresh');
+                //$('#myModal #id_empleado').selectpicker('val', params.id_empleado).prop('disabled', true); //https://developer.snapappointments.com/bootstrap-select/methods/
                 $('#myModal').modal();
             })
         });
@@ -241,7 +244,7 @@
 
 
 
-
+        //eliminar un suceso
         $('.grid-sucesos').on('click', '.delete', function(){
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
@@ -251,7 +254,7 @@
                     {
                         text: "Aceptar",
                         click: function() {
-                            $.fn.borrar(id);
+                            $.fn.borrarS(id);
                         },
                         class:"btn btn-danger"
                     },
@@ -263,13 +266,16 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar el suceso?'));
+                }
             }).dialog('open');
             return false;
         });
 
 
-        $.fn.borrar = function(id) { //ok
+        $.fn.borrarS = function(id) { //ok
             //alert(id);
             //preparo los parametros
             params={};
@@ -281,18 +287,22 @@
                 if(data >=0){
                     $("#myElemento").html('Suceso eliminado con exito').addClass('alert alert-success').show();
                     //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
-                    $("#search").trigger("click");
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                    setTimeout(function() { $("#myElemento").hide();
-                        $('#confirm').dialog('close');
-                    }, 2000);
-                }else{
-                    $("#myElemento").html('Error al eliminar el suceso').addClass('alert alert-danger').show();
-                }
+                    setTimeout(function() { $("#confirm #myElemento").hide();
+                                            //$('#orden-form').hide();
+                                            $('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: $('#id_empleado').val(), id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
+                                            $('#confirm').dialog('close');
+                                            $('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados", fecha: $('#add_fecha').val(), id_contrato: $('#id_contrato').val()});
+                                         }, 2000);
+                    }
 
-            }, 'json');
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                $("#myElemento").html('No es posible eliminar el suceso').addClass('alert alert-danger').show();
+            });
 
         };
+
 
 
 
@@ -685,6 +695,67 @@
         });
 
 
+        //Eliminar parte
+        $('#empleado-form').on('click', '#delete', function(){
+            //alert('Funcionalidad en desarrollo');
+            //throw new Error();
+            //var id = $(this).closest('tr').attr('data-id');
+            var id = $('#empleado-form #id_parte').val();
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
+                buttons: [
+                    {
+                        text: "Aceptar",
+                        click: function() {
+                            $.fn.borrarP(id);
+                        },
+                        class:"btn btn-danger"
+                    },
+                    {
+                        text: "Cancelar",
+                        click: function() {
+                            $(this).dialog("close");
+                        },
+                        class:"btn btn-default"
+                    }
+
+                ],
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar el parte? '+
+                    'Se elimiminará el parte completo, incluyendo empleados, conceptos y ordenes.'));
+                }
+            }).dialog('open');
+            return false;
+        });
+
+
+        $.fn.borrarP = function(id) {
+            //alert(id);
+            //preparo los parametros
+            params={};
+            params.id_parte = id;
+            params.action = "partes";
+            params.operation = "deleteParte";
+
+            $.post('index.php',params,function(data, status, xhr){
+                if(data >=0){
+                    $("#myElemento").html('Parte eliminado con exito').addClass('alert alert-success').show();
+                    //$('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
+                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
+                    setTimeout(function() { $("#myElemento").hide();
+                                            $('#confirm').dialog('close');
+                                            $("#add_fecha").trigger("changeDate");
+                                          }, 2000);
+                }
+
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                $("#myElemento").html('No es posible eliminar el parte').addClass('alert alert-danger').show();
+            });
+
+
+        };
+
+
 
 
 
@@ -870,6 +941,23 @@
             <div id="myElem" class="msg" style="display:none"></div>
 
 
+            <!-- boton para eliminar el parte -->
+            <?php if($view->parte->getIdParte()){ ?>
+            <div class="pull-left">
+                <button class="btn btn-danger" id="delete" name="delete" type="submit" title="Eliminar parte"
+                    <?php print (
+                                    !$view->periodo->getClosedDate() &&
+                                    ((PrivilegedUser::dhasAction('PAR_DELETE', array(1)) && $view->parte->getCreatedBy() == $_SESSION['id_user'])
+                                        ||
+                                        (PrivilegedUser::dhasPrivilege('USR_ABM', array(0))) //solo el administrador
+                                    )
+
+
+                                )? '':'disabled';
+                                ?>><i class="far fa-trash-alt fa-lg" aria-hidden="true"></i></button>
+            </div>
+            <?php } ?>
+
             <div id="footer-buttons" class="pull-right">
                 <button class="btn btn-primary" id="submit" name="submit" type="submit" <?php print ($view->periodo->getClosedDate())? 'disabled':''; ?> >Guardar</button>
                 <!--<button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>-->
@@ -949,27 +1037,7 @@
 
 
 
-<div id="confirm-ord">
-    <div class="modal-body">
-        ¿Desea eliminar la orden?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
-</div>
-
-
-
-<div id="confirm-suc">
-    <div class="modal-body">
-        ¿Desea eliminar el suceso?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
+<div id="confirm">
 
 </div>
 

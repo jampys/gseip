@@ -4,10 +4,17 @@
     $(document).ready(function(){
 
         $('#example').DataTable({
+            responsive: true,
             /*language: {
                 url: 'dataTables/Spanish.json'
             }*/
-            "stateSave": true
+            "fnInitComplete": function () {
+                $(this).show();
+            },
+            "stateSave": true,
+            columnDefs: [
+                { responsivePriority: 1, targets: 6 }
+            ]
         });
 
 
@@ -33,9 +40,9 @@
 
 
 
-    <div class="table-responsive">
+    <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Leg.</th>
@@ -74,7 +81,7 @@
             </tbody>
         </table>
 
-    </div>
+    <!--</div>-->
 
 </div>
 
@@ -83,13 +90,6 @@
 
 
 <div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar la habillidad al empleado?
-    </div>
-
-    <div id="myElem" class="msg" style="display:none">
-
-    </div>
 
 </div>
 

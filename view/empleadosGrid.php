@@ -9,7 +9,8 @@
                 url: 'dataTables/Spanish.json'
             }*/
             "fnInitComplete": function () {
-                $(this).show(); },
+                $(this).show();
+            },
             "stateSave": true,
             columnDefs: [
                 { responsivePriority: 1, targets: 7 } //action buttons
@@ -99,18 +100,11 @@
 <div class="col-md-1"></div>
 
 
-<div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar el cliente?
-    </div>
-</div>
-
-    <!--<button type="button" class="btn btn-primary" id="delete">Delete</button>
-    <button type="button" class="btn btn-primary">Cancel</button>-->
-
-<div id="myElemento" class="msg" style="display:none">
+<div id="confirm" style="display: none">
 
 </div>
+
+
 
 
 

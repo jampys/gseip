@@ -6,25 +6,19 @@
         //$('[data-toggle="tooltip"]').tooltip();
 
         $('#example').DataTable({
+            responsive: true,
             /*language: {
              url: 'dataTables/Spanish.json'
              }*/
-
             "fnInitComplete": function () {
-                                $(this).show(); },
-
+                                $(this).show();
+            },
             "stateSave": true,
-            "order": [[0, "asc"], [1, "asc"]] // 1=apellido, 2=nombre
-            /*"columnDefs": [
-                { type: 'date-uk', targets: 1 }, //fecha
-                { type: 'date-uk', targets: 4 }, //fecha_emision
-                { type: 'date-uk', targets: 5 } //fecha_vencimiento
-            ]*/
-            /*columnDefs: [
-                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
-                {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 6 ]}, //fecha_apertura
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]} //fecha_cierre
-            ]*/
+            "order": [[0, "asc"], [1, "asc"]], // 1=apellido, 2=nombre
+            columnDefs: [
+                { responsivePriority: 1, targets: 6 }
+            ]
+
         });
 
 
@@ -35,7 +29,7 @@
 
 
         //$(document).on("click", ".pdf", function(){
-        $('.table-responsive').on("click", ".pdf", function(){
+        $('#content').on("click", ".pdf", function(){
             alert('Funcionalidad en contrucción');
             /*params={};
             var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
@@ -77,9 +71,9 @@
 
 
 
-    <div class="table-responsive">
+    <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Apellido</th>
@@ -138,7 +132,7 @@
             <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
         </div>
 
-    </div>
+    <!--</div>-->
 
 </div>
 
@@ -147,13 +141,6 @@
 
 
 <div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar la renovación?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
 
 </div>
 

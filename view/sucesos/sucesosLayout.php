@@ -132,7 +132,10 @@
                             class:"btn btn-default"
                         }
 
-                    ]
+                    ],
+                    open: function() {
+                        $(this).html(confirmMessage('¿Desea eliminar el suceso?'));
+                    }
                 }).dialog('open');
                 return false;
             });
@@ -150,10 +153,10 @@
                     if(data >=0){
                         $("#myElemento").html('Suceso eliminado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
-                        $("#search").trigger("click");
                         $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                         setTimeout(function() { $("#myElemento").hide();
                                                 $('#confirm').dialog('close');
+                                                $("#search").trigger("click");
                                               }, 2000);
                     }else{
                         $("#myElemento").html('Error al eliminar el suceso').addClass('alert alert-danger').show();

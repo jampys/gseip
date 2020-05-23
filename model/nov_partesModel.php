@@ -148,6 +148,7 @@ class Parte
             $this->setCreatedDate($rows[0]['created_date']);
             $this->setIdPeriodo($rows[0]['id_periodo']);
             $this->setIdCuadrilla($rows[0]['id_cuadrilla']);
+            $this->setCreatedBy($rows[0]['created_by']);
         }
     }
 
@@ -164,7 +165,7 @@ class Parte
                     ve.nro_movil as vehiculo,
                     concat(nec.codigo, ' ', nec.nombre) as evento,
                     co.nombre as contrato,
-                    us.user,
+                    us.user, pa.created_by,
                     pa.id_periodo, pe.closed_date
                     from nov_partes pa
                     left join nov_areas ar on pa.id_area = ar.id_area
@@ -412,14 +413,12 @@ order by id_convenio asc, legajo asc";
     }
 
 
-
-
-
-    function deletePuesto(){
+    function deleteParte(){ //ok
         $stmt=new sQuery();
-        $query="delete from puestos where id_puesto= :id";
+        $query="delete
+                from nov_partes where id_parte = :id";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getIdPuesto());
+        $stmt->dpBind(':id', $this->getIdParte());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

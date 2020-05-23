@@ -4,20 +4,16 @@
     $(document).ready(function(){
 
         var t = $('#table-vehiculos').DataTable({
+            responsive: true,
             sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
             scrollY:        150,
             scrollCollapse: true,
-            scroller:       true
-            /*"columnDefs": [
-                {"width": "30%", "targets": 0}, //empleado
-                {"width": "55%", "targets": 1}, //puesto
-                {"width": "5%", "targets": 2}, //ver
-                {"width": "5%", "targets": 3}, //editar
-                {"width": "5%", "targets": 4} //eliminar
-            ]*/
-
+            scroller:       true,
+            columnDefs: [
+                { responsivePriority: 1, targets: 4 }
+            ]
         });
 
         setTimeout(function () { //https://datatables.net/forums/discussion/41587/scrolly-misaligned-table-headers-with-bootstrap
@@ -34,8 +30,8 @@
 <?php if(isset($view->vehiculos) && sizeof($view->vehiculos) > 0) {?>
 
     <br/>
-    <div class="table-responsive" id="empleados-table">
-            <table id="table-vehiculos" class="table table-condensed dpTable table-hover">
+    <div id="empleados-table">
+            <table id="table-vehiculos" class="table table-condensed dpTable table-hover dt-responsive nowrap">
                 <thead>
                 <tr>
                     <th>Vehículo</th>

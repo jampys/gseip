@@ -70,38 +70,6 @@
             });
 
 
-            $('#content').on('click', '.delete', function(){
-                //$('#confirm').dialog('open');
-                $("#confirm").data('id', $(this).attr('data-id')).dialog("open");
-                return false;
-            });
-
-
-            $.fn.borrar = function(id) {
-                //alert(id);
-                //preparo los parametros
-                params={};
-                params.id=id;
-                params.action = "clientes";
-                params.operation = "deleteClient";
-
-                $.post('index.php',params,function(data, status, xhr){
-                    if(data >=0){
-                        $("#myElemento").html('Cliente eliminado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"clientes", operation: "refreshGrid"});
-                    }else{
-                        $("#myElemento").html('Error al eliminar el cliente').addClass('alert alert-danger').show();
-                    }
-                    setTimeout(function() { $("#myElemento").hide();
-                        $('#confirm').dialog('close');}, 2000);
-
-                });
-
-            };
-
-
-
-
 
 
         });

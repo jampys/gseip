@@ -92,3 +92,13 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
 });
 
 NS={};
+
+
+function confirmMessage(d){
+    return '<div class="modal-body">'+
+                    d
+            +'</div>'+
+            '<div id="myElemento" style="display:none">'+
+            '</div>';
+}
+

@@ -4,10 +4,14 @@
     $(document).ready(function(){
 
         $('#example').DataTable({
+            responsive: true,
             /*language: {
                 url: 'dataTables/Spanish.json'
             }*/
-            "stateSave": true
+            "stateSave": true,
+            columnDefs: [
+                { responsivePriority: 1, targets: 2 }
+            ]
         });
 
 
@@ -35,9 +39,9 @@
         </button>
     </div>
 
-    <div class="table-responsive">
+    <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>Código</th>
@@ -60,7 +64,7 @@
             </tbody>
         </table>
 
-    </div>
+    <!--</div>-->
 
 </div>
 
@@ -69,13 +73,6 @@
 
 
 <div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar la habillidad?
-    </div>
-
-    <div id="myElem" class="msg" style="display:none">
-
-    </div>
 
 </div>
 

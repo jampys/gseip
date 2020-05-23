@@ -6,6 +6,7 @@
         //$('[data-toggle="tooltip"]').tooltip();
 
         $('#example').DataTable({
+            responsive: true,
             /*language: {
              url: 'dataTables/Spanish.json'
              },*/
@@ -13,15 +14,10 @@
                                 $(this).show(); },
             "stateSave": true,
             "order": [[0, "desc"], [1, "asc"], [2, "asc"]], // 0=fecha_parte, 1=contrato, 2=cuadrilla
-            /*"columnDefs": [
-                { type: 'date-uk', targets: 1 }, //fecha
-                { type: 'date-uk', targets: 4 }, //fecha_emision
-                { type: 'date-uk', targets: 5 } //fecha_vencimiento
-            ]*/
             columnDefs: [
-                {targets: [ 0 ], type: 'date-uk', orderData: [ 0, 1 ]} //fecha parte
-                //{targets: [ 3 ], type: 'date-uk', orderData: [ 3, 5 ]}, //
-                //{targets: [ 4 ], type: 'date-uk', orderData: [ 4, 5 ]} //
+                {targets: [ 0 ], type: 'date-uk', orderData: [ 0, 1 ]}, //fecha parte
+                { responsivePriority: 1, targets: 8 },
+                { responsivePriority: 2, targets: 6 }
             ]
         });
 
@@ -72,12 +68,9 @@
 <div class="col-md-12">
 
 
+    <!--<div class="table-responsive">-->
 
-
-
-    <div class="table-responsive">
-
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Fecha pte.</th>
@@ -124,7 +117,16 @@
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para eliminar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('PAR_DELETE', array(1)) && !$rp['closed_date'] )? 'delete' : 'disabled' ?>" title="borrar parte" href="javascript:void(0);">
+                            <a class="<?php echo (
+                                                    !$rp['closed_date'] &&
+                                                    ((PrivilegedUser::dhasAction('PAR_DELETE', array(1)) && $rp['created_by'] == $_SESSION['id_user'])
+                                                        ||
+                                                    (PrivilegedUser::dhasPrivilege('USR_ABM', array(0))) //solo el administrador
+                                                    )
+
+                            )? 'delete':'disabled';
+
+                                ?>" title="borrar parte" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                             </a>
                         </td>
@@ -135,7 +137,7 @@
 
 
 
-    </div>
+    <!--</div>-->
 
 </div>
 
@@ -143,15 +145,7 @@
 
 
 
-<div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar la renovación?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
+<div id="confirm" style="display: none">
 </div>
 
 

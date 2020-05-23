@@ -145,7 +145,10 @@
                         }
 
                     ],
-                    close: function() { $("#myElem").empty().removeClass(); }
+                    open: function() {
+                        $(this).html(confirmMessage('¿Desea eliminar el objetivo?'));
+                    },
+                    close: function() { $("#myElemento").empty().removeClass(); }
                 }).dialog('open');
                 return false;
             });
@@ -161,17 +164,17 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#confirm #myElem").html('Objetivo eliminado con exito').addClass('alert alert-success').show();
+                        $("#confirm #myElemento").html('Objetivo eliminado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"objetivos", operation: "refreshGrid"});
-                        $("#search").trigger("click");
-                        setTimeout(function() { $("#confirm #myElem").hide();
+                        setTimeout(function() { $("#confirm #myElemento").hide();
                                                 $('#confirm').dialog('close');
+                                                $("#search").trigger("click");
                                               }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#confirm #myElem").html('No es posible eliminar el objetivo').addClass('alert alert-danger').show();
+                    $("#confirm #myElemento").html('No es posible eliminar el objetivo').addClass('alert alert-danger').show();
                 });
 
             };

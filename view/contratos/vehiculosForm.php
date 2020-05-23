@@ -115,7 +115,7 @@
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
-            $('#confirm-ve').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -132,7 +132,10 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar vehículo del contrato?'));
+                }
             }).dialog('open');
             return false;
         });
@@ -152,13 +155,13 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-ve #myElemento").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
+                    $("#confirm #myElemento").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
                     $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-ve #myElemento").hide();
+                    setTimeout(function() { $("#confirm #myElemento").hide();
                                             $('#contrato-vehiculo-form').hide();
-                                            $('#confirm-ve').dialog('close');
+                                            $('#confirm').dialog('close');
+                                            $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
                                           }, 2000);
                 }else{
                     $("#myElemento").html('Error al eliminar el vehículo').addClass('alert alert-danger').show();
@@ -239,15 +242,5 @@
 
 
 
-<div id="confirm-ve">
-    <div class="modal-body">
-        ¿Desea eliminar el vehículo del contrato?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
-</div>
 
 

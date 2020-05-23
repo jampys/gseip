@@ -12,7 +12,7 @@
         });
 
 
-        $('#confirm-ve').dialog({
+        $('#confirm').dialog({
             autoOpen: false
             //modal: true,
         });
@@ -112,7 +112,7 @@
             //alert('Funcionalidad en desarrollo');
             //throw new Error();
             var id = $(this).closest('tr').attr('data-id');
-            $('#confirm-ve').dialog({ //se agregan botones al confirm dialog y se abre
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                 buttons: [
                     {
                         text: "Aceptar",
@@ -129,7 +129,10 @@
                         class:"btn btn-default"
                     }
 
-                ]
+                ],
+                open: function() {
+                    $(this).html(confirmMessage('¿Desea eliminar el vehículo del grupo?'));
+                }
             }).dialog('open');
             return false;
         });
@@ -149,12 +152,12 @@
             $.post('index.php',params,function(data, status, xhr){
                 //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-ve #myElemento").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
+                    $("#confirm #myElemento").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
                     $('#etapas_left_side .grid').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
                     //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-ve #myElemento").hide();
+                    setTimeout(function() { $("#confirm #myElemento").hide();
                                             $('#grupo-vehiculo-form').hide();
-                                            $('#confirm-ve').dialog('close');
+                                            $('#confirm').dialog('close');
                                           }, 2000);
                 }else{
                     $("#myElemento").html('Error al eliminar el vehículo').addClass('alert alert-danger').show();
@@ -235,15 +238,5 @@
 
 
 
-<div id="confirm-ve">
-    <div class="modal-body">
-        ¿Desea eliminar el vehículo del grupo?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
-</div>
 
 
