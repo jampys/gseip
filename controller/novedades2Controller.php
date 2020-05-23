@@ -125,64 +125,69 @@ switch ($operation)
 
         $rta = array();
 
-        try{
+        try {
 
             sQuery::dpBeginTransaction();
 
-            $parte = new Parte($_POST['id_parte']);
-            $parte->setFechaParte($_POST['fecha_parte']);
-            $parte->setIdContrato($_POST['id_contrato']);
-            $parte->setIdArea( ($_POST['id_area'])? $_POST['id_area'] : null );
-            $parte->setIdVehiculo(null);
-            $parte->setIdCuadrilla( ($_POST['id_cuadrilla'])? $_POST['id_cuadrilla'] : null );
-            $parte->setIdPeriodo($_POST['id_periodo']);
-            $parte->setCreatedBy($_SESSION['id_user']);
-
-            $id_parte_empleado = $_POST['id_parte_empleado'];
-            $id_empleado = $_POST['id_empleado'];
-            $id_evento = ($_POST['id_evento'])? $_POST['id_evento'] : null;
-            $conductor = $_POST['conductor'];
-            $comentario = $_POST['comentario'];
-            $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
-
-            //obtengo el id_parte y id_parte_empleado devueltos por el SP
-            $id_parte = $rta[0]['id_parte'];
-            $id_parte_empleado = $rta[0]['id_parte_empleado'];
-            //print_r($rta);
-
-            $vConceptos = json_decode($_POST["vConceptos"], true);
-            //print_r($vConceptos);
             //throw new Exception();
+            $startDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']);
+            $endDate = DateTime::createFromFormat('d/m/Y', '23/02/2020');
+
+            while ($startDate <= $endDate) {
+                $startDate->modify('+1 day');
+                //chequear que ya no exista una novedad para esa fecha y empleado
+
+                //$parte = new Parte($_POST['id_parte']);
+                $parte = new Parte($_POST['id_parte']);
+                $parte->setFechaParte($_POST['fecha_parte']);
+                $parte->setIdContrato($_POST['id_contrato']);
+                $parte->setIdArea(($_POST['id_area']) ? $_POST['id_area'] : null);
+                $parte->setIdVehiculo(null);
+                $parte->setIdCuadrilla(($_POST['id_cuadrilla']) ? $_POST['id_cuadrilla'] : null);
+                $parte->setIdPeriodo($_POST['id_periodo']);
+                $parte->setCreatedBy($_SESSION['id_user']);
+
+                $id_parte_empleado = $_POST['id_parte_empleado'];
+                $id_empleado = $_POST['id_empleado'];
+                $id_evento = ($_POST['id_evento']) ? $_POST['id_evento'] : null;
+                $conductor = $_POST['conductor'];
+                $comentario = $_POST['comentario'];
+                $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
+
+                //obtengo el id_parte y id_parte_empleado devueltos por el SP
+                $id_parte = $rta[0]['id_parte'];
+                $id_parte_empleado = $rta[0]['id_parte_empleado'];
+                //print_r($rta);
 
 
-            foreach ($vConceptos as $vC) {
+                $vConceptos = json_decode($_POST["vConceptos"], true);
+                foreach ($vConceptos as $vC) {
+                    $c = new ParteEmpleadoConcepto();
+                    $c->setIdParteEmpleadoConcepto($vC['id_parte_empleado_concepto']);
+                    $c->setIdParteEmpleado($id_parte_empleado);
+                    $c->setIdConceptoConvenioContrato($vC['id_concepto_convenio_contrato']);
+                    $c->setCantidad($vC['cantidad']);
+                    $c->setCreatedBy($_SESSION['id_user']);
+                    $c->setTipoCalculo($vC['tipo_calculo']);
+                    $c->setMotivo(null);
 
-                $c = new ParteEmpleadoConcepto();
-                $c->setIdParteEmpleadoConcepto($vC['id_parte_empleado_concepto']);
-                $c->setIdParteEmpleado($id_parte_empleado);
-                $c->setIdConceptoConvenioContrato($vC['id_concepto_convenio_contrato']);
-                $c->setCantidad($vC['cantidad']);
-                $c->setCreatedBy($_SESSION['id_user']);
-                $c->setTipoCalculo($vC['tipo_calculo']);
-                $c->setMotivo(null);
+                    if ($vC['operacion'] == 'insert') {$c->insertParteEmpleadoConcepto();}
+                    else if ($vC['operacion'] == 'update') {$c->updateParteEmpleadoConcepto();}
+                    else if ($vC['operacion'] == 'delete') {$c->deleteParteEmpleadoConcepto();}
+                }
 
-                if($vC['operacion']=='insert') {$c->insertParteEmpleadoConcepto();}
-                else if( $vC['operacion']=='update') {$c->updateParteEmpleadoConcepto();}
-                else if( $vC['operacion']=='delete') {$c->deleteParteEmpleadoConcepto();}
+                //Devuelve el resultado a la vista
+                sQuery::dpCommit();
+                print_r(json_encode(1));
 
-            }
 
-            //Devuelve el resultado a la vista
-            sQuery::dpCommit();
-            print_r(json_encode($rta));
-            //print_r(json_encode(1));
+            }  //while
 
-        }
+        } //try
         catch(Exception $e){
-            //echo $e->getMessage(); //habilitar para ver el mensaje de error
+            echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
             //print_r(json_encode(-1));
-            print_r(json_encode($rta));
         }
 
         exit;
