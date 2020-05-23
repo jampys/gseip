@@ -63,8 +63,6 @@ switch ($operation)
             //throw new Exception();
 
 
-            throw new Exception("aaaaaaaaaaaaa");
-
             foreach ($vConceptos as $vC) {
 
                 //$c = new HabilidadEmpleado();
