@@ -131,7 +131,7 @@ switch ($operation)
 
             //throw new Exception();
             $startDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']);
-            $endDate = DateTime::createFromFormat('d/m/Y', '23/02/2020');
+            $endDate = $startDate->modify('+2 day');
 
             while ($startDate <= $endDate) {
                 $startDate->modify('+1 day');
@@ -176,12 +176,12 @@ switch ($operation)
                     else if ($vC['operacion'] == 'delete') {$c->deleteParteEmpleadoConcepto();}
                 }
 
-                //Devuelve el resultado a la vista
-                sQuery::dpCommit();
-                print_r(json_encode(1));
-
 
             }  //while
+
+            //Devuelve el resultado a la vista
+            sQuery::dpCommit();
+            print_r(json_encode(1));
 
         } //try
         catch(Exception $e){
