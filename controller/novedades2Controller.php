@@ -145,7 +145,10 @@ switch ($operation)
                     //chequear si solo se inserte de lunes a viernes
                     $day_of_week = intval($currentDate->format('w')); //https://www.php.net/manual/en/function.date.php
                     if($day_of_week == 0 || $day_of_week == 6) continue;
-                    //chequear que ya no exista una novedad para esa fecha y empleado
+                    //chequear que ya no exista una novedad para esa fecha y empleado y
+                    //en caso de existir, obtener el id_parte y id_parte_empleado y asignar a variables de abajo
+                    $id_parte="";
+                    $id_parte_empleado="";
                 }
 
 
