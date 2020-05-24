@@ -41,6 +41,9 @@
         });
 
 
+        $('[data-toggle="tooltip"]').tooltip({html: true});
+
+
         //datepicker repetir
         $('.input-group.date.rf').datepicker({
             format:"dd/mm/yyyy",
@@ -962,7 +965,7 @@
                 <div class="form-group col-md-6">
                     <div class="checkbox">
                         <label><input type="checkbox" id="check_replicar" value="">
-                            <span title="Marcar para replicar la novedad hasta la fecha indicada inclusive. Solo se replica durante días habiles que no tengan una novedad previa.">
+                            <span data-toggle="tooltip" title="Marcar para replicar la novedad hasta la fecha indicada inclusive.<br/>* Solo se replica durante días habiles que no tengan una novedad previa.<br/>* Solo se puede replicar al crear una novedad, no así al editar.">
                                 Replicar novedad
                             </span></label>
                     </div>
