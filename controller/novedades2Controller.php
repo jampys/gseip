@@ -137,7 +137,8 @@ switch ($operation)
             $id_parte_empleado = $_POST['id_parte_empleado'];
 
 
-            while ($currentDate <= $endDate) {
+            //while ($currentDate <= $endDate) {
+            for($currentDate = $startDate; $currentDate <= $endDate; $currentDate->modify('+1 day')) {
 
                 if($currentDate > $startDate){ //se ejecuta desde el ciclo 2 en adelante
                     // si no tiene check de repetir. break del bucle
@@ -189,7 +190,7 @@ switch ($operation)
                     else if ($vC['operacion'] == 'delete') {$c->deleteParteEmpleadoConcepto();}
                 }
 
-                $currentDate->modify('+1 day');
+                //$currentDate->modify('+1 day');
             }  //while
 
             //Devuelve el resultado a la vista
