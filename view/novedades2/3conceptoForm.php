@@ -48,6 +48,12 @@
             todayHighlight: true
         });
 
+        //restringe el selector de fechas al periodo seleccionado
+        var fecha_desde = $('#add_fecha').val();
+        var fecha_hasta = $('#fecha_hasta').val();
+        $('.input-group.date').datepicker('setStartDate', fecha_desde);
+        $('.input-group.date').datepicker('setEndDate', fecha_hasta);
+
 
 
         $('#empleado-form').on('click', '#cancel', function(){
