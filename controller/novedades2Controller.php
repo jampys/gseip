@@ -17,6 +17,7 @@ include_once("model/nov_sucesosModel.php");
 include_once("model/nov_concepto-convenio-contratoModel.php");
 include_once("model/nov_rutasModel.php");
 include_once("model/nov_ruta-conceptoModel.php");
+include_once("model/calendarModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -145,10 +146,13 @@ switch ($operation)
                     //chequear si solo se inserte de lunes a viernes
                     $day_of_week = intval($currentDate->format('w')); //https://www.php.net/manual/en/function.date.php
                     if($day_of_week == 0 || $day_of_week == 6) continue;
+                    //chequear que sea dia habil
+                    $res = Calendar::checkFeriados($currentDate->format('d/m/Y'));
+                    if($res[0]['feriado']) continue;
                     //chequear que ya no exista una novedad para esa fecha y empleado y contrato
-                    $res = ParteEmpleado::checkParteEmpleado($_POST['id_empleado'], $_POST['id_contrato'], $currentDate->format('d/m/Y') );
-                    $id_parte = $res[0]['id_parte'];
-                    $id_parte_empleado = $res[0]['id_parte_empleado'];
+                    $res1 = ParteEmpleado::checkParteEmpleado($_POST['id_empleado'], $_POST['id_contrato'], $currentDate->format('d/m/Y') );
+                    $id_parte = $res1[0]['id_parte'];
+                    $id_parte_empleado = $res1[0]['id_parte_empleado'];
                     if($id_parte_empleado && $id_parte) continue; //si tiene novedad, salta.
                 }
 
