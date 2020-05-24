@@ -131,14 +131,13 @@ switch ($operation)
 
             //throw new Exception();
             $startDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']);
-            $currentDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']);
             $endDate = DateTime::createFromFormat('d/m/Y', ($_POST['rep_fecha'])? $_POST['rep_fecha'] : $_POST['fecha_parte']);
             $id_parte = $_POST['id_parte'];
             $id_parte_empleado = $_POST['id_parte_empleado'];
 
 
-            //while ($currentDate <= $endDate) {
-            for($currentDate = $startDate; $currentDate <= $endDate; $currentDate->modify('+1 day')) {
+            for($currentDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']); $currentDate <= $endDate; $currentDate->modify('+1 day')) {
+
 
                 if($currentDate > $startDate){ //se ejecuta desde el ciclo 2 en adelante
                     // si no tiene check de repetir. break del bucle
@@ -147,8 +146,6 @@ switch ($operation)
                     $day_of_week = intval($currentDate->format('w')); //https://www.php.net/manual/en/function.date.php
                     if($day_of_week == 0 || $day_of_week == 6) continue;
                     //chequear que ya no exista una novedad para esa fecha y empleado
-
-
                 }
 
 
@@ -190,8 +187,8 @@ switch ($operation)
                     else if ($vC['operacion'] == 'delete') {$c->deleteParteEmpleadoConcepto();}
                 }
 
-                //$currentDate->modify('+1 day');
-            }  //while
+
+            }
 
             //Devuelve el resultado a la vista
             sQuery::dpCommit();
