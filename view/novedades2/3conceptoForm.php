@@ -41,6 +41,14 @@
         });
 
 
+        //datepicker repetir
+        $('.input-group.date').datepicker({
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
+
+
 
         $('#empleado-form').on('click', '#cancel', function(){
             $('#contenedor').hide();
@@ -953,10 +961,12 @@
                 </div>
                 <div class="form-group col-md-6">
                     <div class="form-group">
-                        <!--<select class="form-control selectpicker show-tick" id="id_concepto" name="id_concepto" title="Seleccione un concepto" data-live-search="true" data-size="5">-->
-                        <select multiple class="form-control selectpicker show-tick" id="id_concepto" name="id_concepto" title="Todos los conceptos" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
-                            <!-- se completa dinamicamente desde javascript  -->
-                        </select>
+                        <div class="input-group date">
+                            <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->empleado->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
