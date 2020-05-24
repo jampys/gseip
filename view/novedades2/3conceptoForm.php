@@ -960,7 +960,10 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <div class="checkbox">
-                        <label><input type="checkbox" id="check_replicar" title="Marcar para replicar las novedades hasta la fecha indicada" value="">Repetir</label>
+                        <label><input type="checkbox" id="check_replicar" value="">
+                            <span title="Marcar para replicar la novedad hasta la fecha indicada inclusive. Solo se replica durante días habiles que no tengan una novedad previa.">
+                                Replicar novedad
+                            </span></label>
                     </div>
                 </div>
                 <!--<div class="form-group col-md-3">
