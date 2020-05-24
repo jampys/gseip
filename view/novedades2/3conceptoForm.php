@@ -940,6 +940,28 @@
             </div>
 
 
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="check_replicar" title="Marcar para replicar las novedades hasta la fecha indicada" value="">Repetir</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="check_sobrescribir" title="Marcar para sobrescribir novedades" value="">Sobrescribir</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="form-group">
+                        <!--<select class="form-control selectpicker show-tick" id="id_concepto" name="id_concepto" title="Seleccione un concepto" data-live-search="true" data-size="5">-->
+                        <select multiple class="form-control selectpicker show-tick" id="id_concepto" name="id_concepto" title="Todos los conceptos" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
+                            <!-- se completa dinamicamente desde javascript  -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
 
             <div id="myElem" class="msg" style="display:none"></div>
 

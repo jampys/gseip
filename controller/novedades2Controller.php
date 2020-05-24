@@ -131,16 +131,28 @@ switch ($operation)
 
             //throw new Exception();
             $startDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']);
+            $currentDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']);
             $endDate = DateTime::createFromFormat('d/m/Y', '19/02/2020');
+            $id_parte = $_POST['id_parte'];
+            $id_parte_empleado = $_POST['id_parte_empleado'];
 
-            while ($startDate <= $endDate) {
 
-                //chequear que ya no exista una novedad para esa fecha y empleado
-                //chequear si solo se inserte de lunes a viernes
+            while ($currentDate <= $endDate) {
 
-                $parte = new Parte($_POST['id_parte']);
-                //$parte->setFechaParte($_POST['fecha_parte']);
-                $parte->setFechaParte($startDate->format('d/m/Y'));
+                if($currentDate > $startDate){
+
+                    // si no tiene check de repetir. break del bucle
+                    break;
+                    //chequear que ya no exista una novedad para esa fecha y empleado
+                    //chequear si solo se inserte de lunes a viernes
+
+
+                }
+
+
+
+                $parte = new Parte($id_parte);
+                $parte->setFechaParte($currentDate->format('d/m/Y'));
                 $parte->setIdContrato($_POST['id_contrato']);
                 $parte->setIdArea(($_POST['id_area']) ? $_POST['id_area'] : null);
                 $parte->setIdVehiculo(null);
@@ -148,7 +160,6 @@ switch ($operation)
                 $parte->setIdPeriodo($_POST['id_periodo']);
                 $parte->setCreatedBy($_SESSION['id_user']);
 
-                $id_parte_empleado = $_POST['id_parte_empleado'];
                 $id_empleado = $_POST['id_empleado'];
                 $id_evento = ($_POST['id_evento']) ? $_POST['id_evento'] : null;
                 $conductor = $_POST['conductor'];
@@ -156,8 +167,8 @@ switch ($operation)
                 $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
 
                 //obtengo el id_parte y id_parte_empleado devueltos por el SP
-                $id_parte = $rta[0]['id_parte'];
-                $id_parte_empleado = $rta[0]['id_parte_empleado'];
+                //$id_parte = $rta[0]['id_parte'];
+                //$id_parte_empleado = $rta[0]['id_parte_empleado'];
                 //print_r($rta);
 
 
@@ -177,7 +188,7 @@ switch ($operation)
                     else if ($vC['operacion'] == 'delete') {$c->deleteParteEmpleadoConcepto();}
                 }
 
-                $startDate->modify('+1 day');
+                $currentDate->modify('+1 day');
             }  //while
 
             //Devuelve el resultado a la vista
