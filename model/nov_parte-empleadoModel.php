@@ -156,6 +156,26 @@ class ParteEmpleado
     }
 
 
+    public static function checkParteEmpleado($id_empleado, $id_contrato, $fecha) { //ok
+        //se usa en novedades2Controller. Chequea si un empleado tiene parte en una fecha
+        $stmt=new sQuery();
+        $query = "select npe.id_parte_empleado, npe.id_parte, npe.id_empleado
+from nov_parte_empleado npe
+join nov_partes np on np.id_parte = npe.id_parte
+where npe.id_empleado = :id_empleado
+and np.fecha_parte = STR_TO_DATE(:fecha, '%d/%m/%Y')
+and np.id_contrato = :id_contrato
+limit 1";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':fecha', $fecha);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
     public function checkEmpleado($id_parte_empleado, $id_parte) { //No se usa
         $stmt=new sQuery();
         /*$query = "select *

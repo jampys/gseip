@@ -147,8 +147,9 @@ switch ($operation)
                     if($day_of_week == 0 || $day_of_week == 6) continue;
                     //chequear que ya no exista una novedad para esa fecha y empleado y
                     //en caso de existir, obtener el id_parte y id_parte_empleado y asignar a variables de abajo
-                    $id_parte="";
-                    $id_parte_empleado="";
+                    $res = ParteEmpleado::checkParteEmpleado($_POST['id_empleado'], $_POST['id_contrato'], $_POST['fecha_parte'] );
+                    $id_parte = $res[0]['id_parte'];
+                    $id_parte_empleado = $res[0]['id_parte_empleado'];
                 }
 
 
@@ -166,7 +167,7 @@ switch ($operation)
                 $id_evento = ($_POST['id_evento']) ? $_POST['id_evento'] : null;
                 $conductor = $_POST['conductor'];
                 $comentario = $_POST['comentario'];
-                $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
+                $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
 
                 //obtengo el id_parte y id_parte_empleado devueltos por el SP
                 $id_parte = $rta[0]['id_parte'];
