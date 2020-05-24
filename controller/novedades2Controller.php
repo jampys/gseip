@@ -193,13 +193,13 @@ switch ($operation)
             }
 
             //Devuelve el resultado a la vista
-            $rta = array('flag'=>1, 'msg'=>'todo ok');
+            $rta = array('0'=>array('flag'=>1, 'msg'=>'todo ok'));
             sQuery::dpCommit();
             print_r(json_encode($rta));
 
         } //try
         catch(Exception $e){
-            $rta = array('flag'=>-1, 'msg'=>'error');
+            $rta = array('0'=>array('flag'=>-1, 'msg'=>'Error al guardar el parte'));
             //echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
             print_r(json_encode($rta));
