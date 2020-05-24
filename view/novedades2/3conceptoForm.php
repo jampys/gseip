@@ -677,7 +677,7 @@
                 params.id_evento = $('#id_evento').val();
                 params.conductor = $('#conductor').prop('checked')? 1:0;
                 params.check_replicar = ($('#check_replicar').is(':checked'))? 1:0;
-                params.check_sobrescribir = ($('#check_sobrescribir').is(':checked'))? 1:0;
+                //params.check_sobrescribir = ($('#check_sobrescribir').is(':checked'))? 1:0;
                 params.rep_fecha = $('#rep_fecha').val();
                 //alert(params.comentario);
                 //throw new Error();
@@ -958,16 +958,16 @@
 
 
             <div class="row">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-6">
                     <div class="checkbox">
                         <label><input type="checkbox" id="check_replicar" title="Marcar para replicar las novedades hasta la fecha indicada" value="">Repetir</label>
                     </div>
                 </div>
-                <div class="form-group col-md-3">
+                <!--<div class="form-group col-md-3">
                     <div class="checkbox">
                         <label><input type="checkbox" id="check_sobrescribir" title="Marcar para sobrescribir novedades" value="">Sobrescribir</label>
                     </div>
-                </div>
+                </div>-->
                 <div class="form-group col-md-6">
                     <div class="form-group">
                         <div class="input-group date rf">
