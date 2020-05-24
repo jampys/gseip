@@ -137,7 +137,7 @@ switch ($operation)
 
                 //chequear que ya no exista una novedad para esa fecha y empleado
                 //chequear si solo se inserte de lunes a viernes
-                
+
                 $parte = new Parte($_POST['id_parte']);
                 //$parte->setFechaParte($_POST['fecha_parte']);
                 $parte->setFechaParte($startDate->format('d/m/Y'));
