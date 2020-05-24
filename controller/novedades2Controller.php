@@ -147,7 +147,7 @@ switch ($operation)
                     if($day_of_week == 0 || $day_of_week == 6) continue;
                     //chequear que ya no exista una novedad para esa fecha y empleado y
                     //en caso de existir, obtener el id_parte y id_parte_empleado y asignar a variables de abajo
-                    $res = ParteEmpleado::checkParteEmpleado($_POST['id_empleado'], $_POST['id_contrato'], $_POST['fecha_parte'] );
+                    $res = ParteEmpleado::checkParteEmpleado($_POST['id_empleado'], $_POST['id_contrato'], $currentDate->format('d/m/Y') );
                     $id_parte = $res[0]['id_parte'];
                     $id_parte_empleado = $res[0]['id_parte_empleado'];
                 }
