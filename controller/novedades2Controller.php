@@ -150,6 +150,7 @@ switch ($operation)
                     $res = ParteEmpleado::checkParteEmpleado($_POST['id_empleado'], $_POST['id_contrato'], $currentDate->format('d/m/Y') );
                     $id_parte = $res[0]['id_parte'];
                     $id_parte_empleado = $res[0]['id_parte_empleado'];
+                    if($_POST['check_sobrescribir'] != 1 && $id_parte_empleado && $id_parte) continue;
                 }
 
 
