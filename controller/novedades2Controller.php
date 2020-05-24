@@ -166,9 +166,8 @@ switch ($operation)
                 $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
 
                 //obtengo el id_parte y id_parte_empleado devueltos por el SP
-                //$id_parte = $rta[0]['id_parte'];
-                //$id_parte_empleado = $rta[0]['id_parte_empleado'];
-                //print_r($rta);
+                $id_parte = $rta[0]['id_parte'];
+                $id_parte_empleado = $rta[0]['id_parte_empleado'];
 
 
                 $vConceptos = json_decode($_POST["vConceptos"], true);
