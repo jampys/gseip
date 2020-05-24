@@ -123,7 +123,7 @@ switch ($operation)
 
     case 'saveParteR':
 
-        $rta = array();
+        //$rta = array();
 
         try {
 
