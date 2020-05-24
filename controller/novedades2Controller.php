@@ -131,12 +131,13 @@ switch ($operation)
 
             //throw new Exception();
             $startDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']);
-            $endDate = $startDate->modify('+2 day');
+            $endDate = DateTime::createFromFormat('d/m/Y', '19/02/2020');
 
             while ($startDate <= $endDate) {
-                $startDate->modify('+1 day');
-                //chequear que ya no exista una novedad para esa fecha y empleado
 
+                //chequear que ya no exista una novedad para esa fecha y empleado
+                //chequear si solo se inserte de lunes a viernes
+                
                 $parte = new Parte($_POST['id_parte']);
                 //$parte->setFechaParte($_POST['fecha_parte']);
                 $parte->setFechaParte($startDate->format('d/m/Y'));
@@ -176,7 +177,7 @@ switch ($operation)
                     else if ($vC['operacion'] == 'delete') {$c->deleteParteEmpleadoConcepto();}
                 }
 
-
+                $startDate->modify('+1 day');
             }  //while
 
             //Devuelve el resultado a la vista
