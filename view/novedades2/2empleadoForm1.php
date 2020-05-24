@@ -20,7 +20,7 @@
     $(document).ready(function(){
 
 
-        $('.input-group.date').datepicker({ //ok para fecha (nuevo)
+        $('.input-group.date.af').datepicker({ //ok para fecha (nuevo)
             //inline: true
             format:"dd/mm/yyyy",
             language: 'es',
@@ -56,8 +56,8 @@
         var fecha_hasta = $('#fecha_hasta').val();
         //$('#add_fecha').datepicker('setStartDate', '18/05/2019');
         //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
-        $('.input-group.date').datepicker('setStartDate', fecha_desde);
-        $('.input-group.date').datepicker('setEndDate', fecha_hasta);
+        $('.input-group.date.af').datepicker('setStartDate', fecha_desde);
+        $('.input-group.date.af').datepicker('setEndDate', fecha_hasta);
         //$('#add_fecha').datepicker('setDate', new Date()); //pone por defecto la fecha actual
 
 
@@ -136,7 +136,7 @@
 
                         <div class="form-group required">
                             <!--<label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>-->
-                                <div class="input-group date">
+                                <div class="input-group date af">
                                     <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "<?php //print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-th"></span>
