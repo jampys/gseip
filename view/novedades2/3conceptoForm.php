@@ -40,8 +40,13 @@
             //modal: true,
         });
 
-
-        $('[data-toggle="tooltip"]').tooltip({html: true});
+        
+        $('[data-toggle="popover"]').popover({
+            html:true,
+            placement: "top",
+            container: "body",
+            trigger: "hover"
+        });
 
 
         //datepicker repetir
@@ -965,7 +970,7 @@
                 <div class="form-group col-md-6">
                     <div class="checkbox">
                         <label><input type="checkbox" id="check_replicar" value="">
-                            <span data-toggle="tooltip" title="Marcar para replicar la novedad hasta la fecha indicada inclusive.<br/>* Solo se replica durante días habiles que no tengan una novedad previa.<br/>* Solo se puede replicar al crear una novedad, no así al editar.">
+                            <span data-toggle="popover" data-content="Marcar para replicar la novedad hasta la fecha indicada inclusive.<br/>* Solo se replica durante días habiles que no tengan una novedad previa.<br/>* Solo se puede replicar al crear una novedad, no así al editar.">
                                 Replicar novedad
                             </span></label>
                     </div>
