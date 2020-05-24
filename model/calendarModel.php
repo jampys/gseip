@@ -186,7 +186,7 @@ order by np.cuadrilla asc";
 
 
 
-    public static function checkFeriados($current) {
+    public static function checkFeriados($current) { //ok
         //se usa en novedades2 para replicar novedades, verificando los feriados
         $stmt=new sQuery();
         $query = "select feriado
