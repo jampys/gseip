@@ -676,6 +676,9 @@
                 params.id_empleado = $('#id_empleado').val();
                 params.id_evento = $('#id_evento').val();
                 params.conductor = $('#conductor').prop('checked')? 1:0;
+                params.check_replicar = ($('#check_replicar').is(':checked'))? 1:0;
+                params.check_sobrescribir = ($('#check_sobrescribir').is(':checked'))? 1:0;
+                params.rep_fecha = $('#rep_fecha').val();
                 //alert(params.comentario);
                 //throw new Error();
 

@@ -132,19 +132,20 @@ switch ($operation)
             //throw new Exception();
             $startDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']);
             $currentDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']);
-            $endDate = DateTime::createFromFormat('d/m/Y', '19/02/2020');
+            $endDate = DateTime::createFromFormat('d/m/Y', ($_POST['rep_fecha'])? $_POST['rep_fecha'] : $_POST['fecha_parte']);
             $id_parte = $_POST['id_parte'];
             $id_parte_empleado = $_POST['id_parte_empleado'];
 
 
             while ($currentDate <= $endDate) {
 
-                if($currentDate > $startDate){
-
+                if($currentDate > $startDate){ //se ejecuta desde el ciclo 2 en adelante
                     // si no tiene check de repetir. break del bucle
-                    break;
-                    //chequear que ya no exista una novedad para esa fecha y empleado
+                    if($_POST['check_replicar'] != 1) break;
                     //chequear si solo se inserte de lunes a viernes
+                    $day_of_week = intval($currentDate->format('w')); //https://www.php.net/manual/en/function.date.php
+                    if($day_of_week == 0 || $day_of_week == 6) continue;
+                    //chequear que ya no exista una novedad para esa fecha y empleado
 
 
                 }
