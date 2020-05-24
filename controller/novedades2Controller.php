@@ -166,7 +166,7 @@ switch ($operation)
                 $id_evento = ($_POST['id_evento']) ? $_POST['id_evento'] : null;
                 $conductor = $_POST['conductor'];
                 $comentario = $_POST['comentario'];
-                $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
+                $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
 
                 //obtengo el id_parte y id_parte_empleado devueltos por el SP
                 $id_parte = $rta[0]['id_parte'];
@@ -193,14 +193,16 @@ switch ($operation)
             }
 
             //Devuelve el resultado a la vista
+            $rta = array('flag'=>1, 'msg'=>'todo ok');
             sQuery::dpCommit();
-            print_r(json_encode(1));
+            print_r(json_encode($rta));
 
         } //try
         catch(Exception $e){
-            echo $e->getMessage(); //habilitar para ver el mensaje de error
+            $rta = array('flag'=>-1, 'msg'=>'error');
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
-            //print_r(json_encode(-1));
+            print_r(json_encode($rta));
         }
 
         exit;
