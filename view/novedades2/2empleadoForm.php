@@ -145,8 +145,7 @@
 
 
 
-                        <div class="table-responsive fixedTable" id="table_empleados">
-
+                        <div class="table-responsive" id="table_empleados">
                             <!--se carga con un load luego de seleccionar la fecha -->
                         </div>
 
