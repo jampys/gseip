@@ -15,7 +15,8 @@
                 //{ targets : 1, orderable: false}
             ],
             "drawCallback": function( settings ) {
-                $(".table thead").remove();
+                //$(".table thead").remove();
+                $(settings.nTHead).hide();
             },
             "language": {
                 "search": "Buscar:"
