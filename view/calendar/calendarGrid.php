@@ -175,7 +175,7 @@
 
 
     function novedadColor(id_evento){
-        if(id_evento == 1) return '#00cc00'; //guardia activada
+        if(id_evento == 1) return '#33cc33'; //guardia activada
         else if(id_evento) return 'tomato'; //cualquier otro evento
         else return ''; //sin evento default (azul)
     }
