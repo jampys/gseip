@@ -79,7 +79,7 @@
                                 title: data['sucesos'][index].empleado+' '+data['sucesos'][index].evento,
                                 start: data['sucesos'][index].fecha_desde+'T00:00:00',
                                 end: data['sucesos'][index].fecha_hasta+'T23:59:00',
-                                color: '#ff9900', // override!
+                                color: '#ff9933', // override!
                                 //textColor: 'gray',
                                 extendedProps: {
                                     tipo_evento: data['sucesos'][index].tipo_evento
