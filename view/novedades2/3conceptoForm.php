@@ -613,7 +613,7 @@
                 do{
                     var answer = prompt("Ingrese apellido y nombre a quien reemplaza", "");
                 } while(!answer);
-                document.getElementById("comentario").value += '* Día mayor función por: '+answer;
+                //document.getElementById("comentario").value += '* Día mayor función por: '+answer;
             }
 
 
