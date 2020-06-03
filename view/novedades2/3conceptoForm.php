@@ -608,6 +608,15 @@
             //id_concepto_convenio_contrato
             if(!$('#id_concepto_convenio_contrato').val()) return false; //para evitar agregar conceptos en blanco.
 
+            //para dias mayor funcion
+            if($("#id_concepto_convenio_contrato option:selected").attr('id_concepto') == 22){
+                do{
+                    var answer = prompt("Please enter your name", "");
+                } while(!answer);
+                document.getElementById("comentario").value += '\nDía mayor función por: '+answer;
+            }
+
+
             //var first_key = Object.keys(jsonConceptos)[0];
             var id = '';
             if(Object.keys(jsonConceptos).length == 0){
@@ -904,6 +913,7 @@
                             ?>
                             <option value="<?php echo $con['id_concepto_convenio_contrato']; ?>"
                                     convenio = "<?php echo $con['convenio']; ?>"
+                                    id_concepto = "<?php echo $con['id_concepto']; ?>"
                                     concepto = "<?php echo $con['concepto']; ?>"
                                     codigo = "<?php echo $con['codigo']; ?>"
                                 >
