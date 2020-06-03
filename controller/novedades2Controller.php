@@ -29,7 +29,7 @@ switch ($operation)
 {
 
 
-    case 'saveParte': //ok
+    case 'saveParte': //obsoleto 03/06/2020 se reemplazo por saveParteR
 
         $rta = array();
 
