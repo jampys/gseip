@@ -641,7 +641,7 @@
             item.created_by = null;
             item.created_date = null;
             item.tipo_calculo = 'M';
-            item.motivo = null;
+            item.motivo = (answer)? answer : null;
             //alert('id asignado: '+item.id_parte_empleado_concepto);
             jsonConceptos[id] = item; //se agrega el item al final del array asociativo
 
