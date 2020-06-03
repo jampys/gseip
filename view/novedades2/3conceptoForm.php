@@ -611,9 +611,9 @@
             //para dias mayor funcion
             if($("#id_concepto_convenio_contrato option:selected").attr('id_concepto') == 22){
                 do{
-                    var answer = prompt("Please enter your name", "");
+                    var answer = prompt("Ingrese apellido y nombre a quien reemplaza", "");
                 } while(!answer);
-                document.getElementById("comentario").value += '\nDía mayor función por: '+answer;
+                document.getElementById("comentario").value += '* Día mayor función por: '+answer;
             }
 
 
