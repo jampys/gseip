@@ -123,7 +123,7 @@ order by npe.id_empleado asc, nccto.nombre asc, npec.cantidad desc ";
         // trae los conceptos para un determinado id_parte
         $stmt=new sQuery();
         $query="select npe.id_parte, npe.id_parte_empleado, npe.id_empleado,
-npec.id_parte_empleado_concepto, npec.id_concepto_convenio_contrato,
+npec.id_parte_empleado_concepto, npec.id_concepto_convenio_contrato, npec.motivo,
 sec_to_time(npec.cantidad*60*60) as cantidad,
 npec.tipo_calculo,
 nccto.nombre as concepto,
