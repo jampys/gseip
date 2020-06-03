@@ -17,6 +17,7 @@ include_once("model/nov_sucesosModel.php");
 include_once("model/nov_concepto-convenio-contratoModel.php");
 include_once("model/nov_rutasModel.php");
 include_once("model/nov_ruta-conceptoModel.php");
+include_once("model/calendarModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -61,6 +62,7 @@ switch ($operation)
             $vConceptos = json_decode($_POST["vConceptos"], true);
             //print_r($vConceptos);
             //throw new Exception();
+
 
             foreach ($vConceptos as $vC) {
 
@@ -117,6 +119,100 @@ switch ($operation)
 
         exit;
         break;
+
+
+
+    case 'saveParteR':
+
+        //$rta = array();
+
+        try {
+
+            sQuery::dpBeginTransaction();
+
+            //throw new Exception();
+            $startDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']);
+            $endDate = DateTime::createFromFormat('d/m/Y', ($_POST['rep_fecha'])? $_POST['rep_fecha'] : $_POST['fecha_parte']);
+            $id_parte = $_POST['id_parte'];
+            $id_parte_empleado = $_POST['id_parte_empleado'];
+
+
+            for($currentDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']); $currentDate <= $endDate; $currentDate->modify('+1 day')) {
+
+
+                if($currentDate > $startDate){ //se ejecuta desde el ciclo 2 en adelante
+                    // si no tiene check de repetir. break del bucle
+                    if($_POST['check_replicar'] != 1) break;
+                    //chequear si solo se inserte de lunes a viernes
+                    $day_of_week = intval($currentDate->format('w')); //https://www.php.net/manual/en/function.date.php
+                    if($day_of_week == 0 || $day_of_week == 6) continue;
+                    //chequear que sea dia habil
+                    $res = Calendar::checkFeriados($currentDate->format('d/m/Y'));
+                    if($res[0]['feriado']) continue;
+                    //chequear que ya no exista una novedad para esa fecha y empleado y contrato
+                    $res1 = ParteEmpleado::checkParteEmpleado($_POST['id_empleado'], $_POST['id_contrato'], $currentDate->format('d/m/Y') );
+                    $id_parte = $res1[0]['id_parte'];
+                    $id_parte_empleado = $res1[0]['id_parte_empleado'];
+                    if($id_parte_empleado && $id_parte) continue; //si tiene novedad, salta.
+                }
+
+
+
+                $parte = new Parte($id_parte);
+                $parte->setFechaParte($currentDate->format('d/m/Y'));
+                $parte->setIdContrato($_POST['id_contrato']);
+                $parte->setIdArea(($_POST['id_area']) ? $_POST['id_area'] : null);
+                $parte->setIdVehiculo(null);
+                $parte->setIdCuadrilla(($_POST['id_cuadrilla']) ? $_POST['id_cuadrilla'] : null);
+                $parte->setIdPeriodo($_POST['id_periodo']);
+                $parte->setCreatedBy($_SESSION['id_user']);
+
+                $id_empleado = $_POST['id_empleado'];
+                $id_evento = ($_POST['id_evento']) ? $_POST['id_evento'] : null;
+                $conductor = $_POST['conductor'];
+                $comentario = $_POST['comentario'];
+                $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
+
+                //obtengo el id_parte y id_parte_empleado devueltos por el SP
+                $id_parte = $rta[0]['id_parte'];
+                $id_parte_empleado = $rta[0]['id_parte_empleado'];
+
+
+                $vConceptos = json_decode($_POST["vConceptos"], true);
+                foreach ($vConceptos as $vC) {
+                    $c = new ParteEmpleadoConcepto();
+                    $c->setIdParteEmpleadoConcepto($vC['id_parte_empleado_concepto']);
+                    $c->setIdParteEmpleado($id_parte_empleado);
+                    $c->setIdConceptoConvenioContrato($vC['id_concepto_convenio_contrato']);
+                    $c->setCantidad($vC['cantidad']);
+                    $c->setCreatedBy($_SESSION['id_user']);
+                    $c->setTipoCalculo($vC['tipo_calculo']);
+                    $c->setMotivo(null);
+
+                    if ($vC['operacion'] == 'insert') {$c->insertParteEmpleadoConcepto();}
+                    else if ($vC['operacion'] == 'update') {$c->updateParteEmpleadoConcepto();}
+                    else if ($vC['operacion'] == 'delete') {$c->deleteParteEmpleadoConcepto();}
+                }
+
+
+            }
+
+            //Devuelve el resultado a la vista
+            $rta = array('0'=>array('flag'=>1, 'msg'=>'todo ok'));
+            sQuery::dpCommit();
+            print_r(json_encode($rta));
+
+        } //try
+        catch(Exception $e){
+            $rta = array('0'=>array('flag'=>-1, 'msg'=>'Error al guardar el parte'));
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
+            sQuery::dpRollback();
+            print_r(json_encode($rta));
+        }
+
+        exit;
+        break;
+
 
 
 

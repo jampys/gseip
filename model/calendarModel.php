@@ -186,6 +186,20 @@ order by np.cuadrilla asc";
 
 
 
+    public static function checkFeriados($current) { //ok
+        //se usa en novedades2 para replicar novedades, verificando los feriados
+        $stmt=new sQuery();
+        $query = "select feriado
+                  from tmp_calendar
+                  where fecha = STR_TO_DATE(:current, '%d/%m/%Y')";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':current', $current);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
 }
 
 

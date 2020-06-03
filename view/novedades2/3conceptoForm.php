@@ -41,6 +41,28 @@
         });
 
 
+        $('[data-toggle="popover"]').popover({
+            html:true,
+            placement: "top",
+            container: "body",
+            trigger: "hover"
+        });
+
+
+        //datepicker repetir
+        $('.input-group.date.rf').datepicker({
+            format:"dd/mm/yyyy",
+            language: 'es',
+            todayHighlight: true
+        });
+
+        //restringe el selector de fechas al periodo seleccionado
+        var fecha_desde = $('#add_fecha').val();
+        var fecha_hasta = $('#fecha_hasta').val();
+        $('.input-group.date.rf').datepicker('setStartDate', fecha_desde);
+        $('.input-group.date.rf').datepicker('setEndDate', fecha_hasta);
+
+
 
         $('#empleado-form').on('click', '#cancel', function(){
             $('#contenedor').hide();
@@ -649,7 +671,7 @@
             //if ($("#contrato-form").valid()){
                 var params={};
                 params.action = 'novedades2';
-                params.operation = 'saveParte';
+                params.operation = 'saveParteR';
                 params.id_parte = $('#id_parte').val();
                 params.fecha_parte = $('#add_fecha').val();
                 params.id_contrato=$('#id_contrato').val();
@@ -662,6 +684,9 @@
                 params.id_empleado = $('#id_empleado').val();
                 params.id_evento = $('#id_evento').val();
                 params.conductor = $('#conductor').prop('checked')? 1:0;
+                params.check_replicar = ($('#check_replicar').is(':checked'))? 1:0;
+                //params.check_sobrescribir = ($('#check_sobrescribir').is(':checked'))? 1:0;
+                params.rep_fecha = $('#rep_fecha').val();
                 //alert(params.comentario);
                 //throw new Error();
 
@@ -688,7 +713,10 @@
                     }else{
                         $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').show();
                     }
-                }, 'json');
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                        alert('Entro a fail '+jqXHR.responseText);
+                        //$("#myElem").html('Error al guardar la búsqueda').addClass('alert alert-danger').show();
+                });
 
             //}
             return false;
@@ -935,6 +963,35 @@
                 <!--<label class="control-label" for="servicio">Comentario</label>-->
                 <textarea class="form-control" name="comentario" id="comentario" placeholder="Comentario" rows="2"><?php print $view->parte_empleado->getComentario(); ?></textarea>
             </div>
+
+
+            <?php if(!$view->parte->getIdParte()){ ?>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="check_replicar" value="">
+                            <span data-toggle="popover" data-content="Marcar para replicar la novedad hasta la fecha indicada inclusive.<br/>* Solo se replica durante días habiles sin una novedad previa.<br/>* Solo es posible replicar al crear una novedad, no así al editar.">
+                                Replicar novedad
+                            </span></label>
+                    </div>
+                </div>
+                <!--<div class="form-group col-md-3">
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="check_sobrescribir" title="Marcar para sobrescribir novedades" value="">Sobrescribir</label>
+                    </div>
+                </div>-->
+                <div class="form-group col-md-6">
+                    <div class="form-group">
+                        <div class="input-group date rf">
+                            <input class="form-control" type="text" name="rep_fecha" id="rep_fecha" value = "<?php print $view->empleado->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
 
 
 

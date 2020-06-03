@@ -1,12 +1,40 @@
-<table class="table table-condensed dataTable table-hover">
-    <thead>
-    <!--<tr>
-        <th>Empleado</th>
-        <th>Contrato</th>
-        <th>F. desde</th>
-        <th>F. hasta</th>
+<script type="text/javascript">
 
-    </tr>-->
+
+    $(document).ready(function(){
+
+        $('#example_dt').DataTable({
+            sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
+            bPaginate: false,
+            "ordering": false,
+            scrollY:        "75%",
+            scrollCollapse: true,
+            scroller:       true,
+            "columnDefs": [
+                //{ targets : 0, orderable: false},
+                //{ targets : 1, orderable: false}
+            ],
+            "drawCallback": function( settings ) {
+                //$(".table thead").remove();
+                $(settings.nTHead).hide();
+            },
+            "language": {
+                "search": "Buscar:"
+            }
+        });
+
+
+
+    });
+
+</script>
+
+<table id="example_dt" class="table table-condensed dataTable table-hover">
+    <thead>
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
     <?php foreach ($view->empleados as $em): ?>

@@ -79,7 +79,7 @@
                                 title: data['sucesos'][index].empleado+' '+data['sucesos'][index].evento,
                                 start: data['sucesos'][index].fecha_desde+'T00:00:00',
                                 end: data['sucesos'][index].fecha_hasta+'T23:59:00',
-                                color: '#ff9900', // override!
+                                color: '#ff9933', // override!
                                 //textColor: 'gray',
                                 extendedProps: {
                                     tipo_evento: data['sucesos'][index].tipo_evento
@@ -95,7 +95,7 @@
                                 title: data['novedades_empleado'][index].empleado,
                                 start: data['novedades_empleado'][index].fecha_parte+'T00:00:00',
                                 end: data['novedades_empleado'][index].fecha_parte+'T23:59:00',
-                                color: (data['novedades_empleado'][index].id_evento)? 'tomato':'',
+                                color: novedadColor(data['novedades_empleado'][index].id_evento),
                                 //textColor: 'gray',
                                 extendedProps: {
                                     tipo_evento: data['novedades_empleado'][index].tipo_evento,
@@ -116,7 +116,7 @@
                                 title: data['novedades_cuadrilla'][index].cuadrilla,
                                 start: data['novedades_cuadrilla'][index].fecha_parte+'T00:00:00',
                                 end: data['novedades_cuadrilla'][index].fecha_parte+'T23:59:00',
-                                color: (data['novedades_cuadrilla'][index].id_evento)? 'tomato':'',
+                                color: novedadColor(data['novedades_cuadrilla'][index].id_evento),
                                 //textColor: 'gray',
                                 extendedProps: {
                                     tipo_evento: data['novedades_cuadrilla'][index].tipo_evento,
@@ -172,6 +172,14 @@
             return msg;
         }
     }
+
+
+    function novedadColor(id_evento){
+        if(id_evento == 1) return '#00b248'; //guardia activada
+        else if(id_evento) return 'tomato'; //cualquier otro evento
+        else return ''; //sin evento default (azul)
+    }
+
 
 
 
