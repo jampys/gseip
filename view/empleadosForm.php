@@ -202,7 +202,7 @@
             <div class="input-group date">
                 <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA">
                 <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
+                    <i class="fa fa-calendar"></i>
                 </div>
             </div>
         </div>
