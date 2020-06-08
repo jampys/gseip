@@ -97,11 +97,21 @@
         });
 
 
-        $('.input-group.date').datepicker({
+        /*$('.input-group.date').datepicker({
             //inline: true
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
+        });*/
+
+        moment.locale('es');
+        $('input[name="fecha_nacimiento"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true,
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
         });
 
 

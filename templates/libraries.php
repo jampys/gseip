@@ -94,6 +94,13 @@
     <script src='resources/libraries/fullcalendar/packages/daygrid/main.js'></script>
 
 
+    <!-- daterangepicker -->
+    <script type="text/javascript" src="resources/libraries/daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="resources/libraries/daterangepicker/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="resources/libraries/daterangepicker/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/libraries/daterangepicker/daterangepicker.css" />
+
+
     <!-- librerias css propias -->
     <link rel="stylesheet" href="resources/css/dario.css">
 
