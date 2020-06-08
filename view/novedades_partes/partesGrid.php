@@ -96,7 +96,7 @@
                         <td><?php echo $rp['cuadrilla']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
                         <!--<td><?php //echo $rp['vehiculo']; ?></td>-->
-                        <td class="text-danger"><?php echo $rp['evento']; ?></td>
+                        <td><?php echo $rp['evento']; ?></td>
                         <td style="text-align: center">
                             <?php echo($rp['id_parte'])? '<i class="fas fa-car-side fa-fw dp_green" title="con parte"></i>':'<i class="fas fa-car fa-fw dp_yellow" title="sin parte"></i>'; ?>&nbsp;
                             <?php echo($rp['concept_count']>0)? '<i class="fas fa-calculator fa-fw dp_green" title="parte con conceptos"></i>':'<i class="fas fa-calculator fa-fw dp_yellow" title="parte sin conceptos"></i>'; ?>&nbsp;

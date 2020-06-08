@@ -29,7 +29,7 @@ switch ($operation)
 {
 
 
-    case 'saveParte': //ok
+    case 'saveParte': //obsoleto 03/06/2020 se reemplazo por saveParteR
 
         $rta = array();
 
@@ -187,7 +187,7 @@ switch ($operation)
                     $c->setCantidad($vC['cantidad']);
                     $c->setCreatedBy($_SESSION['id_user']);
                     $c->setTipoCalculo($vC['tipo_calculo']);
-                    $c->setMotivo(null);
+                    $c->setMotivo($vC['motivo']);
 
                     if ($vC['operacion'] == 'insert') {$c->insertParteEmpleadoConcepto();}
                     else if ($vC['operacion'] == 'update') {$c->updateParteEmpleadoConcepto();}
