@@ -102,9 +102,14 @@
             singleDatePicker: true,
             showDropdowns: true,
             autoApply: true,
+            autoUpdateInput: false,
             "locale": {
                 "format": "DD/MM/YYYY"
             }
+        }).on("apply.daterangepicker", function (e, picker) {
+            //picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
+            //https://github.com/dangrossman/daterangepicker/issues/815
+            picker.element.val(picker.startDate.format(picker.locale.format));
         });
 
 
