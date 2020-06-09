@@ -516,8 +516,8 @@
             <tr>
                 <th>Empleado</th>
                 <th>Puesto</th>
-                <th>F. Desde</th>
-                <th>F. Hasta</th>
+                <th>F. afec.</th>
+                <th>F. desaf.</th>
                 <th></th>
             </tr>
             </thead>
