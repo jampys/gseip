@@ -97,13 +97,6 @@
         });
 
 
-        /*$('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });*/
-
         moment.locale('es');
         $('#fecha_nacimiento, #fecha_alta, #fecha_baja').daterangepicker({
             singleDatePicker: true,
@@ -220,11 +213,9 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="fecha">Fecha baja</label>
         <div class="col-md-8">
-            <div class="input-group date">
+            <div class="inner-addon right-addon">
                 <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->empleado->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
+                <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
     </div>

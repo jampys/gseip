@@ -204,7 +204,7 @@ body{
 .dp_gray{color: #455A64}
 
 
-
+/* estilos usados para mostrar icono dentro de input en datarangepicker*/
 /* enable absolute positioning */
 .inner-addon {
     position: relative;
@@ -224,5 +224,6 @@ body{
 /* add padding  */
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
+/* ------------------------------------------------------------------------*/
 
 
