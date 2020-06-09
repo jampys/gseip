@@ -199,16 +199,14 @@
     <div class="form-group required">
         <label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>
         <div class="col-md-8">
-            <div class="input-group">
-                <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA">
-                <div class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
-                </div>
+            <div class="inner-addon right-addon">
+                <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA"/>
+                <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
     </div>
 
-
+    
     <div class="form-group required">
         <label class="col-md-4 control-label" for="fecha">Fecha alta</label>
         <div class="col-md-8">
