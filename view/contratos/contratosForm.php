@@ -14,7 +14,7 @@
             scrollCollapse: true,
             scroller:       true,
             columnDefs: [
-                { responsivePriority: 1, targets: 4 }
+                { targets: 4, responsivePriority: 1, sortable: false } //botones
             ]
 
         });
