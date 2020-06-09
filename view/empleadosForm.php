@@ -105,7 +105,7 @@
         });*/
 
         moment.locale('es');
-        $('input[name="fecha_nacimiento"]').daterangepicker({
+        $('#fecha_nacimiento, #fecha_alta, #fecha_baja').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             autoApply: true,
@@ -206,15 +206,13 @@
         </div>
     </div>
 
-    
+
     <div class="form-group required">
         <label class="col-md-4 control-label" for="fecha">Fecha alta</label>
         <div class="col-md-8">
-            <div class="input-group date">
+            <div class="inner-addon right-addon">
                 <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print $view->empleado->getFechaAlta() ?>" placeholder="DD/MM/AAAA">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
+                <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
     </div>
