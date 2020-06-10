@@ -41,8 +41,10 @@
             showDropdowns: true,
             autoApply: true,
             autoUpdateInput: false,
-            "drops": "auto",
+            drops: 'auto',
             parentEl: '#myModal',
+            minDate: '01/01/2010',
+            maxDate: '31/12/2029',
             "locale": {
                 "format": "DD/MM/YYYY"
             }
