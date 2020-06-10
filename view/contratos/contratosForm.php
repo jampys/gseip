@@ -162,12 +162,12 @@
 
 
 
-        $('.input-daterange').datepicker({ //ok
+        /*$('.input-daterange').datepicker({ //ok
             //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true
-        });
+        });*/
 
         /*$('#fecha_desde').datepicker().on('changeDate', function (selected) { //ok
             var minDate = new Date(selected.date.valueOf());
@@ -262,15 +262,11 @@
             params.id_empleado = id;
             $('#popupbox1').load('index.php', params,function(){
                 $('#myModal').modal();
-                /*$('#id_empleado').append($('<option>', {
-                    value: jsonEmpleados[id].id_empleado,
-                    text : jsonEmpleados[id].empleado
-                }));*/
                 $('#id_empleado').selectpicker('val', jsonEmpleados[id].id_empleado).prop('disabled', true);
                 $('#puesto').selectpicker('val', jsonEmpleados[id].id_puesto);
                 $('#id_proceso').selectpicker('val', jsonEmpleados[id].id_proceso);
-                $('#myModal #fecha_desde').datepicker('setDate', jsonEmpleados[id].fecha_desde );
-                $('#myModal #fecha_hasta').datepicker('setDate', jsonEmpleados[id].fecha_hasta );
+                $('#myModal #fecha_desde').val(jsonEmpleados[id].fecha_desde);
+                $('#myModal #fecha_hasta').val(jsonEmpleados[id].fecha_hasta);
                 $('#myModal #id_localidad').selectpicker('val', jsonEmpleados[id].id_localidad);
                 $('.selectpicker').selectpicker('refresh'); //refresh de puesto y procesos
 
