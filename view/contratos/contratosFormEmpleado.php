@@ -178,7 +178,9 @@
 
                 </form>
 
-                <div id="myElem" style="display:none"></div>
+                <div id="myElem" style="display:none">
+                    <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
+                </div>
 
 
 
