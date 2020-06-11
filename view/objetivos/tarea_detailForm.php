@@ -99,12 +99,14 @@
         </div>
 
 
-    <div id="myElem" class="msg" style="display:none"></div>
+    <div id="myElem" class="msg" style="display:none">
+        <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
+    </div>
 
 
 
     <div id="footer-buttons" class="pull-right">
-        <button class="btn btn-primary" id="submit" name="submit" type="button" <?php echo ( PrivilegedUser::dhasAction('OBJ_ABM', array(1)) && $view->target!='view')? '' : 'disabled' ?> >Guardar</button>
+        <button class="btn btn-primary" id="submit" name="submit" type="button" <?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) && $view->target!='view')? '' : 'disabled' ?> >Guardar</button>
         <button class="btn btn-default" id="cancel" name="cancel" type="button">Cancelar</button>
     </div>
 

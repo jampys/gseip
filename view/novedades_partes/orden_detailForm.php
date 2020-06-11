@@ -87,6 +87,7 @@
 
 
         $('#orden-form').validate({
+            errorContainer: '#myModal #myElem',
             rules: {
                 nro_parte_diario: {
                         required: true,
@@ -201,7 +202,9 @@
 
 
 
-    <div id="myElem" class="msg" style="display:none"></div>
+    <div id="myElem" class="msg" style="display:none">
+        <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
+    </div>
 
 
 

@@ -11,7 +11,19 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         },
         unhighlight: function(element) {
             $(element).closest('.form-group').removeClass('has-error');
-        }/*,
+        },
+        errorContainer: '#myElem',
+        errorLabelContainer: '#myElem ul',
+        //wrapper: 'li',
+        errorElement: 'li',
+        showErrors: function(errorMap, errorList) {
+            var err = (this.numberOfInvalids() == 1)? 'error' : 'errores';
+            $("#myElem ul p").html('Revise los datos ingresados, hay '+
+            '<b>'+this.numberOfInvalids()+'</b> '+
+            err+':');
+            this.defaultShowErrors();
+        }
+        /*,
         errorElement: 'span',
         errorClass: 'help-block',
         errorPlacement: function(error, element) {

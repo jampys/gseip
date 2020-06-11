@@ -4,7 +4,11 @@
     $(document).ready(function(){
 
         $('.selectpicker').selectpicker({
+            //propiedades del selectpicker
 
+        }).change(function(){
+            $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
+                             // elimine el mensaje de requerido de jquery validation
         });
 
 
@@ -15,6 +19,7 @@
 
 
         $('#empleado-form').validate({
+            errorContainer: '#myModal #myElem',
             rules: {
                 id_empleado: {required: true},
                 puesto: {required: true},
@@ -176,7 +181,9 @@
 
                 </form>
 
-                <div id="myElem" style="display:none"></div>
+                <div id="myElem" style="display:none">
+                    <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
+                </div>
 
 
 

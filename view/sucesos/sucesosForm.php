@@ -289,6 +289,7 @@
 
 
         $('#suceso-form').validate({ //ok
+            errorContainer: '#myModal #myElem',
             rules: {
                 id_empleado: {required: true},
                 id_evento: {required: true},
@@ -563,7 +564,9 @@
 
 
 
-                <div id="myElem" class="msg" style="display:none"></div>
+                <div id="myElem" class="msg" style="display:none">
+                    <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
+                </div>
 
 
 
