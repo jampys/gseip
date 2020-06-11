@@ -20,7 +20,7 @@
 
 
         moment.locale('es');
-        $('#fecha').daterangepicker({
+        $('#fecha1').daterangepicker({
             //singleDatePicker: true,
             showDropdowns: true,
             autoApply: true,
@@ -101,7 +101,7 @@
         <div class="form-group required">
             <label class="control-label" for="empleado">Fecha inicio / fin</label>
             <div class="inner-addon right-addon">
-                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->tarea->getFechaInicio() && $view->tarea->getFechaFin())? $view->tarea->getFechaInicio()." - ".$view->tarea->getFechaFin() : ""; ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                <input class="form-control" type="text" name="fecha1" id="fecha1" value = "<?php echo ($view->tarea->getFechaInicio() && $view->tarea->getFechaFin())? $view->tarea->getFechaInicio()." - ".$view->tarea->getFechaFin() : ""; ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
                 <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
