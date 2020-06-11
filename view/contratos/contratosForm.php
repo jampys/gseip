@@ -532,7 +532,9 @@
 
 
 
-    <div id="myElem" clstyle="display:none"></div>
+    <div id="myElem" class="msg" style="display:none">
+        <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
+    </div>
 
 
     </form>

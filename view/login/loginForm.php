@@ -20,7 +20,7 @@
                 contraseña: {required: true}
             },
             messages:{
-                usuario: "Ingrese su usuario",
+                usuario: "Ingrese su correo",
                 contraseña: "Ingrese su contraseña"
             },
             tooltip_options: {
@@ -81,7 +81,7 @@
 </form>
 
     <div id="myElem" class="msg" style="display:none">
-
+        <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
     </div>
 
 </div>
