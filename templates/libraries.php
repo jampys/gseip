@@ -20,7 +20,6 @@
     <!-- incluyo la libreria jQuery validation -->
     <script type="text/javascript" src="resources/libraries/validation/jquery.validate.js"></script>
     <script type="text/javascript" src="resources/libraries/validation/additional-methods.js"></script>
-    <!--<script type="text/javascript" src="resources/libraries/validation/jquery-validate.bootstrap-tooltip.js"></script>-->
 
 
     <!-- dataTables --->
