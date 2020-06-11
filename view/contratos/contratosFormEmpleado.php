@@ -34,7 +34,7 @@
 
 
         moment.locale('es');
-        $('#fecha_desde, #fecha_hasta').daterangepicker({
+        $('#myModal #fecha_desde, #myModal #fecha_hasta').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             autoApply: true,
