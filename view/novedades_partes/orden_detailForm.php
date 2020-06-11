@@ -87,6 +87,7 @@
 
 
         $('#orden-form').validate({
+            errorContainer: '#myModal #myElem',
             rules: {
                 nro_parte_diario: {
                         required: true,
