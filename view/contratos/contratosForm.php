@@ -15,7 +15,10 @@
             scroller:       true,
             columnDefs: [
                 { targets: 4, responsivePriority: 1, sortable: false } //botones
-            ]
+            ],
+            language: {
+                search: 'Buscar:'
+            }
 
         });
 
@@ -339,6 +342,25 @@
 
 
 
+        moment.locale('es');
+        $('#fecha_desde, #fecha_hasta').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            drops: 'auto',
+            parentEl: '#myModal',
+            minDate: '01/01/2010',
+            maxDate: '31/12/2029',
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+        });
+
+
+
 
 
 
@@ -382,6 +404,15 @@
                     <input class="form-control" type="text" name="nro_contrato" id="nro_contrato" placeholder="Nro. Contrato" value = "<?php print $view->contrato->getNroContrato() ?>">
                 </div>
                 <div class="form-group col-md-6 required">
+                    <label for="nombre" class="control-label">Nombre</label>
+                    <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->contrato->getNombre() ?>">
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="form-group col-md-6 required">
                     <label for="compania" class="control-label">Compañía</label>
                     <select class="form-control selectpicker show-tick" id="compania" name="compania" title="Seleccione la compañía">
                         <?php foreach ($view->companias as $cia){
@@ -393,15 +424,6 @@
                             </option>
                         <?php  } ?>
                     </select>
-                </div>
-            </div>
-
-
-
-            <div class="row">
-                <div class="form-group col-md-6 required">
-                    <label for="nombre" class="control-label">Nombre</label>
-                    <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->contrato->getNombre() ?>">
                 </div>
                 <div class="form-group col-md-6 required">
                     <label for="id_responsable" class="control-label">Responsable</label>
