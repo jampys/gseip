@@ -21,7 +21,7 @@
 
         moment.locale('es');
         $('#fecha').daterangepicker({
-            singleDatePicker: true,
+            //singleDatePicker: true,
             showDropdowns: true,
             autoApply: true,
             autoUpdateInput: false,
@@ -30,8 +30,7 @@
                 "format": "DD/MM/YYYY"
             }
         }).on("apply.daterangepicker", function (e, picker) {
-            //picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
-            picker.element.val(picker.startDate.format(picker.locale.format));
+            picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
         });
 
 
@@ -105,7 +104,7 @@
                 <input class="form-control" type="text" name="fecha_fin" id="fecha_fin" value = "<?php print $view->tarea->getFechaFin() ?>" placeholder="DD/MM/AAAA" readonly>
             </div>-->
             <div class="inner-addon right-addon">
-                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php //print $view->avance->getFecha() ?>" placeholder="DD/MM/AAAA" readonly>
+                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php //print $view->avance->getFecha() ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
                 <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
