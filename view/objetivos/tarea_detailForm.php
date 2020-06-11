@@ -98,13 +98,8 @@
 
         <div class="form-group required">
             <label class="control-label" for="empleado">Fecha inicio / fin</label>
-            <!--<div class="input-group input-daterange">
-                <input class="form-control" type="text" name="fecha_inicio" id="fecha_inicio" value = "<?php print $view->tarea->getFechaInicio() ?>" placeholder="DD/MM/AAAA" readonly>
-                <div class="input-group-addon">a</div>
-                <input class="form-control" type="text" name="fecha_fin" id="fecha_fin" value = "<?php print $view->tarea->getFechaFin() ?>" placeholder="DD/MM/AAAA" readonly>
-            </div>-->
             <div class="inner-addon right-addon">
-                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php //print $view->avance->getFecha() ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->tarea->getFechaInicio() && $view->tarea->getFechaFin())? $view->tarea->getFechaInicio()." - ".$view->tarea->getFechaFin() : ""; ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
                 <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
