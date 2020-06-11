@@ -15,6 +15,8 @@
 
 
         $('#empleado-form').validate({
+            errorContainer: '#myModal #myElem',
+            errorLabelContainer: '#myModal #myElem ul',
             rules: {
                 empleado: {required: true},
                 puesto: {required: true},
