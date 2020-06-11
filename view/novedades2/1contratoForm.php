@@ -156,11 +156,11 @@
                 <div class="row">
 
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-6">
 
-                    </div>
-
-                    <div class="form-group col-md-3">
+                        <div id="myElem" class="msg" style="display:none">
+                            <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
+                        </div>
 
                     </div>
 
