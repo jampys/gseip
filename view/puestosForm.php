@@ -131,14 +131,15 @@
                         $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
                         setTimeout(function() { $("#myElem").hide();
-                            $('#myModal').modal('hide');
-                        }, 2000);
-                    }else{
-                        $("#myElem").html('Error al guardar el puesto').addClass('alert alert-danger').show();
+                                                $('#myModal').modal('hide');
+                                              }, 2000);
                     }
 
 
-                }, "json");
+                }, "json").fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#myElem").html('Error al guardar el puesto').addClass('alert alert-danger').show();
+                });
 
 
             }
