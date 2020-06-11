@@ -26,6 +26,8 @@
             autoApply: true,
             autoUpdateInput: false,
             parentEl: '#myModal',
+            opens: 'left',
+            drops: 'up',
             "locale": {
                 "format": "DD/MM/YYYY"
             }
