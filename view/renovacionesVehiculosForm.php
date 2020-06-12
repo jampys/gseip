@@ -126,11 +126,11 @@
                 params.id_renovacion = $('#id_renovacion').val();
                 params.id_vehiculo = $('#id_vehiculo option:selected').attr('id_vehiculo');
                 params.id_grupo = $('#id_vehiculo option:selected').attr('id_grupo');
+                params.id_vencimiento = $('#id_vencimiento').val();
                 //params.fecha_emision = $('#fecha_emision').val();
                 //params.fecha_vencimiento = $('#fecha_vencimiento').val();
                 params.fecha_emision = drp.startDate.format('DD/MM/YYYY');
                 params.fecha_vencimiento = drp.endDate.format('DD/MM/YYYY');
-                params.fecha_vencimiento = $('#fecha_vencimiento').val();
                 params.disabled = $('#disabled').prop('checked')? 1:0;
                 params.referencia = $('#referencia').val();
 
