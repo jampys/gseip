@@ -362,41 +362,7 @@ group by v.id_vencimiento, ve.id_vehiculo";
     }
 
 
-    public function checkFechaEmision($fecha_emision, $id_vehiculo, $id_grupo, $id_vencimiento, $id_renovacion) { //ok
-        /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
-        sea mayor. */
-        $stmt=new sQuery();
-        $query = "select *
-                  from vto_renovacion_v
-                  where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
-                  :id_renovacion is null
-                  and (id_vehiculo = :id_vehiculo or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_renovacion is not null
-                  and (id_vehiculo = :id_vehiculo or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  and id_renovacion <> :id_renovacion
-                  )
-                  order by fecha_emision asc
-                  limit 1";
-
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
-        $stmt->dpBind(':fecha_emision', $fecha_emision);
-        $stmt->dpBind(':id_vehiculo', $id_vehiculo);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        $stmt->dpExecute();
-        return $output = ($stmt->dpGetAffect()==0)? true : false;
-    }
-
-    public function checkFechaVencimiento($fecha_emision, $fecha_vencimiento, $id_vehiculo, $id_grupo, $id_vencimiento, $id_renovacion) { //ok
+    public function checkRangoFechas($fecha_emision, $fecha_vencimiento, $id_vehiculo, $id_grupo, $id_vencimiento, $id_renovacion) { //ok
         $stmt=new sQuery();
         $query = "select *
                   from vto_renovacion_v
@@ -405,14 +371,18 @@ group by v.id_vencimiento, ve.id_vehiculo";
                   :id_renovacion is null
                   and (id_vehiculo = :id_vehiculo or id_grupo = :id_grupo)
 				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
+                  and (fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
+                      or fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'))
+                  )
                   )
                   OR
                   ( -- editar: busca renovacion anterior y ....
                   :id_renovacion is not null
                   and (id_vehiculo = :id_vehiculo or id_grupo = :id_grupo)
 				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
+                  and (fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
+                      or fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'))
+                  )
                   and id_renovacion <> :id_renovacion
                   )
                   order by fecha_emision asc
