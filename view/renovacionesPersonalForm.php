@@ -18,18 +18,7 @@
             language: 'es',
             todayHighlight: true
         });
-
-        /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
-            var minDate = new Date(selected.date.valueOf());
-            $('#fecha_vencimiento').datepicker('setStartDate', minDate);
-        });
-
-        $('#fecha_vencimiento').datepicker().on('changeDate', function (selected) { //ok
-            var maxDate = new Date(selected.date.valueOf());
-            $('#fecha_emision').datepicker('setEndDate', maxDate);
-        });*/
-
-
+        
 
         $('.image').viewer({});
 
