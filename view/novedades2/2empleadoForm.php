@@ -16,6 +16,17 @@
 
 <script type="text/javascript">
 
+    function refrescarEmpleados(){
+        params={};
+        params.action = "novedades2";
+        params.operation = "tableEmpleados";
+        params.fecha = $('#add_fecha').val();
+        params.id_contrato = $('#id_contrato').val();
+        $('#table_empleados').load('index.php', params,function(){
+            $("#contenedor").hide("");
+        });
+    }
+
 
     $(document).ready(function(){
 
@@ -34,17 +45,7 @@
             }
         }).on("apply.daterangepicker", function (e, picker) {
             picker.element.val(picker.startDate.format(picker.locale.format));
-
-            //alert('cambio la fecha');
-            params={};
-            params.action = "novedades2";
-            params.operation = "tableEmpleados";
-            params.fecha = $('#add_fecha').val();
-            params.id_contrato = $('#id_contrato').val();
-            $('#table_empleados').load('index.php', params,function(){
-                $("#contenedor").hide("");
-            });
-
+            refrescarEmpleados();
         });
 
 
