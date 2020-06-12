@@ -54,14 +54,13 @@
         moment.locale('es');
         $('#add_fecha').daterangepicker({
             singleDatePicker: true,
-            showDropdowns: true,
             autoApply: true,
             autoUpdateInput: false,
             drops: 'auto',
-            parentEl: '#myModal',
-            minDate: '01/01/2010',
-            maxDate: '31/12/2029',
-            "locale": {
+            minDate: $('#fecha_desde').val(),
+            maxDate: $('#fecha_hasta').val(),
+            startDate: $('#fecha_desde').val(),
+                "locale": {
                 "format": "DD/MM/YYYY"
             }
         }).on("apply.daterangepicker", function (e, picker) {
@@ -79,12 +78,6 @@
 
         });
 
-
-        //restringe el selector de fechas al periodo seleccionado
-        var fecha_desde = $('#fecha_desde').val();
-        var fecha_hasta = $('#fecha_hasta').val();
-        $('.input-group.date').datepicker('setStartDate', fecha_desde);
-        $('.input-group.date').datepicker('setEndDate', fecha_hasta);
 
 
 
