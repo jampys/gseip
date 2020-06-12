@@ -25,6 +25,7 @@
         }).on("apply.daterangepicker", function (e, picker) {
             picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
         });
+        var drp = $('#fecha').data('daterangepicker');
 
 
         $('.image').viewer({});
@@ -179,26 +180,7 @@
             rules: {
                 id_empleado: {required: true},
                 id_vencimiento: {required: true},
-                fecha_emision: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        async: false,
-                        data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaEmision",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
-                        }
-                    }
-                },
-                fecha_vencimiento: {
+                fecha: {
                     required: true,
                     remote: {
                         url: "index.php",
@@ -208,8 +190,8 @@
                         data: {
                             action: "renovacionesPersonal",
                             operation: "checkFechaVencimiento",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            fecha_vencimiento: function(){ return $('#fecha_vencimiento').val();},
+                            fecha_emision: function(){ return drp.startDate.format('DD/MM/YYYY');},
+                            fecha_vencimiento: function(){ return drp.endDate.format('DD/MM/YYYY');},
                             //id_empleado: function(){ return $('#id_empleado').val();},
                             id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
                             id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
@@ -223,11 +205,7 @@
             messages:{
                 id_empleado: "Seleccione un empleado o grupo",
                 id_vencimiento: "Seleccione un vencimiento",
-                fecha_emision: {
-                    required: "Ingrese la fecha de emisión",
-                    remote: "La fecha de emisión debe ser mayor"
-                },
-                fecha_vencimiento: {
+                fecha: {
                     required: "Ingrese la fecha de vencimiento",
                     remote: "La fecha de vencimiento debe ser mayor"
                 }

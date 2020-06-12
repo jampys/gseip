@@ -445,14 +445,16 @@ group by v.id_vencimiento, em.id_empleado";
                   :id_renovacion is null
                   and (id_empleado = :id_empleado or id_grupo = :id_grupo)
 				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
+                  and (fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
+                      or fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'))
                   )
                   OR
                   ( -- editar: busca renovacion anterior y ....
                   :id_renovacion is not null
                   and (id_empleado = :id_empleado or id_grupo = :id_grupo)
 				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
+                  and (fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
+                      or fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'))
                   and id_renovacion <> :id_renovacion
                   )
                   order by fecha_emision asc
