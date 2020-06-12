@@ -22,9 +22,8 @@
             });
 
 
-
             moment.locale('es');
-            $('#search_fecha').daterangepicker({ 
+            $('#search_fecha').daterangepicker({
                 startDate: moment().subtract(1, 'weeks'),
                 endDate: moment(),
                 locale: {
@@ -38,9 +37,6 @@
             });
 
             var drp = $('#search_fecha').data('daterangepicker');
-
-
-
 
 
 
@@ -173,15 +169,10 @@
                 //throw new Error();
                 var fecha_desde = $('#id_periodo option:selected').attr('fecha_desde');
                 var fecha_hasta = $('#id_periodo option:selected').attr('fecha_hasta');
-                //$('#add_fecha').datepicker('setStartDate', '18/05/2019');
-                //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
-                $('.input-group.date').datepicker('setStartDate', fecha_desde);
-                $('.input-group.date').datepicker('setEndDate', fecha_hasta);
-                //$('#add_fecha').val('');
-
-                $('#search_fecha_desde').datepicker('update', fecha_desde);
-                $('#search_fecha_hasta').datepicker('update', fecha_hasta);
-
+                drp.setStartDate(fecha_desde);
+                drp.setEndDate(fecha_hasta);
+                drp.minDate = fecha_desde;
+                drp.maxDate = fecha_hasta;
             });
 
 
