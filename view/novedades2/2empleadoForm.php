@@ -19,38 +19,7 @@
 
     $(document).ready(function(){
 
-
-        /*$('.input-group.date').datepicker({ //ok para fecha (nuevo)
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true,
-            autoclose: true
-        })//.datepicker('setDate', new Date()); //pone por defecto la fecha actual
-        //$('.input-group.date').datepicker('setDate', new Date());
-            .on('changeDate', function (ev) {
-                //alert('cambio la fecha');
-                params={};
-                //params.id_empleado = id;
-                //params.id_contrato = $('#id_contrato').val();
-                //params.id_periodo = $('#id_periodo').val();
-                params.action = "novedades2";
-                params.operation = "tableEmpleados";
-                params.fecha = $('#add_fecha').val();
-                params.id_contrato = $('#id_contrato').val();
-                //alert(params.id_periodo);
-                $('#table_empleados').load('index.php', params,function(){
-                    //alert('cargo el contenido en right side');
-                    $("#contenedor").hide("");
-                    //$('#myModal').modal();
-                    //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                    //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-                });
-
-        });*/
-
-
-
+        
         moment.locale('es');
         $('#add_fecha').daterangepicker({
             singleDatePicker: true,
