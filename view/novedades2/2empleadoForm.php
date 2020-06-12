@@ -19,7 +19,7 @@
 
     $(document).ready(function(){
 
-        
+
         moment.locale('es');
         $('#add_fecha').daterangepicker({
             singleDatePicker: true,
