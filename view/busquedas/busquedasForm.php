@@ -18,6 +18,7 @@
             showDropdowns: true,
             autoApply: true,
             autoUpdateInput: false,
+            parentEl: '#myModal',
             "locale": {
                 "format": "DD/MM/YYYY"
             }
