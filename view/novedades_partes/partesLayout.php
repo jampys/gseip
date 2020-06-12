@@ -171,8 +171,6 @@
                 var fecha_hasta = $('#id_periodo option:selected').attr('fecha_hasta');
                 drp.setStartDate(fecha_desde);
                 drp.setEndDate(fecha_hasta);
-                drp.minDate = fecha_desde;
-                drp.maxDate = fecha_hasta;
             });
 
 
