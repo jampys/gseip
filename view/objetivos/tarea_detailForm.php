@@ -28,6 +28,7 @@
             parentEl: '#myModal',
             opens: 'left',
             drops: 'up',
+            linkedCalendars: false,
             "locale": {
                 "format": "DD/MM/YYYY"
             }

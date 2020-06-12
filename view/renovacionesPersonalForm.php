@@ -18,6 +18,7 @@
             showDropdowns: true,
             autoApply: true,
             autoUpdateInput: false,
+            linkedCalendars: false,
             "locale": {
                 "format": "DD/MM/YYYY"
             }
@@ -184,6 +185,7 @@
                         url: "index.php",
                         type: "post",
                         dataType: "json",
+                        async: false,
                         data: {
                             action: "renovacionesPersonal",
                             operation: "checkFechaEmision",
