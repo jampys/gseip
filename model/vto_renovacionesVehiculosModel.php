@@ -374,7 +374,6 @@ group by v.id_vencimiento, ve.id_vehiculo";
                   and (fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
                       or fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'))
                   )
-                  )
                   OR
                   ( -- editar: busca renovacion anterior y ....
                   :id_renovacion is not null
@@ -382,7 +381,6 @@ group by v.id_vencimiento, ve.id_vehiculo";
 				  and id_vencimiento = :id_vencimiento
                   and (fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
                       or fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y'))
-                  )
                   and id_renovacion <> :id_renovacion
                   )
                   order by fecha_emision asc
