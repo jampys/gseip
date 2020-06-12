@@ -12,13 +12,19 @@
         });
 
 
-        $('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
+        moment.locale('es');
+        $('#fecha').daterangepicker({
+            parentEl: '#myModal',
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
         });
-        
+
 
         $('.image').viewer({});
 
@@ -119,8 +125,11 @@
                 params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 params.id_grupo = $('#id_empleado option:selected').attr('id_grupo');
                 params.id_vencimiento = $('#id_vencimiento').val();
-                params.fecha_emision = $('#fecha_emision').val();
-                params.fecha_vencimiento = $('#fecha_vencimiento').val();
+                //params.fecha_emision = $('#fecha_emision').val();
+                //params.fecha_vencimiento = $('#fecha_vencimiento').val();
+                var drp = $('#fecha').data('daterangepicker');
+                params.fecha_emision = drp.startDate.format('DD/MM/YYYY');
+                params.fecha_vencimiento = drp.endDate.format('DD/MM/YYYY');
                 params.disabled = $('#disabled').prop('checked')? 1:0;
                 params.referencia = $('#referencia').val();
 
@@ -322,10 +331,9 @@
                         </div>
                         <?php } ?>
 
-                        <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_emision" id="fecha_emision" value = "<?php print $view->renovacion->getFechaEmision() ?>" placeholder="DD/MM/AAAA" readonly>
-                            <div class="input-group-addon">hasta</div>
-                            <input class="form-control" type="text" name="fecha_vencimiento" id="fecha_vencimiento" value = "<?php print $view->renovacion->getFechaVencimiento() ?>" placeholder="DD/MM/AAAA" readonly>
+                        <div class="inner-addon right-addon">
+                            <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->renovacion->getFechaEmision() && $view->renovacion->getFechaVencimiento())? $view->renovacion->getFechaEmision()." - ".$view->renovacion->getFechaVencimiento() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                            <i class="glyphicon glyphicon-calendar"></i>
                         </div>
                     </div>
 
