@@ -189,7 +189,7 @@
                         async: false,
                         data: {
                             action: "renovacionesPersonal",
-                            operation: "checkFechaVencimiento",
+                            operation: "checkRangoFechas",
                             fecha_emision: function(){ return drp.startDate.format('DD/MM/YYYY');},
                             fecha_vencimiento: function(){ return drp.endDate.format('DD/MM/YYYY');},
                             //id_empleado: function(){ return $('#id_empleado').val();},
@@ -207,7 +207,7 @@
                 id_vencimiento: "Seleccione un vencimiento",
                 fecha: {
                     required: "Ingrese la fecha de vencimiento",
-                    remote: "La fecha de vencimiento debe ser mayor"
+                    remote: "Seleccione un rango de fechas válido"
                 }
             }
 
