@@ -22,25 +22,26 @@
             });
 
 
-            $('.input-group.date').datepicker({ //ok para fecha (nuevo)
-                //inline: true
-                format:"dd/mm/yyyy",
-                language: 'es',
-                todayHighlight: true,
-                autoclose: true
-            }); //.datepicker('setDate', new Date()); //pone por defecto la fecha actual
-            //$('.input-group.date').datepicker('setDate', new Date());
 
-            $('.input-daterange').datepicker({ //ok para fecha desde-hasta (buscar)
-                //todayBtn: "linked",
-                orientation: "bottom",
-                format:"dd/mm/yyyy",
-                language: 'es',
-                todayHighlight: true,
-                autoclose: true
+            moment.locale('es');
+            $('#search_fecha').daterangepicker({ 
+                startDate: moment().subtract(1, 'weeks'),
+                endDate: moment(),
+                locale: {
+                    format: 'DD/MM/YYYY',
+                    "applyLabel": "Aplicar",
+                    "cancelLabel": "Cancelar",
+                    "customRangeLabel": "Rango personalizado"
+                }
+            }, function(start, end) {
+                $('#search_fecha span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             });
 
-            $('#search_fecha_desde').datepicker('setDate', new Date()); //pone por defecto el rango en la fecha actual
+            var drp = $('#search_fecha').data('daterangepicker');
+
+
+
+
 
 
             $(document).on('click', '#search', function(){ //ok
@@ -50,8 +51,8 @@
                 params={};
                 //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
                 //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                params.search_fecha_desde = $("#search_fecha_desde").val();
-                params.search_fecha_hasta = $("#search_fecha_hasta").val();
+                params.search_fecha_desde = drp.startDate.format('DD/MM/YYYY');
+                params.search_fecha_hasta = drp.endDate.format('DD/MM/YYYY');
                 params.search_contrato = $("#add_contrato").val();
                 params.id_periodo = $("#id_periodo").val();
                 params.cuadrilla = $("#cuadrilla").val();
@@ -421,10 +422,9 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="search_vencimiento" class="control-label">Buscar partes</label>-->
-                            <div class="input-group input-daterange">
-                                <input class="form-control" type="text" name="search_fecha_desde" id="search_fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
-                                <div class="input-group-addon">a</div>
-                                <input class="form-control" type="text" name="search_fecha_hasta" id="search_fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="search_fecha" id="search_fecha" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
 
