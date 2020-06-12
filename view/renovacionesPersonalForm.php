@@ -206,7 +206,7 @@
                 id_empleado: "Seleccione un empleado o grupo",
                 id_vencimiento: "Seleccione un vencimiento",
                 fecha: {
-                    required: "Ingrese la fecha de vencimiento",
+                    required: "Selecione el rango de fechas",
                     remote: "Seleccione un rango de fechas válido"
                 }
             }
