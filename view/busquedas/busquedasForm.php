@@ -12,18 +12,17 @@
         });
 
 
-        /*$('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });*/
-
-        $('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
+        moment.locale('es');
+        $('#fecha_apertura, #fecha_cierre').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
         });
 
 
@@ -274,22 +273,21 @@
                             </select>
                     </div>
 
-                    <div class="form-group required">
-                        <label class="control-label" for="fecha_apertura">Fecha apertura</label>
-                        <div class="input-group date">
-                            <input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura" value = "<?php print $view->busqueda->getFechaApertura() ?>" placeholder="DD/MM/AAAA">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-6 required">
+                            <label for="fecha_apertura" class="control-label">Fecha apertura</label>
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura" value = "<?php print $view->busqueda->getFechaApertura() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label" for="fecha_cierre">Fecha cierre</label>
-                        <div class="input-group date">
-                            <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->busqueda->getFechaCierre() ?>" placeholder="DD/MM/AAAA">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
+                        <div class="form-group col-md-6">
+                            <label for="fecha_cierre" class="control-label">Fecha cierre</label>
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->busqueda->getFechaCierre() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
                     </div>
