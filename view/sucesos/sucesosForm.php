@@ -329,6 +329,7 @@
 
         $('#suceso-form').validate({ //ok
             errorContainer: '#myModal #myElem',
+            ignore: "",
             rules: {
                 id_empleado: {required: true},
                 id_evento: {required: true},
@@ -390,7 +391,7 @@
             jQuery.validator.format("La suma de los días imputados debe ser {0}")
         );
 
-        $("#fh1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
+        $("#dias1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
         /*jQuery.validator.addClassRules({
             cfh: {
                 sum: 50
@@ -495,6 +496,7 @@
                         <div class="form-group col-md-3">
                             <label for="dias" class="control-label">Total días</label>
                             <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" disabled >
+                            <input type="hidden" name="dias1" id="dias1">
                         </div>
                     </div>
 
