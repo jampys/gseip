@@ -338,6 +338,7 @@
                         url: "index.php",
                         type: "post",
                         dataType: "json",
+                        async: false,
                         data: {
                             action: "sucesos",
                             operation: "checkRango",
