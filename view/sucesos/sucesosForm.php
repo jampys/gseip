@@ -273,17 +273,17 @@
                 params.id_suceso = $('#myModal #id_suceso').val();
                 params.id_empleado = $('#myModal #id_empleado').val();
                 params.id_evento = $('#myModal #id_evento').val();
-                params.fecha_desde = $('#myModal #fecha_desde').val();
-                params.fecha_hasta = $('#myModal #fecha_hasta').val();
+                params.fecha_desde = drp.startDate.format('DD/MM/YYYY');
+                params.fecha_hasta = drp.endDate.format('DD/MM/YYYY');
                 params.observaciones = $('#myModal #observaciones').val();
                 params.id_periodo1 = $('#myModal #id_periodo1').val();
                 params.cantidad1 = $('#myModal #cantidad1').val();
                 params.id_periodo2 = $('#myModal #id_periodo2').val();
                 params.cantidad2 = $('#myModal #cantidad2').val();
-                params.fd1 = $('#myModal #fd1').val();
-                params.fh1 = $('#myModal #fh1').val();
-                params.fd2 = $('#myModal #fd2').val();
-                params.fh2 = $('#myModal #fh2').val();
+                params.fd1 = drp1.startDate.format('DD/MM/YYYY');
+                params.fh1 = drp1.endDate.format('DD/MM/YYYY');
+                params.fd2 = drp2.startDate.format('DD/MM/YYYY');
+                params.fh2 = drp2.endDate.format('DD/MM/YYYY');
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
