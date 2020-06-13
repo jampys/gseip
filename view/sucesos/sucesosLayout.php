@@ -14,12 +14,27 @@
 
             $('.selectpicker').selectpicker();
 
-            $('.input-daterange').datepicker({ //ok
-                //todayBtn: "linked",
-                format:"dd/mm/yyyy",
-                language: 'es',
-                todayHighlight: true
+            moment.locale('es');
+            $('#search_fecha').daterangepicker({
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment(),
+                locale: {
+                    format: 'DD/MM/YYYY',
+                    "applyLabel": "Aplicar",
+                    "cancelLabel": "Cancelar",
+                    "customRangeLabel": "Rango personalizado"
+                },
+                ranges: {
+                    'Últimos 30 dias': [moment().subtract(29, 'days'), moment()],
+                    'Últimos 6 meses': [moment().subtract(6, 'months'), moment()],
+                    'Último año': [moment().subtract(1, 'year'), moment()],
+                    'Últimos 5 años': [moment().subtract(5, 'years'), moment()]
+                }
+            }, function(start, end) {
+                $('#search_fecha span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             });
+
+            var drp = $('#search_fecha').data('daterangepicker');
 
 
             $(document).on('click', '#search', function(){ //ok
@@ -28,8 +43,10 @@
                 params={};
                 params.id_empleado = $("#search_empleado").val(); //$('#search_empleado option:selected').attr('id_empleado');
                 params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
-                params.search_fecha_desde = $("#search_fecha_desde").val();
-                params.search_fecha_hasta = $("#search_fecha_hasta").val();
+                //params.search_fecha_desde = $("#search_fecha_desde").val();
+                //params.search_fecha_hasta = $("#search_fecha_hasta").val();
+                params.search_fecha_desde = drp.startDate.format('DD/MM/YYYY');
+                params.search_fecha_hasta = drp.endDate.format('DD/MM/YYYY');
                 params.search_contrato = $("#search_contrato").val();
                 params.action = "sucesos";
                 params.operation = "refreshGrid";
@@ -228,12 +245,19 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <!--<div class="form-group col-md-4">
                             <label for="search_vencimiento" class="control-label">Fecha desde / hasta</label>
                             <div class="input-group input-daterange">
                                 <input class="form-control" type="text" name="search_fecha_desde" id="search_fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                                 <div class="input-group-addon">a</div>
                                 <input class="form-control" type="text" name="search_fecha_hasta" id="search_fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                            </div>
+                        </div>-->
+                        <div class="form-group col-md-3">
+                            <label for="search_vencimiento" class="control-label">Buscar partes</label>
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="search_fecha" id="search_fecha" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
 
