@@ -45,16 +45,7 @@
         //Sirve para cuando se trata de una edicion. Restringe las fd1, fh1, fd2, fh2
         $("#fecha_desde").trigger("changeDate");
 
-
-        /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
-            var minDate = new Date(selected.date.valueOf());
-            $('#fecha_vencimiento').datepicker('setStartDate', minDate);
-        });
-
-        $('#fecha_vencimiento').datepicker().on('changeDate', function (selected) { //ok
-            var maxDate = new Date(selected.date.valueOf());
-            $('#fecha_emision').datepicker('setEndDate', maxDate);
-        });*/
+        
 
 
         //Al hacer check o uncheck en checkbox
