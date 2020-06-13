@@ -353,7 +353,7 @@
                 id_periodo2: { required: false,
                                notEqual: ["#id_periodo1", "Seleccione un período de liquidación diferente al primero"]
                 },
-                fd1: {required: true}
+                f1: {required: true}
 
             },
             messages:{
@@ -364,7 +364,7 @@
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
                 },
                 id_periodo1: "Seleccione un período para el evento",
-                fd1: "Seleccione un rango de fechas para el primer período"
+                f1: "Seleccione un rango de fechas para el primer período"
             }
 
         });
