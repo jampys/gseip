@@ -20,8 +20,6 @@
             clearBtn: true
         }).on('changeDate', function(){
             //calcula la diferencia en dias entre las 2 fechas
-            //var minDate = $('#fecha_desde').datepicker('getDate');
-            //var maxDate = $('#fecha_hasta').datepicker('getDate');
             var minDate = $(this).closest('.row').find('.cfd').datepicker('getDate');
             var maxDate = $(this).closest('.row').find('.cfh').datepicker('getDate');
             //alert('el mindate es: '+minDate);
@@ -36,7 +34,6 @@
             //alert('cambio las fechas de arriba');
             var fecha_desde = $('#myModal #fecha_desde').val();
             var fecha_hasta = $('#myModal #fecha_hasta').val();
-            //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
             $('#fd1, #fd2').datepicker('setStartDate', fecha_desde);
             $('#fh1, #fh2').datepicker('setEndDate', fecha_hasta);
         });
@@ -46,8 +43,6 @@
         $("#fecha_desde").trigger("changeDate");
 
         
-
-
         //Al hacer check o uncheck en checkbox
         $("#chk_imputar").change(function() {
             var ischecked= $(this).is(':checked');
