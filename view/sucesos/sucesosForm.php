@@ -282,8 +282,8 @@
                 params.cantidad2 = $('#myModal #cantidad2').val();
                 params.fd1 = drp1.startDate.format('DD/MM/YYYY');
                 params.fh1 = drp1.endDate.format('DD/MM/YYYY');
-                params.fd2 = drp2.startDate.format('DD/MM/YYYY');
-                params.fh2 = drp2.endDate.format('DD/MM/YYYY');
+                params.fd2 = (drp2.element.val())? drp2.startDate.format('DD/MM/YYYY'): '';
+                params.fh2 = (drp2.element.val())? drp2.endDate.format('DD/MM/YYYY'): '';
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
