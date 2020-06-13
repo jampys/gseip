@@ -329,7 +329,7 @@
 
         $('#suceso-form').validate({ //ok
             errorContainer: '#myModal #myElem',
-            ignore: "",
+            ignore: "", //para dias1 hidden
             rules: {
                 id_empleado: {required: true},
                 id_evento: {required: true},
