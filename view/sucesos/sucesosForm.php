@@ -42,7 +42,7 @@
         //Sirve para cuando se trata de una edicion. Restringe las fd1, fh1, fd2, fh2
         $("#fecha_desde").trigger("changeDate");
 
-        
+
         //Al hacer check o uncheck en checkbox
         $("#chk_imputar").change(function() {
             var ischecked= $(this).is(':checked');
@@ -56,7 +56,6 @@
                 $('#fh2').val("");
                 $('#cantidad2').val(0);
             }else{
-                //$('#id_periodo1').val("").selectpicker('refresh');
                 $('#fd1').val("");
                 $('#fh1').val("");
                 $('#cantidad1').val(0);
