@@ -76,7 +76,14 @@
             picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
             $(this).closest('.row').find('.cdias').val(picker.endDate.diff(picker.startDate, 'days')+1);
         });
-        //var drp = $('#fecha').data('daterangepicker');
+        var drp = $('#fecha').data('daterangepicker');
+        var drp1 = $('#f1').data('daterangepicker');
+        var drp2 = $('#f2').data('daterangepicker');
+
+        drp.on("apply.daterangepicker", function (e, picker) {
+            drp1.minDate = picker.minDate;
+            drp1.maxDate = picker.maxDate;
+        });
 
 
 
