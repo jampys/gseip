@@ -275,22 +275,6 @@
             rules: {
                 id_empleado: {required: true},
                 id_evento: {required: true},
-                /*fecha_desde: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "sucesos",
-                            operation: "checkFechaDesde",
-                            fecha_desde: function(){ return $('#fecha_desde').val();},
-                            id_empleado: function(){ return $('#id_empleado').val();},
-                            id_evento: function(){ return $('#id_evento').val();},
-                            id_suceso: function(){ return $('#id_suceso').val();}
-                        }
-                    }
-                },*/
                 fecha_hasta: {
                     required: true,
                     remote: {
