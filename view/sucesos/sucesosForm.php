@@ -83,11 +83,13 @@
 
         //solo ocurre al cambiar el valor de fecha. Restringe el rango de fechas de f1 y f2
         $('#fecha').on("apply.daterangepicker", function (e, picker) {
-            //alert('cambio');
             drp1.minDate = picker.startDate;
             drp1.maxDate = picker.endDate;
             drp2.minDate = picker.startDate;
             drp2.maxDate = picker.endDate;
+            //pone f1 y f2 al comienzo del rango de fecha
+            drp1.startDate = picker.startDate;
+            drp2.startDate = picker.startDate;
         });
 
         //Sirve para restringir f1 y f2 al rango de fechas de fecha.
