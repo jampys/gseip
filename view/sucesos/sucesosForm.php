@@ -332,7 +332,7 @@
             rules: {
                 id_empleado: {required: true},
                 id_evento: {required: true},
-                fecha_hasta: {
+                fecha: {
                     required: true,
                     remote: {
                         url: "index.php",
@@ -341,8 +341,8 @@
                         data: {
                             action: "sucesos",
                             operation: "checkRango",
-                            fecha_desde: function(){ return $('#fecha_desde').val();},
-                            fecha_hasta: function(){ return $('#fecha_hasta').val();},
+                            fecha_desde: function(){ return drp.startDate.format('DD/MM/YYYY');},
+                            fecha_hasta: function(){ return drp.endDate.format('DD/MM/YYYY');},
                             id_empleado: function(){ return $('#id_empleado').val();},
                             id_evento: function(){ return $('#id_evento').val();},
                             id_suceso: function(){ return $('#id_suceso').val();}
@@ -359,7 +359,7 @@
             messages:{
                 id_empleado: "Seleccione un empleado",
                 id_evento: "Seleccione un evento",
-                fecha_hasta: {
+                fecha: {
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
                 },
