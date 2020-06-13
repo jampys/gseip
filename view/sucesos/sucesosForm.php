@@ -13,7 +13,6 @@
 
 
         $('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true,
@@ -22,7 +21,6 @@
             //calcula la diferencia en dias entre las 2 fechas
             var minDate = $(this).closest('.row').find('.cfd').datepicker('getDate');
             var maxDate = $(this).closest('.row').find('.cfh').datepicker('getDate');
-            //alert('el mindate es: '+minDate);
             //maxDate - minDate devuelve la diferencia en milisegundos. 86400 = cant de seg por dia. X 1000 da los miliseg por dia.
             if(minDate == null || maxDate == null) $(this).closest('.row').find('.cdias').val(0);
             else $(this).closest('.row').find('.cdias').val((maxDate - minDate)/(86400*1000)+1);
@@ -31,7 +29,6 @@
 
         //solo ocurre al cambiar el valor de fecha_desde y fecha_hasta. Restringe el rango de fechas de fd1, fh1, fd2, fh2
         $('#fecha_desde, #fecha_hasta').on('changeDate', function(){
-            //alert('cambio las fechas de arriba');
             var fecha_desde = $('#myModal #fecha_desde').val();
             var fecha_hasta = $('#myModal #fecha_hasta').val();
             $('#fd1, #fd2').datepicker('setStartDate', fecha_desde);
