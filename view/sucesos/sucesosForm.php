@@ -11,7 +11,7 @@
                              // elimine el mensaje de requerido de jquery validation
         });
 
-
+        /*
         $('.input-daterange').datepicker({ //ok
             format:"dd/mm/yyyy",
             language: 'es',
@@ -59,6 +59,24 @@
             }
 
         });
+        */
+
+
+        moment.locale('es');
+        $('#fecha, #f1, #f2').daterangepicker({
+            parentEl: '#myModal',
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            linkedCalendars: false,
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
+            $(this).closest('.row').find('.cdias').val(picker.endDate.diff(picker.startDate, 'days')+1);
+        });
+        //var drp = $('#fecha').data('daterangepicker');
 
 
 
@@ -424,10 +442,14 @@
                     <div class="row">
                         <div class="form-group col-md-9 required">
                             <label class="control-label" for="">Fechas desde / hasta</label>
-                            <div class="input-group input-daterange">
+                            <!--<div class="input-group input-daterange">
                                 <input class="form-control cfd" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
                                 <input class="form-control cfh" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>-->
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->suceso->getFechaDesde() && $view->suceso->getFechaHasta())? $view->suceso->getFechaDesde()." - ".$view->suceso->getFechaHasta() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
@@ -469,10 +491,14 @@
 
                     <div class="row">
                         <div class="form-group col-md-9 required">
-                            <div class="input-group input-daterange">
+                            <!--<div class="input-group input-daterange">
                                 <input class="form-control cfd" type="text" name="fd1" id="fd1" value = "<?php print $view->suceso->getFd1() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
                                 <input class="form-control cfh" type="text" name="fh1" id="fh1" value = "<?php print $view->suceso->getFh1() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>-->
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="f1" id="f1" value = "<?php echo ($view->suceso->getFd1() && $view->suceso->getFh1())? $view->suceso->getFd1()." - ".$view->suceso->getFh1() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
@@ -504,10 +530,14 @@
 
                     <div class="row">
                         <div class="form-group col-md-9 required">
-                            <div class="input-group input-daterange">
+                            <!--<div class="input-group input-daterange">
                                 <input class="form-control cfd" type="text" name="fd2" id="fd2" value = "<?php print $view->suceso->getFd2() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
                                 <input class="form-control cfh" type="text" name="fh2" id="fh2" value = "<?php print $view->suceso->getFh2() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>-->
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="f2" id="f2" value = "<?php echo ($view->suceso->getFd2() && $view->suceso->getFh2())? $view->suceso->getFd2()." - ".$view->suceso->getFh2() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
