@@ -87,9 +87,6 @@
             drp1.maxDate = picker.endDate;
             drp2.minDate = picker.startDate;
             drp2.maxDate = picker.endDate;
-            //pone f1 y f2 al comienzo del rango de fecha
-            drp1.startDate = picker.startDate;
-            drp2.startDate = picker.startDate;
         });
 
         //Sirve para restringir f1 y f2 al rango de fechas de fecha.
@@ -107,9 +104,9 @@
                 drp1.element.val(drp1.startDate.format(drp1.locale.format) + ' - ' + drp1.endDate.format(drp1.locale.format));
                 $('#cantidad1').val($('#dias').val());
                 $('#id_periodo2').val("").selectpicker('refresh');
-                drp2.setStartDate(new Date);
-                drp2.setEndDate(new Date);
-                $('#f2').val("");
+                drp2.setStartDate(new Date); //limpia starDate
+                drp2.setEndDate(new Date); //limpia endDate
+                $('#f2').val(""); //limpia el input
                 $('#cantidad2').val(0);
             }else{
                 drp1.setStartDate(new Date);
