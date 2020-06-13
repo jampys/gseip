@@ -65,7 +65,7 @@
         moment.locale('es');
         $('#fecha, #f1, #f2').daterangepicker({
             parentEl: '#myModal',
-            showDropdowns: true,
+            //showDropdowns: true,
             autoApply: true,
             autoUpdateInput: false,
             linkedCalendars: false,
@@ -97,6 +97,28 @@
         drp1.maxDate = drp.endDate;
         drp2.minDate = drp.startDate;
         drp2.maxDate = drp.endDate;
+
+        //Al hacer check o uncheck en checkbox
+        $("#chk_imputar").change(function() {
+            var ischecked= $(this).is(':checked');
+            if(ischecked) {
+                drp1.setStartDate(drp.startDate);
+                drp1.setEndDate(drp.endDate);
+                drp1.element.val(drp1.startDate.format(drp1.locale.format) + ' - ' + drp1.endDate.format(drp1.locale.format));
+                $('#cantidad1').val($('#dias').val());
+                $('#id_periodo2').val("").selectpicker('refresh');
+                drp2.setStartDate(new Date);
+                drp2.setEndDate(new Date);
+                $('#f2').val("");
+                $('#cantidad2').val(0);
+            }else{
+                drp1.setStartDate(new Date);
+                drp1.setEndDate(new Date);
+                $('#f1').val("");
+                $('#cantidad1').val(0);
+            }
+
+        });
 
 
 
