@@ -14,7 +14,7 @@
 
         moment.locale('es');
         $('#fecha').daterangepicker({
-            parentEl: '#myModal',
+            parentEl: '#myModal #renovacion_vehicular',
             showDropdowns: true,
             autoApply: true,
             autoUpdateInput: false,
