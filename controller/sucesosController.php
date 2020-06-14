@@ -98,6 +98,10 @@ switch ($operation)
         break;*/
 
     case 'checkRango': //ok
+        if(!$_POST['id_empleado'] || !$_POST['id_evento']){
+            //print_r(json_encode('No es posible validar el rango hasta no ingresar el empleado y evento'));
+            exit;
+        }
         $view->suceso = new Suceso();
         $rta = $view->suceso->checkRango($_POST['fecha_desde'], $_POST['fecha_hasta'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
         print_r(json_encode($rta));
