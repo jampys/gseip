@@ -24,6 +24,7 @@
             }
         }).on("apply.daterangepicker", function (e, picker) {
             picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
+            picker.element.valid();
         });
         var drp = $('#fecha').data('daterangepicker');
 
@@ -185,7 +186,7 @@
                         url: "index.php",
                         type: "post",
                         dataType: "json",
-                        async: false,
+                        //async: false,
                         data: {
                             action: "renovacionesPersonal",
                             operation: "checkRangoFechas",
