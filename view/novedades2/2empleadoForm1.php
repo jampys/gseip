@@ -62,33 +62,6 @@
 
 
 
-        //al hacer click en un empleado carga el panel central con los datos...
-        $('#table_empleados').on('click', 'a', function(){
-
-            //alert('editar empleado del parte');
-            var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            //alert('editar etapa: '+id);
-            params={};
-            params.id_empleado = id;
-            params.id_parte = $(this).closest('tr').attr('id_parte');
-            params.id_parte_empleado = $(this).closest('tr').attr('id_parte_empleado');
-            params.id_contrato = $('#id_contrato').val();
-            params.id_periodo = $('#id_periodo').val();
-            params.fecha = $('#add_fecha').val();
-            params.action = "novedades2";
-            params.operation = "editParte";
-            //alert(params.id_periodo);
-            $('#panel-conceptos').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
-                //$('#myModal').modal();
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            });
-
-            return false;
-        });
-
 
         $(document).on('click', '#back',function(){
             //alert('regresar');
@@ -170,12 +143,7 @@
             <div class="row">
 
                 <div class="col-md-12" id="chulito">
-
-
-
                 </div>
-
-
 
 
             </div>
