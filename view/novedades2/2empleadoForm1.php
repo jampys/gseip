@@ -20,16 +20,12 @@
     $(document).ready(function(){
 
 
-        $('.input-group.date.af').datepicker({ //ok para fecha (nuevo)
-            //inline: true
+        /*$('.input-group.date.af').datepicker({
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true,
             autoclose: true
-        })//.datepicker('setDate', new Date()); //pone por defecto la fecha actual
-        //$('.input-group.date').datepicker('setDate', new Date());
-            .on('changeDate', function (ev) {
-                //alert('cambio la fecha');
+        }).on('changeDate', function (ev) {
                 params={};
                 params.action = "partes";
                 params.operation="newParte";
@@ -38,27 +34,51 @@
                 params.id_periodo = $("#id_periodo").val();
                 params.contrato = $("#add_contrato option:selected").text(); //para mostrar en el titulo del modal
 
-                /*$('#popupbox').load('index.php', params,function(){
-                 $('#myModal').modal();
-                 });*/
-                //$("#chulito").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Obteniendo informacion de cuadrillas...').addClass('alert alert-info').show();
                 $("#chulito").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Obteniendo informacion de cuadrillas...');
                 $('#chulito').load('index.php', params,function(){
                     $("#chulito").removeClass('alert alert-info');
                 });
 
-
         });
-
 
         //restringe el selector de fechas al periodo seleccionado
         var fecha_desde = $('#fecha_desde').val();
         var fecha_hasta = $('#fecha_hasta').val();
-        //$('#add_fecha').datepicker('setStartDate', '18/05/2019');
-        //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
         $('.input-group.date.af').datepicker('setStartDate', fecha_desde);
         $('.input-group.date.af').datepicker('setEndDate', fecha_hasta);
-        //$('#add_fecha').datepicker('setDate', new Date()); //pone por defecto la fecha actual
+*/
+
+        moment.locale('es');
+        $('#add_fecha').daterangepicker({
+            singleDatePicker: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            drops: 'auto',
+            minDate: $('#fecha_desde').val(),
+            maxDate: $('#fecha_hasta').val(),
+            //startDate: $('#fecha_desde').val(),
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+            //picker.element.valid();
+
+            params={};
+            params.action = "partes";
+            params.operation="newParte";
+            params.add_contrato = $("#id_contrato").val();
+            params.fecha_parte = $("#add_fecha").val(); //para mostrar en el titulo del modal
+            params.id_periodo = $("#id_periodo").val();
+            params.contrato = $("#add_contrato option:selected").text(); //para mostrar en el titulo del modal
+
+            $("#chulito").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Obteniendo informacion de cuadrillas...');
+            $('#chulito').load('index.php', params,function(){
+                $("#chulito").removeClass('alert alert-info');
+            });
+
+
+        });
 
 
 
@@ -112,16 +132,13 @@
                         <input type="hidden" name="fecha_hasta" id="fecha_hasta" value="<?php print $view->periodo->getFechaHasta() ?>">
 
 
-                        <div class="form-group required">
-                            <!--<label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>-->
-                                <div class="input-group date af">
-                                    <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "<?php //print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-th"></span>
-                                    </div>
-                                </div>
-                        </div>
+                        <div class="form-group">
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "<?php //print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </div>
 
+                        </div>
 
 
                     </div>
