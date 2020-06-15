@@ -81,7 +81,7 @@
         <div class="form-group">
             <label class="control-label" for="fecha_desde">Fecha desde</label>
             <div class="inner-addon right-addon">
-                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->role->getFechaDesde() ?>" placeholder="DD/MM/AAAA" disabled>
+                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print ($view->role->getIdUserRole())? $view->role->getFechaDesde() : date('d/m/Y'); ?>" placeholder="DD/MM/AAAA" disabled>
                 <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
