@@ -25,6 +25,7 @@
             }
         }).on("apply.daterangepicker", function (e, picker) {
             picker.element.val(picker.startDate.format(picker.locale.format));
+            picker.element.valid();
         });
 
 
