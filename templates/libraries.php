@@ -43,13 +43,6 @@
     </script>-->
 
 
-
-    <!-- bootstrap-datepicker-->
-    <link type="text/css" href="resources/libraries/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
-    <script src="resources/libraries/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-    <script src="resources/libraries/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
-
-
     <!-- bootstrap-select-->
     <link rel="stylesheet" href="resources/libraries/bootstrap-select/dist/css/bootstrap-select.min.css">
     <script src="resources/libraries/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
