@@ -16,7 +16,7 @@
         moment.locale('es');
         $('#fecha_desde, #fecha_hasta').daterangepicker({
             singleDatePicker: true,
-            //showDropdowns: true,
+            parentEl: '#myModal',
             autoApply: true,
             autoUpdateInput: false,
             "locale": {
