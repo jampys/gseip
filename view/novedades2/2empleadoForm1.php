@@ -70,6 +70,11 @@
         });
 
 
+        $(document).on('click', '#cancel',function(){
+            $('#chulito').empty();
+        });
+
+
 
 
 
