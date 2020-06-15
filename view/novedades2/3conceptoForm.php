@@ -49,20 +49,6 @@
         });
 
 
-        //datepicker repetir
-        /*$('.input-group.date.rf').datepicker({
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });
-
-        //restringe el selector de fechas al periodo seleccionado
-        var fecha_desde = $('#add_fecha').val();
-        var fecha_hasta = $('#fecha_hasta').val();
-        $('.input-group.date.rf').datepicker('setStartDate', fecha_desde);
-        $('.input-group.date.rf').datepicker('setEndDate', fecha_hasta);
-*/
-
         moment.locale('es');
         $('#rep_fecha').daterangepicker({
             singleDatePicker: true,
@@ -1007,12 +993,6 @@
                 </div>-->
                 <div class="form-group col-md-6">
                     <div class="form-group">
-                        <!--<div class="input-group date rf">
-                            <input class="form-control" type="text" name="rep_fecha" id="rep_fecha" value = "<?php print $view->empleado->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
-                        </div>-->
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="rep_fecha" id="rep_fecha" placeholder="DD/MM/AAAA" readonly>
                             <i class="glyphicon glyphicon-calendar"></i>
