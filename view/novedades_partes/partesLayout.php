@@ -297,7 +297,7 @@
             };
 
 
-            $('#add-form').validate({
+            /*$('#add-form').validate({
                 rules: {
                     add_fecha: {required: true},
                     add_contrato: {required: true},
@@ -309,7 +309,7 @@
                     id_periodo: "Seleccione el período"
                 }
 
-            });
+            });*/
 
 
 
