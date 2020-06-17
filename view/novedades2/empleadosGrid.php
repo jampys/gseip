@@ -11,7 +11,7 @@
             scrollCollapse: true,
             scroller:       true,
             "columnDefs": [
-                //{ targets : 0, orderable: false},
+                { targets : 1, width: '40px'} //botones
                 //{ targets : 1, orderable: false}
             ],
             "drawCallback": function( settings ) {
@@ -47,9 +47,9 @@
                 <a href="#"><?php echo $em['apellido'].' '.$em['nombre']; ?></a>
             </td>
             <td style="text-align: center">
-                <?php echo($em['id_parte'])? '<i class="fa fa-car-side dp_green" title="con parte"></i>':'<i class="fa fa-car dp_yellow" title="sin parte"></i>'; ?>&nbsp;
-                <?php echo($em['id_parte'] && $em['concept_count']>0)? '<i class="fas fa-calculator dp_green" title="con conceptos"></i>':'<i class="fas fa-calculator dp_yellow" title="sin conceptos"></i>'; ?>&nbsp;
-                <?php echo($em['id_parte'] && $em['orden_count']>0)? '<i class="fas fa-clipboard-check dp_green" title="parte con órdenes"></i>':'<i class="fas fa-clipboard dp_yellow" title="parte sin órdenes"></i>'; ?>
+                <?php echo($em['id_parte'])? '<i class="fa fa-car-side dp_blue_nov" title="con parte"></i>':'<i class="fa fa-car dp_light_gray" title="sin parte"></i>'; ?>&nbsp;
+                <?php echo($em['id_parte'] && $em['concept_count']>0)? '<i class="fas fa-calculator dp_blue_nov" title="con conceptos"></i>':'<i class="fas fa-calculator dp_light_gray" title="sin conceptos"></i>'; ?>&nbsp;
+                <?php echo($em['id_parte'] && $em['orden_count']>0)? '<i class="fas fa-clipboard-check dp_blue_nov" title="parte con órdenes"></i>':'<i class="fas fa-clipboard dp_light_gray" title="parte sin órdenes"></i>'; ?>
             </td>
         </tr>
     <?php endforeach; ?>
