@@ -11,7 +11,7 @@
             scrollCollapse: true,
             scroller:       true,
             "columnDefs": [
-                //{ targets : 0, orderable: false},
+                { targets : 1, width: '40px'} //botones
                 //{ targets : 1, orderable: false}
             ],
             "drawCallback": function( settings ) {
