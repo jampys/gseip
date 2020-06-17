@@ -196,11 +196,13 @@ body{
 /* colores para los iconos de font-awesome */
 .dp_brown{color: #6D4C41}
 .dp_green {color: #5fba7d}
-.dp_red{color: #DD2C00}
+.dp_red{color: #e53935}
 .dp_yellow{color: #F9A825}
 .dp_orange{color: #FF5733}
 .dp_purple{color: #4747d1}
-.dp_blue{color: #01579B}
+.dp_blue{color: #0d47a1}
+.dp_blue_nov{color: #3788d8}
 .dp_gray{color: #455A64}
+.dp_light_gray {color: #e0e0e0 }
 
 
