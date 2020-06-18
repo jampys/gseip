@@ -696,6 +696,7 @@
                 params.id_empleado = $('#id_empleado').val();
                 params.id_evento = $('#id_evento').val();
                 params.conductor = $('#conductor').prop('checked')? 1:0;
+                params.trabajado = $('#trabajado').prop('checked')? 1:0;
                 params.check_replicar = ($('#check_replicar').is(':checked'))? 1:0;
                 //params.check_sobrescribir = ($('#check_sobrescribir').is(':checked'))? 1:0;
                 params.rep_fecha = $('#rep_fecha').val();
@@ -881,7 +882,7 @@
                         ><a href="#" title="Marcar la persona que maneja">Conductor</a>
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="conductor" name="conductor" <?php //echo ($view->parte_empleado->getConductor()== 1)? 'checked' :'' ?>
+                    <input type="checkbox" id="trabajado" name="trabajado" <?php //echo ($view->parte_empleado->getConductor()== 1)? 'checked' :'' ?>
                         <?php echo ( ($view->parte_empleado->getTrabajado()== 1) || (!$view->parte->getIdParte() )  )? 'checked' :'' ?>
                         ><a href="#" title="Marcar si el día fué trabajado">Día trabajado</a>
                 </label>
