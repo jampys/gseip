@@ -28,57 +28,30 @@
             messages:{
                 id_empleado: "Seleccione un empleado",
                 puesto: "Seleccione un puesto",
-                fecha_desde: "Seleccione la fecha desde"
+                fecha_desde: "Seleccione la fecha de afectación"
             }
         });
 
 
-        $('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });
-
-        /*$('#fecha_desde').datepicker().on('changeDate', function (selected) { //ok
-            var minDate = new Date(selected.date.valueOf());
-            $('#fecha_hasta').datepicker('setStartDate', minDate);
-            //$('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', minDate);
-        });
-
-        $('#fecha_hasta').datepicker().on('changeDate', function (selected) { //ok
-            var maxDate = new Date(selected.date.valueOf());
-            $('#fecha_desde').datepicker('setEndDate', maxDate);
-        });*/
-
-        /*$('#id_empleado').closest('.form-group').find(':input').on('keyup', function(e){ //ok
-            //alert('hola');
-            var code = (e.keyCode || e.which);
-            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key or enter
-                return;
+        moment.locale('es');
+        $('#myModal #fecha_desde, #myModal #fecha_hasta').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            drops: 'auto',
+            parentEl: '#myModal',
+            minDate: '01/01/2010',
+            maxDate: '31/12/2029',
+            "locale": {
+                "format": "DD/MM/YYYY"
             }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+            picker.element.valid();
+        });
 
-            var items="";
 
-            $.ajax({
-                url: "index.php",
-                type: "post",
-                dataType: "json",
-                data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
-                success: function(data) {
-                    $.each(data.slice(0, 5),function(index,item)
-                    {
-                        //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
-                        items+="<option value='"+item['id_empleado']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
-                    });
-
-                    $("#id_empleado").html(items);
-                    $('.selectpicker').selectpicker('refresh');
-                }
-
-            });
-
-        });*/
 
 
     });
@@ -169,15 +142,31 @@
                     </div>
 
 
-
-                    <div class="form-group required">
-                        <label class="control-label" for="empleado">Fecha afectación / desafectación</label>
-                        <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
-                            <div class="input-group-addon">a</div>
-                            <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+                    <div class="row">
+                        <div class="form-group col-md-6 required">
+                            <label for="meta" class="control-label">Fecha afectación</label>
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="meta_valor" class="control-label">Fecha desafectación</label>
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </div>
                         </div>
                     </div>
+
+
+
+
+
+
+
+
+
 
 
 

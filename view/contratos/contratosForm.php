@@ -13,9 +13,15 @@
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
+            "order": [[3, "asc"], [0, "asc"] ], //fecha desafec, legajo
             columnDefs: [
-                { responsivePriority: 1, targets: 4 }
-            ]
+                {targets: 2, type: 'date-uk'}, //fecha afect
+                {targets: 3, type: 'date-uk'}, //desafec
+                {targets: 4, responsivePriority: 1, sortable: false }//botones
+            ],
+            language: {
+                search: 'Buscar:'
+            }
 
         });
 
@@ -131,56 +137,6 @@
 
 
 
-        /*$('#id_responsable').closest('.form-group').find(':input').on('keyup', function(e){ //ok
-            //alert(e.keyCode);
-            var code = (e.keyCode || e.which);
-            if(code == 37 || code == 38 || code == 39 || code == 40 || code == 13) { // do nothing if it's an arrow key
-                return;
-            }
-
-            var items="";
-
-            $.ajax({
-                url: "index.php",
-                type: "post",
-                dataType: "json",
-                data: { "term": $(this).val(),  "action":"empleados", "operation":"autocompletarEmpleadosByCuil"},
-                success: function(data) {
-                    $.each(data.slice(0, 5),function(index,item)
-                    {
-                        //data.slice(0, 5) trae los 5 primeros elementos del array. Se hace porque la propiedad data-size de bootstrap-select no funciona para este caso
-                        items+="<option value='"+item['id_empleado']+"'>"+item['apellido']+' '+item['nombre']+"</option>";
-                    });
-
-                    $("#id_responsable").html(items);
-                    $('.selectpicker').selectpicker('refresh');
-                }
-
-            });
-
-        });*/
-
-
-
-        $('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });
-
-        /*$('#fecha_desde').datepicker().on('changeDate', function (selected) { //ok
-            var minDate = new Date(selected.date.valueOf());
-            $('#fecha_hasta').datepicker('setStartDate', minDate);
-                //$('#fecha_hasta').datepicker('setStartDate', minDate).datepicker('update', minDate);
-        });
-
-        $('#fecha_hasta').datepicker().on('changeDate', function (selected) { //ok
-            var maxDate = new Date(selected.date.valueOf());
-            $('#fecha_desde').datepicker('setEndDate', maxDate);
-        });*/
-
-
 
         //guardar contrato
         $('#contrato').on('click', '#submit',function(){ //ok
@@ -262,15 +218,11 @@
             params.id_empleado = id;
             $('#popupbox1').load('index.php', params,function(){
                 $('#myModal').modal();
-                /*$('#id_empleado').append($('<option>', {
-                    value: jsonEmpleados[id].id_empleado,
-                    text : jsonEmpleados[id].empleado
-                }));*/
                 $('#id_empleado').selectpicker('val', jsonEmpleados[id].id_empleado).prop('disabled', true);
                 $('#puesto').selectpicker('val', jsonEmpleados[id].id_puesto);
                 $('#id_proceso').selectpicker('val', jsonEmpleados[id].id_proceso);
-                $('#myModal #fecha_desde').datepicker('setDate', jsonEmpleados[id].fecha_desde );
-                $('#myModal #fecha_hasta').datepicker('setDate', jsonEmpleados[id].fecha_hasta );
+                $('#myModal #fecha_desde').val(jsonEmpleados[id].fecha_desde);
+                $('#myModal #fecha_hasta').val(jsonEmpleados[id].fecha_hasta);
                 $('#myModal #id_localidad').selectpicker('val', jsonEmpleados[id].id_localidad);
                 $('.selectpicker').selectpicker('refresh'); //refresh de puesto y procesos
 
@@ -393,6 +345,26 @@
 
 
 
+        moment.locale('es');
+        $('#fecha_desde, #fecha_hasta').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            drops: 'auto',
+            parentEl: '#myModal',
+            minDate: '01/01/2010',
+            maxDate: '31/12/2029',
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+            picker.element.valid();
+        });
+
+
+
 
 
 
@@ -422,22 +394,30 @@
 
     <div class="panel-body">
 
-    <form class="form-horizontal" name ="contrato-form" id="contrato-form" method="POST" action="index.php">
+    <form name ="contrato-form" id="contrato-form" method="POST" action="index.php">
 
         <fieldset <?php //echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? '' : 'disabled' ?>>
 
             <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->contrato->getIdContrato() ?>">
 
-            <div class="form-group required">
-                <label for="nro_contrato" class="col-md-3 control-label">Nro. Contrato</label>
-                <div class="col-md-7">
+
+
+            <div class="row">
+                <div class="form-group col-md-6 required">
+                    <label for="nro_contrato" class="control-label">Nro. Contrato</label>
                     <input class="form-control" type="text" name="nro_contrato" id="nro_contrato" placeholder="Nro. Contrato" value = "<?php print $view->contrato->getNroContrato() ?>">
+                </div>
+                <div class="form-group col-md-6 required">
+                    <label for="nombre" class="control-label">Nombre</label>
+                    <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->contrato->getNombre() ?>">
                 </div>
             </div>
 
-            <div class="form-group required">
-                <label for="compania" class="col-md-3 control-label">Compañía</label>
-                <div class="col-md-7">
+
+
+            <div class="row">
+                <div class="form-group col-md-6 required">
+                    <label for="compania" class="control-label">Compañía</label>
                     <select class="form-control selectpicker show-tick" id="compania" name="compania" title="Seleccione la compañía">
                         <?php foreach ($view->companias as $cia){
                             ?>
@@ -449,21 +429,8 @@
                         <?php  } ?>
                     </select>
                 </div>
-            </div>
-
-
-            <div class="form-group required">
-                <label for="nombre" class="col-md-3 control-label">Nombre</label>
-                <div class="col-md-7">
-                    <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value = "<?php print $view->contrato->getNombre() ?>">
-                </div>
-            </div>
-
-
-
-            <div class="form-group required">
-                <label for="id_responsable" class="col-md-3 control-label">Responsable</label>
-                <div class="col-md-7">
+                <div class="form-group col-md-6 required">
+                    <label for="id_responsable" class="control-label">Responsable</label>
                     <select id="id_responsable" name="id_responsable" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable">
                         <?php foreach ($view->empleados as $em){
                             ?>
@@ -478,16 +445,21 @@
             </div>
 
 
-            <div class="form-group required">
-                <label class="col-md-3 control-label" for="fecha">Desde / hasta</label>
-                <div class="col-md-7">
 
-                    <div class="input-group input-daterange">
-                        <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
-                        <div class="input-group-addon">a</div>
-                        <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+            <div class="row">
+                <div class="form-group col-md-6 required">
+                    <label for="fecha_desde" class="control-label">Fecha desde</label>
+                    <div class="inner-addon right-addon">
+                        <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                        <i class="glyphicon glyphicon-calendar"></i>
                     </div>
-
+                </div>
+                <div class="form-group col-md-6 required">
+                    <label for="fecha_hasta" class="control-label">Fecha hasta</label>
+                    <div class="inner-addon right-addon">
+                        <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </div>
                 </div>
             </div>
 
@@ -513,8 +485,8 @@
             <tr>
                 <th>Empleado</th>
                 <th>Puesto</th>
-                <th>F. Desde</th>
-                <th>F. Hasta</th>
+                <th>F. afec.</th>
+                <th>F. desaf.</th>
                 <th></th>
             </tr>
             </thead>

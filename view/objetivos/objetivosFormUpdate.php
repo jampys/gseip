@@ -127,8 +127,12 @@
                 params.id_tarea = $('#id_tarea').val();
                 params.nombre = $('#nombre').val();
                 params.descripcion = $('#descripcion').val();
-                params.fecha_inicio = $('#fecha_inicio').val();
-                params.fecha_fin = $('#fecha_fin').val();
+                //params.fecha_inicio = $('#fecha_inicio').val();
+                //params.fecha_fin = $('#fecha_fin').val();
+                var drp = $('#fecha1').data('daterangepicker');
+                params.fecha_inicio = drp.startDate.format('DD/MM/YYYY');
+                params.fecha_fin = drp.endDate.format('DD/MM/YYYY');
+
                 //params.conductor = $('input[name=conductor]:checked').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;

@@ -88,16 +88,9 @@ switch ($operation)
         $view->contentTemplate="view/renovacionesVehiculosForm.php";
         break;
 
-    case 'checkFechaEmision': //ok
+    case 'checkRangoFechas': //ok
         $view->renovacion = new RenovacionVehicular();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_vehiculo'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'checkFechaVencimiento': //ok
-        $view->renovacion = new RenovacionVehicular();
-        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_vehiculo'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
+        $rta = $view->renovacion->checkRangoFechas($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_vehiculo'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
         print_r(json_encode($rta));
         exit;
         break;

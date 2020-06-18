@@ -43,13 +43,6 @@
     </script>-->
 
 
-
-    <!-- bootstrap-datepicker-->
-    <link type="text/css" href="resources/libraries/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
-    <script src="resources/libraries/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-    <script src="resources/libraries/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
-
-
     <!-- bootstrap-select-->
     <link rel="stylesheet" href="resources/libraries/bootstrap-select/dist/css/bootstrap-select.min.css">
     <script src="resources/libraries/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
@@ -91,6 +84,13 @@
     <script src='resources/libraries/fullcalendar/packages/core/locales-all.js'></script>
     <script src='resources/libraries/fullcalendar/packages/interaction/main.js'></script>
     <script src='resources/libraries/fullcalendar/packages/daygrid/main.js'></script>
+
+
+    <!-- daterangepicker -->
+    <script type="text/javascript" src="resources/libraries/daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="resources/libraries/daterangepicker/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="resources/libraries/daterangepicker/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/libraries/daterangepicker/daterangepicker.css" />
 
 
     <!-- librerias css propias -->

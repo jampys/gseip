@@ -12,23 +12,21 @@
         });
 
 
-        $('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
+        moment.locale('es');
+        $('#fecha').daterangepicker({
+            parentEl: '#myModal #renovacion_personal',
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            linkedCalendars: false,
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
+            picker.element.valid();
         });
-
-        /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
-            var minDate = new Date(selected.date.valueOf());
-            $('#fecha_vencimiento').datepicker('setStartDate', minDate);
-        });
-
-        $('#fecha_vencimiento').datepicker().on('changeDate', function (selected) { //ok
-            var maxDate = new Date(selected.date.valueOf());
-            $('#fecha_emision').datepicker('setEndDate', maxDate);
-        });*/
-
+        var drp = $('#fecha').data('daterangepicker');
 
 
         $('.image').viewer({});
@@ -130,8 +128,10 @@
                 params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 params.id_grupo = $('#id_empleado option:selected').attr('id_grupo');
                 params.id_vencimiento = $('#id_vencimiento').val();
-                params.fecha_emision = $('#fecha_emision').val();
-                params.fecha_vencimiento = $('#fecha_vencimiento').val();
+                //params.fecha_emision = $('#fecha_emision').val();
+                //params.fecha_vencimiento = $('#fecha_vencimiento').val();
+                params.fecha_emision = drp.startDate.format('DD/MM/YYYY');
+                params.fecha_vencimiento = drp.endDate.format('DD/MM/YYYY');
                 params.disabled = $('#disabled').prop('checked')? 1:0;
                 params.referencia = $('#referencia').val();
 
@@ -180,35 +180,18 @@
             rules: {
                 id_empleado: {required: true},
                 id_vencimiento: {required: true},
-                fecha_emision: {
+                fecha: {
                     required: true,
                     remote: {
                         url: "index.php",
                         type: "post",
                         dataType: "json",
+                        //async: false,
                         data: {
                             action: "renovacionesPersonal",
-                            operation: "checkFechaEmision",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
-                        }
-                    }
-                },
-                fecha_vencimiento: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkFechaVencimiento",
-                            fecha_emision: function(){ return $('#fecha_emision').val();},
-                            fecha_vencimiento: function(){ return $('#fecha_vencimiento').val();},
+                            operation: "checkRangoFechas",
+                            fecha_emision: function(){ return drp.startDate.format('DD/MM/YYYY');},
+                            fecha_vencimiento: function(){ return drp.endDate.format('DD/MM/YYYY');},
                             //id_empleado: function(){ return $('#id_empleado').val();},
                             id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
                             id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
@@ -222,13 +205,9 @@
             messages:{
                 id_empleado: "Seleccione un empleado o grupo",
                 id_vencimiento: "Seleccione un vencimiento",
-                fecha_emision: {
-                    required: "Ingrese la fecha de emisión",
-                    remote: "La fecha de emisión debe ser mayor"
-                },
-                fecha_vencimiento: {
-                    required: "Ingrese la fecha de vencimiento",
-                    remote: "La fecha de vencimiento debe ser mayor"
+                fecha: {
+                    required: "Selecione el rango de fechas",
+                    remote: "Seleccione un rango de fechas válido"
                 }
             }
 
@@ -333,10 +312,9 @@
                         </div>
                         <?php } ?>
 
-                        <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_emision" id="fecha_emision" value = "<?php print $view->renovacion->getFechaEmision() ?>" placeholder="DD/MM/AAAA" readonly>
-                            <div class="input-group-addon">hasta</div>
-                            <input class="form-control" type="text" name="fecha_vencimiento" id="fecha_vencimiento" value = "<?php print $view->renovacion->getFechaVencimiento() ?>" placeholder="DD/MM/AAAA" readonly>
+                        <div class="inner-addon right-addon">
+                            <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->renovacion->getFechaEmision() && $view->renovacion->getFechaVencimiento())? $view->renovacion->getFechaEmision()." - ".$view->renovacion->getFechaVencimiento() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                            <i class="glyphicon glyphicon-calendar"></i>
                         </div>
                     </div>
 

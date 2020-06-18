@@ -19,12 +19,20 @@
         });
 
 
-        $('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
+        moment.locale('es');
+        $('#fecha_alta, #fecha_baja').daterangepicker({
+            singleDatePicker: true,
+            parentEl: '#myModal',
+            autoApply: true,
+            autoUpdateInput: false,
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+            picker.element.valid();
         });
+
 
         $('.image').viewer({});
 
@@ -278,22 +286,18 @@
 
                     <div class="form-group">
                         <label class="control-label" for="fecha">Fecha alta</label>
-                            <div class="input-group date">
-                                <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print $view->usuario->getFechaAlta() ?>" placeholder="DD/MM/AAAA" disabled>
-                                <div class="input-group-addon">
-                                    <span class="glyphicon glyphicon-th"></span>
-                                </div>
-                            </div>
+                        <div class="inner-addon right-addon">
+                            <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print ($view->usuario->getIdUser())? $view->usuario->getFechaAlta() : date('d/m/Y'); ?>" placeholder="DD/MM/AAAA" disabled>
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="fecha">Fecha baja</label>
-                            <div class="input-group date">
-                                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->usuario->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
-                                <div class="input-group-addon">
-                                    <span class="glyphicon glyphicon-th"></span>
-                                </div>
-                            </div>
+                        <div class="inner-addon right-addon">
+                            <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->usuario->getFechaBaja() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </div>
                     </div>
 
 

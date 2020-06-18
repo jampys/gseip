@@ -16,48 +16,39 @@
 
 <script type="text/javascript">
 
+    function refrescarEmpleados(){
+        params={};
+        params.action = "novedades2";
+        params.operation = "tableEmpleados";
+        params.fecha = $('#add_fecha').val();
+        params.id_contrato = $('#id_contrato').val();
+        $('#table_empleados').load('index.php', params,function(){
+            $("#contenedor").hide("");
+        });
+    }
+
 
     $(document).ready(function(){
 
 
-        $('.input-group.date').datepicker({ //ok para fecha (nuevo)
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true,
-            autoclose: true
-        })//.datepicker('setDate', new Date()); //pone por defecto la fecha actual
-        //$('.input-group.date').datepicker('setDate', new Date());
-            .on('changeDate', function (ev) {
-                //alert('cambio la fecha');
-                params={};
-                //params.id_empleado = id;
-                //params.id_contrato = $('#id_contrato').val();
-                //params.id_periodo = $('#id_periodo').val();
-                params.action = "novedades2";
-                params.operation = "tableEmpleados";
-                params.fecha = $('#add_fecha').val();
-                params.id_contrato = $('#id_contrato').val();
-                //alert(params.id_periodo);
-                $('#table_empleados').load('index.php', params,function(){
-                    //alert('cargo el contenido en right side');
-                    $("#contenedor").hide("");
-                    //$('#myModal').modal();
-                    //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                    //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-                });
-
+        moment.locale('es');
+        $('#add_fecha').daterangepicker({
+            singleDatePicker: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            drops: 'auto',
+            minDate: $('#fecha_desde').val(),
+            maxDate: $('#fecha_hasta').val(),
+            startDate: $('#fecha_desde').val(),
+                "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+            //picker.element.valid();
+            refrescarEmpleados();
         });
 
-
-        //restringe el selector de fechas al periodo seleccionado
-        var fecha_desde = $('#fecha_desde').val();
-        var fecha_hasta = $('#fecha_hasta').val();
-        //$('#add_fecha').datepicker('setStartDate', '18/05/2019');
-        //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
-        $('.input-group.date').datepicker('setStartDate', fecha_desde);
-        $('.input-group.date').datepicker('setEndDate', fecha_hasta);
-        //$('#add_fecha').datepicker('setDate', new Date()); //pone por defecto la fecha actual
 
 
 
@@ -134,13 +125,16 @@
 
 
                         <div class="form-group required">
-                            <!--<label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>-->
-                                <div class="input-group date">
+                                <!--<div class="input-group date">
                                     <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "<?php //print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA" readonly>
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-th"></span>
                                     </div>
-                                </div>
+                                </div>-->
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "<?php //print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </div>
                         </div>
 
 

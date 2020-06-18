@@ -19,11 +19,22 @@
         });
 
 
-        $('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
+        moment.locale('es');
+        $('#fecha1').daterangepicker({
+            //singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            parentEl: '#myModal',
+            opens: 'left',
+            drops: 'up',
+            linkedCalendars: false,
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
+            picker.element.valid();
         });
 
 
@@ -91,10 +102,9 @@
 
         <div class="form-group required">
             <label class="control-label" for="empleado">Fecha inicio / fin</label>
-            <div class="input-group input-daterange">
-                <input class="form-control" type="text" name="fecha_inicio" id="fecha_inicio" value = "<?php print $view->tarea->getFechaInicio() ?>" placeholder="DD/MM/AAAA" readonly>
-                <div class="input-group-addon">a</div>
-                <input class="form-control" type="text" name="fecha_fin" id="fecha_fin" value = "<?php print $view->tarea->getFechaFin() ?>" placeholder="DD/MM/AAAA" readonly>
+            <div class="inner-addon right-addon">
+                <input class="form-control" type="text" name="fecha1" id="fecha1" value = "<?php echo ($view->tarea->getFechaInicio() && $view->tarea->getFechaFin())? $view->tarea->getFechaInicio()." - ".$view->tarea->getFechaFin() : ""; ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
 

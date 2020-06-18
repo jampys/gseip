@@ -11,20 +11,16 @@
                              // elimine el mensaje de requerido de jquery validation
         });
 
-
+        /*
         $('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
             format:"dd/mm/yyyy",
             language: 'es',
             todayHighlight: true,
             clearBtn: true
         }).on('changeDate', function(){
             //calcula la diferencia en dias entre las 2 fechas
-            //var minDate = $('#fecha_desde').datepicker('getDate');
-            //var maxDate = $('#fecha_hasta').datepicker('getDate');
             var minDate = $(this).closest('.row').find('.cfd').datepicker('getDate');
             var maxDate = $(this).closest('.row').find('.cfh').datepicker('getDate');
-            //alert('el mindate es: '+minDate);
             //maxDate - minDate devuelve la diferencia en milisegundos. 86400 = cant de seg por dia. X 1000 da los miliseg por dia.
             if(minDate == null || maxDate == null) $(this).closest('.row').find('.cdias').val(0);
             else $(this).closest('.row').find('.cdias').val((maxDate - minDate)/(86400*1000)+1);
@@ -33,10 +29,8 @@
 
         //solo ocurre al cambiar el valor de fecha_desde y fecha_hasta. Restringe el rango de fechas de fd1, fh1, fd2, fh2
         $('#fecha_desde, #fecha_hasta').on('changeDate', function(){
-            //alert('cambio las fechas de arriba');
             var fecha_desde = $('#myModal #fecha_desde').val();
             var fecha_hasta = $('#myModal #fecha_hasta').val();
-            //$('.input-group.date').datepicker('setStartDate', '21/04/2019');
             $('#fd1, #fd2').datepicker('setStartDate', fecha_desde);
             $('#fh1, #fh2').datepicker('setEndDate', fecha_hasta);
         });
@@ -44,17 +38,6 @@
 
         //Sirve para cuando se trata de una edicion. Restringe las fd1, fh1, fd2, fh2
         $("#fecha_desde").trigger("changeDate");
-
-
-        /*$('#fecha_emision').datepicker().on('changeDate', function (selected) { //ok
-            var minDate = new Date(selected.date.valueOf());
-            $('#fecha_vencimiento').datepicker('setStartDate', minDate);
-        });
-
-        $('#fecha_vencimiento').datepicker().on('changeDate', function (selected) { //ok
-            var maxDate = new Date(selected.date.valueOf());
-            $('#fecha_emision').datepicker('setEndDate', maxDate);
-        });*/
 
 
         //Al hacer check o uncheck en checkbox
@@ -70,9 +53,66 @@
                 $('#fh2').val("");
                 $('#cantidad2').val(0);
             }else{
-                //$('#id_periodo1').val("").selectpicker('refresh');
                 $('#fd1').val("");
                 $('#fh1').val("");
+                $('#cantidad1').val(0);
+            }
+
+        });
+        */
+
+
+        moment.locale('es');
+        $('#fecha, #f1, #f2').daterangepicker({
+            parentEl: '#myModal',
+            //showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            linkedCalendars: false,
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
+            picker.element.valid();
+            $(this).closest('.row').find('.cdias').val(picker.endDate.diff(picker.startDate, 'days')+1);
+        });
+
+        var drp = $('#fecha').data('daterangepicker');
+        var drp1 = $('#f1').data('daterangepicker');
+        var drp2 = $('#f2').data('daterangepicker');
+
+        //solo ocurre al cambiar el valor de fecha. Restringe el rango de fechas de f1 y f2
+        $('#fecha').on("apply.daterangepicker", function (e, picker) {
+            drp1.minDate = picker.startDate;
+            drp1.maxDate = picker.endDate;
+            drp2.minDate = picker.startDate;
+            drp2.maxDate = picker.endDate;
+        });
+
+        //Sirve para restringir f1 y f2 al rango de fechas de fecha.
+        drp1.minDate = drp.startDate;
+        drp1.maxDate = drp.endDate;
+        drp2.minDate = drp.startDate;
+        drp2.maxDate = drp.endDate;
+
+        //Al hacer check o uncheck en checkbox
+        $("#chk_imputar").change(function() {
+            var ischecked= $(this).is(':checked');
+            if(ischecked) {
+                drp1.setStartDate(drp.startDate);
+                drp1.setEndDate(drp.endDate);
+                drp1.element.val(drp1.startDate.format(drp1.locale.format) + ' - ' + drp1.endDate.format(drp1.locale.format));
+                $('#cantidad1').val($('#dias').val());
+                $('#id_periodo2').val("").selectpicker('refresh');
+                drp2.setStartDate(new Date); //limpia starDate
+                drp2.setEndDate(new Date); //limpia endDate
+                $('#f2').val(""); //limpia el input
+                $('#cantidad2').val(0);
+            }else{
+                drp1.setStartDate(new Date);
+                drp1.setEndDate(new Date);
+                $('#f1').val("");
                 $('#cantidad1').val(0);
             }
 
@@ -234,17 +274,17 @@
                 params.id_suceso = $('#myModal #id_suceso').val();
                 params.id_empleado = $('#myModal #id_empleado').val();
                 params.id_evento = $('#myModal #id_evento').val();
-                params.fecha_desde = $('#myModal #fecha_desde').val();
-                params.fecha_hasta = $('#myModal #fecha_hasta').val();
+                params.fecha_desde = drp.startDate.format('DD/MM/YYYY');
+                params.fecha_hasta = drp.endDate.format('DD/MM/YYYY');
                 params.observaciones = $('#myModal #observaciones').val();
                 params.id_periodo1 = $('#myModal #id_periodo1').val();
                 params.cantidad1 = $('#myModal #cantidad1').val();
                 params.id_periodo2 = $('#myModal #id_periodo2').val();
                 params.cantidad2 = $('#myModal #cantidad2').val();
-                params.fd1 = $('#myModal #fd1').val();
-                params.fh1 = $('#myModal #fh1').val();
-                params.fd2 = $('#myModal #fd2').val();
-                params.fh2 = $('#myModal #fh2').val();
+                params.fd1 = drp1.startDate.format('DD/MM/YYYY');
+                params.fh1 = drp1.endDate.format('DD/MM/YYYY');
+                params.fd2 = (drp2.element.val())? drp2.startDate.format('DD/MM/YYYY'): '';
+                params.fh2 = (drp2.element.val())? drp2.endDate.format('DD/MM/YYYY'): '';
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -290,36 +330,22 @@
 
         $('#suceso-form').validate({ //ok
             errorContainer: '#myModal #myElem',
+            ignore: "", //para dias1 hidden
             rules: {
                 id_empleado: {required: true},
                 id_evento: {required: true},
-                /*fecha_desde: {
+                fecha: {
                     required: true,
                     remote: {
                         url: "index.php",
                         type: "post",
                         dataType: "json",
-                        data: {
-                            action: "sucesos",
-                            operation: "checkFechaDesde",
-                            fecha_desde: function(){ return $('#fecha_desde').val();},
-                            id_empleado: function(){ return $('#id_empleado').val();},
-                            id_evento: function(){ return $('#id_evento').val();},
-                            id_suceso: function(){ return $('#id_suceso').val();}
-                        }
-                    }
-                },*/
-                fecha_hasta: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
+                        //async: false,
                         data: {
                             action: "sucesos",
                             operation: "checkRango",
-                            fecha_desde: function(){ return $('#fecha_desde').val();},
-                            fecha_hasta: function(){ return $('#fecha_hasta').val();},
+                            fecha_desde: function(){ return drp.startDate.format('DD/MM/YYYY');},
+                            fecha_hasta: function(){ return drp.endDate.format('DD/MM/YYYY');},
                             id_empleado: function(){ return $('#id_empleado').val();},
                             id_evento: function(){ return $('#id_evento').val();},
                             id_suceso: function(){ return $('#id_suceso').val();}
@@ -330,18 +356,18 @@
                 id_periodo2: { required: false,
                                notEqual: ["#id_periodo1", "Seleccione un período de liquidación diferente al primero"]
                 },
-                fd1: {required: true}
+                f1: {required: true}
 
             },
             messages:{
                 id_empleado: "Seleccione un empleado",
                 id_evento: "Seleccione un evento",
-                fecha_hasta: {
+                fecha: {
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
                 },
                 id_periodo1: "Seleccione un período para el evento",
-                fd1: "Seleccione un rango de fechas para el primer período"
+                f1: "Seleccione un rango de fechas para el primer período"
             }
 
         });
@@ -366,7 +392,7 @@
             jQuery.validator.format("La suma de los días imputados debe ser {0}")
         );
 
-        $("#fh1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
+        $("#dias1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
         /*jQuery.validator.addClassRules({
             cfh: {
                 sum: 50
@@ -458,15 +484,20 @@
                     <div class="row">
                         <div class="form-group col-md-9 required">
                             <label class="control-label" for="">Fechas desde / hasta</label>
-                            <div class="input-group input-daterange">
+                            <!--<div class="input-group input-daterange">
                                 <input class="form-control cfd" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->suceso->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
                                 <input class="form-control cfh" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->suceso->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>-->
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->suceso->getFechaDesde() && $view->suceso->getFechaHasta())? $view->suceso->getFechaDesde()." - ".$view->suceso->getFechaHasta() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="dias" class="control-label">Total días</label>
                             <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" disabled >
+                            <input type="hidden" name="dias1" id="dias1">
                         </div>
                     </div>
 
@@ -503,10 +534,14 @@
 
                     <div class="row">
                         <div class="form-group col-md-9 required">
-                            <div class="input-group input-daterange">
+                            <!--<div class="input-group input-daterange">
                                 <input class="form-control cfd" type="text" name="fd1" id="fd1" value = "<?php print $view->suceso->getFd1() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
                                 <input class="form-control cfh" type="text" name="fh1" id="fh1" value = "<?php print $view->suceso->getFh1() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>-->
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="f1" id="f1" value = "<?php echo ($view->suceso->getFd1() && $view->suceso->getFh1())? $view->suceso->getFd1()." - ".$view->suceso->getFh1() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">
@@ -538,10 +573,14 @@
 
                     <div class="row">
                         <div class="form-group col-md-9 required">
-                            <div class="input-group input-daterange">
+                            <!--<div class="input-group input-daterange">
                                 <input class="form-control cfd" type="text" name="fd2" id="fd2" value = "<?php print $view->suceso->getFd2() ?>" placeholder="DD/MM/AAAA" readonly>
                                 <div class="input-group-addon">hasta</div>
                                 <input class="form-control cfh" type="text" name="fh2" id="fh2" value = "<?php print $view->suceso->getFh2() ?>" placeholder="DD/MM/AAAA" readonly>
+                            </div>-->
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="f2" id="f2" value = "<?php echo ($view->suceso->getFd2() && $view->suceso->getFh2())? $view->suceso->getFd2()." - ".$view->suceso->getFh2() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-3 required">

@@ -13,25 +13,19 @@
         });
 
 
-        $('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
+        moment.locale('es');
+        $('#fecha_desde, #fecha_hasta').daterangepicker({
+            singleDatePicker: true,
+            parentEl: '#myModal',
+            autoApply: true,
+            autoUpdateInput: false,
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+            //picker.element.valid();
         });
-
-        /*$('.input-daterange').datepicker({
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });*/
-
-
-        /*$('#myModal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });*/
 
 
         //cancel de formulario de etapa
@@ -42,38 +36,9 @@
 
         $('#role-form').validate({
             rules: {
-                /*codigo: {
-                        required: true,
-                        digits: true,
-                        maxlength: 6
-                },*/
-                /*id_vehiculo: {
-                 required: true,
-                 remote: {
-                    url: "index.php",
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                            action: "contrato-vehiculo",
-                            operation: "checkVehiculo",
-                            id_vehiculo: function(){ return $('#id_vehiculo').val();},
-                            id_contrato: function(){ return $('#myModal #id_contrato').val();},
-                            id_contrato_vehiculo: function(){ return $('#id_contrato_vehiculo').val();}
-                          }
-                 }
-                 },*/
                 id_role: {required: true}
             },
             messages:{
-                /*codigo: {
-                    required: "Ingrese el código",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                }, */
-                /*id_vehiculo: {
-                 required: "Seleccione un vehículo",
-                 remote: "El vehículo ya se encuentra en el contrato"
-                 },*/
                 id_role: "Seleccione un rol"
             }
 
@@ -115,21 +80,17 @@
 
         <div class="form-group">
             <label class="control-label" for="fecha_desde">Fecha desde</label>
-            <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->role->getFechaDesde() ?>" placeholder="DD/MM/AAAA" disabled>
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
+            <div class="inner-addon right-addon">
+                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print ($view->role->getIdUserRole())? $view->role->getFechaDesde() : date('d/m/Y'); ?>" placeholder="DD/MM/AAAA" disabled>
+                <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label" for="fecha_hasta">Fecha hasta</label>
-            <div class="input-group date">
-                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->role->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
+            <div class="inner-addon right-addon">
+                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->role->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
 
