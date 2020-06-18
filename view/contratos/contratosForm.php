@@ -13,8 +13,11 @@
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
+            "order": [[3, "asc"], [0, "asc"] ], //fecha desafec, legajo
             columnDefs: [
-                { targets: 4, responsivePriority: 1, sortable: false } //botones
+                {targets: 2, type: 'date-uk'}, //fecha afect
+                {targets: 3, type: 'date-uk'}, //desafec
+                {targets: 4, responsivePriority: 1, sortable: false }//botones
             ],
             language: {
                 search: 'Buscar:'
