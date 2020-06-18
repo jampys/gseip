@@ -603,9 +603,17 @@
 
 
 
+        //Al agregar o cambiar el evento
+        $('#left_side').on('change', '#id_evento', function(){
+            alert('evento');
+
+        });
 
 
-        //al presionar el boton para agregar conceptos
+
+
+
+            //al presionar el boton para agregar conceptos
         $('#left_side').on('click', '#new', function(){ //ok
 
             //id_concepto_convenio_contrato
