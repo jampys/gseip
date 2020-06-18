@@ -872,7 +872,7 @@
                     <?php  } ?>
                 </select>
             </div>
-            
+
 
             <div class="form-group required">
                 <label class="checkbox-inline">
@@ -881,7 +881,8 @@
                         ><a href="#" title="Marcar la persona que maneja">Conductor</a>
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" checked
+                    <input type="checkbox" id="conductor" name="conductor" <?php //echo ($view->parte_empleado->getConductor()== 1)? 'checked' :'' ?>
+                        <?php echo ( ($view->parte_empleado->getTrabajado()== 1) || (!$view->parte->getIdParte() )  )? 'checked' :'' ?>
                         ><a href="#" title="Marcar si el día fué trabajado">Día trabajado</a>
                 </label>
             </div>
