@@ -608,6 +608,8 @@
             //alert('evento');
 
             $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
+                autoOpen : false,
+                resizable : false,
                 modal: true,
                 buttons: [
                     {
