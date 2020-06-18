@@ -605,7 +605,32 @@
 
         //Al agregar o cambiar el evento
         $('#left_side').on('change', '#id_evento', function(){
-            alert('evento');
+            //alert('evento');
+
+            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
+                modal: true,
+                buttons: [
+                    {
+                        text: "Si",
+                        click: function() {
+                            $(this).dialog("close");
+                        },
+                        class:"btn btn-primary"
+                    },
+                    {
+                        text: "No",
+                        click: function() {
+                            $(this).dialog("close");
+                        },
+                        class:"btn btn-default"
+                    }
+
+                ],
+                open: function() {
+                    $(this).html(confirmMessage('¿El día se cuenta como trabajado?'));
+                }
+            }).dialog('open');
+            return false;
 
         });
 
