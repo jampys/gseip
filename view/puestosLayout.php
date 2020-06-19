@@ -73,58 +73,59 @@
 
 
 
-            $(document).on('click', '.delete', function(){ //ok
-                var id = $(this).closest('tr').attr('id_puesto');
-                $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                    buttons: [
-                        {
-                            text: "Aceptar",
-                            click: function() {
-                                $.fn.borrar(id);
-                            },
-                            class:"btn btn-danger"
-                        },
-                        {
-                            text: "Cancelar",
-                            click: function() {
-                                $(this).dialog("close");
-                            },
-                            class:"btn btn-default"
-                        }
+            var dialog;
+            $(document).on('click', '.delete', function(){
 
-                    ],
-                    open: function() {
-                        $(this).html(confirmMessage('¿Desea eliminar el puesto de trabajo?'));
-                    },
-                    close: function() { $("#myElemento").empty().removeClass(); }
-                }).dialog('open');
-                return false;
+                var id = $(this).attr('data-id');
+                dialog = bootbox.dialog({
+                    message: "<p>¿Desea eliminar el puesto de trabajo?</p>",
+                    size: 'small',
+                    centerVertical: true,
+                    buttons: {
+                        cancel: {
+                            label: "No"
+                        },
+                        ok: {
+                            label: "Si",
+                            className: 'btn-danger',
+                            callback: function(){
+                                $.fn.borrar(id);
+                                return false; //evita que se cierre automaticamente
+                            }
+                        }
+                    }
+                });
+
+
             });
 
 
-            $.fn.borrar = function(id) { //ok
+
+            $.fn.borrar = function(id) {
                 //alert(id);
-                //preparo los parametros
                 params={};
-                params.id_puesto = id;
-                params.action = "puestos";
-                params.operation = "deletePuesto";
+                params.id_habilidad = id;
+                params.action = "habilidades";
+                params.operation = "deleteHabilidad";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Puesto eliminado con exito').addClass('alert alert-success').show();
-                        $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                        setTimeout(function() { $("#myElemento").hide();
-                                                $('#confirm').dialog('close');
-                                                $('#content').load('index.php',{action:"puestos", operation: "refreshGrid"});
-                                              }, 2000);
-                    }else{
-                        $("#myElemento").html('No es posible eliminar el puesto').addClass('alert alert-danger').show();
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Puesto eliminado con exito</div>');
+                        setTimeout(function() {
+                            dialog.modal('hide');
+                            $('#content').load('index.php',{action:"puestos", operation: "refreshGrid"});
+                        }, 2000);
                     }
+
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el puesto</div>');
 
                 });
 
             };
+
+
 
         });
 
