@@ -95,7 +95,6 @@
                 dialog = bootbox.dialog({
                     message: "<p>¿Desea eliminar la habilidad?</p>",
                     size: 'small',
-                    centerVertical: true,
                     buttons: {
                         cancel: {
                             label: "No"
