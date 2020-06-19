@@ -182,7 +182,7 @@
                         //$("#confirm #myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
                         //$('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
                         //dialog.find('.bootbox-body').html('I was loaded after the dialog was shown!');
-                        dialog.find('.modal-footer').html('<div class="alert alert-success">I was loaded after the dialog was shown!</div>');
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Habilidad eliminada con exito</div>');
                         setTimeout(function() { //$("#confirm #myElemento").hide();
                             //$('#confirm').dialog('close');
                             dialog.modal('hide');
@@ -193,7 +193,7 @@
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
                     //$("#confirm #myElemento").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
-                    dialog.find('.modal-footer').html('<div class="alert alert-danger">I was loaded after the dialog was shown!</div>');
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la habilidad</div>');
 
                 });
 
