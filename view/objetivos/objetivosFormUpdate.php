@@ -230,10 +230,6 @@
         });
 
 
-        $('#confirm').dialog({
-            autoOpen: false
-            //modal: true,
-        });
 
         //para mostrar avance de una tarea individual
         $('.grid-tareas').on('click', '.avance', function(){
@@ -367,65 +363,57 @@
 
 
         //eliminar una tarea
+        var dialog;
         $('.grid-tareas').on('click', '.delete', function(){ //ok
-            //alert('Eliminar tarea');
-            var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                buttons: [
-                    {
-                        text: "Aceptar",
-                        click: function() {
-                            $.fn.borrarTarea(id);
-                        },
-                        class:"btn btn-danger"
-                    },
-                    {
-                        text: "Cancelar",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"btn btn-default"
-                    }
 
-                ],
-                open: function() {
-                    $(this).html(confirmMessage('¿Desea eliminar la actividad?'));
-                },
-                close: function() { $("#confirm #myElemento").empty().removeClass(); }
-            }).dialog('open');
-            return false;
+            var id = $(this).closest('tr').attr('data-id');
+            dialog = bootbox.dialog({
+                message: "<p>¿Desea eliminar la actividad?</p>",
+                size: 'small',
+                centerVertical: true,
+                buttons: {
+                    cancel: {
+                        label: "No"
+                    },
+                    ok: {
+                        label: "Si",
+                        className: 'btn-danger',
+                        callback: function(){
+                            $.fn.borrarTarea(id);
+                            return false; //evita que se cierre automaticamente
+                        }
+                    }
+                }
+            });
+
+
         });
 
 
-        $.fn.borrarTarea = function(id) { //ok
+
+        $.fn.borrar = function(id) {
             //alert(id);
-            //preparo los parametros
             params={};
             params.id_tarea = id;
             params.id_objetivo = $('#id_objetivo').val();
-            //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
             params.action = "obj_tareas";
             params.operation = "deleteTarea";
-            //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
-                //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm #myElemento").html('Actividad eliminada con exito').addClass('alert alert-success').show();
-                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                    //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm #myElemento").hide();
-                                            $('#tarea-form').hide();
-                                            $('#confirm').dialog('close');
-                                            $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
-                                            drawChart();
-                                          }, 2000);
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Actividad eliminada con exito</div>');
+                    setTimeout(function() {
+                        dialog.modal('hide');
+                        $('#tarea-form').hide();
+                        $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
+                        drawChart();
+                    }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                 //alert('Entro a fail '+jqXHR.responseText);
-                $("#confirm #myElemento").html('No es posible eliminar la actividad').addClass('alert alert-danger').show();
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la actividad</div>');
+
             });
 
         };
