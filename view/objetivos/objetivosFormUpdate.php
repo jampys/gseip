@@ -363,7 +363,7 @@
 
 
         //eliminar una tarea
-        var dialog;
+        //var dialog;
         $('.grid-tareas').on('click', '.delete', function(){ //ok
 
             var id = $(this).closest('tr').attr('data-id');

@@ -124,7 +124,7 @@
 
 
             var dialog;
-            $(document).on('click', '.delete', function(){
+            $(document).on('click', '#example .delete', function(){ //ok
 
                 var id = $(this).closest('tr').attr('id_objetivo');
                 dialog = bootbox.dialog({
