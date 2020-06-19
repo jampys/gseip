@@ -422,68 +422,60 @@
 
 
         //eliminar un avance
+        //var dialog;
         $('.grid-avances').on('click', '.delete', function(){
-            //alert(v_id_tarea);
-            var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                buttons: [
-                    {
-                        text: "Aceptar",
-                        click: function() {
-                            $.fn.borrarAvance(id);
-                        },
-                        class:"btn btn-danger"
-                    },
-                    {
-                        text: "Cancelar",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"btn btn-default"
-                    }
 
-                ],
-                open: function() {
-                    $(this).html(confirmMessage('¿Desea eliminar el avance?'));
-                },
-                close: function() { $("#confirm #myElemento").empty().removeClass(); }
-            }).dialog('open');
-            return false;
+            var id = $(this).closest('tr').attr('data-id');
+            dialog = bootbox.dialog({
+                message: "<p>¿Desea eliminar el avance?</p>",
+                size: 'small',
+                buttons: {
+                    cancel: {
+                        label: "No"
+                    },
+                    ok: {
+                        label: "Si",
+                        className: 'btn-danger',
+                        callback: function(){
+                            $.fn.borrarAvance(id);
+                            return false; //evita que se cierre automaticamente
+                        }
+                    }
+                }
+            });
+
+
         });
+
 
 
         $.fn.borrarAvance = function(id) {
             //alert(id);
-            //preparo los parametros
             params={};
             params.id_avance = id;
             params.id_objetivo = $('#id_objetivo').val();
-            //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
             params.action = "obj_avances";
             params.operation = "deleteAvance";
-            //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
-                //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm #myElemento").html('Avance eliminado con exito').addClass('alert alert-success').show();
-                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                    //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm #myElemento").hide();
-                                            $('#avance-form').hide();
-                                            $('#confirm').dialog('close');
-                                            $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: v_id_tarea, operation:"refreshGrid"});
-                                            drawChart();
-                                          }, 2000);
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Avance eliminado con exito</div>');
+                    setTimeout(function() {
+                        dialog.modal('hide');
+                        $('#avance-form').hide();
+                        $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: v_id_tarea, operation:"refreshGrid"});
+                        drawChart();
+                    }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                 //alert('Entro a fail '+jqXHR.responseText);
-                $("#confirm #myElemento").html('No es posible eliminar el avance').addClass('alert alert-danger').show();
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el avance</div>');
+
             });
 
         };
+
 
 
         //evento al salir o cerrar con la x el modal de actualizar el parte
