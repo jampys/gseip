@@ -88,9 +88,9 @@
 
 
 
-
+            var dialog;
             $(document).on('click', '.delete', function(){
-                var id = $(this).attr('data-id');
+                /*var id = $(this).attr('data-id');
                 $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
                     buttons: [
                         {
@@ -114,11 +114,35 @@
                     },
                     close: function() { $("#myElemento").empty().removeClass(); }
                 }).dialog('open');
-                return false;
+                return false;*/
+
+                var id = $(this).attr('data-id');
+                dialog = bootbox.dialog({
+                    //title: 'A custom dialog with buttons and callbacks',
+                    message: "<p>¿Desea eliminar la habilidad?</p>",
+                    size: 'small',
+                    centerVertical: true,
+                    buttons: {
+                        cancel: {
+                            label: "No"
+                        },
+                        ok: {
+                            label: "Si",
+                            className: 'btn-danger',
+                            callback: function(){
+                                //dialog.find('.modal-footer').html('<div class="alert alert-success">I was loaded after the dialog was shown!</div>');
+                                $.fn.borrar(id);
+                                return false;
+                            }
+                        }
+                    }
+                });
+
+
             });
 
 
-            $.fn.borrar = function(id) {
+            /*$.fn.borrar = function(id) {
                 //alert(id);
                 //preparo los parametros
                 params={};
@@ -139,6 +163,37 @@
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
                     $("#confirm #myElemento").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
+
+                });
+
+            };*/
+
+
+
+            $.fn.borrar = function(id) {
+                //alert(id);
+                params={};
+                params.id_habilidad = id;
+                params.action = "habilidades";
+                params.operation = "deleteHabilidad";
+
+                $.post('index.php',params,function(data, status, xhr){
+                    if(data >=0){
+                        //$("#confirm #myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
+                        //$('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
+                        //dialog.find('.bootbox-body').html('I was loaded after the dialog was shown!');
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">I was loaded after the dialog was shown!</div>');
+                        setTimeout(function() { //$("#confirm #myElemento").hide();
+                            //$('#confirm').dialog('close');
+                            dialog.modal('hide');
+                            $('#content').load('index.php',{action:"habilidades", operation: "refreshGrid"});
+                        }, 2000);
+                    }
+
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    //$("#confirm #myElemento").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">I was loaded after the dialog was shown!</div>');
 
                 });
 
