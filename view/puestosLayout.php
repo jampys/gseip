@@ -104,9 +104,9 @@
             $.fn.borrar = function(id) {
                 //alert(id);
                 params={};
-                params.id_habilidad = id;
-                params.action = "habilidades";
-                params.operation = "deleteHabilidad";
+                params.id_puesto = id;
+                params.action = "puestos";
+                params.operation = "deletePuesto";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
