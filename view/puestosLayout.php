@@ -76,7 +76,7 @@
             var dialog;
             $(document).on('click', '.delete', function(){
 
-                var id = $(this).attr('data-id');
+                var id = $(this).closest('tr').attr('id_puesto');
                 dialog = bootbox.dialog({
                     message: "<p>¿Desea eliminar el puesto de trabajo?</p>",
                     size: 'small',
