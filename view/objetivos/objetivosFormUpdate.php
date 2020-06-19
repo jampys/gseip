@@ -391,7 +391,7 @@
 
 
 
-        $.fn.borrar = function(id) {
+        $.fn.borrarTarea = function(id) {
             //alert(id);
             params={};
             params.id_tarea = id;
