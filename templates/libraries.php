@@ -92,6 +92,10 @@
     <script type="text/javascript" src="resources/libraries/daterangepicker/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/libraries/daterangepicker/daterangepicker.css" />
 
+    <!-- bootbox -->
+    <script type="text/javascript" src="resources/libraries/bootbox/bootbox.js"></script>
+    <script type="text/javascript" src="resources/libraries/bootbox/bootbox.locales.js"></script>
+
 
     <!-- librerias css propias -->
     <link rel="stylesheet" href="resources/css/dario.css">
