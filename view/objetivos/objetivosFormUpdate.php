@@ -370,7 +370,6 @@
             dialog = bootbox.dialog({
                 message: "<p>¿Desea eliminar la actividad?</p>",
                 size: 'small',
-                centerVertical: true,
                 buttons: {
                     cancel: {
                         label: "No"
