@@ -18,11 +18,6 @@
         });
 
 
-        $('#confirm').dialog({
-            autoOpen: false
-            //modal: true,
-        });
-
 
     });
 
@@ -75,9 +70,6 @@
 
 
 
-<div id="confirm">
-
-</div>
 
 
 
