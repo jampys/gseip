@@ -8,6 +8,9 @@
             /*language: {
                 url: 'dataTables/Spanish.json'
             }*/
+            "fnInitComplete": function () {
+                $(this).show();
+            },
             "stateSave": true,
             columnDefs: [
                 { responsivePriority: 1, targets: 4 }
@@ -35,7 +38,7 @@
 
     <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Apellido</th>
