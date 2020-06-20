@@ -239,3 +239,9 @@ https://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-bo
 .bootbox.modal .modal-footer .alert {
     text-align: left;
 }
+/* bootbox: soluciona problema con el scrollbar al tener 2 modales abiertas simultaneamente */
+.modal{
+    overflow-y: auto;
+}
+
+
