@@ -12,7 +12,7 @@
             "fnInitComplete": function () {
                                 $(this).show();
             },
-            "stateSave": true
+            "stateSave": true,
             //"order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
             columnDefs: [
                 { responsivePriority: 1, targets: 6 }
