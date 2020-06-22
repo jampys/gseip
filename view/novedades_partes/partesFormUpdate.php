@@ -24,7 +24,7 @@
         });
 
 
-        $('#confirm-emp, #confirm-ord, #confirm-con').dialog({
+        $('#confirm-emp, #confirm-con').dialog({
             autoOpen: false
             //modal: true,
         });
