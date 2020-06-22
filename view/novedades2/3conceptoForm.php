@@ -730,9 +730,9 @@
 
 
         //Eliminar parte
-        var dialog;
-        $('#empleado-form').on('click', '#delete', function(){
-
+        //var dialog;
+        $('#empleado-form').on('click', '#delete', function(e){
+            e.preventDefault();
             var id = $('#empleado-form #id_parte').val();
             dialog = bootbox.dialog({
                 message: "<p>¿Desea eliminar el parte?<br/>Se elimiminará el parte completo, incluyendo empleados, conceptos y ordenes.</p>",
