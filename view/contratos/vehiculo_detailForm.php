@@ -13,18 +13,22 @@
         });
 
 
-        /*$('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });*/
-
-        $('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
+        moment.locale('es');
+        $('#fecha_desde, #fecha_hasta').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            drops: 'auto',
+            parentEl: '#myModal',
+            minDate: '01/01/2010',
+            maxDate: '31/12/2029',
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+            picker.element.valid();
         });
 
 
@@ -130,17 +134,27 @@
         </div>
 
 
-        <div class="form-group required">
-            <label class="control-label" for="empleado">Fecha desde / hasta</label>
-            <div class="input-group input-daterange">
-                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato_vehiculo->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
-                <div class="input-group-addon">a</div>
-                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato_vehiculo->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
+        <div class="row">
+            <div class="form-group col-md-6 required">
+                <label for="fecha_desde" class="control-label">Fecha desde</label>
+                <div class="inner-addon right-addon">
+                    <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato_vehiculo->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fecha_hasta" class="control-label">Fecha hasta</label>
+                <div class="inner-addon right-addon">
+                    <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato_vehiculo->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </div>
             </div>
         </div>
 
 
-    <div id="myElem" class="msg" style="display:none"></div>
+    <div id="myElem" class="msg" style="display:none">
+        <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
+    </div>
 
 
 
