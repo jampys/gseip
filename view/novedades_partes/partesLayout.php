@@ -239,7 +239,7 @@
 
             //eliminar parte
             var dialog;
-            $(document).on('click', '#example .delete', function(){
+            $('#content').on('click', '#example .delete', function(){
 
                 var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
