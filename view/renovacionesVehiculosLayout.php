@@ -104,53 +104,10 @@
             $(document).on('click', '#example .delete', function(){
                 alert('Funcionalidad en desarrollo');
                 throw new Error();
-                var id = $(this).closest('tr').attr('data-id');
-                $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                    buttons: [
-                        {
-                            text: "Aceptar",
-                            click: function() {
-                                $.fn.borrar(id);
-                            },
-                            class:"btn btn-danger"
-                        },
-                        {
-                            text: "Cancelar",
-                            click: function() {
-                                $(this).dialog("close");
-                            },
-                            class:"btn btn-default"
-                        }
-
-                    ]
-                }).dialog('open');
                 return false;
             });
 
 
-            $.fn.borrar = function(id) {
-                //alert(id);
-                //preparo los parametros
-                params={};
-                params.id_habilidad_empleado = id;
-                params.action = "habilidad-empleado";
-                params.operation = "deleteHabilidadEmpleado";
-
-                $.post('index.php',params,function(data, status, xhr){
-                    if(data >=0){
-                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
-                        $("#search").trigger("click");
-                    }else{
-                        $("#myElemento").html('Error al eliminar la habilidad').addClass('alert alert-danger').show();
-                    }
-                    setTimeout(function() { $("#myElemento").hide();
-                        $('#confirm').dialog('close');
-                    }, 2000);
-
-                });
-
-            };
 
         });
 

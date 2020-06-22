@@ -26,11 +26,6 @@
         });
 
 
-        $('#confirm').dialog({
-            autoOpen: false
-            //modal: true,
-        });
-
 
         //$(document).on("click", ".pdf", function(){
         $('.table-responsive').on("click", ".pdf", function(){
