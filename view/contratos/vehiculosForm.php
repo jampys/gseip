@@ -12,11 +12,6 @@
         });
 
 
-        $('#confirm-ve').dialog({
-            autoOpen: false
-            //modal: true,
-        });
-
 
         $('#etapas_left_side').on('click', '.edit', function(){ //ok
             //alert('editar vehiculo-contrato');
