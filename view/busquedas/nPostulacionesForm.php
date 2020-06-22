@@ -65,63 +65,54 @@
 
 
 
+        var dialog;
         $('#etapas_left_side').on('click', '.delete', function(){
-            //alert('Funcionalidad en desarrollo');
-            //throw new Error();
-            var id = $(this).closest('tr').attr('data-id');
-            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                buttons: [
-                    {
-                        text: "Aceptar",
-                        click: function() {
-                            $.fn.borrarGv(id);
-                        },
-                        class:"btn btn-danger"
-                    },
-                    {
-                        text: "Cancelar",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"btn btn-default"
-                    }
 
-                ],
-                open: function() {
-                    $(this).html(confirmMessage('¿Desea eliminar la postulación?'));
-                },
-                close: function() { $("#confirm #myElemento").empty().removeClass(); }
-            }).dialog('open');
-            return false;
+            var id = $(this).closest('tr').attr('data-id');
+            dialog = bootbox.dialog({
+                message: "<p>¿Desea eliminar la postulación?</p>",
+                size: 'small',
+                buttons: {
+                    cancel: {
+                        label: "No"
+                    },
+                    ok: {
+                        label: "Si",
+                        className: 'btn-danger',
+                        callback: function(){
+                            $.fn.borrarGv(id);
+                            return false; //evita que se cierre automaticamente
+                        }
+                    }
+                }
+            });
+
+
         });
+
 
 
         $.fn.borrarGv = function(id) {
             //alert(id);
-            //preparo los parametros
             params={};
             params.id_postulacion = id;
             params.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
             params.action = "postulaciones2";
             params.operation = "deletePostulacion";
-            //alert(params.id_grupo);
-            //throw new Error();
 
             $.post('index.php',params,function(data, status, xhr){
-                //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm #myElemento").html('Postulación eliminada con exito').addClass('alert alert-success').show();
-                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                    //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm #myElemento").hide();
-                                            $('#chalampa').hide();
-                                            $('#confirm').dialog('close');
-                                            $('#etapas_left_side .grid').load('index.php',{action:"postulaciones2", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
-                                          }, 2000);
-                }else{
-                    $("#confirm #myElemento").html('No es posible eliminar la postulación').addClass('alert alert-danger').show();
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Postulación eliminada con exito</div>');
+                    setTimeout(function() {
+                        dialog.modal('hide');
+                        $('#chalampa').hide();
+                        $('#etapas_left_side .grid').load('index.php',{action:"postulaciones2", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
+                    }, 2000);
                 }
 
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la postulación</div>');
 
             });
 
