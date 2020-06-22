@@ -256,39 +256,35 @@
 
 
         //eliminar un suceso
+        //var dialog;
         $('.grid-sucesos').on('click', '.delete', function(){
-            //alert('Funcionalidad en desarrollo');
-            //throw new Error();
-            var id = $(this).closest('tr').attr('data-id');
-            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                buttons: [
-                    {
-                        text: "Aceptar",
-                        click: function() {
-                            $.fn.borrarS(id);
-                        },
-                        class:"btn btn-danger"
-                    },
-                    {
-                        text: "Cancelar",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"btn btn-default"
-                    }
 
-                ],
-                open: function() {
-                    $(this).html(confirmMessage('¿Desea eliminar el suceso?'));
+            var id = $(this).closest('tr').attr('data-id');
+            dialog = bootbox.dialog({
+                message: "<p>¿Desea eliminar el suceso?</p>",
+                size: 'small',
+                buttons: {
+                    cancel: {
+                        label: "No"
+                    },
+                    ok: {
+                        label: "Si",
+                        className: 'btn-danger',
+                        callback: function(){
+                            $.fn.borrarS(id);
+                            return false; //evita que se cierre automaticamente
+                        }
+                    }
                 }
-            }).dialog('open');
-            return false;
+            });
+
+
         });
 
 
-        $.fn.borrarS = function(id) { //ok
+
+        $.fn.borrarS = function(id) {
             //alert(id);
-            //preparo los parametros
             params={};
             params.id_suceso = id;
             params.action = "sucesos";
@@ -296,20 +292,18 @@
 
             $.post('index.php',params,function(data, status, xhr){
                 if(data >=0){
-                    $("#myElemento").html('Suceso eliminado con exito').addClass('alert alert-success').show();
-                    //$('#content').load('index.php',{action:"habilidad-empleado", operation: "buscar", cuil: $("#cuil").val(), id_habilidad: $("#id_habilidad").val()});
-                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                    setTimeout(function() { $("#confirm #myElemento").hide();
-                                            //$('#orden-form').hide();
-                                            $('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: $('#id_empleado').val(), id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
-                                            $('#confirm').dialog('close');
-                                            $('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados", fecha: $('#add_fecha').val(), id_contrato: $('#id_contrato').val()});
-                                         }, 2000);
-                    }
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Suceso eliminado con exito</div>');
+                    setTimeout(function() {
+                        dialog.modal('hide');
+                        $('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: $('#id_empleado').val(), id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
+                        $('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados", fecha: $('#add_fecha').val(), id_contrato: $('#id_contrato').val()});
+                    }, 2000);
+                }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                 //alert('Entro a fail '+jqXHR.responseText);
-                $("#myElemento").html('No es posible eliminar el suceso').addClass('alert alert-danger').show();
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el suceso</div>');
+
             });
 
         };
