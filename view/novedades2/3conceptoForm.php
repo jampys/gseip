@@ -587,9 +587,8 @@
         $('#left_side').on('change', '#id_evento', function(){
             //alert('evento');
 
-            //var id = $(this).closest('tr').attr('data-id');
-            dialog = bootbox.dialog({
-                message: "<p>¿El dia se cuenta como trabajado?</p>",
+            bootbox.dialog({
+                message: "<p>¿Cuenta el día como trabajado?</p>",
                 size: 'small',
                 buttons: {
                     cancel: {
