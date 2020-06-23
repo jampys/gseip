@@ -12,18 +12,19 @@
         });
 
 
-        /*$('.input-daterange').datepicker({
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });*/
-
-        $('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
+        moment.locale('es');
+        $('#fecha_baja').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            parentEl: '#myModal',
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+            picker.element.valid();
         });
 
 
@@ -141,14 +142,11 @@
 
                     <div class="form-group">
                         <label class="control-label" for="fecha">Fecha baja</label>
-                        <div class="input-group date">
-                            <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->grupo->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
+                        <div class="inner-addon right-addon">
+                            <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->grupo->getFechaBaja() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <i class="glyphicon glyphicon-calendar"></i>
                         </div>
                     </div>
-
 
 
 

@@ -17,27 +17,6 @@
         });
 
 
-        $('#confirm').dialog({
-            autoOpen: false,
-            //modal: true,
-            buttons: [
-                        {
-                        text: "Aceptar",
-                        click: function() {
-                            $.fn.borrar($('#confirm').data('id'));
-                        },
-                        class:"ui-button-danger"
-                    },
-                    {
-                        text: "Cancelar",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"ui-button-danger"
-                    }
-
-                    ]
-        });
 
 
     });

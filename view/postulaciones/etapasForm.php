@@ -12,12 +12,6 @@
         });
 
 
-        $('#confirm').dialog({
-            autoOpen: false
-            //modal: true,
-        });
-
-
         $('#etapas_left_side').on('click', '.edit', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
@@ -119,62 +113,54 @@
 
 
 
-        //$(document).on('click', '#example .delete', function(){
+        var dialog;
         $('#etapas_left_side').on('click', '.delete', function(){
-            //alert('Funcionalidad en desarrollo');
-            //throw new Error();
-            var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                buttons: [
-                    {
-                        text: "Aceptar",
-                        click: function() {
-                            $.fn.borrar(id);
-                        },
-                        class:"btn btn-danger"
-                    },
-                    {
-                        text: "Cancelar",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"btn btn-default"
-                    }
 
-                ],
-                open: function() {
-                    $(this).html(confirmMessage('¿Desea eliminar la etapa?'));
+            var id = $(this).closest('tr').attr('data-id');
+            dialog = bootbox.dialog({
+                message: "<p>¿Desea eliminar la etapa?</p>",
+                size: 'small',
+                buttons: {
+                    cancel: {
+                        label: "No"
+                    },
+                    ok: {
+                        label: "Si",
+                        className: 'btn-danger',
+                        callback: function(){
+                            $.fn.borrar(id);
+                            return false; //evita que se cierre automaticamente
+                        }
+                    }
                 }
-            }).dialog('open');
-            return false;
+            });
+
+
         });
+
 
 
         $.fn.borrar = function(id) {
             //alert(id);
-            //preparo los parametros
             params={};
             params.id_etapa = id;
             params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
             params.action = "etapas";
             params.operation = "deleteEtapa";
-            //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
-                //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm #myElemento").html('Etapa eliminada con exito').addClass('alert alert-success').show();
-                    //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm #myElemento").hide();
-                                            $('#etapa-form').hide();
-                                            $('#confirm').dialog('close');
-                                            $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
-                                          }, 2000);
-                }else{
-                    $("#myElemento").html('Error al eliminar la etapa').addClass('alert alert-danger').show();
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Etapa eliminada con exito</div>');
+                    setTimeout(function() {
+                        dialog.modal('hide');
+                        $('#etapa-form').hide();
+                        $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                    }, 2000);
                 }
 
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la etapa</div>');
 
             });
 

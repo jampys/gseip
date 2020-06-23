@@ -238,40 +238,35 @@
 
 
             //eliminar parte
-            $(document).on('click', '#example .delete', function(){
-                //alert('Funcionalidad en desarrollo');
-                //throw new Error();
-                var id = $(this).closest('tr').attr('data-id');
-                $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                    buttons: [
-                        {
-                            text: "Aceptar",
-                            click: function() {
-                                $.fn.borrar(id);
-                            },
-                            class:"btn btn-danger"
-                        },
-                        {
-                            text: "Cancelar",
-                            click: function() {
-                                $(this).dialog("close");
-                            },
-                            class:"btn btn-default"
-                        }
+            var dialog;
+            $('#content').on('click', '#example .delete', function(){
 
-                    ],
-                    open: function() {
-                        $(this).html(confirmMessage('¿Desea eliminar el parte? '+
-                                                    'Se elimiminará el parte completo, incluyendo empleados, conceptos y ordenes.'));
+                var id = $(this).closest('tr').attr('data-id');
+                dialog = bootbox.dialog({
+                    message: "<p>¿Desea eliminar el parte?<br/>Se elimiminará el parte completo, incluyendo empleados, conceptos y ordenes.</p>",
+                    size: 'small',
+                    buttons: {
+                        cancel: {
+                            label: "No"
+                        },
+                        ok: {
+                            label: "Si",
+                            className: 'btn-danger',
+                            callback: function(){
+                                $.fn.borrar(id);
+                                return false; //evita que se cierre automaticamente
+                            }
+                        }
                     }
-                }).dialog('open');
-                return false;
+                });
+
+
             });
+
 
 
             $.fn.borrar = function(id) {
                 //alert(id);
-                //preparo los parametros
                 params={};
                 params.id_parte = id;
                 params.action = "partes";
@@ -279,20 +274,18 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Parte eliminado con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"partes", operation: "refreshGrid"});
-                        $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                        setTimeout(function() { $("#myElemento").hide();
-                                                $('#confirm').dialog('close');
-                                                $("#search").trigger("click");
-                                              }, 2000);
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Parte eliminado con exito</div>');
+                        setTimeout(function() {
+                            dialog.modal('hide');
+                            $("#search").trigger("click");
+                        }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElemento").html('No es posible eliminar el parte').addClass('alert alert-danger').show();
-                });
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el parte</div>');
 
+                });
 
             };
 

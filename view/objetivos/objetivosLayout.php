@@ -123,40 +123,36 @@
 
 
 
+            var dialog;
             $(document).on('click', '#example .delete', function(){ //ok
-                //alert('Funcionalidad en desarrollo');
-                //throw new Error();
-                var id = $(this).closest('tr').attr('id_objetivo');
-                $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                    buttons: [
-                        {
-                            text: "Aceptar",
-                            click: function() {
-                                $.fn.borrar(id);
-                            },
-                            class:"btn btn-danger"
-                        },
-                        {
-                            text: "Cancelar",
-                            click: function() {
-                                $(this).dialog("close");
-                            },
-                            class:"btn btn-default"
-                        }
 
-                    ],
-                    open: function() {
-                        $(this).html(confirmMessage('¿Desea eliminar el objetivo?'));
-                    },
-                    close: function() { $("#myElemento").empty().removeClass(); }
-                }).dialog('open');
-                return false;
+                var id = $(this).closest('tr').attr('id_objetivo');
+                dialog = bootbox.dialog({
+                    message: "<p>¿Desea eliminar el objetivo?</p>",
+                    size: 'small',
+                    centerVertical: true,
+                    buttons: {
+                        cancel: {
+                            label: "No"
+                        },
+                        ok: {
+                            label: "Si",
+                            className: 'btn-danger',
+                            callback: function(){
+                                $.fn.borrar(id);
+                                return false; //evita que se cierre automaticamente
+                            }
+                        }
+                    }
+                });
+
+
             });
 
 
-            $.fn.borrar = function(id) { //ok
+
+            $.fn.borrar = function(id) {
                 //alert(id);
-                //preparo los parametros
                 params={};
                 params.id_objetivo = id;
                 params.action = "obj_objetivos";
@@ -164,20 +160,22 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#confirm #myElemento").html('Objetivo eliminado con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"objetivos", operation: "refreshGrid"});
-                        setTimeout(function() { $("#confirm #myElemento").hide();
-                                                $('#confirm').dialog('close');
-                                                $("#search").trigger("click");
-                                              }, 2000);
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Objetivo eliminado con exito</div>');
+                        setTimeout(function() {
+                            dialog.modal('hide');
+                            $("#search").trigger("click");
+                        }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#confirm #myElemento").html('No es posible eliminar el objetivo').addClass('alert alert-danger').show();
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el objetivo</div>');
+
                 });
 
             };
+
+
 
         });
 

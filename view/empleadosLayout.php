@@ -23,7 +23,7 @@
                 params.action = "empleados";
                 params.operation = "editEmpleado";
                 $('#content').load('index.php', params,function(){
-                    //$('#popupbox').dialog({title:"Editar cliente"}).dialog('open');
+
                 })
 
             });
@@ -54,7 +54,7 @@
                 params.action = "empleados";
                 params.operation="newEmpleado";
                 $('#content').load('index.php', params,function(){
-                   //$('#popupbox').dialog({title:"Nuevo empleado"}).dialog('open');
+
                 })
             });
 
@@ -92,7 +92,6 @@
                             $(".panel-footer button").prop("disabled", true); //deshabilito botones
                             $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
                             setTimeout(function() { $("#myElem").hide();
-                                                    //$('#popupbox').dialog('close');
                                                     $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
                                                   }, 2000);
 
@@ -110,7 +109,6 @@
 
 
             $(document).on('click', '#cancel',function(){
-                //$('#popupbox').dialog('close');
                 $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
             });
 

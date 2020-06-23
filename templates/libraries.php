@@ -9,14 +9,6 @@
     <!--<script src="dataTables/js/jquery-1.12.4.js" type="text/javascript"></script>-->
     <script src="resources/libraries/jquery/jquery-3.3.1.js" type="text/javascript"></script>
 
-    <!-- jquery ui-->
-    <link rel="stylesheet" href="resources/libraries/jquery-ui/jquery-ui.css">
-    <script src="resources/libraries/jquery-ui/jquery-ui.js"></script>
-
-    <!-- jquery ui bootstrap -->
-    <link rel="stylesheet" href="resources/libraries/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css">
-
-
     <!-- incluyo la libreria jQuery validation -->
     <script type="text/javascript" src="resources/libraries/validation/jquery.validate.js"></script>
     <script type="text/javascript" src="resources/libraries/validation/additional-methods.js"></script>
@@ -36,11 +28,6 @@
     <!-- bootstrap -->
     <link href="resources/libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="resources/libraries/bootstrap/js/bootstrap.min.js"></script>
-
-    <!--<script type="text/javascript">
-        var datepicker = $.fn.datepicker.noConflict(); // return $.fn.datepicker to previously assigned value
-        $.fn.bootstrapDP = datepicker;                 // give $().bootstrapDP the bootstrap-datepicker functionality
-    </script>-->
 
 
     <!-- bootstrap-select-->
@@ -91,6 +78,10 @@
     <script type="text/javascript" src="resources/libraries/daterangepicker/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="resources/libraries/daterangepicker/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/libraries/daterangepicker/daterangepicker.css" />
+
+    <!-- bootbox -->
+    <script type="text/javascript" src="resources/libraries/bootbox/bootbox.js"></script>
+    <script type="text/javascript" src="resources/libraries/bootbox/bootbox.locales.js"></script>
 
 
     <!-- librerias css propias -->

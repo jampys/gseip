@@ -23,11 +23,6 @@
         });
 
 
-        $('#confirm').dialog({
-            autoOpen: false
-            //modal: true,
-        });
-
 
 
     });

@@ -21,11 +21,6 @@
         });
 
 
-        $('#confirm').dialog({
-            autoOpen: false
-            //modal: true,
-        });
-
 
         $('#content').on("click", ".pdf", function(){
             alert('Funcionalidad en contrucción');

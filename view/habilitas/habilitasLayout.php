@@ -12,11 +12,6 @@
 
         $(document).ready(function(){
 
-            /*$('#popupbox').dialog({
-                autoOpen:false
-            });*/
-
-
             //añado la posibilidad de editar al presionar sobre edit
             $(document).on('click', '.edit', function(){
                 //this = es el elemento sobre el que se hizo click en este caso el link
@@ -28,7 +23,7 @@
                 params.action = "empleados";
                 params.operation = "editEmpleado";
                 $('#content').load('index.php', params,function(){
-                    //$('#popupbox').dialog({title:"Editar cliente"}).dialog('open');
+
                 })
 
             });
@@ -59,7 +54,7 @@
                 params.action = "empleados";
                 params.operation="newEmpleado";
                 $('#content').load('index.php', params,function(){
-                   //$('#popupbox').dialog({title:"Nuevo empleado"}).dialog('open');
+
                 })
             });
 
@@ -97,7 +92,6 @@
                             $(".panel-footer button").prop("disabled", true); //deshabilito botones
                             $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
                             setTimeout(function() { $("#myElem").hide();
-                                                    //$('#popupbox').dialog('close');
                                                     $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
                                                   }, 2000);
 
@@ -115,7 +109,6 @@
 
 
             $(document).on('click', '#cancel',function(){
-                //$('#popupbox').dialog('close');
                 $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
             });
 
@@ -125,34 +118,6 @@
 
 
 
-            $(document).on('click', '.delete', function(){
-                //$('#confirm').dialog('open');
-                $("#confirm").data('id', $(this).attr('data-id')).dialog("open");
-                return false;
-            });
-
-
-            $.fn.borrar = function(id) { //No existe la funcionalidad para eliminar empleados
-                //alert(id);
-                //preparo los parametros
-                params={};
-                params.id=id;
-                params.action = "clientes";
-                params.operation = "deleteClient";
-
-                $.post('index.php',params,function(data, status, xhr){
-                    if(data >=0){
-                        $("#myElemento").html('Cliente eliminado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"clientes", operation: "refreshGrid"});
-                    }else{
-                        $("#myElemento").html('Error al eliminar el cliente').addClass('alert alert-danger').show();
-                    }
-                    setTimeout(function() { $("#myElemento").hide();
-                        $('#confirm').dialog('close');}, 2000);
-
-                });
-
-            };
 
             //Al presionar el boton contratos, para mostrar los contratos del empleado
             $(document).on('click', '.contratos', function(){ //ok

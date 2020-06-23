@@ -22,11 +22,6 @@
         });
 
 
-        $('#confirm').dialog({
-            autoOpen: false
-            //modal: true,
-        });
-
 
         //$(document).on("click", ".pdf", function(){
         $('.table-responsive').on("click", ".pdf", function(){
@@ -142,16 +137,5 @@
 </div>
 
 <!--<div class="col-md-1"></div>-->
-
-
-
-<div id="confirm" style="display: none">
-</div>
-
-
-
-
-
-
 
 

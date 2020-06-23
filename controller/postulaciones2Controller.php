@@ -146,12 +146,12 @@ switch ($operation)
 
     case 'deletePostulacion': //ok
         $view->postulacion = new Postulacion($_POST['id_postulacion']);
-        try{
+        /*try{
             $rta = $view->postulacion->deletePostulacion();
         }catch (PDOException $e){
             $rta = -1;
-        }
-
+        }*/
+        $rta = $view->postulacion->deletePostulacion();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;

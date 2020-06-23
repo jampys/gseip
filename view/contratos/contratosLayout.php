@@ -12,10 +12,6 @@
 
         $(document).ready(function(){
 
-            $('#popupbox').dialog({
-                autoOpen:false
-            });
-
 
             $('#content').on('click', '.edit', function(){ //ok
                 var id=$(this).attr('data-id');
