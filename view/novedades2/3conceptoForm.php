@@ -633,6 +633,15 @@
                 bootbox.prompt({
                     title: "Ingrese apellido y nombre a quien reemplaza",
                     size: 'small',
+                    buttons: {
+                        cancel: {
+                            label: "Cancelar"
+                        },
+                        confirm: {
+                            label: "Aceptar",
+                            className: 'btn-primary'
+                        }
+                    },
                     callback: function(result){
                         if(result){
                             answer = result;
