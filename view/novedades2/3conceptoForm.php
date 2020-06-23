@@ -587,31 +587,26 @@
         $('#left_side').on('change', '#id_evento', function(){
             //alert('evento');
 
-            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                autoOpen : false,
-                resizable : false,
-                modal: true,
-                buttons: [
-                    {
-                        text: "Si",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"btn btn-primary"
+            //var id = $(this).closest('tr').attr('data-id');
+            dialog = bootbox.dialog({
+                message: "<p>¿El dia se cuenta como trabajado?</p>",
+                size: 'small',
+                buttons: {
+                    cancel: {
+                        label: "No",
+                        callback: function(){
+                            $("#trabajado").prop("checked", false);
+                        }
                     },
-                    {
-                        text: "No",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"btn btn-default"
+                    ok: {
+                        label: "Si",
+                        className: 'btn-primary',
+                        callback: function(){
+                            $("#trabajado").prop("checked", true);
+                        }
                     }
-
-                ],
-                open: function() {
-                    $(this).html(confirmMessage('¿El día se cuenta como trabajado?'));
                 }
-            }).dialog('open');
+            });
             return false;
 
         });
