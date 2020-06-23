@@ -77,59 +77,58 @@
 
 
 
+            var dialog;
             $('#content').on('click', '.delete', function(){
-                var id = $(this).closest('tr').attr('data-id');
-                $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                    buttons: [
-                        {
-                            text: "Aceptar",
-                            click: function() {
-                                $.fn.borrar(id);
-                            },
-                            class:"btn btn-danger"
-                        },
-                        {
-                            text: "Cancelar",
-                            click: function() {
-                                $(this).dialog("close");
-                            },
-                            class:"btn btn-default"
-                        }
 
-                    ],
-                    open: function() {
-                        $(this).html(confirmMessage('¿Desea eliminar el usuario?'));
-                    },
-                    close: function() { $("#myElemento").empty().removeClass(); }
-                }).dialog('open');
-                return false;
+                var id = $(this).closest('tr').attr('data-id');
+                dialog = bootbox.dialog({
+                    message: "<p>¿Desea eliminar el usuario?</p>",
+                    size: 'small',
+                    buttons: {
+                        cancel: {
+                            label: "No"
+                        },
+                        ok: {
+                            label: "Si",
+                            className: 'btn-danger',
+                            callback: function(){
+                                $.fn.borrar(id);
+                                return false; //evita que se cierre automaticamente
+                            }
+                        }
+                    }
+                });
+
+
             });
 
 
-            $.fn.borrar = function(id) { //ok
+
+            $.fn.borrar = function(id) {
                 //alert(id);
-                //preparo los parametros
                 params={};
                 params.id_user = id;
                 params.action = "sec_users";
                 params.operation = "deleteUsuario";
 
                 $.post('index.php',params,function(data, status, xhr){
-                    //alert(xhr.responseText);
                     if(data >=0){
-                        $("#myElemento").html('Usuario eliminado con exito').addClass('alert alert-success').show();
-                        $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                        setTimeout(function() { $("#myElemento").hide();
-                                                $('#confirm').dialog('close');
-                                                $('#content').load('index.php',{action:"sec_users", operation: "refreshGrid"});
-                                              }, 2000);
-                    }else{
-                        $("#myElemento").html('No es posible eliminar el usuario').addClass('alert alert-danger').show();
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Usuario eliminado con exito</div>');
+                        setTimeout(function() {
+                            dialog.modal('hide');
+                            $('#content').load('index.php',{action:"sec_users", operation: "refreshGrid"});
+                        }, 2000);
                     }
 
-                }, 'json');
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el usuario</div>');
+
+                });
 
             };
+
+
 
         });
 

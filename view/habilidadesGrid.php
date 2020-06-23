@@ -9,16 +9,14 @@
                 url: 'dataTables/Spanish.json'
             }*/
             "stateSave": true,
+            "fnInitComplete": function () {
+                $(this).show();
+            },
             columnDefs: [
                 { responsivePriority: 1, targets: 2 }
             ]
         });
 
-
-        $('#confirm').dialog({
-            autoOpen: false
-            //modal: true,
-        });
 
 
     });
@@ -41,7 +39,7 @@
 
     <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
                 <th>Código</th>
@@ -72,9 +70,6 @@
 
 
 
-<div id="confirm">
-
-</div>
 
 
 

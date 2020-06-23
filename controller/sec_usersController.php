@@ -70,10 +70,12 @@ switch ($operation) {
             sQuery::dpCommit();
         }catch (PDOException $e){ //error en el query
             sQuery::dpRollback();
-            $rta = -1;
+            //$rta = -1;
+            throw new Exception('Error en el query.'); //para que entre en el .fail de la peticion ajax
         }catch(Exception $e){ //error en el unlink
             sQuery::dpRollback();
-            $rta = -1;
+            //$rta = -1;
+            throw new Exception('Error en el unlink.'); //para que entre en el .fail de la peticion ajax
         }
 
         print_r(json_encode($rta));

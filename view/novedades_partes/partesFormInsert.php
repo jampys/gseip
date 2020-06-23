@@ -103,7 +103,6 @@
 
 
         $('#myModal').on('click', '#cancel, #back',function(){ //ok
-            //$('#popupbox').dialog('close');
             //$('#content').load('index.php',{action:"partes", operation:"refreshGrid"});
             $("#search").trigger("click");
         });

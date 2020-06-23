@@ -141,39 +141,36 @@
 
 
 
+            var dialog;
             $(document).on('click', '#example .delete', function(){ //ok
+
                 var id = $(this).closest('tr').attr('data-id');
-                $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                    buttons: [
-                        {
-                            text: "Aceptar",
-                            click: function() {
-                                $.fn.borrar(id);
-                            },
-                            class:"btn btn-danger"
+                dialog = bootbox.dialog({
+                    message: "<p>¿Desea eliminar la habillidad del puesto?</p>",
+                    size: 'small',
+                    centerVertical: true,
+                    buttons: {
+                        cancel: {
+                            label: "No"
                         },
-                        {
-                            text: "Cancelar",
-                            click: function() {
-                                $(this).dialog("close");
-                            },
-                            class:"btn btn-default"
+                        ok: {
+                            label: "Si",
+                            className: 'btn-danger',
+                            callback: function(){
+                                $.fn.borrar(id);
+                                return false; //evita que se cierre automaticamente
+                            }
                         }
+                    }
+                });
 
-                    ],
 
-                    open: function() {
-                    $(this).html(confirmMessage('¿Desea eliminar la habillidad del puesto?'));
-                    },
-                    close: function() { $("#myElemento").empty().removeClass(); }
-                }).dialog('open');
-                return false;
             });
+
 
 
             $.fn.borrar = function(id) {
                 //alert(id);
-                //preparo los parametros
                 params={};
                 params.id_habilidad_puesto = id;
                 params.action = "habilidad-puesto";
@@ -181,22 +178,22 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        $("#myElemento").html('Habilidad eliminada con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"habilidad-puesto", operation: "buscar", id_puesto: $("#id_puesto").val(), id_habilidad: $("#id_habilidad").val()});
-
-                        $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                        setTimeout(function() { $("#myElemento").hide();
-                                                $('#confirm').dialog('close');
-                                                $("#search").trigger("click");
-                                              }, 2000);
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Habilidad eliminada con exito</div>');
+                        setTimeout(function() {
+                            dialog.modal('hide');
+                            $("#search").trigger("click");
+                        }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElemento").html('No es posible eliminar la habilidad').addClass('alert alert-danger').show();
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la habilidad</div>');
+
                 });
 
             };
+
+
 
         });
 

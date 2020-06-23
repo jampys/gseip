@@ -12,12 +12,6 @@
         });
 
 
-        $('#confirm').dialog({
-            autoOpen: false
-            //modal: true,
-        });
-
-
         $('#etapas_left_side').on('click', '.edit', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
@@ -108,61 +102,54 @@
 
 
 
+        var dialog;
         $('#etapas_left_side').on('click', '.delete', function(){
-            //alert('Funcionalidad en desarrollo');
-            //throw new Error();
-            var id = $(this).closest('tr').attr('data-id');
-            $('#confirm').dialog({ //se agregan botones al confirm dialog y se abre
-                buttons: [
-                    {
-                        text: "Aceptar",
-                        click: function() {
-                            $.fn.borrarGv(id);
-                        },
-                        class:"btn btn-danger"
-                    },
-                    {
-                        text: "Cancelar",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"btn btn-default"
-                    }
 
-                ],
-                open: function() {
-                    $(this).html(confirmMessage('¿Desea eliminar el vehículo del grupo?'));
+            var id = $(this).closest('tr').attr('data-id');
+            dialog = bootbox.dialog({
+                message: "<p>¿Desea eliminar el vehículo del grupo?</p>",
+                size: 'small',
+                buttons: {
+                    cancel: {
+                        label: "No"
+                    },
+                    ok: {
+                        label: "Si",
+                        className: 'btn-danger',
+                        callback: function(){
+                            $.fn.borrarGv(id);
+                            return false; //evita que se cierre automaticamente
+                        }
+                    }
                 }
-            }).dialog('open');
-            return false;
+            });
+
+
         });
 
 
-        $.fn.borrarGv = function(id) { //ok
+
+        $.fn.borrarGv = function(id) {
             //alert(id);
-            //preparo los parametros
             params={};
             params.id_grupo_vehiculo = id;
             params.id_grupo = $('#etapas_left_side #add').attr('id_grupo');
             params.action = "vto_grupo-vehiculo";
             params.operation = "deleteVehiculo";
-            //alert(params.id_grupo);
-            //throw new Error();
 
             $.post('index.php',params,function(data, status, xhr){
-                //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm #myElemento").html('Vehículo eliminado con exito').addClass('alert alert-success').show();
-                    $('#etapas_left_side .grid').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
-                    //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm #myElemento").hide();
-                                            $('#grupo-vehiculo-form').hide();
-                                            $('#confirm').dialog('close');
-                                          }, 2000);
-                }else{
-                    $("#myElemento").html('Error al eliminar el vehículo').addClass('alert alert-danger').show();
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Vehículo eliminado con exito</div>');
+                    setTimeout(function() {
+                        dialog.modal('hide');
+                        $('#grupo-vehiculo-form').hide();
+                        $('#etapas_left_side .grid').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
+                    }, 2000);
                 }
 
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el vehículo</div>');
 
             });
 

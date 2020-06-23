@@ -229,4 +229,19 @@ https://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-bo
 .right-addon input { padding-right: 30px; }
 /* ------------------------------------------------------------------------*/
 
+/* bootbox: central verticalmente los bootbox */
+.bootbox.modal {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+/* bootbox: muestra el mensaje final alineado a la izquierda */
+.bootbox.modal .modal-footer .alert {
+    text-align: left;
+}
+/* bootbox: soluciona problema con el scrollbar al tener 2 modales abiertas simultaneamente */
+.modal{
+    overflow-y: auto;
+}
+
 

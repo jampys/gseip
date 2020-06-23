@@ -241,15 +241,6 @@
 
 
 
-
-
-
-        $('#confirm').dialog({
-            autoOpen: false
-            //modal: true,
-        });
-
-
     });
 
 </script>
@@ -324,17 +315,4 @@
 </div>
 
 <!--<div class="col-md-1"></div>-->
-
-
-
-<div id="confirm">
-
-</div>
-
-
-
-
-
-
-
 

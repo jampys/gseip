@@ -184,7 +184,6 @@
 
 
         $('#contrato').on('click', '#cancel',function(){ //ok
-            //$('#popupbox').dialog('close');
             $('#content').load('index.php',{action:"contratos", operation:"refreshGrid"});
         });
 

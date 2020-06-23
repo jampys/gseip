@@ -24,11 +24,6 @@
         });
 
 
-        $('#confirm-emp, #confirm-ord, #confirm-con').dialog({
-            autoOpen: false
-            //modal: true,
-        });
-
         //para editar empleado de un parte
         $('.grid-empleados').on('click', '.edit', function(){ //ok
             //alert('editar empleado del parte');
@@ -217,61 +212,55 @@
 
 
         //eliminar empleado del parte
-        $('.grid-empleados').on('click', '.delete', function(){ //ok
-            //alert('Funcionalidad en desarrollo');
-            //throw new Error();
-            var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            $('#confirm-emp').dialog({ //se agregan botones al confirm dialog y se abre
-                buttons: [
-                    {
-                        text: "Aceptar",
-                        click: function() {
-                            $.fn.borrarE(id);
-                        },
-                        class:"btn btn-danger"
-                    },
-                    {
-                        text: "Cancelar",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"btn btn-default"
-                    }
+        //var dialog;
+        $('.grid-empleados').on('click', '.delete', function(){
 
-                ]
-            }).dialog('open');
-            return false;
+            var id = $(this).closest('tr').attr('data-id');
+            dialog = bootbox.dialog({
+                message: "<p>¿Desea eliminar el empleado?</p>",
+                size: 'small',
+                buttons: {
+                    cancel: {
+                        label: "No"
+                    },
+                    ok: {
+                        label: "Si",
+                        className: 'btn-danger',
+                        callback: function(){
+                            $.fn.borrarE(id);
+                            return false; //evita que se cierre automaticamente
+                        }
+                    }
+                }
+            });
+
+
         });
+
 
 
         $.fn.borrarE = function(id) {
             //alert(id);
-            //preparo los parametros
             params={};
             params.id_parte_empleado = id;
             params.id_parte = $('#id_parte').val();
-            //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
             params.action = "parte-empleado";
             params.operation = "deleteEmpleado";
-            //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
-                //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-emp #myElemento").html('Empleado eliminado con exito').addClass('alert alert-success').show();
-                    $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
-                    $('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
-                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                    //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-emp #myElemento").hide();
-                                            $('#empleado-form').hide();
-                                            $('#confirm-emp').dialog('close');
-                                          }, 2000);
-                }else{
-                    $("#confirm-emp #myElemento").html('Error al eliminar el empleado').addClass('alert alert-danger').show();
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Empleado eliminado con exito</div>');
+                    setTimeout(function() {
+                        dialog.modal('hide');
+                        $('#left_side .grid-empleados').load('index.php',{action:"parte-empleado", id_parte: params.id_parte, operation:"refreshGrid"});
+                        $('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
+                        $('#empleado-form').hide();
+                    }, 2000);
                 }
 
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el empleado</div>');
 
             });
 
@@ -282,60 +271,54 @@
 
 
         //eliminar orden del parte
-        $('.grid-ordenes').on('click', '.delete', function(){ //ok
-            //alert('Funcionalidad en desarrollo');
-            //throw new Error();
-            var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            $('#confirm-ord').dialog({ //se agregan botones al confirm dialog y se abre
-                buttons: [
-                    {
-                        text: "Aceptar",
-                        click: function() {
-                            $.fn.borrarO(id);
-                        },
-                        class:"btn btn-danger"
-                    },
-                    {
-                        text: "Cancelar",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"btn btn-default"
-                    }
+        var dialog;
+        $('.grid-ordenes').on('click', '.delete', function(){
 
-                ]
-            }).dialog('open');
-            return false;
+            var id = $(this).closest('tr').attr('data-id');
+            dialog = bootbox.dialog({
+                message: "<p>¿Desea eliminar la orden?</p>",
+                size: 'small',
+                buttons: {
+                    cancel: {
+                        label: "No"
+                    },
+                    ok: {
+                        label: "Si",
+                        className: 'btn-danger',
+                        callback: function(){
+                            $.fn.borrarO(id);
+                            return false; //evita que se cierre automaticamente
+                        }
+                    }
+                }
+            });
+
+
         });
+
 
 
         $.fn.borrarO = function(id) {
             //alert(id);
-            //preparo los parametros
             params={};
             params.id_parte_orden = id;
             params.id_parte = $('#id_parte').val();
-            //params.id_postulacion = $('#empleados_left_side #add').attr('id_postulacion');
             params.action = "parte-orden";
             params.operation = "deleteOrden";
-            //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
-                //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-ord #myElemento").html('Orden eliminada con exito').addClass('alert alert-success').show();
-                    $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
-                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                    //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-ord #myElemento").hide();
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Orden eliminada con exito</div>');
+                    setTimeout(function() {
+                        dialog.modal('hide');
+                        $('#left_side .grid-ordenes').load('index.php',{action:"parte-orden", id_parte: params.id_parte, operation:"refreshGrid"});
                         $('#orden-form').hide();
-                        $('#confirm-ord').dialog('close');
                     }, 2000);
-                }else{
-                    $("#confirm-ord #myElemento").html('Error al eliminar la orden').addClass('alert alert-danger').show();
                 }
 
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la orden</div>');
 
             });
 
@@ -346,59 +329,54 @@
 
 
         //eliminar concepto del parte
-        $('.grid-conceptos').on('click', '.delete', function(){ //ok
-            //alert('Funcionalidad en desarrollo');
-            //throw new Error();
-            var id = $(this).closest('tr').attr('data-id');
-            //var id = $(this).attr('data-id');
-            $('#confirm-con').dialog({ //se agregan botones al confirm dialog y se abre
-                buttons: [
-                    {
-                        text: "Aceptar",
-                        click: function() {
-                            $.fn.borrarC(id);
-                        },
-                        class:"btn btn-danger"
-                    },
-                    {
-                        text: "Cancelar",
-                        click: function() {
-                            $(this).dialog("close");
-                        },
-                        class:"btn btn-default"
-                    }
+        //var dialog;
+        $('.grid-conceptos').on('click', '.delete', function(){
 
-                ]
-            }).dialog('open');
-            return false;
+            var id = $(this).closest('tr').attr('data-id');
+            dialog = bootbox.dialog({
+                message: "<p>¿Desea eliminar el concepto?</p>",
+                size: 'small',
+                buttons: {
+                    cancel: {
+                        label: "No"
+                    },
+                    ok: {
+                        label: "Si",
+                        className: 'btn-danger',
+                        callback: function(){
+                            $.fn.borrarC(id);
+                            return false; //evita que se cierre automaticamente
+                        }
+                    }
+                }
+            });
+
+
         });
+
 
 
         $.fn.borrarC = function(id) {
             //alert(id);
-            //preparo los parametros
             params={};
             params.id_parte_empleado_concepto = id;
             params.id_parte = $('#id_parte').val();
             params.action = "parte-empleado-concepto";
             params.operation = "deleteConcepto";
-            //alert(params.id_etapa);
 
             $.post('index.php',params,function(data, status, xhr){
-                //alert(xhr.responseText);
                 if(data >=0){
-                    $("#confirm-con #myElemento").html('Concepto eliminado con exito').addClass('alert alert-success').show();
-                    $('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
-                    $('.ui-dialog .btn').attr("disabled", true); //deshabilito botones
-                    //$("#search").trigger("click");
-                    setTimeout(function() { $("#confirm-con #myElemento").hide();
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Concepto eliminado con exito</div>');
+                    setTimeout(function() {
+                        dialog.modal('hide');
+                        $('#left_side .grid-conceptos').load('index.php',{action:"parte-empleado-concepto", id_parte: params.id_parte, operation:"refreshGrid"});
                         $('#concepto-form').hide();
-                        $('#confirm-con').dialog('close');
                     }, 2000);
-                }else{
-                    $("#confirm-con #myElemento").html('Error al eliminar el concepto').addClass('alert alert-danger').show();
                 }
 
+            }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                //alert('Entro a fail '+jqXHR.responseText);
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el concepto</div>');
 
             });
 
@@ -759,46 +737,6 @@
 
         </div>
     </div>
-</div>
-
-
-
-<div id="confirm-emp">
-    <div class="modal-body">
-        ¿Desea eliminar el empleado?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
-</div>
-
-
-
-
-<div id="confirm-ord">
-    <div class="modal-body">
-        ¿Desea eliminar la orden?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
-</div>
-
-
-
-<div id="confirm-con">
-    <div class="modal-body">
-        ¿Desea eliminar el concepto?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
 </div>
 
 
