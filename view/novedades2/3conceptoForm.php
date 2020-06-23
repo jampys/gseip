@@ -615,49 +615,75 @@
 
 
             //al presionar el boton para agregar conceptos
-        $('#left_side').on('click', '#new', function(){ //ok
+        $('#left_side').on('click', '#new', function(e){ //ok
+            var answer = "";
 
             //id_concepto_convenio_contrato
             if(!$('#id_concepto_convenio_contrato').val()) return false; //para evitar agregar conceptos en blanco.
 
             //para dias mayor funcion
             if($("#id_concepto_convenio_contrato option:selected").attr('id_concepto') == 22){
-                do{
+                /*do{
                     var answer = prompt("Ingrese apellido y nombre a quien reemplaza", "");
                 } while(!answer);
                 //document.getElementById("comentario").value += '* Día mayor función por: '+answer;
-            }
+                */
 
 
-            //var first_key = Object.keys(jsonConceptos)[0];
-            var id = '';
-            if(Object.keys(jsonConceptos).length == 0){
-                id = -1;
+                bootbox.prompt({
+                    title: "Ingrese apellido y nombre a quien reemplaza",
+                    size: 'small',
+                    callback: function(result){
+                        if(result){
+                            answer = result;
+                            luego();
+                        }
+                    }
+                });
+
+
             }
             else{
-                var last_key = Object.keys(jsonConceptos).length - 1;
-                var last = Object.keys(jsonConceptos)[last_key];
-                if (last > 0 ) id = -1;
-                else id = last - 1;
+                luego()
             }
 
-            item = {};
-            item.operacion = 'insert';
-            item.id_parte_empleado_concepto = id;
-            item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
-            item.id_concepto_convenio_contrato = $("#id_concepto_convenio_contrato").val();
-            item.convenio = $("#id_concepto_convenio_contrato option:selected").attr('convenio');
-            item.concepto = $("#id_concepto_convenio_contrato option:selected").attr('concepto');
-            item.codigo = $("#id_concepto_convenio_contrato option:selected").attr('codigo');
-            item.cantidad = $("#cantidad").val();
-            item.created_by = null;
-            item.created_date = null;
-            item.tipo_calculo = 'M';
-            item.motivo = (answer)? answer : null;
-            //alert('id asignado: '+item.id_parte_empleado_concepto);
-            jsonConceptos[id] = item; //se agrega el item al final del array asociativo
 
-            $.cargarTablaConceptos();
+
+
+
+            function luego(){
+                //var first_key = Object.keys(jsonConceptos)[0];
+                var id = '';
+                if(Object.keys(jsonConceptos).length == 0){
+                    id = -1;
+                }
+                else{
+                    var last_key = Object.keys(jsonConceptos).length - 1;
+                    var last = Object.keys(jsonConceptos)[last_key];
+                    if (last > 0 ) id = -1;
+                    else id = last - 1;
+                }
+
+                item = {};
+                item.operacion = 'insert';
+                item.id_parte_empleado_concepto = id;
+                item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
+                item.id_concepto_convenio_contrato = $("#id_concepto_convenio_contrato").val();
+                item.convenio = $("#id_concepto_convenio_contrato option:selected").attr('convenio');
+                item.concepto = $("#id_concepto_convenio_contrato option:selected").attr('concepto');
+                item.codigo = $("#id_concepto_convenio_contrato option:selected").attr('codigo');
+                item.cantidad = $("#cantidad").val();
+                item.created_by = null;
+                item.created_date = null;
+                item.tipo_calculo = 'M';
+                item.motivo = (answer)? answer : null;
+                //alert('id asignado: '+item.id_parte_empleado_concepto);
+                jsonConceptos[id] = item; //se agrega el item al final del array asociativo
+
+                $.cargarTablaConceptos();
+
+            }
+
 
             return false;
 
