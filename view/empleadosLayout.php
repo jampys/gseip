@@ -108,6 +108,62 @@
 
 
 
+            var dialog;
+            $(document).on('click', '.delete', function(){
+
+                var id = $(this).closest('tr').attr('data-id');
+                dialog = bootbox.dialog({
+                    message: "<p>¿Desea eliminar el empleado?</p>",
+                    size: 'small',
+                    buttons: {
+                        cancel: {
+                            label: "No"
+                        },
+                        ok: {
+                            label: "Si",
+                            className: 'btn-danger',
+                            callback: function(){
+                                $.fn.borrar(id);
+                                return false; //evita que se cierre automaticamente
+                            }
+                        }
+                    }
+                });
+
+
+            });
+
+
+
+            $.fn.borrar = function(id) {
+                //alert(id);
+                params={};
+                params.id_habilidad = id;
+                params.action = "empleados";
+                params.operation = "deleteEmpleado";
+
+                $.post('index.php',params,function(data, status, xhr){
+                    if(data >=0){
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Empleado eliminado con exito</div>');
+                        setTimeout(function() {
+                            dialog.modal('hide');
+                            $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
+                        }, 2000);
+                    }
+
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el empleado</div>');
+
+                });
+
+            };
+
+
+
+
+
+
             $(document).on('click', '#cancel',function(){
                 $('#content').load('index.php',{action:"empleados", operation:"refreshGrid"});
             });

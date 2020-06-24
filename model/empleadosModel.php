@@ -487,6 +487,17 @@ class Empleado
 
 
 
+    function deleteEmpleado(){ //ok
+        $stmt=new sQuery();
+        $query="delete from empleados where id_empleado = :id";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id', $this->getIdEmpleado());
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+    }
+
+
+
     public function checkEmpleadoCuil($cuil, $id_empleado) {
         $stmt=new sQuery();
         $query = "select * from empleados em
