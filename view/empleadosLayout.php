@@ -16,7 +16,7 @@
             $(document).on('click', '.edit', function(){
                 //this = es el elemento sobre el que se hizo click en este caso el link
                 //obtengo el id que guardamos en data-id
-                var id=$(this).attr('data-id');
+                var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
                 params.id=id;
@@ -32,7 +32,7 @@
 
             //al presionar el boton para ver
             $(document).on('click', '.view', function(){
-                var id=$(this).attr('data-id');
+                var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
                 params.id=id;
@@ -177,7 +177,7 @@
             //Al presionar el boton contratos, para mostrar los contratos del empleado
             $(document).on('click', '.contratos', function(){ //ok
                 //alert('tocó en contratos');
-                var id = $(this).attr('data-id');
+                var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
                 params.id_empleado = id;
