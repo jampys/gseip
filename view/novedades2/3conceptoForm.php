@@ -583,52 +583,117 @@
 
 
 
+        //Al agregar o cambiar el evento
+        $('#left_side').on('change', '#id_evento', function(){
+            //alert('evento');
+
+            bootbox.dialog({
+                message: "<p>¿Cuenta el día como trabajado?</p>",
+                size: 'small',
+                buttons: {
+                    cancel: {
+                        label: "No",
+                        callback: function(){
+                            $("#trabajado").prop("checked", false);
+                        }
+                    },
+                    ok: {
+                        label: "Si",
+                        className: 'btn-primary',
+                        callback: function(){
+                            $("#trabajado").prop("checked", true);
+                        }
+                    }
+                }
+            });
+            return false;
+
+        });
 
 
-        //al presionar el boton para agregar conceptos
-        $('#left_side').on('click', '#new', function(){ //ok
+
+
+
+            //al presionar el boton para agregar conceptos
+        $('#left_side').on('click', '#new', function(e){ //ok
+            var answer = "";
 
             //id_concepto_convenio_contrato
             if(!$('#id_concepto_convenio_contrato').val()) return false; //para evitar agregar conceptos en blanco.
 
             //para dias mayor funcion
             if($("#id_concepto_convenio_contrato option:selected").attr('id_concepto') == 22){
-                do{
+                /*do{
                     var answer = prompt("Ingrese apellido y nombre a quien reemplaza", "");
                 } while(!answer);
                 //document.getElementById("comentario").value += '* Día mayor función por: '+answer;
-            }
+                */
 
 
-            //var first_key = Object.keys(jsonConceptos)[0];
-            var id = '';
-            if(Object.keys(jsonConceptos).length == 0){
-                id = -1;
+                bootbox.prompt({
+                    title: "Ingrese apellido y nombre a quien reemplaza",
+                    size: 'small',
+                    required: true,
+                    buttons: {
+                        cancel: {
+                            label: "Cancelar"
+                        },
+                        confirm: {
+                            label: "Aceptar",
+                            className: 'btn-primary'
+                        }
+                    },
+                    callback: function(result){
+                        if(result){
+                            answer = result;
+                            luego();
+                        }
+                    }
+                });
+
+
             }
             else{
-                var last_key = Object.keys(jsonConceptos).length - 1;
-                var last = Object.keys(jsonConceptos)[last_key];
-                if (last > 0 ) id = -1;
-                else id = last - 1;
+                luego()
             }
 
-            item = {};
-            item.operacion = 'insert';
-            item.id_parte_empleado_concepto = id;
-            item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
-            item.id_concepto_convenio_contrato = $("#id_concepto_convenio_contrato").val();
-            item.convenio = $("#id_concepto_convenio_contrato option:selected").attr('convenio');
-            item.concepto = $("#id_concepto_convenio_contrato option:selected").attr('concepto');
-            item.codigo = $("#id_concepto_convenio_contrato option:selected").attr('codigo');
-            item.cantidad = $("#cantidad").val();
-            item.created_by = null;
-            item.created_date = null;
-            item.tipo_calculo = 'M';
-            item.motivo = (answer)? answer : null;
-            //alert('id asignado: '+item.id_parte_empleado_concepto);
-            jsonConceptos[id] = item; //se agrega el item al final del array asociativo
 
-            $.cargarTablaConceptos();
+
+
+
+            function luego(){
+                //var first_key = Object.keys(jsonConceptos)[0];
+                var id = '';
+                if(Object.keys(jsonConceptos).length == 0){
+                    id = -1;
+                }
+                else{
+                    var last_key = Object.keys(jsonConceptos).length - 1;
+                    var last = Object.keys(jsonConceptos)[last_key];
+                    if (last > 0 ) id = -1;
+                    else id = last - 1;
+                }
+
+                item = {};
+                item.operacion = 'insert';
+                item.id_parte_empleado_concepto = id;
+                item.id_parte_empleado = null; //$("#id_empleado option:selected").text();
+                item.id_concepto_convenio_contrato = $("#id_concepto_convenio_contrato").val();
+                item.convenio = $("#id_concepto_convenio_contrato option:selected").attr('convenio');
+                item.concepto = $("#id_concepto_convenio_contrato option:selected").attr('concepto');
+                item.codigo = $("#id_concepto_convenio_contrato option:selected").attr('codigo');
+                item.cantidad = $("#cantidad").val();
+                item.created_by = null;
+                item.created_date = null;
+                item.tipo_calculo = 'M';
+                item.motivo = (answer)? answer : null;
+                //alert('id asignado: '+item.id_parte_empleado_concepto);
+                jsonConceptos[id] = item; //se agrega el item al final del array asociativo
+
+                $.cargarTablaConceptos();
+
+            }
+
 
             return false;
 
@@ -676,6 +741,7 @@
                 params.id_empleado = $('#id_empleado').val();
                 params.id_evento = $('#id_evento').val();
                 params.conductor = $('#conductor').prop('checked')? 1:0;
+                params.trabajado = $('#trabajado').prop('checked')? 1:0;
                 params.check_replicar = ($('#check_replicar').is(':checked'))? 1:0;
                 //params.check_sobrescribir = ($('#check_sobrescribir').is(':checked'))? 1:0;
                 params.rep_fecha = $('#rep_fecha').val();
@@ -847,13 +913,16 @@
 
 
             <div class="form-group required">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" id="conductor" name="conductor" <?php //echo ($view->parte_empleado->getConductor()== 1)? 'checked' :'' ?>
-                                                                               <?php echo ( ($view->parte_empleado->getConductor()== 1) || (!$view->parte->getIdParte() && 1 == $view->defaults[0]['conductor'])  )? 'checked' :'' ?>
-                            ><a href="#" title="Marcar la persona que maneja">Conductor</a>
-                    </label>
-                </div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="conductor" name="conductor" <?php //echo ($view->parte_empleado->getConductor()== 1)? 'checked' :'' ?>
+                        <?php echo ( ($view->parte_empleado->getConductor()== 1) || (!$view->parte->getIdParte() && 1 == $view->defaults[0]['conductor'])  )? 'checked' :'' ?>
+                        ><a href="#" title="Marcar la persona que maneja">Conductor</a>
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="trabajado" name="trabajado" <?php //echo ($view->parte_empleado->getConductor()== 1)? 'checked' :'' ?>
+                        <?php echo ( ($view->parte_empleado->getTrabajado()== 1) || (!$view->parte->getIdParte() )  )? 'checked' :'' ?>
+                        ><a href="#" title="Marcar si el día fué trabajado">Día trabajado</a>
+                </label>
             </div>
 
             <hr/>

@@ -171,7 +171,8 @@ switch ($operation)
                 $id_evento = ($_POST['id_evento']) ? $_POST['id_evento'] : null;
                 $conductor = $_POST['conductor'];
                 $comentario = $_POST['comentario'];
-                $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario);
+                $trabajado = ($_POST['trabajado'] == 1)? $_POST['trabajado'] : null;
+                $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario, $trabajado);
 
                 //obtengo el id_parte y id_parte_empleado devueltos por el SP
                 $id_parte = $rta[0]['id_parte'];
