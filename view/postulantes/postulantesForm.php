@@ -10,22 +10,7 @@
             $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
                              // elimine el mensaje de requerido de jquery validation
         });
-
-
-        /*$('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });*/
-
-        $('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });
-
+        
 
         $('.image').viewer({});
 
