@@ -121,21 +121,6 @@
 
 
 
-        /*$('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });*/
-
-        /*$('.input-daterange').datepicker({
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });*/
-
-
         /*$('#myModal').modal({
             backdrop: 'static',
             keyboard: false

@@ -12,21 +12,6 @@
         });
 
 
-        /*$('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });*/
-
-        $('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });
-
-
 
         $('#myModal').on('click', '#submit',function(){ //ok
 

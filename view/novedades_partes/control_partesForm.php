@@ -39,14 +39,6 @@
         });
 
 
-        $('.input-daterange').datepicker({ //ok
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });
-
-
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
         $('#myModal').on('change', '#id_contrato', function(e){

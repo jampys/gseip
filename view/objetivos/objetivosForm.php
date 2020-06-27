@@ -12,22 +12,6 @@
         });
 
 
-        /*$('.input-daterange').datepicker({
-            //todayBtn: "linked",
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });*/
-
-        /*$('.input-group.date').datepicker({
-            //inline: true
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true
-        });*/
-
-
-
         //Select dependiente: al seleccionar contrato carga periodos vigentes
         $('#objetivo-form').on('change', '#periodo', function(e){
             //alert('seleccionó un periodo');
