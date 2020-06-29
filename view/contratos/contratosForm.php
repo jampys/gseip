@@ -326,19 +326,52 @@
 
         //Elimina un empleado del contrato
         $('#contrato').on('click', '.delete-empleado', function(e){ //ok
-            //alert('actualizar empleado');
+
             var id = $(this).closest('tr').attr('id_empleado');
-            //alert(jsonEmpleados[id].id_empleado_contrato);
 
-            if(!jsonEmpleados[id].id_empleado_contrato){ //si no esta en la BD
-                //alert('ahhhhh');
-                delete jsonEmpleados[id]; //lo elimina del array
-            }else{ //si esta en la BD, lo marca para eliminar
-                jsonEmpleados[id].operacion = 'delete';
-            }
+            dialog = bootbox.dialog({
+                message: "<p>¿Desea eliminar el empleado?<br/>Los cambios se hacen efectivos al Guardar</p>",
+                size: 'small',
+                buttons: {
+                    cancel: {
+                        label: "No"
+                    },
+                    ok: {
+                        label: "Si",
+                        className: 'btn-danger',
+                        callback: function(){
+
+                            if(!jsonEmpleados[id].id_empleado_contrato){ //si no esta en la BD
+                                delete jsonEmpleados[id]; //lo elimina del array
+                            }else{ //si esta en la BD, lo marca para eliminar
+                                jsonEmpleados[id].operacion = 'delete';
+                            }
+
+                            dialog.find('.modal-footer').html('<div class="alert alert-success">Empleado eliminado con exito</div>');
+                            setTimeout(function() {
+                                dialog.modal('hide');
+                                $.cargarTablaEmpleados();
+                            }, 2000);
+
+                            return false; //evita que se cierre automaticamente
 
 
-            $.cargarTablaEmpleados();
+
+
+                        }
+                    }
+                }
+            });
+
+
+
+
+
+
+
+
+
+
             return false;
         });
 
