@@ -534,6 +534,7 @@
                     $('#id_area').val(data['parte'][0]['id_area']);
                     $('#id_evento').val(data['parte'][0]['id_evento']);
                     $("#conductor").prop('checked', (data['parte'][0]['conductor']==1)? true:false);
+                    $("#trabajado").prop('checked', (data['parte'][0]['trabajado']==1)? true:false);
                     $('.selectpicker').selectpicker('refresh');
 
 
