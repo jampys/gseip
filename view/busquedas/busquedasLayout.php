@@ -101,7 +101,7 @@
 
             var dialog;
             $(document).on('click', '#example .delete', function(){ //ok
-                var id = $(this).attr('data-id');
+                var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
                     message: "<p>¿Desea eliminar la búsqueda?</p>",
                     size: 'small',
