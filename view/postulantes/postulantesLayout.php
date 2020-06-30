@@ -109,7 +109,7 @@
             $.fn.borrar = function(id) {
                 //alert(id);
                 params={};
-                params.id_habilidad = id;
+                params.id_postulante = id;
                 params.action = "postulantes";
                 params.operation = "deletePostulante";
 

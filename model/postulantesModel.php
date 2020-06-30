@@ -209,7 +209,7 @@ class Postulante
     function deletePostulante(){ //ok
         $stmt=new sQuery();
         $query="delete from sel_postulantes
-                where id_postulante =:id_postulante";
+                where id_postulante = :id_postulante";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_postulante', $this->getIdPostulante());
         $stmt->dpExecute();
