@@ -124,7 +124,7 @@
 
 
                     <div class="form-group col-md-3">
-                        <label for="search_localidad" class="control-label">Ubicación</label>
+                        <!--<label for="search_localidad" class="control-label">Ubicación</label>-->
                         <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
                             <option value="">Seleccione una localidad</option>
                             <?php foreach ($view->localidades as $loc){
@@ -138,7 +138,7 @@
 
 
                     <div class="form-group col-md-3">
-                        <label for="id_especialidad" class="control-label">Especialidad</label>
+                        <!--<label for="id_especialidad" class="control-label">Especialidad</label>-->
                         <select class="form-control selectpicker show-tick" id="search_especialidad" name="search_especialidad" data-live-search="true" data-size="5">
                             <option value="">Seleccione una especialidad</option>
                             <?php foreach ($view->especialidades as $es){
@@ -153,35 +153,20 @@
                     </div>
 
 
-                    <!--<div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary" id="search">Buscar</button>
-                    </div>-->
-
                     <div class="form-group col-md-2">
 
                     </div>
 
-                    <!--<div class="form-group col-md-2">
-                        <label for="search_renovado" class="control-label">&nbsp;</label>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="search_renovado" name="search_renovado">
-                                <a href="#" title="Funcionalidad en construcción">Ver todos</a>
-                            </label>
-                        </div>
-                    </div>-->
-
 
                     <div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
+                        <!--<label for="search">&nbsp;</label>-->
                         <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                             <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>
 
                     <div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
+                        <!--<label for="search">&nbsp;</label>-->
                         <button type="button" class="form-control btn btn-default" title="nuevo postulante" id="new" <?php echo ( PrivilegedUser::dhasAction('PTE_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                         </button>
