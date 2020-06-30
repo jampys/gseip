@@ -101,6 +101,13 @@ switch ($operation)
         $view->contentTemplate="view/busquedas/busquedasFormDetalles.php";
         break;
 
+    case 'deleteBusqueda': //ok
+        $busqueda = new Busqueda($_POST['id_busqueda']);
+        $rta = $busqueda->deleteBusqueda();
+        print_r(json_encode($rta));
+        die;
+        break;
+
     default : //ok
         $view->puestos = Puesto::getPuestos(); //carga el combo para filtrar puestos
         $view->localidades = Localidad::getLocalidades(); //carga el combo para filtrar localidades (Areas)
