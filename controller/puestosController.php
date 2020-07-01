@@ -61,9 +61,33 @@ switch ($operation)
         break;
 
     case 'deletePuesto': //ok
-        $puesto = new Puesto($_POST['id_puesto']);
+        /*$puesto = new Puesto($_POST['id_puesto']);
         $rta = $puesto->deletePuesto();
         print_r(json_encode($rta));
+        die;
+        break;*/
+
+        try{
+            sQuery::dpBeginTransaction();
+            $puesto = new Puesto($_POST['id_puesto']);
+            $uploads = Puesto::uploadsLoad($_POST['id_puesto']);
+            $puesto->deletePuesto();
+            foreach($uploads as $up){
+                if (!file_exists($up['directory'].$up['name'])) throw new Exception('Archivo no existe.');
+            }
+
+            sQuery::dpCommit();
+            foreach($uploads as $up){
+                unlink($up['directory'].$up['name']);
+            }
+            print_r(json_encode(1));
+
+        }catch (Exception $e){
+            sQuery::dpRollback();
+            throw new Exception('Error en el query.'); //para que entre en el .fail de la peticion ajax
+        }
+
+
         die;
         break;
 
