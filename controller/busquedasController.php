@@ -102,9 +102,33 @@ switch ($operation)
         break;
 
     case 'deleteBusqueda': //ok
-        $busqueda = new Busqueda($_POST['id_busqueda']);
+        /*$busqueda = new Busqueda($_POST['id_busqueda']);
         $rta = $busqueda->deleteBusqueda();
         print_r(json_encode($rta));
+        die;
+        break;*/
+
+        try{
+            sQuery::dpBeginTransaction();
+            $busqueda = new Busqueda($_POST['id_busqueda']);
+            $busqueda->deleteBusqueda();
+            $uploads = Busqueda::uploadsLoad($_POST['id_busqueda']);
+            foreach($uploads as $up){
+                if (!file_exists($up['directory'].$up['name'])) throw new Exception('Archivo no existe.');
+            }
+
+            sQuery::dpCommit();
+            foreach($uploads as $up){
+                unlink($up['directory'].$up['name']);
+            }
+            print_r(json_encode(1));
+
+        }catch (Exception $e){
+            sQuery::dpRollback();
+            throw new Exception('Error en el query.'); //para que entre en el .fail de la peticion ajax
+        }
+
+
         die;
         break;
 
