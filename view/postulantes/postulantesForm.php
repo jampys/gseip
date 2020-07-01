@@ -130,10 +130,9 @@
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Postulante guardado con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
-                        $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
+                                                $("#search").trigger("click");
                                               }, 2000);
                     }
 
