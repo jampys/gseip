@@ -111,8 +111,8 @@ switch ($operation)
         try{
             sQuery::dpBeginTransaction();
             $busqueda = new Busqueda($_POST['id_busqueda']);
-            $busqueda->deleteBusqueda();
             $uploads = Busqueda::uploadsLoad($_POST['id_busqueda']);
+            $busqueda->deleteBusqueda();
             foreach($uploads as $up){
                 if (!file_exists($up['directory'].$up['name'])) throw new Exception('Archivo no existe.');
             }
