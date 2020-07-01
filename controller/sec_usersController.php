@@ -63,22 +63,22 @@ switch ($operation) {
         try{
             sQuery::dpBeginTransaction();
             $usuario = new Usuario($_POST['id_user']);
-            $rta = $usuario->deleteUsuario();
+            $usuario->deleteUsuario();
             //if (file_exists($usuario->getProfilePicture())) {
             unlink($usuario->getProfilePicture()); //elimina la foto del servidor
             //}
             sQuery::dpCommit();
+            print_r(json_encode(1));
+
         }catch (PDOException $e){ //error en el query
             sQuery::dpRollback();
-            //$rta = -1;
             throw new Exception('Error en el query.'); //para que entre en el .fail de la peticion ajax
         }catch(Exception $e){ //error en el unlink
             sQuery::dpRollback();
-            //$rta = -1;
             throw new Exception('Error en el unlink.'); //para que entre en el .fail de la peticion ajax
         }
 
-        print_r(json_encode($rta));
+
         die;
         break;
 
