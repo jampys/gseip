@@ -59,7 +59,7 @@ switch ($operation) {
         break;
 
     case 'deleteUsuario': //ok
-
+        //En un usuario se adjunta una sola imagen.
         try{
             sQuery::dpBeginTransaction();
             $usuario = new Usuario($_POST['id_user']);
