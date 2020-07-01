@@ -229,7 +229,7 @@
                     <form id="search_form" name="search_form">
 
                         <div class="form-group col-md-4">
-                            <label for="search_puesto" class="control-label">Puesto</label>
+                            <!--<label for="search_puesto" class="control-label">Puesto</label>-->
                             <select id="search_puesto" name="search_puesto" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un puesto</option>
                                 <?php foreach ($view->puestos as $pue){
@@ -242,7 +242,7 @@
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="search_habilidad" class="control-label">Habilidad</label>
+                            <!--<label for="search_habilidad" class="control-label">Habilidad</label>-->
                             <select id="search_habilidad" name="search_habilidad" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
                                 <option value="">Seleccione una habilidad</option>
                                 <?php foreach ($view->habilidades as $hab){
@@ -255,14 +255,14 @@
                         </div>
 
                         <div class="form-group col-md-2">
-                            <label for="search">&nbsp;</label>
+                            <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" id="search" title="Buscar">
                                 <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                             </button>
                         </div>
 
                         <div class="form-group col-md-2">
-                            <label for="search">&nbsp;</label>
+                            <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" id="new" <?php echo ( PrivilegedUser::dhasAction('HPU_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                             </button>
