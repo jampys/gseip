@@ -917,7 +917,7 @@
                 <label class="checkbox-inline">
                     <input type="checkbox" id="conductor" name="conductor" <?php //echo ($view->parte_empleado->getConductor()== 1)? 'checked' :'' ?>
                         <?php echo ( ($view->parte_empleado->getConductor()== 1) || (!$view->parte->getIdParte() && 1 == $view->defaults[0]['conductor'])  )? 'checked' :'' ?>
-                        ><a href="#" title="Marcar la persona que maneja">Conductor</a>
+                        ><a href="#" title="Marcar si es el conductor">Conductor</a>
                 </label>
                 <label class="checkbox-inline">
                     <input type="checkbox" id="trabajado" name="trabajado" <?php //echo ($view->parte_empleado->getConductor()== 1)? 'checked' :'' ?>

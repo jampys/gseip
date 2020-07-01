@@ -139,7 +139,7 @@
                             <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>
                             action="index.php?action=novedades2&operation=newParte"
                             >
-                            <i class="fas fa-male fa-fw dp_blue"></i>Por persona
+                            <i class="fas fa-male fa-fw dp_blue"></i>Por empleado
                         </button>
                     </div>
 
