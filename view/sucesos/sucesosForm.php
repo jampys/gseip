@@ -297,12 +297,11 @@
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myModal #myElem").html('Suceso guardado con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
-                        $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $("#suceso-form #cancel").trigger("click"); //para la modal (nov2)
                                                 $('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: params.id_empleado, id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
                                                 $('#myModal').modal('hide');
+                                                $("#search").trigger("click");
                                               }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar el suceso').addClass('alert alert-danger').show();
