@@ -20,6 +20,7 @@
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
+            eventOrder: false, //para que no ordene automaticamente. Que ordene como viene en el query
             eventRender: function(info) { //https://fullcalendar.io/docs/eventRender
                 var pop = $(info.el).popover({
                     title: info.event.title,

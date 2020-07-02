@@ -142,7 +142,7 @@ and if($c > 0, exists(
                     ), 1)
 
 group by np.id_parte, npe.id_empleado
-order by np.id_parte asc";
+order by empleado asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $fecha_desde);
@@ -177,7 +177,7 @@ and np.fecha_parte between :fecha_desde and :fecha_hasta
 and if($e > 0, np.id_evento in ($eventos), 1)
 and if($c > 0, np.id_cuadrilla in ($cuadrillas), 1)
 group by fecha_parte, cuadrilla
-order by np.cuadrilla asc";
+order by isnull(np.id_cuadrilla), np.cuadrilla asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $fecha_desde);
