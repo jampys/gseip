@@ -355,11 +355,12 @@ group by v.id_vencimiento, em.id_empleado";
         return ($flag)? intval($flag[0]['flag']) : -1;
     }
 
-    function deleteHabilidad(){
+    function deleteRenovacion(){ //ok
         $stmt=new sQuery();
-        $query="delete from habilidades where id_habilidad =:id_habilidad";
+        $query="delete from vto_renovacion_p
+                where id_renovacion = :id_renovacion";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':id_renovacion', $this->getIdRenovacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }

@@ -88,9 +88,9 @@ switch ($operation)
         $view->contentTemplate="view/renovacionesPersonalForm.php";
         break;
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
+    case 'deleteRenovacion': //ok
+        $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
+        $rta = $renovacion->deleteRenovacion();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
