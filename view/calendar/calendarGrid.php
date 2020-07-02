@@ -95,7 +95,7 @@
                                 title: data['novedades_empleado'][index].empleado,
                                 start: data['novedades_empleado'][index].fecha_parte+'T00:00:00',
                                 end: data['novedades_empleado'][index].fecha_parte+'T23:59:00',
-                                color: novedadColor(data['novedades_empleado'][index].id_evento),
+                                color: novedadColor(data['novedades_empleado'][index].id_evento, data['novedades_empleado'][index].trabajado),
                                 //textColor: 'gray',
                                 extendedProps: {
                                     tipo_evento: data['novedades_empleado'][index].tipo_evento,
@@ -116,7 +116,7 @@
                                 title: data['novedades_cuadrilla'][index].cuadrilla,
                                 start: data['novedades_cuadrilla'][index].fecha_parte+'T00:00:00',
                                 end: data['novedades_cuadrilla'][index].fecha_parte+'T23:59:00',
-                                color: novedadColor(data['novedades_cuadrilla'][index].id_evento),
+                                color: novedadColor(data['novedades_cuadrilla'][index].id_evento, data['novedades_cuadrilla'][index].trabajado),
                                 //textColor: 'gray',
                                 extendedProps: {
                                     tipo_evento: data['novedades_cuadrilla'][index].tipo_evento,
@@ -174,9 +174,9 @@
     }
 
 
-    function novedadColor(id_evento){
+    function novedadColor(id_evento, trabajado){
         if(id_evento == 1) return '#00b248'; //guardia activada
-        else if(id_evento) return 'tomato'; //cualquier otro evento
+        else if(id_evento || trabajado != 1) return 'tomato'; //cualquier otro evento
         else return ''; //sin evento default (azul)
     }
 

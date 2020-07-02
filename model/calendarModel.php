@@ -114,6 +114,7 @@ order by np.id_parte asc";*/
         $query="select 'novedad_empleado' as tipo_evento, npe.id_empleado,
 CONCAT (em.apellido, ' ', em.nombre) as empleado, em.legajo,
 np.id_parte, np.fecha_parte, np.cuadrilla, np.id_evento,
+npe.trabajado,
 na.nombre as area,
 nec.nombre as evento,
 (select group_concat(concat(nconv.codigo, ' ', nc.nombre, ' ', nccc.codigo, ' ', npec.cantidad) separator '<br/>')
@@ -160,7 +161,9 @@ order by np.id_parte asc";
         $eventos = ($eventos!='')? implode(",", $eventos)  : 'null';
 
         $stmt=new sQuery();
-        $query = "select 'novedad_cuadrilla' as tipo_evento, np.id_parte, np.fecha_parte, np.cuadrilla, np.comentarios, np.id_cuadrilla, np.id_evento,
+        $query = "select 'novedad_cuadrilla' as tipo_evento,
+np.id_parte, np.fecha_parte, np.cuadrilla, np.comentarios, np.id_cuadrilla, np.id_evento,
+npe.trabajado,
 GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre, ' ', if(npe.conductor=1, '(C)', '')    ) SEPARATOR '<br/>') as integrantes,
 na.nombre as area,
 nec.nombre as evento
