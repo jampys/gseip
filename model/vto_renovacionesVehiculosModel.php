@@ -324,6 +324,17 @@ group by v.id_vencimiento, ve.id_vehiculo";
     }
 
 
+    function deleteRenovacion(){ //ok
+        $stmt=new sQuery();
+        $query="delete from vto_renovacion_v
+                where id_renovacion = :id_renovacion";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_renovacion', $this->getIdRenovacion());
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+    }
+
+
 
     public static function uploadsUpload($directory, $name, $id_renovacion){ //ok
         $stmt=new sQuery();
