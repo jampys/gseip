@@ -146,14 +146,14 @@
                     if(data >=0){
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Renovación guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Vencimiento guardado con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
                                                 $("#search").trigger("click");
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la renovación').addClass('alert alert-danger').show();
+                        $("#myElem").html('Error al guardar el vencimiento').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
