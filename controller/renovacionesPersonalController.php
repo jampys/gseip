@@ -89,10 +89,34 @@ switch ($operation)
         break;
 
     case 'deleteRenovacion': //ok
-        $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
+        /*$renovacion = new RenovacionPersonal($_POST['id_renovacion']);
         $rta = $renovacion->deleteRenovacion();
         print_r(json_encode($rta));
-        die; // no quiero mostrar nada cuando borra , solo devuelve el control.
+        die;
+        break;*/
+
+        try{
+            sQuery::dpBeginTransaction();
+            $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
+            $uploads = RenovacionPersonal::uploadsLoad($_POST['id_renovacion']);
+            $renovacion->deleteRenovacion();
+            foreach($uploads as $up){
+                if (!file_exists($up['directory'].$up['name'])) throw new Exception('Archivo no existe.');
+            }
+
+            sQuery::dpCommit();
+            foreach($uploads as $up){
+                unlink($up['directory'].$up['name']);
+            }
+            print_r(json_encode(1));
+
+        }catch (Exception $e){
+            sQuery::dpRollback();
+            throw new Exception('Error en el query.'); //para que entre en el .fail de la peticion ajax
+        }
+
+
+        die;
         break;
 
     case 'checkRangoFechas': //ok
