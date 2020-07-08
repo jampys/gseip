@@ -26,8 +26,7 @@
         });
 
 
-        //$(document).on("click", ".pdf", function(){
-        $('.table-responsive').on("click", ".pdf", function(){
+        $(".pdf").on("click", "a", function(){
             params={};
             var attr = $('#search_vehiculo option:selected').attr('id_vehiculo'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
             params.id_vehiculo = (typeof attr !== typeof undefined && attr !== false)? $('#search_vehiculo option:selected').attr('id_vehiculo') : '';
