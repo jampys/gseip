@@ -116,16 +116,6 @@
 
 
 
-<div id="confirm">
-    <div class="modal-body">
-        ¿Desea eliminar el objetivo?
-    </div>
-
-    <div id="myElemento" style="display:none">
-
-    </div>
-
-</div>
 
 
 
