@@ -126,8 +126,8 @@
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
 
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=busquedas"><i class="far fa-clipboard fa-fw dp_blue"></i>&nbsp;Búsquedas</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PTE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=postulantes"><i class="far fa-id-badge fa-fw dp_blue"></i>&nbsp;Postulantes</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=busquedas">Búsquedas</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PTE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=postulantes">Postulantes</a></li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('PTN_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=postulaciones"><i class="fas fa-tasks fa-fw dp_blue"></i>&nbsp;Avance de las postulaciones</a></li>
 
                         </ul>

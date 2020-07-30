@@ -76,9 +76,33 @@ switch ($operation)
 
 
     case 'deleteSuceso': //ok
-        $suceso = new Suceso($_POST['id_suceso']);
+        /*$suceso = new Suceso($_POST['id_suceso']);
         $rta = $suceso->deleteSuceso();
         print_r(json_encode($rta));
+        die;
+        break;*/
+
+        try{
+            sQuery::dpBeginTransaction();
+            $suceso = new Suceso($_POST['id_suceso']);
+            $uploads = Suceso::uploadsLoad($_POST['id_suceso']);
+            $suceso->deleteSuceso();
+            foreach($uploads as $up){
+                if (!file_exists($up['directory'].$up['name'])) throw new Exception('Archivo no existe.');
+            }
+
+            sQuery::dpCommit();
+            foreach($uploads as $up){
+                unlink($up['directory'].$up['name']);
+            }
+            print_r(json_encode(1));
+
+        }catch (Exception $e){
+            sQuery::dpRollback();
+            throw new Exception('Error en el query.'); //para que entre en el .fail de la peticion ajax
+        }
+
+
         die;
         break;
 

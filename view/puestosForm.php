@@ -129,9 +129,9 @@
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
+                                                $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
                                               }, 2000);
                     }
 

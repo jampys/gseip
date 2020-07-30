@@ -67,11 +67,35 @@ switch ($operation)
         $view->contentTemplate="view/postulantes/postulantesForm.php";
         break;
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
+    case 'deletePostulante': //ok
+        /*$postulante = new Postulante($_POST['id_postulante']);
+        $rta = $postulante->deletePostulante();
         print_r(json_encode($rta));
-        die; // no quiero mostrar nada cuando borra , solo devuelve el control.
+        die;
+        break;*/
+
+        try{
+            sQuery::dpBeginTransaction();
+            $postulante = new Postulante($_POST['id_postulante']);
+            $uploads = Postulante::uploadsLoad($_POST['id_postulante']);
+            $postulante->deletePostulante();
+            foreach($uploads as $up){
+                if (!file_exists($up['directory'].$up['name'])) throw new Exception('Archivo no existe.');
+            }
+
+            sQuery::dpCommit();
+            foreach($uploads as $up){
+                unlink($up['directory'].$up['name']);
+            }
+            print_r(json_encode(1));
+
+        }catch (Exception $e){
+            sQuery::dpRollback();
+            throw new Exception('Error en el query.'); //para que entre en el .fail de la peticion ajax
+        }
+
+
+        die;
         break;
 
 

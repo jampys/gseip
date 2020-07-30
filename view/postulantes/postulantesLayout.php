@@ -80,12 +80,55 @@
 
 
 
-
+            var dialog;
             $(document).on('click', '#example .delete', function(){
-                alert('Funcionalidad en desarrollo');
-                throw new Error();
-                return false;
+                var id = $(this).closest('tr').attr('data-id');
+                dialog = bootbox.dialog({
+                    message: "<p>¿Desea eliminar el postulante?</p>",
+                    size: 'small',
+                    buttons: {
+                        cancel: {
+                            label: "No"
+                        },
+                        ok: {
+                            label: "Si",
+                            className: 'btn-danger',
+                            callback: function(){
+                                $.fn.borrar(id);
+                                return false; //evita que se cierre automaticamente
+                            }
+                        }
+                    }
+                });
+
+
             });
+
+
+
+            $.fn.borrar = function(id) {
+                //alert(id);
+                params={};
+                params.id_postulante = id;
+                params.action = "postulantes";
+                params.operation = "deletePostulante";
+
+                $.post('index.php',params,function(data, status, xhr){
+                    if(data >=0){
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Postulante eliminado con exito</div>');
+                        setTimeout(function() {
+                            dialog.modal('hide');
+                            $("#search").trigger("click");
+                        }, 2000);
+                    }
+
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el postulante</div>');
+
+                });
+
+            };
 
 
 
@@ -124,7 +167,7 @@
 
 
                     <div class="form-group col-md-3">
-                        <label for="search_localidad" class="control-label">Ubicación</label>
+                        <!--<label for="search_localidad" class="control-label">Ubicación</label>-->
                         <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
                             <option value="">Seleccione una localidad</option>
                             <?php foreach ($view->localidades as $loc){
@@ -138,7 +181,7 @@
 
 
                     <div class="form-group col-md-3">
-                        <label for="id_especialidad" class="control-label">Especialidad</label>
+                        <!--<label for="id_especialidad" class="control-label">Especialidad</label>-->
                         <select class="form-control selectpicker show-tick" id="search_especialidad" name="search_especialidad" data-live-search="true" data-size="5">
                             <option value="">Seleccione una especialidad</option>
                             <?php foreach ($view->especialidades as $es){
@@ -153,35 +196,20 @@
                     </div>
 
 
-                    <!--<div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
-                        <button type="button" class="form-control btn btn-primary" id="search">Buscar</button>
-                    </div>-->
-
                     <div class="form-group col-md-2">
 
                     </div>
 
-                    <!--<div class="form-group col-md-2">
-                        <label for="search_renovado" class="control-label">&nbsp;</label>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="search_renovado" name="search_renovado">
-                                <a href="#" title="Funcionalidad en construcción">Ver todos</a>
-                            </label>
-                        </div>
-                    </div>-->
-
 
                     <div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
+                        <!--<label for="search">&nbsp;</label>-->
                         <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                             <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>
 
                     <div class="form-group col-md-2">
-                        <label for="search">&nbsp;</label>
+                        <!--<label for="search">&nbsp;</label>-->
                         <button type="button" class="form-control btn btn-default" title="nuevo postulante" id="new" <?php echo ( PrivilegedUser::dhasAction('PTE_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                         </button>

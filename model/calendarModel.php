@@ -114,6 +114,7 @@ order by np.id_parte asc";*/
         $query="select 'novedad_empleado' as tipo_evento, npe.id_empleado,
 CONCAT (em.apellido, ' ', em.nombre) as empleado, em.legajo,
 np.id_parte, np.fecha_parte, np.cuadrilla, np.id_evento,
+npe.trabajado,
 na.nombre as area,
 nec.nombre as evento,
 (select group_concat(concat(nconv.codigo, ' ', nc.nombre, ' ', nccc.codigo, ' ', npec.cantidad) separator '<br/>')
@@ -141,7 +142,7 @@ and if($c > 0, exists(
                     ), 1)
 
 group by np.id_parte, npe.id_empleado
-order by np.id_parte asc";
+order by empleado asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $fecha_desde);
@@ -160,7 +161,9 @@ order by np.id_parte asc";
         $eventos = ($eventos!='')? implode(",", $eventos)  : 'null';
 
         $stmt=new sQuery();
-        $query = "select 'novedad_cuadrilla' as tipo_evento, np.id_parte, np.fecha_parte, np.cuadrilla, np.comentarios, np.id_cuadrilla, np.id_evento,
+        $query = "select 'novedad_cuadrilla' as tipo_evento,
+np.id_parte, np.fecha_parte, np.cuadrilla, np.comentarios, np.id_cuadrilla, np.id_evento,
+npe.trabajado,
 GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre, ' ', if(npe.conductor=1, '(C)', '')    ) SEPARATOR '<br/>') as integrantes,
 na.nombre as area,
 nec.nombre as evento
@@ -174,7 +177,7 @@ and np.fecha_parte between :fecha_desde and :fecha_hasta
 and if($e > 0, np.id_evento in ($eventos), 1)
 and if($c > 0, np.id_cuadrilla in ($cuadrillas), 1)
 group by fecha_parte, cuadrilla
-order by np.cuadrilla asc";
+order by isnull(np.id_cuadrilla), np.cuadrilla asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $fecha_desde);

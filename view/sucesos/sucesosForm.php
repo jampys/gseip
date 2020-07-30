@@ -297,12 +297,11 @@
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myModal #myElem").html('Suceso guardado con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
-                        $("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $("#suceso-form #cancel").trigger("click"); //para la modal (nov2)
                                                 $('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: params.id_empleado, id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
                                                 $('#myModal').modal('hide');
+                                                $("#search").trigger("click");
                                               }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar el suceso').addClass('alert alert-danger').show();
@@ -361,7 +360,7 @@
             },
             messages:{
                 id_empleado: "Seleccione un empleado",
-                id_evento: "Seleccione un evento",
+                id_evento: "Seleccione un suceso",
                 fecha: {
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
@@ -468,8 +467,8 @@
 
 
                     <div class="form-group required">
-                        <label for="id_evento" class="control-label">Evento</label>
-                            <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione el evento" data-live-search="true" data-size="5" data-show-subtext="true">
+                        <label for="id_evento" class="control-label">Suceso</label>
+                            <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione un suceso" data-live-search="true" data-size="5" data-show-subtext="true">
                                 <?php foreach ($view->eventos as $ev){ ?>
                                     <option value="<?php echo $ev['id_evento']; ?>" data-subtext="<?php echo $ev['tipo_liquidacion'] ;?>"
                                         <?php echo ($ev['id_evento'] == $view->suceso->getIdEvento())? 'selected' :'' ?>

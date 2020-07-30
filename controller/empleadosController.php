@@ -163,6 +163,12 @@ switch ($operation)
         break;
 
 
+    case 'deleteEmpleado': //ok
+        $empleado = new Empleado($_POST['id_empleado']);
+        $rta = $empleado->deleteEmpleado();
+        print_r(json_encode($rta));
+        die;
+        break;
 
 
     default :

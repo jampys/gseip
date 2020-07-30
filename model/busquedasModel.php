@@ -204,11 +204,12 @@ class Busqueda
 
     }
 
-    function deleteHabilidad(){
+    function deleteBusqueda(){ //ok
         $stmt=new sQuery();
-        $query="delete from habilidades where id_habilidad =:id_habilidad";
+        $query="delete from sel_busquedas
+                where id_busqueda =:id_busqueda";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
