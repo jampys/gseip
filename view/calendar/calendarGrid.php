@@ -176,9 +176,14 @@
 
 
     function novedadColor(id_evento, trabajado){
-        if(id_evento == 1) return '#00b248'; //guardia activada
+        //color por defecto: rgb(55, 136, 216)
+        //
+        /*if(id_evento == 1) return '#00b248'; //guardia activada
         //else if(id_evento || trabajado != 1) return 'tomato';
         else if(id_evento) return 'tomato'; //cualquier otro evento
+        else return ''; //sin evento default (azul)*/
+        if(trabajado != 1) return 'tomato';
+        else if(id_evento == 1) return '#1b62a8'; //guardia activada
         else return ''; //sin evento default (azul)
     }
 
