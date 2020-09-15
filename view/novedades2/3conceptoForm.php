@@ -51,9 +51,9 @@
             autoApply: true,
             autoUpdateInput: false,
             drops: 'auto',
-            minDate: $('#fecha_desde').val(),
+            minDate: $('#add_fecha').val(),
             maxDate: $('#fecha_hasta').val(),
-            //startDate: $('#fecha_desde').val(),
+            startDate: $('#add_fecha').val(),
             "locale": {
                 "format": "DD/MM/YYYY"
             }
