@@ -292,7 +292,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Tabla empleados/conceptos:</strong>
+                                &nbsp;<strong>Control de Novedades Administración:</strong>
                                 Exporta novedades en formato de tabla cruzada (empleados/conceptos).
                             </div>
                             <div class="col-md-2">
