@@ -160,6 +160,7 @@ switch ($operation)
         $view->disableLayout=true;
         $view->label = 'Exportar novedades';
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        $view->periodos_sup = NovPeriodo::getPeriodosSup(); //carga el combo de periodos superiores
 
         $view->contentTemplate="view/novedades_partes/export_txtForm.php";
         break;

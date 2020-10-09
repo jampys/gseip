@@ -127,6 +127,20 @@ order by pe.fecha_desde desc";
     }
 
 
+    public static function getPeriodosSup() {
+        //Trae todos los periodos superiores
+        $stmt=new sQuery();
+        $query="select periodo, SUBSTRING_INDEX(nombre, ' ', 2) as nombre
+from nov_periodos
+group by periodo
+order by periodo desc";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll(); // retorna todos los periodos
+    }
+
+
 
 }
 

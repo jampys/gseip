@@ -245,8 +245,9 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="id_empleado">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un contrato</option>
+                        <!--<select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">-->
+                        <select multiple class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5" title="Seleccione un contrato">
+                            <!--<option value="">Seleccione un contrato</option>-->
                             <?php foreach ($view->contratos as $con){
                                 ?>
                                 <option value="<?php echo $con['id_contrato']; ?>" >
@@ -261,6 +262,20 @@
                         <label for="id_periodo" class="control-label">Período de liquidación</label>
                         <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
                             <!-- se completa dinamicamente desde javascript  -->
+                        </select>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label class="control-label" for="periodo">Período de liquidación</label>
+                        <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un período</option>
+                            <?php foreach ($view->periodos_sup as $ps){
+                                ?>
+                                <option value="<?php echo $ps['periodo']; ?>" >
+                                    <?php echo $ps['nombre'];?>
+                                </option>
+                            <?php  } ?>
                         </select>
                     </div>
 
