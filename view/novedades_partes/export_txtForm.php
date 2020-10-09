@@ -94,8 +94,7 @@
                 params.operation = 'checkExportTxt';
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.periodo = $("#myModal #periodo").val();
-
-                alert(params.id_contrato);
+                //alert(params.id_contrato);
 
                 $.post('index.php',params,function(data, status, xhr){
 
