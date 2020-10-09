@@ -111,7 +111,7 @@
                          throw new Error();*/
                         //location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+"&fecha_desde="+params.fecha_desde+"&fecha_hasta="+params.fecha_hasta;
                         location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+
-                                                                                "&id_periodo="+params.id_periodo;
+                                                                                "&periodo="+params.periodo;
                                                                                 //"&fecha_desde="+params.fecha_desde+
                                                                                 //"&fecha_hasta="+params.fecha_hasta
                         return false;
