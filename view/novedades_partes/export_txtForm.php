@@ -179,19 +179,19 @@
 
             if ($("#txt-form").valid()){
 
+
+
                 params={};
                 params.id_contrato = $("#myModal #id_contrato").val();
-                params.first_contrato = params.id_contrato.split(',')[0];
+                params.first_contrato = params.id_contrato[0];
                 params.periodo = $("#myModal #periodo").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
-                alert(params.first_contrato);
+                //alert(params.first_contrato);
 
                 //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
                 //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_crossTab_novedades.rptdesign&p_id_contrato="+params.id_contrato+"&p_fecha_desde="+params.fecha_desde+"&p_fecha_hasta="+params.fecha_hasta+"&p_id_user="+params.id_user;
                 var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_nov_control_administracion_"+params.first_contrato+".rptdesign&p_id_contrato="+params.id_contrato+
-                        //"&p_fecha_desde="+params.fecha_desde+
-                        //"&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_periodo="+params.id_periodo+
                     "&p_id_user="+params.id_user;
 
