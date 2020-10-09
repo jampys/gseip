@@ -176,9 +176,14 @@
 
 
     function novedadColor(id_evento, trabajado){
-        if(id_evento == 1) return '#00b248'; //guardia activada
+        //color por defecto: rgb(55, 136, 216)
+        //
+        /*if(id_evento == 1) return '#00b248'; //guardia activada
         //else if(id_evento || trabajado != 1) return 'tomato';
         else if(id_evento) return 'tomato'; //cualquier otro evento
+        else return ''; //sin evento default (azul)*/
+        if(trabajado != 1) return 'tomato';
+        else if(id_evento == 1) return '#1b62a8'; //guardia activada
         else return ''; //sin evento default (azul)
     }
 
@@ -337,7 +342,12 @@
 
         <div class="alert alert-info fade in">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <span class="glyphicon glyphicon-tags" ></span>&nbsp  Debe seleccionar un contrato para visualizar eventos en el calendario.
+            <span class="glyphicon glyphicon-tags" ></span>&nbsp  Seleccionar un contrato para visualizar eventos en el calendario.
+            <p></p>
+            <p></p><a href="#" title="Día marcado en la novedad como Trabajado"><span class="badge" style="background-color: rgb(55, 136, 216)">&nbsp;</span> Trabajado</a></p>
+            <p></p><a href="#" title="Día marcado en la novedad como Trabajado y con Guardia activada"><span class="badge" style="background-color: #1b62a8">&nbsp;</span> Trabajado con Guardia activada</a></p>
+            <p></p><a href="#" title="Día marcado en la novedad como No trabajado"><span class="badge" style="background-color: tomato">&nbsp;</span> No rabajado</a></p>
+            <p></p><a href="#" title="Día feriado o no laborable"><span class="badge">&nbsp;</span> Feriado</a></p>
         </div>
 
 
@@ -454,7 +464,7 @@
         </div>
 
 
-
+        
 
 
 
