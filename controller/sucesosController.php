@@ -142,8 +142,9 @@ switch ($operation)
         $id_contrato = ($_GET['id_contrato']!='')? $_GET['id_contrato'] : null;
         $id_periodo = ($_GET['id_periodo']!='')? $_GET['id_periodo'] : null;
 
-        //$file_name = "sucesos_c".$id_contrato."_e".$id_empleado."_fd".str_replace("/", "", $fecha_desde)."_fh".str_replace("/", "", $fecha_hasta).".txt";
-        $file_name = "sucesos_c".$id_contrato."_p".$id_periodo.".txt";
+        $contratos = str_replace(",", "-", $id_contrato);
+        //$file_name = "sucesos_c".$id_contrato."_p".$id_periodo.".txt";
+        $file_name = "sucesos_c".$contratos."_p".$id_periodo.".txt";
         $filepath = "uploads/files/".$file_name;
         $handle = fopen($filepath, "w");
         $view->sucesos = Suceso::exportTxt($id_contrato, $id_periodo);

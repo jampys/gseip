@@ -179,8 +179,9 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="id_empleado">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un contrato</option>
+                        <!--<select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">-->
+                        <select multiple class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5" title="Seleccione un contrato">
+                            <!--<option value="">Seleccione un contrato</option>-->
                             <?php foreach ($view->contratos as $con){
                                 ?>
                                 <option value="<?php echo $con['id_contrato']; ?>" >
