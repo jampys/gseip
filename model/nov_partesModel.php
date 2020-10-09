@@ -343,7 +343,7 @@ class Parte
 
 
 
-    public static function exportTxt($id_contrato, $id_periodo) { //ok
+    public static function exportTxt($id_contrato, $periodo) { //ok
         $stmt=new sQuery();
         /*$query = "select em.legajo, nccc.codigo, sum(npec.cantidad) as cantidad, nccc.variable
 from nov_partes np
@@ -376,9 +376,10 @@ join nov_parte_empleado npe on npe.id_parte = np.id_parte
 join empleados em on em.id_empleado = npe.id_empleado
 join nov_parte_empleado_concepto npec on npec.id_parte_empleado = npe.id_parte_empleado
 join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato = npec.id_concepto_convenio_contrato
-where np.id_contrato = :id_contrato
+join nov_periodos per on np.id_periodo = per.id_periodo
+where np.id_contrato in ($id_contrato)
 and np.last_calc_status is not null
-and np.id_periodo = :id_periodo
+and per.periodo = :periodo
 group by npe.id_empleado, nccc.codigo, nccc.variable
 UNION
 select em.legajo, nccc.codigo,
@@ -395,8 +396,8 @@ group by em.id_empleado, nccc.codigo, nccc.variable) as temp
 order by id_convenio asc, legajo asc";
 
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':id_periodo', $id_periodo);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':periodo', $periodo);
 
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
