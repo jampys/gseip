@@ -21,22 +21,18 @@
         $('#txt-form').validate({
             rules: {
                 id_contrato: {required: true},
-                //fecha_desde: {required: true},
-                //fecha_hasta: {required: true}
-                id_periodo: {required: true}
+                periodo: {required: true}
             },
             messages:{
                 id_contrato: "Seleccione un contrato",
-                //fecha_desde: "Seleccione la fecha desde",
-                //fecha_hasta: "Seleccione la fecha hasta",
-                id_periodo: "Seleccione un período de liquidación"
+                periodo: "Seleccione un período de liquidación"
 
             }
         });
 
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
-        $('#myModal').on('change', '#id_contrato', function(e){
+        /*$('#myModal').on('change', '#id_contrato', function(e){
             //alert('seleccionó un contrato');
             //throw new Error();
             params={};
@@ -83,7 +79,7 @@
             });
 
 
-        });
+        });*/
 
 
         //al presionar boton de exportar en txt
@@ -96,10 +92,8 @@
                 params={};
                 params.action = 'partes';
                 params.operation = 'checkExportTxt';
-                //params.fecha_desde = $("#myModal #fecha_desde").val();
-                //params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
-                params.id_periodo = $("#myModal #id_periodo").val();
+                params.periodo = $("#myModal #periodo").val();
 
                 $.post('index.php',params,function(data, status, xhr){
 
@@ -140,7 +134,8 @@
 
 
         //al presionar boton de exportar en pdf
-        $('#myModal').on("click", "#submit1", function(){ //Desactivado temporalmente 31/01/2020
+        //Desactivado temporalmente 31/01/2020
+        /*$('#myModal').on("click", "#submit1", function(){
 
             if ($("#txt-form").valid()){
 
@@ -155,7 +150,7 @@
                 //params.action = 'partes';
                 //params.operation = 'checkExportTxt';
                 params.id_contrato = $("#myModal #id_contrato").val();
-                params.id_periodo = $("#myModal #id_periodo").val();
+                params.periodo = $("#myModal #periodo").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
 
                 //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
@@ -174,7 +169,7 @@
             }
 
             return false;
-        });
+        });*/
 
 
 
@@ -185,7 +180,7 @@
 
                 params={};
                 params.id_contrato = $("#myModal #id_contrato").val();
-                params.id_periodo = $("#myModal #id_periodo").val();
+                params.periodo = $("#myModal #periodo").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
 
                 //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
@@ -258,12 +253,12 @@
                     </div>
 
 
-                    <div class="form-group required">
+                    <!--<div class="form-group required">
                         <label for="id_periodo" class="control-label">Período de liquidación</label>
                         <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
-                            <!-- se completa dinamicamente desde javascript  -->
+                            <!-- se completa dinamicamente desde javascript
                         </select>
-                    </div>
+                    </div>-->
 
 
                     <div class="form-group required">
