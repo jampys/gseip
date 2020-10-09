@@ -179,8 +179,6 @@
 
             if ($("#txt-form").valid()){
 
-
-
                 params={};
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.first_contrato = params.id_contrato[0];

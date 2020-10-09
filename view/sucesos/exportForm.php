@@ -241,7 +241,11 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp <strong>Para uso de administración</strong> Exporta sucesos en formato .txt (admisible para BAS) para un período indicado.
+                                <span class="glyphicon glyphicon-tags" ></span>
+                                &nbsp;<strong>Archivo de texto</strong>
+                                <strong class="dp_orange">(RRHH)</strong>
+                                <strong>:</strong>
+                                Exporta sucesos en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit" name="submit" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
