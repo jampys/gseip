@@ -179,9 +179,9 @@ switch ($operation)
 
         $id_contrato = ($_GET['id_contrato']!='')? $_GET['id_contrato'] : null;
         $periodo = ($_GET['periodo']!='')? $_GET['periodo'] : null;
-
-        //$file_name = "novedades_c".$id_contrato."_fd".str_replace("/", "", $fecha_desde)."_fh".str_replace("/", "", $fecha_hasta).".txt";
-        $file_name = "novedades_c".$id_contrato."_p".$periodo.".txt";
+        //$file_name = "novedades_c".$id_contrato."_p".$periodo.".txt";
+        $contratos = str_replace(",", "-", $id_contrato);
+        $file_name = "novedades_c".$contratos."_p".$periodo.".txt";
         $filepath = "uploads/files/".$file_name;
         //$filepath = "uploads/files/file.txt";
         $handle = fopen($filepath, "w");
