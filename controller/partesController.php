@@ -177,8 +177,7 @@ switch ($operation)
 
     case 'exportTxt': //exportacion propiamente dicha
 
-        //$id_contrato = ($_GET['id_contrato']!='')? $_GET['id_contrato'] : null;
-        $id_contrato = ($_GET['id_contrato']!='')? implode(",", $_GET['id_contrato'])  : 'vrp.id_vencimiento';
+        $id_contrato = ($_GET['id_contrato']!='')? $_GET['id_contrato'] : null;
         $periodo = ($_GET['periodo']!='')? $_GET['periodo'] : null;
 
         //$file_name = "novedades_c".$id_contrato."_fd".str_replace("/", "", $fecha_desde)."_fh".str_replace("/", "", $fecha_hasta).".txt";
