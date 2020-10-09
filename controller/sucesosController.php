@@ -132,7 +132,7 @@ switch ($operation)
         $view->disableLayout=true;
         $view->label = 'Exportar sucesos';
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
-        //$view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion
+        $view->periodos_sup = NovPeriodo::getPeriodosSup(); //carga el combo de periodos superiores
 
         $view->contentTemplate="view/sucesos/exportForm.php";
         break;
