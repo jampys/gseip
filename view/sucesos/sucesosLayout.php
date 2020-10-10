@@ -64,8 +64,7 @@
                 params.operation = "loadExport";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-
-                    $('#myModal #id_contrato').val($('#search_contrato').val());
+                    //$('#myModal #id_contrato').val($('#search_contrato').val());
                     $('.selectpicker').selectpicker('refresh');
                 });
                 return false;
