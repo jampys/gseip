@@ -471,20 +471,18 @@ class Suceso
         $query = "select ns.id_suceso, ns.id_evento, ns.id_empleado,
                   if(per1.periodo = :periodo, ns.fd1, ns.fd2) as fecha_desde,
                   if(per1.periodo = :periodo, ns.fh1, ns.fh2) as fecha_hasta,
-                  per.fecha_desde as periodo_desde,
-                  per.fecha_hasta as periodo_hasta,
+                  per1.fecha_desde as periodo_desde,
+                  per1.fecha_hasta as periodo_hasta,
                   if(per1.periodo = :periodo, ifnull(ns.cantidad1,0), ifnull(ns.cantidad2,0)) as cantidad,
                   ev.codigo as evento,
                   em.legajo as legajo
                   from v_sec_nov_sucesos ns
                   join empleados em on ns.id_empleado = em.id_empleado
                   join nov_eventos_l ev on ns.id_evento = ev.id_evento
-                  left join empleado_contrato ec on ns.id_empleado = ec.id_empleado
-                  join nov_periodos per on (per.periodo = :periodo and per.id_contrato = ec.id_contrato)
                   left join nov_periodos per1 on per1.id_periodo = ns.id_periodo1
                   left join nov_periodos per2 on per2.id_periodo = ns.id_periodo2
-                  where ec.id_contrato in ($id_contrato)
-                  and (per1.periodo = :periodo or per2.periodo = :periodo)";
+                  where (per1.periodo = :periodo or per2.periodo = :periodo)
+                  and (per1.id_contrato in ($id_contrato) or per2.id_contrato in($id_contrato))";
 
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_contrato', $id_contrato);
