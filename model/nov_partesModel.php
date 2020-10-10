@@ -345,7 +345,9 @@ class Parte
 
     public static function exportTxt($id_contrato, $periodo) { //ok
         $stmt=new sQuery();
-        /*$query = "select em.legajo, nccc.codigo, sum(npec.cantidad) as cantidad, nccc.variable
+        //se agrega un select de nivel superior para porder ordenarlo y que salga en el mismo orden que el pdf
+        /*$query = "select * from
+(select em.legajo, nccc.codigo, sum(npec.cantidad) as cantidad, nccc.variable, em.id_convenio
 from nov_partes np
 join nov_parte_empleado npe on npe.id_parte = np.id_parte
 join empleados em on em.id_empleado = npe.id_empleado
@@ -357,18 +359,18 @@ and np.id_periodo = :id_periodo
 group by npe.id_empleado, nccc.codigo, nccc.variable
 UNION
 select em.legajo, nccc.codigo,
-(if(ns.id_periodo1 = :id_periodo, ifnull(ns.cantidad1,0), 0) + if(ns.id_periodo2 = :id_periodo, ifnull(ns.cantidad2,0), 0)) as cantidad,
-nccc.variable
+sum(if(ns.id_periodo1 = :id_periodo, ifnull(ns.cantidad1,0), 0) + if(ns.id_periodo2 = :id_periodo, ifnull(ns.cantidad2,0), 0)) as cantidad,
+nccc.variable, em.id_convenio
 from nov_sucesos ns
 join empleados em on em.id_empleado = ns.id_empleado
 left join nov_convenios nc on nc.id_convenio = em.id_convenio
 join nov_eventos_l nel on nel.id_evento = ns.id_evento
 join nov_concepto_convenio_contrato nccc on nccc.id_concepto = nel.id_concepto and nccc.id_contrato = :id_contrato and nccc.id_convenio = em.id_convenio
 where (ns.id_periodo1 = :id_periodo or ns.id_periodo2 = :id_periodo)
-and nccc.id_concepto in (15, 16)
-group by em.id_empleado, nccc.codigo, nccc.variable";*/
-        //Esta ultima version es similar al query anterior, solo se agrega un select de nivel superior para porder
-        //ordenarlo y que salga en el mismo orden que el pdf
+and nccc.id_concepto in (15, 16, 18, 29)
+group by em.id_empleado, nccc.codigo, nccc.variable) as temp
+order by id_convenio asc, legajo asc";*/
+
         $query = "select * from
 (select em.legajo, nccc.codigo, sum(npec.cantidad) as cantidad, nccc.variable, em.id_convenio
 from nov_partes np
