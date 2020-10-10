@@ -228,17 +228,6 @@
                 <form name ="txt-form" id="txt-form" method="POST" action="index.php">
                     <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
 
-
-                    <!--<div class="form-group required">
-                        <label class="control-label" for="empleado">Fecha desde / hasta</label>
-                        <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
-                            <div class="input-group-addon">a</div>
-                            <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
-                        </div>
-                    </div>-->
-
-
                     <div class="form-group required">
                         <label class="control-label" for="id_empleado">Contrato</label>
                         <!--<select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">-->
@@ -253,14 +242,12 @@
                         </select>
                     </div>
 
-
                     <!--<div class="form-group required">
                         <label for="id_periodo" class="control-label">Período de liquidación</label>
                         <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
                             <!-- se completa dinamicamente desde javascript
                         </select>
                     </div>-->
-
 
                     <div class="form-group required">
                         <label class="control-label" for="periodo">Período de liquidación</label>
@@ -274,18 +261,6 @@
                             <?php  } ?>
                         </select>
                     </div>
-
-
-                    <!--<div class="alert alert-info" role="alert">
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Exporta novedades en formato de tabla cruzada (empleado/concepto).
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
-                            </div>
-                        </div>
-                    </div>-->
 
 
                     <div class="alert alert-info" role="alert">
