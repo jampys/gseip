@@ -113,7 +113,7 @@ pe.closed_date,
 pe.id_contrato, co.nombre as contrato
 from empleados em
 join empleado_contrato ec on ec.id_empleado = em.id_empleado
-join contratos co on co.id_contrato = ec.id_contrato
+join v_sec_contratos_control co on co.id_contrato = ec.id_contrato
 join nov_periodos pe on pe.id_contrato = co.id_contrato
 where em.id_empleado = :id_empleado
 and if(:activos is null, 1, pe.closed_date is null)
