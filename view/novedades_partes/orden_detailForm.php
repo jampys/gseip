@@ -91,8 +91,8 @@
             rules: {
                 nro_parte_diario: {
                         required: true,
-                        digits: true,
-                        maxlength: 8
+                        //digits: true,
+                        maxlength: 15 //8
                 },
                 orden_tipo: {required: true},
                 orden_nro: {
@@ -104,8 +104,8 @@
             messages:{
                 nro_parte_diario: {
                     required: "Ingrese el Nro. parte diario",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 8 dígitos"
+                    //digits: "Ingrese solo números",
+                    maxlength: "Máximo 15 dígitos"
                 },
                 orden_tipo: "Seleccione el tipo de orden",
                 orden_nro: {
