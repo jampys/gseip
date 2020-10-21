@@ -92,7 +92,7 @@
                         <!--<td><?php //echo ($rp['id_vehiculo'])? $rp['vehiculo'] : $rp['grupo']; ?></td>-->
                         <td><?php if($rp['id_vehiculo']) {echo $rp['vehiculo'];}
                                   else {echo $rp['grupo'];
-                                        echo ($rp['certificado'])? "(Cert: ".$rp['certificado'].")" : "";
+                                        echo ($rp['certificado'])? " - Certif.: ".$rp['certificado']."" : "";
                                   }
                             ?></td>
                         <td><?php echo $rp['fecha_emision']; ?></td>
