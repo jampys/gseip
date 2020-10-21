@@ -89,7 +89,12 @@
                         <td><?php echo $rp['id_renovacion']; ?></td>
                         <td><?php echo $rp['created_date']; ?></td>
                         <td><?php echo $rp['vencimiento']; ?></td>
-                        <td><?php echo ($rp['id_vehiculo'])? $rp['vehiculo'] : $rp['grupo']; ?></td>
+                        <!--<td><?php //echo ($rp['id_vehiculo'])? $rp['vehiculo'] : $rp['grupo']; ?></td>-->
+                        <td><?php if($rp['id_vehiculo']) {echo $rp['vehiculo'];}
+                                  else {echo $rp['grupo'];
+                                        echo ($rp['certificado'])? "(Cert: ".$rp['certificado'].")" : "";
+                                  }
+                            ?></td>
                         <td><?php echo $rp['fecha_emision']; ?></td>
                         <td style="background-color: <?php echo $rp['color']; ?>"><?php echo $rp['fecha_vencimiento']; ?></td>
                         <td style="display: none"><?php echo $rp['priority']; ?></td>

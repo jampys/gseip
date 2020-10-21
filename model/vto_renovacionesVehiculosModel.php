@@ -139,7 +139,8 @@ va.color, va.priority,
 concat(ifnull(matricula, ''), ' ', ifnull(nro_movil, ''), ' ', ifnull(modelo, '')) as vehiculo,
 null  as grupo,
 vrv.id_rnv_renovacion,
-(select count(*) from uploads_vencimiento_v where id_renovacion = vrv.id_renovacion) as cant_uploads
+(select count(*) from uploads_vencimiento_v where id_renovacion = vrv.id_renovacion) as cant_uploads,
+null as certificado
 from v_sec_vto_renovacion_v vrv, vto_vencimiento_v vvv, vto_alerta_vencimiento_v vav,
 (
 select vex.*, vvcx.id_contrato
@@ -186,7 +187,8 @@ va.color, va.priority,
 null as vehiculo,
 CONCAT(vgv.nombre, ' ', ifnull(vgv.nro_referencia, '')) as grupo,
 vrv.id_rnv_renovacion,
-(select count(*) from uploads_vencimiento_v where id_renovacion = vrv.id_renovacion) as cant_uploads
+(select count(*) from uploads_vencimiento_v where id_renovacion = vrv.id_renovacion) as cant_uploads,
+(select vgvx.certificado from vto_grupo_vehiculo vgvx where vgvx.id_grupo = vgv.id_grupo and vgvx.id_vehiculo = :id_vehiculo and (vgvx.fecha_hasta is null or vgvx.fecha_hasta >= sysdate())) as certificado
 from v_sec_vto_renovacion_v vrv, vto_vencimiento_v vvv, vto_alerta_vencimiento_v vav, vto_alerta va, vto_grupos_v vgv
 where vrv.id_grupo = vgv.id_grupo
 and vrv.id_vencimiento = vvv.id_vencimiento
