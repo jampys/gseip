@@ -74,7 +74,7 @@
 
                 var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
-                    message: "<p>¿Desea eliminar el grupo?</p>",
+                    message: "<p>¿Desea eliminar la flota?</p>",
                     size: 'small',
                     buttons: {
                         cancel: {
