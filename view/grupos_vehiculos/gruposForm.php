@@ -48,7 +48,7 @@
 
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Grupo guardado con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Flota guardada con exito').addClass('alert alert-success').show();
                         $('#content').load('index.php',{action:"vto_gruposVehiculos", operation:"refreshGrid"});
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
@@ -57,7 +57,7 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar el grupo').addClass('alert alert-danger').show();
+                    $("#myElem").html('No es posible guardar la flota').addClass('alert alert-danger').show();
                 });
 
             }

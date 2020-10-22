@@ -93,7 +93,7 @@
 
                 }).fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
+                    $("#myElem").html('No es posible guardar el vehículo').addClass('alert alert-danger').show();
                 });
 
             }

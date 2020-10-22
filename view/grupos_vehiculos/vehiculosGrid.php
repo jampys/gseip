@@ -11,6 +11,7 @@
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
+            order: [[3, "asc"], [1, "asc"]], // 3=fecha_hasta, 1=certif
             columnDefs: [
                 { responsivePriority: 1, targets: 4 }
             ]
@@ -35,7 +36,7 @@
                 <thead>
                 <tr>
                     <th>Vehículo</th>
-                    <th>Cerf.</th>
+                    <th>Certif.</th>
                     <th>F. desde</th>
                     <th>F. hasta</th>
                     <th></th>
@@ -75,7 +76,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> El grupo no tiene vehículos registrados.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> La flota no tiene vehículos registrados.
     </div>
 
 <?php } ?>

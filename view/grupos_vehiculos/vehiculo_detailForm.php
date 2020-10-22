@@ -79,7 +79,7 @@
                 }, */
                 id_vehiculo: {
                  required: "Seleccione un vehículo",
-                 remote: "El vehículo se encuentra activo en un grupo"
+                 remote: "El vehículo se encuentra activo en una flota"
                  },
                 //id_vehiculo: "Seleccione un vehículo",
                 fecha_desde: "Seleccione una fecha desde"

@@ -148,7 +148,7 @@
 
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('RVE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=renovacionesVehiculos"><i class="far fa-calendar-check fa-fw dp_blue"></i>&nbsp;Vencimientos de vehículos</a></li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('RVE_ABM', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=renovacionesVehiculosAuditoria"><i class="fas fa-history fa-fw dp_blue"></i>&nbsp;Auditoría de vehículos</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos"><i class="fas fa-users fa-sm fa-fw dp_blue"></i>&nbsp;Grupos de vehículos</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos">&nbsp;Flotas de vehículos</a></li>
 
                         </ul>
                     </li>

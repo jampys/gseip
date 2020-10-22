@@ -74,7 +74,7 @@
 
                 var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
-                    message: "<p>¿Desea eliminar el grupo?</p>",
+                    message: "<p>¿Desea eliminar la flota?</p>",
                     size: 'small',
                     buttons: {
                         cancel: {
@@ -105,7 +105,7 @@
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        dialog.find('.modal-footer').html('<div class="alert alert-success">Grupo eliminado con exito</div>');
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Flota eliminada con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
                             $('#content').load('index.php',{action:"vto_gruposVehiculos", operation: "refreshGrid"});
@@ -114,7 +114,7 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el grupo</div>');
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la flota</div>');
 
                 });
 
