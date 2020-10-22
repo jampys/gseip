@@ -72,7 +72,7 @@
                 <th>Nro. rnv</th>
                 <th>Fecha</th>
                 <th>vencimiento</th>
-                <th>vehículo / grupo</th>
+                <th>vehículo / flota</th>
                 <th>F. emisión</th>
                 <th>F. vto.</th>
                 <th style="display: none">Priority</th>
