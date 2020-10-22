@@ -29,12 +29,12 @@
 
 <div class="col-md-10">
 
-    <h4>Grupos de vehículos</h4>
+    <h4>Flotas de vehículos</h4>
     <hr class="hr-primary"/>
 
     <div style="text-align: right; margin-bottom: 10px">
         <button  id="new" type="button" class="btn btn-default" <?php echo (PrivilegedUser::dhasAction('GRV_INSERT', array(1)) )? '' : 'disabled' ?> >
-            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nuevo Grupo
+            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nueva Flota
         </button>
     </div>
 

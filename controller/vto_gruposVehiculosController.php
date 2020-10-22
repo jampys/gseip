@@ -31,7 +31,7 @@ switch ($operation)
 
     case 'newGrupo': //ok
         $view->grupo = new Grupo();
-        $view->label='Nuevo grupo';
+        $view->label='Nueva flota';
 
         $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos();
 

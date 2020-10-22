@@ -57,7 +57,7 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar el grupo').addClass('alert alert-danger').show();
+                    $("#myElem").html('Error al guardar la flota').addClass('alert alert-danger').show();
                 });
 
             }

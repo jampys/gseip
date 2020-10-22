@@ -75,7 +75,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> El grupo no tiene vehículos registrados.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> La flota no tiene vehículos registrados.
     </div>
 
 <?php } ?>
