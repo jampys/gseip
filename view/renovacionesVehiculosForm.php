@@ -251,8 +251,8 @@
 
 
                     <div class="form-group required">
-                        <label for="id_vehiculo" class="control-label">Vehículo / Grupo</label>
-                        <select class="form-control selectpicker show-tick" id="id_vehiculo" name="id_vehiculo" title="Seleccione un vehículo o grupo" data-live-search="true" data-size="5">
+                        <label for="id_vehiculo" class="control-label">Vehículo / flota</label>
+                        <select class="form-control selectpicker show-tick" id="id_vehiculo" name="id_vehiculo" title="Seleccione un vehículo o flota" data-live-search="true" data-size="5">
                             <?php foreach ($view->vehiculosGrupos as $eg){
                                 ?>
                                 <option
