@@ -11,6 +11,7 @@
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
+            order: [[3, "asc"], [1, "asc"]], // 3=fecha_hasta, 1=certif
             columnDefs: [
                 { responsivePriority: 1, targets: 4 }
             ]
@@ -35,7 +36,7 @@
                 <thead>
                 <tr>
                     <th>Vehículo</th>
-                    <th>Cerf.</th>
+                    <th>Certif.</th>
                     <th>F. desde</th>
                     <th>F. hasta</th>
                     <th></th>
