@@ -280,7 +280,7 @@
 
                     <div class="form-group col-md-1">
                         <!--<label for="search">&nbsp;</label>-->
-                        <button type="button" class="form-control btn btn-default" title="Nueva renovación" id="new" <?php echo ( PrivilegedUser::dhasAction('RPE_INSERT', array(1)) )? '' : 'disabled' ?>>
+                        <button type="button" class="form-control btn btn-default" title="Nuevo vencimiento" id="new" <?php echo ( PrivilegedUser::dhasAction('RPE_INSERT', array(1)) )? '' : 'disabled' ?>>
                             <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                         </button>
                     </div>
