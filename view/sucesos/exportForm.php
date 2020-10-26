@@ -21,24 +21,21 @@
         $('#txt-form').validate({
             rules: {
                 id_contrato: {required: true},
-                id_periodo: {required: function(item){return $('#id_periodo').attr('validar') == 1}},
-                fecha_desde: {required: function(item){return $('#fecha_desde').attr('validar') == 1}},
-                fecha_hasta: {required: function(item){return $('#fecha_desde').attr('validar') == 1}}
-                //id_evento: {required: true}
+                periodo: {required: function(item){return $('#periodo').attr('validar') == 1}}
+                //fecha_desde: {required: function(item){return $('#fecha_desde').attr('validar') == 1}},
+                //fecha_hasta: {required: function(item){return $('#fecha_desde').attr('validar') == 1}}
             },
             messages:{
                 id_contrato: "Seleccione un contrato",
-                id_periodo: "Seleccione un período",
-                fecha_desde: "Seleccione la fecha desde",
-                fecha_hasta: "Seleccione la fecha hasta"
-                //id_evento: "Seleccione un evento"
-
+                periodo: "Seleccione un período"
+                //fecha_desde: "Seleccione la fecha desde",
+                //fecha_hasta: "Seleccione la fecha hasta"
             }
         });
 
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
-        $('#myModal').on('change', '#id_contrato', function(e){
+        /*$('#myModal').on('change', '#id_contrato', function(e){
             //alert('seleccionó un contrato');
             //throw new Error();
             params={};
@@ -85,7 +82,7 @@
             });
 
 
-        });
+        });*/
 
 
         
@@ -133,20 +130,20 @@
             //$('#txt-form').validate().resetForm(); //limpiar error input validate
             $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
             $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
-            $('#id_periodo').attr('validar', 1);
-            $('#fecha_desde').attr('validar', 0);
-            $('#fecha_hasta').attr('validar', 0);
+            $('#periodo').attr('validar', 1);
+            //$('#fecha_desde').attr('validar', 0);
+            //$('#fecha_hasta').attr('validar', 0);
 
             if ($("#txt-form").valid()){
 
                 params={};
                 params.id_contrato = $("#myModal #id_contrato").val();
-                params.id_periodo = $("#myModal #id_periodo").val();
+                params.periodo = $("#myModal #periodo").val();
                 //location.href="index.php?action=sucesos&operation=txt";
                 location.href="index.php?action=sucesos"+
                                         "&operation=txt" +
                                         "&id_contrato="+params.id_contrato+
-                                        "&id_periodo="+params.id_periodo;
+                                        "&periodo="+params.periodo;
 
             }
 
@@ -182,8 +179,9 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="id_empleado">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un contrato</option>
+                        <!--<select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">-->
+                        <select multiple class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5" title="Seleccione un contrato">
+                            <!--<option value="">Seleccione un contrato</option>-->
                             <?php foreach ($view->contratos as $con){
                                 ?>
                                 <option value="<?php echo $con['id_contrato']; ?>" >
@@ -194,10 +192,23 @@
                     </div>
 
 
-                    <div class="form-group required">
+                    <!--<div class="form-group required">
                         <label for="id_periodo" class="control-label">Período de liquidación</label>
                         <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
-                            <!-- se completa dinamicamente desde javascript  -->
+                            <!-- se completa dinamicamente desde javascript
+                        </select>
+                    </div>-->
+
+                    <div class="form-group required">
+                        <label class="control-label" for="periodo">Período de liquidación</label>
+                        <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un período</option>
+                            <?php foreach ($view->periodos_sup as $ps){
+                                ?>
+                                <option value="<?php echo $ps['periodo']; ?>" >
+                                    <?php echo $ps['nombre'];?>
+                                </option>
+                            <?php  } ?>
                         </select>
                     </div>
 
@@ -241,7 +252,11 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp <strong>Para uso de administración</strong> Exporta sucesos en formato .txt (admisible para BAS) para un período indicado.
+                                <span class="glyphicon glyphicon-tags" ></span>
+                                &nbsp;<strong>Archivo de texto</strong>
+                                <strong class="dp_orange">(RRHH)</strong>
+                                <strong>:</strong>
+                                Exporta sucesos en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit" name="submit" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>

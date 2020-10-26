@@ -21,22 +21,18 @@
         $('#txt-form').validate({
             rules: {
                 id_contrato: {required: true},
-                //fecha_desde: {required: true},
-                //fecha_hasta: {required: true}
-                id_periodo: {required: true}
+                periodo: {required: true}
             },
             messages:{
                 id_contrato: "Seleccione un contrato",
-                //fecha_desde: "Seleccione la fecha desde",
-                //fecha_hasta: "Seleccione la fecha hasta",
-                id_periodo: "Seleccione un período de liquidación"
+                periodo: "Seleccione un período de liquidación"
 
             }
         });
 
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
-        $('#myModal').on('change', '#id_contrato', function(e){
+        /*$('#myModal').on('change', '#id_contrato', function(e){
             //alert('seleccionó un contrato');
             //throw new Error();
             params={};
@@ -83,7 +79,7 @@
             });
 
 
-        });
+        });*/
 
 
         //al presionar boton de exportar en txt
@@ -96,10 +92,9 @@
                 params={};
                 params.action = 'partes';
                 params.operation = 'checkExportTxt';
-                //params.fecha_desde = $("#myModal #fecha_desde").val();
-                //params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
-                params.id_periodo = $("#myModal #id_periodo").val();
+                params.periodo = $("#myModal #periodo").val();
+                //alert(params.id_contrato);
 
                 $.post('index.php',params,function(data, status, xhr){
 
@@ -117,7 +112,7 @@
                          throw new Error();*/
                         //location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+"&fecha_desde="+params.fecha_desde+"&fecha_hasta="+params.fecha_hasta;
                         location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+
-                                                                                "&id_periodo="+params.id_periodo;
+                                                                                "&periodo="+params.periodo;
                                                                                 //"&fecha_desde="+params.fecha_desde+
                                                                                 //"&fecha_hasta="+params.fecha_hasta
                         return false;
@@ -140,7 +135,8 @@
 
 
         //al presionar boton de exportar en pdf
-        $('#myModal').on("click", "#submit1", function(){ //Desactivado temporalmente 31/01/2020
+        //Desactivado temporalmente 31/01/2020
+        /*$('#myModal').on("click", "#submit1", function(){
 
             if ($("#txt-form").valid()){
 
@@ -155,7 +151,7 @@
                 //params.action = 'partes';
                 //params.operation = 'checkExportTxt';
                 params.id_contrato = $("#myModal #id_contrato").val();
-                params.id_periodo = $("#myModal #id_periodo").val();
+                params.periodo = $("#myModal #periodo").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
 
                 //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
@@ -174,7 +170,7 @@
             }
 
             return false;
-        });
+        });*/
 
 
 
@@ -185,16 +181,16 @@
 
                 params={};
                 params.id_contrato = $("#myModal #id_contrato").val();
-                params.id_periodo = $("#myModal #id_periodo").val();
+                params.first_contrato = params.id_contrato[0];
+                params.periodo = $("#myModal #periodo").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
+                //alert(params.first_contrato);
 
                 //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
                 //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_crossTab_novedades.rptdesign&p_id_contrato="+params.id_contrato+"&p_fecha_desde="+params.fecha_desde+"&p_fecha_hasta="+params.fecha_hasta+"&p_id_user="+params.id_user;
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_nov_control_administracion_"+params.id_contrato+".rptdesign&p_id_contrato="+params.id_contrato+
-                        //"&p_fecha_desde="+params.fecha_desde+
-                        //"&p_fecha_hasta="+params.fecha_hasta+
-                    "&p_id_periodo="+params.id_periodo+
+                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_nov_control_administracion_"+params.first_contrato+".rptdesign&p_id_contrato="+params.id_contrato+
+                    "&p_id_periodo="+params.periodo+
                     "&p_id_user="+params.id_user;
 
                 //var win = window.open(URL, "_blank", strWindowFeatures);
@@ -232,21 +228,11 @@
                 <form name ="txt-form" id="txt-form" method="POST" action="index.php">
                     <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
 
-
-                    <!--<div class="form-group required">
-                        <label class="control-label" for="empleado">Fecha desde / hasta</label>
-                        <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
-                            <div class="input-group-addon">a</div>
-                            <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
-                        </div>
-                    </div>-->
-
-
                     <div class="form-group required">
                         <label class="control-label" for="id_empleado">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un contrato</option>
+                        <!--<select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">-->
+                        <select multiple class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5" title="Seleccione un contrato">
+                            <!--<option value="">Seleccione un contrato</option>-->
                             <?php foreach ($view->contratos as $con){
                                 ?>
                                 <option value="<?php echo $con['id_contrato']; ?>" >
@@ -256,32 +242,32 @@
                         </select>
                     </div>
 
-
-                    <div class="form-group required">
+                    <!--<div class="form-group required">
                         <label for="id_periodo" class="control-label">Período de liquidación</label>
                         <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
-                            <!-- se completa dinamicamente desde javascript  -->
+                            <!-- se completa dinamicamente desde javascript
+                        </select>
+                    </div>-->
+
+                    <div class="form-group required">
+                        <label class="control-label" for="periodo">Período de liquidación</label>
+                        <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un período</option>
+                            <?php foreach ($view->periodos_sup as $ps){
+                                ?>
+                                <option value="<?php echo $ps['periodo']; ?>" >
+                                    <?php echo $ps['nombre'];?>
+                                </option>
+                            <?php  } ?>
                         </select>
                     </div>
-
-
-                    <!--<div class="alert alert-info" role="alert">
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp Exporta novedades en formato de tabla cruzada (empleado/concepto).
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
-                            </div>
-                        </div>
-                    </div>-->
 
 
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Tabla empleados/conceptos:</strong>
+                                &nbsp;<strong>Control de Novedades Administración:</strong>
                                 Exporta novedades en formato de tabla cruzada (empleados/conceptos).
                             </div>
                             <div class="col-md-2">
