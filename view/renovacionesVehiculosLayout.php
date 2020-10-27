@@ -193,7 +193,7 @@
                     <div class="form-group col-md-3">
                         <!--<label for="search_vehiculo" class="control-label">Vehículo / Grupo</label>-->
                         <select class="form-control selectpicker show-tick" id="search_vehiculo" name="search_vehiculo" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un vehículo o grupo</option>
+                            <option value="">Seleccione un vehículo o flota</option>
                             <?php foreach ($view->vehiculosGrupos as $eg){
                                 ?>
                                 <option value=""
