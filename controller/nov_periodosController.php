@@ -28,14 +28,14 @@ switch ($operation)
 
 
 
-    default : //carga la tabla de etapas de la postulacion //ok
+    default :  //ok
         //$view->postulacion = new Postulacion($_POST['id_postulacion']);
         //$view->label='Etapas de la postulación';
         //$view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
         //$view->localidades = Localidad::getLocalidades();
         //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
-        $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/etapasForm.php";
+        //$view->disableLayout=true;
+        $view->contentTemplate="view/nov_periodos/periodosGrid.php";
         break;
 }
 
@@ -44,7 +44,7 @@ if ($view->disableLayout==true) {
     include_once ($view->contentTemplate);
 }
 else {
-    //include_once('view/busquedas/busquedasLayout.php');
+    include_once('view/nov_periodos/periodosLayout.php');
 }
 
 
