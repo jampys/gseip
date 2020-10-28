@@ -94,11 +94,13 @@ DATE_FORMAT(per.created_date,  '%d/%m/%Y') as created_date,
 DATE_FORMAT(per.closed_date,  '%d/%m/%Y') as closed_date,
 co.nombre as contrato
 from nov_periodos per
-join contratos co on co.id_contrato = per.id_contrato";
+join contratos co on co.id_contrato = per.id_contrato
+and per.id_contrato = ifnull(:id_contrato, per.id_contrato)
+and per.periodo = ifnull(:periodo, per.periodo)";
 
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
-        //$stmt->dpBind(':periodo', $periodo);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
