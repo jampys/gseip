@@ -69,18 +69,14 @@
 
                         <td class="text-center">
 
-                            <a class="view" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
-
                             <!-- si tiene permiso para editar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" title="re-abrir" href="javascript:void(0);">
+                                <i class="fas fa-lock-open dp_blue"></i>
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para eliminar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="cerrar" href="javascript:void(0);">
+                                <i class="fas fa-lock dp_red"></i>
                             </a>
                         </td>
                     </tr>

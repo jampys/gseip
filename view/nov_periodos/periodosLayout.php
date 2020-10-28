@@ -47,54 +47,6 @@
             });
 
 
-            $('#content').on('click', '.view', function(){
-                var id = $(this).closest('tr').attr('data-id');
-                params={};
-                params.id_busqueda = id;
-                params.action = "busquedas";
-                params.operation = "editBusqueda";
-                params.target = "view";
-                $('#popupbox').load('index.php', params,function(){
-                    //$("fieldset").prop("disabled", true);
-                    //$('.modal-footer').css('display', 'none');
-                    $('#myModal').modal();
-                })
-
-            });
-
-
-            //Al presionar el boton detalles....
-            $('#content').on('click', '.detalles', function(){
-                //alert('tocó en contratos');
-                var id = $(this).closest('tr').attr('data-id');
-                //preparo los parametros
-                params={};
-                params.id_busqueda = id;
-                params.action = "postulaciones2";
-                params.operation = "loadDetalles";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                    $('#etapas_left_side #add').attr('id_busqueda', id);
-                })
-
-            });
-
-
-            $(document).on('click', '#new', function(){
-                params={};
-                params.action = "busquedas";
-                params.operation="newBusqueda";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                })
-            });
-
-
-
-            $(document).on('click', '#cancel',function(){
-                $('#myModal').modal('hide');
-            });
-
 
 
 
