@@ -70,12 +70,12 @@
                         <td class="text-center">
 
                             <!-- si tiene permiso para editar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" title="re-abrir" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) && $rp['closed_date'] )? 'edit' : 'disabled' ?>" title="re-abrir" href="javascript:void(0);">
                                 <i class="fas fa-lock-open dp_blue"></i>
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para eliminar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="cerrar" href="javascript:void(0);">
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_DELETE', array(1)) && !$rp['closed_date'] )? 'delete' : 'disabled' ?>" title="cerrar" href="javascript:void(0);">
                                 <i class="fas fa-lock dp_red"></i>
                             </a>
                         </td>
