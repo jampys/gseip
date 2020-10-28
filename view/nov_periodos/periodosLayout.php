@@ -51,10 +51,10 @@
 
 
             var dialog;
-            $(document).on('click', '#example .delete', function(){
+            $(document).on('click', '#example .cerrar', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
-                    message: "<p>¿Desea eliminar la búsqueda?</p>",
+                    message: "<p>¿Desea cerrar el período?</p>",
                     size: 'small',
                     buttons: {
                         cancel: {
@@ -64,7 +64,7 @@
                             label: "Si",
                             className: 'btn-danger',
                             callback: function(){
-                                $.fn.borrar(id);
+                                $.fn.cerrar(id);
                                 return false; //evita que se cierre automaticamente
                             }
                         }
@@ -74,9 +74,56 @@
 
             });
 
+            $.fn.cerrar = function(id) {
+                //alert(id);
+                params={};
+                params.id_busqueda = id;
+                params.action = "busquedas";
+                params.operation = "deleteBusqueda";
+
+                $.post('index.php',params,function(data, status, xhr){
+                    if(data >=0){
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Búsqueda eliminada con exito</div>');
+                        setTimeout(function() {
+                            dialog.modal('hide');
+                            $("#search").trigger("click");
+                        }, 2000);
+                    }
+
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la búsqueda</div>');
+
+                });
+
+            };
 
 
-            $.fn.borrar = function(id) {
+
+            $(document).on('click', '#example .abrir', function(){
+                var id = $(this).closest('tr').attr('data-id');
+                dialog = bootbox.dialog({
+                    message: "<p>¿Desea re-abrir el período?</p>",
+                    size: 'small',
+                    buttons: {
+                        cancel: {
+                            label: "No"
+                        },
+                        ok: {
+                            label: "Si",
+                            className: 'btn-primary',
+                            callback: function(){
+                                $.fn.abrir(id);
+                                return false; //evita que se cierre automaticamente
+                            }
+                        }
+                    }
+                });
+
+
+            });
+
+            $.fn.abrir = function(id) {
                 //alert(id);
                 params={};
                 params.id_busqueda = id;
