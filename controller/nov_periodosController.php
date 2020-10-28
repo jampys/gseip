@@ -37,6 +37,7 @@ switch ($operation)
         //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
         //$view->disableLayout=true;
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        $view->periodos_sup = NovPeriodo::getPeriodosSup();
         $view->contentTemplate="view/nov_periodos/periodosGrid.php";
         break;
 }

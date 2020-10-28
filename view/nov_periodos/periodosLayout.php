@@ -185,13 +185,13 @@
                 <form id="search_form" name="search_form">
 
                     <div class="form-group col-md-3">
-                        <!--<label for="search_puesto" class="control-label">Puesto</label>-->
-                        <select id="search_puesto" name="search_puesto" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un puesto</option>
-                            <?php foreach ($view->puestos as $pue){
+                        <!--<label for="search_periodo_sup" class="control-label">Período</label>-->
+                        <select id="search_periodo_sup" name="search_periodo_sup" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un período</option>
+                            <?php foreach ($view->periodos_sup as $ps){
                                 ?>
-                                <option value="<?php echo $pue['id_puesto']; ?>">
-                                    <?php echo $pue['nombre']; ?>
+                                <option value="<?php echo $ps['periodo']; ?>">
+                                    <?php echo $ps['nombre']; ?>
                                 </option>
                             <?php  } ?>
                         </select>
