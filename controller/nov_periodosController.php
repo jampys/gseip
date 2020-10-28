@@ -10,6 +10,15 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
+
+    case 'refreshGrid':
+        $view->disableLayout=true;
+        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $periodo = ($_POST['search_periodo_sup']!='')? $_POST['search_periodo_sup'] : null;
+        $view->periodos = NovPeriodo::getPeriodosList($id_contrato, $periodo);
+        $view->contentTemplate="view/renovacionesPersonalGrid.php";
+        break;
+
     case 'getPeriodos': //select dependiente //ok
         $id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
         $activos = (($_POST['activos']!='')? $_POST['activos'] : null );

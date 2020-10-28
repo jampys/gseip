@@ -82,6 +82,28 @@ class NovPeriodo
     }
 
 
+    public static function getPeriodosList($id_contrato, $periodo) {
+        $stmt=new sQuery();
+        $query="select per.id_periodo, per.nombre, per.id_contrato,
+DATE_FORMAT(per.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+DATE_FORMAT(per.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+per.periodo,
+DATE_FORMAT(per.fecha_desde_cal,  '%d/%m/%Y') as fecha_desde_cal,
+DATE_FORMAT(per.fecha_hasta_cal,  '%d/%m/%Y') as fecha_hasta_cal,
+DATE_FORMAT(per.created_date,  '%d/%m/%Y') as created_date,
+DATE_FORMAT(per.closed_date,  '%d/%m/%Y') as closed_date,
+co.nombre as contrato
+from nov_periodos per
+join contratos co on co.id_contrato = per.id_contrato";
+
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        //$stmt->dpBind(':periodo', $periodo);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
     public static function getPeriodos($id_contrato = null, $activos = null) {
         //Trae los periodos por contrato
         //si se llama sin parametro, trae solo los periodos activos
