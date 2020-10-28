@@ -13,12 +13,11 @@
             "fnInitComplete": function () {
                                 $(this).show(); },
             "stateSave": true,
-            //"order": [[3, "asc"], [5, "asc"]], // 3=fecha_apertura, 5=puesto
-            "order": [[1, "desc"], [0, "asc"]], // 2=fecha, 5=nombre
+            "order": [[3, "desc"], [0, "asc"]], // 3=fecha_desde, 0=nombre
             columnDefs: [
-                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 0 ]}, //fecha
-                {targets: [ 2 ], type: 'date-uk', orderData: [ 2, 0 ]},
-                { responsivePriority: 1, targets: 7 }
+                {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 0 ]}, //fecha_desde
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 0 ]}, //fecha_hasta
+                {responsivePriority: 1, targets: 7 }
             ]
         });
 
