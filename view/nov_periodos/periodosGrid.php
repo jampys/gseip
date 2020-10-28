@@ -40,8 +40,6 @@
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <!--<th>Nro. bq.</th>
-                <th>Fecha</th>-->
                 <th>Nombre</th>
                 <th>F. apertura</th>
                 <th>F. cierre</th>
@@ -54,32 +52,18 @@
             </thead>
             <tbody>
 
-            <?php if(isset($view->busquedas)) {
-                foreach ($view->busquedas as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_busqueda']; ?>">
-                        <!--<td><?php //echo $rp['id_busqueda']; ?></td>
-                        <td><?php //echo $rp['fecha']; ?></td>-->
+            <?php if(isset($view->periodos)) {
+                foreach ($view->periodos as $rp):   ?>
+                    <tr data-id="<?php echo $rp['id_periodo']; ?>">
                         <td><?php echo $rp['nombre']; ?></td>
-                        <td><?php echo $rp['fecha_apertura']; ?></td>
-                        <td><?php echo $rp['fecha_cierre']; ?></td>
-                        <td><?php echo $rp['puesto']; ?></td>
-                        <td><?php echo $rp['area']; ?></td>
-                        <td><?php echo $rp['contrato']; ?></td>
-                        <td><?php echo $rp['estado']; ?></td>
+                        <td><?php echo $rp['nombre']; ?></td>
+                        <td><?php echo $rp['nombre']; ?></td>
+                        <td><?php echo $rp['nombre']; ?></td>
+                        <td><?php echo $rp['nombre']; ?></td>
+                        <td><?php echo $rp['nombre']; ?></td>
+                        <td><?php echo $rp['nombre']; ?></td>
 
                         <td class="text-center">
-                            <a class="detalles" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>" title="Postulantes"><i class="fas fa-suitcase dp_blue"></i></a>&nbsp;&nbsp;
-
-                            <?php if($rp['cant_uploads']> 0 ){ ?>
-                                <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
-                                    <span class="glyphicon glyphicon-paperclip dp_gray" aria-hidden="true"></span>
-                                </a>
-                            <?php } else{ ?>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <!--<a class="" href="#" title="renovar">
-                                    <i class="far fa-clone"></i>
-                                </a>-->
-                            <?php } ?>&nbsp;&nbsp;
 
                             <a class="view" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
