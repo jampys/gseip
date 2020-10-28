@@ -16,7 +16,7 @@ switch ($operation)
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $periodo = ($_POST['search_periodo_sup']!='')? $_POST['search_periodo_sup'] : null;
         $view->periodos = NovPeriodo::getPeriodosList($id_contrato, $periodo);
-        $view->contentTemplate="view/renovacionesPersonalGrid.php";
+        $view->contentTemplate="view/nov_periodos/periodosGrid.php";
         break;
 
     case 'getPeriodos': //select dependiente //ok
