@@ -41,12 +41,14 @@
             <thead>
             <tr>
                 <th>Nombre</th>
-                <th>F. apertura</th>
-                <th>F. cierre</th>
-                <th>Puesto</th>
-                <th>Área</th>
                 <th>Contrato</th>
-                <th>Estado</th>
+                <th>Período</th>
+                <th>F. Desde</th>
+                <th>F. Hasta</th>
+                <th>Fcal. Desde</th>
+                <th>Fcal. Hasta</th>
+                <th>F. Apertura</th>
+                <th>F. Cierre</th>
                 <th></th>
             </tr>
             </thead>
@@ -56,12 +58,14 @@
                 foreach ($view->periodos as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_periodo']; ?>">
                         <td><?php echo $rp['nombre']; ?></td>
-                        <td><?php echo $rp['nombre']; ?></td>
-                        <td><?php echo $rp['nombre']; ?></td>
-                        <td><?php echo $rp['nombre']; ?></td>
-                        <td><?php echo $rp['nombre']; ?></td>
-                        <td><?php echo $rp['nombre']; ?></td>
-                        <td><?php echo $rp['nombre']; ?></td>
+                        <td><?php echo $rp['contrato']; ?></td>
+                        <td><?php echo $rp['periodo']; ?></td>
+                        <td><?php echo $rp['fecha_desde']; ?></td>
+                        <td><?php echo $rp['fecha_hasta']; ?></td>
+                        <td><?php echo $rp['fecha_desde_cal']; ?></td>
+                        <td><?php echo $rp['fecha_hasta_cal']; ?></td>
+                        <td><?php echo $rp['created_date']; ?></td>
+                        <td><?php echo $rp['closed_date']; ?></td>
 
                         <td class="text-center">
 
