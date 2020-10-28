@@ -15,7 +15,7 @@
             $('.selectpicker').selectpicker();
 
 
-            $(document).on('click', '#search', function(){ //ok
+            $(document).on('click', '#search', function(){
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
@@ -33,8 +33,7 @@
             });
 
 
-
-            $('#content').on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_busqueda = id;
@@ -48,7 +47,8 @@
                 })
             });
 
-            $('#content').on('click', '.view', function(){ //ok
+
+            $('#content').on('click', '.view', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_busqueda = id;
@@ -65,7 +65,7 @@
 
 
             //Al presionar el boton detalles....
-            $('#content').on('click', '.detalles', function(){ //ok
+            $('#content').on('click', '.detalles', function(){
                 //alert('tocó en contratos');
                 var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
@@ -81,7 +81,7 @@
             });
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){
                 params={};
                 params.action = "busquedas";
                 params.operation="newBusqueda";
@@ -100,7 +100,7 @@
 
 
             var dialog;
-            $(document).on('click', '#example .delete', function(){ //ok
+            $(document).on('click', '#example .delete', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
                     message: "<p>¿Desea eliminar la búsqueda?</p>",
@@ -178,7 +178,7 @@
 
         <div class="col-md-12">
 
-            <h4>Búsquedas laborales</h4>
+            <h4>Períodos de Liquidación</h4>
             <hr class="hr-primary"/>
 
             <div class="row clearfix">
@@ -198,18 +198,6 @@
                     </div>
 
 
-                    <div class="form-group col-md-3">
-                        <!--<label for="search_localidad" class="control-label">Área</label>-->
-                        <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un área</option>
-                            <?php foreach ($view->localidades as $loc){
-                                ?>
-                                <option value="<?php echo $loc['id_localidad']; ?>">
-                                    <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
 
                     <div class="form-group col-md-3">
                         <!--<label for="search_contrato" class="control-label">Contrato</label>-->
@@ -225,25 +213,16 @@
                     </div>
 
 
-                    <div class="form-group col-md-1">
-
-                    </div>
-
-
-                    <div class="form-group col-md-1">
+                    <div class="form-group col-md-2">
                         <!--<label for="search">&nbsp;</label>-->
                         <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                             <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                         </button>
                     </div>
 
-                    <div class="form-group col-md-1">
-                        <!--<label for="search">&nbsp;</label>-->
-                        <button type="button" class="form-control btn btn-default" title="nueva búsqueda" id="new" <?php echo ( PrivilegedUser::dhasAction('BUS_INSERT', array(1)) )? '' : 'disabled' ?>>
-                            <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
-                        </button>
-                    </div>
+                    <div class="form-group col-md-4">
 
+                    </div>
 
 
                 </form>

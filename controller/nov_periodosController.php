@@ -1,5 +1,6 @@
 ﻿<?php
 include_once("model/nov_periodosModel.php");
+include_once("model/contratosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -35,6 +36,7 @@ switch ($operation)
         //$view->localidades = Localidad::getLocalidades();
         //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
         //$view->disableLayout=true;
+        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/nov_periodos/periodosGrid.php";
         break;
 }
