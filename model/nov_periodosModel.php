@@ -165,6 +165,20 @@ order by periodo desc";
     }
 
 
+    public function updatePeriodo(){ //ok
+        $stmt=new sQuery();
+        //fecha_etapa = STR_TO_DATE(:fecha_etapa, '%d/%m/%Y')
+        $query="update nov_periodos set closed_date = :closed_date
+                where id_periodo = :id_periodo";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':closed_date', $this->getClosedDate());
+        $stmt->dpBind(':id_periodo', $this->getIdPeriodo());
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+
+    }
+
+
 
 }
 

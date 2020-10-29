@@ -35,6 +35,15 @@ switch ($operation)
         exit;
         break;
 
+    case 'cerrarPeriodo':
+        $periodo = new NovPeriodo($_POST['id_periodo']);
+        $periodo->setClosedDate(date('Y-m-d H:i:s'));
+        $rta = $periodo->updatePeriodo();
+        //$rta = $puesto->save();
+        print_r(json_encode($rta));
+        exit;
+        break;
+
 
 
 
