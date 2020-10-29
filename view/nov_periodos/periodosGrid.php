@@ -42,10 +42,10 @@
                 <th>Nombre</th>
                 <th>Contrato</th>
                 <th>Período</th>
-                <th>F. Desde</th>
-                <th>F. Hasta</th>
-                <th>Fcal. Desde</th>
-                <th>Fcal. Hasta</th>
+                <th>F. Desde CTO</th>
+                <th>F. Hasta CTO</th>
+                <th>F. Desde CAL</th>
+                <th>F. Hasta CAL</th>
                 <th>F. Apertura</th>
                 <th>F. Cierre</th>
                 <th></th>
