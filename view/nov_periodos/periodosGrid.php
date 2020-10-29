@@ -17,7 +17,7 @@
             columnDefs: [
                 {targets: [ 3 ], type: 'date-uk', orderData: [ 3, 0 ]}, //fecha_desde
                 {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 0 ]}, //fecha_hasta
-                {responsivePriority: 1, targets: 7 }
+                {responsivePriority: 1, targets: 9 }
             ]
         });
 
