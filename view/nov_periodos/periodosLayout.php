@@ -126,7 +126,7 @@
             $.fn.abrir = function(id) {
                 //alert(id);
                 params={};
-                params.id_busqueda = id;
+                params.id_periodo = id;
                 params.action = "nov_periodos";
                 params.operation = "abrirPeriodo";
 
