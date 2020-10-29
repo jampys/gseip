@@ -4,6 +4,7 @@
 //error_reporting(E_ALL);
 
 $GLOBALS['ini'] = parse_ini_file('app.ini');
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 class Conexion  // se declara una clase para hacer la conexion con la base de datos
 {
