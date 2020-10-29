@@ -35,7 +35,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'cerrarPeriodo':
+    case 'cerrarPeriodo': //ok
         $periodo = new NovPeriodo($_POST['id_periodo']);
         $periodo->setClosedDate(date('Y-m-d H:i:s'));
         $rta = $periodo->updatePeriodo();
@@ -43,7 +43,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'abrirPeriodo':
+    case 'abrirPeriodo': //ok
         $periodo = new NovPeriodo($_POST['id_periodo']);
         $periodo->setClosedDate(null);
         $rta = $periodo->updatePeriodo();
@@ -55,12 +55,6 @@ switch ($operation)
 
 
     default :  //ok
-        //$view->postulacion = new Postulacion($_POST['id_postulacion']);
-        //$view->label='Etapas de la postulación';
-        //$view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
-        //$view->disableLayout=true;
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
         $view->periodos_sup = NovPeriodo::getPeriodosSup();
         $view->contentTemplate="view/nov_periodos/periodosGrid.php";
