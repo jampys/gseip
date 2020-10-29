@@ -127,12 +127,12 @@
                 //alert(id);
                 params={};
                 params.id_busqueda = id;
-                params.action = "busquedas";
-                params.operation = "deleteBusqueda";
+                params.action = "nov_periodos";
+                params.operation = "abrirPeriodo";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        dialog.find('.modal-footer').html('<div class="alert alert-success">Búsqueda eliminada con exito</div>');
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Período abierto con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
                             $("#search").trigger("click");
@@ -141,7 +141,7 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la búsqueda</div>');
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible abrir el período</div>');
 
                 });
 
