@@ -192,7 +192,7 @@
 
 // *********evento al cambiar los filtros de busqueda ********************/
 
-        $('#id_suceso, #id_evento, #id_contrato, #id_empleado, #check_suceso, #check_concepto, #id_concepto, #id_cuadrilla, input[name ="radio_vista"]').on('change', function(){
+        $('#id_suceso, #id_evento, #id_empleado, #check_suceso, #check_concepto, #id_concepto, #id_cuadrilla, input[name ="radio_vista"]').on('change', function(){
             //alert('apapapaapapa');
             calendar.refetchEvents();
 
@@ -227,6 +227,7 @@
 
                     //completo select de empleados
                     $('#id_empleado').empty();
+                    calendar.refetchEvents();
                     if(Object.keys(data).length > 0){
                         //$('#id_empleado').html('<option value="">Todos los empleados</option>');
                         $.each(data, function(index, val){
