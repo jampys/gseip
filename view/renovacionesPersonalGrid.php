@@ -113,20 +113,20 @@
                                 <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
+                            <!-- si tiene permiso y no fue renovado -->
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                                <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
+                            </a>&nbsp;&nbsp;
+
                             <?php if($rp['id_rnv_renovacion']){ ?>
                                 <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rp['id_rnv_renovacion']; ?>" >
                                     <span class="glyphicon glyphicon-ok-sign dp_blue" aria-hidden="true"></span>
                                 </a>
                             <?php } else{ ?>
                                 <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'renovar' : 'disabled' ?>" href="javascript:void(0);" title="renovar">
-                                    <i class="far fa-clone dp_blue"></i>
+                                    <i class="fas fa-share dp_blue"></i>
                                 </a>
                             <?php } ?>&nbsp;&nbsp;
-
-                            <!-- si tiene permiso y no fue renovado -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso y no fue renovado -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) && !$rp['id_rnv_renovacion'] )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
