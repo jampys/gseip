@@ -397,7 +397,21 @@ join nov_concepto_convenio_contrato nccc on nccc.id_concepto = nel.id_concepto a
 where (per1.periodo = :periodo or per2.periodo = :periodo)
 and (per1.id_contrato in ($id_contrato) or per2.id_contrato in($id_contrato))
 and nccc.id_concepto in (15, 16, 18, 29)
-group by em.id_empleado, nccc.codigo, nccc.variable) as temp
+group by em.id_empleado, nccc.codigo, nccc.variable
+UNION
+select em.legajo,
+'5010' as codigo,
+func_nov_horas('DHT', 'CTO', $id_contrato, em.id_empleado, :periodo) as cantidad,
+'DSHABILES' as variable,
+em.id_convenio
+from empleado_contrato ec
+join empleados em on em.id_empleado = ec.id_empleado
+join nov_periodos p on (p.periodo = :periodo and p.id_contrato = ec.id_contrato)
+where ec.id_contrato in ($id_contrato)
+and ec.fecha_desde <= p.fecha_hasta
+and (ec.fecha_hasta is null or ec.fecha_hasta >= p.fecha_desde)
+group by em.id_empleado
+) as temp
 order by id_convenio asc, legajo asc";
 
         $stmt->dpPrepare($query);
