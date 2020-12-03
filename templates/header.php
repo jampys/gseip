@@ -191,7 +191,7 @@
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">NOVEDADES</li>
 
-                            <li class="disabled"><a href="#">Períodos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PER_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=nov_periodos">Períodos</a></li>
 
 
                         </ul>
