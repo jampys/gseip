@@ -24,6 +24,7 @@ class Conexion  // se declara una clase para hacer la conexion con la base de da
                 self::$con = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                 self::$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 if ($_SESSION['id_user']) {self::$con->prepare('set @id_user = '.$_SESSION['id_user'])->execute();}
+                if ($_SESSION['cal_id_contrato']) {self::$con->prepare('set @id_contrato = '.$_SESSION['cal_id_contrato'])->execute();}
 
             }catch(PDOException $e) {
                 //echo "Error: " . $e->getMessage();
