@@ -16,7 +16,7 @@ switch ($operation)
 {
 
     case 'get': //trae los feriados //ok
-        
+
         $start = date("Y-m-d", $_POST['start']/1000); //$_POST['start']; //convierte de milisegundos a yyyy-mm-dd
         $end = date("Y-m-d", $_POST['end']/1000); //$_POST['end'];
         //$empleados = ($_POST['empleados']!='')? implode(",", $_POST['empleados'])  : 'su.id_empleado';
