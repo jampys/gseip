@@ -333,7 +333,7 @@
 
         <div class="col-md-12">
 
-            <h4>Consulta de partes diarios</h4>
+            <h4>Consulta de novedades</h4>
             <hr class="hr-primary"/>
 
             <div class="clearfix">
