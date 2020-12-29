@@ -385,6 +385,7 @@ where ec.id_contrato in ($id_contrato)
 and ec.fecha_desde <= p.fecha_hasta
 and (ec.fecha_hasta is null or ec.fecha_hasta >= p.fecha_desde)
 group by em.id_empleado, nccc.codigo
+having cantidad > 0
 UNION
 select em.legajo, nccc.codigo,
 func_nov_horas('DHNT', 'CTO', $id_contrato, em.id_empleado, :periodo) as cantidad,
@@ -397,6 +398,7 @@ where ec.id_contrato in ($id_contrato)
 and ec.fecha_desde <= p.fecha_hasta
 and (ec.fecha_hasta is null or ec.fecha_hasta >= p.fecha_desde)
 group by em.id_empleado, nccc.codigo
+having cantidad > 0
 UNION
 select em.legajo, nccc.codigo,
 func_nov_horas('DCNT223', 'CTO', $id_contrato, em.id_empleado, :periodo) as cantidad,
@@ -409,6 +411,7 @@ where ec.id_contrato in ($id_contrato)
 and ec.fecha_desde <= p.fecha_hasta
 and (ec.fecha_hasta is null or ec.fecha_hasta >= p.fecha_desde)
 group by em.id_empleado, nccc.codigo
+having cantidad > 0
 UNION
 select em.legajo, nccc.codigo,
 func_nov_horas('DCNT', 'CTO', $id_contrato, em.id_empleado, :periodo) as cantidad,
@@ -421,6 +424,7 @@ where ec.id_contrato in ($id_contrato)
 and ec.fecha_desde <= p.fecha_hasta
 and (ec.fecha_hasta is null or ec.fecha_hasta >= p.fecha_desde)
 group by em.id_empleado, nccc.codigo
+having cantidad > 0
 ) as temp
 order by id_convenio asc, legajo asc, codigo asc";
 
