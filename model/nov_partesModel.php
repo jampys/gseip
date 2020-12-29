@@ -422,7 +422,7 @@ and ec.fecha_desde <= p.fecha_hasta
 and (ec.fecha_hasta is null or ec.fecha_hasta >= p.fecha_desde)
 group by em.id_empleado, nccc.codigo
 ) as temp
-order by id_convenio asc, legajo asc";
+order by id_convenio asc, legajo asc, codigo asc";
 
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_contrato', $id_contrato);
