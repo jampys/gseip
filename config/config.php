@@ -25,6 +25,7 @@ class Conexion  // se declara una clase para hacer la conexion con la base de da
                 self::$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 if ($_SESSION['id_user']) {self::$con->prepare('set @id_user = '.$_SESSION['id_user'])->execute();}
                 if ($_SESSION['cal_id_contrato']) {self::$con->prepare('set @id_contrato = '.$_SESSION['cal_id_contrato'])->execute();}
+                if ($_SESSION['cal_id_convenio']) {self::$con->prepare('set @id_convenio = '.$_SESSION['cal_id_convenio'])->execute();}
 
             }catch(PDOException $e) {
                 //echo "Error: " . $e->getMessage();

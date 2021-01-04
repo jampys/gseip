@@ -15,7 +15,7 @@ $view->disableLayout=false;
 switch ($operation)
 {
 
-    case 'get': //trae los feriados //ok
+    case 'get': //trae los eventos //ok
 
         $start = date("Y-m-d", $_POST['start']/1000); //$_POST['start']; //convierte de milisegundos a yyyy-mm-dd
         $end = date("Y-m-d", $_POST['end']/1000); //$_POST['end'];
@@ -23,9 +23,9 @@ switch ($operation)
         //$selectedEventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $_SESSION['cal_id_contrato'] = $id_contrato;
+        $_SESSION['cal_id_convenio'] = ($_POST['id_convenio']!='')? $_POST['id_convenio'] : null;
         $selected_sucesos = ($_POST['sucesos']!='')? implode(",", $_POST['sucesos'])  : 'su.id_evento';
         //$selected_conceptos = ($_POST['conceptos']!='')? implode(",", $_POST['conceptos'])  : 'nccc.id_concepto_convenio_contrato';
-
 
         //mientras no se seleccione un contrato, solo cargará los feriados
         if(!$_POST['id_contrato']){
