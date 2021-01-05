@@ -193,7 +193,7 @@ order by isnull(np.id_cuadrilla), np.cuadrilla asc";
         //se usa en novedades2 para replicar novedades, verificando los feriados
         $stmt=new sQuery();
         $query = "select feriado
-                  from tmp_calendar
+                  from v_tmp_calendar
                   where fecha = STR_TO_DATE(:current, '%d/%m/%Y')";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':current', $current);
