@@ -281,7 +281,7 @@ class Empleado
                       DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
                       DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
                       em.telefono, em.email, em.empresa,
-                      em.sexo, em.nacionalidad, em.estado_civil
+                      em.sexo, em.nacionalidad, em.estado_civil, em.id_convenio
                       from v_sec_empleados_control em
                       left join empleado_contrato ec on ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta > sysdate())
                       where em.fecha_baja is null

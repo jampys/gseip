@@ -24,7 +24,7 @@ class Calendar
     public static function getFeriados($start, $end) {
         $stmt=new sQuery();
         $query = "select 'feriado' as tipo_evento, descripcion as title, fecha as start, fecha as end, feriado as details
-                  from tmp_calendar
+                  from v_tmp_calendar
                   where descripcion is not null
                   and fecha between :start and :end";
         $stmt->dpPrepare($query);
@@ -193,7 +193,7 @@ order by isnull(np.id_cuadrilla), np.cuadrilla asc";
         //se usa en novedades2 para replicar novedades, verificando los feriados
         $stmt=new sQuery();
         $query = "select feriado
-                  from tmp_calendar
+                  from v_tmp_calendar
                   where fecha = STR_TO_DATE(:current, '%d/%m/%Y')";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':current', $current);

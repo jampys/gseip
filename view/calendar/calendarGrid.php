@@ -53,7 +53,8 @@
                         empleados : ($("#id_empleado").val()!= null)? $("#id_empleado").val() : '',
                         sucesos : ($("#id_suceso").val()!= null)? $("#id_suceso").val() : '',
                         conceptos : ($("#id_concepto").val()!= null)? $("#id_concepto").val() : '',
-                        cuadrillas : ($("#id_cuadrilla").val()!= null)? $("#id_cuadrilla").val() : ''
+                        cuadrillas : ($("#id_cuadrilla").val()!= null)? $("#id_cuadrilla").val() : '',
+                        id_convenio: ($("#id_empleado").val()!= null)? $('#id_empleado option:selected').attr('id_convenio') : '' //toma el 1er convenio
                     },
                     success: function(data) {
                         var events = [];

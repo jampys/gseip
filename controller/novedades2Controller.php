@@ -130,6 +130,12 @@ switch ($operation)
 
             sQuery::dpBeginTransaction();
 
+            // setteo las variables de sesion con el id_contrato y id_convenio
+            $view->empleado = New Empleado($_POST['id_empleado']);
+            $_SESSION['cal_id_contrato'] = ($_POST['id_contrato'] !='')? $_POST['id_contrato'] : null;
+            $_SESSION['cal_id_convenio'] = ($view->empleado->getIdConvenio() !='')? $view->empleado->getIdConvenio() : null;
+
+
             //throw new Exception();
             $startDate = DateTime::createFromFormat('d/m/Y', $_POST['fecha_parte']);
             $endDate = DateTime::createFromFormat('d/m/Y', ($_POST['rep_fecha'])? $_POST['rep_fecha'] : $_POST['fecha_parte']);
@@ -266,6 +272,13 @@ switch ($operation)
 
 
     case 'editParte': //ok
+
+        // setteo las variables de sesion con el id_contrato y id_convenio
+        $view->empleado = New Empleado($_POST['id_empleado']);
+        $_SESSION['cal_id_contrato'] = ($_POST['id_contrato'] !='')? $_POST['id_contrato'] : null;
+        $_SESSION['cal_id_convenio'] = ($view->empleado->getIdConvenio() !='')? $view->empleado->getIdConvenio() : null;
+        //echo '<script">alert("Data has been submitted to ' . $_SESSION['id_user'] . '");</script>';
+
         $view->empleado = New Empleado($_POST['id_empleado']);
         $view->label = $view->empleado->getLegajo().' '.$view->empleado->getApellido()." ".$view->empleado->getNombre();
         $view->label.= "&nbsp";
