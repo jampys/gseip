@@ -93,31 +93,13 @@
             //alert('presiono en exportar');
 
             if ($("#txt-form").valid()){
-
-
+                
                 var params={};
                 params.action = 'partes';
                 params.operation = 'checkExportTxt';
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.periodo = $("#myModal #periodo").val();
                 //alert(params.id_contrato);
-
-                /*$.post('index.php',params,function(data, status, xhr){
-
-                    if(data[0]['flag'] >=0){
-
-                        $("#myElem").html(data[0]['msg']).addClass('alert alert-success').addClass('pre-scrollable').show();
-                        location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+
-                                                                                "&periodo="+params.periodo;
-
-                        return false;
-
-                    }else{
-                        $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').show();
-                    }
-
-                }, 'json');*/
-
 
                 $.ajax({
                     url:"index.php",
@@ -164,44 +146,6 @@
             return false;
         });
 
-
-        //al presionar boton de exportar en pdf
-        //Desactivado temporalmente 31/01/2020
-        /*$('#myModal').on("click", "#submit1", function(){
-
-            if ($("#txt-form").valid()){
-
-                //var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
-                //params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
-                //var attr = $('#search_empleado option:selected').attr('id_grupo');
-                //params.id_grupo = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_grupo') : '';
-                //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                //params.renovado = $('#search_renovado').prop('checked')? 1 : '';
-
-                params={};
-                //params.action = 'partes';
-                //params.operation = 'checkExportTxt';
-                params.id_contrato = $("#myModal #id_contrato").val();
-                params.periodo = $("#myModal #periodo").val();
-                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
-
-                //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
-                var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_crossTab_novedades.rptdesign&p_id_contrato="+params.id_contrato+"&p_fecha_desde="+params.fecha_desde+"&p_fecha_hasta="+params.fecha_hasta+"&p_id_user="+params.id_user;
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_crossTab_novedades.rptdesign&p_id_contrato="+params.id_contrato+
-                                                                    //"&p_fecha_desde="+params.fecha_desde+
-                                                                    //"&p_fecha_hasta="+params.fecha_hasta+
-                                                                    "&p_id_periodo="+params.id_periodo+
-                                                                    "&p_id_user="+params.id_user;
-
-                //var win = window.open(URL, "_blank", strWindowFeatures);
-                var win = window.open(URL, "_blank");
-
-
-            }
-
-            return false;
-        });*/
 
 
 
