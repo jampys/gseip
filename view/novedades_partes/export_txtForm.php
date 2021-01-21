@@ -1,6 +1,6 @@
 ﻿<style>
     #myElem{
-        max-height: 100px ;
+        max-height: 150px ;
     }
 </style>
 
