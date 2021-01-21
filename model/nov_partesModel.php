@@ -317,18 +317,18 @@ class Parte
     }
 
 
-    public static function checkExportTxt($id_contrato, $id_periodo) { //ok
+    public static function checkExportTxt($id_contrato, $periodo) { //ok
         $stmt=new sQuery();
         $query = 'CALL sp_nov_checkExportTxt(
                                     :id_contrato,
-                                    :id_periodo,
+                                    :periodo,
                                     @flag,
                                     @msg)';
 
         $stmt->dpPrepare($query);
 
         $stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':id_periodo', $id_periodo);
+        $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();
