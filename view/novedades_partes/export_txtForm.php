@@ -95,7 +95,7 @@
             if ($("#txt-form").valid()){
 
 
-                params={};
+                var params={};
                 params.action = 'partes';
                 params.operation = 'checkExportTxt';
                 params.id_contrato = $("#myModal #id_contrato").val();
