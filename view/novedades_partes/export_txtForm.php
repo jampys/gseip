@@ -1,4 +1,10 @@
-﻿<script type="text/javascript">
+﻿<style>
+    #myElem{
+        max-height: 100px ;
+    }
+</style>
+
+<script type="text/javascript">
 
 
     $(document).ready(function(){
@@ -96,33 +102,54 @@
                 params.periodo = $("#myModal #periodo").val();
                 //alert(params.id_contrato);
 
-                $.post('index.php',params,function(data, status, xhr){
-
-                    //alert(xhr.responseText);
+                /*$.post('index.php',params,function(data, status, xhr){
 
                     if(data[0]['flag'] >=0){
 
-                        $("#myElem").html(data[0]['msg']).addClass('alert alert-success').show();
-                        //$("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        //$("#msg-container").html('<div id="myElem" class="msg alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-check fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
-                        /*setTimeout(function() { $("#myElem").hide();
-                         //$('#myModal').modal('hide');
-                         }, 2000);
-
-                         throw new Error();*/
-                        //location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+"&fecha_desde="+params.fecha_desde+"&fecha_hasta="+params.fecha_hasta;
+                        $("#myElem").html(data[0]['msg']).addClass('alert alert-success').addClass('pre-scrollable').show();
                         location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+
                                                                                 "&periodo="+params.periodo;
-                                                                                //"&fecha_desde="+params.fecha_desde+
-                                                                                //"&fecha_hasta="+params.fecha_hasta
+
                         return false;
 
                     }else{
                         $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').show();
-                        //$("#msg-container").html('<div id="myElem" class="msg alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><i class="fas fa-exclamation-triangle fa-fw"></i></i>&nbsp '+data[0]['msg']+'</div>');
                     }
 
-                }, 'json');
+                }, 'json');*/
+
+
+                $.ajax({
+                    url:"index.php",
+                    type:"post",
+                    data: params,
+                    dataType:"json",//xml,html,script,json
+                    success: function(data, textStatus, jqXHR) {
+
+                        $("#myElem").removeClass('alert-info');
+
+                        if(data[0]['flag'] >=0){
+                            $("#myElem").html(data[0]['msg']).addClass('alert alert-success').addClass('pre-scrollable').show();
+                        }else{
+                            $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').addClass('pre-scrollable').show();
+                        }
+
+                        location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+
+                        "&periodo="+params.periodo;
+                        return false;
+
+                    },
+                    /*error: function(data, textStatus, errorThrown) {
+                     //alert(data.responseText);
+                     $("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
+                     setTimeout(function() { $("#myElem").hide();
+                     }, 2000);
+                     },*/
+                    beforeSend: function() {
+                        $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Verificando novedades y sucesos. Aguarde un instante...').addClass('alert alert-info').show();
+                    }
+
+                });
 
 
 
