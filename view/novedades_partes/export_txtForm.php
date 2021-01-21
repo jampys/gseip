@@ -93,7 +93,7 @@
             //alert('presiono en exportar');
 
             if ($("#txt-form").valid()){
-                
+
                 var params={};
                 params.action = 'partes';
                 params.operation = 'checkExportTxt';
@@ -108,7 +108,7 @@
                     dataType:"json",//xml,html,script,json
                     success: function(data, textStatus, jqXHR) {
 
-                        $("#myElem").removeClass('alert-info');
+                        $("#myElem").removeClass('alert-info').removeClass('alert-warning').removeClass('alert-danger');
 
                         if(data[0]['flag'] >0){
                             $("#myElem").html(data[0]['msg']).addClass('alert alert-success').addClass('pre-scrollable').show();
@@ -132,6 +132,7 @@
                      }, 2000);
                      },*/
                     beforeSend: function() {
+                        $("#myElem").removeClass('alert-warning').removeClass('alert-danger');
                         $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Verificando novedades y sucesos. Aguarde un instante...').addClass('alert alert-info').show();
                     }
 
@@ -154,22 +155,58 @@
 
             if ($("#txt-form").valid()){
 
-                params={};
+                var params={};
+                params.action = 'partes';
+                params.operation = 'checkExportTxt';
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.first_contrato = params.id_contrato[0];
                 params.periodo = $("#myModal #periodo").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 //alert(params.first_contrato);
 
-                //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
-                var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                //var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_crossTab_novedades.rptdesign&p_id_contrato="+params.id_contrato+"&p_fecha_desde="+params.fecha_desde+"&p_fecha_hasta="+params.fecha_hasta+"&p_id_user="+params.id_user;
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_nov_control_administracion_"+params.first_contrato+".rptdesign&p_id_contrato="+params.id_contrato+
-                    "&p_id_periodo="+params.periodo+
-                    "&p_id_user="+params.id_user;
 
-                //var win = window.open(URL, "_blank", strWindowFeatures);
-                var win = window.open(URL, "_blank");
+                $.ajax({
+                    url:"index.php",
+                    type:"post",
+                    data: params,
+                    dataType:"json",//xml,html,script,json
+                    success: function(data, textStatus, jqXHR) {
+
+                        $("#myElem").removeClass('alert-info').removeClass('alert-warning').removeClass('alert-danger');
+
+                        if(data[0]['flag'] >0){
+                            $("#myElem").html(data[0]['msg']).addClass('alert alert-success').addClass('pre-scrollable').show();
+                        }
+                        else if(data[0]['flag'] == 0){
+                            $("#myElem").html(data[0]['msg']).addClass('alert alert-warning').addClass('pre-scrollable').show();
+                        }
+                        else{
+                            $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').addClass('pre-scrollable').show();
+                        }
+
+                        setTimeout(function() {
+                            var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
+                            var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_nov_control_administracion_"+params.first_contrato+".rptdesign&p_id_contrato="+params.id_contrato+
+                                "&p_id_periodo="+params.periodo+
+                                "&p_id_user="+params.id_user;
+                            var win = window.open(URL, "_blank");
+                            return false;
+                        }, 3000);
+
+
+                    },
+                    /*error: function(data, textStatus, errorThrown) {
+                     //alert(data.responseText);
+                     $("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
+                     setTimeout(function() { $("#myElem").hide();
+                     }, 2000);
+                     },*/
+                    beforeSend: function() {
+                        $("#myElem").removeClass('alert-warning').removeClass('alert-danger');
+                        $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Verificando novedades y sucesos. Aguarde un instante...').addClass('alert alert-info').show();
+                    }
+
+                });
 
 
             }
