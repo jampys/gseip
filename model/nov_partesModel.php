@@ -325,8 +325,8 @@ class Parte
                                     @flag,
                                     @msg)';*/
         $query = "CALL sp_nov_checkExportTxt(
-                                    '21',
-                                    '2020-10',
+                                    '$id_contrato',
+                                    '$periodo',
                                     @flag,
                                     @msg)";
 

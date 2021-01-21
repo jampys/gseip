@@ -168,7 +168,8 @@ switch ($operation)
     case 'checkExportTxt': //ok //chequea que no existan partes sin calcular
         //$parte = new Parte($_POST['id_parte']);
         //$rta = $parte->save();
-        $rta = Parte::checkExportTxt($_POST['id_contrato'], $_POST['periodo']);
+        $id_contrato = ($_POST['id_contrato']!='')? implode(",", $_POST['id_contrato'])  : null;
+        $rta = Parte::checkExportTxt($id_contrato, $_POST['periodo']);
         //print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));
         print_r(json_encode($rta));
