@@ -131,7 +131,7 @@
                         if(data[0]['flag'] >0){
                             $("#myElem").html(data[0]['msg']).addClass('alert alert-success').addClass('pre-scrollable').show();
                         }
-                        else if(data[0]['flag'] = 0){
+                        else if(data[0]['flag'] == 0){
                             $("#myElem").html(data[0]['msg']).addClass('alert alert-warning').addClass('pre-scrollable').show();
                         }
                         else{
