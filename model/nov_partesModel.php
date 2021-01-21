@@ -319,16 +319,21 @@ class Parte
 
     public static function checkExportTxt($id_contrato, $periodo) { //ok
         $stmt=new sQuery();
-        $query = 'CALL sp_nov_checkExportTxt(
+        /*$query = 'CALL sp_nov_checkExportTxt(
                                     :id_contrato,
                                     :periodo,
                                     @flag,
-                                    @msg)';
+                                    @msg)';*/
+        $query = "CALL sp_nov_checkExportTxt(
+                                    '21',
+                                    '2020-10',
+                                    @flag,
+                                    @msg)";
 
         $stmt->dpPrepare($query);
 
-        $stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':periodo', $periodo);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        //$stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();

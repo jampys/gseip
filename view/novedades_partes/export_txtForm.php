@@ -128,9 +128,13 @@
 
                         $("#myElem").removeClass('alert-info');
 
-                        if(data[0]['flag'] >=0){
+                        if(data[0]['flag'] >0){
                             $("#myElem").html(data[0]['msg']).addClass('alert alert-success').addClass('pre-scrollable').show();
-                        }else{
+                        }
+                        else if(data[0]['flag'] = 0){
+                            $("#myElem").html(data[0]['msg']).addClass('alert alert-warning').addClass('pre-scrollable').show();
+                        }
+                        else{
                             $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').addClass('pre-scrollable').show();
                         }
 
