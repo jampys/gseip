@@ -2,6 +2,11 @@
     #myElem{
         max-height: 150px ;
     }
+
+    .alert-warning{
+        background-color: #e2e3e5 !important;
+        color: #383d41 !important;
+    }
 </style>
 
 <script type="text/javascript">
@@ -110,10 +115,7 @@
 
                         $("#myElem").removeClass('alert-info').removeClass('alert-warning').removeClass('alert-danger');
 
-                        if(data[0]['flag'] >0){
-                            $("#myElem").html(data[0]['msg']).addClass('alert alert-success').addClass('pre-scrollable').show();
-                        }
-                        else if(data[0]['flag'] == 0){
+                        if(data[0]['flag'] >=0){
                             $("#myElem").html(data[0]['msg']).addClass('alert alert-warning').addClass('pre-scrollable').show();
                         }
                         else{
@@ -174,10 +176,7 @@
 
                         $("#myElem").removeClass('alert-info').removeClass('alert-warning').removeClass('alert-danger');
 
-                        if(data[0]['flag'] >0){
-                            $("#myElem").html(data[0]['msg']).addClass('alert alert-success').addClass('pre-scrollable').show();
-                        }
-                        else if(data[0]['flag'] == 0){
+                        if(data[0]['flag'] >=0){
                             $("#myElem").html(data[0]['msg']).addClass('alert alert-warning').addClass('pre-scrollable').show();
                         }
                         else{
