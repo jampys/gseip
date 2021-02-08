@@ -104,6 +104,13 @@ switch ($operation)
         break;
 
 
+    case 'getContratos': //select dependiente. Trae todos los contratos de un empleado
+        $rta = ContratoEmpleado::getContratosByEmpleado($_POST['id_empleado']);
+        print_r(json_encode($rta));
+        exit;
+        break;
+
+
     default :
         $view->empleados = Empleado::getEmpleadosControl(null); //carga el combo para filtrar empleados
         $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion

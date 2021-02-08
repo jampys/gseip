@@ -77,13 +77,12 @@
             //alert('seleccionó un contrato');
             //throw new Error();
             params={};
-            params.action = "nov_periodos";
-            params.operation = "getPeriodos1";
+            params.action = "sucesosP";
+            params.operation = "getContratos";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
             params.id_empleado = $('#id_empleado').val();
-            params.activos = 1;
 
-            $('#id_periodo1, #id_periodo2').empty();
+            $('#id_contrato').empty();
 
 
             $.ajax({
@@ -94,22 +93,22 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
-                    $("#id_periodo1, #id_periodo2").html('<option value="">Seleccione un período</option>');
+                    $("#id_contrato").html('<option value="">Seleccione un período</option>');
 
                     if(Object.keys(data).length > 0){
 
                         $.each(data, function(indice, val){
-                            var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
-                            $("#id_periodo1, #id_periodo2").append('<option value="'+data[indice]["id_periodo"]+'"'
-                            +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
-                            +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
+                            var label = 'abcdedddddddd'; //data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
+                            $("#id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
+                            //+' fecha_desde="'+data[indice]["fecha_desde"]+'"'
+                            //+' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
 
                         });
 
                         //si es una edicion o view, selecciona el concepto.
                         //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                        $('#id_periodo1, #id_periodo2').selectpicker('refresh');
+                        $('#id_contrato').selectpicker('refresh');
 
                     }
 
@@ -352,6 +351,23 @@
                             <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" disabled >
                             <input type="hidden" name="dias1" id="dias1">
                         </div>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label for="id_periodo1" class="control-label">Imputar a período de liquidación 1</label>
+                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
+                            <!-- se completa dinamicamente desde javascript cuando es un insert  -->
+                            <option value="">Seleccione un período</option>
+                            <?php foreach ($view->periodos as $pe){
+                                ?>
+                                <option value="<?php echo $pe['id_periodo']; ?>" <?php echo ($pe['closed_date'])? 'disabled':''; ?>
+                                    <?php echo ($view->suceso->getIdPeriodo1() == $pe['id_periodo'])? 'selected' : ''; ?>
+                                    >
+                                    <?php echo $pe['nombre'].' ('.$pe['fecha_desde'].' - '.$pe['fecha_hasta'].')'; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
                     </div>
 
 
