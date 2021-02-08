@@ -317,18 +317,23 @@ class Parte
     }
 
 
-    public static function checkExportTxt($id_contrato, $id_periodo) { //ok
+    public static function checkExportTxt($id_contrato, $periodo) { //ok
         $stmt=new sQuery();
-        $query = 'CALL sp_nov_checkExportTxt(
+        /*$query = 'CALL sp_nov_checkExportTxt(
                                     :id_contrato,
-                                    :id_periodo,
+                                    :periodo,
                                     @flag,
-                                    @msg)';
+                                    @msg)';*/
+        $query = "CALL sp_nov_checkExportTxt(
+                                    '$id_contrato',
+                                    '$periodo',
+                                    @flag,
+                                    @msg)";
 
         $stmt->dpPrepare($query);
 
-        $stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':id_periodo', $id_periodo);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        //$stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
 
         $stmt->dpCloseCursor();
@@ -375,7 +380,7 @@ and nccc.id_concepto in (15, 16, 18, 29)
 group by em.id_empleado, nccc.codigo, nccc.variable
 UNION
 select em.legajo, nccc.codigo,
-func_nov_horas('DHT', 'CTO', '$id_contrato', em.id_empleado, :periodo) as cantidad,
+func_nov_horas('DHT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo) as cantidad,
 nccc.variable, em.id_convenio
 from empleado_contrato ec
 join empleados em on em.id_empleado = ec.id_empleado
@@ -388,7 +393,7 @@ group by em.id_empleado, nccc.codigo
 having cantidad > 0
 UNION
 select em.legajo, nccc.codigo,
-func_nov_horas('DHNT', 'CTO', '$id_contrato', em.id_empleado, :periodo) as cantidad,
+func_nov_horas('DHNT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo) as cantidad,
 nccc.variable, em.id_convenio
 from empleado_contrato ec
 join empleados em on em.id_empleado = ec.id_empleado
@@ -401,7 +406,7 @@ group by em.id_empleado, nccc.codigo
 having cantidad > 0
 UNION
 select em.legajo, nccc.codigo,
-func_nov_horas('DCNT223', 'CTO', '$id_contrato', em.id_empleado, :periodo) as cantidad,
+func_nov_horas('DCNT223', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo) as cantidad,
 nccc.variable, em.id_convenio
 from empleado_contrato ec
 join empleados em on em.id_empleado = ec.id_empleado
@@ -414,7 +419,7 @@ group by em.id_empleado, nccc.codigo
 having cantidad > 0
 UNION
 select em.legajo, nccc.codigo,
-func_nov_horas('DCNT', 'CTO', '$id_contrato', em.id_empleado, :periodo) as cantidad,
+func_nov_horas('DCNT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo) as cantidad,
 nccc.variable, em.id_convenio
 from empleado_contrato ec
 join empleados em on em.id_empleado = ec.id_empleado
@@ -427,7 +432,7 @@ group by em.id_empleado, nccc.codigo
 having cantidad > 0
 UNION
 select em.legajo, '5999',
-func_nov_horas('DCNT223', 'CTO', '$id_contrato', em.id_empleado, :periodo) as cantidad,
+func_nov_horas('DCNT223', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo) as cantidad,
 nccc.variable, em.id_convenio
 from empleado_contrato ec
 join empleados em on em.id_empleado = ec.id_empleado
