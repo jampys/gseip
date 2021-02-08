@@ -14,17 +14,6 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
-        $view->disableLayout=true;
-        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
-        $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
-        $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
-        $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
-        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
-        $view->contentTemplate="view/sucesos/sucesosGrid.php";
-        break;
-
     case 'saveSuceso':
 
         $suceso = new Suceso($_POST['id_suceso']);
@@ -112,15 +101,6 @@ switch ($operation)
         $rta = $view->suceso->checkRango($_POST['fecha_desde'], $_POST['fecha_hasta'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
         print_r(json_encode($rta));
         exit;
-        break;
-
-    case 'loadExport':  //abre ventana modal para exportar
-        $view->disableLayout=true;
-        $view->label = 'Exportar sucesos';
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
-        $view->periodos_sup = NovPeriodo::getPeriodosSup(); //carga el combo de periodos superiores
-
-        $view->contentTemplate="view/sucesos/exportForm.php";
         break;
 
 

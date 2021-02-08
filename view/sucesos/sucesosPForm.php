@@ -11,55 +11,6 @@
                              // elimine el mensaje de requerido de jquery validation
         });
 
-        /*
-        $('.input-daterange').datepicker({ //ok
-            format:"dd/mm/yyyy",
-            language: 'es',
-            todayHighlight: true,
-            clearBtn: true
-        }).on('changeDate', function(){
-            //calcula la diferencia en dias entre las 2 fechas
-            var minDate = $(this).closest('.row').find('.cfd').datepicker('getDate');
-            var maxDate = $(this).closest('.row').find('.cfh').datepicker('getDate');
-            //maxDate - minDate devuelve la diferencia en milisegundos. 86400 = cant de seg por dia. X 1000 da los miliseg por dia.
-            if(minDate == null || maxDate == null) $(this).closest('.row').find('.cdias').val(0);
-            else $(this).closest('.row').find('.cdias').val((maxDate - minDate)/(86400*1000)+1);
-
-        });
-
-        //solo ocurre al cambiar el valor de fecha_desde y fecha_hasta. Restringe el rango de fechas de fd1, fh1, fd2, fh2
-        $('#fecha_desde, #fecha_hasta').on('changeDate', function(){
-            var fecha_desde = $('#myModal #fecha_desde').val();
-            var fecha_hasta = $('#myModal #fecha_hasta').val();
-            $('#fd1, #fd2').datepicker('setStartDate', fecha_desde);
-            $('#fh1, #fh2').datepicker('setEndDate', fecha_hasta);
-        });
-
-
-        //Sirve para cuando se trata de una edicion. Restringe las fd1, fh1, fd2, fh2
-        $("#fecha_desde").trigger("changeDate");
-
-
-        //Al hacer check o uncheck en checkbox
-        $("#chk_imputar").change(function() {
-            var ischecked= $(this).is(':checked');
-            if(ischecked) {
-                //alert('uncheckd ' + $(this).val());
-                $('#fd1').datepicker('update', $('#myModal #fecha_desde').val());
-                $('#fh1').datepicker('update', $('#myModal #fecha_hasta').val());
-                $('#cantidad1').val($('#dias').val());
-                $('#id_periodo2').val("").selectpicker('refresh');
-                $('#fd2').val("");
-                $('#fh2').val("");
-                $('#cantidad2').val(0);
-            }else{
-                $('#fd1').val("");
-                $('#fh1').val("");
-                $('#cantidad1').val(0);
-            }
-
-        });
-        */
 
 
         moment.locale('es');
@@ -119,94 +70,7 @@
         });
 
 
-
-        $('.image').viewer({});
-
-        var objeto={};
-
-
-        var uploadObj = $("#fileuploader").uploadFile({
-            url: "index.php?action=uploadsSucesos&operation=upload",
-            dragDrop: <?php echo ( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
-            autoSubmit: false,
-            fileName: "myfile",
-            returnType: "json",
-            showDelete: <?php echo ( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
-            showDownload:true,
-            showCancel: true,
-            showAbort: true,
-            allowDuplicates: false,
-            allowedTypes: "jpg, png, pdf, txt, doc, docx",
-
-            dynamicFormData: function(){
-                var data ={ "id": ($('#id_suceso').val())? $('#id_suceso').val() : objeto.id };
-                return data;},
-
-            maxFileSize:2097152, //tamaño expresado en bytes
-            showPreview:true,
-            previewHeight: "75px",
-            previewWidth: "auto",
-            uploadQueueOrder:'bottom', //el orden en que se muestran los archivos subidos.
-            showFileCounter: false, //muestra el nro de archivos subidos
-            downloadStr: "<i class='fas fa-download'></i>",
-            deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
-            dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
-            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Subir",
-            cancelStr: "<i class='fas fa-minus-square'></i>",
-
-            extErrorStr: "no está permitido. Solo se permiten extensiones: ",
-            duplicateErrorStr: "no permitido. El archivo ya existe.",
-            sizeErrorStr: "no permitido. Tamaño máximo permitido: ",
-
-            onLoad:function(obj){
-                $.ajax({
-                    cache: false,
-                    url: "index.php",
-                    data:{"action": "uploadsSucesos", "operation": "load", "id": $('#id_suceso').val() },
-                    type:"post",
-                    dataType: "json",
-                    success: function(data) {
-
-                        //alert('todo ok '+data);
-                        for(var i=0;i<data.length;i++) {
-                            if(data[i]['jquery-upload-file-error']) {
-                                //alert('encontro el error');
-                                obj.dpErrorOnLoad(data[i]["name"], data[i]['jquery-upload-file-error']);
-                            }
-                            else{
-                                obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"], data[i]["fecha"]);
-                            }
-
-                        }
-
-                        $('#myModal img').addClass('image').css('cursor', 'zoom-in');
-                        $('.image').viewer({});
-
-                    },
-                    error: function(e) {
-                        alert('errrorrrr '+ e.responseText);
-                    }
-
-                });
-            },
-            deleteCallback: function (data, pd) {
-                for (var i = 0; i < data.length; i++) {
-                    $.post("index.php", {action: "uploadsSucesos", operation: "delete", name: data[i]},
-                        function (resp,textStatus, jqXHR) {
-                            //Show Message
-                            //alert("File Deleted");
-                        });
-                }
-                pd.statusbar.hide(); //You choice.
-
-            },
-            downloadCallback:function(filename,pd) {
-                location.href="index.php?action=uploadsSucesos&operation=download&filename="+filename;
-            }
-        });
-
-
-
+        
         //Select dependiente: al seleccionar contrato carga periodos vigentes
         // solo se usa cuando es un insert
         $('#suceso-form').on('change', '#id_empleado', function(e){
@@ -288,13 +152,8 @@
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
-
-                    objeto.id = data; //data trae el id de la renovacion
-                    //alert(objeto.id);
                     //alert(xhr.responseText);
-
                     if(data >=0){
-                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myModal #myElem").html('Suceso guardado con exito').addClass('alert alert-success').show();
                         setTimeout(function() { $("#myElem").hide();
@@ -579,11 +438,6 @@
                     </div>
 
                 </form>
-
-
-                <div id="fileuploader">Upload</div>
-
-
 
 
 
