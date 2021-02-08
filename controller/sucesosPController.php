@@ -5,6 +5,7 @@ include_once("model/nov_eventosLiquidacionModel.php");
 include_once("model/nov_sucesosModel.php");
 include_once("model/contratosModel.php");
 include_once("model/nov_periodosModel.php");
+include_once("model/contrato-empleadoModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];

@@ -30,25 +30,25 @@
         });
 
         var drp = $('#fecha').data('daterangepicker');
-        var drp1 = $('#f1').data('daterangepicker');
-        var drp2 = $('#f2').data('daterangepicker');
+        //var drp1 = $('#f1').data('daterangepicker');
+        //var drp2 = $('#f2').data('daterangepicker');
 
         //solo ocurre al cambiar el valor de fecha. Restringe el rango de fechas de f1 y f2
-        $('#fecha').on("apply.daterangepicker", function (e, picker) {
+        /*$('#fecha').on("apply.daterangepicker", function (e, picker) {
             drp1.minDate = picker.startDate;
             drp1.maxDate = picker.endDate;
             drp2.minDate = picker.startDate;
             drp2.maxDate = picker.endDate;
-        });
+        });*/
 
         //Sirve para restringir f1 y f2 al rango de fechas de fecha.
-        drp1.minDate = drp.startDate;
-        drp1.maxDate = drp.endDate;
-        drp2.minDate = drp.startDate;
-        drp2.maxDate = drp.endDate;
+        //drp1.minDate = drp.startDate;
+        //drp1.maxDate = drp.endDate;
+        //drp2.minDate = drp.startDate;
+        //drp2.maxDate = drp.endDate;
 
         //Al hacer check o uncheck en checkbox
-        $("#chk_imputar").change(function() {
+        /*$("#chk_imputar").change(function() {
             var ischecked= $(this).is(':checked');
             if(ischecked) {
                 drp1.setStartDate(drp.startDate);
@@ -67,7 +67,7 @@
                 $('#cantidad1').val(0);
             }
 
-        });
+        });*/
 
 
 
@@ -93,12 +93,12 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
-                    $("#id_contrato").html('<option value="">Seleccione un período</option>');
+                    $("#id_contrato").html('<option value="">Seleccione un contrato</option>');
 
                     if(Object.keys(data).length > 0){
 
                         $.each(data, function(indice, val){
-                            var label = 'abcdedddddddd'; //data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
+                            var label = data[indice]["nro_contrato"]+' '+data[indice]["contrato"];
                             $("#id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
                             //+' fecha_desde="'+data[indice]["fecha_desde"]+'"'
                             //+' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
@@ -355,10 +355,10 @@
 
 
                     <div class="form-group required">
-                        <label for="id_periodo1" class="control-label">Imputar a período de liquidación 1</label>
+                        <label for="id_contrato" class="control-label">Contrato</label>
                         <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
                             <!-- se completa dinamicamente desde javascript cuando es un insert  -->
-                            <option value="">Seleccione un período</option>
+                            <option value="">Seleccione un contrato</option>
                             <?php foreach ($view->periodos as $pe){
                                 ?>
                                 <option value="<?php echo $pe['id_periodo']; ?>" <?php echo ($pe['closed_date'])? 'disabled':''; ?>
