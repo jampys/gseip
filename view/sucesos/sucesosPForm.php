@@ -81,6 +81,7 @@
             params.operation = "getContratos";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
             params.id_empleado = $('#id_empleado').val();
+            params.activos = 1;
 
             $('#id_contrato').empty();
 

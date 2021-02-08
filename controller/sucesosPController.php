@@ -105,8 +105,8 @@ switch ($operation)
         break;
 
 
-    case 'getContratos': //select dependiente. Trae todos los contratos de un empleado
-        $rta = ContratoEmpleado::getContratosByEmpleado($_POST['id_empleado']);
+    case 'getContratos': //ok select dependiente. Trae todos los contratos de un empleado
+        $rta = ContratoEmpleado::getContratosByEmpleado($_POST['id_empleado'], $_POST['activos']);
         print_r(json_encode($rta));
         exit;
         break;

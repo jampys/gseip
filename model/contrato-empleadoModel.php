@@ -147,7 +147,7 @@ class ContratoEmpleado
 
 
     //Devuelve todos los contratos de un determinado empleado
-    public static function getContratosByEmpleado($id_empleado) { //ok
+    public static function getContratosByEmpleado($id_empleado, $activos = null) { //ok
         $stmt=new sQuery();
         /*$query = "select ec.id_empleado_contrato, ec.id_empleado, ec.id_contrato, ec.id_puesto,
                   DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
@@ -175,9 +175,11 @@ join contratos co on ec.id_contrato = co.id_contrato
 join puestos pu on ec.id_puesto = pu.id_puesto
 left join localidades loc on ec.id_localidad = loc.id_localidad
 where ec.id_empleado = :id_empleado
+and if(:activos is null, 1, ec.fecha_hasta is null)
 order by ec.fecha_desde desc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':activos', $activos);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
