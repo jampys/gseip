@@ -108,10 +108,21 @@
             });
 
 
-
+            //nuevo suceso
             $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "sucesos";
+                params.operation="newSuceso";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                })
+            });
+
+
+            //nuevo suceso programado
+            $(document).on('click', '#newp', function(){ //ok
+                params={};
+                params.action = "sucesosP";
                 params.operation="newSuceso";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
