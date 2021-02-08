@@ -100,17 +100,10 @@
                         $.each(data, function(indice, val){
                             var label = data[indice]["nro_contrato"]+' '+data[indice]["contrato"];
                             $("#id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
-                            //+' fecha_desde="'+data[indice]["fecha_desde"]+'"'
-                            //+' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
-
                         });
-
-                        //si es una edicion o view, selecciona el concepto.
-                        //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                        $('#id_contrato').selectpicker('refresh');
-
                     }
+                    $('#id_contrato').selectpicker('refresh');
 
                 },
                 error: function(data, textStatus, errorThrown) {
