@@ -70,7 +70,7 @@
         });
 
 
-        
+
         //Select dependiente: al seleccionar contrato carga periodos vigentes
         // solo se usa cuando es un insert
         $('#suceso-form').on('change', '#id_empleado', function(e){
@@ -354,82 +354,6 @@
                         </div>
                     </div>
 
-
-                    <div class="row">
-                        <div class="form-group col-md-9 required">
-                            <label for="id_periodo1" class="control-label">Imputar a período de liquidación 1</label>
-                            <select class="form-control selectpicker show-tick" id="id_periodo1" name="id_periodo1" data-live-search="true" data-size="5">
-                                <!-- se completa dinamicamente desde javascript cuando es un insert  -->
-                                <option value="">Seleccione un período</option>
-                                <?php foreach ($view->periodos as $pe){
-                                    ?>
-                                    <option value="<?php echo $pe['id_periodo']; ?>" <?php echo ($pe['closed_date'])? 'disabled':''; ?>
-                                        <?php echo ($view->suceso->getIdPeriodo1() == $pe['id_periodo'])? 'selected' : ''; ?>
-                                        >
-                                        <?php echo $pe['nombre'].' ('.$pe['fecha_desde'].' - '.$pe['fecha_hasta'].')'; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-
-                                <label for="chk_imputar" class="control-label">&nbsp;</label>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" id="chk_imputar" name="chk_imputar">
-                                        <a href="#" title="Imputar todo al primer período seleccionado">Imputar todo</a>
-                                    </label>
-                                </div>
-
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-9 required">
-                            <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="f1" id="f1" value = "<?php echo ($view->suceso->getFd1() && $view->suceso->getFh1())? $view->suceso->getFd1()." - ".$view->suceso->getFh1() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-3 required">
-                            <input type="text" class="form-control cdias" name="cantidad1" id="cantidad1" value = "<?php print ($view->suceso->getCantidad1())? $view->suceso->getCantidad1() : '0'  ?>" placeholder="" disabled >
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="form-group col-md-9">
-                            <label for="id_periodo" class="control-label">Imputar a período de liquidación 2</label>
-                            <select class="form-control selectpicker show-tick" id="id_periodo2" name="id_periodo2" data-live-search="true" data-size="5">
-                                <!-- se completa dinamicamente desde javascript cuando es un insert  -->
-                                <option value="">Seleccione un período</option>
-                                <?php foreach ($view->periodos as $pe){
-                                    ?>
-                                    <option value="<?php echo $pe['id_periodo']; ?>" <?php echo ($pe['closed_date'])? 'disabled':''; ?>
-                                        <?php echo ($view->suceso->getIdPeriodo2() == $pe['id_periodo'])? 'selected' : ''; ?>
-                                        >
-                                        <?php echo $pe['nombre'].' ('.$pe['fecha_desde'].' - '.$pe['fecha_hasta'].')'; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-9 required">
-                            <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="f2" id="f2" value = "<?php echo ($view->suceso->getFd2() && $view->suceso->getFh2())? $view->suceso->getFd2()." - ".$view->suceso->getFh2() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-3 required">
-                            <input type="text" class="form-control cdias" name="cantidad2" id="cantidad2" value = "<?php print ($view->suceso->getCantidad2())? $view->suceso->getCantidad2() : '0'  ?>" placeholder="" disabled >
-                        </div>
-                    </div>
 
 
                     <div class="form-group">
