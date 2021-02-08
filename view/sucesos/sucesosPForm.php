@@ -315,9 +315,6 @@
                     </div>
 
 
-
-
-
                     <div class="form-group required">
                         <label for="id_evento" class="control-label">Suceso</label>
                             <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione un suceso" data-live-search="true" data-size="5" data-show-subtext="true">
@@ -329,22 +326,6 @@
                                     </option>
                                 <?php  } ?>
                             </select>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="form-group col-md-9 required">
-                            <label class="control-label" for="">Fechas desde / hasta</label>
-                            <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->suceso->getFechaDesde() && $view->suceso->getFechaHasta())? $view->suceso->getFechaDesde()." - ".$view->suceso->getFechaHasta() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="dias" class="control-label">Total días</label>
-                            <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" disabled >
-                            <input type="hidden" name="dias1" id="dias1">
-                        </div>
                     </div>
 
 
@@ -364,6 +345,21 @@
                         </select>
                     </div>
 
+
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label class="control-label" for="">Fechas desde / hasta</label>
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->suceso->getFechaDesde() && $view->suceso->getFechaHasta())? $view->suceso->getFechaDesde()." - ".$view->suceso->getFechaHasta() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="dias" class="control-label">Total días</label>
+                            <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" disabled >
+                            <input type="hidden" name="dias1" id="dias1">
+                        </div>
+                    </div>
 
 
                     <div class="form-group">
