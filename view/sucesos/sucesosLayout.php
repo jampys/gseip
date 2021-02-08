@@ -243,6 +243,22 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-md-2">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
+                                <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+                            </button>
+                        </div>
+
+                        <div class="form-group col-md-4">
+
+                        </div>
+
+                    </div>
+
+                    <!-- FILA DE ABAJO -->
+                    <div class="row">
+
                         <div class="form-group col-md-3">
                             <!--<label for="search_evento" class="control-label">Eventos</label>-->
                             <select multiple class="form-control selectpicker show-tick" id="search_evento" name="search_evento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
@@ -265,30 +281,26 @@
                             </div>
                         </div>
 
-                    </div>
 
-                    <!-- FILA DE ABAJO -->
-                    <div class="row">
-
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-3">
 
                         </div>
 
-                        <div class="form-group col-md-2">
-                            <!--<label for="search">&nbsp;</label>-->
-                            <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
-                                <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
-                            </button>
-                        </div>
-
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" title="nuevo suceso" id="new" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                             </button>
                         </div>
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-1">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" class="form-control btn btn-default" title="nuevo suceso programado" id="newp" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
+                                <i class="far fa-calendar-check fa-lg dp_green"></i>
+                            </button>
+                        </div>
+
+                        <div class="form-group col-md-1">
                             <!--<label for="export" class="control-label">&nbsp;</label>-->
                             <button id="export" class="form-control btn btn-default dp_blue" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
