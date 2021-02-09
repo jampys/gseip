@@ -103,8 +103,7 @@ class SucesoP
                     observaciones,
                     created_by,
                     DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
-                    cantidad1
-                    programado, id_contrato
+                    cantidad1, programado, id_contrato
                     from nov_sucesos
                     where id_suceso = :nro";
             $stmt->dpPrepare($query);
