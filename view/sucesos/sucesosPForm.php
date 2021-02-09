@@ -255,7 +255,7 @@
 
                 <form name ="suceso-form" id="suceso-form" method="POST" action="index.php">
                     <input type="hidden" name="id_suceso" id="id_suceso" value="<?php print $view->suceso->getIdSuceso() ?>">
-                    
+
                     <div class="form-group required">
                         <label for="id_empleado" class="control-label">Empleado</label>
                         <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
@@ -290,13 +290,13 @@
                         <label for="id_contrato" class="control-label">Contrato</label>
                         <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
                             <!-- se completa dinamicamente desde javascript cuando es un insert  -->
-                            <option value="">Seleccione un contrato</option>
+                            <!--<option value="">Seleccione un contrato</option>-->
                             <?php foreach ($view->contratos as $pe){
                                 ?>
-                                <option value="<?php echo $pe['id_periodo']; ?>" <?php echo ($pe['closed_date'])? 'disabled':''; ?>
-                                    <?php //echo ($view->suceso->getIdPeriodo1() == $pe['id_periodo'])? 'selected' : ''; ?>
+                                <option value="<?php echo $pe['id_contrato']; ?>"
+                                    <?php echo ($view->suceso->getIdContrato() == $pe['id_contrato'])? 'selected' : ''; ?>
                                     >
-                                    <?php echo $pe['nombre'].' ('.$pe['fecha_desde'].' - '.$pe['fecha_hasta'].')'; ?>
+                                    <?php echo $pe['nro_contrato'].' '.$pe['contrato']; ?>
                                 </option>
                             <?php  } ?>
                         </select>

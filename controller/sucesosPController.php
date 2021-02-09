@@ -51,6 +51,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         $view->periodos = NovPeriodo::getProximosPeriodos();
+        $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->suceso->getIdEmpleado(), 1);
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
