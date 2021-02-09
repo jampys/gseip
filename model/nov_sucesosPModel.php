@@ -133,7 +133,7 @@ class SucesoP
     }
 
 
-    
+
     function save(){ //ok
         if($this->id_suceso)
         {$rta = $this->updateSuceso();}
