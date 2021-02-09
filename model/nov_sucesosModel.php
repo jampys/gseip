@@ -228,7 +228,7 @@ class Suceso
                   su.fecha_hasta as txt_fecha_hasta,
                   pe1.closed_date as closed_date_1,
                   if(pe2.created_date, pe2.closed_date, 1) as closed_date_2,
-                  su.id_contrato, su.programado
+                  su.id_contrato, su.programado, id_periodo1
                   from v_sec_nov_sucesos su
                   join empleados em on su.id_empleado = em.id_empleado
                   join nov_eventos_l ev on su.id_evento = ev.id_evento
