@@ -162,8 +162,8 @@ class SucesoP
 
     private function insertSuceso(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, id_contrato, programado)
-                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :id_contrato, :programado)";
+        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, cantidad1, id_contrato, programado)
+                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :cantidad1, :id_contrato, :programado)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
@@ -171,6 +171,7 @@ class SucesoP
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':observaciones', $this->getObservaciones());
         $stmt->dpBind(':created_by', $this->getCreatedBy());
+        $stmt->dpBind(':cantidad1', $this->getCantidad1());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':programado', $this->getProgramado());
         $stmt->dpExecute();
