@@ -186,7 +186,6 @@
                         url: "index.php",
                         type: "post",
                         dataType: "json",
-                        //async: false,
                         data: {
                             action: "sucesos",
                             operation: "checkRango",
@@ -197,12 +196,7 @@
                             id_suceso: function(){ return $('#id_suceso').val();}
                         }
                     }
-                },
-                id_periodo1: {required: true},
-                id_periodo2: { required: false,
-                               notEqual: ["#id_periodo1", "Seleccione un período de liquidación diferente al primero"]
-                },
-                f1: {required: true}
+                }
 
             },
             messages:{
@@ -211,9 +205,7 @@
                 fecha: {
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
-                },
-                id_periodo1: "Seleccione un período para el evento",
-                f1: "Seleccione un rango de fechas para el primer período"
+                }
             }
 
         });
