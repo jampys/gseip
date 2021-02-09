@@ -134,14 +134,8 @@
                 params.fecha_desde = drp.startDate.format('DD/MM/YYYY');
                 params.fecha_hasta = drp.endDate.format('DD/MM/YYYY');
                 params.observaciones = $('#myModal #observaciones').val();
-                params.id_periodo1 = $('#myModal #id_periodo1').val();
-                params.cantidad1 = $('#myModal #cantidad1').val();
-                params.id_periodo2 = $('#myModal #id_periodo2').val();
-                params.cantidad2 = $('#myModal #cantidad2').val();
-                params.fd1 = drp1.startDate.format('DD/MM/YYYY');
-                params.fh1 = drp1.endDate.format('DD/MM/YYYY');
-                params.fd2 = (drp2.element.val())? drp2.startDate.format('DD/MM/YYYY'): '';
-                params.fh2 = (drp2.element.val())? drp2.endDate.format('DD/MM/YYYY'): '';
+                params.id_contrato = $('#myModal #id_contrato').val();
+                params.periodo = $('#myModal #periodo').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -222,35 +216,6 @@
             }
 
         });
-
-
-        //https://stackoverflow.com/questions/4225121/jquery-validate-sum-of-multiple-input-values
-        jQuery.validator.addMethod(
-            "sum",
-            function (value, element, params) {
-                var sumOfVals = 0;
-                //sumOfVals = sumOfVals + parseInt($(this).val(), 10);
-                var a = $('#cantidad1').val();
-                var b = $('#cantidad2').val();
-                a = a || 0; //si el campo es NaN (not a number) lo convierte en 0.
-                b = b || 0; //si el campo es NaN (not a number) lo convierte en 0.
-                sumOfVals = parseInt(a, 10) + parseInt(b, 10);
-
-                //alert(sumOfVals);
-                if (sumOfVals == params) return true;
-                return false;
-            },
-            jQuery.validator.format("La suma de los días imputados debe ser {0}")
-        );
-
-        $("#dias1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
-        /*jQuery.validator.addClassRules({
-            cfh: {
-                sum: 50
-            }
-        });*/
-
-
 
 
 
