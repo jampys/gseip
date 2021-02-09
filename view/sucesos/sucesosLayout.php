@@ -105,7 +105,7 @@
             });
 
 
-
+            //ver sucesos
             $(document).on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -118,6 +118,24 @@
                     $('.selectpicker').selectpicker('refresh');
                     $('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
+                    $('#myModal').modal();
+                })
+
+            });
+
+
+            //ver sucesos programados
+            $(document).on('click', '.viewp', function(){ //ok
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_suceso = id;
+                params.action = "sucesosP";
+                params.operation = "editSuceso";
+                params.target = "view";
+                $('#popupbox').load('index.php', params,function(){
+                    $("fieldset").prop("disabled", true);
+                    $('.selectpicker').selectpicker('refresh');
+                    $('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
                 })
 

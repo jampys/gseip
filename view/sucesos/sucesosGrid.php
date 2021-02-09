@@ -62,13 +62,17 @@
                         <td><?php echo $rp['fecha_hasta']; ?></td>
 
                         <td class="text-center">
-                            <a class="view" href="javascript:void(0);">
+                            <!-- view -->
+                            <a class="<?php if(!$rp['programado'] && $rp['id_periodo1']) {echo 'view';}
+                            elseif($rp['programado'] && !$rp['id_periodo1']) {echo 'viewp';}
+                            else { echo 'disabled';} ?>"
+                               href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para editar -->
-                            <a class="<?php if( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) && !($rp['closed_date_1']&& $rp['closed_date_2']) && !$rp['programado'] ) {echo 'edit';}
-                                            elseif( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) && !($rp['closed_date_1']&& $rp['closed_date_2']) && $rp['programado'] ) {echo 'editp';}
+                            <a class="<?php if( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) && !($rp['closed_date_1']&& $rp['closed_date_2']) && (!$rp['programado'] && $rp['id_periodo1']) ) {echo 'edit';}
+                                            elseif( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) && !($rp['closed_date_1']&& $rp['closed_date_2']) && ($rp['programado'] && !$rp['id_periodo1']) ) {echo 'editp';}
                                             else { echo 'disabled';} ?>"
                                href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
