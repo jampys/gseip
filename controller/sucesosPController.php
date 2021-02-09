@@ -44,7 +44,7 @@ switch ($operation)
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
-        //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        $view->periodos = NovPeriodo::getProximosPeriodos();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/sucesos/sucesosPForm.php";

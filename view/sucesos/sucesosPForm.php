@@ -362,6 +362,20 @@
                     </div>
 
 
+                    <div class="form-group required">
+                        <label for="periodo" class="control-label">Período</label>
+                        <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione un período" data-live-search="true" data-size="5" data-show-subtext="true">
+                            <?php foreach ($view->periodos as $ev){ ?>
+                                <option value="<?php echo $ev['per']; ?>"
+                                    <?php //echo ($ev['id_evento'] == $view->suceso->getIdEvento())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $ev['periodo'];?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
                     <div class="form-group">
                         <label class="control-label" for="observaciones">Observaciones</label>
                         <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="2"><?php print $view->suceso->getObservaciones(); ?></textarea>
