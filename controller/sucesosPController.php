@@ -2,7 +2,7 @@
 
 include_once("model/empleadosModel.php");
 include_once("model/nov_eventosLiquidacionModel.php");
-include_once("model/nov_sucesosModel.php");
+include_once("model/nov_sucesosPModel.php");
 include_once("model/contratosModel.php");
 include_once("model/nov_periodosModel.php");
 include_once("model/contrato-empleadoModel.php");
@@ -15,23 +15,16 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'saveSuceso':
-
-        $suceso = new Suceso($_POST['id_suceso']);
+    case 'saveSuceso': //ok
+        $suceso = new SucesoP($_POST['id_suceso']);
         $suceso->setIdEvento($_POST['id_evento']);
         $suceso->setIdEmpleado($_POST['id_empleado']);
         $suceso->setFechaDesde($_POST['fecha_desde']);
         $suceso->setFechaHasta($_POST['fecha_hasta']);
         $suceso->setObservaciones($_POST['observaciones']);
         $suceso->setCreatedBy($_SESSION['id_user']);
-        $suceso->setIdPeriodo1($_POST['id_periodo1']);
-        $suceso->setCantidad1($_POST['cantidad1']);
-        $suceso->setIdPeriodo2( ($_POST['id_periodo2']!='')? $_POST['id_periodo2'] : null );
-        $suceso->setCantidad2( ($_POST['cantidad2']!='')? $_POST['cantidad2'] : null );
-        $suceso->setFd1( ($_POST['fd1'])? $_POST['fd1'] : null  );
-        $suceso->setFh1( ($_POST['fh1'])? $_POST['fh1'] : null );
-        $suceso->setFd2( ($_POST['fd2'])? $_POST['fd2'] : null );
-        $suceso->setFh2( ($_POST['fh2'])? $_POST['fh2'] : null );
+        $suceso->setIdContrato($_POST['id_contrato']);
+        $suceso->setProgramado($_POST['programado']);
         $rta = $suceso->save();
         print_r(json_encode(sQuery::dpLastInsertId()));
         //print_r(json_encode($rta));
@@ -65,38 +58,6 @@ switch ($operation)
         break;
 
 
-    case 'deleteSuceso': //ok
-        /*$suceso = new Suceso($_POST['id_suceso']);
-        $rta = $suceso->deleteSuceso();
-        print_r(json_encode($rta));
-        die;
-        break;*/
-
-        try{
-            sQuery::dpBeginTransaction();
-            $suceso = new Suceso($_POST['id_suceso']);
-            $uploads = Suceso::uploadsLoad($_POST['id_suceso']);
-            $suceso->deleteSuceso();
-            foreach($uploads as $up){
-                if (!file_exists($up['directory'].$up['name'])) throw new Exception('Archivo no existe.');
-            }
-
-            sQuery::dpCommit();
-            foreach($uploads as $up){
-                unlink($up['directory'].$up['name']);
-            }
-            print_r(json_encode(1));
-
-        }catch (Exception $e){
-            sQuery::dpRollback();
-            throw new Exception('Error en el query.'); //para que entre en el .fail de la peticion ajax
-        }
-
-
-        die;
-        break;
-
-
     case 'checkRango':
         $view->suceso = new Suceso();
         $rta = $view->suceso->checkRango($_POST['fecha_desde'], $_POST['fecha_hasta'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
@@ -113,10 +74,10 @@ switch ($operation)
 
 
     default :
-        $view->empleados = Empleado::getEmpleadosControl(null); //carga el combo para filtrar empleados
-        $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
-        $view->contentTemplate="view/sucesos/sucesosGrid.php";
+        //$view->empleados = Empleado::getEmpleadosControl(null); //carga el combo para filtrar empleados
+        //$view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion
+        //$view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        //$view->contentTemplate="view/sucesos/sucesosGrid.php";
         break;
 }
 
