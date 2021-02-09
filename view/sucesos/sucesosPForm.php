@@ -334,10 +334,10 @@
                         <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
                             <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                             <option value="">Seleccione un contrato</option>
-                            <?php foreach ($view->periodos as $pe){
+                            <?php foreach ($view->contratos as $pe){
                                 ?>
                                 <option value="<?php echo $pe['id_periodo']; ?>" <?php echo ($pe['closed_date'])? 'disabled':''; ?>
-                                    <?php echo ($view->suceso->getIdPeriodo1() == $pe['id_periodo'])? 'selected' : ''; ?>
+                                    <?php //echo ($view->suceso->getIdPeriodo1() == $pe['id_periodo'])? 'selected' : ''; ?>
                                     >
                                     <?php echo $pe['nombre'].' ('.$pe['fecha_desde'].' - '.$pe['fecha_hasta'].')'; ?>
                                 </option>
