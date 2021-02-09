@@ -56,7 +56,7 @@ class Calendar
                   join empleados em on su.id_empleado = em.id_empleado
                   join nov_eventos_l ev on su.id_evento = ev.id_evento
                   left join empleado_contrato ec on su.id_empleado = ec.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta >= sysdate() )
-                  join nov_periodos pe1 on pe1.id_periodo = su.id_periodo1
+                  left join nov_periodos pe1 on pe1.id_periodo = su.id_periodo1
                   left join nov_periodos pe2 on pe2.id_periodo = su.id_periodo2
                   where su.id_empleado in ($empleados)
                   and su.id_evento in ($eventos)
