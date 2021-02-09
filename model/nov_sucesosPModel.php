@@ -144,7 +144,7 @@ class SucesoP
                       observaciones = :observaciones,
                       cantidad1 = :cantidad1,
                       id_contrato = :id_contrato,
-                      programado = :programado,
+                      programado = :programado
                 where id_suceso =:id_suceso";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
