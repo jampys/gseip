@@ -72,12 +72,28 @@
             });
 
 
-
+            //editar suceso
             $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_suceso = id;
                 params.action = "sucesos";
+                params.operation = "editSuceso";
+                params.target = "edit";
+                //alert(params.id_renovacion);
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
+                })
+            });
+
+            //editar suceso programado
+            $(document).on('click', '.edit', function(){ //ok
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_suceso = id;
+                params.action = "sucesosP";
                 params.operation = "editSuceso";
                 params.target = "edit";
                 //alert(params.id_renovacion);

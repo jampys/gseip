@@ -44,18 +44,17 @@ switch ($operation)
         $view->contentTemplate="view/sucesos/sucesosPForm.php";
         break;
 
-    case 'editSuceso':
+    case 'editSuceso': //ok
         $view->suceso = new Suceso($_POST['id_suceso']);
-        $view->label = ($_POST['target']!='view')? 'Editar suceso' : 'Ver suceso';
+        $view->label = ($_POST['target']!='view')? 'Editar suceso programado' : 'Ver suceso programado';
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
-        // Trae todos los periodos, luego en el formulario quedan habilitados solo los activos
-        $view->periodos = NovPeriodo::getPeriodos1($view->suceso->getIdEmpleado()); ;
+        $view->periodos = NovPeriodo::getProximosPeriodos();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/sucesos/sucesosForm.php";
+        $view->contentTemplate="view/sucesos/sucesosPForm.php";
         break;
 
 
