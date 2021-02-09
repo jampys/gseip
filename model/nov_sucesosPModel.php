@@ -11,6 +11,7 @@ class SucesoP
     private $observaciones;
     private $created_by;
     private $created_date;
+    private $cantidad1;
     private $id_contrato;
     private $programado;
 
@@ -42,6 +43,9 @@ class SucesoP
 
     function getCreatedDate()
     { return $this->created_date;}
+
+    function getCantidad1()
+    { return $this->cantidad1;}
 
     function getIdContrato()
     { return $this->id_contrato;}
@@ -78,6 +82,9 @@ class SucesoP
     function setCreatedDate($val)
     {  $this->created_date=$val;}
 
+    function setCantidad1($val)
+    {  $this->cantidad1=$val;}
+
     function setIdContrato($val)
     {  $this->id_contrato=$val;}
 
@@ -96,6 +103,7 @@ class SucesoP
                     observaciones,
                     created_by,
                     DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
+                    cantidad1
                     programado, id_contrato
                     from nov_sucesos
                     where id_suceso = :nro";
@@ -112,6 +120,7 @@ class SucesoP
             $this->setFechaHasta($rows[0]['fecha_hasta']);
             $this->setObservaciones($rows[0]['observaciones']);
             $this->setCreatedDate($rows[0]['created_date']);
+            $this->setCantidad1($rows[0]['cantidad1']);
             $this->setProgramado($rows[0]['programado']);
             $this->setIdContrato($rows[0]['id_contrato']);
 

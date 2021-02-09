@@ -133,6 +133,7 @@
                 params.id_evento = $('#myModal #id_evento').val();
                 params.fecha_desde = drp.startDate.format('DD/MM/YYYY');
                 params.fecha_hasta = drp.endDate.format('DD/MM/YYYY');
+                params.dias = $('#myModal #dias').val();
                 params.observaciones = $('#myModal #observaciones').val();
                 params.id_contrato = $('#myModal #id_contrato').val();
                 params.programado = $('#myModal #programado').val();
@@ -313,7 +314,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="dias" class="control-label">Total días</label>
-                            <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1() + $view->suceso->getCantidad2() ?>" placeholder="" disabled >
+                            <input type="text" class="form-control cdias" name="dias" id="dias" value = "<?php print $view->suceso->getCantidad1(); ?>" placeholder="" disabled >
                             <input type="hidden" name="dias1" id="dias1">
                         </div>
                     </div>

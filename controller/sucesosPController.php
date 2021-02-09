@@ -24,6 +24,7 @@ switch ($operation)
         $suceso->setFechaHasta($_POST['fecha_hasta']);
         $suceso->setObservaciones($_POST['observaciones']);
         $suceso->setCreatedBy($_SESSION['id_user']);
+        $suceso->setCantidad1($_POST['dias']);
         $suceso->setIdContrato($_POST['id_contrato']);
         $suceso->setProgramado($_POST['programado']);
         $rta = $suceso->save();
