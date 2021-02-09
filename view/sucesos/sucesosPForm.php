@@ -135,7 +135,7 @@
                 params.fecha_hasta = drp.endDate.format('DD/MM/YYYY');
                 params.observaciones = $('#myModal #observaciones').val();
                 params.id_contrato = $('#myModal #id_contrato').val();
-                params.periodo = $('#myModal #periodo').val();
+                params.programado = $('#myModal #programado').val();
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -328,8 +328,8 @@
 
 
                     <div class="form-group required">
-                        <label for="periodo" class="control-label">Período</label>
-                        <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione un período" data-live-search="true" data-size="5" data-show-subtext="true">
+                        <label for="programado" class="control-label">Período programado</label>
+                        <select class="form-control selectpicker show-tick" id="programado" name="programado" title="Seleccione un período" data-live-search="true" data-size="5" data-show-subtext="true">
                             <?php foreach ($view->periodos as $ev){ ?>
                                 <option value="<?php echo $ev['per']; ?>"
                                     <?php //echo ($ev['id_evento'] == $view->suceso->getIdEvento())? 'selected' :'' ?>
