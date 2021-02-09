@@ -197,6 +197,13 @@
 
 
                 <form name ="suceso-form" id="suceso-form" method="POST" action="index.php">
+
+                    <div class="alert alert-info fade in">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <span class="glyphicon glyphicon-tags" ></span>&nbsp  Permite crear sucesos programados a futuro (dentro de los próximos 12 meses).
+                        La imputación se producirá automaticamente al momento de generarse el período de liquidación.
+                    </div>
+
                     <input type="hidden" name="id_suceso" id="id_suceso" value="<?php print $view->suceso->getIdSuceso() ?>">
 
                     <div class="form-group required">
