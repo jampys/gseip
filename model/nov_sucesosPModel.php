@@ -139,18 +139,18 @@ class SucesoP
 
     public function updateSuceso(){ //ok
         $stmt=new sQuery();
-        $query="update nov_sucesos set id_evento =:id_evento,
-                      fecha_desde = STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
+        $query="update nov_sucesos set fecha_desde = STR_TO_DATE(:fecha_desde, '%d/%m/%Y'),
                       fecha_hasta = STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'),
                       observaciones = :observaciones,
+                      cantidad1 = :cantidad1,
                       id_contrato = :id_contrato,
                       programado = :programado,
                 where id_suceso =:id_suceso";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
         $stmt->dpBind(':fecha_hasta', $this->getFechaHasta());
         $stmt->dpBind(':observaciones', $this->getObservaciones());
+        $stmt->dpBind(':cantidad1', $this->getCantidad1());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':programado', $this->getProgramado());
         $stmt->dpBind(':id_suceso', $this->getIdSuceso());
