@@ -2,6 +2,7 @@
 
 include_once("model/empleadosModel.php");
 include_once("model/nov_eventosLiquidacionModel.php");
+include_once("model/nov_sucesosModel.php");
 include_once("model/nov_sucesosPModel.php");
 include_once("model/contratosModel.php");
 include_once("model/nov_periodosModel.php");
