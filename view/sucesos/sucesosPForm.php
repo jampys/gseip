@@ -30,45 +30,6 @@
         });
 
         var drp = $('#fecha').data('daterangepicker');
-        //var drp1 = $('#f1').data('daterangepicker');
-        //var drp2 = $('#f2').data('daterangepicker');
-
-        //solo ocurre al cambiar el valor de fecha. Restringe el rango de fechas de f1 y f2
-        /*$('#fecha').on("apply.daterangepicker", function (e, picker) {
-            drp1.minDate = picker.startDate;
-            drp1.maxDate = picker.endDate;
-            drp2.minDate = picker.startDate;
-            drp2.maxDate = picker.endDate;
-        });*/
-
-        //Sirve para restringir f1 y f2 al rango de fechas de fecha.
-        //drp1.minDate = drp.startDate;
-        //drp1.maxDate = drp.endDate;
-        //drp2.minDate = drp.startDate;
-        //drp2.maxDate = drp.endDate;
-
-        //Al hacer check o uncheck en checkbox
-        /*$("#chk_imputar").change(function() {
-            var ischecked= $(this).is(':checked');
-            if(ischecked) {
-                drp1.setStartDate(drp.startDate);
-                drp1.setEndDate(drp.endDate);
-                drp1.element.val(drp1.startDate.format(drp1.locale.format) + ' - ' + drp1.endDate.format(drp1.locale.format));
-                $('#cantidad1').val($('#dias').val());
-                $('#id_periodo2').val("").selectpicker('refresh');
-                drp2.setStartDate(new Date); //limpia starDate
-                drp2.setEndDate(new Date); //limpia endDate
-                $('#f2').val(""); //limpia el input
-                $('#cantidad2').val(0);
-            }else{
-                drp1.setStartDate(new Date);
-                drp1.setEndDate(new Date);
-                $('#f1').val("");
-                $('#cantidad1').val(0);
-            }
-
-        });*/
-
 
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
