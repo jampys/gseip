@@ -126,7 +126,7 @@
             if ($("#suceso-form").valid()){
 
                 var params={};
-                params.action = 'sucesos';
+                params.action = 'sucesosP';
                 params.operation = 'saveSuceso';
                 params.id_suceso = $('#myModal #id_suceso').val();
                 params.id_empleado = $('#myModal #id_empleado').val();

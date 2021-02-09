@@ -133,8 +133,7 @@ class SucesoP
     }
 
 
-
-
+    
     function save(){ //ok
         if($this->id_suceso)
         {$rta = $this->updateSuceso();}
@@ -182,29 +181,6 @@ class SucesoP
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
-    }
-
-
-
-    public function checkRango($fecha_desde, $fecha_hasta, $id_empleado, $id_evento, $id_suceso) {
-        //Busca que no exista un suceso para el id_empleado y id_evento, durante la fecha_hasta ingresada
-        $stmt=new sQuery();
-        $query = "select *
-                  from nov_sucesos
-                  where id_empleado = :id_empleado
-                  and id_evento = :id_evento
-                  and STR_TO_DATE(:fecha_desde, '%d/%m/%Y') <= fecha_hasta
-                  and STR_TO_DATE(:fecha_hasta, '%d/%m/%Y') >= fecha_desde
-                  and id_suceso <> :id_suceso";
-
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_suceso', $id_suceso);
-        $stmt->dpBind(':fecha_desde', $fecha_desde);
-        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_evento', $id_evento);
-        $stmt->dpExecute();
-        return $output = ($stmt->dpGetAffect()==0)? true : false;
     }
 
 

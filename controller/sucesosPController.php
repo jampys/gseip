@@ -59,14 +59,6 @@ switch ($operation)
         break;
 
 
-    case 'checkRango':
-        $view->suceso = new Suceso();
-        $rta = $view->suceso->checkRango($_POST['fecha_desde'], $_POST['fecha_hasta'], $_POST['id_empleado'], $_POST['id_evento'], $_POST['id_suceso']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-
     case 'getContratos': //ok select dependiente. Trae todos los contratos de un empleado
         $rta = ContratoEmpleado::getContratosByEmpleado($_POST['id_empleado'], $_POST['activos']);
         print_r(json_encode($rta));
