@@ -141,6 +141,8 @@
             rules: {
                 id_empleado: {required: true},
                 id_evento: {required: true},
+                id_contrato: {required: true},
+                programado: {required: true},
                 fecha: {
                     required: true,
                     remote: {
@@ -163,6 +165,8 @@
             messages:{
                 id_empleado: "Seleccione un empleado",
                 id_evento: "Seleccione un suceso",
+                id_contrato: "Seleccione un contrato",
+                programado: "Seleccione un período programado",
                 fecha: {
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
