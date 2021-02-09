@@ -45,7 +45,7 @@ switch ($operation)
         break;
 
     case 'editSuceso': //ok
-        $view->suceso = new Suceso($_POST['id_suceso']);
+        $view->suceso = new SucesoP($_POST['id_suceso']);
         $view->label = ($_POST['target']!='view')? 'Editar suceso programado' : 'Ver suceso programado';
 
         $view->empleados = Empleado::getEmpleadosControl(null);

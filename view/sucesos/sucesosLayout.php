@@ -89,7 +89,7 @@
             });
 
             //editar suceso programado
-            $(document).on('click', '.edit', function(){ //ok
+            $(document).on('click', '.editp', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_suceso = id;
