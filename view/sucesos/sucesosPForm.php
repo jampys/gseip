@@ -255,15 +255,7 @@
 
                 <form name ="suceso-form" id="suceso-form" method="POST" action="index.php">
                     <input type="hidden" name="id_suceso" id="id_suceso" value="<?php print $view->suceso->getIdSuceso() ?>">
-
-
-                    <?php if($view->suceso->getIdParte()){ ?>
-                        <div class="alert alert-info">
-                            <i class="fas fa-info fa-fw"></i> Suceso generado automáticamente desde el parte <b><?php echo $view->suceso->getIdParte(); ?></b>.
-                        </div>
-                    <?php } ?>
-
-
+                    
                     <div class="form-group required">
                         <label for="id_empleado" class="control-label">Empleado</label>
                         <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
