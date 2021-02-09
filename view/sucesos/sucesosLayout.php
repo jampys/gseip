@@ -17,7 +17,7 @@
             moment.locale('es');
             $('#search_fecha').daterangepicker({
                 startDate: moment().subtract(29, 'days'),
-                endDate: moment(),
+                endDate: moment().add(12, 'months'),
                 locale: {
                     format: 'DD/MM/YYYY',
                     "applyLabel": "Aplicar",
