@@ -174,21 +174,6 @@
 
 
 
-
-        $("#myModal #id_empleado").on('changed.bs.select', function (e) {
-            //Al seleccionar un grupo, completa automaticamente el campo vencimiento y lo deshabilita.
-            if ($('#id_empleado option:selected').attr('id_grupo') !='') {
-                $('#id_vencimiento').selectpicker('val', $('#id_empleado option:selected').attr('id_vencimiento')).prop('disabled', true).selectpicker('refresh');
-            }
-            else{
-                $('#id_vencimiento').selectpicker('val', '').prop('disabled', false).selectpicker('refresh');
-            }
-
-        });
-
-
-
-
     });
 
 </script>
