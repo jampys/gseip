@@ -35,7 +35,7 @@ switch ($operation)
 
     case 'newSuceso': //ok
         $view->label='Nuevo Suceso programado';
-        $view->suceso = new Suceso($_POST['id_suceso']);
+        $view->suceso = new SucesoP($_POST['id_suceso']);
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
