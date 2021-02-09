@@ -96,12 +96,7 @@ class SucesoP
                     observaciones,
                     created_by,
                     DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
-                    id_periodo1, cantidad1, id_periodo2, cantidad2,
-                    DATE_FORMAT(fd1,  '%d/%m/%Y') as fd1,
-                    DATE_FORMAT(fh1,  '%d/%m/%Y') as fh1,
-                    DATE_FORMAT(fd2,  '%d/%m/%Y') as fd2,
-                    DATE_FORMAT(fh2,  '%d/%m/%Y') as fh2,
-                    id_parte, programado, periodo
+                    programado, id_contrato
                     from nov_sucesos
                     where id_suceso = :nro";
             $stmt->dpPrepare($query);
@@ -117,15 +112,6 @@ class SucesoP
             $this->setFechaHasta($rows[0]['fecha_hasta']);
             $this->setObservaciones($rows[0]['observaciones']);
             $this->setCreatedDate($rows[0]['created_date']);
-            $this->setIdPeriodo1($rows[0]['id_periodo1']);
-            $this->setCantidad1($rows[0]['cantidad1']);
-            $this->setIdPeriodo2($rows[0]['id_periodo2']);
-            $this->setCantidad2($rows[0]['cantidad2']);
-            $this->setFd1($rows[0]['fd1']);
-            $this->setFh1($rows[0]['fh1']);
-            $this->setFd2($rows[0]['fd2']);
-            $this->setFh2($rows[0]['fh2']);
-            $this->setIdParte($rows[0]['id_parte']);
             $this->setProgramado($rows[0]['programado']);
             $this->setIdContrato($rows[0]['id_contrato']);
 
