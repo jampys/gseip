@@ -325,7 +325,7 @@
                         <select class="form-control selectpicker show-tick" id="programado" name="programado" title="Seleccione un período" data-live-search="true" data-size="5" data-show-subtext="true">
                             <?php foreach ($view->periodos as $ev){ ?>
                                 <option value="<?php echo $ev['per']; ?>"
-                                    <?php //echo ($ev['id_evento'] == $view->suceso->getIdEvento())? 'selected' :'' ?>
+                                    <?php echo ($ev['per'] == $view->suceso->getProgramado())? 'selected' :'' ?>
                                     >
                                     <?php echo $ev['periodo'];?>
                                 </option>
