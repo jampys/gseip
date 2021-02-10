@@ -245,3 +245,9 @@ https://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-bo
 }
 
 
+/*----------------------------------------------------------------------------------*/
+/* estilo personalizado: Tippyjs */
+.tippy-box[data-theme~='light-border'] {
+    font-size: 12px;
+}
+
