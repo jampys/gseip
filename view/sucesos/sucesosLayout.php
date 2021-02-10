@@ -17,6 +17,13 @@
                 delay: [500,0]
             });
 
+            tippy('#newp', {
+                theme: 'light-border',
+                delay: [500,0],
+                content: '<strong>Nuevo suceso programado</strong><br/><span>Es un suceso programado a futuro que no se imputa inmediatamente.</span>',
+                allowHTML: true
+            });
+
             $('.selectpicker').selectpicker();
 
             moment.locale('es');
@@ -338,21 +345,21 @@
 
                         <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
-                            <button type="button" class="form-control btn btn-default" title="nuevo suceso" id="new" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
+                            <button type="button" class="form-control btn btn-default" data-tippy-content="Nuevo suceso" id="new" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                             </button>
                         </div>
 
                         <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
-                            <button type="button" class="form-control btn btn-default" title="nuevo suceso programado" id="newp" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
+                            <button type="button" class="form-control btn btn-default" id="newp" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <i class="far fa-calendar-check fa-lg dp_green"></i>
                             </button>
                         </div>
 
                         <div class="form-group col-md-1">
                             <!--<label for="export" class="control-label">&nbsp;</label>-->
-                            <button id="export" class="form-control btn btn-default dp_blue" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
+                            <button id="export" class="form-control btn btn-default dp_blue" href="#" data-tippy-content="Exportar sucesos"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
 
