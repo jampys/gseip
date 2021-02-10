@@ -22,7 +22,7 @@
             eventLimit: true, // allow "more" link when too many events
             eventOrder: false, //para que no ordene automaticamente. Que ordene como viene en el query
             eventRender: function(info) { //https://fullcalendar.io/docs/eventRender
-                var pop = $(info.el).popover({
+                /*var pop = $(info.el).popover({
                     title: info.event.title,
                     placement:'top',
                     trigger : 'hover',
@@ -30,7 +30,12 @@
                     //content: format(info),
                     container:'body'
                 }).popover('show');
-                pop.attr("data-content", format(info));
+                pop.attr("data-content", format(info));*/
+                tippy(info.el, {
+                    content: '<strong>'+info.event.title+'</strong><br/>'+format(info),
+                    theme: 'light-border',
+                    allowHTML: true
+                });
             },
 
             events: function(info, successCallback, failureCallback) { //https://fullcalendar.io/docs/events-function
@@ -161,7 +166,7 @@
             return msg;
         }
         else if(info.event.extendedProps.tipo_evento == 'novedad_empleado') {
-            msg = (info.event.extendedProps.cuadrilla)? '<span>'+info.event.extendedProps.cuadrilla+'</span><br/>' : '';
+            msg = (info.event.extendedProps.cuadrilla && info.event.extendedProps.cuadrilla != info.event.title)? '<span>'+info.event.extendedProps.cuadrilla+'</span><br/>' : '';
             msg += (info.event.extendedProps.area)? '<span>'+info.event.extendedProps.area+'</span><br/>' : '';
             msg += (info.event.extendedProps.evento)? '<span>'+info.event.extendedProps.evento+'</span><br/>' : '';
             msg += (info.event.extendedProps.conceptos)? '<span>'+info.event.extendedProps.conceptos+'</span>' : '';
