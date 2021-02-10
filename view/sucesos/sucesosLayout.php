@@ -12,6 +12,11 @@
 
         $(document).ready(function(){
 
+            tippy('[data-tippy-content]', {
+                theme: 'light-border',
+                delay: [500,0]
+            });
+
             $('.selectpicker').selectpicker();
 
             moment.locale('es');
@@ -290,7 +295,7 @@
 
                         <div class="form-group col-md-2">
                             <!--<label for="search">&nbsp;</label>-->
-                            <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
+                            <button type="button" class="form-control btn btn-default" data-tippy-content="Buscar" id="search">
                                 <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                             </button>
                         </div>

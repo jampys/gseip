@@ -83,6 +83,10 @@
     <script type="text/javascript" src="resources/libraries/bootbox/bootbox.js"></script>
     <script type="text/javascript" src="resources/libraries/bootbox/bootbox.locales.js"></script>
 
+    <!-- tippyjs -->
+    <script type="text/javascript" src="resources/libraries/tippyjs/popper.min.js"></script>
+    <script type="text/javascript" src="resources/libraries/tippyjs/tippy-bundle.umd.min.js"></script>
+    <link rel="stylesheet" href="resources/libraries/tippyjs/themes/light-border.css"/>
 
     <!-- librerias css propias -->
     <link rel="stylesheet" href="resources/css/dario.css">
