@@ -2,6 +2,11 @@
 
     $(document).ready(function(){
 
+        tippy('[data-tippy-content]', {
+            theme: 'light-border',
+            delay: [500,0]
+        });
+
    // ***********fullcalendar *************************************************//
 
         var calendarEl = document.getElementById('calendar');
@@ -351,10 +356,10 @@
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <span class="glyphicon glyphicon-tags" ></span>&nbsp  Seleccionar un contrato para visualizar eventos en el calendario.
             <p></p>
-            <p></p><a href="#" title="Día marcado en la novedad como Trabajado"><span class="badge" style="background-color: rgb(55, 136, 216)">&nbsp;</span> Trabajado</a></p>
-            <p></p><a href="#" title="Día marcado en la novedad como Trabajado y con Guardia activada"><span class="badge" style="background-color: #1b62a8">&nbsp;</span> Trabajado con Guardia activada</a></p>
-            <p></p><a href="#" title="Día marcado en la novedad como No trabajado"><span class="badge" style="background-color: tomato">&nbsp;</span> No rabajado</a></p>
-            <p></p><a href="#" title="Día feriado o no laborable"><span class="badge">&nbsp;</span> Feriado</a></p>
+            <p></p><a href="#" data-tippy-content="Día marcado en la novedad como Trabajado"><span class="badge" style="background-color: rgb(55, 136, 216)">&nbsp;</span> Trabajado</a></p>
+            <p></p><a href="#" data-tippy-content="Día marcado en la novedad como Trabajado y con Guardia activada"><span class="badge" style="background-color: #1b62a8">&nbsp;</span> Trabajado con Guardia activada</a></p>
+            <p></p><a href="#" data-tippy-content="Día marcado en la novedad como No trabajado"><span class="badge" style="background-color: tomato">&nbsp;</span> No rabajado</a></p>
+            <p></p><a href="#" data-tippy-content="Día feriado o no laborable"><span class="badge">&nbsp;</span> Feriado</a></p>
         </div>
 
 
