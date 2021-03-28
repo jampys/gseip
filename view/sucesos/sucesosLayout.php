@@ -12,12 +12,24 @@
 
         $(document).ready(function(){
 
+            tippy('[data-tippy-content]', {
+                theme: 'light-border',
+                delay: [500,0]
+            });
+
+            tippy('#newp', {
+                theme: 'light-border',
+                delay: [500,0],
+                content: '<strong>Nuevo suceso programado</strong><br/><span>Es un suceso programado a futuro que no se imputa inmediatamente.</span>',
+                allowHTML: true
+            });
+
             $('.selectpicker').selectpicker();
 
             moment.locale('es');
             $('#search_fecha').daterangepicker({
                 startDate: moment().subtract(29, 'days'),
-                endDate: moment(),
+                endDate: moment().add(12, 'months'),
                 locale: {
                     format: 'DD/MM/YYYY',
                     "applyLabel": "Aplicar",
@@ -72,7 +84,7 @@
             });
 
 
-
+            //editar suceso
             $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -88,8 +100,24 @@
                 })
             });
 
+            //editar suceso programado
+            $(document).on('click', '.editp', function(){ //ok
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_suceso = id;
+                params.action = "sucesosP";
+                params.operation = "editSuceso";
+                params.target = "edit";
+                //alert(params.id_renovacion);
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
+                })
+            });
 
 
+            //ver sucesos
             $(document).on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -108,10 +136,39 @@
             });
 
 
+            //ver sucesos programados
+            $(document).on('click', '.viewp', function(){ //ok
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_suceso = id;
+                params.action = "sucesosP";
+                params.operation = "editSuceso";
+                params.target = "view";
+                $('#popupbox').load('index.php', params,function(){
+                    $("fieldset").prop("disabled", true);
+                    $('.selectpicker').selectpicker('refresh');
+                    $('.modal-footer').css('display', 'none');
+                    $('#myModal').modal();
+                })
 
+            });
+
+
+            //nuevo suceso
             $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "sucesos";
+                params.operation="newSuceso";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+                })
+            });
+
+
+            //nuevo suceso programado
+            $(document).on('click', '#newp', function(){ //ok
+                params={};
+                params.action = "sucesosP";
                 params.operation="newSuceso";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
@@ -243,6 +300,22 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-md-2">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" class="form-control btn btn-default" data-tippy-content="Buscar" id="search">
+                                <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+                            </button>
+                        </div>
+
+                        <div class="form-group col-md-4">
+
+                        </div>
+
+                    </div>
+
+                    <!-- FILA DE ABAJO -->
+                    <div class="row">
+
                         <div class="form-group col-md-3">
                             <!--<label for="search_evento" class="control-label">Eventos</label>-->
                             <select multiple class="form-control selectpicker show-tick" id="search_evento" name="search_evento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
@@ -265,32 +338,28 @@
                             </div>
                         </div>
 
-                    </div>
 
-                    <!-- FILA DE ABAJO -->
-                    <div class="row">
-
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-3">
 
                         </div>
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
-                            <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
-                                <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
-                            </button>
-                        </div>
-
-                        <div class="form-group col-md-2">
-                            <!--<label for="search">&nbsp;</label>-->
-                            <button type="button" class="form-control btn btn-default" title="nuevo suceso" id="new" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
+                            <button type="button" class="form-control btn btn-default" data-tippy-content="Nuevo suceso" id="new" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                             </button>
                         </div>
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-1">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" class="form-control btn btn-default" id="newp" <?php echo ( PrivilegedUser::dhasAction('SUC_INSERT', array(1)) )? '' : 'disabled' ?>>
+                                <i class="far fa-calendar-check fa-lg dp_green"></i>
+                            </button>
+                        </div>
+
+                        <div class="form-group col-md-1">
                             <!--<label for="export" class="control-label">&nbsp;</label>-->
-                            <button id="export" class="form-control btn btn-default dp_blue" href="#" title="exportar sucesos"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
+                            <button id="export" class="form-control btn btn-default dp_blue" href="#" data-tippy-content="Exportar sucesos"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
                         </div>
 
 

@@ -2,6 +2,11 @@
 
     $(document).ready(function(){
 
+        tippy('[data-tippy-content]', {
+            theme: 'light-border',
+            delay: [500,0]
+        });
+
    // ***********fullcalendar *************************************************//
 
         var calendarEl = document.getElementById('calendar');
@@ -22,7 +27,7 @@
             eventLimit: true, // allow "more" link when too many events
             eventOrder: false, //para que no ordene automaticamente. Que ordene como viene en el query
             eventRender: function(info) { //https://fullcalendar.io/docs/eventRender
-                var pop = $(info.el).popover({
+                /*var pop = $(info.el).popover({
                     title: info.event.title,
                     placement:'top',
                     trigger : 'hover',
@@ -30,7 +35,12 @@
                     //content: format(info),
                     container:'body'
                 }).popover('show');
-                pop.attr("data-content", format(info));
+                pop.attr("data-content", format(info));*/
+                tippy(info.el, {
+                    content: '<strong>'+info.event.title+'</strong><br/>'+format(info),
+                    theme: 'light-border',
+                    allowHTML: true
+                });
             },
 
             events: function(info, successCallback, failureCallback) { //https://fullcalendar.io/docs/events-function
@@ -161,7 +171,7 @@
             return msg;
         }
         else if(info.event.extendedProps.tipo_evento == 'novedad_empleado') {
-            msg = (info.event.extendedProps.cuadrilla)? '<span>'+info.event.extendedProps.cuadrilla+'</span><br/>' : '';
+            msg = (info.event.extendedProps.cuadrilla && info.event.extendedProps.cuadrilla != info.event.title)? '<span>'+info.event.extendedProps.cuadrilla+'</span><br/>' : '';
             msg += (info.event.extendedProps.area)? '<span>'+info.event.extendedProps.area+'</span><br/>' : '';
             msg += (info.event.extendedProps.evento)? '<span>'+info.event.extendedProps.evento+'</span><br/>' : '';
             msg += (info.event.extendedProps.conceptos)? '<span>'+info.event.extendedProps.conceptos+'</span>' : '';
@@ -346,10 +356,10 @@
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <span class="glyphicon glyphicon-tags" ></span>&nbsp  Seleccionar un contrato para visualizar eventos en el calendario.
             <p></p>
-            <p></p><a href="#" title="Día marcado en la novedad como Trabajado"><span class="badge" style="background-color: rgb(55, 136, 216)">&nbsp;</span> Trabajado</a></p>
-            <p></p><a href="#" title="Día marcado en la novedad como Trabajado y con Guardia activada"><span class="badge" style="background-color: #1b62a8">&nbsp;</span> Trabajado con Guardia activada</a></p>
-            <p></p><a href="#" title="Día marcado en la novedad como No trabajado"><span class="badge" style="background-color: tomato">&nbsp;</span> No rabajado</a></p>
-            <p></p><a href="#" title="Día feriado o no laborable"><span class="badge">&nbsp;</span> Feriado</a></p>
+            <p></p><a href="#" data-tippy-content="Día marcado en la novedad como Trabajado"><span class="badge" style="background-color: rgb(55, 136, 216)">&nbsp;</span> Trabajado</a></p>
+            <p></p><a href="#" data-tippy-content="Día marcado en la novedad como Trabajado y con Guardia activada"><span class="badge" style="background-color: #1b62a8">&nbsp;</span> Trabajado con Guardia activada</a></p>
+            <p></p><a href="#" data-tippy-content="Día marcado en la novedad como No trabajado"><span class="badge" style="background-color: tomato">&nbsp;</span> No rabajado</a></p>
+            <p></p><a href="#" data-tippy-content="Día feriado o no laborable"><span class="badge">&nbsp;</span> Feriado</a></p>
         </div>
 
 

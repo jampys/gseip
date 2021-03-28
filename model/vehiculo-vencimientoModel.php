@@ -41,7 +41,7 @@ class VehiculoVencimiento
             $stmt=new sQuery();
             $query = "select id_vehiculo_vencimiento, id_vehiculo, id_vencimiento,
                       DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
-                      from vehiculo_vencimiento
+                      from vto_vehiculo_vencimiento
                       where id_vehiculo_vencimiento = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);

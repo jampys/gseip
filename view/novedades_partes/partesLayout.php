@@ -366,6 +366,13 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-md-2">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" class="form-control btn btn-default" title="Buscar partes" id="search">
+                                <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+                            </button>
+                        </div>
+
                         <!--<div class="form-group col-md-3">
                             <label class="control-label" for="add_fecha">&nbsp;</label>
                             <div class="input-group date">
@@ -385,7 +392,7 @@
                             </button>
                         </div>-->
 
-                        <div class="form-group col-md-7">
+                        <div class="form-group col-md-5">
 
                         </div>
 
@@ -419,16 +426,13 @@
                         </div>
 
 
-                        <div class="form-group col-md-2">
-                            <!--<label for="search">&nbsp;</label>-->
-                            <button type="button" class="form-control btn btn-default" title="Buscar partes" id="search">
-                                <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
-                            </button>
+                        <div class="form-group col-md-4">
+
                         </div>
 
 
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
                             <button id="control" class="form-control btn btn-default" href="#" title="Controlar novedades">
                                 <!--<span class="glyphicon glyphicon-check fa-lg dp_blue">-->
@@ -436,7 +440,7 @@
                             </button>
                         </div>
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
                             <button id="txt" class="form-control btn btn-default" href="#" title="Exportar novedades"><i class="fas fa-file-export fa-fw fa-lg dp_blue"></i></button>
                         </div>

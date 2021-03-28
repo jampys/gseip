@@ -179,6 +179,26 @@ order by periodo desc";
     }
 
 
+    public static function getProximosPeriodos($limit = null) { //ok
+        $stmt=new sQuery();
+        $query="select DATE_FORMAT(cal.fecha,'%Y-%m') as per,
+CONCAT (CASE DATE_FORMAT(cal.fecha,'%m') WHEN 1 THEN 'ENE' WHEN 2 THEN 'FEB' WHEN 3 THEN 'MAR' WHEN 4 THEN 'ABR' WHEN 5 THEN 'MAY' WHEN 6 THEN 'JUN' WHEN 7 THEN 'JUL' WHEN 8 THEN 'AGO' WHEN 9 THEN 'SEP' WHEN 10 THEN 'OCT' WHEN 11 THEN 'NOV' WHEN 12 THEN 'DIC' END, ' ', DATE_FORMAT(cal.fecha,'%Y')) as periodo
+from tmp_calendar cal
+where DATE_FORMAT(cal.fecha,'%Y-%m') > (select DATE_FORMAT(per.fecha_desde_cal,'%Y-%m')
+										from nov_periodos per
+										order by per.fecha_desde_cal desc
+										limit 1
+										)
+group by per
+limit 12";
+
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':limit', $limit);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
 
 }
 
