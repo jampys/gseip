@@ -54,9 +54,9 @@
                 params.operation = "editCuadrilla";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
-                    $("fieldset").prop("disabled", true);
+                    //$("fieldset").prop("disabled", true);
                     //$('.selectpicker').selectpicker('refresh');
-                    $('.modal-footer').css('display', 'none');
+                    //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
                 })

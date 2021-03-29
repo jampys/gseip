@@ -3,7 +3,7 @@
 
     $(document).ready(function(){
 
-        //para abrir la seccion de empleados 
+        //para abrir la seccion de empleados
         $('#demo-empleados').collapse(); //https://bootstrapdocs.com/v3.3.4/docs/javascript/#collapse
 
         $('#hs_normal').timepicker({

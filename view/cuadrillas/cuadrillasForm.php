@@ -216,7 +216,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+                <button class="btn btn-primary" id="submit" name="submit" type="submit" <?php echo ($view->target!='view' )? '' : 'disabled' ?> >Guardar</button>
                 <button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
             </div>
 
