@@ -227,7 +227,7 @@ class Cuadrilla
 
     public function updateCuadrilla(){ //ok
         $stmt=new sQuery();
-        $query="update nov_cuadrillas set id_contrato =:id_contrato,
+        $query="update nov_cuadrillas set
                       default_id_vehiculo = :default_id_vehiculo,
                       default_id_area = :default_id_area,
                       nombre = :nombre,
@@ -235,7 +235,7 @@ class Cuadrilla
                       actividad = :actividad
                 where id_cuadrilla =:id_cuadrilla";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        //$stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':default_id_vehiculo', $this->getDefaultIdVehiculo());
         $stmt->dpBind(':default_id_area', $this->getDefaultIdArea());
         $stmt->dpBind(':nombre', $this->getNombre());
