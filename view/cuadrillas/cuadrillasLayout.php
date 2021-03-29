@@ -113,7 +113,7 @@
                     search_contrato: {required: true}
                 },
                 messages:{
-                    add_contrato: "Seleccione el contrato"
+                    search_contrato: "Seleccione el contrato"
                 }
 
             });
