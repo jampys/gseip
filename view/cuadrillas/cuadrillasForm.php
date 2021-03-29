@@ -68,7 +68,11 @@
         $('#cuadrilla-form').validate({ //ok
             rules: {
                 nombre: {required: true},
-                id_contrato: {required: true}
+                nombre_corto:{
+                    required: true,
+                    maxlength: 5
+                }
+                //id_contrato: {required: true}
                 //default_id_vehiculo: {required: true},
                 //default_id_area: {required: true}
                 /*fecha_emision: {
@@ -112,7 +116,11 @@
             },
             messages:{
                 nombre: "Ingrese el nombre",
-                id_contrato: "Seleccione el contrato"
+                nombre_corto:{
+                    required: "Ingrese el nombre corto",
+                    maxlength: "Máximo 5 caracteres"
+                }
+                //id_contrato: "Seleccione el contrato"
                 //default_id_vehiculo: "Seleccione el vehículo",
                 //default_id_area: "Seleccione el área"
                 /*fecha_emision: {
