@@ -85,12 +85,18 @@
 
 
             $(document).on('click', '#new', function(){ //ok
-                params={};
-                params.action = "cuadrillas";
-                params.operation="newCuadrilla";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                })
+                if ($("#search_form").valid()){
+                    params={};
+                    params.action = "cuadrillas";
+                    params.operation="newCuadrilla";
+                    $('#popupbox').load('index.php', params,function(){
+                        $('#myModal').modal();
+                    });
+
+                }
+                return false;
+
+
             });
 
 
@@ -99,6 +105,17 @@
                 alert('Funcionalidad en desarrollo');
                 throw new Error();
                 return false;
+            });
+
+
+            $('#search_form').validate({
+                rules: {
+                    search_contrato: {required: true}
+                },
+                messages:{
+                    add_contrato: "Seleccione el contrato"
+                }
+
             });
 
 
