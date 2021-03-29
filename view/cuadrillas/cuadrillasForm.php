@@ -36,14 +36,14 @@
 
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Cuadrilla guardada con exito').addClass('alert alert-success').show();
+                        $("#myModal #myElem").html('Cuadrilla guardada con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
-                        setTimeout(function() { $("#myElem").hide();
+                        setTimeout(function() { $("#myModal #myElem").hide();
                                                 $('#myModal').modal('hide');
                                                 $("#search").trigger("click");
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la cuadrilla').addClass('alert alert-danger').show();
+                        $("#myModal #myElem").html('Error al guardar la cuadrilla').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
