@@ -3,6 +3,9 @@
 
     $(document).ready(function(){
 
+        //para abrir la seccion de empleados 
+        $('#demo-empleados').collapse(); //https://bootstrapdocs.com/v3.3.4/docs/javascript/#collapse
+
         $('#hs_normal').timepicker({
             showMeridian: false,
             //defaultTime: false
@@ -524,18 +527,18 @@
                                 <input type="hidden" name="id_parte" id="id_parte" value="<?php print $view->parte->getIdParte() ?>">
                                 <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->parte->getIdContrato() ?>">
 
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label for="id_area" class="control-label">Área</label>
                                     <select class="selectpicker form-control show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5" title="Seleccione un área">
-                                        <?php foreach ($view->areas as $ar){ ?>
-                                            <option value="<?php echo $ar['id_area']; ?>"
-                                                <?php echo ($ar['id_area'] == $view->parte->getIdArea() )? 'selected' :'' ?>
+                                        <?php //foreach ($view->areas as $ar){ ?>
+                                            <option value="<?php //echo $ar['id_area']; ?>"
+                                                <?php //echo ($ar['id_area'] == $view->parte->getIdArea() )? 'selected' :'' ?>
                                                 >
-                                                <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
+                                                <?php //echo $ar['codigo'].' '.$ar['nombre']; ?>
                                             </option>
-                                        <?php  } ?>
+                                        <?php // } ?>
                                     </select>
-                                </div>
+                                </div>-->
 
                                 <!--<div class="form-group">
                                     <label for="id_vehiculo" class="control-label">Vehículo</label>
@@ -551,21 +554,21 @@
                                     </select>
                                 </div>-->
 
-                                <div class="form-group">
+
+                                <!--<div class="form-group">
                                     <label for="id_evento" class="control-label">Evento</label>
                                     <select class="selectpicker form-control show-tick" id="id_evento" name="id_evento" data-live-search="true" data-size="5">
                                         <option value="">Seleccione un evento</option>
-                                        <?php foreach ($view->eventos as $ar){ ?>
-                                            <option value="<?php echo $ar['id_evento']; ?>"
-                                                <?php echo ($ar['enabled'])? '':'disabled'; ?>
-                                                <?php echo ($ar['id_evento'] == $view->parte->getIdEvento())? 'selected' :'' ?>
+                                        <?php //foreach ($view->eventos as $ar){ ?>
+                                            <option value="<?php //echo $ar['id_evento']; ?>"
+                                                <?php //echo ($ar['enabled'])? '':'disabled'; ?>
+                                                <?php //echo ($ar['id_evento'] == $view->parte->getIdEvento())? 'selected' :'' ?>
                                                 >
-                                                <?php echo $ar['codigo'].' '.$ar['nombre']; ?>
+                                                <?php //echo $ar['codigo'].' '.$ar['nombre']; ?>
                                             </option>
-                                        <?php  } ?>
+                                        <?php // } ?>
                                     </select>
-                                </div>
-
+                                </div>-->
 
 
                                 <!--<div class="row">
