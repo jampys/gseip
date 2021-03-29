@@ -15,19 +15,19 @@
             $('.selectpicker').selectpicker();
 
 
-            $(document).on('click', '#search', function(){
-                //alert('presiono en buscar');
-                //var id = $(this).attr('data-id');
-                //preparo los parametros
-                params={};
-                //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-                //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                params.search_contrato = $("#search_contrato").val();
-                //params.renovado = $('#search_renovado').prop('checked')? 1:0;
-                params.action = "cuadrillas";
-                params.operation = "refreshGrid";
-                //alert(params.id_grupo);
-                $('#content').load('index.php', params);
+
+            $(document).on('click', '#search', function(){ //ok
+                if ($("#search_form").valid()){
+                    params={};
+                    params.search_contrato = $("#search_contrato").val();
+                    params.action = "cuadrillas";
+                    params.operation = "refreshGrid";
+                    $('#content').load('index.php', params);
+
+                }
+                return false;
+
+
             });
 
 
@@ -113,7 +113,7 @@
                     search_contrato: {required: true}
                 },
                 messages:{
-                    search_contrato: "Seleccione el contrato"
+                    search_contrato: "Seleccione un contrato"
                 }
 
             });
@@ -151,40 +151,57 @@
             <h4>Cuadrillas</h4>
             <hr class="hr-primary"/>
 
-            <div class="row clearfix">
                 <form id="search_form" name="search_form">
 
-                    <div class="form-group col-md-4">
-                        <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                        <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                            <option value="">Seleccione el contrato</option>
-                            <?php foreach ($view->contratos as $con){
-                                ?>
-                                <option value="<?php echo $con['id_contrato']; ?>" >
-                                    <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                    <div class="row">
+
+                        <div class="form-group col-md-4">
+                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
+                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
+                                <option value="">Seleccione el contrato</option>
+                                <?php foreach ($view->contratos as $con){
+                                    ?>
+                                    <option value="<?php echo $con['id_contrato']; ?>" >
+                                        <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group col-md-2">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
+                                <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+                            </button>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" class="form-control btn btn-default dp_green" title="nueva cuadrilla" id="new" <?php echo ( PrivilegedUser::dhasAction('CUA_INSERT', array(1)) )? '' : 'disabled' ?>>
+                                <span class="glyphicon glyphicon-plus fa-lg"></span>
+                            </button>
+                        </div>
+
+                        <div class="form-group col-md-4">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-md-6">
+
+                            <div id="myElem" class="msg" style="display:none">
+                                <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
+                            </div>
+
+                        </div>
+
                     </div>
 
 
-                    <div class="form-group col-md-2">
-                        <!--<label for="search">&nbsp;</label>-->
-                        <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
-                            <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
-                        </button>
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <!--<label for="search">&nbsp;</label>-->
-                        <button type="button" class="form-control btn btn-default dp_green" title="nueva cuadrilla" id="new" <?php echo ( PrivilegedUser::dhasAction('CUA_INSERT', array(1)) )? '' : 'disabled' ?>>
-                            <span class="glyphicon glyphicon-plus fa-lg"></span>
-                        </button>
-                    </div>
-
-                    <div class="form-group col-md-4">
-
-                    </div>
 
 
 
@@ -192,7 +209,7 @@
 
 
                 </form>
-            </div>
+
 
 
         </div>
