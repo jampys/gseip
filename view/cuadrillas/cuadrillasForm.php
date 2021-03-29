@@ -27,6 +27,7 @@
                 params.default_id_vehiculo = $('#default_id_vehiculo').val();
                 params.default_id_area = $('#default_id_area').val();
                 params.nombre = $('#nombre').val();
+                params.nombre_corto = $('#nombre_corto').val();
                 params.actividad = $('#actividad').val();
                 //alert(params.id_grupo);
 
@@ -153,6 +154,11 @@
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->cuadrilla->getNombre() ?>" placeholder="Nombre">
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="control-label" for="nombre">Nombre corto</label>
+                        <input class="form-control" type="text" name="nombre_corto" id="nombre_corto" value = "<?php print $view->cuadrilla->getNombreCorto() ?>" placeholder="Nombre corto">
                     </div>
 
                     <div class="form-group">

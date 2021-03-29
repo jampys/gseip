@@ -33,8 +33,8 @@ switch ($operation)
         $cuadrilla->setDefaultIdVehiculo( ($_POST['default_id_vehiculo']!='')? $_POST['default_id_vehiculo'] : null );
         $cuadrilla->setDefaultIdArea( ($_POST['default_id_area']!='')? $_POST['default_id_area'] : null );
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        //$postulacion->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
         $cuadrilla->setNombre($_POST['nombre']);
+        $cuadrilla->setNombreCorto($_POST['nombre_corto']);
         $cuadrilla->setActividad($_POST['actividad']);
 
         $rta = $cuadrilla->save();
