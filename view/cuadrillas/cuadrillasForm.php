@@ -66,6 +66,7 @@
 
 
         $('#cuadrilla-form').validate({ //ok
+            errorContainer: $('#cuadrilla-form #myElem'), //https://forum.jquery.com/topic/jquery-validate-it-may-be-a-bug-in-errorcontainer-and-errorplacement
             rules: {
                 nombre: {required: true},
                 nombre_corto:{
