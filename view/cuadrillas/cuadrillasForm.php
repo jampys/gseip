@@ -160,19 +160,19 @@
                         <textarea class="form-control" name="actividad" id="actividad" placeholder="Actividad" rows="2"><?php print $view->cuadrilla->getActividad(); ?></textarea>
                     </div>
 
-                    <div class="form-group required">
+                    <!--<div class="form-group required">
                         <label for="id_contrato" class="control-label">Contrato</label>
                         <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" title="Seleccione el contrato" data-live-search="true" data-size="5">
-                            <?php foreach ($view->contratos as $con){
+                            <?php //foreach ($view->contratos as $con){
                                 ?>
-                                <option value="<?php echo $con['id_contrato']; ?>"
-                                    <?php echo ($con['id_contrato'] == $view->cuadrilla->getIdContrato())? 'selected' :'' ?>
+                                <option value="<?php //echo $con['id_contrato']; ?>"
+                                    <?php //echo ($con['id_contrato'] == $view->cuadrilla->getIdContrato())? 'selected' :'' ?>
                                     >
-                                    <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                    <?php //echo $con['nombre'].' '.$con['nro_contrato'];?>
                                 </option>
-                            <?php  } ?>
+                            <?php  //} ?>
                         </select>
-                    </div>
+                    </div>-->
 
                     <div class="form-group">
                         <label for="default_id_vehiculo" class="control-label">Vehículo (por defecto)</label>

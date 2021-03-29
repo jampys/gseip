@@ -48,9 +48,9 @@ switch ($operation)
         $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
 
         $view->id_contrato = $_POST['id_contrato'];
-        $view->contratos = Contrato::getContratosControl();
+        //$view->contratos = Contrato::getContratosControl();
         $view->vehiculos = Vehiculo::getVehiculos();
-        $view->areas = NovArea::getAreas();
+        $view->areas = NovArea::getAreas($_POST['id_contrato']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/cuadrillas/cuadrillasForm.php";
