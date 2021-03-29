@@ -89,6 +89,7 @@
                     params={};
                     params.action = "cuadrillas";
                     params.operation="newCuadrilla";
+                    params.id_contrato = $("#search_contrato").val();
                     $('#popupbox').load('index.php', params,function(){
                         $('#myModal').modal();
                     });

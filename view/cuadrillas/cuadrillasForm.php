@@ -148,6 +148,7 @@
 
                 <form name ="cuadrilla-form" id="cuadrilla-form" method="POST" action="index.php">
                     <input type="hidden" name="id_cuadrilla" id="id_cuadrilla" value="<?php print $view->cuadrilla->getIdCuadrilla() ?>">
+                    <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->id_contrato ?>">
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
