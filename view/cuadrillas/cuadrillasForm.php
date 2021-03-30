@@ -162,7 +162,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->cuadrilla->getNombre() ?>" placeholder="Nombre">
+                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->cuadrilla->getNombre() ?>" <?php echo ($view->cuadrilla->getHasPartes())? 'disabled':'' ?> placeholder="Nombre">
                     </div>
 
                     <div class="form-group required">

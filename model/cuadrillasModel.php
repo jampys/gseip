@@ -10,6 +10,7 @@ class Cuadrilla
     private $nombre;
     private $nombre_corto;
     private $actividad;
+    private $hasPartes;
 
     private $conductores = array();
     private $acompanantes = array();
@@ -35,6 +36,9 @@ class Cuadrilla
 
     function getActividad()
     { return $this->actividad;}
+
+    function getHasPartes()
+    { return $this->hasPartes;}
 
     function getConductores()
     {
@@ -77,6 +81,9 @@ class Cuadrilla
     function setActividad($val)
     { $this->actividad=$val;}
 
+    function setHasPartes($val)
+    { $this->hasPartes=$val;}
+
     function setConductores($val)
     { $this->conductores=$val;}
 
@@ -89,9 +96,10 @@ class Cuadrilla
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_cuadrilla, id_contrato, default_id_vehiculo,
-                      default_id_area, nombre, nombre_corto, actividad
-                      from nov_cuadrillas
+            $query = "select cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo,
+                      cu.default_id_area, cu.nombre, cu.nombre_corto, cu.actividad,
+                      (select exists(select 1 from nov_partes npx where npx.id_cuadrilla = cu.id_cuadrilla)) as hasPartes
+                      from nov_cuadrillas cu
                       where id_cuadrilla = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -105,6 +113,7 @@ class Cuadrilla
             $this->setNombre($rows[0]['nombre']);
             $this->setNombreCorto($rows[0]['nombre_corto']);
             $this->setActividad($rows[0]['actividad']);
+            $this->setHasPartes($rows[0]['hasPartes']);
 
             $this->conductores = CuadrillaEmpleado::getCuadrillaEmpleado($this->getIdCuadrilla(), 1);
             $this->acompanantes = CuadrillaEmpleado::getCuadrillaEmpleado($this->getIdCuadrilla(), 0);
