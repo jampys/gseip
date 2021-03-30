@@ -23,7 +23,7 @@ switch ($operation)
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $todas = null; //($_POST['renovado']== 0)? null : 1;
-        $view->cuadrillas = Cuadrilla::getCuadrillas($id_contrato, $todas);
+        $view->cuadrillas = Cuadrilla::getCuadrillas($id_contrato);
         $view->contentTemplate="view/cuadrillas/cuadrillasGrid.php";
         break;
 

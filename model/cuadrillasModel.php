@@ -129,8 +129,9 @@ class Cuadrilla
     }
 
 
-    public static function getCuadrillas($id_contrato, $todas) {
+    public static function getCuadrillas($id_contrato, $activas = null) {
         //trae las cuadrillas para la grilla de cuadrillas
+        //Si no tiene 2do parametro => trae todas. Si 2do parametro != null => trae solo las activas.
         $stmt=new sQuery();
         $query = "select
                   (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
@@ -146,9 +147,11 @@ class Cuadrilla
                   left join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
                   left join nov_areas ar on cu.default_id_area = ar.id_area
                   where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
+                  and if(:activas is null, 1, cu.disabled is null)
                   order by cu.nombre";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':activas', $activas);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
