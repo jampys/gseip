@@ -169,8 +169,8 @@
                     </div>
 
                     <div class="form-group required">
-                        <label class="control-label" for="nombre">Nombre corto</label>
-                        <input class="form-control" type="text" name="nombre_corto" id="nombre_corto" value = "<?php print $view->cuadrilla->getNombreCorto() ?>" placeholder="Nombre corto">
+                        <label class="control-label" for="nombre">Abreviatura</label>
+                        <input class="form-control" type="text" name="nombre_corto" id="nombre_corto" value = "<?php print $view->cuadrilla->getNombreCorto() ?>" placeholder="Abreviatura">
                     </div>
 
                     <div class="form-group">

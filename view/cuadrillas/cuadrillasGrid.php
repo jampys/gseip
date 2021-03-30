@@ -68,6 +68,7 @@
             <tr>
                 <!--<th>Nro. cuad.</th>-->
                 <th>Nombre</th>
+                <th>Abreviatura</th>
                 <th>Contrato</th>
                 <th>Móvil</th>
                 <th>Área</th>
@@ -83,6 +84,7 @@
                     <tr data-id="<?php echo $rp['id_cuadrilla']; ?>">
                         <!--<td><?php //echo $rp['id_cuadrilla']; ?></td>-->
                         <td><?php echo $rp['nombre']; ?></td>
+                        <td><?php echo $rp['nombre_corto']; ?></td>
                         <td><?php echo $rp['contrato']; ?></td>
                         <td><?php echo $rp['vehiculo']; ?></td>
                         <td><?php echo $rp['area']; ?></td>

@@ -138,7 +138,7 @@ class Cuadrilla
                    where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1) as empleado_1,
                   (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
                   where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1, 1) as empleado_2,
-                  cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.actividad, cu.disabled,
+                  cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.nombre_corto, cu.actividad, cu.disabled,
                   co.nombre as contrato,
                   ve.nro_movil as vehiculo,
                   concat(ar.codigo, ' ', ar.nombre) as area
