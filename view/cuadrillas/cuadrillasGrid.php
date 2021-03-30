@@ -71,6 +71,7 @@
                 <th>Contrato</th>
                 <th>Móvil</th>
                 <th>Área</th>
+                <th>Activa</th>
                 <th></th>
 
             </tr>
@@ -85,6 +86,7 @@
                         <td><?php echo $rp['contrato']; ?></td>
                         <td><?php echo $rp['vehiculo']; ?></td>
                         <td><?php echo $rp['area']; ?></td>
+                        <td class="text-center"><?php echo ($rp['disabled'] != 1)? '<i class="fas fa-check-circle fa-fw dp_green" title="activa"></i>' : '<i class="fas fa-minus-circle fa-fw dp_red" title="desactivada"></i>'; ?></td>
 
                         <!-- si tiene permiso para agregar empleados -->
                         <td class="text-center">

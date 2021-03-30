@@ -36,6 +36,7 @@ switch ($operation)
         $cuadrilla->setNombre($_POST['nombre']);
         $cuadrilla->setNombreCorto($_POST['nombre_corto']);
         $cuadrilla->setActividad($_POST['actividad']);
+        $cuadrilla->setDisabled(($_POST['disabled'] == 1)? 1 : null);
 
         $rta = $cuadrilla->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));

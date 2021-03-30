@@ -11,6 +11,7 @@ class Cuadrilla
     private $nombre_corto;
     private $actividad;
     private $hasPartes;
+    private $disabled;
 
     private $conductores = array();
     private $acompanantes = array();
@@ -39,6 +40,9 @@ class Cuadrilla
 
     function getHasPartes()
     { return $this->hasPartes;}
+
+    function getDisabled()
+    { return $this->disabled;}
 
     function getConductores()
     {
@@ -84,6 +88,9 @@ class Cuadrilla
     function setHasPartes($val)
     { $this->hasPartes=$val;}
 
+    function setDisabled($val)
+    { $this->disabled=$val;}
+
     function setConductores($val)
     { $this->conductores=$val;}
 
@@ -97,7 +104,7 @@ class Cuadrilla
         if ($nro!=0){
             $stmt=new sQuery();
             $query = "select cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo,
-                      cu.default_id_area, cu.nombre, cu.nombre_corto, cu.actividad,
+                      cu.default_id_area, cu.nombre, cu.nombre_corto, cu.actividad, disabled,
                       (select exists(select 1 from nov_partes npx where npx.id_cuadrilla = cu.id_cuadrilla)) as hasPartes
                       from nov_cuadrillas cu
                       where id_cuadrilla = :nro";
@@ -114,6 +121,7 @@ class Cuadrilla
             $this->setNombreCorto($rows[0]['nombre_corto']);
             $this->setActividad($rows[0]['actividad']);
             $this->setHasPartes($rows[0]['hasPartes']);
+            $this->setDisabled($rows[0]['disabled']);
 
             $this->conductores = CuadrillaEmpleado::getCuadrillaEmpleado($this->getIdCuadrilla(), 1);
             $this->acompanantes = CuadrillaEmpleado::getCuadrillaEmpleado($this->getIdCuadrilla(), 0);
@@ -129,7 +137,7 @@ class Cuadrilla
                    where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1) as empleado_1,
                   (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
                   where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1, 1) as empleado_2,
-                  cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.actividad,
+                  cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.actividad, cu.disabled,
                   co.nombre as contrato,
                   ve.nro_movil as vehiculo,
                   concat(ar.codigo, ' ', ar.nombre) as area
@@ -241,7 +249,8 @@ class Cuadrilla
                       default_id_area = :default_id_area,
                       nombre = :nombre,
                       nombre_corto = :nombre_corto,
-                      actividad = :actividad
+                      actividad = :actividad,
+                      disabled = :disabled
                 where id_cuadrilla =:id_cuadrilla";
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_contrato', $this->getIdContrato());
@@ -250,6 +259,7 @@ class Cuadrilla
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':nombre_corto', $this->getNombreCorto());
         $stmt->dpBind(':actividad', $this->getActividad());
+        $stmt->dpBind(':disabled', $this->getDisabled());
         $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -258,8 +268,8 @@ class Cuadrilla
 
     private function insertCuadrilla(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_cuadrillas(id_contrato, default_id_vehiculo, default_id_area, nombre, nombre_corto, actividad)
-                values(:id_contrato, :default_id_vehiculo, :default_id_area, :nombre, :nombre_corto, :actividad)";
+        $query="insert into nov_cuadrillas(id_contrato, default_id_vehiculo, default_id_area, nombre, nombre_corto, actividad, disabled)
+                values(:id_contrato, :default_id_vehiculo, :default_id_area, :nombre, :nombre_corto, :actividad, :disabled)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':default_id_vehiculo', $this->getDefaultIdVehiculo());
@@ -267,6 +277,7 @@ class Cuadrilla
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':nombre_corto', $this->getNombreCorto());
         $stmt->dpBind(':actividad', $this->getActividad());
+        $stmt->dpBind(':disabled', $this->getDisabled());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

@@ -29,6 +29,7 @@
                 params.nombre = $('#nombre').val();
                 params.nombre_corto = $('#nombre_corto').val();
                 params.actividad = $('#actividad').val();
+                params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -220,6 +221,15 @@
                             <?php  } ?>
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="disabled" name="disabled" <?php echo ($view->cuadrilla->getDisabled() == 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para ocultar la cuadrilla al cargar novedades">Desactivar</a>
+                            </label>
+                        </div>
+                    </div>
+
 
                     <div id="myElem" class="msg" style="display:none">
                         <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
