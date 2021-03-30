@@ -102,11 +102,57 @@
 
 
 
+            var dialog;
             $(document).on('click', '#example .delete', function(){
-                alert('Funcionalidad en desarrollo');
-                throw new Error();
-                return false;
+
+                var id = $(this).closest('tr').attr('data-id');
+                dialog = bootbox.dialog({
+                    message: "<p>¿Desea eliminar la cuadrilla?</p>",
+                    size: 'small',
+                    buttons: {
+                        cancel: {
+                            label: "No"
+                        },
+                        ok: {
+                            label: "Si",
+                            className: 'btn-danger',
+                            callback: function(){
+                                $.fn.borrar(id);
+                                return false; //evita que se cierre automaticamente
+                            }
+                        }
+                    }
+                });
+
+
             });
+
+
+
+            $.fn.borrar = function(id) {
+                //alert(id);
+                params={};
+                params.id_cuadrilla = id;
+                params.action = "cuadrillas";
+                params.operation = "deleteCuadrilla";
+
+                $.post('index.php',params,function(data, status, xhr){
+                    if(data >=0){
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Cuadrilla eliminada con exito</div>');
+                        setTimeout(function() {
+                            dialog.modal('hide');
+                            $("#search").trigger("click");
+                        }, 2000);
+                    }
+
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la cuadrilla</div>');
+
+                });
+
+            };
+
 
 
             $('#search_form').validate({

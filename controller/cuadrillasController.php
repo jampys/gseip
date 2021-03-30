@@ -71,9 +71,9 @@ switch ($operation)
         break;
 
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
+    case 'deleteCuadrilla': //ok
+        $cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
+        $rta = $cuadrilla->deleteCuadrilla();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
