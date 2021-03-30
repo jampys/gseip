@@ -60,7 +60,7 @@ switch ($operation)
         $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
         $view->label='Cuadrilla: '.$view->cuadrilla->getNombre();
 
-        $view->contratos = Contrato::getContratosControl();
+        //$view->contratos = Contrato::getContratosControl();
         $view->vehiculos = Vehiculo::getVehiculos();
         //$view->areas = NovArea::getAreas(25);
         $view->areas = NovArea::getAreas($view->cuadrilla->getIdContrato());
