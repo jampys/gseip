@@ -62,7 +62,7 @@
 
     <div class="form-group">
         <label class="control-label" for="usuario">Correo</label>
-        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Correo" >
+        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Correo electrónico" >
     </div>
     <div class="form-group">
         <label class="control-label" for="contraseña">Contraseña</label>
