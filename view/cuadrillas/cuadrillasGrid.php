@@ -68,7 +68,7 @@
             <tr>
                 <!--<th>Nro. cuad.</th>-->
                 <th>Nombre</th>
-                <th>Abreviatura</th>
+                <th>Identificador</th>
                 <th>Contrato</th>
                 <th>Móvil</th>
                 <th>Área</th>

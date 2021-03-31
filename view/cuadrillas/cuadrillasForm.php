@@ -119,7 +119,7 @@
             messages:{
                 nombre: "Ingrese el nombre",
                 nombre_corto:{
-                    required: "Ingrese la abreviatura",
+                    required: "Ingrese el identificador",
                     maxlength: "Máximo 5 caracteres"
                 }
                 //id_contrato: "Seleccione el contrato"
@@ -169,13 +169,13 @@
                     </div>
 
                     <div class="form-group required">
-                        <label class="control-label" for="nombre">Abreviatura</label>
+                        <label class="control-label" for="nombre">Identificador</label>
                         <input class="form-control" type="text" name="nombre_corto" id="nombre_corto" value = "<?php print $view->cuadrilla->getNombreCorto() ?>" placeholder="Abreviatura ó identificador corto">
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="actividad">Actividad</label>
-                        <textarea class="form-control" name="actividad" id="actividad" placeholder="Actividad" rows="2"><?php print $view->cuadrilla->getActividad(); ?></textarea>
+                        <textarea class="form-control" name="actividad" id="actividad" placeholder="Describe la actividad principal de la cuadrilla" rows="2"><?php print $view->cuadrilla->getActividad(); ?></textarea>
                     </div>
 
                     <!--<div class="form-group required">
