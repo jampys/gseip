@@ -216,7 +216,6 @@
             params.operation="loadEmpleado";
             params.id_empleado = id;
             $('#popupbox1').load('index.php', params,function(){
-                $('#myModal').modal();
                 $('#id_empleado').selectpicker('val', jsonEmpleados[id].id_empleado).prop('disabled', true);
                 $('#puesto').selectpicker('val', jsonEmpleados[id].id_puesto);
                 $('#id_proceso').selectpicker('val', jsonEmpleados[id].id_proceso);
@@ -224,7 +223,7 @@
                 $('#myModal #fecha_hasta').val(jsonEmpleados[id].fecha_hasta);
                 $('#myModal #id_localidad').selectpicker('val', jsonEmpleados[id].id_localidad);
                 $('.selectpicker').selectpicker('refresh'); //refresh de puesto y procesos
-
+                $('#myModal').modal();
 
             });
             return false;
@@ -240,14 +239,14 @@
             params.target = "view";
             params.id_empleado = id;
             $('#popupbox1').load('index.php', params,function(){
-                $('#id_empleado').val(jsonEmpleados[id].id_empleado);
-                $("#id_empleado").prop('disabled', true);
-                $('#puesto').val(jsonEmpleados[id].id_puesto);
-                $('#id_proceso').val(jsonEmpleados[id].id_proceso);
-                $('#myModal #fecha_desde').datepicker('setDate', jsonEmpleados[id].fecha_desde );
-                $('#myModal #fecha_hasta').datepicker('setDate', jsonEmpleados[id].fecha_hasta );
-                $('#myModal #id_localidad').val(jsonEmpleados[id].id_localidad);
+                $('#id_empleado').selectpicker('val', jsonEmpleados[id].id_empleado).prop('disabled', true);
+                $('#puesto').selectpicker('val', jsonEmpleados[id].id_puesto);
+                $('#id_proceso').selectpicker('val', jsonEmpleados[id].id_proceso);
+                $('#myModal #fecha_desde').val(jsonEmpleados[id].fecha_desde);
+                $('#myModal #fecha_hasta').val(jsonEmpleados[id].fecha_hasta);
+                $('#myModal #id_localidad').selectpicker('val', jsonEmpleados[id].id_localidad);
                 $('.selectpicker').selectpicker('refresh'); //refresh de puesto y procesos
+                $('#myModal').modal();
                 //deshabilito campos
                 //$("#empleado-form input, #empleado-form .selectpicker, #empleado-form textarea").prop("disabled", true);
                 //$('.selectpicker').selectpicker('refresh');
