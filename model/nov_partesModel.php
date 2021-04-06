@@ -499,7 +499,8 @@ order by id_convenio asc, legajo asc, codigo asc";
                       order by isnull(np.id_parte) desc, cu.nombre_corto asc, npe.conductor desc, em.apellido, em.nombre";*/
         $query="select em.id_empleado, em.legajo, em.apellido, em.nombre, np.id_parte, npe.id_parte_empleado, np.last_calc_status, cu.nombre_corto,
                       (select count(*) from nov_parte_orden npox where npox.id_parte = np.id_parte) as orden_count,
-                      (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = np.id_parte and npex.id_empleado = em.id_empleado) as concept_count
+                      (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = np.id_parte and npex.id_empleado = em.id_empleado) as concept_count,
+                      (select count(*) from nov_partes npx join nov_parte_empleado npex on npx.id_parte = npex.id_parte where npex.id_empleado = em.id_empleado and npx.fecha_parte = :fecha and npx.id_contrato != :id_contrato) as parte_count
                       from v_sec_empleados em
                       join empleado_contrato ec on (ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta >= STR_TO_DATE(:fecha, '%d/%m/%Y')) and ec.fecha_desde <= STR_TO_DATE(:fecha, '%d/%m/%Y'))
 					  left join nov_parte_empleado npe join nov_partes np on np.id_parte = npe.id_parte on
