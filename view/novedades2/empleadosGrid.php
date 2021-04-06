@@ -46,9 +46,9 @@
                 <span class="label label-primary"><?php echo $em['nombre_corto']; ?></span>
                 <a href="#"
                    title="<?php echo $em['apellido'].' '.$em['nombre']; ?>"
-                    ><?php echo substr($em['apellido'].' '.$em['nombre'], 0, 22); ?>
+                    ><?php echo substr($em['apellido'].' '.$em['nombre'], 0, 25); ?>
                 </a>&nbsp;
-                <?php echo($em['parte_count']>0)? '<i class="fas fa-exclamation-triangle" title="existe otro parte para el empleado en esta fecha"></i>':''; ?>
+                <?php echo(!$em['id_parte'] && $em['parte_count']>0)? '<i class="fas fa-exclamation-triangle dp_yellow" title="existe otro parte para el empleado en esta fecha"></i>':''; ?>
             </td>
             <td style="text-align: center">
                 <?php echo($em['id_parte'])? '<i class="fa fa-car-side dp_blue_nov" title="con parte"></i>':'<i class="fa fa-car dp_light_gray" title="sin parte"></i>'; ?>&nbsp;
