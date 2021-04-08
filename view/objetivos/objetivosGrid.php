@@ -171,6 +171,18 @@
                         let hijos = (row.hijos > 0)? 'details-control':'';
                         return '<span class="'+hijos+'"> '+row.codigo+'</span>&nbsp;'+row.nombre;
                     }
+                },
+                {
+                    "targets": 5,
+                    "render": function (data, type, row, meta) {
+                        //let hijos = (row.hijos > 0)? 'details-control':'';
+                        //return '<span class="'+hijos+'"> '+row.codigo+'</span>&nbsp;'+row.nombre;
+                        return '<div class="progress" style="margin-bottom: 0px">'+
+                        //'<div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($rp['progreso']);?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">'+
+                        row.progreso+'%'+
+                        '</div>'+
+                        '</div>';
+                    }
                 }
             ]
 
