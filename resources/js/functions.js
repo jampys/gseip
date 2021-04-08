@@ -126,6 +126,7 @@ function confirmMessage(d){
 }
 
 
+
 function getProgressBarColor(percent){
     var rta = '';
     if(percent <= 30 ) rta = "progress-bar-danger";
@@ -134,6 +135,8 @@ function getProgressBarColor(percent){
 
     return rta;
 }
+
+
 
 
 
