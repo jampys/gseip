@@ -76,11 +76,8 @@
         });
 
 
-        var table = $('#example').DataTable({
+        /*var table = $('#example').DataTable({
             responsive: true,
-            /*language: {
-             url: 'dataTables/Spanish.json'
-             }*/
             "fnInitComplete": function () {
              $(this).show();
             },
@@ -90,10 +87,71 @@
                 { targets: 1, responsivePriority: 2}, //nombre objetivo
                 { targets: 5, width: "90px", responsivePriority: 4}, //progress bar
                 { targets: 6, responsivePriority: 3 } //action buttons
-                //{targets: 2, render: $.fn.dataTable.render.ellipsis(60)},
-                //{targets: 2, render: $.fn.dataTable.render.ellipsis(25)}, //https://datatables.net/blog/2016-02-26
-
             ]
+
+        });*/
+
+
+        var table = $('#example').DataTable({
+            responsive: true,
+            deferRender: true,
+            //processing: true,
+            language: {
+                //url: 'libraries/dataTables/extensions/Spanish.json'
+                url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+            },
+            'ajax': {
+                "type"   : "POST",
+                //"url"    : 'index.php?action=ajax_certificados&operation=refreshGrid',
+                "url"    : 'index.php',
+                //data: {action: "ajax_certificados", operation:"refreshGrid"},
+                "data": function ( d ) { //https://datatables.net/reference/option/ajax.data
+                    d.search_periodo = $("#search_periodo").val();
+                    d.search_puesto = $("#search_puesto").val();
+                    d.search_area = $("#search_area").val();
+                    d.search_contrato = $("#search_contrato").val();
+                    d.search_indicador = $("#search_indicador").val();
+                    d.search_responsable_ejecucion = $("#search_responsable_ejecucion").val();
+                    d.search_responsable_seguimiento = $("#search_responsable_seguimiento").val();
+                    d.todos = $('#search_todos').prop('checked')? 1:0;
+                    d.action = "obj_objetivos";
+                    d.operation = "refreshGrid";
+                },
+                "dataSrc": ""
+            },
+            //rowId: 'id_calibracion',
+            'columns': [
+                /*{   // Responsive control column
+                 data: null,
+                 defaultContent: '',
+                 className: 'control',
+                 orderable: false
+                 },*/
+                {"data" : "id_objetivo"},
+                {"data" : "id_objetivo"},
+                {"data" : "id_objetivo"},
+                {"data" : "id_objetivo"},
+                {"data" : "id_objetivo"},
+                {"data" : "id_objetivo"},
+                {"data" : "id_objetivo"}
+            ],
+            //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
+            /*"columnDefs": [ {
+                "targets": 0,
+                "render": function ( data, type, row, meta ) {`
+                    let link = (row.tipo_ensayo == 'N')? 'index.php?action=pdf&operation=certificado&Nro_Serie='+row.nro_serie+'&id_calib='+row.id_calibracion : 'index.php?action=pdf&operation=ppt&Nro_Serie='+row.nro_serie+'&id_calib='+row.id_calibracion
+                    return '<a target="_blank" title="descargar certificado" href="'+link+'">'+data+'</a>';
+                }
+            },
+                {
+                    "targets": 3,
+                    "render": function ( data, type, row, meta ) {
+                        return (<?php echo $_SESSION["rol"]; ?> != 3)? row.fecha_calibracion_h : row.fecha_calibracion;
+                    },
+                    type: 'date-uk'
+                },
+                {targets: [10], visible: false, sortable: true, searchable: false, type: 'num'} //id_calibracion
+            ]*/
 
         });
 
@@ -246,7 +304,7 @@
 
     <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>Código</th>
@@ -254,82 +312,10 @@
                 <th>Puesto</th>
                 <th>Resp. ejecución</th>
                 <th>Contrato</th>
-                <th></th>
-                <th></th>
+                <th>a</th>
+                <th>b</th>
             </tr>
             </thead>
-            <tbody>
-
-            <?php if(isset($view->objetivos)) {
-                foreach ($view->objetivos as $rp):  if($rp['id_objetivo_superior'] && $view->todos==0) continue;  ?>
-                    <tr data-id="<?php echo $rp['id_objetivo'];  ?>"
-                        id_objetivo="<?php echo $rp['id_objetivo'];?>"
-                        cerrado="<?php echo $rp['cerrado']; ?>"
-                        >
-                        <td>
-
-                            <span class="<?php echo ($rp['hijos']> 0 )? 'seleccionable' : ''; ?>">
-                                <?php echo $rp['codigo'];?>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="<?php echo ($rp['hijos']> 0 )? 'details-control' : ''; ?>"></span>&nbsp;
-                            <?php echo $rp['nombre']; ?></td>
-                        <td><?php echo $rp['puesto']; ?></td>
-                        <td><?php echo $rp['responsable_ejecucion']; ?></td>
-                        <td><?php echo $rp['contrato']; ?></td>
-                        <td>
-                            <div class="progress" style="margin-bottom: 0px">
-                                <div class="progress-bar progress-bar-striped active <?php echo Soporte::getProgressBarColor($rp['progreso']);?>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($rp['progreso'] <= 100)? $rp['progreso']:100; ?>%; min-width: 2em">
-                                    <?php echo $rp['progreso']; ?>%
-                                </div>
-                            </div>
-                        </td>
-
-                        <td class="text-center">
-                            <!-- si tiene permiso para ver etapas -->
-                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'detalle' : 'disabled' ?>" href="javascript:void(0);">
-                                <i class="far fa-list-alt fa-fw dp_blue" title="detalle del objetivo"></i>
-                            </a>&nbsp;&nbsp;
-
-
-
-                            <!-- si tiene permiso para clonar objetivo -->
-                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'clone' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-duplicate dp_blue" title="clonar">
-                            </a>&nbsp;&nbsp;
-
-
-
-                            <!-- si tiene permiso para ver objetivo -->
-                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
-
-
-
-                            <!-- si tiene permiso para editar -->
-                            <a class="<?php echo (  !$rp['cerrado'] &&
-                                                    PrivilegedUser::dhasAction('OBJ_UPDATE', array(1))
-                                                 )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
-
-
-
-                            <!-- si tiene permiso para eliminar -->
-                            <a class="<?php echo (  !$rp['cerrado'] &&
-                                                    PrivilegedUser::dhasAction('OBJ_DELETE', array(1))
-                                                 )? 'delete' : 'disabled' ?>" href="javascript:void(0);" title="borrar" >
-                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
-                            </a>
-
-
-
-
-                    </tr>
-                <?php endforeach; } ?>
-            </tbody>
         </table>
 
 

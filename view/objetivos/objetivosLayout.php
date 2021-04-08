@@ -16,12 +16,7 @@
 
 
             $(document).on('click', '#search', function(){ //ok
-                //alert('presiono en buscar');
-                //var id = $(this).attr('data-id');
-                //preparo los parametros
-                params={};
-                //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-                //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
+                /*params={};
                 params.search_periodo = $("#search_periodo").val();
                 params.search_puesto = $("#search_puesto").val();
                 params.search_area = $("#search_area").val();
@@ -30,13 +25,10 @@
                 params.search_responsable_ejecucion = $("#search_responsable_ejecucion").val();
                 params.search_responsable_seguimiento = $("#search_responsable_seguimiento").val();
                 params.todos = $('#search_todos').prop('checked')? 1:0;
-
-
-                //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "obj_objetivos";
                 params.operation = "refreshGrid";
-                //alert(params.id_grupo);
-                $('#content').load('index.php', params);
+                $('#content').load('index.php', params);*/
+                $('#example').DataTable().ajax.reload();
             });
 
 
