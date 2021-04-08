@@ -152,6 +152,11 @@
                 },
                 {targets: [10], visible: false, sortable: true, searchable: false, type: 'num'} //id_calibracion
             ]*/
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', row.id_objetivo);
+                $(row).attr('id_objetivo', row.id_objetivo);
+                $(row).attr('cerrado', row.cerrado);
+            },
             "columnDefs": [
                 {
                     "targets": 0,
