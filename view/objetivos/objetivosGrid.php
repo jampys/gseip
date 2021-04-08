@@ -182,10 +182,10 @@
                         let progreso = (row.progreso <= 100)? row.progreso : 100;
                         let color = getProgressBarColor(row.progreso);
                         return '<div class="progress" style="margin-bottom: 0px">'+
-                        '<div class="progress-bar progress-bar-striped active '+color+'" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: '+progreso+'%; min-width: 2em">'+
-                        row.progreso+'%'+
-                        '</div>'+
-                        '</div>';
+                                    '<div class="progress-bar progress-bar-striped active '+color+'" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: '+progreso+'%; min-width: 2em">'+
+                                        row.progreso+'%'+
+                                    '</div>'+
+                                '</div>';
                     }
                 }
             ]
