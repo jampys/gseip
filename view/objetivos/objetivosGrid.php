@@ -159,15 +159,17 @@
             },
             "columnDefs": [
                 {
-                    "targets": 0,
-                    "render": function (data, type, row, meta) {
+                    targets: 0,//codigo
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
                         let hijos = (row.hijos > 0)? 'seleccionable':'';
                         return '<span class="'+hijos+'">'+row.codigo+'</span>';
                     }
                 },
                 {
-                    "targets": 1,
-                    "render": function (data, type, row, meta) {
+                    targets: 1,//nombre objetivo
+                    responsivePriority: 2,
+                    render: function (data, type, row, meta) {
                         let hijos = (row.hijos > 0)? 'details-control':'';
                         return '<span class="'+hijos+'"> '+row.codigo+'</span>&nbsp;'+row.nombre;
                     }
