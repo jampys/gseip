@@ -138,7 +138,7 @@
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
             /*"columnDefs": [ {
                 "targets": 0,
-                "render": function ( data, type, row, meta ) {`
+                "render": function ( data, type, row, meta ) {
                     let link = (row.tipo_ensayo == 'N')? 'index.php?action=pdf&operation=certificado&Nro_Serie='+row.nro_serie+'&id_calib='+row.id_calibracion : 'index.php?action=pdf&operation=ppt&Nro_Serie='+row.nro_serie+'&id_calib='+row.id_calibracion
                     return '<a target="_blank" title="descargar certificado" href="'+link+'">'+data+'</a>';
                 }
@@ -152,6 +152,15 @@
                 },
                 {targets: [10], visible: false, sortable: true, searchable: false, type: 'num'} //id_calibracion
             ]*/
+            "columnDefs": [
+                {
+                    "targets": 0,
+                    "render": function (data, type, row, meta) {
+                        let hijos = (row.hijos > 0)? 'seleccionable':'';
+                        return '<span class="'+hijos+'">'+row.codigo+'</span>';
+                    }
+                }
+            ]
 
         });
 
