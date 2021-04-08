@@ -177,10 +177,10 @@
                     width: "90px",
                     responsivePriority: 4,
                     render: function (data, type, row, meta) {
-                        let progreso = row.progreso;
-                        let progreso_val = (row.progreso <= 100)? row.progreso : 100;
+                        let progreso = (row.progreso <= 100)? row.progreso : 100;
+                        let color = getProgressBarColor(row.progreso);
                         return '<div class="progress" style="margin-bottom: 0px">'+
-                        '<div class="progress-bar progress-bar-striped active '+getProgressBarColor(progreso)+'" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: '+progreso_val+'%; min-width: 2em">'+
+                        '<div class="progress-bar progress-bar-striped active '+color+'" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: '+progreso+'%; min-width: 2em">'+
                         row.progreso+'%'+
                         '</div>'+
                         '</div>';
