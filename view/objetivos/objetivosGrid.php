@@ -169,7 +169,7 @@
                     "targets": 1,
                     "render": function (data, type, row, meta) {
                         let hijos = (row.hijos > 0)? 'details-control':'';
-                        return '<span class="'+hijos+'">'+row.codigo+'</span>&nbsp;'+row.nombre;
+                        return '<span class="'+hijos+'"> '+row.codigo+'</span>&nbsp;'+row.nombre;
                     }
                 }
             ]
