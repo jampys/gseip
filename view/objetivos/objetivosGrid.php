@@ -187,6 +187,16 @@
                                     '</div>'+
                                 '</div>';
                     }
+                },
+                {
+                    targets: 6,//action buttons
+                    responsivePriority: 3,
+                    render: function (data, type, row, meta) {
+                        let permisoABM = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'detalle' : 'disabled' ?>';
+                        return '<a class="'+permisoABM+'" href="javascript:void(0);">'+ //si tiene permiso para ver etapas
+                                    '<i class="far fa-list-alt fa-fw dp_blue" title="detalle del objetivo"></i>'+
+                                '</a>';
+                    }
                 }
             ]
 
