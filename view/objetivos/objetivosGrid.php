@@ -129,9 +129,9 @@
                  },*/
                 {"data" : "id_objetivo"},
                 {"data" : "id_objetivo"},
-                {"data" : "id_objetivo"},
-                {"data" : "id_objetivo"},
-                {"data" : "id_objetivo"},
+                {"data" : "puesto"},
+                {"data" : "responsable_ejecucion"},
+                {"data" : "contrato"},
                 {"data" : "id_objetivo"},
                 {"data" : "id_objetivo"}
             ],
