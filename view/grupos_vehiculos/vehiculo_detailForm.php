@@ -124,7 +124,7 @@
 
         <div class="form-group">
             <label class="control-label" for="certificado">Certificado</label>
-            <input class="form-control" type="text" name="certificado" id="certificado" value = "<?php print $view->grupo_vehiculo->getCertificado() ?>" placeholder="Certificado">
+            <input class="form-control" type="text" name="certificado" id="certificado" value = "<?php print $view->grupo_vehiculo->getCertificado() ?>" placeholder="Nro. de certificado">
         </div>
 
 

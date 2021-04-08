@@ -251,3 +251,17 @@ https://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-bo
     font-size: 12px;
 }
 
+
+/* cambiar el tamaño de los placeholders */
+/* Placeholder imputs  https://stackoverflow.com/questions/20773665/fail-to-change-placeholder-color-with-bootstrap-3 */
+.form-control::-webkit-input-placeholder { font-size: 11px; }  /* WebKit, Blink, Edge */
+.form-control:-moz-placeholder { font-size: 11px; }  /* Mozilla Firefox 4 to 18 */
+.form-control::-moz-placeholder { font-size: 11px; }  /* Mozilla Firefox 19+ */
+.form-control:-ms-input-placeholder { font-size: 11px; }  /* Internet Explorer 10-11 */
+.form-control::-ms-input-placeholder { font-size: 11px; }  /* Microsoft Edge */
+
+/* placeholder bootstrap-select https://stackoverflow.com/questions/39155153/how-to-change-bootstrap-selects-placeholder-color */
+.bootstrap-select > .dropdown-toggle.bs-placeholder,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:hover,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:active { font-size: 11px; }

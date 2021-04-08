@@ -8,7 +8,10 @@ class Cuadrilla
     private $default_id_vehiculo;
     private $default_id_area;
     private $nombre;
+    private $nombre_corto;
     private $actividad;
+    private $hasPartes;
+    private $disabled;
 
     private $conductores = array();
     private $acompanantes = array();
@@ -29,8 +32,17 @@ class Cuadrilla
     function getNombre()
     { return $this->nombre;}
 
+    function getNombreCorto()
+    { return $this->nombre_corto;}
+
     function getActividad()
     { return $this->actividad;}
+
+    function getHasPartes()
+    { return $this->hasPartes;}
+
+    function getDisabled()
+    { return $this->disabled;}
 
     function getConductores()
     {
@@ -67,8 +79,17 @@ class Cuadrilla
     function setNombre($val)
     { $this->nombre=$val;}
 
+    function setNombreCorto($val)
+    { $this->nombre_corto=$val;}
+
     function setActividad($val)
     { $this->actividad=$val;}
+
+    function setHasPartes($val)
+    { $this->hasPartes=$val;}
+
+    function setDisabled($val)
+    { $this->disabled=$val;}
 
     function setConductores($val)
     { $this->conductores=$val;}
@@ -82,9 +103,10 @@ class Cuadrilla
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_cuadrilla, id_contrato, default_id_vehiculo,
-                      default_id_area, nombre, actividad
-                      from nov_cuadrillas
+            $query = "select cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo,
+                      cu.default_id_area, cu.nombre, cu.nombre_corto, cu.actividad, disabled,
+                      (select exists(select 1 from nov_partes npx where npx.id_cuadrilla = cu.id_cuadrilla)) as hasPartes
+                      from nov_cuadrillas cu
                       where id_cuadrilla = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -96,7 +118,10 @@ class Cuadrilla
             $this->setDefaultIdVehiculo($rows[0]['default_id_vehiculo']);
             $this->setDefaultIdArea($rows[0]['default_id_area']);
             $this->setNombre($rows[0]['nombre']);
+            $this->setNombreCorto($rows[0]['nombre_corto']);
             $this->setActividad($rows[0]['actividad']);
+            $this->setHasPartes($rows[0]['hasPartes']);
+            $this->setDisabled($rows[0]['disabled']);
 
             $this->conductores = CuadrillaEmpleado::getCuadrillaEmpleado($this->getIdCuadrilla(), 1);
             $this->acompanantes = CuadrillaEmpleado::getCuadrillaEmpleado($this->getIdCuadrilla(), 0);
@@ -104,15 +129,16 @@ class Cuadrilla
     }
 
 
-    public static function getCuadrillas($id_contrato, $todas) {
+    public static function getCuadrillas($id_contrato, $activas = null) {
         //trae las cuadrillas para la grilla de cuadrillas
+        //Si no tiene 2do parametro => trae todas. Si 2do parametro != null => trae solo las activas.
         $stmt=new sQuery();
         $query = "select
                   (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
                    where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1) as empleado_1,
-                   (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
-                   where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1, 1) as empleado_2,
-                  cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.actividad,
+                  (select nce.id_empleado from nov_cuadrilla_empleado nce, nov_cuadrillas nc
+                  where nce.id_cuadrilla = nc.id_cuadrilla and nc.id_contrato = :id_contrato and nc.id_cuadrilla = cu.id_cuadrilla limit 1, 1) as empleado_2,
+                  cu.id_cuadrilla, cu.id_contrato, cu.default_id_vehiculo, cu.default_id_area, cu.nombre, cu.nombre_corto, cu.actividad, cu.disabled,
                   co.nombre as contrato,
                   ve.nro_movil as vehiculo,
                   concat(ar.codigo, ' ', ar.nombre) as area
@@ -121,9 +147,11 @@ class Cuadrilla
                   left join vto_vehiculos ve on cu.default_id_vehiculo = ve.id_vehiculo
                   left join nov_areas ar on cu.default_id_area = ar.id_area
                   where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
+                  and if(:activas is null, 1, cu.disabled is null)
                   order by cu.nombre";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':activas', $activas);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
@@ -219,18 +247,22 @@ class Cuadrilla
 
     public function updateCuadrilla(){ //ok
         $stmt=new sQuery();
-        $query="update nov_cuadrillas set id_contrato =:id_contrato,
+        $query="update nov_cuadrillas set
                       default_id_vehiculo = :default_id_vehiculo,
                       default_id_area = :default_id_area,
                       nombre = :nombre,
-                      actividad = :actividad
+                      nombre_corto = :nombre_corto,
+                      actividad = :actividad,
+                      disabled = :disabled
                 where id_cuadrilla =:id_cuadrilla";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        //$stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':default_id_vehiculo', $this->getDefaultIdVehiculo());
         $stmt->dpBind(':default_id_area', $this->getDefaultIdArea());
         $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':nombre_corto', $this->getNombreCorto());
         $stmt->dpBind(':actividad', $this->getActividad());
+        $stmt->dpBind(':disabled', $this->getDisabled());
         $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -239,131 +271,28 @@ class Cuadrilla
 
     private function insertCuadrilla(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_cuadrillas(id_contrato, default_id_vehiculo, default_id_area, nombre, actividad)
-                values(:id_contrato, :default_id_vehiculo, :default_id_area, :nombre, :actividad)";
+        $query="insert into nov_cuadrillas(id_contrato, default_id_vehiculo, default_id_area, nombre, nombre_corto, actividad, disabled)
+                values(:id_contrato, :default_id_vehiculo, :default_id_area, :nombre, :nombre_corto, :actividad, :disabled)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':default_id_vehiculo', $this->getDefaultIdVehiculo());
         $stmt->dpBind(':default_id_area', $this->getDefaultIdArea());
         $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':nombre_corto', $this->getNombreCorto());
         $stmt->dpBind(':actividad', $this->getActividad());
+        $stmt->dpBind(':disabled', $this->getDisabled());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    function deleteHabilidad(){
+    function deleteCuadrilla(){ //ok
         $stmt=new sQuery();
-        $query="delete from habilidades where id_habilidad =:id_habilidad";
+        $query="delete from nov_cuadrillas where id_cuadrilla =:id_cuadrilla";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_habilidad', $this->getIdHabilidad());
+        $stmt->dpBind(':id_cuadrilla', $this->getIdCuadrilla());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-    }
-
-
-
-    public static function uploadsUpload($directory, $name, $id_busqueda){
-        $stmt=new sQuery();
-        $query="insert into uploads_busqueda(directory, name, fecha, id_busqueda)
-                values(:directory, :name, date(sysdate()), :id_busqueda)";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':directory', $directory);
-        $stmt->dpBind(':name', $name);
-        $stmt->dpBind(':id_busqueda', $id_busqueda);
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-    }
-
-
-
-    public static function uploadsLoad($id_busqueda) {
-        $stmt=new sQuery();
-        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_busqueda
-                from uploads_busqueda
-                where id_busqueda = :id_busqueda
-                order by fecha asc";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_busqueda', $id_busqueda);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
-
-    public static function uploadsDelete($name){
-        $stmt=new sQuery();
-        $query="delete from uploads_busqueda where name =:name";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':name', $name);
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-    }
-
-
-    public function checkFechaEmision($fecha_emision, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
-        /*Busca la renovacion vigente para el id_empleado y id_vencimiento y se asegura que la proxima fecha_emision
-        sea mayor. */
-        $stmt=new sQuery();
-        $query = "select *
-                  from vto_renovacion_p
-                  where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_emision ingresada sea mayor que la de ésta
-                  :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_emision >= STR_TO_DATE(:fecha_emision, '%d/%m/%Y')
-                  and id_renovacion <> :id_renovacion
-                  )
-                  order by fecha_emision asc
-                  limit 1";
-
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
-        $stmt->dpBind(':fecha_emision', $fecha_emision);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        $stmt->dpExecute();
-        return $output = ($stmt->dpGetAffect()==0)? true : false;
-    }
-
-    public function checkFechaVencimiento($fecha_emision, $fecha_vencimiento, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
-        $stmt=new sQuery();
-        $query = "select *
-                  from vto_renovacion_p
-                  where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_vencimiento ingresada sea mayor que la de ésta
-                  :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
-                  and id_renovacion <> :id_renovacion
-                  )
-                  order by fecha_emision asc
-                  limit 1";
-
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
-        $stmt->dpBind(':fecha_emision', $fecha_emision);
-        $stmt->dpBind(':fecha_vencimiento', $fecha_vencimiento);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        $stmt->dpExecute();
-        return $output = ($stmt->dpGetAffect()==0)? true : false;
     }
 
 

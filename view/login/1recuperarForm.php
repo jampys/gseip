@@ -117,7 +117,7 @@
 
     <div class="form-group">
         <label class="control-label" for="usuario">Correo</label>
-        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Correo" >
+        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Correo electrónico" >
     </div>
 
 
@@ -133,7 +133,7 @@
 </form>
 
     <div id="myElem" class="msg" style="display:none">
-
+        <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
     </div>
 
 </div>

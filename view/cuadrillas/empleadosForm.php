@@ -174,7 +174,7 @@
 
         //evento al salir o cerrar con la x el modal de empleados
         $("#myModal").on("hidden.bs.modal", function () {
-            $("#search").trigger("click");
+            //$("#search").trigger("click");
         });
 
 

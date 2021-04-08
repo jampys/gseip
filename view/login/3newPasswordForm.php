@@ -145,7 +145,7 @@
 
     <div class="form-group">
         <label class="control-label" for="code">Repita nueva contraseña</label>
-        <input class="form-control" type="password" name="password_again" id="password_again" placeholder="Nueva contraseña" >
+        <input class="form-control" type="password" name="password_again" id="password_again" placeholder="Repita la nueva contraseña" >
     </div>
 
     <div class="form-group">
@@ -161,7 +161,7 @@
 </form>
 
     <div id="myElem" class="msg" style="display:none">
-
+        <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
     </div>
 
 </div>

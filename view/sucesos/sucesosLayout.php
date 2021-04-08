@@ -126,11 +126,12 @@
                 params.operation = "editSuceso";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
-                    $("fieldset").prop("disabled", true);
-                    $('.selectpicker').selectpicker('refresh');
-                    $('.modal-footer').css('display', 'none');
-                    //$('#myModalLabel').html('');
+                    //$("fieldset").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
+                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
                 })
 
             });
@@ -145,10 +146,9 @@
                 params.operation = "editSuceso";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
-                    $("fieldset").prop("disabled", true);
-                    $('.selectpicker').selectpicker('refresh');
-                    $('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
+                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
                 })
 
             });

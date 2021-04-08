@@ -56,7 +56,7 @@
             <?php foreach ($view->usuarios as $us):   ?>
                 <tr data-id="<?php echo $us['id_user'];?>" >
                     <td><?php echo $us['user'];?></td>
-                    <td class="text-center"><?php echo ($us['enabled'] == 1)? '<i class="fas fa-check-circle fa-fw dp_green" title="habilitado"></i>' : '<i class="fas fa-ban fa-fw dp_red" title="inhabilitado"></i>'; ?></td>
+                    <td class="text-center"><?php echo ($us['enabled'] == 1)? '<i class="fas fa-check-circle fa-fw dp_green" title="habilitado"></i>' : '<i class="fas fa-minus-circle fa-fw dp_red" title="inhabilitado"></i>'; ?></td>
                     <td><?php echo $us['fecha_alta'];?></td>
                     <td><?php echo $us['fecha_baja'];?></td>
                     <td><?php echo $us['apellido'].' '.$us['nombre'];?></td>

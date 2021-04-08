@@ -23,7 +23,7 @@ switch ($operation)
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $todas = null; //($_POST['renovado']== 0)? null : 1;
-        $view->cuadrillas = Cuadrilla::getCuadrillas($id_contrato, $todas);
+        $view->cuadrillas = Cuadrilla::getCuadrillas($id_contrato);
         $view->contentTemplate="view/cuadrillas/cuadrillasGrid.php";
         break;
 
@@ -33,9 +33,10 @@ switch ($operation)
         $cuadrilla->setDefaultIdVehiculo( ($_POST['default_id_vehiculo']!='')? $_POST['default_id_vehiculo'] : null );
         $cuadrilla->setDefaultIdArea( ($_POST['default_id_area']!='')? $_POST['default_id_area'] : null );
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        //$postulacion->setIdPuesto( ($_POST['id_puesto']!='')? $_POST['id_puesto'] : null);
         $cuadrilla->setNombre($_POST['nombre']);
+        $cuadrilla->setNombreCorto($_POST['nombre_corto']);
         $cuadrilla->setActividad($_POST['actividad']);
+        $cuadrilla->setDisabled(($_POST['disabled'] == 1)? 1 : null);
 
         $rta = $cuadrilla->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
@@ -47,9 +48,10 @@ switch ($operation)
         $view->label='Nueva cuadrilla';
         $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
 
-        $view->contratos = Contrato::getContratosControl();
+        $view->id_contrato = $_POST['id_contrato'];
+        //$view->contratos = Contrato::getContratosControl();
         $view->vehiculos = Vehiculo::getVehiculos();
-        $view->areas = NovArea::getAreas();
+        $view->areas = NovArea::getAreas($_POST['id_contrato']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/cuadrillas/cuadrillasForm.php";
@@ -59,7 +61,7 @@ switch ($operation)
         $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
         $view->label='Cuadrilla: '.$view->cuadrilla->getNombre();
 
-        $view->contratos = Contrato::getContratosControl();
+        //$view->contratos = Contrato::getContratosControl();
         $view->vehiculos = Vehiculo::getVehiculos();
         //$view->areas = NovArea::getAreas(25);
         $view->areas = NovArea::getAreas($view->cuadrilla->getIdContrato());
@@ -70,9 +72,9 @@ switch ($operation)
         break;
 
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
+    case 'deleteCuadrilla': //ok
+        $cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
+        $rta = $cuadrilla->deleteCuadrilla();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;

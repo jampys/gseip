@@ -165,7 +165,7 @@
     </div>
 
     <div class="form-group required">
-        <label for="documento" class="col-md-4 control-label">Nro.documento</label>
+        <label for="documento" class="col-md-4 control-label">Nro. documento</label>
         <div class="col-md-8">
             <input class="form-control" type="text" name="documento" id="documento" placeholder="Nro. documento" value = "<?php print $view->empleado->getDocumento() ?>">
         </div>
@@ -312,14 +312,14 @@
     <div class="form-group">
         <label for="telefono" class="col-md-4 control-label">Teléfono</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Teléfono" value = "<?php print $view->empleado->getTelefono() ?>">
+            <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Teléfono de contacto" value = "<?php print $view->empleado->getTelefono() ?>">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="email" class="col-md-4 control-label">Email</label>
+        <label for="email" class="col-md-4 control-label">Correo</label>
         <div class="col-md-8">
-            <input class="form-control" type="text" name="email" id="email" placeholder="Email" value = "<?php print $view->empleado->getEmail() ?>">
+            <input class="form-control" type="text" name="email" id="email" placeholder="Correo electrónico" value = "<?php print $view->empleado->getEmail() ?>">
         </div>
     </div>
 

@@ -41,7 +41,7 @@ class Soporte{
         for($p = $start; $p <= $end; $p++){
             $periodos[] = $p;
         }
-        return $periodos;
+        return array_reverse($periodos);
     }
 
 

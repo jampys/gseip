@@ -172,7 +172,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="tetra">Tetra</label>
-                        <input class="form-control" type="text" name="tetra" id="tetra" value = "<?php print $view->vehiculo->getTetra() ?>" placeholder="Tetra">
+                        <input class="form-control" type="text" name="tetra" id="tetra" value = "<?php print $view->vehiculo->getTetra() ?>" placeholder="Nro. de tetra">
                     </div>
 
                     <div class="form-group">

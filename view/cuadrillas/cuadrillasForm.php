@@ -27,7 +27,9 @@
                 params.default_id_vehiculo = $('#default_id_vehiculo').val();
                 params.default_id_area = $('#default_id_area').val();
                 params.nombre = $('#nombre').val();
+                params.nombre_corto = $('#nombre_corto').val();
                 params.actividad = $('#actividad').val();
+                params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -35,14 +37,14 @@
 
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Cuadrilla guardada con exito').addClass('alert alert-success').show();
+                        $("#myModal #myElem").html('Cuadrilla guardada con exito').addClass('alert alert-success').show();
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
-                        $("#search").trigger("click");
-                        setTimeout(function() { $("#myElem").hide();
+                        setTimeout(function() { $("#myModal #myElem").hide();
                                                 $('#myModal').modal('hide');
+                                                $("#search").trigger("click");
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar la cuadrilla').addClass('alert alert-danger').show();
+                        $("#myModal #myElem").html('Error al guardar la cuadrilla').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
@@ -65,9 +67,14 @@
 
 
         $('#cuadrilla-form').validate({ //ok
+            errorContainer: $('#cuadrilla-form #myElem'), //https://forum.jquery.com/topic/jquery-validate-it-may-be-a-bug-in-errorcontainer-and-errorplacement
             rules: {
                 nombre: {required: true},
-                id_contrato: {required: true}
+                nombre_corto:{
+                    required: true,
+                    maxlength: 5
+                }
+                //id_contrato: {required: true}
                 //default_id_vehiculo: {required: true},
                 //default_id_area: {required: true}
                 /*fecha_emision: {
@@ -111,7 +118,11 @@
             },
             messages:{
                 nombre: "Ingrese el nombre",
-                id_contrato: "Seleccione el contrato"
+                nombre_corto:{
+                    required: "Ingrese el identificador",
+                    maxlength: "Máximo 5 caracteres"
+                }
+                //id_contrato: "Seleccione el contrato"
                 //default_id_vehiculo: "Seleccione el vehículo",
                 //default_id_area: "Seleccione el área"
                 /*fecha_emision: {
@@ -148,30 +159,38 @@
 
                 <form name ="cuadrilla-form" id="cuadrilla-form" method="POST" action="index.php">
                     <input type="hidden" name="id_cuadrilla" id="id_cuadrilla" value="<?php print $view->cuadrilla->getIdCuadrilla() ?>">
+                    <input type="hidden" name="id_contrato" id="id_contrato" value="<?php print $view->id_contrato ?>">
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->cuadrilla->getNombre() ?>" placeholder="Nombre">
+                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->cuadrilla->getNombre() ?>"
+                            <?php echo ($view->cuadrilla->getHasPartes())? 'disabled title="No es posible editar el nombre de una cuadrilla con partes existentes"':'' ?>
+                               placeholder="Nombre">
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="control-label" for="nombre">Identificador</label>
+                        <input class="form-control" type="text" name="nombre_corto" id="nombre_corto" value = "<?php print $view->cuadrilla->getNombreCorto() ?>" placeholder="Abreviatura ó identificador corto">
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="actividad">Actividad</label>
-                        <textarea class="form-control" name="actividad" id="actividad" placeholder="Actividad" rows="2"><?php print $view->cuadrilla->getActividad(); ?></textarea>
+                        <textarea class="form-control" name="actividad" id="actividad" placeholder="Describe la actividad principal de la cuadrilla" rows="2"><?php print $view->cuadrilla->getActividad(); ?></textarea>
                     </div>
 
-                    <div class="form-group required">
+                    <!--<div class="form-group required">
                         <label for="id_contrato" class="control-label">Contrato</label>
                         <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" title="Seleccione el contrato" data-live-search="true" data-size="5">
-                            <?php foreach ($view->contratos as $con){
+                            <?php //foreach ($view->contratos as $con){
                                 ?>
-                                <option value="<?php echo $con['id_contrato']; ?>"
-                                    <?php echo ($con['id_contrato'] == $view->cuadrilla->getIdContrato())? 'selected' :'' ?>
+                                <option value="<?php //echo $con['id_contrato']; ?>"
+                                    <?php //echo ($con['id_contrato'] == $view->cuadrilla->getIdContrato())? 'selected' :'' ?>
                                     >
-                                    <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                    <?php //echo $con['nombre'].' '.$con['nro_contrato'];?>
                                 </option>
-                            <?php  } ?>
+                            <?php  //} ?>
                         </select>
-                    </div>
+                    </div>-->
 
                     <div class="form-group">
                         <label for="default_id_vehiculo" class="control-label">Vehículo (por defecto)</label>
@@ -203,20 +222,31 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="disabled" name="disabled" <?php echo ($view->cuadrilla->getDisabled() == 1)? 'checked' :'' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para ocultar la cuadrilla al cargar novedades">Desactivar</a>
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div id="myElem" class="msg" style="display:none">
+                        <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
+                    </div>
+
                 </form>
 
 
 
-                <div id="myElem" class="msg" style="display:none">
-                    <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
-                </div>
+
 
 
 
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" id="submit" name="submit" type="submit">Guardar</button>
+                <button class="btn btn-primary" id="submit" name="submit" type="submit" <?php echo ($view->target!='view' )? '' : 'disabled' ?> >Guardar</button>
                 <button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
             </div>
 
