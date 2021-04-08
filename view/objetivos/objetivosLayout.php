@@ -209,7 +209,7 @@
                         <div class="form-group col-md-3">
                             <!--<label for="periodo" class="control-label">Periodo</label>-->
                             <select class="form-control" id="search_periodo" name="search_periodo">
-                                <option value="">Todos</option>
+                                <!--<option value="">Todos</option>-->
                                 <?php foreach ($view->periodos as $pe){
                                     ?>
                                     <option value="<?php echo $pe['periodo']; ?>"
