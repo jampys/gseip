@@ -125,3 +125,17 @@ function confirmMessage(d){
             '</div>';
 }
 
+
+function getProgressBarColor(percent){
+    var rta = '';
+    if(percent <= 30 ) rta = "progress-bar-danger";
+    else if (percent <= 80 ) rta = "progress-bar-warning";
+    else rta = "progress-bar-success";
+
+    return rta;
+}
+
+
+
+
+
