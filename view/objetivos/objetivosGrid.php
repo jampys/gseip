@@ -119,7 +119,7 @@
                 },
                 "dataSrc": ""
             },
-            //rowId: 'id_calibracion',
+            rowId: 'id_objetivo',
             'columns': [
                 /*{   // Responsive control column
                  data: null,
