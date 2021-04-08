@@ -26,8 +26,8 @@ switch ($operation)
         $id_responsable_ejecucion = ($_POST['search_responsable_ejecucion']!='')? $_POST['search_responsable_ejecucion'] : null;
         $id_responsable_seguimiento = ($_POST['search_responsable_seguimiento']!='')? $_POST['search_responsable_seguimiento'] : null;
         //$view->periodos = Objetivo::getPeriodos();
-        $view->todos = $_POST['todos'];
-        $rta = $view->objetivos = Objetivo::getObjetivos($periodo, $id_puesto, $id_area, $id_contrato, $indicador, $id_responsable_ejecucion, $id_responsable_seguimiento);
+        //$view->todos = $_POST['todos'];
+        $rta = $view->objetivos = Objetivo::getObjetivos($periodo, $id_puesto, $id_area, $id_contrato, $indicador, $id_responsable_ejecucion, $id_responsable_seguimiento, $_POST['todos']);
         //$view->contentTemplate="view/objetivos/objetivosGrid.php";
         //break;
         print_r(json_encode($rta));

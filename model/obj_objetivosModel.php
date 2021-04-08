@@ -152,7 +152,7 @@ class Objetivo
     }
 
 
-    public static function getObjetivos($periodo, $id_puesto, $id_area, $id_contrato, $indicador, $id_responsable_ejecucion, $id_responsable_seguimiento) { //ok
+    public static function getObjetivos($periodo, $id_puesto, $id_area, $id_contrato, $indicador, $id_responsable_ejecucion, $id_responsable_seguimiento, $todos = 0) { //ok
         $stmt=new sQuery();
         /*$query = "select vso.*, func_obj_progress(vso.id_objetivo) as progreso
                   from v_sec_objetivos vso
@@ -176,7 +176,8 @@ class Objetivo
                   and if (:id_contrato is null, 1, vso.id_contrato = :id_contrato)
                   and vso.indicador = ifnull(:indicador, vso.indicador)
                   and vso.id_responsable_ejecucion = ifnull(:id_responsable_ejecucion, vso.id_responsable_ejecucion)
-                  and vso.id_responsable_seguimiento = ifnull(:id_responsable_seguimiento, vso.id_responsable_seguimiento)";
+                  and vso.id_responsable_seguimiento = ifnull(:id_responsable_seguimiento, vso.id_responsable_seguimiento)
+                  and if(:todos = 1, 1, vso.id_objetivo_superior is null)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpBind(':id_puesto', $id_puesto);
@@ -185,6 +186,7 @@ class Objetivo
         $stmt->dpBind(':indicador', $indicador);
         $stmt->dpBind(':id_responsable_ejecucion', $id_responsable_ejecucion);
         $stmt->dpBind(':id_responsable_seguimiento', $id_responsable_seguimiento);
+        $stmt->dpBind(':todos', $todos);
 
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
