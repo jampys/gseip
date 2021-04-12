@@ -113,7 +113,7 @@ and per.periodo = ifnull(:periodo, per.periodo)";
         $query="select pe.id_periodo, pe.nombre, pe.id_contrato,
                 DATE_FORMAT(pe.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                 DATE_FORMAT(pe.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                pe.closed_date
+                pe.closed_date, pe.periodo
                 from nov_periodos pe
                 where pe.id_contrato = ifnull(:id_contrato, pe.id_contrato)
                 and if(:activos is null, 1, pe.closed_date is null)
