@@ -309,22 +309,15 @@
 
                 params={};
                 //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
-                //params.fecha_desde = $("#myModal #fecha_desde").val();
-                //params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.id_periodo = $("#myModal #id_periodo").val();
                 params.periodo = $('#myModal #id_periodo option:selected').attr('periodo');
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
                 var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_inspeccion.rptdesign"+
-                        //"&p_fecha_desde="+params.fecha_desde+
-                        //"&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_contrato="+params.id_contrato+
                     "&p_id_periodo="+params.id_periodo+
-                    "&p_periodo="+params.periodo+
-                        //"&p_id_empleado="+params.id_empleado+
-                        //"&p_id_concepto_convenio_contrato="+params.id_concepto_convenio_contrato+
-                    "&p_id_user="+params.id_user;
+                    "&p_periodo="+params.periodo;
                 var win = window.open(URL, "_blank");
 
             }
