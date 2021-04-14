@@ -48,12 +48,12 @@
                    title="<?php echo $em['apellido'].' '.$em['nombre']; ?>"
                     ><?php echo substr($em['apellido'].' '.$em['nombre'], 0, 25); ?>
                 </a>
-                <?php echo(!$em['id_parte'] && $em['parte_count']>0)? '&nbsp;<i class="fas fa-exclamation-triangle dp_yellow" title="existe un parte en otro contrato para la fecha seleccionada"></i>':''; ?>
+                <?php echo(!$em['id_parte'] && $em['parte_count']>0)? '&nbsp;<i class="fas fa-exclamation-triangle dp_yellow" title="existe una novedad en otro contrato para la fecha seleccionada"></i>':''; ?>
             </td>
             <td style="text-align: center">
-                <?php echo($em['id_parte'])? '<i class="fa fa-car-side dp_blue_nov" title="con parte"></i>':'<i class="fa fa-car dp_light_gray" title="sin parte"></i>'; ?>&nbsp;
-                <?php echo($em['id_parte'] && $em['concept_count']>0)? '<i class="fas fa-calculator dp_blue_nov" title="con conceptos"></i>':'<i class="fas fa-calculator dp_light_gray" title="sin conceptos"></i>'; ?>&nbsp;
-                <?php echo($em['id_parte'] && $em['orden_count']>0)? '<i class="fas fa-clipboard-check dp_blue_nov" title="parte con órdenes"></i>':'<i class="fas fa-clipboard dp_light_gray" title="parte sin órdenes"></i>'; ?>
+                <?php echo($em['id_parte'])? '<i class="fa fa-car-side dp_blue_nov" title="con parte"></i>':'<i class="fa fa-car dp_light_gray" title="sin novedad"></i>'; ?>&nbsp;
+                <?php echo($em['id_parte'] && $em['concept_count']>0)? '<i class="fas fa-calculator dp_blue_nov" title="novedad con conceptos"></i>':'<i class="fas fa-calculator dp_light_gray" title="novedad sin conceptos"></i>'; ?>&nbsp;
+                <?php echo($em['id_parte'] && $em['orden_count']>0)? '<i class="fas fa-clipboard-check dp_blue_nov" title="novedad con órdenes"></i>':'<i class="fas fa-clipboard dp_light_gray" title="novedad sin órdenes"></i>'; ?>
             </td>
         </tr>
     <?php endforeach; ?>

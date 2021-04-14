@@ -368,7 +368,7 @@
 
                         <div class="form-group col-md-2">
                             <!--<label for="search">&nbsp;</label>-->
-                            <button type="button" class="form-control btn btn-default" title="Buscar partes" id="search">
+                            <button type="button" class="form-control btn btn-default" title="Buscar novedad" id="search">
                                 <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                             </button>
                         </div>
