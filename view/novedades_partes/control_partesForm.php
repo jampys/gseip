@@ -411,7 +411,7 @@
                                 &nbsp;<strong>Detalle de concepto:</strong>
                                 <strong class="dp_yellow">(Empleado)</strong>
                                 <strong>:</strong>
-                                Partes involucrados para un concepto, empleado y período indicados.
+                                Novedades involucradas para un concepto, empleado y período indicados.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
@@ -456,10 +456,10 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Partes del período:</strong>
+                                &nbsp;<strong>Partes diarios:</strong>
                                 <strong class="dp_yellow">(Cuadrilla)</strong>
                                 <strong>:</strong>
-                                Partes, tipos  y  números de órden durante un período indicado.
+                                Partes diarios, órdenes y habilitas durante un período indicado.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit2" name="submit2" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
