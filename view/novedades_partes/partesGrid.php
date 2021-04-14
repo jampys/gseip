@@ -103,12 +103,12 @@
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-eye-open dp_blue" title="ver parte" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-eye-open dp_blue" title="Ver novedad" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para editar -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('PAR_UPDATE', array(1)) && !$rp['closed_date'] )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit dp_blue" title="editar parte" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-edit dp_blue" title="Editar novedad" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para eliminar -->
@@ -121,7 +121,7 @@
 
                             )? 'delete':'disabled';
 
-                                ?>" title="borrar parte" href="javascript:void(0);">
+                                ?>" title="Eliminar novedad" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                             </a>
                         </td>
