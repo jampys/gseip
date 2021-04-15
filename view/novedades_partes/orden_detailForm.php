@@ -99,6 +99,9 @@
                     required: true,
                     digits: true,
                     maxlength: 15
+                },
+                servicio:{
+                    maxlength: 250
                 }
             },
             messages:{
@@ -112,6 +115,9 @@
                     required: "Ingrese el Nro. orden",
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 15 dígitos"
+                },
+                servicio:{
+                    maxlength: "Máximo 250 caracteres"
                 }
             }
 
@@ -195,7 +201,7 @@
 
         <div class="form-group">
             <label class="control-label" for="servicio">Servicio</label>
-            <textarea class="form-control" name="servicio" id="servicio" placeholder="Servicio" rows="2"><?php print $view->orden->getServicio(); ?></textarea>
+            <textarea class="form-control" name="servicio" id="servicio" placeholder="Servicio" rows="4"><?php print $view->orden->getServicio(); ?></textarea>
         </div>
 
 
