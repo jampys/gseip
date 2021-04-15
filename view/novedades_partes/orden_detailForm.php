@@ -201,7 +201,7 @@
 
         <div class="form-group">
             <label class="control-label" for="servicio">Servicio</label>
-            <textarea class="form-control" name="servicio" id="servicio" placeholder="Servicio" rows="4"><?php print $view->orden->getServicio(); ?></textarea>
+            <textarea class="form-control" name="servicio" id="servicio" placeholder="Descripción del servicio" rows="4"><?php print $view->orden->getServicio(); ?></textarea>
         </div>
 
 
