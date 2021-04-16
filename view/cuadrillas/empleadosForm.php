@@ -97,7 +97,7 @@
                     if(data >=0){
                         //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                        $("#myModal #myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
                         $('#empleados_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla:params.id_cuadrilla, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
@@ -105,7 +105,7 @@
                                                 $('#empleado-form').hide();
                                               }, 2000);
                     }else{
-                        $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                        $("#myModal #myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
