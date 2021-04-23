@@ -164,13 +164,15 @@
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->cuadrilla->getNombre() ?>"
-                            <?php echo ($view->cuadrilla->getHasPartes())? 'disabled title="No es posible editar el nombre de una cuadrilla con partes existentes"':'' ?>
+                            <?php echo ($view->cuadrilla->getHasPartes())? 'disabled title="No es posible editar el nombre de una cuadrilla con novedades existentes"':'' ?>
                                placeholder="Nombre">
                     </div>
 
                     <div class="form-group required">
                         <label class="control-label" for="nombre">Identificador</label>
-                        <input class="form-control" type="text" name="nombre_corto" id="nombre_corto" value = "<?php print $view->cuadrilla->getNombreCorto() ?>" placeholder="Abreviatura ó identificador corto">
+                        <input class="form-control" type="text" name="nombre_corto" id="nombre_corto" value = "<?php print $view->cuadrilla->getNombreCorto() ?>"
+                            <?php echo ($view->cuadrilla->getHasPartes())? 'disabled title="No es posible editar el identificador de una cuadrilla con novedades existentes"':'' ?>
+                               placeholder="Abreviatura ó identificador corto">
                     </div>
 
                     <div class="form-group">
