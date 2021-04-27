@@ -176,7 +176,7 @@ switch ($operation)
                 $id_empleado = $_POST['id_empleado'];
                 $id_evento = ($_POST['id_evento']) ? $_POST['id_evento'] : null;
                 $conductor = $_POST['conductor'];
-                $comentario = $_POST['comentario'];
+                $comentario = ($_POST['comentario'])? $_POST['comentario'] : null;
                 $trabajado = ($_POST['trabajado'] == 1)? $_POST['trabajado'] : null;
                 $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario, $trabajado);
 
