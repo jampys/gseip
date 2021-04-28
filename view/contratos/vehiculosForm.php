@@ -87,11 +87,11 @@
                     if(data >=0){
                         $("#contrato-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Vehículo guardado con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
-                        setTimeout(function() { $("#myElem").hide();
-                                                //$('#myModal').modal('hide');
+                        setTimeout(function() {
+                                                $("#myElem").hide();
                                                 $('#contrato-vehiculo-form').hide();
+                                                //$("#search").trigger("click");
+                                                $('#etapas_left_side .grid').load('index.php',{action:"contrato-vehiculo", id_contrato:params.id_contrato, operation:"refreshGrid"});
                                               }, 2000);
                     }
 
