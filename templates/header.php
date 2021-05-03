@@ -80,14 +80,6 @@
 
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vehiculos"><i class="fas fa-car fa-fw dp_blue"></i>&nbsp;Vehículos</a></li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos">&nbsp;Flotas de vehículos</a></li>
-
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">HABILIDADES Y COMPETENCIAS</li>
-
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('HAB_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=habilidades">Habilidades</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('HEM_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=habilidad-empleado">Habilidades por Empleado</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('HPU_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></li>
-
                         </ul>
                     </li>
 
@@ -96,12 +88,17 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Capacitación<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
-
                             <li class="disabled"><a href="#">Plan de capacitación <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <li class="disabled"><a href="#">Capacitaciones <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <li class="disabled"><a href="#">Cursos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <li class="disabled"><a href="#">Estadísticas <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">HABILIDADES Y COMPETENCIAS</li>
+
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('HAB_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=habilidades">Habilidades</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('HEM_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=habilidad-empleado">Habilidades por Empleado</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('HPU_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=habilidad-puesto">Habilidades por puesto</a></li>
                         </ul>
                     </li>
 
@@ -111,7 +108,6 @@
                         <ul class="dropdown-menu">
 
                             <li class="disabled"><a href="#">Plan de evaluación <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=obj_objetivos">Objetivos</a></li>
                             <li class="<?php echo ( PrivilegedUser::dhasPrivilege('EAD_COM', array(1)) ||
                                                     PrivilegedUser::dhasPrivilege('EAD_AGS', array(1)) ||
                                                     PrivilegedUser::dhasPrivilege('EAD_REP', array(1)) ||
@@ -193,6 +189,16 @@
 
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('PER_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=nov_periodos">Períodos</a></li>
 
+
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CSMA<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--<li class="dropdown-header">RRHH</li>-->
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=obj_objetivos">Objetivos</a></li>
 
                         </ul>
                     </li>
