@@ -66,25 +66,6 @@
                     <!--<li class="active"><a href="#">Home</a></li>-->
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estructura<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">PERSONAL</li>
-
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('EMP_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=empleados">Empleados</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PUE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=puestos">Puestos</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('CON_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=contratos"><i class="fas fa-suitcase fa-fw dp_blue"></i>&nbsp;Contratos</a></li>
-                            <li><a href="index.php?action=organigramas">Organigrama <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
-
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">VEHICULOS</li>
-
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vehiculos"><i class="fas fa-car fa-fw dp_blue"></i>&nbsp;Vehículos</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos">&nbsp;Flotas de vehículos</a></li>
-                        </ul>
-                    </li>
-
-
-                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Capacitación<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
@@ -177,8 +158,32 @@
 
 
                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CSMA<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--<li class="dropdown-header">RRHH</li>-->
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=obj_objetivos">Objetivos</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li class="dropdown-header">PERSONAL</li>
+
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('EMP_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=empleados">Empleados</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PUE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=puestos">Puestos</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('CON_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=contratos"><i class="fas fa-suitcase fa-fw dp_blue"></i>&nbsp;Contratos</a></li>
+                            <li><a href="index.php?action=organigramas">Organigrama <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">VEHICULOS</li>
+
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vehiculos"><i class="fas fa-car fa-fw dp_blue"></i>&nbsp;Vehículos</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos">&nbsp;Flotas de vehículos</a></li>
+
+                            <li role="separator" class="divider"></li>
                             <li class="dropdown-header">SEGURIDAD</li>
 
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('USR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=sec_users"><i class="fas fa-users fa-fw dp_blue"></i>&nbsp;Usuarios</a></li>
@@ -192,17 +197,6 @@
 
                         </ul>
                     </li>
-
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CSMA<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <!--<li class="dropdown-header">RRHH</li>-->
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=obj_objetivos">Objetivos</a></li>
-
-                        </ul>
-                    </li>
-
 
 
 
