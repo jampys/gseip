@@ -176,7 +176,7 @@ switch ($operation)
                 $id_empleado = $_POST['id_empleado'];
                 $id_evento = ($_POST['id_evento']) ? $_POST['id_evento'] : null;
                 $conductor = $_POST['conductor'];
-                $comentario = $_POST['comentario'];
+                $comentario = ($_POST['comentario'])? $_POST['comentario'] : null;
                 $trabajado = ($_POST['trabajado'] == 1)? $_POST['trabajado'] : null;
                 $rta = $parte->updateParte2($id_parte_empleado, $id_empleado, $id_evento, $conductor, $comentario, $trabajado);
 
@@ -282,7 +282,7 @@ switch ($operation)
         $view->empleado = New Empleado($_POST['id_empleado']);
         $view->label = $view->empleado->getLegajo().' '.$view->empleado->getApellido()." ".$view->empleado->getNombre();
         $view->label.= "&nbsp";
-        $view->label.= ($_POST['id_parte'])? "<span class='dp_blue'>[Parte Nro. ".$_POST['id_parte']."]</span>": "<span class='dp_yellow'>[sin parte]</span>";
+        $view->label.= ($_POST['id_parte'])? "<span class='dp_blue'>[IN ".$_POST['id_parte']."]</span>": "<span class='dp_yellow'>[sin novedad]</span>";
 
         $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], 1);
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();

@@ -135,7 +135,7 @@
 
                     <div class="form-group col-md-2">
                         <!--<label for="search">&nbsp;</label>-->
-                        <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new"
+                        <button type="submit" class="form-control btn btn-default" title="Novedad por empleado" id="new"
                             <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>
                             action="index.php?action=novedades2&operation=newParte"
                             >
@@ -168,7 +168,7 @@
 
                     <div class="form-group col-md-2">
                         <!--<label for="search">&nbsp;</label>-->
-                        <button type="submit" class="form-control btn btn-default" title="nuevo parte" id="new1"
+                        <button type="submit" class="form-control btn btn-default" title="Novedad por cuadrilla" id="new1"
                             <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>
                                 action="index.php?action=novedades2&operation=newParte1"
                             >

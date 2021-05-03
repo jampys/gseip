@@ -68,15 +68,15 @@
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Fecha pte.</th>
-                <th>Nro.</th>
+                <th>Fecha</th>
+                <th>IN</th>
                 <th>Contrato</th>
                 <th>Cuadrilla / Empleado</th>
                 <th>Área</th>
                 <!--<th>Móvil</th>-->
                 <th>Evento</th>
                 <th></th>
-                <th>Usr.</th>
+                <th>Usuario</th>
                 <th></th>
             </tr>
             </thead>
@@ -93,9 +93,9 @@
                         <!--<td><?php //echo $rp['vehiculo']; ?></td>-->
                         <td><?php echo $rp['evento']; ?></td>
                         <td style="text-align: center">
-                            <?php echo($rp['id_parte'])? '<i class="fas fa-car-side fa-fw dp_blue_nov" title="con parte"></i>':'<i class="fas fa-car fa-fw dp_light_gray" title="sin parte"></i>'; ?>&nbsp;
-                            <?php echo($rp['concept_count']>0)? '<i class="fas fa-calculator fa-fw dp_blue_nov" title="parte con conceptos"></i>':'<i class="fas fa-calculator fa-fw dp_light_gray" title="parte sin conceptos"></i>'; ?>&nbsp;
-                            <?php echo($rp['orden_count']>0)? '<i class="fas fa-clipboard-check fa-fw dp_blue_nov" title="parte con órdenes"></i>':'<i class="fas fa-clipboard fa-fw dp_light_gray" title="parte sin órdenes"></i>'; ?>
+                            <?php echo($rp['id_parte'])? '<i class="fas fa-car-side fa-fw dp_blue_nov" title="con novedad"></i>':'<i class="fas fa-car fa-fw dp_light_gray" title="sin novedad"></i>'; ?>&nbsp;
+                            <?php echo($rp['concept_count']>0)? '<i class="fas fa-calculator fa-fw dp_blue_nov" title="novedad con conceptos"></i>':'<i class="fas fa-calculator fa-fw dp_light_gray" title="novedad sin conceptos"></i>'; ?>&nbsp;
+                            <?php echo($rp['orden_count']>0)? '<i class="fas fa-clipboard-check fa-fw dp_blue_nov" title="novedad con órdenes"></i>':'<i class="fas fa-clipboard fa-fw dp_light_gray" title="novedad sin órdenes"></i>'; ?>
                         </td>
                         <td><?php $arr = explode("@", $rp['user'], 2);
                             echo $arr[0];?></td>
@@ -103,12 +103,12 @@
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-eye-open dp_blue" title="ver parte" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-eye-open dp_blue" title="Ver novedad" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para editar -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('PAR_UPDATE', array(1)) && !$rp['closed_date'] )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit dp_blue" title="editar parte" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-edit dp_blue" title="Editar novedad" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para eliminar -->
@@ -121,7 +121,7 @@
 
                             )? 'delete':'disabled';
 
-                                ?>" title="borrar parte" href="javascript:void(0);">
+                                ?>" title="Eliminar novedad" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                             </a>
                         </td>

@@ -383,7 +383,7 @@
                 '</td>' +
                  //'<td><div contenteditable="true" class="editable" id="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'">'+jsonConceptos[i].cantidad+'</div></td>' +
                  '<td class="text-center">'+
-                     '<a class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) /*&& $view->target!='view' && $ctos['tipo_calculo']=='M'*/)? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">'+
+                     '<a class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) /*&& $view->target!='view' && $ctos['tipo_calculo']=='M'*/)? 'delete' : 'disabled' ?>" title="Eliminar concepto" href="javascript:void(0);">'+
                          '<span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>'+
                      '</a>'+
                  '</td>'+
@@ -409,7 +409,7 @@
             if(counter <= 0){
 
                 $('#conceptos-container').append('<div class="alert alert-warning">'+
-                '<i class="fas fa-exclamation-triangle fa-fw"></i> El parte aún tiene conceptos registrados.'+
+                '<i class="fas fa-exclamation-triangle fa-fw"></i> La novedad aún no tiene conceptos registrados.'+
                 '</div>');
 
                 //return; //finaliza la ejecucion de la funcion.
@@ -977,7 +977,7 @@
 
                 <div class="form-group col-md-2">
                     <!--<label for="search">&nbsp;</label>-->
-                    <button type="submit" class="form-control btn btn-default" title="agregar concepto" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
+                    <button type="submit" class="form-control btn btn-default" title="Agregar concepto" id="new" <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>>
                         <i class="fas fa-arrow-down dp_green"></i>
                     </button>
                 </div>
@@ -1052,7 +1052,7 @@
             <!-- boton para eliminar el parte -->
             <?php if($view->parte->getIdParte()){ ?>
             <div class="pull-left">
-                <button class="btn btn-danger" id="delete" name="delete" type="submit" title="Eliminar parte"
+                <button class="btn btn-danger" id="delete" name="delete" type="submit" title="Eliminar novedad"
                     <?php print (
                                     !$view->periodo->getClosedDate() &&
                                     ((PrivilegedUser::dhasAction('PAR_DELETE', array(1)) && $view->parte->getCreatedBy() == $_SESSION['id_user'])
@@ -1087,7 +1087,7 @@
         <div class="row">
             <div class="col-md-4">
                 <!--<button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo-ordenes" title="Mostrar órdenes">Órdenes</button>-->
-                <button type="button" class="btn btn-primary btn-block" title="Órdenes del parte">Órdenes</button>
+                <button type="button" class="btn btn-primary btn-block" title="Órdenes de la novedad">Órdenes</button>
             </div>
 
             <div class="col-md-4">

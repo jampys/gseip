@@ -48,7 +48,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> El parte no tiene órdenes registradas.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> La novedad no tiene órdenes registradas.
     </div>
 
 <?php } ?>

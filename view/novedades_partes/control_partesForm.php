@@ -70,6 +70,7 @@
                             $("#myModal #id_periodo").append('<option value="'+data["periodos"][indice]["id_periodo"]+'"'
                             +' fecha_desde="'+data["periodos"][indice]["fecha_desde"]+'"'
                             +' fecha_hasta="'+data["periodos"][indice]["fecha_hasta"]+'"'
+                            +' periodo="'+data["periodos"][indice]["periodo"]+'"'
                             +'>'+label+'</option>');
                         });
                         $('#myModal #id_periodo').selectpicker('refresh');
@@ -295,7 +296,7 @@
 
 
         //reporte de control de cuadrillas
-        /*$('#myModal').on("click", "#submit4", function(){
+        $('#myModal').on("click", "#submit4", function(){
             //alert('Crosstab sucesos');
             //$('#txt-form').validate().resetForm(); //limpiar error input validate
             $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
@@ -307,25 +308,23 @@
             if ($("#txt-form").valid()){
 
                 params={};
+                //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.id_periodo = $("#myModal #id_periodo").val();
-                params.id_user = "<?php //echo $_SESSION['id_user']; ?>";
+                params.periodo = $('#myModal #id_periodo option:selected').attr('periodo');
+                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php //echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_cuadrillas2.rptdesign"+
-                        //"&p_fecha_desde="+params.fecha_desde+
-                        //"&p_fecha_hasta="+params.fecha_hasta+
+                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_inspeccion.rptdesign"+
                     "&p_id_contrato="+params.id_contrato+
                     "&p_id_periodo="+params.id_periodo+
-                        //"&p_id_empleado="+params.id_empleado+
-                        //"&p_id_concepto_convenio_contrato="+params.id_concepto_convenio_contrato+
-                    "&p_id_user="+params.id_user;
+                    "&p_periodo="+params.periodo;
                 var win = window.open(URL, "_blank");
 
             }
 
 
             return false;
-        });*/
+        });
 
 
 
@@ -410,7 +409,9 @@
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
                                 &nbsp;<strong>Detalle de concepto:</strong>
-                                Partes involucrados para un concepto, empleado y período indicados.
+                                <strong class="dp_yellow">(Empleado)</strong>
+                                <strong>:</strong>
+                                Novedades involucradas para un concepto, empleado y período indicados.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
@@ -424,6 +425,8 @@
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
                                 &nbsp;<strong>Conceptos del período:</strong>
+                                <strong class="dp_yellow">(Empleado)</strong>
+                                <strong>:</strong>
                                 Conceptos involucrados día por día para un empleado y período indicados.
                             </div>
                             <div class="col-md-2">
@@ -437,8 +440,26 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Partes del período:</strong>
-                                Partes, tipos  y  números de órden durante un período indicado.
+                                &nbsp;<strong>Pendientes:</strong>
+                                <strong class="dp_yellow">(Empleado)</strong>
+                                <strong>:</strong>
+                                Empleados con días sin novedad ni suceso durante un período indicado.
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <span class="glyphicon glyphicon-tags"></span>
+                                &nbsp;<strong>Partes diarios:</strong>
+                                <strong class="dp_yellow">(Cuadrilla)</strong>
+                                <strong>:</strong>
+                                Partes diarios, órdenes y habilitas durante un período indicado.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit2" name="submit2" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
@@ -451,28 +472,16 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Pendientes:</strong>
-                                Empleados con días sin novedad ni suceso durante un período indicado.
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!--<div class="alert alert-info" role="alert">
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Cuadrillas:</strong>
-                                Muestra la conformación de cuadrillas para un período indicado.
+                                &nbsp;<strong>Control de inspección:</strong>
+                                <strong class="dp_yellow">(Cuadrilla)</strong>
+                                <strong>:</strong>
+                                Actividad de cuadrilla día por día durante un período indicado.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit4" name="submit4" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
-                    </div>-->
+                    </div>
 
 
                 </form>
