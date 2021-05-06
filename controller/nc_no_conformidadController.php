@@ -133,7 +133,7 @@ switch ($operation)
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
         $view->subcontratistas = Subcontratista::getSubcontratistas(); //carga el combo para filtrar subcontratistas
         //$view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal(null, null, null, null, null);
-        $view->contentTemplate="view/renovacionesPersonalGrid.php";
+        $view->contentTemplate="view/no_conformidad/no_conformidadGrid.php";
         break;
 }
 
@@ -142,7 +142,7 @@ if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {
-    include_once('view/renovacionesPersonalLayout.php');
+    include_once('view/no_conformidad/no_conformidadLayout.php');
 }
 
 

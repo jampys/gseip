@@ -192,7 +192,7 @@
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">RRHH</li>-->
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=obj_objetivos">Objetivos</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=obj_objetivos">No conformidades</a></li>
+                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=nc_no_conformidad">No conformidades</a></li>
 
                         </ul>
                     </li>
