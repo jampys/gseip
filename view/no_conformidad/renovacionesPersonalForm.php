@@ -3,7 +3,7 @@
 
     $(document).ready(function(){
 
-        $('.selectpicker').selectpicker({ //ok
+        $('.selectpicker').selectpicker({
             //propiedades del selectpicker
 
         }).change(function(){
@@ -117,7 +117,7 @@
 
 
 
-        $('#myModal').on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){
 
             if ($("#renovacion_personal").valid()){
 
@@ -170,13 +170,13 @@
         });
 
 
-        $('#myModal').modal({ //ok
+        $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
         });
 
 
-        $('#renovacion_personal').validate({ //ok
+        $('#renovacion_personal').validate({
             rules: {
                 id_empleado: {required: true},
                 id_vencimiento: {required: true},
@@ -214,7 +214,7 @@
         });
 
 
-        $("#myModal #id_empleado").on('changed.bs.select', function (e) { //ok
+        $("#myModal #id_empleado").on('changed.bs.select', function (e) {
             //Al seleccionar un grupo, completa automaticamente el campo vencimiento y lo deshabilita.
             if ($('#id_empleado option:selected').attr('id_grupo') !='') {
                 //$('#id_vencimiento').selectpicker('val', $('#id_empleado option:selected').attr('id_vencimiento')).prop('disabled', true).selectpicker('refresh');
