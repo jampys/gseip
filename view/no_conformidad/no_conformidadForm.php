@@ -284,14 +284,14 @@
 
 
                     <div class="form-group">
-                        <label for="analisis_causa" class="control-label">Análisis de causa</label>
-                        <select class="form-control selectpicker show-tick" id="analisis_causa" name="analisis_causa" title="Seleccione" data-live-search="true" data-size="5">
-                            <?php foreach ($view->tipos['enum'] as $tipos){
+                        <label for="tipo_accion" class="control-label">Tipo de acción</label>
+                        <select class="form-control selectpicker show-tick" id="tipo_accion" name="tipo_accion" title="Seleccione el tipo de acción" data-live-search="true" data-size="5">
+                            <?php foreach ($view->tipo_accion['enum'] as $ta){
                                 ?>
-                                <option value="<?php echo $tipos; ?>"
+                                <option value="<?php echo $ta; ?>"
                                     <?php //echo ($nac == $view->empleado->getNacionalidad() OR ($nac == $view->nacionalidades['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
                                     >
-                                    <?php echo $tipos; ?>
+                                    <?php echo $ta; ?>
                                 </option>
                             <?php  } ?>
                         </select>
