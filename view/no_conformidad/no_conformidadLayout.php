@@ -232,43 +232,9 @@
                                 <?php  } ?>
                             </select>
                         </div>
-
-                        <div class="form-group col-md-2">
-                            <!--<label for="search_renovado" class="control-label">&nbsp;</label>-->
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="search_renovado" name="search_renovado">
-                                    <a href="#" title="Seleccione para visualizar todos los registros (incluyendo renovados y desactivados)">Ver todos</a>
-                                </label>
-                            </div>
-                        </div>
-
+                        
 
                         <div class="form-group col-md-1">
-
-                        </div>
-
-
-                    </div>
-
-                    <!-- FILA DE ABAJO -->
-                    <div class="row">
-
-                        <div class="form-group col-md-3">
-                            <!--<label for="search_contrato" class="control-label">Subcontratista</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_subcontratista" name="search_subcontratista" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un subcontratista</option>
-                                <?php foreach ($view->subcontratistas as $sub){
-                                    ?>
-                                    <option value="<?php echo $sub['id_subcontratista']; ?>" >
-                                        <?php echo $sub['razon_social']; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-md-7">
-
                         </div>
 
                         <div class="form-group col-md-1">
@@ -285,8 +251,8 @@
                             </button>
                         </div>
 
-                    </div>
 
+                    </div>
 
 
                 </form>
