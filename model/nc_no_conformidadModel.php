@@ -1,35 +1,39 @@
 <?php
 class NoConformidad
 {
-    private $id_puesto;
+    private $id_no_conformidad;
     private $nombre;
+    private $tipo;
+    private $analisis_causa;
+    private $tipo_accion;
     private $descripcion;
-    private $codigo;
-    private $id_puesto_superior;
-    private $id_area;
-    private $id_nivel_competencia;
+    private $accion_inmediata;
+    private $analisis_causa_desc;
 
     // GETTERS
-    function getIdPuesto()
-    { return $this->id_puesto;}
+    function getIdNoConformidad()
+    { return $this->id_no_conformidad;}
 
     function getNombre()
     { return $this->nombre;}
 
+    function getTipo()
+    { return $this->tipo;}
+
+    function getAnalisisCausa()
+    { return $this->analisis_causa;}
+
+    function getTipoAccion()
+    { return $this->tipo_accion;}
+
     function getDescripcion()
     { return $this->descripcion;}
 
-    function getCodigo()
-    { return $this->codigo;}
+    function getAccionInmediata()
+    { return $this->accion_inmediata;}
 
-    function getIdPuestoSuperior()
-    { return $this->id_puesto_superior;}
-
-    function getIdArea()
-    { return $this->id_area;}
-
-    function getIdNivelCompetencia()
-    { return $this->id_nivel_competencia;}
+    function getAnalisisCausaDesc()
+    { return $this->analisis_causa_desc;}
 
     //SETTERS
     function setIdPuesto($val)

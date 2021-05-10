@@ -4,6 +4,7 @@ include_once("model/vto_renovacionesPersonalModel.php");
 include_once("model/vto_vencimientosPersonalModel.php");
 include_once("model/contratosModel.php");
 include_once("model/subcontratistasModel.php");
+include_once("model/nc_no_conformidadModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -46,12 +47,11 @@ switch ($operation)
 
     case 'newRenovacion':
         $view->label='Nueva No conformidad';
-        $view->renovacion = new RenovacionPersonal();
+        $view->no_conformidad = new NoConformidad();
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
-
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/no_conformidad/no_conformidadForm.php";

@@ -250,27 +250,9 @@
                 <form name ="renovacion_personal" id="renovacion_personal" method="POST" action="index.php">
                     <input type="hidden" name="id_renovacion" id="id_renovacion" value="<?php print $view->renovacion->getIdRenovacion() ?>">
 
-
-                    <div class="form-group required">
-                        <label for="id_empleado" class="control-label">Empleado / Grupo</label>
-                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado o grupo" data-live-search="true" data-size="5">
-                            <?php foreach ($view->empleadosGrupos as $eg){
-                                ?>
-                                <option
-                                    value="<?php echo ($eg['id_empleado'])? $eg['id_empleado'] : $eg['id_grupo']; ?>"
-                                    id_empleado="<?php echo $eg['id_empleado']; ?>"
-                                    id_grupo="<?php echo $eg['id_grupo']; ?>"
-                                    id_vencimiento="<?php echo $eg['id_vencimiento']; ?>"
-                                    <?php
-                                            if($eg['id_empleado'] && $view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
-                                            elseif($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
-                                    ?>
-                                    data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
-                                    >
-                                    <?php echo $eg['descripcion'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                    <div class="form-group">
+                        <label class="control-label" for="referencia">Nombre</label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php //print $view->renovacion->getReferencia() ?>" placeholder="Nombre">
                     </div>
 
 
@@ -283,6 +265,21 @@
                                         <?php echo ($vto['id_vencimiento'] == $view->renovacion->getIdVencimiento())? 'selected' :'' ?>
                                         >
                                         <?php echo $vto['nombre'] ;?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="nacionalidad" class="control-label">Nacionalidad</label>
+                            <select class="form-control selectpicker show-tick" id="nacionalidad" name="nacionalidad" title="Seleccione la nacionalidad" data-live-search="true" data-size="5">
+                                <?php foreach ($view->nacionalidades['enum'] as $nac){
+                                    ?>
+                                    <option value="<?php echo $nac; ?>"
+                                        <?php echo ($nac == $view->empleado->getNacionalidad() OR ($nac == $view->nacionalidades['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $nac; ?>
                                     </option>
                                 <?php  } ?>
                             </select>
