@@ -248,26 +248,11 @@
 
 
                 <form name ="renovacion_personal" id="renovacion_personal" method="POST" action="index.php">
-                    <input type="hidden" name="id_renovacion" id="id_renovacion" value="<?php print $view->renovacion->getIdRenovacion() ?>">
+                    <input type="hidden" name="id_no_conformidad" id="id_no_conformidad" value="<?php print $view->no_conformidad->getIdNoConformidad() ?>">
 
                     <div class="form-group">
                         <label class="control-label" for="referencia">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php //print $view->renovacion->getReferencia() ?>" placeholder="Nombre">
-                    </div>
-
-
-                    <div class="form-group required">
-                        <label for="id_vencimiento" class="control-label">Vencimiento</label>
-                            <select class="form-control selectpicker show-tick" id="id_vencimiento" name="id_vencimiento" title="Seleccione el vencimiento" data-live-search="true" data-size="5">
-                                <?php foreach ($view->vencimientos as $vto){
-                                    ?>
-                                    <option value="<?php echo $vto['id_vencimiento']; ?>"
-                                        <?php echo ($vto['id_vencimiento'] == $view->renovacion->getIdVencimiento())? 'selected' :'' ?>
-                                        >
-                                        <?php echo $vto['nombre'] ;?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
                     </div>
 
 
@@ -283,6 +268,21 @@
                                     </option>
                                 <?php  } ?>
                             </select>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label for="id_vencimiento" class="control-label">Vencimiento</label>
+                        <select class="form-control selectpicker show-tick" id="id_vencimiento" name="id_vencimiento" title="Seleccione el vencimiento" data-live-search="true" data-size="5">
+                            <?php foreach ($view->vencimientos as $vto){
+                                ?>
+                                <option value="<?php echo $vto['id_vencimiento']; ?>"
+                                    <?php echo ($vto['id_vencimiento'] == $view->renovacion->getIdVencimiento())? 'selected' :'' ?>
+                                    >
+                                    <?php echo $vto['nombre'] ;?>
+                                </option>
+                            <?php  } ?>
+                        </select>
                     </div>
 
 

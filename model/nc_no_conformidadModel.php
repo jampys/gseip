@@ -77,19 +77,20 @@ class NoConformidad
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select * from puestos where id_puesto = :nro";
+            $query="select * from no_no_conformidad where id_no_conformidad = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdPuesto($rows[0]['id_puesto']);
+            $this->setIdNoConformidad($rows[0]['id_no_conformidad']);
             $this->setNombre($rows[0]['nombre']);
+            $this->setTipo($rows[0]['tipo']);
+            $this->setAnalisisCausa($rows[0]['analisis_causa']);
+            $this->setTipoAccion($rows[0]['tipo_accion']);
             $this->setDescripcion($rows[0]['descripcion']);
-            $this->setCodigo($rows[0]['codigo']);
-            $this->setIdPuestoSuperior($rows[0]['id_puesto_superior']);
-            $this->setIdArea($rows[0]['id_area']);
-            $this->setIdNivelCompetencia($rows[0]['id_nivel_competencia']);
+            $this->setAccionInmediata($rows[0]['accion_inmediata']);
+            $this->setAnalisisCausaDesc($rows[0]['analisis_causa_desk']);
         }
     }
 
