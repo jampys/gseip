@@ -257,17 +257,44 @@
 
 
                     <div class="form-group">
-                        <label for="nacionalidad" class="control-label">Nacionalidad</label>
-                            <select class="form-control selectpicker show-tick" id="nacionalidad" name="nacionalidad" title="Seleccione la nacionalidad" data-live-search="true" data-size="5">
-                                <?php foreach ($view->nacionalidades['enum'] as $nac){
+                        <label for="tipo" class="control-label">Tipo</label>
+                            <select class="form-control selectpicker show-tick" id="tipo" name="tipo" title="Seleccione el tipo" data-live-search="true" data-size="5">
+                                <?php foreach ($view->tipos['enum'] as $tipos){
                                     ?>
-                                    <option value="<?php echo $nac; ?>"
-                                        <?php echo ($nac == $view->empleado->getNacionalidad() OR ($nac == $view->nacionalidades['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
+                                    <option value="<?php echo $tipos; ?>"
+                                        <?php //echo ($nac == $view->empleado->getNacionalidad() OR ($nac == $view->nacionalidades['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
                                         >
-                                        <?php echo $nac; ?>
+                                        <?php echo $tipos; ?>
                                     </option>
                                 <?php  } ?>
                             </select>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label for="analisis_causa" class="control-label">Análisis de causa</label>
+                            <?php foreach($view->analisis_causa['enum'] as $val){ ?>
+                                <label class="radio-inline">
+                                    <input type="radio" name="analisis_causa" value="<?php echo $val ?>"
+                                        <?php //echo ($val == $view->empleado->getSexo() OR ($val == $view->sexos['default'] AND !$view->empleado->getIdEmpleado()))? 'checked' :'' ?>
+                                        ><?php echo $val ?>
+                                </label>
+                            <?php } ?>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="analisis_causa" class="control-label">Análisis de causa</label>
+                        <select class="form-control selectpicker show-tick" id="analisis_causa" name="analisis_causa" title="Seleccione" data-live-search="true" data-size="5">
+                            <?php foreach ($view->tipos['enum'] as $tipos){
+                                ?>
+                                <option value="<?php echo $tipos; ?>"
+                                    <?php //echo ($nac == $view->empleado->getNacionalidad() OR ($nac == $view->nacionalidades['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $tipos; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
                     </div>
 
 

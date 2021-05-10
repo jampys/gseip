@@ -51,7 +51,8 @@ switch ($operation)
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
         //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
-        $view->nacionalidades = Soporte::get_enum_values('empleados', 'nacionalidad');
+        $view->tipos = Soporte::get_enum_values('nc_no_conformidad', 'tipo');
+        $view->analisis_causa = Soporte::get_enum_values('nc_no_conformidad', 'analisis_causa');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/no_conformidad/no_conformidadForm.php";
