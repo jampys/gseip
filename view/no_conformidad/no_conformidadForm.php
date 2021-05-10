@@ -257,6 +257,12 @@
 
 
                     <div class="form-group">
+                        <label class="control-label" for="descripcion">Descripción del hallazgo</label>
+                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción del hallazgo" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+                    </div>
+
+
+                    <div class="form-group">
                         <label for="tipo" class="control-label">Tipo</label>
                             <select class="form-control selectpicker show-tick" id="tipo" name="tipo" title="Seleccione el tipo" data-live-search="true" data-size="5">
                                 <?php foreach ($view->tipos['enum'] as $tipos){
@@ -284,6 +290,12 @@
 
 
                     <div class="form-group">
+                        <label class="control-label" for="analisis_causa_desc">Causa raiz</label>
+                        <textarea class="form-control" name="analisis_causa_desc" id="analisis_causa_desc" placeholder="Descripción de causa raiz" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+                    </div>
+
+
+                    <div class="form-group">
                         <label for="tipo_accion" class="control-label">Tipo de acción</label>
                         <select class="form-control selectpicker show-tick" id="tipo_accion" name="tipo_accion" title="Seleccione el tipo de acción" data-live-search="true" data-size="5">
                             <?php foreach ($view->tipo_accion['enum'] as $ta){
@@ -299,35 +311,8 @@
 
 
                     <div class="form-group">
-                        <label class="control-label" for="descripcion">Descripción</label>
-                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label class="control-label" for="descripcion">Acción</label>
-                        <textarea class="form-control" name="accion" id="accion" placeholder="Acción" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label class="control-label" for="analisis_causa_desc">Análisis de causa raiz</label>
-                        <textarea class="form-control" name="analisis_causa_desc" id="analisis_causa_desc" placeholder="Análisis de causa raiz" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
-                    </div>
-
-
-                    <div class="form-group required">
-                        <label for="id_responsable_ejecucion" class="control-label">Responsable ejecución</label>
-                        <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable ejecución">
-                            <?php foreach ($view->empleados as $em){
-                                ?>
-                                <option value="<?php echo $em['id_empleado']; ?>"
-                                    <?php //echo ($em['id_empleado'] == $view->objetivo->getIdResponsableEjecucion())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                        <label class="control-label" for="descripcion">Acción inmediata</label>
+                        <textarea class="form-control" name="accion" id="accion" placeholder="Acción inmediata" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
                     </div>
 
 

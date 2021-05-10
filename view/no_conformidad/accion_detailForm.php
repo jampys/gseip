@@ -127,6 +127,21 @@
     </div>
 
 
+        <div class="form-group required">
+            <label for="id_responsable_ejecucion" class="control-label">Responsable ejecución</label>
+            <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable ejecución">
+                <?php foreach ($view->empleados as $em){
+                    ?>
+                    <option value="<?php echo $em['id_empleado']; ?>"
+                        <?php //echo ($em['id_empleado'] == $view->objetivo->getIdResponsableEjecucion())? 'selected' :'' ?>
+                        >
+                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+
+
 
     <div class="form-group required">
         <label for="motivo" class="control-label">Motivo</label>
@@ -155,6 +170,7 @@
             <?php  } ?>
         </select>
     </div>
+
 
     <div class="form-group">
         <label class="control-label" for="comentarios">Comentarios</label>
