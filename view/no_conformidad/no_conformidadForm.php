@@ -298,7 +298,19 @@
                     </div>
 
 
-                    <div class="form-group required">
+                    <div class="form-group">
+                        <label class="control-label" for="descripcion">Descripción</label>
+                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="descripcion">Acción</label>
+                        <textarea class="form-control" name="accion" id="accion" placeholder="Acción" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+                    </div>
+
+
+                    <!--<div class="form-group required">
                         <label for="id_vencimiento" class="control-label">Vencimiento</label>
                         <select class="form-control selectpicker show-tick" id="id_vencimiento" name="id_vencimiento" title="Seleccione el vencimiento" data-live-search="true" data-size="5">
                             <?php foreach ($view->vencimientos as $vto){
@@ -310,52 +322,19 @@
                                 </option>
                             <?php  } ?>
                         </select>
-                    </div>
+                    </div>-->
 
 
-                    <div class="form-group">
-                        <label class="control-label" for="referencia">Referencia</label>
-                        <input class="form-control" type="text" name="referencia" id="referencia" value = "<?php print $view->renovacion->getReferencia() ?>" placeholder="Nro. de referencia">
-                    </div>
-
-
-                    <div class="form-group required">
-                        <label class="control-label" for="">Emisión / Vencimiento</label>
-
-                        <?php if(!$view->renovacion->getIdRnvRenovacion()){ ?>
-                        <div class="alert alert-info fade in">
-                            <a href="#" class="close" data-dismiss="alert">&times;</a>
-                            <?php if($view->renovacion->getIdRenovacion()){ //Es un edit ?>
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación anterior.
-                                <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación anterior.
-                            <?php }else { //Es una renovacion ?>
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación vigente.
-                                <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación vigente.
-                            <?php } ?>
-
-                        </div>
-                        <?php } ?>
-
-                        <div class="inner-addon right-addon">
-                            <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->renovacion->getFechaEmision() && $view->renovacion->getFechaVencimiento())? $view->renovacion->getFechaEmision()." - ".$view->renovacion->getFechaVencimiento() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                            <i class="glyphicon glyphicon-calendar"></i>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" id="disabled" name="disabled" <?php echo (!$view->renovacion->getDisabled())? '' :'checked' ?> <?php echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para desactivar el alerta del vencimiento">Desactivar</a>
                             </label>
                         </div>
-                    </div>
+                    </div>-->
 
 
                 </form>
-
-
-                <div id="fileuploader">Upload</div>
-
 
 
 
@@ -369,7 +348,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" id="submit" name="submit" type="submit"  <?php echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) || $view->target=='view' )? 'disabled' : '';  ?> >Guardar</button>
+                <button class="btn btn-primary" id="submit" name="submit" type="submit"  <?php //echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) || $view->target=='view' )? 'disabled' : '';  ?> >Guardar</button>
                 <button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
             </div>
 
