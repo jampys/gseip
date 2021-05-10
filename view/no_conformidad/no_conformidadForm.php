@@ -272,7 +272,7 @@
 
 
                     <div class="form-group required">
-                        <label for="analisis_causa" class="control-label">Análisis de causa</label>
+                        <label for="analisis_causa" class="control-label">Análisis de causa raiz</label>
                             <?php foreach($view->analisis_causa['enum'] as $val){ ?>
                                 <label class="radio-inline">
                                     <input type="radio" name="analisis_causa" value="<?php echo $val ?>"
@@ -310,28 +310,13 @@
                     </div>
 
 
-                    <!--<div class="form-group required">
-                        <label for="id_vencimiento" class="control-label">Vencimiento</label>
-                        <select class="form-control selectpicker show-tick" id="id_vencimiento" name="id_vencimiento" title="Seleccione el vencimiento" data-live-search="true" data-size="5">
-                            <?php foreach ($view->vencimientos as $vto){
-                                ?>
-                                <option value="<?php echo $vto['id_vencimiento']; ?>"
-                                    <?php echo ($vto['id_vencimiento'] == $view->renovacion->getIdVencimiento())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $vto['nombre'] ;?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>-->
+                    <div class="form-group">
+                        <label class="control-label" for="analisis_causa_desc">Análisis de causa raiz</label>
+                        <textarea class="form-control" name="analisis_causa_desc" id="analisis_causa_desc" placeholder="Análisis de causa raiz" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+                    </div>
 
 
-                    <!--<div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="disabled" name="disabled" <?php echo (!$view->renovacion->getDisabled())? '' :'checked' ?> <?php echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para desactivar el alerta del vencimiento">Desactivar</a>
-                            </label>
-                        </div>
-                    </div>-->
+
 
 
                 </form>
