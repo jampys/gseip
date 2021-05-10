@@ -27,7 +27,7 @@
                 params.id_contrato = $("#search_contrato").val();
                 params.id_subcontratista = $("#search_subcontratista").val();
                 params.renovado = $('#search_renovado').prop('checked')? 1:0;
-                params.action = "renovacionesPersonal";
+                params.action = "nc_no_conformidad";
                 params.operation = "refreshGrid";
                 //alert(params.id_grupo);
                 //alert(params.renovado);
@@ -40,7 +40,7 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
+                params.action = "nc_no_conformidad";
                 params.operation = "editRenovacion";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
@@ -54,7 +54,7 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
+                params.action = "nc_no_conformidad";
                 params.operation = "editRenovacion";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
@@ -71,7 +71,7 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
+                params.action = "nc_no_conformidad";
                 params.operation = "renovRenovacion";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
@@ -85,7 +85,7 @@
 
             $(document).on('click', '#new', function(){
                 params={};
-                params.action = "renovacionesPersonal";
+                params.action = "nc_no_conformidad";
                 params.operation="newRenovacion";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();

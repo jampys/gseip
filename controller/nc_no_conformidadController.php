@@ -45,7 +45,7 @@ switch ($operation)
         break;
 
     case 'newRenovacion':
-        $view->label='Nuevo vencimiento';
+        $view->label='Nueva No conformidad';
         $view->renovacion = new RenovacionPersonal();
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
@@ -54,11 +54,11 @@ switch ($operation)
         $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/no_conformidad/no_conformidadForm.php";
         break;
 
     case 'editRenovacion':
-        $view->label = ($_POST['target'] == 'view')? 'Ver vencimiento':'Editar vencimiento';
+        $view->label = ($_POST['target'] == 'view')? 'Ver No conformidad':'Editar No conformidad';
         $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
@@ -68,7 +68,7 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/no_conformidad/no_conformidadForm.php";
         break;
 
     case 'renovRenovacion': //Renueva una renovacion existente
