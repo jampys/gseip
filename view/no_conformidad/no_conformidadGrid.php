@@ -60,7 +60,7 @@
 
                         <td class="text-center">
                             <a class="detalles" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>" title="Postulantes"><i class="fas fa-suitcase dp_blue"></i></a>&nbsp;&nbsp;
-                            
+
                             <a class="view" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
