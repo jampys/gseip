@@ -260,7 +260,7 @@
                             <?php foreach($view->analisis_causa['enum'] as $val){ ?>
                                 <label class="radio-inline">
                                     <input type="radio" name="analisis_causa" value="<?php echo $val ?>"
-                                        <?php //echo ($val == $view->empleado->getSexo() OR ($val == $view->sexos['default'] AND !$view->empleado->getIdEmpleado()))? 'checked' :'' ?>
+                                        <?php echo ($val == $view->no_conformidad->getAnalisisCausa() OR ($val == $view->analisis_causa['default'] AND !$view->no_conformidad->getIdNoConformidad()))? 'checked' :'' ?>
                                         ><?php echo $val ?>
                                 </label>
                             <?php } ?>
