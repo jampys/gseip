@@ -14,14 +14,9 @@
                                 $(this).show();
             },
             "stateSave": true,
-            "order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
+            //"order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
             columnDefs: [
-                {targets: [ 1 ], type: 'date-uk', orderData: [ 1, 6 ]}, //fecha
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]}, //fecha_emision
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 6 ]}, //fecha_vencimiento
-                {targets: [ 6 ], orderData: [ 6], visible: false}, //priority
-                {targets: [ 7 ], orderData: [ 7], visible: false}, //renovacion
-                { responsivePriority: 1, targets: 8 }
+                {targets: [ 0 ], type: 'date-uk', orderData: [ 0, 1 ]} //fecha
             ]
         });
 
@@ -64,31 +59,23 @@
                         <td><?php echo $rp['tipo_accion']; ?></td>
 
                         <td class="text-center">
-
+                            <a class="detalles" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>" title="Postulantes"><i class="fas fa-suitcase dp_blue"></i></a>&nbsp;&nbsp;
+                            
                             <a class="view" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
-                            <!-- si tiene permiso y no fue renovado -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
+                            <!-- si tiene permiso para editar -->
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
 
-                            <?php if($rp['id_rnv_renovacion']){ ?>
-                                <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rp['id_rnv_renovacion']; ?>" >
-                                    <span class="glyphicon glyphicon-ok-sign dp_blue" aria-hidden="true"></span>
-                                </a>
-                            <?php } else{ ?>
-                                <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'renovar' : 'disabled' ?>" href="javascript:void(0);" title="renovar">
-                                    <i class="fas fa-share dp_blue"></i>
-                                </a>
-                            <?php } ?>&nbsp;&nbsp;
-
-                            <!-- si tiene permiso y no fue renovado -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) && !$rp['id_rnv_renovacion'] )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
+                            <!-- si tiene permiso para eliminar -->
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
                             </a>
                         </td>
+
                     </tr>
                 <?php endforeach; } ?>
             </tbody>
