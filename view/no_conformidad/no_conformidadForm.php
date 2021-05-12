@@ -250,19 +250,19 @@
                 <form name ="renovacion_personal" id="renovacion_personal" method="POST" action="index.php">
                     <input type="hidden" name="id_no_conformidad" id="id_no_conformidad" value="<?php print $view->no_conformidad->getIdNoConformidad() ?>">
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label" for="referencia">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php //print $view->renovacion->getReferencia() ?>" placeholder="Nombre">
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label class="control-label" for="descripcion">Descripción del hallazgo</label>
                         <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción del hallazgo" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label for="tipo" class="control-label">Tipo</label>
                             <select class="form-control selectpicker show-tick" id="tipo" name="tipo" title="Seleccione el tipo" data-live-search="true" data-size="5">
                                 <?php foreach ($view->tipos['enum'] as $tipos){
@@ -277,7 +277,7 @@
                     </div>
 
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label for="analisis_causa" class="control-label">Análisis de causa raiz</label>
                             <?php foreach($view->analisis_causa['enum'] as $val){ ?>
                                 <label class="radio-inline">
