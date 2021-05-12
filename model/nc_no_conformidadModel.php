@@ -68,10 +68,14 @@ class NoConformidad
     {  $this->id_responsable_seguimiento=$val;}
 
 
-    public static function getNoConformidades() {
+    public static function getNoConformidades($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado){
         $stmt=new sQuery();
-        $query="select *
-                from no_no_conformidad";
+        $query="select nc.id_no_conformidad, nc.nombre, nc.tipo, nc.analisis_causa, nc.tipo_accion,
+nc.descripcion, nc.accion_inmediata, nc.analisis_causa_desc,
+DATE_FORMAT(nc.created_date,  '%d/%m/%Y') as created_date,
+em.apellido, em.nombre
+from nc_no_conformidad nc
+join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
 
         $stmt->dpPrepare($query);
         $stmt->dpExecute();

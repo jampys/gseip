@@ -45,14 +45,10 @@
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro. rnv</th>
                 <th>Fecha</th>
-                <th>vencimiento</th>
-                <th>empleado / grupo</th>
-                <th>F. emisión</th>
-                <th>F. vto.</th>
-                <th style="display: none">Priority</th>
-                <th style="display: none">Rnv</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Tipo acción</th>
                 <th></th>
 
             </tr>
@@ -61,24 +57,13 @@
 
             <?php if(isset($view->renovaciones_personal)) {
                 foreach ($view->renovaciones_personal as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_renovacion']; ?>">
-                        <td><?php echo $rp['id_renovacion']; ?></td>
+                    <tr data-id="<?php echo $rp['id_no_conformidad']; ?>">
                         <td><?php echo $rp['created_date']; ?></td>
-                        <td><?php echo $rp['vencimiento']; ?></td>
-                        <td><?php echo ($rp['id_empleado'])? $rp['empleado'] : $rp['grupo']; ?></td>
-                        <td><?php echo $rp['fecha_emision']; ?></td>
-                        <td style="background-color: <?php echo $rp['color']; ?>"><?php echo $rp['fecha_vencimiento']; ?></td>
-                        <td style="display: none"><?php echo $rp['priority']; ?></td>
-                        <td style="display: none"><?php echo $rp['id_rnv_renovacion']; ?></td>
+                        <td><?php echo $rp['nombre']; ?></td>
+                        <td><?php echo $rp['tipo']; ?></td>
+                        <td><?php echo $rp['tipo_accion']; ?></td>
 
                         <td class="text-center">
-                            <?php if($rp['cant_uploads']> 0 ){ ?>
-                                <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
-                                    <span class="glyphicon glyphicon-paperclip dp_gray" aria-hidden="true"></span>
-                                </a>
-                            <?php } else{ ?>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                            <?php } ?>&nbsp;&nbsp;
 
                             <a class="view" href="javascript:void(0);">
                                 <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
