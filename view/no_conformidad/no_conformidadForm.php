@@ -29,93 +29,6 @@
         var drp = $('#fecha').data('daterangepicker');
 
 
-        $('.image').viewer({});
-
-        var objeto={};
-
-
-        var uploadObj = $("#fileuploader").uploadFile({
-            url: "index.php?action=uploads&operation=upload",
-            dragDrop: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
-            autoSubmit: false,
-            fileName: "myfile",
-            returnType: "json",
-            showDelete: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
-            showDownload:true,
-            showCancel: true,
-            showAbort: true,
-            allowDuplicates: false,
-            allowedTypes: "jpg, png, pdf, txt, doc, docx",
-
-            dynamicFormData: function(){
-                var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
-                return data;},
-
-            maxFileSize:3145728, //3MB tamaño expresado en bytes
-            showPreview:true,
-            previewHeight: "75px",
-            previewWidth: "auto",
-            uploadQueueOrder:'bottom', //el orden en que se muestran los archivos subidos.
-            showFileCounter: false, //muestra el nro de archivos subidos
-            downloadStr: "<i class='fas fa-download'></i>",
-            deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
-            dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
-            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Subir",
-            cancelStr: "<i class='fas fa-minus-square'></i>",
-
-            extErrorStr: "no está permitido. Solo se permiten extensiones: ",
-            duplicateErrorStr: "no permitido. El archivo ya existe.",
-            sizeErrorStr: "no permitido. Tamaño máximo permitido: ",
-
-            onLoad:function(obj){
-                $.ajax({
-                    cache: false,
-                    url: "index.php",
-                    data:{"action": "uploads", "operation": "load", "id": $('#id_renovacion').val() },
-                    type:"post",
-                    dataType: "json",
-                    success: function(data) {
-
-                        //alert('todo ok '+data);
-                        for(var i=0;i<data.length;i++) {
-                            if(data[i]['jquery-upload-file-error']) {
-                                //alert('encontro el error');
-                                obj.dpErrorOnLoad(data[i]["name"], data[i]['jquery-upload-file-error']);
-                            }
-                            else{
-                                obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"], data[i]["fecha"]);
-                            }
-
-                        }
-
-                        $('#myModal img').addClass('image').css('cursor', 'zoom-in');
-                        $('.image').viewer({});
-
-                    },
-                    error: function(e) {
-                        alert('errrorrrr '+ e.responseText);
-                    }
-
-                });
-            },
-            deleteCallback: function (data, pd) {
-                for (var i = 0; i < data.length; i++) {
-                    $.post("index.php", {action: "uploads", operation: "delete", name: data[i]},
-                        function (resp,textStatus, jqXHR) {
-                            //Show Message
-                            //alert("File Deleted");
-                        });
-                }
-                pd.statusbar.hide(); //You choice.
-
-            },
-            downloadCallback:function(filename,pd) {
-                location.href="index.php?action=uploads&operation=download&filename="+filename;
-            }
-        });
-
-
-
 
         $('#myModal').on('click', '#submit',function(){ //ok
 
@@ -180,12 +93,16 @@
             rules: {
                 nombre: {required: true},
                 descripcion: {required: true},
-                tipo: { required: true}
+                tipo: { required: true},
+                tipo_accion: { required: true},
+                id_responsable_seguimiento: { required: true}
             },
             messages:{
                 nombre: "Ingrese el nombre",
                 descripcion: "Ingrese la descripción del hallazgo",
-                fecha: "Selecione el tipo"
+                fecha: "Selecione el tipo de no conformidad",
+                tipo_accion: "Selecione el tipo de acción",
+                id_responsable_seguimiento: "Selecione el responsable de seguimiento"
             }
 
         });
