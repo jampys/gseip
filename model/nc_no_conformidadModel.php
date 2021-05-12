@@ -104,15 +104,15 @@ class NoConformidad
 
 
 
-    function save(){
-        if($this->id_puesto)
-        {$rta = $this->updatePuesto();}
+    function save(){ //ok
+        if($this->id_no_conformidad)
+        {$rta = $this->updateNoConformidad();}
         else
-        {$rta =$this->insertPuesto();}
+        {$rta =$this->insertNoConformidad();}
         return $rta;
     }
 
-    public function updatePuesto(){
+    public function updateNoConformidad(){
 
         $stmt=new sQuery();
         $query="update puestos set
@@ -135,40 +135,31 @@ class NoConformidad
         return $stmt->dpGetAffect();
     }
 
-    private function insertPuesto(){
+    private function insertNoConformidad(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into puestos(nombre, descripcion, codigo, id_puesto_superior, id_area, id_nivel_competencia)
-                values(:nombre, :descripcion, :codigo, :id_puesto_superior, :id_area, :id_nivel_competencia)";
+        $query="insert into nc_no_conformidad(nombre, tipo, analisis_causa, tipo_accion, descripcion, accion_inmediata, analisis_causa_desc, id_responsable_seguimiento, created_date)
+                values(:nombre, :tipo, :analisis_causa, :tipo_accion, :descripcion, :accion_inmediata, :analisis_causa_desc, :id_responsable_seguimiento, sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':tipo', $this->getTipo());
+        $stmt->dpBind(':analisis_causa', $this->getAnalisisCausa());
+        $stmt->dpBind(':tipo_accion', $this->getTipoAccion());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
-        $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
+        $stmt->dpBind(':accion_inmediata', $this->getAccionInmediata());
+        $stmt->dpBind(':analisis_causa_desk', $this->getAnalisisCausaDesc());
+        $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
-    function deletePuesto(){
+    function deleteNoConformidad(){
         $stmt=new sQuery();
         $query="delete from puestos where id_puesto= :id";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id', $this->getIdPuesto());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-    }
-
-
-    public function autocompletarPuestos($term) {
-        $stmt=new sQuery();
-        $query = "select *
-                  from puestos
-                  where nombre like '%$term%'";
-        $stmt->dpPrepare($query);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
     }
 
 
