@@ -122,23 +122,26 @@
             if ($("#no_conformidad_form").valid()){
 
                 var params={};
-                params.action = 'renovacionesPersonal';
-                params.operation = 'saveRenovacion';
-                params.id_renovacion = $('#id_renovacion').val();
-                params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                params.id_grupo = $('#id_empleado option:selected').attr('id_grupo');
-                params.id_vencimiento = $('#id_vencimiento').val();
-                params.fecha_emision = drp.startDate.format('DD/MM/YYYY');
-                params.fecha_vencimiento = drp.endDate.format('DD/MM/YYYY');
-                params.disabled = $('#disabled').prop('checked')? 1:0;
-                params.referencia = $('#referencia').val();
-
+                params.action = 'nc_no_conformidad';
+                params.operation = 'saveNoConformidad';
+                params.id_no_conformidad = $('#id_no_conformidad').val();
+                params.nombre = $('#nombre').val();
+                params.descripcion = $('#descripcion').val();
+                params.tipo = $('#tipo').val();
+                params.analisis_causa=$('input[name=analisis_causa]:checked').val();
+                params.analisis_causa_desc = $('#analisis_causa_desc').val();
+                params.tipo_accion = $('#tipo_accion').val();
+                params.accion = $('#accion').val();
+                params.id_responsable_seguimiento = $('#id_responsable_seguimiento').val();
+                //params.fecha_emision = drp.startDate.format('DD/MM/YYYY');
+                //params.fecha_vencimiento = drp.endDate.format('DD/MM/YYYY');
+                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                //params.id_grupo = $('#id_empleado option:selected').attr('id_grupo');
+                //params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.id_grupo);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //No se usa .fail() porque el resultado (solo para el caso del insert) viene de un SP y siempre devuelve 1 o -1 (no lanza excepcion PHP)
-                    objeto.id = data; //data trae el id de la renovacion
-                    //alert(objeto.id);
                     //alert(xhr.responseText);
 
                     if(data >=0){

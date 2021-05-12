@@ -27,7 +27,7 @@ switch ($operation)
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 
-    case 'saveRenovacion':
+    case 'saveNoConformidad':
 
         $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
         $renovacion->setIdVencimiento($_POST['id_vencimiento']);
