@@ -27,19 +27,19 @@ switch ($operation)
         $view->contentTemplate="view/renovacionesPersonalGrid.php";
         break;
 
-    case 'saveNoConformidad':
+    case 'saveNoConformidad': //ok
 
-        $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
-        $renovacion->setIdVencimiento($_POST['id_vencimiento']);
-        $renovacion->setFechaEmision($_POST['fecha_emision']);
-        $renovacion->setFechaVencimiento($_POST['fecha_vencimiento']);
-        $renovacion->setIdEmpleado ( ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null);
-        $renovacion->setIdGrupo ( ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null);
-        $renovacion->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        $renovacion->setReferencia($_POST['referencia']);
-        $renovacion->setCreatedBy($_SESSION["id_user"]);
+        $no_conformidad = new NoConformidad($_POST['id_no_conformidad']);
+        $no_conformidad->setNombre($_POST['nombre']);
+        $no_conformidad->setDescripcion($_POST['descripcion']);
+        $no_conformidad->setTipo($_POST['tipo']);
+        $no_conformidad->setAnalisisCausa($_POST['analisis_causa']);
+        $no_conformidad->setAnalisisCausaDesc( ($_POST['analisis_causa_desc']!='')? $_POST['analisis_causa_desc'] : null);
+        $no_conformidad->setTipoAccion($_POST['tipo_accion']);
+        $no_conformidad->setAccionInmediata( ($_POST['accion']!='')? $_POST['accion'] : null);
+        $no_conformidad->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
 
-        $rta = $renovacion->save();
+        $rta = $no_conformidad->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;

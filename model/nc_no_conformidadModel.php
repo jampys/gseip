@@ -9,6 +9,7 @@ class NoConformidad
     private $descripcion;
     private $accion_inmediata;
     private $analisis_causa_desc;
+    private $id_responsable_seguimiento;
 
     // GETTERS
     function getIdNoConformidad()
@@ -35,6 +36,9 @@ class NoConformidad
     function getAnalisisCausaDesc()
     { return $this->analisis_causa_desc;}
 
+    function getIdResponsableSeguimiento()
+    { return $this->id_responsable_seguimiento;}
+
     //SETTERS
     function setIdNoConformidad($val)
     { $this->id_no_conformidad=$val;}
@@ -59,6 +63,9 @@ class NoConformidad
 
     function setAnalisisCausaDesc($val)
     {  $this->analisis_causa_desc=$val;}
+
+    function setIdResponsableSeguimiento($val)
+    {  $this->id_responsable_seguimiento=$val;}
 
 
     public static function getNoConformidades() {
@@ -90,7 +97,8 @@ class NoConformidad
             $this->setTipoAccion($rows[0]['tipo_accion']);
             $this->setDescripcion($rows[0]['descripcion']);
             $this->setAccionInmediata($rows[0]['accion_inmediata']);
-            $this->setAnalisisCausaDesc($rows[0]['analisis_causa_desk']);
+            $this->setAnalisisCausaDesc($rows[0]['analisis_causa_desc']);
+            $this->setIdResponsableSeguimiento($rows[0]['id_responsable_seguimiento']);
         }
     }
 

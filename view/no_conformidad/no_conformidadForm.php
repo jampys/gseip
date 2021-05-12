@@ -273,7 +273,7 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label for="tipo_accion" class="control-label">Tipo de acción</label>
                         <select class="form-control selectpicker show-tick" id="tipo_accion" name="tipo_accion" title="Seleccione el tipo de acción" data-live-search="true" data-size="5">
                             <?php foreach ($view->tipo_accion['enum'] as $ta){
