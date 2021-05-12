@@ -117,7 +117,7 @@
 
 
 
-        $('#myModal').on('click', '#submit',function(){
+        $('#myModal').on('click', '#submit',function(){ //ok
 
             if ($("#no_conformidad_form").valid()){
 
