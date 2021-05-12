@@ -147,7 +147,7 @@ class NoConformidad
         $stmt->dpBind(':tipo_accion', $this->getTipoAccion());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
         $stmt->dpBind(':accion_inmediata', $this->getAccionInmediata());
-        $stmt->dpBind(':analisis_causa_desk', $this->getAnalisisCausaDesc());
+        $stmt->dpBind(':analisis_causa_desc', $this->getAnalisisCausaDesc());
         $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
