@@ -119,7 +119,7 @@
 
         $('#myModal').on('click', '#submit',function(){
 
-            if ($("#renovacion_personal").valid()){
+            if ($("#no_conformidad_form").valid()){
 
                 var params={};
                 params.action = 'renovacionesPersonal';
@@ -128,8 +128,6 @@
                 params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 params.id_grupo = $('#id_empleado option:selected').attr('id_grupo');
                 params.id_vencimiento = $('#id_vencimiento').val();
-                //params.fecha_emision = $('#fecha_emision').val();
-                //params.fecha_vencimiento = $('#fecha_vencimiento').val();
                 params.fecha_emision = drp.startDate.format('DD/MM/YYYY');
                 params.fecha_vencimiento = drp.endDate.format('DD/MM/YYYY');
                 params.disabled = $('#disabled').prop('checked')? 1:0;
@@ -176,39 +174,16 @@
         });
 
 
-        $('#renovacion_personal').validate({
+        $('#no_conformidad_form').validate({
             rules: {
-                id_empleado: {required: true},
-                id_vencimiento: {required: true},
-                fecha: {
-                    required: true,
-                    remote: {
-                        url: "index.php",
-                        type: "post",
-                        dataType: "json",
-                        //async: false,
-                        data: {
-                            action: "renovacionesPersonal",
-                            operation: "checkRangoFechas",
-                            fecha_emision: function(){ return drp.startDate.format('DD/MM/YYYY');},
-                            fecha_vencimiento: function(){ return drp.endDate.format('DD/MM/YYYY');},
-                            //id_empleado: function(){ return $('#id_empleado').val();},
-                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
-                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
-                            id_vencimiento: function(){ return $('#id_vencimiento').val();},
-                            id_renovacion: function(){ return $('#id_renovacion').val();}
-                        }
-                    }
-                }
-
+                nombre: {required: true},
+                descripcion: {required: true},
+                tipo: { required: true}
             },
             messages:{
-                id_empleado: "Seleccione un empleado o grupo",
-                id_vencimiento: "Seleccione un vencimiento",
-                fecha: {
-                    required: "Selecione el rango de fechas",
-                    remote: "Seleccione un rango de fechas válido"
-                }
+                nombre: "Ingrese el nombre",
+                descripcion: "Ingrese la descripción del hallazgo",
+                fecha: "Selecione el tipo"
             }
 
         });
@@ -247,7 +222,7 @@
             <div class="modal-body">
 
 
-                <form name ="renovacion_personal" id="renovacion_personal" method="POST" action="index.php">
+                <form name ="no_conformidad_form" id="no_conformidad_form" method="POST" action="index.php">
                     <input type="hidden" name="id_no_conformidad" id="id_no_conformidad" value="<?php print $view->no_conformidad->getIdNoConformidad() ?>">
 
                     <div class="form-group required">
