@@ -146,13 +146,13 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="referencia">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php //print $view->renovacion->getReferencia() ?>" placeholder="Nombre">
+                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->no_conformidad->getNombre() ?>" placeholder="Nombre">
                     </div>
 
 
                     <div class="form-group required">
                         <label class="control-label" for="descripcion">Descripción del hallazgo</label>
-                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción del hallazgo" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción del hallazgo" rows="3"><?php print $view->no_conformidad->getDescripcion(); ?></textarea>
                     </div>
 
 
@@ -162,7 +162,7 @@
                                 <?php foreach ($view->tipos['enum'] as $tipos){
                                     ?>
                                     <option value="<?php echo $tipos; ?>"
-                                        <?php //echo ($nac == $view->empleado->getNacionalidad() OR ($nac == $view->nacionalidades['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
+                                        <?php echo ($tipos == $view->no_conformidad->getTipo() OR ($tipos == $view->tipos['default'] AND !$view->no_conformidad->getIdNoConformidad()) )? 'selected' :'' ?>
                                         >
                                         <?php echo $tipos; ?>
                                     </option>
@@ -185,7 +185,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="analisis_causa_desc">Causa raiz</label>
-                        <textarea class="form-control" name="analisis_causa_desc" id="analisis_causa_desc" placeholder="Descripción de causa raiz" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+                        <textarea class="form-control" name="analisis_causa_desc" id="analisis_causa_desc" placeholder="Descripción de causa raiz" rows="3"><?php print $view->no_conformidad->getAnalisisCausaDesc(); ?></textarea>
                     </div>
 
 
@@ -195,7 +195,7 @@
                             <?php foreach ($view->tipo_accion['enum'] as $ta){
                                 ?>
                                 <option value="<?php echo $ta; ?>"
-                                    <?php //echo ($nac == $view->empleado->getNacionalidad() OR ($nac == $view->nacionalidades['default'] AND !$view->empleado->getIdEmpleado()) )? 'selected' :'' ?>
+                                    <?php echo ($ta == $view->no_conformidad->getTipoAccion() OR ($ta == $view->tipo_accion['default'] AND !$view->no_conformidad->getIdNoConformidad()) )? 'selected' :'' ?>
                                     >
                                     <?php echo $ta; ?>
                                 </option>
@@ -206,7 +206,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="descripcion">Acción inmediata</label>
-                        <textarea class="form-control" name="accion" id="accion" placeholder="Acción inmediata" rows="3"><?php //print $view->puesto->getDescripcion(); ?></textarea>
+                        <textarea class="form-control" name="accion" id="accion" placeholder="Acción inmediata" rows="3"><?php print $view->no_conformidad->getAccionInmediata(); ?></textarea>
                     </div>
 
 
@@ -216,7 +216,7 @@
                             <?php foreach ($view->empleados as $em){
                                 ?>
                                 <option value="<?php echo $em['id_empleado']; ?>"
-                                    <?php //echo ($em['id_empleado'] == $view->objetivo->getIdResponsableSeguimiento())? 'selected' :'' ?>
+                                    <?php echo ($em['id_empleado'] == $view->no_conformidad->getIdResponsableSeguimiento())? 'selected' :'' ?>
                                     >
                                     <?php echo $em['apellido'].' '.$em['nombre']; ?>
                                 </option>
