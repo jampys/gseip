@@ -87,7 +87,7 @@ join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select * from no_no_conformidad where id_no_conformidad = :nro";
+            $query="select * from nc_no_conformidad where id_no_conformidad = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();

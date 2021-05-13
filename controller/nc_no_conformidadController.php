@@ -45,12 +45,11 @@ switch ($operation)
         exit;
         break;
 
-    case 'newRenovacion':
+    case 'newNoConformidad':
         $view->label='Nueva No conformidad';
         $view->no_conformidad = new NoConformidad();
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
         $view->tipos = Soporte::get_enum_values('nc_no_conformidad', 'tipo');
         $view->analisis_causa = Soporte::get_enum_values('nc_no_conformidad', 'analisis_causa');
         $view->tipo_accion = Soporte::get_enum_values('nc_no_conformidad', 'tipo_accion');
@@ -60,14 +59,15 @@ switch ($operation)
         $view->contentTemplate="view/no_conformidad/no_conformidadForm.php";
         break;
 
-    case 'editRenovacion':
+    case 'editNoConformidad':
         $view->label = ($_POST['target'] == 'view')? 'Ver No conformidad':'Editar No conformidad';
-        $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
+        $view->no_conformidad = new NoConformidad($_POST['id_no_conformidad']);
 
         $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
-
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        $view->tipos = Soporte::get_enum_values('nc_no_conformidad', 'tipo');
+        $view->analisis_causa = Soporte::get_enum_values('nc_no_conformidad', 'analisis_causa');
+        $view->tipo_accion = Soporte::get_enum_values('nc_no_conformidad', 'tipo_accion');
+        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

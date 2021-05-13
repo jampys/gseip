@@ -39,23 +39,24 @@
             $(document).on('click', '.edit', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_renovacion = id;
+                params.id_no_conformidad = id;
                 params.action = "nc_no_conformidad";
-                params.operation = "editRenovacion";
+                params.operation = "editNoConformidad";
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
+                    //$('#id_empleado').prop('disabled', true).selectpicker('refresh');
+                    //$('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
                 })
             });
+
 
             $(document).on('click', '.view', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_renovacion = id;
+                params.id_no_conformidad = id;
                 params.action = "nc_no_conformidad";
-                params.operation = "editRenovacion";
+                params.operation = "editNoConformidad";
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     //$("fieldset").prop("disabled", true);
@@ -67,26 +68,10 @@
             });
 
 
-            $(document).on('click', '.renovar', function(){
-                var id = $(this).closest('tr').attr('data-id');
-                params={};
-                params.id_renovacion = id;
-                params.action = "nc_no_conformidad";
-                params.operation = "renovRenovacion";
-                //alert(params.id_renovacion);
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
-                })
-            });
-
-
-
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "nc_no_conformidad";
-                params.operation="newRenovacion";
+                params.operation="newNoConformidad";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 })
