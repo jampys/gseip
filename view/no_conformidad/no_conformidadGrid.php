@@ -44,6 +44,7 @@
                 <th>Nombre</th>
                 <th>Tipo</th>
                 <th>Tipo acción</th>
+                <th>Resp. Seguimiento</th>
                 <th></th>
 
             </tr>
@@ -57,6 +58,7 @@
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['tipo']; ?></td>
                         <td><?php echo $rp['tipo_accion']; ?></td>
+                        <td><?php echo $rp['responsable_seguimiento']; ?></td>
 
                         <td class="text-center">
                             <a class="detalles" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>" title="Postulantes"><i class="fas fa-suitcase dp_blue"></i></a>&nbsp;&nbsp;

@@ -72,7 +72,8 @@ class NoConformidad
         $stmt=new sQuery();
         $query="select nc.id_no_conformidad, nc.nombre, nc.tipo, nc.analisis_causa, nc.tipo_accion,
 nc.descripcion, nc.accion_inmediata, nc.analisis_causa_desc,
-DATE_FORMAT(nc.created_date,  '%d/%m/%Y') as created_date
+DATE_FORMAT(nc.created_date,  '%d/%m/%Y') as created_date,
+concat(em.apellido, ' ', em.nombre) as responsable_seguimiento
 from nc_no_conformidad nc
 join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
 
