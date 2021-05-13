@@ -115,25 +115,29 @@ join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
         return $rta;
     }
 
-    public function updateNoConformidad(){
+    public function updateNoConformidad(){ //ok
 
         $stmt=new sQuery();
-        $query="update puestos set
+        $query="update nc_no_conformidad set
                 nombre= :nombre,
+                tipo= :tipo,
+                analisis_causa= :analisis_causa,
+                tipo_accion= :tipo_accion,
                 descripcion= :descripcion,
-                codigo= :codigo,
-                id_puesto_superior= :id_puesto_superior,
-                id_area= :id_area,
-                id_nivel_competencia= :id_nivel_competencia
-                where id_puesto = :id_puesto";
+                accion_inmediata= :accion_inmediata,
+                analisis_causa_desc= :analisis_causa_desc,
+                id_responsable_seguimiento= :id_responsable_seguimiento
+                where id_no_conformidad = :id_no_conformidad";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':tipo', $this->getTipo());
+        $stmt->dpBind(':analisis_causa', $this->getAnalisisCausa());
+        $stmt->dpBind(':tipo_accion', $this->getTipoAccion());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':codigo', $this->getCodigo());
-        $stmt->dpBind(':id_puesto_superior', $this->getIdPuestoSuperior());
-        $stmt->dpBind(':id_area', $this->getIdArea());
-        $stmt->dpBind(':id_nivel_competencia', $this->getIdNivelCompetencia());
-        $stmt->dpBind(':id_puesto', $this->getIdPuesto());
+        $stmt->dpBind(':accion_inmediata', $this->getAccionInmediata());
+        $stmt->dpBind(':analisis_causa_desc', $this->getAnalisisCausaDesc());
+        $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
+        $stmt->dpBind(':id_no_conformidad', $this->getIdNoConformidad());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
