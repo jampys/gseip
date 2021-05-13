@@ -45,7 +45,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newNoConformidad':
+    case 'newNoConformidad': //ok
         $view->label='Nueva No conformidad';
         $view->no_conformidad = new NoConformidad();
 
@@ -59,7 +59,7 @@ switch ($operation)
         $view->contentTemplate="view/no_conformidad/no_conformidadForm.php";
         break;
 
-    case 'editNoConformidad':
+    case 'editNoConformidad': //ok
         $view->label = ($_POST['target'] == 'view')? 'Ver No conformidad':'Editar No conformidad';
         $view->no_conformidad = new NoConformidad($_POST['id_no_conformidad']);
 
@@ -74,59 +74,12 @@ switch ($operation)
         $view->contentTemplate="view/no_conformidad/no_conformidadForm.php";
         break;
 
-    case 'renovRenovacion': //Renueva una renovacion existente
-        $view->label='Renovar vencimiento';
-        $view->renovacion = new RenovacionPersonal($_POST['id_renovacion']);
-        $view->renovacion->setIdRenovacion('');
-        $view->renovacion->setFechaEmision('');
-        $view->renovacion->setFechaVencimiento('');
-        $view->renovacion->setReferencia('');
 
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal();
-        $view->empleadosGrupos = $view->renovacion->empleadosGrupos();
-
-        $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
-
-        $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
-        break;
-
-    case 'deleteRenovacion':
-        /*$renovacion = new RenovacionPersonal($_POST['id_renovacion']);
-        $rta = $renovacion->deleteRenovacion();
+    case 'deleteNoConformidad': //ok
+        $no_conformidad = new NoConformidad($_POST['id_no_conformidad']);
+        $rta = $no_conformidad->deleteNoConformidad();
         print_r(json_encode($rta));
         die;
-        break;*/
-
-        try{
-            sQuery::dpBeginTransaction();
-            $renovacion = new RenovacionPersonal($_POST['id_renovacion']);
-            $uploads = RenovacionPersonal::uploadsLoad($_POST['id_renovacion']);
-            $renovacion->deleteRenovacion();
-            foreach($uploads as $up){
-                if (!file_exists($up['directory'].$up['name'])) throw new Exception('Archivo no existe.');
-            }
-
-            sQuery::dpCommit();
-            foreach($uploads as $up){
-                unlink($up['directory'].$up['name']);
-            }
-            print_r(json_encode(1));
-
-        }catch (Exception $e){
-            sQuery::dpRollback();
-            throw new Exception('Error en el query.'); //para que entre en el .fail de la peticion ajax
-        }
-
-
-        die;
-        break;
-
-    case 'checkRangoFechas':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkRangoFechas($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
         break;
 
     default :

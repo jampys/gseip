@@ -36,7 +36,7 @@
 
 
 
-            $(document).on('click', '.edit', function(){
+            $(document).on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_no_conformidad = id;
@@ -51,7 +51,7 @@
             });
 
 
-            $(document).on('click', '.view', function(){
+            $(document).on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_no_conformidad = id;
@@ -79,7 +79,7 @@
 
 
 
-            $(document).on('click', '#cancel',function(){
+            $(document).on('click', '#cancel',function(){ //ok
                 $('#myModal').modal('hide');
             });
 
@@ -89,7 +89,7 @@
             $(document).on('click', '#example .delete', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
-                    message: "<p>¿Desea eliminar el vencimiento?</p>",
+                    message: "<p>¿Desea eliminar la No conformidad?</p>",
                     size: 'small',
                     buttons: {
                         cancel: {
@@ -114,13 +114,13 @@
             $.fn.borrar = function(id) {
                 //alert(id);
                 params={};
-                params.id_renovacion = id;
-                params.action = "renovacionesPersonal";
-                params.operation = "deleteRenovacion";
+                params.id_no_conformidad = id;
+                params.action = "nc_no_conformidad";
+                params.operation = "deleteNoConformidad";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        dialog.find('.modal-footer').html('<div class="alert alert-success">Vencimiento eliminado con exito</div>');
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">No conformidad eliminada con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
                             $("#search").trigger("click");
@@ -129,7 +129,7 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el vencimiento</div>');
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la No conformidad</div>');
 
                 });
 

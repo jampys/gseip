@@ -160,11 +160,11 @@ join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
         return $stmt->dpGetAffect();
     }
 
-    function deleteNoConformidad(){
+    function deleteNoConformidad(){ //ok
         $stmt=new sQuery();
-        $query="delete from puestos where id_puesto= :id";
+        $query="delete from nc_no_conformidad where id_no_conformidad= :id";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getIdPuesto());
+        $stmt->dpBind(':id', $this->getIdNoConformidad());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
