@@ -265,3 +265,9 @@ https://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-bo
 .bootstrap-select > .dropdown-toggle.bs-placeholder:hover,
 .bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
 .bootstrap-select > .dropdown-toggle.bs-placeholder:active { font-size: 11px; }
+
+
+/* para remover el guion bajo que se agregar al hacer hover sobre el icono de las grid */
+a:hover { /* https://stackoverflow.com/questions/21983508/strange-underlines-in-font-awesome-css */
+    text-decoration: none;
+}
