@@ -172,7 +172,7 @@
 
 
                     <div class="form-group">
-                        <label for="analisis_causa" class="control-label">Análisis de causa raiz</label>
+                        <label for="analisis_causa" class="control-label">Análisis de causa raiz</label><br/>
                             <?php foreach($view->analisis_causa['enum'] as $val){ ?>
                                 <label class="radio-inline">
                                     <input type="radio" name="analisis_causa" value="<?php echo $val ?>"
