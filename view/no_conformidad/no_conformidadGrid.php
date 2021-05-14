@@ -75,7 +75,8 @@
 
                             <!-- si tiene permiso para eliminar -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
+                                <!--<span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>-->
+                                <i class="fas fa-trash-alt dp_red"></i>
                             </a>&nbsp;&nbsp;
 
                             <a class="pdf" href="javascript:void(0);" data-id="<?php echo $rp['id_no_conformidad'] ?>" title="Emitir certificado"><i class="far fa-file-pdf dp_blue"></i></a>
