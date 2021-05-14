@@ -95,9 +95,8 @@ switch ($operation)
         break;
 
 
-    default : //carga la tabla de etapas de la postulacion //ok
-        //$view->postulacion = new Postulacion($_POST['id_postulacion']);
-        $view->label='Etapas de la postulación';
+    default : //carga la tabla de acciones de la No conformidad //ok
+        $view->label='Acciones de la No conformidad';
         $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
         //$view->localidades = Localidad::getLocalidades();
         //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
