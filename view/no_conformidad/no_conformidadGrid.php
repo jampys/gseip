@@ -40,11 +40,13 @@
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
+                <th>Nro. NC</th>
                 <th>Fecha</th>
                 <th>Nombre</th>
                 <th>Tipo</th>
                 <th>Tipo acción</th>
                 <th>Resp. Seguimiento</th>
+                <th>Estado</th>
                 <th></th>
 
             </tr>
@@ -54,11 +56,13 @@
             <?php if(isset($view->renovaciones_personal)) {
                 foreach ($view->renovaciones_personal as $rp):   ?>
                     <tr data-id="<?php echo $rp['id_no_conformidad']; ?>">
+                        <td><?php echo $rp['id_no_conformidad']; ?></td>
                         <td><?php echo $rp['created_date']; ?></td>
                         <td><?php echo $rp['nombre']; ?></td>
                         <td><?php echo $rp['tipo']; ?></td>
                         <td><?php echo $rp['tipo_accion']; ?></td>
                         <td><?php echo $rp['responsable_seguimiento']; ?></td>
+                        <td><?php //echo $rp['responsable_seguimiento']; ?></td>
 
                         <td class="text-center">
                             <a class="acciones" href="javascript:void(0);" data-id="<?php echo $rp['id_no_conformidad'] ?>" title="Acciones"><i class="far fa-calendar-check dp_blue"></i></a>&nbsp;&nbsp;
@@ -75,7 +79,7 @@
 
                             <!-- si tiene permiso para eliminar -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="Borrar" href="javascript:void(0);">
-                                <i class="fas fa-trash-alt dp_red"></i>
+                                <i class="far fa-trash-alt dp_red"></i>
                             </a>&nbsp;&nbsp;
 
                             <a class="pdf" href="javascript:void(0);" data-id="<?php echo $rp['id_no_conformidad'] ?>" title="Emitir certificado"><i class="far fa-file-pdf dp_blue"></i></a>
