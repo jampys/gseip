@@ -51,7 +51,7 @@ class Accion
 
     function setCreatedDate($val)
     { $this->created_date=$val;}
-    
+
 
     function __construct($nro=0){ //constructor //ok
 
