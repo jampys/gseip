@@ -65,8 +65,8 @@
                         <td><?php //echo $rp['responsable_seguimiento']; ?></td>
 
                         <td class="text-center">
-                            <a class="acciones" href="javascript:void(0);" data-id="<?php echo $rp['id_no_conformidad'] ?>" title="Acciones"><i class="far fa-calendar-check dp_blue"></i></a>&nbsp;&nbsp;
-                            <a class="verificaciones" href="javascript:void(0);" data-id="<?php echo $rp['id_no_conformidad'] ?>" title="Verificaciones"><i class="far fa-calendar-check dp_blue"></i></a>&nbsp;&nbsp;
+                            <a class="acciones" href="javascript:void(0);" data-id="<?php echo $rp['id_no_conformidad'] ?>" title="Acciones"><i class="fas fa-th-list dp_blue"></i></a>&nbsp;&nbsp;
+                            <a class="verificaciones" href="javascript:void(0);" data-id="<?php echo $rp['id_no_conformidad'] ?>" title="Verificaciones"><i class="fas fa-th-list dp_blue"></i></a>&nbsp;&nbsp;
 
                             <a class="view" title="Ver" href="javascript:void(0);">
                                 <i class="far fa-eye dp_blue"></i>
