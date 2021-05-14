@@ -72,7 +72,7 @@ switch ($operation)
         $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
         break;
 
-    case 'deleteEtapa': 
+    case 'deleteEtapa':
         $view->etapa = new Etapa($_POST['id_etapa']);
         $rta = $view->etapa->deleteEtapa();
         print_r(json_encode($rta));

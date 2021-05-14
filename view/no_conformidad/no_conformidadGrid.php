@@ -70,7 +70,7 @@
 
                             <!-- si tiene permiso para editar -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" title="Editar" href="javascript:void(0);">
-                                <i class="fas fa-edit dp_blue"></i>
+                                <i class="far fa-edit dp_blue"></i>
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para eliminar -->
