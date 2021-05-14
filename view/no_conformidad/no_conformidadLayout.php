@@ -86,7 +86,7 @@
 
 
             var dialog;
-            $(document).on('click', '#example .delete', function(){
+            $(document).on('click', '#example .delete', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
                     message: "<p>¿Desea eliminar la No conformidad?</p>",
@@ -111,7 +111,7 @@
 
 
 
-            $.fn.borrar = function(id) {
+            $.fn.borrar = function(id) { //ok
                 //alert(id);
                 params={};
                 params.id_no_conformidad = id;
@@ -134,6 +134,26 @@
                 });
 
             };
+
+
+            $(document).on('click', '.etapas', function(){
+                //alert('presiono sobre etapas');
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_postulacion = id;
+                params.action = "etapas";
+                //params.operation = "etapas"; //entra en default
+                //params.target = "view";
+                $('#popupbox').load('index.php', params,function(){
+                    //$("fieldset").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
+                    //$('#myModalLabel').html('');
+                    $('#myModal').modal();
+                    $('#etapas_left_side #add').attr('id_postulacion', id);
+                })
+
+            });
 
 
 
