@@ -13,20 +13,19 @@
 
 
         moment.locale('es');
-        $('#fecha').daterangepicker({
-            parentEl: '#myModal #renovacion_personal',
+        $('#fecha_cierre').daterangepicker({
+            parentEl: '#myModal #no_conformidad_form',
+            singleDatePicker: true,
             showDropdowns: true,
             autoApply: true,
             autoUpdateInput: false,
-            linkedCalendars: false,
             "locale": {
                 "format": "DD/MM/YYYY"
             }
         }).on("apply.daterangepicker", function (e, picker) {
-            picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
+            picker.element.val(picker.startDate.format(picker.locale.format));
             picker.element.valid();
         });
-        var drp = $('#fecha').data('daterangepicker');
 
 
 
@@ -225,6 +224,13 @@
                     </div>
 
 
+                    <div class="form-group">
+                        <label class="control-label" for="fecha">Fecha cierre</label>
+                        <div class="inner-addon right-addon">
+                            <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php //print $view->empleado->getFechaBaja() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </div>
+                    </div>
 
 
 
