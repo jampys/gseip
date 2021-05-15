@@ -96,7 +96,11 @@ join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select * from nc_no_conformidad where id_no_conformidad = :nro";
+            $query="select nc.id_no_conformidad, nc.nombre, nc.tipo, nc.analisis_causa, nc.tipo_accion, nc.descripcion,
+                    nc.accion_inmediata, nc.analisis_causa_desc, nc.id_responsable_seguimiento,
+                    DATE_FORMAT(fecha_cierre, '%d/%m/%Y') as fecha_cierre
+                    from nc_no_conformidad nc
+                    where id_no_conformidad = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
