@@ -15,6 +15,7 @@
         moment.locale('es');
         $('#fecha_cierre').daterangepicker({
             parentEl: '#myModal #no_conformidad_form',
+            drops: 'auto',
             singleDatePicker: true,
             showDropdowns: true,
             autoApply: true,
@@ -45,8 +46,7 @@
                 params.tipo_accion = $('#tipo_accion').val();
                 params.accion = $('#accion').val();
                 params.id_responsable_seguimiento = $('#id_responsable_seguimiento').val();
-                //params.fecha_emision = drp.startDate.format('DD/MM/YYYY');
-                //params.fecha_vencimiento = drp.endDate.format('DD/MM/YYYY');
+                params.fecha_cierre=$('#fecha_cierre').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.id_grupo = $('#id_empleado option:selected').attr('id_grupo');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
@@ -227,7 +227,7 @@
                     <div class="form-group">
                         <label class="control-label" for="fecha">Fecha cierre</label>
                         <div class="inner-addon right-addon">
-                            <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php //print $view->empleado->getFechaBaja() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->no_conformidad->getFechaCierre() ?>" placeholder="DD/MM/AAAA" readonly>
                             <i class="glyphicon glyphicon-calendar"></i>
                         </div>
                     </div>
