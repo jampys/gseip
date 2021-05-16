@@ -36,7 +36,7 @@
                 <thead>
                 <tr>
                     <th>Acción</th>
-                    <th>User</th>
+                    <th>Usr.</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -44,7 +44,8 @@
                 <?php foreach ($view->acciones as $ve): ?>
                     <tr data-id="<?php echo $ve['id_accion']; ?>">
                         <td><?php echo $ve['accion']; ?></td>
-                        <td><?php echo $ve['user']; ?></td>
+                        <td><?php $arr = explode("@", $ve['user'], 2);
+                            echo $arr[0];?></td>
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);" title="ver">
