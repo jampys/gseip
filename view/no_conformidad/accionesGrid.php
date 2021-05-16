@@ -4,16 +4,16 @@
     $(document).ready(function(){
 
         var t = $('#table-vehiculos').DataTable({
-            //responsive: true,
+            responsive: true,
             sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
-            //order: [[3, "asc"], [1, "asc"]], // 3=fecha_hasta, 1=certif
+            order: [[3, "asc"], [1, "asc"]], // 3=fecha_hasta, 1=certif
             columnDefs: [
-                //{ responsivePriority: 1, targets: 4 }
+                { responsivePriority: 1, targets: 4 }
             ]
         });
 
@@ -36,6 +36,7 @@
                 <thead>
                 <tr>
                     <th>Acción</th>
+                    <th>User</th>
                     <th></th>
                 </tr>
                 </thead>
