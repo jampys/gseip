@@ -40,6 +40,9 @@ class Accion
     function setIdNoConformidad($val)
     {  $this->id_no_conformidad=$val;}
 
+    function setAccion($val)
+    {  $this->accion=$val;}
+
     function setIdResponsableEjecucion($val)
     { $this->id_responsable_ejecucion=$val;}
 
@@ -57,55 +60,48 @@ class Accion
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_etapa, id_postulacion,
-                      DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      DATE_FORMAT(fecha_etapa, '%d/%m/%Y') as fecha_etapa,
-                      etapa, aplica, motivo, modo_contacto, comentarios, id_user
-                      from sel_etapas
-                      where id_etapa = :nro";
+            $query = "select id_accion, id_no_conformidad, accion, id_responsable_ejecucion,
+                      DATE_FORMAT(fecha_implementacion, '%d/%m/%Y') as fecha_implementacion,
+                      id_user,
+                      DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
+                      from nc_accion
+                      where id_accion = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdEtapa($rows[0]['id_etapa']);
-            $this->setIdPostulacion($rows[0]['id_postulacion']);
-            $this->setFecha($rows[0]['fecha']);
-            $this->setFechaEtapa($rows[0]['fecha_etapa']);
-            $this->setEtapa($rows[0]['etapa']);
-            $this->setAplica($rows[0]['aplica']);
-            $this->setMotivo($rows[0]['motivo']);
-            $this->setModoContacto($rows[0]['modo_contacto']);
-            $this->setComentarios($rows[0]['comentarios']);
+            $this->setIdAccion($rows[0]['id_accion']);
+            $this->setIdNoConformidad($rows[0]['id_no_conformidad']);
+            $this->setAccion($rows[0]['accion']);
+            $this->setIdResponsableEjecucion($rows[0]['id_responsable_ejecucion']);
+            $this->setFechaImplementacion($rows[0]['fecha_implementacion']);
             $this->setIdUser($rows[0]['id_user']);
+            $this->setCreatedDate($rows[0]['created_date']);
         }
     }
 
 
-    public static function getEtapas($id_postulacion) { //ok
+    public static function getAcciones($id_no_conformidad) { //ok
         $stmt=new sQuery();
-        $query = "select et.id_etapa, et.id_postulacion,
-                  DATE_FORMAT(et.fecha, '%d/%m/%Y') as fecha,
-                  DATE_FORMAT(et.fecha_etapa, '%d/%m/%y') as fecha_etapa,
-                  et.etapa, et.aplica, et.motivo, et.modo_contacto, et.comentarios, et.id_user,
+        $query = "select ac.id_accion, ac.id_no_conformidad, ac.accion, ac.id_responsable_ejecucion,
+                  DATE_FORMAT(ac.fecha_implementacion, '%d/%m/%Y') as fecha_implementacion,
+                  DATE_FORMAT(ac.created_date, '%d/%m/%y') as created_date,
+                  ac.id_user,
                   us.user
-                  from sel_etapas et
-                  join sec_users us on et.id_user = us.id_user
-                  where et.id_postulacion = :id_postulacion
-                  order by et.fecha_etapa asc";
+                  from nc_accion ac
+                  join sec_users us on ac.id_user = us.id_user
+                  where ac.id_no_conformidad = :id_postulacion
+                  order by ac.fecha_implementacion asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_postulacion', $id_postulacion);
-        //$stmt->dpBind(':id_grupo', $id_grupo);
-        //$stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
-        //$stmt->dpBind(':renovado', $renovado);
+        $stmt->dpBind(':id_no_conformidad', $id_no_conformidad);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
 
 
-    function save(){ //ok
+    function save(){
         if($this->id_etapa)
         {$rta = $this->updateEtapa();}
         else
@@ -114,7 +110,7 @@ class Accion
     }
 
 
-    public function updateEtapa(){ //ok
+    public function updateEtapa(){
         $stmt=new sQuery();
         $query="update sel_etapas set fecha_etapa = STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'),
                 etapa = :etapa,
@@ -136,7 +132,7 @@ class Accion
 
     }
 
-    private function insertEtapa(){ //ok
+    private function insertEtapa(){
         $stmt=new sQuery();
         $query="insert into sel_etapas(id_postulacion, fecha, fecha_etapa, etapa, aplica, motivo , modo_contacto, comentarios, id_user)
                 values(:id_postulacion, sysdate(), STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'), :etapa, :aplica, :motivo, :modo_contacto, :comentarios, :id_user)";
@@ -154,97 +150,13 @@ class Accion
 
     }
 
-    function deleteEtapa(){ //ok
+    function deleteEtapa(){
         $stmt=new sQuery();
         $query="delete from sel_etapas where id_etapa = :id_etapa";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_etapa', $this->getIdEtapa());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
-    }
-
-
-
-    public static function uploadsUpload($directory, $name, $id_postulante){
-        $stmt=new sQuery();
-        $query="insert into uploads_postulante(directory, name, fecha, id_postulante)
-                values(:directory, :name, date(sysdate()), :id_postulante)";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':directory', $directory);
-        $stmt->dpBind(':name', $name);
-        $stmt->dpBind(':id_postulante', $id_postulante);
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-    }
-
-
-
-    public static function uploadsLoad($id_postulante) {
-        $stmt=new sQuery();
-        $query = "select id_upload, directory, name, DATE_FORMAT(fecha,'%d/%m/%Y') as fecha, id_postulante
-                from uploads_postulante
-                where id_postulante = :id_postulante
-                order by fecha asc";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_postulante', $id_postulante);
-        $stmt->dpExecute();
-        return $stmt->dpFetchAll();
-    }
-
-    public static function uploadsDelete($name){
-        $stmt=new sQuery();
-        $query="delete from uploads_postulante where name =:name";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':name', $name);
-        $stmt->dpExecute();
-        return $stmt->dpGetAffect();
-    }
-
-
-    public function checkDni($dni, $id_postulante) {
-        $stmt=new sQuery();
-        $query = "select *
-                  from sel_postulantes
-                  where dni = :dni
-                  and id_postulante <> :id_postulante";
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':dni', $dni);
-        $stmt->dpBind(':id_postulante', $id_postulante);
-        $stmt->dpExecute();
-        return $output = ($stmt->dpGetAffect()==0)? true : false;
-    }
-
-    public function checkFechaVencimiento($fecha_emision, $fecha_vencimiento, $id_empleado, $id_grupo, $id_vencimiento, $id_renovacion) {
-        $stmt=new sQuery();
-        $query = "select *
-                  from vto_renovacion_p
-                  where
-                  ( -- renovar: busca renovacion vigente y se asegura que la fecha_vencimiento ingresada sea mayor que la de ésta
-                  :id_renovacion is null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
-                  )
-                  OR
-                  ( -- editar: busca renovacion anterior y ....
-                  :id_renovacion is not null
-                  and (id_empleado = :id_empleado or id_grupo = :id_grupo)
-				  and id_vencimiento = :id_vencimiento
-                  and fecha_vencimiento >= STR_TO_DATE(:fecha_vencimiento, '%d/%m/%Y')
-                  and id_renovacion <> :id_renovacion
-                  )
-                  order by fecha_emision asc
-                  limit 1";
-
-        $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_renovacion', $id_renovacion);
-        $stmt->dpBind(':fecha_emision', $fecha_emision);
-        $stmt->dpBind(':fecha_vencimiento', $fecha_vencimiento);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':id_grupo', $id_grupo);
-        $stmt->dpBind(':id_vencimiento', $id_vencimiento);
-        $stmt->dpExecute();
-        return $output = ($stmt->dpGetAffect()==0)? true : false;
     }
 
 
