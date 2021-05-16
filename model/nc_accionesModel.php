@@ -91,7 +91,7 @@ class Accion
                   us.user
                   from nc_accion ac
                   join sec_users us on ac.id_user = us.id_user
-                  where ac.id_no_conformidad = :id_postulacion
+                  where ac.id_no_conformidad = :id_no_conformidad
                   order by ac.fecha_implementacion asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_no_conformidad', $id_no_conformidad);

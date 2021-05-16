@@ -76,7 +76,7 @@
 
     <br/>
     <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> La flota no tiene vehículos registrados.
+        <i class="fas fa-exclamation-triangle fa-fw"></i> La No conformidad no tiene acciones registradas.
     </div>
 
 <?php } ?>

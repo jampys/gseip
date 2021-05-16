@@ -1,5 +1,5 @@
 ﻿<?php
-include_once("model/etapasModel.php");
+include_once("model/nc_accionesModel.php");
 
 include_once("model/puestosModel.php");
 include_once("model/localidadesModel.php");
@@ -97,11 +97,11 @@ switch ($operation)
 
     default : //carga la tabla de acciones de la No conformidad //ok
         $view->label='Acciones de la No conformidad';
-        $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
+        $view->acciones = Accion::getAcciones($_POST['id_no_conformidad']);
         //$view->localidades = Localidad::getLocalidades();
         //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
         $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/etapasForm.php";
+        $view->contentTemplate="view/no_conformidad/accionesForm.php";
         break;
 }
 
