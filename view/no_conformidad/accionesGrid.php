@@ -29,8 +29,7 @@
 
 
 <?php if(isset($view->acciones) && sizeof($view->acciones) > 0) {?>
-
-    <br/>
+    
     <div id="empleados-table">
             <table id="table-vehiculos" class="table table-condensed dpTable table-hover dt-responsive nowrap">
                 <thead>
