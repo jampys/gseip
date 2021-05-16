@@ -4,16 +4,16 @@
     $(document).ready(function(){
 
         var t = $('#table-vehiculos').DataTable({
-            responsive: true,
+            //responsive: true,
             sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
-            order: [[3, "asc"], [1, "asc"]], // 3=fecha_hasta, 1=certif
+            //order: [[3, "asc"], [1, "asc"]], // 3=fecha_hasta, 1=certif
             columnDefs: [
-                { responsivePriority: 1, targets: 4 }
+                //{ responsivePriority: 1, targets: 4 }
             ]
         });
 
@@ -28,27 +28,22 @@
 </script>
 
 
-<?php if(isset($view->vehiculos) && sizeof($view->vehiculos) > 0) {?>
+<?php if(isset($view->acciones) && sizeof($view->acciones) > 0) {?>
 
     <br/>
     <div id="empleados-table">
             <table id="table-vehiculos" class="table table-condensed dpTable table-hover dt-responsive nowrap">
                 <thead>
                 <tr>
-                    <th>Vehículo</th>
-                    <th>Certif.</th>
-                    <th>F. desde</th>
-                    <th>F. hasta</th>
+                    <th>Acción</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($view->vehiculos as $ve): ?>
-                    <tr data-id="<?php echo $ve['id_grupo_vehiculo']; ?>">
-                        <td><span class="label label-primary" style="font-weight: normal"><?php echo $ve['matricula']; ?></span> <?php echo ($ve['nro_movil'])? '<span class="label label-default" style="font-weight: normal">'.$ve['nro_movil'].'</span>' : '' ?></td>
-                        <td><?php echo $ve['certificado']; ?></td>
-                        <td><?php echo $ve['fecha_desde']; ?></td>
-                        <td><?php echo $ve['fecha_hasta']; ?></td>
+                <?php foreach ($view->acciones as $ve): ?>
+                    <tr data-id="<?php echo $ve['id_accion']; ?>">
+                        <td><?php echo $ve['accion']; ?></td>
+                        <td><?php echo $ve['user']; ?></td>
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);" title="ver">
