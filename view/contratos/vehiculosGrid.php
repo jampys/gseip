@@ -9,14 +9,13 @@
             //deferRender:    true,
             scrollY:        150,
             scrollCollapse: true,
-            scroller:       true
-            /*"columnDefs": [
-                {"width": "30%", "targets": 0}, //empleado
-                {"width": "55%", "targets": 1}, //puesto
-                {"width": "5%", "targets": 2}, //ver
-                {"width": "5%", "targets": 3}, //editar
-                {"width": "5%", "targets": 4} //eliminar
-            ]*/
+            scroller:       true,
+            order: [[2, "asc"], [1, "asc"] ], //fecha_desde, fecha_hasta
+            columnDefs: [
+                {targets: 3, responsivePriority: 1, sortable: false },//botones
+                {targets: 1, type: 'date-uk'}, //fecha_desde
+                {targets: 2, type: 'date-uk'} //fecha_hasta
+            ]
 
         });
 
