@@ -12,8 +12,11 @@
                 $(this).show();
             },
             "stateSave": true,
+            "order": [[5, "asc"], [0, "asc"]], //5=fecha_baja, 0=legajo
             columnDefs: [
-                { responsivePriority: 1, targets: 7 } //action buttons
+                { responsivePriority: 1, targets: 7 }, //action buttons
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 0 ]}, //fecha_alta
+                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 0 ]} //fecha_baja
             ]
         });
 
