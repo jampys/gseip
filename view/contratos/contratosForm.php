@@ -449,13 +449,13 @@
             <div class="row">
                 <div class="form-group col-md-6 required">
                     <label for="compania" class="control-label">Compañía</label>
-                    <select class="form-control selectpicker show-tick" id="compania" name="compania" title="Seleccione la compañía">
+                    <select class="form-control selectpicker show-tick" id="compania" name="compania" data-live-search="true" data-size="5" title="Seleccione la compañía">
                         <?php foreach ($view->companias as $cia){
                             ?>
                             <option value="<?php echo $cia['id_compania']; ?>"
                                 <?php echo ($cia['id_compania'] == $view->contrato->getIdCompania())? 'selected' :'' ?>
                                 >
-                                <?php echo $cia['nombre'];?>
+                                <?php echo $cia['razon_social'];?>
                             </option>
                         <?php  } ?>
                     </select>
