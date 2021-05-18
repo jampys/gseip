@@ -206,7 +206,7 @@
                                     <option value="<?php echo $cia['id_compania']; ?>"
                                         <?php echo ($cia['id_compania'] == $view->vehiculo->getPropietario())? 'selected' :'' ?>
                                         >
-                                        <?php echo $cia['nombre'];?>
+                                        <?php echo $cia['razon_social'];?>
                                     </option>
                                 <?php  } ?>
                             </select>
