@@ -11,8 +11,11 @@
             "fnInitComplete": function () {
                 $(this).show(); },
             "stateSave": true,
+            "order": [[5, "desc"], [4, "desc"]], //5=fecha_hasta, 0=fecha_hasta
             columnDefs: [
-                { responsivePriority: 1, targets: 6 }
+                { responsivePriority: 1, targets: 6 },
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 0 ]}, //fecha_desde
+                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 0 ]} //fecha_hasta
             ]
         });
 
