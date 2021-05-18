@@ -196,7 +196,7 @@ class Empleado
 
     public static function getEmpleados() {
         $stmt=new sQuery();
-        $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
+        /*$query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
                       DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
                       DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
                       DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
@@ -207,6 +207,20 @@ class Empleado
                       where em.id_empleado = dp.id_empleado
                       and dp.fecha_hasta is null
                       and dp.id_localidad = loc.id_localidad
+                      order by em.apellido, em.nombre";*/
+        $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
+                      DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
+                      DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
+                      DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
+                      em.telefono, em.email, em.empresa,
+                      em.sexo, em.nacionalidad, em.estado_civil, em.CPA,
+                      loc.ciudad,
+                      co.codigo as convenio
+                      from v_sec_empleados em
+                      left join domicilios_particulares dp on em.id_empleado = dp.id_empleado
+                      left join localidades loc on loc.id_localidad = dp.id_localidad
+                      left join nov_convenios co on co.id_convenio = em.id_convenio
+                      where dp.fecha_hasta is null
                       order by em.apellido, em.nombre";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
