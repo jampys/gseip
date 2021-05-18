@@ -11,9 +11,9 @@
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
-            order: [[3, "asc"], [1, "asc"]], // 3=fecha_hasta, 1=certif
+            //order: [[1, "asc"], [2, "asc"]], // 3=fecha_hasta, 1=certif
             columnDefs: [
-                { responsivePriority: 1, targets: 4 }
+                { responsivePriority: 1, targets: 2 }
             ]
         });
 
