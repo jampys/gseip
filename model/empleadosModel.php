@@ -153,18 +153,6 @@ class Empleado
         if ($id_empleado!= 0){
 
             $stmt=new sQuery();
-            /*$query="select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
-                    DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
-                    DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
-                    DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
-                    em.telefono, em.email, em.empresa,
-                    em.sexo, em.nacionalidad, em.estado_civil,
-                    dp.direccion, dp.id_localidad, domain
-                    from empleados em
-                    left join v_sec_domains vsd on em.id_object = vsd.id_object
-                    join domicilios_particulares dp on em.id_empleado = dp.id_empleado
-                    where dp.fecha_hasta is null
-                    and em.id_empleado = :id_empleado";*/
             $query="select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
                     DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
                     DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
