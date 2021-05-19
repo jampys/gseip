@@ -5,7 +5,7 @@
 
         var t = $('#table-vehiculos').DataTable({
             responsive: true,
-            sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
+            sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
             scrollY:        150,
