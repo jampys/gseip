@@ -101,16 +101,16 @@ class Accion
 
 
 
-    function save(){
-        if($this->id_etapa)
-        {$rta = $this->updateEtapa();}
+    function save(){ //ok
+        if($this->id_accion)
+        {$rta = $this->updateAccion();}
         else
-        {$rta =$this->insertEtapa();}
+        {$rta =$this->insertAccion();}
         return $rta;
     }
 
 
-    public function updateEtapa(){
+    public function updateAccion(){
         $stmt=new sQuery();
         $query="update sel_etapas set fecha_etapa = STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'),
                 etapa = :etapa,
@@ -132,7 +132,7 @@ class Accion
 
     }
 
-    private function insertEtapa(){
+    private function insertAccion(){
         $stmt=new sQuery();
         $query="insert into sel_etapas(id_postulacion, fecha, fecha_etapa, etapa, aplica, motivo , modo_contacto, comentarios, id_user)
                 values(:id_postulacion, sysdate(), STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'), :etapa, :aplica, :motivo, :modo_contacto, :comentarios, :id_user)";
@@ -150,7 +150,7 @@ class Accion
 
     }
 
-    function deleteEtapa(){
+    function deleteAccion(){
         $stmt=new sQuery();
         $query="delete from sel_etapas where id_etapa = :id_etapa";
         $stmt->dpPrepare($query);
