@@ -73,27 +73,21 @@
             if ($("#etapa-form").valid()){
 
                 var params={};
-                params.action = 'etapas';
-                params.operation = 'saveEtapa';
-                params.id_etapa = $('#id_etapa').val();
-                params.id_postulacion = $('#id_postulacion').val();
-                params.fecha_etapa = $('#fecha_etapa').val();
-                params.etapa = $('#etapa').val();
-                params.aplica = $('input[name=aplica]:checked').val();
-                params.motivo = $('#motivo').val();
-                params.modo_contacto = $('#modo_contacto').val();
-                params.comentarios = $('#comentarios').val();
-                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                params.action = 'nc_acciones';
+                params.operation = 'saveAccion';
+                params.id_accion = $('#id_accion').val();
+                params.id_no_conformidad = $('#id_no_conformidad').val();
+                params.accion = $('#accion').val();
+                params.id_responsable_ejecucion = $('#id_responsable_ejecucion').val();
+                params.fecha_implementacion = $('#fecha_implementacion').val();
                 //alert(params.aplica);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Etapa guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Acción guardada con exito').addClass('alert alert-success').show();
                         $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
