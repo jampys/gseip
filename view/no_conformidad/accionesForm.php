@@ -88,7 +88,7 @@
                     if(data >=0){
                         $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Acción guardada con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                        $('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
@@ -98,7 +98,7 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar la etapa').addClass('alert alert-danger').show();
+                    $("#myElem").html('Error al guardar la acción').addClass('alert alert-danger').show();
                 });
 
             }
