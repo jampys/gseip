@@ -53,19 +53,15 @@ switch ($operation)
         $view->contentTemplate="view/no_conformidad/accion_detailForm.php";
         break;
 
-    case 'editEtapa':
-        $view->label = ($_POST['target']!='view')? 'Editar etapa': 'Ver etapa';
-        $view->etapa = new Etapa($_POST['id_etapa']);
+    case 'editAccion': //ok
+        $view->label = ($_POST['target']!='view')? 'Editar acción': 'Ver acción';
+        $view->accion = new Accion($_POST['id_accion']);
 
-        //$view->puestos = Puesto::getPuestos();
-        $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
-        $view->motivos = Soporte::get_enum_values('sel_etapas', 'motivo');
-        $view->modos_contacto = Soporte::get_enum_values('sel_etapas', 'modo_contacto');
-        $view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
+        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
+        $view->contentTemplate="view/no_conformidad/accion_detailForm.php";
         break;
 
     case 'deleteEtapa':

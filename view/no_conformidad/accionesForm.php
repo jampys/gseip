@@ -17,9 +17,9 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.id_accion = id;
+            params.action = "nc_acciones";
+            params.operation = "editAccion";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -34,9 +34,9 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.id_accion = id;
+            params.action = "nc_acciones";
+            params.operation = "editAccion";
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
@@ -169,7 +169,7 @@
 
 
         //evento al salir o cerrar con la x el modal de acciones
-        $("#myModal").on("hidden.bs.modal", function () {
+        $("#myModal").on("hidden.bs.modal", function () { //ok
             //alert('salir de etapas');
             $("#search").trigger("click");
         });
