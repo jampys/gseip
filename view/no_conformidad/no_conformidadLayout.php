@@ -15,18 +15,37 @@
             $('.selectpicker').selectpicker();
 
 
+            moment.locale('es');
+            $('#search_fecha').daterangepicker({
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment().add(12, 'months'),
+                locale: {
+                    format: 'DD/MM/YYYY',
+                    "applyLabel": "Aplicar",
+                    "cancelLabel": "Cancelar",
+                    "customRangeLabel": "Rango personalizado"
+                },
+                ranges: {
+                    'Últimos 30 dias': [moment().subtract(29, 'days'), moment()],
+                    'Últimos 6 meses': [moment().subtract(6, 'months'), moment()],
+                    'Último año': [moment().subtract(1, 'year'), moment()],
+                    'Últimos 5 años': [moment().subtract(5, 'years'), moment()]
+                }
+            }, function(start, end) {
+                $('#search_fecha span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            });
+
+            var drp = $('#search_fecha').data('daterangepicker');
+
+
             $(document).on('click', '#search', function(){
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
-                //preparo los parametros
                 params={};
-                params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-                params.id_grupo = $('#search_empleado option:selected').attr('id_grupo');
-                //params.id_vencimiento = $("#search_vencimiento").val();
-                params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                params.id_contrato = $("#search_contrato").val();
-                params.id_subcontratista = $("#search_subcontratista").val();
-                params.renovado = $('#search_renovado').prop('checked')? 1:0;
+                params.search_fecha_desde = drp.startDate.format('DD/MM/YYYY');
+                params.search_fecha_hasta = drp.endDate.format('DD/MM/YYYY');
+                params.id_subcontratista = $("#search_responsable_ejecucion").val();
+                //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "nc_no_conformidad";
                 params.operation = "refreshGrid";
                 //alert(params.id_grupo);
@@ -195,60 +214,38 @@
                     <div class="row">
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_empleado" class="control-label">Empleado / Grupo</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un empleado o grupo</option>
-                                <?php foreach ($view->empleadosGrupos as $eg){
+                            <!--<label for="search_vencimiento" class="control-label">Buscar partes</label>-->
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="search_fecha" id="search_fecha" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-3">
+                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
+                            <select id="search_responsable_ejecucion" name="search_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un responsable ejecución</option>
+                                <?php foreach ($view->empleados as $em){
                                     ?>
-                                    <option value=""
-                                            id_empleado="<?php echo $eg['id_empleado']; ?>"
-                                            id_grupo="<?php echo $eg['id_grupo']; ?>"
-                                            data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
+                                    <option value="<?php echo $em['id_empleado']; ?>"
+                                        <?php //echo ($em['id_empleado'] == $view->objetivo->getIdResponsableEjecucion())? 'selected' :'' ?>
                                         >
-                                        <?php echo $eg['descripcion'] ;?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
-                            <select multiple class="form-control selectpicker show-tick" id="search_vencimiento" name="search_vencimiento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5" title="Seleccione un vencimiento">
-                                <!--<option value="">Seleccione un vencimiento</option>-->
-                                <?php foreach ($view->vencimientos as $vto){
-                                    ?>
-                                    <option value="<?php echo $vto['id_vencimiento']; ?>" >
-                                        <?php echo $vto['nombre'] ;?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            <!--<label for="search_vencimiento" class="control-label">Contrato</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un contrato</option>
-                                <?php foreach ($view->contratos as $con){
-                                    ?>
-                                    <option value="<?php echo $con['id_contrato']; ?>" >
-                                        <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
                                     </option>
                                 <?php  } ?>
                             </select>
                         </div>
 
 
-                        <div class="form-group col-md-1">
-                        </div>
-
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-2">
                             <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                                 <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
                             </button>
                         </div>
 
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-2">
                             <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" title="Nueva no conformidad" id="new" <?php echo ( PrivilegedUser::dhasAction('RPE_INSERT', array(1)) )? '' : 'disabled' ?>>
                                 <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
