@@ -1,9 +1,7 @@
 ﻿<?php
 
-include_once("model/vto_renovacionesPersonalModel.php");
-include_once("model/vto_vencimientosPersonalModel.php");
+include_once("model/empleadosModel.php");
 include_once("model/contratosModel.php");
-include_once("model/subcontratistasModel.php");
 include_once("model/nc_no_conformidadModel.php");
 
 $operation = "";
@@ -83,11 +81,8 @@ switch ($operation)
         die;
         break;
 
-    default :
+    default : //ok
         $view->empleados = Empleado::getEmpleadosActivos(null);
-        $view->vencimientos = VencimientoPersonal::getVencimientosPersonal(); //carga el combo para filtrar vencimientos
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
-        $view->subcontratistas = Subcontratista::getSubcontratistas(); //carga el combo para filtrar subcontratistas
         $view->contentTemplate="view/no_conformidad/no_conformidadGrid.php";
         break;
 }
