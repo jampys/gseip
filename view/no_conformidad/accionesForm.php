@@ -49,11 +49,11 @@
 
 
 
-        //Abre formulario para ingresar nueva etapa
+        //Abre formulario para ingresar nueva accion
         $('#etapas_left_side').on('click', '#add', function(){
             params={};
-            params.action = "etapas";
-            params.operation = "newEtapa";
+            params.action = "nc_acciones";
+            params.operation = "newAccion";
             params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){

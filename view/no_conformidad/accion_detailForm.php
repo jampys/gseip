@@ -14,7 +14,7 @@
 
 
         moment.locale('es');
-        $('#fecha_etapa').daterangepicker({
+        $('#fecha_implementacion').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             autoApply: true,
@@ -84,13 +84,13 @@
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_etapa" id="id_etapa" value="<?php print $view->etapa->getIdEtapa() ?>">
-    <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->etapa->getIdPostulacion() ?>">
+    <input type="hidden" name="id_accion" id="id_accion" value="<?php print $view->accion->getIdAccion() ?>">
+    <input type="hidden" name="id_no_conformidad" id="id_no_conformidad" value="<?php print $view->accion->getIdNoConformidad() ?>">
 
     <div class="form-group required">
-        <label class="control-label" for="fecha_etapa">Fecha etapa</label>
+        <label class="control-label" for="fecha_etapa">Fecha implementación</label>
         <div class="inner-addon right-addon">
-            <input class="form-control" type="text" name="fecha_etapa" id="fecha_etapa" value = "<?php print $view->etapa->getFechaEtapa() ?>" placeholder="DD/MM/AAAA" readonly>
+            <input class="form-control" type="text" name="fecha_implementacion" id="fecha_implementacion" value = "<?php print $view->accion->getFechaImplementacion() ?>" placeholder="DD/MM/AAAA" readonly>
             <i class="glyphicon glyphicon-calendar"></i>
         </div>
     </div>
