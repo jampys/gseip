@@ -38,7 +38,7 @@
             var drp = $('#search_fecha').data('daterangepicker');
 
 
-            $(document).on('click', '#search', function(){
+            $(document).on('click', '#search', function(){ //ok
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 params={};
