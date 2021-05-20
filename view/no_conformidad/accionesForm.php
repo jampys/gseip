@@ -12,7 +12,7 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){
+        $('#etapas_left_side').on('click', '.edit', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -29,7 +29,7 @@
             })
         });
 
-        $('#etapas_left_side').on('click', '.view', function(){
+        $('#etapas_left_side').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -50,16 +50,16 @@
 
 
         //Abre formulario para ingresar nueva accion
-        $('#etapas_left_side').on('click', '#add', function(){
+        $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
             params.action = "nc_acciones";
             params.operation = "newAccion";
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
+            params.id_no_conformidad = $('#etapas_left_side #add').attr('id_no_conformidad');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_postulacion').val(params.id_postulacion);
+                $('#id_no_conformidad').val(params.id_no_conformidad);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })

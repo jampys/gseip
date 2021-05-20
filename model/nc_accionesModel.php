@@ -110,51 +110,42 @@ class Accion
     }
 
 
-    public function updateAccion(){
+    public function updateAccion(){ //ok
         $stmt=new sQuery();
-        $query="update sel_etapas set fecha_etapa = STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'),
-                etapa = :etapa,
-                aplica = :aplica,
-                motivo = :motivo,
-                modo_contacto = :modo_contacto,
-                comentarios = :comentarios
-                where id_etapa = :id_etapa";
+        $query="update nc_accion set accion= :accion,
+                id_responsable_ejecucion = :id_responsable_ejecucion,
+                fecha_implementacion = STR_TO_DATE(:fecha_implementacion, '%d/%m/%Y')
+                where id_accion = :id_accion";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':fecha_etapa', $this->getFechaEtapa());
-        $stmt->dpBind(':etapa', $this->getEtapa());
-        $stmt->dpBind(':aplica', $this->getAplica());
-        $stmt->dpBind(':motivo', $this->getMotivo());
-        $stmt->dpBind(':modo_contacto', $this->getModoContacto());
-        $stmt->dpBind(':comentarios', $this->getComentarios());
-        $stmt->dpBind(':id_etapa', $this->getIdEtapa());
+        $stmt->dpBind(':accion', $this->getAccion());
+        $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
+        $stmt->dpBind(':fecha_implementacion', $this->getFechaImplementacion());
+        $stmt->dpBind(':id_accion', $this->getIdAccion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    private function insertAccion(){
+    private function insertAccion(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_etapas(id_postulacion, fecha, fecha_etapa, etapa, aplica, motivo , modo_contacto, comentarios, id_user)
-                values(:id_postulacion, sysdate(), STR_TO_DATE(:fecha_etapa, '%d/%m/%Y'), :etapa, :aplica, :motivo, :modo_contacto, :comentarios, :id_user)";
+        $query="insert into nc_accion(id_no_conformidad, accion, id_responsable_ejecucion, fecha_implementacion, id_user, created_date)
+                values(:id_no_conformidad, :accion, :id_responsable_ejecucion, STR_TO_DATE(:fecha_implementacion, '%d/%m/%Y'), :id_user, sysdate())";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_postulacion', $this->getIdPostulacion());
-        $stmt->dpBind(':fecha_etapa', $this->getFechaEtapa());
-        $stmt->dpBind(':etapa', $this->getEtapa());
-        $stmt->dpBind(':aplica', $this->getAplica());
-        $stmt->dpBind(':motivo', $this->getMotivo());
-        $stmt->dpBind(':modo_contacto', $this->getModoContacto());
-        $stmt->dpBind(':comentarios', $this->getComentarios());
+        $stmt->dpBind(':id_no_conformidad', $this->getIdNoConformidad());
+        $stmt->dpBind(':accion', $this->getAccion());
+        $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
+        $stmt->dpBind(':fecha_implementacion', $this->getFechaImplementacion());
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    function deleteAccion(){
+    function deleteAccion(){ //ok
         $stmt=new sQuery();
-        $query="delete from sel_etapas where id_etapa = :id_etapa";
+        $query="delete from nc_accion where id_accion = :id_accion";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_etapa', $this->getIdEtapa());
+        $stmt->dpBind(':id_accion', $this->getIdAccion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
