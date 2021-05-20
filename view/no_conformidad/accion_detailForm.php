@@ -87,42 +87,16 @@
     <input type="hidden" name="id_accion" id="id_accion" value="<?php print $view->accion->getIdAccion() ?>">
     <input type="hidden" name="id_no_conformidad" id="id_no_conformidad" value="<?php print $view->accion->getIdNoConformidad() ?>">
 
+        <div class="form-group">
+            <label class="control-label" for="accion">Acción</label>
+            <textarea class="form-control" name="accion" id="accion" placeholder="Descripción de la acción" rows="3"><?php print $view->accion->getAccion(); ?></textarea>
+        </div>
+
     <div class="form-group required">
-        <label class="control-label" for="fecha_etapa">Fecha implementación</label>
+        <label class="control-label" for="fecha_implementacion">Fecha implementación</label>
         <div class="inner-addon right-addon">
             <input class="form-control" type="text" name="fecha_implementacion" id="fecha_implementacion" value = "<?php print $view->accion->getFechaImplementacion() ?>" placeholder="DD/MM/AAAA" readonly>
             <i class="glyphicon glyphicon-calendar"></i>
-        </div>
-    </div>
-
-    <div class="form-group required">
-        <label for="etapa" class="control-label">Etapa</label>
-        <select class="form-control selectpicker show-tick" id="etapa" name="etapa" title="Seleccione la etapa"  data-live-search="true" data-size="5">
-            <?php foreach ($view->etapas['enum'] as $et){
-                ?>
-                <option value="<?php echo $et; ?>"
-                    <?php echo ($et == $view->etapa->getEtapa() OR ($et == $view->etapas['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
-                    >
-                    <?php echo $et; ?>
-                </option>
-            <?php  } ?>
-        </select>
-    </div>
-
-
-    <div class="form-group required">
-        <label for="aplica" class="control-label">Aplica</label>
-
-        <div class="input-group">
-
-            <?php foreach($view->aplica_opts['enum'] as $val){ ?>
-                <label class="radio-inline">
-                    <input type="radio" name="aplica" value="<?php echo $val ?>"
-                        <?php echo ($val == $view->etapa->getAplica() OR ($val == $view->aplica_opts['default'] AND !$view->etapa->getIdEtapa()))? 'checked' :'' ?>
-                        ><?php echo ($val==1)? 'Si':'No' ?>
-                </label>
-            <?php } ?>
-
         </div>
     </div>
 
@@ -142,40 +116,6 @@
         </div>
 
 
-
-    <div class="form-group required">
-        <label for="motivo" class="control-label">Motivo</label>
-        <select class="form-control selectpicker show-tick" id="motivo" name="motivo" title="Seleccione el motivo"  data-live-search="true" data-size="5">
-            <?php foreach ($view->motivos['enum'] as $mo){
-                ?>
-                <option value="<?php echo $mo; ?>"
-                    <?php echo ($mo == $view->etapa->getMotivo() OR ($mo == $view->motivos['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
-                    >
-                    <?php echo $mo; ?>
-                </option>
-            <?php  } ?>
-        </select>
-    </div>
-
-    <div class="form-group required">
-        <label for="modo_contacto" class="control-label">Modo contacto</label>
-        <select class="form-control selectpicker show-tick" id="modo_contacto" name="modo_contacto" title="Seleccione el modo de contacto"  data-live-search="true" data-size="5">
-            <?php foreach ($view->modos_contacto['enum'] as $mc){
-                ?>
-                <option value="<?php echo $mc; ?>"
-                    <?php echo ($mc == $view->etapa->getModoContacto() OR ($mc == $view->modos_contacto['default'] AND !$view->etapa->getIdEtapa()) )? 'selected' :'' ?>
-                    >
-                    <?php echo $mc; ?>
-                </option>
-            <?php  } ?>
-        </select>
-    </div>
-
-
-    <div class="form-group">
-        <label class="control-label" for="comentarios">Comentarios</label>
-        <textarea class="form-control" name="comentarios" id="comentarios" placeholder="Comentarios" rows="3"><?php print $view->etapa->getComentarios(); ?></textarea>
-    </div>
 
 
     <div id="myElem" class="msg" style="display:none">
