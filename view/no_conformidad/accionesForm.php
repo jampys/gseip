@@ -168,7 +168,7 @@
 
 
 
-        //evento al salir o cerrar con la x el modal de etapas
+        //evento al salir o cerrar con la x el modal de acciones
         $("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
             $("#search").trigger("click");

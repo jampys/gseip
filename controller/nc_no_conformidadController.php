@@ -47,7 +47,7 @@ switch ($operation)
     case 'newNoConformidad': //ok
         $view->label='Nueva No conformidad';
         $view->no_conformidad = new NoConformidad();
-        
+
         $view->tipos = Soporte::get_enum_values('nc_no_conformidad', 'tipo');
         $view->analisis_causa = Soporte::get_enum_values('nc_no_conformidad', 'analisis_causa');
         $view->tipo_accion = Soporte::get_enum_values('nc_no_conformidad', 'tipo_accion');

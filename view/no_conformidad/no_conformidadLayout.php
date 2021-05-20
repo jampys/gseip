@@ -98,10 +98,6 @@
 
 
 
-            $(document).on('click', '#cancel',function(){ //ok
-                $('#myModal').modal('hide');
-            });
-
 
 
             var dialog;
