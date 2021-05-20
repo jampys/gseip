@@ -55,7 +55,7 @@
 
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_no_conformidad = id;
@@ -70,7 +70,7 @@
             });
 
 
-            $(document).on('click', '.view', function(){ //ok
+            $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_no_conformidad = id;
@@ -87,7 +87,7 @@
             });
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $('#content').on('click', '#new', function(){ //ok
                 params={};
                 params.action = "nc_no_conformidad";
                 params.operation="newNoConformidad";
