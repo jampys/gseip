@@ -193,7 +193,7 @@
                         <div class="col-md-6" id="etapas_left_side">
 
                             <div class="clearfix">
-                                <button class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar etapa">
+                                <button class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar acción">
                                     <span class="glyphicon glyphicon-plus dp_green"></span>
                                 </button>
                             </div>
