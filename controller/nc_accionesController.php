@@ -21,8 +21,11 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->acciones = Accion::getAcciones($_POST['id_no_conformidad']);
-        $view->contentTemplate="view/no_conformidad/accionesGrid.php";
+        $rta = $view->acciones = Accion::getAcciones($_POST['id_no_conformidad']);
+        //$view->contentTemplate="view/no_conformidad/accionesGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveAccion': //ok

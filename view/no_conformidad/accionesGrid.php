@@ -11,16 +11,28 @@
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
-            //order: [[1, "asc"], [2, "asc"]], // 3=fecha_hasta, 1=certif
-            columnDefs: [
-                { responsivePriority: 1, targets: 2 }
-            ]
+            'ajax': {
+                "type"   : "POST",
+                "url"    : 'index.php',
+                "data": function ( d ) {
+                    d.action = "nc_acciones";
+                    d.operation = "refreshGrid";
+                    d.id_no_conformidad = 1;
+                },
+                "dataSrc": ""
+            },
+            'columns': [
+                {"data" : "accion"},
+                {"data" : "user"},
+                {"data" : "user"},
+                {data: null, defaultContent: '', orderable: false}
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id_accion);
+            }
         });
 
-        setTimeout(function () { //https://datatables.net/forums/discussion/41587/scrolly-misaligned-table-headers-with-bootstrap
-            //$($.fn.dataTable.tables( true ) ).DataTable().columns.adjust().draw();
-            t.columns.adjust();
-        },200);
+
 
 
     });
@@ -39,29 +51,6 @@
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
-                <?php foreach ($view->acciones as $ve): ?>
-                    <tr data-id="<?php echo $ve['id_accion']; ?>">
-                        <td><?php echo $ve['accion']; ?></td>
-                        <td><?php $arr = explode("@", $ve['user'], 2);
-                            echo $arr[0];?></td>
-
-                        <td class="text-center">
-                            <a class="view" href="javascript:void(0);" title="ver">
-                                <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
-
-                            <a class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)))? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
-                                <span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
-
-                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
             </table>
     </div>
 
