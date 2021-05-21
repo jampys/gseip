@@ -30,6 +30,7 @@
                 $(row).attr('data-id', data.id_accion);
             },
             "columnDefs": [
+                { targets: 1, responsivePriority: 2 },
                 {
                     targets: 2,//action buttons
                     responsivePriority: 1,
