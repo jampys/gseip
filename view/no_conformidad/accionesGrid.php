@@ -28,8 +28,31 @@
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_accion);
-            }
+            },
+            "columnDefs": [
+                {
+                    targets: 2,//action buttons
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        return '<a class="view" title="Ver" href="#">'+
+                                    '<i class="far fa-eye dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>';
+                    }
+                }
+            ]
         });
+
+        setTimeout(function () {
+                    t.columns.adjust();
+        },200);
 
 
 

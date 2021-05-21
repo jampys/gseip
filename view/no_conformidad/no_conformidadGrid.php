@@ -50,7 +50,7 @@
                                 '<a class="'+permisoVerificaciones+'" href="#" title="Verificaicones">'+ //si tiene permiso para ver Verificaciones
                                     '<i class="fas fa-th-list dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a class="view" title="Ver" href="javascript:void(0);">'+
+                                '<a class="view" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
