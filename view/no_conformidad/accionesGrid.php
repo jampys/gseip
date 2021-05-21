@@ -3,7 +3,7 @@
 
     $(document).ready(function(){
 
-        var t = $('#table-vehiculos').DataTable({
+        var t = $('#table-acciones').DataTable({
             responsive: true,
             sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
@@ -66,7 +66,7 @@
 <?php if(isset($view->acciones) && sizeof($view->acciones) > 0) {?>
     
     <div id="empleados-table">
-            <table id="table-vehiculos" class="table table-condensed dpTable table-hover dt-responsive nowrap">
+            <table id="table-acciones" class="table table-condensed dpTable table-hover dt-responsive nowrap">
                 <thead>
                 <tr>
                     <th>Acción</th>

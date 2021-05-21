@@ -67,7 +67,7 @@
 
 
         //Guardar etapa luego de ingresar nueva o editar
-        $('#myModal').on('click', '#submit',function(){
+        $('#myModal').on('click', '#submit',function(){ //ok
             //alert('guardar etapa');
 
             if ($("#etapa-form").valid()){
@@ -91,7 +91,8 @@
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#etapa-form').hide();
-                                                $('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
+                                                //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
+                                                $('#table-acciones').DataTable().ajax.reload();
                                               }, 2000);
                     }
 
@@ -107,7 +108,7 @@
 
 
         var dialog;
-        $('#etapas_left_side').on('click', '.delete', function(){
+        $('#etapas_left_side').on('click', '.delete', function(){ //ok
 
             var id = $(this).closest('tr').attr('data-id');
             dialog = bootbox.dialog({
@@ -133,7 +134,7 @@
 
 
 
-        $.fn.borrar = function(id) {
+        $.fn.borrar = function(id) { //ok
             //alert(id);
             params={};
             params.id_accion = id;
@@ -148,7 +149,7 @@
                                     dialog.modal('hide');
                                     $('#etapa-form').hide();
                                     //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
-                                    $('#example').DataTable().ajax.reload();
+                                    $('#table-acciones').DataTable().ajax.reload();
                                 }, 2000);
                 }
 
