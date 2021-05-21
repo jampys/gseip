@@ -145,10 +145,11 @@
                 if(data >=0){
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Acción eliminada con exito</div>');
                     setTimeout(function() {
-                        dialog.modal('hide');
-                        $('#etapa-form').hide();
-                        $('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
-                    }, 2000);
+                                    dialog.modal('hide');
+                                    $('#etapa-form').hide();
+                                    //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
+                                    $('#example').DataTable().ajax.reload();
+                                }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
