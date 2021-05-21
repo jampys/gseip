@@ -22,6 +22,7 @@
                 "dataSrc": ""
             },
             'columns': [
+                {"data" : "fecha_implementacion"},
                 {"data" : "accion"},
                 {"data" : "user"},
                 {data: null, defaultContent: '', orderable: false}
@@ -30,9 +31,9 @@
                 $(row).attr('data-id', data.id_accion);
             },
             "columnDefs": [
-                { targets: 1, responsivePriority: 2 },
+                //{ targets: 0, responsivePriority: 2 },
                 {
-                    targets: 2,//action buttons
+                    targets: 3,//action buttons
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'edit' : 'disabled' ?>';
@@ -69,6 +70,7 @@
             <table id="table-acciones" class="table table-condensed dpTable table-hover dt-responsive nowrap">
                 <thead>
                 <tr>
+                    <th>Fecha impl.</th>
                     <th>Acción</th>
                     <th>Usr.</th>
                     <th></th>
