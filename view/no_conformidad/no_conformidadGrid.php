@@ -43,6 +43,7 @@
                         let permisoAcciones = 'acciones';
                         let permisoVerificaciones = 'verificaciones';
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'delete' : 'disabled' ?>';
                         return '<a class="'+permisoAcciones+'" href="#" title="Acciones">'+ //si tiene permiso para ver Acciones
                                     '<i class="fas fa-th-list dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
@@ -54,7 +55,13 @@
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
                                     '<i class="far fa-edit dp_blue"></i>'+
-                                '</a>&nbsp;&nbsp;';
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="pdf" href="#" title="Emitir certificado">'+
+                                    '<i class="far fa-file-pdf dp_blue"></i>'+
+                                '</a>';
                     }
                 }
             ]
