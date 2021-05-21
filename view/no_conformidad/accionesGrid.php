@@ -33,6 +33,12 @@
             "columnDefs": [
                 //{ targets: 0, responsivePriority: 2 },
                 {
+                    targets: 2,//user
+                    render: function (data, type, row, meta) {
+                        return row.user.split('@')[0];
+                    }
+                },
+                {
                     targets: 3,//action buttons
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
