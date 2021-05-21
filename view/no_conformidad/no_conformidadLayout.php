@@ -88,7 +88,8 @@
             });
 
 
-            $('#content').on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){ //ok
+                //alert('presiono en nuevo');
                 params={};
                 params.action = "nc_no_conformidad";
                 params.operation="newNoConformidad";
@@ -152,8 +153,8 @@
             };
 
 
-            $(document).on('click', '.acciones', function(){ //ok
-                //alert('presiono sobre etapas');
+            $('#content').on('click', '.acciones', function(){ //ok
+                //alert('presiono sobre acciones');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_no_conformidad = id;
