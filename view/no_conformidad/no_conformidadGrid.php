@@ -41,9 +41,20 @@
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
                         let permisoAcciones = 'acciones';
+                        let permisoVerificaciones = 'verificaciones';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'edit' : 'disabled' ?>';
                         return '<a class="'+permisoAcciones+'" href="#" title="Acciones">'+ //si tiene permiso para ver Acciones
                                     '<i class="fas fa-th-list dp_blue"></i>'+
-                                '</a>';
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoVerificaciones+'" href="#" title="Verificaicones">'+ //si tiene permiso para ver Verificaciones
+                                    '<i class="fas fa-th-list dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="view" title="Ver" href="javascript:void(0);">'+
+                                    '<i class="far fa-eye dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;';
                     }
                 }
             ]
