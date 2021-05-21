@@ -11,6 +11,7 @@
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
+            order: [[0, "asc"]], // 0=fecha_implementacion
             'ajax': {
                 "type"   : "POST",
                 "url"    : 'index.php',
@@ -32,6 +33,13 @@
             },
             "columnDefs": [
                 //{ targets: 0, responsivePriority: 2 },
+                {targets: 0, type: 'date-uk'}, //fecha_implementacion
+                {
+                    targets: 1, //accion
+                    render: function(data, type, row) {
+                        return $.fn.dataTable.render.ellipsis(20)(data, type, row);
+                    }
+                },
                 {
                     targets: 2,//user
                     render: function (data, type, row, meta) {
@@ -73,7 +81,7 @@
 <?php if(isset($view->acciones) && sizeof($view->acciones) > 0) {?>
     
     <div id="empleados-table">
-            <table id="table-acciones" class="table table-condensed dpTable table-hover dt-responsive nowrap">
+            <table id="table-acciones" class="table table-condensed dpTable table-hover dt-responsive nowrap" width="100%">
                 <thead>
                 <tr>
                     <th>Fecha impl.</th>
