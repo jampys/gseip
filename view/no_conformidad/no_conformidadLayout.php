@@ -49,8 +49,9 @@
                 params.action = "nc_no_conformidad";
                 params.operation = "refreshGrid";
                 //alert(params.id_grupo);
-                //alert(params.renovado);
-                $('#content').load('index.php', params);
+                //$('#content').load('index.php', params);
+                $('#example').DataTable().ajax.reload();
+
             });
 
 

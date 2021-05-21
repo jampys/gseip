@@ -21,8 +21,11 @@ switch ($operation)
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $id_subcontratista = ($_POST['id_subcontratista']!='')? $_POST['id_subcontratista'] : null;
         $renovado = ($_POST['renovado']== 0)? null : 1;
-        $view->renovaciones_personal = NoConformidad::getNoConformidades($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
-        $view->contentTemplate="view/no_conformidad/no_conformidadGrid.php";
+        $rta = $view->renovaciones_personal = NoConformidad::getNoConformidades($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
+        //$view->contentTemplate="view/no_conformidad/no_conformidadGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveNoConformidad': //ok

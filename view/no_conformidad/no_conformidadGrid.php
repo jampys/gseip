@@ -13,11 +13,42 @@
             "fnInitComplete": function () {
                                 $(this).show();
             },
-            "stateSave": true,
-            //"order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
-            columnDefs: [
-                {targets: [ 0 ], type: 'date-uk', orderData: [ 0, 1 ]} //fecha
+            'ajax': {
+                "type"   : "POST",
+                "url"    : 'index.php',
+                "data": function ( d ) {
+                    d.action = "nc_no_conformidad";
+                    d.operation = "refreshGrid";
+                },
+                "dataSrc": ""
+            },
+            'columns': [
+                {"data" : "id_no_conformidad"},
+                {"data" : "created_date"},
+                {"data" : "nombre"},
+                {"data" : "tipo"},
+                {"data" : "tipo_accion"},
+                {"data" : "responsable_seguimiento"},
+                {data: null, defaultContent: ''},
+                {data: null, defaultContent: '', orderable: false}
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id_no_conformidad);
+            },
+            "columnDefs": [
+                {
+                    targets: 7,//action buttons
+                    responsivePriority: 3,
+                    render: function (data, type, row, meta) {
+                        let permisoAcciones = 'acciones';
+                        return '<a class="'+permisoAcciones+'" href="#" title="Acciones">'+ //si tiene permiso para ver Acciones
+                                    '<i class="fas fa-th-list dp_blue"></i>'+
+                                '</a>';
+                    }
+                }
             ]
+
+
         });
 
 
@@ -51,43 +82,6 @@
 
             </tr>
             </thead>
-            <tbody>
-
-            <?php if(isset($view->renovaciones_personal)) {
-                foreach ($view->renovaciones_personal as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_no_conformidad']; ?>">
-                        <td><?php echo $rp['id_no_conformidad']; ?></td>
-                        <td><?php echo $rp['created_date']; ?></td>
-                        <td><?php echo $rp['nombre']; ?></td>
-                        <td><?php echo $rp['tipo']; ?></td>
-                        <td><?php echo $rp['tipo_accion']; ?></td>
-                        <td><?php echo $rp['responsable_seguimiento']; ?></td>
-                        <td><?php //echo $rp['responsable_seguimiento']; ?></td>
-
-                        <td class="text-center">
-                            <a class="acciones" href="javascript:void(0);" data-id="<?php echo $rp['id_no_conformidad'] ?>" title="Acciones"><i class="fas fa-th-list dp_blue"></i></a>&nbsp;&nbsp;
-                            <a class="verificaciones" href="javascript:void(0);" data-id="<?php echo $rp['id_no_conformidad'] ?>" title="Verificaciones"><i class="fas fa-th-list dp_blue"></i></a>&nbsp;&nbsp;
-
-                            <a class="view" title="Ver" href="javascript:void(0);">
-                                <i class="far fa-eye dp_blue"></i>
-                            </a>&nbsp;&nbsp;
-
-                            <!-- si tiene permiso para editar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" title="Editar" href="javascript:void(0);">
-                                <i class="far fa-edit dp_blue"></i>
-                            </a>&nbsp;&nbsp;
-
-                            <!-- si tiene permiso para eliminar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('BUS_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="Borrar" href="javascript:void(0);">
-                                <i class="far fa-trash-alt dp_red"></i>
-                            </a>&nbsp;&nbsp;
-
-                            <a class="pdf" href="javascript:void(0);" data-id="<?php echo $rp['id_no_conformidad'] ?>" title="Emitir certificado"><i class="far fa-file-pdf dp_blue"></i></a>
-                        </td>
-
-                    </tr>
-                <?php endforeach; } ?>
-            </tbody>
         </table>
 
 
