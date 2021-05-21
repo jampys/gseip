@@ -111,7 +111,7 @@
 
             var id = $(this).closest('tr').attr('data-id');
             dialog = bootbox.dialog({
-                message: "<p>¿Desea eliminar la etapa?</p>",
+                message: "<p>¿Desea eliminar la acción?</p>",
                 size: 'small',
                 buttons: {
                     cancel: {
@@ -136,24 +136,24 @@
         $.fn.borrar = function(id) {
             //alert(id);
             params={};
-            params.id_etapa = id;
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
-            params.action = "etapas";
-            params.operation = "deleteEtapa";
+            params.id_accion = id;
+            params.id_no_conformidad = $('#etapas_left_side #add').attr('id_no_conformidad');
+            params.action = "nc_acciones";
+            params.operation = "deleteAccion";
 
             $.post('index.php',params,function(data, status, xhr){
                 if(data >=0){
-                    dialog.find('.modal-footer').html('<div class="alert alert-success">Etapa eliminada con exito</div>');
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Acción eliminada con exito</div>');
                     setTimeout(function() {
                         dialog.modal('hide');
                         $('#etapa-form').hide();
-                        $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                        $('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
                     }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                 //alert('Entro a fail '+jqXHR.responseText);
-                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la etapa</div>');
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la acción</div>');
 
             });
 
