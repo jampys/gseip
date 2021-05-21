@@ -17,13 +17,12 @@
                 "data": function ( d ) {
                     d.action = "nc_acciones";
                     d.operation = "refreshGrid";
-                    d.id_no_conformidad = 1;
+                    d.id_no_conformidad = $('#etapas_left_side #add').attr('id_no_conformidad');
                 },
                 "dataSrc": ""
             },
             'columns': [
                 {"data" : "accion"},
-                {"data" : "user"},
                 {"data" : "user"},
                 {data: null, defaultContent: '', orderable: false}
             ],
