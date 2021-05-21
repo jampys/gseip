@@ -88,11 +88,10 @@
                     if(data >=0){
                         $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Acción guardada con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                                                //$('#myModal').modal('hide');
                                                 $('#etapa-form').hide();
+                                                $('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
                                               }, 2000);
                     }
 
