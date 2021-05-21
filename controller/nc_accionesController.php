@@ -61,28 +61,12 @@ switch ($operation)
         $view->contentTemplate="view/no_conformidad/accion_detailForm.php";
         break;
 
-    case 'deleteEtapa':
-        $view->etapa = new Etapa($_POST['id_etapa']);
-        $rta = $view->etapa->deleteEtapa();
+    case 'deleteAccion': //ok
+        $view->accion = new Accion($_POST['id_accion']);
+        $rta = $view->accion->deleteAccion();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
-
-
-    case 'checkFechaEmision':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'checkFechaVencimiento':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
 
     default : //carga la tabla de acciones de la No conformidad //ok
         $view->label='Acciones de la No conformidad';
