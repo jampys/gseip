@@ -68,8 +68,8 @@ class Verificacion
     public static function getVerificaciones($id_no_conformidad) { //ok
         $stmt=new sQuery();
         $query = "select ve.id_verificacion, ve.id_no_conformidad, ve.verificacion_eficacia,
-                  DATE_FORMAT(ac.created_date, '%d/%m/%y') as created_date,
-                  ac.id_user,
+                  DATE_FORMAT(ve.created_date, '%d/%m/%Y') as created_date,
+                  ve.id_user,
                   us.user
                   from nc_verificacion ve
                   join sec_users us on ve.id_user = us.id_user
