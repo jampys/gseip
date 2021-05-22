@@ -87,38 +87,21 @@
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_accion" id="id_accion" value="<?php print $view->accion->getIdAccion() ?>">
-    <input type="hidden" name="id_no_conformidad" id="id_no_conformidad" value="<?php print $view->accion->getIdNoConformidad() ?>">
+    <input type="hidden" name="id_verificacion" id="id_verificacion" value="<?php print $view->verificacion->getIdAccion() ?>">
+    <input type="hidden" name="id_no_conformidad" id="id_no_conformidad" value="<?php print $view->verificacion->getIdNoConformidad() ?>">
 
         <div class="form-group required">
-            <label class="control-label" for="accion">Acción</label>
-            <textarea class="form-control" name="accion" id="accion" placeholder="Descripción de la acción" rows="4"><?php print $view->accion->getAccion(); ?></textarea>
+            <label class="control-label" for="verificacion_eficacia">Verificación eficacia</label>
+            <textarea class="form-control" name="verificacion_eficacia" id="verificacion_eficacia" placeholder="Verificación de eficacia" rows="4"><?php print $view->verificacion->getVerificacionEficacia(); ?></textarea>
         </div>
 
     <div class="form-group required">
-        <label class="control-label" for="fecha_implementacion">Fecha implementación</label>
+        <label class="control-label" for="fecha_verificacion">Fecha verificación</label>
         <div class="inner-addon right-addon">
-            <input class="form-control" type="text" name="fecha_implementacion" id="fecha_implementacion" value = "<?php print $view->accion->getFechaImplementacion() ?>" placeholder="DD/MM/AAAA" readonly>
+            <input class="form-control" type="text" name="fecha_verificacion" id="fecha_verificacion" value = "<?php print $view->verificacion->getFechaVerificacion() ?>" placeholder="DD/MM/AAAA" readonly>
             <i class="glyphicon glyphicon-calendar"></i>
         </div>
     </div>
-
-
-        <div class="form-group required">
-            <label for="id_responsable_ejecucion" class="control-label">Responsable ejecución</label>
-            <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable ejecución">
-                <?php foreach ($view->empleados as $em){
-                    ?>
-                    <option value="<?php echo $em['id_empleado']; ?>"
-                        <?php echo ($em['id_empleado'] == $view->accion->getIdResponsableEjecucion())? 'selected' :'' ?>
-                        >
-                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                    </option>
-                <?php  } ?>
-            </select>
-        </div>
-
-
 
 
     <div id="myElem" class="msg" style="display:none">

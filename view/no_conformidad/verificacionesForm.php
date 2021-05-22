@@ -18,8 +18,8 @@
             //alert('editar etapa: '+id);
             params={};
             params.id_accion = id;
-            params.action = "nc_acciones";
-            params.operation = "editAccion";
+            params.action = "nc_verificaciones";
+            params.operation = "editVerificacion";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -35,8 +35,8 @@
             //alert('editar etapa: '+id);
             params={};
             params.id_accion = id;
-            params.action = "nc_acciones";
-            params.operation = "editAccion";
+            params.action = "nc_verificaciones";
+            params.operation = "editVerificacion";
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
