@@ -96,8 +96,12 @@
                 descripcion: {required: true},
                 tipo: { required: true},
                 analisis_causa_desc: {
-                    required: {
-                        depends: function () { return true; /* or false */ }
+                    required: function (element) {
+                        if($('input[name=analisis_causa]:checked').val()=='Si') return true;
+                        else {
+                            $(element).closest('.form-group').removeClass('has-error');
+                            return false;
+                        }
                     }
                 },
                 tipo_accion: { required: true},
