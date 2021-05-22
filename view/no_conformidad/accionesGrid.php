@@ -5,6 +5,10 @@
 
         var t = $('#table-acciones').DataTable({
             responsive: true,
+            language: {
+                url: 'resources/libraries/dataTables/Spanish.json',
+                emptyTable: 'La No conformidad no tiene acciones registradas'
+            },
             sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
@@ -79,7 +83,7 @@
 </script>
 
 
-<?php if(isset($view->acciones) && sizeof($view->acciones) > 0) {?>
+
     
     <div id="empleados-table">
             <table id="table-acciones" class="table table-condensed table-hover dt-responsive" width="100%">
@@ -93,20 +97,4 @@
                 </thead>
             </table>
     </div>
-
-
-
-
-<?php }else{ ?>
-
-    <br/>
-    <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> La No conformidad no tiene acciones registradas.
-    </div>
-
-<?php } ?>
-
-
-
-
 

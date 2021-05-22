@@ -1,8 +1,5 @@
 ﻿<?php
 include_once("model/nc_accionesModel.php");
-
-include_once("model/puestosModel.php");
-include_once("model/localidadesModel.php");
 include_once("model/contratosModel.php");
 
 $operation = "";
@@ -73,9 +70,7 @@ switch ($operation)
 
     default : //carga la tabla de acciones de la No conformidad //ok
         $view->label='Acciones de la No conformidad';
-        $view->acciones = Accion::getAcciones($_POST['id_no_conformidad']);
-        //$view->localidades = Localidad::getLocalidades();
-        //$view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
+        //$view->acciones = Accion::getAcciones($_POST['id_no_conformidad']);
         $view->disableLayout=true;
         $view->contentTemplate="view/no_conformidad/accionesForm.php";
         break;
