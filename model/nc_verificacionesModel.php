@@ -57,8 +57,8 @@ class Verificacion
                       DATE_FORMAT(fecha_verificacion, '%d/%m/%Y') as fecha_verificacion,
                       id_user,
                       DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
-                      from nc_accion
-                      where id_accion = :nro";
+                      from nc_verificacion
+                      where id_verificacion = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
