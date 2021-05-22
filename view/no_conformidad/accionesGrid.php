@@ -6,7 +6,7 @@
         var t = $('#table-acciones').DataTable({
             responsive: true,
             language: {
-                url: 'resources/libraries/dataTables/Spanish.json',
+                //url: 'resources/libraries/dataTables/Spanish.json',
                 emptyTable: 'La No conformidad no tiene acciones registradas'
             },
             sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
