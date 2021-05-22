@@ -38,6 +38,7 @@
                 params.action = 'nc_no_conformidad';
                 params.operation = 'saveNoConformidad';
                 params.id_no_conformidad = $('#id_no_conformidad').val();
+                params.nro_no_conformidad = $('#nro_no_conformidad').val();
                 params.nombre = $('#nombre').val();
                 params.descripcion = $('#descripcion').val();
                 params.tipo = $('#tipo').val();
