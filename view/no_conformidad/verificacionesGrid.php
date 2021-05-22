@@ -3,24 +3,79 @@
 
     $(document).ready(function(){
 
-        var t = $('#table-vehiculos').DataTable({
+        var t = $('#table-acciones').DataTable({
             responsive: true,
-            sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
+            language: {
+                //url: 'resources/libraries/dataTables/Spanish.json',
+                emptyTable: 'La No conformidad no tiene acciones registradas'
+            },
+            sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
-            order: [[3, "asc"], [1, "asc"]], // 3=fecha_hasta, 1=certif
-            columnDefs: [
-                { responsivePriority: 1, targets: 4 }
+            order: [[0, "asc"]], // 0=fecha_implementacion
+            'ajax': {
+                "type"   : "POST",
+                "url"    : 'index.php',
+                "data": function ( d ) {
+                    d.action = "nc_acciones";
+                    d.operation = "refreshGrid";
+                    d.id_no_conformidad = $('#etapas_left_side #add').attr('id_no_conformidad');
+                },
+                "dataSrc": ""
+            },
+            'columns': [
+                {"data" : "fecha_implementacion"},
+                {"data" : "accion"},
+                {"data" : "user"},
+                {data: null, defaultContent: '', orderable: false}
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id_accion);
+            },
+            "columnDefs": [
+                //{ targets: 0, responsivePriority: 2 },
+                {targets: 0, type: 'date-uk'}, //fecha_implementacion
+                {
+                    targets: 1, //accion
+                    render: function(data, type, row) {
+                        return $.fn.dataTable.render.ellipsis(100)(data, type, row);
+                    }
+                },
+                {
+                    targets: 2,//user
+                    render: function (data, type, row, meta) {
+                        return row.user.split('@')[0];
+                    }
+                },
+                {
+                    targets: 3,//action buttons
+                    width: '15%',
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        return '<a class="view" title="Ver" href="#">'+
+                                    '<i class="far fa-eye dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>';
+                    }
+                }
             ]
         });
 
-        setTimeout(function () { //https://datatables.net/forums/discussion/41587/scrolly-misaligned-table-headers-with-bootstrap
-            //$($.fn.dataTable.tables( true ) ).DataTable().columns.adjust().draw();
-            t.columns.adjust();
+        setTimeout(function () {
+                    t.columns.adjust();
         },200);
+
+
 
 
     });
@@ -28,60 +83,18 @@
 </script>
 
 
-<?php if(isset($view->vehiculos) && sizeof($view->vehiculos) > 0) {?>
 
-    <br/>
+    
     <div id="empleados-table">
-            <table id="table-vehiculos" class="table table-condensed dpTable table-hover dt-responsive nowrap">
+            <table id="table-acciones" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
-                    <th>Vehículo</th>
-                    <th>Certif.</th>
-                    <th>F. desde</th>
-                    <th>F. hasta</th>
+                    <th>F. impl.</th>
+                    <th>Acción</th>
+                    <th>Usr.</th>
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
-                <?php foreach ($view->vehiculos as $ve): ?>
-                    <tr data-id="<?php echo $ve['id_grupo_vehiculo']; ?>">
-                        <td><span class="label label-primary" style="font-weight: normal"><?php echo $ve['matricula']; ?></span> <?php echo ($ve['nro_movil'])? '<span class="label label-default" style="font-weight: normal">'.$ve['nro_movil'].'</span>' : '' ?></td>
-                        <td><?php echo $ve['certificado']; ?></td>
-                        <td><?php echo $ve['fecha_desde']; ?></td>
-                        <td><?php echo $ve['fecha_hasta']; ?></td>
-
-                        <td class="text-center">
-                            <a class="view" href="javascript:void(0);" title="ver">
-                                <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
-
-                            <a class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)))? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
-                                <span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
-
-                            <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
             </table>
     </div>
-
-
-
-
-<?php }else{ ?>
-
-    <br/>
-    <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> La flota no tiene vehículos registrados.
-    </div>
-
-<?php } ?>
-
-
-
-
 

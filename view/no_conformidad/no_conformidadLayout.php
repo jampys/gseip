@@ -172,6 +172,25 @@
             });
 
 
+            $('#content').on('click', '.verificaciones', function(){ //ok
+                //alert('presiono sobre verificaciones');
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_no_conformidad = id;
+                params.action = "nc_verificaciones";
+                //params.operation = "etapas"; //entra en default
+                $('#popupbox').load('index.php', params,function(){
+                    //$("fieldset").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
+                    //$('#myModalLabel').html('');
+                    $('#myModal').modal();
+                    $('#etapas_left_side #add').attr('id_no_conformidad', id);
+                })
+
+            });
+
+
 
 
         });

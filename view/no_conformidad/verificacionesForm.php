@@ -17,9 +17,9 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.id_accion = id;
+            params.action = "nc_acciones";
+            params.operation = "editAccion";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -34,9 +34,9 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.id_accion = id;
+            params.action = "nc_acciones";
+            params.operation = "editAccion";
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
@@ -49,17 +49,17 @@
 
 
 
-        //Abre formulario para ingresar nueva etapa
+        //Abre formulario para ingresar nueva accion
         $('#etapas_left_side').on('click', '#add', function(){
             params={};
-            params.action = "etapas";
-            params.operation = "newEtapa";
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
+            params.action = "nc_acciones";
+            params.operation = "newAccion";
+            params.id_no_conformidad = $('#etapas_left_side #add').attr('id_no_conformidad');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_postulacion').val(params.id_postulacion);
+                $('#id_no_conformidad').val(params.id_no_conformidad);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
@@ -73,38 +73,32 @@
             if ($("#etapa-form").valid()){
 
                 var params={};
-                params.action = 'etapas';
-                params.operation = 'saveEtapa';
-                params.id_etapa = $('#id_etapa').val();
-                params.id_postulacion = $('#id_postulacion').val();
-                params.fecha_etapa = $('#fecha_etapa').val();
-                params.etapa = $('#etapa').val();
-                params.aplica = $('input[name=aplica]:checked').val();
-                params.motivo = $('#motivo').val();
-                params.modo_contacto = $('#modo_contacto').val();
-                params.comentarios = $('#comentarios').val();
-                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                //params.disabled = $('#disabled').prop('checked')? 1:0;
+                params.action = 'nc_acciones';
+                params.operation = 'saveAccion';
+                params.id_accion = $('#id_accion').val();
+                params.id_no_conformidad = $('#id_no_conformidad').val();
+                params.accion = $('#accion').val();
+                params.id_responsable_ejecucion = $('#id_responsable_ejecucion').val();
+                params.fecha_implementacion = $('#fecha_implementacion').val();
                 //alert(params.aplica);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Etapa guardada con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                        $("#myElem").html('Acción guardada con exito').addClass('alert alert-success').show();
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                                                //$('#myModal').modal('hide');
                                                 $('#etapa-form').hide();
+                                                //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
+                                                $('#table-acciones').DataTable().ajax.reload();
                                               }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar la etapa').addClass('alert alert-danger').show();
+                    $("#myElem").html('Error al guardar la acción').addClass('alert alert-danger').show();
                 });
 
             }
@@ -118,7 +112,7 @@
 
             var id = $(this).closest('tr').attr('data-id');
             dialog = bootbox.dialog({
-                message: "<p>¿Desea eliminar la etapa?</p>",
+                message: "<p>¿Desea eliminar la acción?</p>",
                 size: 'small',
                 buttons: {
                     cancel: {
@@ -143,24 +137,25 @@
         $.fn.borrar = function(id) {
             //alert(id);
             params={};
-            params.id_etapa = id;
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
-            params.action = "etapas";
-            params.operation = "deleteEtapa";
+            params.id_accion = id;
+            params.id_no_conformidad = $('#etapas_left_side #add').attr('id_no_conformidad');
+            params.action = "nc_acciones";
+            params.operation = "deleteAccion";
 
             $.post('index.php',params,function(data, status, xhr){
                 if(data >=0){
-                    dialog.find('.modal-footer').html('<div class="alert alert-success">Etapa eliminada con exito</div>');
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Acción eliminada con exito</div>');
                     setTimeout(function() {
-                        dialog.modal('hide');
-                        $('#etapa-form').hide();
-                        $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
-                    }, 2000);
+                                    dialog.modal('hide');
+                                    $('#etapa-form').hide();
+                                    //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
+                                    $('#table-acciones').DataTable().ajax.reload();
+                                }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                 //alert('Entro a fail '+jqXHR.responseText);
-                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la etapa</div>');
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la acción</div>');
 
             });
 
@@ -168,10 +163,11 @@
 
 
 
-        //evento al salir o cerrar con la x el modal de etapas
+        //evento al salir o cerrar con la x el modal de acciones
         $("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
-            $("#search").trigger("click");
+            //$("#search").trigger("click");
+            $('#example').DataTable().ajax.reload();
         });
 
 
@@ -200,13 +196,13 @@
                         <div class="col-md-6" id="etapas_left_side">
 
                             <div class="clearfix">
-                                <button class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar etapa">
+                                <button class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar acción">
                                     <span class="glyphicon glyphicon-plus dp_green"></span>
                                 </button>
                             </div>
 
                             <div class="grid">
-                                <?php include_once('view/postulaciones/etapasGrid.php');?>
+                                <?php include_once('view/no_conformidad/accionesGrid.php');?>
                             </div>
 
                         </div>
