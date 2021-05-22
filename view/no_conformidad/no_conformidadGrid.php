@@ -24,7 +24,7 @@
             },
             'columns': [
                 {"data" : "nro_no_conformidad"},
-                {"data" : "created_date"},
+                {"data" : "fecha_implementacion"},
                 {"data" : "nombre"},
                 {"data" : "tipo"},
                 {"data" : "tipo_accion"},
@@ -99,7 +99,7 @@
             <thead>
             <tr>
                 <th>Nro. NC</th>
-                <th>Fecha</th>
+                <th>Fecha impl.</th>
                 <th>Nombre</th>
                 <th>Tipo</th>
                 <th>Tipo acción</th>
