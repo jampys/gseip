@@ -41,18 +41,19 @@
         });
 
 
-        $('#etapa-form').validate({
+        $('#etapa-form').validate({ //ok
             rules: {
                 /*codigo: {
                         required: true,
                         digits: true,
                         maxlength: 6
                 },*/
-                fecha_etapa: {required: true},
-                etapa: {required: true},
-                aplica: {required: true},
-                motivo: {required: true},
-                modo_contacto: {required: true}
+                accion: {
+                    required: true,
+                    maxlength: 200
+                },
+                fecha_implementacion: {required: true},
+                id_responsable_ejecucion: {required: true}
             },
             messages:{
                 /*codigo: {
@@ -60,11 +61,13 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }, */
-                fecha_etapa: "Seleccione una fecha para la etapa",
+                accion: {
+                    required: "Ingrese una descripción de la acción",
+                    maxlength: "Máximo 200 caracteres"
+                },
                 etapa: "Seleccione una etapa",
-                aplica: "Seleccione una opción",
-                motivo: "Seleccione el motivo",
-                modo_contacto: "Seleccione el modo de contacto"
+                fecha_implementacion: "Seleccione la fecha de implementación",
+                id_responsable_ejecucion: "Seleccione el responsable de ejecución"
             }
 
         });
@@ -87,9 +90,9 @@
     <input type="hidden" name="id_accion" id="id_accion" value="<?php print $view->accion->getIdAccion() ?>">
     <input type="hidden" name="id_no_conformidad" id="id_no_conformidad" value="<?php print $view->accion->getIdNoConformidad() ?>">
 
-        <div class="form-group">
+        <div class="form-group required">
             <label class="control-label" for="accion">Acción</label>
-            <textarea class="form-control" name="accion" id="accion" placeholder="Descripción de la acción" rows="3"><?php print $view->accion->getAccion(); ?></textarea>
+            <textarea class="form-control" name="accion" id="accion" placeholder="Descripción de la acción" rows="4"><?php print $view->accion->getAccion(); ?></textarea>
         </div>
 
     <div class="form-group required">
