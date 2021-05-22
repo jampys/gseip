@@ -33,7 +33,7 @@
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
-                $(row).attr('data-id', data.id_accion);
+                $(row).attr('data-id', data.id_verificacion);
             },
             "columnDefs": [
                 //{ targets: 0, responsivePriority: 2 },
