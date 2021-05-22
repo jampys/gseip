@@ -8,11 +8,7 @@
         $('#example').DataTable({
             responsive: true,
             language: {
-                url: 'resources/libraries/dataTables/Spanish.json',
-                language:{
-                    search: 'culo'
-                }
-
+                url: 'resources/libraries/dataTables/Spanish.json'
             },
             "fnInitComplete": function () {
                                 $(this).show();
