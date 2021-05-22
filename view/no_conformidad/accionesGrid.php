@@ -37,7 +37,7 @@
                 {
                     targets: 1, //accion
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(20)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(100)(data, type, row);
                     }
                 },
                 {
@@ -48,6 +48,7 @@
                 },
                 {
                     targets: 3,//action buttons
+                    width: '15%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'edit' : 'disabled' ?>';
@@ -81,10 +82,10 @@
 <?php if(isset($view->acciones) && sizeof($view->acciones) > 0) {?>
     
     <div id="empleados-table">
-            <table id="table-acciones" class="table table-condensed dpTable table-hover dt-responsive nowrap" width="100%">
+            <table id="table-acciones" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
-                    <th>Fecha impl.</th>
+                    <th>F. impl.</th>
                     <th>Acción</th>
                     <th>Usr.</th>
                     <th></th>
