@@ -100,7 +100,7 @@
                     required: function (element) {
                         if($('input[name=analisis_causa]:checked').val()=='Si') return true;
                         else {
-                            $(element).closest('.form-group').removeClass('has-error');
+                            $(element).closest('.form-group').removeClass('has-error'); //porque no elimina el highlight cuando es válido al usar un required dependiente de una condicion. Quizá es error del plugin!
                             return false;
                         }
                     }
