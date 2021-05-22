@@ -31,6 +31,7 @@ switch ($operation)
     case 'saveNoConformidad': //ok
 
         $no_conformidad = new NoConformidad($_POST['id_no_conformidad']);
+        $no_conformidad->setNroNoConformidad($_POST['nro_no_conformidad']);
         $no_conformidad->setNombre($_POST['nombre']);
         $no_conformidad->setDescripcion($_POST['descripcion']);
         $no_conformidad->setTipo($_POST['tipo']);

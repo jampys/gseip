@@ -23,7 +23,7 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "id_no_conformidad"},
+                {"data" : "nro_no_conformidad"},
                 {"data" : "created_date"},
                 {"data" : "nombre"},
                 {"data" : "tipo"},

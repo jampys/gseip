@@ -91,6 +91,7 @@
 
         $('#no_conformidad_form').validate({
             rules: {
+                nro_no_conformidad: {required: true},
                 nombre: {required: true},
                 descripcion: {required: true},
                 tipo: { required: true},
@@ -98,6 +99,7 @@
                 id_responsable_seguimiento: { required: true}
             },
             messages:{
+                nro_no_conformidad: "Ingrese el Nro. No conformidad",
                 nombre: "Ingrese el nombre",
                 descripcion: "Ingrese la descripción del hallazgo",
                 fecha: "Selecione el tipo de no conformidad",
@@ -143,6 +145,11 @@
 
                 <form name ="no_conformidad_form" id="no_conformidad_form" method="POST" action="index.php">
                     <input type="hidden" name="id_no_conformidad" id="id_no_conformidad" value="<?php print $view->no_conformidad->getIdNoConformidad() ?>">
+
+                    <div class="form-group required">
+                        <label class="control-label" for="nro_no_conformidad">Nro. NC</label>
+                        <input class="form-control" type="text" name="nro_no_conformidad" id="nro_no_conformidad" value = "<?php print $view->no_conformidad->getNroNoConformidad() ?>" placeholder="Nro. No conformidad (requerido para carga masica, en adelante autogenerado)">
+                    </div>
 
                     <div class="form-group required">
                         <label class="control-label" for="referencia">Nombre</label>
