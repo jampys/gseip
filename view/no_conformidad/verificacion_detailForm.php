@@ -87,7 +87,7 @@
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_verificacion" id="id_verificacion" value="<?php print $view->verificacion->getIdAccion() ?>">
+    <input type="hidden" name="id_verificacion" id="id_verificacion" value="<?php print $view->verificacion->getIdVerificacion() ?>">
     <input type="hidden" name="id_no_conformidad" id="id_no_conformidad" value="<?php print $view->verificacion->getIdNoConformidad() ?>">
 
         <div class="form-group required">

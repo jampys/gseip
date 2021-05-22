@@ -27,7 +27,7 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "created_date"},
+                {"data" : "fecha_verificacion"},
                 {"data" : "verificacion_eficacia"},
                 {"data" : "user"},
                 {data: null, defaultContent: '', orderable: false}
@@ -89,7 +89,7 @@
             <table id="table-verificaciones" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
-                    <th>F. impl.</th>
+                    <th>F. verif.</th>
                     <th>Acción</th>
                     <th>Usr.</th>
                     <th></th>
