@@ -95,6 +95,11 @@
                 nombre: {required: true},
                 descripcion: {required: true},
                 tipo: { required: true},
+                analisis_causa_desc: {
+                    required: {
+                        depends: function () { return true; /* or false */ }
+                    }
+                },
                 tipo_accion: { required: true},
                 id_responsable_seguimiento: { required: true}
             },
@@ -102,7 +107,10 @@
                 nro_no_conformidad: "Ingrese el Nro. No conformidad",
                 nombre: "Ingrese el nombre",
                 descripcion: "Ingrese la descripción del hallazgo",
-                fecha: "Selecione el tipo de no conformidad",
+                tipo: "Selecione el tipo de no conformidad",
+                analisis_causa_desc: {
+                    required: "Ingrese la descripción de causa raiz"
+                },
                 tipo_accion: "Selecione el tipo de acción",
                 id_responsable_seguimiento: "Selecione el responsable de seguimiento"
             }
