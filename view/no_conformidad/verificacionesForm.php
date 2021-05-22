@@ -17,7 +17,7 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_accion = id;
+            params.id_verificacion = id;
             params.action = "nc_verificaciones";
             params.operation = "editVerificacion";
             //alert(params.id_renovacion);
@@ -29,12 +29,12 @@
             })
         });
 
-        $('#etapas_left_side').on('click', '.view', function(){
+        $('#etapas_left_side').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_accion = id;
+            params.id_verificacion = id;
             params.action = "nc_verificaciones";
             params.operation = "editVerificacion";
             params.target = "view";
@@ -50,10 +50,10 @@
 
 
         //Abre formulario para ingresar nueva accion
-        $('#etapas_left_side').on('click', '#add', function(){
+        $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
-            params.action = "nc_acciones";
-            params.operation = "newAccion";
+            params.action = "nc_verificaciones";
+            params.operation = "newVerificacion";
             params.id_no_conformidad = $('#etapas_left_side #add').attr('id_no_conformidad');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
