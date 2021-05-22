@@ -3,11 +3,11 @@
 
     $(document).ready(function(){
 
-        var t = $('#table-acciones').DataTable({
+        var t = $('#table-verificaciones').DataTable({
             responsive: true,
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
-                emptyTable: 'La No conformidad no tiene acciones registradas'
+                emptyTable: 'La No conformidad no tiene verificaciones registradas'
             },
             sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
@@ -20,15 +20,15 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
-                    d.action = "nc_acciones";
+                    d.action = "nc_verificaciones";
                     d.operation = "refreshGrid";
                     d.id_no_conformidad = $('#etapas_left_side #add').attr('id_no_conformidad');
                 },
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "fecha_implementacion"},
-                {"data" : "accion"},
+                {"data" : "created_date"},
+                {"data" : "verificacion_eficacia"},
                 {"data" : "user"},
                 {data: null, defaultContent: '', orderable: false}
             ],
@@ -39,7 +39,7 @@
                 //{ targets: 0, responsivePriority: 2 },
                 {targets: 0, type: 'date-uk'}, //fecha_implementacion
                 {
-                    targets: 1, //accion
+                    targets: 1, //verificacion_eficacia
                     render: function(data, type, row) {
                         return $.fn.dataTable.render.ellipsis(100)(data, type, row);
                     }
@@ -86,7 +86,7 @@
 
     
     <div id="empleados-table">
-            <table id="table-acciones" class="table table-condensed table-hover dt-responsive" width="100%">
+            <table id="table-verificaciones" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
                     <th>F. impl.</th>

@@ -1,5 +1,5 @@
 ﻿<?php
-include_once("model/nc_accionesModel.php");
+include_once("model/nc_verificacionesModel.php");
 include_once("model/contratosModel.php");
 
 $operation = "";
@@ -68,11 +68,11 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    default : //carga la tabla de acciones de la No conformidad
+    default : //carga la tabla de acciones de la No conformidad //ok
         $view->label='Verificaciones de la No conformidad';
         //$view->acciones = Accion::getAcciones($_POST['id_no_conformidad']);
         $view->disableLayout=true;
-        $view->contentTemplate="view/no_conformidad/accionesForm.php";
+        $view->contentTemplate="view/no_conformidad/verificacionesForm.php";
         break;
 }
 
