@@ -37,6 +37,15 @@
             },
             "columnDefs": [
                 {
+                    targets: 6,//estado
+                    responsivePriority: 3,
+                    render: function (data, type, row, meta) {
+                        if(row.fecha_cierre) return 'CERRADA';
+                        else if(row.cant_acciones > 0) return 'PENDIENTE';
+                        else return 'ABIERTA';
+                    }
+                },
+                {
                     targets: 7,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {

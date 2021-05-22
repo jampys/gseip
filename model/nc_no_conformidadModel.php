@@ -88,7 +88,8 @@ class NoConformidad
 nc.descripcion, nc.accion_inmediata, nc.analisis_causa_desc,
 DATE_FORMAT(nc.created_date,  '%d/%m/%Y') as created_date,
 DATE_FORMAT(nc.fecha_cierre,  '%d/%m/%Y') as fecha_cierre,
-concat(em.apellido, ' ', em.nombre) as responsable_seguimiento
+concat(em.apellido, ' ', em.nombre) as responsable_seguimiento,
+(select count(*) from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) as cant_acciones
 from nc_no_conformidad nc
 join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
 
