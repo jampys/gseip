@@ -25,16 +25,15 @@ switch ($operation)
         exit;
         break;
 
-    case 'saveAccion':
-        $accion = new Accion($_POST['id_accion']);
-        $accion->setIdNoConformidad($_POST['id_no_conformidad']);
-        $accion->setAccion($_POST['accion']);
-        $accion->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
-        $accion->setFechaImplementacion($_POST['fecha_implementacion']);
-        $accion->setIdUser($_SESSION['id_user']);
+    case 'saveVerificacion': //ok
+        $verificacion = new Verificacion($_POST['id_verificacion']);
+        $verificacion->setIdNoConformidad($_POST['id_no_conformidad']);
+        $verificacion->setVerificacionEficacia($_POST['verificacion_eficacia']);
+        $verificacion->setFechaVerificacion($_POST['fecha_verificacion']);
+        $verificacion->setIdUser($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         //$busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
-        $rta = $accion->save();
+        $rta = $verificacion->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;
@@ -57,9 +56,9 @@ switch ($operation)
         $view->contentTemplate="view/no_conformidad/verificacion_detailForm.php";
         break;
 
-    case 'deleteAccion':
-        $view->accion = new Accion($_POST['id_accion']);
-        $rta = $view->accion->deleteAccion();
+    case 'deleteVerificacion':
+        $view->verificacion = new Verificacion($_POST['id_verificacion']);
+        $rta = $view->verificacion->deleteVerificacion();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;

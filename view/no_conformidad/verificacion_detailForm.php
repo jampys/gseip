@@ -14,7 +14,7 @@
 
 
         moment.locale('es');
-        $('#fecha_implementacion').daterangepicker({
+        $('#fecha_verificacion').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             autoApply: true,
