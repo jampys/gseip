@@ -172,6 +172,75 @@
 
         </div>
 
+
+
+
+             <br/>
+
+        <div style="width:49%; float:left">
+        <span class="titulo">Patrón de Calibración Presión</span>
+        <div class="borde-circular" >
+        <table style="width:100%">
+            <tbody>
+                <tr>
+                    <td style="width: 50%"><span class="subtitulo">Marca</span></td>
+                    <td style="width: 50%">'.$fila['ip_marca'].'</td>
+                </tr>
+                <tr>
+                    <td><span class="subtitulo">Rango de Medición</span></td>
+                    <td>'.$fila['ip_rango'].'</td>
+                </tr>
+                <tr>
+                    <td><span class="subtitulo">N° de Serie</span></td>
+                    <td>'.$fila['ip_nro_serie'].'</td>
+                </tr>
+                <tr>
+                    <td><span class="subtitulo">Fecha de Calibración</span></td>
+                    <td>'.$fila['ip_fecha_calibracion'].'</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        </div>
+
+        <div style="width:1%; float:left">&nbsp;</div>
+
+        <div style="width:50%; float:left">
+        <span class="titulo">Patrón de Calibración Caudal</span>
+        <div class="borde-circular" >
+        <table style="width:100%">
+            <tbody>
+                <tr>
+                    <td style="width: 50%"><span class="subtitulo">Marca</span></td>
+                    <td style="width: 50%">'.$fila['ic_marca'].'</td>
+                </tr>
+                <tr>
+                    <td><span class="subtitulo">Rango de Medición</span></td>
+                    <td>'.$fila['ic_rango'].'</td>
+                </tr>
+                <tr>
+                    <td><span class="subtitulo">N° de Serie</span></td>
+                    <td>'.$fila['ic_nro_serie'].'</td>
+                </tr>
+                <tr>
+                    <td><span class="subtitulo">Fecha de Calibración</span></td>
+                    <td>'.$fila['ic_fecha_calibracion'].'</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
         <br/>
 
 
