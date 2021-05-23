@@ -3,7 +3,8 @@
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
 
-$GLOBALS['ini'] = parse_ini_file('app.ini');
+//$GLOBALS['ini'] = parse_ini_file('app.ini');
+$GLOBALS['ini'] = parse_ini_file('app.ini', true);
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 class Conexion  // se declara una clase para hacer la conexion con la base de datos
@@ -15,10 +16,10 @@ class Conexion  // se declara una clase para hacer la conexion con la base de da
             //self::$con = new Conexion();
 
             // se definen los datos del servidor de base de datos
-            $servername = $GLOBALS['ini']['db_server'];
-            $username = $GLOBALS['ini']['db_user'];
-            $password = $GLOBALS['ini']['db_password'];
-            $dbname = $GLOBALS['ini']['db_name'];
+            $servername = $GLOBALS['ini']['database']['db_server'];
+            $username = $GLOBALS['ini']['database']['db_user'];
+            $password = $GLOBALS['ini']['database']['db_password'];
+            $dbname = $GLOBALS['ini']['database']['db_name'];
 
             try{
                 self::$con = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
