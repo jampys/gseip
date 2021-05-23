@@ -173,30 +173,48 @@
         </div>
 
 
+        <br/>
 
 
-             <br/>
+
+         <div style="float: left; width: 100%">
+            <span class="titulo">Tipo de No conformidad</span>
+
+            <div class="borde-circular">
+            <table style="width:100%">
+            <tbody>
+                <tr>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila["condnormal"].'>&nbsp;<span class="subtitulo">No conformidad real</span></td>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila['condresiduos'].' >&nbsp;<span class="subtitulo">Oportunidad de mejora</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="" value="" '.$fila['condcorrosion'].'>&nbsp;<span class="subtitulo">No conformidad potencia</span></td>
+                    <td><input type="checkbox" id="" value="" '.$fila['condprecinto'].' >&nbsp;<span class="subtitulo">Queja / reclamo del cliente</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="" value="" '.$fila['condempetrolada'].' >&nbsp;<span class="subtitulo">Producto / Servicio no conforme</span></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        </div>
+
+
+        <br/>
+
 
         <div style="width:49%; float:left">
-        <span class="titulo">Patrón de Calibración Presión</span>
+        <span class="titulo">Análisis de causa raiz</span>
         <div class="borde-circular" >
         <table style="width:100%">
             <tbody>
                 <tr>
-                    <td style="width: 50%"><span class="subtitulo">Marca</span></td>
-                    <td style="width: 50%">'.$fila['ip_marca'].'</td>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila["condnormal"].'>&nbsp;<span class="subtitulo">Si</span></td>
                 </tr>
                 <tr>
-                    <td><span class="subtitulo">Rango de Medición</span></td>
-                    <td>'.$fila['ip_rango'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">N° de Serie</span></td>
-                    <td>'.$fila['ip_nro_serie'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Fecha de Calibración</span></td>
-                    <td>'.$fila['ip_fecha_calibracion'].'</td>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila['condresiduos'].' >&nbsp;<span class="subtitulo">No</span></td>
                 </tr>
             </tbody>
         </table>
@@ -207,25 +225,15 @@
         <div style="width:1%; float:left">&nbsp;</div>
 
         <div style="width:50%; float:left">
-        <span class="titulo">Patrón de Calibración Caudal</span>
+        <span class="titulo">Tipo acción</span>
         <div class="borde-circular" >
         <table style="width:100%">
             <tbody>
                 <tr>
-                    <td style="width: 50%"><span class="subtitulo">Marca</span></td>
-                    <td style="width: 50%">'.$fila['ic_marca'].'</td>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila["condnormal"].'>&nbsp;<span class="subtitulo">Correctiva</span></td>
                 </tr>
                 <tr>
-                    <td><span class="subtitulo">Rango de Medición</span></td>
-                    <td>'.$fila['ic_rango'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">N° de Serie</span></td>
-                    <td>'.$fila['ic_nro_serie'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Fecha de Calibración</span></td>
-                    <td>'.$fila['ic_fecha_calibracion'].'</td>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila['condresiduos'].' >&nbsp;<span class="subtitulo">Preventiva</span></td>
                 </tr>
             </tbody>
         </table>
