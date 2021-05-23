@@ -89,7 +89,7 @@
     //$mpdf->SetFooter('{PAGENO}');
     $mpdf->SetTitle($fila['nrocertificado']);
 
-    $css = file_get_contents('pdf/dario.css');
+    $css = file_get_contents('resources/css/dario_mpdf.css');
     $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
     $mpdf->WriteHTML('
 
