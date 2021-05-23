@@ -102,7 +102,7 @@
 
 
         <div style="float: left; width: 25%; height: 36px">
-            <img src="images/seip.png" width="126px" height="36px">
+            <img src="resources/img/seip.png" width="126px" height="36px">
         </div>
 
         <div style="float: left; width: 65%; height: 36px; text-align: left">
