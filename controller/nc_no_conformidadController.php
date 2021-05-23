@@ -41,6 +41,7 @@ switch ($operation)
         $no_conformidad->setAccionInmediata( ($_POST['accion']!='')? $_POST['accion'] : null);
         $no_conformidad->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
         $no_conformidad->setFechaCierre( ($_POST['fecha_cierre']!='')? $_POST['fecha_cierre'] : null);
+        $no_conformidad->setIdUser($_SESSION['id_user']);
 
         $rta = $no_conformidad->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));

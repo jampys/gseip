@@ -73,7 +73,7 @@
 
         setTimeout(function () {
                     t.columns.adjust();
-        },200);
+        },150);
 
 
 

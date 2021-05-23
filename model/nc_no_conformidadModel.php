@@ -12,6 +12,7 @@ class NoConformidad
     private $analisis_causa_desc;
     private $id_responsable_seguimiento;
     private $fecha_cierre;
+    private $id_user;
 
     // GETTERS
     function getIdNoConformidad()
@@ -47,6 +48,9 @@ class NoConformidad
     function getFechaCierre()
     { return $this->fecha_cierre;}
 
+    function getIdUser()
+    { return $this->id_user;}
+
     //SETTERS
     function setIdNoConformidad($val)
     { $this->id_no_conformidad=$val;}
@@ -81,6 +85,9 @@ class NoConformidad
     function setFechaCierre($val)
     {  $this->fecha_cierre=$val;}
 
+    function setIdUser($val)
+    {  $this->id_user=$val;}
+
 
     public static function getNoConformidades($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado){
         $stmt=new sQuery();
@@ -88,6 +95,7 @@ class NoConformidad
 nc.descripcion, nc.accion_inmediata, nc.analisis_causa_desc,
 DATE_FORMAT(nc.created_date,  '%d/%m/%Y') as created_date,
 DATE_FORMAT(nc.fecha_cierre,  '%d/%m/%Y') as fecha_cierre,
+nc.id_user,
 concat(em.apellido, ' ', em.nombre) as responsable_seguimiento,
 (select count(*) from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) as cant_acciones,
 (select DATE_FORMAT(max(ax.fecha_implementacion), '%d/%m/%Y') from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) as fecha_implementacion
@@ -107,7 +115,8 @@ join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
             $stmt=new sQuery();
             $query="select nc.id_no_conformidad, nc.nro_no_conformidad, nc.nombre, nc.tipo, nc.analisis_causa, nc.tipo_accion, nc.descripcion,
                     nc.accion_inmediata, nc.analisis_causa_desc, nc.id_responsable_seguimiento,
-                    DATE_FORMAT(fecha_cierre, '%d/%m/%Y') as fecha_cierre
+                    DATE_FORMAT(fecha_cierre, '%d/%m/%Y') as fecha_cierre,
+                    nc.id_user
                     from nc_no_conformidad nc
                     where id_no_conformidad = :nro";
             $stmt->dpPrepare($query);
@@ -126,6 +135,7 @@ join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
             $this->setAnalisisCausaDesc($rows[0]['analisis_causa_desc']);
             $this->setIdResponsableSeguimiento($rows[0]['id_responsable_seguimiento']);
             $this->setFechaCierre($rows[0]['fecha_cierre']);
+            $this->setIdUser($rows[0]['id_user']);
         }
     }
 
@@ -173,8 +183,8 @@ join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
     private function insertNoConformidad(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into nc_no_conformidad(nro_no_conformidad, nombre, tipo, analisis_causa, tipo_accion, descripcion, accion_inmediata, analisis_causa_desc, id_responsable_seguimiento, fecha_cierre, created_date)
-                values(:nro_no_conformidad, :nombre, :tipo, :analisis_causa, :tipo_accion, :descripcion, :accion_inmediata, :analisis_causa_desc, :id_responsable_seguimiento, STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), sysdate())";
+        $query="insert into nc_no_conformidad(nro_no_conformidad, nombre, tipo, analisis_causa, tipo_accion, descripcion, accion_inmediata, analisis_causa_desc, id_responsable_seguimiento, fecha_cierre, created_date, id_user)
+                values(:nro_no_conformidad, :nombre, :tipo, :analisis_causa, :tipo_accion, :descripcion, :accion_inmediata, :analisis_causa_desc, :id_responsable_seguimiento, STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), sysdate(), :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_no_conformidad', $this->getNroNoConformidad());
         $stmt->dpBind(':nombre', $this->getNombre());
@@ -186,6 +196,7 @@ join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
         $stmt->dpBind(':analisis_causa_desc', $this->getAnalisisCausaDesc());
         $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
         $stmt->dpBind(':fecha_cierre', $this->getFechaCierre());
+        $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
