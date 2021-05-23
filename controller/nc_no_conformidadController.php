@@ -84,6 +84,21 @@ switch ($operation)
         die;
         break;
 
+    case 'pdf':
+
+        /*$f = Pdf::getCertificadoCalibracion($_GET['id_calib']);
+        $fila = $f[0];
+        $f1 = Pdf::getCertificadoPpt($_GET['id_calib'], $_GET['Nro_Serie']);
+        $fila1 = $f1[0];
+        $f2 = Pdf::getCertificadoOT($_GET['id_calib'], $_GET['Nro_Serie']);
+        $fila2 = $f2[0];
+        $f3 = Pdf::getGrafico($_GET['id_calib']);
+        $fila3 = $f3[0];*/
+
+        //include_once ('pdf/generador.php');
+        include_once ('view/no_conformidad/generador.php');
+        break;
+
     default : //ok
         $view->empleados = Empleado::getEmpleadosActivos(null);
         $view->contentTemplate="view/no_conformidad/no_conformidadGrid.php";
