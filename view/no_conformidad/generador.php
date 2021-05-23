@@ -106,14 +106,14 @@
         </div>
 
         <div style="float: left; width: 65%; height: 36px; text-align: left">
-            <span style="font-size: 16px; font-weight: bold">Certificado de Calibración</span><br/>
-            <span style="font-size: 13px">Válvula de Seguridad y Alivio</span>
+            <span style="font-size: 15px; font-weight: bold">Informe de No conformidad/Oportunidad de mejora</span><br/>
+            <span style="font-size: 13px">Calidad, Seguridad, Salud y Medio Ambiente</span>
         </div>
 
         <div style="float: right; width: 10%; height: 36px; font-size: 8px; text-align: right">
-            RO-VSE-0102<br/>
-            15/12/2020<br/>
-            rev 03
+            RG 01-01<br/>
+            23/05/2021<br/>
+            rev 01
         </div>
 
 

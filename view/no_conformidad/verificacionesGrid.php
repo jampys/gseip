@@ -90,7 +90,7 @@
                 <thead>
                 <tr>
                     <th>F. verif.</th>
-                    <th>Acción</th>
+                    <th>Verificación eficacia</th>
                     <th>Usr.</th>
                     <th></th>
                 </tr>
