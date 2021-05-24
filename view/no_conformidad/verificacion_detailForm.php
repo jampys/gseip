@@ -48,11 +48,11 @@
                         digits: true,
                         maxlength: 6
                 },*/
-                accion: {
+                verificacion_eficacia: {
                     required: true,
                     maxlength: 200
                 },
-                fecha_implementacion: {required: true},
+                fecha_verificacion: {required: true},
                 id_responsable_ejecucion: {required: true}
             },
             messages:{
@@ -61,12 +61,12 @@
                     digits: "Ingrese solo números",
                     maxlength: "Máximo 6 dígitos"
                 }, */
-                accion: {
-                    required: "Ingrese una descripción de la acción",
+                verificacion_eficacia: {
+                    required: "Ingrese la verificación de la eficacia",
                     maxlength: "Máximo 200 caracteres"
                 },
                 etapa: "Seleccione una etapa",
-                fecha_implementacion: "Seleccione la fecha de implementación",
+                fecha_verificacion: "Seleccione la fecha de implementación",
                 id_responsable_ejecucion: "Seleccione el responsable de ejecución"
             }
 

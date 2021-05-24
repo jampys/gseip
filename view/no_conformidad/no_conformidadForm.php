@@ -94,7 +94,10 @@
             rules: {
                 nro_no_conformidad: {required: true},
                 nombre: {required: true},
-                descripcion: {required: true},
+                descripcion: {
+                    required: true,
+                    maxlength: 1000
+                },
                 tipo: { required: true},
                 analisis_causa_desc: {
                     required: function (element) {
@@ -111,7 +114,10 @@
             messages:{
                 nro_no_conformidad: "Ingrese el Nro. No conformidad",
                 nombre: "Ingrese el nombre",
-                descripcion: "Ingrese la descripción del hallazgo",
+                descripcion: {
+                    required: "Ingrese la descripción del hallazgo",
+                    maxlength: "Máximo 1000 caracteres"
+                },
                 tipo: "Selecione el tipo de no conformidad",
                 analisis_causa_desc: {
                     required: "Ingrese la descripción de causa raiz"

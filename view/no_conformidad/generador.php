@@ -67,7 +67,7 @@ $fila4['No'] = ($nc->getAnalisisCausa() == 'No')? 'checked=true':'';
 $fila4['Correctiva'] = ($nc->getTipoAccion() == 'Correctiva')? 'checked=true':'';
 $fila4['Preventiva'] = ($nc->getTipoAccion() == 'Preventiva')? 'checked=true':'';
 
-$fila4['descripcion'] = $nc->getDescripcion();
+$fila4['descripcion'] = nl2br($nc->getDescripcion());
 
 
 //----------------------------------------------------------------------------------
@@ -365,81 +365,6 @@ $fila4['descripcion'] = $nc->getDescripcion();
         </div>
 
 
-        <br/>
-
-        <div style="float: left; width: 100%">
-            <span class="titulo">Condiciones de ingreso de la válvula</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila["condnormal"].'>&nbsp;<span class="subtitulo">Normal</span></td>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila['condresiduos'].' >&nbsp;<span class="subtitulo">Residuos</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila['condcorrosion'].'>&nbsp;<span class="subtitulo">Corrosión</span></td>
-                    <td><input type="checkbox" id="" value="" '.$fila['condprecinto'].' >&nbsp;<span class="subtitulo">Precinto Cortado</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila['condempetrolada'].' >&nbsp;<span class="subtitulo">Empetrolada</span></td>
-                    <td><input type="checkbox" id="" value="" '.$fila['conddañoe'].' >&nbsp;<span class="subtitulo">Daño Estructural</span></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-        <br/>
-        <div style="float: left; width: 100%">
-            <span class="titulo">Pre Pop Test</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 30%"><span class="subtitulo">N° de Certificado</span></td>
-                    <td style="width: 20%">'.$fila1['nrocertificado'].'</td>
-                    <td style="width: 30%"><span class="subtitulo">Presión de Apertura Ensayo 1</span></td>
-                    <td style="width: 20%">'.$fila1["mayorpresion"].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Fecha</span></td>
-                    <td>'.$fila1['fechacalib'].'</td>
-                    <td><span class="subtitulo">Presión de Apertura Ensayo 2</span></td>
-                    <td>'.$fila1["mayorpresion2"].'</td>
-                </tr>
-            </tbody>
-            </table>
-            </div>
-        </div>
-
-
-
-
-        <br/>
-        <div style="float: left; width: 100%">
-            <span class="titulo">Condiciones de Calibración</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 30%"><span class="subtitulo">Tolerancia</span></td>
-                    <td style="width: 20%">'.$tolerancia.'</td>
-                    <td style="width: 30%"><span class="subtitulo">Fluido</span></td>
-                    <td style="width: 20%">'.$fila["fluidotobera"].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-
-
 
 
         <br/>
@@ -472,44 +397,6 @@ $fila4['descripcion'] = $nc->getDescripcion();
             <img src="pdf/Imagen/'.$_SESSION['ini']['unidad_negocio']['un'].'/imagen_'.$fila['id_calibracion'].'.png">
         </div>
 
-
-
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-
-        <div style="float: left; width: 100%">
-            <span class="titulo">Descripción de las tareas realizadas</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila["valvactuada"].'>&nbsp;<span class="subtitulo">Válvula actuada</span></td>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila['contratuerca'].' >&nbsp;<span class="subtitulo">Contratuerca</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila['resorte'].'>&nbsp;<span class="subtitulo">Resorte Principal</span></td>
-                    <td><input type="checkbox" id="" value="" '.$fila['cierrepollera'].' >&nbsp;<span class="subtitulo">Cierre de Pollera</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila['obturador'].' >&nbsp;<span class="subtitulo">Obturador</span></td>
-                    <td><input type="checkbox" id="" value="">&nbsp;<span class="subtitulo">Correc. Temp. de trabajo</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila['asiento'].' >&nbsp;<span class="subtitulo">Asiento</span></td>
-                    <td><input type="checkbox" id="" value="" '.$fila['pintura'].'>&nbsp;<span class="subtitulo">Pintura</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila['fuelle'].' >&nbsp;<span class="subtitulo">Fuelle</span></td>
-                    <td><input type="checkbox" id="" value="" '.$fila['precintos'].' >&nbsp;<span class="subtitulo">Precinto Superior</span></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
 
 
         <br/>
