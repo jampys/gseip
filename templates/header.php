@@ -226,9 +226,9 @@
 
                         <ul class="dropdown-menu">
                             <!--<li class="dropdown-header">USUARIO</li>-->
-                            <li><a href="#"><i class="fas fa-user dp_blue"></i>&nbsp;Mi perfil</a></li>
+                            <li><a href="#"><i class="fas fa-user dp_gray"></i>&nbsp;Mi perfil</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-out dp_blue"></span> Cerrar sesión</a></li>
+                            <li><a href="index.php?action=login&operation=salir"><span class="glyphicon glyphicon-log-out dp_gray"></span> Cerrar sesión</a></li>
                         </ul>
 
                     </li>
