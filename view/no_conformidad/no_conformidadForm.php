@@ -106,9 +106,13 @@
                             $(element).closest('.form-group').removeClass('has-error'); //porque no elimina el highlight cuando es válido al usar un required dependiente de una condicion. Quizá es error del plugin!
                             return false;
                         }
-                    }
+                    },
+                    maxlength: 250
                 },
                 tipo_accion: { required: true},
+                accion_inmediata: {
+                    maxlength: 1000
+                },
                 id_responsable_seguimiento: { required: true}
             },
             messages:{
@@ -120,9 +124,15 @@
                 },
                 tipo: "Selecione el tipo de no conformidad",
                 analisis_causa_desc: {
-                    required: "Ingrese la descripción de causa raiz"
+                    required: "Ingrese la descripción de causa raiz",
+                    maxlength: "Máximo 250 caracteres"
+
                 },
                 tipo_accion: "Selecione el tipo de acción",
+                accion_inmediata: {
+                    maxlength: "Máximo 250 caracteres"
+
+                },
                 id_responsable_seguimiento: "Selecione el responsable de seguimiento"
             }
 

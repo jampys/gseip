@@ -68,6 +68,8 @@ $fila4['Correctiva'] = ($nc->getTipoAccion() == 'Correctiva')? 'checked=true':''
 $fila4['Preventiva'] = ($nc->getTipoAccion() == 'Preventiva')? 'checked=true':'';
 
 $fila4['descripcion'] = nl2br($nc->getDescripcion());
+$fila4['accion_inmediata'] = nl2br($nc->getAccionInmediata());
+$fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
 
 
 //----------------------------------------------------------------------------------
@@ -274,6 +276,42 @@ $fila4['descripcion'] = nl2br($nc->getDescripcion());
 
 
 
+        <br/>
+        <div style="float: left; width: 100%">
+            <span class="titulo">Acción inmediata</span>
+
+            <div class="borde-circular">
+            <table style="width:100%">
+            <tbody>
+                <tr>
+                    <td>'.$fila4['accion_inmediata'].'</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        </div>
+
+
+
+        <br/>
+        <div style="float: left; width: 100%">
+            <span class="titulo">Análisis de causa raiz</span>
+
+            <div class="borde-circular">
+            <table style="width:100%">
+            <tbody>
+                <tr>
+                    <td>'.$fila4['analisis_causa_desc'].'</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        </div>
+
+
+
 
 
 
@@ -281,8 +319,6 @@ $fila4['descripcion'] = nl2br($nc->getDescripcion());
 
 
         <br/>
-
-
 
         <div style="float: left; width: 100%" >
         <!--&nbsp;<img src="valve.png" alt="Smiley face" height="15" width="15">-->
