@@ -172,7 +172,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="descripcion">Descripción del hallazgo</label>
-                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción del hallazgo" rows="3"><?php print $view->no_conformidad->getDescripcion(); ?></textarea>
+                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción del hallazgo" rows="5"><?php print $view->no_conformidad->getDescripcion(); ?></textarea>
                     </div>
 
 

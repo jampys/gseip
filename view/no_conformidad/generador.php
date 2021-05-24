@@ -261,7 +261,7 @@ $fila4['descripcion'] = $nc->getDescripcion();
             <span class="titulo">Descripción del hallazgo</span>
 
             <div class="borde-circular">
-            <table style="width:100%; margin-top:10px">
+            <table style="width:100%">
             <tbody>
                 <tr>
                     <td>'.$fila4['descripcion'].'</td>
