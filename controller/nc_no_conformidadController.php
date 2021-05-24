@@ -94,6 +94,8 @@ switch ($operation)
         $fila2 = $f2[0];
         $f3 = Pdf::getGrafico($_GET['id_calib']);
         $fila3 = $f3[0];*/
+        $nc = new NoConformidad($_GET['id_no_conformidad']);
+        $fila4 = array();
 
         //include_once ('pdf/generador.php');
         include_once ('view/no_conformidad/generador.php');

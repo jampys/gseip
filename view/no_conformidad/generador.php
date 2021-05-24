@@ -1,5 +1,7 @@
 <?php
 
+
+
     $pmax1 = 0; $pmax2 = 0;
 
     $fila['condnormal'] = ($fila['condnormal']==1)? 'checked=true':'';
@@ -8,8 +10,6 @@
     $fila['condresiduos'] = ($fila['condresiduos']==1)? 'checked=true':'';
     $fila['condprecinto'] = ($fila['condprecinto']==1)?  'checked=true':'';
     $fila['conddañoe'] = ($fila['conddañoe']==1)?  'checked=true':'';
-
-    //if ($fila['condaltatemp']==1) $condiciones.="ALTA TEMPERATURA, ";
 
     $fila['valvactuada'] = ($fila['valvactuada']==1)?  'checked=true':'';
     $fila['resorte'] = ($fila['resorte']==1)?  'checked=true':'';
@@ -29,8 +29,6 @@
 
     $fila['serie_entrada'] = ($fila['serie_entrada'])? $fila['serie_entrada'] : "s/d";
     $fila['serie_salida'] = ($fila['serie_salida'])? $fila['serie_salida'] : "s/d";
-    //$fila['mayorpresion'] = ($fila['mayorpresion'])? $fila['mayorpresion'] : "s/d";
-    //$fila['mayorpresion2'] = ($fila['mayorpresion2'])? $fila['mayorpresion2'] : "s/d";
 
     $fila['i_nombre'] = ($fila['i_nombre'])? $fila['i_nombre'] : "s/d";
     $fila['i_marca'] = ($fila['i_marca'])? $fila['i_marca'] : "s/d";
@@ -53,10 +51,23 @@
     $fila2['instalacion'] = ($fila2['instalacion'])? $fila2['instalacion'] : "s/d";
     $fila2['yacimiento'] = ($fila2['yacimiento'])? $fila2['yacimiento'] : "s/d";
     $fila2['equipo'] = ($fila2['equipo'])? $fila2['equipo'] : "s/d";
-    //$fila2['numequipo'] = ($fila2['numequipo'])? $fila2['numequipo'] : "s/d";
 
-    //$firma = is_file('firmas/'.$_SESSION['ini']['unidad_negocio']['un'].'/'.$fila['usuario'].'.jpg')? 'firmas/'.$_SESSION['ini']['unidad_negocio']['un'].'/'.$fila['usuario'].'.jpg' : 'firmas/default.jpg';
     $firma = ($fila['u_firma'])? base64_encode($fila['u_firma']) : "images/default.jpg";
+//---------------------------------------------------------------------------------
+
+$fila4['No conformidad real'] = ($nc->getTipo() == 'No conformidad real')? 'checked=true':'';
+$fila4['No conformidad potencial'] = ($nc->getTipo() == 'No conformidad potencial')? 'checked=true':'';
+$fila4['Producto/Servicio no conforme'] = ($nc->getTipo() == 'Producto/Servicio no conforme')? 'checked=true':'';
+$fila4['Oportunidad de mejora'] = ($nc->getTipo() == 'Oportunidad de mejora')? 'checked=true':'';
+$fila4['Queja/Reclamo del cliente'] = ($nc->getTipo() == 'Queja/Reclamo del cliente')? 'checked=true':'';
+
+$fila4['Si'] = ($nc->getAnalisisCausa() == 'Si')? 'checked=true':'';
+$fila4['No'] = ($nc->getAnalisisCausa() == 'No')? 'checked=true':'';
+
+$fila4['Correctiva'] = ($nc->getTipoAccion() == 'Correctiva')? 'checked=true':'';
+$fila4['Preventiva'] = ($nc->getTipoAccion() == 'Preventiva')? 'checked=true':'';
+
+
 //----------------------------------------------------------------------------------
 
     include('pdf/graficomasicos.php');
@@ -184,15 +195,15 @@
             <table style="width:100%">
             <tbody>
                 <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila["condnormal"].'>&nbsp;<span class="subtitulo">No conformidad real</span></td>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila['condresiduos'].' >&nbsp;<span class="subtitulo">Oportunidad de mejora</span></td>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['No conformidad real'].'>&nbsp;<span class="subtitulo">No conformidad real</span></td>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Oportunidad de mejora'].' >&nbsp;<span class="subtitulo">Oportunidad de mejora</span></td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila['condcorrosion'].'>&nbsp;<span class="subtitulo">No conformidad potencia</span></td>
-                    <td><input type="checkbox" id="" value="" '.$fila['condprecinto'].' >&nbsp;<span class="subtitulo">Queja / reclamo del cliente</span></td>
+                    <td><input type="checkbox" id="" value="" '.$fila4['No conformidad potencial'].'>&nbsp;<span class="subtitulo">No conformidad potencial</span></td>
+                    <td><input type="checkbox" id="" value="" '.$fila4['Queja/Reclamo del cliente'].' >&nbsp;<span class="subtitulo">Queja / reclamo del cliente</span></td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila['condempetrolada'].' >&nbsp;<span class="subtitulo">Producto / Servicio no conforme</span></td>
+                    <td><input type="checkbox" id="" value="" '.$fila4['Producto/Servicio no conforme'].' >&nbsp;<span class="subtitulo">Producto / Servicio no conforme</span></td>
                     <td></td>
                 </tr>
             </tbody>
@@ -211,10 +222,10 @@
         <table style="width:100%">
             <tbody>
                 <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila["condnormal"].'>&nbsp;<span class="subtitulo">Si</span></td>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Si'].'>&nbsp;<span class="subtitulo">Si</span></td>
                 </tr>
                 <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila['condresiduos'].' >&nbsp;<span class="subtitulo">No</span></td>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['No'].' >&nbsp;<span class="subtitulo">No</span></td>
                 </tr>
             </tbody>
         </table>
@@ -230,10 +241,10 @@
         <table style="width:100%">
             <tbody>
                 <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila["condnormal"].'>&nbsp;<span class="subtitulo">Correctiva</span></td>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Correctiva'].'>&nbsp;<span class="subtitulo">Correctiva</span></td>
                 </tr>
                 <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila['condresiduos'].' >&nbsp;<span class="subtitulo">Preventiva</span></td>
+                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Preventiva'].' >&nbsp;<span class="subtitulo">Preventiva</span></td>
                 </tr>
             </tbody>
         </table>
