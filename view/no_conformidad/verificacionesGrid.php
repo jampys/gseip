@@ -29,7 +29,6 @@
             'columns': [
                 {"data" : "fecha_verificacion"},
                 {"data" : "verificacion_eficacia"},
-                {"data" : "user"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
