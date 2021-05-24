@@ -54,6 +54,7 @@
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'delete' : 'disabled' ?>';
                         let link = 'index.php?action=nc_no_conformidad&operation=pdf&id_no_conformidad='+row.id_no_conformidad;
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
                         return '<a class="'+permisoAcciones+'" href="#" title="Acciones">'+ //si tiene permiso para ver Acciones
                                     '<i class="fas fa-th-list dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
@@ -71,6 +72,9 @@
                                 '</a>&nbsp;&nbsp;'+
                                 '<a target="_blank" href="'+link+'" title="Emitir certificado">'+
                                     '<i class="far fa-file-pdf dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a target="_blank" href="#" title="'+user_info+'">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
                                 '</a>';
                     }
                 }

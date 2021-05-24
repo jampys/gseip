@@ -93,14 +93,15 @@ class NoConformidad
         $stmt=new sQuery();
         $query="select nc.id_no_conformidad, nc.nro_no_conformidad, nc.nombre, nc.tipo, nc.analisis_causa, nc.tipo_accion,
 nc.descripcion, nc.accion_inmediata, nc.analisis_causa_desc,
-DATE_FORMAT(nc.created_date,  '%d/%m/%Y') as created_date,
+DATE_FORMAT(nc.created_date,  '%d/%m/%Y %H:%i') as created_date,
 DATE_FORMAT(nc.fecha_cierre,  '%d/%m/%Y') as fecha_cierre,
-nc.id_user,
+nc.id_user, us.user,
 concat(em.apellido, ' ', em.nombre) as responsable_seguimiento,
 (select count(*) from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) as cant_acciones,
 (select DATE_FORMAT(max(ax.fecha_implementacion), '%d/%m/%Y') from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) as fecha_implementacion
 from nc_no_conformidad nc
-join empleados em on nc.id_responsable_seguimiento = em.id_empleado";
+join empleados em on nc.id_responsable_seguimiento = em.id_empleado
+join sec_users us on us.id_user = nc.id_user";
 
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
