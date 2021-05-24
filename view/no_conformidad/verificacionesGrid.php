@@ -41,22 +41,17 @@
                 {
                     targets: 1, //verificacion_eficacia
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(100)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(125)(data, type, row);
                     }
                 },
                 {
-                    targets: 2,//user
-                    render: function (data, type, row, meta) {
-                        return row.user.split('@')[0];
-                    }
-                },
-                {
-                    targets: 3,//action buttons
-                    width: '15%',
+                    targets: 2,//action buttons
+                    width: '20%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
                         return '<a class="view" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
@@ -65,6 +60,9 @@
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
                                     '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a target="_blank" href="#" title="'+user_info+'">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
                                 '</a>';
                     }
                 }
@@ -91,7 +89,6 @@
                 <tr>
                     <th>F. verif.</th>
                     <th>Verificación eficacia</th>
-                    <th>Usr.</th>
                     <th></th>
                 </tr>
                 </thead>

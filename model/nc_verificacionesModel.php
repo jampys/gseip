@@ -78,7 +78,7 @@ class Verificacion
         $stmt=new sQuery();
         $query = "select ve.id_verificacion, ve.id_no_conformidad, ve.verificacion_eficacia,
                   DATE_FORMAT(ve.fecha_verificacion, '%d/%m/%Y') as fecha_verificacion,
-                  DATE_FORMAT(ve.created_date, '%d/%m/%Y') as created_date,
+                  DATE_FORMAT(ve.created_date, '%d/%m/%Y %H:%i') as created_date,
                   ve.id_user,
                   us.user
                   from nc_verificacion ve

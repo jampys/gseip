@@ -86,7 +86,7 @@ class Accion
         $stmt=new sQuery();
         $query = "select ac.id_accion, ac.id_no_conformidad, ac.accion, ac.id_responsable_ejecucion,
                   DATE_FORMAT(ac.fecha_implementacion, '%d/%m/%Y') as fecha_implementacion,
-                  DATE_FORMAT(ac.created_date, '%d/%m/%y') as created_date,
+                  DATE_FORMAT(ac.created_date, '%d/%m/%y %H:%i') as created_date,
                   ac.id_user,
                   us.user
                   from nc_accion ac
