@@ -67,6 +67,8 @@ $fila4['No'] = ($nc->getAnalisisCausa() == 'No')? 'checked=true':'';
 $fila4['Correctiva'] = ($nc->getTipoAccion() == 'Correctiva')? 'checked=true':'';
 $fila4['Preventiva'] = ($nc->getTipoAccion() == 'Preventiva')? 'checked=true':'';
 
+$fila4['descripcion'] = $nc->getDescripcion();
+
 
 //----------------------------------------------------------------------------------
 
@@ -245,6 +247,24 @@ $fila4['Preventiva'] = ($nc->getTipoAccion() == 'Preventiva')? 'checked=true':''
                 </tr>
                 <tr>
                     <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Preventiva'].' >&nbsp;<span class="subtitulo">Preventiva</span></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        </div>
+
+
+
+        <br/>
+        <div style="float: left; width: 100%">
+            <span class="titulo">Descripción del hallazgo</span>
+
+            <div class="borde-circular">
+            <table style="width:100%; margin-top:10px">
+            <tbody>
+                <tr>
+                    <td>'.$fila4['descripcion'].'</td>
                 </tr>
             </tbody>
         </table>
