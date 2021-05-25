@@ -1,58 +1,15 @@
 <?php
 
 
-
-    $pmax1 = 0; $pmax2 = 0;
-
-    $fila['condnormal'] = ($fila['condnormal']==1)? 'checked=true':'';
-    $fila['condcorrosion'] = ($fila['condcorrosion']==1)? 'checked=true':'';
-    $fila['condempetrolada'] = ($fila['condempetrolada']==1)? 'checked=true':'';
-    $fila['condresiduos'] = ($fila['condresiduos']==1)? 'checked=true':'';
-    $fila['condprecinto'] = ($fila['condprecinto']==1)?  'checked=true':'';
-    $fila['conddañoe'] = ($fila['conddañoe']==1)?  'checked=true':'';
-
-    $fila['valvactuada'] = ($fila['valvactuada']==1)?  'checked=true':'';
-    $fila['resorte'] = ($fila['resorte']==1)?  'checked=true':'';
-    $fila['obturador'] = ($fila['obturador']==1)?  'checked=true':'';
-    $fila['asiento'] = ($fila['asiento']==1)?  'checked=true':'';
-    $fila['fuelle'] = ($fila['fuelle']==1)?  'checked=true':'';
-    $fila['contratuerca'] = ($fila['contratuerca']==1)?  'checked=true':'';
-    $fila['cierrepollera'] = ($fila['cierrepollera']==1)?  'checked=true':'';
-    $fila['pintura'] = ($fila['pintura']==1)?  'checked=true':'';
-    $fila['precintosup'] = ($fila['precintosup']==1)?  'checked=true':'';
-
-
+    /*$fila['condnormal'] = ($fila['condnormal']==1)? 'checked=true':'';
     $fila['Num_precinto'] = ($fila['Num_precinto'])? $fila['Num_precinto'] : "s/d";
     $tolerancia = ($fila["presioncalibracion"]<=4.83)? "+/- 0,138 kg/cm2":"+/- 3%";
     $tolerancia_ls = ($fila["presioncalibracion"]<=4.83)? $fila["presioncalibracion"] + 0.138 : $fila["presioncalibracion"] + $fila["presioncalibracion"] * 0.03 ;
     $tolerancia_li = ($fila["presioncalibracion"]<=4.83)? $fila["presioncalibracion"] - 0.138 : $fila["presioncalibracion"] - $fila["presioncalibracion"] * 0.03 ;
-
-    $fila['serie_entrada'] = ($fila['serie_entrada'])? $fila['serie_entrada'] : "s/d";
-    $fila['serie_salida'] = ($fila['serie_salida'])? $fila['serie_salida'] : "s/d";
-
-    $fila['i_nombre'] = ($fila['i_nombre'])? $fila['i_nombre'] : "s/d";
-    $fila['i_marca'] = ($fila['i_marca'])? $fila['i_marca'] : "s/d";
-
-    $fila['nroserie_fabricante'] = ($fila['nroserie_fabricante'])? $fila['nroserie_fabricante'] : "s/d";
-    $fila['v_tipo_orificio'] = ($fila['v_tipo_orificio'])? $fila['v_tipo_orificio'] : "s/d";
-    $fila['v_area_orificio'] = ($fila['v_area_orificio'])? $fila['v_area_orificio'] : "s/d";
-    $fila['sap'] = ($fila['sap'])? $fila['sap'] : "s/d";
-    $fila['v_resorte'] = ($fila['v_resorte'])? $fila['v_resorte'] : "s/d";
-    $fila['v_fuelle'] = ($fila['v_fuelle'])? $fila['v_fuelle'] : "s/d";
-
-    $fila["fluidotobera"] = ($fila['fluidotobera'])? $fila['fluidotobera'] : "s/d";
-
     $fila1['nrocertificado'] = ($fila1['nrocertificado'])? $fila1['nrocertificado'] : "s/d";
-    $fila1['mayorpresion'] = ($fila1['mayorpresion'])? round($fila1['mayorpresion'], 2).' kg/cm2' : "s/d";
     $fila1['mayorpresion2'] = ($fila1['mayorpresion2'])? round($fila1['mayorpresion2'], 2).' kg/cm2' : "s/d";
+    $firma = ($fila['u_firma'])? base64_encode($fila['u_firma']) : "images/default.jpg";*/
 
-
-    $fila2['nro_ot'] = ($fila2['nro_ot'])? $fila2['nro_ot'] : "s/d";
-    $fila2['instalacion'] = ($fila2['instalacion'])? $fila2['instalacion'] : "s/d";
-    $fila2['yacimiento'] = ($fila2['yacimiento'])? $fila2['yacimiento'] : "s/d";
-    $fila2['equipo'] = ($fila2['equipo'])? $fila2['equipo'] : "s/d";
-
-    $firma = ($fila['u_firma'])? base64_encode($fila['u_firma']) : "images/default.jpg";
 //---------------------------------------------------------------------------------
 
 $fila4['No conformidad real'] = ($nc->getTipo() == 'No conformidad real')? 'checked=true':'';
@@ -74,13 +31,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
 
 //----------------------------------------------------------------------------------
 
-    include('pdf/graficomasicos.php');
 
-    //calculo de la presion promedio. Ojo las variables se calculas en graficomasicos.php
-    $pmax1 = round($pmax1, 2).' kg/cm2';
-    $pmax2 = round($pmax2, 2).' kg/cm2';
-    $pprom = ($pmax2 > 0)? ($pmax1 + $pmax2)/2 : $pmax1;
-    $pprom = round($pprom, 2).' kg/cm2';
 
 
     require_once('vendor/autoload.php');
@@ -312,15 +263,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
 
 
         <br/>
-        <table id="example" style="width:100%">
-            <thead>
-            <tr>
-                <th>Acción</th>
-                <th>Responsable</th>
-                <th>F. impl.</th>
-            </tr>
-            </thead>
-            <tbody>
+
 
 
 
@@ -328,13 +271,25 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
         \Mpdf\HTMLParserMode::HTML_BODY);
 
 
+$html = '<div style="float: left; width: 100%">
+        <span class="titulo">Acciones</span>
+        <div class="borde-circular">
+            <table id="example" style="width:100%">
+            <thead>
+            <tr>
+                <th>Acción</th>
+                <th>Responsable</th>
+                <th>F. impl.</th>
+            </tr>
+            </thead>
+            <tbody>';
+
 foreach ($fila5 as $x) {
-    $mpdf->WriteHTML('<tr><td>'.$x["accion"].'</td>><td>'.$x["responsable_seguimiento"].'</td><td>'.$x["fecha_implementacion"].'</td></tr>');
+    $html.='<tr><td>'.$x["accion"].'</td>><td>'.$x["responsable_seguimiento"].'</td><td>'.$x["fecha_implementacion"].'</td></tr>';
 }
 
-$mpdf->WriteHTML('</tbody></table>');
-
-
+$html.='</tbody></table></div></div>';
+$mpdf->WriteHTML($html);
 
 
     $namepdf = $fila['nrocertificado'].'-v'.$fila['nroserie'].'-'.date('dmY').'.pdf';
