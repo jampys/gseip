@@ -99,6 +99,8 @@ switch ($operation)
         $nc = new NoConformidad($_GET['id_no_conformidad']);
         $fila4 = array();
         $fila5 = Accion::getAcciones($_GET['id_no_conformidad']);
+        $f6 = Verificacion::getVerificaciones($_GET['id_no_conformidad']);
+        $fila6 = end($f6);
 
         //include_once ('pdf/generador.php');
         include_once ('view/no_conformidad/generador.php');

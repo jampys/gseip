@@ -80,9 +80,11 @@ class Verificacion
                   DATE_FORMAT(ve.fecha_verificacion, '%d/%m/%Y') as fecha_verificacion,
                   DATE_FORMAT(ve.created_date, '%d/%m/%Y %H:%i') as created_date,
                   ve.id_user,
-                  us.user
+                  us.user,
+                  concat(em.apellido, ' ', em.nombre) as verifico
                   from nc_verificacion ve
                   join sec_users us on ve.id_user = us.id_user
+                  join empleados em on us.id_empleado = em.id_empleado
                   where ve.id_no_conformidad = :id_no_conformidad
                   order by ve.created_date asc";
         $stmt->dpPrepare($query);

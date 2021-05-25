@@ -292,6 +292,27 @@ $html.='</tbody></table></div></div>';
 $mpdf->WriteHTML($html);
 
 
+$mpdf->WriteHTML('
+        <br/>
+        <div style="float: left; width: 100%">
+            <!--<span class="titulo">Datos de la válvula</span>-->
+
+            <div class="borde-circular">
+            <table style="width:100%">
+            <tbody>
+                <tr>
+                    <td style="width: 25%"><span class="subtitulo">Verificó</span></td>
+                    <td style="width: 25%">'.$fila6['verifico'].'</td>
+                    <td style="width: 25%"><span class="subtitulo">Fecha</span></td>
+                    <td style="width: 25%">'.$fila6['fecha_verificacion'].'</td>
+                </tr>
+            </tbody>
+        </table>
+
+        </div>
+');
+
+
     $namepdf = $fila['nrocertificado'].'-v'.$fila['nroserie'].'-'.date('dmY').'.pdf';
     $mpdf->Output($namepdf, 'I'); //I visualizar, D descargar
 
