@@ -122,8 +122,8 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                 <tr>
                     <td><span class="subtitulo">Sector/Proceso</span></td>
                     <td>'.$fila2["yacimiento"].'</td>
-                    <td></td>
-                    <td></td>
+                    <td><span class="subtitulo">Estado</span></td>
+                    <td>'.$fila4["nro_ot"].'</td>
                 </tr>
             </tbody>
         </table>
