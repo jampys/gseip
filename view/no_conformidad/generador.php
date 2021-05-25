@@ -311,178 +311,32 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
         </div>
 
 
-
-
-
-
-
-
-
         <br/>
-
-        <div style="float: left; width: 100%" >
-        <!--&nbsp;<img src="valve.png" alt="Smiley face" height="15" width="15">-->
-            <span class="titulo">Patrón de Calibración</span>
-
-        <div class="borde-circular" >
-        <table style="width:100%">
+        <table id="example" style="width:100%">
+            <thead>
+            <tr>
+                <th>Acción</th>
+                <th>Responsable</th>
+                <th>F. impl.</th>
+            </tr>
+            </thead>
             <tbody>
-                <tr>
-                    <td style="width: 30%"><span class="subtitulo">Marca</span></td>
-                    <td style="width: 20%">'.$fila['i_marca'].'</td>
-                    <td style="width: 30%"><span class="subtitulo">Rango de Medición</span></td>
-                    <td style="width: 20%">'.$fila['i_rango'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">N° de Serie</span></td>
-                    <td>'.$fila['i_nombre'].'</td>
-                    <td><span class="subtitulo">Fecha de Calibración</span></td>
-                    <td>'.$fila['i_fechacalib'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-        <br/>
-        <div style="float: left; width: 100%">
-            <span class="titulo">Datos de la válvula</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 30%"><span class="subtitulo">Marca</span></td>
-                    <td style="width: 20%">'.$fila['marca'].'</td>
-                    <td style="width: 30%"><span class="subtitulo">Modelo</span></td>
-                    <td style="width: 20%">'.$fila['modelo'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">N° de Serie SEIP</span></td>
-                    <td>'.$fila['nroserievalv'].'</td>
-                    <td><span class="subtitulo">N° de Serie fabricante</span></td>
-                    <td>'.$fila['nroserie_fabricante'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Tipo Conexión E/S</span></td>
-                    <td>'.$fila['v_tipo_conexion'].'</td>
-                    <td><span class="subtitulo">Orificio Tipo <b>/</b> Área</span></td>
-                    <td>'.$fila['v_tipo_orificio']." <b>/</b> ".$fila['v_area_orificio'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Tamaño <b>/</b> Serie Entrada</span></td>
-                    <td>'.$fila['diametro_entrada']." <b>/</b> ".$fila['serie_entrada'].'</td>
-                    <td><span class="subtitulo">Tamaño <b>/</b> Serie Salida</span></td>
-                    <td>'.$fila['diametro_salida']." <b>/</b> ".$fila['serie_salida'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">N° de Equipo SAP</span></td>
-                    <td>'.$fila['sap'].'</td>
-                    <td><span class="subtitulo">Cuerpo <b>/</b> Bonete</span></td>
-                    <td>'.$fila['cuerpo'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Platillos <b>/</b> Paquetes <b>/</b> Arreglo</span></td>
-                    <td>'.$fila['v_ppa'].'</td>
-                    <td><span class="subtitulo">Resorte</span></td>
-                    <td>'.$fila['v_resorte'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Fuelle</span></td>
-                    <td>'.$fila['v_fuelle'].'</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-
-        </div>
-
-
-
-
-        <br/>
-        <div style="float: left; width: 100%">
-            <span class="titulo">Calibración</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 30%"><span class="subtitulo">Presión de Apertura Ensayo 1</span></td>
-                    <td style="width: 20%">'.$pmax1.'</td>
-                    <td style="width: 30%"><span class="subtitulo">Presión Promedio de Apertura</span></td>
-                    <td style="width: 20%">'.$pprom.'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Presión de Apertura Ensayo 2</span></td>
-                    <td>'.$pmax2.'</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-        <br/>
-        <div class="borde-circular" style="float: left; width: 100%">
-            <img src="pdf/Imagen/'.$_SESSION['ini']['unidad_negocio']['un'].'/imagen_'.$fila['id_calibracion'].'.png">
-        </div>
-
-
-
-        <br/>
-        <div style="float: left; width: 100%">
-            <span class="titulo">Comentarios</span>
-
-            <div class="borde-circular">
-            <table style="width:100%; margin-top:10px">
-            <tbody>
-                <tr>
-                    <td>'.$fila['comentarios'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-
-        <br/>
-        <div class="borde-circular" style="width: 100%; background-color: #ffffff">
-
-        <table style="width:100%; margin-top:10px">
-            <tbody>
-                <tr>
-                    <td style="width: 50%; text-align: center">
-                        <!--<img src="'.$firma.'" height="90px">-->
-                        <img src="data:image/jpeg;base64,'.$firma.'" height="90px">
-                        <br/>
-                        <span>'.$fila['u_apellido'].' '.$fila['u_nombre'].'</span>
-                    </td>
-                    <td style="width: 50%; text-align: center">
-                </tr>
-                <tr>
-                    <td style="text-align: center"><span class="subtitulo">Responsable de Calibración</span></td>
-                    <td style="text-align: center"><span class="subtitulo">Inspección Cliente</span></td>
-                </tr>
-            </tbody>
-        </table>
-
-
-        </div>
-
 
 
 
         ',
         \Mpdf\HTMLParserMode::HTML_BODY);
-    //$namepdf="Valv-".$fila['nroserie']."_IdCalib-".$fila['id_calibracion']."_Fecha-".date('d-m-Y_H-i-s').".pdf";
+
+
+foreach ($fila5 as $x) {
+    $mpdf->WriteHTML('<tr><td>'.$x["accion"].'</td>><td>'.$x["user"].'</td><td>'.$x["fecha_implementacion"].'</td></tr>');
+}
+
+$mpdf->WriteHTML('</tbody></table>');
+
+
+
+
     $namepdf = $fila['nrocertificado'].'-v'.$fila['nroserie'].'-'.date('dmY').'.pdf';
     $mpdf->Output($namepdf, 'I'); //I visualizar, D descargar
 

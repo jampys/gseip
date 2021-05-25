@@ -3,6 +3,8 @@
 include_once("model/empleadosModel.php");
 include_once("model/contratosModel.php");
 include_once("model/nc_no_conformidadModel.php");
+include_once("model/nc_accionesModel.php");
+include_once("model/nc_verificacionesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -96,6 +98,7 @@ switch ($operation)
         $fila3 = $f3[0];*/
         $nc = new NoConformidad($_GET['id_no_conformidad']);
         $fila4 = array();
+        $fila5 = Accion::getAcciones($_GET['id_no_conformidad']);
 
         //include_once ('pdf/generador.php');
         include_once ('view/no_conformidad/generador.php');
