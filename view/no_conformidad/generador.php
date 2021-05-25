@@ -72,7 +72,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
         </div>
 
         <div style="float: left; width: 65%; height: 36px; text-align: left">
-            <span style="font-size: 15px; font-weight: bold">Informe de No conformidad/Oportunidad de mejora</span><br/>
+            <span style="font-size: 15px; font-weight: bold">No conformidad/Oportunidad de mejora</span><br/>
             <span style="font-size: 13px">Calidad, Seguridad, Salud y Medio Ambiente</span>
         </div>
 
