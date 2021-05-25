@@ -120,22 +120,10 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                     <td>'.$fila4["nro_ot"].'</td>
                 </tr>
                 <tr>
-                    <td><span class="subtitulo">Yacimiento</span></td>
+                    <td><span class="subtitulo">Sector/Proceso</span></td>
                     <td>'.$fila2["yacimiento"].'</td>
-                    <td><span class="subtitulo">Fecha de Calibración</span></td>
-                    <td>'.$fila["fechacalib"].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Instalación</span></td>
-                    <td>'.$fila2["instalacion"].'</td>
-                    <td><span class="subtitulo">N° de Precinto</span></td>
-                    <td>'.$fila["Num_precinto"].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Equipo <b>/</b> Línea de Proceso</span></td>
-                    <td>'.$fila2["equipo"].' '.$fila2['numequipo'].'</td>
-                    <td><span class="subtitulo">Seteo de calibración</span></td>
-                    <td>'.$fila['presioncalibracion'].' kg/cm2</td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
