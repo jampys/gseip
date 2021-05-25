@@ -12,6 +12,7 @@ class NoConformidad
     private $analisis_causa_desc;
     private $id_responsable_seguimiento;
     private $fecha_cierre;
+    private $created_date;
     private $id_user;
 
     // GETTERS
@@ -47,6 +48,9 @@ class NoConformidad
 
     function getFechaCierre()
     { return $this->fecha_cierre;}
+
+    function getCreatedDate()
+    { return $this->created_date;}
 
     function getIdUser()
     { return $this->id_user;}
@@ -85,6 +89,9 @@ class NoConformidad
     function setFechaCierre($val)
     {  $this->fecha_cierre=$val;}
 
+    function setCreatedDate($val)
+    {  $this->created_date=$val;}
+
     function setIdUser($val)
     {  $this->id_user=$val;}
 
@@ -116,8 +123,9 @@ join sec_users us on us.id_user = nc.id_user";
             $stmt=new sQuery();
             $query="select nc.id_no_conformidad, nc.nro_no_conformidad, nc.nombre, nc.tipo, nc.analisis_causa, nc.tipo_accion, nc.descripcion,
                     nc.accion_inmediata, nc.analisis_causa_desc, nc.id_responsable_seguimiento,
-                    DATE_FORMAT(fecha_cierre, '%d/%m/%Y') as fecha_cierre,
-                    nc.id_user
+                    DATE_FORMAT(nc.fecha_cierre, '%d/%m/%Y') as fecha_cierre,
+                    nc.id_user,
+                    DATE_FORMAT(nc.created_date, '%d/%m/%Y') as created_date
                     from nc_no_conformidad nc
                     where id_no_conformidad = :nro";
             $stmt->dpPrepare($query);
@@ -136,6 +144,7 @@ join sec_users us on us.id_user = nc.id_user";
             $this->setAnalisisCausaDesc($rows[0]['analisis_causa_desc']);
             $this->setIdResponsableSeguimiento($rows[0]['id_responsable_seguimiento']);
             $this->setFechaCierre($rows[0]['fecha_cierre']);
+            $this->setCreatedDate($rows[0]['created_date']);
             $this->setIdUser($rows[0]['id_user']);
         }
     }

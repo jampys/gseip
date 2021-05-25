@@ -12,6 +12,12 @@
 
 //---------------------------------------------------------------------------------
 
+$fila4['nro_no_conformidad'] = $nc->getNroNoConformidad();
+$fila4['nombre'] = $nc->getNombre();
+$fila4['created_date'] = $nc->getCreatedDate();
+
+
+
 $fila4['No conformidad real'] = ($nc->getTipo() == 'No conformidad real')? 'checked=true':'';
 $fila4['No conformidad potencial'] = ($nc->getTipo() == 'No conformidad potencial')? 'checked=true':'';
 $fila4['Producto/Servicio no conforme'] = ($nc->getTipo() == 'Producto/Servicio no conforme')? 'checked=true':'';
@@ -102,16 +108,16 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
             </thead>-->
             <tbody>
                 <tr>
-                    <td style="width: 30%"><span class="subtitulo">Cliente</span></td>
-                    <td style="width: 20%">'.$fila["c_nombre"].'</td>
-                    <td style="width: 30%"><span class="subtitulo">N° de Certificado</span></td>
-                    <td style="width: 20%">'.$fila['nrocertificado'].'</td>
+                    <td style="width: 25%"><span class="subtitulo">Nro. No conformidad</span></td>
+                    <td style="width: 25%">'.$fila4["nro_no_conformidad"].'</td>
+                    <td style="width: 25%"><span class="subtitulo">Fecha</span></td>
+                    <td style="width: 25%">'.$fila4['created_date'].'</td>
                 </tr>
                 <tr>
-                    <td><span class="subtitulo">Unidad de Negocio</span></td>
-                    <td>'.$GLOBALS['ini']["unidad_negocio"]["un_nombre"].'</td>
-                    <td><span class="subtitulo">Orden de Trabajo</span></td>
-                    <td>'.$fila2["nro_ot"].'</td>
+                    <td><span class="subtitulo">Nombre</span></td>
+                    <td>'.$fila4["nombre"].'</td>
+                    <td><span class="subtitulo">Resp. seguimiento</span></td>
+                    <td>'.$fila4["nro_ot"].'</td>
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Yacimiento</span></td>
