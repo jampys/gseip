@@ -329,7 +329,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
 
 
 foreach ($fila5 as $x) {
-    $mpdf->WriteHTML('<tr><td>'.$x["accion"].'</td>><td>'.$x["user"].'</td><td>'.$x["fecha_implementacion"].'</td></tr>');
+    $mpdf->WriteHTML('<tr><td>'.$x["accion"].'</td>><td>'.$x["responsable_seguimiento"].'</td><td>'.$x["fecha_implementacion"].'</td></tr>');
 }
 
 $mpdf->WriteHTML('</tbody></table>');

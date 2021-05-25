@@ -88,9 +88,11 @@ class Accion
                   DATE_FORMAT(ac.fecha_implementacion, '%d/%m/%Y') as fecha_implementacion,
                   DATE_FORMAT(ac.created_date, '%d/%m/%y %H:%i') as created_date,
                   ac.id_user,
-                  us.user
+                  us.user,
+                  concat(em.apellido, ' ', em.nombre) as responsable_seguimiento
                   from nc_accion ac
                   join sec_users us on ac.id_user = us.id_user
+                  join empleados em on us.id_empleado = em.id_empleado
                   where ac.id_no_conformidad = :id_no_conformidad
                   order by ac.fecha_implementacion asc";
         $stmt->dpPrepare($query);
