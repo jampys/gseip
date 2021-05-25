@@ -278,14 +278,14 @@ $html = '<div style="float: left; width: 100%">
             <thead>
             <tr>
                 <th>Acción</th>
-                <th>Responsable</th>
+                <th>Resp. ejecución</th>
                 <th>F. impl.</th>
             </tr>
             </thead>
             <tbody>';
 
 foreach ($fila5 as $x) {
-    $html.='<tr><td>'.$x["accion"].'</td>><td>'.$x["responsable_seguimiento"].'</td><td>'.$x["fecha_implementacion"].'</td></tr>';
+    $html.='<tr><td>'.$x["accion"].'</td>><td>'.$x["responsable_ejecucion"].'</td><td>'.$x["fecha_implementacion"].'</td></tr>';
 }
 
 $html.='</tbody></table></div></div>';
