@@ -19,6 +19,7 @@
                 "data": function ( d ) {
                     d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
                     d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                    d.search_responsable_ejecucion = $('#search_responsable_ejecucion').val();
                     d.action = "nc_no_conformidad";
                     d.operation = "refreshGrid";
                 },
