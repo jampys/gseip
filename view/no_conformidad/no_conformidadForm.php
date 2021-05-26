@@ -112,7 +112,7 @@
                     maxlength: 250
                 },
                 tipo_accion: { required: true},
-                accion_inmediata: {
+                accion: {
                     maxlength: 1000
                 },
                 id_responsable_seguimiento: { required: true}
@@ -132,8 +132,8 @@
 
                 },
                 tipo_accion: "Selecione el tipo de acción",
-                accion_inmediata: {
-                    maxlength: "Máximo 250 caracteres"
+                accion: {
+                    maxlength: "Máximo 1000 caracteres"
 
                 },
                 id_responsable_seguimiento: "Selecione el responsable de seguimiento"
