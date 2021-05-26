@@ -16,14 +16,10 @@ switch ($operation)
 {
     case 'refreshGrid':
         $view->disableLayout=true;
-        $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
-        $id_grupo = ($_POST['id_grupo']!='')? $_POST['id_grupo'] : null;
-        //$id_vencimiento = ($_POST['id_vencimiento']!='')? $_POST['id_vencimiento'] : null;
-        $id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
-        $id_subcontratista = ($_POST['id_subcontratista']!='')? $_POST['id_subcontratista'] : null;
-        $renovado = ($_POST['renovado']== 0)? null : 1;
-        $rta = $view->renovaciones_personal = NoConformidad::getNoConformidades($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+        $search_responsable_ejecucion = ($_POST['search_responsable_ejecucion']!='')? $_POST['search_responsable_ejecucion'] : null;
+        $rta = NoConformidad::getNoConformidades($startDate, $endDate, $search_responsable_ejecucion);
         //$view->contentTemplate="view/no_conformidad/no_conformidadGrid.php";
         //break;
         print_r(json_encode($rta));

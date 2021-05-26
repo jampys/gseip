@@ -103,7 +103,7 @@ class NoConformidad
     {  $this->id_user=$val;}
 
 
-    public static function getNoConformidades($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado){
+    public static function getNoConformidades($startDate, $endDate, $search_responsable_ejecucion){
         $stmt=new sQuery();
         $query="select nc.id_no_conformidad, nc.nro_no_conformidad, nc.nombre, nc.sector, nc.tipo, nc.analisis_causa, nc.tipo_accion,
 nc.descripcion, nc.accion_inmediata, nc.analisis_causa_desc,
@@ -115,9 +115,12 @@ concat(em.apellido, ' ', em.nombre) as responsable_seguimiento,
 (select DATE_FORMAT(max(ax.fecha_implementacion), '%d/%m/%Y') from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) as fecha_implementacion
 from nc_no_conformidad nc
 join empleados em on nc.id_responsable_seguimiento = em.id_empleado
-join sec_users us on us.id_user = nc.id_user";
+join sec_users us on us.id_user = nc.id_user
+where date(nc.created_date) between :startDate and :endDate";
 
         $stmt->dpPrepare($query);
+        $stmt->dpBind(':startDate', $startDate);
+        $stmt->dpBind(':endDate', $endDate);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

@@ -16,7 +16,7 @@
 
 
             moment.locale('es');
-            $('#search_fecha').daterangepicker({
+            $('#daterange').daterangepicker({
                 startDate: moment().startOf('year'), //moment().subtract(29, 'days'),
                 endDate: moment(), //moment().add(12, 'months'),
                 locale: {
@@ -32,19 +32,19 @@
                     'Últimos 5 años': [moment().subtract(5, 'years'), moment()]
                 }
             }, function(start, end) {
-                $('#search_fecha span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                $('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             });
 
-            var drp = $('#search_fecha').data('daterangepicker');
+            var drp = $('#daterange').data('daterangepicker');
 
 
             $(document).on('click', '#search', function(){ //ok
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 params={};
-                params.search_fecha_desde = drp.startDate.format('DD/MM/YYYY');
-                params.search_fecha_hasta = drp.endDate.format('DD/MM/YYYY');
-                params.id_subcontratista = $("#search_responsable_ejecucion").val();
+                d.startDate = drp.startDate.format('YYYY-MM-DD');
+                d.endDate = drp.endDate.format('YYYY-MM-DD');
+                params.search_responsable_ejecucion = $("#search_responsable_ejecucion").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "nc_no_conformidad";
                 params.operation = "refreshGrid";
@@ -233,7 +233,7 @@
                         <div class="form-group col-md-3">
                             <!--<label for="search_vencimiento" class="control-label">Buscar partes</label>-->
                             <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="search_fecha" id="search_fecha" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
