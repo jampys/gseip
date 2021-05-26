@@ -40,6 +40,7 @@
                 params.id_no_conformidad = $('#id_no_conformidad').val();
                 params.nro_no_conformidad = $('#nro_no_conformidad').val();
                 params.nombre = $('#nombre').val();
+                params.sector = $('#sector').val();
                 params.descripcion = $('#descripcion').val();
                 params.tipo = $('#tipo').val();
                 params.analisis_causa=$('input[name=analisis_causa]:checked').val();
@@ -94,6 +95,7 @@
             rules: {
                 nro_no_conformidad: {required: true},
                 nombre: {required: true},
+                sector: {required: true},
                 descripcion: {
                     required: true,
                     maxlength: 1000
@@ -118,6 +120,7 @@
             messages:{
                 nro_no_conformidad: "Ingrese el Nro. No conformidad",
                 nombre: "Ingrese el nombre",
+                sector: "Ingrese el sector o proceso",
                 descripcion: {
                     required: "Ingrese la descripción del hallazgo",
                     maxlength: "Máximo 1000 caracteres"
@@ -180,9 +183,16 @@
                         <input class="form-control" type="text" name="nro_no_conformidad" id="nro_no_conformidad" value = "<?php print $view->no_conformidad->getNroNoConformidad() ?>" placeholder="Nro. No conformidad (requerido para carga masica, en adelante autogenerado)">
                     </div>
 
-                    <div class="form-group required">
-                        <label class="control-label" for="referencia">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->no_conformidad->getNombre() ?>" placeholder="Nombre">
+
+                    <div class="row">
+                        <div class="form-group col-md-6 required">
+                            <label class="control-label" for="referencia">Nombre</label>
+                            <input class="form-control" type="text" name="nombre" id="nombre" value = "<?php print $view->no_conformidad->getNombre() ?>" placeholder="Nombre">
+                        </div>
+                        <div class="form-group col-md-6 required">
+                            <label class="control-label" for="referencia">Sector/Proceso</label>
+                            <input class="form-control" type="text" name="sector" id="sector" value = "<?php print $view->no_conformidad->getSector() ?>" placeholder="Sector/Proceso">
+                        </div>
                     </div>
 
 

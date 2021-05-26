@@ -35,6 +35,7 @@ switch ($operation)
         $no_conformidad = new NoConformidad($_POST['id_no_conformidad']);
         $no_conformidad->setNroNoConformidad($_POST['nro_no_conformidad']);
         $no_conformidad->setNombre($_POST['nombre']);
+        $no_conformidad->setSector($_POST['sector']);
         $no_conformidad->setDescripcion($_POST['descripcion']);
         $no_conformidad->setTipo($_POST['tipo']);
         $no_conformidad->setAnalisisCausa($_POST['analisis_causa']);

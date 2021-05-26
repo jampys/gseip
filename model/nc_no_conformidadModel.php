@@ -4,6 +4,7 @@ class NoConformidad
     private $id_no_conformidad;
     private $nro_no_conformidad;
     private $nombre;
+    private $sector;
     private $tipo;
     private $analisis_causa;
     private $tipo_accion;
@@ -24,6 +25,9 @@ class NoConformidad
 
     function getNombre()
     { return $this->nombre;}
+
+    function getSector()
+    { return $this->sector;}
 
     function getTipo()
     { return $this->tipo;}
@@ -65,6 +69,9 @@ class NoConformidad
     function setNombre($val)
     { $this->nombre=$val;}
 
+    function setSector($val)
+    { $this->sector=$val;}
+
     function setTipo($val)
     { $this->tipo=$val;}
 
@@ -98,7 +105,7 @@ class NoConformidad
 
     public static function getNoConformidades($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado){
         $stmt=new sQuery();
-        $query="select nc.id_no_conformidad, nc.nro_no_conformidad, nc.nombre, nc.tipo, nc.analisis_causa, nc.tipo_accion,
+        $query="select nc.id_no_conformidad, nc.nro_no_conformidad, nc.nombre, nc.sector, nc.tipo, nc.analisis_causa, nc.tipo_accion,
 nc.descripcion, nc.accion_inmediata, nc.analisis_causa_desc,
 DATE_FORMAT(nc.created_date,  '%d/%m/%Y %H:%i') as created_date,
 DATE_FORMAT(nc.fecha_cierre,  '%d/%m/%Y') as fecha_cierre,
@@ -121,7 +128,7 @@ join sec_users us on us.id_user = nc.id_user";
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select nc.id_no_conformidad, nc.nro_no_conformidad, nc.nombre, nc.tipo, nc.analisis_causa, nc.tipo_accion, nc.descripcion,
+            $query="select nc.id_no_conformidad, nc.nro_no_conformidad, nc.nombre, nc.sector, nc.tipo, nc.analisis_causa, nc.tipo_accion, nc.descripcion,
                     nc.accion_inmediata, nc.analisis_causa_desc, nc.id_responsable_seguimiento,
                     DATE_FORMAT(nc.fecha_cierre, '%d/%m/%Y') as fecha_cierre,
                     nc.id_user,
@@ -136,6 +143,7 @@ join sec_users us on us.id_user = nc.id_user";
             $this->setIdNoConformidad($rows[0]['id_no_conformidad']);
             $this->setNroNoConformidad($rows[0]['nro_no_conformidad']);
             $this->setNombre($rows[0]['nombre']);
+            $this->setNombre($rows[0]['sector']);
             $this->setTipo($rows[0]['tipo']);
             $this->setAnalisisCausa($rows[0]['analisis_causa']);
             $this->setTipoAccion($rows[0]['tipo_accion']);
@@ -165,6 +173,7 @@ join sec_users us on us.id_user = nc.id_user";
         $query="update nc_no_conformidad set
                 nro_no_conformidad= :nro_no_conformidad,
                 nombre= :nombre,
+                sector= :sector,
                 tipo= :tipo,
                 analisis_causa= :analisis_causa,
                 tipo_accion= :tipo_accion,
@@ -177,6 +186,7 @@ join sec_users us on us.id_user = nc.id_user";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_no_conformidad', $this->getNroNoConformidad());
         $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':sector', $this->getSector());
         $stmt->dpBind(':tipo', $this->getTipo());
         $stmt->dpBind(':analisis_causa', $this->getAnalisisCausa());
         $stmt->dpBind(':tipo_accion', $this->getTipoAccion());
@@ -193,11 +203,12 @@ join sec_users us on us.id_user = nc.id_user";
     private function insertNoConformidad(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into nc_no_conformidad(nro_no_conformidad, nombre, tipo, analisis_causa, tipo_accion, descripcion, accion_inmediata, analisis_causa_desc, id_responsable_seguimiento, fecha_cierre, created_date, id_user)
-                values(:nro_no_conformidad, :nombre, :tipo, :analisis_causa, :tipo_accion, :descripcion, :accion_inmediata, :analisis_causa_desc, :id_responsable_seguimiento, STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), sysdate(), :id_user)";
+        $query="insert into nc_no_conformidad(nro_no_conformidad, nombre, nombre, tipo, analisis_causa, tipo_accion, descripcion, accion_inmediata, analisis_causa_desc, id_responsable_seguimiento, fecha_cierre, created_date, id_user)
+                values(:nro_no_conformidad, :nombre, :sector, :tipo, :analisis_causa, :tipo_accion, :descripcion, :accion_inmediata, :analisis_causa_desc, :id_responsable_seguimiento, STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), sysdate(), :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_no_conformidad', $this->getNroNoConformidad());
         $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':sector', $this->getSector());
         $stmt->dpBind(':tipo', $this->getTipo());
         $stmt->dpBind(':analisis_causa', $this->getAnalisisCausa());
         $stmt->dpBind(':tipo_accion', $this->getTipoAccion());
