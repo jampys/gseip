@@ -143,7 +143,7 @@ join sec_users us on us.id_user = nc.id_user";
             $this->setIdNoConformidad($rows[0]['id_no_conformidad']);
             $this->setNroNoConformidad($rows[0]['nro_no_conformidad']);
             $this->setNombre($rows[0]['nombre']);
-            $this->setNombre($rows[0]['sector']);
+            $this->setSector($rows[0]['sector']);
             $this->setTipo($rows[0]['tipo']);
             $this->setAnalisisCausa($rows[0]['analisis_causa']);
             $this->setTipoAccion($rows[0]['tipo_accion']);
