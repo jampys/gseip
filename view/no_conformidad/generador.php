@@ -16,6 +16,7 @@ $fila4['nro_no_conformidad'] = $nc->getNroNoConformidad();
 $fila4['nombre'] = $nc->getNombre();
 $fila4['sector'] = $nc->getSector();
 $fila4['created_date'] = $nc->getCreatedDate();
+$fila4['responsable_seguimiento'] = $rs->getApellido().' '.$rs->getNombre();
 
 
 
@@ -118,7 +119,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                     <td><span class="subtitulo">Nombre</span></td>
                     <td>'.$fila4["nombre"].'</td>
                     <td><span class="subtitulo">Resp. seguimiento</span></td>
-                    <td>'.$fila4["nro_ot"].'</td>
+                    <td>'.$fila4['responsable_seguimiento'].'</td>
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Sector/Proceso</span></td>
