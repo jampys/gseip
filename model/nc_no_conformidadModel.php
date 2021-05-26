@@ -16,6 +16,8 @@ class NoConformidad
     private $created_date;
     private $id_user;
 
+    private $estado;
+
     // GETTERS
     function getIdNoConformidad()
     { return $this->id_no_conformidad;}
@@ -58,6 +60,11 @@ class NoConformidad
 
     function getIdUser()
     { return $this->id_user;}
+
+    function getEstado()
+    { return $this->estado;}
+
+
 
     //SETTERS
     function setIdNoConformidad($val)
@@ -102,6 +109,9 @@ class NoConformidad
     function setIdUser($val)
     {  $this->id_user=$val;}
 
+    function setEstado($val)
+    {  $this->estado=$val;}
+
 
     public static function getNoConformidades($startDate, $endDate, $id_responsable_ejecucion){
         $stmt=new sQuery();
@@ -111,7 +121,10 @@ DATE_FORMAT(nc.created_date,  '%d/%m/%Y %H:%i') as created_date,
 DATE_FORMAT(nc.fecha_cierre,  '%d/%m/%Y') as fecha_cierre,
 nc.id_user, us.user,
 concat(em.apellido, ' ', em.nombre) as responsable_seguimiento,
-(select count(*) from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) as cant_acciones,
+CASE WHEN nc.fecha_cierre is not null THEN 'CERRADA'
+     WHEN (select count(*) from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) > 0 THEN 'PENDIENTE'
+     ELSE 'ABIERTA'
+END as estado,
 (select DATE_FORMAT(max(ax.fecha_implementacion), '%d/%m/%Y') from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) as fecha_implementacion
 from nc_no_conformidad nc
 join empleados em on nc.id_responsable_seguimiento = em.id_empleado
@@ -140,7 +153,11 @@ and if(:id_responsable_ejecucion is null, 1, exists(select 1
                     nc.accion_inmediata, nc.analisis_causa_desc, nc.id_responsable_seguimiento,
                     DATE_FORMAT(nc.fecha_cierre, '%d/%m/%Y') as fecha_cierre,
                     nc.id_user,
-                    DATE_FORMAT(nc.created_date, '%d/%m/%Y') as created_date
+                    DATE_FORMAT(nc.created_date, '%d/%m/%Y') as created_date,
+                    CASE WHEN nc.fecha_cierre is not null THEN 'CERRADA'
+                         WHEN (select count(*) from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) > 0 THEN 'PENDIENTE'
+                         ELSE 'ABIERTA'
+                    END as estado
                     from nc_no_conformidad nc
                     where id_no_conformidad = :nro";
             $stmt->dpPrepare($query);
@@ -162,6 +179,7 @@ and if(:id_responsable_ejecucion is null, 1, exists(select 1
             $this->setFechaCierre($rows[0]['fecha_cierre']);
             $this->setCreatedDate($rows[0]['created_date']);
             $this->setIdUser($rows[0]['id_user']);
+            $this->setEstado($rows[0]['estado']);
         }
     }
 

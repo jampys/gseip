@@ -16,8 +16,8 @@ $fila4['nro_no_conformidad'] = $nc->getNroNoConformidad();
 $fila4['nombre'] = $nc->getNombre();
 $fila4['sector'] = $nc->getSector();
 $fila4['created_date'] = $nc->getCreatedDate();
+$fila4['estado'] = $nc->getEstado();
 $fila4['responsable_seguimiento'] = $rs->getApellido().' '.$rs->getNombre();
-
 
 
 $fila4['No conformidad real'] = ($nc->getTipo() == 'No conformidad real')? 'checked=true':'';
@@ -125,7 +125,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                     <td><span class="subtitulo">Sector/Proceso</span></td>
                     <td>'.$fila4['sector'].'</td>
                     <td><span class="subtitulo">Estado</span></td>
-                    <td>'.$fila4["nro_ot"].'</td>
+                    <td>'.$fila4['estado'].'</td>
                 </tr>
             </tbody>
         </table>
