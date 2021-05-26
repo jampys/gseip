@@ -19,6 +19,7 @@ switch ($operation)
         $startDate = $_POST['startDate'];
         $endDate = $_POST['endDate'];
         $search_responsable_ejecucion = ($_POST['search_responsable_ejecucion']!='')? $_POST['search_responsable_ejecucion'] : null;
+        $search_responsable_ejecucion = ($_POST['search_responsable_ejecucion']!='')? $_POST['search_responsable_ejecucion'] : null;
         $rta = NoConformidad::getNoConformidades($startDate, $endDate, $search_responsable_ejecucion);
         //$view->contentTemplate="view/no_conformidad/no_conformidadGrid.php";
         //break;
@@ -107,6 +108,7 @@ switch ($operation)
 
     default : //ok
         $view->empleados = Empleado::getEmpleadosActivos(null);
+        $view->estados = Soporte::get_enum_values('nc_no_conformidad', 'estado');
         $view->contentTemplate="view/no_conformidad/no_conformidadGrid.php";
         break;
 }

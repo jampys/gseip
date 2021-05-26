@@ -45,6 +45,7 @@
                 params.startDate = drp.startDate.format('YYYY-MM-DD');
                 params.endDate = drp.endDate.format('YYYY-MM-DD');
                 params.search_responsable_ejecucion = $("#search_responsable_ejecucion").val();
+                params.search_estado = $("#search_estado").val();
                 //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "nc_no_conformidad";
                 params.operation = "refreshGrid";
@@ -249,6 +250,21 @@
                                         <?php //echo ($em['id_empleado'] == $view->objetivo->getIdResponsableEjecucion())? 'selected' :'' ?>
                                         >
                                         <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group col-md-2">
+                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
+                            <select class="form-control selectpicker show-tick" id="search_estado" name="search_estado" title="Seleccione el estado" data-live-search="true" data-size="5">
+                                <?php foreach ($view->estados['enum'] as $estados){
+                                    ?>
+                                    <option value="<?php echo $estados; ?>"
+                                        <?php //echo ($tipos == $view->no_conformidad->getTipo() OR ($tipos == $view->tipos['default'] AND !$view->no_conformidad->getIdNoConformidad()) )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $estados; ?>
                                     </option>
                                 <?php  } ?>
                             </select>
