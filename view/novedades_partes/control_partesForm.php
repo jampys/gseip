@@ -165,7 +165,7 @@
                 params.id_concepto_convenio_contrato = $("#myModal #id_concepto").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_conceptos.rptdesign"+
+                var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_conceptos.rptdesign"+
                     //"&p_fecha_desde="+params.fecha_desde+
                     //"&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_contrato="+params.id_contrato+
@@ -203,7 +203,7 @@
                 params.id_concepto_convenio_contrato = $("#myModal #id_concepto").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_conceptos2.rptdesign"+
+                var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_conceptos2.rptdesign"+
                         //"&p_fecha_desde="+params.fecha_desde+
                         //"&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_contrato="+params.id_contrato+
@@ -240,7 +240,7 @@
             params.id_periodo = $("#myModal #id_periodo").val();
             params.id_user = "<?php echo $_SESSION['id_user']; ?>";
             var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-            var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_ots.rptdesign"+
+            var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_ots.rptdesign"+
                     //"&p_fecha_desde="+params.fecha_desde+
                     //"&p_fecha_hasta="+params.fecha_hasta+
                 "&p_id_contrato="+params.id_contrato+
@@ -278,7 +278,7 @@
                 params.id_periodo = $("#myModal #id_periodo").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_faltantes.rptdesign"+
+                var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_faltantes.rptdesign"+
                         //"&p_fecha_desde="+params.fecha_desde+
                         //"&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_contrato="+params.id_contrato+
@@ -314,7 +314,7 @@
                 params.periodo = $('#myModal #id_periodo option:selected').attr('periodo');
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_inspeccion.rptdesign"+
+                var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_inspeccion.rptdesign"+
                     "&p_id_contrato="+params.id_contrato+
                     "&p_id_periodo="+params.id_periodo+
                     "&p_periodo="+params.periodo;

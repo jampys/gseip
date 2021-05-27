@@ -185,7 +185,7 @@
 
                         setTimeout(function() {
                             var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                            var URL="<?php echo $GLOBALS['ini']['report_url']; ?>frameset?__report=gseip_nov_control_administracion_"+params.first_contrato+".rptdesign&p_id_contrato="+params.id_contrato+
+                            var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__report=gseip_nov_control_administracion_"+params.first_contrato+".rptdesign&p_id_contrato="+params.id_contrato+
                                 "&p_id_periodo="+params.periodo+
                                 "&p_id_user="+params.id_user;
                             var win = window.open(URL, "_blank");
