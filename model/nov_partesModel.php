@@ -443,6 +443,19 @@ and ec.fecha_desde <= p.fecha_hasta
 and (ec.fecha_hasta is null or ec.fecha_hasta >= p.fecha_desde)
 group by em.id_empleado, nccc.codigo
 having cantidad > 0
+UNION
+select em.legajo, '9501',
+func_nov_horas('DHDD', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo) as cantidad,
+nccc.variable, em.id_convenio
+from empleado_contrato ec
+join empleados em on em.id_empleado = ec.id_empleado
+join nov_periodos p on (p.periodo = :periodo and p.id_contrato = ec.id_contrato)
+join nov_concepto_convenio_contrato nccc on (nccc.id_concepto = 39 and nccc.id_convenio = em.id_convenio and nccc.id_contrato = ec.id_contrato)
+where ec.id_contrato in ($id_contrato)
+and ec.fecha_desde <= p.fecha_hasta
+and (ec.fecha_hasta is null or ec.fecha_hasta >= p.fecha_desde)
+group by em.id_empleado, nccc.codigo
+having cantidad > 0
 ) as temp
 order by id_convenio asc, legajo asc, codigo asc";
 
