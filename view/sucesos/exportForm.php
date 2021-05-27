@@ -108,7 +108,7 @@
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.id_user = "<?php //echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php //echo $GLOBALS['ini']['report_url']; ?>frameset?__format=html&__report=gseip_crossTab_sucesos.rptdesign"+
+                var URL="<?php //echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_crossTab_sucesos.rptdesign"+
                     "&p_fecha_desde="+params.fecha_desde+
                     "&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_contrato="+params.id_contrato+
