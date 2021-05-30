@@ -373,10 +373,13 @@ left join nov_periodos per2 on per2.id_periodo = ns.id_periodo2
 join empleados em on em.id_empleado = ns.id_empleado
 left join nov_convenios nc on nc.id_convenio = em.id_convenio
 join nov_eventos_l nel on nel.id_evento = ns.id_evento
-join nov_concepto_convenio_contrato nccc on nccc.id_concepto = nel.id_concepto and nccc.id_contrato in ($id_contrato) and nccc.id_convenio = em.id_convenio
+left join nov_concepto_convenio_contrato nccc on (nccc.id_concepto = nel.id_concepto
+                                               and nccc.id_contrato = (per1.id_contrato or per2.id_contrato)
+                                               and nccc.id_contrato in ($id_contrato)
+                                               and nccc.id_convenio = em.id_convenio
+                                               and nccc.id_concepto in (15, 16, 18, 29))
 where (per1.periodo = :periodo or per2.periodo = :periodo)
 and (per1.id_contrato in ($id_contrato) or per2.id_contrato in($id_contrato))
-and nccc.id_concepto in (15, 16, 18, 29)
 group by em.id_empleado, nccc.codigo, nccc.variable
 UNION
 select em.legajo, nccc.codigo,
