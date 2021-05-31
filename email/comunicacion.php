@@ -25,7 +25,7 @@
             <?php echo $com[0]['FECHA_DESDE'] ?> hasta el  <?php echo $com[0]['FECHA_HASTA'] ?></p>
         <p>Le solicitamos ingresar al sistema para confirmar su participación.</p>
         <br/>
-        <p>Mensaje enviado desde <a href="<?php echo $GLOBALS['ini']['app_url']; ?>"><?php echo $GLOBALS['ini']['app_name']; ?></a></p>
+        <p>Mensaje enviado desde <a href="<?php echo $GLOBALS['ini']['application']['app_url']; ?>"><?php echo $GLOBALS['ini']['application']['app_name']; ?></a></p>
 
     </div>
 

@@ -16,7 +16,7 @@
         <p>Codigo de verificación: <b><?php echo $code; ?></b></p>
         <p>Si no ha enviado esta solicitud puede ignorar este mensaje.</p>
         <br/>
-        <p>Gracias<a href="<?php //echo $GLOBALS['ini']['app_url']; ?>"><?php //echo $GLOBALS['ini']['app_name']; ?></a></p>
+        <p>Gracias<a href="<?php //echo $GLOBALS['ini']['application']['app_url']; ?>"><?php //echo $GLOBALS['ini']['application']['app_name']; ?></a></p>
 
     </div>
 

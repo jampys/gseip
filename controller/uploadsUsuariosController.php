@@ -3,7 +3,7 @@ include_once("model/sec_usersModel.php");
 
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
-$output_dir = $GLOBALS['ini']['upload_dir']."profile_pictures/";
+$output_dir = $GLOBALS['ini']['application']['upload_dir']."profile_pictures/";
 
 
 switch ($operation) {
