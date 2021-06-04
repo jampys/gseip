@@ -3,7 +3,7 @@ include_once("model/busquedasModel.php");
 
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
-$output_dir = $GLOBALS['ini']['upload_dir']."sel_busquedas/";
+$output_dir = $GLOBALS['ini']['application']['upload_dir']."sel_busquedas/";
 
 
 switch ($operation) {

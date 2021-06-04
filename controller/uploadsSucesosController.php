@@ -3,7 +3,7 @@ include_once("model/nov_sucesosModel.php");
 
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
-$output_dir = $GLOBALS['ini']['upload_dir']."nov_sucesos/";
+$output_dir = $GLOBALS['ini']['application']['upload_dir']."nov_sucesos/";
 
 
 switch ($operation) {

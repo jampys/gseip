@@ -3,7 +3,7 @@ include_once("model/vto_renovacionesVehiculosModel.php");
 
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
-$output_dir = $GLOBALS['ini']['upload_dir']."vto_vencimiento_v/";
+$output_dir = $GLOBALS['ini']['application']['upload_dir']."vto_vencimiento_v/";
 
 
 switch ($operation) {

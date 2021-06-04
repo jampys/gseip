@@ -3,7 +3,7 @@ include_once("model/postulantesModel.php");
 
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
-$output_dir = $GLOBALS['ini']['upload_dir']."sel_postulantes/";
+$output_dir = $GLOBALS['ini']['application']['upload_dir']."sel_postulantes/";
 
 
 switch ($operation) {

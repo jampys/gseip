@@ -229,7 +229,7 @@ and if(:id_responsable_ejecucion is null, 1, exists(select 1
     private function insertNoConformidad(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into nc_no_conformidad(nro_no_conformidad, nombre, nombre, tipo, analisis_causa, tipo_accion, descripcion, accion_inmediata, analisis_causa_desc, id_responsable_seguimiento, fecha_cierre, created_date, id_user)
+        $query="insert into nc_no_conformidad(nro_no_conformidad, nombre, sector, tipo, analisis_causa, tipo_accion, descripcion, accion_inmediata, analisis_causa_desc, id_responsable_seguimiento, fecha_cierre, created_date, id_user)
                 values(:nro_no_conformidad, :nombre, :sector, :tipo, :analisis_causa, :tipo_accion, :descripcion, :accion_inmediata, :analisis_causa_desc, :id_responsable_seguimiento, STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), sysdate(), :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_no_conformidad', $this->getNroNoConformidad());

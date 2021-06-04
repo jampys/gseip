@@ -3,7 +3,7 @@ include_once("model/puestosModel.php");
 
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
-$output_dir = $GLOBALS['ini']['upload_dir']."puestos/";
+$output_dir = $GLOBALS['ini']['application']['upload_dir']."puestos/";
 
 
 switch ($operation) {
