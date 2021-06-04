@@ -91,15 +91,6 @@ switch ($operation)
         exit;
         break;
 
-    case 'loadDetalles': //abre la ventana modal para mostrar los postulantes de la busqueda
-        $view->disableLayout=true;
-        $view->busqueda = new Busqueda($_POST['id_busqueda']);
-        $view->label= $view->busqueda->getNombre();
-
-        $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
-        //$view->habilidades = HabilidadPuesto::getHabilidadPuesto($_POST['id_puesto'], null);
-        $view->contentTemplate="view/busquedas/busquedasFormDetalles.php";
-        break;
 
     case 'deleteBusqueda': //ok
         /*$busqueda = new Busqueda($_POST['id_busqueda']);

@@ -64,7 +64,7 @@
             });
 
 
-            //Al presionar el boton detalles....
+            //Al presionar el boton detalles de la busqueda....
             $('#content').on('click', '.detalles', function(){ //ok
                 //alert('tocó en contratos');
                 var id = $(this).closest('tr').attr('data-id');
@@ -72,7 +72,7 @@
                 params={};
                 params.id_busqueda = id;
                 params.action = "postulaciones2";
-                params.operation = "loadDetalles";
+                //params.operation = "loadDetalles"; //entra al default del controller
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                     $('#etapas_left_side #add').attr('id_busqueda', id);
