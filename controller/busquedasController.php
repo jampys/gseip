@@ -69,7 +69,7 @@ switch ($operation)
         $view->contentTemplate="view/busquedas/busquedasForm.php";
         break;
 
-    
+
     case 'deleteBusqueda': //ok
         /*$busqueda = new Busqueda($_POST['id_busqueda']);
         $rta = $busqueda->deleteBusqueda();
