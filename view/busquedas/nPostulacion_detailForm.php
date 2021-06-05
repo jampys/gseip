@@ -200,7 +200,8 @@
 
 
         //Guardar postulacion luego de ingresar nueva o editar
-        $('#etapas_right_side').on('click', '#submit',function(){ //ok
+        //$('#etapas_right_side').on('click', '#submit',function(){ //ok
+        $('#submit').on('click',function(){ //ok
             //alert('guardar postulacion');
             //throw new Error();
 
