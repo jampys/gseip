@@ -27,12 +27,12 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "id_etapa"},
+                {"data" : "fecha_etapa"},
                 {"data" : "id_etapa"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
-                $(row).attr('data-id', data.id_accion);
+                $(row).attr('data-id', data.id_etapa);
             },
             "columnDefs": [
                 //{ targets: 0, responsivePriority: 2 },
@@ -86,7 +86,7 @@
             <table id="table-etapas" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
-                    <th>F. impl.</th>
+                    <th>Fecha</th>
                     <th>Acción</th>
                     <th></th>
                 </tr>
