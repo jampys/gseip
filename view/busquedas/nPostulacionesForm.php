@@ -153,17 +153,40 @@
 
                         <div class="col-md-7" id="etapas_left_side">
 
-                            <div class="clearfix">
-                                <button <?php echo (PrivilegedUser::dhasPrivilege('PTN_ABM', array(1)) )? '' : 'disabled' ?> class="btn btn-default pull-right dp_green" id="add" name="add" type="submit" title="Agregar postulante">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button>
+                            <!-- seccion de postulantes-->
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="clearfix">
+                                        <button <?php echo (PrivilegedUser::dhasPrivilege('PTN_ABM', array(1)) )? '' : 'disabled' ?> class="btn btn-default pull-right dp_green" id="add" name="add" type="submit" title="Agregar postulante">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </div>
+
+                                    <div class="grid">
+                                        <?php include_once('view/busquedas/nPostulacionesGrid.php');?>
+                                    </div>
+
+                                </div>
                             </div>
 
-                            <div class="grid">
-                                <?php include_once('view/busquedas/nPostulacionesGrid.php');?>
+                            <!-- seccion de etapas de la postulacion-->
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <!-- incluir datatable de etapas de la postulacion-->
+                                    <div class="grid">
+                                        <?php include_once('view/busquedas/etapasGrid.php');?>
+                                    </div>
+
+                                </div>
                             </div>
+
+
 
                         </div>
+
+
 
                         <div class="col-md-5" id="etapas_right_side">
 
