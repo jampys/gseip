@@ -52,6 +52,10 @@
                         <td><?php echo($pos['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
 
                         <td class="text-center">
+                            <a class="etapas" href="#" title="etapas">
+                                <i class="fas fa-step-forward dp_blue"></i>
+                            </a>&nbsp;&nbsp;
+
                             <a class="view" href="javascript:void(0);" title="ver">
                                 <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
                             </a>&nbsp;&nbsp;
