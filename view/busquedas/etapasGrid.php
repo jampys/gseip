@@ -45,6 +45,15 @@
                     }
                 },
                 {
+                    targets: 2,//aplica
+                    render: function (data, type, row, meta) {
+                        //let permisoEditar = '<?php //echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
+                        //let permisoEliminar = '<?php //echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        //let user_info = row.user.split('@')[0]+' '+row.created_date;
+                        return (row.aplica == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>';
+                    }
+                },
+                {
                     targets: 3,//action buttons
                     width: '20%',
                     responsivePriority: 1,
