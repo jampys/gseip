@@ -28,7 +28,8 @@
             },
             'columns': [
                 {"data" : "fecha_etapa"},
-                {"data" : "id_etapa"},
+                {"data" : "etapa"},
+                {data: null, defaultContent: ''},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
@@ -36,15 +37,15 @@
             },
             "columnDefs": [
                 //{ targets: 0, responsivePriority: 2 },
-                {targets: 0, type: 'date-uk'}, //fecha_implementacion
+                {targets: 0, type: 'date-uk'}, //fecha_etapa
                 {
-                    targets: 1, //accion
+                    targets: 1, //etapa
                     render: function(data, type, row) {
                         return $.fn.dataTable.render.ellipsis(125)(data, type, row);
                     }
                 },
                 {
-                    targets: 2,//action buttons
+                    targets: 3,//action buttons
                     width: '20%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
@@ -87,7 +88,8 @@
                 <thead>
                 <tr>
                     <th>Fecha</th>
-                    <th>Acción</th>
+                    <th>Etapa</th>
+                    <th>Aplica</th>
                     <th></th>
                 </tr>
                 </thead>
