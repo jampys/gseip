@@ -22,7 +22,7 @@
                 "data": function ( d ) {
                     d.action = "etapas";
                     d.operation = "refreshGrid";
-                    d.id_busqueda = $('#etapas_left_side #add').attr('id_postulacion');
+                    d.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
                 },
                 "dataSrc": ""
             },
