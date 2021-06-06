@@ -20,15 +20,15 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
-                    d.action = "nc_acciones";
+                    d.action = "etapas";
                     d.operation = "refreshGrid";
-                    d.id_no_conformidad = $('#etapas_left_side #add').attr('id_no_conformidad');
+                    d.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
                 },
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "fecha_implementacion"},
-                {"data" : "accion"},
+                {"data" : "id_etapa"},
+                {"data" : "id_etapa"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {

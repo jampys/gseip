@@ -21,9 +21,13 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
-        $view->contentTemplate="view/postulaciones/etapasGrid.php";
+        $rta = $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
+        //$view->contentTemplate="view/postulaciones/etapasGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
+
 
     case 'saveEtapa': //ok
         $etapa = new Etapa($_POST['id_etapa']);

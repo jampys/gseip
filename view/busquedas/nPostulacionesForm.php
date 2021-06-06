@@ -163,19 +163,20 @@
                                         </button>
                                     </div>
 
-                                    <div class="grid">
+                                    <div class="grid-postulaciones">
                                         <?php include_once('view/busquedas/nPostulacionesGrid.php');?>
                                     </div>
 
                                 </div>
                             </div>
 
+                            <br/>
                             <!-- seccion de etapas de la postulacion-->
                             <div class="row">
                                 <div class="col-md-12">
 
                                     <!-- incluir datatable de etapas de la postulacion-->
-                                    <div class="grid">
+                                    <div class="grid-etapas">
                                         <?php include_once('view/busquedas/etapasGrid.php');?>
                                     </div>
 
