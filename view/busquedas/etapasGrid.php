@@ -3,11 +3,11 @@
 
     $(document).ready(function(){
 
-        var t = $('#table-acciones').DataTable({
+        var t = $('#table-etapas').DataTable({
             responsive: true,
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
-                emptyTable: 'La No conformidad no tiene acciones registradas'
+                emptyTable: 'La postulación aún no tiene etapas registradas'
             },
             sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
@@ -83,7 +83,7 @@
 
     
     <div id="empleados-table">
-            <table id="table-acciones" class="table table-condensed table-hover dt-responsive" width="100%">
+            <table id="table-etapas" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
                     <th>F. impl.</th>

@@ -125,16 +125,7 @@
             //alert('tocó en etapas');
             var id = $(this).closest('tr').attr('data-id');
             $('#etapas_left_side #add').attr('id_postulacion', id);
-            $('#table-acciones').DataTable().ajax.reload();
-            //preparo los parametros
-            /*params={};
-            params.id_busqueda = id;
-            params.action = "postulaciones2";
-            $('#popupbox').load('index.php', params,function(){
-                $('#myModal').modal();
-                $('#etapas_left_side #add').attr('id_busqueda', id);
-            })*/
-
+            $('#table-etapas').DataTable().ajax.reload();
         });
 
 
