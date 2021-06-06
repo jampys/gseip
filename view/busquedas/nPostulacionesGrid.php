@@ -39,7 +39,7 @@
                 <thead>
                 <tr>
                     <th>Postulante</th>
-                    <th>Etapa</th>
+                    <th>Ult. etapa</th>
                     <th>Aplica</th>
                     <th></th>
                 </tr>
