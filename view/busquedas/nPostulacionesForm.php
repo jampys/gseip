@@ -71,12 +71,12 @@
             params={};
             params.action = "postulaciones2";
             params.operation = "newPostulacion";
-            params.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
+            //params.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_busqueda').val(params.id_busqueda);
+                //$('#id_busqueda').val(params.id_busqueda);
             })
         });
 
@@ -114,7 +114,8 @@
             //alert(id);
             params={};
             params.id_postulacion = id;
-            params.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
+            //params.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
+            params.id_busqueda = $('#myModal #id_busquedax').val();
             params.action = "postulaciones2";
             params.operation = "deletePostulacion";
 
@@ -328,7 +329,7 @@
 
             <div class="modal-body">
 
-                <!--<input type="hidden" name="id_contrato" id="id_contrato" value="<?php //print $view->grupo->getIdVencimiento() ?>">-->
+                <input type="hidden" name="id_busquedax" id="id_busquedax" value="<?php //print $view->grupo->getIdVencimiento() ?>">
                 
                 <div class="row">
 
