@@ -19,8 +19,8 @@
                     attr:  {
                         id: 'add',
                         disabled: function(){
-                            let permisoNuevo = '<?php echo (PrivilegedUser::dhasPrivilege('PTN_ABM', array(1)) )? false : true ?>';
-                            return permisoNuevo;
+                            let permisoNuevo = '<?php echo (PrivilegedUser::dhasPrivilege('PTN_ABM', array(1)) )? 'false' : 'true' ?>';
+                            return (permisoNuevo == 'false')? false : true;
                         }
                     },
                     action: function ( e, dt, node, config ) {
