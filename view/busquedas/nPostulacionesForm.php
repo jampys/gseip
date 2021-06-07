@@ -14,7 +14,7 @@
 
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){ //ok
+        $('.grid-postulaciones').on('click', '.edit', function(){ //ok
             //alert('editar postulacion');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
@@ -31,7 +31,7 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.view', function(){ //ok
+        $('.grid-postulaciones').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             params={};
             params.id_postulacion = id;
@@ -66,7 +66,7 @@
 
 
         var dialog;
-        $('#etapas_left_side').on('click', '.delete', function(){
+        $('.grid-postulaciones').on('click', '.delete', function(){
 
             var id = $(this).closest('tr').attr('data-id');
             dialog = bootbox.dialog({
@@ -121,7 +121,7 @@
 
 
 
-        $('#etapas_left_side').on('click', '.etapas', function(){ //ok
+        $('.grid-postulaciones').on('click', '.etapas', function(){ //ok
             //alert('tocó en etapas');
             var id = $(this).closest('tr').attr('data-id');
             $('#etapas_left_side #add').attr('id_postulacion', id);
