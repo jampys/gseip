@@ -39,13 +39,13 @@
                 {
                     targets: 0, //postulante
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(50)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(30)(data, type, row);
                     }
                 },
                 {
                     targets: 1, //etapa
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(30)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(20)(data, type, row);
                     }
                 },
                 {
@@ -59,7 +59,7 @@
                 },
                 {
                     targets: 3,//action buttons
-                    width: '25%',
+                    width: '20%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoNuevo = '<?php echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? 'new' : 'disabled' ?>';
