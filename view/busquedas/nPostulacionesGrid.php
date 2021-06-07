@@ -15,7 +15,7 @@
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
-            order: [[0, "asc"]], // 0=fecha_implementacion
+            order: [[4, "desc"], [0, "asc"]], // 4=aplica, 0=postulante
             'ajax': {
                 "type"   : "POST",
                 "url"    : 'index.php',
@@ -30,7 +30,8 @@
                 {"data" : "postulante"},
                 {"data" : "etapa"},
                 {data: null, defaultContent: ''},
-                {data: null, defaultContent: '', orderable: false}
+                {data: null, defaultContent: '', orderable: false},
+                {data: "aplica", defaultContent: '', orderable: false, visible: false, searchable: false}
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_postulacion);
