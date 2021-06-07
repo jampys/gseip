@@ -146,14 +146,15 @@ class Postulacion
 
     private function insertPostulacion(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_postulaciones(id_busqueda, id_postulante, fecha, origen_cv, expectativas, propuesta_economica)
-                values(:id_busqueda, :id_postulante, sysdate(), :origen_cv, :expectativas, :propuesta_economica)";
+        $query="insert into sel_postulaciones(id_busqueda, id_postulante, fecha, origen_cv, expectativas, propuesta_economica, id_user)
+                values(:id_busqueda, :id_postulante, sysdate(), :origen_cv, :expectativas, :propuesta_economica, :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
         $stmt->dpBind(':id_postulante', $this->getIdPostulante());
         $stmt->dpBind(':origen_cv', $this->getOrigenCv());
         $stmt->dpBind(':expectativas', $this->getExpectativas());
         $stmt->dpBind(':propuesta_economica', $this->getPropuestaEconomica());
+        $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
