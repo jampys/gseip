@@ -7,6 +7,7 @@
             responsive: true,
             language: {
                 search: '',
+                searchPlaceholder: "Buscar postulante",
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 emptyTable: 'No existen candidatos para la búsqueda seleccionada'
             },
@@ -85,7 +86,7 @@
                     render: function (data, type, row, meta) {
                         let permisoNuevo = '<?php echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? 'new' : 'disabled' ?>';
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = row.user.split('@')[0]+' '+row.fecha;
                         return  '<a class="'+permisoNuevo+'" title="Agregar etapa" href="#">'+
                                     '<i class="fas fa-plus dp_blue"></i>'+

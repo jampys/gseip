@@ -229,6 +229,7 @@
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#etapa-form').hide();
                                                 $('#table-etapas').DataTable().ajax.reload();
+                                                $('#table-postulantes').DataTable().ajax.reload();
                         }, 2000);
                     }
 
@@ -287,6 +288,7 @@
                                 $('#etapa-form').hide();
                                 //$('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
                                 $('#table-etapas').DataTable().ajax.reload();
+                                $('#table-postulantes').DataTable().ajax.reload();
                     }, 2000);
                 }
 
