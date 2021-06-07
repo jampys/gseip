@@ -6,31 +6,27 @@
         var t = $('#table-postulantes').DataTable({
             responsive: true,
             language: {
+                search: '',
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 emptyTable: 'No existen candidatos para la búsqueda seleccionada'
             },
-            sDom:   "<'row'<'col-sm-3'><'col-sm-3'B><'col-sm-6'f>>" +
+            sDom:   "<'row'<'col-sm-2'B><'col-sm-4'><'col-sm-6'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-12'>>",
             buttons: [
                 {
-                    text: '<i class="far fa-file-pdf fa-fw dp_blue"></i>',
-                    titleAttr: 'Reporte PSV instaladas',
+                    text: '<i class="fas fa-plus fa-fw dp_green"></i>',
+                    titleAttr: 'Agregar postulante',
                     attr:  {
-                        id: 'add',
+                        id: 'add', //https://datatables.net/reference/option/buttons.buttons.attr
                         disabled: function(){
                             let permisoNuevo = '<?php echo (PrivilegedUser::dhasPrivilege('PTN_ABM', array(1)) )? 'false' : 'true' ?>';
                             return (permisoNuevo == 'false')? false : true;
                         }
                     },
                     action: function ( e, dt, node, config ) {
-                        /*let link = 'index.php?action=pdf&operation=partes' +
-                            '&startDate='+drp.startDate.format('YYYY-MM-DD')+
-                            '&endDate='+drp.endDate.format('YYYY-MM-DD')+
-                            '&yacimiento='+$('#yacimiento').val()+
-                            '&instalacion='+$('#instalacion').val()+
-                            '&equipo='+$('#equipo').val();
-                        window.open(link, '_blank');*/
+                        //https://datatables.net/reference/option/buttons.buttons.action
+                        //usa el evento que esta en nPostulacionesForm.php
                     }
                 }
             ],
@@ -91,7 +87,7 @@
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = row.user.split('@')[0]+' '+row.fecha;
-                        return  '<a class="'+permisoNuevo+'" title="Nueva etapa" href="#">'+
+                        return  '<a class="'+permisoNuevo+'" title="Agregar etapa" href="#">'+
                                     '<i class="fas fa-plus dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="view" title="Ver" href="#">'+
