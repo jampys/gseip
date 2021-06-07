@@ -45,12 +45,12 @@
                 {
                     targets: 1, //etapa
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(50)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(30)(data, type, row);
                     }
                 },
                 {
                     targets: 2,//aplica
-                    width: '15%',
+                    width: '10%',
                     responsivePriority: 2,
                     render: function (data, type, row, meta) {
                         let aplica = (row.aplica == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>';
@@ -102,7 +102,7 @@
                 <tr>
                     <th>Postulante</th>
                     <th>Ult. etapa</th>
-                    <th>Aplica</th>
+                    <th></th>
                     <th></th>
                 </tr>
                 </thead>
