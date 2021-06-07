@@ -9,9 +9,24 @@
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 emptyTable: 'No existen candidatos para la búsqueda seleccionada'
             },
-            sDom:   "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+            sDom:   "<'row'<'col-sm-3'><'col-sm-3'B><'col-sm-6'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-12'>>",
+            buttons: [
+                {
+                    text: '<i class="far fa-file-pdf fa-fw dp_blue"></i>',
+                    titleAttr: 'Reporte PSV instaladas',
+                    action: function ( e, dt, node, config ) {
+                        let link = 'index.php?action=pdf&operation=partes' +
+                            '&startDate='+drp.startDate.format('YYYY-MM-DD')+
+                            '&endDate='+drp.endDate.format('YYYY-MM-DD')+
+                            '&yacimiento='+$('#yacimiento').val()+
+                            '&instalacion='+$('#instalacion').val()+
+                            '&equipo='+$('#equipo').val();
+                        window.open(link, '_blank');
+                    }
+                }
+            ],
             bPaginate: false,
             //deferRender:    true,
             scrollY:        150,
