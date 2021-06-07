@@ -9,7 +9,9 @@
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 emptyTable: 'No existen candidatos para la búsqueda seleccionada'
             },
-            sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
+            sDom:   "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12'>>",
             bPaginate: false,
             //deferRender:    true,
             scrollY:        150,
