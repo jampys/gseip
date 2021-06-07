@@ -17,7 +17,11 @@
                     text: '<i class="far fa-file-pdf fa-fw dp_blue"></i>',
                     titleAttr: 'Reporte PSV instaladas',
                     attr:  {
-                        id: 'add'
+                        id: 'add',
+                        disabled: function(){
+                            let permisoNuevo = '<?php echo (PrivilegedUser::dhasPrivilege('PTN_ABM', array(1)) )? false : true ?>';
+                            return permisoNuevo;
+                        }
                     },
                     action: function ( e, dt, node, config ) {
                         /*let link = 'index.php?action=pdf&operation=partes' +
