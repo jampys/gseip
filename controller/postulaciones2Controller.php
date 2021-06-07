@@ -46,6 +46,7 @@ switch ($operation)
                 $postulacion->setOrigenCv($_POST['origen_cv']);
                 $postulacion->setExpectativas($_POST['expectativas']);
                 $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
+                $postulacion->setIdUser($_SESSION['id_user']);
 
                 $rta['msg'] = $postulacion->save();
                 //print_r(json_encode(sQuery::dpLastInsertId()));
@@ -76,6 +77,7 @@ switch ($operation)
                 $postulacion->setOrigenCv($_POST['origen_cv']);
                 $postulacion->setExpectativas($_POST['expectativas']);
                 $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
+                $postulacion->setIdUser($_SESSION['id_user']);
                 $postulacion->save();
 
                 $rta['msg'] = 1;
