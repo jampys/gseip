@@ -50,10 +50,11 @@
 
         //Abre formulario para ingresar nueva etapa al postulante
         $('.grid-postulaciones').on('click', '.new', function(){
+            var id = $(this).closest('tr').attr('data-id');
             params={};
             params.action = "etapas";
             params.operation = "newEtapa";
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
+            params.id_postulacion = id;
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
