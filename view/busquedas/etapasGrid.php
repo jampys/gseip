@@ -59,7 +59,7 @@
                         let etp_update = '<?php echo json_encode(( PrivilegedUser::dhasAction('ETP_UPDATE', array(1)))? true : false) ?>';
                         let id_user = '<?php echo $_SESSION['id_user'] ?>';
                         let usr_abm = '<?php echo json_encode(( PrivilegedUser::dhasPrivilege('USR_ABM', array(0)))? true : false) ?>'; //solo el administrador
-                        let permisoEditar = (etp_update && row.id_user == id_user || usr_abm)? 'edit' : 'disabled';
+                        let permisoEditar = ((etp_update && row.id_user == id_user) || usr_abm)? 'edit' : 'disabled';
 
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = row.user.split('@')[0]+' '+row.fecha;
