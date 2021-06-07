@@ -3,13 +3,13 @@
 
     $(document).ready(function(){
 
-        var t = $('#table-acciones').DataTable({
+        var t = $('#table-postulantes').DataTable({
             responsive: true,
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 emptyTable: 'No existen candidatos para la búsqueda seleccionada'
             },
-            sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
+            sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
             scrollY:        150,
@@ -102,7 +102,7 @@
 
     
     <div id="empleados-table">
-            <table id="table-acciones" class="table table-condensed table-hover dt-responsive" width="100%">
+            <table id="table-postulantes" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
                     <th>Postulante</th>
