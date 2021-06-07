@@ -122,9 +122,12 @@
                 if(data >=0){
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Postulación eliminada con exito</div>');
                     setTimeout(function() {
-                        dialog.modal('hide');
-                        $('#chalampa').hide();
-                        $('#etapas_left_side .grid').load('index.php',{action:"postulaciones2", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
+                            dialog.modal('hide');
+                            $('#chalampa').hide();
+                            //$('#etapas_left_side .grid').load('index.php',{action:"postulaciones2", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
+                            $('#table-postulantes').DataTable().ajax.reload();
+                            $('#table-etapas').DataTable().ajax.reload();
+
                     }, 2000);
                 }
 
