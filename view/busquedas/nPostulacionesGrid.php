@@ -16,14 +16,17 @@
                 {
                     text: '<i class="far fa-file-pdf fa-fw dp_blue"></i>',
                     titleAttr: 'Reporte PSV instaladas',
+                    attr:  {
+                        id: 'add'
+                    },
                     action: function ( e, dt, node, config ) {
-                        let link = 'index.php?action=pdf&operation=partes' +
+                        /*let link = 'index.php?action=pdf&operation=partes' +
                             '&startDate='+drp.startDate.format('YYYY-MM-DD')+
                             '&endDate='+drp.endDate.format('YYYY-MM-DD')+
                             '&yacimiento='+$('#yacimiento').val()+
                             '&instalacion='+$('#instalacion').val()+
                             '&equipo='+$('#equipo').val();
-                        window.open(link, '_blank');
+                        window.open(link, '_blank');*/
                     }
                 }
             ],
