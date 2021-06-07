@@ -221,14 +221,13 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Etapa guardada con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                        //$('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                            //$('#myModal').modal('hide');
-                            $('#etapa-form').hide();
+                                                $('#etapa-form').hide();
+                                                $('#table-etapas').DataTable().ajax.reload();
                         }, 2000);
                     }
 
@@ -283,9 +282,10 @@
                 if(data >=0){
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Etapa eliminada con exito</div>');
                     setTimeout(function() {
-                        dialog.modal('hide');
-                        $('#etapa-form').hide();
-                        $('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                                dialog.modal('hide');
+                                $('#etapa-form').hide();
+                                //$('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                                $('#table-etapas').DataTable().ajax.reload();
                     }, 2000);
                 }
 
