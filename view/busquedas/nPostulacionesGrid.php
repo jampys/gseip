@@ -59,13 +59,17 @@
                 },
                 {
                     targets: 3,//action buttons
-                    width: '20%',
+                    width: '25%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
-                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        let permisoNuevo = '<?php echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? 'new' : 'disabled' ?>';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = row.user.split('@')[0]+' '+row.fecha;
-                        return '<a class="view" title="Ver" href="#">'+
+                        return  '<a class="'+permisoNuevo+'" title="Nueva etapa" href="#">'+
+                                    '<i class="fas fa-plus dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="view" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
