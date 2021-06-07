@@ -21,8 +21,11 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
-        $view->contentTemplate="view/busquedas/nPostulacionesGrid.php";
+        $rta = $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
+        //$view->contentTemplate="view/busquedas/nPostulacionesGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'savePostulacion': //ok

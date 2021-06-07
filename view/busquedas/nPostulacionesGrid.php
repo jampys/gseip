@@ -3,27 +3,76 @@
 
     $(document).ready(function(){
 
-        var t = $('#table-postulantes').DataTable({
-            sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
+        var t = $('#table-acciones').DataTable({
+            responsive: true,
+            language: {
+                //url: 'resources/libraries/dataTables/Spanish.json',
+                emptyTable: 'La No conformidad no tiene acciones registradas'
+            },
+            sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
             scrollY:        150,
             scrollCollapse: true,
-            scroller:       true
-            /*"columnDefs": [
-                {"width": "30%", "targets": 0}, //empleado
-                {"width": "55%", "targets": 1}, //puesto
-                {"width": "5%", "targets": 2}, //ver
-                {"width": "5%", "targets": 3}, //editar
-                {"width": "5%", "targets": 4} //eliminar
-            ]*/
-
+            scroller:       true,
+            order: [[0, "asc"]], // 0=fecha_implementacion
+            'ajax': {
+                "type"   : "POST",
+                "url"    : 'index.php',
+                "data": function ( d ) {
+                    d.action = "postulaciones2";
+                    d.operation = "refreshGrid";
+                    d.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
+                },
+                "dataSrc": ""
+            },
+            'columns': [
+                {"data" : "id_postulacion"},
+                {"data" : "id_postulacion"},
+                {data: null, defaultContent: '', orderable: false}
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id_postulacion);
+            },
+            "columnDefs": [
+                //{ targets: 0, responsivePriority: 2 },
+                {targets: 0, type: 'date-uk'}, //fecha_implementacion
+                {
+                    targets: 1, //accion
+                    render: function(data, type, row) {
+                        return $.fn.dataTable.render.ellipsis(125)(data, type, row);
+                    }
+                },
+                {
+                    targets: 2,//action buttons
+                    width: '20%',
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        let user_info = 1; //row.user.split('@')[0]+' '+row.created_date;
+                        return '<a class="view" title="Ver" href="#">'+
+                                    '<i class="far fa-eye dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a target="_blank" href="#" title="'+user_info+'">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                                '</a>';
+                    }
+                }
+            ]
         });
 
-        setTimeout(function () { //https://datatables.net/forums/discussion/41587/scrolly-misaligned-table-headers-with-bootstrap
-            //$($.fn.dataTable.tables( true ) ).DataTable().columns.adjust().draw();
-            t.columns.adjust();
-        },200);
+        setTimeout(function () {
+                    t.columns.adjust();
+        },150);
+
+
 
 
     });
@@ -31,65 +80,17 @@
 </script>
 
 
-<?php if(isset($view->postulaciones) && sizeof($view->postulaciones) > 0) {?>
 
-    <br/>
-    <div class="table-responsive">
-            <table id="table-postulantes" class="table table-condensed dpTable table-hover">
+    
+    <div id="empleados-table">
+            <table id="table-acciones" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
-                    <th>Postulante</th>
-                    <th>Ult. etapa</th>
-                    <th>Aplica</th>
+                    <th>F. impl.</th>
+                    <th>Acción</th>
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
-                <?php foreach ($view->postulaciones as $pos): ?>
-                    <tr data-id="<?php echo $pos['id_postulacion'];?>">
-                        <td><?php echo $pos['postulante']; ?></td>
-                        <td><?php echo $pos['etapa']; ?></td>
-                        <td><a class="etapas" title="Etapas" href="#"><?php echo($pos['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></a></td>
-
-                        <td class="text-center">
-                            <a class="new" href="#" title="Nueva etapa">
-                                <i class="fas fa-plus dp_blue"></i>
-                            </a>&nbsp;&nbsp;
-
-                            <a class="view" href="javascript:void(0);" title="ver">
-                                <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
-
-                            <a class="<?php echo (PrivilegedUser::dhasAction('PTN_UPDATE', array(1)))? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
-                                <span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
-
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
             </table>
     </div>
-
-
-
-
-<?php }else{ ?>
-
-    <br/>
-    <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> No existen candidatos para la búsqueda seleccionada. Para afectar un postulante a la búsqueda diríjase a
-        <?php if (true /*PrivilegedUser::dhasPrivilege('CON_VER', array(1))*/ ) { ?>
-            <a href="index.php?action=postulaciones">Postulaciones</a></p>
-        <?php } ?>
-    </div>
-
-<?php } ?>
-
-
-
-
 
