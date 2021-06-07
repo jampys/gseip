@@ -7,7 +7,7 @@
             responsive: true,
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
-                emptyTable: 'La No conformidad no tiene acciones registradas'
+                emptyTable: 'No existen candidatos para la búsqueda seleccionada'
             },
             sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
@@ -27,24 +27,38 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "id_postulacion"},
-                {"data" : "id_postulacion"},
+                {"data" : "postulante"},
+                {"data" : "etapa"},
+                {data: null, defaultContent: ''},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_postulacion);
             },
             "columnDefs": [
-                //{ targets: 0, responsivePriority: 2 },
-                {targets: 0, type: 'date-uk'}, //fecha_implementacion
                 {
-                    targets: 1, //accion
+                    targets: 0, //postulante
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(125)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(50)(data, type, row);
                     }
                 },
                 {
-                    targets: 2,//action buttons
+                    targets: 1, //etapa
+                    render: function(data, type, row) {
+                        return $.fn.dataTable.render.ellipsis(50)(data, type, row);
+                    }
+                },
+                {
+                    targets: 2,//aplica
+                    width: '15%',
+                    responsivePriority: 2,
+                    render: function (data, type, row, meta) {
+                        let aplica = (row.aplica == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>';
+                        return '<a class="etapas" title="Etapas" href="#">'+aplica+'</a>';
+                    }
+                },
+                {
+                    targets: 3,//action buttons
                     width: '20%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
@@ -86,8 +100,9 @@
             <table id="table-acciones" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
-                    <th>F. impl.</th>
-                    <th>Acción</th>
+                    <th>Postulante</th>
+                    <th>Ult. etapa</th>
+                    <th>Aplica</th>
                     <th></th>
                 </tr>
                 </thead>
