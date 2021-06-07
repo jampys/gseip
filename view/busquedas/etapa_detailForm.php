@@ -38,6 +38,7 @@
         //cancel de formulario de etapa
         $('#etapa-form #cancel').on('click', function(){
             $('#etapa-form').hide();
+            return false;
         });
 
 
