@@ -58,7 +58,7 @@ switch ($operation)
         $view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
+        $view->contentTemplate="view/busquedas/etapa_detailForm.php";
         break;
 
     case 'editEtapa': //ok
@@ -73,7 +73,7 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
+        $view->contentTemplate="view/busquedas/etapa_detailForm.php";
         break;
 
     case 'deleteEtapa': //ok
