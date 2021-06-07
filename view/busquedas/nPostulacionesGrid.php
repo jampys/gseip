@@ -43,7 +43,7 @@
                 "data": function ( d ) {
                     d.action = "postulaciones2";
                     d.operation = "refreshGrid";
-                    d.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
+                    d.id_busqueda = $('#myModal #id_busquedax').val();
                 },
                 "dataSrc": ""
             },
