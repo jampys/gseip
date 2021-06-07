@@ -56,6 +56,7 @@
                     width: '20%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
+                        let etp_update = '<?php echo PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) ?>';
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = row.user.split('@')[0]+' '+row.fecha;
