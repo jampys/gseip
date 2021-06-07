@@ -48,6 +48,24 @@
 
 
 
+        //Abre formulario para ingresar nueva etapa al postulante
+        $('.grid-postulaciones').on('click', '.new', function(){
+            params={};
+            params.action = "etapas";
+            params.operation = "newEtapa";
+            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
+            //alert(params.id_renovacion);
+            $('#etapas_right_side').load('index.php', params,function(){
+                //alert('cargo el contenido en right side');
+                //$('#myModal').modal();
+                $('#id_postulacion').val(params.id_postulacion);
+                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+            })
+        });
+
+
+
         //Abre formulario para ingresar un nuevo postulante a la busqueda
         $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
@@ -174,23 +192,6 @@
                 //$("#etapas_right_side fieldset").prop("disabled", true);
                 //$("#etapa-form #footer-buttons button").css('display', 'none');
                 //$('.selectpicker').selectpicker('refresh');
-            })
-        });
-
-
-        //Abre formulario para ingresar nueva etapa
-        $('#etapas_left_side').on('click', '#add', function(){
-            params={};
-            params.action = "etapas";
-            params.operation = "newEtapa";
-            params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
-            //alert(params.id_renovacion);
-            $('#etapas_right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
-                //$('#myModal').modal();
-                $('#id_postulacion').val(params.id_postulacion);
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
         });
 
