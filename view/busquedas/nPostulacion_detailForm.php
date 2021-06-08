@@ -267,7 +267,11 @@
 
 <div id="chalampa">
 
-    <a href="#" id="culo" title="nuevo postulante">Nuevo postulante&nbsp;</a>
+    <div class="alert alert-info">
+        <strong><?php echo $view->label ?></strong>
+    </div>
+
+    <a href="#" id="culo" title="nuevo postulante">Si el postulante no existe&nbsp;</a>
 
     <div class="panel panel-default" id="box1" style="display: none">
         <div class="panel-body" style="background-color: #e5e5e5">
@@ -279,9 +283,6 @@
 <form name ="postulacion-form" id="postulacion-form" method="POST" action="index.php">
     <fieldset>
 
-        <div class="alert alert-info">
-            <strong><?php echo $view->label ?></strong>
-        </div
 
     <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->postulacion->getIdPostulacion() ?>">
     <!--<input type="hidden" name="id_busqueda" id="id_busqueda" value="<?php //print $view->postulacion->getIdBusqueda() ?>">-->
@@ -292,7 +293,7 @@
         <div class="form-group" id="id_postulante_form_group">
             <!--<label for="id_postulante" class="control-label">Postulante</label>-->
             <select class="form-control selectpicker show-tick" id="id_postulante" name="id_postulante" data-live-search="true" data-size="5">
-                <option value="">Seleccione un postulante</option>
+                <option value="">Seleccione un postulante pre-existente</option>
                 <?php foreach ($view->postulantes as $po){
                     ?>
                     <option value="<?php echo $po['id_postulante']; ?>"
