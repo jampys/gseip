@@ -141,7 +141,7 @@ switch ($operation)
     case 'editPostulacion': //ok
         //$view->label = ($_POST['target']!='view')? 'Editar postulación': 'Ver postulación';
         $view->postulacion = new Postulacion($_POST['id_postulacion']);
-        $view->id_postulante = new Empleado($view->postulacion->getIdPostulante());
+        $view->id_postulante = new Postulante($view->postulacion->getIdPostulante());
         $view->postulante = $view->id_postulante->getApellido().' '.$view->id_postulante->getNombre();
         $view->label= $view->postulante;
 
