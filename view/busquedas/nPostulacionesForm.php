@@ -60,7 +60,7 @@
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 $('#etapas_left_side').attr('id_postulacion', params.id_postulacion);
-                ('#id_postulacion').val(params.id_postulacion);
+                $('#etapa-form #id_postulacion').val(params.id_postulacion);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
@@ -221,7 +221,7 @@
                 params.comentarios = $('#comentarios').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
-                alert(params.id_postulacion);
+                //alert(params.id_postulacion);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
