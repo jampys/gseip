@@ -1,6 +1,7 @@
 ﻿<?php
 include_once("model/etapasModel.php");
 include_once("model/postulacionesModel.php");
+include_once("model/postulantesModel.php");
 
 include_once("model/puestosModel.php");
 include_once("model/localidadesModel.php");
@@ -69,7 +70,11 @@ switch ($operation)
     case 'editEtapa': //ok
         //$view->label = ($_POST['target']!='view')? 'Editar etapa': 'Ver etapa';
         $view->etapa = new Etapa($_POST['id_etapa']);
-        $view->label = $view->etapa->getEtapa();
+        //$view->label = $view->etapa->getEtapa();
+        $view->postulacion = new Postulacion($_POST['id_postulacion']);
+        $view->id_postulante = new Postulante($view->postulacion->getIdPostulante());
+        $view->postulante = $view->id_postulante->getApellido().' '.$view->id_postulante->getNombre();
+        $view->label= $view->etapa->getEtapa().': '.$view->postulante;
 
         //$view->puestos = Puesto::getPuestos();
         $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');

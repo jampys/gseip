@@ -168,6 +168,7 @@
             //alert('editar etapa: '+id);
             params={};
             params.id_etapa = id;
+            params.id_postulacion = $('#etapas_left_side').attr('id_postulacion');
             params.action = "etapas";
             params.operation = "editEtapa";
             //alert(params.id_renovacion);
@@ -186,6 +187,7 @@
             //alert('editar etapa: '+id);
             params={};
             params.id_etapa = id;
+            params.id_postulacion = $('#etapas_left_side').attr('id_postulacion');
             params.action = "etapas";
             params.operation = "editEtapa";
             params.target = "view";
