@@ -59,7 +59,8 @@
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_postulacion').val(params.id_postulacion);
+                $('#etapas_left_side').attr('id_postulacion', params.id_postulacion);
+                ('#id_postulacion').val(params.id_postulacion);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
