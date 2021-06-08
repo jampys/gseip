@@ -75,8 +75,7 @@
                 //params.operation = "loadDetalles"; //entra al default del controller
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    //$('#etapas_left_side #add').attr('id_busqueda', id);
-                    $('#myModal #id_busquedax').val(params.id_busqueda);
+                    $('#etapas_left_side').attr('id_busqueda', id);
                 })
 
             });

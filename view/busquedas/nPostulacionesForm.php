@@ -115,8 +115,7 @@
             //alert(id);
             params={};
             params.id_postulacion = id;
-            //params.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
-            params.id_busqueda = $('#myModal #id_busquedax').val();
+            params.id_busqueda = $('#etapas_left_side').attr('id_busqueda');
             params.action = "postulaciones2";
             params.operation = "deletePostulacion";
 
@@ -147,8 +146,7 @@
         $('.grid-postulaciones').on('click', '.etapas', function(){ //ok
             //alert('tocó en etapas');
             var id = $(this).closest('tr').attr('data-id');
-            //$('#etapas_left_side #add').attr('id_postulacion', id);
-            $('#myModal #id_postulacion').val(id);
+            $('#etapas_left_side').attr('id_postulacion', id);
             $('#table-etapas').DataTable().ajax.reload();
         });
 
@@ -213,7 +211,7 @@
                 params.action = 'etapas';
                 params.operation = 'saveEtapa';
                 params.id_etapa = $('#id_etapa').val();
-                params.id_postulacion = $('#etapa-form #id_postulacion').val();
+                params.id_postulacion = $('#id_postulacion').val();
                 params.fecha_etapa = $('#fecha_etapa').val();
                 params.etapa = $('#etapa').val();
                 params.aplica = $('input[name=aplica]:checked').val();
@@ -222,7 +220,7 @@
                 params.comentarios = $('#comentarios').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
-                //alert(params.aplica);
+                alert(params.id_postulacion);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
@@ -332,8 +330,8 @@
 
             <div class="modal-body">
 
-                <input type="hidden" name="id_busquedax" id="id_busquedax" value="<?php //print $view->grupo->getIdVencimiento() ?>">
-                <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php //print $view->grupo->getIdVencimiento() ?>">
+                <!--<input type="hidden" name="id_busquedax" id="id_busquedax" value="<?php //print $view->grupo->getIdVencimiento() ?>">
+                <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php //print $view->grupo->getIdVencimiento() ?>">-->
                 
                 <div class="row">
 
