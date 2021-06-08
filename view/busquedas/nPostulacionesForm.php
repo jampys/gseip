@@ -353,7 +353,11 @@
                                 </div>
                             </div>
 
+
                             <br/>
+                            <h4><span style="display: block; text-align: left" class="label label-primary">Etapas de la postulación</span></h4>
+
+
                             <!-- seccion de etapas de la postulacion-->
                             <div class="row">
                                 <div class="col-md-12">
