@@ -59,6 +59,8 @@
                 //$('#myModal').modal();
                 $('#etapas_left_side').attr('id_postulacion', params.id_postulacion);
                 $('#etapa-form #id_postulacion').val(params.id_postulacion);
+                $('#postulante').html($('#table-postulantes').DataTable().row( $(this).closest('tr') ).data().postulante);
+                $('#table-etapas').DataTable().ajax.reload();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             })
