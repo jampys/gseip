@@ -147,6 +147,7 @@
             var id = $(this).closest('tr').attr('data-id');
             $('#etapas_left_side').attr('id_postulacion', id);
             $('#table-etapas').DataTable().ajax.reload();
+            $('#postulante').html($('#table-postulantes').DataTable().row( $(this).closest('tr') ).data().postulante);
         });
 
 
@@ -357,7 +358,7 @@
 
 
                             <br/>
-                            <h4><span style="display: block; text-align: left" class="label label-primary">Etapas de la postulación</span></h4>
+                            <h4><span style="display: block; text-align: left; font-weight: normal" class="label label-primary">Etapas de la postulación: <span id="postulante"></span></span></h4>
 
 
                             <!-- seccion de etapas de la postulacion-->
