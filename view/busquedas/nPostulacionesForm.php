@@ -332,7 +332,7 @@
             <div class="modal-body">
 
                 <!--<input type="hidden" name="id_busquedax" id="id_busquedax" value="<?php //print $view->grupo->getIdVencimiento() ?>">
-                <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php //print $view->grupo->getIdVencimiento() ?>">-->
+                <input type="hidden" name="id_contrato" id="id_contrato" value="<?php //print $view->grupo->getIdVencimiento() ?>">-->
                 
                 <div class="row">
 
