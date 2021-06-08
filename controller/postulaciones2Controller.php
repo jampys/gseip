@@ -4,6 +4,7 @@ include_once("model/postulacionesModel.php");
 include_once("model/postulantesModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/sel_especialidadesModel.php");
+include_once("model/empleadosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -138,8 +139,11 @@ switch ($operation)
         break;
 
     case 'editPostulacion': //ok
-        $view->label = ($_POST['target']!='view')? 'Editar postulación': 'Ver postulación';
+        //$view->label = ($_POST['target']!='view')? 'Editar postulación': 'Ver postulación';
         $view->postulacion = new Postulacion($_POST['id_postulacion']);
+        $view->id_postulante = new Empleado($view->postulacion->getIdPostulante());
+        $view->postulante = $view->id_postulante->getApellido().' '.$view->id_postulante->getNombre();
+        $view->label= $view->postulante;
 
         $view->postulantes = Postulante::getPostulantesActivos();
         $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');

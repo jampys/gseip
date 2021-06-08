@@ -279,9 +279,9 @@
 <form name ="postulacion-form" id="postulacion-form" method="POST" action="index.php">
     <fieldset>
 
-        <!--<div class="alert alert-info">
-        <strong><?php //echo $view->label ?></strong>
-    </div>-->
+        <div class="alert alert-info">
+            <strong><?php echo $view->label ?></strong>
+        </div
 
     <input type="hidden" name="id_postulacion" id="id_postulacion" value="<?php print $view->postulacion->getIdPostulacion() ?>">
     <!--<input type="hidden" name="id_busqueda" id="id_busqueda" value="<?php //print $view->postulacion->getIdBusqueda() ?>">-->

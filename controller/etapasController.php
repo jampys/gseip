@@ -1,5 +1,6 @@
 ﻿<?php
 include_once("model/etapasModel.php");
+include_once("model/postulacionesModel.php");
 
 include_once("model/puestosModel.php");
 include_once("model/localidadesModel.php");
@@ -48,8 +49,12 @@ switch ($operation)
         break;
 
     case 'newEtapa': //ok
-        $view->label='Nueva etapa';
         $view->etapa = new Etapa($_POST['id_etapa']);
+        $view->postulacion = new Postulacion($_POST['id_postulacion']);
+        $view->id_postulante = new Empleado($view->postulacion->getIdPostulante());
+        $view->postulante = $view->id_postulante->getApellido().' '.$view->id_postulante->getNombre();
+        $view->label='Nueva etapa: '.$view->postulante;
+
 
         //$view->puestos = Puesto::getPuestos();
         $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
