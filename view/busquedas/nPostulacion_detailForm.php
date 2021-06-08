@@ -219,7 +219,7 @@
                 var params={};
                 params.action = 'postulaciones2';
                 params.operation = 'savePostulacion';
-                params.id_busqueda = $('#myModal #id_busquedax').val();
+                params.id_busqueda = $('#etapas_left_side').attr('id_busqueda');
                 params.id_postulante = $('#id_postulante').val();
                 params.id_postulacion = $('#id_postulacion').val();
                 params.origen_cv = $('#origen_cv').val();
