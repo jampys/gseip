@@ -39,10 +39,8 @@
             params.operation = "editPostulacion";
             params.target = "view";
             $('#etapas_right_side').load('index.php', params,function(){
-                //$("#etapas_right_side fieldset").prop("disabled", true);
-                //$("#chalampa #footer-buttons button").css('display', 'none');
-                //$("#chalampa #culo").css('display', 'none');
-                //$('.selectpicker').selectpicker('refresh');
+                $('#postulacion-form #id_postulante').attr('disabled', true).selectpicker('refresh');
+                $("#chalampa #culo").css('display', 'none');
             })
         });
 
