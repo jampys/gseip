@@ -136,7 +136,6 @@
 
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=busquedas">Búsquedas</a></li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('PTE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=postulantes">Postulantes</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PTN_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=postulaciones">Avance de las postulaciones</a></li>
 
                         </ul>
                     </li>
