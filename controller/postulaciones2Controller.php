@@ -4,6 +4,7 @@ include_once("model/postulacionesModel.php");
 include_once("model/postulantesModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/sel_especialidadesModel.php");
+include_once("model/empleadosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -21,8 +22,11 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
-        $view->contentTemplate="view/busquedas/nPostulacionesGrid.php";
+        $rta = $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
+        //$view->contentTemplate="view/busquedas/nPostulacionesGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'savePostulacion': //ok
@@ -43,6 +47,7 @@ switch ($operation)
                 $postulacion->setOrigenCv($_POST['origen_cv']);
                 $postulacion->setExpectativas($_POST['expectativas']);
                 $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
+                $postulacion->setIdUser($_SESSION['id_user']);
 
                 $rta['msg'] = $postulacion->save();
                 //print_r(json_encode(sQuery::dpLastInsertId()));
@@ -73,6 +78,7 @@ switch ($operation)
                 $postulacion->setOrigenCv($_POST['origen_cv']);
                 $postulacion->setExpectativas($_POST['expectativas']);
                 $postulacion->setPropuestaEconomica($_POST['propuesta_economica']);
+                $postulacion->setIdUser($_SESSION['id_user']);
                 $postulacion->save();
 
                 $rta['msg'] = 1;
@@ -133,8 +139,11 @@ switch ($operation)
         break;
 
     case 'editPostulacion': //ok
-        $view->label = ($_POST['target']!='view')? 'Editar postulación': 'Ver postulación';
+        //$view->label = ($_POST['target']!='view')? 'Editar postulación': 'Ver postulación';
         $view->postulacion = new Postulacion($_POST['id_postulacion']);
+        $view->id_postulante = new Postulante($view->postulacion->getIdPostulante());
+        $view->postulante = $view->id_postulante->getApellido().' '.$view->id_postulante->getNombre();
+        $view->label= $view->postulante;
 
         $view->postulantes = Postulante::getPostulantesActivos();
         $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');

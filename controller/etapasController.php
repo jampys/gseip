@@ -1,5 +1,7 @@
 ﻿<?php
 include_once("model/etapasModel.php");
+include_once("model/postulacionesModel.php");
+include_once("model/postulantesModel.php");
 
 include_once("model/puestosModel.php");
 include_once("model/localidadesModel.php");
@@ -21,9 +23,13 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
-        $view->contentTemplate="view/postulaciones/etapasGrid.php";
+        $rta = $view->etapas = Etapa::getEtapas($_POST['id_postulacion']);
+        //$view->contentTemplate="view/postulaciones/etapasGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
+
 
     case 'saveEtapa': //ok
         $etapa = new Etapa($_POST['id_etapa']);
@@ -44,8 +50,12 @@ switch ($operation)
         break;
 
     case 'newEtapa': //ok
-        $view->label='Nueva etapa';
         $view->etapa = new Etapa($_POST['id_etapa']);
+        $view->postulacion = new Postulacion($_POST['id_postulacion']);
+        $view->id_postulante = new Postulante($view->postulacion->getIdPostulante());
+        $view->postulante = $view->id_postulante->getApellido().' '.$view->id_postulante->getNombre();
+        $view->label='Nueva etapa: '.$view->postulante;
+
 
         //$view->puestos = Puesto::getPuestos();
         $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
@@ -54,12 +64,17 @@ switch ($operation)
         $view->aplica_opts = Soporte::get_enum_values('sel_etapas', 'aplica');
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
+        $view->contentTemplate="view/busquedas/etapa_detailForm.php";
         break;
 
     case 'editEtapa': //ok
-        $view->label = ($_POST['target']!='view')? 'Editar etapa': 'Ver etapa';
+        //$view->label = ($_POST['target']!='view')? 'Editar etapa': 'Ver etapa';
         $view->etapa = new Etapa($_POST['id_etapa']);
+        //$view->label = $view->etapa->getEtapa();
+        $view->postulacion = new Postulacion($_POST['id_postulacion']);
+        $view->id_postulante = new Postulante($view->postulacion->getIdPostulante());
+        $view->postulante = $view->id_postulante->getApellido().' '.$view->id_postulante->getNombre();
+        $view->label= $view->etapa->getEtapa().': '.$view->postulante;
 
         //$view->puestos = Puesto::getPuestos();
         $view->etapas = Soporte::get_enum_values('sel_etapas', 'etapa');
@@ -69,7 +84,7 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/postulaciones/etapa_detailForm.php";
+        $view->contentTemplate="view/busquedas/etapa_detailForm.php";
         break;
 
     case 'deleteEtapa': //ok

@@ -23,6 +23,10 @@
     <!-- extension responsive para DataTables -->
     <link rel="stylesheet" type="text/css" href="resources/libraries/dataTables/extensions/responsive/responsive.dataTables.css">
     <script src="resources/libraries/dataTables/extensions/responsive/dataTables.responsive.min.js"></script>
+    <!-- extension buttons + extension bootstrap 4 buttons -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap.min.css">
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.bootstrap.min.js"></script>
 
 
     <!-- bootstrap -->

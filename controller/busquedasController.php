@@ -69,37 +69,6 @@ switch ($operation)
         $view->contentTemplate="view/busquedas/busquedasForm.php";
         break;
 
-    case 'deleteHabilidad':
-        $habilidad = new Habilidad($_POST['id_habilidad']);
-        $rta = $habilidad->deleteHabilidad();
-        print_r(json_encode($rta));
-        die; // no quiero mostrar nada cuando borra , solo devuelve el control.
-        break;
-
-
-    case 'checkFechaEmision':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaEmision($_POST['fecha_emision'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'checkFechaVencimiento':
-        $view->renovacion = new RenovacionPersonal();
-        $rta = $view->renovacion->checkFechaVencimiento($_POST['fecha_emision'], $_POST['fecha_vencimiento'], $_POST['id_empleado'], $_POST['id_grupo'], $_POST['id_vencimiento'], $_POST['id_renovacion']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'loadDetalles': //abre la ventana modal para mostrar los postulantes de la busqueda
-        $view->disableLayout=true;
-        $view->busqueda = new Busqueda($_POST['id_busqueda']);
-        $view->label= $view->busqueda->getNombre();
-
-        $view->postulaciones = Postulacion::getPostulaciones($_POST['id_busqueda'], null, null);
-        //$view->habilidades = HabilidadPuesto::getHabilidadPuesto($_POST['id_puesto'], null);
-        $view->contentTemplate="view/busquedas/busquedasFormDetalles.php";
-        break;
 
     case 'deleteBusqueda': //ok
         /*$busqueda = new Busqueda($_POST['id_busqueda']);

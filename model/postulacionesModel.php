@@ -4,11 +4,12 @@ class Postulacion
 {
     private $id_postulacion;
     private $id_busqueda;
-    private $fecha;
+    private $fecha; //fecha de registro en sistema
     private $id_postulante;
     private $origen_cv;
     private $expectativas;
     private $propuesta_economica;
+    private $id_user;
 
     // GETTERS
     function getIdPostulacion()
@@ -32,6 +33,9 @@ class Postulacion
     function getPropuestaEconomica()
     { return $this->propuesta_economica;}
 
+    function getIdUser()
+    { return $this->id_user;}
+
 
     //SETTERS
     function setIdPostulacion($val)
@@ -54,6 +58,9 @@ class Postulacion
 
     function setPropuestaEconomica($val)
     { $this->propuesta_economica=$val;}
+
+    function setIdUser($val)
+    { $this->id_user=$val;}
 
 
     function __construct($nro=0){ //constructor //ok
@@ -89,10 +96,12 @@ class Postulacion
                   pos.origen_cv, pos.expectativas, pos.propuesta_economica,
                   CONCAT(po.apellido, ' ', po.nombre) as postulante,
                   bu.nombre as busqueda,
-                  loc.ciudad
+                  loc.ciudad,
+                  us.user
                   from sel_postulaciones pos
                   join sel_postulantes po on pos.id_postulante = po.id_postulante
                   join sel_busquedas bu on pos.id_busqueda = bu.id_busqueda
+                  join sec_users us on us.id_user = pos.id_user
                   left join localidades loc on loc.id_localidad = bu.id_localidad
                   where pos.id_busqueda =  ifnull(:id_busqueda, pos.id_busqueda)
                   and pos.id_postulante =  ifnull(:id_postulante, pos.id_postulante)
@@ -137,14 +146,15 @@ class Postulacion
 
     private function insertPostulacion(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_postulaciones(id_busqueda, id_postulante, fecha, origen_cv, expectativas, propuesta_economica)
-                values(:id_busqueda, :id_postulante, sysdate(), :origen_cv, :expectativas, :propuesta_economica)";
+        $query="insert into sel_postulaciones(id_busqueda, id_postulante, fecha, origen_cv, expectativas, propuesta_economica, id_user)
+                values(:id_busqueda, :id_postulante, sysdate(), :origen_cv, :expectativas, :propuesta_economica, :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_busqueda', $this->getIdBusqueda());
         $stmt->dpBind(':id_postulante', $this->getIdPostulante());
         $stmt->dpBind(':origen_cv', $this->getOrigenCv());
         $stmt->dpBind(':expectativas', $this->getExpectativas());
         $stmt->dpBind(':propuesta_economica', $this->getPropuestaEconomica());
+        $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
