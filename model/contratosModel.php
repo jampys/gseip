@@ -122,17 +122,48 @@ class Contrato
     }
 
     public static function getContratosControl() { //ok
-        //solo los contratos activos y sobre los que tiene control el usuario
+        /* contratos sobre los que el usuario tiene control TOTAL
+         * solo los contratos activos y sobre los que tiene control el usuario*/
         $stmt=new sQuery();
         $query = "select co.id_contrato, co.nro_contrato, co.nombre,
                   DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                  CONCAT(re.apellido, ' ', re.nombre) as responsable,
-                  cia.nombre as compania, co.id_domain
+                  co.id_domain
                   from v_sec_contratos_control co, empleados re, companias cia
-                  where co.id_responsable = re.id_empleado
-                  and co.id_compania = cia.id_compania
-                  and (co.fecha_hasta is null or co.fecha_hasta >= sysdate()  )
+                  where (co.fecha_hasta is null or co.fecha_hasta >= sysdate()  )
+                  order by co.nombre";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+    public static function getContratosControlNovedades() { //ok
+        /* contratos sobre los que el usuario tiene control sobre las Novedades
+         * solo los contratos activos y sobre los que tiene control el usuario*/
+        $stmt=new sQuery();
+        $query = "select co.id_contrato, co.nro_contrato, co.nombre,
+                  DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                  co.id_domain
+                  from v_sec_contratos_control_nov co
+                  where (co.fecha_hasta is null or co.fecha_hasta >= sysdate()  )
+                  order by co.nombre";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+    public static function getContratosControlVencimientos() { //ok
+        /* contratos sobre los que el usuario tiene control sobre los Vencimientos
+         * solo los contratos activos y sobre los que tiene control el usuario*/
+        $stmt=new sQuery();
+        $query = "select co.id_contrato, co.nro_contrato, co.nombre,
+                  DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                  co.id_domain
+                  from v_sec_contratos_control_venc co
+                  where (co.fecha_hasta is null or co.fecha_hasta >= sysdate()  )
                   order by co.nombre";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();

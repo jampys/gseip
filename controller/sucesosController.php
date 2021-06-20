@@ -131,7 +131,7 @@ switch ($operation)
     case 'loadExport': //ok  //abre ventana modal para exportar
         $view->disableLayout=true;
         $view->label = 'Exportar sucesos';
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        $view->contratos = Contrato::getContratosControlNovedades(); //carga el combo para filtrar contratos
         $view->periodos_sup = NovPeriodo::getPeriodosSup(); //carga el combo de periodos superiores
 
         $view->contentTemplate="view/sucesos/exportForm.php";
@@ -196,7 +196,7 @@ switch ($operation)
     default : //ok
         $view->empleados = Empleado::getEmpleadosControl(null); //carga el combo para filtrar empleados
         $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        $view->contratos = Contrato::getContratosControlNovedades(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/sucesos/sucesosGrid.php";
         break;
 }

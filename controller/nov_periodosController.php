@@ -55,7 +55,7 @@ switch ($operation)
 
 
     default :  //ok
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        $view->contratos = Contrato::getContratosControlNovedades(); //carga el combo para filtrar contratos
         $view->periodos_sup = NovPeriodo::getPeriodosSup();
         $view->contentTemplate="view/nov_periodos/periodosGrid.php";
         break;

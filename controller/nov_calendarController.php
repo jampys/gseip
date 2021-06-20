@@ -67,7 +67,7 @@ switch ($operation)
 
 
     default : //carga la tabla de etapas de la postulacion
-        $view->contratos = Contrato::getContratosControl();
+        $view->contratos = Contrato::getContratosControlNovedades();
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         $view->sucesos = EventosLiquidacion::getEventosLiquidacion();
         //$view->postulacion = new Postulacion($_POST['id_postulacion']);

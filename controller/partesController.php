@@ -159,7 +159,7 @@ switch ($operation)
     case 'loadExportTxt': //ok  //abre ventana modal para exportar
         $view->disableLayout=true;
         $view->label = 'Exportar novedades';
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        $view->contratos = Contrato::getContratosControlNovedades(); //carga el combo para filtrar contratos
         $view->periodos_sup = NovPeriodo::getPeriodosSup(); //carga el combo de periodos superiores
 
         $view->contentTemplate="view/novedades_partes/export_txtForm.php";
@@ -238,7 +238,7 @@ switch ($operation)
 
     default : //ok
         $view->areas = NovArea::getAreas(); //carga el combo para filtrar Areas
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        $view->contratos = Contrato::getContratosControlNovedades(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/novedades_partes/partesGrid.php";
         break;
 }

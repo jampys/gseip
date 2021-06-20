@@ -355,7 +355,7 @@ switch ($operation)
 
     default : //ok
         //$view->areas = NovArea::getAreas(); //carga el combo para filtrar Areas
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        $view->contratos = Contrato::getContratosControlNovedades(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/novedades2/1contratoForm.php";
         break;
 }
