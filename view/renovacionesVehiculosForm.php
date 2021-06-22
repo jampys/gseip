@@ -111,6 +111,15 @@
             },
             downloadCallback:function(filename,pd) {
                 location.href="index.php?action=uploadsVehiculos&operation=download&filename="+filename;
+            },
+            afterUploadAll:function(obj) {
+                //You can get data of the plugin using obj
+                $("#myElem").html('Vencimiento guardado con exito').addClass('alert alert-success').show();
+                setTimeout(function() { $("#myElem").hide();
+                                        $('#myModal').modal('hide');
+                                        $("#search").trigger("click");
+                                      }, 2000);
+
             }
         });
 
@@ -146,12 +155,7 @@
                     if(data >=0){
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Vencimiento guardado con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
-                        setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
-                                                $("#search").trigger("click");
-                                              }, 2000);
+                        //El resto del codigo se mueve al callback afterUploadAll
                     }else{
                         $("#myElem").html('Error al guardar el vencimiento').addClass('alert alert-danger').show();
                     }

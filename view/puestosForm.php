@@ -101,6 +101,15 @@
             },
             downloadCallback:function(filename,pd) {
                 location.href="index.php?action=uploadsPuestos&operation=download&filename="+filename;
+            },
+            afterUploadAll:function(obj) {
+                //You can get data of the plugin using obj
+                $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
+                setTimeout(function() { $("#myElem").hide();
+                                        $('#myModal').modal('hide');
+                                        $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
+                                     }, 2000);
+                
             }
         });
 
@@ -128,11 +137,7 @@
                     if(data >=0){
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
-                        setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
-                                                $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
-                                              }, 2000);
+                        //El resto del codigo se mueve al callback afterUploadAll
                     }
 
 
