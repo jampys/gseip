@@ -131,7 +131,7 @@ switch ($operation)
         $view->renovacion = new RenovacionVehicular();
         $view->vehiculosGrupos = $view->renovacion->vehiculosGrupos(); //carga el combo para filtrar vehiculos-grupos
         $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos(); //carga el combo para filtrar vencimientos
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        $view->contratos = Contrato::getContratosControlVencimientos(); //carga el combo para filtrar contratos
         $view->subcontratistas = Subcontratista::getSubcontratistas(); //carga el combo para filtrar subcontratistas
         $view->contentTemplate="view/renovacionesVehiculosGrid.php";
         break;

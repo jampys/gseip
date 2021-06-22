@@ -95,7 +95,7 @@ switch ($operation)
         break;
 
     default : //ok
-        $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
+        $view->contratos = Contrato::getContratosControlNovedades(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/cuadrillas/cuadrillasGrid.php";
         break;
 }
