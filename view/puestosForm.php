@@ -130,6 +130,7 @@
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
+                        $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         if(uploadObj.dpCounter() >= 1) { uploadObj.startUpload(); } //se realiza el upload solo si el formulario se guardo exitosamente
                         else closeFormSuccess();
                     }
@@ -146,7 +147,6 @@
         });
 
         function closeFormSuccess(){
-            $(".modal-footer button").prop("disabled", true); //deshabilito botones
             $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
             setTimeout(function() { $("#myElem").hide();
                                     $('#myModal').modal('hide');

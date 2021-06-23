@@ -298,6 +298,7 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
+                        $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         if(uploadObj.dpCounter() >= 1) { uploadObj.startUpload(); } //se realiza el upload solo si el formulario se guardo exitosamente
                         else closeFormSuccess();
                     }else{
@@ -311,7 +312,6 @@
         });
 
         function closeFormSuccess(){
-            $(".modal-footer button").prop("disabled", true); //deshabilito botones
             $("#myModal #myElem").html('Suceso guardado con exito').addClass('alert alert-success').show();
             setTimeout(function() { $("#myElem").hide();
                                     $("#suceso-form #cancel").trigger("click"); //para la modal (nov2)
