@@ -109,7 +109,7 @@
                             return false;
                         }
                     },
-                    maxlength: 250
+                    maxlength: 500
                 },
                 tipo_accion: { required: true},
                 accion: {
@@ -128,7 +128,7 @@
                 tipo: "Selecione el tipo de no conformidad",
                 analisis_causa_desc: {
                     required: "Ingrese la descripción de causa raiz",
-                    maxlength: "Máximo 250 caracteres"
+                    maxlength: "Máximo 500 caracteres"
 
                 },
                 tipo_accion: "Selecione el tipo de acción",
