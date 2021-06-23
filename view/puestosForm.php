@@ -110,7 +110,7 @@
 
 
 
-        $(document).on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){ //ok
             if ($("#puesto").valid()){
                 var params={};
                 params.action = 'puestos';
