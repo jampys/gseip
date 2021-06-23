@@ -114,12 +114,7 @@
             },
             afterUploadAll:function(obj) {
                 //You can get data of the plugin using obj
-                $("#myElem").html('Vencimiento guardado con exito').addClass('alert alert-success').show();
-                setTimeout(function() { $("#myElem").hide();
-                                        $('#myModal').modal('hide');
-                                        $("#search").trigger("click");
-                                      }, 2000);
-
+                closeFormSuccess();
             }
         });
 
@@ -154,8 +149,7 @@
 
                     if(data >=0){
                         uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
-                        $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        //El resto del codigo se mueve al callback afterUploadAll
+                        closeFormSuccess();
                     }else{
                         $("#myElem").html('Error al guardar el vencimiento').addClass('alert alert-danger').show();
                     }
@@ -165,6 +159,16 @@
             }
             return false;
         });
+
+        function closeFormSuccess(){
+            $(".modal-footer button").prop("disabled", true); //deshabilito botones
+            $("#myElem").html('Vencimiento guardado con exito').addClass('alert alert-success').show();
+            setTimeout(function() { $("#myElem").hide();
+                                    $('#myModal').modal('hide');
+                                    $("#search").trigger("click");
+                                }, 2000);
+            return false; //para finalizar la ejecucion
+        }
 
 
 

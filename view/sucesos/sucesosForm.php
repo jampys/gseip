@@ -206,7 +206,6 @@
             afterUploadAll:function(obj) {
                 //You can get data of the plugin using obj
                 closeFormSuccess();
-                return false; //para finalizar la ejecucion
             }
         });
 
@@ -320,6 +319,7 @@
                                     $('#myModal').modal('hide');
                                     $("#search").trigger("click");
                                 }, 2000);
+            return false; //para finalizar la ejecucion
 
         }
 
