@@ -130,8 +130,8 @@
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
-                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
-                        closeFormSuccess();
+                        if(uploadObj.dpCounter() >= 1) { uploadObj.startUpload(); } //se realiza el upload solo si el formulario se guardo exitosamente
+                        else closeFormSuccess();
                     }
 
 

@@ -160,6 +160,21 @@
 
         };
 
+        /*Creada por dario 23/06/2021. Devuelve la cantidad de adjuntos pendientes de upload */
+        this.dpCounter = function () {
+            var counter = 0;
+            $("form").each(function(i,items)
+            {
+                if($(this).hasClass(obj.formGroup))
+                {
+                    //mainQ.push($(this));
+                    counter ++;
+                }
+            });
+
+            return counter;
+        };
+
         this.getFileCount = function () {
             return obj.selectedFiles;
 
