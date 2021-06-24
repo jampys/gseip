@@ -70,7 +70,12 @@
 
             extErrorStr: "no está permitido. Solo se permiten extensiones: ",
             duplicateErrorStr: "no permitido. El archivo ya existe.",
-            sizeErrorStr: "no permitido. Tamaño máximo permitido: "
+            sizeErrorStr: "no permitido. Tamaño máximo permitido: ",
+
+            afterUploadAll:function(obj) {
+                //You can get data of the plugin using obj
+                closeFormSuccess();
+            }
 
             /*onLoad:function(obj){
              $.ajax({
@@ -117,6 +122,7 @@
              downloadCallback:function(filename,pd) {
              location.href="index.php?action=uploadsPostulantes&operation=download&filename="+filename;
              }*/
+
         });
 
 
@@ -242,16 +248,9 @@
                     objeto.id = data['id_postulante']; //data trae el id del postulante
 
                     if(data['msg'] >=0){
-                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#chalampa #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
-                        //$('#etapas_left_side .grid').load('index.php',{action:"postulaciones2", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
-                        setTimeout(function() { $("#myElem").hide();
-                                                $('#chalampa').hide();
-                                                $('#table-postulantes').DataTable().ajax.reload();
-                                                $('#table-etapas').DataTable().ajax.reload();
-                                              }, 2000);
+                        if(uploadObj.dpCounter() >= 1) { uploadObj.startUpload(); } //se realiza el upload solo si el formulario se guardo exitosamente
+                        else closeFormSuccess();
                     }else{
                         $("#myElem").html('Error al guardar la postulación').addClass('alert alert-danger').show();
                     }
@@ -263,6 +262,17 @@
             }
             return false;
         });
+
+
+        function closeFormSuccess(){
+            $("#myElem").html('Postulación guardada con exito').addClass('alert alert-success').show();
+            setTimeout(function() { $("#myElem").hide();
+                                    $('#chalampa').hide();
+                                    $('#table-postulantes').DataTable().ajax.reload();
+                                    $('#table-etapas').DataTable().ajax.reload();
+                                }, 2000);
+            return false; //para finalizar la ejecucion
+        }
 
 
 
