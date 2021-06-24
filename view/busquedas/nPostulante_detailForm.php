@@ -10,68 +10,7 @@
             $(this).valid(); //Este trick de change ... valida hay que hacerlo para que despues de seleccionar un valor
                              // elimine el mensaje de requerido de jquery validation
         });
-
-
-
-        /*$('#myModal').on('click', '#submit',function(){
-
-            if ($("#postulante-form").valid()){
-
-                var params={};
-                params.action = 'postulantes';
-                params.operation = 'savePostulante';
-                params.id_postulante = $('#id_postulante').val();
-                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                params.apellido = $('#apellido').val();
-                params.nombre = $('#nombre').val();
-                params.dni = $('#dni').val();
-                params.lista_negra = $('#lista_negra').prop('checked')? 1:0;
-                params.telefono = $('#telefono').val();
-                params.formacion = $('#formacion').val();
-                params.id_especialidad = $('#id_especialidad').val();
-                params.id_localidad = $('#id_localidad').val();
-                params.comentarios = $('#comentarios').val();
-                //alert(params.id_grupo);
-
-                $.post('index.php',params,function(data, status, xhr){
-
-                    objeto.id = data; //data trae el id de la renovacion
-                    //alert(objeto.id);
-                    //alert(xhr.responseText);
-
-                    if(data >=0){
-                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
-                        $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Postulante guardado con exito').addClass('alert alert-success').show();
-                        //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
-                        $("#search").trigger("click");
-                        setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
-                                              }, 2000);
-                    }
-
-                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
-                    //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar el postulante').addClass('alert alert-danger').show();
-                });
-
-            }
-            return false;
-        });*/
-
-
-
-        /*$('#myModal #cancel').on('click', function(){
-           //alert('cancelar');
-            //uploadObj.stopUpload();
-        });*/
-
-
-        /*$('#myModal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });*/
-
+        
 
         $('#postulante-form').validate({ //ok
             rules: {
