@@ -121,12 +121,16 @@ switch ($operation)
         $view->postulantes = Postulante::getPostulantesActivos();
         $view->origenes_cv = Soporte::get_enum_values('sel_postulaciones', 'origen_cv');
 
+        $view->formaciones = Soporte::get_enum_values('sel_postulantes', 'formacion');
+        $view->localidades = Localidad::getLocalidades();
+        $view->especialidades = Especialidad::getEspecialidades();
+
         $view->disableLayout=true;
         $view->contentTemplate="view/busquedas/nPostulacion_detailForm.php";
         break;
 
 
-    case 'newPostulante': //ok
+    case 'newPostulante': // 24/06/2021 creo que no se usa mas.
         //$view->label='Nuevo postulante';
         $view->postulante = new Postulante();
 

@@ -145,7 +145,7 @@
                             <?php foreach ($view->localidades as $loc){
                                 ?>
                                 <option value="<?php echo $loc['id_localidad']; ?>"
-                                    <?php echo ($loc['id_localidad'] == $view->postulante->getIdLocalidad())? 'selected' :'' ?>
+                                    <?php //echo ($loc['id_localidad'] == $view->postulante->getIdLocalidad())? 'selected' :'' ?>
                                     >
                                     <?php echo $loc['CP'].' '.$loc['ciudad'].' '.$loc['provincia'] ;?>
                                 </option>
@@ -159,7 +159,7 @@
                             <?php foreach ($view->formaciones['enum'] as $fo){
                                 ?>
                                 <option value="<?php echo $fo; ?>"
-                                    <?php echo ($fo == $view->postulante->getFormacion() OR ($fo == $view->formaciones['default'] AND !$view->formacion->getFormacion()) )? 'selected' :'' ?>
+                                    <?php //echo ($fo == $view->postulante->getFormacion() OR ($fo == $view->formaciones['default'] AND !$view->formacion->getFormacion()) )? 'selected' :'' ?>
                                     >
                                     <?php echo $fo; ?>
                                 </option>
@@ -174,7 +174,7 @@
                             <?php foreach ($view->especialidades as $es){
                                 ?>
                                 <option value="<?php echo $es['id_especialidad']; ?>"
-                                    <?php echo ($es['id_especialidad'] == $view->postulante->getIdEspecialidad())? 'selected' :'' ?>
+                                    <?php //echo ($es['id_especialidad'] == $view->postulante->getIdEspecialidad())? 'selected' :'' ?>
                                     >
                                     <?php echo $es['nombre'];?>
                                 </option>
