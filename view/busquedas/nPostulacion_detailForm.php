@@ -228,6 +228,13 @@
 
                 params.apellido = $('#apellido').val();
                 params.nombre = $('#nombre').val();
+                params.dni = $('#dni').val();
+                params.telefono = $('#telefono').val();
+                params.formacion = $('#formacion').val();
+                params.id_localidad = $('#id_localidad').val();
+                params.id_especialidad = $('#id_especialidad').val();
+                params.comentarios = $('#comentarios').val();
+
                 //alert(params.id_busqueda);
 
                 $.post('index.php',params,function(data, status, xhr){
