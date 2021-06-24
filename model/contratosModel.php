@@ -129,7 +129,7 @@ class Contrato
                   DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                   co.id_domain
-                  from v_sec_contratos_control co, empleados re, companias cia
+                  from v_sec_contratos_control co
                   where (co.fecha_hasta is null or co.fecha_hasta >= sysdate()  )
                   order by co.nombre";
         $stmt->dpPrepare($query);
