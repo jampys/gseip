@@ -119,6 +119,10 @@
             },
             downloadCallback:function(filename,pd) {
                 location.href="index.php?action=uploadsUsuarios&operation=download&filename="+filename;
+            },
+            afterUploadAll:function(obj) {
+                //You can get data of the plugin using obj
+                closeFormSuccess();
             }
         });
 
@@ -144,13 +148,9 @@
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
-                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Usuario guardado con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"sec_users", operation:"refreshGrid"});
-                        setTimeout(function() { $("#myElem").hide();
-                            $('#myModal').modal('hide');
-                        }, 2000);
+                        if(uploadObj.dpCounter() >= 1) { uploadObj.startUpload(); } //se realiza el upload solo si el formulario se guardo exitosamente
+                        else closeFormSuccess();
                     }else{
                         $("#myElem").html('Error al guardar el usuario').addClass('alert alert-danger').show();
                     }
@@ -162,6 +162,16 @@
             }
             return false;
         });
+
+
+        function closeFormSuccess(){
+            $("#myElem").html('Usuario guardado con exito').addClass('alert alert-success').show();
+            setTimeout(function() { $("#myElem").hide();
+                                    $('#myModal').modal('hide');
+                                    $('#content').load('index.php',{action:"sec_users", operation:"refreshGrid"});
+                                }, 2000);
+            return false; //para finalizar la ejecucion
+        }
 
 
         $('#myModal #cancel').on('click', function(){

@@ -110,6 +110,10 @@
             },
             downloadCallback:function(filename,pd) {
                 location.href="index.php?action=uploadsBusquedas&operation=download&filename="+filename;
+            },
+            afterUploadAll:function(obj) {
+                //You can get data of the plugin using obj
+                closeFormSuccess();
             }
         });
 
@@ -142,13 +146,9 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Búsqueda guardada con exito').addClass('alert alert-success').show();
-                        setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
-                                                $("#search").trigger("click");
-                                              }, 2000);
+                        if(uploadObj.dpCounter() >= 1) { uploadObj.startUpload(); } //se realiza el upload solo si el formulario se guardo exitosamente
+                        else closeFormSuccess();
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
@@ -159,6 +159,16 @@
             }
             return false;
         });
+
+
+        function closeFormSuccess(){
+            $("#myElem").html('Búsqueda guardada con exito').addClass('alert alert-success').show();
+            setTimeout(function() { $("#myElem").hide();
+                                    $('#myModal').modal('hide');
+                                    $("#search").trigger("click");
+                                }, 2000);
+            return false; //para finalizar la ejecucion
+        }
 
 
 

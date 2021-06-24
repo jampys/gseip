@@ -101,12 +101,16 @@
             },
             downloadCallback:function(filename,pd) {
                 location.href="index.php?action=uploadsPuestos&operation=download&filename="+filename;
+            },
+            afterUploadAll:function(obj) {
+                //You can get data of the plugin using obj
+                closeFormSuccess();
             }
         });
 
 
 
-        $(document).on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){ //ok
             if ($("#puesto").valid()){
                 var params={};
                 params.action = 'puestos';
@@ -126,13 +130,9 @@
                     //var rta= parseInt(data.charAt(3));
                     //alert(rta);
                     if(data >=0){
-                        uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
-                        setTimeout(function() { $("#myElem").hide();
-                                                $('#myModal').modal('hide');
-                                                $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
-                                              }, 2000);
+                        if(uploadObj.dpCounter() >= 1) { uploadObj.startUpload(); } //se realiza el upload solo si el formulario se guardo exitosamente
+                        else closeFormSuccess();
                     }
 
 
@@ -145,6 +145,16 @@
             }
             return false;
         });
+
+        function closeFormSuccess(){
+            $("#myElem").html('Puesto guardado con exito').addClass('alert alert-success').show();
+            setTimeout(function() { $("#myElem").hide();
+                                    $('#myModal').modal('hide');
+                                    $('#content').load('index.php',{action:"puestos", operation:"refreshGrid"});
+                                }, 2000);
+            return false; //para finalizar la ejecucion
+        }
+
 
 
         $('#myModal #cancel').on('click', function(){ //ok
