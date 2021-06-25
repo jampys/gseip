@@ -400,7 +400,7 @@ group by legajo, codigo, variable
 
 UNION
 select em.legajo, nccc.codigo,
-func_nov_horas('DHT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo) as cantidad,
+func_nov_horas('DHT', 'CAL', group_concat(ec.id_contrato), em.id_empleado, :periodo) as cantidad,
 nccc.variable, em.id_convenio
 from empleado_contrato ec
 join empleados em on em.id_empleado = ec.id_empleado
