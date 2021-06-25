@@ -374,7 +374,7 @@ from nov_sucesos ns
 join empleados em on em.id_empleado = ns.id_empleado
 join nov_periodos per1 on per1.id_periodo = ns.id_periodo1
 join nov_eventos_l nel on nel.id_evento = ns.id_evento
-left join nov_concepto_convenio_contrato nccc on (nccc.id_concepto = nel.id_concepto
+join nov_concepto_convenio_contrato nccc on (nccc.id_concepto = nel.id_concepto
 													and nccc.id_contrato = per1.id_contrato
 													and nccc.id_convenio = em.id_convenio
                                                     and nccc.id_concepto in (15, 16, 18, 29))
@@ -389,7 +389,7 @@ from nov_sucesos ns
 join empleados em on em.id_empleado = ns.id_empleado
 join nov_periodos per2 on per2.id_periodo = ns.id_periodo2
 join nov_eventos_l nel on nel.id_evento = ns.id_evento
-left join nov_concepto_convenio_contrato nccc on (nccc.id_concepto = nel.id_concepto
+join nov_concepto_convenio_contrato nccc on (nccc.id_concepto = nel.id_concepto
 													and nccc.id_contrato = per2.id_contrato
 													and nccc.id_convenio = em.id_convenio
                                                     and nccc.id_concepto in (15, 16, 18, 29))
