@@ -195,6 +195,11 @@
                         let permisoEtapas = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'detalle' : 'disabled' ?>';
                         let permisoClonar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'clone' : 'disabled' ?>';
                         let permisoVer = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? 'view' : 'disabled' ?>';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_UPDATE', array(1)) )? true : false ?>';
+                        let permisoEditarO = (permisoEditar && !row.cerrado)? 'edit' : 'disabled';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_DELETE', array(1)) )? true : false ?>';
+                        let permisoEliminarO = (permisoEliminar && !row.cerrado)? 'delete' : 'disabled';
+                        let user_info = row.fecha; //row.user.split('@')[0]+' '+row.fecha;
                         return '<a class="'+permisoEtapas+'" href="javascript:void(0);">'+ //si tiene permiso para ver etapas
                                     '<i class="fas fa-th-list dp_blue" title="Detalle del objetivo"></i>'+
                                 '</a>&nbsp;&nbsp;'+
@@ -203,7 +208,16 @@
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoVer+'" href="#" title="Ver">'+ //si tiene permiso para ver
                                     '<i class="far fa-eye dp_blue"></i>'+
-                                '</a>&nbsp;&nbsp;';
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditarO+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminarO+'" href="#" title="Borrar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a href="#" title="'+user_info+'">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                                '</a>';
                     }
                 }
             ]
