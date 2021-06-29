@@ -192,10 +192,18 @@
                     targets: 6,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
-                        let permisoABM = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'detalle' : 'disabled' ?>';
-                        return '<a class="'+permisoABM+'" href="javascript:void(0);">'+ //si tiene permiso para ver etapas
-                                    '<i class="far fa-list-alt fa-fw dp_blue" title="detalle del objetivo"></i>'+
-                                '</a>';
+                        let permisoEtapas = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'detalle' : 'disabled' ?>';
+                        let permisoClonar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'clone' : 'disabled' ?>';
+                        let permisoVer = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? 'view' : 'disabled' ?>';
+                        return '<a class="'+permisoEtapas+'" href="javascript:void(0);">'+ //si tiene permiso para ver etapas
+                                    '<i class="fas fa-th-list dp_blue" title="Detalle del objetivo"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoClonar+'" href="#" title="Clonar">'+ //si tiene permiso para clonar
+                                    '<i class="far fa-copy dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoVer+'" href="#" title="Ver">'+ //si tiene permiso para ver
+                                    '<i class="far fa-eye dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;';
                     }
                 }
             ]
