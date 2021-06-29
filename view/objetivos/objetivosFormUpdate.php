@@ -481,7 +481,8 @@
         //evento al salir o cerrar con la x el modal de actualizar el parte
         $("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
-            $("#search").trigger("click");
+            //$("#search").trigger("click");
+            $('#example').DataTable().ajax.reload();
         });
 
 

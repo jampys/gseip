@@ -16,7 +16,7 @@ $view->disableLayout=false;
 switch ($operation)
 {
     case 'refreshGrid': //ok
-        $view->disableLayout=true;
+        //$view->disableLayout=true;
         $periodo = ($_POST['search_periodo']!='')? $_POST['search_periodo'] : null;
         $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
         $id_area = ($_POST['search_area']!='')? $_POST['search_area'] : null;
@@ -26,9 +26,12 @@ switch ($operation)
         $id_responsable_ejecucion = ($_POST['search_responsable_ejecucion']!='')? $_POST['search_responsable_ejecucion'] : null;
         $id_responsable_seguimiento = ($_POST['search_responsable_seguimiento']!='')? $_POST['search_responsable_seguimiento'] : null;
         //$view->periodos = Objetivo::getPeriodos();
-        $view->todos = $_POST['todos'];
-        $view->objetivos = Objetivo::getObjetivos($periodo, $id_puesto, $id_area, $id_contrato, $indicador, $id_responsable_ejecucion, $id_responsable_seguimiento);
-        $view->contentTemplate="view/objetivos/objetivosGrid.php";
+        //$view->todos = $_POST['todos'];
+        $rta = $view->objetivos = Objetivo::getObjetivos($periodo, $id_puesto, $id_area, $id_contrato, $indicador, $id_responsable_ejecucion, $id_responsable_seguimiento, $_POST['todos']);
+        //$view->contentTemplate="view/objetivos/objetivosGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveObjetivo': //ok
