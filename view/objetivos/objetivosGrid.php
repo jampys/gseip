@@ -75,23 +75,7 @@
             $(this).attr('title','seleccionar');
         });
 
-
-        /*var table = $('#example').DataTable({
-            responsive: true,
-            "fnInitComplete": function () {
-             $(this).show();
-            },
-            "stateSave": true,
-            columnDefs: [
-                { targets: 0, responsivePriority: 1 }, //codigo
-                { targets: 1, responsivePriority: 2}, //nombre objetivo
-                { targets: 5, width: "90px", responsivePriority: 4}, //progress bar
-                { targets: 6, responsivePriority: 3 } //action buttons
-            ]
-
-        });*/
-
-
+        
         var table = $('#example').DataTable({
             responsive: true,
             deferRender: true,
