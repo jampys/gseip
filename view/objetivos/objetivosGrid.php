@@ -136,22 +136,6 @@
                 {"data" : "id_objetivo"}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
-            /*"columnDefs": [ {
-                "targets": 0,
-                "render": function ( data, type, row, meta ) {
-                    let link = (row.tipo_ensayo == 'N')? 'index.php?action=pdf&operation=certificado&Nro_Serie='+row.nro_serie+'&id_calib='+row.id_calibracion : 'index.php?action=pdf&operation=ppt&Nro_Serie='+row.nro_serie+'&id_calib='+row.id_calibracion
-                    return '<a target="_blank" title="descargar certificado" href="'+link+'">'+data+'</a>';
-                }
-            },
-                {
-                    "targets": 3,
-                    "render": function ( data, type, row, meta ) {
-                        return (<?php echo $_SESSION["rol"]; ?> != 3)? row.fecha_calibracion_h : row.fecha_calibracion;
-                    },
-                    type: 'date-uk'
-                },
-                {targets: [10], visible: false, sortable: true, searchable: false, type: 'num'} //id_calibracion
-            ]*/
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_objetivo);
                 $(row).attr('id_objetivo', data.id_objetivo);
@@ -171,7 +155,7 @@
                     responsivePriority: 2,
                     render: function (data, type, row, meta) {
                         let hijos = (row.hijos > 0)? 'details-control':'';
-                        return '<span class="'+hijos+'"> '+row.codigo+'</span>&nbsp;'+row.nombre;
+                        return '<span class="'+hijos+'"> '+row.codigo+'</span>&nbsp;'+$.fn.dataTable.render.ellipsis(75)(row.nombre, type, row);
                     }
                 },
                 {
