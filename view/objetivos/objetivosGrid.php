@@ -75,14 +75,14 @@
             $(this).attr('title','seleccionar');
         });
 
-        
+
         var table = $('#example').DataTable({
             responsive: true,
             deferRender: true,
             //processing: true,
             language: {
-                //url: 'libraries/dataTables/extensions/Spanish.json'
-                url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+                //url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+                url: 'resources/libraries/dataTables/Spanish.json'
             },
             'ajax': {
                 "type"   : "POST",
