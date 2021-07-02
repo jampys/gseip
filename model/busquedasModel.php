@@ -100,7 +100,7 @@ class Busqueda
     }
 
 
-    public static function getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas) { //ok
+    public static function getBusquedas($id_puesto, $id_localidad, $id_contrato, $startDate, $endDate) { //ok
         //los filtros para los parametros se hacen de ésta manera porque la condicion por ej bu.id_contrato = bu.id_contrato
         //no funciona cuando el regisrtro tiene el id_contrato null
         $stmt=new sQuery();
@@ -120,11 +120,14 @@ class Busqueda
                   left join contratos co on bu.id_contrato = co.id_contrato
                   where if (:id_puesto is null, 1, bu.id_puesto = :id_puesto)
                   and if (:id_localidad is null, 1, bu.id_localidad = :id_localidad)
-                  and if (:id_contrato is null, 1, bu.id_contrato = :id_contrato)";
+                  and if (:id_contrato is null, 1, bu.id_contrato = :id_contrato)
+                  and bu.fecha_apertura between :startDate and :endDate";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_puesto', $id_puesto);
         $stmt->dpBind(':id_localidad', $id_localidad);
         $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':startDate', $startDate);
+        $stmt->dpBind(':endDate', $endDate);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

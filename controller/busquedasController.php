@@ -21,8 +21,7 @@ switch ($operation)
         $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
         $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        $todas = null; //($_POST['renovado']== 0)? null : 1;
-        $rta = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
+        $rta = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $startDate, $endDate);
         //$view->contentTemplate="view/busquedas/busquedasGrid.php";
         //break;
         print_r(json_encode($rta));
