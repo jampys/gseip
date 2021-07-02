@@ -374,7 +374,7 @@ from nov_sucesos ns
 join empleados em on em.id_empleado = ns.id_empleado
 join nov_periodos per1 on per1.id_periodo = ns.id_periodo1
 join nov_eventos_l nel on nel.id_evento = ns.id_evento
-left join nov_concepto_convenio_contrato nccc on (nccc.id_concepto = nel.id_concepto
+join nov_concepto_convenio_contrato nccc on (nccc.id_concepto = nel.id_concepto
 													and nccc.id_contrato = per1.id_contrato
 													and nccc.id_convenio = em.id_convenio
                                                     and nccc.id_concepto in (15, 16, 18, 29))
@@ -389,7 +389,7 @@ from nov_sucesos ns
 join empleados em on em.id_empleado = ns.id_empleado
 join nov_periodos per2 on per2.id_periodo = ns.id_periodo2
 join nov_eventos_l nel on nel.id_evento = ns.id_evento
-left join nov_concepto_convenio_contrato nccc on (nccc.id_concepto = nel.id_concepto
+join nov_concepto_convenio_contrato nccc on (nccc.id_concepto = nel.id_concepto
 													and nccc.id_contrato = per2.id_contrato
 													and nccc.id_convenio = em.id_convenio
                                                     and nccc.id_concepto in (15, 16, 18, 29))
@@ -400,7 +400,7 @@ group by legajo, codigo, variable
 
 UNION
 select em.legajo, nccc.codigo,
-func_nov_horas('DHT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo) as cantidad,
+func_nov_horas('DHT', 'CAL', group_concat(ec.id_contrato), em.id_empleado, :periodo) as cantidad,
 nccc.variable, em.id_convenio
 from empleado_contrato ec
 join empleados em on em.id_empleado = ec.id_empleado
