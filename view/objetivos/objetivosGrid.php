@@ -76,29 +76,13 @@
         });
 
 
-        /*var table = $('#example').DataTable({
-            responsive: true,
-            "fnInitComplete": function () {
-             $(this).show();
-            },
-            "stateSave": true,
-            columnDefs: [
-                { targets: 0, responsivePriority: 1 }, //codigo
-                { targets: 1, responsivePriority: 2}, //nombre objetivo
-                { targets: 5, width: "90px", responsivePriority: 4}, //progress bar
-                { targets: 6, responsivePriority: 3 } //action buttons
-            ]
-
-        });*/
-
-
         var table = $('#example').DataTable({
             responsive: true,
             deferRender: true,
             //processing: true,
             language: {
-                //url: 'libraries/dataTables/extensions/Spanish.json'
-                url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+                //url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+                url: 'resources/libraries/dataTables/Spanish.json'
             },
             'ajax': {
                 "type"   : "POST",
@@ -136,22 +120,6 @@
                 {"data" : "id_objetivo"}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
-            /*"columnDefs": [ {
-                "targets": 0,
-                "render": function ( data, type, row, meta ) {
-                    let link = (row.tipo_ensayo == 'N')? 'index.php?action=pdf&operation=certificado&Nro_Serie='+row.nro_serie+'&id_calib='+row.id_calibracion : 'index.php?action=pdf&operation=ppt&Nro_Serie='+row.nro_serie+'&id_calib='+row.id_calibracion
-                    return '<a target="_blank" title="descargar certificado" href="'+link+'">'+data+'</a>';
-                }
-            },
-                {
-                    "targets": 3,
-                    "render": function ( data, type, row, meta ) {
-                        return (<?php echo $_SESSION["rol"]; ?> != 3)? row.fecha_calibracion_h : row.fecha_calibracion;
-                    },
-                    type: 'date-uk'
-                },
-                {targets: [10], visible: false, sortable: true, searchable: false, type: 'num'} //id_calibracion
-            ]*/
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_objetivo);
                 $(row).attr('id_objetivo', data.id_objetivo);
@@ -171,7 +139,7 @@
                     responsivePriority: 2,
                     render: function (data, type, row, meta) {
                         let hijos = (row.hijos > 0)? 'details-control':'';
-                        return '<span class="'+hijos+'"> '+row.codigo+'</span>&nbsp;'+row.nombre;
+                        return '<span class="'+hijos+'"> '+row.codigo+'</span>&nbsp;'+$.fn.dataTable.render.ellipsis(75)(row.nombre, type, row);
                     }
                 },
                 {
@@ -192,9 +160,31 @@
                     targets: 6,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
-                        let permisoABM = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'detalle' : 'disabled' ?>';
-                        return '<a class="'+permisoABM+'" href="javascript:void(0);">'+ //si tiene permiso para ver etapas
-                                    '<i class="far fa-list-alt fa-fw dp_blue" title="detalle del objetivo"></i>'+
+                        let permisoEtapas = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'detalle' : 'disabled' ?>';
+                        let permisoClonar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'clone' : 'disabled' ?>';
+                        let permisoVer = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? 'view' : 'disabled' ?>';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_UPDATE', array(1)) )? true : false ?>';
+                        let permisoEditarO = (permisoEditar && !row.cerrado)? 'edit' : 'disabled';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_DELETE', array(1)) )? true : false ?>';
+                        let permisoEliminarO = (permisoEliminar && !row.cerrado)? 'delete' : 'disabled';
+                        let user_info = row.fecha; //row.user.split('@')[0]+' '+row.fecha;
+                        return '<a class="'+permisoEtapas+'" href="javascript:void(0);">'+ //si tiene permiso para ver etapas
+                                    '<i class="fas fa-th-list dp_blue" title="Detalle del objetivo"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoClonar+'" href="#" title="Clonar">'+ //si tiene permiso para clonar
+                                    '<i class="far fa-copy dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoVer+'" href="#" title="Ver">'+ //si tiene permiso para ver
+                                    '<i class="far fa-eye dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditarO+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminarO+'" href="#" title="Borrar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a href="#" title="'+user_info+'">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
                                 '</a>';
                     }
                 }

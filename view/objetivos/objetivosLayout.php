@@ -45,7 +45,8 @@
                     $('#myModal').modal();
                     //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                     //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-                })
+                });
+                return false;
             });
 
 
@@ -60,7 +61,8 @@
                     //$("fieldset").prop("disabled", true);
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                })
+                });
+                return false;
             });
 
 
@@ -78,7 +80,8 @@
                     $('#myModal').modal();
                     //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                     //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-                })
+                });
+                return false;
             });
 
 
@@ -99,7 +102,8 @@
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
                     //$('#etapas_left_side #add').attr('id_postulacion', id);
-                })
+                });
+                return false;
 
             });
 
@@ -110,13 +114,13 @@
                 params.operation="newObjetivo";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
             });
 
 
 
             var dialog;
-            $(document).on('click', '#example .delete', function(){ //ok
+            $('#content').on('click', '#example .delete', function(){ //ok
 
                 var id = $(this).closest('tr').attr('id_objetivo');
                 dialog = bootbox.dialog({
@@ -137,7 +141,7 @@
                         }
                     }
                 });
-
+                return false;
 
             });
 
@@ -155,7 +159,8 @@
                         dialog.find('.modal-footer').html('<div class="alert alert-success">Objetivo eliminado con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
-                            $("#search").trigger("click");
+                            //$("#search").trigger("click");
+                            $('#example').DataTable().ajax.reload();
                         }, 2000);
                     }
 

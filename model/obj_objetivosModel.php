@@ -163,7 +163,11 @@ class Objetivo
                   and vso.indicador = ifnull(:indicador, vso.indicador)
                   and vso.id_responsable_ejecucion = ifnull(:id_responsable_ejecucion, vso.id_responsable_ejecucion)
                   and vso.id_responsable_seguimiento = ifnull(:id_responsable_seguimiento, vso.id_responsable_seguimiento)";*/
-        $query = "select vso.*, func_obj_progress(vso.id_objetivo) as progreso,
+        $query = "select vso.id_objetivo, vso.periodo, vso.nombre, vso.id_area, vso.id_contrato, vso.id_puesto, vso.meta, vso.meta_valor,
+                  vso.indicador, vso.frecuencia, vso.id_responsable_ejecucion, vso.id_responsable_seguimiento,
+                  DATE_FORMAT(vso.fecha,  '%d/%m/%Y %H:%i') as fecha,
+                  vso.codigo, vso.id_plan_evaluacion, vso.id_objetivo_superior, vso.area, vso.puesto, vso.contrato, vso.id_domain,
+                  func_obj_progress(vso.id_objetivo) as progreso,
                   pe.cerrado,
                   concat(re.apellido, ' ', re.nombre) as responsable_ejecucion,
                   (select count(*) from obj_objetivos objx where objx.id_objetivo_superior = vso.id_objetivo) as hijos
