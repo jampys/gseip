@@ -16,13 +16,17 @@ switch ($operation)
 {
     case 'refreshGrid': //ok
         $view->disableLayout=true;
-        //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
         $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
         $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $todas = null; //($_POST['renovado']== 0)? null : 1;
-        $view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->contentTemplate="view/busquedas/busquedasGrid.php";
+        $rta = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
+        //$view->contentTemplate="view/busquedas/busquedasGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveBusqueda': //ok
