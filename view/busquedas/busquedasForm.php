@@ -165,7 +165,8 @@
             $("#myElem").html('Búsqueda guardada con exito').addClass('alert alert-success').show();
             setTimeout(function() { $("#myElem").hide();
                                     $('#myModal').modal('hide');
-                                    $("#search").trigger("click");
+                                    //$("#search").trigger("click");
+                                    $('#example').DataTable().ajax.reload();
                                 }, 2000);
             return false; //para finalizar la ejecucion
         }
