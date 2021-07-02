@@ -15,21 +15,41 @@
             $('.selectpicker').selectpicker();
 
 
+            moment.locale('es');
+            $('#daterange').daterangepicker({
+                startDate: moment().startOf('year'), //moment().subtract(29, 'days'),
+                endDate: moment(), //moment().add(12, 'months'),
+                locale: {
+                    format: 'DD/MM/YYYY',
+                    "applyLabel": "Aplicar",
+                    "cancelLabel": "Cancelar",
+                    "customRangeLabel": "Rango personalizado"
+                },
+                ranges: {
+                    'Últimos 30 dias': [moment().subtract(29, 'days'), moment()],
+                    'Últimos 6 meses': [moment().subtract(6, 'months'), moment()],
+                    'Último año': [moment().subtract(1, 'year'), moment()],
+                    'Últimos 5 años': [moment().subtract(5, 'years'), moment()]
+                }
+            }, function(start, end) {
+                $('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            });
+
+            var drp = $('#daterange').data('daterangepicker');
+
+
             $(document).on('click', '#search', function(){ //ok
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
-                params={};
-                //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-                //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
+                /*params={};
                 params.search_puesto = $("#search_puesto").val();
                 params.search_localidad = $("#search_localidad").val();
                 params.search_contrato = $("#search_contrato").val();
-                //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "busquedas";
                 params.operation = "refreshGrid";
-                //alert(params.id_grupo);
-                $('#content').load('index.php', params);
+                $('#content').load('index.php', params);*/
+                $('#example').DataTable().ajax.reload();
             });
 
 
@@ -198,7 +218,7 @@
                     </div>
 
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <!--<label for="search_localidad" class="control-label">Área</label>-->
                         <select class="form-control selectpicker show-tick" id="search_localidad" name="search_localidad" data-live-search="true" data-size="5">
                             <option value="">Seleccione un área</option>
@@ -211,7 +231,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <!--<label for="search_contrato" class="control-label">Contrato</label>-->
                         <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
                             <option value="">Seleccione un contrato</option>
@@ -225,8 +245,12 @@
                     </div>
 
 
-                    <div class="form-group col-md-1">
-
+                    <div class="form-group col-md-3">
+                        <!--<label for="search_vencimiento" class="control-label">Buscar partes</label>-->
+                        <div class="inner-addon right-addon">
+                            <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </div>
                     </div>
 
 

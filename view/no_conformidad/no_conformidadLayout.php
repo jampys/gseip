@@ -40,17 +40,12 @@
 
             $(document).on('click', '#search', function(){ //ok
                 //alert('presiono en buscar');
-                //var id = $(this).attr('data-id');
-                params={};
+                /*params={};
                 params.startDate = drp.startDate.format('YYYY-MM-DD');
                 params.endDate = drp.endDate.format('YYYY-MM-DD');
                 params.search_responsable_ejecucion = $("#search_responsable_ejecucion").val();
-                //params.search_estado = $("#search_estado").val();
-                //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "nc_no_conformidad";
-                params.operation = "refreshGrid";
-                //alert(params.id_grupo);
-                //$('#content').load('index.php', params);
+                params.operation = "refreshGrid";*/
                 $('#example').DataTable().ajax.reload();
 
             });
