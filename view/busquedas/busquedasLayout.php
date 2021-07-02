@@ -256,7 +256,7 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="form-group col-md-1">
                         <!--<label for="search">&nbsp;</label>-->
                         <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
