@@ -27,6 +27,7 @@
             "fnInitComplete": function () {
                 $(this).show();
             },
+            "order": [[1, "desc"], [0, "asc"]], // 2=fecha_apertura, 5=nombre
             'ajax': {
                 "type"   : "POST",
                 "url"    : 'index.php',
@@ -55,6 +56,8 @@
                 $(row).attr('data-id', data.id_busqueda);
             },
             "columnDefs": [
+                {targets: 1, type: 'date-uk', orderData: [ 1, 0 ]}, //fecha_apertura
+                {targets: 2, type: 'date-uk', orderData: [ 2, 0 ]}, //fecha_cierre
                 {
                     targets: 7,//action buttons
                     responsivePriority: 3,
