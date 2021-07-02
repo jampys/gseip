@@ -156,10 +156,11 @@
 
 
         //evento al salir o cerrar con la x el modal de etapas
-        $("#myModal").on("hidden.bs.modal", function () {
+        /*$("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
-            $("#search").trigger("click");
-        });
+            //$("#search").trigger("click");
+            $('#example').DataTable().ajax.reload();
+        });*/
 
 
 
