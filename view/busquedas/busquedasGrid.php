@@ -61,29 +61,25 @@
                     render: function (data, type, row, meta) {
                         let permisoPostulantes = '<?php echo ( PrivilegedUser::dhasPrivilege('BUS_ABM', array(1)) )? 'detalles' : 'disabled' ?>';
                         let adjuntos = (row.cant_uploads > 0)? '<a href="#" title="'+row.cant_uploads+' adjuntos" ><i class="fas fa-paperclip dp_gray"></i></a>&nbsp;&nbsp;' : '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
-                        let link = 'index.php?action=nc_no_conformidad&operation=pdf&id_no_conformidad='+row.id_no_conformidad;
-                        let user_info = 'aaaaaa'; //row.user.split('@')[0]+' '+row.created_date;
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('BUS_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
+                        let user_info = row.fecha; //row.user.split('@')[0]+' '+row.created_date;
                         return '<a class="'+permisoPostulantes+'" href="#" title="Postulantes">'+ //si tiene permiso para editar Postulantes
                                     '<i class="fas fa-th-list dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 adjuntos+
-                            '<a class="view" title="Ver" href="#">'+
-                            '<i class="far fa-eye dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
-                            '<i class="far fa-edit dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
-                            '<i class="far fa-trash-alt dp_red"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
-                            '<i class="fas fa-download dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a target="_blank" href="#" title="'+user_info+'">'+
-                            '<i class="fa fa-question-circle dp_light_gray"></i>'+
-                            '</a>';
+                                '<a class="view" title="Ver" href="#">'+
+                                    '<i class="far fa-eye dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a target="_blank" href="#" title="'+user_info+'">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                                '</a>';
                     }
                 }
             ]
