@@ -42,12 +42,12 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "nro_no_conformidad"},
-                {"data" : "fecha_implementacion"},
                 {"data" : "nombre"},
-                {"data" : "tipo"},
-                {"data" : "tipo_accion"},
-                {"data" : "responsable_seguimiento"},
+                {"data" : "fecha_apertura"},
+                {"data" : "fecha_cierre"},
+                {"data" : "puesto"},
+                {"data" : "area"},
+                {"data" : "contrato"},
                 {"data" : "estado"},
                 {data: null, defaultContent: '', orderable: false}
             ],
