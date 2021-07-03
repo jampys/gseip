@@ -1,3 +1,8 @@
+<style>
+    .dataTables_scrollHeadInner{  width:100% !important; }
+    .dataTables_scrollHeadInner table{  width:100% !important; }
+</style>
+
 <script type="text/javascript">
 
 
@@ -86,12 +91,9 @@
         <table id="table-tareas" class="table table-condensed table-hover dt-responsive" width="100%">
             <thead>
             <tr>
-                <!--<th>Tarea</th>
+                <th>Tarea</th>
                 <th>F. Inicio</th>
                 <th>F. Fin</th>
-                <th></th>
-                <th></th>
-                <th></th>-->
             </tr>
             </thead>
         </table>
