@@ -20,6 +20,7 @@
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
+            autoWidth: false,
             order: [[0, "asc"]], // 0=fecha_implementacion
             'ajax': {
                 "type"   : "POST",
@@ -43,15 +44,16 @@
             "columnDefs": [
                 {
                     targets: 0, //nombre
+                    width: '50%',
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(125)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(50)(data, type, row);
                     }
                 },
                 {targets: 1, type: 'date-uk'}, //fecha_inicio
                 {targets: 2, type: 'date-uk'}, //fecha_fin
                 {
                     targets: 3,//action buttons
-                    width: '30%',
+                    width: '20%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
