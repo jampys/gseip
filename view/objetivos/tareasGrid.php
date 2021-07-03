@@ -32,25 +32,26 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "id_tarea"},
-                {"data" : "id_tarea"},
+                {"data" : "nombre"},
+                {"data" : "fecha_inicio"},
+                {"data" : "fecha_fin"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_tarea);
             },
             "columnDefs": [
-                //{ targets: 0, responsivePriority: 2 },
-                {targets: 0, type: 'date-uk'}, //fecha_implementacion
                 {
-                    targets: 1, //accion
+                    targets: 0, //nombre
                     render: function(data, type, row) {
                         return $.fn.dataTable.render.ellipsis(125)(data, type, row);
                     }
                 },
+                {targets: 1, type: 'date-uk'}, //fecha_inicio
+                {targets: 2, type: 'date-uk'}, //fecha_fin
                 {
-                    targets: 2,//action buttons
-                    width: '20%',
+                    targets: 3,//action buttons
+                    width: '30%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
@@ -91,9 +92,10 @@
         <table id="table-tareas" class="table table-condensed table-hover dt-responsive" width="100%">
             <thead>
             <tr>
-                <th>Tarea</th>
+                <th>Actividad</th>
                 <th>F. Inicio</th>
                 <th>F. Fin</th>
+                <th></th>
             </tr>
             </thead>
         </table>
