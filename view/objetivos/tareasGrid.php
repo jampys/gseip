@@ -53,13 +53,16 @@
                 {targets: 2, type: 'date-uk'}, //fecha_fin
                 {
                     targets: 3,//action buttons
-                    width: '20%',
+                    width: '25%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = 'aaaaa'; //row.user.split('@')[0]+' '+row.created_date;
-                        return '<a class="view" title="Ver" href="#">'+
+                        return '<a class="avance" title="Avances" href="#">'+
+                                    '<i class="fas fa-forward fa-fw dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                            '<a class="view" title="Ver" href="#">'+
                             '<i class="far fa-eye dp_blue"></i>'+
                             '</a>&nbsp;&nbsp;'+
                             '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
