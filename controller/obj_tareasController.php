@@ -21,8 +21,11 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
-        $view->contentTemplate="view/objetivos/tareasGrid.php";
+        $rta = Tarea::getTareas($_POST['id_objetivo']);
+        //$view->contentTemplate="view/objetivos/tareasGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveTarea': //ok
