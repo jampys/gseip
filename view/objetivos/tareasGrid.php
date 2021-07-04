@@ -56,12 +56,8 @@
                     width: '25%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
-                        let tarea_update = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)))? true : false ?>';
-                        let tarea_delete = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)))? true : false ?>';
-
-                        let permisoEditar = ((tarea_update && row.id_user == id_user) || usr_abm)? 'edit' : 'disabled';
-                        let permisoEliminar = ((tarea_delete && row.id_user == id_user) || usr_abm)? 'delete' : 'disabled';
-
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) && !$view->params['cerrado'] )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) && !$view->params['cerrado'] )? 'delete' : 'disabled' ?>';
 
                         let user_info = 'aaaaa'; //row.user.split('@')[0]+' '+row.created_date;
                         return '<a class="avance" title="Avances" href="#">'+
@@ -70,12 +66,12 @@
                                 '<a class="view" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
-                            '<i class="far fa-edit dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
-                            '<i class="far fa-trash-alt dp_red"></i>'+
-                            '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
                             '<a href="#" title="'+user_info+'">'+
                             '<i class="fa fa-question-circle dp_light_gray"></i>'+
                             '</a>';
