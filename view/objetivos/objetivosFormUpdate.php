@@ -482,7 +482,7 @@
         $("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
             //$("#search").trigger("click");
-            $('#example').DataTable().ajax.reload();
+            $('#example').DataTable().ajax.reload(null, false); //https://datatables.net/reference/api/ajax.reload()
         });
 
 
