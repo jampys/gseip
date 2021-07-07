@@ -29,6 +29,7 @@
                     d.action = "obj_avances";
                     d.operation = "refreshGrid";
                     d.id_objetivo = $('#myModal #id_objetivo').val(); //$('#etapas_left_side #add').attr('id_objetivo');
+                    d.id_tarea = $('#left_side').attr('id_tarea');
                 },
                 "dataSrc": ""
             },
