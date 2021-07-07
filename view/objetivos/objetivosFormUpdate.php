@@ -231,9 +231,9 @@
             params.action = "obj_avances";
             params.operation = "refreshGrid";
             $('#left_side .grid-avances').load('index.php', params, function(){
-                //$("button[data-target='#demo-avances']").trigger("click");
                 $('#demo-avances').collapse('show'); //https://getbootstrap.com/docs/3.3/javascript/#collapse-options
             });
+            
         });
 
         //para editar una tarea
