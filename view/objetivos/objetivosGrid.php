@@ -93,7 +93,7 @@
                     titleAttr: 'Actualizar objetivos',
                     action: function ( e, dt, node, config ) {
                         //https://datatables.net/reference/option/buttons.buttons.action
-                        $('#example').DataTable().ajax.reload();
+                        $('#example').DataTable().ajax.reload(null, false);
                     }
                 }
             ],

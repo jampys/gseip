@@ -96,7 +96,7 @@
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
-                                                $('#example').DataTable().ajax.reload();
+                                                //$('#example').DataTable().ajax.reload();
                                               }, 2000);
                     }
 
