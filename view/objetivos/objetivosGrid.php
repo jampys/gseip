@@ -103,7 +103,7 @@
                 },
                 "dataSrc": ""
             },
-            rowId: 'id_objetivo',
+            //rowId: 'id_objetivo',
             'columns': [
                 /*{   // Responsive control column
                  data: null,
