@@ -67,17 +67,17 @@
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) && !$view->params['cerrado'] )? 'delete' : 'disabled' ?>';
                         let user_info = row.user.split('@')[0]; //row.user.split('@')[0]+' '+row.created_date;
                         return '<a class="view" title="Ver" href="#">'+
-                            '<i class="far fa-eye dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
-                            '<i class="far fa-edit dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
-                            '<i class="far fa-trash-alt dp_red"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a href="#" title="'+user_info+'">'+
-                            '<i class="fa fa-question-circle dp_light_gray"></i>'+
-                            '</a>';
+                                    '<i class="far fa-eye dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a href="#" title="'+user_info+'">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                                '</a>';
                     }
                 }
             ]
