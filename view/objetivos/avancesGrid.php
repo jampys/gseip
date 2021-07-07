@@ -46,9 +46,9 @@
                 {targets: 0, type: 'date-uk'}, //fecha
                 {
                     targets: 1, //tarea
-                    width: '30%',
+                    width: '35%',
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(20)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(25)(data, type, row);
                     }
                 },
                 {
@@ -60,16 +60,13 @@
                 },
                 {
                     targets: 4,//action buttons
-                    width: '25%',
+                    width: '20%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) && !$view->params['cerrado'] )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) && !$view->params['cerrado'] )? 'delete' : 'disabled' ?>';
-                        let user_info = 'próximamente información'; //row.user.split('@')[0]+' '+row.created_date;
-                        return '<a class="avance" title="Avances" href="#">'+
-                            '<i class="fas fa-forward fa-fw dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="view" title="Ver" href="#">'+
+                        let user_info = row.user.split('@')[0]; //row.user.split('@')[0]+' '+row.created_date;
+                        return '<a class="view" title="Ver" href="#">'+
                             '<i class="far fa-eye dp_blue"></i>'+
                             '</a>&nbsp;&nbsp;'+
                             '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
