@@ -17,6 +17,15 @@
         var v_id_tarea;
 
 
+        $('.selectpicker').selectpicker();
+
+
+        $('#myModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+
+
 
         google.charts.load('current', {'packages':['gantt'], 'language': 'es'});
         setTimeout(function() {
@@ -189,13 +198,13 @@
                     if(data >=0){
                         $("#avance-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#avance-form #myElem").html('Avance guardado con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: params.id_tarea, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
-                        setTimeout(function() { $("#avance-form #myElem").hide();
-                                                //$('#myModal').modal('hide');
-                                                $('#avance-form').hide();
-                                                drawChart();
-                        }, 2000);
+                        //$('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: params.id_tarea, operation:"refreshGrid"});
+                        setTimeout(function() {     $("#avance-form #myElem").hide();
+                                                    //$('#myModal').modal('hide');
+                                                    $('#avance-form').hide();
+                                                    drawChart();
+                                                    $('#table-avances').DataTable().ajax.reload();
+                                                }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
@@ -205,28 +214,6 @@
 
             }
             return false;
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $('.selectpicker').selectpicker();
-
-
-        $('#myModal').modal({
-            backdrop: 'static',
-            keyboard: false
         });
 
 
