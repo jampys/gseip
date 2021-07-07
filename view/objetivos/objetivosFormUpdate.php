@@ -143,12 +143,12 @@
                     if(data >=0){
                         $("#tarea-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#tarea-form #myElem").html('Tarea guardada con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
+                        //$('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
                         setTimeout(function() { $("#tarea-form #myElem").hide();
                                                 //$('#myModal').modal('hide');
                                                 $('#tarea-form').hide();
                                                 drawChart();
+                                                $('#table-tareas').DataTable().ajax.reload();
                                                 }, 2000);
                     }
 
@@ -402,11 +402,12 @@
                 if(data >=0){
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Actividad eliminada con exito</div>');
                     setTimeout(function() {
-                        dialog.modal('hide');
-                        $('#tarea-form').hide();
-                        $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
-                        drawChart();
-                    }, 2000);
+                                            dialog.modal('hide');
+                                            $('#tarea-form').hide();
+                                            //$('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
+                                            $('#table-tareas').DataTable().ajax.reload();
+                                            drawChart();
+                                        }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
