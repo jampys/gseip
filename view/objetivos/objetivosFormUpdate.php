@@ -235,6 +235,7 @@
             });*/
 
             $('#left_side').attr('id_tarea', id);
+            $('#demo-avances').collapse('show'); //https://getbootstrap.com/docs/3.3/javascript/#collapse-options
             $('#table-avances').DataTable().ajax.reload();
 
 

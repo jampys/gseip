@@ -117,7 +117,7 @@
                 {"data" : "responsable_ejecucion"},
                 {"data" : "contrato"},
                 {"data" : "id_objetivo"},
-                {"data" : "id_objetivo"}
+                {"data" : "id_objetivo", orderable: false}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
             createdRow: function (row, data, dataIndex) {
