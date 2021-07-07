@@ -223,7 +223,6 @@
             //alert('editar empleado del parte');
             var id = $(this).closest('tr').attr('data-id');
             v_id_tarea = id; //guardo el id_tarea para refrescar la grilla de avances
-            //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
 
             /*params={};
@@ -234,12 +233,9 @@
             $('#left_side .grid-avances').load('index.php', params, function(){
                 $('#demo-avances').collapse('show'); //https://getbootstrap.com/docs/3.3/javascript/#collapse-options
             });*/
-
-
+            
             $('#left_side').attr('id_tarea', id);
-            $('#table-tareas').DataTable().ajax.reload();
-
-
+            $('#table-avances').DataTable().ajax.reload();
 
 
         });
