@@ -103,7 +103,7 @@
             <thead>
             <tr>
                 <th>Fecha</th>
-                <th>Tarea</th>
+                <th>Actividad</th>
                 <th>Indicador</th>
                 <th>Cant.</th>
                 <th></th>

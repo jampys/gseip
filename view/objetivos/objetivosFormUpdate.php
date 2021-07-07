@@ -222,7 +222,7 @@
         $('.grid-tareas').on('click', '.avance', function(){
             //alert('editar empleado del parte');
             var id = $(this).closest('tr').attr('data-id');
-            v_id_tarea = id; //guardo el id_tarea para refrescar la grilla de avances
+            //v_id_tarea = id; //guardo el id_tarea para refrescar la grilla de avances
             //alert('editar etapa: '+id);
 
             /*params={};
@@ -233,7 +233,7 @@
             $('#left_side .grid-avances').load('index.php', params, function(){
                 $('#demo-avances').collapse('show'); //https://getbootstrap.com/docs/3.3/javascript/#collapse-options
             });*/
-            
+
             $('#left_side').attr('id_tarea', id);
             $('#table-avances').DataTable().ajax.reload();
 
@@ -453,11 +453,12 @@
                 if(data >=0){
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Avance eliminado con exito</div>');
                     setTimeout(function() {
-                        dialog.modal('hide');
-                        $('#avance-form').hide();
-                        $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: v_id_tarea, operation:"refreshGrid"});
-                        drawChart();
-                    }, 2000);
+                                            dialog.modal('hide');
+                                            $('#avance-form').hide();
+                                            //$('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: v_id_tarea, operation:"refreshGrid"});
+                                            $('#table-avances').DataTable().ajax.reload();
+                                            drawChart();
+                                        }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
