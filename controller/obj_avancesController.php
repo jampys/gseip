@@ -21,8 +21,11 @@ switch ($operation)
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
         $id_tarea = ($_POST['id_tarea']!='')? $_POST['id_tarea'] : null;
-        $view->avances = Avance::getAvances($_POST['id_objetivo'], $id_tarea);
-        $view->contentTemplate="view/objetivos/avancesGrid.php";
+        $rta = Avance::getAvances($_POST['id_objetivo'], $id_tarea);
+        //$view->contentTemplate="view/objetivos/avancesGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveAvance': //ok
