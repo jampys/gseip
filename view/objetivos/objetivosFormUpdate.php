@@ -305,6 +305,7 @@
             //alert('editar etapa: '+id);
             params={};
             params.id_avance = id;
+            params.id_objetivo = $('#id_objetivo').val();
             params.action = "obj_avances";
             params.operation = "editAvance";
             params.target = "view";
