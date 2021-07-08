@@ -12,7 +12,7 @@
             responsive: true,
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
-                emptyTable: 'El objetivo no tiene actividades registradas'
+                emptyTable: 'El objetivo ó actividad no tiene avances registrados'
             },
             sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
