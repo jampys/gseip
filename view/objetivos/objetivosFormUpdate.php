@@ -17,6 +17,15 @@
         var v_id_tarea;
 
 
+        $('.selectpicker').selectpicker();
+
+
+        $('#myModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+
+
 
         google.charts.load('current', {'packages':['gantt'], 'language': 'es'});
         setTimeout(function() {
@@ -143,12 +152,12 @@
                     if(data >=0){
                         $("#tarea-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#tarea-form #myElem").html('Tarea guardada con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
+                        //$('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
                         setTimeout(function() { $("#tarea-form #myElem").hide();
                                                 //$('#myModal').modal('hide');
                                                 $('#tarea-form').hide();
                                                 drawChart();
+                                                $('#table-tareas').DataTable().ajax.reload();
                                                 }, 2000);
                     }
 
@@ -189,13 +198,13 @@
                     if(data >=0){
                         $("#avance-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#avance-form #myElem").html('Avance guardado con exito').addClass('alert alert-success').show();
-                        $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: params.id_tarea, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
-                        setTimeout(function() { $("#avance-form #myElem").hide();
-                                                //$('#myModal').modal('hide');
-                                                $('#avance-form').hide();
-                                                drawChart();
-                        }, 2000);
+                        //$('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: params.id_tarea, operation:"refreshGrid"});
+                        setTimeout(function() {     $("#avance-form #myElem").hide();
+                                                    //$('#myModal').modal('hide');
+                                                    $('#avance-form').hide();
+                                                    drawChart();
+                                                    $('#table-avances').DataTable().ajax.reload();
+                                                }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
@@ -209,44 +218,27 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        $('.selectpicker').selectpicker();
-
-
-        $('#myModal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });
-
-
-
         //para mostrar avance de una tarea individual
         $('.grid-tareas').on('click', '.avance', function(){
             //alert('editar empleado del parte');
             var id = $(this).closest('tr').attr('data-id');
-            v_id_tarea = id; //guardo el id_tarea para refrescar la grilla de avances
-            //var id = $(this).attr('data-id');
+            //v_id_tarea = id; //guardo el id_tarea para refrescar la grilla de avances
             //alert('editar etapa: '+id);
-            params={};
+
+            /*params={};
             params.id_tarea = id;
             params.id_objetivo = $('#id_objetivo').val();
             params.action = "obj_avances";
             params.operation = "refreshGrid";
             $('#left_side .grid-avances').load('index.php', params, function(){
-                //$("button[data-target='#demo-avances']").trigger("click");
                 $('#demo-avances').collapse('show'); //https://getbootstrap.com/docs/3.3/javascript/#collapse-options
-            });
+            });*/
+
+            $('#left_side').attr('id_tarea', id);
+            $('#demo-avances').collapse('show'); //https://getbootstrap.com/docs/3.3/javascript/#collapse-options
+            $('#table-avances').DataTable().ajax.reload();
+
+
         });
 
         //para editar una tarea
@@ -314,6 +306,7 @@
             //alert('editar etapa: '+id);
             params={};
             params.id_avance = id;
+            params.id_objetivo = $('#id_objetivo').val();
             params.action = "obj_avances";
             params.operation = "editAvance";
             params.target = "view";
@@ -402,11 +395,12 @@
                 if(data >=0){
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Actividad eliminada con exito</div>');
                     setTimeout(function() {
-                        dialog.modal('hide');
-                        $('#tarea-form').hide();
-                        $('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
-                        drawChart();
-                    }, 2000);
+                                            dialog.modal('hide');
+                                            $('#tarea-form').hide();
+                                            //$('#left_side .grid-tareas').load('index.php',{action:"obj_tareas", id_objetivo: params.id_objetivo, operation:"refreshGrid"});
+                                            $('#table-tareas').DataTable().ajax.reload();
+                                            drawChart();
+                                        }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
@@ -461,11 +455,12 @@
                 if(data >=0){
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Avance eliminado con exito</div>');
                     setTimeout(function() {
-                        dialog.modal('hide');
-                        $('#avance-form').hide();
-                        $('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: v_id_tarea, operation:"refreshGrid"});
-                        drawChart();
-                    }, 2000);
+                                            dialog.modal('hide');
+                                            $('#avance-form').hide();
+                                            //$('#left_side .grid-avances').load('index.php',{action:"obj_avances", id_objetivo: params.id_objetivo, id_tarea: v_id_tarea, operation:"refreshGrid"});
+                                            $('#table-avances').DataTable().ajax.reload();
+                                            drawChart();
+                                        }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
@@ -481,8 +476,7 @@
         //evento al salir o cerrar con la x el modal de actualizar el parte
         $("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
-            //$("#search").trigger("click");
-            $('#example').DataTable().ajax.reload();
+            //$('#example').DataTable().ajax.reload(null, false); //https://datatables.net/reference/api/ajax.reload()
         });
 
 

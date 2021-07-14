@@ -84,6 +84,19 @@
                 //url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
                 url: 'resources/libraries/dataTables/Spanish.json'
             },
+            dom:    "<'row'<'col-sm-2'l><'col-sm-1'B><'col-sm-6'><'col-sm-3'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            buttons: [
+                {
+                    text: '<i class="fas fa-sync dp_blue"></i>',
+                    titleAttr: 'Actualizar objetivos',
+                    action: function ( e, dt, node, config ) {
+                        //https://datatables.net/reference/option/buttons.buttons.action
+                        $('#example').DataTable().ajax.reload(null, false);
+                    }
+                }
+            ],
             'ajax': {
                 "type"   : "POST",
                 //"url"    : 'index.php?action=ajax_certificados&operation=refreshGrid',
@@ -103,7 +116,7 @@
                 },
                 "dataSrc": ""
             },
-            rowId: 'id_objetivo',
+            //rowId: 'id_objetivo',
             'columns': [
                 /*{   // Responsive control column
                  data: null,
@@ -117,7 +130,7 @@
                 {"data" : "responsable_ejecucion"},
                 {"data" : "contrato"},
                 {"data" : "id_objetivo"},
-                {"data" : "id_objetivo"}
+                {"data" : "id_objetivo", orderable: false}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
             createdRow: function (row, data, dataIndex) {

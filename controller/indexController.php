@@ -40,8 +40,8 @@ switch ($operation)
 
 
         $id_responsable_ejecucion = $_SESSION["id_empleado"];
-        $view->objetivos = Objetivo::getObjetivos(date('Y'), null, null, null, null, $_SESSION['id_empleado'], null);
-        $view->objetivos1 = Objetivo::getObjetivos(date('Y'), null, null, null, null, null, $_SESSION['id_empleado']);
+        $view->objetivos = Objetivo::getObjetivos(date('Y'), null, null, null, null, $_SESSION['id_empleado'], null, 1);
+        $view->objetivos1 = Objetivo::getObjetivos(date('Y'), null, null, null, null, null, $_SESSION['id_empleado'], 1);
         $view->cumpleaños = Empleado::getProximosCumpleaños($view->dias);
         $view->vencimientos = RenovacionPersonal::getRenovacionesPersonal($_SESSION['id_empleado'], null, 'vrp.id_vencimiento', null, null, null);
 
