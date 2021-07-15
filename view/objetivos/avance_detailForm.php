@@ -46,20 +46,32 @@
                 fecha: {required: true},
                 indicador: {required: true},
                 cantidad: {
-                 required: true,
-                 digits: true,
-                 maxlength: 3
-                 }
+                    required: true,
+                    digits: true,
+                    maxlength: 3
+                 },
+                cantidad_plan: {
+                    required: true,
+                    digits: true,
+                    maxlength: 3
+                },
+                periodo: {required: true}
 
             },
             messages:{
                 fecha: "Seleccione una fecha",
                 indicador: "Seleccione un indicador",
                 cantidad: {
-                 required: "Ingrese la cantidad",
-                 digits: "Ingrese solo números",
-                 maxlength: "Máximo 3 dígitos"
-                 }
+                    required: "Ingrese la cantidad real",
+                    digits: "Ingrese solo números",
+                    maxlength: "Máximo 3 dígitos"
+                 },
+                cantidad_plan: {
+                    required: "Ingrese la cantidad planificada",
+                    digits: "Ingrese solo números",
+                    maxlength: "Máximo 3 dígitos"
+                },
+                periodo: "Seleccione un período"
 
             }
 
