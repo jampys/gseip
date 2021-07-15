@@ -36,6 +36,8 @@ switch ($operation)
         $avance->setIndicador($_POST['indicador']);
         $avance->setCantidad($_POST['cantidad']);
         $avance->setComentarios($_POST['comentarios']);
+        $avance->setCantidadPlan($_POST['cantidad_plan']);
+        $avance->setPeriodo($_POST['periodo']);
         $avance->setIdUser($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $avance->save();

@@ -143,7 +143,9 @@ class Avance
                 id_tarea = :id_tarea,
                 indicador = :indicador,
                 cantidad = :cantidad,
-                comentarios = :comentarios
+                comentarios = :comentarios,
+                cantidad_plan = :cantidad_plan,
+                periodo = :periodo
                 where id_avance = :id_avance";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha', $this->getFecha());
@@ -151,6 +153,8 @@ class Avance
         $stmt->dpBind(':indicador', $this->getIndicador());
         $stmt->dpBind(':cantidad', $this->getCantidad());
         $stmt->dpBind(':comentarios', $this->getComentarios());
+        $stmt->dpBind(':cantidad_plan', $this->getCantidadPlan());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':id_avance', $this->getIdAvance());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -159,8 +163,8 @@ class Avance
 
     private function insertAvance(){ //ok
         $stmt=new sQuery();
-        $query="insert into obj_avances(id_objetivo, fecha, id_tarea, indicador, cantidad, comentarios, id_user)
-                values(:id_objetivo, STR_TO_DATE(:fecha, '%d/%m/%Y'), :id_tarea, :indicador, :cantidad, :comentarios, :id_user)";
+        $query="insert into obj_avances(id_objetivo, fecha, id_tarea, indicador, cantidad, comentarios, cantidad_plan, periodo, id_user)
+                values(:id_objetivo, STR_TO_DATE(:fecha, '%d/%m/%Y'), :id_tarea, :indicador, :cantidad, :comentarios, :cantidad_plan, :periodo, :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpBind(':fecha', $this->getFecha());
@@ -168,6 +172,8 @@ class Avance
         $stmt->dpBind(':indicador', $this->getIndicador());
         $stmt->dpBind(':cantidad', $this->getCantidad());
         $stmt->dpBind(':comentarios', $this->getComentarios());
+        $stmt->dpBind(':cantidad_plan', $this->getCantidadPlan());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();

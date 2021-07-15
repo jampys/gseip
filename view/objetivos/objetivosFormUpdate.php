@@ -187,6 +187,8 @@
                 params.indicador = $('#indicador').val();
                 params.cantidad = $('#cantidad').val();
                 params.comentarios = $('#comentarios').val();
+                params.cantidad_plan = $('#cantidad_plan').val();
+                params.periodo = $('#periodo').val();
                 //params.conductor = $('input[name=conductor]:checked').val();
                 //params.conductor = $('#conductor').prop('checked')? 1:0;
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');

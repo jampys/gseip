@@ -129,7 +129,7 @@
                 <?php foreach ($view->periodos['enum'] as $pe){
                     ?>
                     <option value="<?php echo $pe; ?>"
-                        <?php //echo ($mo == $view->avance->getIndicador() OR ($mo == $view->indicadores['default'] AND !$view->avance->getIdAvance()) )? 'selected' :'' ?>
+                        <?php echo ($pe == $view->avance->getPeriodo() OR ($pe == $view->periodos['default'] AND !$view->avance->getIdAvance()) )? 'selected' :'' ?>
                         >
                         <?php echo $pe; ?>
                     </option>
