@@ -9,6 +9,8 @@ class Avance
     private $indicador;
     private $cantidad;
     private $comentarios;
+    private $cantidad_plan;
+    private $periodo;
     private $id_user;
 
     // GETTERS
@@ -32,6 +34,12 @@ class Avance
 
     function getComentarios()
     { return $this->comentarios;}
+
+    function getCantidadPlan()
+    { return $this->cantidad_plan;}
+
+    function getPeriodo()
+    { return $this->periodo;}
 
     function getIdUser()
     { return $this->id_user;}
@@ -59,6 +67,12 @@ class Avance
     function setComentarios($val)
     { $this->comentarios=$val;}
 
+    function setCantidadPlan($val)
+    { $this->cantidad_plan=$val;}
+
+    function setPeriodo($val)
+    { $this->periodo=$val;}
+
     function setIdUser($val)
     { $this->id_user=$val;}
 
@@ -69,7 +83,7 @@ class Avance
             $stmt=new sQuery();
             $query = "select id_avance, id_objetivo, id_tarea,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      indicador, cantidad, comentarios, id_user
+                      indicador, cantidad, comentarios, cantidad_plan, periodo, id_user
                       from obj_avances
                       where id_avance = :nro";
             $stmt->dpPrepare($query);
@@ -84,6 +98,8 @@ class Avance
             $this->setIndicador($rows[0]['indicador']);
             $this->setCantidad($rows[0]['cantidad']);
             $this->setComentarios($rows[0]['comentarios']);
+            $this->setCantidadPlan($rows[0]['cantidad_plan']);
+            $this->setPeriodo($rows[0]['periodo']);
             $this->setIdUser($rows[0]['id_user']);
         }
     }

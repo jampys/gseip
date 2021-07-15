@@ -1,9 +1,7 @@
 ﻿<?php
 include_once("model/obj_avancesModel.php");
 include_once("model/obj_tareasModel.php");
-
-//include_once("model/localidadesModel.php");
-//include_once("model/contratosModel.php");
+include_once("model/obj_objetivosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -49,6 +47,7 @@ switch ($operation)
     case 'newAvance': //ok
         $view->label='Nuevo avance';
         $view->avance = new Avance($_POST['id_avance']);
+        $view->objetivo = new Objetivo($_POST['id_objetivo']);
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');

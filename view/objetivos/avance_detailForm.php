@@ -145,9 +145,9 @@
 
 
         <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 required">
                 <label for="cantidad_plan" class="control-label">Cant. planificada</label>
-                <input type="text" class="form-control" name="cantidad_plan" id="cantidad_plan" value = "<?php //print $view->avance->getCantidad() ?>" placeholder="Cantidad real">
+                <input type="text" class="form-control" name="cantidad_plan" id="cantidad_plan" value = "<?php echo ($view->avance->getIdAvance())? $view->avance->getCantidadPlan() : $view->objetivo->getMetaValor(); ?>" placeholder="Cantidad real">
             </div>
             <div class="form-group col-md-6 required">
                 <label for="cantidad" class="control-label">Cant. real</label>
