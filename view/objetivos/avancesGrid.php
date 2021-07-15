@@ -37,6 +37,7 @@
                 {"data" : "periodo"},
                 {"data" : "indicador"},
                 {"data" : "cantidad"},
+                {"data" : null},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
@@ -51,7 +52,13 @@
                     }
                 },
                 {
-                    targets: 3,//action buttons
+                    targets: 3,//avance parcial
+                    render: function (data, type, row, meta) {
+                        return ((row.cantidad/row.cantidad_plan)*100).toFixed(2)+' %';
+                    }
+                },
+                {
+                    targets: 4,//action buttons
                     width: '20%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
@@ -96,6 +103,7 @@
                 <th>Período</th>
                 <th>Indicador</th>
                 <th>Cant.</th>
+                <th>A. parcial</th>
                 <th></th>
             </tr>
             </thead>
