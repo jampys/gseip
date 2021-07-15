@@ -124,8 +124,35 @@
 
 
         <div class="form-group required">
+            <label for="periodo" class="control-label">Período</label>
+            <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione el período"  data-live-search="true" data-size="5">
+                <?php foreach ($view->periodos['enum'] as $pe){
+                    ?>
+                    <option value="<?php echo $pe; ?>"
+                        <?php //echo ($mo == $view->avance->getIndicador() OR ($mo == $view->indicadores['default'] AND !$view->avance->getIdAvance()) )? 'selected' :'' ?>
+                        >
+                        <?php echo $pe; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+
+
+        <!--<div class="form-group required">
             <label class="control-label" for="cantidad">Cantidad</label>
             <input class="form-control" type="text" name="cantidad" id="cantidad" value = "<?php print $view->avance->getCantidad() ?>" placeholder="Cantidad">
+        </div>-->
+
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="cantidad_plan" class="control-label">Cant. planificada</label>
+                <input type="text" class="form-control" name="cantidad_plan" id="cantidad_plan" value = "<?php //print $view->avance->getCantidad() ?>" placeholder="Cantidad real">
+            </div>
+            <div class="form-group col-md-6 required">
+                <label for="cantidad" class="control-label">Cant. real</label>
+                <input type="text" class="form-control" name="cantidad" id="cantidad" value = "<?php print $view->avance->getCantidad() ?>" placeholder="Cantidad real">
+            </div>
         </div>
 
 

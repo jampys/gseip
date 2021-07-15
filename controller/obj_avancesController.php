@@ -52,6 +52,7 @@ switch ($operation)
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->periodos = Soporte::get_enum_values('obj_avances', 'periodo');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivos/avance_detailForm.php";
@@ -63,6 +64,7 @@ switch ($operation)
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->periodos = Soporte::get_enum_values('obj_avances', 'periodo');
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
