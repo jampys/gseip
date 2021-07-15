@@ -110,7 +110,7 @@ class Avance
         $query = "select av.id_avance, av.id_objetivo, av.id_tarea,
                   DATE_FORMAT(av.fecha, '%d/%m/%Y') as fecha,
                   av.indicador, av.cantidad, av.comentarios, av.id_user,
-                  ot.nombre as tarea,
+                  ot.nombre as tarea, av.periodo, av.cantidad_plan,
                   us.user
                   from obj_avances av
                   join sec_users us on av.id_user = us.id_user
