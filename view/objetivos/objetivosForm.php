@@ -3,6 +3,12 @@
 
     $(document).ready(function(){
 
+        tippy('[data-tippy-content]', {
+            theme: 'light-border',
+            placement: 'right',
+            delay: [500,0]
+        });
+
         $('.selectpicker').selectpicker({
             //propiedades del selectpicker
 
@@ -274,7 +280,7 @@
 
 
                     <div class="form-group required">
-                        <label for="frecuencia" class="control-label">Frecuencia</label>
+                        <label for="frecuencia" class="control-label" data-tippy-content="Frecuencia de evaluación del avance del objetivo">Frecuencia</label>
                         <select class="form-control selectpicker show-tick" id="frecuencia" name="frecuencia" data-live-search="true" data-size="5" title="Seleccione una frecuencia">
                             <!--<option value="">Seleccione una frecuencia</option>-->
                             <?php foreach ($view->frecuencias['enum'] as $fre){
@@ -291,8 +297,8 @@
 
                     <div class="row">
                         <div class="form-group col-md-9 required">
-                            <label for="meta" class="control-label">Meta</label>
-                            <textarea class="form-control" name="meta" id="meta" placeholder="Meta a alcanzar durante el período de tiempo idicado por la frecuencia" rows="3"><?php print $view->objetivo->getMeta(); ?></textarea>
+                            <label for="meta" class="control-label" data-tippy-content="Meta a alcanzar durante el período de tiempo indicado por la frecuencia">Meta</label>
+                            <textarea class="form-control" name="meta" id="meta" placeholder="Descripción de la meta" rows="3"><?php print $view->objetivo->getMeta(); ?></textarea>
                         </div>
                         <div class="form-group col-md-3 required">
                             <label for="meta_valor" class="control-label">Valor</label>
