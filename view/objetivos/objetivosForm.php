@@ -205,7 +205,7 @@
 
                     <div class="form-group required">
                         <label for="nombre" class="control-label">Objetivo</label>
-                        <textarea class="form-control" name="nombre" id="nombre" placeholder="Objetivo" rows="2"><?php print $view->objetivo->getNombre(); ?></textarea>
+                        <textarea class="form-control" name="nombre" id="nombre" placeholder="Descripción del objetivo" rows="2"><?php print $view->objetivo->getNombre(); ?></textarea>
                     </div>
 
 
@@ -272,17 +272,6 @@
                         </select>
                     </div>
 
-                    <div class="row">
-                        <div class="form-group col-md-9 required">
-                            <label for="meta" class="control-label">Meta</label>
-                            <textarea class="form-control" name="meta" id="meta" placeholder="Meta" rows="3"><?php print $view->objetivo->getMeta(); ?></textarea>
-                        </div>
-                        <div class="form-group col-md-3 required">
-                            <label for="meta_valor" class="control-label">Valor</label>
-                            <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
-                        </div>
-                    </div>
-
 
                     <div class="form-group required">
                         <label for="frecuencia" class="control-label">Frecuencia</label>
@@ -297,6 +286,18 @@
                                 </option>
                             <?php  } ?>
                         </select>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label for="meta" class="control-label">Meta</label>
+                            <textarea class="form-control" name="meta" id="meta" placeholder="Meta a alcanzar durante el período de tiempo idicado por la frecuencia" rows="3"><?php print $view->objetivo->getMeta(); ?></textarea>
+                        </div>
+                        <div class="form-group col-md-3 required">
+                            <label for="meta_valor" class="control-label">Valor</label>
+                            <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
+                        </div>
                     </div>
 
 
