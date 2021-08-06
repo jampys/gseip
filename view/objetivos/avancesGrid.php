@@ -103,7 +103,7 @@
                 <th>Período</th>
                 <th>Indicador</th>
                 <th>Cant.</th>
-                <th>A. parcial</th>
+                <th title="Avance parcial">A. parcial</th>
                 <th></th>
             </tr>
             </thead>
