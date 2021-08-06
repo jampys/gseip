@@ -47,13 +47,13 @@
                 indicador: {required: true},
                 cantidad: {
                     required: true,
-                    digits: true,
-                    maxlength: 3
+                    number: true,
+                    maxlength: 6
                  },
                 cantidad_plan: {
                     required: true,
-                    digits: true,
-                    maxlength: 3
+                    number: true,
+                    maxlength: 6
                 },
                 periodo: {required: true}
 
@@ -63,12 +63,12 @@
                 indicador: "Seleccione un indicador",
                 cantidad: {
                     required: "Ingrese la cantidad real",
-                    digits: "Ingrese solo números",
+                    number: "Solo números. Utilice un punto como separador decimal",
                     maxlength: "Máximo 3 dígitos"
                  },
                 cantidad_plan: {
                     required: "Ingrese la cantidad planificada",
-                    digits: "Ingrese solo números",
+                    number: "Solo números. Utilice un punto como separador decimal",
                     maxlength: "Máximo 3 dígitos"
                 },
                 periodo: "Seleccione un período"

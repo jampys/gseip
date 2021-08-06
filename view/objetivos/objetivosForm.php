@@ -148,8 +148,8 @@
                 meta: {required: true},
                 meta_valor: {
                     required: true,
-                    digits: true,
-                    maxlength: 3
+                    number: true,
+                    maxlength: 6
                 },
                 indicador: {required: true},
                 id_responsable_ejecucion: {required: true},
@@ -161,8 +161,8 @@
                 meta: "Ingrese la meta",
                 meta_valor: {
                     required: "Ingrese un valor para la meta",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 3 dígitos"
+                    number: "Solo números. Utilice un punto como separador decimal",
+                    maxlength: "Máximo 6 dígitos"
                 },
                 indicador: "Ingrese el indicador",
                 responsable_ejecucion: "Seleccione un responsable ejecución",
