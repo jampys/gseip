@@ -9,6 +9,8 @@ class Avance
     private $indicador;
     private $cantidad;
     private $comentarios;
+    private $cantidad_plan;
+    private $periodo;
     private $id_user;
 
     // GETTERS
@@ -32,6 +34,12 @@ class Avance
 
     function getComentarios()
     { return $this->comentarios;}
+
+    function getCantidadPlan()
+    { return $this->cantidad_plan;}
+
+    function getPeriodo()
+    { return $this->periodo;}
 
     function getIdUser()
     { return $this->id_user;}
@@ -59,6 +67,12 @@ class Avance
     function setComentarios($val)
     { $this->comentarios=$val;}
 
+    function setCantidadPlan($val)
+    { $this->cantidad_plan=$val;}
+
+    function setPeriodo($val)
+    { $this->periodo=$val;}
+
     function setIdUser($val)
     { $this->id_user=$val;}
 
@@ -69,7 +83,7 @@ class Avance
             $stmt=new sQuery();
             $query = "select id_avance, id_objetivo, id_tarea,
                       DATE_FORMAT(fecha, '%d/%m/%Y') as fecha,
-                      indicador, cantidad, comentarios, id_user
+                      indicador, cantidad, comentarios, cantidad_plan, periodo, id_user
                       from obj_avances
                       where id_avance = :nro";
             $stmt->dpPrepare($query);
@@ -84,6 +98,8 @@ class Avance
             $this->setIndicador($rows[0]['indicador']);
             $this->setCantidad($rows[0]['cantidad']);
             $this->setComentarios($rows[0]['comentarios']);
+            $this->setCantidadPlan($rows[0]['cantidad_plan']);
+            $this->setPeriodo($rows[0]['periodo']);
             $this->setIdUser($rows[0]['id_user']);
         }
     }
@@ -94,7 +110,7 @@ class Avance
         $query = "select av.id_avance, av.id_objetivo, av.id_tarea,
                   DATE_FORMAT(av.fecha, '%d/%m/%Y') as fecha,
                   av.indicador, av.cantidad, av.comentarios, av.id_user,
-                  ot.nombre as tarea,
+                  ot.nombre as tarea, av.periodo, av.cantidad_plan,
                   us.user
                   from obj_avances av
                   join sec_users us on av.id_user = us.id_user
@@ -127,7 +143,9 @@ class Avance
                 id_tarea = :id_tarea,
                 indicador = :indicador,
                 cantidad = :cantidad,
-                comentarios = :comentarios
+                comentarios = :comentarios,
+                cantidad_plan = :cantidad_plan,
+                periodo = :periodo
                 where id_avance = :id_avance";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha', $this->getFecha());
@@ -135,6 +153,8 @@ class Avance
         $stmt->dpBind(':indicador', $this->getIndicador());
         $stmt->dpBind(':cantidad', $this->getCantidad());
         $stmt->dpBind(':comentarios', $this->getComentarios());
+        $stmt->dpBind(':cantidad_plan', $this->getCantidadPlan());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':id_avance', $this->getIdAvance());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -143,8 +163,8 @@ class Avance
 
     private function insertAvance(){ //ok
         $stmt=new sQuery();
-        $query="insert into obj_avances(id_objetivo, fecha, id_tarea, indicador, cantidad, comentarios, id_user)
-                values(:id_objetivo, STR_TO_DATE(:fecha, '%d/%m/%Y'), :id_tarea, :indicador, :cantidad, :comentarios, :id_user)";
+        $query="insert into obj_avances(id_objetivo, fecha, id_tarea, indicador, cantidad, comentarios, cantidad_plan, periodo, id_user)
+                values(:id_objetivo, STR_TO_DATE(:fecha, '%d/%m/%Y'), :id_tarea, :indicador, :cantidad, :comentarios, :cantidad_plan, :periodo, :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpBind(':fecha', $this->getFecha());
@@ -152,6 +172,8 @@ class Avance
         $stmt->dpBind(':indicador', $this->getIndicador());
         $stmt->dpBind(':cantidad', $this->getCantidad());
         $stmt->dpBind(':comentarios', $this->getComentarios());
+        $stmt->dpBind(':cantidad_plan', $this->getCantidadPlan());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();

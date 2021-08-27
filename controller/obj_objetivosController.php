@@ -64,7 +64,7 @@ switch ($operation)
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->puestos = Puesto::getPuestos();
         $view->areas = Area::getAreas();
-        $view->contratos = Contrato::getContratos();
+        $view->contratos = Contrato::getContratosControl();
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
         $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
@@ -81,8 +81,6 @@ switch ($operation)
             $view->label = '<h4><span class="label label-warning">CLONAR</span> '.$view->objetivo->getCodigo().'</h4>';
             $view->objetivo->setIdObjetivo(null); //pone el id_objetivo en null para al guardar insertar uno nuevo
             if($_POST['cerrado']) $view->objetivo->setPeriodo(null);
-
-
         }
 
 
@@ -90,11 +88,12 @@ switch ($operation)
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->puestos = Puesto::getPuestos();
         $view->areas = Area::getAreas();
-        $view->contratos = Contrato::getContratos();
+        //$view->contratos = Contrato::getContratos();
+        $view->contratos = ($_POST['cerrado'])? Contrato::getContratos() : Contrato::getContratosControl();
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
         $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
-        $view->objetivos = Objetivo::getObjetivos($view->objetivo->getPeriodo(), null, null,null, null, null, null); ;
+        $view->objetivos = Objetivo::getObjetivos($view->objetivo->getPeriodo(), null, null,null, null, null, null, 1);
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

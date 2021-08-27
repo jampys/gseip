@@ -40,6 +40,7 @@
                 params.action = "obj_objetivos";
                 params.operation = "editObjetivo";
                 params.target = "edit";
+                params.cerrado = $(this).closest('tr').attr('cerrado');
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
@@ -57,6 +58,7 @@
                 params.action = "obj_objetivos";
                 params.operation = "editObjetivo";
                 params.target = "view";
+                params.cerrado = $(this).closest('tr').attr('cerrado');
                 $('#popupbox').load('index.php', params,function(){
                     //$("fieldset").prop("disabled", true);
                     //$('.modal-footer').css('display', 'none');

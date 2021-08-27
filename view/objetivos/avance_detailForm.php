@@ -46,20 +46,32 @@
                 fecha: {required: true},
                 indicador: {required: true},
                 cantidad: {
-                 required: true,
-                 digits: true,
-                 maxlength: 3
-                 }
+                    required: true,
+                    number: true,
+                    maxlength: 6
+                 },
+                cantidad_plan: {
+                    required: true,
+                    number: true,
+                    maxlength: 6
+                },
+                periodo: {required: true}
 
             },
             messages:{
                 fecha: "Seleccione una fecha",
                 indicador: "Seleccione un indicador",
                 cantidad: {
-                 required: "Ingrese la cantidad",
-                 digits: "Ingrese solo números",
-                 maxlength: "Máximo 3 dígitos"
-                 }
+                    required: "Ingrese la cantidad real",
+                    number: "Solo números. Utilice un punto como separador decimal",
+                    maxlength: "Máximo 3 dígitos"
+                 },
+                cantidad_plan: {
+                    required: "Ingrese la cantidad planificada",
+                    number: "Solo números. Utilice un punto como separador decimal",
+                    maxlength: "Máximo 3 dígitos"
+                },
+                periodo: "Seleccione un período"
 
             }
 
@@ -124,8 +136,35 @@
 
 
         <div class="form-group required">
+            <label for="periodo" class="control-label">Período</label>
+            <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione el período"  data-live-search="true" data-size="5">
+                <?php foreach ($view->periodos['enum'] as $pe){
+                    ?>
+                    <option value="<?php echo $pe; ?>"
+                        <?php echo ($pe == $view->avance->getPeriodo() OR ($pe == $view->periodos['default'] AND !$view->avance->getIdAvance()) )? 'selected' :'' ?>
+                        >
+                        <?php echo $pe; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+
+
+        <!--<div class="form-group required">
             <label class="control-label" for="cantidad">Cantidad</label>
             <input class="form-control" type="text" name="cantidad" id="cantidad" value = "<?php print $view->avance->getCantidad() ?>" placeholder="Cantidad">
+        </div>-->
+
+
+        <div class="row">
+            <div class="form-group col-md-6 required">
+                <label for="cantidad_plan" class="control-label">Cant. planificada</label>
+                <input type="text" class="form-control" name="cantidad_plan" id="cantidad_plan" value = "<?php echo ($view->avance->getIdAvance())? $view->avance->getCantidadPlan() : $view->objetivo->getMetaValor(); ?>" placeholder="Cantidad real">
+            </div>
+            <div class="form-group col-md-6 required">
+                <label for="cantidad" class="control-label">Cant. real</label>
+                <input type="text" class="form-control" name="cantidad" id="cantidad" value = "<?php print $view->avance->getCantidad() ?>" placeholder="Cantidad real">
+            </div>
         </div>
 
 

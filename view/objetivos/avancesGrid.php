@@ -34,29 +34,27 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "fecha"},
-                {"data" : "tarea"},
+                {"data" : "periodo"},
                 {"data" : "indicador"},
                 {"data" : "cantidad"},
+                {"data" : null},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_avance);
             },
             "columnDefs": [
-                {targets: 0, type: 'date-uk'}, //fecha
                 {
-                    targets: 1, //tarea
-                    width: '35%',
+                    targets: 1, //indicador
+                    width: '30%',
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(25)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(30)(data, type, row);
                     }
                 },
                 {
-                    targets: 2, //indicador
-                    width: '20%',
-                    render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(15)(data, type, row);
+                    targets: 3,//avance parcial
+                    render: function (data, type, row, meta) {
+                        return ((row.cantidad/row.cantidad_plan)*100).toFixed(2)+' %';
                     }
                 },
                 {
@@ -66,7 +64,7 @@
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) && !$view->params['cerrado'] )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) && !$view->params['cerrado'] )? 'delete' : 'disabled' ?>';
-                        let user_info = row.user.split('@')[0]; //row.user.split('@')[0]+' '+row.created_date;
+                        let user_info = row.user.split('@')[0]+' '+row.fecha;
                         return '<a class="view" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
@@ -102,10 +100,10 @@
         <table id="table-avances" class="table table-condensed table-hover dt-responsive" width="100%">
             <thead>
             <tr>
-                <th>Fecha</th>
-                <th>Actividad</th>
+                <th>Período</th>
                 <th>Indicador</th>
                 <th>Cant.</th>
+                <th title="Avance parcial">A. parcial</th>
                 <th></th>
             </tr>
             </thead>

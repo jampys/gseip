@@ -3,6 +3,12 @@
 
     $(document).ready(function(){
 
+        tippy('[data-tippy-content]', {
+            theme: 'light-border',
+            placement: 'right',
+            delay: [500,0]
+        });
+
         $('.selectpicker').selectpicker({
             //propiedades del selectpicker
 
@@ -142,8 +148,8 @@
                 meta: {required: true},
                 meta_valor: {
                     required: true,
-                    digits: true,
-                    maxlength: 3
+                    number: true,
+                    maxlength: 6
                 },
                 indicador: {required: true},
                 id_responsable_ejecucion: {required: true},
@@ -155,8 +161,8 @@
                 meta: "Ingrese la meta",
                 meta_valor: {
                     required: "Ingrese un valor para la meta",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 3 dígitos"
+                    number: "Solo números. Utilice un punto como separador decimal",
+                    maxlength: "Máximo 6 dígitos"
                 },
                 indicador: "Ingrese el indicador",
                 responsable_ejecucion: "Seleccione un responsable ejecución",
@@ -205,7 +211,7 @@
 
                     <div class="form-group required">
                         <label for="nombre" class="control-label">Objetivo</label>
-                        <textarea class="form-control" name="nombre" id="nombre" placeholder="Objetivo" rows="2"><?php print $view->objetivo->getNombre(); ?></textarea>
+                        <textarea class="form-control" name="nombre" id="nombre" placeholder="Descripción del objetivo" rows="2"><?php print $view->objetivo->getNombre(); ?></textarea>
                     </div>
 
 
@@ -272,20 +278,9 @@
                         </select>
                     </div>
 
-                    <div class="row">
-                        <div class="form-group col-md-9 required">
-                            <label for="meta" class="control-label">Meta</label>
-                            <textarea class="form-control" name="meta" id="meta" placeholder="Meta" rows="3"><?php print $view->objetivo->getMeta(); ?></textarea>
-                        </div>
-                        <div class="form-group col-md-3 required">
-                            <label for="meta_valor" class="control-label">Valor</label>
-                            <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
-                        </div>
-                    </div>
-
 
                     <div class="form-group required">
-                        <label for="frecuencia" class="control-label">Frecuencia</label>
+                        <label for="frecuencia" class="control-label" data-tippy-content="Frecuencia de evaluación del avance del objetivo">Frecuencia</label>
                         <select class="form-control selectpicker show-tick" id="frecuencia" name="frecuencia" data-live-search="true" data-size="5" title="Seleccione una frecuencia">
                             <!--<option value="">Seleccione una frecuencia</option>-->
                             <?php foreach ($view->frecuencias['enum'] as $fre){
@@ -297,6 +292,18 @@
                                 </option>
                             <?php  } ?>
                         </select>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label for="meta" class="control-label" data-tippy-content="Meta a alcanzar durante el período de tiempo indicado por la frecuencia">Meta</label>
+                            <textarea class="form-control" name="meta" id="meta" placeholder="Descripción de la meta" rows="3"><?php print $view->objetivo->getMeta(); ?></textarea>
+                        </div>
+                        <div class="form-group col-md-3 required">
+                            <label for="meta_valor" class="control-label">Valor</label>
+                            <input type="text" class="form-control" name="meta_valor" id="meta_valor" value = "<?php print $view->objetivo->getMetaValor() ?>" placeholder="Valor">
+                        </div>
                     </div>
 
 

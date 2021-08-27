@@ -1,9 +1,7 @@
 ﻿<?php
 include_once("model/obj_avancesModel.php");
 include_once("model/obj_tareasModel.php");
-
-//include_once("model/localidadesModel.php");
-//include_once("model/contratosModel.php");
+include_once("model/obj_objetivosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -38,6 +36,8 @@ switch ($operation)
         $avance->setIndicador($_POST['indicador']);
         $avance->setCantidad($_POST['cantidad']);
         $avance->setComentarios($_POST['comentarios']);
+        $avance->setCantidadPlan($_POST['cantidad_plan']);
+        $avance->setPeriodo($_POST['periodo']);
         $avance->setIdUser($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $avance->save();
@@ -49,9 +49,11 @@ switch ($operation)
     case 'newAvance': //ok
         $view->label='Nuevo avance';
         $view->avance = new Avance($_POST['id_avance']);
+        $view->objetivo = new Objetivo($_POST['id_objetivo']);
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->periodos = Soporte::get_enum_values('obj_avances', 'periodo');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/objetivos/avance_detailForm.php";
@@ -63,6 +65,7 @@ switch ($operation)
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->periodos = Soporte::get_enum_values('obj_avances', 'periodo');
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
