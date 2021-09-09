@@ -74,7 +74,7 @@
                         else permisoEditarS = 'disabled';
 
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('SUC_DELETE', array(1)) )? true : false ?>';
-                        let permisoEliminarO = (permisoEliminar && !(row.closed_date_1 && row.closed_date_2))? 'delete' : 'disabled';
+                        let permisoEliminarS = (permisoEliminar && !(row.closed_date_1 && row.closed_date_2))? 'delete' : 'disabled';
 
                         //let user_info = row.user.split('@')[0]+' '+row.created_date;
                         let link = 'index.php?action=nc_no_conformidad&operation=pdf&id_no_conformidad='+row.id_no_conformidad;
@@ -82,10 +82,10 @@
                         return '<a class="'+permisoVer+'" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                            '<a class="'+permisoEditarS+'" href="#" title="Editar">'+ //si tiene permiso para editar
                             '<i class="far fa-edit dp_blue"></i>'+
                             '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                            '<a class="'+permisoEliminarS+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
                             '<i class="far fa-trash-alt dp_red"></i>'+
                             '</a>&nbsp;&nbsp;'+
                             '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
