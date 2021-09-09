@@ -4,24 +4,7 @@
     $(document).ready(function(){
 
         //$('[data-toggle="tooltip"]').tooltip();
-
-        /*$('#example').DataTable({
-            responsive: true,
-            "fnInitComplete": function () {
-                                $(this).show();
-            },
-            "stateSave": true,
-            //"order": [[1, "asc"], [4, "asc"], [5, "asc"] ], //1=fecha, 4=fecha_desde, 5=fecha_hasta
-            "order": [[4, "desc"], [5, "desc"] ], //4=fecha_desde, 5=fecha_hasta
-            columnDefs: [
-                {targets: [ 1 ], type: 'date-uk', orderData: [ 1]}, //fecha
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4]}, //fecha_desde
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]}, //fecha_hasta
-                { responsivePriority: 1, targets: 6 }
-            ]
-        });*/
-
-
+        
         $('#example').DataTable({
             responsive: true,
             language: {
@@ -42,8 +25,8 @@
                 },
                 "dataSrc": ""
             },
+            "order": [[4, "desc"], [5, "desc"] ], //4=fecha_desde, 5=fecha_hasta
             'columns': [
-                {"data" : "id_suceso"},
                 {"data" : "id_suceso"},
                 {"data" : "id_suceso"},
                 {"data" : "id_suceso"},
@@ -56,9 +39,12 @@
                 $(row).attr('data-id', data.id_suceso);
             },
             "columnDefs": [
+                {targets: [ 1 ], type: 'date-uk', orderData: [ 1]}, //fecha
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4]}, //fecha_desde
+                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]}, //fecha_hasta
                 {
-                    targets: 7,//action buttons
-                    responsivePriority: 3,
+                    targets: 6,//action buttons
+                    responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let borrar='';
 
@@ -82,18 +68,18 @@
                         return '<a class="'+permisoVer+'" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEditarS+'" href="#" title="Editar">'+ //si tiene permiso para editar
-                            '<i class="far fa-edit dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEliminarS+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
-                            '<i class="far fa-trash-alt dp_red"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
-                            '<i class="fas fa-download dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a href="#" title="'+borrar+'">'+
-                            '<i class="fa fa-question-circle dp_light_gray"></i>'+
-                            '</a>';
+                                '<a class="'+permisoEditarS+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminarS+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
+                                    '<i class="fas fa-download dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a href="#" title="'+borrar+'">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                                '</a>';
                     }
                 }
             ]
@@ -123,7 +109,6 @@
                 <th>Empleado</th>
                 <th>F. desde</th>
                 <th>F. hasta</th>
-                <th></th>
                 <th></th>
             </tr>
             </thead>
