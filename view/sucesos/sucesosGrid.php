@@ -17,9 +17,11 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
+                    d.id_empleado = $('#id_empleado').val();
+                    d.eventos = $('#eventos').val();
                     d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
                     d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
-                    //d.search_responsable_ejecucion = $('#search_responsable_ejecucion').val();
+                    d.id_contrato = $('#id_contrato').val();
                     d.action = "sucesos";
                     d.operation = "refreshGrid";
                 },

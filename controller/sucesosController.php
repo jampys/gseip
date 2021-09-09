@@ -20,7 +20,7 @@ switch ($operation)
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
         $startDate = $_POST['startDate'];
         $endDate = $_POST['endDate'];
-        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $rta = Suceso::getSucesos($id_empleado, $eventos, $startDate, $endDate, $id_contrato);
         //$view->contentTemplate="view/sucesos/sucesosGrid.php";
         //break;

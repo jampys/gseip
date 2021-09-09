@@ -51,11 +51,11 @@
 
             $(document).on('click', '#search', function(){ //ok
                 /*params={};
-                params.id_empleado = $("#search_empleado").val();
-                params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
-                params.search_fecha_desde = drp.startDate.format('DD/MM/YYYY');
-                params.search_fecha_hasta = drp.endDate.format('DD/MM/YYYY');
-                params.search_contrato = $("#search_contrato").val();
+                params.id_empleado = $("#id_empleado").val();
+                params.eventos = ($("#eventos").val()!= null)? $("#eventos").val() : '';
+                params.startDate = drp.startDate.format('DD/MM/YYYY');
+                params.endDate = drp.endDate.format('DD/MM/YYYY');
+                params.id_contrato = $("#id_contrato").val();
                 params.action = "sucesos";
                 params.operation = "refreshGrid";
                 $('#content').load('index.php', params);*/
@@ -72,7 +72,7 @@
                 params.operation = "loadExport";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    //$('#myModal #id_contrato').val($('#search_contrato').val());
+                    //$('#myModal #id_contrato').val($('#id_contrato').val());
                     $('.selectpicker').selectpicker('refresh');
                 });
                 return false;
@@ -271,8 +271,8 @@
                     <div class="row">
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_empleado" class="control-label">Empleado</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
+                            <!--<label for="id_empleado" class="control-label">Empleado</label>-->
+                            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un empleado</option>
                                 <?php foreach ($view->empleados as $em){
                                     ?>
@@ -284,8 +284,8 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
+                            <!--<label for="id_contrato" class="control-label">Contrato</label>-->
+                            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un contrato</option>
                                 <?php foreach ($view->contratos as $con){
                                     ?>
@@ -313,8 +313,8 @@
                     <div class="row">
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_evento" class="control-label">Eventos</label>-->
-                            <select multiple class="form-control selectpicker show-tick" id="search_evento" name="search_evento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
+                            <!--<label for="eventos" class="control-label">Eventos</label>-->
+                            <select multiple class="form-control selectpicker show-tick" id="eventos" name="eventos" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
                                 <!--<option value="">Seleccione un vencimiento</option>-->
                                 <?php foreach ($view->eventos as $ev){
                                     ?>
@@ -327,7 +327,7 @@
 
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_vencimiento" class="control-label">Buscar partes</label>-->
+                            <!--<label for="datarange" class="control-label">Buscar partes</label>-->
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
                                 <i class="glyphicon glyphicon-calendar"></i>
