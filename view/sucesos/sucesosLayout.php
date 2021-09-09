@@ -27,7 +27,7 @@
             $('.selectpicker').selectpicker();
 
             moment.locale('es');
-            $('#search_fecha').daterangepicker({
+            $('#daterange').daterangepicker({
                 startDate: moment().subtract(29, 'days'),
                 endDate: moment().add(12, 'months'),
                 locale: {
@@ -43,27 +43,23 @@
                     'Últimos 5 años': [moment().subtract(5, 'years'), moment()]
                 }
             }, function(start, end) {
-                $('#search_fecha span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                $('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             });
 
-            var drp = $('#search_fecha').data('daterangepicker');
+            var drp = $('#daterange').data('daterangepicker');
 
 
             $(document).on('click', '#search', function(){ //ok
-                //var id = $(this).attr('data-id');
-                //preparo los parametros
-                params={};
-                params.id_empleado = $("#search_empleado").val(); //$('#search_empleado option:selected').attr('id_empleado');
+                /*params={};
+                params.id_empleado = $("#search_empleado").val();
                 params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
-                //params.search_fecha_desde = $("#search_fecha_desde").val();
-                //params.search_fecha_hasta = $("#search_fecha_hasta").val();
                 params.search_fecha_desde = drp.startDate.format('DD/MM/YYYY');
                 params.search_fecha_hasta = drp.endDate.format('DD/MM/YYYY');
                 params.search_contrato = $("#search_contrato").val();
                 params.action = "sucesos";
                 params.operation = "refreshGrid";
-                //alert(params.renovado);
-                $('#content').load('index.php', params);
+                $('#content').load('index.php', params);*/
+                $('#example').DataTable().ajax.reload();
             });
 
 
@@ -333,7 +329,7 @@
                         <div class="form-group col-md-3">
                             <!--<label for="search_vencimiento" class="control-label">Buscar partes</label>-->
                             <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="search_fecha" id="search_fecha" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>

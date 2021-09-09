@@ -18,10 +18,12 @@ switch ($operation)
         $view->disableLayout=true;
         $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
-        $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
-        $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
+        //$fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
+        //$fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        $rta = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
+        $rta = Suceso::getSucesos($id_empleado, $eventos, $startDate, $endDate, $id_contrato);
         //$view->contentTemplate="view/sucesos/sucesosGrid.php";
         //break;
         print_r(json_encode($rta));
