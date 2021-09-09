@@ -41,10 +41,10 @@
             params.action = "sucesosP";
             params.operation = "getContratos";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-            params.id_empleado = $('#id_empleado').val();
+            params.id_empleado = $('#myModal #id_empleado').val();
             params.activos = 1;
 
-            $('#id_contrato').empty();
+            $('#myModal #id_contrato').empty();
 
 
             $.ajax({
@@ -61,11 +61,11 @@
 
                         $.each(data, function(indice, val){
                             var label = data[indice]["nro_contrato"]+' '+data[indice]["contrato"];
-                            $("#id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
+                            $("#myModal #id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
                             +'>'+label+'</option>');
                         });
                     }
-                    $('#id_contrato').selectpicker('refresh');
+                    $('#myModal #id_contrato').selectpicker('refresh');
 
                 },
                 error: function(data, textStatus, errorThrown) {
