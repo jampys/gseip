@@ -220,7 +220,7 @@
             params.action = "nov_periodos";
             params.operation = "getPeriodos1";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-            params.id_empleado = $('#id_empleado').val();
+            params.id_empleado = $('#myModal #id_empleado').val();
             params.activos = 1;
 
             $('#id_periodo1, #id_periodo2').empty();
