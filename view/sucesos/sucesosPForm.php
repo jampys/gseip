@@ -55,7 +55,7 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
-                    $("#id_contrato").html('<option value="">Seleccione un contrato</option>');
+                    $("#myModal #id_contrato").html('<option value="">Seleccione un contrato</option>');
 
                     if(Object.keys(data).length > 0){
 
