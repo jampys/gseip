@@ -26,11 +26,9 @@
                 },
                 "dataSrc": ""
             },
-            "order": [[3, "desc"], [4, "desc"] ], //3=fecha_desde, 4=fecha_hasta
+            "order": [[1, "desc"], [2, "desc"] ], //1=fecha_desde, 2=fecha_hasta
             'columns': [
-                {"data" : "id_suceso"},
                 {"data" : "evento"},
-                {"data" : "empleado"},
                 {"data" : "fecha_desde"},
                 {"data" : "fecha_hasta"},
                 {data: null, defaultContent: '', orderable: false}
@@ -39,10 +37,10 @@
                 $(row).attr('data-id', data.id_suceso);
             },
             "columnDefs": [
-                {targets: [ 3 ], type: 'date-uk', orderData: [ 3 ]}, //fecha_desde
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 3 ]}, //fecha_hasta
+                {targets: [ 1 ], type: 'date-uk', orderData: [ 1 ]}, //fecha_desde
+                {targets: [ 2 ], type: 'date-uk', orderData: [ 2, 1 ]}, //fecha_hasta
                 {
-                    targets: 5,//action buttons
+                    targets: 3,//action buttons
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
 
@@ -101,9 +99,7 @@
     <table id="table-sucesos" class="table table-condensed table-hover dt-responsive" width="100%">
         <thead>
         <tr>
-            <th>Nro. Suceso</th>
             <th>Evento</th>
-            <th>Empleado</th>
             <th>F. desde</th>
             <th>F. hasta</th>
             <th></th>
