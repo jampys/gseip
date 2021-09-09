@@ -5,15 +5,18 @@
 
         //$('[data-toggle="tooltip"]').tooltip();
 
-        $('#table-sucesos').DataTable({
+        var t = $('#table-sucesos').DataTable({
             responsive: true,
             language: {
                 url: 'resources/libraries/dataTables/Spanish.json'
             },
             sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
-            "fnInitComplete": function () {
-                $(this).show();
-            },
+            bPaginate: false,
+            //deferRender:    true,
+            scrollY:        150,
+            scrollCollapse: true,
+            scroller:       true,
+            "order": [[1, "desc"], [2, "desc"] ], //1=fecha_desde, 2=fecha_hasta
             'ajax': {
                 "type"   : "POST",
                 "url"    : 'index.php',
@@ -26,7 +29,6 @@
                 },
                 "dataSrc": ""
             },
-            "order": [[1, "desc"], [2, "desc"] ], //1=fecha_desde, 2=fecha_hasta
             'columns': [
                 {"data" : "evento"},
                 {"data" : "fecha_desde"},
@@ -82,6 +84,10 @@
 
 
         });
+
+        setTimeout(function () {
+            t.columns.adjust();
+        },150);
 
 
 
