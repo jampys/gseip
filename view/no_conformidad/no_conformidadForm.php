@@ -64,8 +64,7 @@
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
-                                                //$("#search").trigger("click");
-                                                $('#example').DataTable().ajax.reload();
+                                                $('#example').DataTable().ajax.reload(); //$("#search").trigger("click");
                                               }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar la no conformidad').addClass('alert alert-danger').show();

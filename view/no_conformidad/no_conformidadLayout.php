@@ -136,7 +136,7 @@
                         dialog.find('.modal-footer').html('<div class="alert alert-success">No conformidad eliminada con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
-                            $("#search").trigger("click");
+                            $('#example').DataTable().ajax.reload(); //$("#search").trigger("click");
                         }, 2000);
                     }
 
