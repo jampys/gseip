@@ -10,6 +10,7 @@
             language: {
                 url: 'resources/libraries/dataTables/Spanish.json'
             },
+            sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             "fnInitComplete": function () {
                 $(this).show();
             },
@@ -17,11 +18,8 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
-                    d.id_empleado = 102; //$('#id_empleado').val();
+                    d.id_empleado = $('#id_empleado').val();
                     d.id_periodo = $('#id_periodo').val();
-                    //d.eventos = $('#eventos').val();
-                    //d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
-                    //d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                     d.id_contrato = $('#id_contrato').val();
                     d.action = "novedades2";
                     d.operation = "sucesosRefreshGrid";
@@ -100,7 +98,7 @@
 
     <!--<div class="table-responsive">-->
 
-    <table id="table-sucesos" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
+    <table id="table-sucesos" class="table table-condensed table-hover dt-responsive" width="100%">
         <thead>
         <tr>
             <th>Nro. Suceso</th>
