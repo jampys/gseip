@@ -8,7 +8,8 @@
         var t = $('#table-sucesos').DataTable({
             responsive: true,
             language: {
-                url: 'resources/libraries/dataTables/Spanish.json'
+                //url: 'resources/libraries/dataTables/Spanish.json'
+                emptyTable: 'El empleado no registra sucesos durante el período.'
             },
             sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
@@ -86,8 +87,8 @@
         });
 
         setTimeout(function () {
-            t.columns.adjust();
-        },150);
+                        t.columns.adjust();
+                    },150);
 
 
 

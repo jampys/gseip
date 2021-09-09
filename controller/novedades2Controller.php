@@ -346,7 +346,6 @@ switch ($operation)
         $fecha_desde = $fd->format('Y-m-d');
         $fh = DateTime::createFromFormat('d/m/Y', $view->periodo->getFechaHasta());
         $fecha_hasta = $fh->format('Y-m-d');
-
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $rta = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
         //$view->contentTemplate="view/novedades2/sucesosGrid.php";
