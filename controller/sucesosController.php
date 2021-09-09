@@ -21,8 +21,11 @@ switch ($operation)
         $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
         $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
-        $view->contentTemplate="view/sucesos/sucesosGrid.php";
+        $rta = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
+        //$view->contentTemplate="view/sucesos/sucesosGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveSuceso': //ok

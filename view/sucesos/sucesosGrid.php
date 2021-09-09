@@ -5,11 +5,8 @@
 
         //$('[data-toggle="tooltip"]').tooltip();
 
-        $('#example').DataTable({
+        /*$('#example').DataTable({
             responsive: true,
-            /*language: {
-             url: 'dataTables/Spanish.json'
-             }*/
             "fnInitComplete": function () {
                                 $(this).show();
             },
@@ -22,6 +19,79 @@
                 {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]}, //fecha_hasta
                 { responsivePriority: 1, targets: 6 }
             ]
+        });*/
+
+
+        $('#example').DataTable({
+            responsive: true,
+            language: {
+                url: 'resources/libraries/dataTables/Spanish.json'
+            },
+            "fnInitComplete": function () {
+                $(this).show();
+            },
+            'ajax': {
+                "type"   : "POST",
+                "url"    : 'index.php',
+                "data": function ( d ) {
+                    d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                    //d.search_responsable_ejecucion = $('#search_responsable_ejecucion').val();
+                    d.action = "sucesos";
+                    d.operation = "refreshGrid";
+                },
+                "dataSrc": ""
+            },
+            'columns': [
+                {"data" : "id_suceso"},
+                {"data" : "id_suceso"},
+                {"data" : "id_suceso"},
+                {"data" : "id_suceso"},
+                {"data" : "id_suceso"},
+                {"data" : "id_suceso"},
+                {"data" : "id_suceso"},
+                {data: null, defaultContent: '', orderable: false}
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id_no_conformidad);
+            },
+            "columnDefs": [
+                {
+                    targets: 7,//action buttons
+                    responsivePriority: 3,
+                    render: function (data, type, row, meta) {
+                        let permisoAcciones = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'acciones' : 'disabled' ?>';
+                        let permisoVerificaciones = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'verificaciones' : 'disabled' ?>';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        let link = 'index.php?action=nc_no_conformidad&operation=pdf&id_no_conformidad='+row.id_no_conformidad;
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
+                        return '<a class="'+permisoAcciones+'" href="#" title="Acciones">'+ //si tiene permiso para ver Acciones
+                            '<i class="fas fa-th-list dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoVerificaciones+'" href="#" title="Verificaicones">'+ //si tiene permiso para ver Verificaciones
+                            '<i class="fas fa-th-list dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="view" title="Ver" href="#">'+
+                            '<i class="far fa-eye dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                            '<i class="far fa-edit dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                            '<i class="far fa-trash-alt dp_red"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
+                            '<i class="fas fa-download dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a href="#" title="'+user_info+'">'+
+                            '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                            '</a>';
+                    }
+                }
+            ]
+
+
         });
 
 
@@ -47,56 +117,10 @@
                 <th>F. desde</th>
                 <th>F. hasta</th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
-            <tbody>
-
-            <?php if(isset($view->sucesos)) {
-                foreach ($view->sucesos as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_suceso']; ?>" >
-                        <td><?php echo $rp['id_suceso']; ?></td>
-                        <td><?php echo $rp['created_date']; ?></td>
-                        <td><?php echo $rp['evento']; ?></td>
-                        <td><?php echo $rp['empleado']; ?></td>
-                        <td><?php echo $rp['fecha_desde']; ?></td>
-                        <td><?php echo $rp['fecha_hasta']; ?></td>
-
-                        <td class="text-center">
-                            <!-- view -->
-                            <a class="<?php if(!$rp['programado'] && $rp['id_periodo1']) {echo 'view';}
-                            elseif($rp['programado'] && !$rp['id_periodo1']) {echo 'viewp';}
-                            else { echo 'disabled';} ?>"
-                               href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
-
-                            <!-- si tiene permiso para editar -->
-                            <a class="<?php if( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) && !($rp['closed_date_1']&& $rp['closed_date_2']) && (!$rp['programado'] && $rp['id_periodo1']) ) {echo 'edit';}
-                                            elseif( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) && !($rp['closed_date_1']&& $rp['closed_date_2']) && ($rp['programado'] && !$rp['id_periodo1']) ) {echo 'editp';}
-                                            else { echo 'disabled';} ?>"
-                               href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
-                            </a>&nbsp;&nbsp;
-
-                            <!-- si tiene permiso para eliminar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('SUC_DELETE', array(1))&& !($rp['closed_date_1']&& $rp['closed_date_2']) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; } ?>
-            </tbody>
         </table>
-
-
-        <!--<br/>
-        <div class="pull-right pdf">
-            <a href="index.php?action=" title="pdf"><i class="far fa-file-pdf fa-fw fa-2x"></i></a>
-        </div>
-
-        <div class="pull-right txt">
-            <a href="#" title="descargar txt"><i class="far fa-file-alt fa-fw fa-2x"></i></a>
-        </div>-->
 
     <!--</div>-->
 
