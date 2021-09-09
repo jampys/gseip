@@ -297,11 +297,6 @@ switch ($operation)
         $view->defaults = CuadrillaEmpleado::getEmpleadoDefaults($_POST['id_empleado']);
         //$view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
 
-        $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
-        $fecha_desde = $view->periodo->getFechaDesde(); //($_POST['fecha']!='')? $_POST['fecha'] : null;
-        $fecha_hasta = $view->periodo->getFechaHasta(); //($_POST['fecha']!='')? $_POST['fecha'] : null;
-        $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
-        $view->sucesos = Suceso::getSucesos($_POST['id_empleado'], $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
         //$view->params = array('fecha_parte' => $_POST['fecha_parte'], 'id_periodo' => $_POST['id_periodo']);
         $view->params = array('id_parte_empleado' => $_POST['id_parte_empleado'], 'id_contrato' => $_POST['id_contrato']);
 
