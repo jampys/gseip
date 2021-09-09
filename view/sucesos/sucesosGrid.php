@@ -60,22 +60,28 @@
                     targets: 7,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
-                        let borrar="";
-                        let permisoAcciones = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'acciones' : 'disabled' ?>';
-                        let permisoVerificaciones = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'verificaciones' : 'disabled' ?>';
-                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
-                        let link = 'index.php?action=nc_no_conformidad&operation=pdf&id_no_conformidad='+row.id_no_conformidad;
+                        let borrar='';
+
+                        let permisoVer="";
+                        if(!row.programado && row.id_periodo1) permisoVer = 'view';
+                        else if (row.programado && !row.id_periodo1) permisoVer = 'viewp';
+                        else permisoVer = 'disabled';
+
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) )? true : false ?>';
+                        let permisoEditarS = '';
+                        if(permisoEditar && !(row.closed_date_1 && row.closed_date_2) && (!row.programado && row.id_periodo1)) permisoEditarS = 'edit';
+                        else if( permisoEditar && !(row.closed_date_1 && row.closed_date_2) && (row.programado && !row.id_periodo1)) permisoEditarS = 'editp';
+                        else permisoEditarS = 'disabled';
+
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('SUC_DELETE', array(1)) )? true : false ?>';
+                        let permisoEliminarO = (permisoEliminar && !(row.closed_date_1 && row.closed_date_2))? 'delete' : 'disabled';
+
                         //let user_info = row.user.split('@')[0]+' '+row.created_date;
-                        return '<a class="'+permisoAcciones+'" href="#" title="Acciones">'+ //si tiene permiso para ver Acciones
-                            '<i class="fas fa-th-list dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoVerificaciones+'" href="#" title="Verificaicones">'+ //si tiene permiso para ver Verificaciones
-                            '<i class="fas fa-th-list dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="view" title="Ver" href="#">'+
-                            '<i class="far fa-eye dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
+                        let link = 'index.php?action=nc_no_conformidad&operation=pdf&id_no_conformidad='+row.id_no_conformidad;
+
+                        return '<a class="'+permisoVer+'" title="Ver" href="#">'+
+                                    '<i class="far fa-eye dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
                             '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
                             '<i class="far fa-edit dp_blue"></i>'+
                             '</a>&nbsp;&nbsp;'+
