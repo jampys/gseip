@@ -317,7 +317,7 @@
                                     $("#suceso-form #cancel").trigger("click"); //para la modal (nov2)
                                     $('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: params.id_empleado, id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
                                     $('#myModal').modal('hide');
-                                    $("#search").trigger("click");
+                                    $('#example').DataTable().ajax.reload(); //$("#search").trigger("click");
                                 }, 2000);
             return false; //para finalizar la ejecucion
 

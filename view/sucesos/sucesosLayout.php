@@ -218,9 +218,9 @@
                     if(data >=0){
                         dialog.find('.modal-footer').html('<div class="alert alert-success">Suceso eliminado con exito</div>');
                         setTimeout(function() {
-                            dialog.modal('hide');
-                            $("#search").trigger("click");
-                        }, 2000);
+                                                dialog.modal('hide');
+                                                $('#example').DataTable().ajax.reload();
+                                            }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
