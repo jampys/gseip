@@ -1131,7 +1131,7 @@
 
 
         <!--<div id="demo-sucesos" class="collapse">-->
-        <div id="demo-sucesos">
+        <div id="demo-sucesos" class="row">
             <div class="grid-sucesos">
                 <?php include_once('view/novedades2/sucesosGrid.php');?>
             </div>
