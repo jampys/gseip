@@ -196,6 +196,29 @@ switch ($operation)
         exit;
         break;
 
+
+    case 'pdf_21':
+
+        /*$f = Pdf::getCertificadoCalibracion($_GET['id_calib']);
+        $fila = $f[0];
+        $f1 = Pdf::getCertificadoPpt($_GET['id_calib'], $_GET['Nro_Serie']);
+        $fila1 = $f1[0];
+        $f2 = Pdf::getCertificadoOT($_GET['id_calib'], $_GET['Nro_Serie']);
+        $fila2 = $f2[0];
+        $f3 = Pdf::getGrafico($_GET['id_calib']);
+        $fila3 = $f3[0];*/
+        $nc = new Suceso($_GET['id_suceso']);
+        $fila4 = array();
+        //$fila5 = Accion::getAcciones($_GET['id_no_conformidad']);
+        //$f6 = Verificacion::getVerificaciones($_GET['id_no_conformidad']);
+        //$fila6 = end($f6);
+        //$rs = new Empleado($nc->getIdResponsableSeguimiento());
+
+
+        //include_once ('pdf/generador.php');
+        include_once ('view/sucesos/generador_21.php');
+        break;
+
     default : //ok
         $view->empleados = Empleado::getEmpleadosControl(null); //carga el combo para filtrar empleados
         $view->eventos = EventosLiquidacion::getEventosLiquidacion(); //carga el combo para filtrar eventos liquidacion

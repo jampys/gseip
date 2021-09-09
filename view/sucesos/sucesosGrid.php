@@ -62,7 +62,7 @@
                         let permisoEliminarS = (permisoEliminar && !(row.closed_date_1 && row.closed_date_2))? 'delete' : 'disabled';
 
                         let user_info = row.created_date; //row.user.split('@')[0]+' '+row.fecha;
-                        let link = 'index.php?action=nc_no_conformidad&operation=pdf&id_no_conformidad='+row.id_no_conformidad;
+                        let link = 'index.php?action=sucesos&operation=pdf_21&id_suceso='+row.id_suceso;
 
                         return '<a class="'+permisoVer+'" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
