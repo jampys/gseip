@@ -4,7 +4,7 @@
     $(document).ready(function(){
 
         //$('[data-toggle="tooltip"]').tooltip();
-        
+
         $('#example').DataTable({
             responsive: true,
             language: {
@@ -25,28 +25,25 @@
                 },
                 "dataSrc": ""
             },
-            "order": [[4, "desc"], [5, "desc"] ], //4=fecha_desde, 5=fecha_hasta
+            "order": [[3, "desc"], [4, "desc"] ], //3=fecha_desde, 4=fecha_hasta
             'columns': [
                 {"data" : "id_suceso"},
-                {"data" : "id_suceso"},
-                {"data" : "id_suceso"},
-                {"data" : "id_suceso"},
-                {"data" : "id_suceso"},
-                {"data" : "id_suceso"},
+                {"data" : "evento"},
+                {"data" : "empleado"},
+                {"data" : "fecha_desde"},
+                {"data" : "fecha_hasta"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_suceso);
             },
             "columnDefs": [
-                {targets: [ 1 ], type: 'date-uk', orderData: [ 1]}, //fecha
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4]}, //fecha_desde
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]}, //fecha_hasta
+                {targets: [ 3 ], type: 'date-uk', orderData: [ 3 ]}, //fecha_desde
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 3 ]}, //fecha_hasta
                 {
-                    targets: 6,//action buttons
+                    targets: 5,//action buttons
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
-                        let borrar='';
 
                         let permisoVer="";
                         if(!row.programado && row.id_periodo1) permisoVer = 'view';
@@ -62,7 +59,7 @@
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('SUC_DELETE', array(1)) )? true : false ?>';
                         let permisoEliminarS = (permisoEliminar && !(row.closed_date_1 && row.closed_date_2))? 'delete' : 'disabled';
 
-                        //let user_info = row.user.split('@')[0]+' '+row.created_date;
+                        let user_info = row.created_date; //row.user.split('@')[0]+' '+row.fecha;
                         let link = 'index.php?action=nc_no_conformidad&operation=pdf&id_no_conformidad='+row.id_no_conformidad;
 
                         return '<a class="'+permisoVer+'" title="Ver" href="#">'+
@@ -77,7 +74,7 @@
                                 '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
                                     '<i class="fas fa-download dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a href="#" title="'+borrar+'">'+
+                                '<a href="#" title="'+user_info+'">'+
                                     '<i class="fa fa-question-circle dp_light_gray"></i>'+
                                 '</a>';
                     }
@@ -104,7 +101,6 @@
             <thead>
             <tr>
                 <th>Nro. Suceso</th>
-                <th>Fecha</th>
                 <th>Evento</th>
                 <th>Empleado</th>
                 <th>F. desde</th>
