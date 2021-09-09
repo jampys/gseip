@@ -53,7 +53,7 @@
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
-                $(row).attr('data-id', data.id_no_conformidad);
+                $(row).attr('data-id', data.id_suceso);
             },
             "columnDefs": [
                 {
