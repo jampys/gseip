@@ -61,7 +61,7 @@
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('SUC_DELETE', array(1)) )? true : false ?>';
                         let permisoEliminarS = (permisoEliminar && !(row.closed_date_1 && row.closed_date_2))? 'delete' : 'disabled';
 
-                        let user_info = row.created_date; //row.user.split('@')[0]+' '+row.fecha;
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
 
                         let link, link1 = "";
                         if(row.id_evento == 21){
