@@ -42,6 +42,14 @@ $fila1['cuil'] = $em->getCuil();
 $fila1['apellido'] = $em->getApellido();
 $fila1['nombre'] = $em->getNombre();
 
+$fila1['fecha_desde'] = $su->getFechaDesde();
+$fila1['fecha_hasta'] = $su->getFechaHasta();
+
+$datetime1 = new DateTime('2009-10-11');
+$datetime2 = new DateTime('2009-10-13');
+$interval = $datetime1->diff($datetime2);
+echo $interval->format('%R%a días');
+
 
 setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
 $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/questions/22635303/get-day-from-string-in-spanish-php
@@ -129,7 +137,7 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
                     <td><span class="subtitulo">Empleado</span></td>
                     <td>'.$fila1['legajo'].' '.$fila1['apellido'].' '. $fila1['nombre'].'</td>
                     <td><span class="subtitulo">F. desde - F. hasta</span></td>
-                    <td>09/12/2019 - 12/01/2020</td>
+                    <td>'.$fila1['fecha_desde'].' - '.$fila1['fecha_hasta'].'</td>
                 </tr>
                 <tr>
                     <td><span class="subtitulo">CUIL</span></td>
@@ -158,8 +166,8 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
                         </tr>
                         <tr>
                             <td>En cumplimiento de la legislación, se le notifica que el Período de Descanso Anual correspondiente al
-                            año 2019, es de 35 días. Dichas vacaciones comenzarán a regir desde el dia 09/12/2019 hasta
-                            el 12/01/2020 inclusive. Debiéndose reintegrar a sus tareas el siguiente día hábil.</td>
+                            año 2019, es de 35 días. Dichas vacaciones comenzarán a regir desde el dia '.$fila1['fecha_desde'].' hasta
+                            el '.$fila1['fecha_hasta'].' inclusive. Debiéndose reintegrar a sus tareas el siguiente día hábil.</td>
                         </tr>
                         <tr>
                             <td>Atentamente,</td>
