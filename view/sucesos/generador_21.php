@@ -51,6 +51,7 @@ $fila1['fecha_hasta'] = $su->getFechaHasta();
 
 $fd = DateTime::createFromFormat('d/m/Y', $su->getFechaDesde());
 $fh = DateTime::createFromFormat('d/m/Y', $su->getFechaHasta());
+$fh = date_add($fh, date_interval_create_from_date_string('1 days')); //incremento la fecha en 1
 $interval = $fd->diff($fh);
 $fila1['dias'] = $interval->format('%a');
 
