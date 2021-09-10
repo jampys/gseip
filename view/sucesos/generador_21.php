@@ -36,6 +36,10 @@ $fila4['descripcion'] = nl2br($nc->getDescripcion());
 $fila4['accion_inmediata'] = nl2br($nc->getAccionInmediata());
 $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
 
+$fila1['legajo'] = substr($em->getLegajo(), 0, 4);
+$fila1['apellido'] = $em->getApellido();
+$fila1['nombre'] = $em->getNombre();
+
 
 //----------------------------------------------------------------------------------
 
@@ -110,22 +114,22 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
             </thead>-->
             <tbody>
                 <tr>
-                    <td style="width: 25%"><span class="subtitulo">Nro. No conformidad</span></td>
-                    <td style="width: 25%">'.$fila4["nro_no_conformidad"].'</td>
-                    <td style="width: 25%"><span class="subtitulo">Fecha</span></td>
-                    <td style="width: 25%">'.$fila4['created_date'].'</td>
+                    <td style="width: 20%"><span class="subtitulo">Nro. suceso</span></td>
+                    <td style="width: 30%">2512</td>
+                    <td style="width: 20%"><span class="subtitulo">F. desde - F. hasta</span></td>
+                    <td style="width: 30%">09/12/2019 - 12/01/2020</td>
                 </tr>
                 <tr>
-                    <td><span class="subtitulo">Nombre</span></td>
-                    <td>'.$fila4["nombre"].'</td>
-                    <td><span class="subtitulo">Resp. seguimiento</span></td>
-                    <td>'.$fila4['responsable_seguimiento'].'</td>
+                    <td><span class="subtitulo">Empleado</span></td>
+                    <td>'.$fila1['legajo'].' Medrán Javier Raul</td>
+                    <td><span class="subtitulo">Período</span></td>
+                    <td>2019</td>
                 </tr>
                 <tr>
-                    <td><span class="subtitulo">Sector/Proceso</span></td>
-                    <td>'.$fila4['sector'].'</td>
-                    <td><span class="subtitulo">Estado</span></td>
-                    <td>'.$fila4['estado'].'</td>
+                    <td><span class="subtitulo">Cant. días</span></td>
+                    <td>35</td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
