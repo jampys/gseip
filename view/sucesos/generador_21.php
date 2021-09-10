@@ -36,7 +36,8 @@ $fila4['descripcion'] = nl2br($nc->getDescripcion());
 $fila4['accion_inmediata'] = nl2br($nc->getAccionInmediata());
 $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
 
-$fila1['legajo'] = substr($em->getLegajo(), 0, 4);
+$fila1['id_suceso'] = $su->getIdSuceso();
+$fila1['legajo'] = substr($em->getLegajo(), 2, 4);
 $fila1['apellido'] = $em->getApellido();
 $fila1['nombre'] = $em->getNombre();
 
@@ -115,13 +116,13 @@ $fila1['nombre'] = $em->getNombre();
             <tbody>
                 <tr>
                     <td style="width: 20%"><span class="subtitulo">Nro. suceso</span></td>
-                    <td style="width: 30%">2512</td>
+                    <td style="width: 30%">'.$fila1['id_suceso'].'</td>
                     <td style="width: 20%"><span class="subtitulo">F. desde - F. hasta</span></td>
                     <td style="width: 30%">09/12/2019 - 12/01/2020</td>
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Empleado</span></td>
-                    <td>'.$fila1['legajo'].' Medrán Javier Raul</td>
+                    <td>'.$fila1['legajo'].' '.$fila1['apellido'].' '. $fila1['nombre'].'</td>
                     <td><span class="subtitulo">Período</span></td>
                     <td>2019</td>
                 </tr>

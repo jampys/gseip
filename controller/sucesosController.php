@@ -208,7 +208,7 @@ switch ($operation)
         $f3 = Pdf::getGrafico($_GET['id_calib']);
         $fila3 = $f3[0];*/
         $su = new Suceso($_GET['id_suceso']);
-        $em =new Empleado($su->getIdEmpleado());
+        $em = new Empleado($su->getIdEmpleado());
         $fila1 = array();
         //$fila5 = Accion::getAcciones($_GET['id_no_conformidad']);
         //$f6 = Verificacion::getVerificaciones($_GET['id_no_conformidad']);
