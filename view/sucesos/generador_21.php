@@ -38,6 +38,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
 
 $fila1['id_suceso'] = $su->getIdSuceso();
 $fila1['legajo'] = substr($em->getLegajo(), 2, 4);
+$fila1['cuil'] = $em->getCuil();
 $fila1['apellido'] = $em->getApellido();
 $fila1['nombre'] = $em->getNombre();
 
@@ -117,20 +118,20 @@ $fila1['nombre'] = $em->getNombre();
                 <tr>
                     <td style="width: 20%"><span class="subtitulo">Nro. suceso</span></td>
                     <td style="width: 30%">'.$fila1['id_suceso'].'</td>
-                    <td style="width: 20%"><span class="subtitulo">F. desde - F. hasta</span></td>
-                    <td style="width: 30%">09/12/2019 - 12/01/2020</td>
+                    <td style="width: 20%"><span class="subtitulo">Cant. días</span></td>
+                    <td style="width: 30%">35</td>
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Empleado</span></td>
                     <td>'.$fila1['legajo'].' '.$fila1['apellido'].' '. $fila1['nombre'].'</td>
-                    <td><span class="subtitulo">Período</span></td>
-                    <td>2019</td>
+                    <td><span class="subtitulo">F. desde - F. hasta</span></td>
+                    <td>09/12/2019 - 12/01/2020</td>
                 </tr>
                 <tr>
-                    <td><span class="subtitulo">Cant. días</span></td>
-                    <td>35</td>
-                    <td></td>
-                    <td></td>
+                    <td><span class="subtitulo">CUIL</span></td>
+                    <td>'.$fila1['cuil'].'</td>
+                    <td><span class="subtitulo">Período</span></td>
+                    <td>2019</td>
                 </tr>
             </tbody>
         </table>
@@ -149,7 +150,7 @@ $fila1['nombre'] = $em->getNombre();
                 <table style="width:100%;">
                     <tbody>
                         <tr>
-                            <td><span class="subtitulo">Empleado/a: Medrán Javier Raul Leg. 0325</span></td>
+                            <td><span class="subtitulo">Empleado/a: '.$fila1['apellido'].' '.$fila1['nombre'].' Leg. '.$fila1['legajo'].'</span></td>
                         </tr>
                         <tr>
                             <td>En cumplimiento de la legislación, se le notifica que el Período de Descanso Anual correspondiente al
