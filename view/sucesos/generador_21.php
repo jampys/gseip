@@ -45,10 +45,16 @@ $fila1['nombre'] = $em->getNombre();
 $fila1['fecha_desde'] = $su->getFechaDesde();
 $fila1['fecha_hasta'] = $su->getFechaHasta();
 
-$datetime1 = new DateTime('2009-10-11');
-$datetime2 = new DateTime('2009-10-13');
-$interval = $datetime1->diff($datetime2);
-echo $interval->format('%R%a días');
+//$datetime1 = new DateTime('2009-10-11');
+//$datetime2 = new DateTime('2009-10-13');
+//$interval = $datetime1->diff($datetime2);
+//echo $interval->format('%R%a días');
+
+
+$fd = DateTime::createFromFormat('d/m/Y', '23/05/2013');
+$fh = DateTime::createFromFormat('d/m/Y', '26/05/2013');
+$interval = $fd->diff($fh);
+$fila1['dias'] = $interval->format('%R%a');
 
 
 setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
@@ -131,7 +137,7 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
                     <td style="width: 20%"><span class="subtitulo">Nro. suceso</span></td>
                     <td style="width: 30%">'.$fila1['id_suceso'].'</td>
                     <td style="width: 20%"><span class="subtitulo">Cant. días</span></td>
-                    <td style="width: 30%">35</td>
+                    <td style="width: 30%">'.$fila1['dias'].'</td>
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Empleado</span></td>
