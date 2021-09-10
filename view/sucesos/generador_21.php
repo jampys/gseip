@@ -43,6 +43,10 @@ $fila1['apellido'] = $em->getApellido();
 $fila1['nombre'] = $em->getNombre();
 
 
+setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
+$fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/questions/22635303/get-day-from-string-in-spanish-php
+
+
 //----------------------------------------------------------------------------------
 
 
@@ -164,7 +168,7 @@ $fila1['nombre'] = $em->getNombre();
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td>Comodoro Rivadavia, 26 de Noviembre de 2019</td>
+                            <td>Comodoro Rivadavia, '.$fila1['sysdate'].'</td>
                         </tr>
                     </tbody>
                 </table>
