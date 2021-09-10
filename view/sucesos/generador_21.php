@@ -47,7 +47,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
         "format" => "A4",
         "margin_top" => 14, //https://github.com/mpdf/mpdf/issues/615
         'default_font' => 'dejavusans',
-        'default_font_size' => 8,
+        'default_font_size' => 9,
     ]);
 
     $mpdf->SetHTMLFooter('
@@ -169,8 +169,11 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
         <div style="width:49%; float:left">
 
         <div class="borde-circular" >
-            <table style="width:100%; margin-top:90px">
+            <table style="width:100%; margin-top:110px">
                 <tbody>
+                    <tr>
+                       <td style="text-align: center">................................................</td>
+                    </tr>
                     <tr>
                         <td style="text-align: center"><span class="subtitulo">Firma superior</span></td>
                     </tr>
@@ -189,7 +192,57 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
         </div>
 
 
+
+
+
         <br/>
+        <div style="float: left; width: 100%">
+
+            <div class="borde-circular">
+                <table style="width:100%;">
+                    <tbody>
+                        <tr>
+                            <td><span class="subtitulo">Señores: SEIP S.R.L.</span></td>
+                        </tr>
+                        <tr>
+                            <td>Quedo debidamente notificado de la comunicación precedente.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+
+        <br/>
+
+
+
+        <div style="width:49%; float:left">
+
+        <div class="borde-circular" >
+            <table style="width:100%; margin-top:110px">
+                <tbody>
+                    <tr>
+                       <td style="text-align: center">................................................</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><span class="subtitulo">Firma superior</span></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">Comodoro Rivadavia 26/11/2019</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+        <div style="width:1%; float:left">&nbsp;</div>
+
+        <div style="width:50%; float:left">
+            &nbsp;
+        </div>
 
 
 
