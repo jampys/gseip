@@ -144,7 +144,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
                 <table style="width:100%;">
                     <tbody>
                         <tr>
-                            <td>Empleado/a: Medrán Javier Raul Leg. 0325</td>
+                            <td><span class="subtitulo">Empleado/a: Medrán Javier Raul Leg. 0325</span></td>
                         </tr>
                         <tr>
                             <td>En cumplimiento de la legislación, se le notifica que el Período de Descanso Anual correspondiente al
@@ -152,7 +152,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
                             el 12/01/2020 inclusive. Debiéndose reintegrar a sus tareas el siguiente día hábil.</td>
                         </tr>
                         <tr>
-                            <td>Atentamente</td>
+                            <td>Atentamente,</td>
                         </tr>
                     </tbody>
                 </table>
@@ -172,7 +172,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
             <table style="width:100%; margin-top:90px">
                 <tbody>
                     <tr>
-                        <td style="text-align: center"><span class="subtitulo">Responsable de Calibración</span></td>
+                        <td style="text-align: center"><span class="subtitulo">Firma superior</span></td>
                     </tr>
                     <tr>
                         <td style="text-align: center">Comodoro Rivadavia 26/11/2019</td>
@@ -195,199 +195,15 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
 
 
 
-         <div style="float: left; width: 100%">
-            <span class="titulo">Tipo de No conformidad</span>
 
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['No conformidad real'].'>&nbsp;<span class="subtitulo">No conformidad real</span></td>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Oportunidad de mejora'].' >&nbsp;<span class="subtitulo">Oportunidad de mejora</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila4['No conformidad potencial'].'>&nbsp;<span class="subtitulo">No conformidad potencial</span></td>
-                    <td><input type="checkbox" id="" value="" '.$fila4['Queja/Reclamo del cliente'].' >&nbsp;<span class="subtitulo">Queja / reclamo del cliente</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila4['Producto/Servicio no conforme'].' >&nbsp;<span class="subtitulo">Producto / Servicio no conforme</span></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-        <br/>
-
-
-        <div style="width:49%; float:left">
-        <span class="titulo">Análisis de causa raiz</span>
-        <div class="borde-circular" >
-        <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Si'].'>&nbsp;<span class="subtitulo">Si</span></td>
-                </tr>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['No'].' >&nbsp;<span class="subtitulo">No</span></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-        <div style="width:1%; float:left">&nbsp;</div>
-
-        <div style="width:50%; float:left">
-        <span class="titulo">Tipo acción</span>
-        <div class="borde-circular" >
-        <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Correctiva'].'>&nbsp;<span class="subtitulo">Correctiva</span></td>
-                </tr>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Preventiva'].' >&nbsp;<span class="subtitulo">Preventiva</span></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-
-        <br/>
-        <div style="float: left; width: 100%">
-            <span class="titulo">Descripción del hallazgo</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td>'.$fila4['descripcion'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-
-        <br/>
-
-
-
-
-        <div style="width:49%; float:left">
-        <span class="titulo">Patrón de Calibración Presión</span>
-        <div class="borde-circular" >
-        <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 50%"><span class="subtitulo">Marca</span></td>
-                    <td style="width: 50%">'.$fila['ip_marca'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Rango de Medición</span></td>
-                    <td>'.$fila['ip_rango'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">N° de Serie</span></td>
-                    <td>'.$fila['ip_nro_serie'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Fecha de Calibración</span></td>
-                    <td>'.$fila['ip_fecha_calibracion'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-        <div style="width:1%; float:left">&nbsp;</div>
-
-        <div style="width:50%; float:left">
-        <span class="titulo">Patrón de Calibración Caudal</span>
-        <div class="borde-circular" >
-        <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 50%"><span class="subtitulo">Marca</span></td>
-                    <td style="width: 50%">'.$fila['ic_marca'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Rango de Medición</span></td>
-                    <td>'.$fila['ic_rango'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">N° de Serie</span></td>
-                    <td>'.$fila['ic_nro_serie'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Fecha de Calibración</span></td>
-                    <td>'.$fila['ic_fecha_calibracion'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-        <br/>
 
 
         ',
         \Mpdf\HTMLParserMode::HTML_BODY);
 
 
-$html = '<div style="float: left; width: 100%">
-        <span class="titulo">Acciones</span>
-        <div class="borde-circular">
-            <table id="example" style="width:100%">
-            <thead>
-            <tr>
-                <th>Acción</th>
-                <th>Resp. ejecución</th>
-                <th>F. impl.</th>
-            </tr>
-            </thead>
-            <tbody>';
-
-foreach ($fila5 as $x) {
-    $html.='<tr><td>'.$x["accion"].'</td>><td>'.$x["responsable_ejecucion"].'</td><td>'.$x["fecha_implementacion"].'</td></tr>';
-}
-
-$html.='</tbody></table></div></div>';
-$mpdf->WriteHTML($html);
 
 
-$mpdf->WriteHTML('
-        <br/>
-        <div style="float: left; width: 100%">
-            <!--<span class="titulo">Datos de la válvula</span>-->
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 25%"><span class="subtitulo">Verificó</span></td>
-                    <td style="width: 25%">'.$fila6['verifico'].'</td>
-                    <td style="width: 25%"><span class="subtitulo">Fecha</span></td>
-                    <td style="width: 25%">'.$fila6['fecha_verificacion'].'</td>
-                </tr>
-            </tbody>
-        </table>
-
-        </div>
-');
 
 
     $namepdf = $fila['nrocertificado'].'-v'.$fila['nroserie'].'-'.date('dmY').'.pdf';
