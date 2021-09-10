@@ -166,41 +166,26 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
 
 
 
-                <div style="width:49%; float:left">
-        <span class="titulo">Patrón de Calibración Presión</span>
-        <div class="borde-circular" >
-        <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 50%"><span class="subtitulo">Marca</span></td>
-                    <td style="width: 50%">'.$fila['ip_marca'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Rango de Medición</span></td>
-                    <td>'.$fila['ip_rango'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">N° de Serie</span></td>
-                    <td>'.$fila['ip_nro_serie'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Fecha de Calibración</span></td>
-                    <td>'.$fila['ip_fecha_calibracion'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
+        <div style="width:49%; float:left">
 
+        <div class="borde-circular" >
+            <table style="width:100%; margin-top:90px">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center"><span class="subtitulo">Responsable de Calibración</span></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">Comodoro Rivadavia 26/11/2019</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         </div>
 
         <div style="width:1%; float:left">&nbsp;</div>
 
         <div style="width:50%; float:left">
-        <span class="titulo">Patrón de Calibración Caudal</span>
-        <div class="borde-circular" >
-
-        </div>
-
+            &nbsp;
         </div>
 
 
