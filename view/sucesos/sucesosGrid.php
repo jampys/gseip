@@ -62,7 +62,15 @@
                         let permisoEliminarS = (permisoEliminar && !(row.closed_date_1 && row.closed_date_2))? 'delete' : 'disabled';
 
                         let user_info = row.created_date; //row.user.split('@')[0]+' '+row.fecha;
-                        let link = 'index.php?action=sucesos&operation=pdf_21&id_suceso='+row.id_suceso;
+
+                        let link, link1 = "";
+                        if(row.id_evento == 21){
+                            link = 'index.php?action=sucesos&operation=pdf_21&id_suceso='+row.id_suceso;
+                            link1 = '';
+                        }else{
+                            link = '#';
+                            link1 = 'onclick="return false"; class="disabled"';
+                        }
 
                         return '<a class="'+permisoVer+'" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
@@ -73,7 +81,7 @@
                                 '<a class="'+permisoEliminarS+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
                                     '<i class="far fa-trash-alt dp_red"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
+                                '<a target="_blank" href="'+link+'" '+link1+' title="Descargar certificado">'+
                                     '<i class="fas fa-download dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a href="#" title="'+user_info+'">'+
