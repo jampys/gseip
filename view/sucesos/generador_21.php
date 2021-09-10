@@ -45,16 +45,10 @@ $fila1['nombre'] = $em->getNombre();
 $fila1['fecha_desde'] = $su->getFechaDesde();
 $fila1['fecha_hasta'] = $su->getFechaHasta();
 
-//$datetime1 = new DateTime('2009-10-11');
-//$datetime2 = new DateTime('2009-10-13');
-//$interval = $datetime1->diff($datetime2);
-//echo $interval->format('%R%a días');
-
-
-$fd = DateTime::createFromFormat('d/m/Y', '23/05/2013');
-$fh = DateTime::createFromFormat('d/m/Y', '26/05/2013');
+$fd = DateTime::createFromFormat('d/m/Y', $su->getFechaDesde());
+$fh = DateTime::createFromFormat('d/m/Y', $su->getFechaHasta());
 $interval = $fd->diff($fh);
-$fila1['dias'] = $interval->format('%R%a');
+$fila1['dias'] = $interval->format('%a');
 
 
 setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
@@ -172,7 +166,7 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
                         </tr>
                         <tr>
                             <td>En cumplimiento de la legislación, se le notifica que el Período de Descanso Anual correspondiente al
-                            año 2019, es de 35 días. Dichas vacaciones comenzarán a regir desde el dia '.$fila1['fecha_desde'].' hasta
+                            año 2019, es de '.$fila1['dias'].' días. Dichas vacaciones comenzarán a regir desde el dia '.$fila1['fecha_desde'].' hasta
                             el '.$fila1['fecha_hasta'].' inclusive. Debiéndose reintegrar a sus tareas el siguiente día hábil.</td>
                         </tr>
                         <tr>
