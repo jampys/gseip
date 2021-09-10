@@ -150,7 +150,7 @@ $fila1['nombre'] = $em->getNombre();
                 <table style="width:100%;">
                     <tbody>
                         <tr>
-                            <td><span class="subtitulo">Empleado/a: '.$fila1['apellido'].' '.$fila1['nombre'].' Leg. '.$fila1['legajo'].'</span></td>
+                            <td><span class="subtitulo">Empleado/a: '.$fila1['legajo'].' '.$fila1['apellido'].' '.$fila1['nombre'].'</span></td>
                         </tr>
                         <tr>
                             <td>En cumplimiento de la legislación, se le notifica que el Período de Descanso Anual correspondiente al
