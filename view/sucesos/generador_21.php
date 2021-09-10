@@ -154,6 +154,12 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
                         <tr>
                             <td>Atentamente,</td>
                         </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>Comodoro Rivadavia, 26 de Noviembre de 2019</td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -165,10 +171,6 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
                         </tr>
                         <tr>
                             <td style="text-align: center"><span class="subtitulo">Firma superior</span></td>
-                            <td style="width: 50%"></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">Comodoro Rivadavia, 26 de Noviembre de 2019</td>
                             <td style="width: 50%"></td>
                         </tr>
                     </tbody>
@@ -193,6 +195,12 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
                         <tr>
                             <td>Quedo debidamente notificado de la comunicación precedente.</td>
                         </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>Comodoro Rivadavia, ....... de .................................. de ..............</td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -206,8 +214,46 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
                             <td style="text-align: center"><span class="subtitulo">Firma empleado/a</span></td>
                             <td style="width: 50%"></td>
                         </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+
+        </div>
+
+
+
+        <br/>
+        <div style="float: left; width: 100%">
+
+            <div class="borde-circular">
+                <table style="width:100%;">
+                    <tbody>
                         <tr>
-                            <td style="text-align: center">Comodoro Rivadavia, ..... de ....................... de ...........</td>
+                            <td><span class="subtitulo">Señores: SEIP S.R.L.</span></td>
+                        </tr>
+                        <tr>
+                            <td>Certifico haber gozado del período de vacaciones arriba mencionado, reintegrándome
+                            en la fecha de conformidad a mis ocupaciones.</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>Comodoro Rivadavia, ....... de .................................. de ..............</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table style="width:100%; margin-top:110px;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 50%; text-align: center">................................................</td>
+                            <td style="width: 50%"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center"><span class="subtitulo">Firma empleado/a</span></td>
                             <td style="width: 50%"></td>
                         </tr>
                     </tbody>
