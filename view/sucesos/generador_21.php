@@ -156,42 +156,28 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
                         </tr>
                     </tbody>
                 </table>
+
+                <table style="width:100%; margin-top:110px;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 50%; text-align: center">................................................</td>
+                            <td style="width: 50%"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center"><span class="subtitulo">Firma superior</span></td>
+                            <td style="width: 50%"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">Comodoro Rivadavia, 26 de Noviembre de 2019</td>
+                            <td style="width: 50%"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
             </div>
 
         </div>
-
-
-
-        <br/>
-
-
-
-        <div style="width:49%; float:left">
-
-        <div class="borde-circular" >
-            <table style="width:100%; margin-top:110px">
-                <tbody>
-                    <tr>
-                       <td style="text-align: center">................................................</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center"><span class="subtitulo">Firma superior</span></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center">Comodoro Rivadavia 26/11/2019</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        </div>
-
-        <div style="width:1%; float:left">&nbsp;</div>
-
-        <div style="width:50%; float:left">
-            &nbsp;
-        </div>
-
-
 
 
 
@@ -209,40 +195,35 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
                         </tr>
                     </tbody>
                 </table>
+
+                <table style="width:100%; margin-top:110px;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 50%; text-align: center">................................................</td>
+                            <td style="width: 50%"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center"><span class="subtitulo">Firma empleado/a</span></td>
+                            <td style="width: 50%"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">Comodoro Rivadavia, ..... de ....................... de ...........</td>
+                            <td style="width: 50%"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
             </div>
 
         </div>
 
 
 
-        <br/>
 
 
 
-        <div style="width:49%; float:left">
 
-        <div class="borde-circular" >
-            <table style="width:100%; margin-top:110px">
-                <tbody>
-                    <tr>
-                       <td style="text-align: center">................................................</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center"><span class="subtitulo">Firma superior</span></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center">Comodoro Rivadavia 26/11/2019</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        </div>
-
-        <div style="width:1%; float:left">&nbsp;</div>
-
-        <div style="width:50%; float:left">
-            &nbsp;
-        </div>
 
 
 
