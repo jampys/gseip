@@ -7,6 +7,7 @@
 
         var t = $('#table-sucesos').DataTable({
             responsive: true,
+            ordering: false,
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json'
                 emptyTable: 'El empleado no registra sucesos durante el período.'
@@ -104,14 +105,14 @@
     <!--<div class="table-responsive">-->
 
     <table id="table-sucesos" class="table table-condensed table-hover dt-responsive" width="100%">
-        <thead>
+        <!--<thead>
         <tr>
             <th>Evento</th>
             <th>F. desde</th>
             <th>F. hasta</th>
             <th></th>
         </tr>
-        </thead>
+        </thead>-->
     </table>
 
     <!--</div>-->
