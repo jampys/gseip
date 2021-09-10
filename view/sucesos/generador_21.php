@@ -135,46 +135,31 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
         </div>
 
 
-        <br/>
-
-
-
-        <br/>
-        <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td><span class="subtitulo">Comentarios</span></td>
-                </tr>
-                <tr>
-                    <td>'.$fila['tba_comentarios'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        <!--<div style="height: 50px"></div>  provisiorio para dejar espacio a comentarios -->
-        </div>
-
-        </div>
-
-
-
 
 
         <br/>
         <div style="float: left; width: 100%">
-            <span class="titulo">Comentarios</span>
 
             <div class="borde-circular">
-            <table style="width:100%; margin-top:10px">
-            <tbody>
-                <tr>
-                    <td>'.$fila['comentarios'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
+                <table style="width:100%;">
+                    <tbody>
+                        <tr>
+                            <td>Empleado/a: Medrán Javier Raul Leg. 0325</td>
+                        </tr>
+                        <tr>
+                            <td>En cumplimiento de la legislación, se le notifica que el Período de Descanso Anual correspondiente al
+                            año 2019, es de 35 días. Dichas vacaciones comenzarán a regir desde el dia 09/12/2019 hasta
+                            el 12/01/2020 inclusive. Debiéndose reintegrar a sus tareas el siguiente día hábil.</td>
+                        </tr>
+                        <tr>
+                            <td>Atentamente</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
+
 
         <br/>
 
@@ -260,41 +245,6 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
 
         </div>
 
-
-
-        <br/>
-        <div style="float: left; width: 100%">
-            <span class="titulo">Acción inmediata</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td>'.$fila4['accion_inmediata'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-
-        <br/>
-        <div style="float: left; width: 100%">
-            <span class="titulo">Análisis de causa raiz</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td>'.$fila4['analisis_causa_desc'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
 
 
         <br/>
