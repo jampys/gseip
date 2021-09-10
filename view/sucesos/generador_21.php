@@ -36,11 +36,15 @@ $fila4['descripcion'] = nl2br($nc->getDescripcion());
 $fila4['accion_inmediata'] = nl2br($nc->getAccionInmediata());
 $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
 
+
+
+
 $fila1['id_suceso'] = $su->getIdSuceso();
 $fila1['legajo'] = substr($em->getLegajo(), 2, 4);
 $fila1['cuil'] = $em->getCuil();
 $fila1['apellido'] = $em->getApellido();
 $fila1['nombre'] = $em->getNombre();
+$fila1['title'] = $fila1['id_suceso']." ".$fila1['apellido']." ".$fila1['nombre'];
 
 $fila1['fecha_desde'] = $su->getFechaDesde();
 $fila1['fecha_hasta'] = $su->getFechaHasta();
@@ -79,7 +83,7 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
                 </table>
             ');
     //$mpdf->SetFooter('{PAGENO}');
-    $mpdf->SetTitle($fila['nrocertificado']);
+    $mpdf->SetTitle($fila1['title'] );
 
     $css = file_get_contents('resources/css/dario_mpdf.css');
     $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
@@ -304,7 +308,7 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
 
 
 
-    $namepdf = $fila['nrocertificado'].'-v'.$fila['nroserie'].'-'.date('dmY').'.pdf';
+    $namepdf = $fila1['id_suceso'].'-LVA-'.$fila1['apellido'].'-'.$fila1['nombre'].'-'.date('dmY').'.pdf';
     $mpdf->Output($namepdf, 'I'); //I visualizar, D descargar
 
 
