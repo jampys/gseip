@@ -456,22 +456,22 @@
                         </div>
                     <?php } ?>
 
-
-                    <div class="form-group required">
-                        <label for="id_empleado" class="control-label">Empleado</label>
-                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
-                            <?php foreach ($view->empleados as $em){
-                                ?>
-                                <option value="<?php echo $em['id_empleado']; ?>"
-                                    <?php echo ($view->suceso->getIdEmpleado() == $em['id_empleado'])? 'selected' : ''; ?>
-                                    data-icon="fas fa-user fa-sm fa-fw"
-                                    >
-                                    <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label for="id_empleado" class="control-label">Empleado</label>
+                            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
+                                <?php foreach ($view->empleados as $em){
+                                    ?>
+                                    <option value="<?php echo $em['id_empleado']; ?>"
+                                        <?php echo ($view->suceso->getIdEmpleado() == $em['id_empleado'])? 'selected' : ''; ?>
+                                            data-icon="fas fa-user fa-sm fa-fw"
+                                        >
+                                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
                     </div>
-
 
 
 
