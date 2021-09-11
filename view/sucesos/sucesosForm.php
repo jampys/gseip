@@ -491,11 +491,11 @@
 
                         <div class="form-group col-md-3">
                             <label class="control-label" for="id_area" >Período</label>
-                            <select class="form-control selectpicker show-tick" id="modelo_ano" name="modelo_ano" title="Seleccione un modelo año" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="modelo_ano" name="modelo_ano" data-live-search="true" data-size="5">
                                 <?php foreach ($view->años as $per){
                                     ?>
                                     <option value="<?php echo $per; ?>"
-                                        <?php //echo ($per == $view->vehiculo->getModeloAno())? 'selected' :'' ?>
+                                        <?php echo ($per == $view->suceso->getPeriodo())? 'selected' :'' ?>
                                         >
                                         <?php echo $per; ?>
                                     </option>

@@ -22,6 +22,7 @@ class Suceso
     private $fd2;
     private $fh2;
     private $id_parte;
+    private $periodo;
 
 
     //private $empleado;
@@ -81,6 +82,9 @@ class Suceso
 
     function getIdParte()
     { return $this->id_parte;}
+
+    function getPeriodo()
+    { return $this->periodo;}
 
     /*function getEmpleado(){
         return ($this->empleado)? $this->empleado : new Empleado() ;
@@ -142,6 +146,9 @@ class Suceso
     function setIdParte($val)
     {  $this->id_parte=$val;}
 
+    function setPeriodo($val)
+    {  $this->periodo=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -184,6 +191,7 @@ class Suceso
             $this->setFd2($rows[0]['fd2']);
             $this->setFh2($rows[0]['fh2']);
             $this->setIdParte($rows[0]['id_parte']);
+            $this->setPeriodo($rows[0]['periodo']);
             //$this->empleado = new Empleado($rows[0]['id_empleado']);
         }
     }
