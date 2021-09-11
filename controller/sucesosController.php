@@ -57,6 +57,7 @@ switch ($operation)
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
+        $view->años = Soporte::getPeriodos(2015, date("Y"));
         //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
         $view->disableLayout=true;
@@ -69,6 +70,7 @@ switch ($operation)
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
+        $view->años = Soporte::getPeriodos(2015, date("Y"));
         // Trae todos los periodos, luego en el formulario quedan habilitados solo los activos
         $view->periodos = NovPeriodo::getPeriodos1($view->suceso->getIdEmpleado()); ;
 

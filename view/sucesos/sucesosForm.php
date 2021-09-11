@@ -475,9 +475,9 @@
 
 
 
-
-                    <div class="form-group required">
-                        <label for="id_evento" class="control-label">Suceso</label>
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label for="id_evento" class="control-label">Suceso</label>
                             <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione un suceso" data-live-search="true" data-size="5" data-show-subtext="true">
                                 <?php foreach ($view->eventos as $ev){ ?>
                                     <option value="<?php echo $ev['id_evento']; ?>" data-subtext="<?php echo $ev['tipo_liquidacion'] ;?>"
@@ -487,7 +487,25 @@
                                     </option>
                                 <?php  } ?>
                             </select>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="id_area" >Período</label>
+                            <select class="form-control selectpicker show-tick" id="modelo_ano" name="modelo_ano" title="Seleccione un modelo año" data-live-search="true" data-size="5">
+                                <?php foreach ($view->años as $per){
+                                    ?>
+                                    <option value="<?php echo $per; ?>"
+                                        <?php //echo ($per == $view->vehiculo->getModeloAno())? 'selected' :'' ?>
+                                        >
+                                        <?php echo $per; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
                     </div>
+
+
 
 
                     <div class="row">
