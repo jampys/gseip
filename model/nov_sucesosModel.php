@@ -166,7 +166,7 @@ class Suceso
                     DATE_FORMAT(fh1,  '%d/%m/%Y') as fh1,
                     DATE_FORMAT(fd2,  '%d/%m/%Y') as fd2,
                     DATE_FORMAT(fh2,  '%d/%m/%Y') as fh2,
-                    id_parte
+                    id_parte, periodo
                     from nov_sucesos
                     where id_suceso = :nro";
             $stmt->dpPrepare($query);

@@ -14,6 +14,7 @@ class SucesoP
     private $cantidad1;
     private $id_contrato;
     private $programado;
+    private $periodo;
 
 
     // GETTERS
@@ -53,6 +54,9 @@ class SucesoP
     function getProgramado()
     { return $this->programado;}
 
+    function getPeriodo()
+    { return $this->periodo;}
+
 
     //SETTERS
     function setIdSuceso($val)
@@ -91,6 +95,9 @@ class SucesoP
     function setProgramado($val)
     {  $this->programado=$val;}
 
+    function setPeriodo($val)
+    {  $this->periodo=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -103,7 +110,7 @@ class SucesoP
                     observaciones,
                     created_by,
                     DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
-                    cantidad1, programado, id_contrato
+                    cantidad1, programado, id_contrato, periodo
                     from nov_sucesos
                     where id_suceso = :nro";
             $stmt->dpPrepare($query);
@@ -122,6 +129,7 @@ class SucesoP
             $this->setCantidad1($rows[0]['cantidad1']);
             $this->setProgramado($rows[0]['programado']);
             $this->setIdContrato($rows[0]['id_contrato']);
+            $this->setPeriodo($rows[0]['periodo']);
 
         }
     }
