@@ -490,8 +490,8 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label class="control-label" for="id_area" >Período</label>
-                            <select class="form-control selectpicker show-tick" id="modelo_ano" name="modelo_ano" data-live-search="true" data-size="5">
+                            <label class="control-label" for="periodo" >Período</label>
+                            <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5">
                                 <?php foreach ($view->años as $per){
                                     ?>
                                     <option value="<?php echo $per; ?>"
@@ -579,7 +579,7 @@
 
                     <div class="row">
                         <div class="form-group col-md-9">
-                            <label for="id_periodo" class="control-label">Imputar a período de liquidación 2</label>
+                            <label for="id_periodo2" class="control-label">Imputar a período de liquidación 2</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo2" name="id_periodo2" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <option value="">Seleccione un período</option>
