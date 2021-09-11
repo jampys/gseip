@@ -615,16 +615,19 @@
                         </div>
                     </div>
 
-
-                    <div class="form-group">
-                        <label class="control-label" for="observaciones">Observaciones</label>
-                        <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="2"><?php print $view->suceso->getObservaciones(); ?></textarea>
+                    <div class="row">
+                        <div class="form-group col-md-9">
+                            <label class="control-label" for="observaciones">Observaciones</label>
+                            <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="2"><?php print $view->suceso->getObservaciones(); ?></textarea>
+                        </div>
                     </div>
 
                 </form>
 
 
-                <div id="fileuploader">Upload</div>
+                <div class="row">
+                    <div id="fileuploader" class="col-md-9">Upload</div>
+                </div>
 
 
 
