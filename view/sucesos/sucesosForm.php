@@ -627,7 +627,9 @@
 
 
                 <div class="row">
-                    <div id="fileuploader" class="col-md-9">Upload</div>
+                    <div class="form-group col-md-9">
+                        <div id="fileuploader">Upload</div>
+                    </div>
                 </div>
 
 

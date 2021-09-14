@@ -289,7 +289,7 @@ class Suceso
                       fh1 = STR_TO_DATE(:fh1, '%d/%m/%Y'),
                       fd2 = STR_TO_DATE(:fd2, '%d/%m/%Y'),
                       fh2 = STR_TO_DATE(:fh2, '%d/%m/%Y'),
-                      periodo = :periodo,
+                      periodo = :periodo
                 where id_suceso =:id_suceso";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
