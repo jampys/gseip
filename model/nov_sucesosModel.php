@@ -288,7 +288,8 @@ class Suceso
                       fd1 = STR_TO_DATE(:fd1, '%d/%m/%Y'),
                       fh1 = STR_TO_DATE(:fh1, '%d/%m/%Y'),
                       fd2 = STR_TO_DATE(:fd2, '%d/%m/%Y'),
-                      fh2 = STR_TO_DATE(:fh2, '%d/%m/%Y')
+                      fh2 = STR_TO_DATE(:fh2, '%d/%m/%Y'),
+                      periodo = :periodo,
                 where id_suceso =:id_suceso";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
@@ -303,6 +304,7 @@ class Suceso
         $stmt->dpBind(':fh1', $this->getFh1());
         $stmt->dpBind(':fd2', $this->getFd2());
         $stmt->dpBind(':fh2', $this->getFh2());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':id_suceso', $this->getIdSuceso());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -311,8 +313,8 @@ class Suceso
 
     private function insertSuceso(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, id_periodo1, cantidad1, id_periodo2, cantidad2, fd1, fh1, fd2, fh2)
-                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :id_periodo1, :cantidad1, :id_periodo2, :cantidad2, STR_TO_DATE(:fd1, '%d/%m/%Y'), STR_TO_DATE(:fh1, '%d/%m/%Y'), STR_TO_DATE(:fd2, '%d/%m/%Y'), STR_TO_DATE(:fh2, '%d/%m/%Y'))";
+        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, id_periodo1, cantidad1, id_periodo2, cantidad2, fd1, fh1, fd2, fh2, periodo)
+                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :id_periodo1, :cantidad1, :id_periodo2, :cantidad2, STR_TO_DATE(:fd1, '%d/%m/%Y'), STR_TO_DATE(:fh1, '%d/%m/%Y'), STR_TO_DATE(:fd2, '%d/%m/%Y'), STR_TO_DATE(:fh2, '%d/%m/%Y'), :periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
@@ -328,6 +330,7 @@ class Suceso
         $stmt->dpBind(':fh1', $this->getFh1());
         $stmt->dpBind(':fd2', $this->getFd2());
         $stmt->dpBind(':fh2', $this->getFh2());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

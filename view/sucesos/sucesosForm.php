@@ -278,6 +278,7 @@
                 params.id_suceso = $('#myModal #id_suceso').val();
                 params.id_empleado = $('#myModal #id_empleado').val();
                 params.id_evento = $('#myModal #id_evento').val();
+                params.periodo = $('#myModal #periodo').val();
                 params.fecha_desde = drp.startDate.format('DD/MM/YYYY');
                 params.fecha_hasta = drp.endDate.format('DD/MM/YYYY');
                 params.observaciones = $('#myModal #observaciones').val();

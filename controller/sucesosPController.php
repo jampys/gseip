@@ -19,6 +19,7 @@ switch ($operation)
     case 'saveSuceso': //ok
         $suceso = new SucesoP($_POST['id_suceso']);
         $suceso->setIdEvento($_POST['id_evento']);
+        $suceso->setPeriodo($_POST['periodo']);
         $suceso->setIdEmpleado($_POST['id_empleado']);
         $suceso->setFechaDesde($_POST['fecha_desde']);
         $suceso->setFechaHasta($_POST['fecha_hasta']);
