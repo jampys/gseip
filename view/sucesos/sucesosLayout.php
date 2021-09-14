@@ -91,8 +91,8 @@
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #id_evento').prop('disabled', true).selectpicker('refresh');
                 })
             });
 
@@ -107,8 +107,8 @@
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
+                    $('##myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #id_evento').prop('disabled', true).selectpicker('refresh');
                 })
             });
 
@@ -126,8 +126,8 @@
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #id_evento').prop('disabled', true).selectpicker('refresh');
                 })
 
             });
@@ -143,8 +143,8 @@
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #id_evento').prop('disabled', true).selectpicker('refresh');
                 })
 
             });
