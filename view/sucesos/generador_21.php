@@ -40,6 +40,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());*/
 
 
 $fila1['id_suceso'] = $su->getIdSuceso();
+$fila1['periodo'] = $su->getPeriodo();
 $fila1['legajo'] = substr($em->getLegajo(), 2, 4);
 $fila1['cuil'] = $em->getCuil();
 $fila1['apellido'] = $em->getApellido();
@@ -148,7 +149,7 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
                     <td><span class="subtitulo">CUIL</span></td>
                     <td>'.$fila1['cuil'].'</td>
                     <td><span class="subtitulo">Período</span></td>
-                    <td>2019</td>
+                    <td>'.$fila1['periodo'].'</td>
                 </tr>
             </tbody>
         </table>
@@ -171,7 +172,7 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
                         </tr>
                         <tr>
                             <td>En cumplimiento de la legislación, se le notifica que el Período de Descanso Anual correspondiente al
-                            año 2019, es de '.$fila1['dias'].' días. Dichas vacaciones comenzarán a regir desde el dia '.$fila1['fecha_desde'].' hasta
+                            año '.$fila1['periodo'].', es de '.$fila1['dias'].' días. Dichas vacaciones comenzarán a regir desde el dia '.$fila1['fecha_desde'].' hasta
                             el '.$fila1['fecha_hasta'].' inclusive. Debiéndose reintegrar a sus tareas el siguiente día hábil.</td>
                         </tr>
                         <tr>
