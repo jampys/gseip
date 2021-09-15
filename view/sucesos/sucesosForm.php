@@ -151,7 +151,7 @@
             downloadStr: "<i class='fas fa-download'></i>",
             deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
             dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
-            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Subir",
+            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Adjuntar",
             cancelStr: "<i class='fas fa-minus-square'></i>",
 
             extErrorStr: "no está permitido. Solo se permiten extensiones: ",
