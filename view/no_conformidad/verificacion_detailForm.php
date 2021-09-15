@@ -50,7 +50,7 @@
                 },*/
                 verificacion_eficacia: {
                     required: true,
-                    maxlength: 200
+                    maxlength: 400
                 },
                 fecha_verificacion: {required: true},
                 id_responsable_ejecucion: {required: true}
@@ -63,7 +63,7 @@
                 }, */
                 verificacion_eficacia: {
                     required: "Ingrese la verificación de la eficacia",
-                    maxlength: "Máximo 200 caracteres"
+                    maxlength: "Máximo 400 caracteres"
                 },
                 etapa: "Seleccione una etapa",
                 fecha_verificacion: "Seleccione la fecha de implementación",
