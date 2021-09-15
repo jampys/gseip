@@ -41,7 +41,7 @@
                 <th>Cod.</th>
                 <th>Puesto</th>
                 <th>Habilidad</th>
-                <th>Requerida</th>
+                <th>Excluyente</th>
                 <th></th>
             </tr>
             </thead>
