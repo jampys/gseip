@@ -150,7 +150,7 @@
             showFileCounter: false, //muestra el nro de archivos subidos
             downloadStr: "<i class='fas fa-download'></i>",
             deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
-            dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
+            dragDropStr: "<span>Arrastrar &amp; Soltar</span>",
             uploadStr:"<span class='glyphicon glyphicon-plus'></span> Adjuntar",
             cancelStr: "<i class='fas fa-minus-square'></i>",
 
