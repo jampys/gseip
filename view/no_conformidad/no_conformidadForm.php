@@ -64,7 +64,7 @@
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
-                                                $('#example').DataTable().ajax.reload(); //$("#search").trigger("click");
+                                                $('#example').DataTable().ajax.reload(null, false); //$("#search").trigger("click");
                                               }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar la no conformidad').addClass('alert alert-danger').show();
@@ -197,7 +197,7 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="descripcion">Descripción del hallazgo</label>
-                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción del hallazgo" rows="5"><?php print $view->no_conformidad->getDescripcion(); ?></textarea>
+                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción del hallazgo" rows="6"><?php print $view->no_conformidad->getDescripcion(); ?></textarea>
                     </div>
 
 
@@ -230,7 +230,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="analisis_causa_desc">Causa raiz</label>
-                        <textarea class="form-control" name="analisis_causa_desc" id="analisis_causa_desc" placeholder="Descripción de causa raiz" rows="3"><?php print $view->no_conformidad->getAnalisisCausaDesc(); ?></textarea>
+                        <textarea class="form-control" name="analisis_causa_desc" id="analisis_causa_desc" placeholder="Descripción de causa raiz" rows="4"><?php print $view->no_conformidad->getAnalisisCausaDesc(); ?></textarea>
                     </div>
 
 
