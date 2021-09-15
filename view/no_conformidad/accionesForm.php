@@ -167,7 +167,7 @@
         $("#myModal").on("hidden.bs.modal", function () { //ok
             //alert('salir de etapas');
             //$("#search").trigger("click");
-            $('#example').DataTable().ajax.reload();
+            $('#example').DataTable().ajax.reload(null, false);
         });
 
 
