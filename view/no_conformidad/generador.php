@@ -19,6 +19,7 @@ $fila4['created_date'] = $nc->getCreatedDate();
 $fila4['estado'] = $nc->getEstado();
 $fila4['responsable_seguimiento'] = $rs->getApellido().' '.$rs->getNombre();
 
+$fila4['title'] = $fila4['nombre'].' '.$fila4['nombre'];
 
 $fila4['No conformidad real'] = ($nc->getTipo() == 'No conformidad real')? 'checked=true':'';
 $fila4['No conformidad potencial'] = ($nc->getTipo() == 'No conformidad potencial')? 'checked=true':'';
@@ -61,7 +62,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                 </table>
             ');
     //$mpdf->SetFooter('{PAGENO}');
-    $mpdf->SetTitle($fila['nrocertificado']);
+    $mpdf->SetTitle($fila4['title']);
 
     $css = file_get_contents('resources/css/dario_mpdf.css');
     $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
