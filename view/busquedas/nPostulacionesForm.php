@@ -27,7 +27,8 @@
             $('#etapas_right_side').load('index.php', params,function(){
                 $('#postulacion-form #id_postulante').attr('disabled', true).selectpicker('refresh');
                 $("#chalampa #culo").css('display', 'none');
-            })
+            });
+            return false;
         });
 
 
@@ -41,7 +42,8 @@
             $('#etapas_right_side').load('index.php', params,function(){
                 $('#postulacion-form #id_postulante').attr('disabled', true).selectpicker('refresh');
                 $("#chalampa #culo").css('display', 'none');
-            })
+            });
+            return false;
         });
 
 
@@ -64,7 +66,7 @@
                 $('#etapa-form #id_postulacion').val(params.id_postulacion);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            })
+            });
         });
 
 
@@ -80,7 +82,7 @@
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 //$('#id_busqueda').val(params.id_busqueda);
-            })
+            });
         });
 
 
@@ -107,7 +109,7 @@
                     }
                 }
             });
-
+            return false;
 
         });
 
@@ -151,6 +153,7 @@
             $('#etapas_left_side').attr('id_postulacion', id);
             $('#table-etapas').DataTable().ajax.reload();
             $('#postulante').html($('#table-postulantes').DataTable().row( $(this).closest('tr') ).data().postulante);
+            return false;
         });
 
 
@@ -182,7 +185,8 @@
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -202,7 +206,8 @@
                 //$("#etapas_right_side fieldset").prop("disabled", true);
                 //$("#etapa-form #footer-buttons button").css('display', 'none');
                 //$('.selectpicker').selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -276,7 +281,7 @@
                     }
                 }
             });
-
+            return false;
 
         });
 
