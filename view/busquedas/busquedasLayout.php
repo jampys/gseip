@@ -65,8 +65,10 @@
                     $('#myModal').modal();
                     //$('#id_empleado').prop('disabled', true).selectpicker('refresh');
                     //$('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
-                })
+                });
+                return false;
             });
+
 
             $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
@@ -79,8 +81,8 @@
                     //$("fieldset").prop("disabled", true);
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                })
-
+                });
+                return false;
             });
 
 
@@ -96,8 +98,8 @@
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                     $('#etapas_left_side').attr('id_busqueda', id);
-                })
-
+                });
+                return false;
             });
 
 
@@ -107,7 +109,7 @@
                 params.operation="newBusqueda";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
             });
 
 
@@ -139,7 +141,7 @@
                         }
                     }
                 });
-
+                return false;
 
             });
 
