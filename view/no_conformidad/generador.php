@@ -19,7 +19,7 @@ $fila4['created_date'] = $nc->getCreatedDate();
 $fila4['estado'] = $nc->getEstado();
 $fila4['responsable_seguimiento'] = $rs->getApellido().' '.$rs->getNombre();
 
-$fila4['title'] = $fila4['nombre'].' '.$fila4['nombre'];
+$fila4['title'] = $fila4['nro_no_conformidad'].' '.$fila4['nombre'];
 
 $fila4['No conformidad real'] = ($nc->getTipo() == 'No conformidad real')? 'checked=true':'';
 $fila4['No conformidad potencial'] = ($nc->getTipo() == 'No conformidad potencial')? 'checked=true':'';
