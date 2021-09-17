@@ -98,7 +98,7 @@
             <thead>
             <tr>
                 <th>Nro. NC</th>
-                <th>Fecha impl.</th>
+                <th title="Fecha implementación acción">Fecha impl.</th>
                 <th>Nombre</th>
                 <th>Tipo</th>
                 <th>Tipo acción</th>
