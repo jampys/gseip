@@ -63,7 +63,8 @@
                     $('#myModal').modal();
                     //$('#id_empleado').prop('disabled', true).selectpicker('refresh');
                     //$('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
-                })
+                });
+                return false;
             });
 
 
@@ -79,7 +80,8 @@
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                })
+                });
+                return false;
 
             });
 
@@ -91,7 +93,7 @@
                 params.operation="newNoConformidad";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
             });
 
 
@@ -118,7 +120,7 @@
                         }
                     }
                 });
-
+                return false;
 
             });
 
@@ -136,7 +138,7 @@
                         dialog.find('.modal-footer').html('<div class="alert alert-success">No conformidad eliminada con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
-                            $("#search").trigger("click");
+                            $('#example').DataTable().ajax.reload(); //$("#search").trigger("click");
                         }, 2000);
                     }
 
@@ -163,7 +165,8 @@
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
                     $('#etapas_left_side #add').attr('id_no_conformidad', id);
-                })
+                });
+                return false;
 
             });
 
@@ -182,7 +185,8 @@
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
                     $('#etapas_left_side #add').attr('id_no_conformidad', id);
-                })
+                });
+                return false;
 
             });
 

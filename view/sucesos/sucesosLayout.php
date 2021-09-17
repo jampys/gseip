@@ -27,7 +27,7 @@
             $('.selectpicker').selectpicker();
 
             moment.locale('es');
-            $('#search_fecha').daterangepicker({
+            $('#daterange').daterangepicker({
                 startDate: moment().subtract(29, 'days'),
                 endDate: moment().add(12, 'months'),
                 locale: {
@@ -43,27 +43,23 @@
                     'Últimos 5 años': [moment().subtract(5, 'years'), moment()]
                 }
             }, function(start, end) {
-                $('#search_fecha span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                $('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             });
 
-            var drp = $('#search_fecha').data('daterangepicker');
+            var drp = $('#daterange').data('daterangepicker');
 
 
             $(document).on('click', '#search', function(){ //ok
-                //var id = $(this).attr('data-id');
-                //preparo los parametros
-                params={};
-                params.id_empleado = $("#search_empleado").val(); //$('#search_empleado option:selected').attr('id_empleado');
-                params.eventos = ($("#search_evento").val()!= null)? $("#search_evento").val() : '';
-                //params.search_fecha_desde = $("#search_fecha_desde").val();
-                //params.search_fecha_hasta = $("#search_fecha_hasta").val();
-                params.search_fecha_desde = drp.startDate.format('DD/MM/YYYY');
-                params.search_fecha_hasta = drp.endDate.format('DD/MM/YYYY');
-                params.search_contrato = $("#search_contrato").val();
+                /*params={};
+                params.id_empleado = $("#id_empleado").val();
+                params.eventos = ($("#eventos").val()!= null)? $("#eventos").val() : '';
+                params.startDate = drp.startDate.format('DD/MM/YYYY');
+                params.endDate = drp.endDate.format('DD/MM/YYYY');
+                params.id_contrato = $("#id_contrato").val();
                 params.action = "sucesos";
                 params.operation = "refreshGrid";
-                //alert(params.renovado);
-                $('#content').load('index.php', params);
+                $('#content').load('index.php', params);*/
+                $('#example').DataTable().ajax.reload();
             });
 
 
@@ -76,7 +72,7 @@
                 params.operation = "loadExport";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    //$('#myModal #id_contrato').val($('#search_contrato').val());
+                    //$('#myModal #id_contrato').val($('#id_contrato').val());
                     $('.selectpicker').selectpicker('refresh');
                 });
                 return false;
@@ -95,9 +91,10 @@
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
-                })
+                    $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #id_evento').prop('disabled', true).selectpicker('refresh');
+                });
+                return false;
             });
 
             //editar suceso programado
@@ -111,9 +108,10 @@
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
-                })
+                    $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #id_evento').prop('disabled', true).selectpicker('refresh');
+                });
+                return false;
             });
 
 
@@ -130,9 +128,10 @@
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
-                })
+                    $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #id_evento').prop('disabled', true).selectpicker('refresh');
+                });
+                return false;
 
             });
 
@@ -147,9 +146,10 @@
                 params.target = "view";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    $('#id_empleado').prop('disabled', true).selectpicker('refresh');
-                    $('#id_evento').prop('disabled', true).selectpicker('refresh');
-                })
+                    $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #id_evento').prop('disabled', true).selectpicker('refresh');
+                });
+                return false;
 
             });
 
@@ -205,7 +205,7 @@
                         }
                     }
                 });
-
+                return false;
 
             });
 
@@ -222,9 +222,9 @@
                     if(data >=0){
                         dialog.find('.modal-footer').html('<div class="alert alert-success">Suceso eliminado con exito</div>');
                         setTimeout(function() {
-                            dialog.modal('hide');
-                            $("#search").trigger("click");
-                        }, 2000);
+                                                dialog.modal('hide');
+                                                $('#example').DataTable().ajax.reload();
+                                            }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
@@ -275,8 +275,8 @@
                     <div class="row">
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_empleado" class="control-label">Empleado</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_empleado" name="search_empleado" data-live-search="true" data-size="5">
+                            <!--<label for="id_empleado" class="control-label">Empleado</label>-->
+                            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un empleado</option>
                                 <?php foreach ($view->empleados as $em){
                                     ?>
@@ -288,8 +288,8 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
+                            <!--<label for="id_contrato" class="control-label">Contrato</label>-->
+                            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un contrato</option>
                                 <?php foreach ($view->contratos as $con){
                                     ?>
@@ -317,8 +317,8 @@
                     <div class="row">
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_evento" class="control-label">Eventos</label>-->
-                            <select multiple class="form-control selectpicker show-tick" id="search_evento" name="search_evento" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
+                            <!--<label for="eventos" class="control-label">Eventos</label>-->
+                            <select multiple class="form-control selectpicker show-tick" id="eventos" name="eventos" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
                                 <!--<option value="">Seleccione un vencimiento</option>-->
                                 <?php foreach ($view->eventos as $ev){
                                     ?>
@@ -331,9 +331,9 @@
 
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_vencimiento" class="control-label">Buscar partes</label>-->
+                            <!--<label for="datarange" class="control-label">Buscar partes</label>-->
                             <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="search_fecha" id="search_fecha" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>

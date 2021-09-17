@@ -14,6 +14,7 @@ class SucesoP
     private $cantidad1;
     private $id_contrato;
     private $programado;
+    private $periodo;
 
 
     // GETTERS
@@ -53,6 +54,9 @@ class SucesoP
     function getProgramado()
     { return $this->programado;}
 
+    function getPeriodo()
+    { return $this->periodo;}
+
 
     //SETTERS
     function setIdSuceso($val)
@@ -91,6 +95,9 @@ class SucesoP
     function setProgramado($val)
     {  $this->programado=$val;}
 
+    function setPeriodo($val)
+    {  $this->periodo=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -103,7 +110,7 @@ class SucesoP
                     observaciones,
                     created_by,
                     DATE_FORMAT(created_date,  '%d/%m/%Y') as created_date,
-                    cantidad1, programado, id_contrato
+                    cantidad1, programado, id_contrato, periodo
                     from nov_sucesos
                     where id_suceso = :nro";
             $stmt->dpPrepare($query);
@@ -122,6 +129,7 @@ class SucesoP
             $this->setCantidad1($rows[0]['cantidad1']);
             $this->setProgramado($rows[0]['programado']);
             $this->setIdContrato($rows[0]['id_contrato']);
+            $this->setPeriodo($rows[0]['periodo']);
 
         }
     }
@@ -144,7 +152,8 @@ class SucesoP
                       observaciones = :observaciones,
                       cantidad1 = :cantidad1,
                       id_contrato = :id_contrato,
-                      programado = :programado
+                      programado = :programado,
+                      periodo = :periodo
                 where id_suceso =:id_suceso";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $this->getFechaDesde());
@@ -153,6 +162,7 @@ class SucesoP
         $stmt->dpBind(':cantidad1', $this->getCantidad1());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':programado', $this->getProgramado());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':id_suceso', $this->getIdSuceso());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -161,8 +171,8 @@ class SucesoP
 
     private function insertSuceso(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, cantidad1, id_contrato, programado)
-                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :cantidad1, :id_contrato, :programado)";
+        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, cantidad1, id_contrato, programado, periodo)
+                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :cantidad1, :id_contrato, :programado, :periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
@@ -173,6 +183,7 @@ class SucesoP
         $stmt->dpBind(':cantidad1', $this->getCantidad1());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':programado', $this->getProgramado());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

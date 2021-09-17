@@ -18,17 +18,21 @@ switch ($operation)
         $view->disableLayout=true;
         $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
-        $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
-        $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
-        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
-        $view->contentTemplate="view/sucesos/sucesosGrid.php";
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+        $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
+        $rta = Suceso::getSucesos($id_empleado, $eventos, $startDate, $endDate, $id_contrato);
+        //$view->contentTemplate="view/sucesos/sucesosGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveSuceso': //ok
 
         $suceso = new Suceso($_POST['id_suceso']);
         $suceso->setIdEvento($_POST['id_evento']);
+        $suceso->setPeriodo($_POST['periodo']);
         $suceso->setIdEmpleado($_POST['id_empleado']);
         $suceso->setFechaDesde($_POST['fecha_desde']);
         $suceso->setFechaHasta($_POST['fecha_hasta']);
@@ -54,6 +58,8 @@ switch ($operation)
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
+        $view->años = Soporte::getPeriodos(2015, date("Y"));
+        $view->año_actual = Soporte::getPeriodoActual();
         //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
         $view->disableLayout=true;
@@ -66,6 +72,8 @@ switch ($operation)
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
+        $view->años = Soporte::getPeriodos(2015, date("Y"));
+        $view->año_actual = Soporte::getPeriodoActual();
         // Trae todos los periodos, luego en el formulario quedan habilitados solo los activos
         $view->periodos = NovPeriodo::getPeriodos1($view->suceso->getIdEmpleado()); ;
 
@@ -191,6 +199,30 @@ switch ($operation)
         unlink ($filepath); //borra el archivo una vez descargado
 
         exit;
+        break;
+
+
+    case 'pdf_21':
+
+        /*$f = Pdf::getCertificadoCalibracion($_GET['id_calib']);
+        $fila = $f[0];
+        $f1 = Pdf::getCertificadoPpt($_GET['id_calib'], $_GET['Nro_Serie']);
+        $fila1 = $f1[0];
+        $f2 = Pdf::getCertificadoOT($_GET['id_calib'], $_GET['Nro_Serie']);
+        $fila2 = $f2[0];
+        $f3 = Pdf::getGrafico($_GET['id_calib']);
+        $fila3 = $f3[0];*/
+        $su = new Suceso($_GET['id_suceso']);
+        $em = new Empleado($su->getIdEmpleado());
+        $fila1 = array();
+        //$fila5 = Accion::getAcciones($_GET['id_no_conformidad']);
+        //$f6 = Verificacion::getVerificaciones($_GET['id_no_conformidad']);
+        //$fila6 = end($f6);
+        //$rs = new Empleado($nc->getIdResponsableSeguimiento());
+
+
+        //include_once ('pdf/generador.php');
+        include_once ('view/sucesos/generador_21.php');
         break;
 
     default : //ok

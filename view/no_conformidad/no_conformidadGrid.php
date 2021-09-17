@@ -67,7 +67,7 @@
                                 '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
                                     '<i class="fas fa-download dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a href="#" title="'+user_info+'">'+
+                                '<a href="#" title="'+user_info+'" onclick="return false;">'+
                                     '<i class="fa fa-question-circle dp_light_gray"></i>'+
                                 '</a>';
                     }

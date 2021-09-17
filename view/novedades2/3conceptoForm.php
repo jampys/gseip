@@ -223,11 +223,9 @@
             params.operation = "editSuceso";
             params.target = "view";
             $('#popupbox').load('index.php', params,function(){
-                $("fieldset").prop("disabled", true);
-                $('.selectpicker').selectpicker('refresh');
-                $('.modal-footer').css('display', 'none');
-                //$('#myModalLabel').html('');
                 $('#myModal').modal();
+                $('.selectpicker').selectpicker('refresh');
+
             })
 
         });
@@ -294,10 +292,10 @@
                 if(data >=0){
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Suceso eliminado con exito</div>');
                     setTimeout(function() {
-                        dialog.modal('hide');
-                        $('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: $('#id_empleado').val(), id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
-                        $('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados", fecha: $('#add_fecha').val(), id_contrato: $('#id_contrato').val()});
-                    }, 2000);
+                                            dialog.modal('hide');
+                                            $('#table-sucesos').DataTable().ajax.reload(); //$('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: $('#id_empleado').val(), id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
+                                            $('#table_empleados').load('index.php',{action:"novedades2", operation:"tableEmpleados", fecha: $('#add_fecha').val(), id_contrato: $('#id_contrato').val()});
+                                        }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
@@ -1131,7 +1129,7 @@
 
 
         <!--<div id="demo-sucesos" class="collapse">-->
-        <div id="demo-sucesos">
+        <div id="demo-sucesos" class="row">
             <div class="grid-sucesos">
                 <?php include_once('view/novedades2/sucesosGrid.php');?>
             </div>

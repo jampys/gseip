@@ -100,7 +100,7 @@
                                 '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
                                     '<i class="far fa-trash-alt dp_red"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a href="#" title="'+user_info+'">'+
+                                '<a href="#" title="'+user_info+'" onclick="return false;">'+
                                     '<i class="fa fa-question-circle dp_light_gray"></i>'+
                                 '</a>';
                     }

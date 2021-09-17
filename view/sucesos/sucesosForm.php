@@ -150,8 +150,8 @@
             showFileCounter: false, //muestra el nro de archivos subidos
             downloadStr: "<i class='fas fa-download'></i>",
             deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
-            dragDropStr: "<span><b>Arrastrar &amp; Soltar</b></span>",
-            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Subir",
+            dragDropStr: "<span>Arrastrar &amp; Soltar</span>",
+            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Adjuntar",
             cancelStr: "<i class='fas fa-minus-square'></i>",
 
             extErrorStr: "no está permitido. Solo se permiten extensiones: ",
@@ -220,7 +220,7 @@
             params.action = "nov_periodos";
             params.operation = "getPeriodos1";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-            params.id_empleado = $('#id_empleado').val();
+            params.id_empleado = $('#myModal #id_empleado').val();
             params.activos = 1;
 
             $('#id_periodo1, #id_periodo2').empty();
@@ -278,6 +278,7 @@
                 params.id_suceso = $('#myModal #id_suceso').val();
                 params.id_empleado = $('#myModal #id_empleado').val();
                 params.id_evento = $('#myModal #id_evento').val();
+                params.periodo = $('#myModal #periodo').val();
                 params.fecha_desde = drp.startDate.format('DD/MM/YYYY');
                 params.fecha_hasta = drp.endDate.format('DD/MM/YYYY');
                 params.observaciones = $('#myModal #observaciones').val();
@@ -314,10 +315,10 @@
         function closeFormSuccess(){
             $("#myModal #myElem").html('Suceso guardado con exito').addClass('alert alert-success').show();
             setTimeout(function() { $("#myElem").hide();
-                                    $("#suceso-form #cancel").trigger("click"); //para la modal (nov2)
-                                    $('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: params.id_empleado, id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
+                                    //$("#suceso-form #cancel").trigger("click"); //para la modal (nov2)
                                     $('#myModal').modal('hide');
-                                    $("#search").trigger("click");
+                                    $('#table-sucesos').DataTable().ajax.reload(); //$('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: params.id_empleado, id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
+                                    $('#example').DataTable().ajax.reload(); //$("#search").trigger("click");
                                 }, 2000);
             return false; //para finalizar la ejecucion
 
@@ -456,28 +457,28 @@
                         </div>
                     <?php } ?>
 
-
-                    <div class="form-group required">
-                        <label for="id_empleado" class="control-label">Empleado</label>
-                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
-                            <?php foreach ($view->empleados as $em){
-                                ?>
-                                <option value="<?php echo $em['id_empleado']; ?>"
-                                    <?php echo ($view->suceso->getIdEmpleado() == $em['id_empleado'])? 'selected' : ''; ?>
-                                    data-icon="fas fa-user fa-sm fa-fw"
-                                    >
-                                    <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label for="id_empleado" class="control-label">Empleado</label>
+                            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
+                                <?php foreach ($view->empleados as $em){
+                                    ?>
+                                    <option value="<?php echo $em['id_empleado']; ?>"
+                                        <?php echo ($view->suceso->getIdEmpleado() == $em['id_empleado'])? 'selected' : ''; ?>
+                                            data-icon="fas fa-user fa-sm fa-fw"
+                                        >
+                                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
                     </div>
 
 
 
-
-
-                    <div class="form-group required">
-                        <label for="id_evento" class="control-label">Suceso</label>
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label for="id_evento" class="control-label">Suceso</label>
                             <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione un suceso" data-live-search="true" data-size="5" data-show-subtext="true">
                                 <?php foreach ($view->eventos as $ev){ ?>
                                     <option value="<?php echo $ev['id_evento']; ?>" data-subtext="<?php echo $ev['tipo_liquidacion'] ;?>"
@@ -487,7 +488,25 @@
                                     </option>
                                 <?php  } ?>
                             </select>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="periodo" >Período</label>
+                            <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5">
+                                <?php foreach ($view->años as $per){
+                                    ?>
+                                    <option value="<?php echo $per; ?>"
+                                        <?php echo ($per == $view->suceso->getPeriodo())? 'selected' :'' ?>
+                                        >
+                                        <?php echo $per; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
                     </div>
+
+
 
 
                     <div class="row">
@@ -561,7 +580,7 @@
 
                     <div class="row">
                         <div class="form-group col-md-9">
-                            <label for="id_periodo" class="control-label">Imputar a período de liquidación 2</label>
+                            <label for="id_periodo2" class="control-label">Imputar a período de liquidación 2</label>
                             <select class="form-control selectpicker show-tick" id="id_periodo2" name="id_periodo2" data-live-search="true" data-size="5">
                                 <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <option value="">Seleccione un período</option>
@@ -597,16 +616,21 @@
                         </div>
                     </div>
 
-
-                    <div class="form-group">
-                        <label class="control-label" for="observaciones">Observaciones</label>
-                        <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="2"><?php print $view->suceso->getObservaciones(); ?></textarea>
+                    <div class="row">
+                        <div class="form-group col-md-9">
+                            <label class="control-label" for="observaciones">Observaciones</label>
+                            <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="2"><?php print $view->suceso->getObservaciones(); ?></textarea>
+                        </div>
                     </div>
 
                 </form>
 
 
-                <div id="fileuploader">Upload</div>
+                <div class="row">
+                    <div class="form-group col-md-9">
+                        <div id="fileuploader">Upload</div>
+                    </div>
+                </div>
 
 
 

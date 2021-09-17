@@ -22,6 +22,7 @@ class Suceso
     private $fd2;
     private $fh2;
     private $id_parte;
+    private $periodo;
 
 
     //private $empleado;
@@ -81,6 +82,9 @@ class Suceso
 
     function getIdParte()
     { return $this->id_parte;}
+
+    function getPeriodo()
+    { return $this->periodo;}
 
     /*function getEmpleado(){
         return ($this->empleado)? $this->empleado : new Empleado() ;
@@ -142,6 +146,9 @@ class Suceso
     function setIdParte($val)
     {  $this->id_parte=$val;}
 
+    function setPeriodo($val)
+    {  $this->periodo=$val;}
+
 
 
     function __construct($nro=0){ //constructor ok
@@ -159,7 +166,7 @@ class Suceso
                     DATE_FORMAT(fh1,  '%d/%m/%Y') as fh1,
                     DATE_FORMAT(fd2,  '%d/%m/%Y') as fd2,
                     DATE_FORMAT(fh2,  '%d/%m/%Y') as fh2,
-                    id_parte
+                    id_parte, periodo
                     from nov_sucesos
                     where id_suceso = :nro";
             $stmt->dpPrepare($query);
@@ -184,38 +191,15 @@ class Suceso
             $this->setFd2($rows[0]['fd2']);
             $this->setFh2($rows[0]['fh2']);
             $this->setIdParte($rows[0]['id_parte']);
+            $this->setPeriodo($rows[0]['periodo']);
             //$this->empleado = new Empleado($rows[0]['id_empleado']);
         }
     }
 
 
-    public static function getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato) { //ok
+    public static function getSucesos($id_empleado, $eventos, $startDate, $endDate, $id_contrato) { //ok
         $stmt=new sQuery();
         /*$query = "select su.id_suceso, su.id_evento, su.id_empleado,
-                  DATE_FORMAT(su.fecha,  '%d/%m/%Y') as fecha,
-                  DATE_FORMAT(su.fecha_desde,  '%d/%m/%Y') as fecha_desde,
-                  DATE_FORMAT(su.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
-                  su.observaciones,
-                  CONCAT(em.apellido, ' ', em.nombre) as empleado,
-                  ev.nombre as evento,
-                  ev.codigo as txt_evento,
-                  em.legajo as txt_legajo,
-                  su.fecha_desde as txt_fecha_desde,
-                  su.fecha_hasta as txt_fecha_hasta
-                  from nov_sucesos su, empleados em, nov_eventos_l ev
-                  where su.id_empleado = em.id_empleado
-                  and su.id_evento = ev.id_evento
-                  and su.id_empleado = ifnull(:id_empleado, su.id_empleado)
-                  and su.id_evento in ($eventos)
-                  and su.fecha_desde between if(:fecha_desde is null, su.fecha_desde, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
-                  and if(:fecha_hasta is null, su.fecha_hasta, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))"; */
-        /*logica de la fecha de cierre:
-        - periodo_1: es requerido, se pasa la closed_date
-        - Periodo 2: no requerido. Si no tiene periodo_2, se pasa el periodo como cerrado.
-        */
-
-        // el join con contratos activos, y el group
-        $query = "select su.id_suceso, su.id_evento, su.id_empleado,
                   DATE_FORMAT(su.created_date,  '%d/%m/%Y') as created_date,
                   DATE_FORMAT(su.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(su.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
@@ -240,13 +224,42 @@ class Suceso
                   and su.fecha_desde <= if(:fecha_desde is null, su.fecha_desde, STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'))
                   and su.fecha_hasta >= if(:fecha_hasta is null, su.fecha_hasta, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'))
                   and if(:id_contrato is not null, ec.id_contrato = :id_contrato, (ec.id_contrato = ec.id_contrato or ec.id_contrato is null))
+                  group by su.id_suceso";*/
+
+        $query = "select su.id_suceso, su.id_evento, su.id_empleado,
+                  DATE_FORMAT(su.created_date,  '%d/%m/%Y') as created_date,
+                  DATE_FORMAT(su.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  DATE_FORMAT(su.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
+                  su.observaciones,
+                  CONCAT(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
+                  ev.nombre as evento,
+                  ev.codigo as txt_evento,
+                  em.legajo as txt_legajo,
+                  su.fecha_desde as txt_fecha_desde,
+                  su.fecha_hasta as txt_fecha_hasta,
+                  pe1.closed_date as closed_date_1,
+                  if(pe2.created_date, pe2.closed_date, 1) as closed_date_2,
+                  su.id_contrato, su.programado, id_periodo1,
+                  us.user
+                  from v_sec_nov_sucesos su
+                  join empleados em on su.id_empleado = em.id_empleado
+                  join nov_eventos_l ev on su.id_evento = ev.id_evento
+                  join sec_users us on us.id_user = su.created_by
+                  left join empleado_contrato ec on su.id_empleado = ec.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta >= sysdate() )
+                  left join nov_periodos pe1 on pe1.id_periodo = su.id_periodo1
+                  left join nov_periodos pe2 on pe2.id_periodo = su.id_periodo2
+                  where su.id_empleado = ifnull(:id_empleado, su.id_empleado)
+                  and su.id_evento in ($eventos)
+                  and su.fecha_desde <= :endDate
+                  and su.fecha_hasta >= :startDate
+                  and if(:id_contrato is not null, ec.id_contrato = :id_contrato, (ec.id_contrato = ec.id_contrato or ec.id_contrato is null))
                   group by su.id_suceso";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
         //$stmt->dpBind(':id_evento', $id_evento);
-        $stmt->dpBind(':fecha_desde', $fecha_desde);
-        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpBind(':startDate', $startDate);
+        $stmt->dpBind(':endDate', $endDate);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
@@ -275,7 +288,8 @@ class Suceso
                       fd1 = STR_TO_DATE(:fd1, '%d/%m/%Y'),
                       fh1 = STR_TO_DATE(:fh1, '%d/%m/%Y'),
                       fd2 = STR_TO_DATE(:fd2, '%d/%m/%Y'),
-                      fh2 = STR_TO_DATE(:fh2, '%d/%m/%Y')
+                      fh2 = STR_TO_DATE(:fh2, '%d/%m/%Y'),
+                      periodo = :periodo
                 where id_suceso =:id_suceso";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
@@ -290,6 +304,7 @@ class Suceso
         $stmt->dpBind(':fh1', $this->getFh1());
         $stmt->dpBind(':fd2', $this->getFd2());
         $stmt->dpBind(':fh2', $this->getFh2());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':id_suceso', $this->getIdSuceso());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
@@ -298,8 +313,8 @@ class Suceso
 
     private function insertSuceso(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, id_periodo1, cantidad1, id_periodo2, cantidad2, fd1, fh1, fd2, fh2)
-                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :id_periodo1, :cantidad1, :id_periodo2, :cantidad2, STR_TO_DATE(:fd1, '%d/%m/%Y'), STR_TO_DATE(:fh1, '%d/%m/%Y'), STR_TO_DATE(:fd2, '%d/%m/%Y'), STR_TO_DATE(:fh2, '%d/%m/%Y'))";
+        $query="insert into nov_sucesos(id_evento, id_empleado, fecha_desde, fecha_hasta, observaciones, created_by, created_date, id_periodo1, cantidad1, id_periodo2, cantidad2, fd1, fh1, fd2, fh2, periodo)
+                values(:id_evento, :id_empleado, STR_TO_DATE(:fecha_desde, '%d/%m/%Y'), STR_TO_DATE(:fecha_hasta, '%d/%m/%Y'), :observaciones, :created_by, sysdate(), :id_periodo1, :cantidad1, :id_periodo2, :cantidad2, STR_TO_DATE(:fd1, '%d/%m/%Y'), STR_TO_DATE(:fh1, '%d/%m/%Y'), STR_TO_DATE(:fd2, '%d/%m/%Y'), STR_TO_DATE(:fh2, '%d/%m/%Y'), :periodo)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_evento', $this->getIdEvento());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
@@ -315,6 +330,7 @@ class Suceso
         $stmt->dpBind(':fh1', $this->getFh1());
         $stmt->dpBind(':fd2', $this->getFd2());
         $stmt->dpBind(':fh2', $this->getFh2());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

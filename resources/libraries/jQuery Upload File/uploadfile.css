@@ -64,7 +64,7 @@ border-radius: 3px;
 display: inline-block;
 color: #fff;
 font-family: arial;
-font-size: 13px;
+font-size: 12px;
 /*font-weight: normal;*/
 /*padding: 4px 15px;*/
 text-decoration: none;
@@ -93,7 +93,7 @@ padding: 0;*/
 display: inline-block;
 color: #fff;
 font-family: arial;
-font-size: 13px;
+font-size: 12px;
 /*font-weight: normal;*/
 /*padding: 4px 15px;*/
 text-decoration: none;
@@ -115,7 +115,7 @@ vertical-align: top;
 
 .ajax-file-upload {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
+	font-size: 12px;
    /*font-weight: bold;*/
 	/*padding: 15px 20px;*/
 	cursor:pointer;
@@ -157,13 +157,14 @@ vertical-align: top;
 .ajax-upload-dragdrop{
 	/*border:2px dotted #A5A5C7;*/
 	/*width:420px;*/ /*modificado dario */
-	color: #DADCE3;
+	color: #A9A9A9;
+    font-size: 11px;
 	text-align:left;
 	vertical-align:middle;
 	padding:10px 10px 0px 10px;
 
     border: 1px dashed #ccc;
-    border-radius: 0;
+    border-radius: 4px;
     transition: background-color .01s linear .01s;
 }
 

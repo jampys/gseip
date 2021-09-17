@@ -41,10 +41,10 @@
             params.action = "sucesosP";
             params.operation = "getContratos";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-            params.id_empleado = $('#id_empleado').val();
+            params.id_empleado = $('#myModal #id_empleado').val();
             params.activos = 1;
 
-            $('#id_contrato').empty();
+            $('#myModal #id_contrato').empty();
 
 
             $.ajax({
@@ -55,17 +55,17 @@
                 dataType:"json",//xml,html,script,json
                 success: function(data, textStatus, jqXHR) {
 
-                    $("#id_contrato").html('<option value="">Seleccione un contrato</option>');
+                    $("#myModal #id_contrato").html('<option value="">Seleccione un contrato</option>');
 
                     if(Object.keys(data).length > 0){
 
                         $.each(data, function(indice, val){
                             var label = data[indice]["nro_contrato"]+' '+data[indice]["contrato"];
-                            $("#id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
+                            $("#myModal #id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
                             +'>'+label+'</option>');
                         });
                     }
-                    $('#id_contrato').selectpicker('refresh');
+                    $('#myModal #id_contrato').selectpicker('refresh');
 
                 },
                 error: function(data, textStatus, errorThrown) {
@@ -92,6 +92,7 @@
                 params.id_suceso = $('#myModal #id_suceso').val();
                 params.id_empleado = $('#myModal #id_empleado').val();
                 params.id_evento = $('#myModal #id_evento').val();
+                params.periodo = $('#myModal #periodo').val();
                 params.fecha_desde = drp.startDate.format('DD/MM/YYYY');
                 params.fecha_hasta = drp.endDate.format('DD/MM/YYYY');
                 params.dias = $('#myModal #dias').val();
@@ -109,7 +110,7 @@
                                                 $("#suceso-form #cancel").trigger("click"); //para la modal (nov2)
                                                 $('.grid-sucesos').load('index.php',{action:"novedades2", operation: "sucesosRefreshGrid", id_empleado: params.id_empleado, id_contrato: $('#id_contrato').val(), id_periodo: $('#id_periodo').val()}); //para la modal (nov2)
                                                 $('#myModal').modal('hide');
-                                                $("#search").trigger("click");
+                                                $('#example').DataTable().ajax.reload(); //$("#search").trigger("click");
                                               }, 2000);
                     }else{
                         $("#myElem").html('Error al guardar el suceso').addClass('alert alert-danger').show();
@@ -206,24 +207,27 @@
 
                     <input type="hidden" name="id_suceso" id="id_suceso" value="<?php print $view->suceso->getIdSuceso() ?>">
 
-                    <div class="form-group required">
-                        <label for="id_empleado" class="control-label">Empleado</label>
-                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
-                            <?php foreach ($view->empleados as $em){
-                                ?>
-                                <option value="<?php echo $em['id_empleado']; ?>"
-                                    <?php echo ($view->suceso->getIdEmpleado() == $em['id_empleado'])? 'selected' : ''; ?>
-                                    data-icon="fas fa-user fa-sm fa-fw"
-                                    >
-                                    <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label for="id_empleado" class="control-label">Empleado</label>
+                            <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-live-search="true" data-size="5">
+                                <?php foreach ($view->empleados as $em){
+                                    ?>
+                                    <option value="<?php echo $em['id_empleado']; ?>"
+                                        <?php echo ($view->suceso->getIdEmpleado() == $em['id_empleado'])? 'selected' : ''; ?>
+                                            data-icon="fas fa-user fa-sm fa-fw"
+                                        >
+                                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
                     </div>
 
 
-                    <div class="form-group required">
-                        <label for="id_evento" class="control-label">Suceso</label>
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label for="id_evento" class="control-label">Suceso</label>
                             <select class="form-control selectpicker show-tick" id="id_evento" name="id_evento" title="Seleccione un suceso" data-live-search="true" data-size="5" data-show-subtext="true">
                                 <?php foreach ($view->eventos as $ev){ ?>
                                     <option value="<?php echo $ev['id_evento']; ?>" data-subtext="<?php echo $ev['tipo_liquidacion'] ;?>"
@@ -233,23 +237,40 @@
                                     </option>
                                 <?php  } ?>
                             </select>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="periodo" >Período</label>
+                            <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5">
+                                <?php foreach ($view->años as $per){
+                                    ?>
+                                    <option value="<?php echo $per; ?>"
+                                        <?php echo ($per == $view->suceso->getPeriodo())? 'selected' :'' ?>
+                                        >
+                                        <?php echo $per; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+
                     </div>
 
-
-                    <div class="form-group required">
-                        <label for="id_contrato" class="control-label">Contrato</label>
-                        <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
-                            <!-- se completa dinamicamente desde javascript cuando es un insert  -->
-                            <!--<option value="">Seleccione un contrato</option>-->
-                            <?php foreach ($view->contratos as $pe){
-                                ?>
-                                <option value="<?php echo $pe['id_contrato']; ?>"
-                                    <?php echo ($view->suceso->getIdContrato() == $pe['id_contrato'])? 'selected' : ''; ?>
-                                    >
-                                    <?php echo $pe['nro_contrato'].' '.$pe['contrato']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label for="id_contrato" class="control-label">Contrato</label>
+                            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">
+                                <!-- se completa dinamicamente desde javascript cuando es un insert  -->
+                                <!--<option value="">Seleccione un contrato</option>-->
+                                <?php foreach ($view->contratos as $pe){
+                                    ?>
+                                    <option value="<?php echo $pe['id_contrato']; ?>"
+                                        <?php echo ($view->suceso->getIdContrato() == $pe['id_contrato'])? 'selected' : ''; ?>
+                                        >
+                                        <?php echo $pe['nro_contrato'].' '.$pe['contrato']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
                     </div>
 
 
@@ -269,23 +290,27 @@
                     </div>
 
 
-                    <div class="form-group required">
-                        <label for="programado" class="control-label">Período programado</label>
-                        <select class="form-control selectpicker show-tick" id="programado" name="programado" title="Seleccione un período" data-live-search="true" data-size="5" data-show-subtext="true">
-                            <?php foreach ($view->periodos as $ev){ ?>
-                                <option value="<?php echo $ev['per']; ?>"
-                                    <?php echo ($ev['per'] == $view->suceso->getProgramado())? 'selected' :'' ?>
-                                    >
-                                    <?php echo $ev['periodo'];?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                    <div class="row">
+                        <div class="form-group col-md-9 required">
+                            <label for="programado" class="control-label">Período programado</label>
+                            <select class="form-control selectpicker show-tick" id="programado" name="programado" title="Seleccione un período" data-live-search="true" data-size="5" data-show-subtext="true">
+                                <?php foreach ($view->periodos as $ev){ ?>
+                                    <option value="<?php echo $ev['per']; ?>"
+                                        <?php echo ($ev['per'] == $view->suceso->getProgramado())? 'selected' :'' ?>
+                                        >
+                                        <?php echo $ev['periodo'];?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
                     </div>
 
 
-                    <div class="form-group">
-                        <label class="control-label" for="observaciones">Observaciones</label>
-                        <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="2"><?php print $view->suceso->getObservaciones(); ?></textarea>
+                    <div class="row">
+                        <div class="form-group col-md-9">
+                            <label class="control-label" for="observaciones">Observaciones</label>
+                            <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="2"><?php print $view->suceso->getObservaciones(); ?></textarea>
+                        </div>
                     </div>
 
                 </form>

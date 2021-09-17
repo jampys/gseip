@@ -82,7 +82,7 @@
                             <thead>
                             <tr>
                                 <th>Habilidad</th>
-                                <th>Requerida</th>
+                                <th>Excluyente</th>
                             </tr>
                             </thead>
                             <tbody>

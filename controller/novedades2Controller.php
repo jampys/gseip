@@ -297,11 +297,6 @@ switch ($operation)
         $view->defaults = CuadrillaEmpleado::getEmpleadoDefaults($_POST['id_empleado']);
         //$view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
 
-        $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
-        $fecha_desde = $view->periodo->getFechaDesde(); //($_POST['fecha']!='')? $_POST['fecha'] : null;
-        $fecha_hasta = $view->periodo->getFechaHasta(); //($_POST['fecha']!='')? $_POST['fecha'] : null;
-        $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
-        $view->sucesos = Suceso::getSucesos($_POST['id_empleado'], $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
         //$view->params = array('fecha_parte' => $_POST['fecha_parte'], 'id_periodo' => $_POST['id_periodo']);
         $view->params = array('id_parte_empleado' => $_POST['id_parte_empleado'], 'id_contrato' => $_POST['id_contrato']);
 
@@ -336,19 +331,22 @@ switch ($operation)
 
     case 'sucesosRefreshGrid': //ok
         $view->disableLayout=true;
-        //$id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
-        //$eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
-        //$fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
-        //$fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
-        //$id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $id_empleado = $_POST['id_empleado'];
         $eventos = ($_POST['eventos']!='')? implode(",", $_POST['eventos'])  : 'su.id_evento';
-        $fecha_desde = $view->periodo->getFechaDesde(); //($_POST['fecha']!='')? $_POST['fecha'] : null;
-        $fecha_hasta = $view->periodo->getFechaHasta(); //($_POST['fecha']!='')? $_POST['fecha'] : null;
+
+        //$fecha_desde = $view->periodo->getFechaDesde();
+        //$fecha_hasta = $view->periodo->getFechaHasta();
+        $fd = DateTime::createFromFormat('d/m/Y', $view->periodo->getFechaDesde()); //https://stackoverflow.com/questions/2487921/convert-a-date-format-in-php
+        $fecha_desde = $fd->format('Y-m-d');
+        $fh = DateTime::createFromFormat('d/m/Y', $view->periodo->getFechaHasta());
+        $fecha_hasta = $fh->format('Y-m-d');
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
-        $view->sucesos = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
-        $view->contentTemplate="view/novedades2/sucesosGrid.php";
+        $rta = Suceso::getSucesos($id_empleado, $eventos, $fecha_desde, $fecha_hasta, $id_contrato);
+        //$view->contentTemplate="view/novedades2/sucesosGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
 

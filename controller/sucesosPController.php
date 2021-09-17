@@ -19,6 +19,7 @@ switch ($operation)
     case 'saveSuceso': //ok
         $suceso = new SucesoP($_POST['id_suceso']);
         $suceso->setIdEvento($_POST['id_evento']);
+        $suceso->setPeriodo($_POST['periodo']);
         $suceso->setIdEmpleado($_POST['id_empleado']);
         $suceso->setFechaDesde($_POST['fecha_desde']);
         $suceso->setFechaHasta($_POST['fecha_hasta']);
@@ -40,6 +41,8 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         $view->periodos = NovPeriodo::getProximosPeriodos();
+        $view->años = Soporte::getPeriodos(2015, date("Y"));
+        $view->año_actual = Soporte::getPeriodoActual();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/sucesos/sucesosPForm.php";
@@ -53,6 +56,8 @@ switch ($operation)
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         $view->periodos = NovPeriodo::getProximosPeriodos();
         $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->suceso->getIdEmpleado(), 1);
+        $view->años = Soporte::getPeriodos(2015, date("Y"));
+        $view->año_actual = Soporte::getPeriodoActual();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

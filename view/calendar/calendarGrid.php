@@ -94,8 +94,8 @@
                                 color: '#ff9933', // override!
                                 //textColor: 'gray',
                                 extendedProps: {
-                                    tipo_evento: data['sucesos'][index].tipo_evento
-                                    //details: data['sucesos'][index].details
+                                    tipo_evento: data['sucesos'][index].tipo_evento,
+                                    periodo: data['sucesos'][index].periodo
                                 }
                             });
                         });
@@ -166,8 +166,10 @@
         else if(info.event.extendedProps.tipo_evento == 'suceso') {
             let s = new Date(info.event.start).toLocaleDateString('en-GB'); //formato dd/mm/yyyy
             let e = new Date(info.event.end).toLocaleDateString('en-GB');
+            let p = (info.event.extendedProps.periodo)? info.event.extendedProps.periodo : '-';
             msg = '<span>Desde: '+s+'</span><br/>';
-            msg += '<span>Hasta: '+e+'</span>';
+            msg += '<span>Hasta: '+e+'</span><br/>';
+            msg += '<span>Período: '+p+'</span>';
             return msg;
         }
         else if(info.event.extendedProps.tipo_evento == 'novedad_empleado') {
