@@ -175,22 +175,12 @@ class Objetivo
                   join ead_planes_evaluacion pe on pe.id_plan_evaluacion = vso.id_plan_evaluacion
                   join empleados re on re.id_empleado = vso.id_responsable_ejecucion
                   where vso.periodo = ifnull(:periodo, vso.periodo)
-                  and if (:id_puesto is null, 1, vso.id_puesto = :id_puesto)
-                  and if (:id_area is null, 1, vso.id_area = :id_area)
-                  and if (:id_contrato is null, 1, vso.id_contrato = :id_contrato)
-                  and vso.indicador = ifnull(:indicador, vso.indicador)
                   and vso.id_responsable_ejecucion = ifnull(:id_responsable_ejecucion, vso.id_responsable_ejecucion)
-                  and vso.id_responsable_seguimiento = ifnull(:id_responsable_seguimiento, vso.id_responsable_seguimiento)
-                  and if(:todos = 1, 1, vso.id_objetivo_superior is null)";
+                  and vso.id_responsable_seguimiento = ifnull(:id_responsable_seguimiento, vso.id_responsable_seguimiento)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $periodo);
-        $stmt->dpBind(':id_puesto', $id_puesto);
-        $stmt->dpBind(':id_area', $id_area);
-        $stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':indicador', $indicador);
         $stmt->dpBind(':id_responsable_ejecucion', $id_responsable_ejecucion);
         $stmt->dpBind(':id_responsable_seguimiento', $id_responsable_seguimiento);
-        $stmt->dpBind(':todos', $todos);
 
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
