@@ -80,7 +80,7 @@
                             <?php } ?>
                                 <li><a href="index.php?action=organigramas">Organigrama <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
-                            
+
                             <?php if( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ||
                                       PrivilegedUser::dhasPrivilege('GRV_VER', array(1))
                                     ){ ?>
@@ -170,6 +170,9 @@
 
 
 
+                    <?php if( PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) ||
+                              PrivilegedUser::dhasPrivilege('RVE_VER', array(1))
+                            ){ ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vencimientos<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -186,32 +189,55 @@
 
                         </ul>
                     </li>
+                    <?php } ?>
 
 
+
+                    <?php if( PrivilegedUser::dhasPrivilege('PAR_VER', array(1)) ||
+                              PrivilegedUser::dhasPrivilege('SUC_VER', array(1)) ||
+                              PrivilegedUser::dhasPrivilege('CUA_VER', array(1))
+                            ){ ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Novedades<span class="caret"></span></a>
                         <ul class="dropdown-menu">
 
-                            <li class="dropdown-header">ACTIVIDAD CUADRILLA</li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=novedades2">Carga de novedades</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=partes">Consulta de novedades</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('CUA_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=cuadrillas">Cuadrillas</a></li>
+                            <?php if( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) ||
+                                      PrivilegedUser::dhasPrivilege('PAR_VER', array(1)) ||
+                                      PrivilegedUser::dhasPrivilege('CUA_VER', array(1))
+                                    ){ ?>
+                                <li class="dropdown-header">ACTIVIDAD CUADRILLA</li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=novedades2">Carga de novedades</a></li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=partes">Consulta de novedades</a></li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('CUA_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=cuadrillas">Cuadrillas</a></li>
+                            <?php } ?>
 
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">SUCESOS DE PERSONAL</li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('SUC_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=sucesos">Sucesos</a></li>
+                            <?php if( PrivilegedUser::dhasPrivilege('SUC_VER', array(1)) ){ ?>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header">SUCESOS DE PERSONAL</li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('SUC_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=sucesos">Sucesos</a></li>
+                            <?php } ?>
 
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header"><i class="far fa-calendar-alt fa-fw dp_gray"></i>&nbsp;CALENDARIO</li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=nov_calendar">Calendario de actividad</a></li>
+                            <?php if( PrivilegedUser::dhasPrivilege('PAR_VER', array(1)) ){ ?>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header"><i class="far fa-calendar-alt fa-fw dp_gray"></i>&nbsp;CALENDARIO</li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=nov_calendar">Calendario de actividad</a></li>
+                            <?php } ?>
 
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">HABILITAS</li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=habilitas">Conversores</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=habilitas-control">Consultas</a></li>
+
+                            <?php if( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) ||
+                                      PrivilegedUser::dhasPrivilege('PAR_ABM', array(1))
+                                    ){ ?>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header">HABILITAS</li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=habilitas">Conversores</a></li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=habilitas-control">Consultas</a></li>
+                            <?php } ?>
 
                         </ul>
                     </li>
+                    <?php } ?>
+
+
 
 
 
