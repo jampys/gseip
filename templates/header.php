@@ -77,9 +77,10 @@
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('EMP_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=empleados">Empleados</a></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('PUE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=puestos">Puestos</a></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('CON_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=contratos">Contratos</a></li>
-                                <li><a href="index.php?action=organigramas">Organigrama <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <?php } ?>
+                                <li><a href="index.php?action=organigramas">Organigrama <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
+                            
                             <?php if( PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) ||
                                       PrivilegedUser::dhasPrivilege('GRV_VER', array(1))
                                     ){ ?>
@@ -213,7 +214,7 @@
                     </li>
 
 
-                    
+
                     <?php if( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) ||
                               PrivilegedUser::dhasPrivilege('NC_ABM', array(1))
                             ){ ?>
