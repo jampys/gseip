@@ -106,7 +106,7 @@
                     </li>
 
 
-                    
+
                     <?php if( PrivilegedUser::dhasPrivilege('HAB_VER', array(1)) ||
                               PrivilegedUser::dhasPrivilege('HEM_VER', array(1)) ||
                               PrivilegedUser::dhasPrivilege('HPU_VER', array(1))
@@ -213,15 +213,19 @@
                     </li>
 
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CSMA<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <!--<li class="dropdown-header">RRHH</li>-->
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=obj_objetivos">Objetivos</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=nc_no_conformidad">No conformidades</a></li>
+                    
+                    <?php if( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) ||
+                              PrivilegedUser::dhasPrivilege('NC_ABM', array(1))
+                            ){ ?>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CSMA<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=obj_objetivos">Objetivos</a></li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=nc_no_conformidad">No conformidades</a></li>
 
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
+                    <?php } ?>
 
 
 
