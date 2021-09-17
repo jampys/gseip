@@ -106,6 +106,7 @@
                     </li>
 
 
+                    
                     <?php if( PrivilegedUser::dhasPrivilege('HAB_VER', array(1)) ||
                               PrivilegedUser::dhasPrivilege('HEM_VER', array(1)) ||
                               PrivilegedUser::dhasPrivilege('HPU_VER', array(1))
@@ -128,31 +129,43 @@
                     <?php } ?>
 
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desarrollo<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
 
-                            <li class="disabled"><a href="#">Plan de evaluación <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
-                            <li class="<?php echo ( PrivilegedUser::dhasPrivilege('EAD_COM', array(1)) ||
-                                                    PrivilegedUser::dhasPrivilege('EAD_AGS', array(1)) ||
-                                                    PrivilegedUser::dhasPrivilege('EAD_REP', array(1)) ||
-                                                    PrivilegedUser::dhasPrivilege('EAD_OBJ', array(1))
-                                                  )? '': 'disabled' ?>"><a href="index.php?action=evaluaciones">Evaluación de desempeño</a></li>
+                    <?php if( PrivilegedUser::dhasPrivilege('EAD_COM', array(1)) ||
+                              PrivilegedUser::dhasPrivilege('EAD_AGS', array(1)) ||
+                              PrivilegedUser::dhasPrivilege('EAD_REP', array(1)) ||
+                              PrivilegedUser::dhasPrivilege('EAD_OBJ', array(1))
+                            ){ ?>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desarrollo<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
 
-                        </ul>
-                    </li>
+                                <li class="disabled"><a href="#">Plan de evaluación <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
+                                <li class="<?php echo ( PrivilegedUser::dhasPrivilege('EAD_COM', array(1)) ||
+                                                        PrivilegedUser::dhasPrivilege('EAD_AGS', array(1)) ||
+                                                        PrivilegedUser::dhasPrivilege('EAD_REP', array(1)) ||
+                                                        PrivilegedUser::dhasPrivilege('EAD_OBJ', array(1))
+                                                    )? '': 'disabled' ?>"><a href="index.php?action=evaluaciones">Evaluación de desempeño</a></li>
+
+                            </ul>
+                        </li>
+                    <?php } ?>
 
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Selección<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <!--<li class="dropdown-header">RRHH</li>-->
 
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=busquedas">Búsquedas</a></li>
-                            <li class="<?php echo (PrivilegedUser::dhasPrivilege('PTE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=postulantes">Postulantes</a></li>
 
-                        </ul>
-                    </li>
+                    <?php if( PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) ||
+                              PrivilegedUser::dhasPrivilege('PTE_VER', array(1))
+                            ){ ?>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Selección<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('BUS_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=busquedas">Búsquedas</a></li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('PTE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=postulantes">Postulantes</a></li>
+
+                            </ul>
+                        </li>
+                    <?php } ?>
 
 
 
