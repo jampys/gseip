@@ -68,7 +68,8 @@ class Usuario{
         $query="select su.id_user, su.user, su.enabled,
 DATE_FORMAT(su.fecha_alta,  '%d/%m/%Y') as fecha_alta,
 DATE_FORMAT(su.fecha_baja,  '%d/%m/%Y') as fecha_baja,
-em.apellido, em.nombre
+em.apellido, em.nombre,
+DATE_FORMAT(su.last_login, '%d/%m/%Y %H:%i') as last_login
 from sec_users su
 join empleados em on su.id_empleado = em.id_empleado";
 
@@ -219,6 +220,18 @@ join empleados em on su.id_empleado = em.id_empleado";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpBind(':password', $this->getPassword());
+        $stmt->dpExecute();
+        return $stmt->dpGetAffect();
+    }
+
+    public function updateLastLogin(){ //ok
+
+        $stmt=new sQuery();
+        $query="update sec_users set
+                last_login = SYSDATE()
+                where id_user = :id_user";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
