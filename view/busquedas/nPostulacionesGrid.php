@@ -93,7 +93,7 @@
                                     '<i class="fas fa-plus dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a target="_blank" title="Adjunto" href="'+target+'">'+
-                                    '<i class="fas fa-paperclip dp_blue"></i>'+
+                                    '<i class="fas fa-paperclip dp_gray"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="view" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
