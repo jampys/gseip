@@ -14,6 +14,11 @@
     <script type="text/javascript" src="resources/libraries/validation/additional-methods.js"></script>
 
 
+    <!-- moment.js --->
+    <script type="text/javascript" src="resources/libraries/daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="resources/libraries/daterangepicker/moment-with-locales.min.js"></script>
+
+
     <!-- dataTables --->
     <link type="text/css" href="resources/libraries/dataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <script src="resources/libraries/dataTables/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -27,6 +32,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap.min.css">
     <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.bootstrap.min.js"></script>
+    <!-- extension para sorting con moment.js -->
+    <script src="https://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"></script>
 
 
     <!-- bootstrap -->
@@ -78,8 +85,7 @@
 
 
     <!-- daterangepicker -->
-    <script type="text/javascript" src="resources/libraries/daterangepicker/moment.min.js"></script>
-    <script type="text/javascript" src="resources/libraries/daterangepicker/moment-with-locales.min.js"></script>
+    <!-- usa la libreria moment.js -->
     <script type="text/javascript" src="resources/libraries/daterangepicker/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/libraries/daterangepicker/daterangepicker.css" />
 

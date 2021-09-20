@@ -29,6 +29,9 @@ switch($operation){
                 $_SESSION["id_empleado"] = $view->u->getIdEmpleado();
                 $_SESSION["profile_picture"] = $view->u->getProfilePicture();
 
+                //actualizo la fecha de ultimo login
+                $view->u->updateLastLogin();
+
                 $obj = new PrivilegedUser($_SESSION["id_user"]);
                 $_SESSION['loggedUser'] = serialize($obj);
 

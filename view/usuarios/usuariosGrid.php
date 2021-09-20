@@ -15,7 +15,9 @@
                 $(this).show();
             },
             columnDefs: [
-                { responsivePriority: 1, targets: 5 }
+                {targets: 2, render: $.fn.dataTable.moment('DD/MM/YYYY')}, //fecha_alta
+                {targets: 5, render: $.fn.dataTable.moment('DD/MM/YYYY HH:mm')}, //ult_acceso
+                {targets: 6,    responsivePriority: 1} //action buttons
             ]
         });
 
@@ -49,6 +51,7 @@
                 <th>F. Alta</th>
                 <th>F. Baja</th>
                 <th>Empleado</th>
+                <th>Ult. acceso</th>
                 <th></th>
             </tr>
             </thead>
@@ -60,6 +63,7 @@
                     <td><?php echo $us['fecha_alta'];?></td>
                     <td><?php echo $us['fecha_baja'];?></td>
                     <td><?php echo $us['apellido'].' '.$us['nombre'];?></td>
+                    <td><?php echo $us['last_login'];?></td>
 
                     <td class="text-center">
                         <a class="roles" href="javascript:void(0);"><i class="far fa-list-alt fa-fw dp_blue" title="Roles"></i></a>&nbsp;&nbsp;
