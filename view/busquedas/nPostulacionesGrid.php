@@ -88,11 +88,11 @@
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = row.user.split('@')[0]+' '+row.fecha;
-                        let target = (row.cv)? row.cv : '#';
+                        let cv = (row.cv)? 'target="_blank" title="Ver CV" href="'+row.cv+'"' : 'disabled';
                         return  '<a class="'+permisoNuevo+'" title="Agregar etapa" href="#">'+
                                     '<i class="fas fa-plus dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a target="_blank" title="Adjunto" href="'+target+'">'+
+                                '<a '+cv+'>'+
                                     '<i class="fas fa-paperclip dp_gray"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="view" title="Ver" href="#">'+
