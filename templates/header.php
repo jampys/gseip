@@ -87,7 +87,7 @@
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header"><i class="fas fa-car fa-fw dp_gray"></i>&nbsp;VEHICULOS</li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vehiculos">Vehículos</a></li>
-                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos">&nbsp;Flotas de vehículos</a></li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos">Flotas de vehículos</a></li>
                             <?php } ?>
 
                             <?php if( PrivilegedUser::dhasPrivilege('USR_ABM', array(1)) ){ ?>
