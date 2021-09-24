@@ -37,7 +37,7 @@
                 {"data" : "periodo"},
                 {"data" : "indicador"},
                 {"data" : "cantidad"},
-                {"data" : null},
+                {"data" : null}, 
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
