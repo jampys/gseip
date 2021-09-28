@@ -2,6 +2,15 @@
 
     $(document).ready(function(){
 
+        function setFavicons(favImg){
+            let headTitle = document.querySelector('head');
+            let setFavicon = document.createElement('link');
+            setFavicon.setAttribute('rel','shortcut icon');
+            setFavicon.setAttribute('href',favImg);
+            headTitle.appendChild(setFavicon);}
+        setFavicons('resources/img/favicon.ico');
+
+
         $(document).on('click', '#about', function(){ //ok
             //preparo los parametros
             params={};
@@ -9,8 +18,7 @@
             params.operation = "about";
             $('#header_popupbox').load('index.php', params,function(){
                 $('#myModal').modal();
-            })
-
+            });
         });
 
 
