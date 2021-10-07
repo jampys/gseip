@@ -26,7 +26,8 @@
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
         $('#etapas_left_side').on('click', '.view', function(){ //ok
@@ -44,7 +45,8 @@
                 //$("#etapas_right_side fieldset").prop("disabled", true);
                 //$("#etapa-form #footer-buttons button").css('display', 'none');
                 //$('.selectpicker').selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -62,7 +64,8 @@
                 $('#id_no_conformidad').val(params.id_no_conformidad);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -127,7 +130,7 @@
                     }
                 }
             });
-
+            return false;
 
         });
 
