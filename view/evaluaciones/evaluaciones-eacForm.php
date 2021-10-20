@@ -278,9 +278,8 @@
                             <?php foreach ($view->competencias as $com){ ?>
 
                                 <div class="form-group">
-                                    <label for="" class="col-md-8 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
-                                    <div class="col-md-4">
-
+                                    <span class="col-md-7 control-label help_puntaje"><a href="#"><?php echo $com['nombre']; ?></a></span>
+                                    <div class="col-md-5">
                                         <div class="input-group">
                                             <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="-" data-live-search="true" data-size="5">
                                                 <?php foreach ($view->puntajes[$com['id_competencia']] as $p){ ?>
@@ -292,7 +291,7 @@
                                                 <?php  } ?>
                                             </select>
                                             <div class="input-group-addon" style="background-color: #ffffff">
-                                                <a href="#" title="<?php echo $com['user'].' '.$com['fecha']; ?>">?</a>
+                                                <a href="#" title="<?php echo $com['user'].' '.$com['fecha']; ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
                                             </div>
                                         </div>
 
@@ -313,7 +312,7 @@
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="label-box" class="alert alert-info fade in">
-                                Al presionar sobre el ícono <i class="fas fa-info-circle fa-fw"></i>&nbsp de cada competencia, podrá
+                                <span class="glyphicon glyphicon-tags"></span>&nbsp; Al presionar sobre el nombre de cada competencia, podrá
                                 visualizar la descripción del significado de cada puntaje.
                             </div>
 
