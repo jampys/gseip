@@ -2,6 +2,15 @@
 
     $(document).ready(function(){
 
+        function setFavicons(favImg){
+            let headTitle = document.querySelector('head');
+            let setFavicon = document.createElement('link');
+            setFavicon.setAttribute('rel','shortcut icon');
+            setFavicon.setAttribute('href',favImg);
+            headTitle.appendChild(setFavicon);}
+        setFavicons('resources/img/favicon.ico');
+
+
         $(document).on('click', '#about', function(){ //ok
             //preparo los parametros
             params={};
@@ -9,8 +18,7 @@
             params.operation = "about";
             $('#header_popupbox').load('index.php', params,function(){
                 $('#myModal').modal();
-            })
-
+            });
         });
 
 
@@ -87,7 +95,7 @@
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header"><i class="fas fa-car fa-fw dp_gray"></i>&nbsp;VEHICULOS</li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vehiculos">Vehículos</a></li>
-                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos">&nbsp;Flotas de vehículos</a></li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos">Flotas de vehículos</a></li>
                             <?php } ?>
 
                             <?php if( PrivilegedUser::dhasPrivilege('USR_ABM', array(1)) ){ ?>

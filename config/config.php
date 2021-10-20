@@ -6,6 +6,8 @@
 //$GLOBALS['ini'] = parse_ini_file('app.ini');
 $GLOBALS['ini'] = parse_ini_file('app.ini', true);
 date_default_timezone_set('America/Argentina/Buenos_Aires');
+setlocale(LC_TIME, 'es_ES.UTF-8'); // Unix
+setlocale(LC_TIME, 'spanish'); // En windows
 
 class Conexion  // se declara una clase para hacer la conexion con la base de datos
 {

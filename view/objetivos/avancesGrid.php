@@ -54,7 +54,8 @@
                 {
                     targets: 3,//avance parcial
                     render: function (data, type, row, meta) {
-                        return ((row.cantidad/row.cantidad_plan)*100).toFixed(2)+' %';
+                        //return ((row.cantidad/row.cantidad_plan)*100).toFixed(2)+' %';
+                        return row.avance_parcial+' %';
                     }
                 },
                 {

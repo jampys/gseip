@@ -57,7 +57,7 @@ $interval = $fd->diff($fh);
 $fila1['dias'] = $interval->format('%a');
 
 
-setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
+//setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
 $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/questions/22635303/get-day-from-string-in-spanish-php
 
 

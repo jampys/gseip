@@ -111,6 +111,7 @@ class Avance
                   DATE_FORMAT(av.fecha, '%d/%m/%Y') as fecha,
                   av.indicador, av.cantidad, av.comentarios, av.id_user,
                   ot.nombre as tarea, av.periodo, av.cantidad_plan,
+                  func_obj_progress_parcial(av.indicador, av.cantidad_plan, av.cantidad) as avance_parcial,
                   us.user
                   from obj_avances av
                   join sec_users us on av.id_user = us.id_user

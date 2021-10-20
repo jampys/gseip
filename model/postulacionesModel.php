@@ -91,6 +91,7 @@ class Postulacion
         $query = "select
                   (select !exists(select 1 from sel_etapas etx where  etx.id_postulacion = pos.id_postulacion and etx.aplica = '0')) as aplica,
                   (select sex.etapa from sel_etapas sex where sex.id_postulacion = pos.id_postulacion order by sex.fecha_etapa desc limit 1  ) as etapa,
+                  (select concat(u.directory, u.name) from uploads_postulante u where u.id_postulante = pos.id_postulante limit 1) as cv,
                   pos.id_postulacion, pos.id_busqueda, pos.id_postulante,
                   DATE_FORMAT(pos.fecha,  '%d/%m/%Y') as fecha,
                   pos.origen_cv, pos.expectativas, pos.propuesta_economica,

@@ -81,15 +81,19 @@
                 },
                 {
                     targets: 3,//action buttons
-                    width: '20%',
+                    width: '25%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoNuevo = '<?php echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? 'new' : 'disabled' ?>';
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = row.user.split('@')[0]+' '+row.fecha;
+                        let cv = (row.cv)? 'target="_blank" title="'+row.cv.split('/')[2]+'" href="'+row.cv+'"' : 'class="disabled"';
                         return  '<a class="'+permisoNuevo+'" title="Agregar etapa" href="#">'+
                                     '<i class="fas fa-plus dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a '+cv+'>'+
+                                    '<i class="fas fa-paperclip dp_gray"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="view" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+

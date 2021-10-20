@@ -3,9 +3,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="shortcut icon" href="resources/img/seip_favicon50x50.png">
+    <!-- favicon: no logueado
+         favicon para logueado está en javascript en header.php -->
+    <link rel="shortcut icon" href="resources/img/favicon.ico">
 
-<!-- incluyo la libreria jQuery -->
+    <!-- incluyo la libreria jQuery -->
     <!--<script src="dataTables/js/jquery-1.12.4.js" type="text/javascript"></script>-->
     <script src="resources/libraries/jquery/jquery-3.3.1.js" type="text/javascript"></script>
 
