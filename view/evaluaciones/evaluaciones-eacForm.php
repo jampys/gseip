@@ -28,6 +28,7 @@
         /*text-align: justify;*/
         vertical-align: top !important;
         padding-bottom: 7px;
+        padding-left: 3px;
     }
 
     #table-box table tr th {
@@ -166,7 +167,7 @@
 
             });
             verticalTable();
-
+            return false;
 
         });
 
