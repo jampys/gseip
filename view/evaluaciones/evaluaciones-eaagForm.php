@@ -5,7 +5,8 @@
         overflow-y: auto;
     }
 
-    #table-box table tr td {
+    #table-box table tr td,
+    #table-box table tr th{
         font-size: 11px !important;
         /*text-align: justify;*/
     }
