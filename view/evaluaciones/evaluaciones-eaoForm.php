@@ -318,7 +318,7 @@
                                 <div class="table-responsive">
 
                                     <table class="table table-condensed dataTable table-hover">
-
+                                        <tbody>
                                         <?php foreach ($view->puntajes as $p){ ?>
                                             <tr>
                                                 <td><b><?php echo $p['puntaje']; ?></b></td>
@@ -328,7 +328,7 @@
                                                 </td>
                                             </tr>
                                         <?php } ?>
-
+                                        </tbody>
                                     </table>
 
                                 </div>
