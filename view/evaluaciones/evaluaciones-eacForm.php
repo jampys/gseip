@@ -26,9 +26,9 @@
     #table-box table tr td {
         font-size: 11px !important;
         /*text-align: justify;*/
-        vertical-align: top !important;
+        /*vertical-align: top !important;
         padding-bottom: 7px;
-        padding-left: 3px;
+        padding-left: 3px;*/
     }
 
     #table-box table tr th {
