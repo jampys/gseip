@@ -290,7 +290,7 @@
 
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <input class="form-control ponderacion" style="text-align: right" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" >
+                                            <input class="form-control ponderacion" style="text-align: right" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" placeholder="Ponderac." >
                                             <div class="input-group-addon">%</div>
                                         </div>
                                     </div>
