@@ -259,19 +259,17 @@
 
                             <?php foreach ($view->objetivos as $obj){ ?>
 
-                                <div class="fila" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
+                                <div class="form-group fila" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
 
-                                    <div class="col-md-8">
-
-                                        <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="input-group">
                                             <p><strong><?php echo $obj['codigo'];?></strong>&nbsp;<?php echo $obj['nombre']; ?>
                                             <a href="#" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
                                                data-content='<?php require('evaluaciones-eaoPopover.php'); ?>'>ver mas</a></p>
                                         </div>
-
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="input-group">
                                             <select class="form-control selectpicker show-tick" title="-" data-live-search="true" data-size="5">
                                                 <?php foreach ($view->puntajes as $p){ ?>
@@ -289,7 +287,7 @@
 
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="input-group">
                                             <input class="form-control ponderacion" style="text-align: right" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" >
                                             <div class="input-group-addon">%</div>
