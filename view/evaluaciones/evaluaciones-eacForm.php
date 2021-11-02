@@ -160,9 +160,9 @@
                 //}
 
             });*/
-            $('#table-box table').html('');
+            $('#table-box table tbody').html('');
             $.each(jsonCompetenciasHelp[id], function(indice, val){
-                $('#table-box table').append('<tr><th><strong>'+val['puntaje']+'</strong></th>'+val['descripcion']+'</tr>')
+                $('#table-box table tbody').append('<tr><th><strong>'+val['puntaje']+'</strong></th>'+val['descripcion']+'</tr>')
                                      .scrollTop();
 
             });
@@ -320,7 +320,9 @@
                                 <div class="table-responsive">
 
                                     <table class="table table-condensed dataTable table-hover">
+                                        <tbody>
                                         <!-- los contenidos se cargan dinamicamente desde javascript -->
+                                        </tbody>
                                     </table>
 
                                 </div>
