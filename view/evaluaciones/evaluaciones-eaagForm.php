@@ -242,10 +242,8 @@
                             <?php foreach ($view->aspectos_generales as $com){ ?>
 
                                 <div class="form-group">
-                                    <label for="" class="col-md-5 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
-
+                                    <span class="col-md-5 control-label help_puntaje"><a href="#"><?php echo $com['nombre']; ?></a></span>
                                     <div class="col-md-4">
-
                                         <div class="input-group">
                                             <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
                                                 <?php foreach ($view->puntajes[$com['id_aspecto_general']] as $p){ ?>
@@ -257,10 +255,9 @@
                                                 <?php  } ?>
                                             </select>
                                             <div class="input-group-addon" style="background-color: #ffffff">
-                                                <a href="#" title="<?php echo $com['user'].' '.$com['fecha']; ?>">?</a>
+                                                <a href="#" title="<?php echo $com['user'].' '.$com['fecha']; ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
                                             </div>
                                         </div>
-
                                     </div>
 
                                     <div class="col-md-3">
@@ -293,7 +290,7 @@
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="label-box" class="alert alert-info fade in">
-                                Al presionar sobre el ícono <i class="fas fa-info-circle fa-fw"></i>&nbsp de cada aspecto general, podrá
+                                <span class="glyphicon glyphicon-tags"></span>&nbsp; Al presionar sobre el nombre de cada aspecto general, podrá
                                 visualizar la descripción del significado de cada puntaje.
                             </div>
 
