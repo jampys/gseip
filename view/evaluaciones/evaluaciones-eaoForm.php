@@ -281,7 +281,7 @@
                                                 <?php  } ?>
                                             </select>
                                             <div class="input-group-addon" style="background-color: #ffffff">
-                                                <a href="#" title="<?php echo $obj['user'].' '.$obj['fecha']; ?>">?</a>
+                                                <a href="#" title="<?php echo $obj['user'].' '.$obj['fecha']; ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
                                             </div>
                                         </div>
 
@@ -311,7 +311,7 @@
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="label-box" class="alert alert-info fade in">
-                                <i class="fas fa-info-circle fa-fw"></i>&nbsp Descripción del significado de cada puntaje.
+                                <span class="glyphicon glyphicon-tags"></span>&nbsp; Descripción del significado de cada puntaje.
                             </div>
 
                             <div id="table-box">
