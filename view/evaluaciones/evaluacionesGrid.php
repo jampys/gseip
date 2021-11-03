@@ -52,7 +52,6 @@
                 {"data" : "id_empleado"},
                 {"data" : "id_empleado"},
                 {"data" : "id_empleado"},
-                {"data" : "id_empleado"},
                 {"data" : "id_empleado", orderable: false}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
@@ -113,7 +112,7 @@
 
     <!--<div class="table-responsive">-->
 
-        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>Apellido</th>
