@@ -31,7 +31,7 @@
                 "data": function ( d ) { //https://datatables.net/reference/option/ajax.data
                     d.periodo = $("#periodo").val();
                     d.search_contrato = $("#search_contrato").val();
-                    d.cerrado = $("#cerrado").val();
+                    d.cerrado = $('#periodo option:selected').attr('cerrado');
                     d.search_puesto = $("#search_puesto").val();
                     d.search_nivel_competencia = $('#search_nivel_competencia').val();
                     d.search_localidad = $("#search_localidad").val();
