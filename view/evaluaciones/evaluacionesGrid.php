@@ -3,11 +3,8 @@
 
     $(document).ready(function(){
 
-        $('#example').DataTable({
+        /*$('#example').DataTable({
             responsive: true,
-            /*language: {
-                url: 'dataTables/Spanish.json'
-            }*/
             "fnInitComplete": function () {
                 $(this).show();
             },
@@ -15,6 +12,93 @@
             columnDefs: [
                 { responsivePriority: 1, targets: 4 }
             ]
+        });*/
+
+
+        var table = $('#example').DataTable({
+            responsive: true,
+            deferRender: true,
+            //processing: true,
+            language: {
+                //url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+                url: 'resources/libraries/dataTables/Spanish.json'
+            },
+            'ajax': {
+                "type"   : "POST",
+                //"url"    : 'index.php?action=ajax_certificados&operation=refreshGrid',
+                "url"    : 'index.php',
+                //data: {action: "ajax_certificados", operation:"refreshGrid"},
+                "data": function ( d ) { //https://datatables.net/reference/option/ajax.data
+                    d.search_periodo = $("#search_periodo").val();
+                    d.search_puesto = $("#search_puesto").val();
+                    d.search_area = $("#search_area").val();
+                    d.search_contrato = $("#search_contrato").val();
+                    d.search_indicador = $("#search_indicador").val();
+                    d.search_responsable_ejecucion = $("#search_responsable_ejecucion").val();
+                    d.search_responsable_seguimiento = $("#search_responsable_seguimiento").val();
+                    d.todos = $('#search_todos').prop('checked')? 1:0;
+                    d.action = "obj_objetivos";
+                    d.operation = "refreshGrid";
+                },
+                "dataSrc": ""
+            },
+            //rowId: 'id_objetivo',
+            'columns': [
+                /*{   // Responsive control column
+                 data: null,
+                 defaultContent: '',
+                 className: 'control',
+                 orderable: false
+                 },*/
+                {"data" : "id_empleado"},
+                {"data" : "id_empleado"},
+                {"data" : "id_empleado"},
+                {"data" : "id_empleado"},
+                {"data" : "id_empleado"},
+                {"data" : "id_empleado"},
+                {"data" : "id_empleado", orderable: false}
+            ],
+            //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id_objetivo);
+                $(row).attr('id_objetivo', data.id_objetivo);
+                $(row).attr('cerrado', data.cerrado);
+            },
+            "columnDefs": [
+                {
+                    targets: 4,//action buttons
+                    responsivePriority: 3,
+                    render: function (data, type, row, meta) {
+                        let permisoEtapas = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'detalle' : 'disabled' ?>';
+                        let permisoClonar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'clone' : 'disabled' ?>';
+                        let permisoVer = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? 'view' : 'disabled' ?>';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_UPDATE', array(1)) )? true : false ?>';
+                        let permisoEditarO = (permisoEditar && !row.cerrado)? 'edit' : 'disabled';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_DELETE', array(1)) )? true : false ?>';
+                        let permisoEliminarO = (permisoEliminar && !row.cerrado)? 'delete' : 'disabled';
+                        let user_info = row.fecha; //row.user.split('@')[0]+' '+row.fecha;
+                        return '<a class="'+permisoEtapas+'" href="javascript:void(0);">'+ //si tiene permiso para ver etapas
+                            '<i class="fas fa-th-list dp_blue" title="Detalle del objetivo"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoClonar+'" href="#" title="Clonar">'+ //si tiene permiso para clonar
+                            '<i class="far fa-copy dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoVer+'" href="#" title="Ver">'+ //si tiene permiso para ver
+                            '<i class="far fa-eye dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoEditarO+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                            '<i class="far fa-edit dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoEliminarO+'" href="#" title="Borrar">'+ //si tiene permiso para eliminar
+                            '<i class="far fa-trash-alt dp_red"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a href="#" title="'+user_info+'" onclick="return false;">'+
+                            '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                            '</a>';
+                    }
+                }
+            ]
+
         });
 
 
@@ -42,70 +126,6 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody>
-            <?php if(isset($view->evaluaciones)) {
-             foreach ($view->evaluaciones as $evaluacion):   ?>
-                <tr id_empleado="<?php echo $evaluacion['id_empleado'];?>"
-                    id_plan_evaluacion="<?php echo $evaluacion['id_plan_evaluacion'];?>"
-                    periodo="<?php echo $evaluacion['periodo'];?>"
-                    cerrado="<?php echo $evaluacion['cerrado'];?>"
-                    >
-                    <td><?php echo $evaluacion['apellido'];?></td>
-                    <td><?php echo $evaluacion['nombre'];?></td>
-                    <td><?php echo $evaluacion['contrato'];?></td>
-                    <td><?php echo $evaluacion['puesto'];?></td>
-
-                    <!-- evaluacion de aspectos generales -->
-                    <td class="text-center">
-                        <a class="<?php echo (!$evaluacion['cerrado'] &&
-                            PrivilegedUser::dhasPrivilege('EAD_AGS', array(1))
-                        )? 'loadEaag' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación aspectos generales" >
-                            <span class="<?php echo ($evaluacion['hasAllEaag'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked dp_blue';  ?>" aria-hidden="true"></span>
-                        </a>&nbsp;&nbsp;
-
-                    <!-- evaluacion de competencias -->
-                        <a class="<?php echo (  !$evaluacion['cerrado'] &&
-                                                ((PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) && $evaluacion['isInSup']) ||
-                                                    (PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) && $evaluacion['isSup']) ||
-                                                PrivilegedUser::dhasPrivilege('EAD_COM', array(0)))
-                            )? 'loadEac' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación competencias" >
-                            <span class="<?php echo ($evaluacion['hasAllEac'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked dp_blue';  ?>" aria-hidden="true"></span>
-                        </a>&nbsp;&nbsp;
-
-
-                    <!-- evaluacion de objetivos -->
-                        <a class="<?php echo (  !$evaluacion['cerrado'] &&
-                                                ((PrivilegedUser::dhasPrivilege('EAD_OBJ', array(51)) && $evaluacion['isInSup']) ||
-                                                    (PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) && $evaluacion['isSup']) ||
-                                                PrivilegedUser::dhasPrivilege('EAD_OBJ', array(0)))
-                            )? 'loadEao' : 'disabled' ?>" href="javascript:void(0);" title="Evaluación objetivos" >
-                            <span class="<?php echo ($evaluacion['hasAllEao'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked dp_blue';  ?>" aria-hidden="true"></span>
-                        </a>&nbsp;&nbsp;
-
-
-                    <!-- evaluacion conclusiones -->
-                        <a class="<?php echo (  !$evaluacion['cerrado'] &&
-                                                ((PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) && $evaluacion['isInSup']) ||
-                                                    (PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) && $evaluacion['isSup']) ||
-                                                PrivilegedUser::dhasPrivilege('EAD_COM', array(0)))
-                        )? 'loadEaconcl' : 'disabled' ?>" href="javascript:void(0);" title="Conclusiones" >
-                            <span class="<?php echo ($evaluacion['hasEaconcl'])? 'glyphicon glyphicon-check text-success': 'glyphicon glyphicon-unchecked dp_blue';  ?>" aria-hidden="true"></span>
-                        </a>&nbsp;&nbsp;
-
-                    <!-- reporte individual -->
-                        <a class="<?php echo (  //!$evaluacion['cerrado'] &&
-                                                ((PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) && $evaluacion['isInSup']) ||
-                                                    (PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) && $evaluacion['isSup']) ||
-                                                PrivilegedUser::dhasPrivilege('EAD_COM', array(0)))
-                            )? 'reporte' : 'disabled' ?>" href="javascript:void(0);" title="Reporte de evaluación" >
-                            <i class="far fa-file-pdf fa-fw dp_blue"></i>
-                        </a>
-                    </td>
-
-
-                </tr>
-            <?php endforeach; } ?>
-            </tbody>
         </table>
 
     <!--</div>-->
