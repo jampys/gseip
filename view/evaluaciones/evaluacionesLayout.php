@@ -13,22 +13,19 @@
         $(document).ready(function(){
 
 
-            //Al cambiar el periodo
-            //$('#search_panel').on('change', '#periodo', function(){ //ok
             $(document).on('click', '#search', function(){ //ok
                 //alert('cambio el periodo');
-                params={};
+                /*params={};
                 params.periodo = $('#periodo').val();
                 params.search_contrato = $('#search_contrato').val();
                 params.cerrado = $('#periodo option:selected').attr('cerrado');
                 params.search_puesto = $('#search_puesto').val();
                 params.search_nivel_competencia = $('#search_nivel_competencia').val();
                 params.search_localidad = $('#search_localidad').val();
-
                 params.action = "evaluaciones";
                 params.operation = "refreshGrid";
-                //alert(params.cerrado);
-                $('#content').load('index.php', params,function(){})
+                $('#content').load('index.php', params,function(){})*/
+                $('#example').DataTable().ajax.reload();
 
             });
 

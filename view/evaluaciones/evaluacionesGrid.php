@@ -48,16 +48,17 @@
                  className: 'control',
                  orderable: false
                  },*/
-                {"data" : "id_empleado"},
-                {"data" : "id_empleado"},
-                {"data" : "id_empleado"},
-                {"data" : "id_empleado"},
+                {"data" : "apellido"},
+                {"data" : "nombre"},
+                {"data" : "contrato"},
+                {"data" : "puesto"},
                 {"data" : "id_empleado", orderable: false}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
             createdRow: function (row, data, dataIndex) {
-                $(row).attr('data-id', data.id_objetivo);
-                $(row).attr('id_objetivo', data.id_objetivo);
+                $(row).attr('id_empleado', data.id_empleado);
+                $(row).attr('id_plan_evaluacion', data.id_plan_evaluacion);
+                $(row).attr('periodo', data.periodo);
                 $(row).attr('cerrado', data.cerrado);
             },
             "columnDefs": [
