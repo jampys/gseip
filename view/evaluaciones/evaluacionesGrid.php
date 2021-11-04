@@ -84,7 +84,7 @@
                         //let permisoEditarO = (permisoEditar && !row.cerrado)? 'edit' : 'disabled';
 
                         let permisoAgEditar = (!row.cerrado && permisoAg)? 'loadEaag' : 'disabled';
-                        let permisoAgIcon = (row.hasAllEaag)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
+                        let permisoAgIcon = (row.hasAllEaag == 1)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
 
 
                         return '<a class="'+permisoAgEditar+'" href="javascript:void(0);">'+ //si tiene permiso para evaluar aspectos generales
