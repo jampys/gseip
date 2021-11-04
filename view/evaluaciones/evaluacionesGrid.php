@@ -88,7 +88,7 @@
 
 
                         return '<a class="'+permisoAgEditar+'" href="javascript:void(0);">'+ //si tiene permiso para evaluar aspectos generales
-                                    '<i class="'+permisoAgIcon+'" title="Detalle del objetivo"></i>'+
+                                    '<i class="'+permisoAgIcon+'" title="Evaluación aspectos generales"></i>'+
                                 '</a>';
                     }
                 }
