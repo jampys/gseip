@@ -76,13 +76,7 @@
                         let permisoConcl = '<?php echo ( PrivilegedUser::dhasPrivilege('EAD_COM', array(0)) )? true : false ?>';
                         let permisoConclS = '<?php echo ( PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) )? true : false ?>';
                         let permisoConclIS = '<?php echo ( PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) )? true : false ?>';
-
-
-                        //let permisoClonar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'clone' : 'disabled' ?>';
-                        //let permisoVer = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? 'view' : 'disabled' ?>';
-                        //let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_UPDATE', array(1)) )? true : false ?>';
-                        //let permisoEditarO = (permisoEditar && !row.cerrado)? 'edit' : 'disabled';
-
+                        
                         let permisoAgEditar = (!row.cerrado && permisoAg)? 'loadEaag' : 'disabled';
                         let permisoAgIcon = (row.hasAllEaag == 1)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
 
