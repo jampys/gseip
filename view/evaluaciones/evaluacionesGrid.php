@@ -76,14 +76,20 @@
                         let permisoConcl = '<?php echo ( PrivilegedUser::dhasPrivilege('EAD_COM', array(0)) )? true : false ?>';
                         let permisoConclS = '<?php echo ( PrivilegedUser::dhasPrivilege('EAD_COM', array(52)) )? true : false ?>';
                         let permisoConclIS = '<?php echo ( PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) )? true : false ?>';
-                        
+
                         let permisoAgEditar = (!row.cerrado && permisoAg)? 'loadEaag' : 'disabled';
                         let permisoAgIcon = (row.hasAllEaag == 1)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
 
+                        let permisoComEditar = (!row.cerrado && ( (permisoCom) || (permisoComIS && row.isInSup) || (permisoComS && row.isSup) ))? 'loadEac' : 'disabled';
+                        let permisoComIcon = (row.hasAllEac == 1)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
 
-                        return '<a class="'+permisoAgEditar+'" href="javascript:void(0);">'+ //si tiene permiso para evaluar aspectos generales
-                                    '<i class="'+permisoAgIcon+'" title="Evaluación aspectos generales"></i>'+
-                                '</a>';
+
+                        return '<a class="'+permisoAgEditar+'" href="#" title="Evaluación aspectos generales">'+ //si tiene permiso para evaluar aspectos generales
+                                    '<i class="'+permisoAgIcon+'"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoComEditar+'" href="#" title="Evaluación competencias">'+ //si tiene permiso para evaluar competencias
+                                    '<i class="'+permisoComIcon+'"></i>'+
+                                '</a>&nbsp;&nbsp;';
                     }
                 }
             ]
