@@ -78,16 +78,16 @@
                         let permisoConclIS = '<?php echo ( PrivilegedUser::dhasPrivilege('EAD_COM', array(51)) )? true : false ?>';
 
                         let permisoAgEditar = (!row.cerrado && permisoAg)? 'loadEaag' : 'disabled';
-                        let permisoAgIcon = (row.hasAllEaag == 1)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
+                        let permisoAgIcon = (row.hasAllEaag == 1)? 'glyphicon glyphicon-check dp_green' : 'glyphicon glyphicon-unchecked dp_blue';
 
                         let permisoComEditar = (!row.cerrado && ( (permisoCom) || (permisoComIS && row.isInSup) || (permisoComS && row.isSup) ))? 'loadEac' : 'disabled';
-                        let permisoComIcon = (row.hasAllEac == 1)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
+                        let permisoComIcon = (row.hasAllEac == 1)? 'glyphicon glyphicon-check dp_green' : 'glyphicon glyphicon-unchecked dp_blue';
 
                         let permisoObjEditar = (!row.cerrado && ( (permisoObj) || (permisoObjIS && row.isInSup) || (permisoObjS && row.isSup) ))? 'loadEao' : 'disabled';
-                        let permisoObjIcon = (row.hasAllEao == 1)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
+                        let permisoObjIcon = (row.hasAllEao == 1)? 'glyphicon glyphicon-check dp_green' : 'glyphicon glyphicon-unchecked dp_blue';
 
                         let permisoConclEditar = (!row.cerrado && ( (permisoConcl) || (permisoConclIS && row.isInSup) || (permisoConclS && row.isSup) ))? 'loadEaconcl' : 'disabled';
-                        let permisoConclIcon = (row.hasEaconcl == 1)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
+                        let permisoConclIcon = (row.hasEaconcl == 1)? 'glyphicon glyphicon-check dp_green' : 'glyphicon glyphicon-unchecked dp_blue';
 
                         let permisoRepInd = ( (permisoCom) || (permisoComIS && row.isInSup) || (permisoComS && row.isSup) )? 'reporte' : 'disabled';
 
@@ -105,7 +105,7 @@
                                     '<i class="'+permisoConclIcon+'"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoRepInd+'" href="#" title="Reporte de evaluación">'+ //si tiene permiso emitir el reporte individual
-                                    '<i class="far fa-file-pdf"></i>'+
+                                    '<i class="far fa-file-pdf dp_blue"></i>'+
                                 '</a>';
                     }
                 }
