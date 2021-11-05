@@ -83,13 +83,30 @@
                         let permisoComEditar = (!row.cerrado && ( (permisoCom) || (permisoComIS && row.isInSup) || (permisoComS && row.isSup) ))? 'loadEac' : 'disabled';
                         let permisoComIcon = (row.hasAllEac == 1)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
 
+                        let permisoObjEditar = (!row.cerrado && ( (permisoObj) || (permisoObjIS && row.isInSup) || (permisoObjS && row.isSup) ))? 'loadEao' : 'disabled';
+                        let permisoObjIcon = (row.hasAllEao == 1)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
+
+                        let permisoConclEditar = (!row.cerrado && ( (permisoConcl) || (permisoConclIS && row.isInSup) || (permisoConclS && row.isSup) ))? 'loadEaconcl' : 'disabled';
+                        let permisoConclIcon = (row.hasEaconcl == 1)? 'far fa-check-square dp_green' : 'far fa-square dp_blue';
+
+                        let permisoRepInd = ( (permisoCom) || (permisoComIS && row.isInSup) || (permisoComS && row.isSup) )? 'reporte' : 'disabled';
+
 
                         return '<a class="'+permisoAgEditar+'" href="#" title="Evaluación aspectos generales">'+ //si tiene permiso para evaluar aspectos generales
                                     '<i class="'+permisoAgIcon+'"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoComEditar+'" href="#" title="Evaluación competencias">'+ //si tiene permiso para evaluar competencias
                                     '<i class="'+permisoComIcon+'"></i>'+
-                                '</a>&nbsp;&nbsp;';
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoObjEditar+'" href="#" title="Evaluación objetivos">'+ //si tiene permiso para evaluar objetivos
+                                    '<i class="'+permisoObjIcon+'"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoConclEditar+'" href="#" title="Conclusiones">'+ //si tiene permiso para escribir conclusiones
+                                    '<i class="'+permisoConclIcon+'"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoRepInd+'" href="#" title="Reporte de evaluación">'+ //si tiene permiso emitir el reporte individual
+                                    '<i class="far fa-file-pdf"></i>'+
+                                '</a>';
                     }
                 }
             ]
