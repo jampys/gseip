@@ -67,7 +67,7 @@
 
 
             //Al presionar en editar una evaluacion de competencias
-            $(document).on('click', '.loadEac', function(){ //ok
+            $('#content').on('click', '.loadEac', function(){ //ok
                 params={};
                 //params.id_evaluacion_competencia = $(this).closest('tr').attr('id_evaluacion_competencia');
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
@@ -81,12 +81,12 @@
                     $('#modalEac').modal();
                 });
                 //$('#popupbox').data({'id_empleado':params.id_empleado, 'id_plan_evaluacion': params.id_plan_evaluacion}); //paso parametros
-
+                return false;
             });
 
 
             //Al presionar en editar una evaluacion de aspectos generales
-            $(document).on('click', '.loadEaag', function(){ //ok
+            $('#content').on('click', '.loadEaag', function(){ //ok
                 params={};
                 //params.id_evaluacion_competencia = $(this).closest('tr').attr('id_evaluacion_competencia');
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
@@ -99,12 +99,12 @@
                 $('#popupbox').load('index.php', params,function(){
                     $('#modalEaag').modal();
                 });
-
+                return false;
             });
 
 
             //Al presionar en editar una evaluacion de objetivos
-            $(document).on('click', '.loadEao', function(){
+            $('#content').on('click', '.loadEao', function(){
                 params={};
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
                 params.id_plan_evaluacion = $(this).closest('tr').attr('id_plan_evaluacion');
@@ -116,12 +116,12 @@
                 $('#popupbox').load('index.php', params,function(){
                     $('#modalEao').modal();
                 });
-
+                return false;
             });
 
 
             //Al presionar en editar una evaluacion de conclusiones
-            $(document).on('click', '.loadEaconcl', function(){
+            $('#content').on('click', '.loadEaconcl', function(){
                 params={};
                 params.id_empleado = $(this).closest('tr').attr('id_empleado');
                 params.id_plan_evaluacion = $(this).closest('tr').attr('id_plan_evaluacion');
@@ -133,7 +133,7 @@
                 $('#popupbox').load('index.php', params,function(){
                     $('#modalEaconcl').modal();
                 });
-
+                return false;
             });
 
 
@@ -162,7 +162,7 @@
             });
 
 
-            $(document).on('click', '.delete', function(){
+            $('#content').on('click', '.delete', function(){
                 alert('Funcionalidad en desarrollo');
                 throw new Error();
                 return false;
