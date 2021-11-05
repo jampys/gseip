@@ -19,6 +19,10 @@
             sDom: '<"top"f>rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
             //deferRender:    true,
+            language: {
+                //url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+                url: 'resources/libraries/dataTables/Spanish.json'
+            },
             scrollY:        200,
             scrollCollapse: true,
             scroller:       true,
