@@ -104,8 +104,8 @@
                                 '<a class="'+permisoConclEditar+'" href="#" title="Conclusiones">'+ //si tiene permiso para escribir conclusiones
                                     '<i class="'+permisoConclIcon+'"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a class="'+permisoRepInd+'" href="#" title="Reporte de evaluación">'+ //si tiene permiso emitir el reporte individual
-                                    '<i class="far fa-file-pdf dp_blue"></i>'+
+                                '<a class="'+permisoRepInd+'" href="#" title="Certificado de evaluación">'+ //si tiene permiso emitir el reporte individual
+                                    '<i class="fas fa-download dp_blue"></i>'+
                                 '</a>';
                     }
                 }
