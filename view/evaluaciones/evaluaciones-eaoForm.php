@@ -282,7 +282,7 @@
                                                 <?php  } ?>
                                             </select>
                                             <div class="input-group-addon" style="background-color: #ffffff">
-                                                <a href="#" title="<?php echo $obj['user'].' '.$obj['fecha']; ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
+                                                <a href="#" title="<?php echo explode("@", $obj['user'], 2)[0].' '.$obj['fecha']; ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
                                             </div>
                                         </div>
 

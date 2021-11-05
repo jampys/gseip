@@ -292,7 +292,7 @@
                                                 <?php  } ?>
                                             </select>
                                             <div class="input-group-addon" style="background-color: #ffffff">
-                                                <a href="#" title="<?php echo $com['user'].' '.$com['fecha']; ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
+                                                <a href="#" title="<?php echo explode("@", $com['user'], 2)[0].' '.$com['fecha']; ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
                                             </div>
                                         </div>
 
