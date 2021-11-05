@@ -205,7 +205,7 @@
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Evaluación de objetivos guardada con exito').addClass('alert alert-success').show();
-                        $("#search").trigger("click");
+                        $('#example').DataTable().ajax.reload(null, false); //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#modalEao').modal('hide');
                                               }, 2000);
