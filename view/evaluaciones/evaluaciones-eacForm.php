@@ -23,9 +23,13 @@
         overflow-y: auto;
     }
 
-    #table-box table tr td {
+    #table-box table tr td,
+    #table-box table tr th{
         font-size: 11px !important;
         /*text-align: justify;*/
+        /*vertical-align: top !important;
+        padding-bottom: 7px;
+        padding-left: 3px;*/
     }
 
     #table-box table tr th {
@@ -157,14 +161,14 @@
                 //}
 
             });*/
-            $('#table-box table').html('');
+            $('#table-box table tbody').html('');
             $.each(jsonCompetenciasHelp[id], function(indice, val){
-                $('#table-box table').append('<tr><th><strong>'+val['puntaje']+'</strong></th>'+val['descripcion']+'</tr>')
+                $('#table-box table tbody').append('<tr><th><strong>'+val['puntaje']+'</strong></th>'+val['descripcion']+'</tr>')
                                      .scrollTop();
 
             });
             verticalTable();
-
+            return false;
 
         });
 
@@ -219,7 +223,7 @@
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Evaluación de competencias guardada con exito').addClass('alert alert-success').show();
-                        $("#search").trigger("click");
+                        $('#example').DataTable().ajax.reload(null, false); //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#modalEac').modal('hide');
                                               }, 2000);
@@ -275,9 +279,8 @@
                             <?php foreach ($view->competencias as $com){ ?>
 
                                 <div class="form-group">
-                                    <label for="" class="col-md-8 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
-                                    <div class="col-md-4">
-
+                                    <span class="col-md-7 control-label help_puntaje"><a href="#"><?php echo $com['nombre']; ?></a></span>
+                                    <div class="col-md-5">
                                         <div class="input-group">
                                             <select class="form-control selectpicker show-tick" id="<?php echo $com['id_competencia'];?>" name="<?php echo $com['id_competencia'];?>" id_evaluacion_competencia="<?php echo $com['id_evaluacion_competencia'];?>" title="-" data-live-search="true" data-size="5">
                                                 <?php foreach ($view->puntajes[$com['id_competencia']] as $p){ ?>
@@ -289,7 +292,7 @@
                                                 <?php  } ?>
                                             </select>
                                             <div class="input-group-addon" style="background-color: #ffffff">
-                                                <a href="#" title="<?php echo $com['user'].' '.$com['fecha']; ?>">?</a>
+                                                <a href="#" title="<?php echo explode("@", $com['user'], 2)[0].' '.$com['fecha']; ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
                                             </div>
                                         </div>
 
@@ -310,7 +313,7 @@
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="label-box" class="alert alert-info fade in">
-                                Al presionar sobre el ícono <i class="fas fa-info-circle fa-fw"></i>&nbsp de cada competencia, podrá
+                                <span class="glyphicon glyphicon-tags"></span>&nbsp; Al presionar sobre el nombre de cada competencia, podrá
                                 visualizar la descripción del significado de cada puntaje.
                             </div>
 
@@ -318,7 +321,9 @@
                                 <div class="table-responsive">
 
                                     <table class="table table-condensed dataTable table-hover">
+                                        <tbody>
                                         <!-- los contenidos se cargan dinamicamente desde javascript -->
+                                        </tbody>
                                     </table>
 
                                 </div>

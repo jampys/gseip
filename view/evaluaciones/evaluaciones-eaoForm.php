@@ -5,7 +5,8 @@
         overflow-y: auto;
     }
 
-    #table-box table tr td {
+    #table-box table tr td,
+    #table-box table tr th{
         font-size: 11px !important;
         /*text-align: justify;*/
     }
@@ -204,7 +205,7 @@
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Evaluación de objetivos guardada con exito').addClass('alert alert-success').show();
-                        $("#search").trigger("click");
+                        $('#example').DataTable().ajax.reload(null, false); //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#modalEao').modal('hide');
                                               }, 2000);
@@ -259,19 +260,17 @@
 
                             <?php foreach ($view->objetivos as $obj){ ?>
 
-                                <div class="fila" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
+                                <div class="form-group fila" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
 
-                                    <div class="col-md-8">
-
-                                        <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="input-group">
                                             <p><strong><?php echo $obj['codigo'];?></strong>&nbsp;<?php echo $obj['nombre']; ?>
                                             <a href="#" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
                                                data-content='<?php require('evaluaciones-eaoPopover.php'); ?>'>ver mas</a></p>
                                         </div>
-
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="input-group">
                                             <select class="form-control selectpicker show-tick" title="-" data-live-search="true" data-size="5">
                                                 <?php foreach ($view->puntajes as $p){ ?>
@@ -283,15 +282,15 @@
                                                 <?php  } ?>
                                             </select>
                                             <div class="input-group-addon" style="background-color: #ffffff">
-                                                <a href="#" title="<?php echo $obj['user'].' '.$obj['fecha']; ?>">?</a>
+                                                <a href="#" title="<?php echo explode("@", $obj['user'], 2)[0].' '.$obj['fecha']; ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
                                             </div>
                                         </div>
 
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="input-group">
-                                            <input class="form-control ponderacion" style="text-align: right" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" >
+                                            <input class="form-control ponderacion" style="text-align: right" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" placeholder="Ponderac." >
                                             <div class="input-group-addon">%</div>
                                         </div>
                                     </div>
@@ -313,14 +312,14 @@
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="label-box" class="alert alert-info fade in">
-                                <i class="fas fa-info-circle fa-fw"></i>&nbsp Descripción del significado de cada puntaje.
+                                <span class="glyphicon glyphicon-tags"></span>&nbsp; Descripción del significado de cada puntaje.
                             </div>
 
                             <div id="table-box">
                                 <div class="table-responsive">
 
                                     <table class="table table-condensed dataTable table-hover">
-
+                                        <tbody>
                                         <?php foreach ($view->puntajes as $p){ ?>
                                             <tr>
                                                 <td><b><?php echo $p['puntaje']; ?></b></td>
@@ -330,7 +329,7 @@
                                                 </td>
                                             </tr>
                                         <?php } ?>
-
+                                        </tbody>
                                     </table>
 
                                 </div>

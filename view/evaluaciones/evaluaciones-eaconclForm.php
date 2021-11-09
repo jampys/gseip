@@ -39,7 +39,7 @@
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Comentarios guardados con exito').addClass('alert alert-success').show();
-                        $("#search").trigger("click");
+                        $('#example').DataTable().ajax.reload(null, false); //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#modalEaconcl').modal('hide');
                                               }, 2000);
@@ -120,13 +120,13 @@
 
                     <div class="form-group required">
                         <label class="control-label" for="fortalezas">Fortalezas</label>
-                        <a href="#" title="<?php echo $view->conclusion->getEvaluador().' '.$view->conclusion->getFecha() ?>">?</a>
+                        <a href="#" title="<?php echo explode("@", $view->conclusion->getEvaluador(), 2)[0].' '.$view->conclusion->getFecha() ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
                         <textarea class="form-control" name="fortalezas" id="fortalezas" placeholder="Fortalezas" rows="4"><?php print $view->conclusion->getFortalezas(); ?></textarea>
                     </div>
 
                     <div class="form-group required">
                         <label class="control-label" for="aspectos_mejorar">Aspectos a mejorar</label>
-                        <a href="#" title="<?php echo $view->conclusion->getEvaluador().' '.$view->conclusion->getFecha() ?>">?</a>
+                        <a href="#" title="<?php echo explode("@", $view->conclusion->getEvaluador(), 2)[0].' '.$view->conclusion->getFecha() ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
                         <textarea class="form-control" name="aspectos_mejorar" id="aspectos_mejorar" placeholder="Aspectos a mejorar" rows="4"><?php print $view->conclusion->getAspectosMejorar(); ?></textarea>
                     </div>
 

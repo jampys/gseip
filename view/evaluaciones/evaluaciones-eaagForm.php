@@ -5,7 +5,8 @@
         overflow-y: auto;
     }
 
-    #table-box table tr td {
+    #table-box table tr td,
+    #table-box table tr th{
         font-size: 11px !important;
         /*text-align: justify;*/
     }
@@ -128,10 +129,10 @@
                           //.scrollTop();
 
 
-            $('#table-box table').html('');
+            $('#table-box table tbody').html('');
             $.each(jsonAspectosGeneralesHelp[id], function(indice, val){
                 //$('#table-box table').append('<tr><th><strong>'+val['puntaje']+'</strong></th>'+val['descripcion']+'</tr>')
-                $('#table-box table').append('<tr><th><strong>'+val['puntaje']+'</strong></th><td>'+val['descripcion']+'<td></tr>')
+                $('#table-box table tbody').append('<tr><th><strong>'+val['puntaje']+'</strong></th><td>'+val['descripcion']+'<td></tr>')
                                      .scrollTop();
             });
             //verticalTable();
@@ -186,7 +187,7 @@
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Evaluación de aspectos generales guardada con exito').addClass('alert alert-success').show();
-                        $("#search").trigger("click");
+                        $('#example').DataTable().ajax.reload(null, false); //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#modalEaag').modal('hide');
                                               }, 2000);
@@ -242,10 +243,8 @@
                             <?php foreach ($view->aspectos_generales as $com){ ?>
 
                                 <div class="form-group">
-                                    <label for="" class="col-md-5 control-label"> <?php echo $com['nombre']; ?>   <a href="#"><i class="help_puntaje fas fa-info-circle fa-fw"></i></a> </label>
-
+                                    <span class="col-md-5 control-label help_puntaje"><a href="#"><?php echo $com['nombre']; ?></a></span>
                                     <div class="col-md-4">
-
                                         <div class="input-group">
                                             <select class="form-control selectpicker show-tick" id="<?php echo $com['id_aspecto_general'];?>" name="<?php echo $com['id_aspecto_general'];?>" id_evaluacion_aspecto_general="<?php echo $com['id_evaluacion_aspecto_general'];?>" title="-" data-live-search="true" data-size="5">
                                                 <?php foreach ($view->puntajes[$com['id_aspecto_general']] as $p){ ?>
@@ -257,10 +256,9 @@
                                                 <?php  } ?>
                                             </select>
                                             <div class="input-group-addon" style="background-color: #ffffff">
-                                                <a href="#" title="<?php echo $com['user'].' '.$com['fecha']; ?>">?</a>
+                                                <a href="#" title="<?php echo explode("@", $com['user'], 2)[0].' '.$com['fecha']; ?>"><i class="fa fa-question-circle dp_light_gray"></i></a>
                                             </div>
                                         </div>
-
                                     </div>
 
                                     <div class="col-md-3">
@@ -293,7 +291,7 @@
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="label-box" class="alert alert-info fade in">
-                                Al presionar sobre el ícono <i class="fas fa-info-circle fa-fw"></i>&nbsp de cada aspecto general, podrá
+                                <span class="glyphicon glyphicon-tags"></span>&nbsp; Al presionar sobre el nombre de cada aspecto general, podrá
                                 visualizar la descripción del significado de cada puntaje.
                             </div>
 
@@ -301,7 +299,9 @@
                                 <div class="table-responsive">
 
                                     <table class="table table-condensed dataTable table-hover">
+                                        <tbody>
                                         <!-- los contenidos se cargan dinamicamente desde javascript -->
+                                        </tbody>
                                     </table>
 
                                 </div>

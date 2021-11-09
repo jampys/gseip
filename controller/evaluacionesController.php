@@ -28,8 +28,11 @@ switch ($operation)
         $id_nivel_competencia = ($_POST['search_nivel_competencia']!='')? $_POST['search_nivel_competencia'] : null;
         $id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
 
-        $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo'], $id_contrato, $id_puesto, $id_nivel_competencia, $id_localidad) : Evaluacion::getEvaluaciones1($_POST['periodo'], $id_contrato, $id_puesto, $id_nivel_competencia, $id_localidad);
-        $view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";
+        $rta = $view->evaluaciones = (!$_POST['cerrado'])?  Evaluacion::getEvaluaciones($_POST['periodo'], $id_contrato, $id_puesto, $id_nivel_competencia, $id_localidad) : Evaluacion::getEvaluaciones1($_POST['periodo'], $id_contrato, $id_puesto, $id_nivel_competencia, $id_localidad);
+        //$view->contentTemplate="view/evaluaciones/evaluacionesGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
 
