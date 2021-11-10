@@ -53,19 +53,15 @@
                     targets: 6,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
-                        let permisoAcciones = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'acciones' : 'disabled' ?>';
-                        let permisoVerificaciones = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'verificaciones' : 'disabled' ?>';
-                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
-                        let link = 'index.php?action=nc_no_conformidad&operation=pdf&id_no_conformidad='+row.id_no_conformidad;
-                        let user_info = row.user.split('@')[0]+' '+row.created_date;
-                        return '<a class="'+permisoAcciones+'" href="#" title="Acciones">'+ //si tiene permiso para ver Acciones
+                        let permisoEmpleados = '<?php echo ( PrivilegedUser::dhasAction('CUA_UPDATE', array(1)) )? 'empleados' : 'disabled' ?>';
+                        let permisoVer = '<?php echo ( PrivilegedUser::dhasPrivilege('CUA_VER', array(1)) )? 'view' : 'disabled' ?>';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('CUA_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('CUA_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
+
+                        return '<a class="'+permisoEmpleados+'" href="#" title="Empleados">'+ //si tiene permiso para agregar empleados
                             '<i class="fas fa-th-list dp_blue"></i>'+
                             '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoVerificaciones+'" href="#" title="Verificaicones">'+ //si tiene permiso para ver Verificaciones
-                            '<i class="fas fa-th-list dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="view" title="Ver" href="#">'+
+                            '<a class="view" title="Ver" href="#">'+ //si tiene permiso para ver
                             '<i class="far fa-eye dp_blue"></i>'+
                             '</a>&nbsp;&nbsp;'+
                             '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
@@ -73,12 +69,6 @@
                             '</a>&nbsp;&nbsp;'+
                             '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
                             '<i class="far fa-trash-alt dp_red"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
-                            '<i class="fas fa-download dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a href="#" title="'+user_info+'" onclick="return false;">'+
-                            '<i class="fa fa-question-circle dp_light_gray"></i>'+
                             '</a>';
                     }
                 }
