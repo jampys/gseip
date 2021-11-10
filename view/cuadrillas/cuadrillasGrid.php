@@ -37,18 +37,27 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "id_cuadrilla"},
-                {"data" : "id_cuadrilla"},
-                {"data" : "id_cuadrilla"},
-                {"data" : "id_cuadrilla"},
-                {"data" : "id_cuadrilla"},
-                {"data" : "id_cuadrilla"},
+                {"data" : "nombre"},
+                {"data" : "nombre_corto"},
+                {"data" : "contrato"},
+                {"data" : "vehiculo"},
+                {"data" : "area"},
+                {data: null, defaultContent: '', orderable: false},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_cuadrilla);
             },
             "columnDefs": [
+                {
+                    targets: 5,//activa
+                    className: "text-center",
+                    responsivePriority: 4,
+                    render: function (data, type, row, meta) {
+                        let rta = (row.disabled != 1)? '<i class="fas fa-check-circle fa-fw dp_green" title="activa"></i>' : '<i class="fas fa-minus-circle fa-fw dp_red" title="desactivada"></i>';
+                        return rta;
+                    }
+                },
                 {
                     targets: 6,//action buttons
                     responsivePriority: 3,
