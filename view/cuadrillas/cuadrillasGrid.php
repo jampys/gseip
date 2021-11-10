@@ -50,7 +50,7 @@
             },
             "columnDefs": [
                 {
-                    targets: 7,//action buttons
+                    targets: 6,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
                         let permisoAcciones = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'acciones' : 'disabled' ?>';
