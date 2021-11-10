@@ -202,7 +202,7 @@
                         <div class="form-group col-md-4">
                             <!--<label for="search_contrato" class="control-label">Contrato</label>-->
                             <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                                <option value="">Seleccione el contrato</option>
+                                <!--<option value="">Seleccione el contrato</option>-->
                                 <?php foreach ($view->contratos as $con){
                                     ?>
                                     <option value="<?php echo $con['id_contrato']; ?>" >
