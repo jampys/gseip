@@ -39,8 +39,8 @@
             'columns': [
                 {"data" : "nombre"},
                 {"data" : "nombre_corto"},
+                {"data" : "nombre_corto_op"},
                 {"data" : "contrato"},
-                {"data" : "vehiculo"},
                 {"data" : "area"},
                 {data: null, defaultContent: '', orderable: false},
                 {data: null, defaultContent: '', orderable: false}
@@ -107,9 +107,9 @@
             <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Identificador</th>
+                <th>ID SEIP</th>
+                <th>ID Operadora</th>
                 <th>Contrato</th>
-                <th>Móvil</th>
                 <th>Área</th>
                 <th>Activa</th>
                 <th></th>
