@@ -18,11 +18,12 @@
 
             $(document).on('click', '#search', function(){ //ok
                 if ($("#search_form").valid()){
-                    params={};
+                    /*params={};
                     params.search_contrato = $("#search_contrato").val();
                     params.action = "cuadrillas";
                     params.operation = "refreshGrid";
-                    $('#content').load('index.php', params);
+                    $('#content').load('index.php', params);*/
+                    $('#example').DataTable().ajax.reload();
 
                 }
                 return false;

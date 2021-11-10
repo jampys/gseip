@@ -21,7 +21,7 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : 9999;
         $todas = null; //($_POST['renovado']== 0)? null : 1;
         $rta = $view->cuadrillas = Cuadrilla::getCuadrillas($id_contrato);
         //$view->contentTemplate="view/cuadrillas/cuadrillasGrid.php";
