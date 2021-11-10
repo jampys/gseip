@@ -27,8 +27,6 @@
 
                 }
                 return false;
-
-
             });
 
 
@@ -43,7 +41,8 @@
                     $('#myModal').modal();
                     //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                     //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-                })
+                });
+                return false;
             });
 
 
@@ -60,12 +59,12 @@
                     //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
-                })
-
+                });
+                return false;
             });
 
 
-            $(document).on('click', '.empleados', function(){ //ok
+            $('#content').on('click', '.empleados', function(){ //ok
                 //alert('presiono sobre etapas');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -80,8 +79,8 @@
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
                     $('#empleados_left_side #add').attr('id_cuadrilla', id);
-                })
-
+                });
+                return false;
             });
 
 
@@ -97,14 +96,12 @@
 
                 }
                 return false;
-
-
             });
 
 
 
             var dialog;
-            $(document).on('click', '#example .delete', function(){
+            $('#content').on('click', '#example .delete', function(){
 
                 var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
@@ -124,8 +121,7 @@
                         }
                     }
                 });
-
-
+                return false;
             });
 
 
