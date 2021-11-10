@@ -30,26 +30,23 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
-                    d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
-                    d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
-                    d.search_responsable_ejecucion = $('#search_responsable_ejecucion').val();
-                    d.action = "nc_no_conformidad";
+                    d.search_contrato = $("#search_contrato").val();
+                    d.action = "cuadrillas";
                     d.operation = "refreshGrid";
                 },
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "nro_no_conformidad"},
-                {"data" : "fecha_implementacion"},
-                {"data" : "nombre"},
-                {"data" : "tipo"},
-                {"data" : "tipo_accion"},
-                {"data" : "responsable_seguimiento"},
-                {"data" : "estado"},
+                {"data" : "id_cuadrilla"},
+                {"data" : "id_cuadrilla"},
+                {"data" : "id_cuadrilla"},
+                {"data" : "id_cuadrilla"},
+                {"data" : "id_cuadrilla"},
+                {"data" : "id_cuadrilla"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
-                $(row).attr('data-id', data.id_no_conformidad);
+                $(row).attr('data-id', data.id_cuadrilla);
             },
             "columnDefs": [
                 {
