@@ -28,6 +28,7 @@
                 params.default_id_area = $('#default_id_area').val();
                 params.nombre = $('#nombre').val();
                 params.nombre_corto = $('#nombre_corto').val();
+                params.nombre_corto_op = $('#nombre_corto_op').val();
                 params.actividad = $('#actividad').val();
                 params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.id_grupo);
@@ -178,7 +179,7 @@
 
                         <div class="form-group col-md-6">
                             <label class="control-label" for="nombre_corto_op">ID Operadora</label>
-                            <input class="form-control" type="text" name="nombre_corto_op" id="nombre_corto_op" value = "<?php print $view->cuadrilla->getNombreCorto() ?>" placeholder="Identificador en la operadora">
+                            <input class="form-control" type="text" name="nombre_corto_op" id="nombre_corto_op" value = "<?php print $view->cuadrilla->getNombreCortoOp() ?>" placeholder="Identificador en la operadora">
                         </div>
 
                     </div>
