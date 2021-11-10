@@ -138,7 +138,7 @@
                         dialog.find('.modal-footer').html('<div class="alert alert-success">Cuadrilla eliminada con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
-                            $("#search").trigger("click");
+                            $('#example').DataTable().ajax.reload(null, false); //$("#search").trigger("click");
                         }, 2000);
                     }
 

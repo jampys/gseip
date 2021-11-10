@@ -42,7 +42,7 @@
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         setTimeout(function() { $("#myModal #myElem").hide();
                                                 $('#myModal').modal('hide');
-                                                $("#search").trigger("click");
+                                                $('#example').DataTable().ajax.reload(null, false);//$("#search").trigger("click");
                                               }, 2000);
                     }else{
                         $("#myModal #myElem").html('Error al guardar la cuadrilla').addClass('alert alert-danger').show();
