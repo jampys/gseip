@@ -309,7 +309,7 @@
                     <div class="row">
                         <div class="form-group col-md-9">
                             <label class="control-label" for="observaciones">Observaciones</label>
-                            <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="2"><?php print $view->suceso->getObservaciones(); ?></textarea>
+                            <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="4"><?php print $view->suceso->getObservaciones(); ?></textarea>
                         </div>
                     </div>
 
