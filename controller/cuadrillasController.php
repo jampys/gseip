@@ -38,7 +38,7 @@ switch ($operation)
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $cuadrilla->setNombre($_POST['nombre']);
         $cuadrilla->setNombreCorto($_POST['nombre_corto']);
-        $cuadrilla->setNombreCortoOp($_POST['nombre_corto_op']);
+        $cuadrilla->setNombreCortoOp( ($_POST['nombre_corto_op'])? $_POST['nombre_corto_op'] : null );
         $cuadrilla->setActividad($_POST['actividad']);
         $cuadrilla->setDisabled(($_POST['disabled'] == 1)? 1 : null);
 
