@@ -38,13 +38,15 @@
                 {
                     targets: 0, //empleado
                     render: function(data, type, row) {
-                        return 1; //$.fn.dataTable.render.ellipsis(125)(data, type, row);
+                        return '<b>'+row.legajo+'</b> '+row.apellido+' '+row.nombre;
                     }
                 },
                 {
                     targets: 1, //conductor
+                    className: "text-center",
                     render: function(data, type, row) {
-                        return 1; //$.fn.dataTable.render.ellipsis(125)(data, type, row);
+                        let rta = (row.conductor == 1)? '<i class="far fa-check-circle fa-fw" style="color: #49ed0e" title="conductor"></i>':'';
+                        return rta;
                     }
                 },
                 {
@@ -52,9 +54,9 @@
                     width: '20%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
-                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
-                        let user_info = 1; //row.user.split('@')[0]+' '+row.created_date;
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        let user_info = row.fecha; //row.user.split('@')[0]+' '+row.created_date;
                         return '<a class="view" title="Ver" href="#">'+
                             '<i class="far fa-eye dp_blue"></i>'+
                             '</a>&nbsp;&nbsp;'+
@@ -88,7 +90,7 @@
         <thead>
         <tr>
             <th>Empleado</th>
-            <th>Ctor.</th>
+            <th>Conduce</th>
             <th></th>
         </tr>
         </thead>
