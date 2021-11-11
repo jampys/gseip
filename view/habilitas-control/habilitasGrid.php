@@ -31,7 +31,7 @@
 
         var tr; //tr es la fila (nodo raiz del arbol)
 
-        var table = $('#example').DataTable({
+        /*var table = $('#example').DataTable({
             "fnInitComplete": function () {
                                 $(this).show(); },
             "stateSave": true,
@@ -39,6 +39,80 @@
             columnDefs: [
                 {targets: [0], type: 'date-uk', orderData: [0]} //fecha
             ]
+        });*/
+
+
+        var table = $('#example').DataTable({
+            responsive: true,
+            language: {
+                url: 'resources/libraries/dataTables/Spanish.json'
+            },
+            "fnInitComplete": function () {
+                $(this).show();
+            },
+            'ajax': {
+                "type"   : "POST",
+                "url"    : 'index.php',
+                "data": function ( d ) {
+                    //d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    //d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                    d.search_busqueda = $('#search_busqueda').val();
+                    d.search_input = $('#search_input').val();
+                    d.action = "habilitas-control";
+                    d.operation = "refreshGrid";
+                },
+                "dataSrc": ""
+            },
+            'columns': [
+                {"data" : "nro_no_conformidad"},
+                {"data" : "fecha_implementacion"},
+                {"data" : "nombre"},
+                {"data" : "tipo"},
+                {"data" : "tipo_accion"},
+                {"data" : "responsable_seguimiento"},
+                {"data" : "estado"},
+                {data: null, defaultContent: '', orderable: false}
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id_no_conformidad);
+            },
+            "columnDefs": [
+                {
+                    targets: 7,//action buttons
+                    responsivePriority: 3,
+                    render: function (data, type, row, meta) {
+                        let permisoAcciones = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'acciones' : 'disabled' ?>';
+                        let permisoVerificaciones = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'verificaciones' : 'disabled' ?>';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        let link = 'index.php?action=nc_no_conformidad&operation=pdf&id_no_conformidad='+row.id_no_conformidad;
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
+                        return '<a class="'+permisoAcciones+'" href="#" title="Acciones">'+ //si tiene permiso para ver Acciones
+                            '<i class="fas fa-th-list dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoVerificaciones+'" href="#" title="Verificaciones">'+ //si tiene permiso para ver Verificaciones
+                            '<i class="fas fa-th-list dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="view" title="Ver" href="#">'+
+                            '<i class="far fa-eye dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                            '<i class="far fa-edit dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                            '<i class="far fa-trash-alt dp_red"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
+                            '<i class="fas fa-download dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a href="#" title="'+user_info+'" onclick="return false;">'+
+                            '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                            '</a>';
+                    }
+                }
+            ]
+
+
         });
 
 
@@ -161,7 +235,7 @@
 
     <div class="table-responsive">
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th></th>
@@ -176,37 +250,11 @@
                 <th>Período</th>
                 <th>Fecha</th>
                 <th>Partes</th>
-
             </tr>
             </thead>
-            <tbody>
-
-            <?php if(isset($view->habilitas)) {
-                foreach ($view->habilitas as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id']; ?>">
-                        <td class="<?php echo ($rp['count']> 0 )? 'details-control' : ''; ?>"></td>
-                        <td><?php echo $rp['id']; ?></td>
-                        <td><?php echo $rp['ot']; ?></td>
-                        <td><?php echo $rp['habilita']; ?></td>
-                        <td><?php echo $rp['cantidad']; ?></td>
-                        <td><?php echo $rp['unitario']; ?></td>
-                        <td><?php echo $rp['importe']; ?></td>
-                        <td><?php echo $rp['centro']; ?></td>
-                        <td><?php echo $rp['certificado']; ?></td>
-                        <td><?php echo $rp['periodo']; ?></td>
-                        <td><?php echo $rp['fecha']; ?></td>
-                        <td><?php echo $rp['count']; ?></td>
-
-                    </tr>
-                <?php endforeach; } ?>
-            </tbody>
         </table>
 
 
-        <!--<br/>
-        <div class="pull-right pdf">
-            <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
-        </div>-->
 
     </div>
 
