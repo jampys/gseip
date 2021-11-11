@@ -77,7 +77,6 @@
                 {"data" : "id"},
                 {"data" : "id"},
                 {"data" : "id"}
-                //{data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id);
@@ -85,7 +84,9 @@
             "columnDefs": [
                 {
                     targets: 0,
-                    className: "details-control",
+                    createdCell: function(td, cellData, rowData, row, col) {
+                        if(rowData.count > 0) $(td).addClass('details-control');
+                    },
                     ordenable: false
                 }
             ]
