@@ -67,16 +67,16 @@
             'columns': [
                 {data: null, defaultContent: '', orderable: false},
                 {"data" : "id"},
-                {"data" : "id"},
-                {"data" : "id"},
-                {"data" : "id"},
-                {"data" : "id"},
-                {"data" : "id"},
-                {"data" : "id"},
-                {"data" : "id"},
-                {"data" : "id"},
-                {"data" : "id"},
-                {"data" : "id"}
+                {"data" : "ot"},
+                {"data" : "habilita"},
+                {"data" : "cantidad"},
+                {"data" : "unitario"},
+                {"data" : "importe"},
+                {"data" : "centro"},
+                {"data" : "certificado"},
+                {"data" : "periodo"},
+                {"data" : "fecha"},
+                {"data" : "count"}
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id);
