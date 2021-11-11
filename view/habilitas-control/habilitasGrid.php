@@ -50,6 +50,7 @@
             "fnInitComplete": function () {
                 $(this).show();
             },
+            order: [[1, 'desc']], //id
             'ajax': {
                 "type"   : "POST",
                 "url"    : 'index.php',
@@ -64,7 +65,7 @@
                 "dataSrc": ""
             },
             'columns': [
-                {orderable: false},
+                {data: null, defaultContent: '', orderable: false},
                 {"data" : "id"},
                 {"data" : "id"},
                 {"data" : "id"},
@@ -80,7 +81,14 @@
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id);
-            }
+            },
+            "columnDefs": [
+                {
+                    targets: 0,
+                    className: "details-control",
+                    ordenable: false
+                }
+            ]
 
 
 
