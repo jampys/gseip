@@ -163,7 +163,8 @@ from nov_habilitas nh
 where nh.ot like :ot
 and nh.habilita like :habilita
 and nh.certificado like :certificado
-order by nh.habilita asc";
+order by nh.habilita asc
+limit 500";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':ot', "%".$this->getOt()."%"); //2006589385
