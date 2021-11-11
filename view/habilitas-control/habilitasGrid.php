@@ -77,7 +77,10 @@
                 {"data" : "id"},
                 {"data" : "id"}
                 //{data: null, defaultContent: '', orderable: false}
-            ]
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id);
+            }
 
 
 
