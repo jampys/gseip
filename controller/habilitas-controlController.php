@@ -18,9 +18,11 @@ switch ($operation)
         $view->habilita->setOt( ($_POST['search_busqueda']=='ot')? $_POST['search_input'] : null  );
         $view->habilita->setHabilita( ($_POST['search_busqueda']=='habilita')? $_POST['search_input'] : null  );
         $view->habilita->setCertificado( ($_POST['search_busqueda']=='certificado')? $_POST['search_input'] : null  );
-
-        $view->habilitas =  $view->habilita->getHabilitas();
-        $view->contentTemplate="view/habilitas-control/habilitasGrid.php";
+        $rta = $view->habilitas =  $view->habilita->getHabilitas();
+        //$view->contentTemplate="view/habilitas-control/habilitasGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'getHijos': //ok
