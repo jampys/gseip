@@ -50,7 +50,7 @@
             "fnInitComplete": function () {
                 $(this).show();
             },
-            order: [[1, 'desc']], //id
+            order: [[8, 'desc'], [1, 'desc']], //nro cert, id
             'ajax': {
                 "type"   : "POST",
                 "url"    : 'index.php',
@@ -74,9 +74,10 @@
                 {"data" : "importe"},
                 {"data" : "centro"},
                 {"data" : "certificado"},
-                {"data" : "periodo"},
                 {"data" : "fecha"},
-                {"data" : "count"}
+                {"data" : "periodo"},
+                {"data" : "count"},
+                {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id);
@@ -88,6 +89,16 @@
                         if(rowData.count > 0) $(td).addClass('details-control');
                     },
                     ordenable: false
+                },
+                {
+                    targets: 12,//action buttons
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
+                        return '<a href="#" title="'+user_info+'" onclick="return false;">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                                '</a>';
+                    }
                 }
             ]
 
@@ -226,10 +237,11 @@
                 <th>Pr. Unitario</th>
                 <th>Importe</th>
                 <th>CC</th>
-                <th>Cerfificado</th>
+                <th>Nro. Cert.</th>
+                <th>Fecha Cert.</th>
                 <th>Período</th>
-                <th>Fecha</th>
                 <th>Partes</th>
+                <th></th>
             </tr>
             </thead>
         </table>
