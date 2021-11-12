@@ -361,6 +361,7 @@ join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato =
 join nov_periodos per on np.id_periodo = per.id_periodo
 where np.id_contrato in ($id_contrato)
 and np.last_calc_status is not null
+and nccc.id_concepto not in (41)
 and per.periodo = :periodo
 group by npe.id_empleado, nccc.codigo, nccc.variable
 UNION
