@@ -41,8 +41,8 @@
                 $(row).attr('data-id', data.id_suceso);
             },
             "columnDefs": [
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 3 ]}, //fecha_desde
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 4, 3 ]}, //fecha_hasta
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4 ]}, //fecha_desde
+                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]}, //fecha_hasta
                 {
                     targets: 6,//action buttons
                     responsivePriority: 1,
