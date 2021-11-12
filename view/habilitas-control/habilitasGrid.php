@@ -90,6 +90,7 @@
                     },
                     ordenable: false
                 },
+                {targets: 9, type: 'date-uk', orderData: [9, 8, 1]}, //fecha
                 {
                     targets: 12,//action buttons
                     responsivePriority: 1,
