@@ -71,7 +71,6 @@
                     $('.selectpicker').selectpicker('refresh');
                 });
                 return false;
-
             });
 
 
@@ -87,7 +86,6 @@
                     $('.selectpicker').selectpicker('refresh');
                 });
                 return false;
-
             });
 
 
@@ -188,7 +186,8 @@
                     $('#myModal').modal();
                     //$('#id_empleado').prop('disabled', true).selectpicker('refresh');
                     //$('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
-                })
+                });
+                return false;
             });
 
             //para ver un parte
@@ -204,8 +203,8 @@
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                })
-
+                });
+                return false;
             });
 
             //para agregar partes de un contrato
@@ -256,8 +255,7 @@
                         }
                     }
                 });
-
-
+                return false;
             });
 
 
