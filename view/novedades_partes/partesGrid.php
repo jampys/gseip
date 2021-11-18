@@ -27,7 +27,7 @@
                     text: '<i class="far fa-file-pdf fa-fw dp_blue"></i>',
                     titleAttr: 'Reporte PPT y calibraciones PSV',
                     action: function ( e, dt, node, config ) {
-                        let link = 'index.php?action=pdf&operation=certificados'+
+                        let link = 'index.php?action=partes&operation=pdf'+
                             '&certificado='+$('#certificado').val()+
                             '&tipo='+$('#tipo').val()+
                             '&yacimiento='+$('#yacimiento').val()+
