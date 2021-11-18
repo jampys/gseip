@@ -57,6 +57,24 @@
             "columnDefs": [
                 {targets: 0, type: 'date-uk', orderData: [ 0, 1 ]}, //fecha_parte
                 {
+                    targets: 6,//botones indicadores
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        let novedad = (row.id_parte)? '<i class="fas fa-car-side fa-fw dp_blue_nov" title="con novedad"></i>':'<i class="fas fa-car fa-fw dp_light_gray" title="sin novedad"></i>';
+                        let conceptos = '';
+                        let ordenes = '';
+                        return '<a href="#">'+
+                                    novedad+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+conceptos+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+ordenes+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>';
+                    }
+                },
+                {
                     targets: 7,//action buttons
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
