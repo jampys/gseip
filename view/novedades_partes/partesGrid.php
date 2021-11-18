@@ -30,12 +30,12 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
-                    d.id_empleado = $('#id_empleado').val();
-                    d.eventos = $('#eventos').val();
-                    d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
-                    d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
-                    d.id_contrato = $('#id_contrato').val();
-                    d.action = "sucesos";
+                    d.search_fecha_desde = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    d.search_fecha_hasta = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                    d.search_contrato = $("#add_contrato").val();
+                    d.id_periodo = $("#id_periodo").val();
+                    d.cuadrilla = $("#cuadrilla").val();
+                    d.action = "partes";
                     d.operation = "refreshGrid";
                 },
                 "dataSrc": ""
