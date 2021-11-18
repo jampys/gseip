@@ -53,7 +53,7 @@
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
-                $(row).attr('data-id', data.id_suceso);
+                $(row).attr('data-id', data.id_parte);
             },
             "columnDefs": [
                 {targets: [ 4 ], type: 'date-uk', orderData: [ 4 ]}, //fecha_desde
