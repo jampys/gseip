@@ -44,19 +44,16 @@
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
-                params={};
-                //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-                //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
+                /*params={};
                 params.startDate = drp.startDate.format('DD/MM/YYYY');
                 params.endDate = drp.endDate.format('DD/MM/YYYY');
                 params.search_contrato = $("#add_contrato").val();
                 params.id_periodo = $("#id_periodo").val();
                 params.cuadrilla = $("#cuadrilla").val();
-                //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "partes";
                 params.operation = "refreshGrid";
-                //alert(params.id_grupo);
-                $('#content').load('index.php', params);
+                $('#content').load('index.php', params);*/
+                $('#example').DataTable().ajax.reload();
             });
 
 
