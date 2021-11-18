@@ -40,15 +40,14 @@
                 },
                 "dataSrc": ""
             },
-            "order": [[4, "desc"], [5, "desc"] ], //3=fecha_desde, 4=fecha_hasta
+            "order": [[0, "desc"], [1, "asc"], [2, "asc"]],
             'columns': [
+                {"data" : "fecha_parte"},
                 {"data" : "id_parte"},
-                {"data" : "id_parte"},
-                {"data" : "id_parte"},
-                {"data" : "id_parte"},
-                {"data" : "id_parte"},
-                {"data" : "id_parte"},
-                {data: null, defaultContent: '', orderable: false},
+                {"data" : "contrato"},
+                {"data" : "cuadrilla"},
+                {"data" : "area"},
+                {"data" : "evento"},
                 {data: null, defaultContent: '', orderable: false},
                 {data: null, defaultContent: '', orderable: false}
             ],
@@ -56,10 +55,9 @@
                 $(row).attr('data-id', data.id_parte);
             },
             "columnDefs": [
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4 ]}, //fecha_desde
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]}, //fecha_hasta
+                {targets: 0, type: 'date-uk', orderData: [ 0, 1 ]}, //fecha_parte
                 {
-                    targets: 6,//action buttons
+                    targets: 7,//action buttons
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         return 1;
@@ -98,7 +96,6 @@
                 <th>Área</th>
                 <th>Evento</th>
                 <th></th>
-                <th>Usuario</th>
                 <th></th>
             </tr>
             </thead>
