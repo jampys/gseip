@@ -24,8 +24,8 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
-        $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
+        $fecha_desde = ($_POST['startDate']!='')? $_POST['startDate'] : null;
+        $fecha_hasta = ($_POST['endDate']!='')? $_POST['endDate'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $id_periodo = ($_POST['id_periodo']!='')? $_POST['id_periodo'] : null;
         $cuadrilla = ($_POST['cuadrilla']!='')? $_POST['cuadrilla'] : null;
