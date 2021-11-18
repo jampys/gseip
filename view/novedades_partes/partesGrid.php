@@ -30,8 +30,8 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
-                    d.search_fecha_desde = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
-                    d.search_fecha_hasta = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                    d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                     d.search_contrato = $("#add_contrato").val();
                     d.id_periodo = $("#id_periodo").val();
                     d.cuadrilla = $("#cuadrilla").val();
@@ -42,12 +42,13 @@
             },
             "order": [[4, "desc"], [5, "desc"] ], //3=fecha_desde, 4=fecha_hasta
             'columns': [
-                {"data" : "id_suceso"},
-                {"data" : "evento"},
-                {"data" : "empleado"},
-                {"data" : "cantidad"},
-                {"data" : "fecha_desde"},
-                {"data" : "fecha_hasta"},
+                {"data" : "id_parte"},
+                {"data" : "id_parte"},
+                {"data" : "id_parte"},
+                {"data" : "id_parte"},
+                {"data" : "id_parte"},
+                {"data" : "id_parte"},
+                {data: null, defaultContent: '', orderable: false},
                 {data: null, defaultContent: '', orderable: false},
                 {data: null, defaultContent: '', orderable: false}
             ],
