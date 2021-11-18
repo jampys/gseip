@@ -78,7 +78,29 @@
                     targets: 7,//action buttons
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
-                        return 1;
+                        let id_user = '<?php echo $_SESSION['id_user'] ?>';
+                        let usr_abm = '<?php echo ( PrivilegedUser::dhasPrivilege('SUC_ABM', array(0)))? true : false ?>'; //solo el administrador
+
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('PAR_UPDATE', array(1)) )? true : false ?>';
+                        let permisoEditarP = (permisoEditar && !row.closed_date)? 'edit' : 'disabled';
+
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('PAR_DELETE', array(1)) )? true : false ?>';
+                        let permisoEliminarP = ( row.closed_date && ( (permisoEliminar && row.created_by == id_user) || (usr_abm) ))? 'delete' : 'disabled';
+
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
+                        
+                        return '<a title="Ver novedad" href="#">'+
+                                    '<i class="far fa-eye dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditarP+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminarP+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a href="#" title="'+user_info+'" onclick="return false">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                                '</a>';
                     }
                 }
             ]
