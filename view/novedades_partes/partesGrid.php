@@ -89,7 +89,7 @@
 
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
 
-                        return '<a title="Ver novedad" href="#">'+
+                        return '<a class="view" title="Ver novedad" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditarP+'" href="#" title="Editar novedad">'+ //si tiene permiso para editar
