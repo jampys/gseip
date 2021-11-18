@@ -19,6 +19,26 @@
         });*/
 
         $('#example').DataTable({
+            dom: "<'row'<'col-md-8'l><'col-md-1'B><'col-md-3'f>>" +
+                 "<'row'<'col-md-12'tr>>" +
+                 "<'row'<'col-md-5'i><'col-md-7'p>>",
+            buttons: [
+                {
+                    text: '<i class="far fa-file-pdf fa-fw dp_blue"></i>',
+                    titleAttr: 'Reporte PPT y calibraciones PSV',
+                    action: function ( e, dt, node, config ) {
+                        let link = 'index.php?action=pdf&operation=certificados'+
+                            '&certificado='+$('#certificado').val()+
+                            '&tipo='+$('#tipo').val()+
+                            '&yacimiento='+$('#yacimiento').val()+
+                            '&instalacion='+$('#instalacion').val()+
+                            '&valvula='+$('#service1').val();
+                            //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
+                            //'&endDate='+drp.endDate.format('YYYY-MM-DD');
+                        window.open(link, '_blank');
+                    }
+                }
+            ],
             responsive: true,
             language: {
                 url: 'resources/libraries/dataTables/Spanish.json'
