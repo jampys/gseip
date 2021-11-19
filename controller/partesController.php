@@ -13,6 +13,8 @@ include_once("model/nov_eventosCuadrillaModel.php");
 include_once("model/empleadosModel.php");
 include_once("model/nov_periodosModel.php");
 
+include_once("model/companiasModel.php");
+
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
@@ -247,14 +249,20 @@ switch ($operation)
         $cuadrilla = ($_GET['cuadrilla'])? $_GET['cuadrilla'] : null;
 
         $rta = Parte::getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla);
-
-        $contrato = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
-        //$instalacion = ((new Instalacion($_GET['instalacion']))->getNombre())? (new Instalacion($_GET['instalacion']))->getNombre() : 'Todas';
-        $startDate = date_format(date_create($_GET['startDate']), 'd/m/Y');
-        $endDate = date_format(date_create($_GET['endDate']), 'd/m/Y');
-        $counts = array_count_values(array_column($rta, 'tipo_ensayo')); //https://stackoverflow.com/questions/11646054/php-count-specific-array-values
+        //$cliente = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
+        //$contrato = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
+        //$counts = array_count_values(array_column($rta, 'tipo_ensayo')); //https://stackoverflow.com/questions/11646054/php-count-specific-array-values
         //$count_ppt = ($counts['P'])? $counts['P'] : 0;
         //$count_cert = ($counts['N'])? $counts['N'] : 0;
+
+        $encabezado = array();
+        $encabezado['contrato'] = (new Contrato($_GET['id_contrato']))->getNombre();
+        $encabezado['id_compania'] = (new Contrato($_GET['id_contrato']))->getIdCompania();
+        $encabezado['cliente'] = (new Compania($encabezado['id_compania']))->getNombre();
+
+
+        $startDate = date_format(date_create($_GET['startDate']), 'd/m/Y');
+        $endDate = date_format(date_create($_GET['endDate']), 'd/m/Y');
 
         include_once ('view/novedades_partes/generador_certificados.php');
         break;

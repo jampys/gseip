@@ -28,13 +28,12 @@
                     titleAttr: 'Reporte PPT y calibraciones PSV',
                     action: function ( e, dt, node, config ) {
                         let link = 'index.php?action=partes&operation=pdf'+
-                            '&certificado='+$('#certificado').val()+
-                            '&tipo='+$('#tipo').val()+
-                            '&yacimiento='+$('#yacimiento').val()+
-                            '&instalacion='+$('#instalacion').val()+
-                            '&valvula='+$('#service1').val();
-                            //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
-                            //'&endDate='+drp.endDate.format('YYYY-MM-DD');
+                            '&id_contrato='+$('#add_contrato').val()+
+                            '&cuadrilla='+$('#cuadrilla').val()+
+                                //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
+                                //'&endDate='+drp.endDate.format('YYYY-MM-DD');
+                            '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+
+                            '&fecha_hasta='+$('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD');
                         window.open(link, '_blank');
                     }
                 }

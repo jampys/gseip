@@ -71,9 +71,9 @@
             <tbody>
                 <tr>
                     <td style="width: 25%"><span class="subtitulo">Cliente</span></td>
-                    <td style="width: 25%">'.$cliente.'</td>
-                    <td style="width: 25%"><span class="subtitulo">Tipo válvula</span></td>
-                    <td style="width: 25%">'.$tipo.'</td>
+                    <td style="width: 25%">'.$encabezado['cliente'].'</td>
+                    <td style="width: 25%"><span class="subtitulo">Contrato</span></td>
+                    <td style="width: 25%">'.$encabezado['contrato'].'</td>
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Unidad de Negocio</span></td>
