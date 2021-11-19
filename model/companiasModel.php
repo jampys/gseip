@@ -55,6 +55,29 @@ class Compania
     }
 
 
+    function __construct($nro=0){ //constructor ok
+
+        if ($nro!=0){
+
+            $stmt=new sQuery();
+            $query="select *
+                    from companias
+                    where id_compania = :nro";
+            $stmt->dpPrepare($query);
+            $stmt->dpBind(':nro', $nro);
+            $stmt->dpExecute();
+            $rows = $stmt ->dpFetchAll();
+
+            $this->setIdCompania($rows[0]['id_compania']);
+            $this->setRazonSocial($rows[0]['razon_social']);
+            $this->setNombre($rows[0]['nombre']);
+            $this->setCuit($rows[0]['CUIT']);
+            $this->setDireccion($rows[0]['direccion']);
+            $this->setIdLocalidad($rows[0]['id_localidad']);
+        }
+    }
+
+
 
 }
 

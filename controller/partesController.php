@@ -258,7 +258,7 @@ switch ($operation)
         $encabezado = array();
         $encabezado['contrato'] = (new Contrato($_GET['id_contrato']))->getNombre();
         $encabezado['id_compania'] = (new Contrato($_GET['id_contrato']))->getIdCompania();
-        $encabezado['cliente'] = (new Compania($encabezado['id_compania']))->getNombre();
+        $encabezado['cliente'] = (new Compania($encabezado['id_compania']))->getRazonSocial();
 
 
         $startDate = date_format(date_create($_GET['startDate']), 'd/m/Y');
