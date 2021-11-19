@@ -103,12 +103,12 @@
         <table id="example" style="width:100%">
             <thead>
             <tr>
-                <th>Fecha</th>
-                <th>Certificado</th>
-                <th>Nro. válvula</th>
-                <th>Tipo válvula</th>
-                <th>Marca</th>
-                <th>Modelo</th>
+                <th>Fecha parte</th>
+                <th>Cuadrilla</th>
+                <th>Área</th>
+                <th>Evento</th>
+                <th>Nro. parte</th>
+                <th>Nro. OT</th>
             </tr>
             </thead>
             <tbody>
@@ -119,7 +119,7 @@
 
 
         foreach ($rta as $x) {
-            $mpdf->WriteHTML('<tr><td>'.$x["fecha_calibracion"].'</td><td>'.$x["nro_certificado"].'</td><td>'.$x["nro_serie"].'</td><td>'.$x["tipo_valvula"].'</td><td>'.$x["marca"].'</td><td>'.$x["modelo"].'</td></tr>');
+            $mpdf->WriteHTML('<tr><td>'.$x["fecha_parte"].'</td><td>'.$x["cuadrilla"].'</td><td>'.$x["area"].'</td><td>'.$x["evento"].'</td><td>'.$x["nro_parte_diario"].'</td><td>'.$x["orden_nro"].'</td></tr>');
         }
 
         $mpdf->WriteHTML('</tbody></table>');
