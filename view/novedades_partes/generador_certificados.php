@@ -70,40 +70,22 @@
             </thead>-->
             <tbody>
                 <tr>
-                    <td style="width: 25%"><span class="subtitulo">Cliente</span></td>
-                    <td style="width: 25%">'.$encabezado['cliente'].'</td>
-                    <td style="width: 25%"><span class="subtitulo">Contrato</span></td>
-                    <td style="width: 25%">'.$encabezado['contrato'].'</td>
+                    <td style="width: 20%"><span class="subtitulo">Cliente</span></td>
+                    <td style="width: 30%">'.$encabezado['cliente'].'</td>
+                    <td style="width: 20%"><span class="subtitulo">Contrato</span></td>
+                    <td style="width: 30%">'.$encabezado['contrato'].'</td>
                 </tr>
                 <tr>
-                    <td><span class="subtitulo">Unidad de Negocio</span></td>
-                    <td>'.$GLOBALS['ini']["unidad_negocio"]["un_nombre"].'</td>
-                    <td><span class="subtitulo">Nro. válvula</span></td>
-                    <td>'.$valvula.'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Yacimiento</span></td>
-                    <td>'.$yacimiento.'</td>
-                    <td><span class="subtitulo">Fecha desde - hasta</span></td>
-                    <td>'.$startDate." - ".$endDate.'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Instalación</span></td>
-                    <td>'.$instalacion.'</td>
-                    <td><span class="subtitulo">Cant. calibraciones</span></td>
-                    <td>'.$count_cert.'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Tipo certificado</span></td>
-                    <td>'.$certificado.'</td>
-                    <td><span class="subtitulo">Cant. PPT</span></td>
-                    <td>'.$count_ppt.'</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
+                    <td><span class="subtitulo">Cuadrilla</span></td>
+                    <td>'.$encabezado['cuadrilla'].'</td>
                     <td><span class="subtitulo">Fecha emisión</span></td>
                     <td>'.date('d/m/Y H:i').'</td>
+                </tr>
+                <tr>
+                    <td><span class="subtitulo">Fecha desde - hasta</span></td>
+                    <td>'.$encabezado['fecha_desde']." - ".$encabezado['fecha_hasta'].'</td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>

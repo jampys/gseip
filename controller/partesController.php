@@ -259,10 +259,9 @@ switch ($operation)
         $encabezado['contrato'] = (new Contrato($_GET['id_contrato']))->getNombre();
         $encabezado['id_compania'] = (new Contrato($_GET['id_contrato']))->getIdCompania();
         $encabezado['cliente'] = (new Compania($encabezado['id_compania']))->getRazonSocial();
-
-
-        $startDate = date_format(date_create($_GET['startDate']), 'd/m/Y');
-        $endDate = date_format(date_create($_GET['endDate']), 'd/m/Y');
+        $encabezado['cuadrilla'] = ($cuadrilla)? $cuadrilla : 'Todas';
+        $encabezado['fecha_desde'] = date_format(date_create($_GET['fecha_desde']), 'd/m/Y');
+        $encabezado['fecha_hasta'] = date_format(date_create($_GET['fecha_hasta']), 'd/m/Y');
 
         include_once ('view/novedades_partes/generador_certificados.php');
         break;
