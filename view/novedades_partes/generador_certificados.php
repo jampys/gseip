@@ -36,7 +36,7 @@
 
 
         <div style="float: left; width: 25%; height: 36px">
-            <img src="images/seip.png" width="126px" height="36px">
+            <img src="resources/img/seip.png" width="126px" height="36px">
         </div>
 
         <div style="float: left; width: 65%; height: 36px; text-align: left">
@@ -46,7 +46,7 @@
 
         <div style="float: right; width: 10%; height: 36px; font-size: 8px; text-align: right">
             RO-VSE-0104<br/>
-            20/04/2021<br/>
+            19/11/2021<br/>
             rev 00
         </div>
 

@@ -241,28 +241,20 @@ switch ($operation)
 
     case 'pdf':
 
-        $certificado = ($_GET['certificado'])? $_GET['certificado'] : null;
-        $tipo = ($_GET['tipo'])? $_GET['tipo'] : null;
-        $yacimiento = ($_GET['yacimiento'])? $_GET['yacimiento'] : null;
-        $instalacion = ($_GET['instalacion'])? $_GET['instalacion'] : null;
-        $valvula = ($_GET['valvula'])? $_GET['valvula'] : null;
-        $startDate = $_GET['startDate'];
-        $endDate = $_GET['endDate'];
+        $fecha_desde = $_GET['fecha_desde'];
+        $fecha_hasta = $_GET['fecha_hasta'];
+        $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
+        $cuadrilla = ($_GET['cuadrilla'])? $_GET['cuadrilla'] : null;
 
-        $rta = Certificado::getCertificados($certificado, $tipo, $yacimiento, $instalacion, $valvula, $startDate, $endDate);
-        if($_GET['certificado']=='N') $certificado = 'Certificado calibracion';
-        elseif ($_GET['certificado']=='P') $certificado = 'Ensayo Pre-Pop-Test';
-        else $certificado = 'Todos';
-        $tipo = ($_GET['tipo'])? $_GET['tipo'] : 'Todos';
-        $yacimiento = ((new yacimiento($_GET['yacimiento']))->getNombre())? (new yacimiento($_GET['yacimiento']))->getNombre() : 'Todos';
-        $instalacion = ((new Instalacion($_GET['instalacion']))->getNombre())? (new Instalacion($_GET['instalacion']))->getNombre() : 'Todas';
-        $valvula = ($_GET['valvula'])? $_GET['valvula'] : 'Todos';
-        $cliente = (new Cliente($_SESSION["id_cliente"]))->getNombre();
+        $rta = Parte::getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla);
+
+        $contrato = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
+        //$instalacion = ((new Instalacion($_GET['instalacion']))->getNombre())? (new Instalacion($_GET['instalacion']))->getNombre() : 'Todas';
         $startDate = date_format(date_create($_GET['startDate']), 'd/m/Y');
         $endDate = date_format(date_create($_GET['endDate']), 'd/m/Y');
         $counts = array_count_values(array_column($rta, 'tipo_ensayo')); //https://stackoverflow.com/questions/11646054/php-count-specific-array-values
-        $count_ppt = ($counts['P'])? $counts['P'] : 0;
-        $count_cert = ($counts['N'])? $counts['N'] : 0;
+        //$count_ppt = ($counts['P'])? $counts['P'] : 0;
+        //$count_cert = ($counts['N'])? $counts['N'] : 0;
 
         include_once ('view/novedades_partes/generador_certificados.php');
         break;

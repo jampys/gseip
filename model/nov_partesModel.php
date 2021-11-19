@@ -604,6 +604,55 @@ limit 1";
 
 
 
+    public static function getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla) {
+        $stmt=new sQuery();
+        /*$query="select pa.id_parte,
+                    (select count(*) from nov_parte_orden npox where npox.id_parte = pa.id_parte) as orden_count,
+                    (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = pa.id_parte) as concept_count,
+                    DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
+                    DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+                    pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.last_calc_status,
+                    concat(ar.codigo, ' ', ar.nombre) as area,
+                    ve.nro_movil as vehiculo,
+                    concat(nec.codigo, ' ', nec.nombre) as evento,
+                    co.nombre as contrato,
+                    us.user, pa.created_by,
+                    pa.id_periodo, pe.closed_date
+                    from nov_partes pa
+                    left join nov_areas ar on pa.id_area = ar.id_area
+                    left join vto_vehiculos ve on pa.id_vehiculo = ve.id_vehiculo
+                    left join nov_eventos_c nec on pa.id_evento = nec.id_evento
+                    join v_sec_contratos_control co on pa.id_contrato = co.id_contrato
+                    join sec_users us on pa.created_by = us.id_user
+                    join nov_periodos pe on pe.id_periodo = pa.id_periodo
+                    and pa.fecha_parte between if(:fecha_desde is null, pa.fecha_parte, :fecha_desde)
+                    and if(:fecha_hasta is null, pa.fecha_parte, :fecha_hasta)
+                    and pa.id_contrato =  ifnull(:id_contrato, pa.id_contrato)
+                    and pa.id_periodo =  ifnull(:id_periodo, pa.id_periodo)
+                    and pa.cuadrilla =  ifnull(:cuadrilla, pa.cuadrilla)
+                    order by pa.fecha_parte asc";*/
+        $query = "select np.id_parte, np.comentarios,
+DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+np.cuadrilla, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro
+from nov_partes np
+left join nov_parte_orden npo on npo.id_parte = np.id_parte
+left join nov_eventos_c nec on nec.id_evento = np.id_evento
+left join nov_areas na on na.id_area = np.id_area
+where np.id_contrato = 21
+and np.fecha_parte between '2021-04-10' and '2021-05-04'
+and np.cuadrilla = ifnull(null, np.cuadrilla)
+order by np.cuadrilla, np.fecha_parte";
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':fecha_desde', $fecha_desde);
+        //$stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        //$stmt->dpBind(':cuadrilla', $cuadrilla);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
 }
 
 
