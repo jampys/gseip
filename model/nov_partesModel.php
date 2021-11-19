@@ -642,7 +642,7 @@ left join nov_areas na on na.id_area = np.id_area
 where np.id_contrato = :id_contrato
 and np.fecha_parte between :fecha_desde and :fecha_hasta
 and np.cuadrilla = ifnull(:cuadrilla, np.cuadrilla)
-order by np.cuadrilla, np.fecha_parte";
+order by cu.nombre_corto_op asc, np.fecha_parte asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $fecha_desde);
         $stmt->dpBind(':fecha_hasta', $fecha_hasta);
