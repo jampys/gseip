@@ -256,7 +256,8 @@ switch ($operation)
         //$count_cert = ($counts['N'])? $counts['N'] : 0;
 
         $encabezado = array();
-        $encabezado['contrato'] = (new Contrato($_GET['id_contrato']))->getNombre();
+        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
+        $encabezado['contrato'] = $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre();
         $encabezado['id_compania'] = (new Contrato($_GET['id_contrato']))->getIdCompania();
         $encabezado['cliente'] = (new Compania($encabezado['id_compania']))->getRazonSocial();
         $encabezado['cuadrilla'] = ($cuadrilla)? $cuadrilla : 'Todas';
