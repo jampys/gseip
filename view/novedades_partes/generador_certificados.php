@@ -21,9 +21,9 @@
                 </table>
             ');
     //$mpdf->SetFooter('{PAGENO}');
-    $mpdf->SetTitle('Reporte PPT y calibraciones');
+    $mpdf->SetTitle('Reporte de Actividad de cuadrillas');
 
-    $css = file_get_contents('pdf/dario.css');
+    $css = file_get_contents('resources/css/dario_mpdf.css');
     $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
     $mpdf->WriteHTML('
 
@@ -40,8 +40,8 @@
         </div>
 
         <div style="float: left; width: 65%; height: 36px; text-align: left">
-            <span style="font-size: 16px; font-weight: bold">Reporte PPT y calibraciones</span><br/>
-            <span style="font-size: 13px">Válvulas de Seguridad y Alivio</span>
+            <span style="font-size: 16px; font-weight: bold">Reporte de Actividad de cuadrillas</span><br/>
+            <span style="font-size: 13px">Gerencia operativa y de servicios</span>
         </div>
 
         <div style="float: right; width: 10%; height: 36px; font-size: 8px; text-align: right">
@@ -125,7 +125,7 @@
         $mpdf->WriteHTML('</tbody></table>');
 
 
-        $namepdf = 'Reporte_PSV_calibradas-'.$cliente.'-'.date('dmYHi').'.pdf';
+        $namepdf = 'Reporte_Actividad_Cuadrillas-'.$encabezado['cliente'].'-'.date('dmYHi').'.pdf';
         $mpdf->Output($namepdf, 'I'); //I visualizar, D descargar
 
 

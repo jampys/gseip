@@ -633,20 +633,21 @@ limit 1";
                     order by pa.fecha_parte asc";*/
         $query = "select np.id_parte, np.comentarios,
 DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
-np.cuadrilla, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro
+cu.nombre_corto_op as cuadrilla, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro
 from nov_partes np
+join nov_cuadrillas cu on np.id_cuadrilla = cu.id_cuadrilla
 left join nov_parte_orden npo on npo.id_parte = np.id_parte
 left join nov_eventos_c nec on nec.id_evento = np.id_evento
 left join nov_areas na on na.id_area = np.id_area
-where np.id_contrato = 21
-and np.fecha_parte between '2021-04-10' and '2021-05-04'
-and np.cuadrilla = ifnull(null, np.cuadrilla)
+where np.id_contrato = :id_contrato
+and np.fecha_parte between :fecha_desde and :fecha_hasta
+and np.cuadrilla = ifnull(:cuadrilla, np.cuadrilla)
 order by np.cuadrilla, np.fecha_parte";
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':fecha_desde', $fecha_desde);
-        //$stmt->dpBind(':fecha_hasta', $fecha_hasta);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
-        //$stmt->dpBind(':cuadrilla', $cuadrilla);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':cuadrilla', $cuadrilla);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
