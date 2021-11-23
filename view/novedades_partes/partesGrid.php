@@ -25,7 +25,7 @@
             buttons: [
                 {
                     text: '<i class="far fa-file-pdf fa-fw dp_blue"></i>',
-                    titleAttr: 'Reporte PPT y calibraciones PSV',
+                    titleAttr: 'Reporte de actividad de cuadrillas',
                     action: function ( e, dt, node, config ) {
                         let link = 'index.php?action=partes&operation=pdf'+
                             '&id_contrato='+$('#add_contrato').val()+
