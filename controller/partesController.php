@@ -246,7 +246,7 @@ switch ($operation)
         $fecha_desde = $_GET['fecha_desde'];
         $fecha_hasta = $_GET['fecha_hasta'];
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
-        $cuadrilla = ($_GET['cuadrilla'])? $_GET['cuadrilla'] : null ;
+        $cuadrilla = ($_GET['cuadrilla'] && $_GET['cuadrilla'] != 'null')? $_GET['cuadrilla'] : null ;
 
         $rta = Parte::getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla);
         //$cliente = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
@@ -258,9 +258,11 @@ switch ($operation)
         $encabezado = array();
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
         $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
-        $encabezado['id_compania'] = (new Contrato($_GET['id_contrato']))->getIdCompania();
-        $encabezado['cliente'] = (new Compania($encabezado['id_compania']))->getRazonSocial();
+        $encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
+        $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
+        $encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';
         $encabezado['cuadrilla'] = ($cuadrilla != null)? $cuadrilla : 'Todas';
+
         $encabezado['fecha_desde'] = date_format(date_create($_GET['fecha_desde']), 'd/m/Y');
         $encabezado['fecha_hasta'] = date_format(date_create($_GET['fecha_hasta']), 'd/m/Y');
 
