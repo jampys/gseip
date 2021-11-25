@@ -6,3 +6,5 @@
 uploads/
 #ignora el fichero app.ini
 config/app.ini
+
+/vendor/
