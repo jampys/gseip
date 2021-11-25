@@ -18,16 +18,15 @@
 
             $(document).on('click', '#search', function(){ //ok
                 if ($("#search_form").valid()){
-                    params={};
+                    /*params={};
                     params.search_contrato = $("#search_contrato").val();
                     params.action = "cuadrillas";
                     params.operation = "refreshGrid";
-                    $('#content').load('index.php', params);
+                    $('#content').load('index.php', params);*/
+                    $('#example').DataTable().ajax.reload();
 
                 }
                 return false;
-
-
             });
 
 
@@ -42,7 +41,8 @@
                     $('#myModal').modal();
                     //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                     //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-                })
+                });
+                return false;
             });
 
 
@@ -59,12 +59,12 @@
                     //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
-                })
-
+                });
+                return false;
             });
 
 
-            $(document).on('click', '.empleados', function(){ //ok
+            $('#content').on('click', '.empleados', function(){ //ok
                 //alert('presiono sobre etapas');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -79,8 +79,8 @@
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
                     $('#empleados_left_side #add').attr('id_cuadrilla', id);
-                })
-
+                });
+                return false;
             });
 
 
@@ -96,14 +96,12 @@
 
                 }
                 return false;
-
-
             });
 
 
 
             var dialog;
-            $(document).on('click', '#example .delete', function(){
+            $('#content').on('click', '#example .delete', function(){
 
                 var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
@@ -123,8 +121,7 @@
                         }
                     }
                 });
-
-
+                return false;
             });
 
 
@@ -141,7 +138,7 @@
                         dialog.find('.modal-footer').html('<div class="alert alert-success">Cuadrilla eliminada con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
-                            $("#search").trigger("click");
+                            $('#example').DataTable().ajax.reload(null, false); //$("#search").trigger("click");
                         }, 2000);
                     }
 
@@ -205,7 +202,7 @@
                         <div class="form-group col-md-4">
                             <!--<label for="search_contrato" class="control-label">Contrato</label>-->
                             <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                                <option value="">Seleccione el contrato</option>
+                                <!--<option value="">Seleccione el contrato</option>-->
                                 <?php foreach ($view->contratos as $con){
                                     ?>
                                     <option value="<?php echo $con['id_contrato']; ?>" >

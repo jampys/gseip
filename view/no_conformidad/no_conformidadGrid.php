@@ -52,7 +52,7 @@
                         return '<a class="'+permisoAcciones+'" href="#" title="Acciones">'+ //si tiene permiso para ver Acciones
                                     '<i class="fas fa-th-list dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a class="'+permisoVerificaciones+'" href="#" title="Verificaicones">'+ //si tiene permiso para ver Verificaciones
+                                '<a class="'+permisoVerificaciones+'" href="#" title="Verificaciones">'+ //si tiene permiso para ver Verificaciones
                                     '<i class="fas fa-th-list dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="view" title="Ver" href="#">'+

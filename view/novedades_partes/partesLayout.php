@@ -23,7 +23,7 @@
 
 
             moment.locale('es');
-            $('#search_fecha').daterangepicker({
+            $('#daterange').daterangepicker({
                 startDate: moment().subtract(1, 'weeks'),
                 endDate: moment(),
                 locale: {
@@ -33,10 +33,10 @@
                     "customRangeLabel": "Rango personalizado"
                 }
             }, function(start, end) {
-                $('#search_fecha span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                $('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             });
 
-            var drp = $('#search_fecha').data('daterangepicker');
+            var drp = $('#daterange').data('daterangepicker');
 
 
 
@@ -44,19 +44,16 @@
                 //alert('presiono en buscar');
                 //var id = $(this).attr('data-id');
                 //preparo los parametros
-                params={};
-                //params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
-                //params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-                params.search_fecha_desde = drp.startDate.format('DD/MM/YYYY');
-                params.search_fecha_hasta = drp.endDate.format('DD/MM/YYYY');
+                /*params={};
+                params.startDate = drp.startDate.format('DD/MM/YYYY');
+                params.endDate = drp.endDate.format('DD/MM/YYYY');
                 params.search_contrato = $("#add_contrato").val();
                 params.id_periodo = $("#id_periodo").val();
                 params.cuadrilla = $("#cuadrilla").val();
-                //params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "partes";
                 params.operation = "refreshGrid";
-                //alert(params.id_grupo);
-                $('#content').load('index.php', params);
+                $('#content').load('index.php', params);*/
+                $('#example').DataTable().ajax.reload();
             });
 
 
@@ -74,7 +71,6 @@
                     $('.selectpicker').selectpicker('refresh');
                 });
                 return false;
-
             });
 
 
@@ -90,7 +86,6 @@
                     $('.selectpicker').selectpicker('refresh');
                 });
                 return false;
-
             });
 
 
@@ -191,7 +186,8 @@
                     $('#myModal').modal();
                     //$('#id_empleado').prop('disabled', true).selectpicker('refresh');
                     //$('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
-                })
+                });
+                return false;
             });
 
             //para ver un parte
@@ -207,8 +203,8 @@
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                })
-
+                });
+                return false;
             });
 
             //para agregar partes de un contrato
@@ -259,8 +255,7 @@
                         }
                     }
                 });
-
-
+                return false;
             });
 
 
@@ -412,7 +407,7 @@
                         <div class="form-group col-md-3">
                             <!--<label for="search_vencimiento" class="control-label">Buscar partes</label>-->
                             <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="search_fecha" id="search_fecha" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>

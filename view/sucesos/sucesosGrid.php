@@ -41,12 +41,15 @@
                 $(row).attr('data-id', data.id_suceso);
             },
             "columnDefs": [
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 3 ]}, //fecha_desde
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 4, 3 ]}, //fecha_hasta
+                {targets: [ 4 ], type: 'date-uk', orderData: [ 4 ]}, //fecha_desde
+                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 4 ]}, //fecha_hasta
                 {
                     targets: 6,//action buttons
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
+
+                        let id_user = '<?php echo $_SESSION['id_user'] ?>';
+                        let usr_abm = '<?php echo ( PrivilegedUser::dhasPrivilege('SUC_ABM', array(0)))? true : false ?>'; //solo el administrador
 
                         let permisoVer="";
                         if(!row.programado && row.id_periodo1) permisoVer = 'view';
@@ -55,12 +58,12 @@
 
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) )? true : false ?>';
                         let permisoEditarS = '';
-                        if(permisoEditar && !(row.closed_date_1 && row.closed_date_2) && (!row.programado && row.id_periodo1)) permisoEditarS = 'edit';
-                        else if( permisoEditar && !(row.closed_date_1 && row.closed_date_2) && (row.programado && !row.id_periodo1)) permisoEditarS = 'editp';
+                        if(permisoEditar && !(row.closed_date_1 && row.closed_date_2) && (!row.programado && row.id_periodo1) && (row.id_user == id_user || usr_abm) ) permisoEditarS = 'edit';
+                        else if( permisoEditar && !(row.closed_date_1 && row.closed_date_2) && (row.programado && !row.id_periodo1) && (row.id_user == id_user || usr_abm) ) permisoEditarS = 'editp';
                         else permisoEditarS = 'disabled';
 
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('SUC_DELETE', array(1)) )? true : false ?>';
-                        let permisoEliminarS = (permisoEliminar && !(row.closed_date_1 && row.closed_date_2))? 'delete' : 'disabled';
+                        let permisoEliminarS = (permisoEliminar && !(row.closed_date_1 && row.closed_date_2) && (row.id_user == id_user || usr_abm) )? 'delete' : 'disabled';
 
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
 
@@ -72,6 +75,7 @@
                             link = '#';
                             link1 = 'onclick="return false"; class="disabled"';
                         }
+
 
                         return '<a class="'+permisoVer+'" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+

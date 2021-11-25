@@ -1,46 +1,101 @@
-<?php if(isset($view->empleados) && sizeof($view->empleados) > 0) {?>
+<script type="text/javascript">
 
-    <table class="table table-condensed dataTable table-hover">
+
+    $(document).ready(function(){
+
+        var t = $('#table-empleados').DataTable({
+            responsive: true,
+            language: {
+                //url: 'resources/libraries/dataTables/Spanish.json',
+                emptyTable: 'La cuadrilla aún no tiene empleados registrados'
+            },
+            sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
+            bPaginate: false,
+            //deferRender:    true,
+            scrollY:        150,
+            scrollCollapse: true,
+            scroller:       true,
+            order: [[0, "asc"]], // 0=fecha_implementacion
+            'ajax': {
+                "type"   : "POST",
+                "url"    : 'index.php',
+                "data": function ( d ) {
+                    d.action = "cuadrilla-empleado";
+                    d.operation = "refreshGrid";
+                    d.id_cuadrilla = $('#empleados_left_side #add').attr('id_cuadrilla');
+                },
+                "dataSrc": ""
+            },
+            'columns': [
+                {data: null, defaultContent: ''}, //empleado
+                {data: null, defaultContent: ''}, //conductor
+                {data: null, defaultContent: '', orderable: false} //actions
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id_cuadrilla_empleado);
+            },
+            "columnDefs": [
+                {
+                    targets: 0, //empleado
+                    render: function(data, type, row) {
+                        return '<b>'+row.legajo+'</b> '+row.apellido+' '+row.nombre;
+                    }
+                },
+                {
+                    targets: 1, //conductor
+                    className: "text-center",
+                    render: function(data, type, row) {
+                        let rta = (row.conductor == 1)? '<i class="far fa-check-circle fa-fw" style="color: #49ed0e" title="conductor"></i>':'';
+                        return rta;
+                    }
+                },
+                {
+                    targets: 2,//action buttons
+                    width: '20%',
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        let user_info = row.fecha; //row.user.split('@')[0]+' '+row.created_date;
+                        return '<a class="view" title="Ver" href="#">'+
+                            '<i class="far fa-eye dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                            '<i class="far fa-edit dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                            '<i class="far fa-trash-alt dp_red"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a href="#" title="'+user_info+'" onclick="return false;">'+
+                            '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                            '</a>';
+                    }
+                }
+            ]
+        });
+
+        setTimeout(function () {
+            t.columns.adjust();
+        },150);
+
+
+
+
+    });
+
+</script>
+
+
+    <table id="table-empleados" class="table table-condensed dataTable table-hover">
         <thead>
         <tr>
             <th>Empleado</th>
-            <th>Ctor.</th>
+            <th>Conduce</th>
             <th></th>
         </tr>
         </thead>
-        <tbody>
-        <?php foreach ($view->empleados as $em): ?>
-            <tr data-id="<?php echo $em['id_cuadrilla_empleado'];?>">
-                <td><b><?php echo $em['legajo'];?>&nbsp;</b><?php echo $em['apellido']." ".$em['nombre'];?></td>
-                <td><?php echo ($em['conductor'])? '<i class="far fa-check-circle fa-fw" style="color: #49ed0e" title="conductor"></i>':''; ?></td>
-
-                <td class="text-center">
-                    <a class="view" href="javascript:void(0);" data-id="<?php echo $em['id_cuadrilla_empleado'];?>" title="ver">
-                        <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
-                    </a>&nbsp;&nbsp;
-
-                    <a class="<?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
-                        <span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span>
-                    </a>&nbsp;&nbsp;
-
-                    <a class="<?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                        <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
-                    </a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
     </table>
 
-
-<?php }else{ ?>
-
-    <br/>
-    <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle fa-fw"></i> La cuadrilla aún no tiene empleados registrados.
-    </div>
-
-<?php } ?>
 
 
 

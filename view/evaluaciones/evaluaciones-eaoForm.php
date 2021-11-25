@@ -265,7 +265,7 @@
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <p><strong><?php echo $obj['codigo'];?></strong>&nbsp;<?php echo $obj['nombre']; ?>
-                                            <a href="#" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
+                                            <a href="#" onclick="return false;" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
                                                data-content='<?php require('evaluaciones-eaoPopover.php'); ?>'>ver mas</a></p>
                                         </div>
                                     </div>

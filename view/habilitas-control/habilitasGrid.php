@@ -31,26 +31,80 @@
 
         var tr; //tr es la fila (nodo raiz del arbol)
 
-        var table = $('#example').DataTable({
-            /*language: {
-             url: 'dataTables/Spanish.json'
-             }*/
-
+        /*var table = $('#example').DataTable({
             "fnInitComplete": function () {
                                 $(this).show(); },
-
             "stateSave": true,
             "order": [[0, "desc"]], // 1=fecha
-            /*"columnDefs": [
-                { type: 'date-uk', targets: 1 }, //fecha
-                { type: 'date-uk', targets: 4 }, //fecha_emision
-                { type: 'date-uk', targets: 5 } //fecha_vencimiento
-            ]*/
             columnDefs: [
                 {targets: [0], type: 'date-uk', orderData: [0]} //fecha
-                //{targets: [ 3 ], type: 'date-uk', orderData: [ 3, 6 ]}, //fecha_apertura
-                //{targets: [ 4 ], type: 'date-uk', orderData: [ 4, 6 ]} //fecha_cierre
             ]
+        });*/
+
+
+        var table = $('#example').DataTable({
+            responsive: true,
+            language: {
+                url: 'resources/libraries/dataTables/Spanish.json'
+            },
+            "fnInitComplete": function () {
+                $(this).show();
+            },
+            order: [[8, 'desc'], [1, 'desc']], //nro cert, id
+            'ajax': {
+                "type"   : "POST",
+                "url"    : 'index.php',
+                "data": function ( d ) {
+                    //d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    //d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                    d.search_busqueda = $('#search_busqueda').val();
+                    d.search_input = $('#search_input').val();
+                    d.action = "habilitas-control";
+                    d.operation = "refreshGrid";
+                },
+                "dataSrc": ""
+            },
+            'columns': [
+                {data: null, defaultContent: '', orderable: false},
+                {"data" : "id"},
+                {"data" : "ot"},
+                {"data" : "habilita"},
+                {"data" : "cantidad"},
+                {"data" : "unitario"},
+                {"data" : "importe"},
+                {"data" : "centro"},
+                {"data" : "certificado"},
+                {"data" : "fecha"},
+                {"data" : "periodo"},
+                {"data" : "count"},
+                {data: null, defaultContent: '', orderable: false}
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id);
+            },
+            "columnDefs": [
+                {
+                    targets: 0,
+                    createdCell: function(td, cellData, rowData, row, col) {
+                        if(rowData.count > 0) $(td).addClass('details-control');
+                    },
+                    ordenable: false
+                },
+                {targets: 9, type: 'date-uk', orderData: [9, 8, 1]}, //fecha
+                {
+                    targets: 12,//action buttons
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
+                        return '<a href="#" title="'+user_info+'" onclick="return false;">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                                '</a>';
+                    }
+                }
+            ]
+
+
+
         });
 
 
@@ -152,36 +206,7 @@
             }
 
             return subTabla;
-
         }
-
-
-
-        //$(document).on("click", ".pdf", function(){
-        $('.table-responsive').on("click", ".pdf", function(){
-            alert('Funcionalidad en contrucción');
-            /*params={};
-            var attr = $('#search_empleado option:selected').attr('id_empleado'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
-            params.id_empleado = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_empleado') : '';
-            var attr = $('#search_empleado option:selected').attr('id_grupo');
-            params.id_grupo = (typeof attr !== typeof undefined && attr !== false)? $('#search_empleado option:selected').attr('id_grupo') : '';
-            //params.id_vencimiento = $("#search_vencimiento").val();
-            params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
-            params.id_contrato = $("#search_contrato").val();
-            params.renovado = $('#search_renovado').prop('checked')? 1 : '';
-            params.id_user = <?php //echo $_SESSION['id_user']; ?>
-            //var nro_version = Number($('#version').val());
-            //var lugar_trabajo = $('#lugar_trabajo').val();
-            //var usuario  = "<?php //echo $_SESSION["USER_NOMBRE"].' '.$_SESSION["USER_APELLIDO"]; ?>";
-            //var id_cia = "<?php //echo $_SESSION['ID_CIA']; ?>";
-            //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes, top=200,left=400";
-            var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-            //var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=pdf&__report=sci_plan_version.rptdesign&p_periodo="+periodo+"&p_nro_version="+nro_version+"&p_lugar_trabajo="+lugar_trabajo+"&p_usuario="+usuario+"&p_id_cia="+id_cia;
-            var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=pdf&__report=gseip_vencimientos_p.rptdesign&p_id_empleado="+params.id_empleado+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_renovado="+params.renovado+"&p_id_cia="+params.id_empleado+"&p_id_user="+params.id_user;
-            //var win = window.open(URL, "_blank", strWindowFeatures);
-            var win = window.open(URL, "_blank");*/
-            return false;
-        });
 
 
 
@@ -202,7 +227,7 @@
 
     <div class="table-responsive">
 
-        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th></th>
@@ -213,41 +238,16 @@
                 <th>Pr. Unitario</th>
                 <th>Importe</th>
                 <th>CC</th>
-                <th>Cerfificado</th>
+                <th>Nro. Cert.</th>
+                <th>Fecha Cert.</th>
                 <th>Período</th>
-                <th>Fecha</th>
                 <th>Partes</th>
-
+                <th></th>
             </tr>
             </thead>
-            <tbody>
-
-            <?php if(isset($view->habilitas)) {
-                foreach ($view->habilitas as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id']; ?>">
-                        <td class="<?php echo ($rp['count']> 0 )? 'details-control' : ''; ?>"></td>
-                        <td><?php echo $rp['id']; ?></td>
-                        <td><?php echo $rp['ot']; ?></td>
-                        <td><?php echo $rp['habilita']; ?></td>
-                        <td><?php echo $rp['cantidad']; ?></td>
-                        <td><?php echo $rp['unitario']; ?></td>
-                        <td><?php echo $rp['importe']; ?></td>
-                        <td><?php echo $rp['centro']; ?></td>
-                        <td><?php echo $rp['certificado']; ?></td>
-                        <td><?php echo $rp['periodo']; ?></td>
-                        <td><?php echo $rp['fecha']; ?></td>
-                        <td><?php echo $rp['count']; ?></td>
-
-                    </tr>
-                <?php endforeach; } ?>
-            </tbody>
         </table>
 
 
-        <!--<br/>
-        <div class="pull-right pdf">
-            <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
-        </div>-->
 
     </div>
 

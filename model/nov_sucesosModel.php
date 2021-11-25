@@ -241,7 +241,7 @@ class Suceso
                   if(pe2.created_date, pe2.closed_date, 1) as closed_date_2,
                   su.id_contrato, su.programado, id_periodo1,
                   datediff(su.fecha_hasta, su.fecha_desde)+1 as cantidad,
-                  us.user
+                  us.user, us.id_user
                   from v_sec_nov_sucesos su
                   join empleados em on su.id_empleado = em.id_empleado
                   join nov_eventos_l ev on su.id_evento = ev.id_evento

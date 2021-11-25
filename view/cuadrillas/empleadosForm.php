@@ -28,7 +28,8 @@
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
         $('#empleados_left_side').on('click', '.view', function(){ //ok
@@ -49,7 +50,8 @@
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 $('.selectpicker').selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -67,7 +69,8 @@
                 $('#id_cuadrilla').val(params.id_cuadrilla);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -95,14 +98,14 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        //uploadObj.startUpload(); //se realiza el upload solo si el formulario se guardo exitosamente
                         $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myModal #myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
-                        $('#empleados_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla:params.id_cuadrilla, operation:"refreshGrid"});
+                        //$('#empleados_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla:params.id_cuadrilla, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
                                                 $('#empleado-form').hide();
+                                                $('#table-empleados').DataTable().ajax.reload();
                                               }, 2000);
                     }else{
                         $("#myModal #myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
@@ -138,7 +141,7 @@
                     }
                 }
             });
-
+            return false;
 
         });
 
@@ -157,8 +160,9 @@
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Empleado eliminado con exito</div>');
                     setTimeout(function() {
                         dialog.modal('hide');
-                        $('#empleados_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla: params.id_cuadrilla, operation:"refreshGrid"});
                         $('#empleado-form').hide();
+                        //$('#empleados_left_side .grid').load('index.php',{action:"cuadrilla-empleado", id_cuadrilla: params.id_cuadrilla, operation:"refreshGrid"});
+                        $('#table-empleados').DataTable().ajax.reload();
                     }, 2000);
                 }
 

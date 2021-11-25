@@ -147,6 +147,8 @@ group by nh.id
 order by nh.habilita asc";*/
         $query = "select nh.id, nh.habilita, nh.ot, nh.cantidad, nh.unitario, nh.importe, nh.centro, nh.certificado,
 DATE_FORMAT(nh.fecha,  '%d/%m/%Y') as fecha,
+DATE_FORMAT(nh.created_date,  '%d/%m/%Y %H:%i') as created_date,
+us.user,
 (select count(*)
 from nov_parte_orden npox
 where npox.orden_nro = nh.ot
@@ -160,10 +162,12 @@ order by perx.fecha_desde desc
 limit 1
 ) as periodo
 from nov_habilitas nh
+join sec_users us on us.id_user = nh.created_by
 where nh.ot like :ot
 and nh.habilita like :habilita
 and nh.certificado like :certificado
-order by nh.habilita asc";
+order by nh.certificado desc
+limit 500";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':ot', "%".$this->getOt()."%"); //2006589385

@@ -13,6 +13,8 @@ include_once("model/nov_eventosCuadrillaModel.php");
 include_once("model/empleadosModel.php");
 include_once("model/nov_periodosModel.php");
 
+include_once("model/companiasModel.php");
+
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
@@ -24,14 +26,17 @@ switch ($operation)
     case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
-        $fecha_desde = ($_POST['search_fecha_desde']!='')? $_POST['search_fecha_desde'] : null;
-        $fecha_hasta = ($_POST['search_fecha_hasta']!='')? $_POST['search_fecha_hasta'] : null;
+        $fecha_desde = ($_POST['startDate']!='')? $_POST['startDate'] : null;
+        $fecha_hasta = ($_POST['endDate']!='')? $_POST['endDate'] : null;
         $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
         $id_periodo = ($_POST['id_periodo']!='')? $_POST['id_periodo'] : null;
         $cuadrilla = ($_POST['cuadrilla']!='')? $_POST['cuadrilla'] : null;
         //$todas = null; //($_POST['renovado']== 0)? null : 1;
-        $view->partes = Parte::getPartes($fecha_desde, $fecha_hasta, $id_contrato, $id_periodo, $cuadrilla);
-        $view->contentTemplate="view/novedades_partes/partesGrid.php";
+        $rta = $view->partes = Parte::getPartes($fecha_desde, $fecha_hasta, $id_contrato, $id_periodo, $cuadrilla);
+        //$view->contentTemplate="view/novedades_partes/partesGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'insertPartes': //guarda de manera masiva los partes seleccionados //ok
@@ -233,6 +238,35 @@ switch ($operation)
         $rta = $parte->deleteParte();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
+        break;
+
+
+    case 'pdf':
+
+        $fecha_desde = $_GET['fecha_desde'];
+        $fecha_hasta = $_GET['fecha_hasta'];
+        $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
+        $cuadrilla = ($_GET['cuadrilla'] && $_GET['cuadrilla'] != 'null')? $_GET['cuadrilla'] : null ;
+
+        $rta = Parte::getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla);
+        //$cliente = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
+        //$contrato = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
+        //$counts = array_count_values(array_column($rta, 'tipo_ensayo')); //https://stackoverflow.com/questions/11646054/php-count-specific-array-values
+        //$count_ppt = ($counts['P'])? $counts['P'] : 0;
+        //$count_cert = ($counts['N'])? $counts['N'] : 0;
+
+        $encabezado = array();
+        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
+        $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
+        $encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
+        $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
+        $encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';
+        $encabezado['cuadrilla'] = ($cuadrilla != null)? $cuadrilla : 'Todas';
+
+        $encabezado['fecha_desde'] = date_format(date_create($_GET['fecha_desde']), 'd/m/Y');
+        $encabezado['fecha_hasta'] = date_format(date_create($_GET['fecha_hasta']), 'd/m/Y');
+
+        include_once ('view/novedades_partes/generador_certificados.php');
         break;
 
 

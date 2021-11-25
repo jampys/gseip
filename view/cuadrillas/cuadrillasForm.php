@@ -28,6 +28,7 @@
                 params.default_id_area = $('#default_id_area').val();
                 params.nombre = $('#nombre').val();
                 params.nombre_corto = $('#nombre_corto').val();
+                params.nombre_corto_op = $('#nombre_corto_op').val();
                 params.actividad = $('#actividad').val();
                 params.disabled = $('#disabled').prop('checked')? 1:0;
                 //alert(params.id_grupo);
@@ -41,7 +42,7 @@
                         //$('#content').load('index.php',{action:"renovacionesPersonal", operation:"refreshGrid"});
                         setTimeout(function() { $("#myModal #myElem").hide();
                                                 $('#myModal').modal('hide');
-                                                $("#search").trigger("click");
+                                                $('#example').DataTable().ajax.reload(null, false);//$("#search").trigger("click");
                                               }, 2000);
                     }else{
                         $("#myModal #myElem").html('Error al guardar la cuadrilla').addClass('alert alert-danger').show();
@@ -168,12 +169,21 @@
                                placeholder="Nombre">
                     </div>
 
-                    <div class="form-group required">
-                        <label class="control-label" for="nombre">Identificador</label>
-                        <input class="form-control" type="text" name="nombre_corto" id="nombre_corto" value = "<?php print $view->cuadrilla->getNombreCorto() ?>"
-                            <?php echo ($view->cuadrilla->getHasPartes())? 'disabled title="No es posible editar el identificador de una cuadrilla con novedades existentes"':'' ?>
-                               placeholder="Abreviatura ó identificador corto">
+                    <div class="row">
+                        <div class="form-group col-md-6 required">
+                            <label class="control-label" for="nombre">ID SEIP</label>
+                            <input class="form-control" type="text" name="nombre_corto" id="nombre_corto" value = "<?php print $view->cuadrilla->getNombreCorto() ?>"
+                                <?php echo ($view->cuadrilla->getHasPartes())? 'disabled title="No es posible editar el identificador de una cuadrilla con novedades existentes"':'' ?>
+                                   placeholder="Abreviatura ó identificador corto">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="nombre_corto_op">ID Operadora</label>
+                            <input class="form-control" type="text" name="nombre_corto_op" id="nombre_corto_op" value = "<?php print $view->cuadrilla->getNombreCortoOp() ?>" placeholder="Identificador en la operadora">
+                        </div>
+
                     </div>
+
 
                     <div class="form-group">
                         <label class="control-label" for="actividad">Actividad</label>

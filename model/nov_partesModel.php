@@ -155,7 +155,8 @@ class Parte
 
     public static function getPartes($fecha_desde, $fecha_hasta, $id_contrato, $id_periodo, $cuadrilla) { //ok
         $stmt=new sQuery();
-        $query="select pa.id_parte,
+        /*
+         * $query="select pa.id_parte,
                     (select count(*) from nov_parte_orden npox where npox.id_parte = pa.id_parte) as orden_count,
                     (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = pa.id_parte) as concept_count,
                     DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
@@ -180,6 +181,33 @@ class Parte
                     and pa.id_periodo =  ifnull(:id_periodo, pa.id_periodo)
                     and pa.cuadrilla =  ifnull(:cuadrilla, pa.cuadrilla)
                     order by pa.fecha_parte asc";
+         */
+        $query="select pa.id_parte,
+                    (select count(*) from nov_parte_orden npox where npox.id_parte = pa.id_parte) as orden_count,
+                    (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = pa.id_parte) as concept_count,
+                    DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
+                    DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+                    pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.last_calc_status,
+                    concat(ar.codigo, ' ', ar.nombre) as area,
+                    ve.nro_movil as vehiculo,
+                    concat(nec.codigo, ' ', nec.nombre) as evento,
+                    co.nombre as contrato,
+                    us.user, pa.created_by,
+                    pa.id_periodo, pe.closed_date
+                    from nov_partes pa
+                    left join nov_areas ar on pa.id_area = ar.id_area
+                    left join vto_vehiculos ve on pa.id_vehiculo = ve.id_vehiculo
+                    left join nov_eventos_c nec on pa.id_evento = nec.id_evento
+                    join v_sec_contratos_control co on pa.id_contrato = co.id_contrato
+                    join sec_users us on pa.created_by = us.id_user
+                    join nov_periodos pe on pe.id_periodo = pa.id_periodo
+                    and pa.fecha_parte between if(:fecha_desde is null, pa.fecha_parte, :fecha_desde)
+                    and if(:fecha_hasta is null, pa.fecha_parte, :fecha_hasta)
+                    and pa.id_contrato =  ifnull(:id_contrato, pa.id_contrato)
+                    and pa.id_periodo =  ifnull(:id_periodo, pa.id_periodo)
+                    and pa.cuadrilla =  ifnull(:cuadrilla, pa.cuadrilla)
+                    order by pa.fecha_parte asc
+                    limit 500";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $fecha_desde);
         $stmt->dpBind(':fecha_hasta', $fecha_hasta);
@@ -361,6 +389,7 @@ join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato =
 join nov_periodos per on np.id_periodo = per.id_periodo
 where np.id_contrato in ($id_contrato)
 and np.last_calc_status is not null
+and nccc.id_concepto not in (41)
 and per.periodo = :periodo
 group by npe.id_empleado, nccc.codigo, nccc.variable
 UNION
@@ -569,6 +598,56 @@ limit 1";
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpBind(':fecha_parte', $fecha_parte);
         $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
+    public static function getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla) {
+        $stmt=new sQuery();
+        /*$query="select pa.id_parte,
+                    (select count(*) from nov_parte_orden npox where npox.id_parte = pa.id_parte) as orden_count,
+                    (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = pa.id_parte) as concept_count,
+                    DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
+                    DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+                    pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.last_calc_status,
+                    concat(ar.codigo, ' ', ar.nombre) as area,
+                    ve.nro_movil as vehiculo,
+                    concat(nec.codigo, ' ', nec.nombre) as evento,
+                    co.nombre as contrato,
+                    us.user, pa.created_by,
+                    pa.id_periodo, pe.closed_date
+                    from nov_partes pa
+                    left join nov_areas ar on pa.id_area = ar.id_area
+                    left join vto_vehiculos ve on pa.id_vehiculo = ve.id_vehiculo
+                    left join nov_eventos_c nec on pa.id_evento = nec.id_evento
+                    join v_sec_contratos_control co on pa.id_contrato = co.id_contrato
+                    join sec_users us on pa.created_by = us.id_user
+                    join nov_periodos pe on pe.id_periodo = pa.id_periodo
+                    and pa.fecha_parte between if(:fecha_desde is null, pa.fecha_parte, :fecha_desde)
+                    and if(:fecha_hasta is null, pa.fecha_parte, :fecha_hasta)
+                    and pa.id_contrato =  ifnull(:id_contrato, pa.id_contrato)
+                    and pa.id_periodo =  ifnull(:id_periodo, pa.id_periodo)
+                    and pa.cuadrilla =  ifnull(:cuadrilla, pa.cuadrilla)
+                    order by pa.fecha_parte asc";*/
+        $query = "select np.id_parte, np.comentarios,
+DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+cu.nombre_corto_op as cuadrilla, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro
+from nov_partes np
+join nov_cuadrillas cu on np.id_cuadrilla = cu.id_cuadrilla
+left join nov_parte_orden npo on npo.id_parte = np.id_parte
+left join nov_eventos_c nec on nec.id_evento = np.id_evento
+left join nov_areas na on na.id_area = np.id_area
+where np.id_contrato = :id_contrato
+and np.fecha_parte between :fecha_desde and :fecha_hasta
+and np.cuadrilla = ifnull(:cuadrilla, np.cuadrilla)
+order by cu.nombre_corto_op asc, np.fecha_parte asc";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':cuadrilla', $cuadrilla);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
