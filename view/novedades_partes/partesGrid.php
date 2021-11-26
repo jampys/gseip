@@ -50,7 +50,8 @@
                                 //'&endDate='+drp.endDate.format('YYYY-MM-DD');
                             '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+
                             '&fecha_hasta='+$('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD');
-                        window.open(link, '_blank');
+                        //window.open(link);
+                        window.location.href = link;
                     }
                 }
             ],
