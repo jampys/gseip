@@ -266,8 +266,8 @@ switch ($operation)
         $encabezado['fecha_desde'] = date_format(date_create($_GET['fecha_desde']), 'd/m/Y');
         $encabezado['fecha_hasta'] = date_format(date_create($_GET['fecha_hasta']), 'd/m/Y');
 
-        if ($_GET['target'] == 'pdf') $view->contentTemplate="'view/novedades_partes/generador_certificados.php'";
-        else $view->contentTemplate="'view/novedades_partes/generador_certificados.php'";
+        if ($_GET['target'] == 'pdf') $view->contentTemplate="view/novedades_partes/generador_certificados.php";
+        else $view->contentTemplate="view/novedades_partes/generador_certificados.php";
         break;
 
 
