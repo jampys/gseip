@@ -19,13 +19,27 @@
         });*/
 
         $('#example').DataTable({
-            dom: "<'row'<'col-md-8'l><'col-md-1'B><'col-md-3'f>>" +
+            dom: "<'row'<'col-md-7'l><'col-md-2'B><'col-md-3'f>>" +
                  "<'row'<'col-md-12'tr>>" +
                  "<'row'<'col-md-5'i><'col-md-7'p>>",
             buttons: [
                 {
-                    text: '<i class="far fa-file-pdf fa-fw dp_blue"></i>',
-                    titleAttr: 'Reporte de actividad de cuadrillas',
+                    text: '<i class="far fa-file-pdf dp_blue"></i>',
+                    titleAttr: 'Reporte (pdf) de actividad de cuadrillas',
+                    action: function ( e, dt, node, config ) {
+                        let link = 'index.php?action=partes&operation=pdf'+
+                            '&id_contrato='+$('#add_contrato').val()+
+                            '&cuadrilla='+$('#cuadrilla').val()+
+                                //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
+                                //'&endDate='+drp.endDate.format('YYYY-MM-DD');
+                            '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+
+                            '&fecha_hasta='+$('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD');
+                        window.open(link, '_blank');
+                    }
+                },
+                {
+                    text: '<i class="far fa-file-excel dp_blue"></i>',
+                    titleAttr: 'Reporte (xls) de actividad de cuadrillas',
                     action: function ( e, dt, node, config ) {
                         let link = 'index.php?action=partes&operation=pdf'+
                             '&id_contrato='+$('#add_contrato').val()+
