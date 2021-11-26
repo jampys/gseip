@@ -27,9 +27,10 @@
                     text: '<i class="far fa-file-pdf dp_blue"></i>',
                     titleAttr: 'Reporte (pdf) de actividad de cuadrillas',
                     action: function ( e, dt, node, config ) {
-                        let link = 'index.php?action=partes&operation=pdf'+
+                        let link = 'index.php?action=partes&operation=reporte'+
                             '&id_contrato='+$('#add_contrato').val()+
                             '&cuadrilla='+$('#cuadrilla').val()+
+                            '&target=pdf'+
                                 //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
                                 //'&endDate='+drp.endDate.format('YYYY-MM-DD');
                             '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+
@@ -41,9 +42,10 @@
                     text: '<i class="far fa-file-excel dp_blue"></i>',
                     titleAttr: 'Reporte (xls) de actividad de cuadrillas',
                     action: function ( e, dt, node, config ) {
-                        let link = 'index.php?action=partes&operation=pdf'+
+                        let link = 'index.php?action=partes&operation=reporte'+
                             '&id_contrato='+$('#add_contrato').val()+
                             '&cuadrilla='+$('#cuadrilla').val()+
+                            '&target=excel'+
                                 //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
                                 //'&endDate='+drp.endDate.format('YYYY-MM-DD');
                             '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+
