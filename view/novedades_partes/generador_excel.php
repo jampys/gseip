@@ -16,6 +16,8 @@ $spreadsheet->getActiveSheet()->mergeCells('A2:F2');
 $spreadsheet->getActiveSheet()->mergeCells('A3:F3');
 $spreadsheet->getActiveSheet()->mergeCells('A4:F4');
 $spreadsheet->getActiveSheet()->mergeCells('A5:F5');
+$spreadsheet->getActiveSheet()->getStyle('A1:F5')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:F5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('e6e6e6');
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
 $sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
@@ -27,6 +29,7 @@ $sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_e
 //encabezado ------------------------------------------------------------
 $encabezado = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT"];
 $sheet->fromArray($encabezado, null, 'A7');
+$spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFont()->setBold(true);
 
 //cuerpo -----------------------------------------------------------------
 $fila = 8;
