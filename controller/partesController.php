@@ -248,7 +248,7 @@ switch ($operation)
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $cuadrilla = ($_GET['cuadrilla'] && $_GET['cuadrilla'] != 'null')? $_GET['cuadrilla'] : null ;
 
-        $rta = Parte::getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla);
+        $view->partes = $rta = Parte::getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla);
         //$cliente = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
         //$contrato = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
         //$counts = array_count_values(array_column($rta, 'tipo_ensayo')); //https://stackoverflow.com/questions/11646054/php-count-specific-array-values
