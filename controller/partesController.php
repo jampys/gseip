@@ -266,6 +266,8 @@ switch ($operation)
         $encabezado['fecha_desde'] = date_format(date_create($_GET['fecha_desde']), 'd/m/Y');
         $encabezado['fecha_hasta'] = date_format(date_create($_GET['fecha_hasta']), 'd/m/Y');
 
+        $encabezado['fecha_emision'] = date('d/m/Y H:i');
+
         if ($_GET['target'] == 'pdf') $view->contentTemplate="view/novedades_partes/generador_pdf.php";
         else $view->contentTemplate="view/novedades_partes/generador_excel.php";
         break;

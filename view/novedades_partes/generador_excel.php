@@ -9,8 +9,27 @@ $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
 $sheet->setTitle('partes');
 
+//titulo ----------------------------------------------------------------
+
+$spreadsheet->getActiveSheet()->mergeCells('A1:F1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
+$spreadsheet->getActiveSheet()->mergeCells('A2:F2');
+$spreadsheet->getActiveSheet()->mergeCells('A3:F3');
+$spreadsheet->getActiveSheet()->mergeCells('A4:F4');
+$spreadsheet->getActiveSheet()->mergeCells('A5:F5');
+
+$sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
+$sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Cuadrilla: '.$encabezado['cuadrilla']);
+$sheet->setCellValueByColumnAndRow(1, 4, 'Fecha desde - hasta: '.$encabezado['fecha_desde'].' - '.$encabezado['fecha_hasta']);
+$sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_emision']);
+
+
+//encabezado ------------------------------------------------------------
+$encabezado = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT"];
+$sheet->fromArray($encabezado, null, 'A7');
+
 //cuerpo -----------------------------------------------------------------
-$fila = 2;
+$fila = 8;
 foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['fecha_parte']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['cuadrilla']);

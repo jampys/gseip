@@ -79,7 +79,7 @@
                     <td><span class="subtitulo">Cuadrilla</span></td>
                     <td>'.$encabezado['cuadrilla'].'</td>
                     <td><span class="subtitulo">Fecha emisión</span></td>
-                    <td>'.date('d/m/Y H:i').'</td>
+                    <td>'.$encabezado['fecha_emision'].'</td>
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Fecha desde - hasta</span></td>
