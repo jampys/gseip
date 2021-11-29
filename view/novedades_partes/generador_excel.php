@@ -17,7 +17,7 @@ $spreadsheet->getActiveSheet()->mergeCells('A3:F3');
 $spreadsheet->getActiveSheet()->mergeCells('A4:F4');
 $spreadsheet->getActiveSheet()->mergeCells('A5:F5');
 $spreadsheet->getActiveSheet()->getStyle('A1:F5')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:F5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('e6e6e6');
+$spreadsheet->getActiveSheet()->getStyle('A1:F5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
 $sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
@@ -30,6 +30,7 @@ $sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_e
 $encabezado = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT"];
 $sheet->fromArray($encabezado, null, 'A7');
 $spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
 $fila = 8;
@@ -55,7 +56,7 @@ foreach ($sheet->getColumnIterator() as $column) {
 
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'partes.xlsx';
+$filename = 'partes_'.$encabezado["contrato"].'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');
