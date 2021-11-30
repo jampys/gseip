@@ -775,7 +775,7 @@
 			this.statusbar = $("<div class='ajax-file-upload-statusbar'></div>"); //.width(s.statusBarWidth);
 
             //this.preview = $("<img class='ajax-file-upload-preview' />").width(s.previewWidth).height(s.previewHeight).appendTo(this.statusbar).hide();
-            if(dpType == 'jpg' ||  dpType == 'png'){
+            if(dpType == 'jpg' ||  dpType == 'jpeg' ||  dpType == 'png'){
                 this.preview = $("<img class='ajax-file-upload-preview image' />").width(s.previewWidth).height(s.previewHeight).appendTo(this.statusbar).hide();
                 this.preview.addClass('image').css('cursor', 'zoom-in').viewer({});
             }
