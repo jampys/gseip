@@ -136,7 +136,7 @@
             showCancel: true,
             showAbort: true,
             allowDuplicates: false,
-            allowedTypes: "jpg, png, pdf, txt, doc, docx",
+            allowedTypes: "jpg, jpeg, png, pdf, txt, doc, docx",
 
             dynamicFormData: function(){
                 var data ={ "id": ($('#id_suceso').val())? $('#id_suceso').val() : objeto.id };
