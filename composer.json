@@ -1,0 +1,22 @@
+{
+    "name": "dario/gseip",
+    "description": "Proyecto Gseip",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Dario\\Gseip\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dario picon",
+            "email": "dario.picon@innsa.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "mpdf/mpdf": "dev-development",
+        "phpoffice/phpspreadsheet": "^1.8"
+    }
+}

@@ -241,14 +241,14 @@ switch ($operation)
         break;
 
 
-    case 'pdf':
-
+    case 'reporte':
+        $view->disableLayout=true;
         $fecha_desde = $_GET['fecha_desde'];
         $fecha_hasta = $_GET['fecha_hasta'];
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $cuadrilla = ($_GET['cuadrilla'] && $_GET['cuadrilla'] != 'null')? $_GET['cuadrilla'] : null ;
 
-        $rta = Parte::getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla);
+        $view->partes = $rta = Parte::getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla);
         //$cliente = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
         //$contrato = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
         //$counts = array_count_values(array_column($rta, 'tipo_ensayo')); //https://stackoverflow.com/questions/11646054/php-count-specific-array-values
@@ -266,7 +266,10 @@ switch ($operation)
         $encabezado['fecha_desde'] = date_format(date_create($_GET['fecha_desde']), 'd/m/Y');
         $encabezado['fecha_hasta'] = date_format(date_create($_GET['fecha_hasta']), 'd/m/Y');
 
-        include_once ('view/novedades_partes/generador_certificados.php');
+        $encabezado['fecha_emision'] = date('d/m/Y H:i');
+
+        if ($_GET['target'] == 'pdf') $view->contentTemplate="view/novedades_partes/generador_pdf.php";
+        else $view->contentTemplate="view/novedades_partes/generador_excel.php";
         break;
 
 
