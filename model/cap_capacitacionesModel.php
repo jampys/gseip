@@ -3,6 +3,7 @@ class Capacitacion
 {
     private $id_capacitacion;
     private $id_plan_capacitacion;
+    private $periodo;
     private $id_categoria;
     private $tema;
     private $descripcion;
@@ -21,6 +22,9 @@ class Capacitacion
 
     function getIdPlanCapacitacion()
     { return $this->id_plan_capacitacion;}
+
+    function getPeriodo()
+    { return $this->periodo;}
 
     function getIdCategoria()
     { return $this->id_categoria;}
@@ -62,6 +66,9 @@ class Capacitacion
 
     function setIdPlanCapacitacion($val)
     { $this->id_plan_capacitacion=$val;}
+
+    function setPeriodo($val)
+    { $this->periodo=$val;}
 
     function setIdCategoria($val)
     { $this->id_categoria=$val;}
@@ -129,7 +136,7 @@ join cap_categorias cg on cg.id_categoria = c.id_categoria";
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.capacitador,
+            $query="select c.id_capacitacion, c.id_plan_capacitacion, c.periodo, c.id_categoria, c.tema, c.descripcion, c.capacitador,
 DATE_FORMAT(c.fecha_programada,  '%d/%m/%Y %H:%i') as fecha_programada,
 c.duracion,
 DATE_FORMAT(c.fecha_inicio,  '%d/%m/%Y %H:%i') as fecha_inicio,
@@ -146,6 +153,7 @@ c.id_user
 
             $this->setIdCapacitacion($rows[0]['id_capacitacion']);
             $this->setIdPlanCapacitacion($rows[0]['id_plan_capacitacion']);
+            $this->setPeriodo($rows[0]['periodo']);
             $this->setIdCategoria($rows[0]['id_categoria']);
             $this->setTema($rows[0]['tema']);
             $this->setDescripcion($rows[0]['descripcion']);
