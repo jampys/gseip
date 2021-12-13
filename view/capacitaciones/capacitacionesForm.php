@@ -191,8 +191,8 @@
             <div class="modal-body">
 
 
-                <form name ="objetivo-form" id="objetivo-form" method="POST" action="index.php">
-                    <input type="hidden" name="id_objetivo" id="id_objetivo" value="<?php print $view->objetivo->getIdObjetivo() ?>">
+                <form name ="capacitacion-form" id="capacitacion-form" method="POST" action="index.php">
+                    <input type="hidden" name="id_capacitacion" id="id_capacitacion" value="<?php print $view->capacitacion->getIdCapacitacion() ?>">
 
                     <div class="form-group required">
                         <label for="id_busqueda" class="control-label">Período</label>

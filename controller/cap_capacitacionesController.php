@@ -58,9 +58,9 @@ switch ($operation)
         exit;
         break;
 
-    case 'newObjetivo':
-        $view->label='Nuevo objetivo';
-        $view->objetivo = new Objetivo();
+    case 'newCapacitacion':
+        $view->label='Nueva capacitación';
+        $view->capacitacion = new Capacitacion();
 
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
@@ -72,25 +72,18 @@ switch ($operation)
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/capacitaciones/objetivosForm.php";
+        $view->contentTemplate="view/capacitaciones/capacitacionesForm.php";
         break;
 
-    case 'editObjetivo':
-        $view->objetivo = new Objetivo($_POST['id_objetivo']);
-
-        if($_POST['target'] == 'edit' or $_POST['target'] == 'view' ) $view->label = $view->objetivo->getCodigo();
-        else if ($_POST['target'] == 'clone') {
-            $view->label = '<h4><span class="label label-warning">CLONAR</span> '.$view->objetivo->getCodigo().'</h4>';
-            $view->objetivo->setIdObjetivo(null); //pone el id_objetivo en null para al guardar insertar uno nuevo
-            if($_POST['cerrado']) $view->objetivo->setPeriodo(null);
-        }
-
+    case 'editCapacitacion':
+        $view->capacitacion = new Capacitacion($_POST['id_capacitacion']);
+        $view->label = $view->capacitacion->getTema();
 
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->puestos = Puesto::getPuestos();
         $view->areas = Area::getAreas();
-        //$view->contratos = Contrato::getContratos();
+
         $view->contratos = ($_POST['cerrado'])? Contrato::getContratos() : Contrato::getContratosControl();
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
         $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
@@ -99,7 +92,7 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/capacitaciones/objetivosForm.php";
+        $view->contentTemplate="view/capacitaciones/capacitacionesForm.php";
         break;
 
 
