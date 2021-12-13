@@ -34,7 +34,7 @@
 
             $('#content').on('click', '.edit', function(){ //ok
                 //alert('presionó en editar');
-                var id = $(this).closest('tr').attr('id_capacitacion');
+                var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_capacitacion = id;
                 params.action = "cap_capacitaciones";
@@ -52,7 +52,7 @@
 
 
             $('#content').on('click', '.view', function(){
-                var id = $(this).closest('tr').attr('id_objetivo');
+                var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_objetivo = id;
                 params.action = "obj_objetivos";
@@ -70,7 +70,7 @@
 
             $('#content').on('click', '.clone', function(){
                 //alert('presionó en editar');
-                var id = $(this).closest('tr').attr('id_objetivo');
+                var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_objetivo = id;
                 params.action = "obj_objetivos";
@@ -90,7 +90,7 @@
             //$(document).on('click', '.detalle', function(){
             $('#content').on('click', '.detalle', function(){
                 //alert('presiono sobre detalle');
-                var id = $(this).closest('tr').attr('id_objetivo');
+                var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_objetivo = id;
                 params.action = "obj_objetivos";
@@ -124,7 +124,7 @@
             var dialog;
             $('#content').on('click', '#example .delete', function(){
 
-                var id = $(this).closest('tr').attr('id_objetivo');
+                var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
                     message: "<p>¿Desea eliminar el objetivo?</p>",
                     size: 'small',
