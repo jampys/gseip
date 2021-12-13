@@ -34,13 +34,13 @@
 
             $('#content').on('click', '.edit', function(){ //ok
                 //alert('presionó en editar');
-                var id = $(this).closest('tr').attr('id_objetivo');
+                var id = $(this).closest('tr').attr('id_capacitacion');
                 params={};
-                params.id_objetivo = id;
-                params.action = "obj_objetivos";
-                params.operation = "editObjetivo";
+                params.id_capacitacion = id;
+                params.action = "cap_capacitaciones";
+                params.operation = "editCapacitacion";
                 params.target = "edit";
-                params.cerrado = $(this).closest('tr').attr('cerrado');
+                //params.cerrado = $(this).closest('tr').attr('cerrado');
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
@@ -51,7 +51,7 @@
             });
 
 
-            $('#content').on('click', '.view', function(){ //ok
+            $('#content').on('click', '.view', function(){
                 var id = $(this).closest('tr').attr('id_objetivo');
                 params={};
                 params.id_objetivo = id;
@@ -68,7 +68,7 @@
             });
 
 
-            $('#content').on('click', '.clone', function(){ //ok
+            $('#content').on('click', '.clone', function(){
                 //alert('presionó en editar');
                 var id = $(this).closest('tr').attr('id_objetivo');
                 params={};
@@ -110,7 +110,7 @@
             });
 
 
-            $(document).on('click', '#new', function(){ //ok
+            $(document).on('click', '#new', function(){
                 params={};
                 params.action = "obj_objetivos";
                 params.operation="newObjetivo";
@@ -122,7 +122,7 @@
 
 
             var dialog;
-            $('#content').on('click', '#example .delete', function(){ //ok
+            $('#content').on('click', '#example .delete', function(){
 
                 var id = $(this).closest('tr').attr('id_objetivo');
                 dialog = bootbox.dialog({
