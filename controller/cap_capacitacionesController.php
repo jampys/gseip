@@ -79,7 +79,7 @@ switch ($operation)
         $view->capacitacion = new Capacitacion($_POST['id_capacitacion']);
         $view->label = $view->capacitacion->getTema();
 
-        $view->periodos = Evaluacion::getPeriodos();
+        $view->periodos = Capacitacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->puestos = Puesto::getPuestos();
         $view->areas = Area::getAreas();

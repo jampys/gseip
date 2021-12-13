@@ -131,6 +131,17 @@ join cap_categorias cg on cg.id_categoria = c.id_categoria";
     }
 
 
+    public static function getPeriodos() { //ok
+        $stmt=new sQuery();
+        $query = "select id_plan_capacitacion, periodo, cerrado
+                  from cap_planes_capacitacion
+                  order by periodo desc";
+        $stmt->dpPrepare($query);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
     function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
