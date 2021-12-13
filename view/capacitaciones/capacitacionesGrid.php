@@ -86,9 +86,9 @@
                         let permisoEditarO = (permisoEditar && !row.cerrado)? 'edit' : 'disabled';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_DELETE', array(1)) )? true : false ?>';
                         let permisoEliminarO = (permisoEliminar && !row.cerrado)? 'delete' : 'disabled';
-                        let user_info = row.fecha; //row.user.split('@')[0]+' '+row.fecha;
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
                         return '<a class="'+permisoEtapas+'" href="javascript:void(0);">'+ //si tiene permiso para ver etapas
-                                    '<i class="fas fa-th-list dp_blue" title="Detalle del objetivo"></i>'+
+                                    '<i class="fas fa-th-list dp_blue" title="Empleados"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoClonar+'" href="#" title="Clonar">'+ //si tiene permiso para clonar
                                     '<i class="far fa-copy dp_blue"></i>'+
