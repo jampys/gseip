@@ -7,6 +7,8 @@ include_once("model/puestosModel.php");
 include_once("model/areasModel.php");
 include_once("model/contratosModel.php");
 
+include_once("model/cap_capacitacionesModel.php");
+
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
 
@@ -27,7 +29,7 @@ switch ($operation)
         $id_responsable_seguimiento = ($_POST['search_responsable_seguimiento']!='')? $_POST['search_responsable_seguimiento'] : null;
         //$view->periodos = Objetivo::getPeriodos();
         //$view->todos = $_POST['todos'];
-        $rta = $view->objetivos = Objetivo::getObjetivos($periodo, $id_puesto, $id_area, $id_contrato, $indicador, $id_responsable_ejecucion, $id_responsable_seguimiento, $_POST['todos']);
+        $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_puesto, $id_area);
         //$view->contentTemplate="view/objetivos/objetivosGrid.php";
         //break;
         print_r(json_encode($rta));

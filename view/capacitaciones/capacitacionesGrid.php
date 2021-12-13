@@ -111,7 +111,7 @@
                     d.search_responsable_ejecucion = $("#search_responsable_ejecucion").val();
                     d.search_responsable_seguimiento = $("#search_responsable_seguimiento").val();
                     d.todos = $('#search_todos').prop('checked')? 1:0;
-                    d.action = "obj_objetivos";
+                    d.action = "cap_capacitaciones";
                     d.operation = "refreshGrid";
                 },
                 "dataSrc": ""
@@ -124,49 +124,26 @@
                  className: 'control',
                  orderable: false
                  },*/
-                {"data" : "id_objetivo"},
-                {"data" : "id_objetivo"},
-                {"data" : "puesto"},
-                {"data" : "responsable_ejecucion"},
-                {"data" : "contrato"},
-                {"data" : "id_objetivo"},
-                {"data" : "id_objetivo", orderable: false}
+                {"data" : "categoria"},
+                {"data" : "tema"},
+                {"data" : "descripcion"},
+                {"data" : "capacitador"},
+                {"data" : "duracion"},
+                {"data" : "fecha_programada"},
+                {"data" : null, orderable: false}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
             createdRow: function (row, data, dataIndex) {
-                $(row).attr('data-id', data.id_objetivo);
-                $(row).attr('id_objetivo', data.id_objetivo);
-                $(row).attr('cerrado', data.cerrado);
+                $(row).attr('data-id', data.id_capacitacion);
+                //$(row).attr('id_objetivo', data.id_objetivo);
+                //$(row).attr('cerrado', data.cerrado);
             },
             "columnDefs": [
                 {
-                    targets: 0,//codigo
-                    responsivePriority: 1,
-                    render: function (data, type, row, meta) {
-                        let hijos = (row.hijos > 0)? 'seleccionable':'';
-                        return '<span class="'+hijos+'">'+row.codigo+'</span>';
-                    }
-                },
-                {
-                    targets: 1,//nombre objetivo
+                    targets: 2,//descripcion
                     responsivePriority: 2,
                     render: function (data, type, row, meta) {
-                        let hijos = (row.hijos > 0)? 'details-control':'';
-                        return '<span class="'+hijos+'"> '+row.codigo+'</span>&nbsp;'+$.fn.dataTable.render.ellipsis(75)(row.nombre, type, row);
-                    }
-                },
-                {
-                    targets: 5,//progress bar
-                    width: "90px",
-                    responsivePriority: 4,
-                    render: function (data, type, row, meta) {
-                        let progreso = (row.progreso <= 100)? row.progreso : 100;
-                        let color = getProgressBarColor(row.progreso);
-                        return '<div class="progress" style="margin-bottom: 0px">'+
-                                    '<div class="progress-bar progress-bar-striped active '+color+'" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: '+progreso+'%; min-width: 2em">'+
-                                        row.progreso+'%'+
-                                    '</div>'+
-                                '</div>';
+                        return $.fn.dataTable.render.ellipsis(30)(row.descripcion, type, row);
                     }
                 },
                 {
@@ -357,12 +334,12 @@
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>Área</th>
+                <th>Tipo cap.</th>
                 <th>Tema</th>
-                <th>Tema particular</th>
-                <th>Capacitación</th>
+                <th>Descripcion</th>
+                <th>Capacitador</th>
                 <th>Duración</th>
-                <th></th>
+                <th>F. programada</th>
                 <th></th>
             </tr>
             </thead>

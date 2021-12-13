@@ -98,7 +98,7 @@ class Capacitacion
 
 
 
-    public static function getNoConformidades($startDate, $endDate, $id_responsable_ejecucion){ //ok
+    public static function getCapacitaciones($startDate, $endDate, $id_responsable_ejecucion){ //ok
         $stmt=new sQuery();
         $query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.capacitador,
 DATE_FORMAT(c.fecha_programada,  '%d/%m/%Y %H:%i') as fecha_programada,
@@ -107,7 +107,8 @@ DATE_FORMAT(c.fecha_inicio,  '%d/%m/%Y %H:%i') as fecha_inicio,
 DATE_FORMAT(c.fecha_fin,  '%d/%m/%Y %H:%i') as fecha_fin,
 c.id_modalidad,
 DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
-c.id_user
+c.id_user,
+cg.nombre as categoria
 from cap_capacitaciones c
 join cap_planes_capacitacion pc on pc.id_plan_capacitacion = c.id_plan_capacitacion
 join sec_users u on u.id_user = c.id_user
