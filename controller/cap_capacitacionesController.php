@@ -15,7 +15,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid': //ok
+    case 'refreshGrid':
         //$view->disableLayout=true;
         $periodo = ($_POST['search_periodo']!='')? $_POST['search_periodo'] : null;
         $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -34,7 +34,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'saveObjetivo': //ok
+    case 'saveObjetivo':
         $objetivo = new Objetivo($_POST['id_objetivo']);
         $objetivo->setPeriodo($_POST['periodo']);
         $objetivo->setNombre($_POST['nombre']);
@@ -56,7 +56,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newObjetivo': //ok
+    case 'newObjetivo':
         $view->label='Nuevo objetivo';
         $view->objetivo = new Objetivo();
 
@@ -73,7 +73,7 @@ switch ($operation)
         $view->contentTemplate="view/capacitaciones/objetivosForm.php";
         break;
 
-    case 'editObjetivo': //ok
+    case 'editObjetivo':
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
 
         if($_POST['target'] == 'edit' or $_POST['target'] == 'view' ) $view->label = $view->objetivo->getCodigo();
@@ -101,7 +101,7 @@ switch ($operation)
         break;
 
 
-    case 'deleteObjetivo': //ok
+    case 'deleteObjetivo':
         $objetivo = new Objetivo($_POST['id_objetivo']);
         $rta = $objetivo->deleteObjetivo();
         print_r(json_encode($rta));
@@ -157,7 +157,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosActivos(null);
 
 
-        $view->contentTemplate="view/capacitaciones/objetivosGrid.php";
+        $view->contentTemplate="view/capacitaciones/capacitacionesGrid.php";
         break;
 }
 
@@ -166,7 +166,7 @@ if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {
-    include_once('view/capacitaciones/objetivosLayout.php');
+    include_once('view/capacitaciones/capacitacionesLayout.php');
 }
 
 

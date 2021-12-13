@@ -95,90 +95,80 @@ class Capacitacion
 
     function setIdUser($val)
     {  $this->id_user=$val;}
-    
 
 
-    public static function getNoConformidades($startDate, $endDate, $id_responsable_ejecucion){
+
+    public static function getNoConformidades($startDate, $endDate, $id_responsable_ejecucion){ //ok
         $stmt=new sQuery();
-        $query="select nc.id_no_conformidad, nc.nro_no_conformidad, nc.nombre, nc.sector, nc.tipo, nc.analisis_causa, nc.tipo_accion,
-nc.descripcion, nc.accion_inmediata, nc.analisis_causa_desc,
-DATE_FORMAT(nc.created_date,  '%d/%m/%Y %H:%i') as created_date,
-DATE_FORMAT(nc.fecha_cierre,  '%d/%m/%Y') as fecha_cierre,
-nc.id_user, us.user,
-concat(em.apellido, ' ', em.nombre) as responsable_seguimiento,
-CASE WHEN nc.fecha_cierre is not null THEN 'CERRADA'
-     WHEN (select count(*) from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) > 0 THEN 'PENDIENTE'
-     ELSE 'ABIERTA'
-END as estado,
-(select DATE_FORMAT(max(ax.fecha_implementacion), '%d/%m/%Y') from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) as fecha_implementacion
-from nc_no_conformidad nc
-join empleados em on nc.id_responsable_seguimiento = em.id_empleado
-join sec_users us on us.id_user = nc.id_user
-where date(nc.created_date) between :startDate and :endDate
-and if(:id_responsable_ejecucion is null, 1, exists(select 1
-			                                        from nc_accion nax
-                                                    where nax.id_no_conformidad = nc.id_no_conformidad
-                                                    and nax.id_responsable_ejecucion = nax.id_responsable_ejecucion))";
+        $query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.capacitador,
+DATE_FORMAT(c.fecha_programada,  '%d/%m/%Y %H:%i') as fecha_programada,
+c.duracion,
+DATE_FORMAT(c.fecha_inicio,  '%d/%m/%Y %H:%i') as fecha_inicio,
+DATE_FORMAT(c.fecha_fin,  '%d/%m/%Y %H:%i') as fecha_fin,
+c.id_modalidad,
+DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
+c.id_user
+from cap_capacitaciones c
+join cap_planes_capacitacion pc on pc.id_plan_capacitacion = c.id_plan_capacitacion
+join sec_users u on u.id_user = c.id_user
+join cap_categorias cg on cg.id_categoria = c.id_categoria";
 
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':startDate', $startDate);
-        $stmt->dpBind(':endDate', $endDate);
-        $stmt->dpBind(':id_responsable_ejecucion', $id_responsable_ejecucion);
+        //$stmt->dpBind(':startDate', $startDate);
+        //$stmt->dpBind(':endDate', $endDate);
+        //$stmt->dpBind(':id_responsable_ejecucion', $id_responsable_ejecucion);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
 
 
-    function __construct($nro=0){ //constructor
+    function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select nc.id_no_conformidad, nc.nro_no_conformidad, nc.nombre, nc.sector, nc.tipo, nc.analisis_causa, nc.tipo_accion, nc.descripcion,
-                    nc.accion_inmediata, nc.analisis_causa_desc, nc.id_responsable_seguimiento,
-                    DATE_FORMAT(nc.fecha_cierre, '%d/%m/%Y') as fecha_cierre,
-                    nc.id_user,
-                    DATE_FORMAT(nc.created_date, '%d/%m/%Y') as created_date,
-                    CASE WHEN nc.fecha_cierre is not null THEN 'CERRADA'
-                         WHEN (select count(*) from nc_accion ax where ax.id_no_conformidad = nc.id_no_conformidad) > 0 THEN 'PENDIENTE'
-                         ELSE 'ABIERTA'
-                    END as estado
-                    from nc_no_conformidad nc
-                    where id_no_conformidad = :nro";
+            $query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.capacitador,
+DATE_FORMAT(c.fecha_programada,  '%d/%m/%Y %H:%i') as fecha_programada,
+c.duracion,
+DATE_FORMAT(c.fecha_inicio,  '%d/%m/%Y %H:%i') as fecha_inicio,
+DATE_FORMAT(c.fecha_fin,  '%d/%m/%Y %H:%i') as fecha_fin,
+c.id_modalidad,
+DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
+c.id_user
+                    from cap_capacitaciones c
+                    where id_capacitacion = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdNoConformidad($rows[0]['id_no_conformidad']);
-            $this->setNroNoConformidad($rows[0]['nro_no_conformidad']);
-            $this->setNombre($rows[0]['nombre']);
-            $this->setSector($rows[0]['sector']);
-            $this->setTipo($rows[0]['tipo']);
-            $this->setAnalisisCausa($rows[0]['analisis_causa']);
-            $this->setTipoAccion($rows[0]['tipo_accion']);
+            $this->setIdCapacitacion($rows[0]['id_capacitacion']);
+            $this->setIdPlanCapacitacion($rows[0]['id_plan_capacitacion']);
+            $this->setIdCategoria($rows[0]['id_categoria']);
+            $this->setTema($rows[0]['tema']);
             $this->setDescripcion($rows[0]['descripcion']);
-            $this->setAccionInmediata($rows[0]['accion_inmediata']);
-            $this->setAnalisisCausaDesc($rows[0]['analisis_causa_desc']);
-            $this->setIdResponsableSeguimiento($rows[0]['id_responsable_seguimiento']);
-            $this->setFechaCierre($rows[0]['fecha_cierre']);
+            $this->setCapacitador($rows[0]['capacitador']);
+            $this->setFechaProgramada($rows[0]['fecha_programada']);
+            $this->setDuracion($rows[0]['duracion']);
+            $this->setFechaInicio($rows[0]['fecha_inicio']);
+            $this->setFechaFin($rows[0]['fecha_fin']);
+            $this->setIdModalidad($rows[0]['id_modalidad']);
             $this->setCreatedDate($rows[0]['created_date']);
             $this->setIdUser($rows[0]['id_user']);
-            $this->setEstado($rows[0]['estado']);
         }
     }
 
 
 
     function save(){ //ok
-        if($this->id_no_conformidad)
-        {$rta = $this->updateNoConformidad();}
+        if($this->id_capacitacion)
+        {$rta = $this->updateCapacitacion();}
         else
-        {$rta =$this->insertNoConformidad();}
+        {$rta =$this->insertCapacitacion();}
         return $rta;
     }
 
-    public function updateNoConformidad(){ //ok
+    public function updateCapacitacion(){
 
         $stmt=new sQuery();
         $query="update nc_no_conformidad set
@@ -211,7 +201,7 @@ and if(:id_responsable_ejecucion is null, 1, exists(select 1
         return $stmt->dpGetAffect();
     }
 
-    private function insertNoConformidad(){ //ok
+    private function insertCapacitacion(){
 
         $stmt=new sQuery();
         $query="insert into nc_no_conformidad(nro_no_conformidad, nombre, sector, tipo, analisis_causa, tipo_accion, descripcion, accion_inmediata, analisis_causa_desc, id_responsable_seguimiento, fecha_cierre, created_date, id_user)
@@ -233,11 +223,11 @@ and if(:id_responsable_ejecucion is null, 1, exists(select 1
         return $stmt->dpGetAffect();
     }
 
-    function deleteNoConformidad(){ //ok
+    function deleteCapacitacion(){ //ok
         $stmt=new sQuery();
-        $query="delete from nc_no_conformidad where id_no_conformidad= :id";
+        $query="delete from cap_capacitacion where id_capacitacion= :id";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id', $this->getIdNoConformidad());
+        $stmt->dpBind(':id', $this->getIdCapacitacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
