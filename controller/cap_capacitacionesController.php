@@ -65,7 +65,7 @@ switch ($operation)
 
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
-        $view->puestos = Puesto::getPuestos();
+        $view->categorias = Categoria::getCategorias();
         $view->areas = Area::getAreas();
         $view->contratos = Contrato::getContratosControl();
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
@@ -82,7 +82,7 @@ switch ($operation)
 
         $view->periodos = Capacitacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
-        $view->puestos = Puesto::getPuestos();
+        $view->categorias = Categoria::getCategorias();
         $view->areas = Area::getAreas();
 
         $view->contratos = ($_POST['cerrado'])? Contrato::getContratos() : Contrato::getContratosControl();
@@ -117,35 +117,10 @@ switch ($operation)
         break;
 
 
-    case 'graficarGantt':
-        $view->objetivo = new Objetivo($_POST['id_objetivo']);
-        $rta = $view->objetivo->graficarGantt();
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-
-    case 'getPadre': //select dependiente
-        //$id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
-        //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
-        $rta = Objetivo::getObjetivos($_POST['periodo'], null, null, null, null, null, null);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-    case 'getHijos': //trae los puestos hijos de un objetivo.
-        //$view->puesto = new Puesto();
-        $rta=Objetivo::getHijos($_POST['id_objetivo']);
-        print_r(json_encode($rta));
-        exit;
-        break;
-
-
     default : //ok //muestra la grilla de objetivos
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         //$view->objetivos = Objetivo::getObjetivos($view->periodo_actual);
-        $view->categorias = Categoria::getCategorias();
 
         $view->areas = Area::getAreas();
         //$view->contratos = Contrato::getContratos();
