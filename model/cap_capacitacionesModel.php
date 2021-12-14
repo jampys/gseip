@@ -13,6 +13,7 @@ class Capacitacion
     private $fecha_inicio;
     private $fecha_fin;
     private $id_modalidad;
+    private $observaciones;
     private $created_date;
     private $id_user;
 
@@ -52,6 +53,9 @@ class Capacitacion
 
     function getIdModalidad()
     { return $this->id_modalidad;}
+
+    function getObservaciones()
+    { return $this->observaciones;}
 
     function getCreatedDate()
     { return $this->created_date;}
@@ -97,6 +101,9 @@ class Capacitacion
     function setIdModalidad($val)
     {  $this->id_modalidad=$val;}
 
+    function setObservaciones($val)
+    {  $this->observaciones=$val;}
+
     function setCreatedDate($val)
     {  $this->created_date=$val;}
 
@@ -116,11 +123,13 @@ c.id_modalidad,
 DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
 c.id_user,
 cg.nombre as categoria,
-u.user
+u.user,
+m.nombre as modalidad
 from cap_capacitaciones c
 join cap_planes_capacitacion pc on pc.id_plan_capacitacion = c.id_plan_capacitacion
 join sec_users u on u.id_user = c.id_user
-join cap_categorias cg on cg.id_categoria = c.id_categoria";
+join cap_categorias cg on cg.id_categoria = c.id_categoria
+left join cap_modalidades m on m.id_modalidad = c.id_modalidad";
 
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':startDate', $startDate);
@@ -154,7 +163,7 @@ DATE_FORMAT(c.fecha_inicio,  '%d/%m/%Y') as fecha_inicio,
 DATE_FORMAT(c.fecha_fin,  '%d/%m/%Y') as fecha_fin,
 c.id_modalidad,
 DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
-c.id_user
+c.id_user, c.observaciones
                     from cap_capacitaciones c
                     where id_capacitacion = :nro";
             $stmt->dpPrepare($query);
@@ -174,6 +183,7 @@ c.id_user
             $this->setFechaInicio($rows[0]['fecha_inicio']);
             $this->setFechaFin($rows[0]['fecha_fin']);
             $this->setIdModalidad($rows[0]['id_modalidad']);
+            $this->setObservaciones($rows[0]['observaciones']);
             $this->setCreatedDate($rows[0]['created_date']);
             $this->setIdUser($rows[0]['id_user']);
         }

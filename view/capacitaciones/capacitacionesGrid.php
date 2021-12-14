@@ -59,6 +59,7 @@
                 {"data" : "capacitador"},
                 {"data" : "duracion"},
                 {"data" : "fecha_programada"},
+                {"data" : "modalidad"},
                 {"data" : null, orderable: false}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
@@ -76,7 +77,7 @@
                     }
                 },
                 {
-                    targets: 6,//action buttons
+                    targets: 7,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
                         let permisoEtapas = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'detalle' : 'disabled' ?>';
@@ -134,6 +135,7 @@
                 <th>Capacitador</th>
                 <th>Duración</th>
                 <th>F. programada</th>
+                <th>Modalidad</th>
                 <th></th>
             </tr>
             </thead>

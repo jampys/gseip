@@ -174,33 +174,34 @@
                 <form name ="capacitacion-form" id="capacitacion-form" method="POST" action="index.php">
                     <input type="hidden" name="id_capacitacion" id="id_capacitacion" value="<?php print $view->capacitacion->getIdCapacitacion() ?>">
 
-                    <div class="form-group required">
-                        <label for="id_busqueda" class="control-label">Período</label>
-                        <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione el periodo" data-live-search="true" data-size="5">
-                            <?php foreach ($view->periodos as $pe){
-                                ?>
-                                <option value="<?php echo $pe['id_plan_capacitacion']; ?>" periodo="<?php echo $pe['periodo']; ?>" <?php echo ($pe['cerrado'])? 'disabled':''; ?>
-                                    <?php echo (  ($view->capacitacion->getPeriodo() == $pe['periodo'])    )? 'selected' :'' ?>
-                                    >
-                                    <?php echo $pe['periodo']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 required">
+                            <label for="id_busqueda" class="control-label">Período</label>
+                            <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione el periodo" data-live-search="true" data-size="5">
+                                <?php foreach ($view->periodos as $pe){
+                                    ?>
+                                    <option value="<?php echo $pe['id_plan_capacitacion']; ?>" periodo="<?php echo $pe['periodo']; ?>" <?php echo ($pe['cerrado'])? 'disabled':''; ?>
+                                        <?php echo (  ($view->capacitacion->getPeriodo() == $pe['periodo'])    )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $pe['periodo']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
 
-
-                    <div class="form-group">
-                        <label for="id_puesto" class="control-label">Categoría</label>
-                        <select class="form-control selectpicker show-tick" id="id_categoria" name="id_categoria" title="Seleccione una categoría" data-live-search="true" data-size="5">
-                            <?php foreach ($view->categorias as $cat){
-                                ?>
-                                <option value="<?php echo $cat['id_categoria']; ?>"
-                                    <?php echo ($cat['id_categoria'] == $view->capacitacion->getIdCategoria() )? 'selected' :'' ?>
-                                    >
-                                    <?php echo $cat['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
+                        <div class="form-group col-md-6 required">
+                            <label for="id_puesto" class="control-label">Categoría</label>
+                            <select class="form-control selectpicker show-tick" id="id_categoria" name="id_categoria" title="Seleccione una categoría" data-live-search="true" data-size="5">
+                                <?php foreach ($view->categorias as $cat){
+                                    ?>
+                                    <option value="<?php echo $cat['id_categoria']; ?>"
+                                        <?php echo ($cat['id_categoria'] == $view->capacitacion->getIdCategoria() )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $cat['nombre']; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
                     </div>
 
 
@@ -215,35 +216,61 @@
                         <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción de la capacitacion" rows="2"><?php print $view->capacitacion->getDescripcion(); ?></textarea>
                     </div>
 
-                    <div class="form-group required">
-                        <label for="capacitador" class="control-label">Capacitador</label>
-                        <input class="form-control" type="text" name="capacitador" id="capacitador" value="<?php print $view->capacitacion->getCapacitador() ?>">
-                    </div>
 
+                    <div class="row">
+                        <div class="form-group col-md-6 required">
+                            <label for="capacitador" class="control-label">Capacitador</label>
+                            <input class="form-control" type="text" name="capacitador" id="capacitador" value="<?php print $view->capacitacion->getCapacitador() ?>">
+                        </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="fecha">Fecha programada</label>
-                        <div class="inner-addon right-addon">
-                            <input class="form-control" type="text" name="fecha_programada" id="fecha_programada" value = "<?php print $view->capacitacion->getFechaProgramada() ?>" placeholder="DD/MM/AAAA" readonly>
-                            <i class="glyphicon glyphicon-calendar"></i>
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="fecha_programada">Fecha programada</label>
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="fecha_programada" id="fecha_programada" value="<?php print $view->capacitacion->getFechaProgramada() ?>">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="row">
-                        <div class="form-group col-md-6 required">
+                        <div class="form-group col-md-6">
                             <label for="duracion" class="control-label">Duración (en hs)</label>
                             <input class="form-control" type="text" name="duracion" id="duracion" value="<?php print $view->capacitacion->getDuracion() ?>">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label class="control-label" for="">Fechas inicio / fin</label>
+                            <label class="control-label" for="fecha">Fechas inicio / fin</label>
                             <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo $view->capacitacion->getFechaInicio()." - ".$view->capacitacion->getFechaFin();  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->capacitacion->getFechaInicio() && $view->capacitacion->getFechaFin())? $view->capacitacion->getFechaInicio()." - ".$view->capacitacion->getFechaFin() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="form-group">
+                        <label for="id_modalidad" class="control-label">Modalidad</label>
+                        <select class="form-control selectpicker show-tick" id="id_modalidad" name="id_modalidad" title="Seleccione una modalidad" data-live-search="true" data-size="5">
+                            <?php foreach ($view->modalidades as $mod){
+                                ?>
+                                <option value="<?php echo $mod['id_modalidad']; ?>"
+                                    <?php echo ($mod['id_modalidad'] == $view->capacitacion->getIdModalidad() )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $mod['nombre']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="observaciones" class="control-label">Observaciones</label>
+                        <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="3"><?php print $view->capacitacion->getObservaciones(); ?></textarea>
+                    </div>
+
+
+
 
 
                 </form>

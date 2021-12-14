@@ -9,6 +9,7 @@ include_once("model/contratosModel.php");
 
 include_once("model/cap_capacitacionesModel.php");
 include_once("model/cap_categoriasModel.php");
+include_once("model/cap_modalidadesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -83,7 +84,7 @@ switch ($operation)
         $view->periodos = Capacitacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->categorias = Categoria::getCategorias();
-        $view->areas = Area::getAreas();
+        $view->modalidades = Modalidad::getModalidades();
 
         $view->contratos = ($_POST['cerrado'])? Contrato::getContratos() : Contrato::getContratosControl();
         $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
