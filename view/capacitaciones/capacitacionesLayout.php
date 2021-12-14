@@ -44,44 +44,38 @@
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                    //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
                 });
                 return false;
             });
 
 
-            $('#content').on('click', '.view', function(){
+            $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_objetivo = id;
-                params.action = "obj_objetivos";
-                params.operation = "editObjetivo";
+                params.id_capacitacion = id;
+                params.action = "cap_capacitaciones";
+                params.operation = "editCapacitacion";
                 params.target = "view";
-                params.cerrado = $(this).closest('tr').attr('cerrado');
+                //params.cerrado = $(this).closest('tr').attr('cerrado');
                 $('#popupbox').load('index.php', params,function(){
-                    //$("fieldset").prop("disabled", true);
-                    //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
                 });
                 return false;
             });
 
 
-            $('#content').on('click', '.clone', function(){
+            $('#content').on('click', '.clone', function(){ //ok
                 //alert('presionó en editar');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_objetivo = id;
-                params.action = "obj_objetivos";
-                params.operation = "editObjetivo";
+                params.id_capacitacion = id;
+                params.action = "cap_capacitaciones";
+                params.operation = "editCapacitacion";
                 params.target = "clone";
-                params.cerrado = $(this).closest('tr').attr('cerrado');
+                //params.cerrado = $(this).closest('tr').attr('cerrado');
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                    //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
                 });
                 return false;
             });
