@@ -150,8 +150,8 @@ join cap_categorias cg on cg.id_categoria = c.id_categoria";
             $query="select c.id_capacitacion, c.id_plan_capacitacion, c.periodo, c.id_categoria, c.tema, c.descripcion, c.capacitador,
 DATE_FORMAT(c.fecha_programada,  '%d/%m/%Y %H:%i') as fecha_programada,
 c.duracion,
-DATE_FORMAT(c.fecha_inicio,  '%d/%m/%Y %H:%i') as fecha_inicio,
-DATE_FORMAT(c.fecha_fin,  '%d/%m/%Y %H:%i') as fecha_fin,
+DATE_FORMAT(c.fecha_inicio,  '%d/%m/%Y') as fecha_inicio,
+DATE_FORMAT(c.fecha_fin,  '%d/%m/%Y') as fecha_fin,
 c.id_modalidad,
 DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
 c.id_user
