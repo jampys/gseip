@@ -223,7 +223,7 @@
                         </select>
                     </div>
 
-                    
+
                     <div class="form-group required">
                         <label for="nombre" class="control-label">Objetivo</label>
                         <textarea class="form-control" name="nombre" id="nombre" placeholder="Descripción del objetivo" rows="2"><?php print $view->objetivo->getNombre(); ?></textarea>
