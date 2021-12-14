@@ -235,7 +235,7 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="duracion" class="control-label">Duración (hs)</label>
+                            <label for="duracion" class="control-label" title="Duración indicada en horas">Duración (hs)</label>
                             <input class="form-control" type="text" name="duracion" id="duracion" value="<?php print $view->capacitacion->getDuracion() ?>">
                         </div>
 
