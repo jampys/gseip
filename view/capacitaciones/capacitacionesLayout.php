@@ -104,10 +104,10 @@
             });
 
 
-            $(document).on('click', '#new', function(){
+            $(document).on('click', '#new', function(){ //ok
                 params={};
-                params.action = "obj_objetivos";
-                params.operation="newObjetivo";
+                params.action = "cap_capacitaciones";
+                params.operation="newCapacitacion";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                 });
@@ -116,11 +116,11 @@
 
 
             var dialog;
-            $('#content').on('click', '#example .delete', function(){
+            $('#content').on('click', '#example .delete', function(){ //ok
 
                 var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
-                    message: "<p>¿Desea eliminar el objetivo?</p>",
+                    message: "<p>¿Desea eliminar la capacitación?</p>",
                     size: 'small',
                     centerVertical: true,
                     buttons: {
@@ -146,22 +146,22 @@
             $.fn.borrar = function(id) {
                 //alert(id);
                 params={};
-                params.id_objetivo = id;
-                params.action = "obj_objetivos";
-                params.operation = "deleteObjetivo";
+                params.id_capacitacion = id;
+                params.action = "cap_capacitacion";
+                params.operation = "deleteCapacitacion";
 
                 $.post('index.php',params,function(data, status, xhr){
                     if(data >=0){
-                        dialog.find('.modal-footer').html('<div class="alert alert-success">Objetivo eliminado con exito</div>');
+                        dialog.find('.modal-footer').html('<div class="alert alert-success">Capacitación eliminada con exito</div>');
                         setTimeout(function() {
                                                 dialog.modal('hide');
-                                                //$('#example').DataTable().ajax.reload();
+                                                $('#example').DataTable().ajax.reload();
                                             }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el objetivo</div>');
+                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la capacitación</div>');
 
                 });
 

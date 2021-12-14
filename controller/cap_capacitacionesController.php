@@ -94,9 +94,9 @@ switch ($operation)
         break;
 
 
-    case 'deleteObjetivo':
-        $objetivo = new Objetivo($_POST['id_objetivo']);
-        $rta = $objetivo->deleteObjetivo();
+    case 'deleteCapacitacion': //ok
+        $capacitacion = new Capacitacion($_POST['id_capacitacion']);
+        $rta = $capacitacion->deleteCapacitacion();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
