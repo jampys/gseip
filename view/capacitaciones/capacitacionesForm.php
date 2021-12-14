@@ -36,7 +36,7 @@
 
 
         $('#fecha').daterangepicker({
-            parentEl: '#myModal #capacitacion-form',
+            parentEl: '#myModal',
             showDropdowns: true,
             autoApply: true,
             autoUpdateInput: false,
