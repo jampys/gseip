@@ -60,37 +60,33 @@ switch ($operation)
         exit;
         break;
 
-    case 'newCapacitacion':
+    case 'newCapacitacion': //ok
         $view->label='Nueva capacitación';
         $view->capacitacion = new Capacitacion();
 
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->categorias = Categoria::getCategorias();
-        $view->areas = Area::getAreas();
-        $view->contratos = Contrato::getContratosControl();
-        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
-        $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
-        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
+        $view->modalidades = Modalidad::getModalidades();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/capacitaciones/capacitacionesForm.php";
         break;
 
-    case 'editCapacitacion':
+    case 'editCapacitacion': //ok
         $view->capacitacion = new Capacitacion($_POST['id_capacitacion']);
-        $view->label = $view->capacitacion->getTema();
+
+        if($_POST['target'] == 'edit' or $_POST['target'] == 'view' ) $view->label = $view->capacitacion->getTema();
+        else if ($_POST['target'] == 'clone') {
+            $view->label = '<h4><span class="label label-warning">CLONAR</span> '.$view->capacitacion->getTema().'</h4>';
+            $view->capacitacion->setIdCapacitacion(null); //pone el id_capacitacion en null para al guardar insertar uno nuevo
+            //if($_POST['cerrado']) $view->objetivo->setPeriodo(null);
+        }
 
         $view->periodos = Capacitacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->categorias = Categoria::getCategorias();
         $view->modalidades = Modalidad::getModalidades();
-
-        $view->contratos = ($_POST['cerrado'])? Contrato::getContratos() : Contrato::getContratosControl();
-        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
-        $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
-        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
-        //$view->objetivos = Objetivo::getObjetivos($view->objetivo->getPeriodo(), null, null,null, null, null, null, 1);
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
