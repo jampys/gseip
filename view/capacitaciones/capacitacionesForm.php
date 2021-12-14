@@ -54,7 +54,7 @@
 
         $('#myModal').on('click', '#submit',function(){ //ok
 
-            if ($("#objetivo-form").valid()){
+            if ($("#capacitacion-form").valid()){
 
                 var params={};
                 params.action = 'obj_objetivos';
@@ -108,45 +108,45 @@
         });
 
 
-        $('#objetivo-form').validate({ //ok
+        $('#capacitacion-form').validate({ //ok
             rules: {
                 periodo: {required: true},
-                nombre: {required: true},
-                id_puesto: {
-                    XOR_with: [
-                        '#id_area',
-                        'Seleccione un puesto o un área'
-                    ]
-                },
-                id_area: {
-                    XOR_with: [
-                        '#id_puesto',
-                        'Seleccione un puesto o un área'
-                    ]
-
-                },
-                meta: {required: true},
-                meta_valor: {
-                    required: true,
+                id_categoria: {required: true},
+                tema: {required: true},
+                duracion: {
                     number: true,
-                    maxlength: 6
+                    maxlength: 4
                 },
-                indicador: {required: true},
-                id_responsable_ejecucion: {required: true},
-                id_responsable_seguimiento: {required: true}
+                descripcion: {
+                    required: true,
+                    maxlength: 500
+                },
+                capacitador: {
+                    maxlength: 50
+                },
+                observaciones: {
+                    maxlength: 500
+                }
             },
             messages:{
                 periodo: "Seleccione un período",
-                nombre: "Ingrese el nombre",
-                meta: "Ingrese la meta",
-                meta_valor: {
-                    required: "Ingrese un valor para la meta",
+                id_categoria: "Seleccione una categoría",
+                tema: "Ingrese un tema",
+                duracion: {
                     number: "Solo números. Utilice un punto como separador decimal",
-                    maxlength: "Máximo 6 dígitos"
+                    maxlength: "Máximo 4 dígitos"
                 },
-                indicador: "Ingrese el indicador",
-                responsable_ejecucion: "Seleccione un responsable ejecución",
-                responsable_seguimiento: "Seleccione un responsable seguimiento"
+                descripcion: {
+                    required: "Ingrese la descripción",
+                    maxlength: "Máximo 500 caracteres"
+                },
+                capacitador: {
+                    maxlength: "Máximo 50 caracteres"
+                },
+                observaciones: {
+                    maxlength: "Máximo 500 caracteres"
+                }
+
             }
 
         });
@@ -218,7 +218,7 @@
 
 
                     <div class="row">
-                        <div class="form-group col-md-6 required">
+                        <div class="form-group col-md-6">
                             <label for="capacitador" class="control-label">Capacitador</label>
                             <input class="form-control" type="text" name="capacitador" id="capacitador" value="<?php print $view->capacitacion->getCapacitador() ?>">
                         </div>
@@ -235,7 +235,7 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="duracion" class="control-label">Duración (en hs)</label>
+                            <label for="duracion" class="control-label">Duración (hs)</label>
                             <input class="form-control" type="text" name="duracion" id="duracion" value="<?php print $view->capacitacion->getDuracion() ?>">
                         </div>
 
