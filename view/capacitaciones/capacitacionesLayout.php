@@ -234,7 +234,7 @@
                                         <?php echo $cat['nombre']; ?>
                                     </option>
                                 <?php  } ?>
-
+                            </select>
                         </div>
 
 
