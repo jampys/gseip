@@ -18,57 +18,37 @@
         });
 
 
-        //Select dependiente: al seleccionar contrato carga periodos vigentes
-        $('#objetivo-form').on('change', '#periodo', function(e){
-            //alert('seleccionó un periodo');
-            //throw new Error();
-            params={};
-            params.action = "obj_objetivos";
-            params.operation = "getPadre";
-            //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-            params.periodo = $('#myModal #periodo option:selected').attr('periodo');
-
-            //$('#id_objetivo_superior').empty();
-            $('#id_objetivo_superior').html('<option value="">Seleccione un objetivo</option>');
-
-
-            $.ajax({
-                url:"index.php",
-                type:"post",
-                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
-                data: params,
-                dataType:"json",//xml,html,script,json
-                success: function(data, textStatus, jqXHR) {
-
-                    //alert(Object.keys(data).length);
-
-                    if(Object.keys(data).length > 0){
-
-                        $.each(data, function(indice, val){
-                            var label = data[indice]["codigo"]+' '+data[indice]["nombre"];
-                            $("#id_objetivo_superior").append('<option value="'+data[indice]["id_objetivo"]+'"'
-                            //+' fecha_desde="'+data[indice]["fecha_desde"]+'"'
-                            //+' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
-                            +'>'+label+'</option>');
-
-                        });
-
-                        //si es una edicion o view, selecciona el concepto.
-                        //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                        $('#id_objetivo_superior').selectpicker('refresh');
-
-                    }
-
-                },
-                error: function(data, textStatus, errorThrown) {
-                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                    alert(data.responseText);
-                }
-
-            });
-
-
+        moment.locale('es');
+        $('#fecha_programada').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            drops: 'auto',
+            parentEl: '#myModal',
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+            picker.element.valid();
         });
+
+
+        $('#fecha').daterangepicker({
+            parentEl: '#myModal #capacitacion-form',
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            linkedCalendars: false,
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
+            picker.element.valid();
+        });
+        var drp = $('#fecha').data('daterangepicker');
 
 
 
@@ -225,8 +205,44 @@
 
 
                     <div class="form-group required">
-                        <label for="nombre" class="control-label">Objetivo</label>
-                        <textarea class="form-control" name="nombre" id="nombre" placeholder="Descripción del objetivo" rows="2"><?php print $view->objetivo->getNombre(); ?></textarea>
+                        <label for="tema" class="control-label">Tema</label>
+                        <input class="form-control" type="text" name="tema" id="tema" value="<?php print $view->capacitacion->getTema() ?>">
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label for="descripcion" class="control-label">Descripción</label>
+                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción de la capacitacion" rows="2"><?php print $view->capacitacion->getDescripcion(); ?></textarea>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="capacitador" class="control-label">Capacitador</label>
+                        <input class="form-control" type="text" name="capacitador" id="capacitador" value="<?php print $view->capacitacion->getCapacitador() ?>">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="fecha">Fecha programada</label>
+                        <div class="inner-addon right-addon">
+                            <input class="form-control" type="text" name="fecha_programada" id="fecha_programada" value = "<?php print $view->capacitacion->getFechaProgramada() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-6 required">
+                            <label for="duracion" class="control-label">Duración (en hs)</label>
+                            <input class="form-control" type="text" name="duracion" id="duracion" value="<?php print $view->capacitacion->getDuracion() ?>">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="">Fechas desde / hasta</label>
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo $view->capacitacion->getFechaInicio()." - ".$view->capacitacion->getFechaFin();  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </div>
+                        </div>
                     </div>
 
 
