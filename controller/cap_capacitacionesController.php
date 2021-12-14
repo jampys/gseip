@@ -114,17 +114,12 @@ switch ($operation)
         break;
 
 
-    default : //ok //muestra la grilla de objetivos
-        $view->periodos = Evaluacion::getPeriodos();
+    default : //ok //muestra la grilla de capacitaciones
+        $view->periodos = Capacitacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
-        //$view->objetivos = Objetivo::getObjetivos($view->periodo_actual);
-
-        $view->areas = Area::getAreas();
+        $view->categorias = Categoria::getCategorias();
         //$view->contratos = Contrato::getContratos();
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
-        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
-        $view->empleados = Empleado::getEmpleadosActivos(null);
-
 
         $view->contentTemplate="view/capacitaciones/capacitacionesGrid.php";
         break;

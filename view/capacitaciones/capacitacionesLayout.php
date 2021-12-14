@@ -226,30 +226,24 @@
                             <!--<label for="periodo" class="control-label">Periodo</label>-->
                             <select class="form-control selectpicker show-tick" id="search_puesto" name="search_puesto" data-live-search="true" data-size="5">
                                 <option value="">Seleccione tipo de capacitación</option>
-                                <?php foreach ($view->puestos as $pu){
+                                <?php foreach ($view->categorias as $cat){
                                     ?>
-                                    <option value="<?php echo $pu['id_puesto']; ?>"
+                                    <option value="<?php echo $cat['id_categoria']; ?>"
                                         <?php //echo ($pu['id_puesto'] == $view->objetivo->getIdPuesto() )? 'selected' :'' ?>
                                         >
-                                        <?php echo $pu['nombre']; ?>
+                                        <?php echo $cat['nombre']; ?>
                                     </option>
                                 <?php  } ?>
-                            </select>
+
                         </div>
 
 
                         <div class="form-group col-md-3">
                             <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
                             <select class="form-control selectpicker show-tick" id="search_area" name="search_area" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un área</option>
-                                <?php foreach ($view->areas as $ar){
-                                    ?>
-                                    <option value="<?php echo $ar['id_area']; ?>"
-                                        <?php //echo ($ar['id_area'] == $view->objetivo->getIdArea() )? 'selected' :'' ?>
-                                        >
-                                        <?php echo $ar['nombre']; ?>
-                                    </option>
-                                <?php  } ?>
+                                <option value="">Todas las capacitaciones</option>
+                                <option value="1">Programadas</option>
+                                <option value="">No Programadas</option>
                             </select>
                         </div>
 
@@ -276,61 +270,22 @@
 
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_indicador" name="search_indicador" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un indicador</option>
-                                <?php foreach ($view->indicadores['enum'] as $ind){
-                                    ?>
-                                    <option value="<?php echo $ind; ?>"
-                                        <?php //echo ($ind == $view->objetivo->getIndicador() OR ($ind == $view->indicadores['default'] AND !$view->objetivo->getIdObjetivo()) )? 'selected' :'' ?>
-                                        >
-                                        <?php echo $ind; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
+
                         </div>
 
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select id="search_responsable_ejecucion" name="search_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un responsable ejecución</option>
-                                <?php foreach ($view->empleados as $em){
-                                    ?>
-                                    <option value="<?php echo $em['id_empleado']; ?>"
-                                        <?php //echo ($em['id_empleado'] == $view->objetivo->getIdResponsableEjecucion())? 'selected' :'' ?>
-                                        >
-                                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
+
                         </div>
 
 
                         <div class="form-group col-md-3">
-                            <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select id="search_responsable_seguimiento" name="search_responsable_seguimiento" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un responsable seguimiento</option>
-                                <?php foreach ($view->empleados as $em){
-                                    ?>
-                                    <option value="<?php echo $em['id_empleado']; ?>"
-                                        <?php //echo ($em['id_empleado'] == $view->objetivo->getIdResponsableSeguimiento())? 'selected' :'' ?>
-                                        >
-                                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
+
                         </div>
 
 
                         <div class="form-group col-md-1">
-                            <!--<label for="search_renovado" class="control-label">&nbsp;</label>-->
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="search_todos" name="search_todos">
-                                    <a href="#" title="Seleccione para visualizar todos los objetivos">Todos</a>
-                                </label>
-                            </div>
+
                         </div>
 
 
