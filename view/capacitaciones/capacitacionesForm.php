@@ -208,26 +208,29 @@
                         </select>
                     </div>
 
+
+                    <div class="form-group">
+                        <label for="id_puesto" class="control-label">Categoría</label>
+                        <select class="form-control selectpicker show-tick" id="id_categoria" name="id_categoria" title="Seleccione una categoría" data-live-search="true" data-size="5">
+                            <?php foreach ($view->categorias as $cat){
+                                ?>
+                                <option value="<?php echo $cat['id_categoria']; ?>"
+                                    <?php echo ($cat['id_categoria'] == $view->capacitacion->getIdCategoria() )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $cat['nombre']; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+
+                    
                     <div class="form-group required">
                         <label for="nombre" class="control-label">Objetivo</label>
                         <textarea class="form-control" name="nombre" id="nombre" placeholder="Descripción del objetivo" rows="2"><?php print $view->objetivo->getNombre(); ?></textarea>
                     </div>
 
 
-                    <div class="form-group">
-                        <label for="id_puesto" class="control-label">Puesto</label>
-                        <select class="form-control selectpicker show-tick" id="id_puesto" name="id_puesto" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un puesto</option>
-                            <?php foreach ($view->puestos as $pu){
-                                ?>
-                                <option value="<?php echo $pu['id_puesto']; ?>"
-                                    <?php echo ($pu['id_puesto'] == $view->objetivo->getIdPuesto() )? 'selected' :'' ?>
-                                    >
-                                    <?php echo $pu['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
+
 
 
                     <div class="form-group">

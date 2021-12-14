@@ -8,6 +8,7 @@ include_once("model/areasModel.php");
 include_once("model/contratosModel.php");
 
 include_once("model/cap_capacitacionesModel.php");
+include_once("model/cap_categoriasModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -144,7 +145,8 @@ switch ($operation)
         $view->periodos = Evaluacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         //$view->objetivos = Objetivo::getObjetivos($view->periodo_actual);
-        $view->puestos = Puesto::getPuestos();
+        $view->categorias = Categoria::getCategorias();
+
         $view->areas = Area::getAreas();
         //$view->contratos = Contrato::getContratos();
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
