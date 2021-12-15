@@ -157,6 +157,9 @@
             });
 
 
+            $('#add_contrato').trigger('change');
+
+
 
             //Al seleccionar el periodo restringe el rango de fechas del datepicker
             $('#add-form').on('change', '#id_periodo', function(e){
@@ -343,7 +346,7 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="add_contrato" class="control-label">Nuevos partes</label>-->
-                            <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5" title="Seleccione un contrato">
+                            <select class="form-control selectpicker show-tick" id="add_contrato" name="add_contrato" data-live-search="true" data-size="5">
                                 <!--<option value="">Seleccione un contrato</option>-->
                                 <?php foreach ($view->contratos as $con){
                                     ?>
