@@ -207,7 +207,7 @@ class Parte
                     and pa.id_periodo =  ifnull(:id_periodo, pa.id_periodo)
                     and pa.cuadrilla =  ifnull(:cuadrilla, pa.cuadrilla)
                     order by pa.fecha_parte asc
-                    limit 500";
+                    limit 5000";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':fecha_desde', $fecha_desde);
         $stmt->dpBind(':fecha_hasta', $fecha_hasta);
