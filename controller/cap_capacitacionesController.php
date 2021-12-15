@@ -38,23 +38,23 @@ switch ($operation)
         exit;
         break;
 
-    case 'saveObjetivo':
-        $objetivo = new Objetivo($_POST['id_objetivo']);
-        $objetivo->setPeriodo($_POST['periodo']);
-        $objetivo->setNombre($_POST['nombre']);
-        $objetivo->setIdPuesto(($_POST['id_puesto'])? $_POST['id_puesto'] : null);
-        $objetivo->setIdArea(($_POST['id_area'])? $_POST['id_area'] : null);
-        $objetivo->setIdContrato(($_POST['id_contrato'])? $_POST['id_contrato'] : null);
-        $objetivo->setMeta($_POST['meta']);
-        $objetivo->setMetaValor($_POST['meta_valor']);
-        $objetivo->setIndicador($_POST['indicador']);
-        $objetivo->setFrecuencia($_POST['frecuencia']);
-        $objetivo->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
-        $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
-        $objetivo->setIdPlanEvaluacion($_POST['id_plan_evaluacion']);
-        $objetivo->setIdObjetivoSuperior(($_POST['id_objetivo_superior'])? $_POST['id_objetivo_superior'] : null);
+    case 'saveCapacitacion': //ok
+        $capacitacion = new Capacitacion($_POST['id_capacitacion']);
+        $capacitacion->setPeriodo($_POST['periodo']);
+        $capacitacion->setIdPlanCapacitacion($_POST['id_plan_capacitacion']);
+        $capacitacion->setIdCategoria($_POST['id_categoria']);
+        $capacitacion->setTema($_POST['tema']);
+        $capacitacion->setDescripcion($_POST['descripcion']);
+        $capacitacion->setCapacitador(($_POST['capacitador'])? $_POST['capacitador'] : null);
+        $capacitacion->setFechaProgramada(($_POST['fecha_programada'])? $_POST['fecha_programada'] : null);
+        $capacitacion->setDuracion(($_POST['duracion'])? $_POST['duracion'] : null);
+        $capacitacion->setFechaInicio(($_POST['fecha_inicio'])? $_POST['fecha_inicio'] : null);
+        $capacitacion->setFechaFin(($_POST['fecha_fin'])? $_POST['fecha_fin'] : null);
+        $capacitacion->setIdModalidad(($_POST['id_modalidad'])? $_POST['id_modalidad'] : null);
+        $capacitacion->setObservaciones(($_POST['observaciones'])? $_POST['observaciones'] : null);
+        $capacitacion->setIdUser($_SESSION['id_user']);
 
-        $rta = $objetivo->save();
+        $rta = $capacitacion->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;

@@ -57,28 +57,27 @@
             if ($("#capacitacion-form").valid()){
 
                 var params={};
-                params.action = 'obj_objetivos';
-                params.operation = 'saveObjetivo';
-                params.id_objetivo=$('#id_objetivo').val();
+                params.action = 'cap_capacitaciones';
+                params.operation = 'saveCapacitacion';
+                params.id_capacitacion=$('#id_capacitacion').val();
                 params.periodo = $('#myModal #periodo option:selected').attr('periodo');
-                params.id_plan_evaluacion =$('#myModal #periodo').val();
-                params.nombre=$('#nombre').val();
-                params.id_puesto=$('#id_puesto').val();
-                params.id_area=$('#id_area').val();
-                params.id_contrato=$('#id_contrato').val();
-                params.meta=$('#meta').val();
-                params.meta_valor=$('#meta_valor').val();
-                params.indicador=$('#indicador').val();
-                params.frecuencia=$('#frecuencia').val();
-                params.id_responsable_ejecucion=$('#id_responsable_ejecucion').val();
-                params.id_responsable_seguimiento=$('#id_responsable_seguimiento').val();
-                params.id_objetivo_superior=$('#id_objetivo_superior').val();
+                params.id_plan_capacitacion =$('#myModal #periodo').val();
+                params.id_categoria=$('#id_categoria').val();
+                params.tema=$('#tema').val();
+                params.descripcion=$('#descripcion').val();
+                params.capacitador=$('#capacitador').val();
+                params.fecha_programada=$('#fecha_programada').val();
+                params.duracion=$('#duracion').val();
+                params.fecha_inicio = drp.startDate.format('DD/MM/YYYY');
+                params.fecha_fin = drp.endDate.format('DD/MM/YYYY');
+                params.id_modalidad=$('#id_modalidad').val();
+                params.observaciones=$('#observaciones').val();
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Objetivo guardado con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Capacitación guardada con exito').addClass('alert alert-success').show();
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
@@ -88,7 +87,7 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar el objetivo').addClass('alert alert-danger').show();
+                    $("#myElem").html('Error al guardar la capacitación').addClass('alert alert-danger').show();
                 });
 
             }

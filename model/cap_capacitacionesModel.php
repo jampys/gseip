@@ -216,39 +216,42 @@ c.id_user, c.observaciones
                 fecha_cierre= STR_TO_DATE(:fecha_cierre, '%d/%m/%Y')
                 where id_no_conformidad = :id_no_conformidad";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nro_no_conformidad', $this->getNroNoConformidad());
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':sector', $this->getSector());
-        $stmt->dpBind(':tipo', $this->getTipo());
-        $stmt->dpBind(':analisis_causa', $this->getAnalisisCausa());
-        $stmt->dpBind(':tipo_accion', $this->getTipoAccion());
+        $stmt->dpBind(':id_plan_capacitacion', $this->getIdPlanCapacitacion());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
+        $stmt->dpBind(':id_categoria', $this->getIdCategoria());
+        $stmt->dpBind(':tema', $this->getTema());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':accion_inmediata', $this->getAccionInmediata());
-        $stmt->dpBind(':analisis_causa_desc', $this->getAnalisisCausaDesc());
-        $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
-        $stmt->dpBind(':fecha_cierre', $this->getFechaCierre());
-        $stmt->dpBind(':id_no_conformidad', $this->getIdNoConformidad());
+        $stmt->dpBind(':capacitador', $this->getCapacitador());
+        $stmt->dpBind(':fecha_programada', $this->getFechaProgramada());
+        $stmt->dpBind(':duracion', $this->getDuracion());
+        $stmt->dpBind(':fecha_inicio', $this->getFechaInicio());
+        $stmt->dpBind(':fecha_fin', $this->getFechaFin());
+        $stmt->dpBind(':id_modalidad', $this->getIdModalidad());
+        $stmt->dpBind(':observaciones', $this->getObservaciones());
+        $stmt->dpBind(':id_user', $this->getIdUser());
+        $stmt->dpBind(':id_capacitacion', $this->getIdCapacitacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
 
-    private function insertCapacitacion(){
+    private function insertCapacitacion(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into nc_no_conformidad(nro_no_conformidad, nombre, sector, tipo, analisis_causa, tipo_accion, descripcion, accion_inmediata, analisis_causa_desc, id_responsable_seguimiento, fecha_cierre, created_date, id_user)
-                values(:nro_no_conformidad, :nombre, :sector, :tipo, :analisis_causa, :tipo_accion, :descripcion, :accion_inmediata, :analisis_causa_desc, :id_responsable_seguimiento, STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), sysdate(), :id_user)";
+        $query="insert into cap_capacitaciones(id_plan_capacitacion, periodo, id_categoria, tema, descripcion, capacitador, fecha_programada, duracion, fecha_inicio, fecha_fin, id_modalidad, observaciones, created_date, id_user)
+                values(:id_plan_capacitacion, :periodo, :id_categoria, :tema, :descripcion, :capacitador, STR_TO_DATE(:fecha_programada, '%d/%m/%Y'), :duracion, STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'), STR_TO_DATE(:fecha_fin, '%d/%m/%Y'), :id_modalidad, :observaciones, sysdate(), :id_user)";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':nro_no_conformidad', $this->getNroNoConformidad());
-        $stmt->dpBind(':nombre', $this->getNombre());
-        $stmt->dpBind(':sector', $this->getSector());
-        $stmt->dpBind(':tipo', $this->getTipo());
-        $stmt->dpBind(':analisis_causa', $this->getAnalisisCausa());
-        $stmt->dpBind(':tipo_accion', $this->getTipoAccion());
+        $stmt->dpBind(':id_plan_capacitacion', $this->getIdPlanCapacitacion());
+        $stmt->dpBind(':periodo', $this->getPeriodo());
+        $stmt->dpBind(':id_categoria', $this->getIdCategoria());
+        $stmt->dpBind(':tema', $this->getTema());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':accion_inmediata', $this->getAccionInmediata());
-        $stmt->dpBind(':analisis_causa_desc', $this->getAnalisisCausaDesc());
-        $stmt->dpBind(':id_responsable_seguimiento', $this->getIdResponsableSeguimiento());
-        $stmt->dpBind(':fecha_cierre', $this->getFechaCierre());
+        $stmt->dpBind(':capacitador', $this->getCapacitador());
+        $stmt->dpBind(':fecha_programada', $this->getFechaProgramada());
+        $stmt->dpBind(':duracion', $this->getDuracion());
+        $stmt->dpBind(':fecha_inicio', $this->getFechaInicio());
+        $stmt->dpBind(':fecha_fin', $this->getFechaFin());
+        $stmt->dpBind(':id_modalidad', $this->getIdModalidad());
+        $stmt->dpBind(':observaciones', $this->getObservaciones());
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
