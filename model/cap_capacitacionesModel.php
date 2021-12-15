@@ -259,7 +259,7 @@ c.id_user, c.observaciones
 
     function deleteCapacitacion(){ //ok
         $stmt=new sQuery();
-        $query="delete from cap_capacitacion where id_capacitacion= :id";
+        $query="delete from cap_capacitaciones where id_capacitacion= :id";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id', $this->getIdCapacitacion());
         $stmt->dpExecute();
