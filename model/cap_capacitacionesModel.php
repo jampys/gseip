@@ -199,22 +199,23 @@ c.id_user, c.observaciones
         return $rta;
     }
 
-    public function updateCapacitacion(){
+    public function updateCapacitacion(){ //ok
 
         $stmt=new sQuery();
-        $query="update nc_no_conformidad set
-                nro_no_conformidad= :nro_no_conformidad,
-                nombre= :nombre,
-                sector= :sector,
-                tipo= :tipo,
-                analisis_causa= :analisis_causa,
-                tipo_accion= :tipo_accion,
+        $query="update cap_capacitaciones set
+                periodo= :periodo,
+                id_plan_capacitacion= :id_plan_capacitacion,
+                id_categoria= :id_categoria,
+                tema= :tema,
                 descripcion= :descripcion,
-                accion_inmediata= :accion_inmediata,
-                analisis_causa_desc= :analisis_causa_desc,
-                id_responsable_seguimiento= :id_responsable_seguimiento,
-                fecha_cierre= STR_TO_DATE(:fecha_cierre, '%d/%m/%Y')
-                where id_no_conformidad = :id_no_conformidad";
+                capacitador= :capacitador,
+                fecha_programada= STR_TO_DATE(:fecha_programada, '%d/%m/%Y'),
+                duracion= :duracion,
+                fecha_inicio= STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'),
+                fecha_fin= STR_TO_DATE(:fecha_fin, '%d/%m/%Y'),
+                id_modalidad= :id_modalidad,
+                observaciones= :observaciones
+                where id_capacitacion = :id_capacitacion";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_plan_capacitacion', $this->getIdPlanCapacitacion());
         $stmt->dpBind(':periodo', $this->getPeriodo());
@@ -228,7 +229,6 @@ c.id_user, c.observaciones
         $stmt->dpBind(':fecha_fin', $this->getFechaFin());
         $stmt->dpBind(':id_modalidad', $this->getIdModalidad());
         $stmt->dpBind(':observaciones', $this->getObservaciones());
-        $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpBind(':id_capacitacion', $this->getIdCapacitacion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
