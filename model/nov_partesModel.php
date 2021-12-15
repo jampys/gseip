@@ -639,7 +639,8 @@ join nov_cuadrillas cu on np.id_cuadrilla = cu.id_cuadrilla
 left join nov_parte_orden npo on npo.id_parte = np.id_parte
 left join nov_eventos_c nec on nec.id_evento = np.id_evento
 left join nov_areas na on na.id_area = np.id_area
-where np.id_contrato = :id_contrato
+join v_sec_contratos_control co on np.id_contrato = co.id_contrato
+where np.id_contrato = ifnull(:id_contrato, np.id_contrato)
 and np.fecha_parte between :fecha_desde and :fecha_hasta
 and np.cuadrilla = ifnull(:cuadrilla, np.cuadrilla)
 order by cu.nombre_corto_op asc, np.fecha_parte asc";
