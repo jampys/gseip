@@ -78,10 +78,9 @@
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Capacitación guardada con exito').addClass('alert alert-success').show();
-                        //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
-                                                //$('#example').DataTable().ajax.reload();
+                                                $('#example').DataTable().ajax.reload();
                                               }, 2000);
                     }
 

@@ -64,7 +64,7 @@ switch ($operation)
         $view->label='Nueva capacitación';
         $view->capacitacion = new Capacitacion();
 
-        $view->periodos = Evaluacion::getPeriodos();
+        $view->periodos = Capacitacion::getPeriodos();
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->categorias = Categoria::getCategorias();
         $view->modalidades = Modalidad::getModalidades();
