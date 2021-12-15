@@ -147,7 +147,7 @@
                 //alert(id);
                 params={};
                 params.id_capacitacion = id;
-                params.action = "cap_capacitacion";
+                params.action = "cap_capacitaciones";
                 params.operation = "deleteCapacitacion";
 
                 $.post('index.php',params,function(data, status, xhr){
