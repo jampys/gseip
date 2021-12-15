@@ -271,3 +271,13 @@ https://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-bo
 a:hover { /* https://stackoverflow.com/questions/21983508/strange-underlines-in-font-awesome-css */
     text-decoration: none;
 }
+
+
+
+/* a los label que tiene un title con mensaje de ayuda, les cambia el puntero a pointer */
+label[title] {
+    cursor: pointer;
+}
+label[title]:hover {
+    color: #8c8c8c;
+}
