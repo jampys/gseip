@@ -34,6 +34,11 @@
                 }
             }, function(start, end) {
                 $('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+
+            }).on("apply.daterangepicker", function (e, picker) {
+                //picker.element.val(picker.startDate.format(picker.locale.format));
+                //picker.element.valid();
+                $('#id_periodo').selectpicker('val', '');
             });
 
             var drp = $('#daterange').data('daterangepicker');
