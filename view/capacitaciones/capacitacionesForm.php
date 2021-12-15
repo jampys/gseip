@@ -68,8 +68,10 @@
                 params.capacitador=$('#capacitador').val();
                 params.fecha_programada=$('#fecha_programada').val();
                 params.duracion=$('#duracion').val();
-                params.fecha_inicio = drp.startDate.format('DD/MM/YYYY');
-                params.fecha_fin = drp.endDate.format('DD/MM/YYYY');
+                //params.fecha_inicio = drp.startDate.format('DD/MM/YYYY');
+                //params.fecha_fin = drp.endDate.format('DD/MM/YYYY');
+                params.fecha_inicio = (drp.element.val())? drp.startDate.format('DD/MM/YYYY'): '';
+                params.fecha_fin = (drp.element.val())? drp.endDate.format('DD/MM/YYYY'): '';
                 params.id_modalidad=$('#id_modalidad').val();
                 params.observaciones=$('#observaciones').val();
 
