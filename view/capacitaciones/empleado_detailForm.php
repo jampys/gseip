@@ -156,33 +156,24 @@
         </div>
 
 
-        <div class="form-group required">
-            <label class="control-label" for="accion">Acción</label>
-            <textarea class="form-control" name="accion" id="accion" placeholder="Descripción de la acción" rows="4"><?php print $view->accion->getAccion(); ?></textarea>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="asistio" name="asistio" <?php echo (!$view->empleado->getAsistio())? '' :'checked' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para indicar que estuvo presente en la capacitación">Asistió</a>
+                </label>
+            </div>
         </div>
-
-    <div class="form-group required">
-        <label class="control-label" for="fecha_implementacion">Fecha implementación</label>
-        <div class="inner-addon right-addon">
-            <input class="form-control" type="text" name="fecha_implementacion" id="fecha_implementacion" value = "<?php print $view->accion->getFechaImplementacion() ?>" placeholder="DD/MM/AAAA" readonly>
-            <i class="glyphicon glyphicon-calendar"></i>
-        </div>
-    </div>
 
 
         <div class="form-group required">
-            <label for="id_responsable_ejecucion" class="control-label">Responsable ejecución</label>
-            <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable ejecución">
-                <?php foreach ($view->empleados as $em){
-                    ?>
-                    <option value="<?php echo $em['id_empleado']; ?>"
-                        <?php echo ($em['id_empleado'] == $view->accion->getIdResponsableEjecucion())? 'selected' :'' ?>
-                        >
-                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                    </option>
-                <?php  } ?>
-            </select>
+            <label class="control-label" for="accion">Observaciones</label>
+            <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="3"><?php print $view->empleado->getObservaciones(); ?></textarea>
         </div>
+
+
+
+
+
 
 
 
