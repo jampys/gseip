@@ -78,31 +78,18 @@
 
         $('#etapa-form').validate({ //ok
             rules: {
-                /*codigo: {
-                        required: true,
-                        digits: true,
-                        maxlength: 6
-                },*/
-                accion: {
-                    required: true,
+                id_empleado: {required: true},
+                id_contrato: {required: true},
+                observaciones: {
                     maxlength: 200
-                },
-                fecha_implementacion: {required: true},
-                id_responsable_ejecucion: {required: true}
+                }
             },
             messages:{
-                /*codigo: {
-                    required: "Ingrese el código",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                }, */
+                id_empleado: "Seleccione un empleado",
+                id_contrato: "Seleccione un contrato",
                 accion: {
-                    required: "Ingrese una descripción de la acción",
                     maxlength: "Máximo 200 caracteres"
-                },
-                etapa: "Seleccione una etapa",
-                fecha_implementacion: "Seleccione la fecha de implementación",
-                id_responsable_ejecucion: "Seleccione el responsable de ejecución"
+                }
             }
 
         });
@@ -141,7 +128,8 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group required">
+            <label for="id_contrato" class="control-label">Contrato</label>
             <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5" title="seleccione un contrato">
                 <!-- se completa dinamicamente desde javascript  -->
                 <?php foreach ($view->contratos as $co){
@@ -165,7 +153,7 @@
         </div>
 
 
-        <div class="form-group required">
+        <div class="form-group">
             <label class="control-label" for="accion">Observaciones</label>
             <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="3"><?php print $view->empleado->getObservaciones(); ?></textarea>
         </div>
