@@ -69,9 +69,9 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    case 'getEmpleados': //select dependiente 
-        $id_contrato = $_POST['id_contrato'];
-        $rta = Empleado::getEmpleadosControl($id_contrato);
+    case 'getEmpleados': //select dependiente //ok
+        $id_empleado = $_POST['id_empleado'];
+        $rta = ContratoEmpleado::getContratosByEmpleado($id_empleado, 1);
         print_r(json_encode($rta));
         exit;
         break;
