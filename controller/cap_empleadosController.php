@@ -1,6 +1,7 @@
 ﻿<?php
-include_once("model/cap_empleadosModel.php");
 include_once("model/contratosModel.php");
+include_once("model/cap_empleadosModel.php");
+include_once("model/contrato-empleadoModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -66,6 +67,13 @@ switch ($operation)
         $rta = $view->accion->deleteAccion();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
+        break;
+
+    case 'getEmpleados': //select dependiente 
+        $id_contrato = $_POST['id_contrato'];
+        $rta = Empleado::getEmpleadosControl($id_contrato);
+        print_r(json_encode($rta));
+        exit;
         break;
 
     default : //carga la tabla de empleados de la capacitacion //ok
