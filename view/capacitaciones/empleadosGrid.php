@@ -8,7 +8,7 @@
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 search: '',
-                searchPlaceholder: "Buscar postulante",
+                searchPlaceholder: "Buscar empleado",
                 emptyTable: 'La capacitación no tiene empleados registrados'
             },
             sDom:   "<'row'<'col-sm-2'B><'col-sm-4'><'col-sm-6'f>>" +
