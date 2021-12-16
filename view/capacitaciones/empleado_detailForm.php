@@ -87,8 +87,24 @@
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_accion" id="id_accion" value="<?php print $view->accion->getIdAccion() ?>">
-    <input type="hidden" name="id_no_conformidad" id="id_no_conformidad" value="<?php print $view->accion->getIdNoConformidad() ?>">
+    <input type="hidden" name="id_capacitacion_empleado" id="id_capacitacion_empleado" value="<?php print $view->empleado->getIdCapacitacionEmpleado() ?>">
+    <input type="hidden" name="id_capacitacion" id="id_capacitacion" value="<?php print $view->empleado->getIdCapacitacion() ?>">
+
+
+        <div class="form-group required">
+            <label for="id_responsable_ejecucion" class="control-label">Responsable ejecución</label>
+            <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable ejecución">
+                <?php foreach ($view->empleados as $em){
+                    ?>
+                    <option value="<?php echo $em['id_empleado']; ?>"
+                        <?php echo ($em['id_empleado'] == $view->empleado->getIdEmpleado())? 'selected' :'' ?>
+                        >
+                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+
 
         <div class="form-group required">
             <label class="control-label" for="accion">Acción</label>

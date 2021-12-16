@@ -40,19 +40,19 @@ switch ($operation)
         exit;
         break;
 
-    case 'newAccion':
-        $view->label='Nueva acción';
-        $view->accion = new Accion($_POST['id_accion']);
+    case 'newEmpleado': //ok
+        $view->label='Agregar empleado';
+        $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/no_conformidad/accion_detailForm.php";
+        $view->contentTemplate="view/capacitaciones/empleado_detailForm.php";
         break;
 
-    case 'editAccion':
-        $view->label = ($_POST['target']!='view')? 'Editar acción': 'Ver acción';
-        $view->accion = new Accion($_POST['id_accion']);
+    case 'editAccion': //ok
+        $view->label = ($_POST['target']!='view')? 'Editar empleado': 'Ver empleado';
+        $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
 

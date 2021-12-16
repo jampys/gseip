@@ -17,9 +17,9 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_accion = id;
-            params.action = "nc_acciones";
-            params.operation = "editAccion";
+            params.id_capacitacion_empleado = id;
+            params.action = "cap_empleados";
+            params.operation = "editEmpleado";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -36,9 +36,9 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_accion = id;
-            params.action = "nc_acciones";
-            params.operation = "editAccion";
+            params.id_capacitacion_empleado = id;
+            params.action = "cap_empleados";
+            params.operation = "editEmpleado";
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
@@ -52,17 +52,17 @@
 
 
 
-        //Abre formulario para ingresar nueva accion
+        //Abre formulario para ingresar nueva capacitacion
         $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
-            params.action = "nc_acciones";
-            params.operation = "newAccion";
-            params.id_no_conformidad = $('#etapas_left_side #add').attr('id_no_conformidad');
+            params.action = "cap_empleados";
+            params.operation = "newEmpleado";
+            params.id_capacitacion = $('#etapas_left_side #add').attr('id_capacitacion');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                $('#id_no_conformidad').val(params.id_no_conformidad);
+                $('#id_capacitacion').val(params.id_capacitacion);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             });
