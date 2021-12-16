@@ -144,12 +144,12 @@
         <div class="form-group">
             <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5" title="seleccione un contrato">
                 <!-- se completa dinamicamente desde javascript  -->
-                <?php foreach ($view->empleados as $em){
+                <?php foreach ($view->contratos as $co){
                     ?>
-                    <option value="<?php echo $em['id_empleado']; ?>"
-                        <?php echo ($em['id_empleado'] == $view->empleado->getIdEmpleado())? 'selected' :'' ?>
+                    <option value="<?php echo $co['id_contrato']; ?>"
+                        <?php echo ($co['id_contrato'] == $view->empleado->getIdContrato())? 'selected' :'' ?>
                         >
-                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                        <?php echo $co['nombre']; ?>
                     </option>
                 <?php  } ?>
             </select>
