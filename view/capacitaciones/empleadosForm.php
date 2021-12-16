@@ -77,13 +77,13 @@
             if ($("#etapa-form").valid()){
 
                 var params={};
-                params.action = 'nc_acciones';
-                params.operation = 'saveAccion';
-                params.id_accion = $('#id_accion').val();
-                params.id_no_conformidad = $('#id_no_conformidad').val();
-                params.accion = $('#accion').val();
-                params.id_responsable_ejecucion = $('#id_responsable_ejecucion').val();
-                params.fecha_implementacion = $('#fecha_implementacion').val();
+                params.action = 'cap_empleados';
+                params.operation = 'saveEmpleado';
+                params.id_capacitacion_empleado = $('#myModal #id_capacitacion_empleado').val();
+                params.id_empleado = $('#myModal #id_empleado').val();
+                params.id_capacitacion = $('#myModal #id_capacitacion').val();
+                params.id_contrato = $('#myModal #id_contrato').val();
+                params.asistio = $('#myModal #asistio').prop('checked')? 1:0;
                 //alert(params.aplica);
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -91,18 +91,18 @@
 
                     if(data >=0){
                         $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Acción guardada con exito').addClass('alert alert-success').show();
+                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#etapa-form').hide();
                                                 //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
-                                                $('#table-acciones').DataTable().ajax.reload();
+                                                $('#table-empleados').DataTable().ajax.reload();
                                               }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar la acción').addClass('alert alert-danger').show();
+                    $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                 });
 
             }

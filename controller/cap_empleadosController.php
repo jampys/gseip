@@ -26,16 +26,14 @@ switch ($operation)
         exit;
         break;
 
-    case 'saveAccion':
-        $accion = new Accion($_POST['id_accion']);
-        $accion->setIdNoConformidad($_POST['id_no_conformidad']);
-        $accion->setAccion($_POST['accion']);
-        $accion->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
-        $accion->setFechaImplementacion($_POST['fecha_implementacion']);
-        $accion->setIdUser($_SESSION['id_user']);
-        //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
-        //$busqueda->setIdLocalidad( ($_POST['id_localidad']!='')? $_POST['id_localidad'] : null);
-        $rta = $accion->save();
+    case 'saveEmpleado': //ok
+        $empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
+        $empleado->setIdEmpleado($_POST['id_empleado']);
+        $empleado->setIdContrato($_POST['id_contrato']);
+        $empleado->setObservaciones($_POST['id_responsable_ejecucion']);
+        $empleado->setAsistio(($_POST['disabled'] == 1)? 1 : null);
+        $empleado->setIdUser($_SESSION['id_user']);
+        $rta = $empleado->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;
