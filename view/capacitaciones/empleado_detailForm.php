@@ -37,11 +37,11 @@
 
 
 
-                    $("#id_contrato").html('<option value="">Seleccione un contrato</option>');
+                    //$("#id_contrato").html('<option value="">Seleccione un contrato</option>');
                     if(Object.keys(data).length > 0){
                         $.each(data, function(indice, val){
-                            var label = data[indice]["nombre"];
-                            $("#id_contrato").append('<option value="'+data[indice]["nombre"]+'"'
+                            var label = data[indice]["contrato"];
+                            $("#id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
                             +'>'+label+'</option>');
                         });
 
