@@ -86,7 +86,7 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_capacitacion = id;
-                params.action = "cap_capacitacion-empleado";
+                params.action = "cap_empleados";
                 //params.operation = "etapas"; //entra en default
                 $('#popupbox').load('index.php', params,function(){
                     //$("fieldset").prop("disabled", true);

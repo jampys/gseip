@@ -3,11 +3,11 @@
 
     $(document).ready(function(){
 
-        var t = $('#table-acciones').DataTable({
+        var t = $('#table-empleados').DataTable({
             responsive: true,
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
-                emptyTable: 'La No conformidad no tiene acciones registradas'
+                emptyTable: 'La capacitación no tiene empleados registrados'
             },
             sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
             bPaginate: false,
@@ -20,19 +20,19 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
-                    d.action = "nc_acciones";
+                    d.action = "cap_capacitacion-empleado";
                     d.operation = "refreshGrid";
-                    d.id_no_conformidad = $('#etapas_left_side #add').attr('id_no_conformidad');
+                    d.id_capacitacion = $('#etapas_left_side #add').attr('id_capacitacion');
                 },
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "fecha_implementacion"},
-                {"data" : "accion"},
+                {"data" : "id_capacitacion"},
+                {"data" : "id_capacitacion"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
-                $(row).attr('data-id', data.id_accion);
+                $(row).attr('data-id', data.id_capacitacion_empleado);
             },
             "columnDefs": [
                 //{ targets: 0, responsivePriority: 2 },
@@ -83,7 +83,7 @@
 
     
     <div id="empleados-table">
-            <table id="table-acciones" class="table table-condensed table-hover dt-responsive" width="100%">
+            <table id="table-empleados" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
                     <th>F. impl.</th>

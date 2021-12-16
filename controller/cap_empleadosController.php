@@ -1,5 +1,5 @@
 ﻿<?php
-include_once("model/nc_accionesModel.php");
+include_once("model/cap_empleadosModel.php");
 include_once("model/contratosModel.php");
 
 $operation = "";
@@ -18,14 +18,14 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $rta = $view->acciones = Accion::getAcciones($_POST['id_no_conformidad']);
+        $rta = $view->empleados = CapacitacionEmpleado::getEmpleados($_POST['id_capacitacion']);
         //$view->contentTemplate="view/no_conformidad/accionesGrid.php";
         //break;
         print_r(json_encode($rta));
         exit;
         break;
 
-    case 'saveAccion': //ok
+    case 'saveAccion':
         $accion = new Accion($_POST['id_accion']);
         $accion->setIdNoConformidad($_POST['id_no_conformidad']);
         $accion->setAccion($_POST['accion']);
@@ -40,7 +40,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newAccion': //ok
+    case 'newAccion':
         $view->label='Nueva acción';
         $view->accion = new Accion($_POST['id_accion']);
 
@@ -50,7 +50,7 @@ switch ($operation)
         $view->contentTemplate="view/no_conformidad/accion_detailForm.php";
         break;
 
-    case 'editAccion': //ok
+    case 'editAccion':
         $view->label = ($_POST['target']!='view')? 'Editar acción': 'Ver acción';
         $view->accion = new Accion($_POST['id_accion']);
 
@@ -61,14 +61,14 @@ switch ($operation)
         $view->contentTemplate="view/no_conformidad/accion_detailForm.php";
         break;
 
-    case 'deleteAccion': //ok
+    case 'deleteAccion':
         $view->accion = new Accion($_POST['id_accion']);
         $rta = $view->accion->deleteAccion();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    default : //carga la tabla de acciones de la No conformidad //ok
+    default : //carga la tabla de empleados de la capacitacion //ok
         $view->label='Empleados de la capacitación';
         //$view->acciones = Accion::getAcciones($_POST['id_no_conformidad']);
         $view->disableLayout=true;

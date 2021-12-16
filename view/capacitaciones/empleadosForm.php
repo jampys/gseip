@@ -206,7 +206,7 @@
                             </div>
 
                             <div class="grid">
-                                <?php include_once('view/no_conformidad/accionesGrid.php');?>
+                                <?php include_once('view/capacitaciones/empleadosGrid.php');?>
                             </div>
 
                         </div>

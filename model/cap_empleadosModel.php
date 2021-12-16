@@ -89,7 +89,7 @@ class CapacitacionEmpleado
     }
 
 
-    public static function getCapacitacionEmpleados($id_capacitacion) { //ok
+    public static function getEmpleados($id_capacitacion) { //ok
         $stmt=new sQuery();
         $query = "select ce.id_capacitacion_empleado, ce.id_empleado, ce.id_capacitacion, ce.id_contrato, ce.asistio, ce.observaciones,
                   ce.id_user,
