@@ -94,7 +94,7 @@
                     //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
-                    $('#etapas_left_side #add').attr('id_capacitacion', id);
+                    $('#etapas_left_side').attr('id_capacitacion', id);
                 });
                 return false;
             });

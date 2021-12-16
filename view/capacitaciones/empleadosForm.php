@@ -55,7 +55,7 @@
             params={};
             params.action = "cap_empleados";
             params.operation = "newEmpleado";
-            params.id_capacitacion = $('#etapas_left_side #add').attr('id_capacitacion');
+            params.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -197,11 +197,11 @@
 
                         <div class="col-md-6" id="etapas_left_side">
 
-                            <div class="clearfix">
+                            <!--<div class="clearfix">
                                 <button class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar acción">
                                     <span class="glyphicon glyphicon-plus dp_green"></span>
                                 </button>
-                            </div>
+                            </div>-->
 
                             <div class="grid">
                                 <?php include_once('view/capacitaciones/empleadosGrid.php');?>

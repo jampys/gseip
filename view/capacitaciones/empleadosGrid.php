@@ -7,9 +7,30 @@
             responsive: true,
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
+                search: '',
+                searchPlaceholder: "Buscar postulante",
                 emptyTable: 'La capacitación no tiene empleados registrados'
             },
-            sDom: '<"top">rt<"bottom"><"clear">', // http://legacy.datatables.net/usage/options#sDom
+            sDom:   "<'row'<'col-sm-2'B><'col-sm-4'><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12'>>",
+            buttons: [
+                {
+                    text: '<i class="fas fa-plus fa-fw dp_green"></i>',
+                    titleAttr: 'Agregar postulante',
+                    attr:  {
+                        id: 'add', //https://datatables.net/reference/option/buttons.buttons.attr
+                        disabled: function(){
+                            let permisoNuevo = '<?php echo (PrivilegedUser::dhasPrivilege('PTN_ABM', array(1)) )? 'false' : 'true' ?>';
+                            return (permisoNuevo == 'false')? false : true;
+                        }
+                    },
+                    action: function ( e, dt, node, config ) {
+                        //https://datatables.net/reference/option/buttons.buttons.action
+                        //usa el evento que esta en nPostulacionesForm.php
+                    }
+                }
+            ],
             bPaginate: false,
             //deferRender:    true,
             scrollY:        150,
@@ -22,7 +43,7 @@
                 "data": function ( d ) {
                     d.action = "cap_empleados";
                     d.operation = "refreshGrid";
-                    d.id_capacitacion = $('#etapas_left_side #add').attr('id_capacitacion');
+                    d.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
                 },
                 "dataSrc": ""
             },
