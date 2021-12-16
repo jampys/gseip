@@ -152,11 +152,11 @@ class CapacitacionEmpleado
 
     }
 
-    function deleteCapacitacionEmpleado(){
+    function deleteCapacitacionEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="delete from nc_accion where id_accion = :id_accion";
+        $query="delete from cap_capacitacion_empleado where id_capacitacion_empleado = :id_capacitacion_empleado";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_accion', $this->getIdAccion());
+        $stmt->dpBind(':id_capacitacion_empleado', $this->getIdCapacitacionEmpleado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
