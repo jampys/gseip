@@ -95,7 +95,7 @@ class CapacitacionEmpleado
                   ce.id_user,
                   DATE_FORMAT(ce.created_date, '%d/%m/%Y') as created_date,
                   us.user,
-                  concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
+                  concat(em.apellido, ' ', em.nombre) as empleado,
                   co.nombre as contrato
                   from cap_capacitacion_empleado ce
                   join cap_capacitaciones c on c.id_capacitacion = ce.id_capacitacion

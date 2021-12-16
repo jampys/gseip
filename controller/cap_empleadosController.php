@@ -29,6 +29,7 @@ switch ($operation)
     case 'saveEmpleado': //ok
         $empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
         $empleado->setIdEmpleado($_POST['id_empleado']);
+        $empleado->setIdCapacitacion($_POST['id_capacitacion']);
         $empleado->setIdContrato($_POST['id_contrato']);
         $empleado->setObservaciones($_POST['id_responsable_ejecucion']);
         $empleado->setAsistio(($_POST['disabled'] == 1)? 1 : null);
