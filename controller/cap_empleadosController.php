@@ -62,9 +62,9 @@ switch ($operation)
         $view->contentTemplate="view/capacitaciones/empleado_detailForm.php";
         break;
 
-    case 'deleteAccion':
-        $view->accion = new Accion($_POST['id_accion']);
-        $rta = $view->accion->deleteAccion();
+    case 'deleteEmpleado': //ok
+        $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
+        $rta = $view->empleado->deleteCapacitacionEmpleado();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
