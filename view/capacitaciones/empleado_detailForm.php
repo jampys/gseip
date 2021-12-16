@@ -149,7 +149,7 @@
                     <option value="<?php echo $co['id_contrato']; ?>"
                         <?php echo ($co['id_contrato'] == $view->empleado->getIdContrato())? 'selected' :'' ?>
                         >
-                        <?php echo $co['nombre']; ?>
+                        <?php echo $co['contrato']; ?>
                     </option>
                 <?php  } ?>
             </select>
