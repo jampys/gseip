@@ -44,7 +44,7 @@
                 {
                     targets: 1, //contrato
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(30)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(25)(data, type, row);
                     }
                 },
                 {
