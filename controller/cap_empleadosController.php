@@ -50,7 +50,7 @@ switch ($operation)
         $view->contentTemplate="view/capacitaciones/empleado_detailForm.php";
         break;
 
-    case 'editAccion': //ok
+    case 'editEmpleado': //ok
         $view->label = ($_POST['target']!='view')? 'Editar empleado': 'Ver empleado';
         $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
 
@@ -58,7 +58,7 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/no_conformidad/accion_detailForm.php";
+        $view->contentTemplate="view/capacitaciones/empleado_detailForm.php";
         break;
 
     case 'deleteAccion':

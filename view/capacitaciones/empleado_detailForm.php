@@ -92,8 +92,8 @@
 
 
         <div class="form-group required">
-            <label for="id_responsable_ejecucion" class="control-label">Responsable ejecución</label>
-            <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable ejecución">
+            <label for="id_empleado" class="control-label">Empleado</label>
+            <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
                 <?php foreach ($view->empleados as $em){
                     ?>
                     <option value="<?php echo $em['id_empleado']; ?>"
