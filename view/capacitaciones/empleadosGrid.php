@@ -20,7 +20,7 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
-                    d.action = "cap_capacitacion-empleado";
+                    d.action = "cap_empleados";
                     d.operation = "refreshGrid";
                     d.id_capacitacion = $('#etapas_left_side #add').attr('id_capacitacion');
                 },
