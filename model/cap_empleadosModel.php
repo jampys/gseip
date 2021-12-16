@@ -94,7 +94,9 @@ class CapacitacionEmpleado
         $query = "select ce.id_capacitacion_empleado, ce.id_empleado, ce.id_capacitacion, ce.id_contrato, ce.asistio, ce.observaciones,
                   ce.id_user,
                   DATE_FORMAT(ce.created_date, '%d/%m/%Y') as created_date,
-                  us.user
+                  us.user,
+                  concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
+                  co.nombre as contrato
                   from cap_capacitacion_empleado ce
                   join cap_capacitaciones c on c.id_capacitacion = ce.id_capacitacion
                   join contratos co on co.id_contrato = ce.id_contrato

@@ -27,20 +27,18 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "id_capacitacion"},
-                {"data" : "id_capacitacion"},
+                {"data" : "empleado"},
+                {"data" : "contrato"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_capacitacion_empleado);
             },
             "columnDefs": [
-                //{ targets: 0, responsivePriority: 2 },
-                {targets: 0, type: 'date-uk'}, //fecha_implementacion
                 {
-                    targets: 1, //accion
+                    targets: 0, //accion
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(125)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(70)(data, type, row);
                     }
                 },
                 {
@@ -86,8 +84,8 @@
             <table id="table-empleados" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
-                    <th>F. impl.</th>
-                    <th>Acción</th>
+                    <th>Empleado</th>
+                    <th>Contrato</th>
                     <th></th>
                 </tr>
                 </thead>
