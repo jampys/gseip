@@ -67,7 +67,7 @@
                     targets: 7,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
-                        let permisoEtapas = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'detalle' : 'disabled' ?>';
+                        let permisoEmpleados = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'empleados' : 'disabled' ?>';
                         let permisoClonar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'clone' : 'disabled' ?>';
                         let permisoVer = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? 'view' : 'disabled' ?>';
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_UPDATE', array(1)) )? true : false ?>';
@@ -75,7 +75,7 @@
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_DELETE', array(1)) )? true : false ?>';
                         let permisoEliminarO = (permisoEliminar && !row.cerrado)? 'delete' : 'disabled';
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
-                        return '<a class="'+permisoEtapas+'" href="javascript:void(0);">'+ //si tiene permiso para ver etapas
+                        return '<a class="'+permisoEmpleados+'" href="#">'+ //si tiene permiso para ver etapas
                                     '<i class="fas fa-th-list dp_blue" title="Empleados"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoClonar+'" href="#" title="Clonar">'+ //si tiene permiso para clonar

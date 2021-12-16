@@ -69,10 +69,10 @@ switch ($operation)
         break;
 
     default : //carga la tabla de acciones de la No conformidad //ok
-        $view->label='Acciones de la No conformidad';
+        $view->label='Empleados de la capacitación';
         //$view->acciones = Accion::getAcciones($_POST['id_no_conformidad']);
         $view->disableLayout=true;
-        $view->contentTemplate="view/no_conformidad/accionesForm.php";
+        $view->contentTemplate="view/capacitaciones/empleadosForm.php";
         break;
 }
 

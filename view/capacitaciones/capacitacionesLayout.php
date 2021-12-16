@@ -81,27 +81,24 @@
             });
 
 
-            //$(document).on('click', '.detalle', function(){
-            $('#content').on('click', '.detalle', function(){
-                //alert('presiono sobre detalle');
+            $('#content').on('click', '.empleados', function(){ //ok
+                //alert('presiono sobre empleados');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_objetivo = id;
-                params.action = "obj_objetivos";
-                params.operation = "detalle";
-                params.cerrado = $(this).closest('tr').attr('cerrado');
-                //params.target = "view";
+                params.id_capacitacion = id;
+                params.action = "cap_capacitacion-empleado";
+                //params.operation = "etapas"; //entra en default
                 $('#popupbox').load('index.php', params,function(){
                     //$("fieldset").prop("disabled", true);
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
-                    //$('#etapas_left_side #add').attr('id_postulacion', id);
+                    $('#etapas_left_side #add').attr('id_capacitacion', id);
                 });
                 return false;
-
             });
+
 
 
             $(document).on('click', '#new', function(){ //ok
