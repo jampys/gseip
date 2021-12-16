@@ -120,31 +120,32 @@ class CapacitacionEmpleado
     }
 
 
-    public function updateCapacitacionEmpleado(){
+    public function updateCapacitacionEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="update nc_accion set accion= :accion,
-                id_responsable_ejecucion = :id_responsable_ejecucion,
-                fecha_implementacion = STR_TO_DATE(:fecha_implementacion, '%d/%m/%Y')
-                where id_accion = :id_accion";
+        $query="update cap_capacitacion_empleado set id_contrato= :id_contrato,
+                asistio = :asistio,
+                observaciones = :observaciones
+                where id_capacitacion_empleado = :id_capacitacion_empleado";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':accion', $this->getAccion());
-        $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
-        $stmt->dpBind(':fecha_implementacion', $this->getFechaImplementacion());
-        $stmt->dpBind(':id_accion', $this->getIdAccion());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':asistio', $this->getAsistio());
+        $stmt->dpBind(':observaciones', $this->getObservaciones());
+        $stmt->dpBind(':id_capacitacion_empleado', $this->getIdCapacitacionEmpleado());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
     }
 
-    private function insertCapacitacionEmpleado(){
+    private function insertCapacitacionEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="insert into nc_accion(id_no_conformidad, accion, id_responsable_ejecucion, fecha_implementacion, id_user, created_date)
-                values(:id_no_conformidad, :accion, :id_responsable_ejecucion, STR_TO_DATE(:fecha_implementacion, '%d/%m/%Y'), :id_user, sysdate())";
+        $query="insert into cap_capacitacion_empleado(id_empleado, id_capacitacion, id_contrato, asistio, observaciones, id_user, created_date)
+                values(:id_empleado, :id_capacitacion, :id_contrato, :asistio, :observaciones, :id_user, sysdate())";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_no_conformidad', $this->getIdNoConformidad());
-        $stmt->dpBind(':accion', $this->getAccion());
-        $stmt->dpBind(':id_responsable_ejecucion', $this->getIdResponsableEjecucion());
-        $stmt->dpBind(':fecha_implementacion', $this->getFechaImplementacion());
+        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
+        $stmt->dpBind(':id_capacitacion', $this->getIdCapacitacion());
+        $stmt->dpBind(':id_contrato', $this->getIdContrato());
+        $stmt->dpBind(':asistio', $this->getAsistio());
+        $stmt->dpBind(':observaciones', $this->getObservaciones());
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
