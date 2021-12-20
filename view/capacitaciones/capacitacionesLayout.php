@@ -101,6 +101,26 @@
 
 
 
+            $('#content').on('click', '.ediciones', function(){ //ok
+                //alert('presiono sobre ediciones');
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_capacitacion = id;
+                params.action = "cap_ediciones";
+                //params.operation = "etapas"; //entra en default
+                $('#popupbox').load('index.php', params,function(){
+                    //$("fieldset").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
+                    //$('#myModalLabel').html('');
+                    $('#myModal').modal();
+                    $('#etapas_left_side').attr('id_capacitacion', id);
+                });
+                return false;
+            });
+
+
+
             $(document).on('click', '#new', function(){ //ok
                 params={};
                 params.action = "cap_capacitaciones";

@@ -77,10 +77,10 @@ switch ($operation)
         break;
 
     default : //carga la tabla de empleados de la capacitacion //ok
-        $view->label='Empleados de la capacitación';
+        $view->label='Ediciones de la capacitación';
         //$view->acciones = Accion::getAcciones($_POST['id_no_conformidad']);
         $view->disableLayout=true;
-        $view->contentTemplate="view/capacitaciones/empleadosForm.php";
+        $view->contentTemplate="view/capacitaciones/edicionesForm.php";
         break;
 }
 
