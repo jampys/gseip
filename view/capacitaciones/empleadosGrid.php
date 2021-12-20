@@ -17,7 +17,7 @@
             buttons: [
                 {
                     text: '<i class="fas fa-plus fa-fw dp_green"></i>',
-                    titleAttr: 'Agregar postulante',
+                    titleAttr: 'Agregar empleado',
                     attr:  {
                         id: 'add', //https://datatables.net/reference/option/buttons.buttons.attr
                         disabled: function(){

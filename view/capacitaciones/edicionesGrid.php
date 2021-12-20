@@ -8,8 +8,8 @@
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 search: '',
-                searchPlaceholder: "Buscar empleado",
-                emptyTable: 'La capacitación no tiene empleados registrados'
+                searchPlaceholder: "Buscar edicion",
+                emptyTable: 'La capacitación no tiene ediciones registradas'
             },
             sDom:   "<'row'<'col-sm-2'B><'col-sm-4'><'col-sm-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -17,7 +17,7 @@
             buttons: [
                 {
                     text: '<i class="fas fa-plus fa-fw dp_green"></i>',
-                    titleAttr: 'Agregar postulante',
+                    titleAttr: 'Agregar edición',
                     attr:  {
                         id: 'add', //https://datatables.net/reference/option/buttons.buttons.attr
                         disabled: function(){
@@ -41,15 +41,15 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
-                    d.action = "cap_empleados";
+                    d.action = "cap_ediciones";
                     d.operation = "refreshGrid";
                     d.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
                 },
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "empleado"},
-                {"data" : "contrato"},
+                {"data" : "id_edicion"},
+                {"data" : "id_edicion"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {

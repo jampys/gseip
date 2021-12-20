@@ -204,7 +204,7 @@
                             </div>-->
 
                             <div class="grid">
-                                <?php include_once('view/capacitaciones/empleadosGrid.php');?>
+                                <?php include_once('view/capacitaciones/edicionesGrid.php');?>
                             </div>
 
                         </div>

@@ -1,6 +1,7 @@
 ﻿<?php
 include_once("model/contratosModel.php");
 include_once("model/cap_empleadosModel.php");
+include_once("model/cap_edicionesModel.php");
 include_once("model/contrato-empleadoModel.php");
 
 $operation = "";
@@ -19,7 +20,7 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $rta = $view->empleados = CapacitacionEmpleado::getEmpleados($_POST['id_capacitacion']);
+        $rta = $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion']);
         //$view->contentTemplate="view/no_conformidad/accionesGrid.php";
         //break;
         print_r(json_encode($rta));

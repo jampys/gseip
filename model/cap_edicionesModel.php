@@ -82,7 +82,7 @@ class Edicion
     }
 
 
-    public static function getEdiciones($id_edicion) { //ok
+    public static function getEdiciones($id_capacitacion) { //ok
         $stmt=new sQuery();
         $query = "select ed.id_edicion,
                   DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y') as fecha_edicion,
@@ -91,9 +91,9 @@ class Edicion
                   us.user
                   from cap_ediciones ed
                   join sec_users us on ed.id_user = us.id_user
-                  where ce.id_edicion = :id_edicion";
+                  where ed.id_capacitacion = :id_capacitacion";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_edicion', $id_edicion);
+        $stmt->dpBind(':id_capacitacion', $id_capacitacion);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
