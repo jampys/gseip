@@ -14,19 +14,20 @@
 
 
 
-        $('.grid-ediciones').on('click', '.edit', function(){
+        $('.grid-ediciones').on('click', '.edit', function(){ //ok
             //alert('editar postulacion');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
-            //alert('editar vehiculo: '+id);
+            //alert('editar etapa: '+id);
             params={};
-            params.id_postulacion = id;
-            params.action = "postulaciones2";
-            params.operation = "editPostulacion";
+            params.id_edicion = id;
+            params.action = "cap_ediciones";
+            params.operation = "editEdicion";
+            params.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
-                $('#postulacion-form #id_postulante').attr('disabled', true).selectpicker('refresh');
-                $("#chalampa #culo").css('display', 'none');
+                //alert('cargo el contenido en right side');
+                //$('#id_empleado').prop('disabled', true).selectpicker('refresh');
             });
             return false;
         });
@@ -34,14 +35,36 @@
 
         $('.grid-ediciones').on('click', '.view', function(){
             var id = $(this).closest('tr').attr('data-id');
+            //var id = $(this).attr('data-id');
+            //alert('editar etapa: '+id);
             params={};
-            params.id_postulacion = id;
-            params.action = "postulaciones2";
-            params.operation = "editPostulacion";
+            params.id_edicion = id;
+            params.action = "cap_ediciones";
+            params.operation = "editEdicion";
+            params.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
             params.target = "view";
+            //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
-                $('#postulacion-form #id_postulante').attr('disabled', true).selectpicker('refresh');
-                $("#chalampa #culo").css('display', 'none');
+                //alert('cargo el contenido en right side');
+                //$('#id_empleado').prop('disabled', true).selectpicker('refresh');
+            });
+            return false;
+        });
+
+
+        //Abre formulario para ingresar una nueva edicion a la capacitacion
+        $('#etapas_left_side').on('click', '#add', function(){
+            params={};
+            params.action = "cap_ediciones";
+            params.operation = "newEdicion";
+            params.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
+            //alert(params.id_renovacion);
+            $('#etapas_right_side').load('index.php', params,function(){
+                //alert('cargo el contenido en right side');
+                //$('#myModal').modal();
+                $('#id_capacitacion').val(params.id_capacitacion);
+                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             });
             return false;
         });
@@ -66,22 +89,6 @@
                 $('#etapa-form #id_postulacion').val(params.id_postulacion);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            });
-        });
-
-
-
-        //Abre formulario para ingresar un nuevo postulante a la busqueda
-        $('#etapas_left_side').on('click', '#add', function(){
-            params={};
-            params.action = "postulaciones2";
-            params.operation = "newPostulacion";
-            //params.id_busqueda = $('#etapas_left_side #add').attr('id_busqueda');
-            //alert(params.id_renovacion);
-            $('#etapas_right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
-                //$('#myModal').modal();
-                //$('#id_busqueda').val(params.id_busqueda);
             });
         });
 

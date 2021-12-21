@@ -12,7 +12,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid': //ok
+    case 'refreshGrid':
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -27,7 +27,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'saveEmpleado': //ok
+    case 'saveEdicion':
         $empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
         $empleado->setIdEmpleado($_POST['id_empleado']);
         $empleado->setIdCapacitacion($_POST['id_capacitacion']);
@@ -41,17 +41,17 @@ switch ($operation)
         exit;
         break;
 
-    case 'newEmpleado': //ok
-        $view->label='Agregar empleado';
-        $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
+    case 'newEdicion':
+        $view->label='Agregar edición';
+        $view->edicion = new Edicion($_POST['id_edicion']);
 
-        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
+        //$view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/capacitaciones/empleado_detailForm.php";
+        $view->contentTemplate="view/capacitaciones/edicion_detailForm.php";
         break;
 
-    case 'editEmpleado': //ok
+    case 'editEdicion':
         $view->label = ($_POST['target']!='view')? 'Editar empleado': 'Ver empleado';
         $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
 
@@ -63,18 +63,11 @@ switch ($operation)
         $view->contentTemplate="view/capacitaciones/empleado_detailForm.php";
         break;
 
-    case 'deleteEmpleado': //ok
+    case 'deleteEdicion':
         $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
         $rta = $view->empleado->deleteCapacitacionEmpleado();
         print_r(json_encode($rta));
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
-        break;
-
-    case 'getEmpleados': //select dependiente //ok
-        $id_empleado = $_POST['id_empleado'];
-        $rta = ContratoEmpleado::getContratosByEmpleado($id_empleado, 1);
-        print_r(json_encode($rta));
-        exit;
         break;
 
     default : //carga la tabla de empleados de la capacitacion //ok
