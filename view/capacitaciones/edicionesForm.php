@@ -227,7 +227,7 @@
 
 
         //Guardar etapa luego de ingresar nueva o editar
-        $('#myModal').on('click', '#submit',function(){ //ok
+        $('#empleado-form').on('click', '#submit',function(){ //ok
             //alert('guardar etapa');
 
             if ($("#etapa-form").valid()){

@@ -14,7 +14,7 @@
 
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
-        $('#etapa-form').on('change', '#id_empleado', function(e){
+        $('#empleado-form').on('change', '#id_empleado', function(e){
             //alert('seleccionó un contrato');
             //throw new Error();
             params={};
@@ -70,13 +70,13 @@
         });
 
 
-        //cancel de formulario de etapa
-        $('#etapa-form #cancel').on('click', function(){
-            $('#etapa-form').hide();
+        //cancel de formulario de empleado
+        $('#empleado-form #cancel').on('click', function(){
+            $('#empleado-form').hide();
         });
 
 
-        $('#etapa-form').validate({ //ok
+        $('#empleado-form').validate({ //ok
             rules: {
                 id_empleado: {required: true},
                 id_contrato: {required: true},
@@ -102,7 +102,7 @@
 
 
 
-<form name ="etapa-form" id="etapa-form" method="POST" action="index.php">
+<form name ="empleado-form" id="empleado-form" method="POST" action="index.php">
     <fieldset>
 
     <div class="alert alert-info">
