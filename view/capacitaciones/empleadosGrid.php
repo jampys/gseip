@@ -44,6 +44,7 @@
                     d.action = "cap_empleados";
                     d.operation = "refreshGrid";
                     d.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
+                    d.id_edicion = $('#etapas_left_side').attr('id_edicion');
                 },
                 "dataSrc": ""
             },

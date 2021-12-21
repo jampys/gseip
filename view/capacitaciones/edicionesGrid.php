@@ -70,7 +70,10 @@
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
-                        return '<a class="view" title="Ver" href="#">'+
+                        return '<a class="new" title="Empleados" href="#">'+
+                                    '<i class="far fa-eye dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="view" title="Ver" href="#">'+
                                     '<i class="far fa-eye dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar

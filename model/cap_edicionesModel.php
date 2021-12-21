@@ -104,6 +104,7 @@ class Edicion
                   DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y') as fecha_edicion,
                   ed.capacitador, ed.duracion, ed.id_modalidad, ed.id_user,
                   DATE_FORMAT(ed.created_date, '%d/%m/%Y') as created_date,
+                  concat(DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y'), ' ', ed.nombre) as edicion,
                   us.user
                   from cap_ediciones ed
                   join sec_users us on ed.id_user = us.id_user

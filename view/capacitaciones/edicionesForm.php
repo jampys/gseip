@@ -71,25 +71,17 @@
 
 
 
-        //Abre formulario para ingresar nueva etapa al postulante
+        //Actualiza encabezado de la tabla de empleados con el nombre de la edicion seleccionada
         $('.grid-ediciones').on('click', '.new', function(){
             var id = $(this).closest('tr').attr('data-id');
             params={};
-            params.action = "etapas";
-            params.operation = "newEtapa";
-            params.id_postulacion = id;
+            //params.action = "cap_ediciones";
+            //params.operation = "newEtapa";
+            params.id_edicion = id;
             //alert(params.id_renovacion);
-            $('#etapas_left_side').attr('id_postulacion', params.id_postulacion);
-            $('#postulante').html($('#table-postulantes').DataTable().row( $(this).closest('tr') ).data().postulante);
-            $('#table-etapas').DataTable().ajax.reload();
-
-            $('#etapas_right_side').load('index.php', params,function(){
-                //alert('cargo el contenido en right side');
-                //$('#myModal').modal();
-                $('#etapa-form #id_postulacion').val(params.id_postulacion);
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            });
+            $('#etapas_left_side').attr('id_edicion', params.id_edicion);
+            $('#edicion').html($('#table-ediciones').DataTable().row( $(this).closest('tr') ).data().edicion);
+            $('#table-empleados').DataTable().ajax.reload();
         });
 
 
@@ -339,7 +331,7 @@
 
 
                             <br/>
-                            <h4><span style="display: block; text-align: left; font-weight: normal" class="label label-primary">Empleados de la edición: <span id="postulante"></span></span></h4>
+                            <h4><span style="display: block; text-align: left; font-weight: normal" class="label label-primary">Empleados de la edición: <span id="edicion"></span></span></h4>
 
 
                             <!-- seccion de empleados de la edicion-->
