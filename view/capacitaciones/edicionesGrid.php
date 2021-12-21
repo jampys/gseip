@@ -59,7 +59,7 @@
                 {
                     targets: 1, //nombre
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(30)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(40)(data, type, row);
                     }
                 },
                 {
