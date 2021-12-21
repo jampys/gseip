@@ -175,15 +175,14 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
-            params.id_postulacion = $('#etapas_left_side').attr('id_postulacion');
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.id_capacitacion_empleado = id;
+            params.action = "cap_empleados";
+            params.operation = "editEmpleado";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                $('#id_empleado').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             });
             return false;
@@ -195,17 +194,32 @@
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
             params={};
-            params.id_etapa = id;
-            params.id_postulacion = $('#etapas_left_side').attr('id_postulacion');
-            params.action = "etapas";
-            params.operation = "editEtapa";
+            params.id_capacitacion_empleado = id;
+            params.action = "cap_empleados";
+            params.operation = "editEmpleado";
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
-                //$("#etapas_right_side fieldset").prop("disabled", true);
-                //$("#etapa-form #footer-buttons button").css('display', 'none');
-                //$('.selectpicker').selectpicker('refresh');
+                $('#id_empleado').prop('disabled', true).selectpicker('refresh');
+            });
+            return false;
+        });
+
+
+        //Abre formulario para ingresar un nuevo empleado
+        $('.grid-empleados').on('click', '#add', function(){ //ok
+            params={};
+            params.action = "cap_empleados";
+            params.operation = "newEmpleado";
+            params.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
+            //alert(params.id_renovacion);
+            $('#etapas_right_side').load('index.php', params,function(){
+                //alert('cargo el contenido en right side');
+                //$('#myModal').modal();
+                $('#id_capacitacion').val(params.id_capacitacion);
+                //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
+                //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
             });
             return false;
         });
@@ -219,38 +233,32 @@
             if ($("#etapa-form").valid()){
 
                 var params={};
-                params.action = 'etapas';
-                params.operation = 'saveEtapa';
-                params.id_etapa = $('#id_etapa').val();
-                params.id_postulacion = $('#id_postulacion').val();
-                params.fecha_etapa = $('#fecha_etapa').val();
-                params.etapa = $('#etapa').val();
-                params.aplica = $('input[name=aplica]:checked').val();
-                params.motivo = $('#motivo').val();
-                params.modo_contacto = $('#modo_contacto').val();
-                params.comentarios = $('#comentarios').val();
-                //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
-                //params.disabled = $('#disabled').prop('checked')? 1:0;
-                //alert(params.id_postulacion);
+                params.action = 'cap_empleados';
+                params.operation = 'saveEmpleado';
+                params.id_capacitacion_empleado = $('#myModal #id_capacitacion_empleado').val();
+                params.id_empleado = $('#myModal #id_empleado').val();
+                params.id_capacitacion = $('#myModal #id_capacitacion').val();
+                params.id_contrato = $('#myModal #id_contrato').val();
+                params.asistio = $('#myModal #asistio').prop('checked')? 1:0;
+                //alert(params.aplica);
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
 
                     if(data >=0){
                         $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Etapa guardada con exito').addClass('alert alert-success').show();
-                        //$('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
+                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                                                $('#etapa-form').hide();
-                                                $('#table-etapas').DataTable().ajax.reload();
-                                                $('#table-postulantes').DataTable().ajax.reload();
+                            $('#etapa-form').hide();
+                            //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
+                            $('#table-empleados').DataTable().ajax.reload();
                         }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar la etapa').addClass('alert alert-danger').show();
+                    $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
                 });
 
             }
@@ -261,11 +269,11 @@
 
 
         var dialog;
-        $('.grid-empleados').on('click', '.delete', function(){
+        $('#etapas_left_side').on('click', '.delete', function(){ //ok
 
             var id = $(this).closest('tr').attr('data-id');
             dialog = bootbox.dialog({
-                message: "<p>¿Desea eliminar la etapa?</p>",
+                message: "<p>¿Desea eliminar el empleado?</p>",
                 size: 'small',
                 buttons: {
                     cancel: {
@@ -287,30 +295,28 @@
 
 
 
-        $.fn.borrar = function(id) {
+        $.fn.borrar = function(id) { //ok
             //alert(id);
             params={};
-            params.id_etapa = id;
-            //params.id_postulacion = $('#etapas_left_side #add').attr('id_postulacion');
-            params.id_postulacion = $('#myModal #id_postulacion').val();
-            params.action = "etapas";
-            params.operation = "deleteEtapa";
+            params.id_capacitacion_empleado = id;
+            params.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
+            params.action = "cap_empleados";
+            params.operation = "deleteEmpleado";
 
             $.post('index.php',params,function(data, status, xhr){
                 if(data >=0){
-                    dialog.find('.modal-footer').html('<div class="alert alert-success">Etapa eliminada con exito</div>');
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Empleado eliminado con exito</div>');
                     setTimeout(function() {
-                                dialog.modal('hide');
-                                $('#etapa-form').hide();
-                                //$('#etapas_left_side .grid').load('index.php',{action:"etapas", id_postulacion:params.id_postulacion, operation:"refreshGrid"});
-                                $('#table-etapas').DataTable().ajax.reload();
-                                $('#table-postulantes').DataTable().ajax.reload();
+                        dialog.modal('hide');
+                        $('#etapa-form').hide();
+                        //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
+                        $('#table-empleados').DataTable().ajax.reload();
                     }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                 //alert('Entro a fail '+jqXHR.responseText);
-                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la etapa</div>');
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar el empleado</div>');
 
             });
 
