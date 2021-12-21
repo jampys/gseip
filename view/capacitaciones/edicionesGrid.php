@@ -48,24 +48,18 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "id_edicion"},
-                {"data" : "id_edicion"},
+                {"data" : "fecha_edicion"},
+                {"data" : "nombre"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
-                $(row).attr('data-id', data.id_capacitacion_empleado);
+                $(row).attr('data-id', data.id_edicion);
             },
             "columnDefs": [
                 {
-                    targets: 0, //empleado
+                    targets: 1, //nombre
                     render: function(data, type, row) {
                         return $.fn.dataTable.render.ellipsis(30)(data, type, row);
-                    }
-                },
-                {
-                    targets: 1, //contrato
-                    render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(25)(data, type, row);
                     }
                 },
                 {
@@ -111,8 +105,8 @@
             <table id="table-ediciones" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
-                    <th>Empleado</th>
-                    <th>Contrato</th>
+                    <th>Fecha</th>
+                    <th>Edición</th>
                     <th></th>
                 </tr>
                 </thead>

@@ -3,6 +3,8 @@
 class Edicion
 {
     private $id_edicion;
+    private $id_capacitacion;
+    private $nombre;
     private $fecha_edicion;
     private $capacitador;
     private $duracion;
@@ -13,6 +15,12 @@ class Edicion
     // GETTERS
     function getIdEdicion()
     { return $this->id_edicion;}
+
+    function getIdCapacitacion()
+    { return $this->id_capacitacion;}
+
+    function getNombre()
+    { return $this->nombre;}
 
     function getFechaEdicion()
     { return $this->fecha_edicion;}
@@ -37,6 +45,12 @@ class Edicion
     function setIdEdicion($val)
     { $this->id_edicion=$val;}
 
+    function setIdCapacitacion($val)
+    { $this->id_capacitacion=$val;}
+
+    function setNombre($val)
+    { $this->nombre=$val;}
+
     function setFechaEdicion($val)
     {  $this->fecha_edicion=$val;}
 
@@ -60,7 +74,7 @@ class Edicion
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_edicion,
+            $query = "select id_edicion, ed.id_capacitacion, ed.nombre,
                       DATE_FORMAT(fecha_edicion, '%d/%m/%Y') as fecha_edicion,
                       capacitador, duracion, id_modalidad, id_user,
                       DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
@@ -72,6 +86,8 @@ class Edicion
             $rows = $stmt ->dpFetchAll();
 
             $this->setIdEdicion($rows[0]['id_edicion']);
+            $this->setIdCapacitacion($rows[0]['id_capacitacion']);
+            $this->setNombre($rows[0]['nombre']);
             $this->setFechaEdicion($rows[0]['fecha_edicion']);
             $this->setCapacitador($rows[0]['capacitador']);
             $this->setDuracion($rows[0]['duracion']);
@@ -84,7 +100,7 @@ class Edicion
 
     public static function getEdiciones($id_capacitacion) { //ok
         $stmt=new sQuery();
-        $query = "select ed.id_edicion,
+        $query = "select ed.id_edicion, ed.id_capacitacion, ed.nombre,
                   DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y') as fecha_edicion,
                   ed.capacitador, ed.duracion, ed.id_modalidad, ed.id_user,
                   DATE_FORMAT(ed.created_date, '%d/%m/%Y') as created_date,
