@@ -67,7 +67,6 @@
                     targets: 7,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
-                        let permisoEmpleados = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'empleados' : 'disabled' ?>';
                         let permisoEdiciones = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'ediciones' : 'disabled' ?>';
                         let permisoClonar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'clone' : 'disabled' ?>';
                         let permisoVer = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_VER', array(1)) )? 'view' : 'disabled' ?>';
@@ -78,9 +77,6 @@
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
                         return  '<a class="'+permisoEdiciones+'" href="#">'+ //si tiene permiso para ver ediciones
                                     '<i class="fas fa-th-list dp_blue" title="Ediciones"></i>'+
-                                '</a>&nbsp;&nbsp;'+
-                                '<a class="'+permisoEmpleados+'" href="#">'+ //si tiene permiso para ver empleados
-                                    '<i class="fas fa-th-list dp_blue" title="Empleados"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoClonar+'" href="#" title="Clonar">'+ //si tiene permiso para clonar
                                     '<i class="far fa-copy dp_blue"></i>'+
