@@ -32,6 +32,7 @@ switch ($operation)
         $empleado->setIdEmpleado($_POST['id_empleado']);
         $empleado->setIdCapacitacion($_POST['id_capacitacion']);
         $empleado->setIdContrato($_POST['id_contrato']);
+        $empleado->setIdEdicion($_POST['id_edicion']);
         $empleado->setObservaciones($_POST['id_responsable_ejecucion']);
         $empleado->setAsistio(($_POST['asistio'] == 1)? 1 : null);
         $empleado->setIdUser($_SESSION['id_user']);

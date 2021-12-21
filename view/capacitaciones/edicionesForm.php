@@ -178,6 +178,7 @@
             params.id_capacitacion_empleado = id;
             params.action = "cap_empleados";
             params.operation = "editEmpleado";
+            params.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -197,6 +198,7 @@
             params.id_capacitacion_empleado = id;
             params.action = "cap_empleados";
             params.operation = "editEmpleado";
+            params.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
@@ -226,7 +228,7 @@
 
 
 
-        //Guardar etapa luego de ingresar nueva o editar
+        //Guardar etapa luego de ingresar empleado nuevo o editar
         $('#empleado-form').on('click', '#submit',function(){ //ok
             //alert('guardar etapa');
 
@@ -239,6 +241,7 @@
                 params.id_empleado = $('#myModal #id_empleado').val();
                 params.id_capacitacion = $('#myModal #id_capacitacion').val();
                 params.id_contrato = $('#myModal #id_contrato').val();
+                params.id_edicion = $('#myModal #id_edicion').val();
                 params.asistio = $('#myModal #asistio').prop('checked')? 1:0;
                 //alert(params.aplica);
 

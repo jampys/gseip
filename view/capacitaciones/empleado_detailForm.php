@@ -80,6 +80,7 @@
             rules: {
                 id_empleado: {required: true},
                 id_contrato: {required: true},
+                id_edicion: {required: true},
                 observaciones: {
                     maxlength: 200
                 }
@@ -87,6 +88,7 @@
             messages:{
                 id_empleado: "Seleccione un empleado",
                 id_contrato: "Seleccione un contrato",
+                id_edicion: "Seleccione una edición",
                 accion: {
                     maxlength: "Máximo 200 caracteres"
                 }
