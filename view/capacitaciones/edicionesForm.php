@@ -14,7 +14,7 @@
 
 
 
-        $('.grid-postulaciones').on('click', '.edit', function(){ //ok
+        $('.grid-ediciones').on('click', '.edit', function(){
             //alert('editar postulacion');
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
@@ -32,7 +32,7 @@
         });
 
 
-        $('.grid-postulaciones').on('click', '.view', function(){ //ok
+        $('.grid-ediciones').on('click', '.view', function(){
             var id = $(this).closest('tr').attr('data-id');
             params={};
             params.id_postulacion = id;
@@ -49,7 +49,7 @@
 
 
         //Abre formulario para ingresar nueva etapa al postulante
-        $('.grid-postulaciones').on('click', '.new', function(){
+        $('.grid-ediciones').on('click', '.new', function(){
             var id = $(this).closest('tr').attr('data-id');
             params={};
             params.action = "etapas";
@@ -72,7 +72,7 @@
 
 
         //Abre formulario para ingresar un nuevo postulante a la busqueda
-        $('#etapas_left_side').on('click', '#add', function(){ //ok
+        $('#etapas_left_side').on('click', '#add', function(){
             params={};
             params.action = "postulaciones2";
             params.operation = "newPostulacion";
@@ -89,7 +89,7 @@
 
 
         var dialog;
-        $('.grid-postulaciones').on('click', '.delete', function(){
+        $('.grid-ediciones').on('click', '.delete', function(){
 
             var id = $(this).closest('tr').attr('data-id');
             dialog = bootbox.dialog({
@@ -147,7 +147,7 @@
 
 
 
-        $('.grid-postulaciones').on('click', '.etapas', function(){ //ok
+        $('.grid-ediciones').on('click', '.etapas', function(){ //ok
             //alert('tocó en etapas');
             var id = $(this).closest('tr').attr('data-id');
             $('#etapas_left_side').attr('id_postulacion', id);
@@ -168,9 +168,9 @@
 
 
 
-        ///----------------------------- etapas--------------------------------------///
+        ///----------------------------- empleados--------------------------------------///
 
-        $('.grid-etapas').on('click', '.edit', function(){ //ok
+        $('.grid-empleados').on('click', '.edit', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -190,7 +190,7 @@
         });
 
 
-        $('.grid-etapas').on('click', '.view', function(){ //ok
+        $('.grid-empleados').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -261,7 +261,7 @@
 
 
         var dialog;
-        $('.grid-etapas').on('click', '.delete', function(){
+        $('.grid-empleados').on('click', '.delete', function(){
 
             var id = $(this).closest('tr').attr('data-id');
             dialog = bootbox.dialog({
@@ -358,7 +358,7 @@
                                         </button>
                                     </div>-->
 
-                                    <div class="grid-postulaciones">
+                                    <div class="grid-ediciones">
                                         <?php include_once('view/capacitaciones/edicionesGrid.php');?>
                                     </div>
 
@@ -375,7 +375,7 @@
                                 <div class="col-md-12">
 
                                     <!-- incluir datatable de etapas de la postulacion-->
-                                    <div class="grid-etapas">
+                                    <div class="grid-empleados">
                                         <?php include_once('view/capacitaciones/empleadosGrid.php');?>
                                     </div>
 
