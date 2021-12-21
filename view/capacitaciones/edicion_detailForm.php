@@ -64,6 +64,47 @@
         });
 
 
+        //Guardar etapa luego de ingresar empleado nuevo o editar
+        $('#myModal').on('click', '#submit',function(){ //ok
+            //alert('guardar etapa');
+
+            if ($("#empleado-form").valid()){
+
+                var params={};
+                params.action = 'cap_empleados';
+                params.operation = 'saveEmpleado';
+                params.id_capacitacion_empleado = $('#myModal #id_capacitacion_empleado').val();
+                params.id_empleado = $('#myModal #id_empleado').val();
+                params.id_capacitacion = $('#myModal #id_capacitacion').val();
+                params.id_contrato = $('#myModal #id_contrato').val();
+                params.id_edicion = $('#myModal #id_edicion').val();
+                params.asistio = $('#myModal #asistio').prop('checked')? 1:0;
+                //alert(params.aplica);
+
+                $.post('index.php',params,function(data, status, xhr){
+                    //alert(xhr.responseText);
+
+                    if(data >=0){
+                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                        //$("#search").trigger("click");
+                        setTimeout(function() { $("#myElem").hide();
+                            $('#empleado-form').hide();
+                            //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
+                            $('#table-empleados').DataTable().ajax.reload();
+                        }, 2000);
+                    }
+
+                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
+                    //alert('Entro a fail '+jqXHR.responseText);
+                    $("#myElem").html('No es posible guardar el empleado').addClass('alert alert-danger').show();
+                });
+
+            }
+            return false;
+        });
+
+
         $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
