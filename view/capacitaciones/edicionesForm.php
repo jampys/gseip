@@ -359,7 +359,7 @@
                                     </div>-->
 
                                     <div class="grid-postulaciones">
-                                        <?php include_once('view/busquedas/nPostulacionesGrid.php');?>
+                                        <?php include_once('view/capacitaciones/edicionesGrid.php');?>
                                     </div>
 
                                 </div>
@@ -370,13 +370,13 @@
                             <h4><span style="display: block; text-align: left; font-weight: normal" class="label label-primary">Etapas de la postulación: <span id="postulante"></span></span></h4>
 
 
-                            <!-- seccion de etapas de la postulacion-->
+                            <!-- seccion de empleados de la edicion-->
                             <div class="row">
                                 <div class="col-md-12">
 
                                     <!-- incluir datatable de etapas de la postulacion-->
                                     <div class="grid-etapas">
-                                        <?php include_once('view/busquedas/etapasGrid.php');?>
+                                        <?php include_once('view/capacitaciones/empleadosGrid.php');?>
                                     </div>
 
                                 </div>
