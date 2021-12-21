@@ -1,6 +1,7 @@
 ﻿<?php
 include_once("model/contratosModel.php");
 include_once("model/cap_empleadosModel.php");
+include_once("model/cap_edicionesModel.php");
 include_once("model/contrato-empleadoModel.php");
 
 $operation = "";
@@ -45,6 +46,8 @@ switch ($operation)
         $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
+        $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
+        $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/capacitaciones/empleado_detailForm.php";
@@ -56,6 +59,7 @@ switch ($operation)
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
         $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
+        $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion']);
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

@@ -144,6 +144,21 @@
         </div>
 
 
+        <div class="form-group required">
+            <label for="id_contrato" class="control-label">Edicion</label>
+            <select class="form-control selectpicker show-tick" id="id_edicion" name="id_edicion" data-live-search="true" data-size="5" title="seleccione una edición">
+                <?php foreach ($view->ediciones as $ed){
+                    ?>
+                    <option value="<?php echo $ed['id_edicion']; ?>"
+                        <?php echo ($ed['id_edicion'] == $view->empleado->getIdEdicion())? 'selected' :'' ?>
+                        >
+                        <?php echo $ed['fecha_edicion'].' '.$ed['nombre']; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+
+
         <div class="form-group">
             <div class="checkbox">
                 <label>

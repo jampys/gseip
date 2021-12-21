@@ -6,6 +6,7 @@ class CapacitacionEmpleado
     private $id_empleado;
     private $id_capacitacion;
     private $id_contrato;
+    private $id_edicion;
     private $asistio;
     private $observaciones;
     private $id_user;
@@ -23,6 +24,9 @@ class CapacitacionEmpleado
 
     function getIdContrato()
     { return $this->id_contrato;}
+
+    function getIdEdicion()
+    { return $this->id_edicion;}
 
     function getAsistio()
     { return $this->asistio;}
@@ -50,6 +54,9 @@ class CapacitacionEmpleado
     function setIdContrato($val)
     {  $this->id_contrato=$val;}
 
+    function setIdEdicion($val)
+    {  $this->id_edicion=$val;}
+
     function setAsistio($val)
     { $this->asistio=$val;}
 
@@ -67,7 +74,7 @@ class CapacitacionEmpleado
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_capacitacion_empleado, id_empleado, id_capacitacion, id_contrato, asistio, observaciones,
+            $query = "select id_capacitacion_empleado, id_empleado, id_capacitacion, id_contrato, id_edicion, asistio, observaciones,
                       id_user,
                       DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
                       from cap_capacitacion_empleado
@@ -81,6 +88,7 @@ class CapacitacionEmpleado
             $this->setIdEmpleado($rows[0]['id_empleado']);
             $this->setIdCapacitacion($rows[0]['id_capacitacion']);
             $this->setIdContrato($rows[0]['id_contrato']);
+            $this->setIdEdicion($rows[0]['id_edicion']);
             $this->setAsistio($rows[0]['asistio']);
             $this->setObservaciones($rows[0]['observaciones']);
             $this->setIdUser($rows[0]['id_user']);
