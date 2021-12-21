@@ -18,38 +18,6 @@
         });
 
 
-        moment.locale('es');
-        $('#fecha_programada').daterangepicker({
-            singleDatePicker: true,
-            showDropdowns: true,
-            autoApply: true,
-            autoUpdateInput: false,
-            drops: 'auto',
-            parentEl: '#myModal',
-            "locale": {
-                "format": "DD/MM/YYYY"
-            }
-        }).on("apply.daterangepicker", function (e, picker) {
-            picker.element.val(picker.startDate.format(picker.locale.format));
-            picker.element.valid();
-        });
-
-
-        $('#fecha').daterangepicker({
-            parentEl: '#myModal',
-            showDropdowns: true,
-            autoApply: true,
-            autoUpdateInput: false,
-            linkedCalendars: false,
-            "locale": {
-                "format": "DD/MM/YYYY"
-            }
-        }).on("apply.daterangepicker", function (e, picker) {
-            picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
-            picker.element.valid();
-        });
-        var drp = $('#fecha').data('daterangepicker');
-
 
 
         $('#myModal').on('click', '#submit',function(){ //ok
@@ -65,14 +33,6 @@
                 params.id_categoria=$('#id_categoria').val();
                 params.tema=$('#tema').val();
                 params.descripcion=$('#descripcion').val();
-                params.capacitador=$('#capacitador').val();
-                params.fecha_programada=$('#fecha_programada').val();
-                params.duracion=$('#duracion').val();
-                //params.fecha_inicio = drp.startDate.format('DD/MM/YYYY');
-                //params.fecha_fin = drp.endDate.format('DD/MM/YYYY');
-                params.fecha_inicio = (drp.element.val())? drp.startDate.format('DD/MM/YYYY'): '';
-                params.fecha_fin = (drp.element.val())? drp.endDate.format('DD/MM/YYYY'): '';
-                params.id_modalidad=$('#id_modalidad').val();
                 params.observaciones=$('#observaciones').val();
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -113,16 +73,9 @@
                 periodo: {required: true},
                 id_categoria: {required: true},
                 tema: {required: true},
-                duracion: {
-                    number: true,
-                    maxlength: 4
-                },
                 descripcion: {
                     required: true,
                     maxlength: 500
-                },
-                capacitador: {
-                    maxlength: 50
                 },
                 observaciones: {
                     maxlength: 500
@@ -132,16 +85,9 @@
                 periodo: "Seleccione un período",
                 id_categoria: "Seleccione una categoría",
                 tema: "Ingrese un tema",
-                duracion: {
-                    number: "Solo números. Utilice un punto como separador decimal",
-                    maxlength: "Máximo 4 dígitos"
-                },
                 descripcion: {
                     required: "Ingrese la descripción",
                     maxlength: "Máximo 500 caracteres"
-                },
-                capacitador: {
-                    maxlength: "Máximo 50 caracteres"
                 },
                 observaciones: {
                     maxlength: "Máximo 500 caracteres"
@@ -217,60 +163,10 @@
                     </div>
 
 
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="capacitador" class="control-label">Capacitador</label>
-                            <input class="form-control" type="text" name="capacitador" id="capacitador" value="<?php print $view->capacitacion->getCapacitador() ?>">
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label class="control-label" for="fecha_programada">Fecha programada</label>
-                            <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="fecha_programada" id="fecha_programada" value="<?php print $view->capacitacion->getFechaProgramada() ?>">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="duracion" class="control-label" title="Duración indicada en horas">Duración (hs)</label>
-                            <input class="form-control" type="text" name="duracion" id="duracion" value="<?php print $view->capacitacion->getDuracion() ?>">
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label class="control-label" for="fecha">Fechas inicio / fin</label>
-                            <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->capacitacion->getFechaInicio() && $view->capacitacion->getFechaFin())? $view->capacitacion->getFechaInicio()." - ".$view->capacitacion->getFechaFin() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="id_modalidad" class="control-label">Modalidad</label>
-                        <select class="form-control selectpicker show-tick" id="id_modalidad" name="id_modalidad" title="Seleccione una modalidad" data-live-search="true" data-size="5">
-                            <?php foreach ($view->modalidades as $mod){
-                                ?>
-                                <option value="<?php echo $mod['id_modalidad']; ?>"
-                                    <?php echo ($mod['id_modalidad'] == $view->capacitacion->getIdModalidad() )? 'selected' :'' ?>
-                                    >
-                                    <?php echo $mod['nombre']; ?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
-
                     <div class="form-group">
                         <label for="observaciones" class="control-label">Observaciones</label>
                         <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="3"><?php print $view->capacitacion->getObservaciones(); ?></textarea>
                     </div>
-
-
-
 
 
                 </form>
