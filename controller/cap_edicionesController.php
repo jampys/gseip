@@ -42,7 +42,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'newEdicion':
+    case 'newEdicion': //ok
         $view->label='Agregar edición';
         $view->edicion = new Edicion($_POST['id_edicion']);
 
@@ -52,15 +52,15 @@ switch ($operation)
         $view->contentTemplate="view/capacitaciones/edicion_detailForm.php";
         break;
 
-    case 'editEdicion':
-        $view->label = ($_POST['target']!='view')? 'Editar empleado': 'Ver empleado';
-        $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
+    case 'editEdicion': //ok
+        $view->edicion = new Edicion($_POST['id_edicion']);
+        $view->label = $view->edicion->getNombre();
 
         $view->modalidades = Modalidad::getModalidades();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/capacitaciones/empleado_detailForm.php";
+        $view->contentTemplate="view/capacitaciones/edicion_detailForm.php";
         break;
 
     case 'deleteEdicion':
