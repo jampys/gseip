@@ -229,7 +229,7 @@
 
 
         //Guardar etapa luego de ingresar empleado nuevo o editar
-        $('#empleado-form').on('click', '#submit',function(){ //ok
+        $('#myModal').on('click', '#submit',function(){ //ok
             //alert('guardar etapa');
 
             if ($("#empleado-form").valid()){
@@ -261,7 +261,7 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('Error al guardar el empleado').addClass('alert alert-danger').show();
+                    $("#myElem").html('No es posible guardar el empleado').addClass('alert alert-danger').show();
                 });
 
             }
