@@ -3,7 +3,7 @@
 
     $(document).ready(function(){
 
-        var t = $('#table-empleados').DataTable({
+        var t = $('#table-ediciones').DataTable({
             responsive: true,
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
@@ -107,8 +107,8 @@
 
 
     
-    <div id="empleados-table">
-            <table id="table-empleados" class="table table-condensed table-hover dt-responsive" width="100%">
+    <div id="ediciones-table">
+            <table id="table-ediciones" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
                     <th>Empleado</th>

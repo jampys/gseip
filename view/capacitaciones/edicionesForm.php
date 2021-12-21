@@ -367,7 +367,7 @@
 
 
                             <br/>
-                            <h4><span style="display: block; text-align: left; font-weight: normal" class="label label-primary">Etapas de la postulación: <span id="postulante"></span></span></h4>
+                            <h4><span style="display: block; text-align: left; font-weight: normal" class="label label-primary">Empleados de la edición: <span id="postulante"></span></span></h4>
 
 
                             <!-- seccion de empleados de la edicion-->
