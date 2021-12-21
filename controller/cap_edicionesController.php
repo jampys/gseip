@@ -3,6 +3,7 @@ include_once("model/contratosModel.php");
 include_once("model/cap_empleadosModel.php");
 include_once("model/cap_edicionesModel.php");
 include_once("model/contrato-empleadoModel.php");
+include_once("model/cap_modalidadesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -45,7 +46,7 @@ switch ($operation)
         $view->label='Agregar edición';
         $view->edicion = new Edicion($_POST['id_edicion']);
 
-        //$view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
+        $view->modalidades = Modalidad::getModalidades();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/capacitaciones/edicion_detailForm.php";
@@ -55,8 +56,7 @@ switch ($operation)
         $view->label = ($_POST['target']!='view')? 'Editar empleado': 'Ver empleado';
         $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
 
-        $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
-        $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
+        $view->modalidades = Modalidad::getModalidades();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

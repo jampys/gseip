@@ -13,6 +13,23 @@
         });
 
 
+        moment.locale('es');
+        $('#fecha_edicion').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            drops: 'auto',
+            parentEl: '#myModal',
+            "locale": {
+                "format": "DD/MM/YYYY"
+            }
+        }).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format(picker.locale.format));
+            picker.element.valid();
+        });
+
+
         //Select dependiente: al seleccionar contrato carga periodos vigentes
         $('#etapa-form').on('change', '#id_empleado', function(e){
             //alert('seleccionó un contrato');
@@ -119,18 +136,33 @@
 
         $('#etapa-form').validate({ //ok
             rules: {
-                id_empleado: {required: true},
-                id_contrato: {required: true},
-                observaciones: {
-                    maxlength: 200
-                }
+                nombre: {required: true},
+                fecha_edicion: {required: true},
+                duracion: {
+                    required: true,
+                    number: true,
+                    maxlength: 4
+                },
+                capacitador: {
+                    required: true,
+                    maxlength: 50
+                },
+                id_modalidad: {required: true}
             },
             messages:{
-                id_empleado: "Seleccione un empleado",
-                id_contrato: "Seleccione un contrato",
-                accion: {
-                    maxlength: "Máximo 200 caracteres"
-                }
+                nombre: "Ingrese el nombre",
+                fecha_edicion: "Seleccione la fecha de la edición",
+                duracion: {
+                    required: "Ingrese la duración",
+                    number: "Solo números. Utilice un punto como separador decimal",
+                    maxlength: "Máximo 4 dígitos"
+                },
+                capacitador: {
+                    required: "Ingrese el nombre del capacitador",
+                    maxlength: "Máximo 50 caracteres"
+                },
+                id_modalidad: "Ingrese la modalidad"
+
             }
 
         });
@@ -150,59 +182,50 @@
         <strong><?php echo $view->label ?></strong>
     </div>
 
-    <input type="hidden" name="id_capacitacion_empleado" id="id_capacitacion_empleado" value="<?php print $view->empleado->getIdCapacitacionEmpleado() ?>">
-    <input type="hidden" name="id_capacitacion" id="id_capacitacion" value="<?php print $view->empleado->getIdCapacitacion() ?>">
+    <input type="hidden" name="id_edicion" id="id_edicion" value="<?php print $view->edicion->getIdEdicion() ?>">
+    <input type="hidden" name="id_capacitacion" id="id_capacitacion" value="<?php print $view->edicion->getIdCapacitacion() ?>">
 
 
         <div class="form-group required">
-            <label for="id_empleado" class="control-label">Empleado</label>
-            <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
-                <?php foreach ($view->empleados as $em){
-                    ?>
-                    <option value="<?php echo $em['id_empleado']; ?>"
-                        <?php echo ($em['id_empleado'] == $view->empleado->getIdEmpleado())? 'selected' :'' ?>
-                        >
-                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
-                    </option>
-                <?php  } ?>
-            </select>
+            <label for="nombre" class="control-label">Nombre</label>
+            <input class="form-control" type="text" name="nombre" id="nombre" value="<?php print $view->edicion->getNombre() ?>" placeholder="Nombre">
         </div>
 
 
         <div class="form-group required">
-            <label for="id_contrato" class="control-label">Contrato</label>
-            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5" title="seleccione un contrato">
-                <!-- se completa dinamicamente desde javascript  -->
-                <?php foreach ($view->contratos as $co){
-                    ?>
-                    <option value="<?php echo $co['id_contrato']; ?>"
-                        <?php echo ($co['id_contrato'] == $view->empleado->getIdContrato())? 'selected' :'' ?>
-                        >
-                        <?php echo $co['contrato']; ?>
-                    </option>
-                <?php  } ?>
-            </select>
-        </div>
-
-
-        <div class="form-group">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="asistio" name="asistio" <?php echo (!$view->empleado->getAsistio())? '' :'checked' ?> <?php //echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para indicar que estuvo presente en la capacitación">Asistió</a>
-                </label>
+            <label class="control-label" for="fecha_programada">Fecha edición</label>
+            <div class="inner-addon right-addon">
+                <input class="form-control" type="text" name="fecha_edicion" id="fecha_edicion" value="<?php print $view->edicion->getFechaEdicion() ?>">
+                <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
 
 
-        <div class="form-group">
-            <label class="control-label" for="accion">Observaciones</label>
-            <textarea class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" rows="3"><?php print $view->empleado->getObservaciones(); ?></textarea>
+        <div class="form-group required">
+            <label for="capacitador" class="control-label">Capacitador</label>
+            <input class="form-control" type="text" name="capacitador" id="capacitador" value="<?php print $view->edicion->getCapacitador() ?>">
         </div>
 
 
+        <div class="form-group required">
+            <label for="duracion" class="control-label" title="Duración indicada en horas">Duración (hs)</label>
+            <input class="form-control" type="text" name="duracion" id="duracion" value="<?php print $view->edicion->getDuracion() ?>">
+        </div>
 
 
-
+        <div class="form-group required">
+            <label for="id_modalidad" class="control-label">Modalidad</label>
+            <select class="form-control selectpicker show-tick" id="id_modalidad" name="id_modalidad" title="Seleccione la modalidad" data-live-search="true" data-size="5">
+                <?php foreach ($view->modalidades as $mod){
+                    ?>
+                    <option value="<?php echo $mod['id_modalidad']; ?>"
+                        <?php echo ($mod['id_modalidad'] == $view->edicion->getIdModalidad() )? 'selected' :'' ?>
+                        >
+                        <?php echo $mod['nombre']; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
 
 
 
