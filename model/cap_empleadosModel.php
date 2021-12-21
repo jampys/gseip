@@ -133,7 +133,7 @@ class CapacitacionEmpleado
 
     public function updateCapacitacionEmpleado(){ //ok
         $stmt=new sQuery();
-        $query="update cap_capacitacion_empleado set id_contrato= :id_contrato, id_edicion,
+        $query="update cap_capacitacion_empleado set id_contrato= :id_contrato, id_edicion= :id_edicion,
                 asistio = :asistio,
                 observaciones = :observaciones
                 where id_capacitacion_empleado = :id_capacitacion_empleado";
