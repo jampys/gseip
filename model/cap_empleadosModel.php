@@ -96,12 +96,15 @@ class CapacitacionEmpleado
                   DATE_FORMAT(ce.created_date, '%d/%m/%Y') as created_date,
                   us.user,
                   concat(em.apellido, ' ', em.nombre) as empleado,
-                  co.nombre as contrato
+                  co.nombre as contrato,
+                  DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y') as fecha_edicion,
+                  concat(DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y'), ' ', ed.nombre) as edicion
                   from cap_capacitacion_empleado ce
                   join cap_capacitaciones c on c.id_capacitacion = ce.id_capacitacion
                   join contratos co on co.id_contrato = ce.id_contrato
                   join sec_users us on ce.id_user = us.id_user
                   join empleados em on em.id_empleado = ce.id_empleado
+                  join cap_ediciones ed on ed.id_edicion = ce.id_edicion
                   where ce.id_capacitacion = :id_capacitacion";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_capacitacion', $id_capacitacion);

@@ -49,7 +49,7 @@
             },
             'columns': [
                 {"data" : "empleado"},
-                {"data" : "contrato"},
+                {"data" : "edicion"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
@@ -63,9 +63,9 @@
                     }
                 },
                 {
-                    targets: 1, //contrato
+                    targets: 1, //edicion
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(25)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(30)(data, type, row);
                     }
                 },
                 {
@@ -112,7 +112,7 @@
                 <thead>
                 <tr>
                     <th>Empleado</th>
-                    <th>Contrato</th>
+                    <th>Edición</th>
                     <th></th>
                 </tr>
                 </thead>
