@@ -232,7 +232,7 @@
         $('#empleado-form').on('click', '#submit',function(){ //ok
             //alert('guardar etapa');
 
-            if ($("#etapa-form").valid()){
+            if ($("#empleado-form").valid()){
 
                 var params={};
                 params.action = 'cap_empleados';
@@ -249,11 +249,11 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#etapa-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                            $('#etapa-form').hide();
+                            $('#empleado-form').hide();
                             //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
                             $('#table-empleados').DataTable().ajax.reload();
                         }, 2000);
