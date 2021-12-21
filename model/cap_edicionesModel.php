@@ -74,11 +74,11 @@ class Edicion
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_edicion, ed.id_capacitacion, ed.nombre,
-                      DATE_FORMAT(fecha_edicion, '%d/%m/%Y') as fecha_edicion,
-                      capacitador, duracion, id_modalidad, id_user,
-                      DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
-                      from cap_ediciones
+            $query = "select ed.id_edicion, ed.id_capacitacion, ed.nombre,
+                      DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y') as fecha_edicion,
+                      ed.capacitador, ed.duracion, ed.id_modalidad, ed.id_user,
+                      DATE_FORMAT(ed.created_date, '%d/%m/%Y') as created_date
+                      from cap_ediciones ed
                       where id_edicion = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
