@@ -128,7 +128,7 @@ class Edicion
 
     public function updateEdicion(){ //ok
         $stmt=new sQuery();
-        $query="update cap_edicion set nombre= :nombre,
+        $query="update cap_ediciones set nombre= :nombre,
                 fecha_edicion= STR_TO_DATE(:fecha_edicion, '%d/%m/%Y'),
                 capacitador= :capacitador,
                 duracion= :duracion,
@@ -148,10 +148,10 @@ class Edicion
 
     private function insertEdicion(){
         $stmt=new sQuery();
-        $query="insert into cap_edicion(id_capacitacion, nombre, fecha_edicion, capacitador, duracion, id_modalidad, id_user, created_date)
-                values(:id_capacitacion, :nombre, :fecha_edicion, :capacitador, :duracion, :id_modalidad, :id_user, sysdate())";
+        $query="insert into cap_ediciones(id_capacitacion, nombre, fecha_edicion, capacitador, duracion, id_modalidad, id_user, created_date)
+                values(:id_capacitacion, :nombre, STR_TO_DATE(:fecha_edicion, '%d/%m/%Y'), :capacitador, :duracion, :id_modalidad, :id_user, sysdate())";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_capacitacion', $this->getNombre());
+        $stmt->dpBind(':id_capacitacion', $this->getIdCapacitacion());
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':fecha_edicion', $this->getFechaEdicion());
         $stmt->dpBind(':capacitador', $this->getCapacitador());
