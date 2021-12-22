@@ -30,62 +30,12 @@
         });
 
 
-        //Select dependiente: al seleccionar contrato carga periodos vigentes
-        $('#etapa-form').on('change', '#id_empleado', function(e){
-            //alert('seleccionó un contrato');
-            //throw new Error();
-            params={};
-            params.action = "cap_empleados";
-            params.operation = "getEmpleados";
-            //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-            params.id_empleado = $('#id_empleado').val();
-            //params.activos = 1;
 
-            $('#id_contrato').empty();
+        //Guardar edicion: insert o update
+        $('#edicion-form').on('click', '#submit',function(){ //ok
+            //alert('guardar edicion');
 
-
-            $.ajax({
-                url:"index.php",
-                type:"post",
-                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
-                data: params,
-                dataType:"json",//xml,html,script,json
-                success: function(data, textStatus, jqXHR) {
-
-
-
-                    //$("#id_contrato").html('<option value="">Seleccione un contrato</option>');
-                    if(Object.keys(data).length > 0){
-                        $.each(data, function(indice, val){
-                            var label = data[indice]["contrato"];
-                            $("#id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
-                            +'>'+label+'</option>');
-                        });
-
-                        //si es una edicion o view, selecciona el concepto.
-                        //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                    }
-
-                    $('#id_contrato').selectpicker('refresh');
-                    //$('#add_fecha').val('');
-
-                },
-                error: function(data, textStatus, errorThrown) {
-                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                    alert(data.responseText);
-                }
-
-            });
-
-
-        });
-
-
-        //Guardar etapa luego de ingresar empleado nuevo o editar
-        $('#myModal').on('click', '#submit',function(){ //ok
-            //alert('guardar etapa');
-
-            if ($("#empleado-form").valid()){
+            if ($("#edicion-form").valid()){
 
                 var params={};
                 params.action = 'cap_empleados';
@@ -102,19 +52,19 @@
                     //alert(xhr.responseText);
 
                     if(data >=0){
-                        $("#empleado-form #footer-buttons button").prop("disabled", true); //deshabilito botones
-                        $("#myElem").html('Empleado guardado con exito').addClass('alert alert-success').show();
+                        $("#edicion-form #footer-buttons button").prop("disabled", true); //deshabilito botones
+                        $("#myElem").html('Edición guardada con exito').addClass('alert alert-success').show();
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                            $('#empleado-form').hide();
+                            $('#edicion-form').hide();
                             //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
-                            $('#table-empleados').DataTable().ajax.reload();
+                            $('#table-ediciones').DataTable().ajax.reload();
                         }, 2000);
                     }
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('No es posible guardar el empleado').addClass('alert alert-danger').show();
+                    $("#myElem").html('No es posible guardar la edición').addClass('alert alert-danger').show();
                 });
 
             }
@@ -128,13 +78,13 @@
         });
 
 
-        //cancel de formulario de etapa
-        $('#etapa-form #cancel').on('click', function(){
-            $('#etapa-form').hide();
+        //cancel de formulario de edicion
+        $('#edicion-form #cancel').on('click', function(){
+            $('#edicion-form').hide();
         });
 
 
-        $('#etapa-form').validate({ //ok
+        $('#edicion-form').validate({ //ok
             rules: {
                 nombre: {required: true},
                 fecha_edicion: {required: true},
@@ -175,7 +125,7 @@
 
 
 
-<form name ="etapa-form" id="etapa-form" method="POST" action="index.php">
+<form name ="edicion-form" id="edicion-form" method="POST" action="index.php">
     <fieldset>
 
     <div class="alert alert-info">
