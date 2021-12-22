@@ -9,7 +9,7 @@
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 search: '',
                 searchPlaceholder: "Buscar empleado",
-                emptyTable: 'La capacitación no tiene empleados registrados'
+                emptyTable: 'La edición no tiene empleados registrados'
             },
             sDom:   "<'row'<'col-sm-2'B><'col-sm-4'><'col-sm-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
