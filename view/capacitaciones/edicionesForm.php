@@ -74,16 +74,11 @@
         //Actualiza encabezado de la tabla de empleados con el nombre de la edicion seleccionada
         $('.grid-ediciones').on('click', '.new', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
-            params={};
-            //params.action = "cap_ediciones";
-            //params.operation = "newEtapa";
-            params.id_edicion = id;
-            //alert(params.id_renovacion);
-            $('#etapas_left_side').attr('id_edicion', params.id_edicion);
-            $('#edicion').html($('#table-ediciones').DataTable().row( $(this).closest('tr') ).data().edicion);
+            $('#etapas_left_side').attr('id_edicion', id);
             $('#table-empleados').DataTable().ajax.reload();
+            $('#edicion').html($('#table-ediciones').DataTable().row( $(this).closest('tr') ).data().edicion);
+            return false;
         });
-
 
 
 
@@ -142,19 +137,6 @@
             });
 
         };
-
-
-
-
-        $('.grid-ediciones').on('click', '.etapas', function(){ //ok
-            //alert('tocó en etapas');
-            var id = $(this).closest('tr').attr('data-id');
-            $('#etapas_left_side').attr('id_postulacion', id);
-            $('#table-etapas').DataTable().ajax.reload();
-            $('#postulante').html($('#table-postulantes').DataTable().row( $(this).closest('tr') ).data().postulante);
-            return false;
-        });
-
 
 
         //evento al salir o cerrar con la x el modal de etapas
@@ -266,7 +248,7 @@
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Empleado eliminado con exito</div>');
                     setTimeout(function() {
                         dialog.modal('hide');
-                        $('#etapa-form').hide();
+                        $('#empleado-form').hide();
                         //$('#etapas_left_side .grid').load('index.php',{action:"nc_acciones", id_no_conformidad:params.id_no_conformidad, operation:"refreshGrid"});
                         $('#table-empleados').DataTable().ajax.reload();
                     }, 2000);

@@ -64,9 +64,9 @@
         });
 
 
-        //Guardar etapa luego de ingresar empleado nuevo o editar
-        $('#myModal').on('click', '#submit',function(){ //ok
-            //alert('guardar etapa');
+        //Guardar empleado luego de ingresar empleado nuevo o editar
+        $('#empleado-form').on('click', '#submit',function(){ //ok
+            //alert('guardar empleado');
 
             if ($("#empleado-form").valid()){
 
