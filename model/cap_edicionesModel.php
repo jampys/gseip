@@ -157,7 +157,6 @@ class Edicion
         $stmt->dpBind(':capacitador', $this->getCapacitador());
         $stmt->dpBind(':duracion', $this->getDuracion());
         $stmt->dpBind(':id_modalidad', $this->getIdModalidad());
-        $stmt->dpBind(':id_edicion', $this->getIdEdicion());
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();

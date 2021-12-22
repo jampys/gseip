@@ -36,7 +36,7 @@
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
-            order: [[0, "asc"]], // 0=fecha_implementacion
+            order: [[0, "asc"]], // 0=fecha_edicion
             'ajax': {
                 "type"   : "POST",
                 "url"    : 'index.php',
@@ -56,6 +56,7 @@
                 $(row).attr('data-id', data.id_edicion);
             },
             "columnDefs": [
+                {targets: 0, type: 'date-uk', orderData: [ 0, 1 ]}, //fecha_edicion
                 {
                     targets: 1, //nombre
                     render: function(data, type, row) {
