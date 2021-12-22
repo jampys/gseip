@@ -153,14 +153,12 @@ class Capacitacion
         $query="update cap_capacitaciones set
                 periodo= :periodo,
                 mes_programada= :mes_programada,
-                id_plan_capacitacion= :id_plan_capacitacion,
                 id_categoria= :id_categoria,
                 tema= :tema,
                 descripcion= :descripcion,
                 observaciones= :observaciones
                 where id_capacitacion = :id_capacitacion";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_plan_capacitacion', $this->getIdPlanCapacitacion());
         $stmt->dpBind(':periodo', $this->getPeriodo());
         $stmt->dpBind(':mes_programada', $this->getMesProgramada());
         $stmt->dpBind(':id_categoria', $this->getIdCategoria());
