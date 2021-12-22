@@ -43,10 +43,7 @@
                 {"data" : "categoria"},
                 {"data" : "tema"},
                 {"data" : "descripcion"},
-                {"data" : "capacitador"},
-                {"data" : "duracion"},
-                {"data" : "fecha_programada"},
-                {"data" : "modalidad"},
+                {"data" : "mes_programada"},
                 {"data" : null, orderable: false}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
@@ -60,11 +57,11 @@
                     targets: 2,//descripcion
                     responsivePriority: 2,
                     render: function (data, type, row, meta) {
-                        return $.fn.dataTable.render.ellipsis(30)(row.descripcion, type, row);
+                        return $.fn.dataTable.render.ellipsis(60)(row.descripcion, type, row);
                     }
                 },
                 {
-                    targets: 7,//action buttons
+                    targets: 4,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
                         let permisoEdiciones = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'ediciones' : 'disabled' ?>';
@@ -119,10 +116,7 @@
                 <th>Tipo cap.</th>
                 <th>Tema</th>
                 <th>Descripcion</th>
-                <th>Capacitador</th>
-                <th>Duración</th>
-                <th>F. programada</th>
-                <th>Modalidad</th>
+                <th>Mes programada</th>
                 <th></th>
             </tr>
             </thead>

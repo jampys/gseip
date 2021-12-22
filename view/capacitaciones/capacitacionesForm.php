@@ -136,6 +136,23 @@
                         </div>
 
                         <div class="form-group col-md-6 required">
+                            <label for="periodo" class="control-label">Mes programada</label>
+                            <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione el período"  data-live-search="true" data-size="5">
+                                <?php foreach ($view->meses['enum'] as $pe){
+                                    ?>
+                                    <option value="<?php echo $pe; ?>"
+                                        <?php echo ($pe == $view->capacitacion->getMesProgramada() OR ($pe == $view->meses['default'] AND !$view->capacitacion->getIdCapacitacion()) )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $pe; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-6 required">
                             <label for="id_puesto" class="control-label">Categoría</label>
                             <select class="form-control selectpicker show-tick" id="id_categoria" name="id_categoria" title="Seleccione una categoría" data-live-search="true" data-size="5">
                                 <?php foreach ($view->categorias as $cat){
@@ -147,6 +164,10 @@
                                     </option>
                                 <?php  } ?>
                             </select>
+                        </div>
+
+                        <div class="form-group col-md-6 required">
+
                         </div>
                     </div>
 

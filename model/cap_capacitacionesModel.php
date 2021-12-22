@@ -9,6 +9,7 @@ class Capacitacion
     private $descripcion;
     private $capacitador;
     private $fecha_programada;
+    private $mes_programada;
     private $duracion;
     private $fecha_inicio;
     private $fecha_fin;
@@ -41,6 +42,9 @@ class Capacitacion
 
     function getFechaProgramada()
     { return $this->fecha_programada;}
+
+    function getMesProgramada()
+    { return $this->mes_programada;}
 
     function getDuracion()
     { return $this->duracion;}
@@ -89,6 +93,9 @@ class Capacitacion
     function setFechaProgramada($val)
     {  $this->fecha_programada=$val;}
 
+    function setMesProgramada($val)
+    {  $this->mes_programada=$val;}
+
     function setDuracion($val)
     { $this->duracion=$val;}
 
@@ -116,6 +123,7 @@ class Capacitacion
         $stmt=new sQuery();
         $query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.capacitador,
 DATE_FORMAT(c.fecha_programada,  '%d/%m/%Y %H:%i') as fecha_programada,
+c.mes_programada,
 c.duracion,
 DATE_FORMAT(c.fecha_inicio,  '%d/%m/%Y %H:%i') as fecha_inicio,
 DATE_FORMAT(c.fecha_fin,  '%d/%m/%Y %H:%i') as fecha_fin,
@@ -158,6 +166,7 @@ left join cap_modalidades m on m.id_modalidad = c.id_modalidad";
             $stmt=new sQuery();
             $query="select c.id_capacitacion, c.id_plan_capacitacion, c.periodo, c.id_categoria, c.tema, c.descripcion, c.capacitador,
 DATE_FORMAT(c.fecha_programada,  '%d/%m/%Y %H:%i') as fecha_programada,
+c.mes_programada,
 c.duracion,
 DATE_FORMAT(c.fecha_inicio,  '%d/%m/%Y') as fecha_inicio,
 DATE_FORMAT(c.fecha_fin,  '%d/%m/%Y') as fecha_fin,
@@ -179,6 +188,7 @@ c.id_user, c.observaciones
             $this->setDescripcion($rows[0]['descripcion']);
             $this->setCapacitador($rows[0]['capacitador']);
             $this->setFechaProgramada($rows[0]['fecha_programada']);
+            $this->setMesProgramada($rows[0]['mes_programada']);
             $this->setDuracion($rows[0]['duracion']);
             $this->setFechaInicio($rows[0]['fecha_inicio']);
             $this->setFechaFin($rows[0]['fecha_fin']);

@@ -68,6 +68,7 @@ switch ($operation)
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->categorias = Categoria::getCategorias();
         $view->modalidades = Modalidad::getModalidades();
+        $view->meses = Soporte::get_enum_values('obj_avances', 'periodo');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/capacitaciones/capacitacionesForm.php";
@@ -87,6 +88,7 @@ switch ($operation)
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->categorias = Categoria::getCategorias();
         $view->modalidades = Modalidad::getModalidades();
+        $view->meses = Soporte::get_enum_values('obj_avances', 'periodo');
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
