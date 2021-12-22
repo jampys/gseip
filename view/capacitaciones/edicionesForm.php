@@ -33,7 +33,7 @@
         });
 
 
-        $('.grid-ediciones').on('click', '.view', function(){
+        $('.grid-ediciones').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar etapa: '+id);
@@ -53,7 +53,7 @@
 
 
         //Abre formulario para ingresar una nueva edicion a la capacitacion
-        $('#etapas_left_side').on('click', '#add', function(){
+        $('#etapas_left_side').on('click', '#add', function(){ //ok
             params={};
             params.action = "cap_ediciones";
             params.operation = "newEdicion";
@@ -72,7 +72,7 @@
 
 
         //Actualiza encabezado de la tabla de empleados con el nombre de la edicion seleccionada
-        $('.grid-ediciones').on('click', '.new', function(){
+        $('.grid-ediciones').on('click', '.new', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             params={};
             //params.action = "cap_ediciones";
@@ -88,11 +88,11 @@
 
 
         var dialog;
-        $('.grid-ediciones').on('click', '.delete', function(){
+        $('.grid-ediciones').on('click', '.delete', function(){ //ok
 
             var id = $(this).closest('tr').attr('data-id');
             dialog = bootbox.dialog({
-                message: "<p>¿Desea eliminar la postulación?</p>",
+                message: "<p>¿Desea eliminar la edición?</p>",
                 size: 'small',
                 buttons: {
                     cancel: {
@@ -114,30 +114,30 @@
 
 
 
-        $.fn.borrarGv = function(id) {
+        $.fn.borrarGv = function(id) { //ok
             //alert(id);
             params={};
-            params.id_postulacion = id;
-            params.id_busqueda = $('#etapas_left_side').attr('id_busqueda');
-            params.action = "postulaciones2";
-            params.operation = "deletePostulacion";
+            params.id_edicion = id;
+            //params.id_busqueda = $('#etapas_left_side').attr('id_busqueda');
+            params.action = "cap_ediciones";
+            params.operation = "deleteEdicion";
 
             $.post('index.php',params,function(data, status, xhr){
                 if(data >=0){
-                    dialog.find('.modal-footer').html('<div class="alert alert-success">Postulación eliminada con exito</div>');
+                    dialog.find('.modal-footer').html('<div class="alert alert-success">Edición eliminada con exito</div>');
                     setTimeout(function() {
                             dialog.modal('hide');
-                            $('#chalampa').hide();
+                            $('#edicion-form').hide();
                             //$('#etapas_left_side .grid').load('index.php',{action:"postulaciones2", id_busqueda:params.id_busqueda, operation:"refreshGrid"});
-                            $('#table-postulantes').DataTable().ajax.reload();
-                            $('#table-etapas').DataTable().ajax.reload();
+                            $('#table-ediciones').DataTable().ajax.reload();
+                            $('#table-empleados').DataTable().ajax.reload();
 
                     }, 2000);
                 }
 
             }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                 //alert('Entro a fail '+jqXHR.responseText);
-                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la postulación</div>');
+                dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la edición</div>');
 
             });
 
