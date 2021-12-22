@@ -38,14 +38,15 @@
             if ($("#edicion-form").valid()){
 
                 var params={};
-                params.action = 'cap_empleados';
-                params.operation = 'saveEmpleado';
-                params.id_capacitacion_empleado = $('#myModal #id_capacitacion_empleado').val();
-                params.id_empleado = $('#myModal #id_empleado').val();
-                params.id_capacitacion = $('#myModal #id_capacitacion').val();
-                params.id_contrato = $('#myModal #id_contrato').val();
+                params.action = 'cap_ediciones';
+                params.operation = 'saveEdicion';
                 params.id_edicion = $('#myModal #id_edicion').val();
-                params.asistio = $('#myModal #asistio').prop('checked')? 1:0;
+                params.id_capacitacion = $('#myModal #id_capacitacion').val();
+                params.nombre = $('#myModal #nombre').val();
+                params.fecha_edicion = $('#myModal #fecha_edicion').val();
+                params.capacitador = $('#myModal #capacitador').val();
+                params.duracion = $('#myModal #duracion').val();
+                params.id_modalidad = $('#myModal #id_modalidad').val();
                 //alert(params.aplica);
 
                 $.post('index.php',params,function(data, status, xhr){

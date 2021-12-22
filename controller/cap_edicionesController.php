@@ -13,7 +13,7 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
-    case 'refreshGrid':
+    case 'refreshGrid': //ok
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
@@ -28,15 +28,16 @@ switch ($operation)
         exit;
         break;
 
-    case 'saveEdicion':
-        $empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
-        $empleado->setIdEmpleado($_POST['id_empleado']);
-        $empleado->setIdCapacitacion($_POST['id_capacitacion']);
-        $empleado->setIdContrato($_POST['id_contrato']);
-        $empleado->setObservaciones($_POST['id_responsable_ejecucion']);
-        $empleado->setAsistio(($_POST['asistio'] == 1)? 1 : null);
-        $empleado->setIdUser($_SESSION['id_user']);
-        $rta = $empleado->save();
+    case 'saveEdicion': //ok
+        $edicion = new Edicion($_POST['id_edicion']);
+        $edicion->setIdCapacitacion($_POST['id_capacitacion']);
+        $edicion->setNombre($_POST['nombre']);
+        $edicion->setFechaEdicion($_POST['fecha_edicion']);
+        $edicion->setCapacitador($_POST['capacitador']);
+        $edicion->setDuracion($_POST['duracion']);
+        $edicion->setIdModalidad($_POST['id_modalidad']);
+        $edicion->setIdUser($_SESSION['id_user']);
+        $rta = $edicion->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
         print_r(json_encode($rta));
         exit;

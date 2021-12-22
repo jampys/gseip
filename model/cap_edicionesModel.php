@@ -126,17 +126,21 @@ class Edicion
     }
 
 
-    public function updateEdicion(){
+    public function updateEdicion(){ //ok
         $stmt=new sQuery();
-        $query="update cap_capacitacion_empleado set id_contrato= :id_contrato,
-                asistio = :asistio,
-                observaciones = :observaciones
-                where id_capacitacion_empleado = :id_capacitacion_empleado";
+        $query="update cap_edicion set nombre= :nombre,
+                fecha_edicion= STR_TO_DATE(:fecha_edicion, '%d/%m/%Y'),
+                capacitador= :capacitador,
+                duracion= :duracion,
+                id_modalidad= :id_modalidad
+                where id_edicion = :id_edicion";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
-        $stmt->dpBind(':asistio', $this->getAsistio());
-        $stmt->dpBind(':observaciones', $this->getObservaciones());
-        $stmt->dpBind(':id_capacitacion_empleado', $this->getIdCapacitacionEmpleado());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':fecha_edicion', $this->getFechaEdicion());
+        $stmt->dpBind(':capacitador', $this->getCapacitador());
+        $stmt->dpBind(':duracion', $this->getDuracion());
+        $stmt->dpBind(':id_modalidad', $this->getIdModalidad());
+        $stmt->dpBind(':id_edicion', $this->getIdEdicion());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 
@@ -144,14 +148,16 @@ class Edicion
 
     private function insertEdicion(){
         $stmt=new sQuery();
-        $query="insert into cap_capacitacion_empleado(id_empleado, id_capacitacion, id_contrato, asistio, observaciones, id_user, created_date)
-                values(:id_empleado, :id_capacitacion, :id_contrato, :asistio, :observaciones, :id_user, sysdate())";
+        $query="insert into cap_edicion(id_capacitacion, nombre, fecha_edicion, capacitador, duracion, id_modalidad, id_user, created_date)
+                values(:id_capacitacion, :nombre, :fecha_edicion, :capacitador, :duracion, :id_modalidad, :id_user, sysdate())";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
-        $stmt->dpBind(':id_capacitacion', $this->getIdCapacitacion());
-        $stmt->dpBind(':id_contrato', $this->getIdContrato());
-        $stmt->dpBind(':asistio', $this->getAsistio());
-        $stmt->dpBind(':observaciones', $this->getObservaciones());
+        $stmt->dpBind(':id_capacitacion', $this->getNombre());
+        $stmt->dpBind(':nombre', $this->getNombre());
+        $stmt->dpBind(':fecha_edicion', $this->getFechaEdicion());
+        $stmt->dpBind(':capacitador', $this->getCapacitador());
+        $stmt->dpBind(':duracion', $this->getDuracion());
+        $stmt->dpBind(':id_modalidad', $this->getIdModalidad());
+        $stmt->dpBind(':id_edicion', $this->getIdEdicion());
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
