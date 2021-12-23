@@ -125,7 +125,6 @@
                             <ul class="dropdown-menu">
                                 <li class="disabled"><a href="#">Plan de capacitación <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                                 <li><a href="index.php?action=cap_capacitaciones">Capacitaciones</a></li>
-                                <li class="disabled"><a href="#">Cursos <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                                 <li class="disabled"><a href="#">Estadísticas <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
                                 <li role="separator" class="divider"></li>
