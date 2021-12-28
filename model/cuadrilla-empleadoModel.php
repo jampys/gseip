@@ -85,13 +85,14 @@ class CuadrillaEmpleado
     }
 
 
-    public static function getEmpleadoDefaults($id_empleado) {
+    public static function getEmpleadoDefaults($id_empleado) { //ok
         $stmt=new sQuery();
         $query = "select *
-from nov_cuadrilla_empleado nce
-join nov_cuadrillas nc on nc.id_cuadrilla = nce.id_cuadrilla
-where nce.id_empleado = :id_empleado
-limit 1";
+                  from nov_cuadrilla_empleado nce
+                  join nov_cuadrillas nc on nc.id_cuadrilla = nce.id_cuadrilla
+                  where nce.id_empleado = :id_empleado
+                  and nc.disabled is null
+                  limit 1";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpExecute();

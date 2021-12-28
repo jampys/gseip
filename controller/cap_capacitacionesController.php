@@ -45,12 +45,6 @@ switch ($operation)
         $capacitacion->setIdCategoria($_POST['id_categoria']);
         $capacitacion->setTema($_POST['tema']);
         $capacitacion->setDescripcion($_POST['descripcion']);
-        $capacitacion->setCapacitador(($_POST['capacitador'])? $_POST['capacitador'] : null);
-        $capacitacion->setFechaProgramada(($_POST['fecha_programada'])? $_POST['fecha_programada'] : null);
-        $capacitacion->setDuracion(($_POST['duracion'])? $_POST['duracion'] : null);
-        $capacitacion->setFechaInicio(($_POST['fecha_inicio'])? $_POST['fecha_inicio'] : null);
-        $capacitacion->setFechaFin(($_POST['fecha_fin'])? $_POST['fecha_fin'] : null);
-        $capacitacion->setIdModalidad(($_POST['id_modalidad'])? $_POST['id_modalidad'] : null);
         $capacitacion->setObservaciones(($_POST['observaciones'])? $_POST['observaciones'] : null);
         $capacitacion->setIdUser($_SESSION['id_user']);
 
@@ -68,6 +62,7 @@ switch ($operation)
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->categorias = Categoria::getCategorias();
         $view->modalidades = Modalidad::getModalidades();
+        $view->meses = Soporte::get_enum_values('obj_avances', 'periodo');
 
         $view->disableLayout=true;
         $view->contentTemplate="view/capacitaciones/capacitacionesForm.php";
@@ -87,6 +82,7 @@ switch ($operation)
         $view->periodo_actual = Soporte::getPeriodoActual();
         $view->categorias = Categoria::getCategorias();
         $view->modalidades = Modalidad::getModalidades();
+        $view->meses = Soporte::get_enum_values('obj_avances', 'periodo');
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

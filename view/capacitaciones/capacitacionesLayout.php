@@ -81,27 +81,44 @@
             });
 
 
-            //$(document).on('click', '.detalle', function(){
-            $('#content').on('click', '.detalle', function(){
-                //alert('presiono sobre detalle');
+            $('#content').on('click', '.empleados', function(){ //ok
+                //alert('presiono sobre empleados');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
-                params.id_objetivo = id;
-                params.action = "obj_objetivos";
-                params.operation = "detalle";
-                params.cerrado = $(this).closest('tr').attr('cerrado');
-                //params.target = "view";
+                params.id_capacitacion = id;
+                params.action = "cap_empleados";
+                //params.operation = "etapas"; //entra en default
                 $('#popupbox').load('index.php', params,function(){
                     //$("fieldset").prop("disabled", true);
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
-                    //$('#etapas_left_side #add').attr('id_postulacion', id);
+                    $('#etapas_left_side').attr('id_capacitacion', id);
                 });
                 return false;
-
             });
+
+
+
+            $('#content').on('click', '.ediciones', function(){ //ok
+                //alert('presiono sobre ediciones');
+                var id = $(this).closest('tr').attr('data-id');
+                params={};
+                params.id_capacitacion = id;
+                params.action = "cap_ediciones";
+                //params.operation = "etapas"; //entra en default
+                $('#popupbox').load('index.php', params,function(){
+                    //$("fieldset").prop("disabled", true);
+                    //$('.selectpicker').selectpicker('refresh');
+                    //$('.modal-footer').css('display', 'none');
+                    //$('#myModalLabel').html('');
+                    $('#myModal').modal();
+                    $('#etapas_left_side').attr('id_capacitacion', id);
+                });
+                return false;
+            });
+
 
 
             $(document).on('click', '#new', function(){ //ok
@@ -299,7 +316,7 @@
 
                         <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
-                            <button  id="new" type="button" class="form-control btn btn-default" title="Nuevo objetivo" <?php //echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?> >
+                            <button  id="new" type="button" class="form-control btn btn-default" title="Agregar capacitación" <?php //echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?> >
                                 <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
                             </button>
                         </div>

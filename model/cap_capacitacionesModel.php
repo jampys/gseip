@@ -7,12 +7,7 @@ class Capacitacion
     private $id_categoria;
     private $tema;
     private $descripcion;
-    private $capacitador;
-    private $fecha_programada;
-    private $duracion;
-    private $fecha_inicio;
-    private $fecha_fin;
-    private $id_modalidad;
+    private $mes_programada;
     private $observaciones;
     private $created_date;
     private $id_user;
@@ -36,23 +31,8 @@ class Capacitacion
     function getDescripcion()
     { return $this->descripcion;}
 
-    function getCapacitador()
-    { return $this->capacitador;}
-
-    function getFechaProgramada()
-    { return $this->fecha_programada;}
-
-    function getDuracion()
-    { return $this->duracion;}
-
-    function getFechaInicio()
-    { return $this->fecha_inicio;}
-
-    function getFechaFin()
-    { return $this->fecha_fin;}
-
-    function getIdModalidad()
-    { return $this->id_modalidad;}
+    function getMesProgramada()
+    { return $this->mes_programada;}
 
     function getObservaciones()
     { return $this->observaciones;}
@@ -83,23 +63,8 @@ class Capacitacion
     function setDescripcion($val)
     { $this->descripcion=$val;}
 
-    function setCapacitador($val)
-    {  $this->capacitador=$val;}
-
-    function setFechaProgramada($val)
-    {  $this->fecha_programada=$val;}
-
-    function setDuracion($val)
-    { $this->duracion=$val;}
-
-    function setFechaInicio($val)
-    {  $this->fecha_inicio=$val;}
-
-    function setFechaFin($val)
-    {  $this->fecha_fin=$val;}
-
-    function setIdModalidad($val)
-    {  $this->id_modalidad=$val;}
+    function setMesProgramada($val)
+    {  $this->mes_programada=$val;}
 
     function setObservaciones($val)
     {  $this->observaciones=$val;}
@@ -114,22 +79,15 @@ class Capacitacion
 
     public static function getCapacitaciones($startDate, $endDate, $id_responsable_ejecucion){ //ok
         $stmt=new sQuery();
-        $query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.capacitador,
-DATE_FORMAT(c.fecha_programada,  '%d/%m/%Y %H:%i') as fecha_programada,
-c.duracion,
-DATE_FORMAT(c.fecha_inicio,  '%d/%m/%Y %H:%i') as fecha_inicio,
-DATE_FORMAT(c.fecha_fin,  '%d/%m/%Y %H:%i') as fecha_fin,
-c.id_modalidad,
-DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
-c.id_user,
-cg.nombre as categoria,
-u.user,
-m.nombre as modalidad
-from cap_capacitaciones c
-join cap_planes_capacitacion pc on pc.id_plan_capacitacion = c.id_plan_capacitacion
-join sec_users u on u.id_user = c.id_user
-join cap_categorias cg on cg.id_categoria = c.id_categoria
-left join cap_modalidades m on m.id_modalidad = c.id_modalidad";
+        $query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.mes_programada,
+                DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
+                c.id_user,
+                cg.nombre as categoria,
+                u.user
+                from cap_capacitaciones c
+                join cap_planes_capacitacion pc on pc.id_plan_capacitacion = c.id_plan_capacitacion
+                join sec_users u on u.id_user = c.id_user
+                join cap_categorias cg on cg.id_categoria = c.id_categoria";
 
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':startDate', $startDate);
@@ -156,14 +114,9 @@ left join cap_modalidades m on m.id_modalidad = c.id_modalidad";
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select c.id_capacitacion, c.id_plan_capacitacion, c.periodo, c.id_categoria, c.tema, c.descripcion, c.capacitador,
-DATE_FORMAT(c.fecha_programada,  '%d/%m/%Y %H:%i') as fecha_programada,
-c.duracion,
-DATE_FORMAT(c.fecha_inicio,  '%d/%m/%Y') as fecha_inicio,
-DATE_FORMAT(c.fecha_fin,  '%d/%m/%Y') as fecha_fin,
-c.id_modalidad,
-DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
-c.id_user, c.observaciones
+            $query="select c.id_capacitacion, c.id_plan_capacitacion, c.periodo, c.id_categoria, c.tema, c.descripcion, c.mes_programada,
+                    DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
+                    c.id_user, c.observaciones
                     from cap_capacitaciones c
                     where id_capacitacion = :nro";
             $stmt->dpPrepare($query);
@@ -177,12 +130,7 @@ c.id_user, c.observaciones
             $this->setIdCategoria($rows[0]['id_categoria']);
             $this->setTema($rows[0]['tema']);
             $this->setDescripcion($rows[0]['descripcion']);
-            $this->setCapacitador($rows[0]['capacitador']);
-            $this->setFechaProgramada($rows[0]['fecha_programada']);
-            $this->setDuracion($rows[0]['duracion']);
-            $this->setFechaInicio($rows[0]['fecha_inicio']);
-            $this->setFechaFin($rows[0]['fecha_fin']);
-            $this->setIdModalidad($rows[0]['id_modalidad']);
+            $this->setMesProgramada($rows[0]['mes_programada']);
             $this->setObservaciones($rows[0]['observaciones']);
             $this->setCreatedDate($rows[0]['created_date']);
             $this->setIdUser($rows[0]['id_user']);
@@ -204,30 +152,18 @@ c.id_user, c.observaciones
         $stmt=new sQuery();
         $query="update cap_capacitaciones set
                 periodo= :periodo,
-                id_plan_capacitacion= :id_plan_capacitacion,
+                mes_programada= :mes_programada,
                 id_categoria= :id_categoria,
                 tema= :tema,
                 descripcion= :descripcion,
-                capacitador= :capacitador,
-                fecha_programada= STR_TO_DATE(:fecha_programada, '%d/%m/%Y'),
-                duracion= :duracion,
-                fecha_inicio= STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'),
-                fecha_fin= STR_TO_DATE(:fecha_fin, '%d/%m/%Y'),
-                id_modalidad= :id_modalidad,
                 observaciones= :observaciones
                 where id_capacitacion = :id_capacitacion";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_plan_capacitacion', $this->getIdPlanCapacitacion());
         $stmt->dpBind(':periodo', $this->getPeriodo());
+        $stmt->dpBind(':mes_programada', $this->getMesProgramada());
         $stmt->dpBind(':id_categoria', $this->getIdCategoria());
         $stmt->dpBind(':tema', $this->getTema());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':capacitador', $this->getCapacitador());
-        $stmt->dpBind(':fecha_programada', $this->getFechaProgramada());
-        $stmt->dpBind(':duracion', $this->getDuracion());
-        $stmt->dpBind(':fecha_inicio', $this->getFechaInicio());
-        $stmt->dpBind(':fecha_fin', $this->getFechaFin());
-        $stmt->dpBind(':id_modalidad', $this->getIdModalidad());
         $stmt->dpBind(':observaciones', $this->getObservaciones());
         $stmt->dpBind(':id_capacitacion', $this->getIdCapacitacion());
         $stmt->dpExecute();
@@ -237,20 +173,15 @@ c.id_user, c.observaciones
     private function insertCapacitacion(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into cap_capacitaciones(id_plan_capacitacion, periodo, id_categoria, tema, descripcion, capacitador, fecha_programada, duracion, fecha_inicio, fecha_fin, id_modalidad, observaciones, created_date, id_user)
-                values(:id_plan_capacitacion, :periodo, :id_categoria, :tema, :descripcion, :capacitador, STR_TO_DATE(:fecha_programada, '%d/%m/%Y'), :duracion, STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'), STR_TO_DATE(:fecha_fin, '%d/%m/%Y'), :id_modalidad, :observaciones, sysdate(), :id_user)";
+        $query="insert into cap_capacitaciones(id_plan_capacitacion, periodo, mes_programada, id_categoria, tema, descripcion, observaciones, created_date, id_user)
+                values(:id_plan_capacitacion, :periodo, :mes_programada, :id_categoria, :tema, :descripcion, :observaciones, sysdate(), :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_plan_capacitacion', $this->getIdPlanCapacitacion());
         $stmt->dpBind(':periodo', $this->getPeriodo());
+        $stmt->dpBind(':mes_programada', $this->getMesProgramada());
         $stmt->dpBind(':id_categoria', $this->getIdCategoria());
         $stmt->dpBind(':tema', $this->getTema());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
-        $stmt->dpBind(':capacitador', $this->getCapacitador());
-        $stmt->dpBind(':fecha_programada', $this->getFechaProgramada());
-        $stmt->dpBind(':duracion', $this->getDuracion());
-        $stmt->dpBind(':fecha_inicio', $this->getFechaInicio());
-        $stmt->dpBind(':fecha_fin', $this->getFechaFin());
-        $stmt->dpBind(':id_modalidad', $this->getIdModalidad());
         $stmt->dpBind(':observaciones', $this->getObservaciones());
         $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
