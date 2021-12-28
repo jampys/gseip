@@ -43,7 +43,10 @@
 
         $('#avance-form').validate({ //ok
             rules: {
-                fecha: {required: true},
+                fecha: {
+                    required: true,
+                    validDate: true
+                },
                 indicador: {required: true},
                 cantidad: {
                     required: true,
@@ -59,7 +62,10 @@
 
             },
             messages:{
-                fecha: "Seleccione una fecha",
+                fecha: {
+                    required: "Seleccione una fecha",
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                },
                 indicador: "Seleccione un indicador",
                 cantidad: {
                     required: "Ingrese la cantidad real",
@@ -98,7 +104,7 @@
         <div class="form-group required">
             <label class="control-label" for="fecha_etapa">Fecha</label>
             <div class="inner-addon right-addon">
-                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->avance->getFecha() ?>" placeholder="DD/MM/AAAA" readonly>
+                <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->avance->getFecha() ?>" placeholder="DD/MM/AAAA">
                 <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
