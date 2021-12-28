@@ -65,7 +65,7 @@
         });
 
 
-        //cancel de formulario de postulacion
+        //cancel de formulario
         $('#myModal #cancel').on('click', function(){
             $('#myModal').modal('hide');
         });
@@ -80,13 +80,15 @@
         $('#grupo-form').validate({ //ok
             rules: {
                 nombre: {required: true},
-                //nro_referencia: {required: true},
-                id_vencimiento: {required: true}
+                id_vencimiento: {required: true},
+                fecha_baja: {validDate: true}
             },
             messages:{
                 nombre: "Ingrese un nombre",
-                //nro_referencia: "Ingrese un nro de referencia",
-                id_vencimiento: "Seleccione un vencimiento"
+                id_vencimiento: "Seleccione un vencimiento",
+                fecha_baja: {
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                }
             }
 
         });
@@ -143,7 +145,7 @@
                     <div class="form-group">
                         <label class="control-label" for="fecha">Fecha baja</label>
                         <div class="inner-addon right-addon">
-                            <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->grupo->getFechaBaja() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->grupo->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
                             <i class="glyphicon glyphicon-calendar"></i>
                         </div>
                     </div>

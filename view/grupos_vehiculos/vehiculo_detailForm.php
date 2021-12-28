@@ -49,11 +49,6 @@
 
         $('#grupo-vehiculo-form').validate({ //ok
             rules: {
-                /*codigo: {
-                        required: true,
-                        digits: true,
-                        maxlength: 6
-                },*/
                 id_vehiculo: {
                  required: true,
                  remote: {
@@ -69,20 +64,24 @@
                           }
                  }
                  },
-                fecha_desde: {required: true}
+                fecha_desde: {
+                    required: true,
+                    validDate: true
+                },
+                fecha_hasta: {validDate: true}
             },
             messages:{
-                /*codigo: {
-                    required: "Ingrese el código",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                }, */
                 id_vehiculo: {
                  required: "Seleccione un vehículo",
                  remote: "El vehículo se encuentra activo en una flota"
                  },
-                //id_vehiculo: "Seleccione un vehículo",
-                fecha_desde: "Seleccione una fecha desde"
+                fecha_desde: {
+                    required: "Ingrese la fecha desde",
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                },
+                fecha_hasta: {
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                }
             }
 
         });
@@ -132,14 +131,14 @@
             <div class="form-group col-md-6 required">
                 <label for="fecha_desde" class="control-label">Fecha desde</label>
                 <div class="inner-addon right-addon">
-                    <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->grupo_vehiculo->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                    <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->grupo_vehiculo->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                     <i class="glyphicon glyphicon-calendar"></i>
                 </div>
             </div>
             <div class="form-group col-md-6">
                 <label for="fecha_hasta" class="control-label">Fecha hasta</label>
                 <div class="inner-addon right-addon">
-                    <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->grupo_vehiculo->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                    <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->grupo_vehiculo->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
                     <i class="glyphicon glyphicon-calendar"></i>
                 </div>
             </div>
