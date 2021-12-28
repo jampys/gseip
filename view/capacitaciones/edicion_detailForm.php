@@ -88,7 +88,10 @@
         $('#edicion-form').validate({ //ok
             rules: {
                 nombre: {required: true},
-                fecha_edicion: {required: true},
+                fecha_edicion: {
+                    required: true,
+                    validDate: true
+                },
                 duracion: {
                     required: true,
                     number: true,
@@ -102,7 +105,10 @@
             },
             messages:{
                 nombre: "Ingrese el nombre",
-                fecha_edicion: "Seleccione la fecha de la edición",
+                fecha_edicion: {
+                    required: "Seleccione la fecha de la edición",
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                },
                 duracion: {
                     required: "Ingrese la duración",
                     number: "Solo números. Utilice un punto como separador decimal",
