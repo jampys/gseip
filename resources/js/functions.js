@@ -137,6 +137,16 @@ function getProgressBarColor(percent){
 }
 
 
+/* validation: metodo personalizado para validar formato de fecha */
+jQuery.validator.addMethod(
+    "validDate",
+    function(value, element) {
+        return this.optional(element) || moment(value, 'DD/MM/YYYY', true).isValid(); //https://www.htmlgoodies.com/javascript/date-validation-using-moment-js/
+    },
+    jQuery.validator.format('{1}')
+);
+
+
 
 
 
