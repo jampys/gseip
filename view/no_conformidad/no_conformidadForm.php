@@ -114,7 +114,8 @@
                 accion: {
                     maxlength: 1000
                 },
-                id_responsable_seguimiento: { required: true}
+                id_responsable_seguimiento: { required: true},
+                fecha_cierre: {validDate: true}
             },
             messages:{
                 nro_no_conformidad: "Ingrese el Nro. No conformidad",
@@ -135,7 +136,10 @@
                     maxlength: "Máximo 1000 caracteres"
 
                 },
-                id_responsable_seguimiento: "Selecione el responsable de seguimiento"
+                id_responsable_seguimiento: "Selecione el responsable de seguimiento",
+                fecha_cierre: {
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                }
             }
 
         });
@@ -273,7 +277,7 @@
                     <div class="form-group">
                         <label class="control-label" for="fecha">Fecha cierre</label>
                         <div class="inner-addon right-addon">
-                            <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->no_conformidad->getFechaCierre() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->no_conformidad->getFechaCierre() ?>" placeholder="DD/MM/AAAA">
                             <i class="glyphicon glyphicon-calendar"></i>
                         </div>
                     </div>

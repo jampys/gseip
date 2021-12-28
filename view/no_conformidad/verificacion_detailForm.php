@@ -52,7 +52,10 @@
                     required: true,
                     maxlength: 400
                 },
-                fecha_verificacion: {required: true},
+                fecha_verificacion: {
+                    required: true,
+                    validDate: true
+                },
                 id_responsable_ejecucion: {required: true}
             },
             messages:{
@@ -66,7 +69,10 @@
                     maxlength: "Máximo 400 caracteres"
                 },
                 etapa: "Seleccione una etapa",
-                fecha_verificacion: "Seleccione la fecha de implementación",
+                fecha_verificacion: {
+                    required: "Seleccione la fecha de implementación",
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                },
                 id_responsable_ejecucion: "Seleccione el responsable de ejecución"
             }
 
@@ -98,7 +104,7 @@
     <div class="form-group required">
         <label class="control-label" for="fecha_verificacion">Fecha verificación</label>
         <div class="inner-addon right-addon">
-            <input class="form-control" type="text" name="fecha_verificacion" id="fecha_verificacion" value = "<?php print $view->verificacion->getFechaVerificacion() ?>" placeholder="DD/MM/AAAA" readonly>
+            <input class="form-control" type="text" name="fecha_verificacion" id="fecha_verificacion" value = "<?php print $view->verificacion->getFechaVerificacion() ?>" placeholder="DD/MM/AAAA">
             <i class="glyphicon glyphicon-calendar"></i>
         </div>
     </div>

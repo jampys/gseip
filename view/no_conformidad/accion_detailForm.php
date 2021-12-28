@@ -52,7 +52,10 @@
                     required: true,
                     maxlength: 200
                 },
-                fecha_implementacion: {required: true},
+                fecha_implementacion: {
+                    required: true,
+                    validDate: true
+                },
                 id_responsable_ejecucion: {required: true}
             },
             messages:{
@@ -66,7 +69,10 @@
                     maxlength: "Máximo 200 caracteres"
                 },
                 etapa: "Seleccione una etapa",
-                fecha_implementacion: "Seleccione la fecha de implementación",
+                fecha_implementacion: {
+                    required: "Seleccione la fecha de implementación",
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                },
                 id_responsable_ejecucion: "Seleccione el responsable de ejecución"
             }
 
@@ -98,7 +104,7 @@
     <div class="form-group required">
         <label class="control-label" for="fecha_implementacion">Fecha implementación</label>
         <div class="inner-addon right-addon">
-            <input class="form-control" type="text" name="fecha_implementacion" id="fecha_implementacion" value = "<?php print $view->accion->getFechaImplementacion() ?>" placeholder="DD/MM/AAAA" readonly>
+            <input class="form-control" type="text" name="fecha_implementacion" id="fecha_implementacion" value = "<?php print $view->accion->getFechaImplementacion() ?>" placeholder="DD/MM/AAAA">
             <i class="glyphicon glyphicon-calendar"></i>
         </div>
     </div>
