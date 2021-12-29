@@ -10,6 +10,7 @@
 
     $(document).ready(function(){
 
+        //trae el id_contrato seleccionado anteriormente para precargar la pantalla con el contrato y sus respectivos periodos
         let id_contrato = "<?php echo $view->id_contrato; ?>";
         $('#add_contrato option[value='+id_contrato+']').attr('selected',true).trigger('change');
 

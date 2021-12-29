@@ -106,7 +106,7 @@
 
 
             <br/>
-            <a id="back" class="pull-right" href="#" title="Regresar a selección de períodos"><i class="fa fa-arrow-left fa-fw"></i>&nbsp; Salir</a>
+            <a id="back" class="pull-right" href="#" title="Regresar a selección de períodos"><i class="fa fa-arrow-left fa-fw"></i>&nbsp; Volver</a>
             <h4><?php print $view->label ?></h4>
 
             <hr class="hr-primary"/>
