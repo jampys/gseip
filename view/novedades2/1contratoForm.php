@@ -10,6 +10,8 @@
 
     $(document).ready(function(){
 
+        let id_contrato = "<?php echo $view->id_contrato; ?>";
+        $('#add_contrato option[value='+id_contrato+']').attr('selected',true).trigger('change');
 
 
         $('#code_form').validate({

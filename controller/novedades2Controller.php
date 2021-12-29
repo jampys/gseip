@@ -352,8 +352,8 @@ switch ($operation)
 
 
     default : //ok
-        //$view->areas = NovArea::getAreas(); //carga el combo para filtrar Areas
         $view->contratos = Contrato::getContratosControlNovedades(); //carga el combo para filtrar contratos
+        $view->id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : 9999; //9999 un contrato inexistente.
         $view->contentTemplate="view/novedades2/1contratoForm.php";
         break;
 }

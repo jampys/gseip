@@ -82,7 +82,8 @@
 
         $(document).on('click', '#back',function(){
             //alert('regresar');
-            window.location.href = "index.php?action=novedades2";
+            let id_contrato = $('#id_contrato').val();
+            window.location.href = 'index.php?action=novedades2&id_contrato='+id_contrato;
             return false;
         });
 
