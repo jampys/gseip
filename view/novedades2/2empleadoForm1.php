@@ -56,7 +56,7 @@
             drops: 'auto',
             minDate: $('#fecha_desde').val(),
             maxDate: $('#fecha_hasta').val(),
-            //startDate: $('#fecha_desde').val(),
+            startDate: $('#fecha_desde').val(),
             "locale": {
                 "format": "DD/MM/YYYY"
             }
