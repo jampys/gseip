@@ -71,7 +71,7 @@
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
-                        return '<a class="new" title="Empleados" href="#">'+
+                        return '<a class="new" title="Participantes" href="#">'+
                                     '<i class="fas fa-users dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="view" title="Ver" href="#">'+
