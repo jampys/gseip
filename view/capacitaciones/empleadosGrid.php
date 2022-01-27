@@ -9,9 +9,12 @@
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 search: '',
                 searchPlaceholder: "Buscar empleado",
-                emptyTable: 'La edición no tiene empleados registrados'
+                emptyTable: 'La edición no tiene empleados registrados',
+                "sInfo":           "Mostrando _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando 0 registros",
+                "sInfoFiltered":   ""
             },
-            sDom:   "<'row'<'col-sm-2'B><'col-sm-4'><'col-sm-6'f>>" +
+            sDom:   "<'row'<'col-sm-2'B><'col-sm-4'i><'col-sm-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12'>>",
             buttons: [
