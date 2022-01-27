@@ -33,6 +33,7 @@
                 params.id_categoria=$('#id_categoria').val();
                 params.tema=$('#tema').val();
                 params.descripcion=$('#descripcion').val();
+                params.mes_programada=$('#mes_programada').val();
                 params.observaciones=$('#observaciones').val();
 
                 $.post('index.php',params,function(data, status, xhr){
@@ -135,9 +136,9 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-6 required">
-                            <label for="periodo" class="control-label">Mes programada</label>
-                            <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione el período"  data-live-search="true" data-size="5">
+                        <div class="form-group col-md-6">
+                            <label for="mes_programada" class="control-label">Mes programada</label>
+                            <select class="form-control selectpicker show-tick" id="mes_programada" name="mes_programada" title="Seleccione el mes de programación"  data-live-search="true" data-size="5">
                                 <?php foreach ($view->meses['enum'] as $pe){
                                     ?>
                                     <option value="<?php echo $pe; ?>"

@@ -45,6 +45,7 @@ switch ($operation)
         $capacitacion->setIdCategoria($_POST['id_categoria']);
         $capacitacion->setTema($_POST['tema']);
         $capacitacion->setDescripcion($_POST['descripcion']);
+        $capacitacion->setMesProgramada(($_POST['mes_programada'])? $_POST['mes_programada'] : null);
         $capacitacion->setObservaciones(($_POST['observaciones'])? $_POST['observaciones'] : null);
         $capacitacion->setIdUser($_SESSION['id_user']);
 
