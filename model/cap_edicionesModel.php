@@ -108,7 +108,8 @@ class Edicion
                   us.user
                   from cap_ediciones ed
                   join sec_users us on ed.id_user = us.id_user
-                  where ed.id_capacitacion = :id_capacitacion";
+                  where ed.id_capacitacion = :id_capacitacion
+                  order by ed.fecha_edicion asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_capacitacion', $id_capacitacion);
         $stmt->dpExecute();
