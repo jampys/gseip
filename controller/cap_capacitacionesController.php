@@ -23,9 +23,9 @@ switch ($operation)
         //$view->disableLayout=true;
         $periodo = ($_POST['periodo']!='')? $_POST['periodo'] : null;
         $id_categoria = ($_POST['id_categoria']!='')? $_POST['id_categoria'] : null;
-        //$id_area = ($_POST['search_area']!='')? $_POST['search_area'] : null;
+        $mes_programada = ($_POST['mes_programada']!='')? $_POST['mes_programada'] : null;
         //$id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
-        $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_categoria, $id_area);
+        $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_categoria, $mes_programada);
         //$view->contentTemplate="view/objetivos/objetivosGrid.php";
         //break;
         print_r(json_encode($rta));

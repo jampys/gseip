@@ -257,10 +257,10 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_area" name="search_area" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="mes_programada" name="mes_programada" data-live-search="true" data-size="5">
                                 <option value="">Todas las capacitaciones</option>
                                 <option value="1">Programadas</option>
-                                <option value="">No Programadas</option>
+                                <option value="0">No Programadas</option>
                             </select>
                         </div>
 
