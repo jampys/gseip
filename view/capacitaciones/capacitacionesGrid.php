@@ -19,14 +19,10 @@
                 "url"    : 'index.php',
                 //data: {action: "ajax_certificados", operation:"refreshGrid"},
                 "data": function ( d ) { //https://datatables.net/reference/option/ajax.data
-                    d.search_periodo = $("#search_periodo").val();
-                    d.search_puesto = $("#search_puesto").val();
-                    d.search_area = $("#search_area").val();
-                    d.search_contrato = $("#search_contrato").val();
-                    d.search_indicador = $("#search_indicador").val();
-                    d.search_responsable_ejecucion = $("#search_responsable_ejecucion").val();
-                    d.search_responsable_seguimiento = $("#search_responsable_seguimiento").val();
-                    d.todos = $('#search_todos').prop('checked')? 1:0;
+                    d.periodo = $("#periodo").val();
+                    d.id_categoria = $("#id_categoria").val();
+                    //d.search_area = $("#search_area").val();
+                    //d.search_contrato = $("#search_contrato").val();
                     d.action = "cap_capacitaciones";
                     d.operation = "refreshGrid";
                 },

@@ -225,7 +225,7 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="periodo" class="control-label">Periodo</label>-->
-                            <select class="form-control" id="search_periodo" name="search_periodo">
+                            <select class="form-control" id="periodo" name="periodo">
                                 <!--<option value="">Todos</option>-->
                                 <?php foreach ($view->periodos as $pe){
                                     ?>
@@ -241,7 +241,7 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="periodo" class="control-label">Periodo</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_puesto" name="search_puesto" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="id_categoria" name="id_categoria" data-live-search="true" data-size="5">
                                 <option value="">Seleccione tipo de capacitación</option>
                                 <?php foreach ($view->categorias as $cat){
                                     ?>
