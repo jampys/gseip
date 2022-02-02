@@ -266,7 +266,7 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
+                            <select multiple class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5" title="Seleccione el contrato">
                                 <option value="">Seleccione un contrato</option>
                                 <?php foreach ($view->contratos as $con){
                                     ?>

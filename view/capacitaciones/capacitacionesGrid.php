@@ -22,7 +22,7 @@
                     d.periodo = $("#periodo").val();
                     d.id_categoria = $("#id_categoria").val();
                     d.mes_programada = $("#mes_programada").val();
-                    //d.search_contrato = $("#search_contrato").val();
+                    d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
                     d.action = "cap_capacitaciones";
                     d.operation = "refreshGrid";
                 },

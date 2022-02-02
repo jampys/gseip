@@ -77,7 +77,7 @@ class Capacitacion
 
 
 
-    public static function getCapacitaciones($periodo, $id_categoria, $mes_programada){ //ok
+    public static function getCapacitaciones($periodo, $id_categoria, $mes_programada, $id_contrato){ //ok
         $stmt=new sQuery();
         $query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.mes_programada,
                 DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
@@ -97,6 +97,7 @@ class Capacitacion
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpBind(':id_categoria', $id_categoria);
         $stmt->dpBind(':mes_programada', $mes_programada);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
