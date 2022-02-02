@@ -84,7 +84,16 @@ class Capacitacion
                 c.id_user,
                 cg.nombre as categoria,
                 u.user,
-                (select count(*) from cap_capacitacion_empleado ce where ce.id_capacitacion = c.id_capacitacion and ce.id_contrato in ($id_contrato)) as cant_participantes
+                (select count(*)
+                  from cap_capacitacion_empleado ce
+                  where ce.id_capacitacion = c.id_capacitacion
+                  and ce.id_contrato in ($id_contrato)) as cant_participantes,
+                (select sum(ed.duracion)
+                  from cap_capacitacion_empleado ce
+                  join cap_ediciones ed on ed.id_edicion = ce.id_edicion
+                  where ce.id_capacitacion = c.id_capacitacion
+                  and ce.asistio = 1
+                  and ce.id_contrato in ($id_contrato)) as sum_hs
                 from cap_capacitaciones c
                 join cap_planes_capacitacion pc on pc.id_plan_capacitacion = c.id_plan_capacitacion
                 join sec_users u on u.id_user = c.id_user
