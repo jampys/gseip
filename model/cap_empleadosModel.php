@@ -97,7 +97,7 @@ class CapacitacionEmpleado
     }
 
 
-    public static function getEmpleados($id_capacitacion, $id_edicion = null) { //ok
+    public static function getEmpleados($id_capacitacion, $id_edicion = null, $id_contrato) { //ok
         $stmt=new sQuery();
         $query = "select ce.id_capacitacion_empleado, ce.id_empleado, ce.id_capacitacion, ce.id_contrato, ce.asistio, ce.observaciones,
                   ce.id_user,
@@ -115,7 +115,8 @@ class CapacitacionEmpleado
                   join empleados em on em.id_empleado = ce.id_empleado
                   join cap_ediciones ed on ed.id_edicion = ce.id_edicion
                   where ce.id_capacitacion = :id_capacitacion
-                  and ce.id_edicion = ifnull(:id_edicion, ce.id_edicion)";
+                  and ce.id_edicion = ifnull(:id_edicion, ce.id_edicion)
+                  and ce.id_contrato in ($id_contrato)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_capacitacion', $id_capacitacion);
         $stmt->dpBind(':id_edicion', $id_edicion);

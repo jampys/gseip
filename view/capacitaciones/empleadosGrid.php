@@ -48,6 +48,7 @@
                     d.operation = "refreshGrid";
                     d.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
                     d.id_edicion = $('#etapas_left_side').attr('id_edicion');
+                    d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
                 },
                 "dataSrc": ""
             },
