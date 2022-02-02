@@ -25,9 +25,8 @@ switch ($operation)
         $id_categoria = ($_POST['id_categoria']!='')? $_POST['id_categoria'] : null;
         $mes_programada = ($_POST['mes_programada']!='')? $_POST['mes_programada'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? implode(",", $_POST['id_contrato'])  : 'ce.id_contrato';
-        $filtro_contrato = ($_POST['id_contrato']!='')? 1 : 0;
 
-        $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_categoria, $mes_programada, $id_contrato, $filtro_contrato);
+        $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_categoria, $mes_programada, $id_contrato);
         //$view->contentTemplate="view/objetivos/objetivosGrid.php";
         //break;
         print_r(json_encode($rta));
