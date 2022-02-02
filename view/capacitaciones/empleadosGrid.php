@@ -115,7 +115,7 @@
             <table id="table-empleados" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
-                    <th>Empleado</th>
+                    <th>Empleado / Contrato</th>
                     <th>Edición</th>
                     <th></th>
                 </tr>
