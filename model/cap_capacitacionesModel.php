@@ -91,7 +91,12 @@ class Capacitacion
                 where c.periodo = ifnull(:periodo, c.periodo)
                 and c.id_categoria = ifnull(:id_categoria, c.id_categoria)
                 and if(:mes_programada = 1, mes_programada is not null, 1)
-                and if(:mes_programada = 0, mes_programada is null, 1)";
+                and if(:mes_programada = 0, mes_programada is null, 1)
+                and exists (select 1
+			                from cap_capacitacion_empleado ce
+                            where ce.id_capacitacion = c.id_capacitacion
+                            and ce.id_contrato in ($id_contrato))";
+        // and vrp.id_vencimiento in ($id_vencimiento)
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':periodo', $periodo);
