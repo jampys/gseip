@@ -52,7 +52,7 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "empleado"},
+                {"data" : "empleado_contrato"},
                 {"data" : "edicion"},
                 {data: null, defaultContent: '', orderable: false}
             ],
@@ -61,7 +61,7 @@
             },
             "columnDefs": [
                 {
-                    targets: 0, //empleado
+                    targets: 0, //empleado-contrato
                     render: function(data, type, row) {
                         return $.fn.dataTable.render.ellipsis(30)(data, type, row);
                     }

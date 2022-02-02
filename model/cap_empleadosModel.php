@@ -105,6 +105,7 @@ class CapacitacionEmpleado
                   us.user,
                   concat(em.apellido, ' ', em.nombre) as empleado,
                   co.nombre as contrato,
+                  concat(em.apellido, ' ', em.nombre, ' - ', co.nombre) as empleado_contrato,
                   DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y') as fecha_edicion,
                   concat(DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y'), ' ', ed.nombre) as edicion
                   from cap_capacitacion_empleado ce
