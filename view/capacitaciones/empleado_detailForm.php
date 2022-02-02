@@ -24,7 +24,7 @@
             params.id_empleado = $('#id_empleado').val();
             //params.activos = 1;
 
-            $('#id_contrato').empty();
+            $('#myModal #id_contrato').empty();
 
 
             $.ajax({
@@ -41,7 +41,7 @@
                     if(Object.keys(data).length > 0){
                         $.each(data, function(indice, val){
                             var label = data[indice]["contrato"];
-                            $("#id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
+                            $("#myModal #id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
                             +'>'+label+'</option>');
                         });
 
@@ -49,7 +49,7 @@
                         //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
                     }
 
-                    $('#id_contrato').selectpicker('refresh');
+                    $('#myModal #id_contrato').selectpicker('refresh');
                     //$('#add_fecha').val('');
 
                 },
