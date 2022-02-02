@@ -43,7 +43,7 @@
                         $("#myElem").html('Capacitación guardada con exito').addClass('alert alert-success').show();
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
-                                                $('#example').DataTable().ajax.reload();
+                                                $('#example').DataTable().ajax.reload(null, false);
                                               }, 2000);
                     }
 
@@ -97,6 +97,13 @@
             }
 
         });
+
+
+        //evento al salir o cerrar con la x el modal de etapas
+        $("#myModal").on("hidden.bs.modal", function () {
+            alert('salir de etapas');
+            $('#example').DataTable().ajax.reload(null, false);
+         });
 
 
 
