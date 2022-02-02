@@ -139,12 +139,11 @@
         };
 
 
-        //evento al salir o cerrar con la x el modal de etapas
-        /*$("#myModal").on("hidden.bs.modal", function () {
-            //alert('salir de etapas');
-            //$("#search").trigger("click");
-            $('#example').DataTable().ajax.reload();
-        });*/
+        //evento al salir o cerrar con la x el modal ediciones
+        $("#myModal").on("hidden.bs.modal", function () {
+            //alert('salir de ediciones');
+            $('#example').DataTable().ajax.reload(null, false);
+        });
 
 
 
