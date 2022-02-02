@@ -88,7 +88,7 @@ class Capacitacion
                   from cap_capacitacion_empleado ce
                   where ce.id_capacitacion = c.id_capacitacion
                   and ce.id_contrato in ($id_contrato)) as cant_participantes,
-                (select sum(ed.duracion)
+                (select ifnull(sum(ed.duracion), 0)
                   from cap_capacitacion_empleado ce
                   join cap_ediciones ed on ed.id_edicion = ce.id_edicion
                   where ce.id_capacitacion = c.id_capacitacion
