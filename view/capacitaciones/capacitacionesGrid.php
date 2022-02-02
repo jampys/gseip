@@ -40,6 +40,7 @@
                 {"data" : "tema"},
                 {"data" : "descripcion"},
                 {"data" : "mes_programada"},
+                {"data" : "cant_participantes"},
                 {"data" : null, orderable: false}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
@@ -57,7 +58,7 @@
                     }
                 },
                 {
-                    targets: 4,//action buttons
+                    targets: 5,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
                         let permisoEdiciones = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'ediciones' : 'disabled' ?>';
@@ -113,6 +114,7 @@
                 <th>Tema</th>
                 <th>Descripcion</th>
                 <th>Mes programada</th>
+                <th title="Cantidad de participantes para el/los contratos seleccionados">Cant. part.</th>
                 <th></th>
             </tr>
             </thead>
