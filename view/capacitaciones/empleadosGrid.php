@@ -53,8 +53,9 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "empleado_contrato"},
-                {"data" : "edicion"},
+                {"data" : "empleado"},
+                {"data" : "contrato"},
+                {"data" : "fecha_edicion"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
@@ -62,20 +63,20 @@
             },
             "columnDefs": [
                 {
-                    targets: 0, //empleado-contrato
+                    targets: 0, //empleado
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(30)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(23)(data, type, row);
                     }
                 },
                 {
-                    targets: 1, //edicion
+                    targets: 1, //contrato
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(30)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(23)(data, type, row);
                     }
                 },
                 {
-                    targets: 2,//action buttons
-                    width: '20%',
+                    targets: 3,//action buttons
+                    width: '18%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
@@ -116,7 +117,8 @@
             <table id="table-empleados" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
-                    <th>Empleado / Contrato</th>
+                    <th>Empleado</th>
+                    <th>Contrato</th>
                     <th>Edición</th>
                     <th></th>
                 </tr>
