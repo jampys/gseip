@@ -27,14 +27,14 @@
                 var params={};
                 params.action = 'cap_capacitaciones';
                 params.operation = 'saveCapacitacion';
-                params.id_capacitacion=$('#id_capacitacion').val();
+                params.id_capacitacion=$('#myModal #id_capacitacion').val();
                 params.periodo = $('#myModal #periodo option:selected').attr('periodo');
                 params.id_plan_capacitacion =$('#myModal #periodo').val();
-                params.id_categoria=$('#id_categoria').val();
-                params.tema=$('#tema').val();
-                params.descripcion=$('#descripcion').val();
-                params.mes_programada=$('#mes_programada').val();
-                params.observaciones=$('#observaciones').val();
+                params.id_categoria=$('#myModal #id_categoria').val();
+                params.tema=$('#myModal #tema').val();
+                params.descripcion=$('#myModal #descripcion').val();
+                params.mes_programada=$('#myModal #mes_programada').val();
+                params.observaciones=$('#myModal #observaciones').val();
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
@@ -99,11 +99,6 @@
         });
 
 
-        //evento al salir o cerrar con la x el modal de etapas
-        $("#myModal").on("hidden.bs.modal", function () {
-            alert('salir de etapas');
-            $('#example').DataTable().ajax.reload(null, false);
-         });
 
 
 
