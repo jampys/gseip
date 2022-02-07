@@ -65,7 +65,7 @@
                 },
                 {
                     targets: 2,//action buttons
-                    width: '20%',
+                    width: '23%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
