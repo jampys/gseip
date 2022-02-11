@@ -44,8 +44,7 @@
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                    //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #periodo').prop('disabled', true).selectpicker('refresh');
                 });
                 return false;
             });
@@ -63,6 +62,7 @@
                     //$("fieldset").prop("disabled", true);
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
+                    $('#myModal #periodo').prop('disabled', true).selectpicker('refresh');
                 });
                 return false;
             });
@@ -80,8 +80,6 @@
                 //alert(params.id_renovacion);
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                    //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-                    //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
                 });
                 return false;
             });
