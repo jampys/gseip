@@ -93,16 +93,25 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    case 'detalle': //detalle del objetivo //ok
-        $view->objetivo = new Objetivo($_POST['id_objetivo']);
-        $view->label='Detalle objetivo: '.$view->objetivo->getCodigo();
-        $view->params = array('cerrado'=> $_POST['cerrado']);
 
-        $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
-        $view->avances = Avance::getAvances($_POST['id_objetivo'], null);
+    case 'pdf':
 
-        $view->disableLayout=true;
-        $view->contentTemplate="view/capacitaciones/objetivosFormUpdate.php";
+        /*$f = Pdf::getCertificadoCalibracion($_GET['id_calib']);
+        $fila = $f[0];
+        $f1 = Pdf::getCertificadoPpt($_GET['id_calib'], $_GET['Nro_Serie']);
+        $fila1 = $f1[0];
+        $f2 = Pdf::getCertificadoOT($_GET['id_calib'], $_GET['Nro_Serie']);
+        $fila2 = $f2[0];
+        $f3 = Pdf::getGrafico($_GET['id_calib']);
+        $fila3 = $f3[0];*/
+        $nc = new Capacitacion($_GET['id_capacitacion']);
+        $fila4 = array();
+        /*$fila5 = Accion::getAcciones($_GET['id_no_conformidad']);
+        $f6 = Verificacion::getVerificaciones($_GET['id_no_conformidad']);
+        $fila6 = end($f6);
+        $rs = new Empleado($nc->getIdResponsableSeguimiento());*/
+
+        include_once ('view/capacitaciones/generador.php');
         break;
 
 
