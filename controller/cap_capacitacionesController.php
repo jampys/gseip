@@ -21,17 +21,12 @@ switch ($operation)
 {
     case 'refreshGrid':
         //$view->disableLayout=true;
-        $periodo = ($_POST['search_periodo']!='')? $_POST['search_periodo'] : null;
-        $id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
-        $id_area = ($_POST['search_area']!='')? $_POST['search_area'] : null;
-        $id_contrato = ($_POST['search_contrato']!='')? $_POST['search_contrato'] : null;
+        $periodo = ($_POST['periodo']!='')? $_POST['periodo'] : null;
+        $id_categoria = ($_POST['id_categoria']!='')? $_POST['id_categoria'] : null;
+        $mes_programada = ($_POST['mes_programada']!='')? $_POST['mes_programada'] : null;
+        $id_contrato = ($_POST['id_contrato']!='')? implode(",", $_POST['id_contrato'])  : 'ce.id_contrato';
 
-        $indicador = ($_POST['search_indicador']!='')? $_POST['search_indicador'] : null;
-        $id_responsable_ejecucion = ($_POST['search_responsable_ejecucion']!='')? $_POST['search_responsable_ejecucion'] : null;
-        $id_responsable_seguimiento = ($_POST['search_responsable_seguimiento']!='')? $_POST['search_responsable_seguimiento'] : null;
-        //$view->periodos = Objetivo::getPeriodos();
-        //$view->todos = $_POST['todos'];
-        $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_puesto, $id_area);
+        $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_categoria, $mes_programada, $id_contrato);
         //$view->contentTemplate="view/objetivos/objetivosGrid.php";
         //break;
         print_r(json_encode($rta));
@@ -45,6 +40,7 @@ switch ($operation)
         $capacitacion->setIdCategoria($_POST['id_categoria']);
         $capacitacion->setTema($_POST['tema']);
         $capacitacion->setDescripcion($_POST['descripcion']);
+        $capacitacion->setMesProgramada(($_POST['mes_programada'])? $_POST['mes_programada'] : null);
         $capacitacion->setObservaciones(($_POST['observaciones'])? $_POST['observaciones'] : null);
         $capacitacion->setIdUser($_SESSION['id_user']);
 

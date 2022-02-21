@@ -82,7 +82,8 @@
                     }
                 },
                 marca: {required: true},
-                modelo: {required: true}
+                modelo: {required: true},
+                fecha_baja: {validDate: true}
             },
             messages:{
                 nro_movil: {
@@ -96,7 +97,10 @@
                     remote: "La matrícula ingresada ya existe"
                 },
                 marca: "Seleccione una marca",
-                modelo: "Ingrese el modelo"
+                modelo: "Ingrese el modelo",
+                fecha_baja: {
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                }
             }
 
         });
@@ -231,7 +235,7 @@
                     <div class="form-group">
                         <label class="control-label" for="fecha">Fecha baja</label>
                         <div class="inner-addon right-addon">
-                            <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->vehiculo->getFechaBaja() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->vehiculo->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
                             <i class="glyphicon glyphicon-calendar"></i>
                         </div>
                     </div>

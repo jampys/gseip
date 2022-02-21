@@ -139,12 +139,11 @@
         };
 
 
-        //evento al salir o cerrar con la x el modal de etapas
-        /*$("#myModal").on("hidden.bs.modal", function () {
-            //alert('salir de etapas');
-            //$("#search").trigger("click");
-            $('#example').DataTable().ajax.reload();
-        });*/
+        //evento al salir o cerrar con la x el modal ediciones
+        $("#myModal").on("hidden.bs.modal", function () {
+            //alert('salir de ediciones');
+            $('#example').DataTable().ajax.reload(null, false);
+        });
 
 
 
@@ -313,7 +312,7 @@
 
 
                             <br/>
-                            <h4><span style="display: block; text-align: left; font-weight: normal" class="label label-primary">Empleados de la edición: <span id="edicion"></span></span></h4>
+                            <h4><span style="display: block; text-align: left; font-weight: normal" class="label label-primary">Participantes de la edición: <span id="edicion"></span></span></h4>
 
 
                             <!-- seccion de empleados de la edicion-->

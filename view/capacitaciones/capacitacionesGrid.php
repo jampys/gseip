@@ -19,14 +19,10 @@
                 "url"    : 'index.php',
                 //data: {action: "ajax_certificados", operation:"refreshGrid"},
                 "data": function ( d ) { //https://datatables.net/reference/option/ajax.data
-                    d.search_periodo = $("#search_periodo").val();
-                    d.search_puesto = $("#search_puesto").val();
-                    d.search_area = $("#search_area").val();
-                    d.search_contrato = $("#search_contrato").val();
-                    d.search_indicador = $("#search_indicador").val();
-                    d.search_responsable_ejecucion = $("#search_responsable_ejecucion").val();
-                    d.search_responsable_seguimiento = $("#search_responsable_seguimiento").val();
-                    d.todos = $('#search_todos').prop('checked')? 1:0;
+                    d.periodo = $("#periodo").val();
+                    d.id_categoria = $("#id_categoria").val();
+                    d.mes_programada = $("#mes_programada").val();
+                    d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
                     d.action = "cap_capacitaciones";
                     d.operation = "refreshGrid";
                 },
@@ -44,6 +40,8 @@
                 {"data" : "tema"},
                 {"data" : "descripcion"},
                 {"data" : "mes_programada"},
+                {"data" : "cant_participantes"},
+                {"data" : "sum_hs"},
                 {"data" : null, orderable: false}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
@@ -61,7 +59,7 @@
                     }
                 },
                 {
-                    targets: 4,//action buttons
+                    targets: 6,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
                         let permisoEdiciones = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) )? 'ediciones' : 'disabled' ?>';
@@ -117,6 +115,8 @@
                 <th>Tema</th>
                 <th>Descripcion</th>
                 <th>Mes programada</th>
+                <th title="Cantidad de participantes para el/los contratos seleccionados">Cant. part.</th>
+                <th title="Sumatoria total de horas de asistencia">Sum. hs.</th>
                 <th></th>
             </tr>
             </thead>

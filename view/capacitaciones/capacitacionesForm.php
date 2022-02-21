@@ -27,13 +27,14 @@
                 var params={};
                 params.action = 'cap_capacitaciones';
                 params.operation = 'saveCapacitacion';
-                params.id_capacitacion=$('#id_capacitacion').val();
+                params.id_capacitacion=$('#myModal #id_capacitacion').val();
                 params.periodo = $('#myModal #periodo option:selected').attr('periodo');
                 params.id_plan_capacitacion =$('#myModal #periodo').val();
-                params.id_categoria=$('#id_categoria').val();
-                params.tema=$('#tema').val();
-                params.descripcion=$('#descripcion').val();
-                params.observaciones=$('#observaciones').val();
+                params.id_categoria=$('#myModal #id_categoria').val();
+                params.tema=$('#myModal #tema').val();
+                params.descripcion=$('#myModal #descripcion').val();
+                params.mes_programada=$('#myModal #mes_programada').val();
+                params.observaciones=$('#myModal #observaciones').val();
 
                 $.post('index.php',params,function(data, status, xhr){
                     //alert(xhr.responseText);
@@ -42,7 +43,7 @@
                         $("#myElem").html('Capacitación guardada con exito').addClass('alert alert-success').show();
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
-                                                $('#example').DataTable().ajax.reload();
+                                                $('#example').DataTable().ajax.reload(null, false);
                                               }, 2000);
                     }
 
@@ -99,6 +100,8 @@
 
 
 
+
+
     });
 
 </script>
@@ -135,9 +138,9 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-6 required">
-                            <label for="periodo" class="control-label">Mes programada</label>
-                            <select class="form-control selectpicker show-tick" id="periodo" name="periodo" title="Seleccione el período"  data-live-search="true" data-size="5">
+                        <div class="form-group col-md-6">
+                            <label for="mes_programada" class="control-label">Mes programada</label>
+                            <select class="form-control selectpicker show-tick" id="mes_programada" name="mes_programada" title="Seleccione el mes de programación"  data-live-search="true" data-size="5">
                                 <?php foreach ($view->meses['enum'] as $pe){
                                     ?>
                                     <option value="<?php echo $pe; ?>"

@@ -23,12 +23,24 @@
             rules: {
                 id_empleado: {required: true},
                 puesto: {required: true},
-                fecha_desde: {required: true}
+                fecha_desde: {
+                    required: true,
+                    validDate: true
+                },
+                fecha_hasta: {
+                    validDate: true
+                }
             },
             messages:{
                 id_empleado: "Seleccione un empleado",
                 puesto: "Seleccione un puesto",
-                fecha_desde: "Seleccione la fecha de afectación"
+                fecha_desde: {
+                    required: "Seleccione la fecha de afectación",
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                },
+                fecha_hasta: {
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                }
             }
         });
 
@@ -146,14 +158,14 @@
                         <div class="form-group col-md-6 required">
                             <label for="meta" class="control-label">Fecha afectación</label>
                             <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="meta_valor" class="control-label">Fecha desafectación</label>
                             <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>

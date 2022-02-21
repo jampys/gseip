@@ -225,7 +225,7 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="periodo" class="control-label">Periodo</label>-->
-                            <select class="form-control" id="search_periodo" name="search_periodo">
+                            <select class="form-control" id="periodo" name="periodo">
                                 <!--<option value="">Todos</option>-->
                                 <?php foreach ($view->periodos as $pe){
                                     ?>
@@ -241,7 +241,7 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="periodo" class="control-label">Periodo</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_puesto" name="search_puesto" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="id_categoria" name="id_categoria" data-live-search="true" data-size="5">
                                 <option value="">Seleccione tipo de capacitación</option>
                                 <?php foreach ($view->categorias as $cat){
                                     ?>
@@ -257,17 +257,17 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_area" name="search_area" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="mes_programada" name="mes_programada" data-live-search="true" data-size="5">
                                 <option value="">Todas las capacitaciones</option>
                                 <option value="1">Programadas</option>
-                                <option value="">No Programadas</option>
+                                <option value="0">No Programadas</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-3">
                             <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_contrato" name="search_contrato" data-live-search="true" data-size="5">
-                                <option value="">Seleccione un contrato</option>
+                            <select multiple class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5" title="Seleccione el contrato">
+                                <!--<option value="">Seleccione un contrato</option>-->
                                 <?php foreach ($view->contratos as $con){
                                     ?>
                                     <option value="<?php echo $con['id_contrato']; ?>"

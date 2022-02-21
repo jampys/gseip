@@ -166,7 +166,7 @@
             <thead>
             <tr>
                 <th>Fecha</th>
-                <th>IN</th>
+                <th title="Identificador de Novedad">IN</th>
                 <th>Contrato</th>
                 <th>Cuadrilla / Empleado</th>
                 <th>Área</th>

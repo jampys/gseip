@@ -6,20 +6,20 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
 
     /* para el plug-in jquery validation: cuando se produce un error, agrega la clase de bootstrap has-error para pintar el borde del input  y el label de rojo */
     $.validator.setDefaults({
-        /*highlight: function(element) {
+        highlight: function(element) {
             $(element).closest('.form-group').addClass('has-error');
         },
         unhighlight: function(element) {
             $(element).closest('.form-group').removeClass('has-error');
-        },*/
-        highlight: function (element) { //https://github.com/jquery-validation/jquery-validation/issues/2150
+        },
+        /*highlight: function (element) { //https://github.com/jquery-validation/jquery-validation/issues/2150
             $(element).closest('.form-group').addClass('has-error');
         },
         unhighlight: function (element) {
             if ($(element).hasClass('is-valid-class')) {
                 $(element).closest('.form-group').removeClass('has-error');
             }
-        },
+        },*/
         success: function(lebel, element) {
             $(element).addClass('is-valid-class');
         },
@@ -135,6 +135,16 @@ function getProgressBarColor(percent){
 
     return rta;
 }
+
+
+/* validation: metodo personalizado para validar formato de fecha */
+jQuery.validator.addMethod(
+    "validDate",
+    function(value, element) {
+        return this.optional(element) || moment(value, 'DD/MM/YYYY', true).isValid(); //https://www.htmlgoodies.com/javascript/date-validation-using-moment-js/
+    },
+    jQuery.validator.format('{1}')
+);
 
 
 

@@ -58,7 +58,7 @@ switch ($operation)
 
     case 'getCuadrillas': //select dependiente //ok
         $id_contrato = $_POST['id_contrato'];
-        $rta = Cuadrilla::getCuadrillas($id_contrato);
+        $rta = Cuadrilla::getCuadrillas($id_contrato, 1);
         print_r(json_encode($rta));
         exit;
         break;

@@ -119,8 +119,14 @@
                 compania: {required: true},
                 nombre: {required: true},
                 id_responsable: {required: true},
-                fecha_desde: {required: true},
-                fecha_hasta: {required: true}
+                fecha_desde: {
+                    required: true,
+                    validDate: true
+                },
+                fecha_hasta: {
+                    required: true,
+                    validDate: true
+                }
             },
             messages:{
                 nro_contrato: {
@@ -129,8 +135,14 @@
                 compania: "Ingrese la compañía",
                 nombre: "Ingrese un nombre",
                 id_responsable: "Seleccione un responsable",
-                fecha_desde: "Seleccione la fecha desde",
-                fecha_hasta: "Seleccione la fecha hasta"
+                fecha_desde: {
+                    required: "Seleccione la fecha desde",
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                },
+                fecha_hasta: {
+                    required: "Seleccione la fecha hasta",
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                }
             }
 
         });
@@ -481,14 +493,14 @@
                 <div class="form-group col-md-6 required">
                     <label for="fecha_desde" class="control-label">Fecha desde</label>
                     <div class="inner-addon right-addon">
-                        <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly>
+                        <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
                         <i class="glyphicon glyphicon-calendar"></i>
                     </div>
                 </div>
                 <div class="form-group col-md-6 required">
                     <label for="fecha_hasta" class="control-label">Fecha hasta</label>
                     <div class="inner-addon right-addon">
-                        <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                        <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
                         <i class="glyphicon glyphicon-calendar"></i>
                     </div>
                 </div>

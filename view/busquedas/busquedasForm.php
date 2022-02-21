@@ -188,7 +188,11 @@
         $('#busqueda-form').validate({ //ok
             rules: {
                 nombre: {required: true},
-                fecha_apertura: {required: true}
+                fecha_apertura: {
+                    required: true,
+                    validDate: true
+                },
+                fecha_cierre: {validDate: true}
                 /*fecha_emision: {
                     required: true,
                     remote: {
@@ -230,7 +234,13 @@
             },
             messages:{
                 nombre: "Ingrese el nombre",
-                fecha_apertura: "Seleccione la fecha de apertura"
+                fecha_apertura: {
+                    required: "Seleccione la fecha de apertura",
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                },
+                fecha_cierre: {
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                }
                 /*fecha_emision: {
                     required: "Ingrese la fecha de emisión",
                     remote: "La fecha de emisión debe ser mayor"
@@ -291,14 +301,14 @@
                         <div class="form-group col-md-6 required">
                             <label for="fecha_apertura" class="control-label">Fecha apertura</label>
                             <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura" value = "<?php print $view->busqueda->getFechaApertura() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura" value = "<?php print $view->busqueda->getFechaApertura() ?>" placeholder="DD/MM/AAAA">
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="fecha_cierre" class="control-label">Fecha cierre</label>
                             <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->busqueda->getFechaCierre() ?>" placeholder="DD/MM/AAAA" readonly>
+                                <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->busqueda->getFechaCierre() ?>" placeholder="DD/MM/AAAA">
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </div>
                         </div>

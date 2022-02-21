@@ -208,12 +208,8 @@
                          }*/
 
                     }
-                }
-                /*codigo: {
-                        required: true,
-                        digits: true,
-                        maxlength: 6
-                },*/
+                },
+                fecha_baja: {validDate: true}
 
             },
             messages:{
@@ -224,12 +220,10 @@
                 id_empleado: {
                     required: "Seleccione un empleado",
                     remote: "El empleado ya tiene usuario"
+                },
+                fecha_baja: {
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
                 }
-                /*codigo: {
-                    required: "Ingrese el código",
-                    digits: "Ingrese solo números",
-                    maxlength: "Máximo 6 dígitos"
-                },*/
 
             }
 
@@ -305,7 +299,7 @@
                     <div class="form-group">
                         <label class="control-label" for="fecha">Fecha baja</label>
                         <div class="inner-addon right-addon">
-                            <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->usuario->getFechaBaja() ?>" placeholder="DD/MM/AAAA" readonly>
+                            <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->usuario->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
                             <i class="glyphicon glyphicon-calendar"></i>
                         </div>
                     </div>

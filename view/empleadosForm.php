@@ -60,8 +60,15 @@
 
                     }
                 },
-                fecha_nacimiento: {required: true},
-                fecha_alta: {required: true},
+                fecha_nacimiento: {
+                    required: true,
+                    validDate: true
+                },
+                fecha_alta: {
+                    required: true,
+                    validDate: true
+                },
+                fecha_baja: {validDate: true},
                 direccion: {required: true},
                 localidad: {required: true},
                 telefono: {digits: true},
@@ -83,8 +90,17 @@
                     digits: "Ingrese solo números",
                     remote: "El CUIL ingresado ya existe"
                 },
-                fecha_nacimiento: "Ingrese la fecha de nacimiento",
-                fecha_alta: "Ingrese la fecha de alta",
+                fecha_nacimiento: {
+                    required: "Ingrese la fecha de nacimiento",
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                },
+                fecha_alta: {
+                    required: "Ingrese la fecha de alta",
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                },
+                fecha_baja: {
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                },
                 direccion: "Ingrese la dirección",
                 localidad: "Seleccione una localidad",
                 telefono: {digits: "Ingrese solo números"},
@@ -199,7 +215,7 @@
         <label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>
         <div class="col-md-8">
             <div class="inner-addon right-addon">
-                <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA" readonly>
+                <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA">
                 <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
@@ -210,7 +226,7 @@
         <label class="col-md-4 control-label" for="fecha">Fecha alta</label>
         <div class="col-md-8">
             <div class="inner-addon right-addon">
-                <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print $view->empleado->getFechaAlta() ?>" placeholder="DD/MM/AAAA" readonly>
+                <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print $view->empleado->getFechaAlta() ?>" placeholder="DD/MM/AAAA">
                 <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>
@@ -220,7 +236,7 @@
         <label class="col-md-4 control-label" for="fecha">Fecha baja</label>
         <div class="col-md-8">
             <div class="inner-addon right-addon">
-                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->empleado->getFechaBaja() ?>" placeholder="DD/MM/AAAA" readonly>
+                <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->empleado->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
                 <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>

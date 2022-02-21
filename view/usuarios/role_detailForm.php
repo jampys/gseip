@@ -36,10 +36,15 @@
 
         $('#role-form').validate({
             rules: {
-                id_role: {required: true}
+                id_role: {required: true},
+                fecha_hasta: {validDate: true}
             },
             messages:{
-                id_role: "Seleccione un rol"
+                id_role: "Seleccione un rol",
+                fecha_hasta: {
+                    validDate: "Ingrese un formato de fecha válido DD/MM/AAAA"
+                }
+
             }
 
         });
@@ -89,7 +94,7 @@
         <div class="form-group">
             <label class="control-label" for="fecha_hasta">Fecha hasta</label>
             <div class="inner-addon right-addon">
-                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->role->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly>
+                <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->role->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
                 <i class="glyphicon glyphicon-calendar"></i>
             </div>
         </div>

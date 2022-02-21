@@ -9,15 +9,18 @@
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 search: '',
                 searchPlaceholder: "Buscar empleado",
-                emptyTable: 'La edición no tiene empleados registrados'
+                emptyTable: 'La edición no tiene empleados registrados',
+                "sInfo":           "Mostrando _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando 0 registros",
+                "sInfoFiltered":   ""
             },
-            sDom:   "<'row'<'col-sm-2'B><'col-sm-4'><'col-sm-6'f>>" +
+            sDom:   "<'row'<'col-sm-2'B><'col-sm-4'i><'col-sm-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12'>>",
             buttons: [
                 {
                     text: '<i class="fas fa-plus fa-fw dp_green"></i>',
-                    titleAttr: 'Agregar empleado',
+                    titleAttr: 'Agregar participante',
                     attr:  {
                         id: 'add', //https://datatables.net/reference/option/buttons.buttons.attr
                         disabled: function(){
@@ -45,12 +48,14 @@
                     d.operation = "refreshGrid";
                     d.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
                     d.id_edicion = $('#etapas_left_side').attr('id_edicion');
+                    d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
                 },
                 "dataSrc": ""
             },
             'columns': [
                 {"data" : "empleado"},
-                {"data" : "edicion"},
+                {"data" : "contrato"},
+                {"data" : "fecha_edicion"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
@@ -60,18 +65,18 @@
                 {
                     targets: 0, //empleado
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(30)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(23)(data, type, row);
                     }
                 },
                 {
-                    targets: 1, //edicion
+                    targets: 1, //contrato
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(30)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(23)(data, type, row);
                     }
                 },
                 {
-                    targets: 2,//action buttons
-                    width: '20%',
+                    targets: 3,//action buttons
+                    width: '18%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
@@ -113,6 +118,7 @@
                 <thead>
                 <tr>
                     <th>Empleado</th>
+                    <th>Contrato</th>
                     <th>Edición</th>
                     <th></th>
                 </tr>
