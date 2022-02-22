@@ -185,17 +185,16 @@ $html1 = '<div style="float: left; width: 100%">
             <table id="example" style="width:100%">
             <thead>
             <tr>
-                <th>Fecha</th>
-                <th>Nombre</th>
-                <th>Capacitador</th>
-                <th>Duración</th>
-                <th>Modalidad</th>
+                <th>Empleado</th>
+                <th>Contrato</th>
+                <th>Edición</th>
+                <th>Asistió</th>
             </tr>
             </thead>
             <tbody>';
 
-foreach ($fila3 as $x) {
-    $html1.='<tr><td>'.$x["fecha_edicion"].'</td>><td>'.$x["nombre"].'</td><td>'.$x["capacitador"].'</td><td>'.$x["duracion"].'</td><td>'.$x["modalidad"].'</td></tr>';
+foreach ($fila5 as $x) {
+    $html1.='<tr><td>'.$x["empleado"].'</td>><td>'.$x["contrato"].'</td><td>'.$x["edicion"].'</td><td>'.$x["id_empleado"].'</td></tr>';
 }
 
 $html1.='</tbody></table></div></div>';

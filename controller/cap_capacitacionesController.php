@@ -4,6 +4,7 @@ include_once("model/cap_capacitacionesModel.php");
 include_once("model/cap_categoriasModel.php");
 include_once("model/cap_modalidadesModel.php");
 include_once("model/cap_edicionesModel.php");
+include_once("model/cap_empleadosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -106,7 +107,9 @@ switch ($operation)
         $fila2['contratos'] = ($_GET['id_contrato'])? $f2[0]['contratos'] : 'Todos';
 
         $fila3 = Edicion::getEdiciones($_GET['id_capacitacion']);
-        
+
+        $fila5 = CapacitacionEmpleado::getEmpleados($_GET['id_capacitacion'], null, ($_GET['id_contrato'])? $_GET['id_contrato'] : 'ce.id_contrato');
+
         $fila4 = array();
 
         include_once ('view/capacitaciones/generador.php');
