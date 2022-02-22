@@ -17,9 +17,9 @@ $fila4['periodo_programada'] = $cap['periodo'].' / '.$cap['mes_programada'];
 $fila4['tema'] = $cap['tema'];
 $fila4['categoria'] = $cap['categoria'];
 $fila4['descripcion'] = $cap['descripcion'];
-
-/*$fila4['estado'] = $nc->getEstado();
-$fila4['responsable_seguimiento'] = $rs->getApellido().' '.$rs->getNombre();
+$fila4['cant_participantes'] = $cap['cant_participantes'];
+$fila4['sum_hs'] = $cap['sum_hs'];
+/*
 
 $fila4['title'] = $fila4['nro_no_conformidad'].' '.$fila4['nombre'];
 
@@ -129,10 +129,14 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                     <td  colspan="3">'.$fila4['descripcion'].'</td>
                 </tr>
                 <tr>
+                    <td><span class="subtitulo">Contratos</span></td>
+                    <td  colspan="3"></td>
+                </tr>
+                <tr>
                     <td><span class="subtitulo">Cant. participantes</span></td>
-                    <td></td>
+                    <td>'.$cap['cant_participantes'].'</td>
                     <td><span class="subtitulo">Sumatoria horas</span></td>
-                    <td></td>
+                    <td>'.$cap['sum_hs'].'</td>
                 </tr>
             </tbody>
         </table>

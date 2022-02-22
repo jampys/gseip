@@ -217,13 +217,23 @@ class Capacitacion
     }
 
 
-    public static function getCapacitacionPdf($id_capacitacion){
+    public static function getCapacitacionPdf($id_capacitacion, $id_contrato){
 
         $stmt=new sQuery();
         $query="select c.id_capacitacion, c.id_plan_capacitacion, c.periodo, c.id_categoria, c.tema, c.descripcion, c.mes_programada,
                     DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
                     c.id_user, c.observaciones,
-                    cg.nombre as categoria
+                    cg.nombre as categoria,
+                    (select count(*)
+                    from cap_capacitacion_empleado ce
+                    where ce.id_capacitacion = c.id_capacitacion
+                    and ce.id_contrato in ($id_contrato)) as cant_participantes,
+                    (select ifnull(sum(ed.duracion), 0)
+                    from cap_capacitacion_empleado ce
+                    join cap_ediciones ed on ed.id_edicion = ce.id_edicion
+                    where ce.id_capacitacion = c.id_capacitacion
+                    and ce.asistio = 1
+                    and ce.id_contrato in ($id_contrato)) as sum_hs
                     from cap_capacitaciones c
                     join cap_categorias cg on cg.id_categoria = c.id_categoria
                     where id_capacitacion = :nro";
