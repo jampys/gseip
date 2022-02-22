@@ -12,7 +12,9 @@
 
 //---------------------------------------------------------------------------------
 
+
 $fila4['nro_capacitacion'] = $fila1['id_capacitacion'].'/'.$fila1['periodo'];
+$fila4['title'] = $fila4['nro_capacitacion'].' '.$fila1['tema'];
 $fila4['periodo_programada'] = $fila1['periodo'].' / '.$fila1['mes_programada'];
 $fila4['tema'] = $fila1['tema'];
 $fila4['categoria'] = $fila1['categoria'];
@@ -204,7 +206,7 @@ $mpdf->WriteHTML($html1);
 
 
 
-    $namepdf = $fila['nrocertificado'].'-v'.$fila['nroserie'].'-'.date('dmY').'.pdf';
+    $namepdf = 'cap_'.$fila1['id_capacitacion'].'-p'.$fila1['periodo'].'-'.date('dmY').'.pdf';
     $mpdf->Output($namepdf, 'I'); //I visualizar, D descargar
 
 

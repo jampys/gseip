@@ -3,6 +3,9 @@
 include_once("model/cap_capacitacionesModel.php");
 include_once("model/cap_categoriasModel.php");
 include_once("model/cap_modalidadesModel.php");
+
+include_once("model/contratosModel.php");
+
 include_once("model/cap_edicionesModel.php");
 include_once("model/cap_empleadosModel.php");
 
@@ -89,7 +92,7 @@ switch ($operation)
         break;
 
 
-    case 'pdf':
+    case 'pdf': //ok
 
         /*$f = Pdf::getCertificadoCalibracion($_GET['id_calib']);
         $fila = $f[0];
@@ -102,12 +105,9 @@ switch ($operation)
 
         $f1 = Capacitacion::getPdfCapacitacion($_GET['id_capacitacion'], ($_GET['id_contrato'])? $_GET['id_contrato'] : 'ce.id_contrato');
         $fila1 = $f1[0];
-
         $f2 = Capacitacion::getPdfContratos(($_GET['id_contrato'])? $_GET['id_contrato'] : 'id_contrato');
         $fila2['contratos'] = ($_GET['id_contrato'])? $f2[0]['contratos'] : 'Todos';
-
         $fila3 = Edicion::getEdiciones($_GET['id_capacitacion']);
-
         $fila5 = CapacitacionEmpleado::getEmpleados($_GET['id_capacitacion'], null, ($_GET['id_contrato'])? $_GET['id_contrato'] : 'ce.id_contrato');
 
         $fila4 = array();
