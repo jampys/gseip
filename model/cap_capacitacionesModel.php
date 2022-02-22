@@ -249,7 +249,7 @@ class Capacitacion
         $stmt=new sQuery();
         $query="select group_concat(nombre order by nombre SEPARATOR ', ') as contratos
                 from contratos
-                where id_contrato in (20, 21)";
+                where id_contrato in ($id_contrato)";
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt ->dpFetchAll();
