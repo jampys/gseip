@@ -217,6 +217,24 @@ class Capacitacion
     }
 
 
+    public static function getCapacitacionPdf($id_capacitacion){
+
+        $stmt=new sQuery();
+        $query="select c.id_capacitacion, c.id_plan_capacitacion, c.periodo, c.id_categoria, c.tema, c.descripcion, c.mes_programada,
+                    DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
+                    c.id_user, c.observaciones,
+                    cg.nombre as categoria
+                    from cap_capacitaciones c
+                    join cap_categorias cg on cg.id_categoria = c.id_categoria
+                    where id_capacitacion = :nro";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':nro', $id_capacitacion);
+        $stmt->dpExecute();
+        return $stmt ->dpFetchAll();
+
+    }
+
+
 
 }
 

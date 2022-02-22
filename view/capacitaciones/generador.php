@@ -12,11 +12,13 @@
 
 //---------------------------------------------------------------------------------
 
-$fila4['nro_capacitacion'] = $cap->getIdCapacitacion().'/'.$cap->getPeriodo();
-/*$fila4['nombre'] = $nc->getNombre();
-$fila4['sector'] = $nc->getSector();
-$fila4['created_date'] = $nc->getCreatedDate();
-$fila4['estado'] = $nc->getEstado();
+$fila4['nro_capacitacion'] = $cap['id_capacitacion'].'/'.$cap['periodo'];
+$fila4['periodo_programada'] = $cap['periodo'].' / '.$cap['mes_programada'];
+$fila4['tema'] = $cap['tema'];
+$fila4['categoria'] = $cap['categoria'];
+$fila4['descripcion'] = $cap['descripcion'];
+
+/*$fila4['estado'] = $nc->getEstado();
 $fila4['responsable_seguimiento'] = $rs->getApellido().' '.$rs->getNombre();
 
 $fila4['title'] = $fila4['nro_no_conformidad'].' '.$fila4['nombre'];
@@ -113,20 +115,24 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                 <tr>
                     <td style="width: 25%"><span class="subtitulo">Nro. Capacitación</span></td>
                     <td style="width: 25%">'.$fila4["nro_capacitacion"].'</td>
-                    <td style="width: 25%"><span class="subtitulo">Fecha</span></td>
-                    <td style="width: 25%">'.$fila4['created_date'].'</td>
+                    <td style="width: 25%"><span class="subtitulo">Período / Programada</span></td>
+                    <td style="width: 25%">'.$fila4['periodo_programada'].'</td>
                 </tr>
                 <tr>
-                    <td><span class="subtitulo">Nombre</span></td>
-                    <td>'.$fila4["nombre"].'</td>
-                    <td><span class="subtitulo">Resp. seguimiento</span></td>
-                    <td>'.$fila4['responsable_seguimiento'].'</td>
+                    <td><span class="subtitulo">Tema</span></td>
+                    <td>'.$fila4["tema"].'</td>
+                    <td><span class="subtitulo">Categoría</span></td>
+                    <td>'.$fila4['categoria'].'</td>
                 </tr>
                 <tr>
-                    <td><span class="subtitulo">Sector/Proceso</span></td>
-                    <td>'.$fila4['sector'].'</td>
-                    <td><span class="subtitulo">Estado</span></td>
-                    <td>'.$fila4['estado'].'</td>
+                    <td><span class="subtitulo">Descripción</span></td>
+                    <td  colspan="3">'.$fila4['descripcion'].'</td>
+                </tr>
+                <tr>
+                    <td><span class="subtitulo">Cant. participantes</span></td>
+                    <td></td>
+                    <td><span class="subtitulo">Sumatoria horas</span></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
