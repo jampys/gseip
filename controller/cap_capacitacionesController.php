@@ -109,7 +109,7 @@ switch ($operation)
         $cap = $c[0];
 
         $f2 = Capacitacion::getPdfContratos(($_GET['id_contrato'])? $_GET['id_contrato'] : 'id_contrato');
-        $fila2['contratos'] = ($_GET['id_contrato'])? $f2[0] : 'Todos';
+        $fila2['contratos'] = ($_GET['id_contrato'])? $f2[0]['contratos'] : 'Todos';
         
         $fila4 = array();
 
