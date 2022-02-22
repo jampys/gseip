@@ -217,7 +217,7 @@ class Capacitacion
     }
 
 
-    public static function getPdfCapacitacion($id_capacitacion, $id_contrato){
+    public static function getPdfCapacitacion($id_capacitacion, $id_contrato){ //ok
 
         $stmt=new sQuery();
         $query="select c.id_capacitacion, c.id_plan_capacitacion, c.periodo, c.id_categoria, c.tema, c.descripcion, c.mes_programada,
@@ -245,7 +245,7 @@ class Capacitacion
     }
 
 
-    public static function getPdfContratos($id_contrato){
+    public static function getPdfContratos($id_contrato){ //ok
         $stmt=new sQuery();
         $query="select group_concat(nombre order by nombre SEPARATOR ', ') as contratos
                 from contratos

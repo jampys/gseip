@@ -88,7 +88,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
         </div>
 
         <div style="float: right; width: 10%; height: 36px; font-size: 8px; text-align: right">
-            RG 01-01<br/>
+            RG 06-02<br/>
             22/02/2022<br/>
             rev 01
         </div>
