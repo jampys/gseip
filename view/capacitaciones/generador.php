@@ -194,7 +194,8 @@ $html1 = '<div style="float: left; width: 100%">
             <tbody>';
 
 foreach ($fila5 as $x) {
-    $html1.='<tr><td>'.$x["empleado"].'</td>><td>'.$x["contrato"].'</td><td>'.$x["edicion"].'</td><td>'.$x["id_empleado"].'</td></tr>';
+    $asistio = ($x["asistio"] == 1)? '<i class="fa-solid fa-check"></i>' : '';
+    $html1.='<tr><td>'.$x["empleado"].'</td>><td>'.$x["contrato"].'</td><td>'.$x["edicion"].'</td><td>'.$asistio.'</td></tr>';
 }
 
 $html1.='</tbody></table></div></div>';
