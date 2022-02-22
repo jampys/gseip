@@ -105,8 +105,7 @@ switch ($operation)
         $f3 = Pdf::getGrafico($_GET['id_calib']);
         $fila3 = $f3[0];*/
 
-        //$id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
-        $id_contrato = ($_POST['id_contrato']!='')? implode(",", $_POST['id_contrato'])  : 'ce.id_contrato';
+        $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : 'ce.id_contrato';
         $c = Capacitacion::getCapacitacionPdf($_GET['id_capacitacion'], $id_contrato);
         $cap = $c[0];
         $fila4 = array();
