@@ -105,9 +105,11 @@ class Edicion
                   ed.capacitador, ed.duracion, ed.id_modalidad, ed.id_user,
                   DATE_FORMAT(ed.created_date, '%d/%m/%Y') as created_date,
                   concat(DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y'), ' ', ed.nombre) as edicion,
-                  us.user
+                  us.user,
+                  m.nombre as modalidad
                   from cap_ediciones ed
                   join sec_users us on ed.id_user = us.id_user
+                  join cap_modalidades m on m.id_modalidad = ed.id_modalidad
                   where ed.id_capacitacion = :id_capacitacion
                   order by ed.fecha_edicion asc";
         $stmt->dpPrepare($query);

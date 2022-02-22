@@ -145,132 +145,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
 
         </div>
 
-
         <br/>
-
-
-
-         <div style="float: left; width: 100%">
-            <span class="titulo">Tipo de No conformidad</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['No conformidad real'].'>&nbsp;<span class="subtitulo">No conformidad real</span></td>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Oportunidad de mejora'].' >&nbsp;<span class="subtitulo">Oportunidad de mejora</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila4['No conformidad potencial'].'>&nbsp;<span class="subtitulo">No conformidad potencial</span></td>
-                    <td><input type="checkbox" id="" value="" '.$fila4['Queja/Reclamo del cliente'].' >&nbsp;<span class="subtitulo">Queja / reclamo del cliente</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" id="" value="" '.$fila4['Producto/Servicio no conforme'].' >&nbsp;<span class="subtitulo">Producto / Servicio no conforme</span></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-        <br/>
-
-
-        <div style="width:49%; float:left">
-        <span class="titulo">Análisis de causa raiz</span>
-        <div class="borde-circular" >
-        <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Si'].'>&nbsp;<span class="subtitulo">Si</span></td>
-                </tr>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['No'].' >&nbsp;<span class="subtitulo">No</span></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-        <div style="width:1%; float:left">&nbsp;</div>
-
-        <div style="width:50%; float:left">
-        <span class="titulo">Tipo acción</span>
-        <div class="borde-circular" >
-        <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Correctiva'].'>&nbsp;<span class="subtitulo">Correctiva</span></td>
-                </tr>
-                <tr>
-                    <td style="width: 50%"><input type="checkbox" id="" value="" '.$fila4['Preventiva'].' >&nbsp;<span class="subtitulo">Preventiva</span></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-
-        <br/>
-        <div style="float: left; width: 100%">
-            <span class="titulo">Descripción del hallazgo</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td>'.$fila4['descripcion'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-
-        <br/>
-        <div style="float: left; width: 100%">
-            <span class="titulo">Acción inmediata</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td>'.$fila4['accion_inmediata'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-
-        <br/>
-        <div style="float: left; width: 100%">
-            <span class="titulo">Análisis de causa raiz</span>
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td>'.$fila4['analisis_causa_desc'].'</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-        </div>
-
-
-        <br/>
-
 
 
 
@@ -279,45 +154,28 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
 
 
 $html = '<div style="float: left; width: 100%">
-        <span class="titulo">Acciones</span>
+        <span class="titulo">Ediciones</span>
         <div class="borde-circular">
             <table id="example" style="width:100%">
             <thead>
             <tr>
-                <th>Acción</th>
-                <th>Resp. ejecución</th>
-                <th>F. impl.</th>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Capacitador</th>
+                <th>Duración</th>
+                <th>Modalidad</th>
             </tr>
             </thead>
             <tbody>';
 
-foreach ($fila5 as $x) {
-    $html.='<tr><td>'.$x["accion"].'</td>><td>'.$x["responsable_ejecucion"].'</td><td>'.$x["fecha_implementacion"].'</td></tr>';
+foreach ($fila3 as $x) {
+    $html.='<tr><td>'.$x["fecha_edicion"].'</td>><td>'.$x["nombre"].'</td><td>'.$x["capacitador"].'</td><td>'.$x["duracion"].'</td><td>'.$x["modalidad"].'</td></tr>';
 }
 
 $html.='</tbody></table></div></div>';
 $mpdf->WriteHTML($html);
 
 
-$mpdf->WriteHTML('
-        <br/>
-        <div style="float: left; width: 100%">
-            <!--<span class="titulo">Datos de la válvula</span>-->
-
-            <div class="borde-circular">
-            <table style="width:100%">
-            <tbody>
-                <tr>
-                    <td style="width: 25%"><span class="subtitulo">Verificó</span></td>
-                    <td style="width: 25%">'.$fila6['verifico'].'</td>
-                    <td style="width: 25%"><span class="subtitulo">Fecha</span></td>
-                    <td style="width: 25%">'.$fila6['fecha_verificacion'].'</td>
-                </tr>
-            </tbody>
-        </table>
-
-        </div>
-');
 
 
     $namepdf = $fila['nrocertificado'].'-v'.$fila['nroserie'].'-'.date('dmY').'.pdf';

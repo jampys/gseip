@@ -1,15 +1,9 @@
 ﻿<?php
-include_once("model/obj_objetivosModel.php");
-include_once("model/obj_tareasModel.php");
-include_once("model/obj_avancesModel.php");
-include_once("model/evaluacionesModel.php");
-include_once("model/puestosModel.php");
-include_once("model/areasModel.php");
-include_once("model/contratosModel.php");
 
 include_once("model/cap_capacitacionesModel.php");
 include_once("model/cap_categoriasModel.php");
 include_once("model/cap_modalidadesModel.php");
+include_once("model/cap_edicionesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -110,6 +104,8 @@ switch ($operation)
 
         $f2 = Capacitacion::getPdfContratos(($_GET['id_contrato'])? $_GET['id_contrato'] : 'id_contrato');
         $fila2['contratos'] = ($_GET['id_contrato'])? $f2[0]['contratos'] : 'Todos';
+
+        $fila3 = Edicion::getEdiciones($_GET['id_capacitacion']);
         
         $fila4 = array();
 
