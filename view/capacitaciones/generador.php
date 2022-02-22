@@ -152,7 +152,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
         ',
         \Mpdf\HTMLParserMode::HTML_BODY);
 
-
+// Ediciones *****************************************
 $html = '<div style="float: left; width: 100%">
         <span class="titulo">Ediciones</span>
         <div class="borde-circular">
@@ -174,6 +174,32 @@ foreach ($fila3 as $x) {
 
 $html.='</tbody></table></div></div>';
 $mpdf->WriteHTML($html);
+
+
+$mpdf->WriteHTML('<br/>');
+
+// Participantes *****************************************
+$html1 = '<div style="float: left; width: 100%">
+        <span class="titulo">Participantes</span>
+        <div class="borde-circular">
+            <table id="example" style="width:100%">
+            <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Capacitador</th>
+                <th>Duración</th>
+                <th>Modalidad</th>
+            </tr>
+            </thead>
+            <tbody>';
+
+foreach ($fila3 as $x) {
+    $html1.='<tr><td>'.$x["fecha_edicion"].'</td>><td>'.$x["nombre"].'</td><td>'.$x["capacitador"].'</td><td>'.$x["duracion"].'</td><td>'.$x["modalidad"].'</td></tr>';
+}
+
+$html1.='</tbody></table></div></div>';
+$mpdf->WriteHTML($html1);
 
 
 
