@@ -12,13 +12,13 @@
 
 //---------------------------------------------------------------------------------
 
-$fila4['nro_capacitacion'] = $cap['id_capacitacion'].'/'.$cap['periodo'];
-$fila4['periodo_programada'] = $cap['periodo'].' / '.$cap['mes_programada'];
-$fila4['tema'] = $cap['tema'];
-$fila4['categoria'] = $cap['categoria'];
-$fila4['descripcion'] = $cap['descripcion'];
-$fila4['cant_participantes'] = $cap['cant_participantes'];
-$fila4['sum_hs'] = $cap['sum_hs'];
+$fila4['nro_capacitacion'] = $fila1['id_capacitacion'].'/'.$fila1['periodo'];
+$fila4['periodo_programada'] = $fila1['periodo'].' / '.$fila1['mes_programada'];
+$fila4['tema'] = $fila1['tema'];
+$fila4['categoria'] = $fila1['categoria'];
+$fila4['descripcion'] = $fila1['descripcion'];
+$fila4['cant_participantes'] = $fila1['cant_participantes'];
+$fila4['sum_hs'] = $fila1['sum_hs'];
 $fila4['contratos'] = $fila2['contratos'];
 
 /*
@@ -134,9 +134,9 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Cant. participantes</span></td>
-                    <td>'.$cap['cant_participantes'].'</td>
+                    <td>'.$fila4['cant_participantes'].'</td>
                     <td><span class="subtitulo">Sumatoria horas</span></td>
-                    <td>'.$cap['sum_hs'].'</td>
+                    <td>'.$fila4['sum_hs'].'</td>
                 </tr>
             </tbody>
         </table>
