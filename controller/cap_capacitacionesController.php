@@ -104,7 +104,7 @@ switch ($operation)
         $fila2 = $f2[0];
         $f3 = Pdf::getGrafico($_GET['id_calib']);
         $fila3 = $f3[0];*/
-        $nc = new Capacitacion($_GET['id_capacitacion']);
+        $cap = new Capacitacion($_GET['id_capacitacion']);
         $fila4 = array();
         /*$fila5 = Accion::getAcciones($_GET['id_no_conformidad']);
         $f6 = Verificacion::getVerificaciones($_GET['id_no_conformidad']);

@@ -12,8 +12,8 @@
 
 //---------------------------------------------------------------------------------
 
-/*$fila4['nro_no_conformidad'] = $nc->getNroNoConformidad();
-$fila4['nombre'] = $nc->getNombre();
+$fila4['nro_capacitacion'] = $cap->getIdCapacitacion().'/'.$cap->getPeriodo();
+/*$fila4['nombre'] = $nc->getNombre();
 $fila4['sector'] = $nc->getSector();
 $fila4['created_date'] = $nc->getCreatedDate();
 $fila4['estado'] = $nc->getEstado();
@@ -87,7 +87,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
 
         <div style="float: right; width: 10%; height: 36px; font-size: 8px; text-align: right">
             RG 01-01<br/>
-            23/05/2021<br/>
+            22/02/2022<br/>
             rev 01
         </div>
 
@@ -111,8 +111,8 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
             </thead>-->
             <tbody>
                 <tr>
-                    <td style="width: 25%"><span class="subtitulo">Nro. No conformidad</span></td>
-                    <td style="width: 25%">'.$fila4["nro_no_conformidad"].'</td>
+                    <td style="width: 25%"><span class="subtitulo">Nro. Capacitación</span></td>
+                    <td style="width: 25%">'.$fila4["nro_capacitacion"].'</td>
                     <td style="width: 25%"><span class="subtitulo">Fecha</span></td>
                     <td style="width: 25%">'.$fila4['created_date'].'</td>
                 </tr>
