@@ -217,7 +217,7 @@ class Capacitacion
     }
 
 
-    public static function getCapacitacionPdf($id_capacitacion, $id_contrato){
+    public static function getPdfCapacitacion($id_capacitacion, $id_contrato){
 
         $stmt=new sQuery();
         $query="select c.id_capacitacion, c.id_plan_capacitacion, c.periodo, c.id_categoria, c.tema, c.descripcion, c.mes_programada,
@@ -239,6 +239,18 @@ class Capacitacion
                     where id_capacitacion = :nro";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro', $id_capacitacion);
+        $stmt->dpExecute();
+        return $stmt ->dpFetchAll();
+
+    }
+
+
+    public static function getPdfContratos($id_contrato){
+        $stmt=new sQuery();
+        $query="select group_concat(nombre order by nombre SEPARATOR ', ') as contratos
+                from contratos
+                where id_contrato in (20, 21)";
+        $stmt->dpPrepare($query);
         $stmt->dpExecute();
         return $stmt ->dpFetchAll();
 

@@ -106,13 +106,13 @@ switch ($operation)
         $fila3 = $f3[0];*/
 
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : 'ce.id_contrato';
-        $c = Capacitacion::getCapacitacionPdf($_GET['id_capacitacion'], $id_contrato);
+        $c = Capacitacion::getPdfCapacitacion($_GET['id_capacitacion'], $id_contrato);
         $cap = $c[0];
+
+        $f2 = Capacitacion::getPdfContratos($id_contrato);
+        $fila2 = ($_GET['id_contrato'])? $f2[0] : 'Todos';
+        
         $fila4 = array();
-        /*$fila5 = Accion::getAcciones($_GET['id_no_conformidad']);
-        $f6 = Verificacion::getVerificaciones($_GET['id_no_conformidad']);
-        $fila6 = end($f6);
-        $rs = new Empleado($nc->getIdResponsableSeguimiento());*/
 
         include_once ('view/capacitaciones/generador.php');
         break;

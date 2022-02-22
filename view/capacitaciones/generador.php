@@ -19,9 +19,9 @@ $fila4['categoria'] = $cap['categoria'];
 $fila4['descripcion'] = $cap['descripcion'];
 $fila4['cant_participantes'] = $cap['cant_participantes'];
 $fila4['sum_hs'] = $cap['sum_hs'];
-/*
+$fila4['contratos'] = $fila2['contratos'];
 
-$fila4['title'] = $fila4['nro_no_conformidad'].' '.$fila4['nombre'];
+/*
 
 $fila4['No conformidad real'] = ($nc->getTipo() == 'No conformidad real')? 'checked=true':'';
 $fila4['No conformidad potencial'] = ($nc->getTipo() == 'No conformidad potencial')? 'checked=true':'';
@@ -130,7 +130,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Contratos</span></td>
-                    <td  colspan="3"></td>
+                    <td  colspan="3">'.$fila4['contratos'].'</td>
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Cant. participantes</span></td>
