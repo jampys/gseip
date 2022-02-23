@@ -15,7 +15,8 @@
 
 $fila4['nro_capacitacion'] = $fila1['id_capacitacion'].'/'.$fila1['periodo'];
 $fila4['title'] = $fila4['nro_capacitacion'].' '.$fila1['tema'];
-$fila4['periodo_programada'] = $fila1['periodo'].' / '.$fila1['mes_programada'];
+$fila4['mes_programada'] = ($fila1['mes_programada'])? $fila1['mes_programada'] : 'Sin programa';
+$fila4['periodo_programada'] = $fila1['periodo'].' / '.$fila4['mes_programada'];
 $fila4['tema'] = $fila1['tema'];
 $fila4['categoria'] = $fila1['categoria'];
 $fila4['descripcion'] = $fila1['descripcion'];
@@ -125,14 +126,14 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                     <td colspan="3">'.$fila4["tema"].'</td>
                 </tr>
                 <tr>
+                    <td><span class="subtitulo">Descripción</span></td>
+                    <td  colspan="3">'.$fila4['descripcion'].'</td>
+                </tr>
+                <tr>
                     <td><span class="subtitulo">Categoría</span></td>
                     <td>'.$fila4["categoria"].'</td>
                     <td></td>
                     <td></td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Descripción</span></td>
-                    <td  colspan="3">'.$fila4['descripcion'].'</td>
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Contratos</span></td>
