@@ -69,6 +69,8 @@
                         let permisoEditarO = (permisoEditar && !row.cerrado)? 'edit' : 'disabled';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_DELETE', array(1)) )? true : false ?>';
                         let permisoEliminarO = (permisoEliminar && !row.cerrado)? 'delete' : 'disabled';
+                        let id_contrato = $("#id_contrato").val();
+                        let link = 'index.php?action=cap_capacitaciones&operation=pdf&id_capacitacion='+row.id_capacitacion+'&id_contrato='+id_contrato;
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
                         return  '<a class="'+permisoEdiciones+'" href="#">'+ //si tiene permiso para ver ediciones
                                     '<i class="fas fa-th-list dp_blue" title="Ediciones"></i>'+
@@ -84,6 +86,9 @@
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEliminarO+'" href="#" title="Borrar">'+ //si tiene permiso para eliminar
                                     '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
+                                    '<i class="fas fa-download dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a href="#" title="'+user_info+'" onclick="return false;">'+
                                     '<i class="fa fa-question-circle dp_light_gray"></i>'+

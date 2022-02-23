@@ -1,15 +1,13 @@
 ﻿<?php
-include_once("model/obj_objetivosModel.php");
-include_once("model/obj_tareasModel.php");
-include_once("model/obj_avancesModel.php");
-include_once("model/evaluacionesModel.php");
-include_once("model/puestosModel.php");
-include_once("model/areasModel.php");
-include_once("model/contratosModel.php");
 
 include_once("model/cap_capacitacionesModel.php");
 include_once("model/cap_categoriasModel.php");
 include_once("model/cap_modalidadesModel.php");
+
+include_once("model/contratosModel.php");
+
+include_once("model/cap_edicionesModel.php");
+include_once("model/cap_empleadosModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -93,16 +91,28 @@ switch ($operation)
         die; // no quiero mostrar nada cuando borra , solo devuelve el control.
         break;
 
-    case 'detalle': //detalle del objetivo //ok
-        $view->objetivo = new Objetivo($_POST['id_objetivo']);
-        $view->label='Detalle objetivo: '.$view->objetivo->getCodigo();
-        $view->params = array('cerrado'=> $_POST['cerrado']);
 
-        $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
-        $view->avances = Avance::getAvances($_POST['id_objetivo'], null);
+    case 'pdf': //ok
 
-        $view->disableLayout=true;
-        $view->contentTemplate="view/capacitaciones/objetivosFormUpdate.php";
+        /*$f = Pdf::getCertificadoCalibracion($_GET['id_calib']);
+        $fila = $f[0];
+        $f1 = Pdf::getCertificadoPpt($_GET['id_calib'], $_GET['Nro_Serie']);
+        $fila1 = $f1[0];
+        $f2 = Pdf::getCertificadoOT($_GET['id_calib'], $_GET['Nro_Serie']);
+        $fila2 = $f2[0];
+        $f3 = Pdf::getGrafico($_GET['id_calib']);
+        $fila3 = $f3[0];*/
+
+        $f1 = Capacitacion::getPdfCapacitacion($_GET['id_capacitacion'], ($_GET['id_contrato'])? $_GET['id_contrato'] : 'ce.id_contrato');
+        $fila1 = $f1[0];
+        $f2 = Capacitacion::getPdfContratos(($_GET['id_contrato'])? $_GET['id_contrato'] : 'id_contrato');
+        $fila2['contratos'] = ($_GET['id_contrato'])? $f2[0]['contratos'] : 'Todos';
+        $fila3 = Edicion::getEdiciones($_GET['id_capacitacion']);
+        $fila5 = CapacitacionEmpleado::getEmpleados($_GET['id_capacitacion'], null, ($_GET['id_contrato'])? $_GET['id_contrato'] : 'ce.id_contrato');
+
+        $fila4 = array();
+
+        include_once ('view/capacitaciones/generador.php');
         break;
 
 
