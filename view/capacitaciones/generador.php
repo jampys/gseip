@@ -192,7 +192,7 @@ $html1 = '<div style="float: left; width: 100%">
             <table id="example" style="width:100%">
             <thead>
             <tr>
-                <th>Empleado</th>
+                <th>Nombre</th>
                 <th>Contrato</th>
                 <th>Edición</th>
                 <th>Asistió</th>
