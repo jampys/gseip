@@ -122,9 +122,13 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Tema</span></td>
-                    <td>'.$fila4["tema"].'</td>
+                    <td colspan="3">'.$fila4["tema"].'</td>
+                </tr>
+                <tr>
                     <td><span class="subtitulo">Categoría</span></td>
-                    <td>'.$fila4['categoria'].'</td>
+                    <td>'.$fila4["categoria"].'</td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Descripción</span></td>
