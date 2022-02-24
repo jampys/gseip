@@ -42,6 +42,7 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(7, $fila, $p['codigo']);
     $sheet->setCellValueByColumnAndRow(8, $fila, $p['variable']);
     $sheet->setCellValueByColumnAndRow(9, $fila, $p['convenio']);
+    $sheet->setCellValueByColumnAndRow(10, $fila, $p['area']);
 
     $fila++;
 endforeach;
@@ -57,7 +58,7 @@ foreach ($sheet->getColumnIterator() as $column) {
 
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'partes_'.$encabezado["contrato"].'_'.$_GET['fecha_desde'].'_'.$_GET['fecha_hasta'].'.xlsx';
+$filename = 'RN5_conceptos_'.$encabezado["contrato"].'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');

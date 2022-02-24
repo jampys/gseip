@@ -14,11 +14,10 @@ $view->disableLayout=false;
 switch ($operation)
 {
 
-    case 'reporte_rn5':
+    case 'reporte_rn5': //ok
         $view->disableLayout=true;
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $id_periodo = ($_GET['id_periodo'])? $_GET['id_periodo'] : null;
-
         $view->partes = $rta = ReporteNovedades::getPdf($id_contrato, $id_periodo);
 
         $encabezado = array();
@@ -35,7 +34,7 @@ switch ($operation)
         break;
 
 
-    default : //ok
+    default :
         $view->areas = NovArea::getAreas(); //carga el combo para filtrar Areas
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
         $view->contentTemplate="view/novedades_partes/partesGrid.php";
