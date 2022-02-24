@@ -25,7 +25,7 @@
             buttons: [
                 {
                     text: '<i class="far fa-file-pdf dp_blue"></i>',
-                    titleAttr: 'Reporte (pdf) de actividad de cuadrillas',
+                    titleAttr: 'Emitir reporte .pdf de actividad de cuadrillas',
                     action: function ( e, dt, node, config ) {
                         let link = 'index.php?action=partes&operation=reporte'+
                             '&id_contrato='+$('#add_contrato').val()+
@@ -40,7 +40,7 @@
                 },
                 {
                     text: '<i class="far fa-file-excel dp_blue"></i>',
-                    titleAttr: 'Reporte (xls) de actividad de cuadrillas',
+                    titleAttr: 'Emitir reporte .xls de actividad de cuadrillas',
                     action: function ( e, dt, node, config ) {
                         let link = 'index.php?action=partes&operation=reporte'+
                             '&id_contrato='+$('#add_contrato').val()+

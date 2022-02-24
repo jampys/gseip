@@ -535,13 +535,13 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Control de inspección:</strong>
-                                <strong class="dp_yellow">(Cuadrilla)</strong>
+                                &nbsp;<strong>RN5 Control de conceptos:</strong>
+                                <strong class="dp_yellow">(Empleado)</strong>
                                 <strong>:</strong>
-                                Actividad de cuadrilla día por día durante un período indicado.
+                                Conceptos por empleado durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit5" name="submit5" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit5" name="submit5" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
