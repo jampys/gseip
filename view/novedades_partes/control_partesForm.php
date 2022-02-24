@@ -1,4 +1,11 @@
-﻿<script type="text/javascript">
+﻿<style type="text/css">
+    .alert{
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+</style>
+
+<script type="text/javascript">
 
 
     $(document).ready(function(){
