@@ -2,6 +2,7 @@
 include_once("model/nov_reportesModel.php");
 include_once("model/contratosModel.php");
 include_once("model/companiasModel.php");
+include_once("model/nov_periodosModel.php");
 
 
 $operation = "";
@@ -26,8 +27,8 @@ switch ($operation)
         $encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
         $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
         $encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';
-        $encabezado['cuadrilla'] = ($cuadrilla != null)? $cuadrilla : 'Todas';
-
+        $encabezado['obj_periodo'] = new NovPeriodo($_GET['id_periodo']);
+        $encabezado['periodo'] = $encabezado['obj_periodo']->getFechaDesde().' - '.$encabezado['obj_periodo']->getFechaHasta();
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
 
         $view->contentTemplate="view/novedades_partes/generador_rn5.php";

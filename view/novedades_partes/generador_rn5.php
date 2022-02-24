@@ -11,36 +11,37 @@ $sheet->setTitle('partes');
 
 //titulo ----------------------------------------------------------------
 
-$spreadsheet->getActiveSheet()->mergeCells('A1:F1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
-$spreadsheet->getActiveSheet()->mergeCells('A2:F2');
-$spreadsheet->getActiveSheet()->mergeCells('A3:F3');
-$spreadsheet->getActiveSheet()->mergeCells('A4:F4');
-$spreadsheet->getActiveSheet()->mergeCells('A5:F5');
-$spreadsheet->getActiveSheet()->getStyle('A1:F5')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:F5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->mergeCells('A1:I1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
+$spreadsheet->getActiveSheet()->mergeCells('A2:I2');
+$spreadsheet->getActiveSheet()->mergeCells('A3:I3');
+$spreadsheet->getActiveSheet()->mergeCells('A4:I4');
+$spreadsheet->getActiveSheet()->getStyle('A1:I4')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:I4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
 $sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
-$sheet->setCellValueByColumnAndRow(1, 3, 'Cuadrilla: '.$encabezado['cuadrilla']);
-$sheet->setCellValueByColumnAndRow(1, 4, 'Fecha desde - hasta: '.$encabezado['fecha_desde'].' - '.$encabezado['fecha_hasta']);
-$sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_emision']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Período: '.$encabezado['periodo']);
+$sheet->setCellValueByColumnAndRow(1, 4, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 
 //encabezado ------------------------------------------------------------
-$cabecera = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT"];
-$sheet->fromArray($cabecera, null, 'A7');
-$spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$cabecera = ["Fecha parte", "IN", "Cuadrilla", "Empleado", "Concepto", "Cantidad", "Código", "Variable", "Convenio"];
+$sheet->fromArray($cabecera, null, 'A6');
+$spreadsheet->getActiveSheet()->getStyle('A6:I6')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A6:I6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
-$fila = 8;
+$fila = 7;
 foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['fecha_parte']);
-    $sheet->setCellValueByColumnAndRow(2, $fila, $p['cuadrilla']);
-    $sheet->setCellValueByColumnAndRow(3, $fila, $p['area']);
-    $sheet->setCellValueByColumnAndRow(4, $fila, $p['evento']);
-    $sheet->setCellValueByColumnAndRow(5, $fila, $p['nro_parte_diario']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['orden_nro']);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $p['id_parte']);
+    $sheet->setCellValueByColumnAndRow(3, $fila, $p['cuadrilla']);
+    $sheet->setCellValueByColumnAndRow(4, $fila, $p['empleado']);
+    $sheet->setCellValueByColumnAndRow(5, $fila, $p['concepto']);
+    $sheet->setCellValueByColumnAndRow(6, $fila, $p['cantidad']);
+    $sheet->setCellValueByColumnAndRow(7, $fila, $p['codigo']);
+    $sheet->setCellValueByColumnAndRow(8, $fila, $p['variable']);
+    $sheet->setCellValueByColumnAndRow(9, $fila, $p['convenio']);
 
     $fila++;
 endforeach;

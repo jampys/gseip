@@ -20,8 +20,8 @@ join empleados em on em.id_empleado = npe.id_empleado
 join nov_concepto_convenio_contrato nccc on nccc.id_concepto_convenio_contrato = npec.id_concepto_convenio_contrato
 join nov_conceptos nc on nc.id_concepto = nccc.id_concepto
 join nov_convenios nconv on nconv.id_convenio = nccc.id_convenio
-where np.id_contrato = 35
-and np.id_periodo = 276";
+where np.id_contrato = 21
+and np.id_periodo = 225";
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_contrato', $id_contrato);
         //$stmt->dpBind(':cuadrilla', $cuadrilla);
