@@ -191,7 +191,7 @@
 
 
         //reporte: conceptos en enpleado
-        $('#myModal').on("click", "#submit5", function(){
+        $('#myModal').on("click", "#submit6", function(){
             //alert('Crosstab sucesos');
             //$('#txt-form').validate().resetForm(); //limpiar error input validate
             $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
@@ -337,7 +337,7 @@
 
 
         //RN5 control de conceptos
-        $('#myModal').on("click", "#submit5", function(){
+        $('#myModal').on("click", "#submit6", function(){
             //alert('Crosstab sucesos');
             //$('#txt-form').validate().resetForm(); //limpiar error input validate
             $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
@@ -347,7 +347,7 @@
 
             if ($("#txt-form").valid()){
 
-                 let link = 'index.php?action=nov_reportes&operation=reporte_rn5'+
+                 let link = 'index.php?action=nov_reportes&operation=reporte_rn6'+
                  '&id_contrato='+$("#myModal #id_contrato").val()+
                  '&id_periodo='+$("#myModal #id_periodo").val();
                  window.location.href = link;
@@ -518,13 +518,13 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>RN5 Control de conceptos:</strong>
+                                &nbsp;<strong>RN6 Control de conceptos:</strong>
                                 <strong class="dp_yellow">(Empleado)</strong>
                                 <strong>:</strong>
                                 Conceptos por empleado durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit5" name="submit5" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit6" name="submit6" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>

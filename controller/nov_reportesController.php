@@ -14,11 +14,11 @@ $view->disableLayout=false;
 switch ($operation)
 {
 
-    case 'reporte_rn5': //ok
+    case 'reporte_rn6': //ok
         $view->disableLayout=true;
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $id_periodo = ($_GET['id_periodo'])? $_GET['id_periodo'] : null;
-        $view->partes = $rta = ReporteNovedades::getPdf($id_contrato, $id_periodo);
+        $view->partes = $rta = ReporteNovedades::getReporteRn6($id_contrato, $id_periodo);
 
         $encabezado = array();
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
