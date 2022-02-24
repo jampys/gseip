@@ -11,12 +11,12 @@ $sheet->setTitle('partes');
 
 //titulo ----------------------------------------------------------------
 
-$spreadsheet->getActiveSheet()->mergeCells('A1:I1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
-$spreadsheet->getActiveSheet()->mergeCells('A2:I2');
-$spreadsheet->getActiveSheet()->mergeCells('A3:I3');
-$spreadsheet->getActiveSheet()->mergeCells('A4:I4');
-$spreadsheet->getActiveSheet()->getStyle('A1:I4')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:I4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->mergeCells('A1:D1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
+$spreadsheet->getActiveSheet()->mergeCells('A2:D2');
+$spreadsheet->getActiveSheet()->mergeCells('A3:D3');
+$spreadsheet->getActiveSheet()->mergeCells('A4:D4');
+$spreadsheet->getActiveSheet()->getStyle('A1:D4')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:D4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
 $sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
@@ -25,10 +25,10 @@ $sheet->setCellValueByColumnAndRow(1, 4, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //encabezado ------------------------------------------------------------
-$cabecera = ["Fecha parte", "IN", "Cuadrilla", "Empleado", "Concepto", "Cantidad", "Código", "Variable", "Convenio"];
+$cabecera = ["Fecha parte", "IN", "Cuadrilla", "Empleado", "Concepto", "Cantidad", "Código", "Variable", "Convenio", "Área", "Evento"];
 $sheet->fromArray($cabecera, null, 'A6');
-$spreadsheet->getActiveSheet()->getStyle('A6:I6')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A6:I6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A6:K6')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A6:K6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
 $fila = 7;
@@ -43,6 +43,7 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(8, $fila, $p['variable']);
     $sheet->setCellValueByColumnAndRow(9, $fila, $p['convenio']);
     $sheet->setCellValueByColumnAndRow(10, $fila, $p['area']);
+    $sheet->setCellValueByColumnAndRow(11, $fila, $p['evento']);
 
     $fila++;
 endforeach;

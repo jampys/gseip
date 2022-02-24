@@ -10,7 +10,8 @@ class ReporteNovedades
         $query = "select DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
                   np.id_parte, np.cuadrilla, concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
                   nc.nombre as concepto, npec.cantidad, nccc.codigo, nccc.variable, nconv.codigo as convenio,
-                  concat(a.codigo, ' ', a.nombre) as area
+                  concat(a.codigo, ' ', a.nombre) as area,
+                  concat(e.codigo, ' ', e.nombre) as evento
                   from nov_partes np
                   join nov_parte_empleado npe on npe.id_parte = np.id_parte
                   join nov_parte_empleado_concepto npec on npec.id_parte_empleado = npe.id_parte_empleado
@@ -19,6 +20,7 @@ class ReporteNovedades
                   join nov_conceptos nc on nc.id_concepto = nccc.id_concepto
                   join nov_convenios nconv on nconv.id_convenio = nccc.id_convenio
                   left join nov_areas a on a.id_area = np.id_area
+                  left join nov_eventos_c e on e.id_evento = np.id_evento
                   where np.id_contrato = :id_contrato
                   and np.id_periodo = :id_periodo";
         $stmt->dpPrepare($query);
