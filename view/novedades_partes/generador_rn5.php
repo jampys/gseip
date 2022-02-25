@@ -15,23 +15,27 @@ $spreadsheet->getActiveSheet()->mergeCells('A1:D1'); //$spreadsheet->getActiveSh
 $spreadsheet->getActiveSheet()->mergeCells('A2:D2');
 $spreadsheet->getActiveSheet()->mergeCells('A3:D3');
 $spreadsheet->getActiveSheet()->mergeCells('A4:D4');
-$spreadsheet->getActiveSheet()->getStyle('A1:D4')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:D4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->mergeCells('A5:D5');
+$spreadsheet->getActiveSheet()->mergeCells('A6:D6');
+$spreadsheet->getActiveSheet()->getStyle('A1:D6')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:D6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
 $sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
-$sheet->setCellValueByColumnAndRow(1, 3, 'Período: '.$encabezado['periodo']);
-$sheet->setCellValueByColumnAndRow(1, 4, 'Fecha emisión: '.$encabezado['fecha_emision']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Empleado: '.$encabezado['empleado']);
+$sheet->setCellValueByColumnAndRow(1, 4, 'Concepto: '.$encabezado['concepto']);
+$sheet->setCellValueByColumnAndRow(1, 5, 'Período: '.$encabezado['periodo']);
+$sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 
 //encabezado ------------------------------------------------------------
 $cabecera = ["Fecha parte", "IN", "Cuadrilla", "Empleado", "Concepto", "Cantidad", "Código", "Variable", "Convenio", "Área", "Evento"];
-$sheet->fromArray($cabecera, null, 'A6');
-$spreadsheet->getActiveSheet()->getStyle('A6:K6')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A6:K6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$sheet->fromArray($cabecera, null, 'A8');
+$spreadsheet->getActiveSheet()->getStyle('A8:K8')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A8:K8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
-$fila = 7;
+$fila = 9;
 foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['fecha_parte']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['id_parte']);

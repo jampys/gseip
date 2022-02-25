@@ -5,7 +5,7 @@ class ReporteNovedades
 {
 
 
-    public static function getReporteRn6($id_contrato, $id_periodo) { //ok
+    public static function getReporteRn6($id_contrato, $id_periodo, $id_empleado, $id_concepto) { //ok
         $stmt=new sQuery();
         $query = "select DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
                   np.id_parte, np.cuadrilla, concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
