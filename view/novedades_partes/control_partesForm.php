@@ -342,16 +342,15 @@
             if ($("#txt-form").valid()){
 
                  let link = 'index.php?action=nov_reportes&operation=reporte_rn6'+
-                 '&id_contrato='+$("#myModal #id_contrato").val()+
-                 '&id_periodo='+$("#myModal #id_periodo").val();
+                     '&id_contrato='+$("#myModal #id_contrato").val()+
+                     '&id_periodo='+$("#myModal #id_periodo").val()+
+                     '&id_empleado='+$("#myModal #id_empleado").val()+
+                     '&id_concepto='+$("#myModal #id_concepto").val();
                  window.location.href = link;
             }
 
             return false;
         });
-
-
-
 
 
 

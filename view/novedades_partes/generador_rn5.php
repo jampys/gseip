@@ -29,10 +29,10 @@ $sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //encabezado ------------------------------------------------------------
-$cabecera = ["Fecha parte", "IN", "Cuadrilla", "Empleado", "Concepto", "Cantidad", "Código", "Variable", "Convenio", "Área", "Evento"];
+$cabecera = ["Fecha parte", "IN", "Cuadrilla", "Empleado", "Concepto", "Cantidad", "Código", "Variable", "Convenio", "Área", "Evento", "Motivo"];
 $sheet->fromArray($cabecera, null, 'A8');
-$spreadsheet->getActiveSheet()->getStyle('A8:K8')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A8:K8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
 $fila = 9;
@@ -48,6 +48,7 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(9, $fila, $p['convenio']);
     $sheet->setCellValueByColumnAndRow(10, $fila, $p['area']);
     $sheet->setCellValueByColumnAndRow(11, $fila, $p['evento']);
+    $sheet->setCellValueByColumnAndRow(11, $fila, $p['motivo']);
 
     $fila++;
 endforeach;

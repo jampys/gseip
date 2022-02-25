@@ -9,7 +9,7 @@ class ReporteNovedades
         $stmt=new sQuery();
         $query = "select DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
                   np.id_parte, np.cuadrilla, concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
-                  nc.nombre as concepto, npec.cantidad, nccc.codigo, nccc.variable, nconv.codigo as convenio,
+                  nc.nombre as concepto, npec.cantidad, npec.motivo, nccc.codigo, nccc.variable, nconv.codigo as convenio,
                   concat(a.codigo, ' ', a.nombre) as area,
                   concat(e.codigo, ' ', e.nombre) as evento
                   from nov_partes np
@@ -22,10 +22,14 @@ class ReporteNovedades
                   left join nov_areas a on a.id_area = np.id_area
                   left join nov_eventos_c e on e.id_evento = np.id_evento
                   where np.id_contrato = :id_contrato
-                  and np.id_periodo = :id_periodo";
+                  and np.id_periodo = :id_periodo
+                  and npe.id_empleado = ifnull(:id_empleado, npe.id_empleado)
+                  and nccc.id_concepto_convenio_contrato = ifnull(:id_concepto, nccc.id_concepto_convenio_contrato)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':id_periodo', $id_periodo);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_concepto', $id_concepto);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
