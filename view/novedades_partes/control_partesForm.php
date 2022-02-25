@@ -150,22 +150,16 @@
 
         
 
-        //reporte: concepto en enpleado
-        $('#myModal').on("click", "#submit1", function(){
-            //alert('Crosstab sucesos');
-            //$('#txt-form').validate().resetForm(); //limpiar error input validate
+        //reporte: concepto en enpleado. Obsoleto 25/02/2022
+        /*$('#myModal').on("click", "#submit1", function(){
             $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
             $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
             $('#id_empleado').attr('validar', 1);
             $('#id_concepto').attr('validar', 1);
 
-
             if ($("#txt-form").valid()){
 
                 params={};
-                //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
-                //params.fecha_desde = $("#myModal #fecha_desde").val();
-                //params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.id_periodo = $("#myModal #id_periodo").val();
                 params.id_empleado = $("#myModal #id_empleado").val();
@@ -173,8 +167,6 @@
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
                 var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_conceptos.rptdesign"+
-                    //"&p_fecha_desde="+params.fecha_desde+
-                    //"&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_contrato="+params.id_contrato+
                     "&p_id_periodo="+params.id_periodo+
                     "&p_id_empleado="+params.id_empleado+
@@ -184,9 +176,8 @@
 
             }
 
-
             return false;
-        });
+        });*/
 
 
 
@@ -416,18 +407,9 @@
                     </div>
 
 
-                    <!--<div class="form-group">
-                        <label class="control-label" for="empleado">Fecha desde / hasta</label>
-                        <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly disabled>
-                            <div class="input-group-addon">a</div>
-                            <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly disabled>
-                        </div>
-                    </div>-->
-
                     <br/>
                     
-                    <div class="alert alert-info" role="alert">
+                    <!--<div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
@@ -440,7 +422,7 @@
                                 <button class="btn btn-primary" id="submit1" name="submit1" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
 
                     <!--<div class="alert alert-info" role="alert">
