@@ -27,7 +27,7 @@ $sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //encabezado ------------------------------------------------------------
-$cabecera = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT"];
+$cabecera = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT", "Nro. contrato", "Mes", "Semana"];
 $sheet->fromArray($cabecera, null, 'A7');
 $spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
@@ -35,12 +35,22 @@ $spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFill()->setFillType(\PhpOf
 //cuerpo -----------------------------------------------------------------
 $fila = 8;
 foreach ($view->partes as $p):
+
+    $sMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('m');
+    $temp = "";
+
+
+
+
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['fecha_parte']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['cuadrilla']);
     $sheet->setCellValueByColumnAndRow(3, $fila, $p['area']);
     $sheet->setCellValueByColumnAndRow(4, $fila, $p['evento']);
     $sheet->setCellValueByColumnAndRow(5, $fila, $p['nro_parte_diario']);
     $sheet->setCellValueByColumnAndRow(6, $fila, $p['orden_nro']);
+    $sheet->setCellValueByColumnAndRow(7, $fila, $p['nro_contrato']);
+    $sheet->setCellValueByColumnAndRow(8, $fila, $sMonth);
+    $sheet->setCellValueByColumnAndRow(9, $fila, $temp);
 
     $fila++;
 endforeach;

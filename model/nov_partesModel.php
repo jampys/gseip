@@ -633,7 +633,8 @@ limit 1";
                     order by pa.fecha_parte asc";*/
         $query = "select np.id_parte, np.comentarios,
 DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
-cu.nombre_corto_op as cuadrilla, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro
+cu.nombre_corto_op as cuadrilla, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
+co.nro_contrato
 from nov_partes np
 join nov_cuadrillas cu on np.id_cuadrilla = cu.id_cuadrilla
 left join nov_parte_orden npo on npo.id_parte = np.id_parte
