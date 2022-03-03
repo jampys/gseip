@@ -608,7 +608,7 @@ limit 1";
         $stmt=new sQuery();
         $query = "select np.id_parte, np.comentarios,
 DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
-cu.nombre_corto_op as cuadrilla, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
+cu.nombre_corto_op, cu.nombre_corto, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
 co.nro_contrato,
 (select GROUP_CONCAT(emx.apellido SEPARATOR ' - ') from nov_parte_empleado npex join empleados emx on emx.id_empleado = npex.id_empleado where npex.id_parte = np.id_parte) as personal
 from nov_partes np
