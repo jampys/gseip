@@ -27,7 +27,7 @@ $sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //encabezado ------------------------------------------------------------
-$cabecera = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT", "Nro. contrato", "Mes", "Semana"];
+$cabecera = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT", "Nro. contrato", "Mes", "Semana", "Día semana"];
 $sheet->fromArray($cabecera, null, 'A7');
 $spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
@@ -39,6 +39,7 @@ foreach ($view->partes as $p):
     $sMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('m');
     $sFirstDayOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('01/m/Y');
     $sWeekOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('W') - DateTime::createFromFormat('d/m/Y', $sFirstDayOfMonth)->format('W') + 1;
+    $sDayOfWeek = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('N');
 
 
 
@@ -52,6 +53,7 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(7, $fila, $p['nro_contrato']);
     $sheet->setCellValueByColumnAndRow(8, $fila, $sMonth);
     $sheet->setCellValueByColumnAndRow(9, $fila, $sWeekOfMonth);
+    $sheet->setCellValueByColumnAndRow(10, $fila, $sDayOfWeek);
 
     $fila++;
 endforeach;
