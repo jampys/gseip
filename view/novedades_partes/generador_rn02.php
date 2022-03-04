@@ -16,24 +16,26 @@ $spreadsheet->getActiveSheet()->mergeCells('A2:F2');
 $spreadsheet->getActiveSheet()->mergeCells('A3:F3');
 $spreadsheet->getActiveSheet()->mergeCells('A4:F4');
 $spreadsheet->getActiveSheet()->mergeCells('A5:F5');
-$spreadsheet->getActiveSheet()->getStyle('A1:F5')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:F5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->mergeCells('A6:F6');
+$spreadsheet->getActiveSheet()->getStyle('A1:F6')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:F6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
-$sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
-$sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
-$sheet->setCellValueByColumnAndRow(1, 3, 'Cuadrilla: '.$encabezado['cuadrilla']);
-$sheet->setCellValueByColumnAndRow(1, 4, 'Fecha desde - hasta: '.$encabezado['fecha_desde'].' - '.$encabezado['fecha_hasta']);
-$sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_emision']);
+$sheet->setCellValueByColumnAndRow(1, 1, 'RN02 Reporte de actividad de cuadrillas');
+$sheet->setCellValueByColumnAndRow(1, 2, 'Cliente: '.$encabezado['cliente']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Contrato: '.$encabezado['contrato']);
+$sheet->setCellValueByColumnAndRow(1, 4, 'Cuadrilla: '.$encabezado['cuadrilla']);
+$sheet->setCellValueByColumnAndRow(1, 5, 'Fecha desde - hasta: '.$encabezado['fecha_desde'].' - '.$encabezado['fecha_hasta']);
+$sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 
 //encabezado ------------------------------------------------------------
 $cabecera = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT", "Nro. contrato", "Mes", "Semana", "Día semana", "Nro. recurso", "Personal", "Interno"];
-$sheet->fromArray($cabecera, null, 'A7');
-$spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A7:F7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$sheet->fromArray($cabecera, null, 'A8');
+$spreadsheet->getActiveSheet()->getStyle('A8:F8')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A8:F8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
-$fila = 8;
+$fila = 9;
 foreach ($view->partes as $p):
 
     $sMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('m');
@@ -70,7 +72,7 @@ foreach ($sheet->getColumnIterator() as $column) {
 
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'partes_'.$encabezado["contrato"].'_'.$_GET['fecha_desde'].'_'.$_GET['fecha_hasta'].'.xlsx';
+$filename = 'RN02_'.$encabezado["contrato"].'_'.$_GET['fecha_desde'].'_'.$_GET['fecha_hasta'].'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');

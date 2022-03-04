@@ -25,7 +25,7 @@
             buttons: [
                 {
                     text: '<i class="far fa-file-pdf fa-lg dp_blue"></i>',
-                    titleAttr: 'Emitir reporte RN01 de actividad de cuadrillas',
+                    titleAttr: 'Emitir RN01 Reporte de actividad de cuadrillas',
                     action: function ( e, dt, node, config ) {
                         let link = 'index.php?action=partes&operation=reporte'+
                             '&id_contrato='+$('#add_contrato').val()+
@@ -40,7 +40,7 @@
                 },
                 {
                     text: '<i class="far fa-file-excel fa-lg dp_blue"></i>',
-                    titleAttr: 'Emitir reporte RN02 de actividad de cuadrillas',
+                    titleAttr: 'Emitir RN02 Reporte de actividad de cuadrillas',
                     action: function ( e, dt, node, config ) {
                         let link = 'index.php?action=partes&operation=reporte'+
                             '&id_contrato='+$('#add_contrato').val()+
