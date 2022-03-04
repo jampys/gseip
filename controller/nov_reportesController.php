@@ -18,7 +18,7 @@ $view->disableLayout=false;
 switch ($operation)
 {
 
-    case 'reporte_rn6': //ok
+    case 'reporte_rn06': //ok
         $view->disableLayout=true;
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $id_periodo = ($_GET['id_periodo'])? $_GET['id_periodo'] : null;
@@ -45,7 +45,7 @@ switch ($operation)
 
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
 
-        $view->contentTemplate="view/novedades_partes/generador_rn5.php";
+        $view->contentTemplate="view/novedades_partes/generador_rn06.php";
         break;
 
 

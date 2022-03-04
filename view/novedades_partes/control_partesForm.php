@@ -321,7 +321,7 @@
 
 
 
-        //RN6 control de conceptos
+        //RN06 control de conceptos
         $('#myModal').on("click", "#submit6", function(){
             //alert('Crosstab sucesos');
             //$('#txt-form').validate().resetForm(); //limpiar error input validate
@@ -332,7 +332,7 @@
 
             if ($("#txt-form").valid()){
 
-                 let link = 'index.php?action=nov_reportes&operation=reporte_rn6'+
+                 let link = 'index.php?action=nov_reportes&operation=reporte_rn06'+
                      '&id_contrato='+$("#myModal #id_contrato").val()+
                      '&id_periodo='+$("#myModal #id_periodo").val()+
                      '&id_empleado='+$("#myModal #id_empleado").val()+
@@ -445,7 +445,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>RN6 Control de conceptos:</strong>
+                                &nbsp;<strong>RN06 Control de conceptos:</strong>
                                 <strong class="dp_yellow">(Empleado)</strong>
                                 <strong>:</strong>
                                 Conceptos por empleado durante un período indicado.

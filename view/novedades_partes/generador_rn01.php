@@ -21,7 +21,7 @@
                 </table>
             ');
     //$mpdf->SetFooter('{PAGENO}');
-    $mpdf->SetTitle('Reporte de Actividad de cuadrillas');
+    $mpdf->SetTitle('RN01 Reporte de Actividad de cuadrillas');
 
     $css = file_get_contents('resources/css/dario_mpdf.css');
     $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
@@ -125,7 +125,7 @@
         $mpdf->WriteHTML('</tbody></table>');
 
 
-        $namepdf = 'Reporte_Actividad_Cuadrillas-'.$encabezado['cliente'].'-'.date('dmYHi').'.pdf';
+        $namepdf = 'RN01-'.$encabezado['cliente'].'-'.date('dmYHi').'.pdf';
         $mpdf->Output($namepdf, 'I'); //I visualizar, D descargar
 
 

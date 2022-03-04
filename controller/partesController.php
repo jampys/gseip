@@ -241,7 +241,7 @@ switch ($operation)
         break;
 
 
-    case 'reporte':
+    case 'reporte': //RN01 y RN02
         $view->disableLayout=true;
         $fecha_desde = $_GET['fecha_desde'];
         $fecha_hasta = $_GET['fecha_hasta'];
@@ -268,8 +268,8 @@ switch ($operation)
 
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
 
-        if ($_GET['target'] == 'pdf') $view->contentTemplate="view/novedades_partes/generador_pdf.php";
-        else $view->contentTemplate="view/novedades_partes/generador_excel.php";
+        if ($_GET['target'] == 'pdf') $view->contentTemplate="view/novedades_partes/generador_rn01.php";
+        else $view->contentTemplate="view/novedades_partes/generador_rn02.php";
         break;
 
 
