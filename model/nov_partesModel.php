@@ -607,10 +607,16 @@ limit 1";
     public static function getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla) {
         $stmt=new sQuery();
         $query = "select np.id_parte, np.comentarios,
-DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
-cu.nombre_corto_op, cu.nombre_corto, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
-co.nro_contrato,
-(select GROUP_CONCAT(emx.apellido SEPARATOR ' - ') from nov_parte_empleado npex join empleados emx on emx.id_empleado = npex.id_empleado where npex.id_parte = np.id_parte) as personal
+                  DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+                  cu.nombre_corto_op, cu.nombre_corto, cu.denominacion_recurso, cu.item,
+                  na.nombre as area,
+                  nec.nombre as evento,
+                  npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
+                  DATE_FORMAT(npo.hora_inicio, '%H:%i') as hora_inicio,
+                  DATE_FORMAT(npo.hora_fin, '%H:%i') as hora_fin,
+                  DATE_FORMAT(npo.hora_fin - npo.hora_inicio, '%H:%i') as hrs,
+                  co.nro_contrato,
+                 (select GROUP_CONCAT(emx.apellido SEPARATOR ' - ') from nov_parte_empleado npex join empleados emx on emx.id_empleado = npex.id_empleado where npex.id_parte = np.id_parte) as personal
 from nov_partes np
 join nov_cuadrillas cu on np.id_cuadrilla = cu.id_cuadrilla
 left join nov_parte_orden npo on npo.id_parte = np.id_parte

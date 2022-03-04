@@ -29,7 +29,7 @@ $sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //encabezado ------------------------------------------------------------
-$cabecera = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT", "Nro. contrato", "Mes", "Semana", "Día semana", "Nro. recurso", "Personal", "Interno"];
+$cabecera = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT", "Nro. contrato", "Mes", "Semana", "Día semana", "Nro. recurso", "Denominación recurso", "Personal", "Interno", "Hrs", "Item", "Horario inicio", "Horario fin"];
 $sheet->fromArray($cabecera, null, 'A8');
 $spreadsheet->getActiveSheet()->getStyle('A8:F8')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A8:F8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
@@ -55,8 +55,13 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(9, $fila, $sWeekOfMonth);
     $sheet->setCellValueByColumnAndRow(10, $fila, $sDayOfWeek);
     $sheet->setCellValueByColumnAndRow(11, $fila, $p['nombre_corto_op']);
-    $sheet->setCellValueByColumnAndRow(12, $fila, $p['personal']);
-    $sheet->setCellValueByColumnAndRow(13, $fila, $p['nombre_corto']);
+    $sheet->setCellValueByColumnAndRow(12, $fila, $p['denominacion_recurso']);
+    $sheet->setCellValueByColumnAndRow(13, $fila, $p['personal']);
+    $sheet->setCellValueByColumnAndRow(14, $fila, $p['nombre_corto']);
+    $sheet->setCellValueByColumnAndRow(15, $fila, $p['hrs']);
+    $sheet->setCellValueByColumnAndRow(16, $fila, $p['item']);
+    $sheet->setCellValueByColumnAndRow(17, $fila, $p['hora_inicio']);
+    $sheet->setCellValueByColumnAndRow(18, $fila, $p['hora_fin']);
 
     $fila++;
 endforeach;
