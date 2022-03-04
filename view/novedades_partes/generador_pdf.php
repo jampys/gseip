@@ -40,7 +40,7 @@
         </div>
 
         <div style="float: left; width: 65%; height: 36px; text-align: left">
-            <span style="font-size: 16px; font-weight: bold">Reporte de actividad de cuadrillas</span><br/>
+            <span style="font-size: 16px; font-weight: bold">RN01 Reporte de actividad de cuadrillas</span><br/>
             <span style="font-size: 13px">Gerencia operativa y de servicios</span>
         </div>
 
