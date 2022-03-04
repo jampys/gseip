@@ -284,7 +284,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Control de Novedades Administración:</strong>
+                                &nbsp;<strong>RN03 Control de Novedades Administración:</strong>
                                 Novedades en formato de tabla cruzada (empleados/conceptos).
                             </div>
                             <div class="col-md-2">
@@ -298,7 +298,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags" ></span>
-                                &nbsp;<strong>Archivo de texto</strong>
+                                &nbsp;<strong>RN04 Archivo de texto</strong>
                                 <strong class="dp_orange">(RRHH)</strong>
                                 <strong>:</strong>
                                 Novedades en formato .txt (admisible para BAS).

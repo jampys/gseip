@@ -24,7 +24,7 @@ switch ($operation)
 
     case 'loadControl': //ok  //abre ventana modal para controlar novedades
         $view->disableLayout=true;
-        $view->label = 'Controlar novedades';
+        $view->label = 'Control de novedades';
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
 
         $view->contentTemplate="view/novedades_partes/control_partesForm.php";
