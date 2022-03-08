@@ -614,7 +614,7 @@ limit 1";
                   npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
                   DATE_FORMAT(npo.hora_inicio, '%H:%i') as hora_inicio,
                   DATE_FORMAT(npo.hora_fin, '%H:%i') as hora_fin,
-                  DATE_FORMAT(npo.hora_fin - npo.hora_inicio, '%H:%i') as hrs,
+                  time_format(timediff(npo.hora_fin, npo.hora_inicio), '%H:%i') as hrs,
                   co.nro_contrato,
                  (select GROUP_CONCAT(emx.apellido SEPARATOR ' - ') from nov_parte_empleado npex join empleados emx on emx.id_empleado = npex.id_empleado where npex.id_parte = np.id_parte) as personal
 from nov_partes np
