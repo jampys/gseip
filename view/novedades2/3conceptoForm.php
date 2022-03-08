@@ -246,7 +246,7 @@
                 //$('.selectpicker').selectpicker('refresh');
                 //$('#myModal #id_empleado').selectpicker('val', params.id_empleado).prop('disabled', true); //https://developer.snapappointments.com/bootstrap-select/methods/
                 $('#myModal').modal();
-            })
+            });
         });
 
 
