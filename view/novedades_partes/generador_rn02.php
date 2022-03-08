@@ -82,11 +82,10 @@ foreach ($view->partes as $p):
     //$sMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('m');
     $sMonth = substr($p['periodo'], -2);
     //$sFirstDayOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('01/m/Y');
-    $sFirstDayOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_desde'])->format('01/m/Y');
+    $sFirstDayOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_desde'])->format('d/m/Y');
     $sWeekOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('W') - DateTime::createFromFormat('d/m/Y', $sFirstDayOfMonth)->format('W') + 1;
     $sDayOfWeek = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('N');
-
-
+    $horas_extra = ($p['id_evento'] == 1 or $p['id_evento'] == 15)? 'SI' : 'NO'; //horas extra: si tiene GU Guardia activada o JE Jornada extendida
 
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['nro_contrato']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $sMonth);
@@ -109,11 +108,11 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(19, $fila, $p['hrs']);
     $sheet->setCellValueByColumnAndRow(20, $fila, ''); //cantidad(coeficiente)
     $sheet->setCellValueByColumnAndRow(21, $fila, $p['item']);
-    $sheet->setCellValueByColumnAndRow(22, $fila, ''); //descripcion item
+    $sheet->setCellValueByColumnAndRow(22, $fila, $p['denominacion_recurso']); //descripcion item
     $sheet->setCellValueByColumnAndRow(23, $fila, ''); //VR unitario
     $sheet->setCellValueByColumnAndRow(24, $fila, ''); //VR total
-    $sheet->setCellValueByColumnAndRow(25, $fila, ''); //Horas extras
-    $sheet->setCellValueByColumnAndRow(26, $fila, ''); //observaciones
+    $sheet->setCellValueByColumnAndRow(25, $fila, $horas_extra); //Horas extras
+    $sheet->setCellValueByColumnAndRow(26, $fila, $p['evento']); //observaciones
     $sheet->setCellValueByColumnAndRow(27, $fila, ''); //tiempo de viaje
     $sheet->setCellValueByColumnAndRow(28, $fila, ''); //tiempo neto reparacion
     $sheet->setCellValueByColumnAndRow(29, $fila, ''); //tiempos varios

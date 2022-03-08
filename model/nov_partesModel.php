@@ -610,7 +610,7 @@ limit 1";
                   DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
                   cu.nombre_corto_op, cu.nombre_corto, cu.denominacion_recurso, cu.item,
                   na.nombre as area,
-                  nec.nombre as evento,
+                  nec.nombre as evento, nec.id_evento,
                   npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
                   DATE_FORMAT(npo.hora_inicio, '%H:%i') as hora_inicio,
                   DATE_FORMAT(npo.hora_fin, '%H:%i') as hora_fin,
