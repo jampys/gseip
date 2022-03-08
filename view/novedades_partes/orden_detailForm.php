@@ -202,9 +202,9 @@
 
 
         <div class="form-group">
-            <label for="id_area" class="control-label">Área</label>
+            <label for="id_area" class="control-label" title="Seleccionar sólo si difiere del área principal">Área secundaria</label>
             <select class="form-control selectpicker show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5">
-                <option value="">Seleccione un área</option>
+                <option value="">Seleccione un área secundaria</option>
                 <?php foreach ($view->areas as $ar){
                     ?>
                     <option value="<?php echo $ar['id_area']; ?>"

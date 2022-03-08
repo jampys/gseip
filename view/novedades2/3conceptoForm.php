@@ -886,7 +886,7 @@
             <div class="form-group">
                 <!--<label for="default_id_area" class="control-label">Área</label>-->
                 <select class="form-control selectpicker show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5">
-                    <option value="">Seleccione un área</option>
+                    <option value="">Seleccione un área principal</option>
                     <?php foreach ($view->areas as $ar){
                         ?>
                         <option value="<?php echo $ar['id_area']; ?>"
