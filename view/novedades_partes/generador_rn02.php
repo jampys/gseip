@@ -79,10 +79,14 @@ $spreadsheet->getActiveSheet()->getStyle('A8:AM8')->getFill()->setFillType(\PhpO
 $fila = 9;
 foreach ($view->partes as $p):
 
-    $sMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('m');
-    $sFirstDayOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('01/m/Y');
+    //$sMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('m');
+    $sMonth = substr($p['periodo'], -2);
+    //$sFirstDayOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('01/m/Y');
+    $sFirstDayOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_desde'])->format('01/m/Y');
     $sWeekOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('W') - DateTime::createFromFormat('d/m/Y', $sFirstDayOfMonth)->format('W') + 1;
     $sDayOfWeek = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('N');
+
+
 
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['nro_contrato']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $sMonth);

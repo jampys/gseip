@@ -616,9 +616,12 @@ limit 1";
                   DATE_FORMAT(npo.hora_fin, '%H:%i') as hora_fin,
                   time_format(timediff(npo.hora_fin, npo.hora_inicio), '%H:%i') as hrs,
                   co.nro_contrato,
+                  DATE_FORMAT(per.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  per.periodo,
                  (select GROUP_CONCAT(emx.apellido SEPARATOR ' - ') from nov_parte_empleado npex join empleados emx on emx.id_empleado = npex.id_empleado where npex.id_parte = np.id_parte) as personal
 from nov_partes np
 join nov_cuadrillas cu on np.id_cuadrilla = cu.id_cuadrilla
+join nov_periodos per on per.id_periodo = np.id_periodo
 left join nov_parte_orden npo on npo.id_parte = np.id_parte
 left join nov_eventos_c nec on nec.id_evento = np.id_evento
 left join nov_areas na on na.id_area = np.id_area
