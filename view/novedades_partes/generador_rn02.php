@@ -29,10 +29,51 @@ $sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //encabezado ------------------------------------------------------------
-$cabecera = ["Fecha parte", "Cuadrilla", "Área", "Evento", "Nro. parte", "Nro. OT", "Nro. contrato", "Mes", "Semana", "Día semana", "Nro. recurso", "Denominación recurso", "Personal", "Interno", "Hrs", "Item", "Horario inicio", "Horario fin"];
+$cabecera = [
+    "Nro. contrato",
+    "Mes",
+    "Semana",
+    "Parte No.",
+    "Fecha inicio",
+    "Fecha fin",
+    "Día semana",
+    "Solicitante",
+    "No. recurso",
+    "Denominación recurso",
+    "Personal",
+    "Interno",
+    "Zona",
+    "Lugar",
+    "Descripción",
+    "Avance %",
+    "OT",
+    "Cod",
+    "Hrs",
+    "Cantidad (coeficiente)",
+    "Item",
+    "Descripción item",
+    "VR unitario",
+    "VR total",
+    "Hs extras",
+    "Observaciones",
+    "Tiempo de viaje",
+    "Tiempo neto reparación",
+    "Tiempos varios",
+    "Tiempos restantes",
+    "Horario inicio",
+    "Horario fin",
+    "Parte objeto",
+    "Síntoma",
+    "Causa",
+    "Tiempo de parada",
+    "Observación de parada",
+    "Punto de medida",
+    "Observaciones generales"
+
+];
 $sheet->fromArray($cabecera, null, 'A8');
-$spreadsheet->getActiveSheet()->getStyle('A8:R8')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A8:R8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A8:AM8')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A8:AM8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
 $fila = 9;
@@ -43,25 +84,45 @@ foreach ($view->partes as $p):
     $sWeekOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('W') - DateTime::createFromFormat('d/m/Y', $sFirstDayOfMonth)->format('W') + 1;
     $sDayOfWeek = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('N');
 
-
-    $sheet->setCellValueByColumnAndRow(1, $fila, $p['fecha_parte']);
-    $sheet->setCellValueByColumnAndRow(2, $fila, $p['nombre_corto_op']);
-    $sheet->setCellValueByColumnAndRow(3, $fila, $p['area']);
-    $sheet->setCellValueByColumnAndRow(4, $fila, $p['evento']);
-    $sheet->setCellValueByColumnAndRow(5, $fila, $p['nro_parte_diario']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['orden_nro']);
-    $sheet->setCellValueByColumnAndRow(7, $fila, $p['nro_contrato']);
-    $sheet->setCellValueByColumnAndRow(8, $fila, $sMonth);
-    $sheet->setCellValueByColumnAndRow(9, $fila, $sWeekOfMonth);
-    $sheet->setCellValueByColumnAndRow(10, $fila, $sDayOfWeek);
-    $sheet->setCellValueByColumnAndRow(11, $fila, $p['nombre_corto_op']);
-    $sheet->setCellValueByColumnAndRow(12, $fila, $p['denominacion_recurso']);
-    $sheet->setCellValueByColumnAndRow(13, $fila, $p['personal']);
-    $sheet->setCellValueByColumnAndRow(14, $fila, $p['nombre_corto']);
-    $sheet->setCellValueByColumnAndRow(15, $fila, $p['hrs']);
-    $sheet->setCellValueByColumnAndRow(16, $fila, $p['item']);
-    $sheet->setCellValueByColumnAndRow(17, $fila, $p['hora_inicio']);
-    $sheet->setCellValueByColumnAndRow(18, $fila, $p['hora_fin']);
+    $sheet->setCellValueByColumnAndRow(1, $fila, $p['nro_contrato']);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $sMonth);
+    $sheet->setCellValueByColumnAndRow(3, $fila, $sWeekOfMonth);
+    $sheet->setCellValueByColumnAndRow(4, $fila, $p['nro_parte_diario']);
+    $sheet->setCellValueByColumnAndRow(5, $fila, $p['fecha_parte']);
+    $sheet->setCellValueByColumnAndRow(6, $fila, ''); //fecha fin
+    $sheet->setCellValueByColumnAndRow(7, $fila, $sDayOfWeek);
+    $sheet->setCellValueByColumnAndRow(8, $fila, ''); //solicitante
+    $sheet->setCellValueByColumnAndRow(9, $fila, $p['nombre_corto_op']);
+    $sheet->setCellValueByColumnAndRow(10, $fila, $p['denominacion_recurso']);
+    $sheet->setCellValueByColumnAndRow(11, $fila, $p['personal']);
+    $sheet->setCellValueByColumnAndRow(12, $fila, $p['nombre_corto']);
+    $sheet->setCellValueByColumnAndRow(13, $fila, $p['area']);
+    $sheet->setCellValueByColumnAndRow(14, $fila, ''); //lugar
+    $sheet->setCellValueByColumnAndRow(15, $fila, ''); //descripcion
+    $sheet->setCellValueByColumnAndRow(16, $fila, ''); //avance
+    $sheet->setCellValueByColumnAndRow(17, $fila, $p['orden_nro']);
+    $sheet->setCellValueByColumnAndRow(18, $fila, ''); //Cod
+    $sheet->setCellValueByColumnAndRow(19, $fila, $p['hrs']);
+    $sheet->setCellValueByColumnAndRow(20, $fila, ''); //cantidad(coeficiente)
+    $sheet->setCellValueByColumnAndRow(21, $fila, $p['item']);
+    $sheet->setCellValueByColumnAndRow(22, $fila, ''); //descripcion item
+    $sheet->setCellValueByColumnAndRow(23, $fila, ''); //VR unitario
+    $sheet->setCellValueByColumnAndRow(24, $fila, ''); //VR total
+    $sheet->setCellValueByColumnAndRow(25, $fila, ''); //Horas extras
+    $sheet->setCellValueByColumnAndRow(26, $fila, ''); //observaciones
+    $sheet->setCellValueByColumnAndRow(27, $fila, ''); //tiempo de viaje
+    $sheet->setCellValueByColumnAndRow(28, $fila, ''); //tiempo neto reparacion
+    $sheet->setCellValueByColumnAndRow(29, $fila, ''); //tiempos varios
+    $sheet->setCellValueByColumnAndRow(30, $fila, ''); //tiempos restantes
+    $sheet->setCellValueByColumnAndRow(31, $fila, $p['hora_inicio']);
+    $sheet->setCellValueByColumnAndRow(32, $fila, $p['hora_fin']);
+    $sheet->setCellValueByColumnAndRow(33, $fila, ''); //parte objeto
+    $sheet->setCellValueByColumnAndRow(34, $fila, ''); //sintoma
+    $sheet->setCellValueByColumnAndRow(35, $fila, ''); //causa
+    $sheet->setCellValueByColumnAndRow(36, $fila, ''); //tiempo de parada
+    $sheet->setCellValueByColumnAndRow(37, $fila, ''); //observacion de parada
+    $sheet->setCellValueByColumnAndRow(38, $fila, ''); //punto de medida
+    $sheet->setCellValueByColumnAndRow(39, $fila, ''); //observaciones generales
 
     $fila++;
 endforeach;
