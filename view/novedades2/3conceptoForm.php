@@ -118,10 +118,10 @@
             //alert(params.id_renovacion);
             $('#popupbox').load('index.php', params,function(){
                 $('#myModal .alert').hide(); //oculta el alert del form orden_detailForm.php
-                $("#myModal fieldset").prop("disabled", true);
-                $("#orden-form #footer-buttons button").css('display', 'none');
-                $('.selectpicker').selectpicker('refresh');
+                //$("#myModal fieldset").prop("disabled", true);
+                //$("#orden-form #footer-buttons button").css('display', 'none');
                 $('#myModal').modal();
+                $('.selectpicker').selectpicker('refresh');
             });
         });
 
@@ -214,7 +214,7 @@
                 $('#myModal').modal();
                 $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
                 $('#id_evento').prop('disabled', true).selectpicker('refresh');
-            })
+            });
         });
 
 
@@ -230,7 +230,7 @@
                 $('#myModal').modal();
                 $('.selectpicker').selectpicker('refresh');
 
-            })
+            });
 
         });
 
