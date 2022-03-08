@@ -1,9 +1,9 @@
 ﻿<?php
 include_once("model/nov_parte-ordenModel.php");
-
 include_once("model/puestosModel.php");
 include_once("model/localidadesModel.php");
 include_once("model/contratosModel.php");
+include_once("model/nov_areasModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -31,10 +31,9 @@ switch ($operation)
         $orden->setNroParteDiario($_POST['nro_parte_diario']);
         $orden->setOrdenTipo($_POST['orden_tipo']);
         $orden->setOrdenNro($_POST['orden_nro']);
-        //$orden->setHoraInicio($_POST['hora_inicio']);
         $orden->setHoraInicio( ($_POST['hora_inicio']!='')? $_POST['hora_inicio'] : null);
-        //$orden->setHoraFin($_POST['hora_fin']);
         $orden->setHoraFin( ($_POST['hora_fin']!='')? $_POST['hora_fin'] : null);
+        $orden->setIdArea( ($_POST['id_area'] )? $_POST['id_area'] : null);
         $orden->setServicio($_POST['servicio']);
         $orden->setCreatedBy($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
@@ -49,6 +48,7 @@ switch ($operation)
         $view->orden = new ParteOrden();
 
         $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
+        $view->areas = NovArea::getAreas($_POST['id_contrato']); //carga el combo para filtrar Areas
 
         $view->disableLayout=true;
 
@@ -68,6 +68,7 @@ switch ($operation)
         }
 
         $view->orden_tipos = Soporte::get_enum_values('nov_parte_orden', 'orden_tipo');
+        $view->areas = NovArea::getAreas($_POST['id_contrato']); //carga el combo para filtrar Areas
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

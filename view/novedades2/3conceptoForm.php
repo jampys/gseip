@@ -75,6 +75,7 @@
             params.operation = "newOrden";
             params.origin = "nov2";
             params.id_parte = $('#id_parte').val();
+            params.id_contrato = $('#id_contrato').val();
             //alert(params.id_renovacion);
             $('#popupbox').load('index.php', params,function(){
                 $('#myModal .alert').hide(); //oculta el alert del form orden_detailForm.php

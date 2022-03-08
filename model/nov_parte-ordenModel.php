@@ -9,6 +9,7 @@ class ParteOrden
     private $orden_nro;
     private $hora_inicio;
     private $hora_fin;
+    private $id_area;
     private $servicio;
     private $created_by;
     private $created_date; //fecha de registro en el sistema
@@ -35,6 +36,9 @@ class ParteOrden
 
     function getHoraFin()
     { return $this->hora_fin;}
+
+    function getIdArea()
+    { return $this->id_area;}
 
     function getServicio()
     { return $this->servicio;}
@@ -68,6 +72,9 @@ class ParteOrden
     function setHoraFin($val)
     { $this->hora_fin=$val;}
 
+    function setIdArea($val)
+    { $this->id_area=$val;}
+
     function setServicio($val)
     { $this->servicio=$val;}
 
@@ -87,7 +94,7 @@ class ParteOrden
                       id_parte, nro_parte_diario, orden_tipo, orden_nro,
                       TIME_FORMAT(hora_inicio, '%H:%i') as hora_inicio,
                       TIME_FORMAT(hora_fin, '%H:%i') as hora_fin,
-                      servicio,
+                      id_area, servicio,
                       created_by,
                       DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
                       from nov_parte_orden
@@ -104,6 +111,7 @@ class ParteOrden
             $this->setOrdenNro($rows[0]['orden_nro']);
             $this->setHoraInicio($rows[0]['hora_inicio']);
             $this->setHoraFin($rows[0]['hora_fin']);
+            $this->setIdArea($rows[0]['id_area']);
             $this->setServicio($rows[0]['servicio']);
             $this->setCreatedBy($rows[0]['created_by']);
             $this->setCreatedDate($rows[0]['created_date']);
@@ -138,7 +146,7 @@ class ParteOrden
     public function updateParteOrden(){ //ok
         $stmt=new sQuery();
         $query="update nov_parte_orden set nro_parte_diario = :nro_parte_diario, orden_tipo = :orden_tipo, orden_nro = :orden_nro,
-                hora_inicio = :hora_inicio, hora_fin = :hora_fin, servicio = :servicio
+                hora_inicio = :hora_inicio, hora_fin = :hora_fin, id_area = :id_area, servicio = :servicio
                 where id_parte_orden = :id_parte_orden";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_parte_diario', $this->getNroParteDiario());
@@ -146,6 +154,7 @@ class ParteOrden
         $stmt->dpBind(':orden_nro', $this->getOrdenNro());
         $stmt->dpBind(':hora_inicio', $this->getHoraInicio());
         $stmt->dpBind(':hora_fin', $this->getHoraFin());
+        $stmt->dpBind(':id_area', $this->getIdArea());
         $stmt->dpBind(':servicio', $this->getServicio());
         $stmt->dpBind(':id_parte_orden', $this->getIdParteOrden());
         $stmt->dpExecute();
@@ -155,14 +164,15 @@ class ParteOrden
 
     public function insertParteOrden(){ //ok
         $stmt=new sQuery();
-        $query="insert into nov_parte_orden(id_parte, nro_parte_diario, orden_tipo, orden_nro, hora_inicio, hora_fin, servicio, created_by, created_date)
-                values(:id_parte, :nro_parte_diario, :orden_tipo, :orden_nro, :hora_inicio, :hora_fin, :servicio, :created_by, sysdate())";
+        $query="insert into nov_parte_orden(id_parte, nro_parte_diario, orden_tipo, orden_nro, hora_inicio, hora_fin, id_area, servicio, created_by, created_date)
+                values(:id_parte, :nro_parte_diario, :orden_tipo, :orden_nro, :hora_inicio, :hora_fin, :id_area, :servicio, :created_by, sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_parte_diario', $this->getNroParteDiario());
         $stmt->dpBind(':orden_tipo', $this->getOrdenTipo());
         $stmt->dpBind(':orden_nro', $this->getOrdenNro());
         $stmt->dpBind(':hora_inicio', $this->getHoraInicio());
         $stmt->dpBind(':hora_fin', $this->getHoraFin());
+        $stmt->dpBind(':id_area', $this->getIdArea());
         $stmt->dpBind(':servicio', $this->getServicio());
         $stmt->dpBind(':id_parte', $this->getIdParte());
         $stmt->dpBind(':created_by', $this->getCreatedBy());
