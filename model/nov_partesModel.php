@@ -609,7 +609,8 @@ limit 1";
         $query = "select np.id_parte, np.comentarios,
                   DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
                   cu.nombre_corto_op, cu.nombre_corto, cu.denominacion_recurso, cu.item,
-                  na.nombre as area,
+                  concat(na.codigo, ' ', na.nombre) as area,
+                  concat(na1.codigo, ' ', na1.nombre) as area1,
                   nec.nombre as evento, nec.id_evento,
                   npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
                   DATE_FORMAT(npo.hora_inicio, '%H:%i') as hora_inicio,
@@ -625,6 +626,7 @@ join nov_periodos per on per.id_periodo = np.id_periodo
 left join nov_parte_orden npo on npo.id_parte = np.id_parte
 left join nov_eventos_c nec on nec.id_evento = np.id_evento
 left join nov_areas na on na.id_area = np.id_area
+left join nov_areas na1 on na1.id_area = npo.id_area
 join v_sec_contratos_control co on np.id_contrato = co.id_contrato
 where np.id_contrato = ifnull(:id_contrato, np.id_contrato)
 and np.fecha_parte between :fecha_desde and :fecha_hasta

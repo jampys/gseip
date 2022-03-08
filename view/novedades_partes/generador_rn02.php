@@ -86,6 +86,7 @@ foreach ($view->partes as $p):
     $sWeekOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('W') - DateTime::createFromFormat('d/m/Y', $sFirstDayOfMonth)->format('W') + 1;
     $sDayOfWeek = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('N');
     $horas_extra = ($p['id_evento'] == 1 or $p['id_evento'] == 15)? 'SI' : 'NO'; //horas extra: si tiene GU Guardia activada o JE Jornada extendida
+    $area = ($p['area1'])? $p['area1'] : $p['area'] ;
 
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['nro_contrato']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $sMonth);
@@ -99,7 +100,7 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(10, $fila, $p['denominacion_recurso']);
     $sheet->setCellValueByColumnAndRow(11, $fila, $p['personal']);
     $sheet->setCellValueByColumnAndRow(12, $fila, $p['nombre_corto']);
-    $sheet->setCellValueByColumnAndRow(13, $fila, $p['area']);
+    $sheet->setCellValueByColumnAndRow(13, $fila, $area);
     $sheet->setCellValueByColumnAndRow(14, $fila, ''); //lugar
     $sheet->setCellValueByColumnAndRow(15, $fila, ''); //descripcion
     $sheet->setCellValueByColumnAndRow(16, $fila, ''); //avance
