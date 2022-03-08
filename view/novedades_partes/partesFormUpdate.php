@@ -37,7 +37,6 @@
             params.id_parte_empleado = id;
             params.action = "parte-empleado";
             params.operation = "editEmpleado";
-            params.id_contrato = $('#myModal #id_contrato').val();
             //alert(params.id_contrato);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -56,6 +55,7 @@
             params.action = "parte-orden";
             params.operation = "editOrden";
             params.target = "edit";
+            params.id_contrato = $('#myModal #id_contrato').val();
             $('#right_side').load('index.php', params,function(){
             })
         });
