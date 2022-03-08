@@ -49,12 +49,12 @@
                 params.orden_nro = $('#orden_nro').val();
                 params.hora_inicio = $('#hora_inicio').val();
                 params.hora_fin = $('#hora_fin').val();
-                params.id_area = $('#id_area').val();
+                params.id_area = $('#orden-form #id_area').val();
                 params.servicio = $('#servicio').val();
                 //params.conductor = $('input[name=conductor]:checked').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
-                //alert(params.aplica);
+                //alert(params.id_area);
 
                 $.post('index.php',params,function(data, status, xhr){
 
