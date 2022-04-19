@@ -606,39 +606,27 @@ limit 1";
 
     public static function getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla) {
         $stmt=new sQuery();
-        /*$query="select pa.id_parte,
-                    (select count(*) from nov_parte_orden npox where npox.id_parte = pa.id_parte) as orden_count,
-                    (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = pa.id_parte) as concept_count,
-                    DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
-                    DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
-                    pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.last_calc_status,
-                    concat(ar.codigo, ' ', ar.nombre) as area,
-                    ve.nro_movil as vehiculo,
-                    concat(nec.codigo, ' ', nec.nombre) as evento,
-                    co.nombre as contrato,
-                    us.user, pa.created_by,
-                    pa.id_periodo, pe.closed_date
-                    from nov_partes pa
-                    left join nov_areas ar on pa.id_area = ar.id_area
-                    left join vto_vehiculos ve on pa.id_vehiculo = ve.id_vehiculo
-                    left join nov_eventos_c nec on pa.id_evento = nec.id_evento
-                    join v_sec_contratos_control co on pa.id_contrato = co.id_contrato
-                    join sec_users us on pa.created_by = us.id_user
-                    join nov_periodos pe on pe.id_periodo = pa.id_periodo
-                    and pa.fecha_parte between if(:fecha_desde is null, pa.fecha_parte, :fecha_desde)
-                    and if(:fecha_hasta is null, pa.fecha_parte, :fecha_hasta)
-                    and pa.id_contrato =  ifnull(:id_contrato, pa.id_contrato)
-                    and pa.id_periodo =  ifnull(:id_periodo, pa.id_periodo)
-                    and pa.cuadrilla =  ifnull(:cuadrilla, pa.cuadrilla)
-                    order by pa.fecha_parte asc";*/
         $query = "select np.id_parte, np.comentarios,
-DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
-cu.nombre_corto_op as cuadrilla, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro
+                  DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+                  cu.nombre_corto_op, cu.nombre_corto, cu.denominacion_recurso, cu.item,
+                  concat(na.codigo, ' ', na.nombre) as area,
+                  concat(na1.codigo, ' ', na1.nombre) as area1,
+                  nec.nombre as evento, nec.id_evento,
+                  npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
+                  DATE_FORMAT(npo.hora_inicio, '%H:%i') as hora_inicio,
+                  DATE_FORMAT(npo.hora_fin, '%H:%i') as hora_fin,
+                  time_format(timediff(npo.hora_fin, npo.hora_inicio), '%H:%i') as hrs,
+                  co.nro_contrato,
+                  DATE_FORMAT(per.fecha_desde,  '%d/%m/%Y') as fecha_desde,
+                  per.periodo,
+                 (select GROUP_CONCAT(emx.apellido SEPARATOR ' - ') from nov_parte_empleado npex join empleados emx on emx.id_empleado = npex.id_empleado where npex.id_parte = np.id_parte) as personal
 from nov_partes np
 join nov_cuadrillas cu on np.id_cuadrilla = cu.id_cuadrilla
+join nov_periodos per on per.id_periodo = np.id_periodo
 left join nov_parte_orden npo on npo.id_parte = np.id_parte
 left join nov_eventos_c nec on nec.id_evento = np.id_evento
 left join nov_areas na on na.id_area = np.id_area
+left join nov_areas na1 on na1.id_area = npo.id_area
 join v_sec_contratos_control co on np.id_contrato = co.id_contrato
 where np.id_contrato = ifnull(:id_contrato, np.id_contrato)
 and np.fecha_parte between :fecha_desde and :fecha_hasta

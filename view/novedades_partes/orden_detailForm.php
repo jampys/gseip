@@ -49,11 +49,12 @@
                 params.orden_nro = $('#orden_nro').val();
                 params.hora_inicio = $('#hora_inicio').val();
                 params.hora_fin = $('#hora_fin').val();
+                params.id_area = $('#orden-form #id_area').val();
                 params.servicio = $('#servicio').val();
                 //params.conductor = $('input[name=conductor]:checked').val();
                 //params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
                 //params.disabled = $('#disabled').prop('checked')? 1:0;
-                //alert(params.aplica);
+                //alert(params.id_area);
 
                 $.post('index.php',params,function(data, status, xhr){
 
@@ -196,6 +197,23 @@
                 </div>
             </div>
 
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="id_area" class="control-label" title="Seleccionar sólo si difiere del área principal">Área secundaria</label>
+            <select class="form-control selectpicker show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5">
+                <option value="">Seleccione un área secundaria</option>
+                <?php foreach ($view->areas as $ar){
+                    ?>
+                    <option value="<?php echo $ar['id_area']; ?>"
+                        <?php echo ($ar['id_area'] == $view->orden->getIdArea())? 'selected' :'' ?>
+                        >
+                        <?php echo $ar['codigo']." ".$ar['nombre'];?>
+                    </option>
+                <?php  } ?>
+            </select>
         </div>
 
 

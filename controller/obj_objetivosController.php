@@ -45,7 +45,7 @@ switch ($operation)
         $objetivo->setMetaValor($_POST['meta_valor']);
         $objetivo->setIndicador($_POST['indicador']);
         $objetivo->setFrecuencia($_POST['frecuencia']);
-        $objetivo->setIdResponsableEjecucion($_POST['id_responsable_ejecucion']);
+        $objetivo->setIdResponsableEjecucion(($_POST['id_responsable_ejecucion'])? $_POST['id_responsable_ejecucion'] : null );
         $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
         $objetivo->setIdPlanEvaluacion($_POST['id_plan_evaluacion']);
         $objetivo->setIdObjetivoSuperior(($_POST['id_objetivo_superior'])? $_POST['id_objetivo_superior'] : null);
@@ -132,7 +132,7 @@ switch ($operation)
     case 'getPadre': //select dependiente
         //$id_contrato = (($_POST['id_contrato']!='')? $_POST['id_contrato'] : null );
         //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
-        $rta = Objetivo::getObjetivos($_POST['periodo'], null, null, null, null, null, null);
+        $rta = Objetivo::getObjetivos($_POST['periodo'], null, null, null, null, null, null, 1);
         print_r(json_encode($rta));
         exit;
         break;

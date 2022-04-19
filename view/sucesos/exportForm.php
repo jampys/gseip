@@ -1,4 +1,12 @@
-﻿<script type="text/javascript">
+﻿<style type="text/css">
+    .alert{
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+</style>
+
+
+<script type="text/javascript">
 
 
     $(document).ready(function(){
@@ -256,10 +264,10 @@
                                 &nbsp;<strong>Archivo de texto</strong>
                                 <strong class="dp_orange">(RRHH)</strong>
                                 <strong>:</strong>
-                                Exporta sucesos en formato .txt (admisible para BAS).
+                                Sucesos en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit" name="submit" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-download fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>

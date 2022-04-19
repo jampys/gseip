@@ -37,7 +37,6 @@
             params.id_parte_empleado = id;
             params.action = "parte-empleado";
             params.operation = "editEmpleado";
-            params.id_contrato = $('#myModal #id_contrato').val();
             //alert(params.id_contrato);
             $('#right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -56,6 +55,7 @@
             params.action = "parte-orden";
             params.operation = "editOrden";
             params.target = "edit";
+            params.id_contrato = $('#myModal #id_contrato').val();
             $('#right_side').load('index.php', params,function(){
             })
         });
@@ -103,13 +103,14 @@
 
         //para ver orden de un parte
         $('.grid-ordenes').on('click', '.view', function(){ //ok
-            //alert('editar orden del parte');
+            //alert('ver orden del parte');
             var id = $(this).closest('tr').attr('data-id');
             params={};
             params.id_parte_orden = id;
             params.action = "parte-orden";
             params.operation = "editOrden";
             params.target = "view";
+            params.id_contrato = $('#myModal #id_contrato').val();
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //$("#right_side fieldset").prop("disabled", true);
@@ -127,6 +128,7 @@
             params.action = "parte-orden";
             params.operation = "editOrden";
             params.target = "clone";
+            params.id_contrato = $('#myModal #id_contrato').val();
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
                 //$("#right_side fieldset").prop("disabled", true);
@@ -182,6 +184,7 @@
             params.action = "parte-orden";
             params.operation = "newOrden";
             params.id_parte = $('#id_parte').val();
+            params.id_contrato = $('#myModal #id_contrato').val();
             //alert(params.id_renovacion);
             $('#right_side').load('index.php', params,function(){
             })

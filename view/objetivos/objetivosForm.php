@@ -152,7 +152,7 @@
                     maxlength: 6
                 },
                 indicador: {required: true},
-                id_responsable_ejecucion: {required: true},
+                //id_responsable_ejecucion: {required: true},
                 id_responsable_seguimiento: {required: true}
             },
             messages:{
@@ -165,7 +165,7 @@
                     maxlength: "Máximo 6 dígitos"
                 },
                 indicador: "Ingrese el indicador",
-                responsable_ejecucion: "Seleccione un responsable ejecución",
+                //responsable_ejecucion: "Seleccione un responsable ejecución",
                 responsable_seguimiento: "Seleccione un responsable seguimiento"
             }
 
@@ -307,9 +307,10 @@
                     </div>
 
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         <label for="id_responsable_ejecucion" class="control-label">Responsable ejecución</label>
-                        <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un responsable ejecución">
+                        <select id="id_responsable_ejecucion" name="id_responsable_ejecucion" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                            <option value="">Seleccione un responsable ejecución</option>
                             <?php foreach ($view->empleados as $em){
                                 ?>
                                 <option value="<?php echo $em['id_empleado']; ?>"

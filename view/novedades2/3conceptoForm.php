@@ -75,6 +75,7 @@
             params.operation = "newOrden";
             params.origin = "nov2";
             params.id_parte = $('#id_parte').val();
+            params.id_contrato = $('#id_contrato').val();
             //alert(params.id_renovacion);
             $('#popupbox').load('index.php', params,function(){
                 $('#myModal .alert').hide(); //oculta el alert del form orden_detailForm.php
@@ -93,6 +94,7 @@
             params.operation = "editOrden";
             params.target = "edit";
             params.origin = "nov2";
+            params.id_contrato = $('#id_contrato').val();
             /*$('#right_side').load('index.php', params,function(){
             })*/
             $('#popupbox').load('index.php', params,function(){
@@ -112,13 +114,14 @@
             params.operation = "editOrden";
             params.target = "view";
             params.origin = "nov2";
+            params.id_contrato = $('#id_contrato').val();
             //alert(params.id_renovacion);
             $('#popupbox').load('index.php', params,function(){
                 $('#myModal .alert').hide(); //oculta el alert del form orden_detailForm.php
-                $("#myModal fieldset").prop("disabled", true);
-                $("#orden-form #footer-buttons button").css('display', 'none');
-                $('.selectpicker').selectpicker('refresh');
+                //$("#myModal fieldset").prop("disabled", true);
+                //$("#orden-form #footer-buttons button").css('display', 'none');
                 $('#myModal').modal();
+                $('.selectpicker').selectpicker('refresh');
             });
         });
 
@@ -133,6 +136,7 @@
             params.operation = "editOrden";
             params.target = "clone";
             params.origin = "nov2";
+            params.id_contrato = $('#id_contrato').val();
             //alert(params.id_renovacion);
             $('#popupbox').load('index.php', params,function(){
                 $('#myModal .alert').hide(); //oculta el alert del form orden_detailForm.php
@@ -210,7 +214,7 @@
                 $('#myModal').modal();
                 $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
                 $('#id_evento').prop('disabled', true).selectpicker('refresh');
-            })
+            });
         });
 
 
@@ -226,7 +230,7 @@
                 $('#myModal').modal();
                 $('.selectpicker').selectpicker('refresh');
 
-            })
+            });
 
         });
 
@@ -242,7 +246,7 @@
                 //$('.selectpicker').selectpicker('refresh');
                 //$('#myModal #id_empleado').selectpicker('val', params.id_empleado).prop('disabled', true); //https://developer.snapappointments.com/bootstrap-select/methods/
                 $('#myModal').modal();
-            })
+            });
         });
 
 
@@ -882,7 +886,7 @@
             <div class="form-group">
                 <!--<label for="default_id_area" class="control-label">Área</label>-->
                 <select class="form-control selectpicker show-tick" id="id_area" name="id_area" data-live-search="true" data-size="5">
-                    <option value="">Seleccione un área</option>
+                    <option value="">Seleccione un área principal</option>
                     <?php foreach ($view->areas as $ar){
                         ?>
                         <option value="<?php echo $ar['id_area']; ?>"

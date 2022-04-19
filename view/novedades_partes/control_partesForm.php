@@ -1,4 +1,11 @@
-﻿<script type="text/javascript">
+﻿<style type="text/css">
+    .alert{
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+</style>
+
+<script type="text/javascript">
 
 
     $(document).ready(function(){
@@ -143,22 +150,16 @@
 
         
 
-        //reporte: concepto en enpleado
-        $('#myModal').on("click", "#submit1", function(){
-            //alert('Crosstab sucesos');
-            //$('#txt-form').validate().resetForm(); //limpiar error input validate
+        //reporte: concepto en enpleado. Obsoleto 25/02/2022
+        /*$('#myModal').on("click", "#submit1", function(){
             $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
             $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
             $('#id_empleado').attr('validar', 1);
             $('#id_concepto').attr('validar', 1);
 
-
             if ($("#txt-form").valid()){
 
                 params={};
-                //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
-                //params.fecha_desde = $("#myModal #fecha_desde").val();
-                //params.fecha_hasta = $("#myModal #fecha_hasta").val();
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.id_periodo = $("#myModal #id_periodo").val();
                 params.id_empleado = $("#myModal #id_empleado").val();
@@ -166,8 +167,6 @@
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
                 var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_conceptos.rptdesign"+
-                    //"&p_fecha_desde="+params.fecha_desde+
-                    //"&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_contrato="+params.id_contrato+
                     "&p_id_periodo="+params.id_periodo+
                     "&p_id_empleado="+params.id_empleado+
@@ -177,16 +176,13 @@
 
             }
 
-
             return false;
-        });
+        });*/
 
 
 
-        //reporte: conceptos en enpleado
-        $('#myModal').on("click", "#submit5", function(){
-            //alert('Crosstab sucesos');
-            //$('#txt-form').validate().resetForm(); //limpiar error input validate
+        //reporte: conceptos en enpleado. Obsoleto 24/02/2022
+        /*$('#myModal').on("click", "#submit5", function(){
             $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
             $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
             $('#id_empleado').attr('validar', 1);
@@ -196,7 +192,6 @@
             if ($("#txt-form").valid()){
 
                 params={};
-                //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.id_periodo = $("#myModal #id_periodo").val();
                 params.id_empleado = $("#myModal #id_empleado").val();
@@ -204,20 +199,17 @@
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
                 var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_conceptos2.rptdesign"+
-                        //"&p_fecha_desde="+params.fecha_desde+
-                        //"&p_fecha_hasta="+params.fecha_hasta+
                     "&p_id_contrato="+params.id_contrato+
                     "&p_id_periodo="+params.id_periodo+
                     "&p_id_empleado="+params.id_empleado+
-                    //"&p_id_concepto_convenio_contrato="+params.id_concepto_convenio_contrato+
                     "&p_id_user="+params.id_user;
                 var win = window.open(URL, "_blank");
 
             }
 
-
             return false;
-        });
+        });*/
+
 
 
         //reporte OTs
@@ -329,6 +321,28 @@
 
 
 
+        //RN06 control de conceptos
+        $('#myModal').on("click", "#submit6", function(){
+            //alert('Crosstab sucesos');
+            //$('#txt-form').validate().resetForm(); //limpiar error input validate
+            $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
+            $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
+            $('#id_empleado').attr('validar', 0);
+            $('#id_concepto').attr('validar', 0);
+
+            if ($("#txt-form").valid()){
+
+                 let link = 'index.php?action=nov_reportes&operation=reporte_rn06'+
+                     '&id_contrato='+$("#myModal #id_contrato").val()+
+                     '&id_periodo='+$("#myModal #id_periodo").val()+
+                     '&id_empleado='+$("#myModal #id_empleado").val()+
+                     '&id_concepto='+$("#myModal #id_concepto").val();
+                 window.location.href = link;
+            }
+
+            return false;
+        });
+
 
 
     });
@@ -393,18 +407,9 @@
                     </div>
 
 
-                    <!--<div class="form-group">
-                        <label class="control-label" for="empleado">Fecha desde / hasta</label>
-                        <div class="input-group input-daterange">
-                            <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA" readonly disabled>
-                            <div class="input-group-addon">a</div>
-                            <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA" readonly disabled>
-                        </div>
-                    </div>-->
-
                     <br/>
                     
-                    <div class="alert alert-info" role="alert">
+                    <!--<div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
@@ -414,13 +419,13 @@
                                 Novedades involucradas para un concepto, empleado y período indicados.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit1" name="submit1" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit1" name="submit1" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
 
-                    <div class="alert alert-info" role="alert">
+                    <!--<div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
@@ -430,7 +435,23 @@
                                 Conceptos involucrados día por día para un empleado y período indicados.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit5" name="submit5" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit5" name="submit5" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>-->
+
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <span class="glyphicon glyphicon-tags"></span>
+                                &nbsp;<strong>RN06 Control de conceptos:</strong>
+                                <strong class="dp_yellow">(Empleado)</strong>
+                                <strong>:</strong>
+                                Conceptos por empleado durante un período indicado.
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="submit6" name="submit6" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -446,7 +467,7 @@
                                 Empleados con días sin novedad ni suceso durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -462,7 +483,7 @@
                                 Partes diarios, órdenes y habilitas durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -478,10 +499,11 @@
                                 Actividad de cuadrilla día por día durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit4" name="submit4" type="submit">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit4" name="submit4" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
+
 
 
                 </form>

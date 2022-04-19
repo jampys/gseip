@@ -7,6 +7,12 @@
         background-color: #e2e3e5 !important;
         color: #383d41 !important;
     }
+
+    .alert{
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
 </style>
 
 <script type="text/javascript">
@@ -278,11 +284,11 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Control de Novedades Administración:</strong>
-                                Exporta novedades en formato de tabla cruzada (empleados/conceptos).
+                                &nbsp;<strong>RN03 Control de Novedades Administración:</strong>
+                                Novedades en formato de tabla cruzada (empleados/conceptos).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -292,13 +298,13 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags" ></span>
-                                &nbsp;<strong>Archivo de texto</strong>
+                                &nbsp;<strong>RN04 Archivo de texto</strong>
                                 <strong class="dp_orange">(RRHH)</strong>
                                 <strong>:</strong>
-                                Exporta novedades en formato .txt (admisible para BAS).
+                                Novedades en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit" name="submit" type="submit">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-download fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
