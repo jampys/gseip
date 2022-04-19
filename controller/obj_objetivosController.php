@@ -45,7 +45,7 @@ switch ($operation)
         $objetivo->setMetaValor($_POST['meta_valor']);
         $objetivo->setIndicador($_POST['indicador']);
         $objetivo->setFrecuencia($_POST['frecuencia']);
-        $objetivo->setIdResponsableEjecucion( ($_POST['search_responsable_ejecucion']!='')? $_POST['search_responsable_ejecucion'] : null );
+        $objetivo->setIdResponsableEjecucion(($_POST['id_responsable_ejecucion'])? $_POST['id_responsable_ejecucion'] : null );
         $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
         $objetivo->setIdPlanEvaluacion($_POST['id_plan_evaluacion']);
         $objetivo->setIdObjetivoSuperior(($_POST['id_objetivo_superior'])? $_POST['id_objetivo_superior'] : null);
