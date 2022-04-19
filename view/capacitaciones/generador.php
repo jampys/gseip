@@ -86,8 +86,8 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
         </div>
 
         <div style="float: left; width: 65%; height: 36px; text-align: left">
-            <span style="font-size: 15px; font-weight: bold">Reporte de capacitación</span><br/>
-            <span style="font-size: 13px">Calidad, Seguridad, Salud y Medio Ambiente</span>
+            <span style="font-size: 15px; font-weight: bold">Registro de capacitaciones</span><br/>
+            <span style="font-size: 13px">Sistema integrado de Calidad, seguridad, salud y medio ambiente</span>
         </div>
 
         <div style="float: right; width: 10%; height: 36px; font-size: 8px; text-align: right">
@@ -192,7 +192,7 @@ $html1 = '<div style="float: left; width: 100%">
             <table id="example" style="width:100%">
             <thead>
             <tr>
-                <th>Empleado</th>
+                <th>Nombre</th>
                 <th>Contrato</th>
                 <th>Edición</th>
                 <th>Asistió</th>

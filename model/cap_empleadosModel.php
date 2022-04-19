@@ -117,7 +117,7 @@ class CapacitacionEmpleado
                   where ce.id_capacitacion = :id_capacitacion
                   and ce.id_edicion = ifnull(:id_edicion, ce.id_edicion)
                   and ce.id_contrato in ($id_contrato)
-                  order by co.nombre, em.apellido";
+                  order by ed.fecha_edicion, co.nombre, em.apellido";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_capacitacion', $id_capacitacion);
         $stmt->dpBind(':id_edicion', $id_edicion);

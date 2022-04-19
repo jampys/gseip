@@ -87,7 +87,7 @@
                                 '<a class="'+permisoEliminarO+'" href="#" title="Borrar">'+ //si tiene permiso para eliminar
                                     '<i class="far fa-trash-alt dp_red"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a target="_blank" href="'+link+'" title="Descargar certificado">'+
+                                '<a target="_blank" href="'+link+'" title="Descargar reporte">'+
                                     '<i class="fas fa-download dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a href="#" title="'+user_info+'" onclick="return false;">'+
