@@ -77,17 +77,17 @@ from nov_parte_empleado npex
 join empleados emx on emx.id_empleado = npex.id_empleado
 where npex.id_parte = np.id_parte) as comentarios_empleados
 from nov_cuadrillas cu
-join nov_periodos per on per.id_periodo = 301
+join nov_periodos per on per.id_periodo = :id_periodo
 join tmp_calendar cal on cal.fecha between per.fecha_desde and per.fecha_hasta
 left join nov_partes np on (np.id_contrato = cu.id_contrato and np.id_periodo = per.id_periodo and np.id_cuadrilla = cu.id_cuadrilla and np.fecha_parte = cal.fecha)
 left join nov_areas ar on ar.id_area = np.id_area
 left join nov_eventos_c ev on ev.id_evento = np.id_evento
-where cu.id_contrato = 21
+where cu.id_contrato = :id_contrato
 and cu.disabled is null
 order by cu.nombre asc, cal.fecha asc";
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
-        //$stmt->dpBind(':id_periodo', $id_periodo);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_periodo', $id_periodo);
         //$stmt->dpBind(':id_empleado', $id_empleado);
         //$stmt->dpBind(':id_concepto', $id_concepto);
         $stmt->dpExecute();
