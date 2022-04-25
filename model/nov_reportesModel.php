@@ -37,8 +37,7 @@ class ReporteNovedades
 
     public static function getReporteRn4($id_contrato, $id_periodo, $id_empleado, $id_concepto) { //ok
         $stmt=new sQuery();
-        $query = "set lc_time_names = 'es_AR';
-select dayname(cal.fecha) as dia, dayofweek(cal.fecha) as dia_numero,
+        $query = "select dayname(cal.fecha) as dia, dayofweek(cal.fecha) as dia_numero,
 DATE_FORMAT(cal.fecha,  '%d/%m/%Y') as fecha, cal.feriado, cal.descripcion as feriado_descripcion, cu.nombre as cuadrilla, cu.id_cuadrilla, per.id_periodo, np.id_parte, np.comentarios, ar.nombre as area,
 ev.nombre as evento,
 (SELECT group_concat(concat(emx.apellido, ' ', emx.nombre) separator ' - ')
