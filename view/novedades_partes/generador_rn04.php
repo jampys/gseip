@@ -31,8 +31,8 @@ $sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_e
 //encabezado ------------------------------------------------------------
 $cabecera = ["Día semana", "Fecha", "Cuadrilla", "IN", "Área", "Evento", "Empleados", "Trabajado hábil", "Trabajado no hábil", "Hs Normal", "Hs 50%", "Hs 100%", "Detalle de la novedad"];
 $sheet->fromArray($cabecera, null, 'A8');
-$spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A8:M8')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A8:M8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
 $fila = 9;
