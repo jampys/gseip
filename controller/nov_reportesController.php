@@ -69,12 +69,16 @@ switch ($operation)
         $encabezado['obj_empleado'] = new Empleado($_GET['id_empleado']);
         $encabezado['empleado'] = ($encabezado['obj_empleado']->getIdEmpleado() > 0)? $encabezado['obj_empleado']->getLegajo().' '.$encabezado['obj_empleado']->getApellido().' '.$encabezado['obj_empleado']->getNombre() : 'Todos';
 
-        $encabezado['obj_concepto_convenio_contrato'] = new ConceptoConvenioContrato($_GET['id_concepto']);
-        $encabezado['obj_concepto'] = new Concepto($encabezado['obj_concepto_convenio_contrato']->getIdConcepto());
-        $encabezado['concepto'] = ($encabezado['obj_concepto_convenio_contrato']->getIdConceptoConvenioContrato() > 0)? $encabezado['obj_concepto']->getNombre().' ('.$encabezado['obj_concepto_convenio_contrato']->getCodigo().')' : 'Todos';
+        //$encabezado['obj_concepto_convenio_contrato'] = new ConceptoConvenioContrato($_GET['id_concepto']);
+        //$encabezado['obj_concepto'] = new Concepto($encabezado['obj_concepto_convenio_contrato']->getIdConcepto());
+        //$encabezado['concepto'] = ($encabezado['obj_concepto_convenio_contrato']->getIdConceptoConvenioContrato() > 0)? $encabezado['obj_concepto']->getNombre().' ('.$encabezado['obj_concepto_convenio_contrato']->getCodigo().')' : 'Todos';
 
 
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
+
+        $temp = ReporteNovedades::getDias('DH', 'CTO', $id_contrato, null, $encabezado['obj_periodo']->getPeriodo());
+        $encabezado['dh'] = $temp[0]['dias'];
+
 
         $view->contentTemplate="view/novedades_partes/generador_rn04.php";
         break;

@@ -96,6 +96,23 @@ order by cu.nombre asc, cal.fecha asc";
 
 
 
+    public static function getDias($tipo, $rango, $id_contrato, $id_empleado, $periodo) { //ok
+        //trae la cantidad de dias de acuerdo a la funcion func_nov_horas y parametros ingresados
+        $stmt=new sQuery();
+        $query = "select func_nov_horas(:tipo, :rango, :id_contrato, :id_empleado, :periodo)
+                  as dias";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':tipo', $tipo);
+        $stmt->dpBind(':rango', $rango);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':periodo', $periodo);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
 }
 
 

@@ -7,6 +7,7 @@ class NovPeriodo
     private $id_contrato;
     private $fecha_desde;
     private $fecha_hasta;
+    private $periodo;
     private $createdDate;
     private $closedDate;
 
@@ -25,6 +26,9 @@ class NovPeriodo
 
     function getFechaHasta()
     { return $this->fecha_hasta;}
+
+    function getPeriodo()
+    { return $this->periodo;}
 
     function getCreatedDate()
     { return $this->createdDate;}
@@ -49,6 +53,9 @@ class NovPeriodo
     function setFechaHasta($val)
     { $this->fecha_hasta=$val;}
 
+    function setPeriodo($val)
+    { $this->periodo=$val;}
+
     function setCreatedDate($val)
     { $this->createdDate=$val;}
 
@@ -63,6 +70,7 @@ class NovPeriodo
             $query = "select id_periodo, nombre, id_contrato,
                       DATE_FORMAT(fecha_desde, '%d/%m/%Y') as fecha_desde,
                       DATE_FORMAT(fecha_hasta, '%d/%m/%Y') as fecha_hasta,
+                      periodo,
                       created_date, closed_date
                       from nov_periodos
                       where id_periodo = :nro";
@@ -76,6 +84,7 @@ class NovPeriodo
             $this->setIdContrato($rows[0]['id_contrato']);
             $this->setFechaDesde($rows[0]['fecha_desde']);
             $this->setFechaHasta($rows[0]['fecha_hasta']);
+            $this->setPeriodo($rows[0]['periodo']);
             $this->setCreatedDate($rows[0]['created_date']);
             $this->setClosedDate($rows[0]['closed_date']);
         }
