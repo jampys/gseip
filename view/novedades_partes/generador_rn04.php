@@ -7,7 +7,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
-$sheet->setTitle('partes');
+$sheet->setTitle('cuadrillas diario');
 
 //titulo ----------------------------------------------------------------
 
