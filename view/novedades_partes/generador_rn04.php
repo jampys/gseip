@@ -64,8 +64,23 @@ foreach ($sheet->getColumnIterator() as $column) {
     $sheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
 }
 
+//------------------Segunda solapa -------------------------
 
-//-----------------------------------------------------------------
+$spreadsheet->createSheet();
+$sheet1 = $spreadsheet->setActiveSheetIndex(1);
+$sheet1->setTitle('resumen');
+
+
+$cabecera = ["Cuadrilla", "Días hábiles trabajados", "Días habiles esperados"];
+$sheet1->fromArray($cabecera, null, 'A1');
+$spreadsheet->getActiveSheet()->getStyle('A1:C1')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:C1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+
+
+
+
+$spreadsheet->setActiveSheetIndex(0); // pone como activa la solapa 0
+//-----------------generacion de excel ------------------------------------------------
 
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
