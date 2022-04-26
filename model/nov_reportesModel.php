@@ -44,7 +44,14 @@ ev.nombre as evento,
 from nov_parte_empleado npex
 join empleados emx on emx.id_empleado = npex.id_empleado
 where npex.id_parte = np.id_parte
-order by npex.conductor desc) as empleados,
+and npex.conductor = 1
+order by emx.legajo asc) as conductor,
+(SELECT group_concat(concat(emx.apellido, ' ', emx.nombre) separator ' - ')
+from nov_parte_empleado npex
+join empleados emx on emx.id_empleado = npex.id_empleado
+where npex.id_parte = np.id_parte
+and npex.conductor = 0
+order by emx.legajo asc) as acompañante,
 null as hs_normal,
 (select npex.trabajado
 from nov_parte_empleado npex

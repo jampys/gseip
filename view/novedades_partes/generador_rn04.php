@@ -27,10 +27,10 @@ $sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //encabezado ------------------------------------------------------------
-$cabecera = ["Día semana", "Fecha", "Cuadrilla", "IN", "Área", "Evento", "Empleados", "Trabajado hábil", "Trabajado no hábil", "Hs Normal", "Hs 50%", "Hs 100%", "Detalle de la novedad"];
+$cabecera = ["Día semana", "Fecha", "Cuadrilla", "IN", "Área", "Evento", "Conductor", "Acompañante", "Trabajado hábil", "Trabajado no hábil", "Hs Normal", "Hs 50%", "Hs 100%", "Detalle de la novedad"];
 $sheet->fromArray($cabecera, null, 'A7');
-$spreadsheet->getActiveSheet()->getStyle('A7:M7')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A7:M7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A7:N7')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A7:N7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
 $fila = 8;
@@ -45,13 +45,14 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(4, $fila, $p['id_parte']);
     $sheet->setCellValueByColumnAndRow(5, $fila, $p['area']);
     $sheet->setCellValueByColumnAndRow(6, $fila, $p['evento']);
-    $sheet->setCellValueByColumnAndRow(7, $fila, $p['empleados']);
-    $sheet->setCellValueByColumnAndRow(8, $fila, $trabajado_habil);
-    $sheet->setCellValueByColumnAndRow(9, $fila, $trabajado_no_habil);
-    $sheet->setCellValueByColumnAndRow(10, $fila, $p['hs_normal']);
-    $sheet->setCellValueByColumnAndRow(11, $fila, $p['hs_50']);
-    $sheet->setCellValueByColumnAndRow(12, $fila, $p['hs_100']);
-    $sheet->setCellValueByColumnAndRow(13, $fila, $p['detalle']);
+    $sheet->setCellValueByColumnAndRow(7, $fila, $p['conductor']);
+    $sheet->setCellValueByColumnAndRow(8, $fila, $p['acompañante']);
+    $sheet->setCellValueByColumnAndRow(9, $fila, $trabajado_habil);
+    $sheet->setCellValueByColumnAndRow(10, $fila, $trabajado_no_habil);
+    $sheet->setCellValueByColumnAndRow(11, $fila, $p['hs_normal']);
+    $sheet->setCellValueByColumnAndRow(12, $fila, $p['hs_50']);
+    $sheet->setCellValueByColumnAndRow(13, $fila, $p['hs_100']);
+    $sheet->setCellValueByColumnAndRow(14, $fila, $p['detalle']);
 
 
     $fila++;
