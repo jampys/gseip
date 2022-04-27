@@ -479,7 +479,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>RN 04 Control de inspección:</strong>
+                                &nbsp;<strong>RN04 Control de inspección:</strong>
                                 <strong class="dp_yellow">(Cuadrilla)</strong>
                                 <strong>:</strong>
                                 Actividad de cuadrilla día por día durante un período indicado.
