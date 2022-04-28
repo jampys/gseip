@@ -37,8 +37,8 @@ $spreadsheet->getActiveSheet()->getStyle('A7:N7')->getFill()->setFillType(\PhpOf
 $fila = 8;
 foreach ($view->partes as $p):
 
-    $trabajado_habil = ($p['trabajado'] == 1 && in_array($p['dia_numero'], array(2, 3, 4, 5, 6)))? 1 : "";
-    $trabajado_no_habil = ($p['trabajado'] == 1 && in_array($p['dia_numero'], array(1, 7)))? 1 : "";
+    $trabajado_habil = ($p['trabajado'] == 1 && in_array($p['dia_numero'], array(2, 3, 4, 5, 6)) && $p['feriado'] == '')? 1 : "";
+    $trabajado_no_habil = ($p['trabajado'] == 1 && in_array($p['dia_numero'], array(1, 7)) && $p['feriado'] != '')? 1 : "";
 
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['dia']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['fecha']);
@@ -78,7 +78,7 @@ $spreadsheet->getActiveSheet()->getStyle('A1:C1')->getFill()->setFillType(\PhpOf
 
 
 
-//pone como activo el tab 1
+//pone como activa la solapa 0
 $spreadsheet->setActiveSheetIndex(0); //
 
 //-----------------generacion de excel ------------------------------------------------
