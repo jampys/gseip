@@ -70,12 +70,27 @@ $spreadsheet->createSheet();
 $sheet1 = $spreadsheet->setActiveSheetIndex(1);
 $sheet1->setTitle('resumen');
 
+
+//tab 1 encabezado  ----------------------------------------------------------------
+$spreadsheet->getActiveSheet()->mergeCells('A1:D1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
+$spreadsheet->getActiveSheet()->mergeCells('A2:D2');
+$spreadsheet->getActiveSheet()->mergeCells('A3:D3');
+$spreadsheet->getActiveSheet()->mergeCells('A4:D4');
+$spreadsheet->getActiveSheet()->mergeCells('A5:D5');
+$spreadsheet->getActiveSheet()->getStyle('A1:D5')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:D5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+
+$sheet1->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
+$sheet1->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
+$sheet1->setCellValueByColumnAndRow(1, 3, 'Período: '.$encabezado['periodo']);
+$sheet1->setCellValueByColumnAndRow(1, 4, 'Días hábiles del período: '.$encabezado['dh']);
+$sheet1->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_emision']);
+
 //tab 1 encabezados columnas ------------------------------------------------------------
 $cabecera = ["Cuadrilla", "Días hábiles trabajados", "Días habiles esperados"];
-$sheet1->fromArray($cabecera, null, 'A1');
-$spreadsheet->getActiveSheet()->getStyle('A1:C1')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:C1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
-
+$sheet->fromArray($cabecera, null, 'A7');
+$spreadsheet->getActiveSheet()->getStyle('A7:C7')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A7:C7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 
 //pone como activa la solapa 0
