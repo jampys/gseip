@@ -105,12 +105,12 @@ order by cu.nombre asc, cal.fecha asc";
 
     public static function getReporteRn4Resumen($id_contrato, $id_periodo) { //ok
         $stmt=new sQuery();
-        $query = "select np.cuadrilla, count(*) ad dht
+        $query = "select np.cuadrilla, count(*) as dht
 from nov_partes np
 join v_tmp_calendar cal on np.fecha_parte = cal.fecha
 join nov_cuadrillas cu on cu.id_cuadrilla = np.id_cuadrilla
-where np.id_contrato = 21
-and np.id_periodo = 225
+where np.id_contrato = :id_contrato
+and np.id_periodo = :id_periodo
 and np.id_cuadrilla is not null
 group by np.id_cuadrilla
 order by cu.nombre asc";
