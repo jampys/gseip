@@ -85,7 +85,7 @@ join empleados emx on emx.id_empleado = npex.id_empleado
 where npex.id_parte = np.id_parte) as comentarios_empleados
 from nov_cuadrillas cu
 join nov_periodos per on per.id_periodo = :id_periodo
-join tmp_calendar cal on cal.fecha between per.fecha_desde and per.fecha_hasta
+join v_tmp_calendar cal on cal.fecha between per.fecha_desde and per.fecha_hasta
 left join nov_partes np on (np.id_contrato = cu.id_contrato and np.id_periodo = per.id_periodo and np.id_cuadrilla = cu.id_cuadrilla and np.fecha_parte = cal.fecha)
 left join nov_areas ar on ar.id_area = np.id_area
 left join nov_eventos_c ev on ev.id_evento = np.id_evento
@@ -116,6 +116,23 @@ order by cu.nombre asc, cal.fecha asc";
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
+    }
+
+
+    public static function getDaysBeetweenDates($fecha_desde, $fecha_hasta) { //ok
+        //trae la cantidad de dias habiles entre 2 fechas
+        $stmt=new sQuery();
+        $query = "select count(*) as dias
+                  from v_tmp_calendar cal
+                  where cal.fecha between STR_TO_DATE(:fecha_desde, '%d/%m/%Y') and STR_TO_DATE(:fecha_hasta, '%d/%m/%Y')
+                  and cal.feriado is null
+                  and dayofweek(cal.fecha) in (2, 3, 4, 5, 6)";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':fecha_desde', $fecha_desde);
+        $stmt->dpBind(':fecha_hasta', $fecha_hasta);
+        $stmt->dpExecute();
+        $rows = $stmt ->dpFetchAll();
+        return $rows[0]['dias'];
     }
 
 

@@ -52,6 +52,7 @@ switch ($operation)
     case 'reporte_rn04':
         $view->disableLayout=true;
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
+        $_SESSION['cal_id_contrato'] = $id_contrato;
         $id_periodo = ($_GET['id_periodo'])? $_GET['id_periodo'] : null;
         $id_empleado = ($_GET['id_empleado'])? $_GET['id_empleado'] : null;
         $id_concepto = ($_GET['id_concepto'])? $_GET['id_concepto'] : null; //viene el id_concepto_convenio_contrato
@@ -73,11 +74,10 @@ switch ($operation)
         //$encabezado['obj_concepto'] = new Concepto($encabezado['obj_concepto_convenio_contrato']->getIdConcepto());
         //$encabezado['concepto'] = ($encabezado['obj_concepto_convenio_contrato']->getIdConceptoConvenioContrato() > 0)? $encabezado['obj_concepto']->getNombre().' ('.$encabezado['obj_concepto_convenio_contrato']->getCodigo().')' : 'Todos';
 
-
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
+        $encabezado['dh'] = ReporteNovedades::getDaysBeetweenDates($encabezado['obj_periodo']->getFechaDesde(), $encabezado['obj_periodo']->getFechaHasta());
 
-        $temp = ReporteNovedades::getDias('DH', 'CTO', $id_contrato, null, $encabezado['obj_periodo']->getPeriodo());
-        $encabezado['dh'] = $temp[0]['dias'];
+        //$encabezado['dh1'] = ReporteNovedades::getDaysBeetweenDates($encabezado['obj_periodo']->getFechaDesde(), $encabezado['obj_periodo']->getFechaHasta());
 
 
         $view->contentTemplate="view/novedades_partes/generador_rn04.php";
