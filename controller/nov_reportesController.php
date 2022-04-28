@@ -76,9 +76,11 @@ switch ($operation)
 
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
         $encabezado['dh'] = ReporteNovedades::getDaysBeetweenDates($encabezado['obj_periodo']->getFechaDesde(), $encabezado['obj_periodo']->getFechaHasta());
-
-        //$encabezado['dh1'] = ReporteNovedades::getDaysBeetweenDates($encabezado['obj_periodo']->getFechaDesde(), $encabezado['obj_periodo']->getFechaHasta());
-        $encabezado['dh1'] = 'culo';
+        
+        $endDatePeriod = DateTime::createFromFormat('d/m/Y', $encabezado['obj_periodo']->getFechaHasta());
+        $today = date("Y-m-d H:i:s");
+        if($endDatePeriod <= $today) $encabezado['dh1'] = $encabezado['dh'];
+        else $encabezado['dh1'] = ReporteNovedades::getDaysBeetweenDates($encabezado['obj_periodo']->getFechaDesde(), date('d/m/Y'));
 
         $view->contentTemplate="view/novedades_partes/generador_rn04.php";
         break;
