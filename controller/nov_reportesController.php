@@ -78,7 +78,7 @@ switch ($operation)
         $encabezado['dh'] = ReporteNovedades::getDaysBeetweenDates($encabezado['obj_periodo']->getFechaDesde(), $encabezado['obj_periodo']->getFechaHasta());
 
         //$encabezado['dh1'] = ReporteNovedades::getDaysBeetweenDates($encabezado['obj_periodo']->getFechaDesde(), $encabezado['obj_periodo']->getFechaHasta());
-
+        $encabezado['dh1'] = 'culo';
 
         $view->contentTemplate="view/novedades_partes/generador_rn04.php";
         break;
