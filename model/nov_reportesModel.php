@@ -112,6 +112,8 @@ join nov_cuadrillas cu on cu.id_cuadrilla = np.id_cuadrilla
 where np.id_contrato = :id_contrato
 and np.id_periodo = :id_periodo
 and np.id_cuadrilla is not null
+and exists (select 1 from nov_parte_empleado npex where npex.id_parte = np.id_parte and npex.trabajado = 1)
+and cal.feriado is null
 group by np.id_cuadrilla
 order by cu.nombre asc";
         $stmt->dpPrepare($query);
