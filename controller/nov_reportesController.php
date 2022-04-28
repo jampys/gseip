@@ -57,6 +57,7 @@ switch ($operation)
         $id_empleado = ($_GET['id_empleado'])? $_GET['id_empleado'] : null;
         $id_concepto = ($_GET['id_concepto'])? $_GET['id_concepto'] : null; //viene el id_concepto_convenio_contrato
         $view->partes = $rta = ReporteNovedades::getReporteRn4($id_contrato, $id_periodo, $id_empleado, $id_concepto);
+        $view->resumen = ReporteNovedades::getReporteRn4Resumen($id_contrato, $id_periodo);
 
         $encabezado = array();
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);

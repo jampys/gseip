@@ -103,20 +103,27 @@ order by cu.nombre asc, cal.fecha asc";
 
 
 
-    public static function getDias($tipo, $rango, $id_contrato, $id_empleado, $periodo) { //ok
-        //trae la cantidad de dias de acuerdo a la funcion func_nov_horas y parametros ingresados
+    public static function getReporteRn4Resumen($id_contrato, $id_periodo) { //ok
         $stmt=new sQuery();
-        $query = "select func_nov_horas(:tipo, :rango, :id_contrato, :id_empleado, :periodo)
-                  as dias";
+        $query = "select np.cuadrilla, count(*) ad dht
+from nov_partes np
+join v_tmp_calendar cal on np.fecha_parte = cal.fecha
+join nov_cuadrillas cu on cu.id_cuadrilla = np.id_cuadrilla
+where np.id_contrato = 21
+and np.id_periodo = 225
+and np.id_cuadrilla is not null
+group by np.id_cuadrilla
+order by cu.nombre asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':tipo', $tipo);
-        $stmt->dpBind(':rango', $rango);
         $stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':id_empleado', $id_empleado);
-        $stmt->dpBind(':periodo', $periodo);
+        $stmt->dpBind(':id_periodo', $id_periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
+
+
+
+
 
 
     public static function getDaysBeetweenDates($fecha_desde, $fecha_hasta) { //ok

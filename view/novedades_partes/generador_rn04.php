@@ -93,6 +93,16 @@ $spreadsheet->getActiveSheet()->getStyle('A7:C7')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A7:C7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 
+//tab 1 cuerpo -----------------------------------------------------------------
+$fila = 8;
+foreach ($view->resumen as $r):
+
+    $sheet->setCellValueByColumnAndRow(1, $fila, $r['cuadrilla']);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $r['dht']);
+    $sheet->setCellValueByColumnAndRow(3, $fila, $encabezado['dh1']);
+    $fila++;
+endforeach;
+
 //pone como activa la solapa 0
 $spreadsheet->setActiveSheetIndex(0); //
 
