@@ -24,7 +24,7 @@ $spreadsheet->getActiveSheet()->getStyle('A1:D5')->getFill()->setFillType(\PhpOf
 $sheet1->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
 $sheet1->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
 $sheet1->setCellValueByColumnAndRow(1, 3, 'Período: '.$encabezado['periodo']);
-$sheet1->setCellValueByColumnAndRow(1, 4, 'Días hábiles del período: '.$encabezado['dh1']);
+$sheet1->setCellValueByColumnAndRow(1, 4, 'Días hábiles del período (desde el inicio a hoy): '.$encabezado['dh1']);
 $sheet1->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 //tab 1 encabezados columnas ------------------------------------------------------------
