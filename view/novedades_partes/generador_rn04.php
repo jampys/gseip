@@ -5,11 +5,12 @@ require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
+// tab 2 declaracion
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
 $sheet->setTitle('cuadrillas diario');
 
-//titulo ----------------------------------------------------------------
+//tab 2 encabezado  ----------------------------------------------------------------
 
 $spreadsheet->getActiveSheet()->mergeCells('A1:D1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
 $spreadsheet->getActiveSheet()->mergeCells('A2:D2');
@@ -26,13 +27,13 @@ $sheet->setCellValueByColumnAndRow(1, 4, 'Días hábiles del período: '.$encabe
 $sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 
-//encabezado ------------------------------------------------------------
+//tab 2 encabezados columnas ------------------------------------------------------------
 $cabecera = ["Día semana", "Fecha", "Cuadrilla", "IN", "Área", "Evento", "Conductor", "Acompañante", "Trabajado hábil", "Trabajado no hábil", "Hs Normal", "Hs 50%", "Hs 100%", "Detalle de la novedad"];
 $sheet->fromArray($cabecera, null, 'A7');
 $spreadsheet->getActiveSheet()->getStyle('A7:N7')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A7:N7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
-//cuerpo -----------------------------------------------------------------
+//tab 2 cuerpo -----------------------------------------------------------------
 $fila = 8;
 foreach ($view->partes as $p):
 
@@ -59,18 +60,17 @@ foreach ($view->partes as $p):
 endforeach;
 
 
-//Ajustar el ancho de todas las columnas: https://stackoverflow.com/questions/62203260/php-spreadsheet-cant-find-the-function-to-auto-size-column-width
+//tab 2 Ajustar el ancho de todas las columnas: https://stackoverflow.com/questions/62203260/php-spreadsheet-cant-find-the-function-to-auto-size-column-width
 foreach ($sheet->getColumnIterator() as $column) {
     $sheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
 }
 
-//------------------Segunda solapa -------------------------
-
+//tab 1 declaracion
 $spreadsheet->createSheet();
 $sheet1 = $spreadsheet->setActiveSheetIndex(1);
 $sheet1->setTitle('resumen');
 
-
+//tab 1 encabezados columnas ------------------------------------------------------------
 $cabecera = ["Cuadrilla", "Días hábiles trabajados", "Días habiles esperados"];
 $sheet1->fromArray($cabecera, null, 'A1');
 $spreadsheet->getActiveSheet()->getStyle('A1:C1')->getFont()->setBold(true);
@@ -78,10 +78,10 @@ $spreadsheet->getActiveSheet()->getStyle('A1:C1')->getFill()->setFillType(\PhpOf
 
 
 
+//pone como activo el tab 1
+$spreadsheet->setActiveSheetIndex(0); //
 
-$spreadsheet->setActiveSheetIndex(0); // pone como activa la solapa 0
 //-----------------generacion de excel ------------------------------------------------
-
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
 $filename = 'RN4_control_insp_'.$encabezado["contrato"].'.xlsx';
