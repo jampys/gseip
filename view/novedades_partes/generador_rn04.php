@@ -37,8 +37,9 @@ $spreadsheet->getActiveSheet()->getStyle('A7:C7')->getFill()->setFillType(\PhpOf
 //tab 1 cuerpo -----------------------------------------------------------------
 $fila = 8;
 foreach ($view->resumen as $r):
+    $cuadrilla = $r['cuadrilla'].' ['.$r['nombre_corto_op'].']';
 
-    $sheet1->setCellValueByColumnAndRow(1, $fila, $r['cuadrilla']);
+    $sheet1->setCellValueByColumnAndRow(1, $fila, $cuadrilla);
     $sheet1->setCellValueByColumnAndRow(2, $fila, $r['dht']);
     $sheet1->setCellValueByColumnAndRow(3, $fila, $encabezado['dh1']);
     $fila++;
@@ -85,10 +86,11 @@ foreach ($view->partes as $p):
 
     $trabajado_habil = ($p['trabajado'] == 1 && in_array($p['dia_numero'], array(2, 3, 4, 5, 6)) && $p['feriado'] == '')? 1 : "";
     $trabajado_no_habil = ($p['trabajado'] == 1 && (in_array($p['dia_numero'], array(1, 7)) || $p['feriado'] != ''))? 1 : "";
+    $cuadrilla = $p['cuadrilla'].' ['.$p['nombre_corto_op'].']';
 
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['dia']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['fecha']);
-    $sheet->setCellValueByColumnAndRow(3, $fila, $p['cuadrilla']);
+    $sheet->setCellValueByColumnAndRow(3, $fila, $cuadrilla);
     $sheet->setCellValueByColumnAndRow(4, $fila, $p['id_parte']);
     $sheet->setCellValueByColumnAndRow(5, $fila, $p['area']);
     $sheet->setCellValueByColumnAndRow(6, $fila, $p['evento']);

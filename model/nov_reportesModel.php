@@ -38,7 +38,8 @@ class ReporteNovedades
     public static function getReporteRn4($id_contrato, $id_periodo, $id_empleado, $id_concepto) { //ok
         $stmt=new sQuery();
         $query = "select dayname(cal.fecha) as dia, dayofweek(cal.fecha) as dia_numero,
-DATE_FORMAT(cal.fecha,  '%d/%m/%Y') as fecha, cal.feriado, cal.descripcion as feriado_descripcion, cu.nombre as cuadrilla, cu.id_cuadrilla, per.id_periodo, np.id_parte, np.comentarios, ar.nombre as area,
+DATE_FORMAT(cal.fecha,  '%d/%m/%Y') as fecha, cal.feriado, cal.descripcion as feriado_descripcion, cu.nombre as cuadrilla, cu.id_cuadrilla, cu.nombre_corto_op,
+per.id_periodo, np.id_parte, np.comentarios, ar.nombre as area,
 ev.nombre as evento,
 (SELECT group_concat(concat(emx.apellido, ' ', emx.nombre) separator ' - ')
 from nov_parte_empleado npex
@@ -106,7 +107,8 @@ order by cu.nombre asc, cal.fecha asc";
     public static function getReporteRn4Resumen($id_contrato, $id_periodo) { //ok
         //resumen de dias habiles trabajados por las cuadrillas
         $stmt=new sQuery();
-        $query = "select np.cuadrilla, count(*) as dht
+        $query = "select np.cuadrilla, cu.nombre_corto_op,
+count(*) as dht
 from nov_partes np
 join v_tmp_calendar cal on np.fecha_parte = cal.fecha
 join nov_cuadrillas cu on cu.id_cuadrilla = np.id_cuadrilla
