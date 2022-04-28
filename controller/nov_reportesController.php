@@ -80,7 +80,7 @@ switch ($operation)
         $endDatePeriod = DateTime::createFromFormat('d/m/Y', $encabezado['obj_periodo']->getFechaHasta());
         $today = date("Y-m-d H:i:s");
         if($endDatePeriod <= $today) $encabezado['dh1'] = $encabezado['dh'];
-        else $encabezado['dh1'] = ReporteNovedades::getDaysBeetweenDates($encabezado['obj_periodo']->getFechaDesde(), date('d/m/Y'));
+        else $encabezado['dh1'] = ReporteNovedades::getDaysBeetweenDates($encabezado['obj_periodo']->getFechaDesde(), date('d/m/Y')); //date('d/m/Y') da el formato dd/mm/yyyy
 
         $view->contentTemplate="view/novedades_partes/generador_rn04.php";
         break;
