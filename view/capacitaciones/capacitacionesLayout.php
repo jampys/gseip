@@ -42,9 +42,12 @@
 
             //Al seleccionar el periodo restringe el rango de fechas del datepicker
             $(document).on('change', '#periodo', function(e){
-                alert('seleccionó un periodo');
-                drp.setStartDate(moment().startOf('year'));
-                drp.setEndDate(moment().endOf('year'));
+                //alert('seleccionó un periodo');
+                let sd = $('#periodo').val()+'-01-01';
+                let ed = $('#periodo').val()+'-12-31';
+                //moment(date).endOf('year'); //Where date is a Date somewhere in that year.
+                drp.setStartDate(moment(sd).startOf('year'));
+                drp.setEndDate(moment(ed).endOf('year'));
             });
 
 
