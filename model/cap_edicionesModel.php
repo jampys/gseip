@@ -98,7 +98,7 @@ class Edicion
     }
 
 
-    public static function getEdiciones($id_capacitacion) { //ok
+    public static function getEdiciones($id_capacitacion, $startDate, $endDate) { //ok
         $stmt=new sQuery();
         $query = "select ed.id_edicion, ed.id_capacitacion, ed.nombre,
                   DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y') as fecha_edicion,
@@ -111,9 +111,12 @@ class Edicion
                   join sec_users us on ed.id_user = us.id_user
                   join cap_modalidades m on m.id_modalidad = ed.id_modalidad
                   where ed.id_capacitacion = :id_capacitacion
+                  and date(ed.fecha_edicion) between :startDate and :endDate
                   order by ed.fecha_edicion asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_capacitacion', $id_capacitacion);
+        $stmt->dpBind(':startDate', $startDate);
+        $stmt->dpBind(':endDate', $endDate);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

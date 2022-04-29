@@ -104,7 +104,7 @@
             });
 
 
-            $('#content').on('click', '.empleados', function(){ //ok
+            $('#content').on('click', '.empleados', function(){
                 //alert('presiono sobre empleados');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -129,6 +129,8 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_capacitacion = id;
+                params.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                params.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                 params.action = "cap_ediciones";
                 //params.operation = "etapas"; //entra en default
                 $('#popupbox').load('index.php', params,function(){

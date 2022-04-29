@@ -17,11 +17,10 @@ switch ($operation)
         $view->disableLayout=true;
         //$id_vencimiento = ($_POST['id_vencimiento']!='')? implode(",", $_POST['id_vencimiento'])  : 'vrp.id_vencimiento';
         //$id_puesto = ($_POST['search_puesto']!='')? $_POST['search_puesto'] : null;
-        //$id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
-        //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
-        //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $rta = $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion']);
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+        $rta = $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion'], $startDate, $endDate);
         //$view->contentTemplate="view/no_conformidad/accionesGrid.php";
         //break;
         print_r(json_encode($rta));
