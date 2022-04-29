@@ -18,11 +18,13 @@ $view->disableLayout=false;
 switch ($operation)
 {
     case 'refreshGrid':
-        //$view->disableLayout=true;
+        $view->disableLayout=true;
         $periodo = ($_POST['periodo']!='')? $_POST['periodo'] : null;
         $id_categoria = ($_POST['id_categoria']!='')? $_POST['id_categoria'] : null;
         $mes_programada = ($_POST['mes_programada']!='')? $_POST['mes_programada'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? implode(",", $_POST['id_contrato'])  : 'ce.id_contrato';
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
 
         $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_categoria, $mes_programada, $id_contrato);
         //$view->contentTemplate="view/objetivos/objetivosGrid.php";

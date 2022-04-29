@@ -23,6 +23,8 @@
                     d.id_categoria = $("#id_categoria").val();
                     d.mes_programada = $("#mes_programada").val();
                     d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
+                    d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                     d.action = "cap_capacitaciones";
                     d.operation = "refreshGrid";
                 },
