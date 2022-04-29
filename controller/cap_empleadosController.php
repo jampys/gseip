@@ -52,7 +52,7 @@ switch ($operation)
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
         $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
-        $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion']);
+        $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion'], $_POST['startDate'], $_POST['endDate']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/capacitaciones/empleado_detailForm.php";
@@ -64,7 +64,7 @@ switch ($operation)
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
         $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
-        $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion']);
+        $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion'], $_POST['startDate'], $_POST['endDate']);
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
