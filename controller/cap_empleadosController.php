@@ -22,7 +22,9 @@ switch ($operation)
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
         $id_edicion = ($_POST['id_edicion']!='')? $_POST['id_edicion'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? implode(",", $_POST['id_contrato'])  : 'ce.id_contrato';
-        $rta = $view->empleados = CapacitacionEmpleado::getEmpleados($_POST['id_capacitacion'], $id_edicion, $id_contrato);
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+        $rta = $view->empleados = CapacitacionEmpleado::getEmpleados($_POST['id_capacitacion'], $id_edicion, $id_contrato, $startDate, $endDate);
         //$view->contentTemplate="view/no_conformidad/accionesGrid.php";
         //break;
         print_r(json_encode($rta));

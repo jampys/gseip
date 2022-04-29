@@ -49,6 +49,8 @@
                     d.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
                     d.id_edicion = $('#etapas_left_side').attr('id_edicion');
                     d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
+                    d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                 },
                 "dataSrc": ""
             },
