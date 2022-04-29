@@ -26,7 +26,7 @@ switch ($operation)
         $startDate = $_POST['startDate'];
         $endDate = $_POST['endDate'];
 
-        $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_categoria, $mes_programada, $id_contrato);
+        $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_categoria, $mes_programada, $id_contrato, $startDate, $endDate);
         //$view->contentTemplate="view/objetivos/objetivosGrid.php";
         //break;
         print_r(json_encode($rta));
