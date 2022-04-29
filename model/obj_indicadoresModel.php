@@ -10,82 +10,78 @@ class Indicador
     private $created_date;
 
     // GETTERS
-    function getIdTarea()
-    { return $this->id_tarea;}
+    function getIdIndicador()
+    { return $this->id_indicador;}
 
-    function getNombre()
-    { return $this->nombre;}
+    function getIndicador()
+    { return $this->indicador;}
+
+    function getCodigo()
+    { return $this->codigo;}
 
     function getDescripcion()
     { return $this->descripcion;}
 
-    function getFechaInicio()
-    { return $this->fecha_inicio;}
+    function getDisabled()
+    { return $this->disabled;}
 
-    function getFechaFin()
-    { return $this->fecha_fin;}
-
-    function getIdObjetivo()
-    { return $this->id_objetivo;}
+    function getCreatedDate()
+    { return $this->created_date;}
 
 
     //SETTERS
-    function setIdTarea($val)
-    { $this->id_tarea=$val;}
+    function setIdIndicador($val)
+    { $this->id_indicador=$val;}
 
-    function setNombre($val)
-    { $this->nombre=$val;}
+    function setIndicador($val)
+    { $this->indicador=$val;}
+
+    function setCodigo($val)
+    { $this->codigo=$val;}
 
     function setDescripcion($val)
-    { $this->descripcion=$val;}
+    {  $this->descripcion=$val;}
 
-    function setFechaInicio($val)
-    {  $this->fecha_inicio=$val;}
+    function setDisabled($val)
+    { $this->disabled=$val;}
 
-    function setFechaFin($val)
-    { $this->fecha_fin=$val;}
-
-    function setIdObjetivo($val)
-    { $this->id_objetivo=$val;}
+    function setCreatedDate($val)
+    { $this->created_date=$val;}
 
 
     function __construct($nro=0){ //constructor //ok
 
         if ($nro!=0){
             $stmt=new sQuery();
-            $query = "select id_tarea, nombre, descripcion,
-                      DATE_FORMAT(fecha_inicio, '%d/%m/%Y') as fecha_inicio,
-                      DATE_FORMAT(fecha_fin, '%d/%m/%Y') as fecha_fin,
-                      id_objetivo
-                      from obj_tareas
-                      where id_tarea = :nro";
+            $query = "select id_indicador, indicador, codigo, descripcion, disabled,
+                      DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
+                      from obj_indicadores
+                      where id_indicador = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
             $stmt->dpExecute();
             $rows = $stmt ->dpFetchAll();
 
-            $this->setIdTarea($rows[0]['id_tarea']);
-            $this->setNombre($rows[0]['nombre']);
+            $this->setIdIndicador($rows[0]['id_indicador']);
+            $this->setIndicador($rows[0]['indicador']);
+            $this->setCodigo($rows[0]['codigo']);
             $this->setDescripcion($rows[0]['descripcion']);
-            $this->setFechaInicio($rows[0]['fecha_inicio']);
-            $this->setFechaFin($rows[0]['fecha_fin']);
-            $this->setIdObjetivo($rows[0]['id_objetivo']);
+            $this->setDisabled($rows[0]['disabled']);
+            $this->setCreatedDate($rows[0]['created_date']);
         }
     }
 
 
-    public static function getTareas($id_objetivo) { //ok
-        //trae todas las tareas de un objetivo
+    public static function getIndicadores($disabled = 0) { //ok
+        //trae todas los indicadores. Por defecto trae todos. Si disabled = 1 trae solo los activos
         $stmt=new sQuery();
-        $query = "select ot.id_tarea, ot.nombre, ot.descripcion,
-                  DATE_FORMAT(ot.fecha_inicio, '%d/%m/%Y') as fecha_inicio,
-                  DATE_FORMAT(ot.fecha_fin, '%d/%m/%Y') as fecha_fin,
-                  ot.id_objetivo
-                  from obj_tareas ot
-                  where ot.id_objetivo = :id_objetivo
-                  order by ot.fecha_inicio asc, ot.fecha_fin asc";
+        $query = "select id_indicador, indicador, codigo, descripcion, disabled,
+                  DATE_FORMAT(created_date, '%d/%m/%Y') as created_date,
+                  from obj_indicadores
+                  where if(:disabled = 1, disabled is not null, 1)
+                  order by disabled asc, indicador asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_objetivo', $id_objetivo);
+        $stmt->dpBind(':disabled', $disabled);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
