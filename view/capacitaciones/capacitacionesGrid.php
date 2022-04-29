@@ -72,7 +72,9 @@
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_DELETE', array(1)) )? true : false ?>';
                         let permisoEliminarO = (permisoEliminar && !row.cerrado)? 'delete' : 'disabled';
                         let id_contrato = $("#id_contrato").val();
-                        let link = 'index.php?action=cap_capacitaciones&operation=pdf&id_capacitacion='+row.id_capacitacion+'&id_contrato='+id_contrato;
+                        let startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                        let endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                        let link = 'index.php?action=cap_capacitaciones&operation=pdf&id_capacitacion='+row.id_capacitacion+'&id_contrato='+id_contrato+'&startDate='+startDate+'&endDate='+endDate;
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
                         return  '<a class="'+permisoEdiciones+'" href="#">'+ //si tiene permiso para ver ediciones
                                     '<i class="fas fa-th-list dp_blue" title="Ediciones"></i>'+

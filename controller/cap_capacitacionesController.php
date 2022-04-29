@@ -109,8 +109,8 @@ switch ($operation)
         $fila1 = $f1[0];
         $f2 = Capacitacion::getPdfContratos(($_GET['id_contrato'])? $_GET['id_contrato'] : 'id_contrato');
         $fila2['contratos'] = ($_GET['id_contrato'])? $f2[0]['contratos'] : 'Todos';
-        $fila3 = Edicion::getEdiciones($_GET['id_capacitacion']);
-        $fila5 = CapacitacionEmpleado::getEmpleados($_GET['id_capacitacion'], null, ($_GET['id_contrato'])? $_GET['id_contrato'] : 'ce.id_contrato');
+        $fila3 = Edicion::getEdiciones($_GET['id_capacitacion'], $_GET['startDate'], $_GET['endDate']);
+        $fila5 = CapacitacionEmpleado::getEmpleados($_GET['id_capacitacion'], null, ($_GET['id_contrato'])? $_GET['id_contrato'] : 'ce.id_contrato', $_GET['startDate'], $_GET['endDate']);
 
         $fila4 = array();
 
