@@ -38,6 +38,17 @@
             var drp = $('#daterange').data('daterangepicker');
 
 
+
+
+            //Al seleccionar el periodo restringe el rango de fechas del datepicker
+            $(document).on('change', '#periodo', function(e){
+                alert('seleccionó un periodo');
+                drp.setStartDate(moment().startOf('year'));
+                drp.setEndDate(moment().endOf('year'));
+            });
+
+
+
             $(document).on('click', '#search', function(){ //ok
                 /*params={};
                 params.search_periodo = $("#search_periodo").val();
