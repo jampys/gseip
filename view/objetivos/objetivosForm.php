@@ -282,7 +282,7 @@
                                 <option value="<?php echo $i['id_indicador']; ?>"
                                     <?php echo ($i['id_indicador'] == $view->objetivo->getIndicador() )? 'selected' :'' ?>
                                     <?php echo ($i['disabled'])? 'disabled' :'' ?>
-                                        data-content="<span class='text'>Relish<small class='text-muted'>Este indicador señala la consistencia del observador <br/> cuando los pares se acumulan.</small></span>"
+                                        data-content="<span class='text'><?php echo $i['indicador']; ?><small class='text-muted'><?php echo $i['descripcion']; ?></small></span>"
                                     >
                                     <?php echo $i['indicador']; ?>
                                 </option>
