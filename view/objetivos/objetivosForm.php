@@ -281,6 +281,7 @@
                                 ?>
                                 <option value="<?php echo $i['id_indicador']; ?>"
                                     <?php echo ($i['id_indicador'] == $view->objetivo->getIndicador() )? 'selected' :'' ?>
+                                    <?php echo ($i['disabled'])? 'disabled' :'' ?>
                                     >
                                     <?php echo $i['indicador']; ?>
                                 </option>
