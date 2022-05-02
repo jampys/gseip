@@ -128,13 +128,23 @@
 
         <div class="form-group required">
             <label for="indicador" class="control-label">Indicador</label>
-            <select class="form-control selectpicker show-tick" id="indicador" name="indicador" title="Seleccione el indicador"  data-live-search="true" data-size="5">
+            <!--<select class="form-control selectpicker show-tick" id="indicador" name="indicador" title="Seleccione el indicador"  data-live-search="true" data-size="5">
                 <?php foreach ($view->indicadores['enum'] as $mo){
                     ?>
                     <option value="<?php echo $mo; ?>"
                         <?php echo ($mo == $view->avance->getIndicador() OR ($mo == $view->indicadores['default'] AND !$view->avance->getIdAvance()) )? 'selected' :'' ?>
                         >
                         <?php echo $mo; ?>
+                    </option>
+                <?php  } ?>
+            </select>-->
+            <select class="form-control selectpicker show-tick" id="indicador" name="indicador" data-live-search="true" data-size="5" title="Seleccione el indicador">
+                <?php foreach ($view->indicadores as $i){
+                    ?>
+                    <option value="<?php echo $i['id_indicador']; ?>"
+                        <?php echo ($i['id_indicador'] == $view->avance->getIndicador() )? 'selected' :'' ?>
+                        >
+                        <?php echo $i['indicador']; ?>
                     </option>
                 <?php  } ?>
             </select>

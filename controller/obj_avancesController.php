@@ -2,6 +2,7 @@
 include_once("model/obj_avancesModel.php");
 include_once("model/obj_tareasModel.php");
 include_once("model/obj_objetivosModel.php");
+include_once("model/obj_indicadoresModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -52,7 +53,8 @@ switch ($operation)
         $view->objetivo = new Objetivo($_POST['id_objetivo']);
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
-        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        //$view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->indicadores = Indicador::getIndicadores();
         $view->periodos = Soporte::get_enum_values('obj_avances', 'periodo');
 
         $view->disableLayout=true;
@@ -64,7 +66,8 @@ switch ($operation)
         $view->avance = new Avance($_POST['id_avance']);
 
         $view->tareas = Tarea::getTareas($_POST['id_objetivo']);
-        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        //$view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->indicadores = Indicador::getIndicadores();
         $view->periodos = Soporte::get_enum_values('obj_avances', 'periodo');
 
         $view->disableLayout=true;
