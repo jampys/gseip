@@ -265,14 +265,24 @@
 
                     <div class="form-group required">
                         <label for="indicador" class="control-label">Indicador</label>
-                        <select class="form-control selectpicker show-tick" id="indicador" name="indicador" data-live-search="true" data-size="5" title="Seleccione un indicador del objetivo">
-                            <!--<option value="">Seleccione un indicador del objetivo</option>-->
+                        <!--<select class="form-control selectpicker show-tick" id="indicador" name="indicador" data-live-search="true" data-size="5" title="Seleccione un indicador del objetivo">
                             <?php foreach ($view->indicadores['enum'] as $ind){
                                 ?>
                                 <option value="<?php echo $ind; ?>"
                                     <?php echo ($ind == $view->objetivo->getIndicador() OR ($ind == $view->indicadores['default'] AND !$view->objetivo->getIdObjetivo()) )? 'selected' :'' ?>
                                     >
                                     <?php echo $ind; ?>
+                                </option>
+                            <?php  } ?>
+                        </select>-->
+                        <select class="form-control selectpicker show-tick" id="indicador" name="indicador" data-live-search="true" data-size="5" title="Seleccione un indicador del objetivo">
+                            <!--<option value="">Seleccione un área</option>-->
+                            <?php foreach ($view->indicadores as $i){
+                                ?>
+                                <option value="<?php echo $i['id_indicador']; ?>"
+                                    <?php echo ($i['id_indicador'] == $view->objetivo->getIndicador() )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $i['indicador']; ?>
                                 </option>
                             <?php  } ?>
                         </select>

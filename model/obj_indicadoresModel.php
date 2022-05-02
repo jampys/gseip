@@ -76,7 +76,7 @@ class Indicador
         //trae todas los indicadores. Por defecto trae todos. Si disabled = 1 trae solo los activos
         $stmt=new sQuery();
         $query = "select id_indicador, indicador, codigo, descripcion, disabled,
-                  DATE_FORMAT(created_date, '%d/%m/%Y') as created_date,
+                  DATE_FORMAT(created_date, '%d/%m/%Y') as created_date
                   from obj_indicadores
                   where if(:disabled = 1, disabled is not null, 1)
                   order by disabled asc, indicador asc";
