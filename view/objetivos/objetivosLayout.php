@@ -281,7 +281,7 @@
 
                         <div class="form-group col-md-3">
                             <!--<label for="search_contrato" class="control-label">Contrato</label>-->
-                            <select class="form-control selectpicker show-tick" id="search_indicador" name="search_indicador" data-live-search="true" data-size="5">
+                            <!--<select class="form-control selectpicker show-tick" id="search_indicador" name="search_indicador" data-live-search="true" data-size="5">
                                 <option value="">Seleccione un indicador</option>
                                 <?php foreach ($view->indicadores['enum'] as $ind){
                                     ?>
@@ -289,6 +289,17 @@
                                         <?php //echo ($ind == $view->objetivo->getIndicador() OR ($ind == $view->indicadores['default'] AND !$view->objetivo->getIdObjetivo()) )? 'selected' :'' ?>
                                         >
                                         <?php echo $ind; ?>
+                                    </option>
+                                <?php  } ?>
+                            </select>-->
+                            <select class="form-control selectpicker show-tick" id="search_indicador" name="search_indicador" data-live-search="true" data-size="5">
+                                <option value="">Seleccione un indicador</option>
+                                <?php foreach ($view->indicadores as $i){
+                                    ?>
+                                    <option value="<?php echo $i['id_indicador']; ?>"
+                                        <?php //echo ($i['id_indicador'] == $view->objetivo->getIndicador() )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $i['indicador']; ?>
                                     </option>
                                 <?php  } ?>
                             </select>

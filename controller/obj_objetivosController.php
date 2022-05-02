@@ -156,7 +156,8 @@ switch ($operation)
         $view->areas = Area::getAreas();
         //$view->contratos = Contrato::getContratos();
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
-        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        //$view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->indicadores = Indicador::getIndicadores();
         $view->empleados = Empleado::getEmpleadosActivos(null);
 
 
