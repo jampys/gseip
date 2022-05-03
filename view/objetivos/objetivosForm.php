@@ -18,7 +18,7 @@
         });
 
         $('#myModal').on('mouseover', '.ano', function(){
-            let desc = $(this).next('.descripcion').eq(0).text();
+            let desc = $(this).find('.descripcion').eq(0).text();
             $(this).attr('title', desc);
             /*tippy(this, {
                 content: desc,
@@ -295,7 +295,7 @@
                                 <option value="<?php echo $i['id_indicador']; ?>"
                                     <?php echo ($i['id_indicador'] == $view->objetivo->getIndicador() )? 'selected' :'' ?>
                                     <?php echo ($i['disabled'])? 'disabled' :'' ?>
-                                        data-content="<span class='text ano'><?php echo $i['indicador']; ?><small class='text-muted'></small></span><span style='display:none' class='descripcion'><?php echo $i['descripcion']; ?></span>"
+                                        data-content="<div class='ano'><span class='text'><?php echo $i['indicador']; ?> <span class='glyphicon glyphicon-info-sign dp_blue'></span><small class='text-muted'></small></span><span style='display:none' class='descripcion'><?php echo $i['descripcion']; ?></span></div>"
                                     >
                                     <?php echo $i['indicador']; ?>
                                 </option>
