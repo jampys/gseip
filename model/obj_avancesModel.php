@@ -109,11 +109,12 @@ class Avance
         $stmt=new sQuery();
         $query = "select av.id_avance, av.id_objetivo, av.id_tarea,
                   DATE_FORMAT(av.fecha, '%d/%m/%Y') as fecha,
-                  av.indicador, av.cantidad, av.comentarios, av.id_user,
+                  ind.indicador, av.cantidad, av.comentarios, av.id_user,
                   ot.nombre as tarea, av.periodo, av.cantidad_plan,
                   func_obj_progress_parcial(av.indicador, av.cantidad_plan, av.cantidad) as avance_parcial,
                   us.user
                   from obj_avances av
+                  join obj_indicadores ind on ind.id_indicador = av.indicador
                   join sec_users us on av.id_user = us.id_user
                   left join obj_tareas ot on av.id_tarea = ot.id_tarea
                   where av.id_objetivo = :id_objetivo
