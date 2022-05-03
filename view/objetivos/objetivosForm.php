@@ -17,6 +17,11 @@
                              // elimine el mensaje de requerido de jquery validation
         });
 
+        $('#myModal').on('mouseover', '.ano', function(){
+            let desc = $(this).next('.descripcion').eq(0).text();
+            $(this).attr('title', desc);
+        });
+
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
         $('#objetivo-form').on('change', '#periodo', function(e){
@@ -282,7 +287,7 @@
                                 <option value="<?php echo $i['id_indicador']; ?>"
                                     <?php echo ($i['id_indicador'] == $view->objetivo->getIndicador() )? 'selected' :'' ?>
                                     <?php echo ($i['disabled'])? 'disabled' :'' ?>
-                                        data-content="<span class='text'><?php echo $i['indicador']; ?><small class='text-muted'><?php echo $i['descripcion']; ?></small></span>"
+                                        data-content="<span class='text ano'><?php echo $i['indicador']; ?><small class='text-muted'></small></span><span style='display:none' class='descripcion'><?php echo $i['descripcion']; ?></span>"
                                     >
                                     <?php echo $i['indicador']; ?>
                                 </option>
