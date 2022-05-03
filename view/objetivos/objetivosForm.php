@@ -19,14 +19,15 @@
 
         $('#myModal').on('mouseover', '.ano', function(){
             let desc = $(this).next('.descripcion').eq(0).text();
-            //$(this).attr('title', desc);
-            tippy(this, {
+            $(this).attr('title', desc);
+            /*tippy(this, {
                 content: desc,
                 theme: 'light-border',
                 placement: 'right'
                 }
+            });*/
 
-            });
+
         });
 
 
