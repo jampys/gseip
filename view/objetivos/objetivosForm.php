@@ -295,7 +295,7 @@
                                 <option value="<?php echo $i['id_indicador']; ?>"
                                     <?php echo ($i['id_indicador'] == $view->objetivo->getIndicador() )? 'selected' :'' ?>
                                     <?php echo ($i['disabled'])? 'disabled' :'' ?>
-                                        data-content="<div class='ano'><span class='text'><?php echo $i['indicador']; ?> <span class='glyphicon glyphicon-info-sign dp_blue'></span><small class='text-muted'></small></span><span style='display:none' class='descripcion'><?php echo $i['descripcion']; ?></span></div>"
+                                        data-content="<div class='ano'><span class='text'><?php echo $i['indicador']; ?> <span class='glyphicon glyphicon-info-sign dp_light_gray'></span><small class='text-muted'></small></span><span style='display:none' class='descripcion'><?php echo $i['descripcion']; ?></span></div>"
                                     >
                                     <?php echo $i['indicador']; ?>
                                 </option>
