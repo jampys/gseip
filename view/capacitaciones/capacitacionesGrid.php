@@ -99,7 +99,54 @@
                                 '</a>';
                     }
                 }
-            ]
+            ],
+            "footerCallback": function ( row, data, start, end, display ) { //https://datatables.net/examples/advanced_init/footer_callback.html
+                var api = this.api();
+
+                // Remove the formatting to get integer data for summation
+                var intVal = function ( i ) {
+                    return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                        typeof i === 'number' ?
+                            i : 0;
+                };
+
+                // Total participantes over all pages
+                totalP = api
+                    .column( 4 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                // Total participantes over this page
+                pageTotalP = api
+                    .column( 4, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                // Total Hs over all pages
+                totalH = api
+                    .column( 5 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                // Total Hs over this page
+                pageTotalH = api
+                    .column( 5, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                // Update footer
+                $( api.column( 4 ).footer() ).html(pageTotalP +' ('+ totalP +' total)');
+                $( api.column( 5 ).footer() ).html(pageTotalH +' ('+ totalH +' total)');
+            }
 
         });
 
@@ -129,6 +176,17 @@
                 <th></th>
             </tr>
             </thead>
+            <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tfoot>
         </table>
 
 
