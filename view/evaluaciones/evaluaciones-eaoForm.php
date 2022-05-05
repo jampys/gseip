@@ -121,6 +121,15 @@
             cRange: [0, 100]
         });
 
+        $.validator.addMethod("cRequired1", $.validator.methods.required, "Ingrese en puntaje");
+        jQuery.validator.addClassRules('selectpicker', {
+            cRequired1: {
+                depends: function(element) { //la ponderacion es requerida solo si cargó el puntaje.
+                    return $(this).closest('.fila').find('.ponderacion').val() != '';
+                }
+            }
+        });
+
 
         //Al presionar el icono (i) de cada label
         /*$('#modalEaag').on("click", ".help_puntaje", function(e){
@@ -272,7 +281,8 @@
 
                                     <div class="form-group col-md-3">
                                         <div class="input-group">
-                                            <select class="form-control selectpicker show-tick" title="-" data-live-search="true" data-size="5">
+                                            <select class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                                                <option value="">-</option>
                                                 <?php foreach ($view->puntajes as $p){ ?>
                                                     <option value="<?php echo $p['id_puntaje_objetivo']; ?>"
                                                         <?php echo ($obj['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
