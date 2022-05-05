@@ -70,6 +70,23 @@
         }*/
 
 
+        //muestra la suma total de las ponderaciones la posicionarse sobre alguna
+        $('#modalEao').on('mouseenter', '.ponderacion', function(){
+            let sum = 0;
+            $('.ponderacion').each(function() {
+                sum += Number($(this).val());
+            });
+
+            //$(this).attr('title', sum);
+            tippy(this, {
+             content: 'Total ponderaciones: '+sum+'%',
+             theme: 'light-border',
+             placement: 'right'
+             });
+
+        });
+
+
 
         $('.selectpicker').selectpicker();
 
