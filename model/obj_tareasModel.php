@@ -8,6 +8,8 @@ class Tarea
     private $fecha_inicio;
     private $fecha_fin;
     private $id_objetivo;
+    private $id_user;
+    private $created_date;
 
     // GETTERS
     function getIdTarea()
@@ -27,6 +29,12 @@ class Tarea
 
     function getIdObjetivo()
     { return $this->id_objetivo;}
+
+    function getIdUser()
+    { return $this->id_user;}
+
+    function getCreatedDate()
+    { return $this->created_date;}
 
 
     //SETTERS
@@ -48,6 +56,12 @@ class Tarea
     function setIdObjetivo($val)
     { $this->id_objetivo=$val;}
 
+    function setIdUser($val)
+    { $this->id_user=$val;}
+
+    function setCreatedDate($val)
+    { $this->created_date=$val;}
+
 
     function __construct($nro=0){ //constructor //ok
 
@@ -56,6 +70,7 @@ class Tarea
             $query = "select id_tarea, nombre, descripcion,
                       DATE_FORMAT(fecha_inicio, '%d/%m/%Y') as fecha_inicio,
                       DATE_FORMAT(fecha_fin, '%d/%m/%Y') as fecha_fin,
+                      DATE_FORMAT(created_date, '%d/%m/%Y %H:%i') as created_date,
                       id_objetivo
                       from obj_tareas
                       where id_tarea = :nro";
@@ -80,8 +95,11 @@ class Tarea
         $query = "select ot.id_tarea, ot.nombre, ot.descripcion,
                   DATE_FORMAT(ot.fecha_inicio, '%d/%m/%Y') as fecha_inicio,
                   DATE_FORMAT(ot.fecha_fin, '%d/%m/%Y') as fecha_fin,
-                  ot.id_objetivo
+                  DATE_FORMAT(ot.created_date, '%d/%m/%Y %H:%i') as created_date,
+                  ot.id_objetivo,
+                  us.user
                   from obj_tareas ot
+                  left join sec_users us on us.id_user = ot.id_user
                   where ot.id_objetivo = :id_objetivo
                   order by ot.fecha_inicio asc, ot.fecha_fin asc";
         $stmt->dpPrepare($query);

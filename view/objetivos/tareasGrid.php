@@ -58,7 +58,7 @@
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) && !$view->params['cerrado'] )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('OBJ_ABM', array(1)) && !$view->params['cerrado'] )? 'delete' : 'disabled' ?>';
-                        let user_info = 'próximamente información'; //row.user.split('@')[0]+' '+row.created_date;
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
                         return '<a class="avance" title="Avances" href="#">'+
                                     '<i class="fas fa-forward fa-fw dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
