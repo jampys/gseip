@@ -77,6 +77,8 @@
                 sum += Number($(this).val());
             });
 
+            $('#modalEao #ponderacion_total').val(sum);
+
             //$(this).attr('title', sum);
             tippy(this, {
              content: 'Total ponderaciones: '+sum+'%',
@@ -126,7 +128,7 @@
         });
 
 
-        /* validacion del formulario */
+        // validacion del formulario: class ponderacion
         $.validator.addMethod("cRequired", $.validator.methods.required, "Ingrese la ponderación");
         $.validator.addMethod("cRange", $.validator.methods.range, "Ingrese un valor entre 0 y 100");
         jQuery.validator.addClassRules('ponderacion', {
@@ -138,6 +140,7 @@
             cRange: [0, 100]
         });
 
+        // validacion del formulario: class selectpicker
         $.validator.addMethod("cRequired1", $.validator.methods.required, "Ingrese en puntaje");
         jQuery.validator.addClassRules('selectpicker', {
             cRequired1: {
@@ -145,6 +148,18 @@
                     return $(this).closest('.fila').find('.ponderacion').val() != '';
                 }
             }
+        });
+
+        // validacion del formulario: #ponderacion_total
+        $('#eao-form').validate({
+            ignore: '',
+            rules: {
+                ponderacion_total: {max: 100}
+            },
+            messages:{
+                ponderacion_total: "La suma de las ponderaciones no debe superar el 100%"
+            }
+
         });
 
 
@@ -281,6 +296,7 @@
                             <input type="hidden" name="id_plan_evaluacion" id="id_plan_evaluacion" value="<?php print $view->params['id_plan_evaluacion']; ?>" >
                             <input type="hidden" name="periodo" id="periodo" value="<?php print $view->params['periodo']; ?>" >
                             <input type="hidden" name="cerrado" id="cerrado" value="<?php print $view->params['cerrado']; ?>" >
+                            <input type="hidden" name="ponderacion_total" id="ponderacion_total" value="" >
 
 
 
