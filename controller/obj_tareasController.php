@@ -35,6 +35,7 @@ switch ($operation)
         $tarea->setFechaInicio($_POST['fecha_inicio']);
         $tarea->setFechaFin($_POST['fecha_fin']);
         $tarea->setIdObjetivo($_POST['id_objetivo']);
+        $tarea->setIdUser($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $tarea->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));

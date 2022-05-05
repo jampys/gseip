@@ -137,13 +137,14 @@ class Tarea
 
     public function insertTarea(){ //ok
         $stmt=new sQuery();
-        $query="insert into obj_tareas(nombre, descripcion, fecha_inicio, fecha_fin, id_objetivo)
-                values(:nombre, :descripcion, STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'), STR_TO_DATE(:fecha_fin, '%d/%m/%Y'), :id_objetivo)";
+        $query="insert into obj_tareas(nombre, descripcion, fecha_inicio, fecha_fin, id_objetivo, id_user, created_date)
+                values(:nombre, :descripcion, STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'), STR_TO_DATE(:fecha_fin, '%d/%m/%Y'), :id_objetivo, :id_user, sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':descripcion', $this->getDescripcion());
         $stmt->dpBind(':fecha_inicio', $this->getFechaInicio());
         $stmt->dpBind(':fecha_fin', $this->getFechaFin());
+        $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
