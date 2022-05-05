@@ -227,7 +227,7 @@ class Suceso
                   group by su.id_suceso";*/
 
         $query = "select su.id_suceso, su.id_evento, su.id_empleado,
-                  DATE_FORMAT(su.created_date,  '%d/%m/%Y') as created_date,
+                  DATE_FORMAT(su.created_date,  '%d/%m/%Y %H:%i') as created_date,
                   DATE_FORMAT(su.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                   DATE_FORMAT(su.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                   su.observaciones,
