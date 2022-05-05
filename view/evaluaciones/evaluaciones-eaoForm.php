@@ -387,7 +387,7 @@
                 <?php }else{ ?>
                     <br/>
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado seleccionado no tiene fijados objetivos para el periodo en cuestión.
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado seleccionado no tiene fijados objetivos para el período seleccionado.
                     </div>
                 <?php } ?>
 
