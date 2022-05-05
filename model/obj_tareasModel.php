@@ -99,7 +99,7 @@ class Tarea
                   ot.id_objetivo,
                   us.user
                   from obj_tareas ot
-                  left join sec_users us on us.id_user = ot.id_user
+                  join sec_users us on us.id_user = ot.id_user
                   where ot.id_objetivo = :id_objetivo
                   order by ot.fecha_inicio asc, ot.fecha_fin asc";
         $stmt->dpPrepare($query);

@@ -180,7 +180,7 @@
                         let permisoEditarO = (permisoEditar && !row.cerrado)? 'edit' : 'disabled';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_DELETE', array(1)) )? true : false ?>';
                         let permisoEliminarO = (permisoEliminar && !row.cerrado)? 'delete' : 'disabled';
-                        let user_info = row.fecha; //row.user.split('@')[0]+' '+row.fecha;
+                        let user_info = row.user.split('@')[0]+' '+row.fecha;
                         return '<a class="'+permisoEtapas+'" href="javascript:void(0);">'+ //si tiene permiso para ver etapas
                                     '<i class="fas fa-th-list dp_blue" title="Detalle del objetivo"></i>'+
                                 '</a>&nbsp;&nbsp;'+
