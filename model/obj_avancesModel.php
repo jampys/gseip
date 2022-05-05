@@ -109,6 +109,7 @@ class Avance
         $stmt=new sQuery();
         $query = "select av.id_avance, av.id_objetivo, av.id_tarea,
                   DATE_FORMAT(av.fecha, '%d/%m/%Y') as fecha,
+                  DATE_FORMAT(av.created_date, '%d/%m/%Y %H:%i') as created_date,
                   ind.indicador, av.cantidad, av.comentarios, av.id_user,
                   ot.nombre as tarea, av.periodo, av.cantidad_plan,
                   func_obj_progress_parcial(av.indicador, av.cantidad_plan, av.cantidad) as avance_parcial,
@@ -165,8 +166,8 @@ class Avance
 
     private function insertAvance(){ //ok
         $stmt=new sQuery();
-        $query="insert into obj_avances(id_objetivo, fecha, id_tarea, indicador, cantidad, comentarios, cantidad_plan, periodo, id_user)
-                values(:id_objetivo, STR_TO_DATE(:fecha, '%d/%m/%Y'), :id_tarea, :indicador, :cantidad, :comentarios, :cantidad_plan, :periodo, :id_user)";
+        $query="insert into obj_avances(id_objetivo, fecha, id_tarea, indicador, cantidad, comentarios, cantidad_plan, periodo, id_user, created_date)
+                values(:id_objetivo, STR_TO_DATE(:fecha, '%d/%m/%Y'), :id_tarea, :indicador, :cantidad, :comentarios, :cantidad_plan, :periodo, :id_user, sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_objetivo', $this->getIdObjetivo());
         $stmt->dpBind(':fecha', $this->getFecha());
