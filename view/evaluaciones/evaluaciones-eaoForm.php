@@ -250,7 +250,7 @@
 
                     <div class="col-md-7" id="select-box">
 
-                        <form class="form-horizontal" name ="eao-form" id="eao-form" method="POST" action="index.php">
+                        <form name ="eao-form" id="eao-form" method="POST" action="index.php">
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
                             <input type="hidden" name="id_plan_evaluacion" id="id_plan_evaluacion" value="<?php print $view->params['id_plan_evaluacion']; ?>" >
                             <input type="hidden" name="periodo" id="periodo" value="<?php print $view->params['periodo']; ?>" >
@@ -260,9 +260,9 @@
 
                             <?php foreach ($view->objetivos as $obj){ ?>
 
-                                <div class="form-group fila" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
+                                <div class="row fila" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
 
-                                    <div class="col-md-6">
+                                    <div class="form-group  col-md-6">
                                         <div class="input-group">
                                             <p><strong><?php echo $obj['codigo'];?></strong>&nbsp;<?php echo $obj['nombre']; ?>
                                             <a href="#" onclick="return false;" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
@@ -270,7 +270,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="form-group col-md-3">
                                         <div class="input-group">
                                             <select class="form-control selectpicker show-tick" title="-" data-live-search="true" data-size="5">
                                                 <?php foreach ($view->puntajes as $p){ ?>
@@ -288,7 +288,7 @@
 
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="form-group col-md-3">
                                         <div class="input-group">
                                             <input class="form-control ponderacion" style="text-align: right" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" placeholder="Ponderac." >
                                             <div class="input-group-addon">%</div>
