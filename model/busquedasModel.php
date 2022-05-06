@@ -105,7 +105,7 @@ class Busqueda
         //no funciona cuando el regisrtro tiene el id_contrato null
         $stmt=new sQuery();
         $query = "select bu.id_busqueda,
-                  DATE_FORMAT(bu.fecha,  '%d/%m/%Y') as fecha,
+                  DATE_FORMAT(bu.fecha,  '%d/%m/%Y %H:%i') as fecha,
                   bu.nombre,
                   DATE_FORMAT(bu.fecha_apertura,  '%d/%m/%Y') as fecha_apertura,
                   DATE_FORMAT(bu.fecha_cierre,  '%d/%m/%Y') as fecha_cierre,
