@@ -240,8 +240,9 @@
             $('#demo-avances').collapse('show'); //https://getbootstrap.com/docs/3.3/javascript/#collapse-options
             $('#table-avances').DataTable().ajax.reload();
 
-
+            return false;
         });
+
 
         //para editar una tarea
         $('.grid-tareas').on('click', '.edit', function(){ //ok
@@ -257,8 +258,10 @@
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-            })
+            });
+            return false;
         });
+
 
         //para editar un avance
         $('.grid-avances').on('click', '.edit', function(){ //ok
@@ -276,7 +279,8 @@
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 //$('#id_postulante').prop('disabled', true).selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -296,7 +300,8 @@
                 //$("#right_side fieldset").prop("disabled", true);
                 //$("#tarea-form #footer-buttons button").css('display', 'none');
                 //$('.selectpicker').selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -318,7 +323,8 @@
                 //$("#right_side fieldset").prop("disabled", true);
                 //$("#avance-form #footer-buttons button").css('display', 'none');
                 //$('.selectpicker').selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -336,7 +342,8 @@
                 //$('#myModal').modal();
                 //$('#id_postulacion').val(params.id_postulacion);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -353,7 +360,8 @@
                 //$('#myModal').modal();
                 //$('#id_postulacion').val(params.id_postulacion);
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -379,7 +387,7 @@
                     }
                 }
             });
-
+            return false;
 
         });
 
@@ -439,7 +447,7 @@
                     }
                 }
             });
-
+            return false;
 
         });
 

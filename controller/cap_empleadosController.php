@@ -22,7 +22,9 @@ switch ($operation)
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
         $id_edicion = ($_POST['id_edicion']!='')? $_POST['id_edicion'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? implode(",", $_POST['id_contrato'])  : 'ce.id_contrato';
-        $rta = $view->empleados = CapacitacionEmpleado::getEmpleados($_POST['id_capacitacion'], $id_edicion, $id_contrato);
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+        $rta = $view->empleados = CapacitacionEmpleado::getEmpleados($_POST['id_capacitacion'], $id_edicion, $id_contrato, $startDate, $endDate);
         //$view->contentTemplate="view/no_conformidad/accionesGrid.php";
         //break;
         print_r(json_encode($rta));
@@ -50,7 +52,7 @@ switch ($operation)
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
         $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
-        $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion']);
+        $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion'], $_POST['startDate'], $_POST['endDate']);
 
         $view->disableLayout=true;
         $view->contentTemplate="view/capacitaciones/empleado_detailForm.php";
@@ -62,7 +64,7 @@ switch ($operation)
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
         $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
-        $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion']);
+        $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion'], $_POST['startDate'], $_POST['endDate']);
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

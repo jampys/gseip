@@ -77,7 +77,7 @@ class Capacitacion
 
 
 
-    public static function getCapacitaciones($periodo, $id_categoria, $mes_programada, $id_contrato){ //ok
+    public static function getCapacitaciones($periodo, $id_categoria, $mes_programada, $id_contrato, $startDate, $endDate){ //ok
         $stmt=new sQuery();
         $query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.mes_programada,
                 DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
@@ -86,12 +86,15 @@ class Capacitacion
                 u.user,
                 (select count(*)
                   from cap_capacitacion_empleado ce
+                  join cap_ediciones ed on ed.id_edicion = ce.id_edicion
                   where ce.id_capacitacion = c.id_capacitacion
+                  and date(ed.fecha_edicion) between :startDate and :endDate
                   and ce.id_contrato in ($id_contrato)) as cant_participantes,
                 (select ifnull(sum(ed.duracion), 0)
                   from cap_capacitacion_empleado ce
                   join cap_ediciones ed on ed.id_edicion = ce.id_edicion
                   where ce.id_capacitacion = c.id_capacitacion
+                  and date(ed.fecha_edicion) between :startDate and :endDate
                   and ce.asistio = 1
                   and ce.id_contrato in ($id_contrato)) as sum_hs
                 from cap_capacitaciones c
@@ -112,6 +115,8 @@ class Capacitacion
         $stmt->dpBind(':id_categoria', $id_categoria);
         $stmt->dpBind(':mes_programada', $mes_programada);
         //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':startDate', $startDate);
+        $stmt->dpBind(':endDate', $endDate);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

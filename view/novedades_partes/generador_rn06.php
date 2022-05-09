@@ -48,7 +48,7 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(9, $fila, $p['convenio']);
     $sheet->setCellValueByColumnAndRow(10, $fila, $p['area']);
     $sheet->setCellValueByColumnAndRow(11, $fila, $p['evento']);
-    $sheet->setCellValueByColumnAndRow(11, $fila, $p['motivo']);
+    $sheet->setCellValueByColumnAndRow(12, $fila, $p['motivo']);
 
     $fila++;
 endforeach;

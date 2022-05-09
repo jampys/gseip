@@ -70,6 +70,25 @@
         }*/
 
 
+        //muestra la suma total de las ponderaciones la posicionarse sobre alguna
+        $('#modalEao').on('mouseenter', '.ponderacion', function(){
+            let sum = 0;
+            $('.ponderacion').each(function() {
+                sum += Number($(this).val());
+            });
+
+            $('#modalEao #ponderacion_total').val(sum);
+
+            //$(this).attr('title', sum);
+            tippy(this, {
+             content: 'Total ponderaciones: '+sum+'%',
+             theme: 'light-border',
+             placement: 'right'
+             });
+
+        });
+
+
 
         $('.selectpicker').selectpicker();
 
@@ -109,7 +128,7 @@
         });
 
 
-        /* validacion del formulario */
+        // validacion del formulario: class ponderacion
         $.validator.addMethod("cRequired", $.validator.methods.required, "Ingrese la ponderación");
         $.validator.addMethod("cRange", $.validator.methods.range, "Ingrese un valor entre 0 y 100");
         jQuery.validator.addClassRules('ponderacion', {
@@ -119,6 +138,28 @@
                 }
             },
             cRange: [0, 100]
+        });
+
+        // validacion del formulario: class selectpicker
+        $.validator.addMethod("cRequired1", $.validator.methods.required, "Ingrese en puntaje");
+        jQuery.validator.addClassRules('selectpicker', {
+            cRequired1: {
+                depends: function(element) { //la ponderacion es requerida solo si cargó el puntaje.
+                    return $(this).closest('.fila').find('.ponderacion').val() != '';
+                }
+            }
+        });
+
+        // validacion del formulario: #ponderacion_total
+        $('#eao-form').validate({
+            ignore: '',
+            rules: {
+                ponderacion_total: {max: 100}
+            },
+            messages:{
+                ponderacion_total: "La suma de las ponderaciones no debe superar el 100%"
+            }
+
         });
 
 
@@ -250,19 +291,20 @@
 
                     <div class="col-md-7" id="select-box">
 
-                        <form class="form-horizontal" name ="eao-form" id="eao-form" method="POST" action="index.php">
+                        <form name ="eao-form" id="eao-form" method="POST" action="index.php">
                             <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->params['id_empleado']; ?>" >
                             <input type="hidden" name="id_plan_evaluacion" id="id_plan_evaluacion" value="<?php print $view->params['id_plan_evaluacion']; ?>" >
                             <input type="hidden" name="periodo" id="periodo" value="<?php print $view->params['periodo']; ?>" >
                             <input type="hidden" name="cerrado" id="cerrado" value="<?php print $view->params['cerrado']; ?>" >
+                            <input type="hidden" name="ponderacion_total" id="ponderacion_total" value="" >
 
 
 
                             <?php foreach ($view->objetivos as $obj){ ?>
 
-                                <div class="form-group fila" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
+                                <div class="row fila" id="<?php echo $obj['id_objetivo'];?>" name="<?php echo $obj['id_objetivo'];?>" id_evaluacion_objetivo="<?php echo $obj['id_evaluacion_objetivo'];?>">
 
-                                    <div class="col-md-6">
+                                    <div class="form-group  col-md-6">
                                         <div class="input-group">
                                             <p><strong><?php echo $obj['codigo'];?></strong>&nbsp;<?php echo $obj['nombre']; ?>
                                             <a href="#" onclick="return false;" tabindex="0" data-toggle="popover" data-trigger="focus" title="Información adicional"
@@ -270,9 +312,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="form-group col-md-3">
                                         <div class="input-group">
-                                            <select class="form-control selectpicker show-tick" title="-" data-live-search="true" data-size="5">
+                                            <select class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
+                                                <option value="">-</option>
                                                 <?php foreach ($view->puntajes as $p){ ?>
                                                     <option value="<?php echo $p['id_puntaje_objetivo']; ?>"
                                                         <?php echo ($obj['puntaje'] == $p['puntaje'])? 'selected' :'' ?>
@@ -288,7 +331,7 @@
 
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="form-group col-md-3">
                                         <div class="input-group">
                                             <input class="form-control ponderacion" style="text-align: right" type="text" name="ponderacion_<?php print $obj['id_objetivo']; ?>" value ="<?php print $obj['ponderacion']; ?>" placeholder="Ponderac." >
                                             <div class="input-group-addon">%</div>
@@ -344,12 +387,15 @@
                 <?php }else{ ?>
                     <br/>
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado seleccionado no tiene fijados objetivos para el periodo en cuestión.
+                        <i class="fas fa-exclamation-triangle fa-fw"></i> El empleado seleccionado no tiene fijados objetivos para el período seleccionado.
                     </div>
                 <?php } ?>
 
 
-                <div id="myElem" style="display:none"></div>
+                <!--<div id="myElem" style="display:none"></div>-->
+                <div id="myElem" class="msg" style="display:none">
+                    <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
+                </div>
 
 
             </div> <!-- modal body -->

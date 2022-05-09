@@ -44,6 +44,8 @@
                     d.action = "cap_ediciones";
                     d.operation = "refreshGrid";
                     d.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
+                    d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                 },
                 "dataSrc": ""
             },

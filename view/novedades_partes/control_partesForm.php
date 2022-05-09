@@ -250,7 +250,7 @@
 
 
 
-        //reporte faltantes
+        //reporte de pendientes
         $('#myModal').on("click", "#submit3", function(){
             //alert('Crosstab sucesos');
             //$('#txt-form').validate().resetForm(); //limpiar error input validate
@@ -287,39 +287,6 @@
         });
 
 
-        //reporte de control de cuadrillas
-        $('#myModal').on("click", "#submit4", function(){
-            //alert('Crosstab sucesos');
-            //$('#txt-form').validate().resetForm(); //limpiar error input validate
-            $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
-            $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
-            $('#id_empleado').attr('validar', 0);
-            $('#id_concepto').attr('validar', 0);
-
-
-            if ($("#txt-form").valid()){
-
-                params={};
-                //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
-                params.id_contrato = $("#myModal #id_contrato").val();
-                params.id_periodo = $("#myModal #id_periodo").val();
-                params.periodo = $('#myModal #id_periodo option:selected').attr('periodo');
-                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
-                var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_inspeccion.rptdesign"+
-                    "&p_id_contrato="+params.id_contrato+
-                    "&p_id_periodo="+params.id_periodo+
-                    "&p_periodo="+params.periodo;
-                var win = window.open(URL, "_blank");
-
-            }
-
-
-            return false;
-        });
-
-
-
 
         //RN06 control de conceptos
         $('#myModal').on("click", "#submit6", function(){
@@ -339,7 +306,26 @@
                      '&id_concepto='+$("#myModal #id_concepto").val();
                  window.location.href = link;
             }
+            return false;
+        });
 
+
+        //RN04 control de inspeccion
+        $('#myModal').on("click", "#submit4", function(){
+            $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
+            $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
+            $('#id_empleado').attr('validar', 0);
+            $('#id_concepto').attr('validar', 0);
+
+            if ($("#txt-form").valid()){
+
+                let link = 'index.php?action=nov_reportes&operation=reporte_rn04'+
+                    '&id_contrato='+$("#myModal #id_contrato").val()+
+                    '&id_periodo='+$("#myModal #id_periodo").val()+
+                    '&id_empleado='+$("#myModal #id_empleado").val()+
+                    '&id_concepto='+$("#myModal #id_concepto").val();
+                window.location.href = link;
+            }
             return false;
         });
 
@@ -493,13 +479,13 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Control de inspección:</strong>
+                                &nbsp;<strong>RN04 Control de inspección:</strong>
                                 <strong class="dp_yellow">(Cuadrilla)</strong>
                                 <strong>:</strong>
                                 Actividad de cuadrilla día por día durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit4" name="submit4" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit4" name="submit4" type="submit" title="Emitir reporte">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>

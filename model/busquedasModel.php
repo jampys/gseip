@@ -4,13 +4,14 @@ class Busqueda
 {
     private $id_busqueda;
     private $nombre;
-    private $fecha;
+    private $fecha; //fecha de creacion
     private $fecha_apertura;
     private $fecha_cierre;
     private $id_puesto;
     private $id_localidad;
     private $id_contrato;
     private $estado;
+    private $id_user; //usuario creador
 
     // GETTERS
     function getIdBusqueda()
@@ -40,6 +41,9 @@ class Busqueda
     function getEstado()
     { return $this->estado;}
 
+    function getIdUser()
+    { return $this->id_user;}
+
 
     //SETTERS
     function setIdBusqueda($val)
@@ -68,6 +72,9 @@ class Busqueda
 
     function setEstado($val)
     { $this->estado=$val;}
+
+    function setIdUser($val)
+    { $this->id_user=$val;}
 
 
 
@@ -105,7 +112,7 @@ class Busqueda
         //no funciona cuando el regisrtro tiene el id_contrato null
         $stmt=new sQuery();
         $query = "select bu.id_busqueda,
-                  DATE_FORMAT(bu.fecha,  '%d/%m/%Y') as fecha,
+                  DATE_FORMAT(bu.fecha,  '%d/%m/%Y %H:%i') as fecha,
                   bu.nombre,
                   DATE_FORMAT(bu.fecha_apertura,  '%d/%m/%Y') as fecha_apertura,
                   DATE_FORMAT(bu.fecha_cierre,  '%d/%m/%Y') as fecha_cierre,
@@ -113,8 +120,10 @@ class Busqueda
                   loc.ciudad as area,
                   co. nombre as contrato,
                   bu.estado,
+                  us.user,
                   (select count(*) from uploads_busqueda where id_busqueda = bu.id_busqueda) as cant_uploads
                   from sel_busquedas bu
+                  join sec_users us on us.id_user = bu.id_user
                   left join puestos pu on bu.id_puesto = pu.id_puesto
                   left join localidades loc on bu.id_localidad = loc.id_localidad
                   left join contratos co on bu.id_contrato = co.id_contrato
@@ -192,8 +201,8 @@ class Busqueda
 
     private function insertBusqueda(){ //ok
         $stmt=new sQuery();
-        $query="insert into sel_busquedas(fecha, nombre, fecha_apertura, fecha_cierre, id_puesto, id_localidad, id_contrato, estado)
-                values(sysdate(), :nombre, STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'), STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), :id_puesto, :id_localidad, :id_contrato, :estado)";
+        $query="insert into sel_busquedas(fecha, nombre, fecha_apertura, fecha_cierre, id_puesto, id_localidad, id_contrato, estado, id_user)
+                values(sysdate(), :nombre, STR_TO_DATE(:fecha_apertura, '%d/%m/%Y'), STR_TO_DATE(:fecha_cierre, '%d/%m/%Y'), :id_puesto, :id_localidad, :id_contrato, :estado, :id_user)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nombre', $this->getNombre());
         $stmt->dpBind(':fecha_apertura', $this->getFechaApertura());
@@ -202,6 +211,7 @@ class Busqueda
         $stmt->dpBind(':id_localidad', $this->getIdLocalidad());
         $stmt->dpBind(':id_contrato', $this->getIdContrato());
         $stmt->dpBind(':estado', $this->getEstado());
+        $stmt->dpBind(':id_user', $this->getIdUser());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
 

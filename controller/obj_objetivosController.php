@@ -6,6 +6,7 @@ include_once("model/evaluacionesModel.php");
 include_once("model/puestosModel.php");
 include_once("model/areasModel.php");
 include_once("model/contratosModel.php");
+include_once("model/obj_indicadoresModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -49,6 +50,7 @@ switch ($operation)
         $objetivo->setIdResponsableSeguimiento($_POST['id_responsable_seguimiento']);
         $objetivo->setIdPlanEvaluacion($_POST['id_plan_evaluacion']);
         $objetivo->setIdObjetivoSuperior(($_POST['id_objetivo_superior'])? $_POST['id_objetivo_superior'] : null);
+        $objetivo->setIdUser($_SESSION['id_user']);
 
         $rta = $objetivo->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
@@ -65,7 +67,8 @@ switch ($operation)
         $view->puestos = Puesto::getPuestos();
         $view->areas = Area::getAreas();
         $view->contratos = Contrato::getContratosControl();
-        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        //$view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->indicadores = Indicador::getIndicadores();
         $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
 
@@ -90,7 +93,8 @@ switch ($operation)
         $view->areas = Area::getAreas();
         //$view->contratos = Contrato::getContratos();
         $view->contratos = ($_POST['cerrado'])? Contrato::getContratos() : Contrato::getContratosControl();
-        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        //$view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->indicadores = Indicador::getIndicadores();
         $view->frecuencias = Soporte::get_enum_values('obj_objetivos', 'frecuencia');
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
         $view->objetivos = Objetivo::getObjetivos($view->objetivo->getPeriodo(), null, null,null, null, null, null, 1);
@@ -153,7 +157,8 @@ switch ($operation)
         $view->areas = Area::getAreas();
         //$view->contratos = Contrato::getContratos();
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
-        $view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        //$view->indicadores = Soporte::get_enum_values('obj_objetivos', 'indicador');
+        $view->indicadores = Indicador::getIndicadores();
         $view->empleados = Empleado::getEmpleadosActivos(null);
 
 

@@ -18,13 +18,15 @@ $view->disableLayout=false;
 switch ($operation)
 {
     case 'refreshGrid':
-        //$view->disableLayout=true;
+        $view->disableLayout=true;
         $periodo = ($_POST['periodo']!='')? $_POST['periodo'] : null;
         $id_categoria = ($_POST['id_categoria']!='')? $_POST['id_categoria'] : null;
         $mes_programada = ($_POST['mes_programada']!='')? $_POST['mes_programada'] : null;
         $id_contrato = ($_POST['id_contrato']!='')? implode(",", $_POST['id_contrato'])  : 'ce.id_contrato';
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
 
-        $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_categoria, $mes_programada, $id_contrato);
+        $rta = $view->capacitaciones = Capacitacion::getCapacitaciones($periodo, $id_categoria, $mes_programada, $id_contrato, $startDate, $endDate);
         //$view->contentTemplate="view/objetivos/objetivosGrid.php";
         //break;
         print_r(json_encode($rta));
@@ -107,8 +109,8 @@ switch ($operation)
         $fila1 = $f1[0];
         $f2 = Capacitacion::getPdfContratos(($_GET['id_contrato'])? $_GET['id_contrato'] : 'id_contrato');
         $fila2['contratos'] = ($_GET['id_contrato'])? $f2[0]['contratos'] : 'Todos';
-        $fila3 = Edicion::getEdiciones($_GET['id_capacitacion']);
-        $fila5 = CapacitacionEmpleado::getEmpleados($_GET['id_capacitacion'], null, ($_GET['id_contrato'])? $_GET['id_contrato'] : 'ce.id_contrato');
+        $fila3 = Edicion::getEdiciones($_GET['id_capacitacion'], $_GET['startDate'], $_GET['endDate']);
+        $fila5 = CapacitacionEmpleado::getEmpleados($_GET['id_capacitacion'], null, ($_GET['id_contrato'])? $_GET['id_contrato'] : 'ce.id_contrato', $_GET['startDate'], $_GET['endDate']);
 
         $fila4 = array();
 

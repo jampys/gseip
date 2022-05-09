@@ -15,6 +15,43 @@
             $('.selectpicker').selectpicker();
 
 
+            moment.locale('es');
+            $('#daterange').daterangepicker({
+                startDate: moment().startOf('year'), //moment().subtract(29, 'days'),
+                endDate: moment().endOf('year'), //moment().add(12, 'months'),
+                locale: {
+                    format: 'DD/MM/YYYY',
+                    "applyLabel": "Aplicar",
+                    "cancelLabel": "Cancelar",
+                    "customRangeLabel": "Rango personalizado"
+                },
+                ranges: {
+                    'Últimos 30 dias': [moment().subtract(29, 'days'), moment()],
+                    'Últimos 6 meses': [moment().subtract(6, 'months'), moment()],
+                    'Último año': [moment().subtract(1, 'year'), moment()],
+                    'Últimos 5 años': [moment().subtract(5, 'years'), moment()]
+                }
+            }, function(start, end) {
+                $('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            });
+
+            var drp = $('#daterange').data('daterangepicker');
+
+
+
+
+            //Al seleccionar el periodo restringe el rango de fechas del datepicker
+            $(document).on('change', '#periodo', function(e){
+                //alert('seleccionó un periodo');
+                let sd = $('#periodo').val()+'-01-01';
+                let ed = $('#periodo').val()+'-12-31';
+                //moment(date).endOf('year'); //Where date is a Date somewhere in that year.
+                drp.setStartDate(moment(sd).startOf('year'));
+                drp.setEndDate(moment(ed).endOf('year'));
+            });
+
+
+
             $(document).on('click', '#search', function(){ //ok
                 /*params={};
                 params.search_periodo = $("#search_periodo").val();
@@ -81,7 +118,7 @@
             });
 
 
-            $('#content').on('click', '.empleados', function(){ //ok
+            $('#content').on('click', '.empleados', function(){
                 //alert('presiono sobre empleados');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -106,6 +143,8 @@
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_capacitacion = id;
+                params.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                params.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                 params.action = "cap_ediciones";
                 //params.operation = "etapas"; //entra en default
                 $('#popupbox').load('index.php', params,function(){
@@ -287,7 +326,10 @@
 
 
                         <div class="form-group col-md-3">
-
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </div>
                         </div>
 
 

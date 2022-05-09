@@ -112,7 +112,7 @@ class Etapa
     public static function getEtapas($id_postulacion) { //ok
         $stmt=new sQuery();
         $query = "select et.id_etapa, et.id_postulacion,
-                  DATE_FORMAT(et.fecha, '%d/%m/%Y') as fecha,
+                  DATE_FORMAT(et.fecha, '%d/%m/%Y %H:%i') as fecha,
                   DATE_FORMAT(et.fecha_etapa, '%d/%m/%y') as fecha_etapa,
                   et.etapa, et.aplica, et.motivo, et.modo_contacto, et.comentarios, et.id_user,
                   us.user

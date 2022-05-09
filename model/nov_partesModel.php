@@ -185,7 +185,7 @@ class Parte
         $query="select pa.id_parte,
                     (select count(*) from nov_parte_orden npox where npox.id_parte = pa.id_parte) as orden_count,
                     (select count(*) from nov_parte_empleado_concepto npecx join nov_parte_empleado npex on npex.id_parte_empleado = npecx.id_parte_empleado where npex.id_parte = pa.id_parte) as concept_count,
-                    DATE_FORMAT(pa.created_date,  '%d/%m/%Y') as created_date,
+                    DATE_FORMAT(pa.created_date,  '%d/%m/%Y %H:%i') as created_date,
                     DATE_FORMAT(pa.fecha_parte,  '%d/%m/%Y') as fecha_parte,
                     pa.cuadrilla, pa.id_area, pa.id_vehiculo, pa.id_evento, pa.id_contrato, pa.last_calc_status,
                     concat(ar.codigo, ' ', ar.nombre) as area,

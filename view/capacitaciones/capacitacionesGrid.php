@@ -23,6 +23,8 @@
                     d.id_categoria = $("#id_categoria").val();
                     d.mes_programada = $("#mes_programada").val();
                     d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
+                    d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                     d.action = "cap_capacitaciones";
                     d.operation = "refreshGrid";
                 },
@@ -70,7 +72,9 @@
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('OBJ_DELETE', array(1)) )? true : false ?>';
                         let permisoEliminarO = (permisoEliminar && !row.cerrado)? 'delete' : 'disabled';
                         let id_contrato = $("#id_contrato").val();
-                        let link = 'index.php?action=cap_capacitaciones&operation=pdf&id_capacitacion='+row.id_capacitacion+'&id_contrato='+id_contrato;
+                        let startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                        let endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                        let link = 'index.php?action=cap_capacitaciones&operation=pdf&id_capacitacion='+row.id_capacitacion+'&id_contrato='+id_contrato+'&startDate='+startDate+'&endDate='+endDate;
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
                         return  '<a class="'+permisoEdiciones+'" href="#">'+ //si tiene permiso para ver ediciones
                                     '<i class="fas fa-th-list dp_blue" title="Ediciones"></i>'+
@@ -95,7 +99,54 @@
                                 '</a>';
                     }
                 }
-            ]
+            ],
+            "footerCallback": function ( row, data, start, end, display ) { //https://datatables.net/examples/advanced_init/footer_callback.html
+                var api = this.api();
+
+                // Remove the formatting to get integer data for summation
+                var intVal = function ( i ) {
+                    return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                        typeof i === 'number' ?
+                            i : 0;
+                };
+
+                // Total participantes over all pages
+                totalP = api
+                    .column( 4 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                // Total participantes over this page
+                pageTotalP = api
+                    .column( 4, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                // Total Hs over all pages
+                totalH = api
+                    .column( 5 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                // Total Hs over this page
+                pageTotalH = api
+                    .column( 5, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                // Update footer
+                $( api.column( 4 ).footer() ).html(pageTotalP +' ('+ totalP +' total)');
+                $( api.column( 5 ).footer() ).html(pageTotalH +' ('+ totalH +' total)');
+            }
 
         });
 
@@ -125,6 +176,17 @@
                 <th></th>
             </tr>
             </thead>
+            <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tfoot>
         </table>
 
 
