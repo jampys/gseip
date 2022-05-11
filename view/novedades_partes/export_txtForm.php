@@ -297,6 +297,21 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
+                                <span class="glyphicon glyphicon-tags"></span>
+                                &nbsp;<span class="label label-danger">Próximamente</span>
+                                &nbsp;<strong>RN03 Control de Novedades Administración:</strong>
+                                Novedades en formato .xlsx (empleados/conceptos).
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row">
+                            <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags" ></span>
                                 &nbsp;<strong>RN05 Archivo de texto</strong>
                                 <strong class="dp_orange">(RRHH)</strong>

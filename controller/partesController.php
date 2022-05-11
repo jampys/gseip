@@ -181,7 +181,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'exportTxt': //exportacion propiamente dicha
+    case 'exportTxt': //RN05 exportacion en txt
 
         $id_contrato = ($_GET['id_contrato']!='')? $_GET['id_contrato'] : null;
         $periodo = ($_GET['periodo']!='')? $_GET['periodo'] : null;
