@@ -114,7 +114,7 @@ switch ($operation)
 
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
 
-        $view->contentTemplate="view/novedades_partes/generador_rn06.php";
+        $view->contentTemplate="view/novedades_partes/generador_rn03_21.php";
         break;
 
 
