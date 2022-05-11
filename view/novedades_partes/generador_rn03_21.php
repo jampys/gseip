@@ -37,8 +37,8 @@ $spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFill()->setFillType(\PhpOf
 //cuerpo -----------------------------------------------------------------
 $fila = 9;
 foreach ($view->partes as $p):
-    $sheet->setCellValueByColumnAndRow(1, $fila, $p['fecha_parte']);
-    $sheet->setCellValueByColumnAndRow(2, $fila, $p['id_parte']);
+    $sheet->setCellValueByColumnAndRow(1, $fila, $p['legajo']);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $p['apellido']);
     $sheet->setCellValueByColumnAndRow(3, $fila, $p['cuadrilla']);
     $sheet->setCellValueByColumnAndRow(4, $fila, $p['empleado']);
     $sheet->setCellValueByColumnAndRow(5, $fila, $p['concepto']);
