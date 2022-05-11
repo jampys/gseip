@@ -188,7 +188,9 @@ order by cu.nombre asc";
 -- suspenciones
 (select func_nov_cantidad('SUCESO', '32', :periodo, $id_contrato, em.id_empleado)) as suspenciones,
 -- dias mayor funcion
-(select func_nov_cantidad('NOVEDAD', '22', :periodo, $id_contrato, em.id_empleado)) as mayor_funcion
+(select func_nov_cantidad('NOVEDAD', '22', :periodo, $id_contrato, em.id_empleado)) as mayor_funcion,
+-- dias mayor funcion. Motivo
+(select func_nov_cantidadM('MAYOR_FUNCION', '22', :periodo, $id_contrato, em.id_empleado)) as mayor_funcion_m
 from empleados em
 join empleado_contrato ec on ec.id_empleado = em.id_empleado
 join nov_periodos p on (p.periodo = :periodo and p.id_contrato = ec.id_contrato)
