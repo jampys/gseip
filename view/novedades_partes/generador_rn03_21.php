@@ -76,6 +76,18 @@ endforeach;
 
 $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(30);
 
+$spreadsheet->getActiveSheet()->getStyle('B8')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('C8')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('D8')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('E8')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('F8')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('G8')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('H8')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('I8')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('J8')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('K8')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('L8')->getAlignment()->setTextRotation(90);
+
 
 //-----------------------------------------------------------------
 
