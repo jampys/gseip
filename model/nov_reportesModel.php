@@ -190,7 +190,19 @@ order by cu.nombre asc";
 -- dias mayor funcion
 (select func_nov_cantidad('NOVEDAD', '22', :periodo, $id_contrato, em.id_empleado)) as mayor_funcion,
 -- dias mayor funcion. Motivo
-(select func_nov_cantidadM('MAYOR_FUNCION', '22', :periodo, $id_contrato, em.id_empleado)) as mayor_funcion_m
+(select func_nov_cantidadM('MAYOR_FUNCION', '22', :periodo, $id_contrato, em.id_empleado)) as mayor_funcion_m,
+-- Dias Reales Trabajados (DRT)
+(select func_nov_horas('DRT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo)) as DRT,
+-- Dias Habiles Trabajados (DHT)
+(select func_nov_horas('DHT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo)) as DHT,
+-- Dias Habiles No Trabajados (DHNT)
+(select func_nov_horas('DHNT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo)) as DHNT,
+-- Dias Corridos No Trabajados (DCNT)
+(select func_nov_horas('DCNT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo)) as DCNT,
+-- Disponible en domicilio HABILES (DHDD)
+(select func_nov_horas('DHDD', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo)) as DHDD,
+-- Dias Habiles (DH)
+(select func_nov_horas('DH', 'CAL', group_concat(ec.id_contrato), em.id_empleado, :periodo)) as DH
 from empleados em
 join empleado_contrato ec on ec.id_empleado = em.id_empleado
 join nov_periodos p on (p.periodo = :periodo and p.id_contrato = ec.id_contrato)

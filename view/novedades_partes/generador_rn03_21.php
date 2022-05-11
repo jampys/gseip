@@ -40,7 +40,13 @@ $cabecera = ["Empleado",
             "Total Hs viaje",
             "Viandas Extra",
             "Enfermedad",
-            "Accidente"
+            "Accidente",
+            "DRT",
+            "DHT",
+            "DHNT",
+            "DCNT",
+            "DHDD",
+            "DH"
         ];
 $sheet->fromArray($cabecera, null, 'A8');
 $spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFont()->setBold(true);
@@ -64,6 +70,12 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(10, $fila, $p['viandas_extra']);
     $sheet->setCellValueByColumnAndRow(11, $fila, $p['enfermedad']);
     $sheet->setCellValueByColumnAndRow(12, $fila, $p['accidente']);
+    $sheet->setCellValueByColumnAndRow(13, $fila, $p['DRT']);
+    $sheet->setCellValueByColumnAndRow(14, $fila, $p['DHT']);
+    $sheet->setCellValueByColumnAndRow(15, $fila, $p['DHNT']);
+    $sheet->setCellValueByColumnAndRow(16, $fila, $p['DCNT']);
+    $sheet->setCellValueByColumnAndRow(17, $fila, $p['DHDD']);
+    $sheet->setCellValueByColumnAndRow(18, $fila, $p['DH']);
 
     $fila++;
 endforeach;
