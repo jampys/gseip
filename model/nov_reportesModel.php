@@ -154,65 +154,51 @@ order by cu.nombre asc";
         $stmt=new sQuery();
         $query = "select em.legajo, em.apellido, em.nombre,
 -- guardias
-(select func_nov_cantidad('NOVEDAD', '1', @p_id_periodo, @p_id_contrato, em.id_empleado)) as guardias,
+(select func_nov_cantidad('NOVEDAD', '1', :periodo, $id_contrato, em.id_empleado)) as guardias,
 -- hs extras 50%
-(select func_nov_cantidad('NOVEDAD', '2', @p_id_periodo, @p_id_contrato, em.id_empleado)) as hs_extras_50,
+(select func_nov_cantidad('NOVEDAD', '2', :periodo, $id_contrato, em.id_empleado)) as hs_extras_50,
 -- hs extras 50% por manejo
-(select func_nov_cantidad('NOVEDAD', '6', @p_id_periodo, @p_id_contrato, em.id_empleado)) as hs_extras_50_manejo,
+(select func_nov_cantidad('NOVEDAD', '6', :periodo, $id_contrato, em.id_empleado)) as hs_extras_50_manejo,
 -- total hs extras 50%
-(select func_nov_cantidad('NOVEDAD', '2,6', @p_id_periodo, @p_id_contrato, em.id_empleado)) as total_hs_extras_50,
+(select func_nov_cantidad('NOVEDAD', '2,6', :periodo, $id_contrato, em.id_empleado)) as total_hs_extras_50,
 -- hs extras 100%
-(select func_nov_cantidad('NOVEDAD', '3', @p_id_periodo, @p_id_contrato, em.id_empleado)) as hs_extras_100,
+(select func_nov_cantidad('NOVEDAD', '3', :periodo, $id_contrato, em.id_empleado)) as hs_extras_100,
 -- hs base
-(select func_nov_cantidad('NOVEDAD', '4', @p_id_periodo, @p_id_contrato, em.id_empleado)) as hs_base,
+(select func_nov_cantidad('NOVEDAD', '4', :periodo, $id_contrato, em.id_empleado)) as hs_base,
 -- hs viaje
-(select func_nov_cantidad('NOVEDAD', '5', @p_id_periodo, @p_id_contrato, em.id_empleado)) as hs_viaje,
+(select func_nov_cantidad('NOVEDAD', '5', :periodo, $id_contrato, em.id_empleado)) as hs_viaje,
 -- total hs_viaje (hs_viaje + hs_base)
-(select func_nov_cantidad('NOVEDAD', '4,5', @p_id_periodo, @p_id_contrato, em.id_empleado)) as total_hs_viaje,
+(select func_nov_cantidad('NOVEDAD', '4,5', :periodo, $id_contrato, em.id_empleado)) as total_hs_viaje,
 -- viandas extras
-(select func_nov_cantidad('NOVEDAD', '11', @p_id_periodo, @p_id_contrato, em.id_empleado)) as viandas_extra,
+(select func_nov_cantidad('NOVEDAD', '11', :periodo, $id_contrato, em.id_empleado)) as viandas_extra,
 -- enfermedad
-(select func_nov_cantidad('SUCESO', '17', @p_id_periodo, @p_id_contrato, em.id_empleado)) as enfermedad,
+(select func_nov_cantidad('SUCESO', '17', :periodo, $id_contrato, em.id_empleado)) as enfermedad,
 -- accidente
-(select func_nov_cantidad('SUCESO', '15', @p_id_periodo, @p_id_contrato, em.id_empleado)) as accidente,
+(select func_nov_cantidad('SUCESO', '15', :periodo, $id_contrato, em.id_empleado)) as accidente,
 -- injustificadas
-(select func_nov_cantidad('SUCESO', '33', @p_id_periodo, @p_id_contrato, em.id_empleado)) as injustificadas,
+(select func_nov_cantidad('SUCESO', '33', :periodo, $id_contrato, em.id_empleado)) as injustificadas,
 -- permiso_dias_tramite
-(select func_nov_cantidad('SUCESO', '19', @p_id_periodo, @p_id_contrato, em.id_empleado)) as permiso_dias_tramite,
+(select func_nov_cantidad('SUCESO', '19', :periodo, $id_contrato, em.id_empleado)) as permiso_dias_tramite,
 -- permiso_gremial
-(select func_nov_cantidad('SUCESO', '34', @p_id_periodo, @p_id_contrato, em.id_empleado)) as permiso_gremial,
+(select func_nov_cantidad('SUCESO', '34', :periodo, $id_contrato, em.id_empleado)) as permiso_gremial,
 -- resto_permisos
-(select func_nov_cantidad('SUCESO', '8,9,11,12,14,16,18,22', @p_id_periodo, @p_id_contrato, em.id_empleado)) as resto_permisos,
+(select func_nov_cantidad('SUCESO', '8,9,11,12,14,16,18,22', :periodo, $id_contrato, em.id_empleado)) as resto_permisos,
 -- vacaciones
-(select func_nov_cantidad('SUCESO', '21', @p_id_periodo, @p_id_contrato, em.id_empleado)) as vacaciones,
+(select func_nov_cantidad('SUCESO', '21', :periodo, $id_contrato, em.id_empleado)) as vacaciones,
 -- suspenciones
-(select func_nov_cantidad('SUCESO', '32', @p_id_periodo, @p_id_contrato, em.id_empleado)) as suspenciones,
+(select func_nov_cantidad('SUCESO', '32', :periodo, $id_contrato, em.id_empleado)) as suspenciones,
 -- dias mayor funcion
-(select func_nov_cantidad('NOVEDAD', '22', @p_id_periodo, @p_id_contrato, em.id_empleado)) as mayor_funcion,
--- Dias Reales Trabajados (DRT)
-(select func_nov_horas('DRT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, @p_id_periodo)) as DRT,
--- Dias Habiles Trabajados (DHT)
-(select func_nov_horas('DHT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, @p_id_periodo)) as DHT,
--- Dias Habiles No Trabajados (DHNT)
-(select func_nov_horas('DHNT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, @p_id_periodo)) as DHNT,
--- Dias Corridos No Trabajados (DCNT)
-(select func_nov_horas('DCNT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, @p_id_periodo)) as DCNT,
--- Disponible en domicilio HABILES (DHDD)
-(select func_nov_horas('DHDD', 'CTO', group_concat(ec.id_contrato), em.id_empleado, @p_id_periodo)) as DHDD,
--- Dias Habiles (DH)
-(select func_nov_horas('DH', 'CAL', group_concat(ec.id_contrato), em.id_empleado, @p_id_periodo)) as DH,
--- dias mayor funcion. Motivo
-(select func_nov_cantidadM('MAYOR_FUNCION', '22', @p_id_periodo, @p_id_contrato, em.id_empleado)) as mayor_funcion_m
+(select func_nov_cantidad('NOVEDAD', '22', :periodo, $id_contrato, em.id_empleado)) as mayor_funcion
 from empleados em
 join empleado_contrato ec on ec.id_empleado = em.id_empleado
-join nov_periodos p on (p.periodo = @p_id_periodo and p.id_contrato = ec.id_contrato)
-where ec.id_contrato in(@p_id_contrato)
+join nov_periodos p on (p.periodo = :periodo and p.id_contrato = ec.id_contrato)
+where ec.id_contrato in($id_contrato)
 and ec.fecha_desde <= p.fecha_hasta
 and (ec.fecha_hasta is null or ec.fecha_hasta >= p.fecha_desde)
 group by em.id_empleado
 order by em.id_convenio asc, em.legajo asc";
         $stmt->dpPrepare($query);
-        $stmt->dpBind(':id_contrato', $id_contrato);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();

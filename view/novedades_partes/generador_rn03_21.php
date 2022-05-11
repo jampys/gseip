@@ -7,7 +7,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
-$sheet->setTitle('partes');
+$sheet->setTitle('resumen');
 
 //titulo ----------------------------------------------------------------
 
@@ -29,7 +29,19 @@ $sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //encabezado ------------------------------------------------------------
-$cabecera = ["Fecha parte", "IN", "Cuadrilla", "Empleado", "Concepto", "Cantidad", "Código", "Variable", "Convenio", "Área", "Evento", "Motivo"];
+$cabecera = ["Empleado",
+            "Guardias",
+            "Hs Extras 50",
+            "Hs Extras 50 Manejo",
+            "Total Hs Extras 50",
+            "Hs Extras 100",
+            "Hs Base",
+            "Hs Viaje",
+            "Total Hs viaje",
+            "Viandas Extra",
+            "Enfermedad",
+            "Accidente"
+        ];
 $sheet->fromArray($cabecera, null, 'A8');
 $spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
@@ -37,18 +49,21 @@ $spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFill()->setFillType(\PhpOf
 //cuerpo -----------------------------------------------------------------
 $fila = 9;
 foreach ($view->partes as $p):
-    $sheet->setCellValueByColumnAndRow(1, $fila, $p['legajo']);
-    $sheet->setCellValueByColumnAndRow(2, $fila, $p['apellido']);
-    $sheet->setCellValueByColumnAndRow(3, $fila, $p['cuadrilla']);
-    $sheet->setCellValueByColumnAndRow(4, $fila, $p['empleado']);
-    $sheet->setCellValueByColumnAndRow(5, $fila, $p['concepto']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['cantidad']);
-    $sheet->setCellValueByColumnAndRow(7, $fila, $p['codigo']);
-    $sheet->setCellValueByColumnAndRow(8, $fila, $p['variable']);
-    $sheet->setCellValueByColumnAndRow(9, $fila, $p['convenio']);
-    $sheet->setCellValueByColumnAndRow(10, $fila, $p['area']);
-    $sheet->setCellValueByColumnAndRow(11, $fila, $p['evento']);
-    $sheet->setCellValueByColumnAndRow(12, $fila, $p['motivo']);
+
+    $empleado = $p['legajo'].' '.$p['apellido'].' '.$p['legajo'];
+
+    $sheet->setCellValueByColumnAndRow(1, $fila, $empleado);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $p['guardias']);
+    $sheet->setCellValueByColumnAndRow(3, $fila, $p['hs_extras_50']);
+    $sheet->setCellValueByColumnAndRow(4, $fila, $p['hs_extras_50_manejo']);
+    $sheet->setCellValueByColumnAndRow(5, $fila, $p['total_hs_extras_50']);
+    $sheet->setCellValueByColumnAndRow(6, $fila, $p['hs_extras_100']);
+    $sheet->setCellValueByColumnAndRow(7, $fila, $p['hs_base']);
+    $sheet->setCellValueByColumnAndRow(8, $fila, $p['hs_viaje']);
+    $sheet->setCellValueByColumnAndRow(9, $fila, $p['total_hs_viaje']);
+    $sheet->setCellValueByColumnAndRow(10, $fila, $p['viandas_extra']);
+    $sheet->setCellValueByColumnAndRow(11, $fila, $p['enfermedad']);
+    $sheet->setCellValueByColumnAndRow(12, $fila, $p['accidente']);
 
     $fila++;
 endforeach;
