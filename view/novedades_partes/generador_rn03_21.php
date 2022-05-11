@@ -50,7 +50,7 @@ $spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFill()->setFillType(\PhpOf
 $fila = 9;
 foreach ($view->partes as $p):
 
-    $empleado = $p['legajo'].' '.$p['apellido'].' '.$p['legajo'];
+    $empleado = $p['legajo'].' '.$p['apellido'].' '.$p['nombre'];
 
     $sheet->setCellValueByColumnAndRow(1, $fila, $empleado);
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['guardias']);
