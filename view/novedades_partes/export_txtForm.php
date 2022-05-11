@@ -99,7 +99,7 @@
         });*/
 
 
-        //al presionar boton de exportar en txt
+        //RN05 al presionar boton de exportar en txt
         $('#myModal').on("click", "#submit", function(){ //ok
             //alert('presiono en exportar');
 
@@ -284,7 +284,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>RN03 Control de Novedades Administración:</strong>
+                                &nbsp;<strong>Control de Novedades Administración:</strong>
                                 Novedades en formato de tabla cruzada (empleados/conceptos).
                             </div>
                             <div class="col-md-2">
@@ -298,7 +298,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags" ></span>
-                                &nbsp;<strong>RN04 Archivo de texto</strong>
+                                &nbsp;<strong>RN05 Archivo de texto</strong>
                                 <strong class="dp_orange">(RRHH)</strong>
                                 <strong>:</strong>
                                 Novedades en formato .txt (admisible para BAS).
