@@ -49,8 +49,8 @@ $cabecera = ["Empleado",
             "DH"
         ];
 $sheet->fromArray($cabecera, null, 'A8');
-$spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A8:R8')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A8:R8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
 $fila = 9;
@@ -87,6 +87,23 @@ endforeach;
 }*/
 
 $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(30);
+$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('I')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('J')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('K')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('L')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('M')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('N')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('O')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('P')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('Q')->setWidth(8);
+$spreadsheet->getActiveSheet()->getColumnDimension('R')->setWidth(8);
 
 $spreadsheet->getActiveSheet()->getStyle('B8')->getAlignment()->setTextRotation(90);
 $spreadsheet->getActiveSheet()->getStyle('C8')->getAlignment()->setTextRotation(90);
