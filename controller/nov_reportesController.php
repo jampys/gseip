@@ -90,10 +90,8 @@ switch ($operation)
     case 'reporte_rn03':
         $view->disableLayout=true;
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
-        $id_periodo = ($_GET['id_periodo'])? $_GET['id_periodo'] : null;
-        $id_empleado = ($_GET['id_empleado'])? $_GET['id_empleado'] : null;
-        $id_concepto = ($_GET['id_concepto'])? $_GET['id_concepto'] : null; //viene el id_concepto_convenio_contrato
-        $view->partes = $rta = ReporteNovedades::getReporteRn6($id_contrato, $id_periodo, $id_empleado, $id_concepto);
+        $periodo = ($_GET['periodo'])? $_GET['periodo'] : null;
+        $view->partes = $rta = ReporteNovedades::getReporteRn3($id_contrato, $periodo);
 
         $encabezado = array();
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
