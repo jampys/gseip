@@ -69,10 +69,12 @@ foreach ($view->partes as $p):
 endforeach;
 
 
-//Ajustar el ancho de todas las columnas: https://stackoverflow.com/questions/62203260/php-spreadsheet-cant-find-the-function-to-auto-size-column-width
-foreach ($sheet->getColumnIterator() as $column) {
+//Ajustar el ancho de todas las columnas:
+/*foreach ($sheet->getColumnIterator() as $column) {
     $sheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
-}
+}*/
+
+$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(30);
 
 
 //-----------------------------------------------------------------
