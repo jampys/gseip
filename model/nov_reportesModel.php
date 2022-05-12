@@ -159,8 +159,10 @@ order by cu.nombre asc";
 (select func_nov_cantidad('NOVEDAD', '2', :periodo, $id_contrato, em.id_empleado)) as hs_extras_50,
 -- hs extras 50% por manejo
 (select func_nov_cantidad('NOVEDAD', '6', :periodo, $id_contrato, em.id_empleado)) as hs_extras_50_manejo,
+ -- hs extras 50% truncado
+ (select func_nov_cantidad('NOVEDAD', '30', :periodo, $id_contrato, em.id_empleado)) as hs_extras_50_truncado,
 -- total hs extras 50%
-(select func_nov_cantidad('NOVEDAD', '2,6', :periodo, $id_contrato, em.id_empleado)) as total_hs_extras_50,
+(select func_nov_cantidad('NOVEDAD', '2,6,30', :periodo, $id_contrato, em.id_empleado)) as total_hs_extras_50,
 -- hs extras 100%
 (select func_nov_cantidad('NOVEDAD', '3', :periodo, $id_contrato, em.id_empleado)) as hs_extras_100,
 -- hs base
@@ -171,6 +173,12 @@ order by cu.nombre asc";
 (select func_nov_cantidad('NOVEDAD', '4,5', :periodo, $id_contrato, em.id_empleado)) as total_hs_viaje,
 -- viandas extras
 (select func_nov_cantidad('NOVEDAD', '11', :periodo, $id_contrato, em.id_empleado)) as viandas_extra,
+-- viandas extras por manejo
+(select func_nov_cantidad('NOVEDAD', '12', :periodo, $id_contrato, em.id_empleado)) as viandas_extra_manejo,
+-- viandas extras por comedor
+(select func_nov_cantidad('NOVEDAD', '32', :periodo, $id_contrato, em.id_empleado)) as viandas_extra_comedor,
+-- total viandas extras
+(select func_nov_cantidad('NOVEDAD', '11,12,32', :periodo, $id_contrato, em.id_empleado)) as total_viandas_extra,
 -- enfermedad
 (select func_nov_cantidad('SUCESO', '17', :periodo, $id_contrato, em.id_empleado)) as enfermedad,
 -- accidente
