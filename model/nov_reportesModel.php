@@ -191,6 +191,8 @@ order by cu.nombre asc";
 (select func_nov_cantidad('NOVEDAD', '22', :periodo, $id_contrato, em.id_empleado)) as mayor_funcion,
 -- dias mayor funcion. Motivo
 (select func_nov_cantidadM('MAYOR_FUNCION', '22', :periodo, $id_contrato, em.id_empleado)) as mayor_funcion_m,
+-- monto cañista: mes contractual
+(select func_nov_cantidad('MONTO_CAÑISTA', NULL, :periodo, $id_contrato, em.id_empleado)) as monto_cañista,
 -- Dias Reales Trabajados (DRT)
 (select func_nov_horas('DRT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo)) as DRT,
 -- Dias Habiles Trabajados (DHT)
