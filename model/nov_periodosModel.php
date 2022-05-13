@@ -94,6 +94,7 @@ class NovPeriodo
     public static function getPeriodosList($id_contrato, $periodo) {
         $stmt=new sQuery();
         $query="select per.id_periodo, per.nombre, per.id_contrato,
+SUBSTRING_INDEX(per.nombre, ' ', 2) as nombre1,
 DATE_FORMAT(per.fecha_desde,  '%d/%m/%Y') as fecha_desde,
 DATE_FORMAT(per.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
 per.periodo,

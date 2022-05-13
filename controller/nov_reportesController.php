@@ -100,9 +100,9 @@ switch ($operation)
         $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
         $encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';
 
-        $encabezado['obj_periodo'] = new NovPeriodo($_GET['id_periodo']);
-        $encabezado['periodo'] = $encabezado['obj_periodo']->getFechaDesde().' - '.$encabezado['obj_periodo']->getFechaHasta();
-        
+        $encabezado['periodos_list'] = NovPeriodo::getPeriodosList($_GET['id_contrato'], $_GET['periodo'] );
+        $encabezado['periodo'] = $encabezado['periodos_list'][0]['nombre1'];
+
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
 
         $view->contentTemplate="view/novedades_partes/generador_rn03_21.php";
