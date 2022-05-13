@@ -154,69 +154,69 @@ order by cu.nombre asc";
         $stmt=new sQuery();
         $query = "select em.legajo, em.apellido, em.nombre,
 -- guardias
-(select func_nov_cantidad('NOVEDAD', '1', :periodo, $id_contrato, em.id_empleado)) as guardias,
+(select func_nov_cantidad('NOVEDAD', '1', :periodo, '$id_contrato', em.id_empleado)) as guardias,
 -- hs extras 50%
-(select func_nov_cantidad('NOVEDAD', '2', :periodo, $id_contrato, em.id_empleado)) as hs_extras_50,
+(select func_nov_cantidad('NOVEDAD', '2', :periodo, '$id_contrato', em.id_empleado)) as hs_extras_50,
 -- hs extras 50% por manejo
-(select func_nov_cantidad('NOVEDAD', '6', :periodo, $id_contrato, em.id_empleado)) as hs_extras_50_manejo,
+(select func_nov_cantidad('NOVEDAD', '6', :periodo, '$id_contrato', em.id_empleado)) as hs_extras_50_manejo,
  -- hs extras 50% truncado
- (select func_nov_cantidad('NOVEDAD', '30', :periodo, $id_contrato, em.id_empleado)) as hs_extras_50_truncado,
+ (select func_nov_cantidad('NOVEDAD', '30', :periodo, '$id_contrato', em.id_empleado)) as hs_extras_50_truncado,
 -- hs extras 50% traslado
-(select func_nov_cantidad('NOVEDAD', '33', :periodo, $id_contrato, em.id_empleado)) as hs_extras_50_traslado,
+(select func_nov_cantidad('NOVEDAD', '33', :periodo, '$id_contrato', em.id_empleado)) as hs_extras_50_traslado,
 -- total hs extras 50%
-(select func_nov_cantidad('NOVEDAD', '2,6,30,33', :periodo, $id_contrato, em.id_empleado)) as total_hs_extras_50,
+(select func_nov_cantidad('NOVEDAD', '2,6,30,33', :periodo, '$id_contrato', em.id_empleado)) as total_hs_extras_50,
 -- hs extras 100%
-(select func_nov_cantidad('NOVEDAD', '3', :periodo, $id_contrato, em.id_empleado)) as hs_extras_100,
+(select func_nov_cantidad('NOVEDAD', '3', :periodo, '$id_contrato', em.id_empleado)) as hs_extras_100,
 -- hs base
-(select func_nov_cantidad('NOVEDAD', '4', :periodo, $id_contrato, em.id_empleado)) as hs_base,
+(select func_nov_cantidad('NOVEDAD', '4', :periodo, '$id_contrato', em.id_empleado)) as hs_base,
 -- hs viaje
-(select func_nov_cantidad('NOVEDAD', '5', :periodo, $id_contrato, em.id_empleado)) as hs_viaje,
+(select func_nov_cantidad('NOVEDAD', '5', :periodo, '$id_contrato', em.id_empleado)) as hs_viaje,
 -- hs viaje truncado
-(select func_nov_cantidad('NOVEDAD', '31', :periodo, $id_contrato, em.id_empleado)) as hs_viaje_truncado,
+(select func_nov_cantidad('NOVEDAD', '31', :periodo, '$id_contrato', em.id_empleado)) as hs_viaje_truncado,
 -- total hs_viaje (hs_viaje + hs_base)
-(select func_nov_cantidad('NOVEDAD', '4,5,31', :periodo, $id_contrato, em.id_empleado)) as total_hs_viaje,
+(select func_nov_cantidad('NOVEDAD', '4,5,31', :periodo, '$id_contrato', em.id_empleado)) as total_hs_viaje,
 -- viandas extras
-(select func_nov_cantidad('NOVEDAD', '11', :periodo, $id_contrato, em.id_empleado)) as viandas_extra,
+(select func_nov_cantidad('NOVEDAD', '11', :periodo, '$id_contrato', em.id_empleado)) as viandas_extra,
 -- viandas extras por manejo
-(select func_nov_cantidad('NOVEDAD', '12', :periodo, $id_contrato, em.id_empleado)) as viandas_extra_manejo,
+(select func_nov_cantidad('NOVEDAD', '12', :periodo, '$id_contrato', em.id_empleado)) as viandas_extra_manejo,
 -- viandas extras por comedor
-(select func_nov_cantidad('NOVEDAD', '32', :periodo, $id_contrato, em.id_empleado)) as viandas_extra_comedor,
+(select func_nov_cantidad('NOVEDAD', '32', :periodo, '$id_contrato', em.id_empleado)) as viandas_extra_comedor,
 -- viandas desarraigo almuerzo y cena
-(select func_nov_cantidad('NOVEDAD', '13', :periodo, $id_contrato, em.id_empleado)) as viandas_des_alm_y_cena,
+(select func_nov_cantidad('NOVEDAD', '13', :periodo, '$id_contrato', em.id_empleado)) as viandas_des_alm_y_cena,
 -- viandas desarraigo desayuno y merienda
-(select func_nov_cantidad('NOVEDAD', '14', :periodo, $id_contrato, em.id_empleado)) as viandas_des_des_y_mer,
+(select func_nov_cantidad('NOVEDAD', '14', :periodo, '$id_contrato', em.id_empleado)) as viandas_des_des_y_mer,
 -- viandas dia trabajado
-(select func_nov_cantidad('NOVEDAD', '34', :periodo, $id_contrato, em.id_empleado)) as viandas_dia_trabajado,
+(select func_nov_cantidad('NOVEDAD', '34', :periodo, '$id_contrato', em.id_empleado)) as viandas_dia_trabajado,
 -- total viandas extras
-(select func_nov_cantidad('NOVEDAD', '11,12,13,32', :periodo, $id_contrato, em.id_empleado)) as total_viandas_extra,
+(select func_nov_cantidad('NOVEDAD', '11,12,13,32', :periodo, '$id_contrato', em.id_empleado)) as total_viandas_extra,
 -- desarraigo
-(select func_nov_cantidad('NOVEDAD', '28', :periodo, $id_contrato, em.id_empleado)) as desarraigo,
+(select func_nov_cantidad('NOVEDAD', '28', :periodo, '$id_contrato', em.id_empleado)) as desarraigo,
 -- zona diferencial
-(select func_nov_cantidad('NOVEDAD', '27', :periodo, $id_contrato, em.id_empleado)) as zona_dif,
+(select func_nov_cantidad('NOVEDAD', '27', :periodo, '$id_contrato', em.id_empleado)) as zona_dif,
 -- enfermedad
-(select func_nov_cantidad('SUCESO', '17', :periodo, $id_contrato, em.id_empleado)) as enfermedad,
+(select func_nov_cantidad('SUCESO', '17', :periodo, '$id_contrato', em.id_empleado)) as enfermedad,
 -- accidente
-(select func_nov_cantidad('SUCESO', '15', :periodo, $id_contrato, em.id_empleado)) as accidente,
+(select func_nov_cantidad('SUCESO', '15', :periodo, '$id_contrato', em.id_empleado)) as accidente,
 -- injustificadas
-(select func_nov_cantidad('SUCESO', '33', :periodo, $id_contrato, em.id_empleado)) as injustificadas,
+(select func_nov_cantidad('SUCESO', '33', :periodo, '$id_contrato', em.id_empleado)) as injustificadas,
 -- permiso_dias_tramite
-(select func_nov_cantidad('SUCESO', '19', :periodo, $id_contrato, em.id_empleado)) as permiso_dias_tramite,
+(select func_nov_cantidad('SUCESO', '19', :periodo, '$id_contrato', em.id_empleado)) as permiso_dias_tramite,
 -- permiso_gremial
-(select func_nov_cantidad('SUCESO', '34', :periodo, $id_contrato, em.id_empleado)) as permiso_gremial,
+(select func_nov_cantidad('SUCESO', '34', :periodo, '$id_contrato', em.id_empleado)) as permiso_gremial,
 -- resto_permisos
-(select func_nov_cantidad('SUCESO', '8,9,11,12,14,16,18,22', :periodo, $id_contrato, em.id_empleado)) as resto_permisos,
+(select func_nov_cantidad('SUCESO', '8,9,11,12,14,16,18,22', :periodo, '$id_contrato', em.id_empleado)) as resto_permisos,
 -- vacaciones
-(select func_nov_cantidad('SUCESO', '21', :periodo, $id_contrato, em.id_empleado)) as vacaciones,
+(select func_nov_cantidad('SUCESO', '21', :periodo, '$id_contrato', em.id_empleado)) as vacaciones,
 -- suspenciones
-(select func_nov_cantidad('SUCESO', '32', :periodo, $id_contrato, em.id_empleado)) as suspenciones,
+(select func_nov_cantidad('SUCESO', '32', :periodo, '$id_contrato', em.id_empleado)) as suspenciones,
 -- dias mayor funcion
-(select func_nov_cantidad('NOVEDAD', '22', :periodo, $id_contrato, em.id_empleado)) as mayor_funcion,
+(select func_nov_cantidad('NOVEDAD', '22', :periodo, '$id_contrato', em.id_empleado)) as mayor_funcion,
 -- dias mayor funcion. Motivo
-(select func_nov_cantidadM('MAYOR_FUNCION', '22', :periodo, $id_contrato, em.id_empleado)) as mayor_funcion_m,
+(select func_nov_cantidadM('MAYOR_FUNCION', '22', :periodo, '$id_contrato', em.id_empleado)) as mayor_funcion_m,
 -- monto cañista: mes contractual
-(select func_nov_cantidad('MONTO_CAÑISTA', NULL, :periodo, $id_contrato, em.id_empleado)) as monto_cañista,
+(select func_nov_cantidad('MONTO_CAÑISTA', NULL, :periodo, '$id_contrato', em.id_empleado)) as monto_cañista,
 -- adicional horas nocturnas
-(select func_nov_cantidad('NOVEDAD', '42', :periodo, $id_contrato, em.id_empleado)) as adicional_horas_nocturnas,
+(select func_nov_cantidad('NOVEDAD', '42', :periodo, '$id_contrato', em.id_empleado)) as adicional_horas_nocturnas,
 -- Dias Reales Trabajados (DRT)
 (select func_nov_horas('DRT', 'CTO', group_concat(ec.id_contrato), em.id_empleado, :periodo)) as DRT,
 -- Dias Habiles Trabajados (DHT)
