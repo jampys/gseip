@@ -246,7 +246,11 @@
                         $("#myElem").removeClass('alert-info').removeClass('alert-warning').removeClass('alert-danger');
 
                         if(data[0]['flag'] >=0){
+
                             $("#myElem").html(data[0]['msg']).addClass('alert alert-warning').addClass('pre-scrollable').show();
+                            //Efecto para hacer el scroll bottom
+                            let h = $("#myElem").get(0).scrollHeight;
+                            $("#myElem").animate({scrollTop: h});
                         }
                         else{
                             $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').addClass('pre-scrollable').show();
