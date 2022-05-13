@@ -96,6 +96,8 @@ switch ($operation)
         $encabezado = array();
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
         $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
+
+
         $encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
         $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
         $encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';

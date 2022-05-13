@@ -245,6 +245,21 @@ order by em.id_convenio asc, em.legajo asc";
     }
 
 
+    public static function getContratosList($id_contrato) {
+        //listado de nombre de contratos, concatenados. Para encabezado de reporte RN03
+        $stmt=new sQuery();
+        $query="select GROUP_CONCAT(cast(co.nombre as CHAR) SEPARATOR ', ') AS contrato
+from contratos co
+where co.id_contrato in ($id_contrato)
+group by null";
+
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
 
 }
 
