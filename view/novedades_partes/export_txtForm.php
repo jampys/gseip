@@ -275,7 +275,7 @@
                      },*/
                     beforeSend: function() {
                         $("#myElem").removeClass('alert-warning').removeClass('alert-danger');
-                        $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Verificando novedades y sucesos. Aguarde un instante...').addClass('alert alert-info').show();
+                        $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Verificando novedades y sucesos...').addClass('alert alert-info').show();
                     }
 
                 });
