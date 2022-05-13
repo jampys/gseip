@@ -11,15 +11,15 @@ $sheet->setTitle('resumen');
 
 //titulo ----------------------------------------------------------------
 
-$spreadsheet->getActiveSheet()->mergeCells('A1:D1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
-$spreadsheet->getActiveSheet()->mergeCells('A2:D2');
-$spreadsheet->getActiveSheet()->mergeCells('A3:D3');
-$spreadsheet->getActiveSheet()->mergeCells('A4:D4');
-$spreadsheet->getActiveSheet()->getStyle('A1:D4')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:D4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->mergeCells('A1:R1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
+$spreadsheet->getActiveSheet()->mergeCells('A2:R2');
+$spreadsheet->getActiveSheet()->mergeCells('A3:R3');
+$spreadsheet->getActiveSheet()->mergeCells('A4:R4');
+$spreadsheet->getActiveSheet()->getStyle('A1:R4')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:R4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
-$sheet->setCellValueByColumnAndRow(1, 2, 'Contrato/s: '.$encabezado['contrato']);
+$sheet->setCellValueByColumnAndRow(1, 2, 'Contrato/s: '.$encabezado['contratos']);
 $sheet->setCellValueByColumnAndRow(1, 3, 'Período: '.$encabezado['periodo']);
 $sheet->setCellValueByColumnAndRow(1, 4, 'Fecha emisión: '.$encabezado['fecha_emision']);
 

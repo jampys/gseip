@@ -94,9 +94,9 @@ switch ($operation)
         $view->partes = $rta = ReporteNovedades::getReporteRn3($id_contrato, $periodo);
 
         $encabezado = array();
-        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
+        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']); //si hay 2 o mas contratos, toma el 1ro.
         $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
-
+        $encabezado['contratos'] = ReporteNovedades::getContratosList($_GET['id_contrato'])[0]['contrato'];
 
         $encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
         $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
