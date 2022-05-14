@@ -97,7 +97,7 @@ switch ($operation)
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']); //si hay 2 o mas contratos, toma el 1ro.
         $encabezado['contratos'] = ReporteNovedades::getContratosList($_GET['id_contrato'])[0]['contrato'];
         $encabezado['template'] = $encabezado['obj_contrato']->getNovTemplate();
-        
+
         $encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
         $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
         $encabezado['cliente'] = $encabezado['obj_cliente']->getRazonSocial();

@@ -206,8 +206,23 @@ $spreadsheet->getActiveSheet()->getStyle('AL6')->getAlignment()->setTextRotation
 
 /* ocultar columnas de acuerdo al template del contrato */
 
-//Hs Extras 50 Truncado
-if ($encabezado['template'] == 'YPF_CH') $spreadsheet->getActiveSheet()->getColumnDimension('E')->setVisible(false);
+//guardias
+if ($encabezado['template'] == 'POZOS'
+) $spreadsheet->getActiveSheet()->getColumnDimension('B')->setVisible(false);
+
+//hs_extras_50_truncado
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'POZOS' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH'
+) $spreadsheet->getActiveSheet()->getColumnDimension('E')->setVisible(false);
+
+//hs_extras_50_traslado
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'POZOS' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH'
+) $spreadsheet->getActiveSheet()->getColumnDimension('F')->setVisible(false);
 
 
 
