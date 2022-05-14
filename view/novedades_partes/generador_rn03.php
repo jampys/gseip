@@ -321,7 +321,7 @@ if ($encabezado['template'] == 'PAE' ||
 
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'RN3_administracion_'.$encabezado["contrato"].'.xlsx';
+$filename = 'RN3_administracion_'.$encabezado["template"].'_'.$id_contrato.'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');
