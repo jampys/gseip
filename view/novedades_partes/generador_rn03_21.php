@@ -75,45 +75,45 @@ foreach ($view->partes as $p):
 
     $empleado = $p['legajo'].' '.$p['apellido'].' '.$p['nombre'];
 
-    $sheet->setCellValueByColumnAndRow(1, $fila, $empleado);
-    $sheet->setCellValueByColumnAndRow(2, $fila, $p['guardias']);
-    $sheet->setCellValueByColumnAndRow(3, $fila, $p['hs_extras_50']);
-    $sheet->setCellValueByColumnAndRow(4, $fila, $p['hs_extras_50_manejo']);
-    $sheet->setCellValueByColumnAndRow(5, $fila, $p['hs_extras_50_truncado']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['hs_extras_50_traslado']);
-    $sheet->setCellValueByColumnAndRow(7, $fila, $p['total_hs_extras_50']);
-    $sheet->setCellValueByColumnAndRow(8, $fila, $p['hs_extras_100']);
-    $sheet->setCellValueByColumnAndRow(9, $fila, $p['hs_base']);
-    $sheet->setCellValueByColumnAndRow(10, $fila, $p['hs_viaje']);
-    $sheet->setCellValueByColumnAndRow(11, $fila, $p['hs_viaje_truncado']);
-    $sheet->setCellValueByColumnAndRow(12, $fila, $p['total_hs_viaje']);
-    $sheet->setCellValueByColumnAndRow(13, $fila, $p['desarraigo']);
-    $sheet->setCellValueByColumnAndRow(14, $fila, $p['zona_dif']);
-    $sheet->setCellValueByColumnAndRow(15, $fila, $p['viandas_des_des_y_mer']);
-    $sheet->setCellValueByColumnAndRow(16, $fila, $p['viandas_dia_trabajado']);
-    $sheet->setCellValueByColumnAndRow(17, $fila, $p['viandas_des_alm_y_cena']);
-    $sheet->setCellValueByColumnAndRow(18, $fila, $p['viandas_extra']);
-    $sheet->setCellValueByColumnAndRow(19, $fila, $p['viandas_extra_manejo']);
-    $sheet->setCellValueByColumnAndRow(20, $fila, $p['viandas_extra_comedor']);
-    $sheet->setCellValueByColumnAndRow(21, $fila, $p['total_viandas_extra']);
-    $sheet->setCellValueByColumnAndRow(22, $fila, $p['enfermedad']);
-    $sheet->setCellValueByColumnAndRow(23, $fila, $p['accidente']);
-    $sheet->setCellValueByColumnAndRow(24, $fila, $p['injustificadas']);
-    $sheet->setCellValueByColumnAndRow(25, $fila, $p['permiso_dias_tramite']);
-    $sheet->setCellValueByColumnAndRow(26, $fila, $p['permiso_gremial']);
-    $sheet->setCellValueByColumnAndRow(27, $fila, $p['resto_permisos']);
-    $sheet->setCellValueByColumnAndRow(28, $fila, $p['vacaciones']);
-    $sheet->setCellValueByColumnAndRow(29, $fila, $p['suspenciones']);
-    $sheet->setCellValueByColumnAndRow(30, $fila, $p['mayor_funcion']);
-    $sheet->setCellValueByColumnAndRow(31, $fila, $p['monto_cañista']);
-    $sheet->setCellValueByColumnAndRow(32, $fila, $p['adicional_horas_nocturnas']);
-    $sheet->setCellValueByColumnAndRow(33, $fila, $p['DHDD']);
-    $sheet->setCellValueByColumnAndRow(34, $fila, $p['DRT']);
-    $sheet->setCellValueByColumnAndRow(35, $fila, $p['DHT']);
-    $sheet->setCellValueByColumnAndRow(36, $fila, $p['DHNT']);
-    $sheet->setCellValueByColumnAndRow(37, $fila, $p['DCNT']);
-    $sheet->setCellValueByColumnAndRow(38, $fila, $p['DH']);
-    $sheet->setCellValueByColumnAndRow(39, $fila, $p['mayor_funcion_m']);
+    $sheet->setCellValueByColumnAndRow(1, $fila, $empleado); //A
+    $sheet->setCellValueByColumnAndRow(2, $fila, $p['guardias']); //B
+    $sheet->setCellValueByColumnAndRow(3, $fila, $p['hs_extras_50']); //C
+    $sheet->setCellValueByColumnAndRow(4, $fila, $p['hs_extras_50_manejo']); //D
+    $sheet->setCellValueByColumnAndRow(5, $fila, $p['hs_extras_50_truncado']); //E
+    $sheet->setCellValueByColumnAndRow(6, $fila, $p['hs_extras_50_traslado']); //F
+    $sheet->setCellValueByColumnAndRow(7, $fila, $p['total_hs_extras_50']); //G
+    $sheet->setCellValueByColumnAndRow(8, $fila, $p['hs_extras_100']); //H
+    $sheet->setCellValueByColumnAndRow(9, $fila, $p['hs_base']); //I
+    $sheet->setCellValueByColumnAndRow(10, $fila, $p['hs_viaje']); //J
+    $sheet->setCellValueByColumnAndRow(11, $fila, $p['hs_viaje_truncado']); //K
+    $sheet->setCellValueByColumnAndRow(12, $fila, $p['total_hs_viaje']); //L
+    $sheet->setCellValueByColumnAndRow(13, $fila, $p['desarraigo']); //M
+    $sheet->setCellValueByColumnAndRow(14, $fila, $p['zona_dif']); //N
+    $sheet->setCellValueByColumnAndRow(15, $fila, $p['viandas_des_des_y_mer']); //O
+    $sheet->setCellValueByColumnAndRow(16, $fila, $p['viandas_dia_trabajado']); //P
+    $sheet->setCellValueByColumnAndRow(17, $fila, $p['viandas_des_alm_y_cena']); //Q
+    $sheet->setCellValueByColumnAndRow(18, $fila, $p['viandas_extra']); //R
+    $sheet->setCellValueByColumnAndRow(19, $fila, $p['viandas_extra_manejo']); //S
+    $sheet->setCellValueByColumnAndRow(20, $fila, $p['viandas_extra_comedor']); //T
+    $sheet->setCellValueByColumnAndRow(21, $fila, $p['total_viandas_extra']); //U
+    $sheet->setCellValueByColumnAndRow(22, $fila, $p['enfermedad']); //V
+    $sheet->setCellValueByColumnAndRow(23, $fila, $p['accidente']); //W
+    $sheet->setCellValueByColumnAndRow(24, $fila, $p['injustificadas']); //X;
+    $sheet->setCellValueByColumnAndRow(25, $fila, $p['permiso_dias_tramite']); //Y
+    $sheet->setCellValueByColumnAndRow(26, $fila, $p['permiso_gremial']); //Z
+    $sheet->setCellValueByColumnAndRow(27, $fila, $p['resto_permisos']); //AA
+    $sheet->setCellValueByColumnAndRow(28, $fila, $p['vacaciones']); //AB
+    $sheet->setCellValueByColumnAndRow(29, $fila, $p['suspenciones']); //AC
+    $sheet->setCellValueByColumnAndRow(30, $fila, $p['mayor_funcion']); //AD
+    $sheet->setCellValueByColumnAndRow(31, $fila, $p['monto_cañista']); //AE
+    $sheet->setCellValueByColumnAndRow(32, $fila, $p['adicional_horas_nocturnas']); //AF
+    $sheet->setCellValueByColumnAndRow(33, $fila, $p['DHDD']); //AG
+    $sheet->setCellValueByColumnAndRow(34, $fila, $p['DRT']); //AH
+    $sheet->setCellValueByColumnAndRow(35, $fila, $p['DHT']); //AI
+    $sheet->setCellValueByColumnAndRow(36, $fila, $p['DHNT']); //AJ
+    $sheet->setCellValueByColumnAndRow(37, $fila, $p['DCNT']); //AK
+    $sheet->setCellValueByColumnAndRow(38, $fila, $p['DH']); //AL
+    $sheet->setCellValueByColumnAndRow(39, $fila, $p['mayor_funcion_m']); //AM
 
     $fila++;
 endforeach;
@@ -278,6 +278,44 @@ if ($encabezado['template'] == 'PAE' ||
     $encabezado['template'] == 'YPF_CH' ||
     $encabezado['template'] == 'YPF_SC'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('Q')->setVisible(false);
+
+//viandas_extra_manejo S
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'POZOS' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH'
+) $spreadsheet->getActiveSheet()->getColumnDimension('S')->setVisible(false);
+
+//viandas_extra_comedor T
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'POZOS' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH'
+) $spreadsheet->getActiveSheet()->getColumnDimension('T')->setVisible(false);
+
+
+//total_viandas_extra U
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'POZOS' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH'
+) $spreadsheet->getActiveSheet()->getColumnDimension('U')->setVisible(false);
+
+//monto_cañista AE
+if ($encabezado['template'] == 'POZOS' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH' ||
+    $encabezado['template'] == 'YPF_SC'
+) $spreadsheet->getActiveSheet()->getColumnDimension('AE')->setVisible(false);
+
+
+//adicional_horas_nocturnas AF
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'POZOS' ||
+    $encabezado['template'] == 'YPF_CH' ||
+    $encabezado['template'] == 'YPF_SC'
+) $spreadsheet->getActiveSheet()->getColumnDimension('AF')->setVisible(false);
+
 
 //-----------------------------------------------------------------
 
