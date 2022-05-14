@@ -210,6 +210,14 @@ $spreadsheet->getActiveSheet()->getStyle('AL6')->getAlignment()->setTextRotation
 if ($encabezado['template'] == 'POZOS'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('B')->setVisible(false);
 
+//hs_extras_50
+if ($encabezado['template'] == 'PAE'
+) $spreadsheet->getActiveSheet()->getColumnDimension('C')->setVisible(false);
+
+//hs_extras_50_manejo
+if ($encabezado['template'] == 'PAE'
+) $spreadsheet->getActiveSheet()->getColumnDimension('D')->setVisible(false);
+
 //hs_extras_50_truncado
 if ($encabezado['template'] == 'PAE' ||
     $encabezado['template'] == 'POZOS' ||
@@ -224,7 +232,52 @@ if ($encabezado['template'] == 'PAE' ||
     $encabezado['template'] == 'YPF_CH'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('F')->setVisible(false);
 
+//hs_base
+if ($encabezado['template'] == 'POZOS' ||
+    $encabezado['template'] == 'YPF_SC'
+) $spreadsheet->getActiveSheet()->getColumnDimension('I')->setVisible(false);
 
+//hs_viaje_truncado
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'POZOS' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH'
+) $spreadsheet->getActiveSheet()->getColumnDimension('K')->setVisible(false);
+
+//desarraigo M
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH' ||
+    $encabezado['template'] == 'YPF_SC'
+) $spreadsheet->getActiveSheet()->getColumnDimension('M')->setVisible(false);
+
+//zona_dif N
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH' ||
+    $encabezado['template'] == 'YPF_SC'
+) $spreadsheet->getActiveSheet()->getColumnDimension('N')->setVisible(false);
+
+//viandas_des_des_y_mer O
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH' ||
+    $encabezado['template'] == 'YPF_SC'
+) $spreadsheet->getActiveSheet()->getColumnDimension('O')->setVisible(false);
+
+//viandas_dia_trabajado P
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH' ||
+    $encabezado['template'] == 'YPF_SC'
+) $spreadsheet->getActiveSheet()->getColumnDimension('P')->setVisible(false);
+
+//viandas_des_alm_y_cena Q
+if ($encabezado['template'] == 'PAE' ||
+    $encabezado['template'] == 'STAFF' ||
+    $encabezado['template'] == 'YPF_CH' ||
+    $encabezado['template'] == 'YPF_SC'
+) $spreadsheet->getActiveSheet()->getColumnDimension('Q')->setVisible(false);
 
 //-----------------------------------------------------------------
 
