@@ -10,9 +10,11 @@ class Contrato
     private $fecha_hasta;
     private $id_responsable;
     private $id_compania;
-
     private $responsable;
+    private $nov_template;
+
     private $domain;
+
 
     //GETTERS
     function getIdContrato()
@@ -38,6 +40,10 @@ class Contrato
 
     function getResponsable(){
         return ($this->responsable)? $this->responsable : new Empleado() ;
+    }
+
+    function getNovTemplate(){
+        return $this->nov_template;
     }
 
     function getDomain()
@@ -67,6 +73,9 @@ class Contrato
     function setIdCompania($val)
     { $this->id_compania=$val;}
 
+    function setNovTemplate($val)
+    { $this->nov_template=$val;}
+
     function setDomain($val)
     { $this->domain=$val;}
 
@@ -81,7 +90,8 @@ class Contrato
                     DATE_FORMAT(co.fecha_desde,  '%d/%m/%Y') as fecha_desde,
                     DATE_FORMAT(co.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
                     re.apellido, re.nombre, cia.razon_social,
-                    co.id_responsable, co.id_compania, co.nombre, co.id_domain
+                    co.id_responsable, co.id_compania, co.nombre, co.id_domain,
+                    co.nov_template
                     from contratos co, empleados re, companias cia
                     where co.id_responsable = re.id_empleado
                     and co.id_compania = cia.id_compania
@@ -98,6 +108,7 @@ class Contrato
             $this->setFechaHasta($rows[0]['fecha_hasta']);
             $this->setIdResponsable($rows[0]['id_responsable']);
             $this->setIdCompania($rows[0]['id_compania']);
+            $this->setNovTemplate($rows[0]['nov_template']);
 
             $this->responsable = new Empleado($rows[0]['id_responsable']);
             $this->setDomain($rows[0]['id_domain']);

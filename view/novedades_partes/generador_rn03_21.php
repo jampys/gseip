@@ -204,6 +204,12 @@ $spreadsheet->getActiveSheet()->getStyle('AK6')->getAlignment()->setTextRotation
 $spreadsheet->getActiveSheet()->getStyle('AL6')->getAlignment()->setTextRotation(90);
 
 
+/* ocultar columnas de acuerdo al template del contrato */
+
+//Hs Extras 50 Truncado
+if ($encabezado['template'] == 'YPF_CH') $spreadsheet->getActiveSheet()->getColumnDimension('E')->setVisible(false);
+
+
 
 //-----------------------------------------------------------------
 
