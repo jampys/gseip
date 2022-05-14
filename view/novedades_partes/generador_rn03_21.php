@@ -29,12 +29,23 @@ $cabecera = ["Empleado",
             "Guardias",
             "Hs Extras 50",
             "Hs Extras 50 Manejo",
+            "Hs Extras 50 Truncado",
+            "Hs Extras 50 Traslado",
             "Total Hs Extras 50",
             "Hs Extras 100",
             "Hs Base",
             "Hs Viaje",
+            "Hs Viaje Truncado",
             "Total Hs viaje",
+            "Desarraigo",
+            "Zona Diferencial -MF",
+            "Viandas Des. Des. y Mer.",
+            "Viandas día trabajado",
+            "Viandas Des. Alm. y Cena",
             "Viandas Extra",
+            "Viandas Extra Manejo",
+            "Viandas Extra Comedor",
+            "Total Viandas Extra",
             "Enfermedad",
             "Accidente",
             "Injustificadas",
@@ -44,6 +55,8 @@ $cabecera = ["Empleado",
             "Vacaciones",
             "Suspención",
             "Mayor Función",
+            "Monto cañista",
+            "Adicional Horas Nocturnas",
             "DD Háb. período",
             "DRT período",
             "DHT período",
@@ -53,8 +66,8 @@ $cabecera = ["Empleado",
             "Observaciones"
         ];
 $sheet->fromArray($cabecera, null, 'A6');
-$spreadsheet->getActiveSheet()->getStyle('A6:Z6')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A6:Z6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A6:AM6')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A6:AM6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
 $fila = 7;
@@ -66,28 +79,41 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['guardias']);
     $sheet->setCellValueByColumnAndRow(3, $fila, $p['hs_extras_50']);
     $sheet->setCellValueByColumnAndRow(4, $fila, $p['hs_extras_50_manejo']);
-    $sheet->setCellValueByColumnAndRow(5, $fila, $p['total_hs_extras_50']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['hs_extras_100']);
-    $sheet->setCellValueByColumnAndRow(7, $fila, $p['hs_base']);
-    $sheet->setCellValueByColumnAndRow(8, $fila, $p['hs_viaje']);
-    $sheet->setCellValueByColumnAndRow(9, $fila, $p['total_hs_viaje']);
-    $sheet->setCellValueByColumnAndRow(10, $fila, $p['viandas_extra']);
-    $sheet->setCellValueByColumnAndRow(11, $fila, $p['enfermedad']);
-    $sheet->setCellValueByColumnAndRow(12, $fila, $p['accidente']);
-    $sheet->setCellValueByColumnAndRow(13, $fila, $p['injustificadas']);
-    $sheet->setCellValueByColumnAndRow(14, $fila, $p['permiso_dias_tramite']);
-    $sheet->setCellValueByColumnAndRow(15, $fila, $p['permiso_gremial']);
-    $sheet->setCellValueByColumnAndRow(16, $fila, $p['resto_permisos']);
-    $sheet->setCellValueByColumnAndRow(17, $fila, $p['vacaciones']);
-    $sheet->setCellValueByColumnAndRow(18, $fila, $p['suspenciones']);
-    $sheet->setCellValueByColumnAndRow(19, $fila, $p['mayor_funcion']);
-    $sheet->setCellValueByColumnAndRow(20, $fila, $p['DHDD']);
-    $sheet->setCellValueByColumnAndRow(21, $fila, $p['DRT']);
-    $sheet->setCellValueByColumnAndRow(22, $fila, $p['DHT']);
-    $sheet->setCellValueByColumnAndRow(23, $fila, $p['DHNT']);
-    $sheet->setCellValueByColumnAndRow(24, $fila, $p['DCNT']);
-    $sheet->setCellValueByColumnAndRow(25, $fila, $p['DH']);
-    $sheet->setCellValueByColumnAndRow(26, $fila, $p['mayor_funcion_m']);
+    $sheet->setCellValueByColumnAndRow(5, $fila, $p['hs_extras_50_truncado']);
+    $sheet->setCellValueByColumnAndRow(6, $fila, $p['hs_extras_50_traslado']);
+    $sheet->setCellValueByColumnAndRow(7, $fila, $p['total_hs_extras_50']);
+    $sheet->setCellValueByColumnAndRow(8, $fila, $p['hs_extras_100']);
+    $sheet->setCellValueByColumnAndRow(9, $fila, $p['hs_base']);
+    $sheet->setCellValueByColumnAndRow(10, $fila, $p['hs_viaje']);
+    $sheet->setCellValueByColumnAndRow(11, $fila, $p['hs_viaje_truncado']);
+    $sheet->setCellValueByColumnAndRow(12, $fila, $p['total_hs_viaje']);
+    $sheet->setCellValueByColumnAndRow(13, $fila, $p['desarraigo']);
+    $sheet->setCellValueByColumnAndRow(14, $fila, $p['zona_dif']);
+    $sheet->setCellValueByColumnAndRow(15, $fila, $p['viandas_des_des_y_mer']);
+    $sheet->setCellValueByColumnAndRow(16, $fila, $p['viandas_dia_trabajado']);
+    $sheet->setCellValueByColumnAndRow(17, $fila, $p['viandas_des_alm_y_cena']);
+    $sheet->setCellValueByColumnAndRow(18, $fila, $p['viandas_extra']);
+    $sheet->setCellValueByColumnAndRow(19, $fila, $p['viandas_extra_manejo']);
+    $sheet->setCellValueByColumnAndRow(20, $fila, $p['viandas_extra_comedor']);
+    $sheet->setCellValueByColumnAndRow(21, $fila, $p['total_viandas_extra']);
+    $sheet->setCellValueByColumnAndRow(22, $fila, $p['enfermedad']);
+    $sheet->setCellValueByColumnAndRow(23, $fila, $p['accidente']);
+    $sheet->setCellValueByColumnAndRow(24, $fila, $p['injustificadas']);
+    $sheet->setCellValueByColumnAndRow(25, $fila, $p['permiso_dias_tramite']);
+    $sheet->setCellValueByColumnAndRow(26, $fila, $p['permiso_gremial']);
+    $sheet->setCellValueByColumnAndRow(27, $fila, $p['resto_permisos']);
+    $sheet->setCellValueByColumnAndRow(28, $fila, $p['vacaciones']);
+    $sheet->setCellValueByColumnAndRow(29, $fila, $p['suspenciones']);
+    $sheet->setCellValueByColumnAndRow(30, $fila, $p['mayor_funcion']);
+    $sheet->setCellValueByColumnAndRow(31, $fila, $p['monto_cañista']);
+    $sheet->setCellValueByColumnAndRow(32, $fila, $p['adicional_horas_nocturnas']);
+    $sheet->setCellValueByColumnAndRow(33, $fila, $p['DHDD']);
+    $sheet->setCellValueByColumnAndRow(34, $fila, $p['DRT']);
+    $sheet->setCellValueByColumnAndRow(35, $fila, $p['DHT']);
+    $sheet->setCellValueByColumnAndRow(36, $fila, $p['DHNT']);
+    $sheet->setCellValueByColumnAndRow(37, $fila, $p['DCNT']);
+    $sheet->setCellValueByColumnAndRow(38, $fila, $p['DH']);
+    $sheet->setCellValueByColumnAndRow(39, $fila, $p['mayor_funcion_m']);
 
     $fila++;
 endforeach;
@@ -123,7 +149,20 @@ $spreadsheet->getActiveSheet()->getColumnDimension('V')->setWidth(7);
 $spreadsheet->getActiveSheet()->getColumnDimension('W')->setWidth(7);
 $spreadsheet->getActiveSheet()->getColumnDimension('X')->setWidth(7);
 $spreadsheet->getActiveSheet()->getColumnDimension('Y')->setWidth(7);
-$spreadsheet->getActiveSheet()->getColumnDimension('Z')->setWidth(30);
+$spreadsheet->getActiveSheet()->getColumnDimension('Z')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AA')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AB')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AC')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AD')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AE')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AF')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AG')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AH')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AI')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AJ')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AK')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AL')->setWidth(7);
+$spreadsheet->getActiveSheet()->getColumnDimension('AM')->setWidth(30);
 
 
 $spreadsheet->getActiveSheet()->getStyle('B6')->getAlignment()->setTextRotation(90);
@@ -150,6 +189,20 @@ $spreadsheet->getActiveSheet()->getStyle('V6')->getAlignment()->setTextRotation(
 $spreadsheet->getActiveSheet()->getStyle('W6')->getAlignment()->setTextRotation(90);
 $spreadsheet->getActiveSheet()->getStyle('X6')->getAlignment()->setTextRotation(90);
 $spreadsheet->getActiveSheet()->getStyle('Y6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('Z6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AA6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AB6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AC6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AD6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AE6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AF6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AG6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AH6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AI6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AJ6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AK6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AL6')->getAlignment()->setTextRotation(90);
+
 
 
 //-----------------------------------------------------------------
