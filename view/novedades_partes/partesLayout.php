@@ -2,7 +2,7 @@
 
 <style type="text/css">
 
-    .Inactiva small.text-muted{
+    .inactive small.text-muted{
         color: red;
     }
 
@@ -144,11 +144,12 @@
                         if(Object.keys(data['cuadrillas']).length > 0){
                             $.each(data['cuadrillas'], function(indice, val){
                                 let label = data['cuadrillas'][indice]["nombre"];
-                                let ds = (data['cuadrillas'][indice]["disabled"])? 'Inactiva' : '';
-                                $("#cuadrilla").append('<option class="'+ds+'" value="'+data['cuadrillas'][indice]["nombre"]+'"'
+                                let inactive_class = (data['cuadrillas'][indice]["disabled"])? 'inactive' : '';
+                                let innactive_text = (data['cuadrillas'][indice]["disabled"])? 'Inactiva' : '';
+                                $("#cuadrilla").append('<option class="'+inactive_class+'" value="'+data['cuadrillas'][indice]["nombre"]+'"'
                                 //+' fecha_desde="'+data['periodos'][indice]["fecha_desde"]+'"'
                                 //+' fecha_hasta="'+data['periodos'][indice]["fecha_hasta"]+'"'
-                                +'data-subtext="'+ds+'">'+label+'</option>');
+                                +'data-subtext="'+innactive_text+'">'+label+'</option>');
                             });
 
                             //si es una edicion o view, selecciona el concepto.
