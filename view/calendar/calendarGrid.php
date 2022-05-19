@@ -267,10 +267,9 @@
                         $.each(data, function(index, val){
                             let label = data[index]["nombre"];
                             let inactive_class = (data[index]["disabled"])? 'inactive' : '';
-                            let innactive_text = (data[index]["disabled"])? 'Inactiva' : '';
 
                             $("#id_cuadrilla").append('<option class="'+inactive_class+'" value="'+data[index]["id_cuadrilla"]+'"'
-                            +'data-subtext="'+innactive_text+'">'+label+'</option>');
+                            +'>'+label+'</option>');
                         });
                         $('#id_cuadrilla').selectpicker('refresh');
                     }

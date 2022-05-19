@@ -137,10 +137,9 @@
                             $.each(data['cuadrillas'], function(indice, val){
                                 let label = data['cuadrillas'][indice]["nombre"];
                                 let inactive_class = (data['cuadrillas'][indice]["disabled"])? 'inactive' : '';
-                                let innactive_text = (data['cuadrillas'][indice]["disabled"])? 'Inactiva' : '';
 
                                 $("#cuadrilla").append('<option class="'+inactive_class+'" value="'+data['cuadrillas'][indice]["nombre"]+'"'
-                                +'data-subtext="'+innactive_text+'">'+label+'</option>');
+                                +'>'+label+'</option>');
                             });
 
                             //si es una edicion o view, selecciona el concepto.

@@ -284,6 +284,8 @@ label[title]:hover {
 
 
 /*19/05/2022 para dar estilo a las opciones inactivas de un selectpicker */
-.inactive small.text-muted{
-    color: red;
+.inactive span.text:after{
+    color: #e53935;
+    content:" Inactiva";
+    font-size: 10px;
 }
