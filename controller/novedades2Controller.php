@@ -284,7 +284,7 @@ switch ($operation)
         $view->label.= "&nbsp";
         $view->label.= ($_POST['id_parte'])? "<span class='dp_blue'>[IN ".$_POST['id_parte']."]</span>": "<span class='dp_yellow'>[sin novedad]</span>";
 
-        $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], 1);
+        $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], null);
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         $view->ordenes = ParteOrden::getParteOrden($_POST['id_parte']); //2104
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
