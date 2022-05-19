@@ -156,7 +156,7 @@ class Cuadrilla
                   left join nov_areas ar on cu.default_id_area = ar.id_area
                   where cu.id_contrato =  ifnull(:id_contrato, cu.id_contrato)
                   and if(:activas is null, 1, cu.disabled is null)
-                  order by cu.nombre";
+                  order by cu.disabled asc, cu.nombre asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':activas', $activas);
