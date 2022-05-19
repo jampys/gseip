@@ -2,7 +2,7 @@
 
 <style type="text/css">
 
-    small.text-muted{
+    .Inactiva small.text-muted{
         color: red;
     }
 
@@ -145,7 +145,7 @@
                             $.each(data['cuadrillas'], function(indice, val){
                                 let label = data['cuadrillas'][indice]["nombre"];
                                 let ds = (data['cuadrillas'][indice]["disabled"])? 'Inactiva' : '';
-                                $("#cuadrilla").append('<option value="'+data['cuadrillas'][indice]["nombre"]+'"'
+                                $("#cuadrilla").append('<option class="'+ds+'" value="'+data['cuadrillas'][indice]["nombre"]+'"'
                                 //+' fecha_desde="'+data['periodos'][indice]["fecha_desde"]+'"'
                                 //+' fecha_hasta="'+data['periodos'][indice]["fecha_hasta"]+'"'
                                 +'data-subtext="'+ds+'">'+label+'</option>');
