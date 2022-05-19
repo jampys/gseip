@@ -10,10 +10,9 @@
 
     }
 
-
-
-
-
+    .inactive small.text-muted{
+        color: red;
+    }
 
 
 </style>
@@ -874,7 +873,9 @@
                     <?php foreach ($view->cuadrillas as $cu){
                         ?>
                         <option value="<?php echo $cu['id_cuadrilla']; ?>"
-                            <?php //echo ($cu['id_cuadrilla'] == $view->parte->getIdCuadrilla())? 'selected' :'' ?>
+                                data-subtext="<?php echo ($cu['disabled'])? 'Inactiva' :'' ?>"
+                                class="<?php echo ($cu['disabled'])? 'inactive' :'' ?>"
+                            <?php echo ($cu['disabled'])? 'disabled' :'' ?>
                             <?php echo ( ($cu['id_cuadrilla'] == $view->parte->getIdCuadrilla()) || (!$view->parte->getIdParte() && $cu['id_cuadrilla'] == $view->defaults[0]['id_cuadrilla'])  )? 'selected' :'' ?>
                             >
                             <?php echo $cu['nombre']; ?>
