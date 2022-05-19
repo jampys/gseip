@@ -1,4 +1,13 @@
-﻿<script type="text/javascript">
+﻿<style type="text/css">
+
+    .inactive small.text-muted{
+        color: red;
+    }
+
+</style>
+
+
+<script type="text/javascript">
 
     $(document).ready(function(){
 
@@ -264,9 +273,12 @@
                     if(Object.keys(data).length > 0){
                         //$('#id_cuadrilla').html('<option value="">Todas las cuadrillas</option>');
                         $.each(data, function(index, val){
-                            var label = data[index]["nombre"];
-                            $("#id_cuadrilla").append('<option value="'+data[index]["id_cuadrilla"]+'"'
-                            +'>'+label+'</option>');
+                            let label = data[index]["nombre"];
+                            let inactive_class = (data[index]["disabled"])? 'inactive' : '';
+                            let innactive_text = (data[index]["disabled"])? 'Inactiva' : '';
+
+                            $("#id_cuadrilla").append('<option class="'+inactive_class+'" value="'+data[index]["id_cuadrilla"]+'"'
+                            +'data-subtext="'+innactive_text+'">'+label+'</option>');
                         });
                         $('#id_cuadrilla').selectpicker('refresh');
                     }
