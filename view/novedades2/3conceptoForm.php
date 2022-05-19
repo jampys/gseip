@@ -10,11 +10,6 @@
 
     }
 
-    .inactive small.text-muted{
-        color: red;
-    }
-
-
 </style>
 
 

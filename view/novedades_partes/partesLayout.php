@@ -1,13 +1,5 @@
 ﻿<!DOCTYPE html>
 
-<style type="text/css">
-
-    .inactive small.text-muted{
-        color: red;
-    }
-
-</style>
-
 <html lang="en">
 <head>
 

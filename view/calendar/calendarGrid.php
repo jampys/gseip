@@ -1,12 +1,4 @@
-﻿<style type="text/css">
-
-    .inactive small.text-muted{
-        color: red;
-    }
-
-</style>
-
-
+﻿
 <script type="text/javascript">
 
     $(document).ready(function(){
