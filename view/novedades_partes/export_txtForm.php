@@ -369,7 +369,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<span class="label label-danger">Próximamente</span>
+                                &nbsp;<span class="label label-success">Nuevo</span>
                                 &nbsp;<strong>RN03 Control de Novedades Administración:</strong>
                                 Novedades en formato .xlsx (empleados/conceptos).
                             </div>
