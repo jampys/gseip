@@ -1,5 +1,13 @@
 ﻿<!DOCTYPE html>
 
+<style type="text/css">
+
+    small.text-muted{
+        color: red;
+    }
+
+</style>
+
 <html lang="en">
 <head>
 
@@ -135,11 +143,12 @@
                         $("#cuadrilla").html('<option value="">Seleccione una cuadrilla</option>');
                         if(Object.keys(data['cuadrillas']).length > 0){
                             $.each(data['cuadrillas'], function(indice, val){
-                                var label = data['cuadrillas'][indice]["nombre"];
+                                let label = data['cuadrillas'][indice]["nombre"];
+                                let ds = (data['cuadrillas'][indice]["disabled"])? 'Inactiva' : '';
                                 $("#cuadrilla").append('<option value="'+data['cuadrillas'][indice]["nombre"]+'"'
                                 //+' fecha_desde="'+data['periodos'][indice]["fecha_desde"]+'"'
                                 //+' fecha_hasta="'+data['periodos'][indice]["fecha_hasta"]+'"'
-                                +'>'+label+'</option>');
+                                +'data-subtext="'+ds+'">'+label+'</option>');
                             });
 
                             //si es una edicion o view, selecciona el concepto.
