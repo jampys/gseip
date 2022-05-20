@@ -61,7 +61,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosActivos($view->cuadrilla->getIdContrato(), 1);
 
         $view->disableLayout=true;
-        //$view->target = $_POST['target'];
+        $view->target = $_POST['target'];
         $view->contentTemplate="view/cuadrillas/empleado_detailForm.php";
         break;
 

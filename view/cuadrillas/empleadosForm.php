@@ -45,8 +45,8 @@
             //alert(params.id_renovacion);
             $('#empleados_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
-                $("#empleados_right_side fieldset").prop("disabled", true);
-                $("#empleado-form #footer-buttons button").css('display', 'none');
+                //$("#empleados_right_side fieldset").prop("disabled", true);
+                //$("#empleado-form #footer-buttons button").css('display', 'none');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 $('.selectpicker').selectpicker('refresh');
