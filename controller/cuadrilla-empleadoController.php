@@ -58,7 +58,7 @@ switch ($operation)
         $view->empleado = new CuadrillaEmpleado($_POST['id_cuadrilla_empleado']);
         $view->cuadrilla = new Cuadrilla($_POST['id_cuadrilla']);
 
-        $view->empleados = Empleado::getEmpleadosActivos($view->cuadrilla->getIdContrato());
+        $view->empleados = Empleado::getEmpleadosActivos($view->cuadrilla->getIdContrato(), 1);
 
         $view->disableLayout=true;
         //$view->target = $_POST['target'];

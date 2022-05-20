@@ -88,6 +88,8 @@
                 <?php foreach ($view->empleados as $em){
                     ?>
                     <option value="<?php echo $em['id_empleado']; ?>"
+                            class="<?php echo ($em['fecha_baja'])? 'inactive' :'' ?>"
+                        <?php echo ($em['fecha_baja'])? 'disabled' :'' ?>
                         <?php echo ($em['id_empleado'] == $view->empleado->getIdEmpleado())? 'selected' :'' ?>
                         >
                         <?php echo $em['apellido'].' '.$em['nombre'];?>
