@@ -142,7 +142,7 @@
                             <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>
                             action="index.php?action=novedades2&operation=newParte"
                             >
-                            <i class="fas fa-male fa-fw dp_blue"></i>Por empleado
+                            <i class="fas fa-user-hard-hat dp_blue"></i> Por empleado
                         </button>
                     </div>
 
@@ -175,7 +175,7 @@
                             <?php echo ( PrivilegedUser::dhasAction('PAR_INSERT', array(1)) )? '' : 'disabled' ?>
                                 action="index.php?action=novedades2&operation=newParte1"
                             >
-                            <i class="fas fa-car fa-fw dp_blue"></i> Por cuadrilla
+                            <i class="fas fa-truck-pickup dp_blue"></i> Por cuadrilla
                         </button>
                     </div>
 
