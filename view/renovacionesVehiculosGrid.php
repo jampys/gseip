@@ -114,8 +114,8 @@
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso y no fue renovado -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
+                                <i class="far fa-edit dp_blue"></i>
                             </a>&nbsp;&nbsp;
 
                             <?php if($rp['id_rnv_renovacion']){ ?>
