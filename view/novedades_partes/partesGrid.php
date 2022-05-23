@@ -96,7 +96,7 @@
                     targets: 6,//botones indicadores
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
-                        let novedad = (row.id_parte)? '<i class="fas fa-car-side fa-fw dp_blue_nov" title="con novedad"></i>':'<i class="fas fa-car fa-fw dp_light_gray" title="sin novedad"></i>';
+                        let novedad = (row.id_parte)? '<i class="fas fa-truck-pickup fa-fw dp_blue_nov" title="con novedad"></i>':'<i class="fas fa-car fa-fw dp_light_gray" title="sin novedad"></i>';
                         let conceptos = (row.concept_count > 0)? '<i class="fas fa-calculator fa-fw dp_blue_nov" title="novedad con conceptos"></i>':'<i class="fas fa-calculator fa-fw dp_light_gray" title="novedad sin conceptos"></i>';
                         let ordenes = (row.orden_count > 0)? '<i class="fas fa-clipboard-check fa-fw dp_blue_nov" title="novedad con órdenes"></i>':'<i class="fas fa-clipboard fa-fw dp_light_gray" title="novedad sin órdenes"></i>';
                         return '<a href="#">'+
