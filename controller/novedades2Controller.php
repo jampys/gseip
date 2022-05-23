@@ -230,7 +230,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $view->contrato = New Contrato($_POST['add_contrato']);
-        $view->label='<i class="fas fa-male fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
+        $view->label='<i class="fad fa-user-hard-hat fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
@@ -246,7 +246,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $view->contrato = New Contrato($_POST['add_contrato']);
-        $view->label='<i class="fas fa-car fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
+        $view->label='<i class="fad fa-truck-pickup fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
