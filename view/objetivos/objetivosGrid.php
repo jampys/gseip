@@ -185,10 +185,10 @@
                                     '<i class="fas fa-th-list dp_blue" title="Detalle del objetivo"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoClonar+'" href="#" title="Clonar">'+ //si tiene permiso para clonar
-                                    '<i class="far fa-copy dp_blue"></i>'+
+                                    '<i class="fad fa-clone dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoVer+'" href="#" title="Ver">'+ //si tiene permiso para ver
-                                    '<i class="far fa-eye dp_blue"></i>'+
+                                    '<i class="far fa-sticky-note dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditarO+'" href="#" title="Editar">'+ //si tiene permiso para editar
                                     '<i class="far fa-edit dp_blue"></i>'+

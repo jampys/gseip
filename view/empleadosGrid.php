@@ -70,8 +70,8 @@
                     <td class="text-center">
                         <a class="contratos" href="javascript:void(0);" title="detalles"><i class="fas fa-th-list dp_blue"></i></a>&nbsp;&nbsp;
                         <a class="view" href="javascript:void(0);" title="ver"><i class="far fa-sticky-note dp_blue"></i>&nbsp;&nbsp;
-                        <a class="<?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar"><i class="fas fa-edit dp_blue"></i></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo (PrivilegedUser::dhasAction('EMP_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>
+                        <a class="<?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar"><i class="fas fa-edit dp_blue"></i></a>&nbsp;&nbsp;
+                        <a class="<?php echo (PrivilegedUser::dhasAction('EMP_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);"><i class="far fa-trash-alt dp_red"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
