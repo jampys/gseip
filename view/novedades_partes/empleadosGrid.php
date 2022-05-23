@@ -25,7 +25,7 @@
                     </a>&nbsp;&nbsp;
 
                     <a class="<?php //echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' /*&& $et['id_user'] == $_SESSION['id_user']*/  )? 'edit' : 'disabled' ?>disabled" href="javascript:void(0);" title="editar">
-                        <span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span>
+                        <i class="far fa-edit dp_blue"></i>
                     </a>&nbsp;&nbsp;
 
                     <a class="<?php //echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' /*&& $et['id_user'] == $_SESSION['id_user'] */ )? 'delete' : 'disabled' ?>disabled" title="borrar" href="javascript:void(0);">
