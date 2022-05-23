@@ -163,7 +163,7 @@ switch ($operation)
 
     case 'loadExportTxt': //ok  //abre ventana modal para exportar
         $view->disableLayout=true;
-        $view->label = 'Exportar novedades';
+        $view->label = 'Descargar novedades';
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
         $view->periodos_sup = NovPeriodo::getPeriodosSup(); //carga el combo de periodos superiores
 

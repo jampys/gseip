@@ -372,7 +372,7 @@
                         <div class="form-group col-md-2">
                             <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" title="Buscar novedad" id="search">
-                                <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+                                <i class="fas fa-search fa-lg dp_blue"></i>
                             </button>
                         </div>
 
@@ -445,7 +445,7 @@
 
                         <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
-                            <button id="txt" class="form-control btn btn-default" href="#" title="Exportar novedades"><i class="fas fa-file-export fa-fw fa-lg dp_blue"></i></button>
+                            <button id="txt" class="form-control btn btn-default" href="#" title="Descargar novedades"><i class="fas fa-file-download fa-fw fa-lg dp_blue"></i></button>
                         </div>
 
                     </form>

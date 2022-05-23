@@ -355,6 +355,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <span class="glyphicon glyphicon-tags"></span>
+                                &nbsp;<span class="label label-danger">Obsoleto</span>
                                 &nbsp;<strong>Control de Novedades Administración:</strong>
                                 Novedades en formato de tabla cruzada (empleados/conceptos).
                             </div>
@@ -390,7 +391,7 @@
                                 Novedades en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-download fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
