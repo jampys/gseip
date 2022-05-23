@@ -310,11 +310,11 @@
                         <div class="alert alert-info fade in">
                             <a href="#" class="close" data-dismiss="alert">&times;</a>
                             <?php if($view->renovacion->getIdRenovacion()){ //Es un edit ?>
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación anterior.
-                                <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación anterior.
+                                <i class="fas fa-tags"></i>&nbsp La fecha de emsión debe ser mayor a la de la renovación anterior.
+                                <br/><i class="fas fa-tags"></i>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación anterior.
                             <?php }else { //Es una renovacion ?>
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación vigente.
-                                <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación vigente.
+                                <i class="fas fa-tags"></i>&nbsp La fecha de emsión debe ser mayor a la de la renovación vigente.
+                                <br/><i class="fas fa-tags"></i>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación vigente.
                             <?php } ?>
 
                         </div>

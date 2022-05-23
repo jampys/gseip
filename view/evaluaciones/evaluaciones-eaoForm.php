@@ -355,7 +355,7 @@
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="label-box" class="alert alert-info fade in">
-                                <span class="glyphicon glyphicon-tags"></span>&nbsp; Descripción del significado de cada puntaje.
+                                <i class="fas fa-tags"></i>&nbsp; Descripción del significado de cada puntaje.
                             </div>
 
                             <div id="table-box">

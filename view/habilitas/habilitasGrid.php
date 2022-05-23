@@ -36,7 +36,7 @@
 
                 <div class="row">
                     <div class="col-md-9">
-                        <span class="glyphicon glyphicon-tags" ></span>&nbsp Habilitas YPF Chubut
+                        <i class="fas fa-tags"></i>&nbsp; Habilitas YPF Chubut
                     </div>
                     <div class="col-md-3">
 

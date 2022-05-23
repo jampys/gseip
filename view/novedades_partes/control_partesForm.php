@@ -430,7 +430,7 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags"></span>
+                                <i class="fas fa-tags"></i>
                                 &nbsp;<strong>RN06 Control de conceptos:</strong>
                                 <strong class="dp_yellow">(Empleado)</strong>
                                 <strong>:</strong>

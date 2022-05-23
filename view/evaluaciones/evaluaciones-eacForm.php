@@ -145,7 +145,7 @@
             $('#help-box').css("max-height", $("#select-box").height());
             $('#help-box .table-responsive').css("max-height", $("#select-box").height() - 100 );
 
-            $('#label-box').html('<p><span class="glyphicon glyphicon-tags"></span> &nbsp; <strong>'+label+'</strong></p>')
+            $('#label-box').html('<p><i class="fas fa-tags"></i> &nbsp; <strong>'+label+'</strong></p>')
                           .append('<p>'+definicion+'</p>');
                           //.scrollTop();
 
@@ -313,7 +313,7 @@
 
                             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
                             <div id="label-box" class="alert alert-info fade in">
-                                <span class="glyphicon glyphicon-tags"></span>&nbsp; Al presionar sobre el nombre de cada competencia, podrá
+                                <i class="fas fa-tags"></i>&nbsp; Al presionar sobre el nombre de cada competencia, podrá
                                 visualizar la descripción del significado de cada puntaje.
                             </div>
 
