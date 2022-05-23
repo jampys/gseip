@@ -270,7 +270,7 @@
 
                     <li class="dropdown">
                         <a href="#" title="Ayuda" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="far fa-question-circle fa-lg"></i>
+                            <i class="fas fa-question-circle fa-lg"></i>
                         </a>
 
                         <ul class="dropdown-menu">

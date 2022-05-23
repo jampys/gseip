@@ -66,7 +66,7 @@
                         <td class="text-center">
                             <?php if($rp['cant_uploads']> 0 ){ ?>
                                 <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
-                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                                    <i class="fas fa-paperclip"></i>
                                 </a>
                             <?php } else{ ?>
                                 &nbsp;&nbsp;&nbsp;&nbsp;

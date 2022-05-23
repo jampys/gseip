@@ -201,7 +201,7 @@
 
                     <div class="alert alert-info fade in">
                         <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        <span class="glyphicon glyphicon-tags" ></span>&nbsp  Permite crear sucesos programados a futuro (dentro de los próximos 12 meses).
+                        <i class="fas fa-tags"></i>&nbsp;  Permite crear sucesos programados a futuro (dentro de los próximos 12 meses).
                         La imputación se producirá automaticamente al momento de generarse el período de liquidación.
                     </div>
 

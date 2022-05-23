@@ -293,11 +293,11 @@
 
                         <?php if($puesto['cant_uploads']> 0 ){ ?>
                             <a href="#" title="<?php echo $puesto['cant_uploads']; ?> adjuntos" >
-                                <span class="glyphicon glyphicon-paperclip dp_gray" aria-hidden="true"></span>
+                                <i class="fas fa-paperclip dp_gray"></i>
                             </a>
                         <?php } else{ ?>
                             <a href="#" title="sin adjuntos" class="disabled">
-                                <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                                <i class="fas fa-paperclip"></i>
                             </a>
                         <?php } ?>
                         &nbsp;&nbsp;

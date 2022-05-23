@@ -260,7 +260,7 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>
+                                <i class="fas fa-tags"></i>
                                 &nbsp;<strong>Archivo de texto</strong>
                                 <strong class="dp_orange">(RRHH)</strong>
                                 <strong>:</strong>

@@ -24,7 +24,7 @@
                  "<'row'<'col-md-5'i><'col-md-7'p>>",
             buttons: [
                 {
-                    text: '<i class="far fa-file-pdf fa-lg dp_blue"></i>',
+                    text: '<i class="fas fa-file-pdf fa-lg dp_blue"></i>',
                     titleAttr: 'Emitir RN01 Reporte de actividad de cuadrillas',
                     action: function ( e, dt, node, config ) {
                         let link = 'index.php?action=partes&operation=reporte'+
@@ -39,7 +39,7 @@
                     }
                 },
                 {
-                    text: '<i class="far fa-file-excel fa-lg dp_blue"></i>',
+                    text: '<i class="fas fa-file-excel fa-lg dp_blue"></i>',
                     titleAttr: 'Emitir RN02 Reporte de actividad de cuadrillas',
                     action: function ( e, dt, node, config ) {
                         let link = 'index.php?action=partes&operation=reporte'+

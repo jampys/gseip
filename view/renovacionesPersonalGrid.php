@@ -103,7 +103,7 @@
                         <td class="text-center">
                             <?php if($rp['cant_uploads']> 0 ){ ?>
                                 <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
-                                    <span class="glyphicon glyphicon-paperclip dp_gray" aria-hidden="true"></span>
+                                    <i class="fas fa-paperclip dp_gray"></i>
                                 </a>
                             <?php } else{ ?>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -141,7 +141,7 @@
 
         <br/>
         <div class="pull-right pdf">
-            <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
+            <a href="index.php?action="><i class="fas fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
         </div>
 
     <!--</div>-->
