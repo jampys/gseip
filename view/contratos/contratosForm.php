@@ -517,7 +517,7 @@
         <div class="clearfix">
             <h4 class="pull-left">Empleados</h4>
             <button class="btn btn-default pull-right" id="add-empleado"  <?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? '' : 'disabled' ?> >
-                <span class="glyphicon glyphicon-plus dp_green"></span> Agregar empleado
+                <i class="fas fa-plus dp_green"></i> Agregar empleado
             </button>
         </div>
 

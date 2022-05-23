@@ -37,7 +37,7 @@
 
     <div style="text-align: right; margin-bottom: 10px">
         <button  id="new" type="button" class="btn btn-default" <?php echo ( PrivilegedUser::dhasPrivilege('USR_ABM', array(1)) )? '' : 'disabled' ?> >
-            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nuevo Usuario
+            <i class="fas fa-plus dp_green"></i> Nuevo Usuario
         </button>
     </div>
 

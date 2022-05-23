@@ -246,7 +246,7 @@
                         <div class="form-group col-md-2">
                             <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" id="new" <?php echo ( PrivilegedUser::dhasAction('HEM_INSERT', array(1)) )? '' : 'disabled' ?> >
-                                <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
+                                <i class="fas fa-plus fa-lg dp_green"></i>
                             </button>
                         </div>
                     </form>

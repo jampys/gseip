@@ -36,7 +36,7 @@
 
     <div style="text-align: right; margin-bottom: 10px">
         <button class="btn btn-default" type="button" id="new" <?php echo ( PrivilegedUser::dhasAction('EMP_INSERT', array(1)) )? '' : 'disabled' ?> >
-            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nuevo Empleado
+            <i class="fas fa-plus dp_green"></i> Nuevo Empleado
         </button>
     </div>
 

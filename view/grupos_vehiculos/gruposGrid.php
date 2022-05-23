@@ -34,7 +34,7 @@
 
     <div style="text-align: right; margin-bottom: 10px">
         <button  id="new" type="button" class="btn btn-default" <?php echo (PrivilegedUser::dhasAction('GRV_INSERT', array(1)) )? '' : 'disabled' ?> >
-            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nueva Flota
+            <i class="fas fa-plus dp_green"></i> Nueva Flota
         </button>
     </div>
 

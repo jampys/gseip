@@ -360,7 +360,7 @@
                         <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
                             <button  id="new" type="button" class="form-control btn btn-default" title="Nuevo objetivo" <?php //echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?> >
-                                <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
+                                <i class="fas fa-plus fa-lg dp_green"></i>
                             </button>
                         </div>
 

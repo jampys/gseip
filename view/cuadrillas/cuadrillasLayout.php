@@ -222,8 +222,8 @@
 
                         <div class="form-group col-md-2">
                             <!--<label for="search">&nbsp;</label>-->
-                            <button type="button" class="form-control btn btn-default dp_green" title="nueva cuadrilla" id="new" <?php echo ( PrivilegedUser::dhasAction('CUA_INSERT', array(1)) )? '' : 'disabled' ?>>
-                                <span class="glyphicon glyphicon-plus fa-lg"></span>
+                            <button type="button" class="form-control btn btn-default" title="nueva cuadrilla" id="new" <?php echo ( PrivilegedUser::dhasAction('CUA_INSERT', array(1)) )? '' : 'disabled' ?>>
+                                <i class="fas fa-plus fa-lg dp_green"></i>
                             </button>
                         </div>
 

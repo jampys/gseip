@@ -33,7 +33,7 @@
 
     <div style="text-align: right; margin-bottom: 10px">
         <button  id="new" type="button" class="btn btn-default" <?php echo ( PrivilegedUser::dhasAction('HAB_INSERT', array(1)) )? '' : 'disabled' ?> >
-            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nueva Habilidad
+            <i class="fas fa-plus dp_green"></i> Nueva Habilidad
         </button>
     </div>
 
