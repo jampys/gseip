@@ -11,14 +11,14 @@
     }
 
     span.details-control:before { /* icono de un nodo padre cerrado */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f055";
         color: #5fba7d;
     }
 
     tr.shown span.details-control:before {  /* icono de un nodo padre abierto */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f056";
         color: #DD2C00;
@@ -30,14 +30,14 @@
     }
 
     td.hijo:before {  /* icono de un nodo hijo cerrado */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f055";
         color: #5fba7d;
     }
 
     tr.shown td.hijo:before {  /* icono de un nodo hijo abierto */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f056";
         color: #DD2C00;
@@ -48,7 +48,7 @@
     }
 
     td.no-hijo:before {  /* icono de un nodo hijo sin hijos */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 400;
         content: "\f111";
         color: #01579B;

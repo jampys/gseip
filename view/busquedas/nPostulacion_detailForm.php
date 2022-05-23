@@ -1,14 +1,14 @@
 <style>
 
     #culo:after, #culo2:after {  /* icono de un nodo cerrado */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f054";
         /*color: #5fba7d;*/
     }
 
     #culo.highlight:after, #culo2.highlight:after {  /* icono de un nodo abierto */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f078";
         /*color: #5fba7d;*/
