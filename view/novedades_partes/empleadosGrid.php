@@ -21,7 +21,7 @@
 
                 <td class="text-center">
                     <a class="view" href="javascript:void(0);" data-id="<?php //echo $et['id_etapa'];?>" title="ver">
-                        <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
+                        <i class="far fa-sticky-note dp_blue"></i>
                     </a>&nbsp;&nbsp;
 
                     <a class="<?php //echo ( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) && $view->target!='view' /*&& $et['id_user'] == $_SESSION['id_user']*/  )? 'edit' : 'disabled' ?>disabled" href="javascript:void(0);" title="editar">

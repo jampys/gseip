@@ -52,7 +52,7 @@
 
                         <td class="text-center">
                             <a class="view" href="javascript:void(0);" title="ver">
-                                <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
+                                <i class="far fa-sticky-note dp_blue"></i>
                             </a>&nbsp;&nbsp;
 
                             <a class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)))? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">

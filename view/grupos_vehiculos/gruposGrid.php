@@ -67,8 +67,8 @@
                         </a>&nbsp;&nbsp;
 
                         <!-- si tiene permiso para ver -->
-                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
-                            <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
+                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);" title="ver">
+                            <i class="far fa-sticky-note dp_blue"></i>
                         </a>&nbsp;&nbsp;
 
                         <!-- si tiene permiso para editar -->

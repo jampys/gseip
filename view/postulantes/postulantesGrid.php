@@ -72,8 +72,8 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                             <?php } ?>&nbsp;&nbsp;
 
-                            <a class="view" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
+                            <a class="view" href="javascript:void(0);" title="ver">
+                                <i class="far fa-sticky-note dp_blue"></i>
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para editar -->
