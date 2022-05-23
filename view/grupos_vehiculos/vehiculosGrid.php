@@ -60,7 +60,7 @@
                             </a>&nbsp;&nbsp;
 
                             <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
+                                <i class="far fa-trash-alt dp_red"></i>
                             </a>
                         </td>
                     </tr>

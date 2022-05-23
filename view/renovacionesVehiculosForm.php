@@ -58,7 +58,7 @@
             uploadQueueOrder:'bottom', //el orden en que se muestran los archivos subidos.
             showFileCounter: false, //muestra el nro de archivos subidos
             downloadStr: "<i class='fas fa-download'></i>",
-            deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
+            deleteStr: "<i class='far fa-trash-alt'></i>",
             dragDropStr: "<span>Arrastrar &amp; Soltar</span>",
             uploadStr:"<span class='glyphicon glyphicon-plus'></span> Adjuntar",
             cancelStr: "<i class='fas fa-minus-square'></i>",

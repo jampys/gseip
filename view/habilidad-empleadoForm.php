@@ -68,7 +68,7 @@
                     $('#empleados-table tbody').append('<tr data-id='+item.id_empleado+'>' +
                     '<td>'+item.legajo+'</td>' +
                     '<td>'+item.empleado+'</td>' +
-                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a></td>' +
+                    '<td class="text-center"><a class="delete" href="#"><i class="far fa-trash-alt dp_red"></i></a></td>' +
                     '</tr>');
                 }
 
@@ -123,7 +123,7 @@
                     $('#habilidades-table tbody').append('<tr data-id='+item.id_habilidad+'>' +
                     '<td>'+item.nombre+'</td>' +
                     '<td></td>' +
-                    '<td class="text-center"><a class="delete" href="#"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a></td>' +
+                    '<td class="text-center"><a class="delete" href="#"><i class="far fa-trash-alt dp_red"></i></a></td>' +
                     '</tr>');
                 }
 

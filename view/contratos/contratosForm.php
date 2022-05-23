@@ -69,7 +69,7 @@
                     '<td class="text-center">' +
                     '<a class="view-empleado" href="#"><i class="far fa-sticky-note dp_blue"></i></a>&nbsp;&nbsp;'+
                     '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><i class="far fa-edit dp_blue"></i></a>&nbsp;&nbsp;'+
-                    '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_DEL', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>'+
+                    '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_DEL', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><i class="far fa-trash-alt dp_red"></i></a>'+
                     '</td>'+
                     '</tr>';
 

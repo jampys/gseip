@@ -279,7 +279,7 @@
                         <div class="form-group col-md-2">
                             <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" title="Nueva no conformidad" id="new" <?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? '' : 'disabled' ?>>
-                                <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
+                                <i class="fas fa-plus-circle fa-lg dp_green"></i>
                             </button>
                         </div>
 

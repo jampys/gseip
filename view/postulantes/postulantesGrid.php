@@ -77,13 +77,13 @@
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para editar -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('PTE_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('PTE_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
+                                <i class="far fa-edit dp_blue"></i>
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso para eliminar -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('PTE_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
+                                <i class="far fa-trash-alt dp_red"></i>
                             </a>
                         </td>
                     </tr>
