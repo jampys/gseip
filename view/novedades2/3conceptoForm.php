@@ -373,7 +373,7 @@
                     '<div class="form-group">'+
                         '<div class="input-group bootstrap-timepicker timepicker">'+
                             '<input type="text" class="form-control input-sm" value = "'+jsonConceptos[i].cantidad+'" id="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" >'+
-                            '<span class="input-group-addon input-sm"><i class="glyphicon glyphicon-time"></i></span>'+
+                            '<span class="input-group-addon input-sm"><i class="fad fa-clock"></i></span>'+
                         '</div>'+
                     '</div>' +
                 '</td>' +
@@ -966,7 +966,7 @@
                 <div class="form-group col-md-4">
                     <div class="input-group bootstrap-timepicker timepicker">
                         <input type="text" class="form-control input-small hs-group" name="cantidad" id="cantidad" value = "<?php //print $view->parte->getHs100() ?>" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        <span class="input-group-addon"><i class="fad fa-clock"></i></span>
                     </div>
                 </div>
 

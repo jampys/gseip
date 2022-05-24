@@ -206,7 +206,7 @@
             <label class="control-label" for="hs_50">Cantidad</label>
             <div class="input-group bootstrap-timepicker timepicker">
                 <input type="text" class="form-control input-small hs-group" name="cantidad" id="cantidad" value = "<?php print $view->concepto->getCantidad() ?>" >
-                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                <span class="input-group-addon"><i class="fad fa-clock"></i></span>
             </div>
         </div>
 
