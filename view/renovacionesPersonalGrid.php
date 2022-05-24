@@ -120,7 +120,7 @@
 
                             <?php if($rp['id_rnv_renovacion']){ ?>
                                 <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rp['id_rnv_renovacion']; ?>" >
-                                    <span class="glyphicon glyphicon-ok-sign dp_blue" aria-hidden="true"></span>
+                                    <i class="fas fa-check-circle dp_blue"></i>
                                 </a>
                             <?php } else{ ?>
                                 <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'renovar' : 'disabled' ?>" href="javascript:void(0);" title="renovar">
