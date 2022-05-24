@@ -302,14 +302,14 @@
                             <label for="fecha_apertura" class="control-label">Fecha apertura</label>
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura" value = "<?php print $view->busqueda->getFechaApertura() ?>" placeholder="DD/MM/AAAA">
-                                <i class="glyphicon glyphicon-calendar"></i>
+                                <i class="fad fa-calendar-alt"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="fecha_cierre" class="control-label">Fecha cierre</label>
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->busqueda->getFechaCierre() ?>" placeholder="DD/MM/AAAA">
-                                <i class="glyphicon glyphicon-calendar"></i>
+                                <i class="fad fa-calendar-alt"></i>
                             </div>
                         </div>
                     </div>

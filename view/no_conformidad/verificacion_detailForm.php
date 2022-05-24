@@ -105,7 +105,7 @@
         <label class="control-label" for="fecha_verificacion">Fecha verificación</label>
         <div class="inner-addon right-addon">
             <input class="form-control" type="text" name="fecha_verificacion" id="fecha_verificacion" value = "<?php print $view->verificacion->getFechaVerificacion() ?>" placeholder="DD/MM/AAAA">
-            <i class="glyphicon glyphicon-calendar"></i>
+            <i class="fad fa-calendar-alt"></i>
         </div>
     </div>
 

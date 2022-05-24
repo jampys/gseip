@@ -1034,7 +1034,7 @@
                     <div class="form-group">
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="rep_fecha" id="rep_fecha" placeholder="DD/MM/AAAA" readonly>
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
                 </div>

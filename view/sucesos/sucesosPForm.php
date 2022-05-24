@@ -279,7 +279,7 @@
                             <label class="control-label" for="">Fechas desde / hasta</label>
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->suceso->getFechaDesde() && $view->suceso->getFechaHasta())? $view->suceso->getFechaDesde()." - ".$view->suceso->getFechaHasta() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                                <i class="glyphicon glyphicon-calendar"></i>
+                                <i class="fad fa-calendar-alt"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-3">

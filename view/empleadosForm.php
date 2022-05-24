@@ -214,9 +214,9 @@
     <div class="form-group required">
         <label class="col-md-4 control-label" for="fecha">Fecha nacimiento</label>
         <div class="col-md-8">
-            <div class="input-wrapper">
+            <div class="inner-addon right-addon">
                 <input class="form-control" type="text" name="fecha_nacimiento" id="fecha_nacimiento" value = "<?php print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA">
-                <i class="fa fa-calendar"></i>
+                <i class="fad fa-calendar-alt"></i>
             </div>
         </div>
     </div>
@@ -227,7 +227,7 @@
         <div class="col-md-8">
             <div class="inner-addon right-addon">
                 <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print $view->empleado->getFechaAlta() ?>" placeholder="DD/MM/AAAA">
-                <i class="glyphicon glyphicon-calendar"></i>
+                <i class="fad fa-calendar-alt"></i>
             </div>
         </div>
     </div>
@@ -237,7 +237,7 @@
         <div class="col-md-8">
             <div class="inner-addon right-addon">
                 <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->empleado->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
-                <i class="glyphicon glyphicon-calendar"></i>
+                <i class="fad fa-calendar-alt"></i>
             </div>
         </div>
     </div>

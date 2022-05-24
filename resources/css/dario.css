@@ -209,31 +209,31 @@ body{
 /* estilos usados para mostrar icono dentro de input en datarangepicker
 https://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-box/18839305#18839305
 /* enable absolute positioning */
+/*.inner-addon {
+    position: relative;
+}*/
+
+/* style icon */
+/*.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}*/
+
+/* align icon */
+/*.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+/*.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }*/
+
+
 .inner-addon {
     position: relative;
 }
 
-/* style icon */
-.inner-addon .glyphicon {
-    position: absolute;
-    padding: 10px;
-    pointer-events: none;
-}
-
-/* align icon */
-.left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 0px;}
-
-/* add padding  */
-.left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }
-
-
-.input-wrapper {
-    position: relative;
-}
-
-.input-wrapper .fa-calendar {
+.inner-addon .fa-calendar-alt {
     position: absolute;
     top: 10px; right: 10px;
 }

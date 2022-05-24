@@ -134,7 +134,7 @@
                                 </div>-->
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="add_fecha" id="add_fecha" value = "<?php //print $view->empleado->getFechaNacimiento() ?>" placeholder="DD/MM/AAAA" readonly>
-                                <i class="glyphicon glyphicon-calendar"></i>
+                                <i class="fad fa-calendar-alt"></i>
                             </div>
                         </div>
 

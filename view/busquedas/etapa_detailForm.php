@@ -92,7 +92,7 @@
         <label class="control-label" for="fecha_etapa">Fecha etapa</label>
         <div class="inner-addon right-addon">
             <input class="form-control" type="text" name="fecha_etapa" id="fecha_etapa" value = "<?php print $view->etapa->getFechaEtapa() ?>" placeholder="DD/MM/AAAA" readonly>
-            <i class="glyphicon glyphicon-calendar"></i>
+            <i class="fad fa-calendar-alt"></i>
         </div>
     </div>
 

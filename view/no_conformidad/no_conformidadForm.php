@@ -278,7 +278,7 @@
                         <label class="control-label" for="fecha">Fecha cierre</label>
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre" value = "<?php print $view->no_conformidad->getFechaCierre() ?>" placeholder="DD/MM/AAAA">
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
 

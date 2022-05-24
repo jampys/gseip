@@ -328,7 +328,7 @@
                         <div class="form-group col-md-3">
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                                <i class="glyphicon glyphicon-calendar"></i>
+                                <i class="fad fa-calendar-alt"></i>
                             </div>
                         </div>
 

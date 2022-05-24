@@ -292,7 +292,7 @@
                         <label class="control-label" for="fecha">Fecha alta</label>
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print ($view->usuario->getIdUser())? $view->usuario->getFechaAlta() : date('d/m/Y'); ?>" placeholder="DD/MM/AAAA" disabled>
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
 
@@ -300,7 +300,7 @@
                         <label class="control-label" for="fecha">Fecha baja</label>
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->usuario->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
 

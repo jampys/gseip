@@ -494,14 +494,14 @@
                     <label for="fecha_desde" class="control-label">Fecha desde</label>
                     <div class="inner-addon right-addon">
                         <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
-                        <i class="glyphicon glyphicon-calendar"></i>
+                        <i class="fad fa-calendar-alt"></i>
                     </div>
                 </div>
                 <div class="form-group col-md-6 required">
                     <label for="fecha_hasta" class="control-label">Fecha hasta</label>
                     <div class="inner-addon right-addon">
                         <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
-                        <i class="glyphicon glyphicon-calendar"></i>
+                        <i class="fad fa-calendar-alt"></i>
                     </div>
                 </div>
             </div>

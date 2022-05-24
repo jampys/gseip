@@ -321,7 +321,7 @@
 
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->renovacion->getFechaEmision() && $view->renovacion->getFechaVencimiento())? $view->renovacion->getFechaEmision()." - ".$view->renovacion->getFechaVencimiento() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
 
