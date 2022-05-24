@@ -324,7 +324,7 @@
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading"><i class="far fa-calendar-alt fa-lg dp_blue"></i>&nbsp;&nbsp;Mis próximos vencimientos</div>
+                        <div class="panel-heading"><i class="fad fa-calendar-alt fa-lg dp_blue"></i>&nbsp;&nbsp;Mis próximos vencimientos</div>
                         <div class="panel-body">
 
 
@@ -471,7 +471,7 @@
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading"><i class="fas fa-birthday-cake fa-lg dp_blue"></i>&nbsp;&nbsp;Próximos cumpleaños</div>
+                        <div class="panel-heading"><i class="fad fa-birthday-cake fa-lg dp_blue"></i>&nbsp;&nbsp;Próximos cumpleaños</div>
                         <div class="panel-body">
 
 

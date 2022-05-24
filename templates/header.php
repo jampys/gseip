@@ -227,7 +227,7 @@
 
                             <?php if( PrivilegedUser::dhasPrivilege('PAR_VER', array(1)) ){ ?>
                                 <li role="separator" class="divider"></li>
-                                <li class="dropdown-header"><i class="far fa-calendar-alt fa-fw dp_gray"></i>&nbsp;CALENDARIO</li>
+                                <li class="dropdown-header"><i class="fas fa-calendar-alt fa-fw dp_gray"></i>&nbsp;CALENDARIO</li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=nov_calendar">Calendario de actividad</a></li>
                             <?php } ?>
 
