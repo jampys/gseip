@@ -227,6 +227,16 @@ https://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-bo
 /* add padding  */
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
+
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper .fa-calendar {
+    position: absolute;
+    top: 10px; right: 10px;
+}
 /* ------------------------------------------------------------------------*/
 
 /* bootbox: central verticalmente los bootbox */
