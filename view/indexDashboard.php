@@ -288,7 +288,7 @@
                             <?php }else{ ?>
 
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> No tiene objetivos fijados para el período vigente.
+                                    <i class="fad fa-info-circle"></i> No tiene objetivos fijados para el período vigente.
                                 </div>
 
                             <?php } ?>
@@ -348,7 +348,7 @@
                             <?php }else{ ?>
 
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> No tiene vencimientos próximos.
+                                    <i class="fad fa-info-circle"></i> No tiene vencimientos próximos.
                                 </div>
 
                             <?php } ?>
@@ -431,7 +431,7 @@
                             <?php }else{ ?>
 
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
+                                    <i class="fad fa-info-circle"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
                                 </div>
 
                             <?php } ?>
@@ -495,7 +495,7 @@
                             <?php }else{ ?>
 
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> No hay cumpleaños en los próximos <?php echo $view->dias; ?> dias.
+                                    <i class="fad fa-info-circle"></i> No hay cumpleaños en los próximos <?php echo $view->dias; ?> dias.
                                 </div>
 
                             <?php } ?>
