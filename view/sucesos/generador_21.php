@@ -43,6 +43,7 @@ $fila1['id_suceso'] = $su->getIdSuceso();
 $fila1['periodo'] = $su->getPeriodo();
 $fila1['legajo'] = substr($em->getLegajo(), 2, 4);
 $fila1['cuil'] = $em->getCuil();
+$fila1['cuil'] = substr($fila1['cuil'], 0, 2).'-'.substr($fila1['cuil'], 2, -1).'-'.substr($fila1['cuil'], -1, 1);
 $fila1['apellido'] = $em->getApellido();
 $fila1['nombre'] = $em->getNombre();
 $fila1['title'] = $fila1['id_suceso']." ".$fila1['apellido']." ".$fila1['nombre'];
