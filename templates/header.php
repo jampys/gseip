@@ -194,13 +194,13 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vencimientos<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header"><i class="fas fa-male fa-fw dp_gray"></i>&nbsp;PERSONAL</li>
+                            <li class="dropdown-header"><i class="fad fa-male fa-fw dp_blue"></i>&nbsp;<strong>PERSONAL</strong></li>
 
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('RPE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=renovacionesPersonal">Vencimientos de personal</a></li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('RPE_ABM', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=renovacionesPersonalAuditoria">Auditoría de personal</a></li>
 
                             <li role="separator" class="divider"></li>
-                            <li class="dropdown-header"><i class="fas fa-truck-pickup fa-fw dp_gray"></i>&nbsp;VEHICULOS</li>
+                            <li class="dropdown-header"><i class="fad fa-truck-pickup fa-fw dp_blue"></i>&nbsp;<strong>VEHICULOS</strong></li>
 
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('RVE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=renovacionesVehiculos">Vencimientos de vehículos</a></li>
                             <li class="<?php echo (PrivilegedUser::dhasPrivilege('RVE_ABM', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=renovacionesVehiculosAuditoria">Auditoría de vehículos</a></li>
@@ -274,7 +274,7 @@
 
                     <li class="dropdown">
                         <a href="#" title="Ayuda" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-question-circle fa-lg"></i>
+                            <i class="fad fa-question-circle fa-lg dp_blue"></i>
                         </a>
 
                         <ul class="dropdown-menu">
@@ -294,10 +294,9 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <!--<li class="dropdown-header">USUARIO</li>-->
-                            <li><a href="#"><i class="fas fa-user dp_gray"></i>&nbsp;Mi perfil</a></li>
+                            <li class="dropdown-header"><i class="fad fa-user fa-fw dp_blue"></i>&nbsp;<strong>MI PERFIL</strong></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="index.php?action=login&operation=salir"><i class="fas fa-sign-out dp_gray"></i> Cerrar sesión</a></li>
+                            <li><a href="index.php?action=login&operation=salir"><i class="fad fa-sign-out dp_blue"></i> Cerrar sesión</a></li>
                         </ul>
 
                     </li>
