@@ -110,7 +110,7 @@
 
                             <?php if( PrivilegedUser::dhasPrivilege('USR_ABM', array(1)) ){ ?>
                                 <li role="separator" class="divider"></li>
-                                <li class="dropdown-header"><i class="fad fa-hard-hat fa-fw dp_blue"></i>&nbsp;<strong>SEGURIDAD</strong></li>
+                                <li class="dropdown-header"><i class="fad fa-user-lock fa-fw dp_blue"></i>&nbsp;<strong>SEGURIDAD</strong></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('USR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=sec_users">Usuarios</a></li>
                                 <li class="disabled"><a href="#">Roles <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <?php } ?>
