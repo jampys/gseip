@@ -1,3 +1,13 @@
+<style type="text/css">
+
+/*para personalizar el tamaño de los iconos del menu principal*/;
+    .dropdown-header .dp_blue{
+        font-size: 13px !important;
+    }
+
+</style>
+
+
 <script type="text/javascript">
 
     $(document).ready(function(){
@@ -213,30 +223,24 @@
                                       PrivilegedUser::dhasPrivilege('PAR_VER', array(1)) ||
                                       PrivilegedUser::dhasPrivilege('CUA_VER', array(1))
                                     ){ ?>
-                                <li class="dropdown-header">ACTIVIDAD CUADRILLA</li>
+                                <li class="dropdown-header"><i class="fad fa-user-hard-hat fa-fw dp_blue"></i><strong>ACTIVIDAD CUADRILLAS</strong></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=novedades2">Carga de novedades</a></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=partes">Consulta de novedades</a></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('CUA_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=cuadrillas">Cuadrillas</a></li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=nov_calendar">Calendario de actividad</a></li>
                             <?php } ?>
 
                             <?php if( PrivilegedUser::dhasPrivilege('SUC_VER', array(1)) ){ ?>
                                 <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">SUCESOS DE PERSONAL</li>
+                                <li class="dropdown-header"><strong><i class="fad fa-clipboard fa_fw dp_blue"></i>&nbsp;SUCESOS DE PERSONAL</strong></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('SUC_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=sucesos">Sucesos</a></li>
                             <?php } ?>
-
-                            <?php if( PrivilegedUser::dhasPrivilege('PAR_VER', array(1)) ){ ?>
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header"><i class="fas fa-calendar-alt fa-fw dp_gray"></i>&nbsp;CALENDARIO</li>
-                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=nov_calendar">Calendario de actividad</a></li>
-                            <?php } ?>
-
 
                             <?php if( PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) ||
                                       PrivilegedUser::dhasPrivilege('PAR_ABM', array(1))
                                     ){ ?>
                                 <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">HABILITAS</li>
+                                <li class="dropdown-header"><i class="fad fa-usd-square fa-fw dp_blue"></i>&nbsp;<strong>HABILITAS</strong></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=habilitas">Conversores</a></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=habilitas-control">Consultas</a></li>
                             <?php } ?>
