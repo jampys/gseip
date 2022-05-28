@@ -91,7 +91,7 @@
                                       PrivilegedUser::dhasPrivilege('PUE_VER', array(1)) ||
                                       PrivilegedUser::dhasPrivilege('CON_VER', array(1))
                                     ){ ?>
-                                <li class="dropdown-header"><i class="fas fa-male fa-fw dp_gray"></i>&nbsp;PERSONAL</li>
+                                <li class="dropdown-header"><i class="fad fa-male fa-fw dp_blue"></i>&nbsp;<strong>PERSONAL</strong></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('EMP_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=empleados">Empleados</a></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('PUE_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=puestos">Puestos</a></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('CON_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=contratos">Contratos</a></li>
@@ -103,21 +103,21 @@
                                       PrivilegedUser::dhasPrivilege('GRV_VER', array(1))
                                     ){ ?>
                                 <li role="separator" class="divider"></li>
-                                <li class="dropdown-header"><i class="fas fa-truck-pickup fa-fw dp_gray"></i>&nbsp;VEHICULOS</li>
+                                <li class="dropdown-header"><i class="fas fa-truck-pickup fa-fw dp_blue"></i>&nbsp;<strong>VEHICULOS</strong></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vehiculos">Vehículos</a></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos">Flotas de vehículos</a></li>
                             <?php } ?>
 
                             <?php if( PrivilegedUser::dhasPrivilege('USR_ABM', array(1)) ){ ?>
                                 <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">SEGURIDAD</li>
+                                <li class="dropdown-header"><i class="fad fa-hard-hat fa-fw dp_blue"></i>&nbsp;<strong>SEGURIDAD</strong></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('USR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=sec_users">Usuarios</a></li>
                                 <li class="disabled"><a href="#">Roles <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
                             <?php } ?>
 
                             <?php if( PrivilegedUser::dhasPrivilege('PER_ABM', array(1)) ){ ?>
                                 <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">NOVEDADES</li>
+                                <li class="dropdown-header"><i class="fad fa-user-hard-hat fa-fw dp_blue"></i>&nbsp;<strong>NOVEDADES</strong></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('PER_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=nov_periodos">Períodos</a></li>
                             <?php } ?>
 
@@ -223,7 +223,7 @@
                                       PrivilegedUser::dhasPrivilege('PAR_VER', array(1)) ||
                                       PrivilegedUser::dhasPrivilege('CUA_VER', array(1))
                                     ){ ?>
-                                <li class="dropdown-header"><i class="fad fa-user-hard-hat fa-fw dp_blue"></i><strong>ACTIVIDAD CUADRILLAS</strong></li>
+                                <li class="dropdown-header"><i class="fad fa-user-hard-hat fa-fw dp_blue"></i>&nbsp;<strong>ACTIVIDAD CUADRILLAS</strong></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)))? '': 'disabled' ?>"><a href="index.php?action=novedades2">Carga de novedades</a></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=partes">Consulta de novedades</a></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('CUA_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=cuadrillas">Cuadrillas</a></li>
@@ -232,7 +232,7 @@
 
                             <?php if( PrivilegedUser::dhasPrivilege('SUC_VER', array(1)) ){ ?>
                                 <li role="separator" class="divider"></li>
-                                <li class="dropdown-header"><strong><i class="fad fa-clipboard fa_fw dp_blue"></i>&nbsp;SUCESOS DE PERSONAL</strong></li>
+                                <li class="dropdown-header"><i class="fad fa-clipboard fa_fw dp_blue"></i>&nbsp;<strong>SUCESOS DE PERSONAL</strong></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('SUC_VER', array(1)))? '': 'disabled' ?>"><a href="index.php?action=sucesos">Sucesos</a></li>
                             <?php } ?>
 
