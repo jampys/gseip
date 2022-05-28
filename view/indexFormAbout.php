@@ -28,7 +28,7 @@
             </div>-->
 
             <div class="modal-body">
-                <img src="resources/img/seip140x40.png" class="img-responsive">
+                <img src="resources/img/seip140x40.png" class="img-responsive" width="70" height="20">
                 <br/>
                 <p class="text-muted"><small>Versión <?php echo $GLOBALS['ini']['application']['app_version'] ?></small></p>
                 <p class="text-muted"><small>Copyright &copy; SEIP SRL 2017 Todos los derechos reservados</small></p>
