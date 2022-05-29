@@ -359,7 +359,7 @@
 
                         <div class="form-group col-md-1">
                             <!--<label for="export" class="control-label">&nbsp;</label>-->
-                            <button id="export" class="form-control btn btn-default dp_blue" href="#" data-tippy-content="Exportar sucesos"><i class="fas fa-file-export fa-fw fa-lg"></i></button>
+                            <button id="export" class="form-control btn btn-default dp_blue" href="#" data-tippy-content="Descargar sucesos"><i class="fas fa-file-download fa-fw fa-lg dp_blue"></i></button>
                         </div>
 
 

@@ -267,7 +267,7 @@
                                 Sucesos en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-download fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte [txt]">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>

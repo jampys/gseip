@@ -360,7 +360,7 @@
                                 Novedades en formato de tabla cruzada (empleados/conceptos).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit" title="Emitir reporte">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit" title="Emitir reporte [web]">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -375,7 +375,7 @@
                                 Novedades en formato .xlsx (empleados/conceptos).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit" title="Descargar reporte [xlsx]">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -391,7 +391,7 @@
                                 Novedades en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte [txt]">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>

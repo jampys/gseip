@@ -437,7 +437,7 @@
                                 Conceptos por empleado durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit6" name="submit6" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit6" name="submit6" type="submit" title="Descargar reporte [xlsx]">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -453,7 +453,7 @@
                                 Empleados con días sin novedad ni suceso durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit" title="Emitir reporte">&nbsp;<i class="fas fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit" title="Emitir reporte [pdf]">&nbsp;<i class="fas fa-file-pdf fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -469,7 +469,7 @@
                                 Partes diarios, órdenes y habilitas durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit" title="Emitir reporte">&nbsp;<i class="fas fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit" title="Emitir reporte [pdf]">&nbsp;<i class="fas fa-file-pdf fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -485,7 +485,7 @@
                                 Actividad de cuadrilla día por día durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit4" name="submit4" type="submit" title="Emitir reporte">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit4" name="submit4" type="submit" title="Descargar reporte [xlsx]">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>

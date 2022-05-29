@@ -136,9 +136,9 @@ switch ($operation)
         exit;
         break;
 
-    case 'loadExport': //ok  //abre ventana modal para exportar
+    case 'loadExport': //ok  //abre ventana modal para descargar
         $view->disableLayout=true;
-        $view->label = 'Exportar sucesos';
+        $view->label = 'Descargar sucesos';
         $view->contratos = Contrato::getContratosControlNovedades(); //carga el combo para filtrar contratos
         $view->periodos_sup = NovPeriodo::getPeriodosSup(); //carga el combo de periodos superiores
 
