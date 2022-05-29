@@ -10,12 +10,6 @@
 
     }
 
-
-
-
-
-
-
 </style>
 
 
@@ -379,14 +373,14 @@
                     '<div class="form-group">'+
                         '<div class="input-group bootstrap-timepicker timepicker">'+
                             '<input type="text" class="form-control input-sm" value = "'+jsonConceptos[i].cantidad+'" id="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" >'+
-                            '<span class="input-group-addon input-sm"><i class="glyphicon glyphicon-time"></i></span>'+
+                            '<span class="input-group-addon input-sm"><i class="fad fa-clock"></i></span>'+
                         '</div>'+
                     '</div>' +
                 '</td>' +
                  //'<td><div contenteditable="true" class="editable" id="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'" name="prog_'+jsonConceptos[i].id_parte_empleado_concepto+'">'+jsonConceptos[i].cantidad+'</div></td>' +
                  '<td class="text-center">'+
                      '<a class="<?php echo (PrivilegedUser::dhasPrivilege('PAR_ABM', array(1)) /*&& $view->target!='view' && $ctos['tipo_calculo']=='M'*/)? 'delete' : 'disabled' ?>" title="Eliminar concepto" href="javascript:void(0);">'+
-                         '<span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>'+
+                         '<i class="far fa-trash-alt dp_red"></i>'+
                      '</a>'+
                  '</td>'+
                  '</tr>');
@@ -874,7 +868,8 @@
                     <?php foreach ($view->cuadrillas as $cu){
                         ?>
                         <option value="<?php echo $cu['id_cuadrilla']; ?>"
-                            <?php //echo ($cu['id_cuadrilla'] == $view->parte->getIdCuadrilla())? 'selected' :'' ?>
+                                class="<?php echo ($cu['disabled'])? 'inactive' :'' ?>"
+                            <?php echo ($cu['disabled'])? 'disabled' :'' ?>
                             <?php echo ( ($cu['id_cuadrilla'] == $view->parte->getIdCuadrilla()) || (!$view->parte->getIdParte() && $cu['id_cuadrilla'] == $view->defaults[0]['id_cuadrilla'])  )? 'selected' :'' ?>
                             >
                             <?php echo $cu['nombre']; ?>
@@ -971,7 +966,7 @@
                 <div class="form-group col-md-4">
                     <div class="input-group bootstrap-timepicker timepicker">
                         <input type="text" class="form-control input-small hs-group" name="cantidad" id="cantidad" value = "<?php //print $view->parte->getHs100() ?>" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        <span class="input-group-addon"><i class="fad fa-clock"></i></span>
                     </div>
                 </div>
 
@@ -1039,7 +1034,7 @@
                     <div class="form-group">
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="rep_fecha" id="rep_fecha" placeholder="DD/MM/AAAA" readonly>
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
                 </div>

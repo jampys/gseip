@@ -36,7 +36,7 @@
 
     <div style="text-align: right; margin-bottom: 10px">
         <button class="btn btn-default" type="button" id="new" <?php echo ( PrivilegedUser::dhasAction('EMP_INSERT', array(1)) )? '' : 'disabled' ?> >
-            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nuevo Empleado
+            <i class="fas fa-plus dp_green"></i> Nuevo Empleado
         </button>
     </div>
 
@@ -68,10 +68,10 @@
                     <td><?php echo $empleado['ciudad'];?></td>
                     <td><?php echo $empleado['convenio'];?></td>
                     <td class="text-center">
-                        <a class="contratos" href="javascript:void(0);" title="detalles"><i class="fas fa-suitcase dp_blue"></i></a>&nbsp;&nbsp;
-                        <a class="view" href="javascript:void(0);" title="ver"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo (PrivilegedUser::dhasAction('EMP_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>
+                        <a class="contratos" href="javascript:void(0);" title="detalles"><i class="fas fa-th-list dp_blue"></i></a>&nbsp;&nbsp;
+                        <a class="view" href="javascript:void(0);" title="ver"><i class="far fa-sticky-note dp_blue"></i>&nbsp;&nbsp;
+                        <a class="<?php echo ( PrivilegedUser::dhasAction('EMP_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar"><i class="fas fa-edit dp_blue"></i></a>&nbsp;&nbsp;
+                        <a class="<?php echo (PrivilegedUser::dhasAction('EMP_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);"><i class="far fa-trash-alt dp_red"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>

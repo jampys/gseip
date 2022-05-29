@@ -166,7 +166,7 @@
                             <fieldset>
 
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> Seleccionar los vencimientos requeridos para el empleado.
+                                    <i class="fad fa-info-circle"></i> Seleccionar los vencimientos requeridos para el empleado.
                                 </div>
 
                                 <input type="hidden" name="id_empleado" id="id_empleado" value="<?php print $view->empleado->getIdEmpleado() ?>">

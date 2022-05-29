@@ -193,8 +193,8 @@
                         <div class="col-md-7" id="etapas_left_side">
 
                             <div class="clearfix">
-                                <button <?php echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? '' : 'disabled' ?> class="btn btn-default pull-right dp_green" id="add" name="add" type="submit" title="Agregar vehículo">
-                                    <span class="glyphicon glyphicon-plus"></span>
+                                <button <?php echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? '' : 'disabled' ?> class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar vehículo">
+                                    <i class="fas fa-plus dp_green"></i>
                                 </button>
                             </div>
 

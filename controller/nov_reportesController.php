@@ -49,7 +49,7 @@ switch ($operation)
         break;
 
 
-    case 'reporte_rn04':
+    case 'reporte_rn04': //ok
         $view->disableLayout=true;
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $_SESSION['cal_id_contrato'] = $id_contrato;
@@ -84,6 +84,30 @@ switch ($operation)
         else $encabezado['dh1'] = ReporteNovedades::getDaysBeetweenDates($encabezado['obj_periodo']->getFechaDesde(), date('d/m/Y')); //date('d/m/Y') da el formato dd/mm/yyyy
 
         $view->contentTemplate="view/novedades_partes/generador_rn04.php";
+        break;
+
+
+    case 'reporte_rn03':
+        $view->disableLayout=true;
+        $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
+        $periodo = ($_GET['periodo'])? $_GET['periodo'] : null;
+        $view->partes = $rta = ReporteNovedades::getReporteRn3($id_contrato, $periodo);
+
+        $encabezado = array();
+        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']); //si hay 2 o mas contratos, toma el 1ro.
+        $encabezado['contratos'] = ReporteNovedades::getContratosList($_GET['id_contrato'])[0]['contrato'];
+        $encabezado['template'] = $encabezado['obj_contrato']->getNovTemplate();
+
+        $encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
+        $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
+        $encabezado['cliente'] = $encabezado['obj_cliente']->getRazonSocial();
+
+        $encabezado['periodos_list'] = NovPeriodo::getPeriodosList($_GET['id_contrato'], $_GET['periodo'] );
+        $encabezado['periodo'] = $encabezado['periodos_list'][0]['nombre1'];
+
+        $encabezado['fecha_emision'] = date('d/m/Y H:i');
+
+        $view->contentTemplate="view/novedades_partes/generador_rn03.php";
         break;
 
 

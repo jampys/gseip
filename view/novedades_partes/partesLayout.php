@@ -135,10 +135,10 @@
                         $("#cuadrilla").html('<option value="">Seleccione una cuadrilla</option>');
                         if(Object.keys(data['cuadrillas']).length > 0){
                             $.each(data['cuadrillas'], function(indice, val){
-                                var label = data['cuadrillas'][indice]["nombre"];
-                                $("#cuadrilla").append('<option value="'+data['cuadrillas'][indice]["nombre"]+'"'
-                                //+' fecha_desde="'+data['periodos'][indice]["fecha_desde"]+'"'
-                                //+' fecha_hasta="'+data['periodos'][indice]["fecha_hasta"]+'"'
+                                let label = data['cuadrillas'][indice]["nombre"];
+                                let inactive_class = (data['cuadrillas'][indice]["disabled"])? 'inactive' : '';
+
+                                $("#cuadrilla").append('<option class="'+inactive_class+'" value="'+data['cuadrillas'][indice]["nombre"]+'"'
                                 +'>'+label+'</option>');
                             });
 
@@ -372,7 +372,7 @@
                         <div class="form-group col-md-2">
                             <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" title="Buscar novedad" id="search">
-                                <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+                                <i class="fas fa-search fa-lg dp_blue"></i>
                             </button>
                         </div>
 
@@ -416,7 +416,7 @@
                             <!--<label for="search_vencimiento" class="control-label">Buscar partes</label>-->
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                                <i class="glyphicon glyphicon-calendar"></i>
+                                <i class="fad fa-calendar-alt"></i>
                             </div>
                         </div>
 
@@ -439,13 +439,13 @@
                             <!--<label for="search">&nbsp;</label>-->
                             <button id="control" class="form-control btn btn-default" href="#" title="Control de novedades">
                                 <!--<span class="glyphicon glyphicon-check fa-lg dp_blue">-->
-                                    <i class="fas fa-tasks fa-lg dp_blue"></i>
+                                    <i class="fas fa-file-check fa-lg dp_blue"></i>
                             </button>
                         </div>
 
                         <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
-                            <button id="txt" class="form-control btn btn-default" href="#" title="Exportar novedades"><i class="fas fa-file-export fa-fw fa-lg dp_blue"></i></button>
+                            <button id="txt" class="form-control btn btn-default" href="#" title="Descargar novedades"><i class="fas fa-file-download fa-fw fa-lg dp_blue"></i></button>
                         </div>
 
                     </form>

@@ -59,13 +59,13 @@
                                 <td><?php echo $he['fecha_desde']; ?></td>
                                 <td class="text-center">
                                     <a class="view" title="ver" href="javascript:void(0);">
-                                        <span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span>
+                                        <i class="far fa-sticky-note dp_blue"></i>
                                     </a>&nbsp;&nbsp;
                                     <a class="<?php echo (PrivilegedUser::dhasAction('HEM_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);">
-                                        <span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span>
+                                        <i class="far fa-edit dp_blue"></i>
                                     </a>&nbsp;&nbsp;
                                     <a class="<?php echo (PrivilegedUser::dhasAction('HEM_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);">
-                                        <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
+                                        <i class="far fa-trash-alt dp_red"></i>
                                     </a>
                                 </td>
                             </tr>

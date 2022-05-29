@@ -252,7 +252,7 @@
                         <!--<label for="search_vencimiento" class="control-label">Buscar partes</label>-->
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
 
@@ -260,14 +260,14 @@
                     <div class="form-group col-md-1">
                         <!--<label for="search">&nbsp;</label>-->
                         <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
-                            <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+                            <i class="fas fa-search fa-lg dp_blue"></i>
                         </button>
                     </div>
 
                     <div class="form-group col-md-1">
                         <!--<label for="search">&nbsp;</label>-->
                         <button type="button" class="form-control btn btn-default" title="nueva búsqueda" id="new" <?php echo ( PrivilegedUser::dhasAction('BUS_INSERT', array(1)) )? '' : 'disabled' ?>>
-                            <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
+                            <i class="fas fa-plus fa-lg dp_green"></i>
                         </button>
                     </div>
 

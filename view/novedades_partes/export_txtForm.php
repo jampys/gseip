@@ -99,7 +99,7 @@
         });*/
 
 
-        //al presionar boton de exportar en txt
+        //RN05 al presionar boton de exportar en txt
         $('#myModal').on("click", "#submit", function(){ //ok
             //alert('presiono en exportar');
 
@@ -221,6 +221,77 @@
 
 
 
+        //RN03 Exportar novedades para control administracion
+        $('#myModal').on("click", "#submit3", function(){
+
+            if ($("#txt-form").valid()){
+
+                var params={};
+                params.action = 'partes';
+                params.operation = 'checkExportTxt';
+                params.id_contrato = $("#myModal #id_contrato").val();
+                params.first_contrato = params.id_contrato[0];
+                params.periodo = $("#myModal #periodo").val();
+                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
+                //alert(params.first_contrato);
+
+
+                $.ajax({
+                    url:"index.php",
+                    type:"post",
+                    data: params,
+                    dataType:"json",//xml,html,script,json
+                    success: function(data, textStatus, jqXHR) {
+
+                        $("#myElem").removeClass('alert-info').removeClass('alert-warning').removeClass('alert-danger');
+
+                        if(data[0]['flag'] >=0){
+
+                            $("#myElem").html(data[0]['msg']).addClass('alert alert-warning').addClass('pre-scrollable').show();
+                            //Efecto para hacer el scroll bottom
+                            let h = $("#myElem").get(0).scrollHeight;
+                            $("#myElem").animate({scrollTop: h});
+                        }
+                        else{
+                            $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').addClass('pre-scrollable').show();
+                        }
+
+                        setTimeout(function() {
+                            /*var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
+                            var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__report=gseip_nov_control_administracion_"+params.first_contrato+".rptdesign&p_id_contrato="+params.id_contrato+
+                                "&p_id_periodo="+params.periodo+
+                                "&p_id_user="+params.id_user;
+                            var win = window.open(URL, "_blank");
+                            return false;*/
+                            let link = 'index.php?action=nov_reportes&operation=reporte_rn03'+
+                                '&id_contrato='+$("#myModal #id_contrato").val()+
+                                '&periodo='+$("#myModal #periodo").val();
+                            window.location.href = link;
+                        }, 3000);
+
+
+                    },
+                    /*error: function(data, textStatus, errorThrown) {
+                     //alert(data.responseText);
+                     $("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
+                     setTimeout(function() { $("#myElem").hide();
+                     }, 2000);
+                     },*/
+                    beforeSend: function() {
+                        $("#myElem").removeClass('alert-warning').removeClass('alert-danger');
+                        $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Verificando novedades y sucesos...').addClass('alert alert-info').show();
+                    }
+
+                });
+
+
+            }
+
+            return false;
+        });
+
+
+
 
     });
 
@@ -283,12 +354,13 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>RN03 Control de Novedades Administración:</strong>
+                                <i class="fas fa-tags"></i>
+                                &nbsp;<span class="label label-danger">Obsoleto</span>
+                                &nbsp;<strong>Control de Novedades Administración:</strong>
                                 Novedades en formato de tabla cruzada (empleados/conceptos).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-alt fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit" title="Emitir reporte [web]">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -297,14 +369,29 @@
                     <div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags" ></span>
-                                &nbsp;<strong>RN04 Archivo de texto</strong>
+                                <i class="fas fa-tags"></i>
+                                &nbsp;<span class="label label-success">Nuevo</span>
+                                &nbsp;<strong>RN03 Control de Novedades Administración:</strong>
+                                Novedades en formato .xlsx (empleados/conceptos).
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit" title="Descargar reporte [xlsx]">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <i class="fas fa-tags"></i>
+                                &nbsp;<strong>RN05 Archivo de texto</strong>
                                 <strong class="dp_orange">(RRHH)</strong>
                                 <strong>:</strong>
                                 Novedades en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte">&nbsp;<i class="fas fa-download fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte [txt]">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>

@@ -24,8 +24,8 @@
                  "<'row'<'col-md-5'i><'col-md-7'p>>",
             buttons: [
                 {
-                    text: '<i class="far fa-file-pdf fa-lg dp_blue"></i>',
-                    titleAttr: 'Emitir RN01 Reporte de actividad de cuadrillas',
+                    text: '<i class="fas fa-file-pdf fa-lg dp_blue"></i>',
+                    titleAttr: 'Emitir RN01 Reporte de actividad de cuadrillas [pdf]',
                     action: function ( e, dt, node, config ) {
                         let link = 'index.php?action=partes&operation=reporte'+
                             '&id_contrato='+$('#add_contrato').val()+
@@ -39,8 +39,8 @@
                     }
                 },
                 {
-                    text: '<i class="far fa-file-excel fa-lg dp_blue"></i>',
-                    titleAttr: 'Emitir RN02 Reporte de actividad de cuadrillas',
+                    text: '<i class="fas fa-file-excel fa-lg dp_blue"></i>',
+                    titleAttr: 'Descargar RN02 Reporte de actividad de cuadrillas [xlsx]',
                     action: function ( e, dt, node, config ) {
                         let link = 'index.php?action=partes&operation=reporte'+
                             '&id_contrato='+$('#add_contrato').val()+
@@ -96,7 +96,7 @@
                     targets: 6,//botones indicadores
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
-                        let novedad = (row.id_parte)? '<i class="fas fa-car-side fa-fw dp_blue_nov" title="con novedad"></i>':'<i class="fas fa-car fa-fw dp_light_gray" title="sin novedad"></i>';
+                        let novedad = (row.id_parte)? '<i class="fas fa-truck-pickup fa-fw dp_blue_nov" title="con novedad"></i>':'<i class="fas fa-car fa-fw dp_light_gray" title="sin novedad"></i>';
                         let conceptos = (row.concept_count > 0)? '<i class="fas fa-calculator fa-fw dp_blue_nov" title="novedad con conceptos"></i>':'<i class="fas fa-calculator fa-fw dp_light_gray" title="novedad sin conceptos"></i>';
                         let ordenes = (row.orden_count > 0)? '<i class="fas fa-clipboard-check fa-fw dp_blue_nov" title="novedad con órdenes"></i>':'<i class="fas fa-clipboard fa-fw dp_light_gray" title="novedad sin órdenes"></i>';
                         return '<a href="#">'+
@@ -126,7 +126,7 @@
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
 
                         return '<a class="view" title="Ver novedad" href="#">'+
-                                    '<i class="far fa-eye dp_blue"></i>'+
+                                    '<i class="far fa-sticky-note dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditarP+'" href="#" title="Editar novedad">'+ //si tiene permiso para editar
                                     '<i class="far fa-edit dp_blue"></i>'+

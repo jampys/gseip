@@ -105,7 +105,7 @@
             <label class="control-label" for="fecha_etapa">Fecha</label>
             <div class="inner-addon right-addon">
                 <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php print $view->avance->getFecha() ?>" placeholder="DD/MM/AAAA">
-                <i class="glyphicon glyphicon-calendar"></i>
+                <i class="fad fa-calendar-alt"></i>
             </div>
         </div>
 

@@ -87,6 +87,7 @@ foreach ($view->partes as $p):
     $sDayOfWeek = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('N');
     $horas_extra = ($p['id_evento'] == 1 or $p['id_evento'] == 15)? 'SI' : 'NO'; //horas extra: si tiene GU Guardia activada o JE Jornada extendida
     $area = ($p['area1'])? $p['area1'] : $p['area'] ;
+    $orden_nro = ($p['orden_nro']==0 || $p['orden_nro']==1 || $p['orden_nro']=='')? 'Falta OT' : $p['orden_nro'];
 
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['nro_contrato']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $sMonth);
@@ -104,7 +105,7 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(14, $fila, ''); //lugar
     $sheet->setCellValueByColumnAndRow(15, $fila, ''); //descripcion
     $sheet->setCellValueByColumnAndRow(16, $fila, ''); //avance
-    $sheet->setCellValueByColumnAndRow(17, $fila, $p['orden_nro']);
+    $sheet->setCellValueByColumnAndRow(17, $fila, $orden_nro);
     $sheet->setCellValueByColumnAndRow(18, $fila, ''); //Cod
     $sheet->setCellValueByColumnAndRow(19, $fila, $p['hrs']);
     $sheet->setCellValueByColumnAndRow(20, $fila, ''); //cantidad(coeficiente)

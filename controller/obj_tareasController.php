@@ -55,7 +55,7 @@ switch ($operation)
     case 'editTarea': //ok
         $view->tarea = new Tarea($_POST['id_tarea']);
         //$view->label = ($_POST['target']!='view')? 'Editar actividad': 'Ver actividad';
-        $view->label = ($_POST['target']!='view')? '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> '.$view->tarea->getNombre() : '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> '.$view->tarea->getNombre();
+        $view->label = ($_POST['target']!='view')? '<i class="far fa-edit dp_blue"></i> '.$view->tarea->getNombre() : '<i class="far fa-sticky-note"></i> '.$view->tarea->getNombre();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

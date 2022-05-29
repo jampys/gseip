@@ -274,14 +274,14 @@
                     <div class="form-group col-md-1">
                         <!--<label for="search">&nbsp;</label>-->
                         <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
-                            <span class="glyphicon glyphicon-search fa-lg dp_blue"></span>
+                            <i class="fas fa-search fa-lg dp_blue"></i>
                         </button>
                     </div>
 
                     <div class="form-group col-md-1">
                         <!--<label for="search">&nbsp;</label>-->
                         <button type="button" class="form-control btn btn-default" title="Nuevo vencimiento" id="new" <?php echo ( PrivilegedUser::dhasAction('RPE_INSERT', array(1)) )? '' : 'disabled' ?>>
-                            <span class="glyphicon glyphicon-plus fa-lg dp_green"></span>
+                            <i class="fas fa-plus fa-lg dp_green"></i>
                         </button>
                     </div>
 

@@ -65,9 +65,9 @@
             uploadQueueOrder:'bottom', //el orden en que se muestran los archivos subidos.
             showFileCounter: false, //muestra el nro de archivos subidos
             downloadStr: "<i class='fas fa-download'></i>",
-            deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
+            deleteStr: "<i class='far fa-trash-alt'></i>",
             dragDropStr: "<span>Arrastrar &amp; Soltar</span>",
-            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Adjuntar",
+            uploadStr:"<i class='fas fa-plus'></i> Adjuntar",
             cancelStr: "<i class='fas fa-minus-square'></i>",
 
             extErrorStr: "no está permitido. Solo se permiten extensiones: ",
@@ -292,7 +292,7 @@
                         <label class="control-label" for="fecha">Fecha alta</label>
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="fecha_alta" id="fecha_alta" value = "<?php print ($view->usuario->getIdUser())? $view->usuario->getFechaAlta() : date('d/m/Y'); ?>" placeholder="DD/MM/AAAA" disabled>
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
 
@@ -300,7 +300,7 @@
                         <label class="control-label" for="fecha">Fecha baja</label>
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->usuario->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
 

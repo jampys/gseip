@@ -140,7 +140,7 @@
 
                         <div class="alert alert-info fade in">
                             <a href="#" class="close" data-dismiss="alert">&times;</a>
-                            <span class="glyphicon glyphicon-tags" ></span>&nbsp  Puede seleccionar mas de un proceso.
+                            <i class="fas fa-tags"></i>&nbsp  Puede seleccionar mas de un proceso.
                         </div>
 
                         <select multiple class="form-control selectpicker" id="id_proceso" name="id_proceso" data-selected-text-format="count" data-live-search="true" data-size="5" >
@@ -159,14 +159,14 @@
                             <label for="meta" class="control-label">Fecha afectación</label>
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php //print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
-                                <i class="glyphicon glyphicon-calendar"></i>
+                                <i class="fad fa-calendar-alt"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="meta_valor" class="control-label">Fecha desafectación</label>
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php //print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
-                                <i class="glyphicon glyphicon-calendar"></i>
+                                <i class="fad fa-calendar-alt"></i>
                             </div>
                         </div>
                     </div>

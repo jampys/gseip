@@ -184,7 +184,7 @@
 
                         <div class="alert alert-info fade in">
                             <a href="#" class="close" data-dismiss="alert">&times;</a>
-                            <span class="glyphicon glyphicon-tags" ></span>&nbsp  Por defecto el responsable es el RT del contrato al que está afectado el vehículo y no es necesario completar. Solo hacerlo si se quiere designar a una persona diferente.
+                            <i class="fas fa-tags"></i>&nbsp;  Por defecto el responsable es el RT del contrato al que está afectado el vehículo y no es necesario completar. Solo hacerlo si se quiere designar a una persona diferente.
                         </div>
 
                         <select id="responsable" name="responsable" class="form-control selectpicker show-tick" data-live-search="true" data-size="5">
@@ -236,7 +236,7 @@
                         <label class="control-label" for="fecha">Fecha baja</label>
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->vehiculo->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
 

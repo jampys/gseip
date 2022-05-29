@@ -227,7 +227,7 @@ class Empleado
         return $stmt->dpFetchAll();
     }
 
-    public static function getEmpleadosActivos($id_contrato) {
+    public static function getEmpleadosActivos($id_contrato, $all = null) {
         //Trae los empleados activos de el o los dominios del usuario. Filtro por contrato
         //Empleados con o sin contrato
         $stmt=new sQuery();
@@ -250,13 +250,15 @@ class Empleado
                       em.telefono, em.email, em.empresa,
                       em.sexo, em.nacionalidad, em.estado_civil, em.id_convenio
                       from v_sec_empleados em
-                      left join empleado_contrato ec on ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta > sysdate())
-                      where em.fecha_baja is null
+                      left join empleado_contrato ec on ec.id_empleado = em.id_empleado
+                                                     and if(:all is null, (ec.fecha_hasta is null or ec.fecha_hasta > sysdate()), 1)
+                      where if(:all is null, em.fecha_baja is null, 1)
                       and if(:id_contrato is not null, ec.id_contrato = :id_contrato, (ec.id_contrato = ec.id_contrato or ec.id_contrato is null))
                       group by em.id_empleado
-                      order by em.apellido, em.nombre";
+                      order by em.fecha_baja asc, em.apellido asc, em.nombre asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':all', $all);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

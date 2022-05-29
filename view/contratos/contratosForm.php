@@ -67,9 +67,9 @@
                     '<td>'+jsonEmpleados[i].fecha_desde+'</td>' +
                     '<td>'+fecha_hasta+'</td>' +
                     '<td class="text-center">' +
-                    '<a class="view-empleado" href="#"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
-                    '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
-                    '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_DEL', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>'+
+                    '<a class="view-empleado" href="#"><i class="far fa-sticky-note dp_blue"></i></a>&nbsp;&nbsp;'+
+                    '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? 'update-empleado' : 'disabled' ?>" href="#"><i class="far fa-edit dp_blue"></i></a>&nbsp;&nbsp;'+
+                    '<a class="<?php echo ( PrivilegedUser::dhasPrivilege('CON_DEL', $view->contrato->getDomain() ) && $view->target!='view' )? 'delete-empleado' : 'disabled' ?>" href="#"><i class="far fa-trash-alt dp_red"></i></a>'+
                     '</td>'+
                     '</tr>';
 
@@ -494,14 +494,14 @@
                     <label for="fecha_desde" class="control-label">Fecha desde</label>
                     <div class="inner-addon right-addon">
                         <input class="form-control" type="text" name="fecha_desde" id="fecha_desde" value = "<?php print $view->contrato->getFechaDesde() ?>" placeholder="DD/MM/AAAA">
-                        <i class="glyphicon glyphicon-calendar"></i>
+                        <i class="fad fa-calendar-alt"></i>
                     </div>
                 </div>
                 <div class="form-group col-md-6 required">
                     <label for="fecha_hasta" class="control-label">Fecha hasta</label>
                     <div class="inner-addon right-addon">
                         <input class="form-control" type="text" name="fecha_hasta" id="fecha_hasta" value = "<?php print $view->contrato->getFechaHasta() ?>" placeholder="DD/MM/AAAA">
-                        <i class="glyphicon glyphicon-calendar"></i>
+                        <i class="fad fa-calendar-alt"></i>
                     </div>
                 </div>
             </div>
@@ -517,7 +517,7 @@
         <div class="clearfix">
             <h4 class="pull-left">Empleados</h4>
             <button class="btn btn-default pull-right" id="add-empleado"  <?php echo ( PrivilegedUser::dhasPrivilege('CON_ABM', $view->contrato->getDomain() ) && $view->target!='view' )? '' : 'disabled' ?> >
-                <span class="glyphicon glyphicon-plus dp_green"></span> Agregar empleado
+                <i class="fas fa-plus dp_green"></i> Agregar empleado
             </button>
         </div>
 

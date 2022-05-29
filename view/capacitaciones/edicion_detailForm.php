@@ -153,7 +153,7 @@
             <label class="control-label" for="fecha_programada">Fecha edición</label>
             <div class="inner-addon right-addon">
                 <input class="form-control" type="text" name="fecha_edicion" id="fecha_edicion" value="<?php print $view->edicion->getFechaEdicion() ?>">
-                <i class="glyphicon glyphicon-calendar"></i>
+                <i class="fad fa-calendar-alt"></i>
             </div>
         </div>
 

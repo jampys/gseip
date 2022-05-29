@@ -201,7 +201,7 @@
 
                             <div class="clearfix">
                                 <button class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar acción">
-                                    <span class="glyphicon glyphicon-plus dp_green"></span>
+                                    <i class="fas fa-plus dp_green"></i>
                                 </button>
                             </div>
 

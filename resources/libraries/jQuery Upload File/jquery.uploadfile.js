@@ -780,7 +780,7 @@
                 this.preview.addClass('image').css('cursor', 'zoom-in').viewer({});
             }
             //else if(dpType=='pdf') this.preview = $("<iframe width='100%' height='130' allowfullscreen webkitallowfullscreen></iframe>").appendTo(this.statusbar).hide();
-            else if(dpType=='pdf') this.preview = $('<a target="_blank" title="abrir"><i class="far fa-file-pdf fa-2x"></i></a>').appendTo(this.statusbar).hide();
+            else if(dpType=='pdf') this.preview = $('<a target="_blank" title="abrir"><i class="fas fa-file-pdf fa-2x"></i></a>').appendTo(this.statusbar).hide();
             else this.preview = $("<img class='ajax-file-upload-preview' />").width(0).height(0).appendTo(this.statusbar).hide();
 
 

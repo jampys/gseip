@@ -78,7 +78,7 @@
 
 
                         return '<a class="'+permisoVer+'" title="Ver" href="#">'+
-                                    '<i class="far fa-eye dp_blue"></i>'+
+                                    '<i class="far fa-sticky-note dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditarS+'" href="#" title="Editar">'+ //si tiene permiso para editar
                                     '<i class="far fa-edit dp_blue"></i>'+

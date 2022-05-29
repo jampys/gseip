@@ -7,14 +7,14 @@
     }
 
     td.details-control:before { /* icono de un nodo padre cerrado */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f055";
         color: #5fba7d;
     }
 
     tr.shown td.details-control:before {  /* icono de un nodo padre abierto */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f056";
         color: #DD2C00;

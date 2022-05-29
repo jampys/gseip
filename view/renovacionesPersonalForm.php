@@ -58,9 +58,9 @@
             uploadQueueOrder:'bottom', //el orden en que se muestran los archivos subidos.
             showFileCounter: false, //muestra el nro de archivos subidos
             downloadStr: "<i class='fas fa-download'></i>",
-            deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
+            deleteStr: "<i class='far fa-trash-alt'></i>",
             dragDropStr: "<span>Arrastrar &amp; Soltar</span>",
-            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Adjuntar",
+            uploadStr:"<i class='fas fa-plus'></i> Adjuntar",
             cancelStr: "<i class='fas fa-minus-square'></i>",
 
             extErrorStr: "no está permitido. Solo se permiten extensiones: ",
@@ -310,11 +310,11 @@
                         <div class="alert alert-info fade in">
                             <a href="#" class="close" data-dismiss="alert">&times;</a>
                             <?php if($view->renovacion->getIdRenovacion()){ //Es un edit ?>
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación anterior.
-                                <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación anterior.
+                                <i class="fas fa-tags"></i>&nbsp La fecha de emsión debe ser mayor a la de la renovación anterior.
+                                <br/><i class="fas fa-tags"></i>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación anterior.
                             <?php }else { //Es una renovacion ?>
-                                <span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de emsión debe ser mayor a la de la renovación vigente.
-                                <br/><span class="glyphicon glyphicon-tags" ></span>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación vigente.
+                                <i class="fas fa-tags"></i>&nbsp La fecha de emsión debe ser mayor a la de la renovación vigente.
+                                <br/><i class="fas fa-tags"></i>&nbsp La fecha de vencimiento debe ser mayor a la de la renovación vigente.
                             <?php } ?>
 
                         </div>
@@ -322,7 +322,7 @@
 
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->renovacion->getFechaEmision() && $view->renovacion->getFechaVencimiento())? $view->renovacion->getFechaEmision()." - ".$view->renovacion->getFechaVencimiento() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
 

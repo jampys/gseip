@@ -146,7 +146,7 @@
                         <label class="control-label" for="fecha">Fecha baja</label>
                         <div class="inner-addon right-addon">
                             <input class="form-control" type="text" name="fecha_baja" id="fecha_baja" value = "<?php print $view->grupo->getFechaBaja() ?>" placeholder="DD/MM/AAAA">
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="fad fa-calendar-alt"></i>
                         </div>
                     </div>
 

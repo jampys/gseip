@@ -71,7 +71,7 @@
                             '<i class="fas fa-th-list dp_blue"></i>'+
                             '</a>&nbsp;&nbsp;'+
                             '<a class="view" title="Ver" href="#">'+ //si tiene permiso para ver
-                            '<i class="far fa-eye dp_blue"></i>'+
+                            '<i class="far fa-sticky-note dp_blue"></i>'+
                             '</a>&nbsp;&nbsp;'+
                             '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
                             '<i class="far fa-edit dp_blue"></i>'+

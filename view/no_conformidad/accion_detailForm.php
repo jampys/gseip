@@ -105,7 +105,7 @@
         <label class="control-label" for="fecha_implementacion">Fecha implementación</label>
         <div class="inner-addon right-addon">
             <input class="form-control" type="text" name="fecha_implementacion" id="fecha_implementacion" value = "<?php print $view->accion->getFechaImplementacion() ?>" placeholder="DD/MM/AAAA">
-            <i class="glyphicon glyphicon-calendar"></i>
+            <i class="fad fa-calendar-alt"></i>
         </div>
     </div>
 

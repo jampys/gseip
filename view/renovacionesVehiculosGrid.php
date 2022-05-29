@@ -103,24 +103,24 @@
                         <td class="text-center">
                             <?php if($rp['cant_uploads']> 0 ){ ?>
                                 <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
-                                    <span class="glyphicon glyphicon-paperclip dp_gray" aria-hidden="true"></span>
+                                    <i class="fas fa-paperclip dp_gray"></i>
                                 </a>
                             <?php } else{ ?>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                             <?php } ?>&nbsp;&nbsp;
 
-                            <a class="view" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
+                            <a class="view" href="javascript:void(0);" title="ver">
+                                <i class="far fa-sticky-note dp_blue"></i>
                             </a>&nbsp;&nbsp;
 
                             <!-- si tiene permiso y no fue renovado -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
+                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
+                                <i class="far fa-edit dp_blue"></i>
                             </a>&nbsp;&nbsp;
 
                             <?php if($rp['id_rnv_renovacion']){ ?>
                                 <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rp['id_rnv_renovacion']; ?>" >
-                                    <span class="glyphicon glyphicon-ok-sign dp_blue" aria-hidden="true"></span>
+                                    <i class="fas fa-check-circle dp_blue"></i>
                                 </a>
                             <?php } else{ ?>
                                 <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'renovar' : 'disabled' ?>" href="javascript:void(0);" title="renovar">
@@ -130,7 +130,7 @@
 
                             <!-- si tiene permiso y no fue renovado -->
                             <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) && !$rp['id_rnv_renovacion'] )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
+                                <i class="far fa-trash-alt dp_red"></i>
                             </a>
                         </td>
                     </tr>
@@ -141,7 +141,7 @@
 
         <br/>
         <div class="pull-right pdf">
-            <a href="index.php?action="><i class="far fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
+            <a href="index.php?action="><i class="fas fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
         </div>
 
     <!--</div>-->

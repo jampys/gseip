@@ -207,26 +207,16 @@ body{
 
 
 /* estilos usados para mostrar icono dentro de input en datarangepicker
-https://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-box/18839305#18839305
-/* enable absolute positioning */
+https://stackoverflow.com/questions/19285640/font-awesome-icon-inside-text-input-element
+*/
 .inner-addon {
     position: relative;
 }
 
-/* style icon */
-.inner-addon .glyphicon {
+.inner-addon .fa-calendar-alt {
     position: absolute;
-    padding: 10px;
-    pointer-events: none;
+    top: 10px; right: 10px;
 }
-
-/* align icon */
-.left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 0px;}
-
-/* add padding  */
-.left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }
 /* ------------------------------------------------------------------------*/
 
 /* bootbox: central verticalmente los bootbox */
@@ -280,4 +270,12 @@ label[title] {
 }
 label[title]:hover {
     color: #8c8c8c;
+}
+
+
+/*19/05/2022 para dar estilo a las opciones inactivas de un selectpicker */
+.inactive span.text:after{
+    color: #e53935;
+    content:" Inactiva";
+    font-size: 10px;
 }

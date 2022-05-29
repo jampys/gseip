@@ -1,14 +1,14 @@
 <style>
 
     #culo:after, #culo2:after {  /* icono de un nodo cerrado */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f054";
         /*color: #5fba7d;*/
     }
 
     #culo.highlight:after, #culo2.highlight:after {  /* icono de un nodo abierto */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f078";
         /*color: #5fba7d;*/
@@ -63,9 +63,9 @@
             uploadQueueOrder:'bottom', //el orden en que se muestran los archivos subidos.
             showFileCounter: false, //muestra el nro de archivos subidos
             downloadStr: "<i class='fas fa-download'></i>",
-            deleteStr: "<span class='glyphicon glyphicon-trash'></span>",
+            deleteStr: "<i class='far fa-trash-alt'></i>",
             dragDropStr: "<span>Arrastrar &amp; Soltar</span>",
-            uploadStr:"<span class='glyphicon glyphicon-plus'></span> Adjuntar",
+            uploadStr:"<i class='fas fa-plus'></i> Adjuntar",
             cancelStr: "<i class='fas fa-minus-square'></i>",
 
             extErrorStr: "no está permitido. Solo se permiten extensiones: ",

@@ -163,7 +163,7 @@ switch ($operation)
 
     case 'loadExportTxt': //ok  //abre ventana modal para exportar
         $view->disableLayout=true;
-        $view->label = 'Exportar novedades';
+        $view->label = 'Descargar novedades';
         $view->contratos = Contrato::getContratosControl(); //carga el combo para filtrar contratos
         $view->periodos_sup = NovPeriodo::getPeriodosSup(); //carga el combo de periodos superiores
 
@@ -181,7 +181,7 @@ switch ($operation)
         exit;
         break;
 
-    case 'exportTxt': //exportacion propiamente dicha
+    case 'exportTxt': //RN05 exportacion en txt
 
         $id_contrato = ($_GET['id_contrato']!='')? $_GET['id_contrato'] : null;
         $periodo = ($_GET['periodo']!='')? $_GET['periodo'] : null;

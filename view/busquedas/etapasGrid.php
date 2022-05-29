@@ -64,7 +64,7 @@
                         let permisoEliminar = ((etp_update && row.id_user == id_user) || usr_abm)? 'delete' : 'disabled';
                         let user_info = row.user.split('@')[0]+' '+row.fecha;
                         return '<a class="view" title="Ver" href="#">'+
-                                    '<i class="far fa-eye dp_blue"></i>'+
+                                    '<i class="far fa-sticky-note dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
                                     '<i class="far fa-edit dp_blue"></i>'+

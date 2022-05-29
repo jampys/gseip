@@ -45,8 +45,8 @@
             //alert(params.id_renovacion);
             $('#empleados_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
-                $("#empleados_right_side fieldset").prop("disabled", true);
-                $("#empleado-form #footer-buttons button").css('display', 'none');
+                //$("#empleados_right_side fieldset").prop("disabled", true);
+                //$("#empleado-form #footer-buttons button").css('display', 'none');
                 //$('#myModal').modal();
                 //$('#id_busqueda').prop('disabled', true).selectpicker('refresh');
                 $('.selectpicker').selectpicker('refresh');
@@ -208,7 +208,7 @@
 
                             <div class="clearfix">
                                 <button class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar empleado" <?php echo ( PrivilegedUser::dhasPrivilege('CUA_ABM', array(1)) && $view->target!='view' )? '' : 'disabled' ?>    >
-                                    <span class="glyphicon glyphicon-plus dp_green"></span>
+                                    <i class="fas fa-plus dp_green"></i>
                                 </button>
                             </div>
 

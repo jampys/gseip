@@ -178,7 +178,7 @@
                     <label class="control-label" for="hs_normal">Hora inicio</label>
                     <div class="input-group bootstrap-timepicker timepicker">
                         <input type="text" class="form-control input-small" name="hora_inicio" id="hora_inicio" value = "<?php print $view->orden->getHoraInicio() ?>" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        <span class="input-group-addon"><i class="fad fa-clock"></i></span>
                     </div>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                     <label class="control-label" for="hs_50">Hora fin</label>
                     <div class="input-group bootstrap-timepicker timepicker">
                         <input type="text" class="form-control input-small" name="hora_fin" id="hora_fin" value = "<?php print $view->orden->getHoraFin() ?>" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        <span class="input-group-addon"><i class="fad fa-clock"></i></span>
                     </div>
                 </div>
             </div>

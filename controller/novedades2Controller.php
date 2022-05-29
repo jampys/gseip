@@ -230,7 +230,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $view->contrato = New Contrato($_POST['add_contrato']);
-        $view->label='<i class="fas fa-male fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
+        $view->label='<i class="fad fa-user-hard-hat fa-fw fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
@@ -246,7 +246,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosActivos($_POST['add_contrato']);
         $view->periodo = New NovPeriodo($_POST['id_periodo']);
         $view->contrato = New Contrato($_POST['add_contrato']);
-        $view->label='<i class="fas fa-car fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
+        $view->label='<i class="fad fa-truck-pickup fa-fw fa-lg"></i> '.$view->contrato->getNombre().' '.$view->periodo->getNombre().' ('.$view->periodo->getFechaDesde()." - ".$view->periodo->getFechaHasta().")";
         //$view->vehiculos = Vehiculo::getVehiculos();
         //$view->eventos = EventosCuadrilla::getEventosCuadrilla();
         //$view->cuadrillas = Cuadrilla::getCuadrillasForPartes($_POST['add_contrato'], $_POST['fecha_parte']);
@@ -284,7 +284,7 @@ switch ($operation)
         $view->label.= "&nbsp";
         $view->label.= ($_POST['id_parte'])? "<span class='dp_blue'>[IN ".$_POST['id_parte']."]</span>": "<span class='dp_yellow'>[sin novedad]</span>";
 
-        $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], 1);
+        $view->cuadrillas = Cuadrilla::getCuadrillas($_POST['id_contrato'], null);
         $view->eventos = EventosCuadrilla::getEventosCuadrilla();
         $view->ordenes = ParteOrden::getParteOrden($_POST['id_parte']); //2104
         $view->periodo = New NovPeriodo($_POST['id_periodo']);

@@ -11,14 +11,14 @@
     }
 
     span.details-control:before { /* icono de un nodo padre cerrado */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f055";
         color: #5fba7d;
     }
 
     tr.shown span.details-control:before {  /* icono de un nodo padre abierto */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f056";
         color: #DD2C00;
@@ -30,14 +30,14 @@
     }
 
     td.hijo:before {  /* icono de un nodo hijo cerrado */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f055";
         color: #5fba7d;
     }
 
     tr.shown td.hijo:before {  /* icono de un nodo hijo abierto */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f056";
         color: #DD2C00;
@@ -48,7 +48,7 @@
     }
 
     td.no-hijo:before {  /* icono de un nodo hijo sin hijos */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 400;
         content: "\f111";
         color: #01579B;
@@ -255,7 +255,7 @@
 
     <div style="text-align: right; margin-bottom: 10px">
         <button  id="new" type="button" class="btn btn-default" <?php echo ( PrivilegedUser::dhasAction('PUE_INSERT', array(1)) )? '' : 'disabled' ?> >
-            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nuevo Puesto
+            <i class="fas fa-plus dp_green"></i> Nuevo Puesto
         </button>
     </div>
 
@@ -289,21 +289,21 @@
                     <td><?php echo $puesto['nombre_superior'];?></td>
 
                     <td class="text-center">
-                        <a class="detalles" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>" title="detalles del puesto"><i class="fas fa-suitcase dp_blue"></i></a>&nbsp;&nbsp;
+                        <a class="detalles" href="javascript:void(0);" data-id="<?php echo $puesto['id_puesto'];?>" title="detalles del puesto"><i class="fas fa-th-list dp_blue"></i></a>&nbsp;&nbsp;
 
                         <?php if($puesto['cant_uploads']> 0 ){ ?>
                             <a href="#" title="<?php echo $puesto['cant_uploads']; ?> adjuntos" >
-                                <span class="glyphicon glyphicon-paperclip dp_gray" aria-hidden="true"></span>
+                                <i class="fas fa-paperclip dp_gray"></i>
                             </a>
                         <?php } else{ ?>
                             <a href="#" title="sin adjuntos" class="disabled">
-                                <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                                <i class="fas fa-paperclip"></i>
                             </a>
                         <?php } ?>
                         &nbsp;&nbsp;
-                        <a class="view" title="ver" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);"><span class="glyphicon glyphicon-edit dp_blue" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);"><span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span></a>
+                        <a class="view" title="ver" href="javascript:void(0);"><i class="far fa-sticky-note dp_blue"></i></a>&nbsp;&nbsp;
+                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_UPDATE', array(1)))? 'edit' : 'disabled'; ?>" title="editar" href="javascript:void(0);"><i class="far fa-edit dp_blue"></i></a>&nbsp;&nbsp;
+                        <a class="<?php echo (PrivilegedUser::dhasAction('PUE_DELETE', array(1)))? 'delete' : 'disabled'; ?>" title="borrar" href="javascript:void(0);"><i class="far fa-trash-alt dp_red"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>

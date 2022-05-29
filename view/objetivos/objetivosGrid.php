@@ -7,14 +7,14 @@
     }
 
     span.details-control:before { /* icono de un nodo padre cerrado */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f055";
         color: #5fba7d;
     }
 
     tr.shown span.details-control:before {  /* icono de un nodo padre abierto */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f056";
         color: #DD2C00;
@@ -26,14 +26,14 @@
     }
 
     td.hijo:before {  /* icono de un nodo hijo cerrado */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f055";
         color: #5fba7d;
     }
 
     tr.shown td.hijo:before {  /* icono de un nodo hijo abierto */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f056";
         color: #DD2C00;
@@ -44,7 +44,7 @@
     }
 
     td.no-hijo:before {  /* icono de un nodo hijo sin hijos */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 400;
         content: "\f111";
         color: #01579B;
@@ -185,10 +185,10 @@
                                     '<i class="fas fa-th-list dp_blue" title="Detalle del objetivo"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoClonar+'" href="#" title="Clonar">'+ //si tiene permiso para clonar
-                                    '<i class="far fa-copy dp_blue"></i>'+
+                                    '<i class="fad fa-clone dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoVer+'" href="#" title="Ver">'+ //si tiene permiso para ver
-                                    '<i class="far fa-eye dp_blue"></i>'+
+                                    '<i class="far fa-sticky-note dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditarO+'" href="#" title="Editar">'+ //si tiene permiso para editar
                                     '<i class="far fa-edit dp_blue"></i>'+

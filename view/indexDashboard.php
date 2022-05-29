@@ -7,14 +7,14 @@
     }
 
     td.details-control:before { /* icono de un nodo padre cerrado */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f054";
         color: #01579B;  /* #5fba7d */
     }
 
     tr.shown td.details-control:before {  /* icono de un nodo padre abierto */
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         content: "\f078";
         color: #01579B;  /* #DD2C00 */
@@ -288,7 +288,7 @@
                             <?php }else{ ?>
 
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> No tiene objetivos fijados para el período vigente.
+                                    <i class="fad fa-info-circle"></i> No tiene objetivos fijados para el período vigente.
                                 </div>
 
                             <?php } ?>
@@ -324,7 +324,7 @@
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading"><i class="far fa-calendar-alt fa-lg dp_blue"></i>&nbsp;&nbsp;Mis próximos vencimientos</div>
+                        <div class="panel-heading"><i class="fad fa-calendar-alt fa-lg dp_blue"></i>&nbsp;&nbsp;Mis próximos vencimientos</div>
                         <div class="panel-body">
 
 
@@ -348,7 +348,7 @@
                             <?php }else{ ?>
 
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> No tiene vencimientos próximos.
+                                    <i class="fad fa-info-circle"></i> No tiene vencimientos próximos.
                                 </div>
 
                             <?php } ?>
@@ -431,7 +431,7 @@
                             <?php }else{ ?>
 
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
+                                    <i class="fad fa-info-circle"></i> No tiene definidos objetivos de los que sea responsable para el período vigente.
                                 </div>
 
                             <?php } ?>
@@ -471,7 +471,7 @@
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading"><i class="fas fa-birthday-cake fa-lg dp_blue"></i>&nbsp;&nbsp;Próximos cumpleaños</div>
+                        <div class="panel-heading"><i class="fad fa-birthday-cake fa-lg dp_blue"></i>&nbsp;&nbsp;Próximos cumpleaños</div>
                         <div class="panel-body">
 
 
@@ -495,7 +495,7 @@
                             <?php }else{ ?>
 
                                 <div class="alert alert-info">
-                                    <i class="fas fa-info-circle"></i> No hay cumpleaños en los próximos <?php echo $view->dias; ?> dias.
+                                    <i class="fad fa-info-circle"></i> No hay cumpleaños en los próximos <?php echo $view->dias; ?> dias.
                                 </div>
 
                             <?php } ?>

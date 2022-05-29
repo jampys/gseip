@@ -201,7 +201,7 @@
 
                     <div class="alert alert-info fade in">
                         <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        <span class="glyphicon glyphicon-tags" ></span>&nbsp  Permite crear sucesos programados a futuro (dentro de los próximos 12 meses).
+                        <i class="fas fa-tags"></i>&nbsp;  Permite crear sucesos programados a futuro (dentro de los próximos 12 meses).
                         La imputación se producirá automaticamente al momento de generarse el período de liquidación.
                     </div>
 
@@ -279,7 +279,7 @@
                             <label class="control-label" for="">Fechas desde / hasta</label>
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="fecha" id="fecha" value = "<?php echo ($view->suceso->getFechaDesde() && $view->suceso->getFechaHasta())? $view->suceso->getFechaDesde()." - ".$view->suceso->getFechaHasta() : "";  ?>" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                                <i class="glyphicon glyphicon-calendar"></i>
+                                <i class="fad fa-calendar-alt"></i>
                             </div>
                         </div>
                         <div class="form-group col-md-3">

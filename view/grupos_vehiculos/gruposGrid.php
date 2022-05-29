@@ -34,7 +34,7 @@
 
     <div style="text-align: right; margin-bottom: 10px">
         <button  id="new" type="button" class="btn btn-default" <?php echo (PrivilegedUser::dhasAction('GRV_INSERT', array(1)) )? '' : 'disabled' ?> >
-            <span class="glyphicon glyphicon-plus dp_green" aria-hidden="true"></span> Nueva Flota
+            <i class="fas fa-plus dp_green"></i> Nueva Flota
         </button>
     </div>
 
@@ -67,18 +67,18 @@
                         </a>&nbsp;&nbsp;
 
                         <!-- si tiene permiso para ver -->
-                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);">
-                            <span class="glyphicon glyphicon-eye-open dp_blue" title="ver" aria-hidden="true"></span>
+                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);" title="ver">
+                            <i class="far fa-sticky-note dp_blue"></i>
                         </a>&nbsp;&nbsp;
 
                         <!-- si tiene permiso para editar -->
                         <a class="<?php echo ( PrivilegedUser::dhasAction('GRV_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                            <span class="glyphicon glyphicon-edit dp_blue" title="editar" aria-hidden="true"></span>
+                            <i class="far fa-edit dp_blue"></i>
                         </a>&nbsp;&nbsp;
 
                         <!-- si tiene permiso para eliminar -->
                         <a class="<?php echo ( PrivilegedUser::dhasAction('GRV_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                            <span class="glyphicon glyphicon-trash dp_red" aria-hidden="true"></span>
+                            <i class="far fa-trash-alt dp_red"></i>
                         </a>
                     </td>
                 </tr>
