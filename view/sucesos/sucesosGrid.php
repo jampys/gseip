@@ -52,8 +52,10 @@
                         let usr_abm = '<?php echo ( PrivilegedUser::dhasPrivilege('SUC_ABM', array(0)))? true : false ?>'; //solo el administrador
 
                         let permisoVer="";
-                        if(!row.programado && row.id_periodo1) permisoVer = 'view';
-                        else if (row.programado && !row.id_periodo1) permisoVer = 'viewp';
+                        //if(!row.programado && row.id_periodo1) permisoVer = 'view';
+                        //else if (row.programado && !row.id_periodo1) permisoVer = 'viewp';
+                        if(row.id_periodo1) permisoVer = 'view';
+                        else if (!row.id_periodo1) permisoVer = 'viewp';
                         else permisoVer = 'disabled';
 
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('SUC_UPDATE', array(1)) )? true : false ?>';
