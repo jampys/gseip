@@ -26,6 +26,7 @@
             "fnInitComplete": function () {
                 $(this).show();
             },
+            'order': [[7, "asc"], [0, "asc"]], //7=disabled (oculta), 0=nombre
             'ajax': {
                 "type"   : "POST",
                 "url"    : 'index.php',
@@ -43,7 +44,8 @@
                 {"data" : "contrato"},
                 {"data" : "area"},
                 {data: null, defaultContent: '', orderable: false},
-                {data: null, defaultContent: '', orderable: false}
+                {data: null, defaultContent: '', orderable: false},
+                {"data" : "disabled", visible: false}
             ],
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_cuadrilla);
