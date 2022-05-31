@@ -63,7 +63,7 @@
                     <!-- si tiene permiso para vehiculos del grupo -->
                     <td class="text-center">
                         <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'vehiculos' : 'disabled' ?>" href="javascript:void(0);">
-                            <i class="far fa-list-alt fa-fw dp_blue" title="vehículos"></i>
+                            <i class="fas fa-th-list fa-fw dp_blue" title="vehículos"></i>
                         </a>&nbsp;&nbsp;
 
                         <!-- si tiene permiso para ver -->
