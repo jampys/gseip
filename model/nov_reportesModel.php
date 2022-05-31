@@ -123,7 +123,7 @@ group by np.id_cuadrilla
 order by field(cu.tipo, 'Diaria', 'Itemizada', 'Complementaria'), cu.nombre asc";*/
 
         $query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
-temp.tipo, temp.pool, temp.dht
+temp.tipo, temp.pool, sum(temp.dht) as dht
 from
 (select concat(np.cuadrilla, ' [', cu.nombre_corto_op, ']') as cuadrilla,
 cu.tipo, cu.pool, np.id_cuadrilla,
