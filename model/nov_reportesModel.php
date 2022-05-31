@@ -107,7 +107,8 @@ order by cu.nombre asc, cal.fecha asc";
     public static function getReporteRn4Resumen($id_contrato, $id_periodo) { //ok
         //resumen de dias habiles trabajados por las cuadrillas
         $stmt=new sQuery();
-        $query = "select np.cuadrilla, cu.nombre_corto_op, cu.tipo,
+        $query = "select concat(np.cuadrilla, ' [', cu.nombre_corto_op, ']') as cuadrilla,
+cu.tipo,
 count(*) as dht
 from nov_partes np
 join v_tmp_calendar cal on np.fecha_parte = cal.fecha

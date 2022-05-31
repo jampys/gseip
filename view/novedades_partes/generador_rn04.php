@@ -37,9 +37,9 @@ $spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFill()->setFillType(\PhpOf
 //tab 1 cuerpo -----------------------------------------------------------------
 $fila = 8;
 foreach ($view->resumen as $r):
-    $cuadrilla = $r['cuadrilla'].' ['.$r['nombre_corto_op'].']';
+    //$cuadrilla = $r['cuadrilla'].' ['.$r['nombre_corto_op'].']';
 
-    $sheet1->setCellValueByColumnAndRow(1, $fila, $cuadrilla);
+    $sheet1->setCellValueByColumnAndRow(1, $fila, $r['cuadrilla']);
     $sheet1->setCellValueByColumnAndRow(2, $fila, $r['tipo']);
     $sheet1->setCellValueByColumnAndRow(3, $fila, $r['dht']);
     $sheet1->setCellValueByColumnAndRow(4, $fila, $encabezado['dh1']);
