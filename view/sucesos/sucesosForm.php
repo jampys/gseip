@@ -453,7 +453,7 @@
 
                     <?php if($view->suceso->getIdParte()){ ?>
                         <div class="alert alert-info">
-                            <i class="fas fa-info fa-fw"></i> Suceso generado automáticamente desde el parte <b><?php echo $view->suceso->getIdParte(); ?></b>.
+                            <i class="fad fa-info-circle fa-fw"></i> Suceso generado automáticamente desde la novedad IN <b><?php echo $view->suceso->getIdParte(); ?></b>.
                         </div>
                     <?php } ?>
 
