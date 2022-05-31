@@ -465,9 +465,8 @@
                                     ?>
                                     <option value="<?php echo $em['id_empleado']; ?>"
                                         <?php echo ($view->suceso->getIdEmpleado() == $em['id_empleado'])? 'selected' : ''; ?>
-                                            data-icon="fas fa-user fa-sm fa-fw"
                                         >
-                                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                        <?php echo $em['legajo'].' '.$em['apellido'].' '.$em['nombre']; ?>
                                     </option>
                                 <?php  } ?>
                             </select>

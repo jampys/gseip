@@ -70,7 +70,7 @@ switch ($operation)
         $view->suceso = new Suceso($_POST['id_suceso']);
         $view->label = ($_POST['target']!='view')? 'Editar suceso' : 'Ver suceso';
 
-        $view->empleados = Empleado::getEmpleadosControl(null);
+        $view->empleados = Empleado::getEmpleadosControl(null, 1);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         $view->años = Soporte::getPeriodos(2015, date("Y"));
         $view->año_actual = Soporte::getPeriodoActual();

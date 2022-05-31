@@ -52,7 +52,7 @@ switch ($operation)
         $view->suceso = new SucesoP($_POST['id_suceso']);
         $view->label = ($_POST['target']!='view')? 'Editar suceso programado' : 'Ver suceso programado';
 
-        $view->empleados = Empleado::getEmpleadosControl(null);
+        $view->empleados = Empleado::getEmpleadosControl(null, 1);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         $view->periodos = NovPeriodo::getProximosPeriodos();
         $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->suceso->getIdEmpleado(), 1);
