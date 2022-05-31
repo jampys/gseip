@@ -216,21 +216,9 @@ class Empleado
     }
 
     public static function getEmpleadosActivos($id_contrato, $all = null) {
-        //Trae los empleados activos de el o los dominios del usuario. Filtro por contrato
+        //Trae los empleados de el o los dominios del usuario. Filtro por contrato
         //Empleados con o sin contrato
         $stmt=new sQuery();
-        /*$query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
-                      DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
-                      DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
-                      DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
-                      em.telefono, em.email, em.empresa,
-                      em.sexo, em.nacionalidad, em.estado_civil
-                      from v_sec_empleados em
-                      join empleado_contrato ec on ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta > sysdate())
-                      where em.fecha_baja is null
-                      and ec.id_contrato = ifnull(:id_contrato, ec.id_contrato)
-                      group by em.id_empleado
-                      order by em.apellido, em.nombre";*/
         $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
                       DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
                       DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
@@ -252,22 +240,10 @@ class Empleado
     }
 
 
-    public static function getEmpleadosControl($id_contrato) {
-        //Trae los empleados activos de el o los dominios del usuario. Filtro por contrato
+    public static function getEmpleadosControl($id_contrato, $all = null) {
+        //Trae los empleados de el o los dominios del usuario. Filtro por contrato
         //Empleados con o sin contrato
         $stmt=new sQuery();
-        /*$query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
-                      DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
-                      DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
-                      DATE_FORMAT(em.fecha_baja,  '%d/%m/%Y') as fecha_baja,
-                      em.telefono, em.email, em.empresa,
-                      em.sexo, em.nacionalidad, em.estado_civil
-                      from v_sec_empleados_control em
-                      join empleado_contrato ec on ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta > sysdate())
-                      where em.fecha_baja is null
-                      and ec.id_contrato = ifnull(:id_contrato, ec.id_contrato)
-                      group by em.id_empleado
-                      order by em.apellido, em.nombre";*/
         $query = "select em.id_empleado, em.legajo, em.apellido, em.nombre, em.documento, em.cuil,
                       DATE_FORMAT(em.fecha_nacimiento,  '%d/%m/%Y') as fecha_nacimiento,
                       DATE_FORMAT(em.fecha_alta,  '%d/%m/%Y') as fecha_alta,
@@ -275,13 +251,15 @@ class Empleado
                       em.telefono, em.email, em.empresa,
                       em.sexo, em.nacionalidad, em.estado_civil, em.id_convenio
                       from v_sec_empleados_control em
-                      left join empleado_contrato ec on ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta > sysdate())
-                      where em.fecha_baja is null
+                      left join empleado_contrato ec on ec.id_empleado = em.id_empleado
+                                                     and if(:all is null, (ec.fecha_hasta is null or ec.fecha_hasta > sysdate()), 1)
+                      where if(:all is null, em.fecha_baja is null, 1)
                       and if(:id_contrato is not null, ec.id_contrato = :id_contrato, (ec.id_contrato = ec.id_contrato or ec.id_contrato is null))
                       group by em.id_empleado
                       order by em.apellido, em.nombre";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':all', $all);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
