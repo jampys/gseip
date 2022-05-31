@@ -107,7 +107,7 @@ order by cu.nombre asc, cal.fecha asc";
     public static function getReporteRn4Resumen($id_contrato, $id_periodo) { //ok
         //resumen de dias habiles trabajados por las cuadrillas
         $stmt=new sQuery();
-        $query = "select np.cuadrilla, cu.nombre_corto_op,
+        $query = "select np.cuadrilla, cu.nombre_corto_op, cu.tipo,
 count(*) as dht
 from nov_partes np
 join v_tmp_calendar cal on np.fecha_parte = cal.fecha
@@ -119,7 +119,7 @@ and exists (select 1 from nov_parte_empleado npex where npex.id_parte = np.id_pa
 and cal.feriado is null
 and dayofweek(cal.fecha) in (2, 3, 4, 5, 6)
 group by np.id_cuadrilla
-order by cu.nombre asc";
+order by field(cu.tipo, 'Diaria', 'Itemizada', 'Complementaria'), cu.nombre asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':id_periodo', $id_periodo);
