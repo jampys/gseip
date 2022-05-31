@@ -137,9 +137,9 @@ and np.id_cuadrilla is not null
 and exists (select 1 from nov_parte_empleado npex where npex.id_parte = np.id_parte and npex.trabajado = 1)
 and cal.feriado is null
 and dayofweek(cal.fecha) in (2, 3, 4, 5, 6)
-group by np.id_cuadrilla
-order by field(cu.tipo, 'Diaria', 'Itemizada', 'Complementaria'), cu.nombre asc) temp
-group by  ifnull(temp.pool, temp.id_cuadrilla)";
+group by np.id_cuadrilla) temp
+group by  ifnull(temp.pool, temp.id_cuadrilla)
+order by field(temp.tipo, 'Diaria', 'Itemizada', 'Complementaria'), temp.cuadrilla asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':id_periodo', $id_periodo);
