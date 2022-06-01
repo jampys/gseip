@@ -91,7 +91,7 @@ left join nov_partes np on (np.id_contrato = cu.id_contrato and np.id_periodo = 
 left join nov_areas ar on ar.id_area = np.id_area
 left join nov_eventos_c ev on ev.id_evento = np.id_evento
 where cu.id_contrato = :id_contrato
--- and cu.disabled is null
+and cu.id_cuadrilla in (select npx.id_cuadrilla from nov_partes npx where npx.id_contrato = :id_contrato and npx.id_periodo = :id_periodo)
 order by cu.nombre asc, cal.fecha asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
