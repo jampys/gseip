@@ -114,8 +114,11 @@ foreach ($sheet->getColumnIterator() as $column) {
     $sheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
 }
 
+//tab 2 configuro el auto filter
+$spreadsheet->getActiveSheet()->setAutoFilter('A7:N7');
 
-//-----------------pone como activa la solapa 0
+
+//tab 1: pone como activa la tab 1
 $spreadsheet->setActiveSheetIndex(0); //
 
 //-----------------generacion de excel ------------------------------------------------
