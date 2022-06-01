@@ -37,7 +37,9 @@ class ReporteNovedades
 
     public static function getReporteRn4($id_contrato, $id_periodo, $id_empleado, $id_concepto) { //ok
         $stmt=new sQuery();
-        $query = "select dayname(cal.fecha) as dia, dayofweek(cal.fecha) as dia_numero,
+        $query = "select -- dayname(cal.fecha) as dia,
+(SELECT ELT(WEEKDAY(cal.fecha) + 1, 'Lunes', 'Martes', 'Miercoles', 'Juevez', 'Viernes', 'Sabado', 'Domingo')) as dia,
+dayofweek(cal.fecha) as dia_numero,
 DATE_FORMAT(cal.fecha,  '%d/%m/%Y') as fecha, cal.feriado, cal.descripcion as feriado_descripcion, cu.nombre as cuadrilla, cu.id_cuadrilla, cu.nombre_corto_op,
 per.id_periodo, np.id_parte, np.comentarios, ar.nombre as area,
 ev.nombre as evento,
