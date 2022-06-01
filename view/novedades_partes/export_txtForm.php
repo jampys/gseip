@@ -293,6 +293,22 @@
 
 
 
+        //RN07 Resumen de actividad
+        $('#myModal').on("click", "#submit7", function(){ //ok
+
+            if ($("#txt-form").valid()){
+
+                let link = 'index.php?action=nov_reportes&operation=reporte_rn07'+
+                    '&id_contrato='+$("#myModal #id_contrato").val()+
+                    '&periodo='+$("#myModal #periodo").val();
+                window.location.href = link;
+            }
+            return false;
+        });
+
+
+
+
     });
 
 </script>
