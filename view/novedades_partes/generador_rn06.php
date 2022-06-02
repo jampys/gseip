@@ -60,8 +60,10 @@ foreach ($sheet->getColumnIterator() as $column) {
 }
 
 
-//-----------------------------------------------------------------
+//configuro el auto filter
+$spreadsheet->getActiveSheet()->setAutoFilter('A8:L8');
 
+//genero repore
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
 $filename = 'RN6_conceptos_'.$encabezado["contrato"].'.xlsx';
