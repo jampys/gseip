@@ -287,12 +287,13 @@ group by null";
         //resumen de dias habiles trabajados por las cuadrillas
         $stmt=new sQuery();
         $query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
-temp.contrato, temp.tipo, temp.pool, sum(temp.dht) as dht
+temp.contrato, temp.tipo, temp.pool, sum(temp.dht) as dht, temp.dh
 from
 (select concat(np.cuadrilla, ' [', cu.nombre_corto_op, ']') as cuadrilla,
 concat(co.nombre, ' [', co.nro_contrato, ']') as contrato,
 cu.tipo, cu.pool, np.id_cuadrilla,
-count(*) as dht
+count(*) as dht,
+(select func_nov_horas('DH', 'CTO', np.id_contrato, null, :periodo)) as dh
 from nov_partes np
 join v_tmp_calendar cal on np.fecha_parte = cal.fecha
 join nov_cuadrillas cu on cu.id_cuadrilla = np.id_cuadrilla

@@ -39,7 +39,7 @@ foreach ($view->resumen as $r):
     $sheet->setCellValueByColumnAndRow(2, $fila, $r['cuadrilla']);
     $sheet->setCellValueByColumnAndRow(3, $fila, $r['tipo']);
     $sheet->setCellValueByColumnAndRow(4, $fila, $r['dht']);
-    $sheet->setCellValueByColumnAndRow(5, $fila, $encabezado['dh1']);
+    $sheet->setCellValueByColumnAndRow(5, $fila, $r['dh']);
     $fila++;
 endforeach;
 
