@@ -26,7 +26,7 @@ $sheet->setCellValueByColumnAndRow(1, 4, 'Fecha emisión: '.$encabezado['fecha_e
 
 //tab 1 encabezados columnas ------------------------------------------------------------
 $cabecera = ["Cuadrilla", "Tipo fact.", "Días hábiles trabajados", "Días habiles esperados"];
-$sheet1->fromArray($cabecera, null, 'A7');
+$sheet->fromArray($cabecera, null, 'A7');
 $spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
@@ -35,16 +35,16 @@ $fila = 8;
 foreach ($view->resumen as $r):
     //$cuadrilla = $r['cuadrilla'].' ['.$r['nombre_corto_op'].']';
 
-    $sheet1->setCellValueByColumnAndRow(1, $fila, $r['cuadrilla']);
-    $sheet1->setCellValueByColumnAndRow(2, $fila, $r['tipo']);
-    $sheet1->setCellValueByColumnAndRow(3, $fila, $r['dht']);
-    $sheet1->setCellValueByColumnAndRow(4, $fila, $encabezado['dh1']);
+    $sheet->setCellValueByColumnAndRow(1, $fila, $r['cuadrilla']);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $r['tipo']);
+    $sheet->setCellValueByColumnAndRow(3, $fila, $r['dht']);
+    $sheet->setCellValueByColumnAndRow(4, $fila, $encabezado['dh1']);
     $fila++;
 endforeach;
 
 //tab 1 Ajustar el ancho de todas las columnas: https://stackoverflow.com/questions/62203260/php-spreadsheet-cant-find-the-function-to-auto-size-column-width
-foreach ($sheet1->getColumnIterator() as $column) {
-    $sheet1->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
+foreach ($sheet->getColumnIterator() as $column) {
+    $sheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
 }
 
 
