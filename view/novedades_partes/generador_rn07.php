@@ -25,20 +25,21 @@ $sheet->setCellValueByColumnAndRow(1, 4, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //tab 1 encabezados columnas ------------------------------------------------------------
-$cabecera = ["Cuadrilla", "Tipo fact.", "Días hábiles trabajados", "Días habiles esperados"];
+$cabecera = ["Contrato", "Cuadrilla", "Tipo fact.", "Días hábiles trabajados", "Días habiles esperados"];
 $sheet->fromArray($cabecera, null, 'A7');
-$spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A7:E7')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A7:E7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //tab 1 cuerpo -----------------------------------------------------------------
 $fila = 8;
 foreach ($view->resumen as $r):
     //$cuadrilla = $r['cuadrilla'].' ['.$r['nombre_corto_op'].']';
 
-    $sheet->setCellValueByColumnAndRow(1, $fila, $r['cuadrilla']);
-    $sheet->setCellValueByColumnAndRow(2, $fila, $r['tipo']);
-    $sheet->setCellValueByColumnAndRow(3, $fila, $r['dht']);
-    $sheet->setCellValueByColumnAndRow(4, $fila, $encabezado['dh1']);
+    $sheet->setCellValueByColumnAndRow(1, $fila, $r['contrato']);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $r['cuadrilla']);
+    $sheet->setCellValueByColumnAndRow(3, $fila, $r['tipo']);
+    $sheet->setCellValueByColumnAndRow(4, $fila, $r['dht']);
+    $sheet->setCellValueByColumnAndRow(5, $fila, $encabezado['dh1']);
     $fila++;
 endforeach;
 
@@ -49,7 +50,7 @@ foreach ($sheet->getColumnIterator() as $column) {
 
 
 //tab 1 configuro el auto filter
-$spreadsheet->getActiveSheet()->setAutoFilter('A7:D7');
+$spreadsheet->getActiveSheet()->setAutoFilter('A7:E7');
 
 
 //-----------------generacion de excel ------------------------------------------------

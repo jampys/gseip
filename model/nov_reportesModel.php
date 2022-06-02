@@ -287,15 +287,17 @@ group by null";
         //resumen de dias habiles trabajados por las cuadrillas
         $stmt=new sQuery();
         $query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
-temp.tipo, temp.pool, sum(temp.dht) as dht
+temp.contrato, temp.tipo, temp.pool, sum(temp.dht) as dht
 from
 (select concat(np.cuadrilla, ' [', cu.nombre_corto_op, ']') as cuadrilla,
+concat(co.nombre, ' [', co.nro_contrato, ']') as contrato,
 cu.tipo, cu.pool, np.id_cuadrilla,
 count(*) as dht
 from nov_partes np
 join v_tmp_calendar cal on np.fecha_parte = cal.fecha
 join nov_cuadrillas cu on cu.id_cuadrilla = np.id_cuadrilla
 join nov_periodos p on p.id_periodo = np.id_periodo
+join contratos co on co.id_contrato = np.id_contrato
 where np.id_contrato in ($id_contrato)
 and p.periodo = :periodo
 and np.id_cuadrilla is not null
@@ -304,7 +306,7 @@ and cal.feriado is null
 and dayofweek(cal.fecha) in (2, 3, 4, 5, 6)
 group by np.id_cuadrilla) temp
 group by  ifnull(temp.pool, temp.id_cuadrilla)
-order by field(temp.tipo, 'Diaria', 'Itemizada', 'Complementaria'), temp.cuadrilla asc";
+order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementaria'), temp.cuadrilla asc";
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':periodo', $periodo);
