@@ -283,6 +283,36 @@ group by null";
 
 
 
+    public static function getReporteRn7Resumen($id_contrato, $id_periodo) { //ok
+        //resumen de dias habiles trabajados por las cuadrillas
+        $stmt=new sQuery();
+        $query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
+temp.tipo, temp.pool, sum(temp.dht) as dht
+from
+(select concat(np.cuadrilla, ' [', cu.nombre_corto_op, ']') as cuadrilla,
+cu.tipo, cu.pool, np.id_cuadrilla,
+count(*) as dht
+from nov_partes np
+join v_tmp_calendar cal on np.fecha_parte = cal.fecha
+join nov_cuadrillas cu on cu.id_cuadrilla = np.id_cuadrilla
+where np.id_contrato = 21
+and np.id_periodo = 225
+and np.id_cuadrilla is not null
+and exists (select 1 from nov_parte_empleado npex where npex.id_parte = np.id_parte and npex.trabajado = 1)
+and cal.feriado is null
+and dayofweek(cal.fecha) in (2, 3, 4, 5, 6)
+group by np.id_cuadrilla) temp
+group by  ifnull(temp.pool, temp.id_cuadrilla)
+order by field(temp.tipo, 'Diaria', 'Itemizada', 'Complementaria'), temp.cuadrilla asc";
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        //$stmt->dpBind(':id_periodo', $id_periodo);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
 }
 
 

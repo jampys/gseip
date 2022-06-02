@@ -49,7 +49,7 @@ foreach ($sheet->getColumnIterator() as $column) {
 
 
 //tab 1 configuro el auto filter
-$spreadsheet->getActiveSheet()->setAutoFilter('A7:N7');
+$spreadsheet->getActiveSheet()->setAutoFilter('A7:D7');
 
 
 //-----------------generacion de excel ------------------------------------------------

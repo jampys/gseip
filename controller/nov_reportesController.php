@@ -115,7 +115,7 @@ switch ($operation)
         $view->disableLayout=true;
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $periodo = ($_GET['periodo'])? $_GET['periodo'] : null;
-        $view->partes = $rta = ReporteNovedades::getReporteRn3($id_contrato, $periodo);
+        $view->resumen = $rta = ReporteNovedades::getReporteRn7Resumen($id_contrato, $periodo);
 
         $encabezado = array();
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']); //si hay 2 o mas contratos, toma el 1ro.
