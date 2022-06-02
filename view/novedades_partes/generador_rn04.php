@@ -28,7 +28,7 @@ $sheet1->setCellValueByColumnAndRow(1, 4, 'Días hábiles del período (desde el
 $sheet1->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 //tab 1 encabezados columnas ------------------------------------------------------------
-$cabecera = ["Cuadrilla", "Tipo fact.", "Días hábiles trabajados", "Días habiles esperados"];
+$cabecera = ["Cuadrilla", "Tipo fact.", "Días hábiles trabajados", "Días hábiles esperados"];
 $sheet1->fromArray($cabecera, null, 'A7');
 $spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');

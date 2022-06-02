@@ -87,20 +87,20 @@ switch ($operation)
         break;
 
 
-    case 'reporte_rn03':
+    case 'reporte_rn03': //ok
         $view->disableLayout=true;
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $periodo = ($_GET['periodo'])? $_GET['periodo'] : null;
         $view->partes = $rta = ReporteNovedades::getReporteRn3($id_contrato, $periodo);
 
         $encabezado = array();
-        //$encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']); //si hay 2 o mas contratos, toma el 1ro.
+        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']); //si hay 2 o mas contratos, toma el 1ro.
         $encabezado['contratos'] = ReporteNovedades::getContratosList($_GET['id_contrato'])[0]['contrato'];
-        //$encabezado['template'] = $encabezado['obj_contrato']->getNovTemplate();
+        $encabezado['template'] = $encabezado['obj_contrato']->getNovTemplate();
 
-        //$encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
-        //$encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
-        //$encabezado['cliente'] = $encabezado['obj_cliente']->getRazonSocial();
+        $encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
+        $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
+        $encabezado['cliente'] = $encabezado['obj_cliente']->getRazonSocial();
 
         $encabezado['periodos_list'] = NovPeriodo::getPeriodosList($_GET['id_contrato'], $_GET['periodo'] );
         $encabezado['periodo'] = $encabezado['periodos_list'][0]['nombre1'];
@@ -111,20 +111,20 @@ switch ($operation)
         break;
 
 
-    case 'reporte_rn07':
+    case 'reporte_rn07': //ok
         $view->disableLayout=true;
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $periodo = ($_GET['periodo'])? $_GET['periodo'] : null;
         $view->resumen = $rta = ReporteNovedades::getReporteRn7Resumen($id_contrato, $periodo);
 
         $encabezado = array();
-        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']); //si hay 2 o mas contratos, toma el 1ro.
+        //$encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']); //si hay 2 o mas contratos, toma el 1ro.
         $encabezado['contratos'] = ReporteNovedades::getContratosList($_GET['id_contrato'])[0]['contrato'];
-        $encabezado['template'] = $encabezado['obj_contrato']->getNovTemplate();
+        //$encabezado['template'] = $encabezado['obj_contrato']->getNovTemplate();
 
-        $encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
-        $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
-        $encabezado['cliente'] = $encabezado['obj_cliente']->getRazonSocial();
+        //$encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
+        //$encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
+        //$encabezado['cliente'] = $encabezado['obj_cliente']->getRazonSocial();
 
         $encabezado['periodos_list'] = NovPeriodo::getPeriodosList($_GET['id_contrato'], $_GET['periodo'] );
         $encabezado['periodo'] = $encabezado['periodos_list'][0]['nombre1'];

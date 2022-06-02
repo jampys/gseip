@@ -25,7 +25,7 @@ $sheet->setCellValueByColumnAndRow(1, 4, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //tab 1 encabezados columnas ------------------------------------------------------------
-$cabecera = ["Contrato", "Cuadrilla", "Tipo fact.", "Días hábiles trabajados", "Días habiles esperados"];
+$cabecera = ["Contrato", "Cuadrilla", "Tipo fact.", "Días hábiles trabajados", "Días hábiles período"];
 $sheet->fromArray($cabecera, null, 'A7');
 $spreadsheet->getActiveSheet()->getStyle('A7:E7')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A7:E7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
@@ -56,7 +56,7 @@ $spreadsheet->getActiveSheet()->setAutoFilter('A7:E7');
 //-----------------generacion de excel ------------------------------------------------
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'RN07_resumen_'.$encabezado["template"].'_'.$id_contrato.'.xlsx';
+$filename = 'RN07_resumen_'.$id_contrato.'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');

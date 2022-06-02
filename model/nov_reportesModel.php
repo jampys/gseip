@@ -290,7 +290,7 @@ group by null";
 temp.contrato, temp.tipo, temp.pool, sum(temp.dht) as dht, temp.dh
 from
 (select concat(np.cuadrilla, ' [', cu.nombre_corto_op, ']') as cuadrilla,
-concat(co.nombre, ' [', co.nro_contrato, ']') as contrato,
+co.nombre as contrato,
 cu.tipo, cu.pool, np.id_cuadrilla,
 count(*) as dht,
 (select func_nov_horas('DH', 'CTO', np.id_contrato, null, :periodo)) as dh
