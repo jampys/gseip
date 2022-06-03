@@ -45,7 +45,7 @@
                     targets: 1, //conductor
                     className: "text-center",
                     render: function(data, type, row) {
-                        let rta = (row.conductor == 1)? '<i class="far fa-check-circle fa-fw" style="color: #49ed0e" title="conductor"></i>':'';
+                        let rta = (row.conductor == 1)? '<i class="fas fa-steering-wheel fa-fw dp_blue" title="conductor"></i>':'';
                         return rta;
                     }
                 },
@@ -90,7 +90,7 @@
         <thead>
         <tr>
             <th>Empleado</th>
-            <th>Conduce</th>
+            <th>Conductor</th>
             <th></th>
         </tr>
         </thead>
