@@ -147,7 +147,7 @@ $spreadsheet->getActiveSheet()->setAutoFilter('A8:AM8');
 //genero el reporte
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'RN02_'.$encabezado["contrato"].'_'.$_GET['fecha_desde'].'_'.$_GET['fecha_hasta'].'.xlsx';
+$filename = 'RN02_'.$encabezado['obj_contrato']->getNombre().'_'.$_GET['fecha_desde'].'_'.$_GET['fecha_hasta'].'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');
