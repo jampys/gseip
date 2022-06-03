@@ -28,20 +28,21 @@ $sheet1->setCellValueByColumnAndRow(1, 4, 'Días hábiles del período (desde el
 $sheet1->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 //tab 1 encabezados columnas ------------------------------------------------------------
-$cabecera = ["Cuadrilla", "Días hábiles trabajados", "Días habiles esperados"];
+$cabecera = ["Cuadrilla", "Tipo fact.", "Días hábiles trabajados", "Días hábiles esperados"];
 $sheet1->fromArray($cabecera, null, 'A7');
-$spreadsheet->getActiveSheet()->getStyle('A7:C7')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A7:C7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 
 //tab 1 cuerpo -----------------------------------------------------------------
 $fila = 8;
 foreach ($view->resumen as $r):
-    $cuadrilla = $r['cuadrilla'].' ['.$r['nombre_corto_op'].']';
+    //$cuadrilla = $r['cuadrilla'].' ['.$r['nombre_corto_op'].']';
 
-    $sheet1->setCellValueByColumnAndRow(1, $fila, $cuadrilla);
-    $sheet1->setCellValueByColumnAndRow(2, $fila, $r['dht']);
-    $sheet1->setCellValueByColumnAndRow(3, $fila, $encabezado['dh1']);
+    $sheet1->setCellValueByColumnAndRow(1, $fila, $r['cuadrilla']);
+    $sheet1->setCellValueByColumnAndRow(2, $fila, $r['tipo']);
+    $sheet1->setCellValueByColumnAndRow(3, $fila, $r['dht']);
+    $sheet1->setCellValueByColumnAndRow(4, $fila, $encabezado['dh1']);
     $fila++;
 endforeach;
 
@@ -113,8 +114,11 @@ foreach ($sheet->getColumnIterator() as $column) {
     $sheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
 }
 
+//tab 2 configuro el auto filter
+$spreadsheet->getActiveSheet()->setAutoFilter('A7:N7');
 
-//-----------------pone como activa la solapa 0
+
+//tab 1: pone como activa la tab 1
 $spreadsheet->setActiveSheetIndex(0); //
 
 //-----------------generacion de excel ------------------------------------------------

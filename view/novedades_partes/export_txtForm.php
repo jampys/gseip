@@ -293,6 +293,22 @@
 
 
 
+        //RN07 Resumen de actividad
+        $('#myModal').on("click", "#submit7", function(){ //ok
+
+            if ($("#txt-form").valid()){
+
+                let link = 'index.php?action=nov_reportes&operation=reporte_rn07'+
+                    '&id_contrato='+$("#myModal #id_contrato").val()+
+                    '&periodo='+$("#myModal #periodo").val();
+                window.location.href = link;
+            }
+            return false;
+        });
+
+
+
+
     });
 
 </script>
@@ -386,12 +402,29 @@
                             <div class="col-sm-10">
                                 <i class="fas fa-tags"></i>
                                 &nbsp;<strong>RN05 Archivo de texto</strong>
-                                <strong class="dp_orange">(RRHH)</strong>
+                                <strong class="dp_orange">(Administración)</strong>
                                 <strong>:</strong>
                                 Novedades en formato .txt (admisible para BAS).
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte [txt]">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <i class="fas fa-tags"></i>
+                                &nbsp;<span class="label label-success">Nuevo</span>
+                                &nbsp;<strong>RN07 Resumen de actividad</strong>
+                                <strong class="dp_orange">(Gerencia)</strong>
+                                <strong>:</strong>
+                                Resumen de actividad de cuadrillas durante un período indicado.
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="submit7" name="submit7" type="submit" title="Descargar reporte [xlsx]">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>

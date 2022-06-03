@@ -273,7 +273,7 @@
                                             if($eg['id_empleado'] && $view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
                                             elseif($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
                                     ?>
-                                    data-icon="<?php echo ($eg['id_empleado'])? "fas fa-user fa-sm fa-fw" : "fas fa-users fa-sm fa-fw"; ?>"
+                                    data-icon="<?php echo ($eg['id_empleado'])? "fad fa-male fa-sm fa-fw" : "fad fa-users fa-sm fa-fw"; ?>"
                                     >
                                     <?php echo $eg['descripcion'] ;?>
                                 </option>

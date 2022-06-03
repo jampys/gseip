@@ -103,7 +103,7 @@
                                       PrivilegedUser::dhasPrivilege('GRV_VER', array(1))
                                     ){ ?>
                                 <li role="separator" class="divider"></li>
-                                <li class="dropdown-header"><i class="fas fa-truck-pickup fa-fw dp_blue"></i>&nbsp;<strong>VEHICULOS</strong></li>
+                                <li class="dropdown-header"><i class="fad fa-truck-pickup fa-fw dp_blue"></i>&nbsp;<strong>VEHICULOS</strong></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('VEH_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vehiculos">Vehículos</a></li>
                                 <li class="<?php echo (PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=vto_gruposVehiculos">Flotas de vehículos</a></li>
                             <?php } ?>

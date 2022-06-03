@@ -139,8 +139,12 @@ foreach ($sheet->getColumnIterator() as $column) {
 }
 
 
-//-----------------------------------------------------------------
 
+//configuro el auto filter
+$spreadsheet->getActiveSheet()->setAutoFilter('A8:AM8');
+
+
+//genero el reporte
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
 $filename = 'RN02_'.$encabezado["contrato"].'_'.$_GET['fecha_desde'].'_'.$_GET['fecha_hasta'].'.xlsx';

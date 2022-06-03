@@ -96,6 +96,7 @@
                 });
                 return false;
             });
+            
 
             //editar suceso programado
             $(document).on('click', '.editp', function(){ //ok
@@ -161,7 +162,7 @@
                 params.operation="newSuceso";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
             });
 
 
@@ -172,7 +173,7 @@
                 params.operation="newSuceso";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
             });
 
 

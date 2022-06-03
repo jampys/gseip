@@ -37,7 +37,9 @@ class ReporteNovedades
 
     public static function getReporteRn4($id_contrato, $id_periodo, $id_empleado, $id_concepto) { //ok
         $stmt=new sQuery();
-        $query = "select dayname(cal.fecha) as dia, dayofweek(cal.fecha) as dia_numero,
+        $query = "select -- dayname(cal.fecha) as dia,
+(SELECT ELT(WEEKDAY(cal.fecha) + 1, 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo')) as dia,
+dayofweek(cal.fecha) as dia_numero,
 DATE_FORMAT(cal.fecha,  '%d/%m/%Y') as fecha, cal.feriado, cal.descripcion as feriado_descripcion, cu.nombre as cuadrilla, cu.id_cuadrilla, cu.nombre_corto_op,
 per.id_periodo, np.id_parte, np.comentarios, ar.nombre as area,
 ev.nombre as evento,
@@ -91,7 +93,7 @@ left join nov_partes np on (np.id_contrato = cu.id_contrato and np.id_periodo = 
 left join nov_areas ar on ar.id_area = np.id_area
 left join nov_eventos_c ev on ev.id_evento = np.id_evento
 where cu.id_contrato = :id_contrato
-and cu.disabled is null
+and cu.id_cuadrilla in (select npx.id_cuadrilla from nov_partes npx where npx.id_contrato = :id_contrato and npx.id_periodo = :id_periodo)
 order by cu.nombre asc, cal.fecha asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
@@ -107,7 +109,8 @@ order by cu.nombre asc, cal.fecha asc";
     public static function getReporteRn4Resumen($id_contrato, $id_periodo) { //ok
         //resumen de dias habiles trabajados por las cuadrillas
         $stmt=new sQuery();
-        $query = "select np.cuadrilla, cu.nombre_corto_op,
+        /*$query = "select concat(np.cuadrilla, ' [', cu.nombre_corto_op, ']') as cuadrilla,
+cu.tipo,
 count(*) as dht
 from nov_partes np
 join v_tmp_calendar cal on np.fecha_parte = cal.fecha
@@ -119,7 +122,26 @@ and exists (select 1 from nov_parte_empleado npex where npex.id_parte = np.id_pa
 and cal.feriado is null
 and dayofweek(cal.fecha) in (2, 3, 4, 5, 6)
 group by np.id_cuadrilla
-order by cu.nombre asc";
+order by field(cu.tipo, 'Diaria', 'Itemizada', 'Complementaria'), cu.nombre asc";*/
+
+        $query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
+temp.tipo, temp.pool, sum(temp.dht) as dht
+from
+(select concat(np.cuadrilla, ' [', cu.nombre_corto_op, ']') as cuadrilla,
+cu.tipo, cu.pool, np.id_cuadrilla,
+count(*) as dht
+from nov_partes np
+join v_tmp_calendar cal on np.fecha_parte = cal.fecha
+join nov_cuadrillas cu on cu.id_cuadrilla = np.id_cuadrilla
+where np.id_contrato = :id_contrato
+and np.id_periodo = :id_periodo
+and np.id_cuadrilla is not null
+and exists (select 1 from nov_parte_empleado npex where npex.id_parte = np.id_parte and npex.trabajado = 1)
+and cal.feriado is null
+and dayofweek(cal.fecha) in (2, 3, 4, 5, 6)
+group by np.id_cuadrilla) temp
+group by  ifnull(temp.pool, temp.id_cuadrilla)
+order by field(temp.tipo, 'Diaria', 'Itemizada', 'Complementaria'), temp.cuadrilla asc";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':id_periodo', $id_periodo);
@@ -255,6 +277,40 @@ group by null";
 
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
+    public static function getReporteRn7Resumen($id_contrato, $periodo) { //ok
+        //resumen de dias habiles trabajados por las cuadrillas
+        $stmt=new sQuery();
+        $query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
+temp.contrato, temp.tipo, temp.pool, sum(temp.dht) as dht, temp.dh
+from
+(select concat(np.cuadrilla, ' [', cu.nombre_corto_op, ']') as cuadrilla,
+co.nombre as contrato,
+cu.tipo, cu.pool, np.id_cuadrilla,
+count(*) as dht,
+(select func_nov_horas('DH', 'CTO', np.id_contrato, null, :periodo)) as dh
+from nov_partes np
+join v_tmp_calendar cal on np.fecha_parte = cal.fecha
+join nov_cuadrillas cu on cu.id_cuadrilla = np.id_cuadrilla
+join nov_periodos p on p.id_periodo = np.id_periodo
+join contratos co on co.id_contrato = np.id_contrato
+where np.id_contrato in ($id_contrato)
+and p.periodo = :periodo
+and np.id_cuadrilla is not null
+and exists (select 1 from nov_parte_empleado npex where npex.id_parte = np.id_parte and npex.trabajado = 1)
+and cal.feriado is null
+and dayofweek(cal.fecha) in (2, 3, 4, 5, 6)
+group by np.id_cuadrilla) temp
+group by  ifnull(temp.pool, temp.id_cuadrilla)
+order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementaria'), temp.cuadrilla asc";
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':periodo', $periodo);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

@@ -453,7 +453,7 @@
 
                     <?php if($view->suceso->getIdParte()){ ?>
                         <div class="alert alert-info">
-                            <i class="fas fa-info fa-fw"></i> Suceso generado automáticamente desde el parte <b><?php echo $view->suceso->getIdParte(); ?></b>.
+                            <i class="fad fa-info-circle fa-fw"></i> Suceso generado automáticamente desde la novedad IN <b><?php echo $view->suceso->getIdParte(); ?></b>.
                         </div>
                     <?php } ?>
 
@@ -465,9 +465,8 @@
                                     ?>
                                     <option value="<?php echo $em['id_empleado']; ?>"
                                         <?php echo ($view->suceso->getIdEmpleado() == $em['id_empleado'])? 'selected' : ''; ?>
-                                            data-icon="fas fa-user fa-sm fa-fw"
                                         >
-                                        <?php echo $em['apellido'].' '.$em['nombre']; ?>
+                                        <?php echo $em['legajo'].' '.$em['apellido'].' '.$em['nombre']; ?>
                                     </option>
                                 <?php  } ?>
                             </select>
@@ -492,7 +491,7 @@
 
                         <div class="form-group col-md-3">
                             <label class="control-label" for="periodo" >Período</label>
-                            <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5">
+                            <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5" title="Período">
                                 <?php foreach ($view->años as $per){
                                     ?>
                                     <option value="<?php echo $per; ?>"
