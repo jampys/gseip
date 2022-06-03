@@ -56,7 +56,7 @@
                     className: "text-center",
                     responsivePriority: 4,
                     render: function (data, type, row, meta) {
-                        let rta = (row.disabled != 1)? '<i class="fas fa-check-circle fa-fw dp_green" title="activa"></i>' : '<i class="fas fa-minus-circle fa-fw dp_red" title="desactivada"></i>';
+                        let rta = (row.disabled != 1)? '<i class="fas fa-check-circle fa-fw dp_green" title="activa"></i>' : '<i class="fas fa-minus-circle fa-fw dp_red" title="inactiva"></i>';
                         return rta;
                     }
                 },
