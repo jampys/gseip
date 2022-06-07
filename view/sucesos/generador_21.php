@@ -106,7 +106,7 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
 
         <div style="float: left; width: 65%; height: 36px; text-align: left">
             <span style="font-size: 15px; font-weight: bold">Período de descanso anual</span><br/>
-            <span style="font-size: 13px">RRHH y Administración</span>
+            <span style="font-size: 13px">RRHH y RRLL</span>
         </div>
 
         <div style="float: right; width: 10%; height: 36px; font-size: 8px; text-align: right">
