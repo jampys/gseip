@@ -1,8 +1,6 @@
 <html>
 <head>
 
-
-
     <style type="text/css">
         @font-face {
             font-family: Calibri ;
