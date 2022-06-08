@@ -10,14 +10,22 @@
         p{
             font-family: Calibri;
         }
+
+        #encabezado{
+            padding: 5px;
+            /*background-color: #f2f2f2;*/
+            border-radius: 5px;
+        }
+
     </style>
 
 </head>
 <body>
 
-    <div style="background-color: rgb(231, 231, 231)">
+    <div id="encabezado">
         <img style="padding: 10px; width: 60px; height: 20px" src="cid:logo_2u">
     </div>
+
 
     <div id="contenido" style="padding: 10px;">
 
