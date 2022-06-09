@@ -51,8 +51,11 @@ endforeach;
 $sheet->getColumnDimension('A')->setAutoSize(true);
 $sheet->getColumnDimension('B')->setAutoSize(true);
 $sheet->getColumnDimension('C')->setAutoSize(true);
-$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(10);
-$spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(10);
+$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(12);
+$spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(12);
+
+$spreadsheet->getActiveSheet()->getStyle('D7')->getAlignment()->setWrapText(true);
+$spreadsheet->getActiveSheet()->getStyle('E7')->getAlignment()->setWrapText(true);
 
 
 //tab 1 configuro el auto filter
