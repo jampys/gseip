@@ -332,7 +332,8 @@ and cu.id_cuadrilla in (
 	group by npx.id_cuadrilla)
 and cal.feriado is null
 and dayofweek(cal.fecha) in (2, 3, 4, 5, 6)
-group by cu.id_cuadrilla) temp
+group by cu.id_cuadrilla
+order by cu.disabled desc) temp
 group by  ifnull(temp.pool, temp.id_cuadrilla)
 order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementaria'), temp.cuadrilla asc";
         $stmt->dpPrepare($query);
