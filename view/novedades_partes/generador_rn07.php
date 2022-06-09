@@ -26,12 +26,12 @@ $sheet->setCellValueByColumnAndRow(1, 4, 'Fecha emisión: '.$encabezado['fecha_e
 
 //tab 1 encabezados columnas ------------------------------------------------------------
 $cabecera = ["Contrato", "Cuadrilla", "Tipo fact.", "Días hábiles trabajados", "Días hábiles período"];
-$sheet->fromArray($cabecera, null, 'A7');
-$spreadsheet->getActiveSheet()->getStyle('A7:E7')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A7:E7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$sheet->fromArray($cabecera, null, 'A6');
+$spreadsheet->getActiveSheet()->getStyle('A6:E6')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A6:E6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //tab 1 cuerpo -----------------------------------------------------------------
-$fila = 8;
+$fila = 7;
 foreach ($view->resumen as $r):
     //$cuadrilla = $r['cuadrilla'].' ['.$r['nombre_corto_op'].']';
 
@@ -54,12 +54,16 @@ $sheet->getColumnDimension('C')->setAutoSize(true);
 $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(12);
 $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(12);
 
-$spreadsheet->getActiveSheet()->getStyle('D7')->getAlignment()->setWrapText(true);
-$spreadsheet->getActiveSheet()->getStyle('E7')->getAlignment()->setWrapText(true);
+$spreadsheet->getActiveSheet()->getStyle('D6')->getAlignment()->setWrapText(true);
+$spreadsheet->getActiveSheet()->getStyle('E6')->getAlignment()->setWrapText(true);
+
+/* ajuste fila de contratos del encabezado*/
+$spreadsheet->getActiveSheet()->getRowDimension('2')->setRowHeight(30);
+$spreadsheet->getActiveSheet()->getStyle('A2')->getAlignment()->setWrapText(true);
 
 
 //tab 1 configuro el auto filter
-$spreadsheet->getActiveSheet()->setAutoFilter('A7:E7');
+$spreadsheet->getActiveSheet()->setAutoFilter('A6:E6');
 
 
 //-----------------generacion de excel ------------------------------------------------
