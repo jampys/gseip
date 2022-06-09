@@ -286,7 +286,7 @@ group by null";
     public static function getReporteRn7Resumen($id_contrato, $periodo) { //ok
         //resumen de dias habiles trabajados por las cuadrillas
         $stmt=new sQuery();
-        $query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
+        /*$query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
 temp.contrato, temp.tipo, temp.pool, sum(temp.dht) as dht, temp.dh
 from
 (select concat(np.cuadrilla, ' [', cu.nombre_corto_op, ']') as cuadrilla,
@@ -306,6 +306,33 @@ and exists (select 1 from nov_parte_empleado npex where npex.id_parte = np.id_pa
 and cal.feriado is null
 and dayofweek(cal.fecha) in (2, 3, 4, 5, 6)
 group by np.id_cuadrilla) temp
+group by  ifnull(temp.pool, temp.id_cuadrilla)
+order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementaria'), temp.cuadrilla asc";*/
+        $query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
+temp.contrato, temp.tipo, temp.pool, sum(temp.dht) as dht, temp.dh
+from
+(select concat(cu.nombre, ' [', cu.nombre_corto_op, ']') as cuadrilla,
+co.nombre as contrato,
+cu.tipo, cu.pool, cu.id_cuadrilla,
+count((select 1 from nov_parte_empleado npex where npex.id_parte = np.id_parte and npex.trabajado = 1 order by npex.trabajado desc limit 1)) as dht,
+(select func_nov_horas('DH', 'CTO', cu.id_contrato, null, :periodo)) as dh
+from nov_cuadrillas cu
+join contratos co on co.id_contrato = cu.id_contrato
+join nov_periodos per on (per.periodo = :periodo and per.id_contrato = cu.id_contrato)
+join tmp_calendar cal on cal.fecha between per.fecha_desde and per.fecha_hasta
+left join nov_partes np on (np.id_contrato = cu.id_contrato and np.id_periodo = per.id_periodo and np.id_cuadrilla = cu.id_cuadrilla and np.fecha_parte = cal.fecha)
+where cu.id_contrato in ($id_contrato)
+and cu.id_cuadrilla in (
+	select npx.id_cuadrilla
+	from nov_partes npx
+	join nov_periodos perx on npx.id_periodo = perx.id_periodo
+	where npx.id_contrato in($id_contrato)
+	and npx.fecha_parte between date_sub(per.fecha_desde, INTERVAL 45 DAY) and per.fecha_hasta
+	and npx.id_cuadrilla is not null
+	group by npx.id_cuadrilla)
+and cal.feriado is null
+and dayofweek(cal.fecha) in (2, 3, 4, 5, 6)
+group by cu.id_cuadrilla) temp
 group by  ifnull(temp.pool, temp.id_cuadrilla)
 order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementaria'), temp.cuadrilla asc";
         $stmt->dpPrepare($query);

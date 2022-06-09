@@ -44,9 +44,15 @@ foreach ($view->resumen as $r):
 endforeach;
 
 //tab 1 Ajustar el ancho de todas las columnas: https://stackoverflow.com/questions/62203260/php-spreadsheet-cant-find-the-function-to-auto-size-column-width
-foreach ($sheet->getColumnIterator() as $column) {
+/*foreach ($sheet->getColumnIterator() as $column) {
     $sheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
-}
+}*/
+
+$sheet->getColumnDimension('A')->setAutoSize(true);
+$sheet->getColumnDimension('B')->setAutoSize(true);
+$sheet->getColumnDimension('C')->setAutoSize(true);
+$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(10);
+$spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(10);
 
 
 //tab 1 configuro el auto filter
