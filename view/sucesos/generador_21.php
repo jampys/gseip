@@ -188,14 +188,18 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
                     </tbody>
                 </table>
 
-                <table style="width:100%; margin-top:80px;">
+                <table style="width:100%; margin-top:10px;">
                     <tbody>
+                        <tr>
+                            <td style="width: 50%; text-align: center"><img src="resources/img/firma_mariana.jpeg" height="70px"></td>
+                            <td style="width: 50%"></td>
+                        </tr>
                         <tr>
                             <td style="width: 50%; text-align: center">................................................</td>
                             <td style="width: 50%"></td>
                         </tr>
                         <tr>
-                            <td style="text-align: center"><span class="subtitulo">Firma superior</span></td>
+                            <td style="text-align: center"><span class="subtitulo">Firma apoderada</span></td>
                             <td style="width: 50%"></td>
                         </tr>
                     </tbody>
