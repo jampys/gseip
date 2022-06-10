@@ -238,6 +238,11 @@ if ($encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'YPF_SC'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('I')->setVisible(false);
 
+//hs_viaje
+if ($encabezado['template'] == 'POZOS'
+) $spreadsheet->getActiveSheet()->getColumnDimension('J')->setVisible(false);
+
+
 //hs_viaje_truncado
 if ($encabezado['template'] == 'PAE' ||
     $encabezado['template'] == 'POZOS' ||
@@ -297,7 +302,6 @@ if ($encabezado['template'] == 'PAE' ||
 
 //total_viandas_extra U
 if ($encabezado['template'] == 'PAE' ||
-    $encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'STAFF' ||
     $encabezado['template'] == 'YPF_CH'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('U')->setVisible(false);
