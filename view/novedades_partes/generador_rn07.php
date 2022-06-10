@@ -69,7 +69,7 @@ $spreadsheet->getActiveSheet()->setAutoFilter('A6:E6');
 //-----------------generacion de excel ------------------------------------------------
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'RN07_resumen_'.$id_contrato.'.xlsx';
+$filename = 'RN07_resumen_'.date("d-m-Y").'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');
