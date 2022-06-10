@@ -311,7 +311,7 @@ order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementa
         $query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
 temp.contrato, temp.tipo, temp.pool, sum(temp.dht) as dht, temp.dh
 from
-(select concat(cu.nombre, ' [', cu.nombre_corto_op, ']') as cuadrilla,
+(select concat('[', cu.nombre_corto_op, '] ', cu.nombre) as cuadrilla,
 co.nombre as contrato,
 cu.tipo, cu.pool, cu.id_cuadrilla,
 count((select 1 from nov_parte_empleado npex where npex.id_parte = np.id_parte and npex.trabajado = 1 order by npex.trabajado desc limit 1)) as dht,
