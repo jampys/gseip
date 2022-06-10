@@ -207,7 +207,8 @@ $spreadsheet->getActiveSheet()->getStyle('AL6')->getAlignment()->setTextRotation
 /* ocultar columnas de acuerdo al template del contrato */
 
 //guardias
-if ($encabezado['template'] == 'POZOS'
+if ($encabezado['template'] == 'POZOS' ||
+    $encabezado['template'] == 'PAE'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('B')->setVisible(false);
 
 //hs_extras_50
