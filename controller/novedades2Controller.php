@@ -294,7 +294,7 @@ switch ($operation)
         $view->conceptos = ConceptoConvenioContrato::getConceptoConvenioContrato($_POST['id_contrato'], $id_convenio);
         $view->rutas = Ruta::getRutas($_POST['id_contrato'], $id_convenio);
         $view->areas = NovArea::getAreas($_POST['id_contrato']);
-        $view->defaults = CuadrillaEmpleado::getEmpleadoDefaults($_POST['id_empleado']);
+        $view->defaults = CuadrillaEmpleado::getEmpleadoDefaults($_POST['id_empleado'], $_POST['id_contrato']);
         //$view->conceptos = ParteEmpleadoConcepto::getParteEmpleadoConcepto2($_POST['id_parte_empleado']);
 
         //$view->params = array('fecha_parte' => $_POST['fecha_parte'], 'id_periodo' => $_POST['id_periodo']);
