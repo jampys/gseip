@@ -11,12 +11,12 @@ $sheet->setTitle('resumen');
 
 //titulo ----------------------------------------------------------------
 
-$spreadsheet->getActiveSheet()->mergeCells('A1:E1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
-$spreadsheet->getActiveSheet()->mergeCells('A2:E2');
-$spreadsheet->getActiveSheet()->mergeCells('A3:E3');
-$spreadsheet->getActiveSheet()->mergeCells('A4:E4');
-$spreadsheet->getActiveSheet()->getStyle('A1:E4')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:E4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->mergeCells('A1:F1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
+$spreadsheet->getActiveSheet()->mergeCells('A2:F2');
+$spreadsheet->getActiveSheet()->mergeCells('A3:F3');
+$spreadsheet->getActiveSheet()->mergeCells('A4:F4');
+$spreadsheet->getActiveSheet()->getStyle('A1:F4')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:F4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'RN07 Resumen de actividad de cuadrillas');
 $sheet->setCellValueByColumnAndRow(1, 2, 'Contrato/s: '.$encabezado['contratos']);
@@ -25,10 +25,10 @@ $sheet->setCellValueByColumnAndRow(1, 4, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //tab 1 encabezados columnas ------------------------------------------------------------
-$cabecera = ["Contrato", "Cuadrilla", "Tipo fact.", "Días hábiles trabajados", "Días hábiles período"];
+$cabecera = ["Contrato", "Código cuadrilla", "Tipo cuadrilla", "Tipo fact.", "Días hábiles trabajados", "Días hábiles período"];
 $sheet->fromArray($cabecera, null, 'A6');
-$spreadsheet->getActiveSheet()->getStyle('A6:E6')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A6:E6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A6:F6')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A6:F6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //tab 1 cuerpo -----------------------------------------------------------------
 $fila = 7;
@@ -36,10 +36,11 @@ foreach ($view->resumen as $r):
     //$cuadrilla = $r['cuadrilla'].' ['.$r['nombre_corto_op'].']';
 
     $sheet->setCellValueByColumnAndRow(1, $fila, $r['contrato']);
-    $sheet->setCellValueByColumnAndRow(2, $fila, $r['cuadrilla']);
-    $sheet->setCellValueByColumnAndRow(3, $fila, $r['tipo']);
-    $sheet->setCellValueByColumnAndRow(4, $fila, $r['dht']);
-    $sheet->setCellValueByColumnAndRow(5, $fila, $r['dh']);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $r['nombre_corto_op']);
+    $sheet->setCellValueByColumnAndRow(3, $fila, $r['cuadrilla']);
+    $sheet->setCellValueByColumnAndRow(4, $fila, $r['tipo']);
+    $sheet->setCellValueByColumnAndRow(5, $fila, $r['dht']);
+    $sheet->setCellValueByColumnAndRow(6, $fila, $r['dh']);
     $fila++;
 endforeach;
 
@@ -49,13 +50,20 @@ endforeach;
 }*/
 
 $sheet->getColumnDimension('A')->setAutoSize(true);
-$sheet->getColumnDimension('B')->setAutoSize(true);
 $sheet->getColumnDimension('C')->setAutoSize(true);
-$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(12);
-$spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(12);
+$sheet->getColumnDimension('D')->setAutoSize(true);
 
-$spreadsheet->getActiveSheet()->getStyle('D6')->getAlignment()->setWrapText(true);
-$spreadsheet->getActiveSheet()->getStyle('E6')->getAlignment()->setWrapText(true);
+$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(12); //codigo cuadrilla
+$spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(12); //dht
+$spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(12); //dh
+
+$spreadsheet->getActiveSheet()->getStyle('B6')->getAlignment()->setWrapText(true); //codigo cuadrilla
+$spreadsheet->getActiveSheet()->getStyle('E6')->getAlignment()->setWrapText(true); //dht
+$spreadsheet->getActiveSheet()->getStyle('F6')->getAlignment()->setWrapText(true); //dh
+
+/* Alinear a la izquierda columna B */
+$spreadsheet->getActiveSheet()->getStyle('B7:B300')
+    ->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
 
 /* ajuste fila de contratos del encabezado*/
 $spreadsheet->getActiveSheet()->getRowDimension('2')->setRowHeight(30);
