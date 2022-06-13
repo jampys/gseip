@@ -34,8 +34,8 @@ $cabecera = ["Empleado",
             "Total Hs Extras 50",
             "Hs Extras 100",
             "Hs Base",
-            "Hs Viaje",
             "Hs Viaje Truncado",
+            "Hs Viaje",
             "Total Hs viaje",
             "Desarraigo",
             "Zona Diferencial -MF",
@@ -84,8 +84,8 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(7, $fila, $p['total_hs_extras_50']); //G
     $sheet->setCellValueByColumnAndRow(8, $fila, $p['hs_extras_100']); //H
     $sheet->setCellValueByColumnAndRow(9, $fila, $p['hs_base']); //I
-    $sheet->setCellValueByColumnAndRow(10, $fila, $p['hs_viaje']); //J
-    $sheet->setCellValueByColumnAndRow(11, $fila, $p['hs_viaje_truncado']); //K
+    $sheet->setCellValueByColumnAndRow(10, $fila, $p['hs_viaje_truncado']); //J
+    $sheet->setCellValueByColumnAndRow(11, $fila, $p['hs_viaje']); //K
     $sheet->setCellValueByColumnAndRow(12, $fila, $p['total_hs_viaje']); //L
     $sheet->setCellValueByColumnAndRow(13, $fila, $p['desarraigo']); //M
     $sheet->setCellValueByColumnAndRow(14, $fila, $p['zona_dif']); //N
@@ -206,49 +206,49 @@ $spreadsheet->getActiveSheet()->getStyle('AL6')->getAlignment()->setTextRotation
 
 /* ocultar columnas de acuerdo al template del contrato */
 
-//guardias
+//guardias B
 if ($encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'PAE'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('B')->setVisible(false);
 
-//hs_extras_50
+//hs_extras_50 C
 if ($encabezado['template'] == 'PAE'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('C')->setVisible(false);
 
-//hs_extras_50_manejo
+//hs_extras_50_manejo D
 if ($encabezado['template'] == 'PAE'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('D')->setVisible(false);
 
-//hs_extras_50_truncado
+//hs_extras_50_truncado E
 if ($encabezado['template'] == 'PAE' ||
     $encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'STAFF' ||
     $encabezado['template'] == 'YPF_CH'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('E')->setVisible(false);
 
-//hs_extras_50_traslado
+//hs_extras_50_traslado F
 if ($encabezado['template'] == 'PAE' ||
     $encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'STAFF' ||
     $encabezado['template'] == 'YPF_CH'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('F')->setVisible(false);
 
-//hs_base
+//hs_base I
 if ($encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'YPF_SC'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('I')->setVisible(false);
 
-//hs_viaje
-if ($encabezado['template'] == 'POZOS'
-) $spreadsheet->getActiveSheet()->getColumnDimension('J')->setVisible(false);
-
-
-//hs_viaje_truncado
+//hs_viaje_truncado J
 if ($encabezado['template'] == 'PAE' ||
     $encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'STAFF' ||
     $encabezado['template'] == 'YPF_CH'
+) $spreadsheet->getActiveSheet()->getColumnDimension('J')->setVisible(false);
+
+//hs_viaje K
+if ($encabezado['template'] == 'POZOS'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('K')->setVisible(false);
+
 
 //desarraigo M
 if ($encabezado['template'] == 'PAE' ||
