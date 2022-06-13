@@ -71,7 +71,7 @@ $spreadsheet->getActiveSheet()->getStyle('A2')->getAlignment()->setWrapText(true
 
 
 //tab 1 configuro el auto filter
-$spreadsheet->getActiveSheet()->setAutoFilter('A6:E6');
+$spreadsheet->getActiveSheet()->setAutoFilter('A6:F6');
 
 
 //-----------------generacion de excel ------------------------------------------------
