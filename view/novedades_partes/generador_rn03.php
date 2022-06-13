@@ -15,13 +15,15 @@ $spreadsheet->getActiveSheet()->mergeCells('A1:R1'); //$spreadsheet->getActiveSh
 $spreadsheet->getActiveSheet()->mergeCells('A2:R2');
 $spreadsheet->getActiveSheet()->mergeCells('A3:R3');
 $spreadsheet->getActiveSheet()->mergeCells('A4:R4');
-$spreadsheet->getActiveSheet()->getStyle('A1:R4')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:R4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->mergeCells('A5:R5');
+$spreadsheet->getActiveSheet()->getStyle('A1:R5')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:R5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
-$sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
-$sheet->setCellValueByColumnAndRow(1, 2, 'Contrato/s: '.$encabezado['contratos']);
-$sheet->setCellValueByColumnAndRow(1, 3, 'Período: '.$encabezado['periodo']);
-$sheet->setCellValueByColumnAndRow(1, 4, 'Fecha emisión: '.$encabezado['fecha_emision']);
+$sheet->setCellValueByColumnAndRow(1, 1, 'RN03 Control de Novedades Administración');
+$sheet->setCellValueByColumnAndRow(1, 2, 'Cliente: '.$encabezado['cliente']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Contrato/s: '.$encabezado['contratos']);
+$sheet->setCellValueByColumnAndRow(1, 4, 'Período: '.$encabezado['periodo']);
+$sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 
 //encabezado ------------------------------------------------------------
@@ -65,12 +67,12 @@ $cabecera = ["Empleado",
             "DH calendario",
             "Observaciones"
         ];
-$sheet->fromArray($cabecera, null, 'A6');
-$spreadsheet->getActiveSheet()->getStyle('A6:AM6')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A6:AM6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$sheet->fromArray($cabecera, null, 'A7');
+$spreadsheet->getActiveSheet()->getStyle('A7:AM7')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A7:AM7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
-$fila = 7;
+$fila = 8;
 foreach ($view->partes as $p):
 
     $empleado = $p['legajo'].' '.$p['apellido'].' '.$p['nombre'];
@@ -326,7 +328,7 @@ if ($encabezado['template'] == 'PAE' ||
 
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'RN3_administracion_'.$encabezado["template"].'_'.$id_contrato.'.xlsx';
+$filename = 'RN3_administracion_'.$encabezado["template"].'_'.date("d-m-Y").'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');
