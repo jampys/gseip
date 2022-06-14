@@ -80,7 +80,7 @@
                 },
                 "dataSrc": ""
             },
-            "order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
+            "order": [[5, "asc"], [6, "asc"], [4, "asc"] ], //5=priority (oculta), 6=renovacion, 4=fecha_vencimiento
             'columns': [
                 {"data" : "id_renovacion"},
                 {"data" : "vencimiento"},
@@ -95,7 +95,6 @@
                 $(row).attr('data-id', data.id_renovacion);
             },
             "columnDefs": [
-                {targets: 0, type: 'date-uk', orderData: [ 0, 1 ]}, //fecha_parte
                 {
                     targets: 2,//empleado/grupo
                     responsivePriority: 1,
@@ -103,8 +102,9 @@
                         return (row.id_empleado)? row.empleado : row.grupo;
                     }
                 },
+                {targets: 3, type: 'date-uk', orderData: [ 3, 5 ]}, //fecha_emision
                 {
-                    targets: 4, //fecha_vencimiento
+                    targets: 4, type: 'date-uk', orderData: [ 4, 5 ], //fecha_vencimiento
                     createdCell: function (td, cellData, rowData, row, col) { //https://datatables.net/reference/option/columns.createdCell
                         $(td).css('background-color', rowData.color)
                     }
