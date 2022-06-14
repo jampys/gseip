@@ -104,8 +104,8 @@
                 },
                 {
                     targets: 4, //fecha_vencimiento
-                    createdCell: function (td, cellData, rowData, row, col) {
-                        $(td).css('background-color', row.color)
+                    createdCell: function (td, cellData, rowData, row, col) { //https://datatables.net/reference/option/columns.createdCell
+                        $(td).css('background-color', rowData.color)
                     }
                 },
                 {
