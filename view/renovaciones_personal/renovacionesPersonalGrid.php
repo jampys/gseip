@@ -103,6 +103,12 @@
                     }
                 },
                 {
+                    targets: 4, //fecha_vencimiento
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).css('background-color', row.color)
+                    }
+                },
+                {
                     targets: 6,//botones indicadores
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
