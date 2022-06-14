@@ -80,14 +80,15 @@
                 },
                 "dataSrc": ""
             },
-            "order": [[0, "desc"], [1, "asc"], [2, "asc"]],
+            "order": [[6, "asc"], [7, "asc"], [5, "asc"] ], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
             'columns': [
                 {"data" : "id_renovacion"},
                 {"data" : "vencimiento"},
                 {"data" : null, defaultContent: ''}, //empleado/grupo
                 {"data" : "fecha_emision"},
                 {"data" : "fecha_vencimiento"},
-                {data: null, defaultContent: '', orderable: false},
+                {"data" : "priority", visible: false},
+                {"data" : "id_rnv_renovacion", visible: false},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
@@ -106,24 +107,6 @@
                     targets: 4, //fecha_vencimiento
                     createdCell: function (td, cellData, rowData, row, col) { //https://datatables.net/reference/option/columns.createdCell
                         $(td).css('background-color', rowData.color)
-                    }
-                },
-                {
-                    targets: 6,//botones indicadores
-                    responsivePriority: 1,
-                    render: function (data, type, row, meta) {
-                        let novedad = (row.id_parte)? '<i class="fas fa-truck-pickup fa-fw dp_blue_nov" title="con novedad"></i>':'<i class="fas fa-car fa-fw dp_light_gray" title="sin novedad"></i>';
-                        let conceptos = (row.concept_count > 0)? '<i class="fas fa-calculator fa-fw dp_blue_nov" title="novedad con conceptos"></i>':'<i class="fas fa-calculator fa-fw dp_light_gray" title="novedad sin conceptos"></i>';
-                        let ordenes = (row.orden_count > 0)? '<i class="fas fa-clipboard-check fa-fw dp_blue_nov" title="novedad con órdenes"></i>':'<i class="fas fa-clipboard fa-fw dp_light_gray" title="novedad sin órdenes"></i>';
-                        return '<a href="#">'+
-                            novedad+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a href="#">'+
-                            conceptos+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a href="#">'+
-                            ordenes+
-                            '</a>';
                     }
                 },
                 {
