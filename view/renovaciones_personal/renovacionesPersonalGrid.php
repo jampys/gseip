@@ -83,11 +83,10 @@
             "order": [[0, "desc"], [1, "asc"], [2, "asc"]],
             'columns': [
                 {"data" : "id_renovacion"},
-                {"data" : "id_renovacion"},
-                {"data" : "id_renovacion"},
-                {"data" : "id_renovacion"},
-                {"data" : "id_renovacion"},
-                {"data" : "id_renovacion"},
+                {"data" : "vencimiento"},
+                {"data" : null, defaultContent: ''}, //empleado/grupo
+                {"data" : "fecha_emision"},
+                {"data" : "fecha_vencimiento"},
                 {data: null, defaultContent: '', orderable: false},
                 {data: null, defaultContent: '', orderable: false}
             ],
@@ -96,6 +95,13 @@
             },
             "columnDefs": [
                 {targets: 0, type: 'date-uk', orderData: [ 0, 1 ]}, //fecha_parte
+                {
+                    targets: 2,//empleado/grupo
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        return (row.id_empleado)? row.empleado : row.grupo;
+                    }
+                },
                 {
                     targets: 6,//botones indicadores
                     responsivePriority: 1,
@@ -194,8 +200,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>Nro. rnv</th>
-                <th>Fecha</th>
+                <th>Nro. vto.</th>
                 <th>vencimiento</th>
                 <th>empleado / grupo</th>
                 <th>F. emisión</th>
