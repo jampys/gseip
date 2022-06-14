@@ -215,7 +215,7 @@ switch($operation){
 
                     $mail->AddAddress($target); // Esta es la dirección a donde enviamos
                     $mail->IsHTML(true); // El correo se envía como HTML
-                    $mail->AddEmbeddedImage('resources/img/seip140x40.png', 'logo_2u');
+                    $mail->AddEmbeddedImage('resources/img/seip70x20.png', 'logo_2u');
                     $mail->Subject = "Restablecimiento de contraseña";
                     $mail->SMTPAutoTLS = false;
                     //$mail->SMTPSecure = false;

@@ -106,13 +106,13 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
 
         <div style="float: left; width: 65%; height: 36px; text-align: left">
             <span style="font-size: 15px; font-weight: bold">Período de descanso anual</span><br/>
-            <span style="font-size: 13px">RRHH y Administración</span>
+            <span style="font-size: 13px">RRHH y RRLL</span>
         </div>
 
         <div style="float: right; width: 10%; height: 36px; font-size: 8px; text-align: right">
             RG 01-01<br/>
-            09/09/2021<br/>
-            rev 01
+            06/06/2022<br/>
+            rev 02
         </div>
 
 
@@ -188,14 +188,18 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
                     </tbody>
                 </table>
 
-                <table style="width:100%; margin-top:110px;">
+                <table style="width:100%; margin-top:10px;">
                     <tbody>
+                        <tr>
+                            <td style="width: 50%; text-align: center"><img src="resources/img/firma_mariana.jpeg" height="70px"></td>
+                            <td style="width: 50%"></td>
+                        </tr>
                         <tr>
                             <td style="width: 50%; text-align: center">................................................</td>
                             <td style="width: 50%"></td>
                         </tr>
                         <tr>
-                            <td style="text-align: center"><span class="subtitulo">Firma superior</span></td>
+                            <td style="text-align: center"><span class="subtitulo">Firma apoderada</span></td>
                             <td style="width: 50%"></td>
                         </tr>
                     </tbody>
@@ -220,16 +224,10 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
                         <tr>
                             <td>Quedo debidamente notificado de la comunicación precedente.</td>
                         </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Comodoro Rivadavia, ....... de .................................. de ..............</td>
-                        </tr>
                     </tbody>
                 </table>
 
-                <table style="width:100%; margin-top:110px;">
+                <table style="width:100%; margin-top:80px;">
                     <tbody>
                         <tr>
                             <td style="width: 50%; text-align: center">................................................</td>
@@ -246,58 +244,6 @@ $fila1['sysdate'] = strftime("%d de %B del %Y"); //https://stackoverflow.com/que
             </div>
 
         </div>
-
-
-
-        <br/>
-        <div style="float: left; width: 100%">
-
-            <div class="borde-circular">
-                <table style="width:100%;">
-                    <tbody>
-                        <tr>
-                            <td><span class="subtitulo">Señores: SEIP S.R.L.</span></td>
-                        </tr>
-                        <tr>
-                            <td>Certifico haber gozado del período de vacaciones arriba mencionado, reintegrándome
-                            en la fecha de conformidad a mis ocupaciones.</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Comodoro Rivadavia, ....... de .................................. de ..............</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <table style="width:100%; margin-top:110px;">
-                    <tbody>
-                        <tr>
-                            <td style="width: 50%; text-align: center">................................................</td>
-                            <td style="width: 50%"></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center"><span class="subtitulo">Firma empleado/a</span></td>
-                            <td style="width: 50%"></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-
-            </div>
-
-        </div>
-
-
-
-
-
-
-
-
-
-
 
 
 

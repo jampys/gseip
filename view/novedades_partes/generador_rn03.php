@@ -15,13 +15,15 @@ $spreadsheet->getActiveSheet()->mergeCells('A1:R1'); //$spreadsheet->getActiveSh
 $spreadsheet->getActiveSheet()->mergeCells('A2:R2');
 $spreadsheet->getActiveSheet()->mergeCells('A3:R3');
 $spreadsheet->getActiveSheet()->mergeCells('A4:R4');
-$spreadsheet->getActiveSheet()->getStyle('A1:R4')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:R4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->mergeCells('A5:R5');
+$spreadsheet->getActiveSheet()->getStyle('A1:R5')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:R5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
-$sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
-$sheet->setCellValueByColumnAndRow(1, 2, 'Contrato/s: '.$encabezado['contratos']);
-$sheet->setCellValueByColumnAndRow(1, 3, 'Período: '.$encabezado['periodo']);
-$sheet->setCellValueByColumnAndRow(1, 4, 'Fecha emisión: '.$encabezado['fecha_emision']);
+$sheet->setCellValueByColumnAndRow(1, 1, 'RN03 Control de Novedades Administración');
+$sheet->setCellValueByColumnAndRow(1, 2, 'Cliente: '.$encabezado['cliente']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Contrato/s: '.$encabezado['contratos']);
+$sheet->setCellValueByColumnAndRow(1, 4, 'Período: '.$encabezado['periodo']);
+$sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 
 //encabezado ------------------------------------------------------------
@@ -34,8 +36,8 @@ $cabecera = ["Empleado",
             "Total Hs Extras 50",
             "Hs Extras 100",
             "Hs Base",
-            "Hs Viaje",
             "Hs Viaje Truncado",
+            "Hs Viaje",
             "Total Hs viaje",
             "Desarraigo",
             "Zona Diferencial -MF",
@@ -65,12 +67,12 @@ $cabecera = ["Empleado",
             "DH calendario",
             "Observaciones"
         ];
-$sheet->fromArray($cabecera, null, 'A6');
-$spreadsheet->getActiveSheet()->getStyle('A6:AM6')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A6:AM6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$sheet->fromArray($cabecera, null, 'A7');
+$spreadsheet->getActiveSheet()->getStyle('A7:AM7')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A7:AM7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
-$fila = 7;
+$fila = 8;
 foreach ($view->partes as $p):
 
     $empleado = $p['legajo'].' '.$p['apellido'].' '.$p['nombre'];
@@ -84,8 +86,8 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(7, $fila, $p['total_hs_extras_50']); //G
     $sheet->setCellValueByColumnAndRow(8, $fila, $p['hs_extras_100']); //H
     $sheet->setCellValueByColumnAndRow(9, $fila, $p['hs_base']); //I
-    $sheet->setCellValueByColumnAndRow(10, $fila, $p['hs_viaje']); //J
-    $sheet->setCellValueByColumnAndRow(11, $fila, $p['hs_viaje_truncado']); //K
+    $sheet->setCellValueByColumnAndRow(10, $fila, $p['hs_viaje_truncado']); //J
+    $sheet->setCellValueByColumnAndRow(11, $fila, $p['hs_viaje']); //K
     $sheet->setCellValueByColumnAndRow(12, $fila, $p['total_hs_viaje']); //L
     $sheet->setCellValueByColumnAndRow(13, $fila, $p['desarraigo']); //M
     $sheet->setCellValueByColumnAndRow(14, $fila, $p['zona_dif']); //N
@@ -165,84 +167,98 @@ $spreadsheet->getActiveSheet()->getColumnDimension('AL')->setWidth(7);
 $spreadsheet->getActiveSheet()->getColumnDimension('AM')->setWidth(30);
 
 
-$spreadsheet->getActiveSheet()->getStyle('B6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('C6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('D6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('E6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('F6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('G6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('H6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('I6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('J6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('K6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('L6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('M6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('N6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('O6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('P6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('Q6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('R6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('S6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('T6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('U6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('V6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('W6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('X6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('Y6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('Z6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AA6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AB6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AC6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AD6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AE6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AF6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AG6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AH6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AI6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AJ6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AK6')->getAlignment()->setTextRotation(90);
-$spreadsheet->getActiveSheet()->getStyle('AL6')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('B7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('C7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('D7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('E7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('F7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('G7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('H7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('I7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('J7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('K7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('L7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('M7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('N7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('O7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('P7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('Q7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('R7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('S7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('T7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('U7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('V7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('W7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('X7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('Y7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('Z7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AA7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AB7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AC7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AD7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AE7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AF7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AG7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AH7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AI7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AJ7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AK7')->getAlignment()->setTextRotation(90);
+$spreadsheet->getActiveSheet()->getStyle('AL7')->getAlignment()->setTextRotation(90);
+
+/* comentarios en las celdas necesarias */
+$spreadsheet->getActiveSheet()->getComment('AG7')->getText()->createTextRun('Dias Hábiles Disponible en Domicilio del período.');
+$spreadsheet->getActiveSheet()->getComment('AH7')->getText()->createTextRun('Dias Reales Trabajados del período.');
+$spreadsheet->getActiveSheet()->getComment('AI7')->getText()->createTextRun('Dias Hábiles Trabajados del período.');
+$spreadsheet->getActiveSheet()->getComment('AJ7')->getText()->createTextRun('Dias Hábiles No Trabajados del período.');
+$spreadsheet->getActiveSheet()->getComment('AK7')->getText()->createTextRun('Dias Corridos No Trabajados del período.');
+$spreadsheet->getActiveSheet()->getComment('AL7')->getText()->createTextRun('Dias Hábiles del mes calendario.');
 
 
 /* ocultar columnas de acuerdo al template del contrato */
 
-//guardias
-if ($encabezado['template'] == 'POZOS'
+//guardias B
+if ($encabezado['template'] == 'POZOS' ||
+    $encabezado['template'] == 'PAE'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('B')->setVisible(false);
 
-//hs_extras_50
+//hs_extras_50 C
 if ($encabezado['template'] == 'PAE'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('C')->setVisible(false);
 
-//hs_extras_50_manejo
+//hs_extras_50_manejo D
 if ($encabezado['template'] == 'PAE'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('D')->setVisible(false);
 
-//hs_extras_50_truncado
+//hs_extras_50_truncado E
 if ($encabezado['template'] == 'PAE' ||
     $encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'STAFF' ||
     $encabezado['template'] == 'YPF_CH'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('E')->setVisible(false);
 
-//hs_extras_50_traslado
+//hs_extras_50_traslado F
 if ($encabezado['template'] == 'PAE' ||
     $encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'STAFF' ||
     $encabezado['template'] == 'YPF_CH'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('F')->setVisible(false);
 
-//hs_base
+//hs_base I
 if ($encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'YPF_SC'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('I')->setVisible(false);
 
-//hs_viaje_truncado
+//hs_viaje_truncado J
 if ($encabezado['template'] == 'PAE' ||
     $encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'STAFF' ||
     $encabezado['template'] == 'YPF_CH'
+) $spreadsheet->getActiveSheet()->getColumnDimension('J')->setVisible(false);
+
+//hs_viaje K
+if ($encabezado['template'] == 'POZOS'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('K')->setVisible(false);
+
 
 //desarraigo M
 if ($encabezado['template'] == 'PAE' ||
@@ -296,7 +312,6 @@ if ($encabezado['template'] == 'PAE' ||
 
 //total_viandas_extra U
 if ($encabezado['template'] == 'PAE' ||
-    $encabezado['template'] == 'POZOS' ||
     $encabezado['template'] == 'STAFF' ||
     $encabezado['template'] == 'YPF_CH'
 ) $spreadsheet->getActiveSheet()->getColumnDimension('U')->setVisible(false);
@@ -321,7 +336,7 @@ if ($encabezado['template'] == 'PAE' ||
 
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'RN3_administracion_'.$encabezado["template"].'_'.$id_contrato.'.xlsx';
+$filename = 'RN3_administracion_'.$encabezado["template"].'_'.date("d-m-Y").'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');

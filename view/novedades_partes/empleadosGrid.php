@@ -15,7 +15,7 @@
             <tr data-id="<?php echo $em['id_parte_empleado'];?>">
                 <td><b><?php echo $em['legajo']; ?></b>&nbsp;<?php echo $em['apellido'].' '.$em['nombre'];?></td>
                 <td><?php echo $em['convenio'];?></td>
-                <td><?php echo ($em['conductor'])? '<i class="far fa-check-circle fa-fw" style="color: #49ed0e" title="conductor"></i>':''; ?></td>
+                <td><?php echo ($em['conductor'])? '<i class="fas fa-steering-wheel fa-fw dp_blue" title="conductor"></i>':''; ?></td>
                 <!--<td style="text-align: center"><?php //echo($et['aplica'] == 1)? '<i class="far fa-thumbs-up fa-fw" style="color: #49ed0e"></i>':'<i class="far fa-thumbs-down fa-fw" style="color: #fc140c"></i>'; ?></td>
                 <td><?php //echo $et['user'];?></td>-->
 

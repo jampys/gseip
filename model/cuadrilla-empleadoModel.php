@@ -85,16 +85,18 @@ class CuadrillaEmpleado
     }
 
 
-    public static function getEmpleadoDefaults($id_empleado) { //ok
+    public static function getEmpleadoDefaults($id_empleado, $id_contrato) { //ok
         $stmt=new sQuery();
         $query = "select *
                   from nov_cuadrilla_empleado nce
                   join nov_cuadrillas nc on nc.id_cuadrilla = nce.id_cuadrilla
                   where nce.id_empleado = :id_empleado
+                  and nc.id_contrato = :id_contrato
                   and nc.disabled is null
                   limit 1";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
