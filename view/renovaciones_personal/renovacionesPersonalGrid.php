@@ -3,13 +3,9 @@
 
     $(document).ready(function(){
 
-        //$('[data-toggle="tooltip"]').tooltip();
 
-        $('#example').DataTable({
+        /*$('#example').DataTable({
             responsive: true,
-            /*language: {
-             url: 'dataTables/Spanish.json'
-             }*/
             "fnInitComplete": function () {
                                 $(this).show();
             },
@@ -23,6 +19,133 @@
                 {targets: [ 7 ], orderData: [ 7], visible: false}, //renovacion
                 { responsivePriority: 1, targets: 8 }
             ]
+        });*/
+
+
+        $('#example').DataTable({
+            dom: "<'row'<'col-md-7'l><'col-md-2'B><'col-md-3'f>>" +
+            "<'row'<'col-md-12'tr>>" +
+            "<'row'<'col-md-5'i><'col-md-7'p>>",
+            buttons: [
+                {
+                    text: '<i class="fas fa-file-pdf fa-lg dp_blue"></i>',
+                    titleAttr: 'Emitir RN01 Reporte de actividad de cuadrillas [pdf]',
+                    action: function ( e, dt, node, config ) {
+                        let link = 'index.php?action=partes&operation=reporte'+
+                            '&id_contrato='+$('#add_contrato').val()+
+                            '&cuadrilla='+$('#cuadrilla').val()+
+                            '&target=pdf'+
+                                //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
+                                //'&endDate='+drp.endDate.format('YYYY-MM-DD');
+                            '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+
+                            '&fecha_hasta='+$('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD');
+                        window.open(link, '_blank');
+                    }
+                },
+                {
+                    text: '<i class="fas fa-file-excel fa-lg dp_blue"></i>',
+                    titleAttr: 'Descargar RN02 Reporte de actividad de cuadrillas [xlsx]',
+                    action: function ( e, dt, node, config ) {
+                        let link = 'index.php?action=partes&operation=reporte'+
+                            '&id_contrato='+$('#add_contrato').val()+
+                            '&cuadrilla='+$('#cuadrilla').val()+
+                            '&target=excel'+
+                                //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
+                                //'&endDate='+drp.endDate.format('YYYY-MM-DD');
+                            '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+
+                            '&fecha_hasta='+$('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD');
+                        //window.open(link);
+                        window.location.href = link;
+                    }
+                }
+            ],
+            responsive: true,
+            language: {
+                url: 'resources/libraries/dataTables/Spanish.json'
+            },
+            "fnInitComplete": function () {
+                $(this).show();
+            },
+            'ajax': {
+                "type"   : "POST",
+                "url"    : 'index.php',
+                "data": function ( d ) {
+                    //d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    //d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                    //d.search_contrato = $("#add_contrato").val();
+                    //d.id_periodo = $("#id_periodo").val();
+                    //d.cuadrilla = $("#cuadrilla").val();
+                    d.action = "renovacionesPersonal";
+                    d.operation = "refreshGrid";
+                },
+                "dataSrc": ""
+            },
+            "order": [[0, "desc"], [1, "asc"], [2, "asc"]],
+            'columns': [
+                {"data" : "id_renovacion"},
+                {"data" : "id_renovacion"},
+                {"data" : "id_renovacion"},
+                {"data" : "id_renovacion"},
+                {"data" : "id_renovacion"},
+                {"data" : "id_renovacion"},
+                {data: null, defaultContent: '', orderable: false},
+                {data: null, defaultContent: '', orderable: false}
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id_renovacion);
+            },
+            "columnDefs": [
+                {targets: 0, type: 'date-uk', orderData: [ 0, 1 ]}, //fecha_parte
+                {
+                    targets: 6,//botones indicadores
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        let novedad = (row.id_parte)? '<i class="fas fa-truck-pickup fa-fw dp_blue_nov" title="con novedad"></i>':'<i class="fas fa-car fa-fw dp_light_gray" title="sin novedad"></i>';
+                        let conceptos = (row.concept_count > 0)? '<i class="fas fa-calculator fa-fw dp_blue_nov" title="novedad con conceptos"></i>':'<i class="fas fa-calculator fa-fw dp_light_gray" title="novedad sin conceptos"></i>';
+                        let ordenes = (row.orden_count > 0)? '<i class="fas fa-clipboard-check fa-fw dp_blue_nov" title="novedad con órdenes"></i>':'<i class="fas fa-clipboard fa-fw dp_light_gray" title="novedad sin órdenes"></i>';
+                        return '<a href="#">'+
+                            novedad+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a href="#">'+
+                            conceptos+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a href="#">'+
+                            ordenes+
+                            '</a>';
+                    }
+                },
+                {
+                    targets: 7,//action buttons
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        let id_user = '<?php echo $_SESSION['id_user'] ?>';
+                        let usr_abm = '<?php echo ( PrivilegedUser::dhasPrivilege('SUC_ABM', array(0)))? true : false ?>'; //solo el administrador
+
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('PAR_UPDATE', array(1)) )? true : false ?>';
+                        let permisoEditarP = (permisoEditar && !row.closed_date)? 'edit' : 'disabled';
+
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('PAR_DELETE', array(1)) )? true : false ?>';
+                        let permisoEliminarP = ( !row.closed_date && ( (permisoEliminar && row.created_by == id_user) || (usr_abm) ))? 'delete' : 'disabled';
+
+                        let user_info = ''; //row.user.split('@')[0]+' '+row.created_date;
+
+                        return '<a class="view" title="Ver novedad" href="#">'+
+                            '<i class="far fa-sticky-note dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoEditarP+'" href="#" title="Editar novedad">'+ //si tiene permiso para editar
+                            '<i class="far fa-edit dp_blue"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a class="'+permisoEliminarP+'" href="#" title="Eliminar novedad">'+ //si tiene permiso para eliminar
+                            '<i class="far fa-trash-alt dp_red"></i>'+
+                            '</a>&nbsp;&nbsp;'+
+                            '<a href="#" title="'+user_info+'" onclick="return false">'+
+                            '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                            '</a>';
+                    }
+                }
+            ]
+
+
         });
 
 
@@ -68,10 +191,7 @@
 
 
 
-
-    <!--<div class="table-responsive">-->
-
-        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
+        <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>Nro. rnv</th>
@@ -83,68 +203,11 @@
                 <th style="display: none">Priority</th>
                 <th style="display: none">Rnv</th>
                 <th></th>
-
             </tr>
             </thead>
-            <tbody>
-
-            <?php if(isset($view->renovaciones_personal)) {
-                foreach ($view->renovaciones_personal as $rp):   ?>
-                    <tr data-id="<?php echo $rp['id_renovacion']; ?>">
-                        <td><?php echo $rp['id_renovacion']; ?></td>
-                        <td><?php echo $rp['created_date']; ?></td>
-                        <td><?php echo $rp['vencimiento']; ?></td>
-                        <td><?php echo ($rp['id_empleado'])? $rp['empleado'] : $rp['grupo']; ?></td>
-                        <td><?php echo $rp['fecha_emision']; ?></td>
-                        <td style="background-color: <?php echo $rp['color']; ?>"><?php echo $rp['fecha_vencimiento']; ?></td>
-                        <td style="display: none"><?php echo $rp['priority']; ?></td>
-                        <td style="display: none"><?php echo $rp['id_rnv_renovacion']; ?></td>
-
-                        <td class="text-center">
-                            <?php if($rp['cant_uploads']> 0 ){ ?>
-                                <a href="#" title="<?php echo $rp['cant_uploads']; ?> adjuntos" >
-                                    <i class="fas fa-paperclip dp_gray"></i>
-                                </a>
-                            <?php } else{ ?>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                            <?php } ?>&nbsp;&nbsp;
-
-                            <a class="view" href="javascript:void(0);" title="ver">
-                                <i class="far fa-sticky-note dp_blue"></i>
-                            </a>&nbsp;&nbsp;
-
-                            <!-- si tiene permiso y no fue renovado -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && !$rp['id_rnv_renovacion']  )? 'edit' : 'disabled' ?>" href="javascript:void(0);" title="editar">
-                                <i class="far fa-edit dp_blue"></i>
-                            </a>&nbsp;&nbsp;
-
-                            <?php if($rp['id_rnv_renovacion']){ ?>
-                                <a href="javascript:void(0);" data-toggle="tooltip" title="Nro. renov: <?php echo $rp['id_rnv_renovacion']; ?>" >
-                                    <i class="fas fa-check-circle dp_blue"></i>
-                                </a>
-                            <?php } else{ ?>
-                                <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? 'renovar' : 'disabled' ?>" href="javascript:void(0);" title="renovar">
-                                    <i class="fas fa-share dp_blue"></i>
-                                </a>
-                            <?php } ?>&nbsp;&nbsp;
-
-                            <!-- si tiene permiso y no fue renovado -->
-                            <a class="<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) && !$rp['id_rnv_renovacion'] )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                                <i class="far fa-trash-alt dp_red"></i>
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; } ?>
-            </tbody>
         </table>
 
 
-        <br/>
-        <div class="pull-right pdf">
-            <a href="index.php?action="><i class="fas fa-file-pdf fa-fw fa-2x dp_blue"></i></a>
-        </div>
-
-    <!--</div>-->
 
 </div>
 
