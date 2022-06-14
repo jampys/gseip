@@ -48,56 +48,6 @@
         });
 
 
-        //Select dependiente: al seleccionar contrato carga periodos vigentes
-        /*$('#myModal').on('change', '#id_contrato', function(e){
-            //alert('seleccionó un contrato');
-            //throw new Error();
-            params={};
-            params.action = "nov_periodos";
-            params.operation = "getPeriodos";
-            //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-            params.id_contrato = $('#id_contrato').val();
-            //params.activos = 1;
-
-            $('#myModal #id_periodo').empty();
-
-
-            $.ajax({
-                url:"index.php",
-                type:"post",
-                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
-                data: params,
-                dataType:"json",//xml,html,script,json
-                success: function(data, textStatus, jqXHR) {
-
-                    if(Object.keys(data).length > 0){
-
-                        $.each(data, function(indice, val){
-                            var label = data[indice]["nombre"]+' ('+data[indice]["fecha_desde"]+' - '+data[indice]["fecha_hasta"]+')';
-                            $("#myModal #id_periodo").append('<option value="'+data[indice]["id_periodo"]+'"'
-                            +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
-                            +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
-                            +'>'+label+'</option>');
-
-                        });
-
-                        //si es una edicion o view, selecciona el concepto.
-                        //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
-                        $('#myModal #id_periodo').selectpicker('refresh');
-
-                    }
-
-                },
-                error: function(data, textStatus, errorThrown) {
-                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                    alert(data.responseText);
-                }
-
-            });
-
-
-        });*/
-
 
         //RN05 al presionar boton de exportar en txt
         $('#myModal').on("click", "#submit", function(){ //ok
@@ -158,8 +108,8 @@
 
 
 
-        //Exportar novedades para control administracion
-        $('#myModal').on("click", "#submit2", function(){
+        //Exportar novedades para control administracion. Obsoleto 14/06/2022
+        /*$('#myModal').on("click", "#submit2", function(){
 
             if ($("#txt-form").valid()){
 
@@ -200,12 +150,6 @@
 
 
                     },
-                    /*error: function(data, textStatus, errorThrown) {
-                     //alert(data.responseText);
-                     $("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
-                     setTimeout(function() { $("#myElem").hide();
-                     }, 2000);
-                     },*/
                     beforeSend: function() {
                         $("#myElem").removeClass('alert-warning').removeClass('alert-danger');
                         $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Verificando novedades y sucesos. Aguarde un instante...').addClass('alert alert-info').show();
@@ -217,7 +161,7 @@
             }
 
             return false;
-        });
+        });*/
 
 
 
@@ -367,7 +311,7 @@
                     </div>
 
 
-                    <div class="alert alert-info" role="alert">
+                    <!--<div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
                                 <i class="fas fa-tags"></i>
@@ -379,7 +323,7 @@
                                 <button class="btn btn-primary" id="submit2" name="submit2" type="submit" title="Emitir reporte [web]">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
 
                     <div class="alert alert-info" role="alert">
