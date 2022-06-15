@@ -152,7 +152,7 @@
                         if(uploadObj.dpCounter() >= 1) { uploadObj.startUpload(); } //se realiza el upload solo si el formulario se guardo exitosamente
                         else closeFormSuccess();
                     }else{
-                        $("#myElem").html('Error al guardar el vencimiento').addClass('alert alert-danger').show();
+                        $("#myElem").html('No es posible guardar el vencimiento').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
@@ -165,7 +165,7 @@
             $("#myElem").html('Vencimiento guardado con exito').addClass('alert alert-success').show();
             setTimeout(function() { $("#myElem").hide();
                                     $('#myModal').modal('hide');
-                                    $("#search").trigger("click");
+                                    $('#example').DataTable().ajax.reload(null, false); //$("#search").trigger("click");
                                 }, 2000);
             return false; //para finalizar la ejecucion
         }
