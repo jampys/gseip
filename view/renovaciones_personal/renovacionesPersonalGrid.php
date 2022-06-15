@@ -133,7 +133,7 @@
                             permisoRenovar_icon = 'fas fa-share dp_blue';
                         }else{
                             permisoRenovar_class = 'disabled';
-                            permisoRenovar_title = 'aaaaaaaaaa';
+                            permisoRenovar_title = 'No tiene permisos para renovar';
                             permisoRenovar_icon = 'fas fa-share dp_blue';
                         }
 
