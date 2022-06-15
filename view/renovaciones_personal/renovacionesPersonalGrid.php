@@ -75,6 +75,12 @@
                     //d.search_contrato = $("#add_contrato").val();
                     //d.id_periodo = $("#id_periodo").val();
                     //d.cuadrilla = $("#cuadrilla").val();
+                    d.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
+                    d.id_grupo = $('#search_empleado option:selected').attr('id_grupo');
+                    d.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
+                    d.id_contrato = $("#search_contrato").val();
+                    d.id_subcontratista = $("#search_subcontratista").val();
+                    d.renovado = $('#search_renovado').prop('checked')? 1:0;
                     d.action = "renovacionesPersonal";
                     d.operation = "refreshGrid";
                 },
@@ -125,7 +131,7 @@
                         let permisoRenovar_icon = '';
                         if(row.id_rnv_renovacion){
                             permisoRenovar_class = '';
-                            permisoRenovar_title = 'Nro. renov: '+row.id_rnv_renovacion;
+                            permisoRenovar_title = 'Nro. vto.: '+row.id_rnv_renovacion;
                             permisoRenovar_icon = 'fas fa-check-circle dp_blue';
                         }else if(permisoEditar){
                             permisoRenovar_class = 'renovar';
@@ -136,8 +142,6 @@
                             permisoRenovar_title = 'No tiene permisos para renovar';
                             permisoRenovar_icon = 'fas fa-share dp_blue';
                         }
-
-
 
 
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('PAR_DELETE', array(1)) )? true : false ?>';

@@ -16,22 +16,18 @@
 
 
             $(document).on('click', '#search', function(){ //ok
-                //alert('presiono en buscar');
-                //var id = $(this).attr('data-id');
-                //preparo los parametros
-                params={};
+
+                /*params={};
                 params.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
                 params.id_grupo = $('#search_empleado option:selected').attr('id_grupo');
-                //params.id_vencimiento = $("#search_vencimiento").val();
                 params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                 params.id_contrato = $("#search_contrato").val();
                 params.id_subcontratista = $("#search_subcontratista").val();
                 params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "renovacionesPersonal";
                 params.operation = "refreshGrid";
-                //alert(params.id_grupo);
-                //alert(params.renovado);
-                $('#content').load('index.php', params);
+                $('#content').load('index.php', params);*/
+                $('#example').DataTable().ajax.reload();
             });
 
 
