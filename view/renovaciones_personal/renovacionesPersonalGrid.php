@@ -124,18 +124,31 @@
 
                         let user_info = ''; //row.user.split('@')[0]+' '+row.created_date;
 
-                        return '<a class="view" title="Ver novedad" href="#">'+
-                            '<i class="far fa-sticky-note dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEditarP+'" href="#" title="Editar novedad">'+ //si tiene permiso para editar
-                            '<i class="far fa-edit dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEliminarP+'" href="#" title="Eliminar novedad">'+ //si tiene permiso para eliminar
-                            '<i class="far fa-trash-alt dp_red"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a href="#" title="'+user_info+'" onclick="return false">'+
-                            '<i class="fa fa-question-circle dp_light_gray"></i>'+
-                            '</a>';
+                        let uploads_class = '';
+                        let uploads_title = '';
+                        if(row.cant_uploads > 0){
+                            uploads_class = 'fas fa-paperclip dp_gray';
+                            uploads_title = row.cant_uploads+' adjuntos';
+                        }else{
+                            uploads_class = 'fas fa-paperclip dp_light_gray disabled';
+                            uploads_title = 'sin adjuntos';
+                        }
+
+                        return '<a href="#" title="'+uploads_title+'">'+
+                                    '<i class="'+uploads_class+'"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="view" title="Ver novedad" href="#">'+
+                                    '<i class="far fa-sticky-note dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditarP+'" href="#" title="Editar novedad">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminarP+'" href="#" title="Eliminar novedad">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a href="#" title="'+user_info+'" onclick="return false">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                                '</a>';
                     }
                 }
             ]
