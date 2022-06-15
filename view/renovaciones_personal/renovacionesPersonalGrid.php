@@ -113,11 +113,32 @@
                     targets: 7,//action buttons
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
+
                         let id_user = '<?php echo $_SESSION['id_user'] ?>';
                         let usr_abm = '<?php echo ( PrivilegedUser::dhasPrivilege('SUC_ABM', array(0)))? true : false ?>'; //solo el administrador
 
-                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('PAR_UPDATE', array(1)) )? true : false ?>';
-                        let permisoEditarP = (permisoEditar && !row.closed_date)? 'edit' : 'disabled';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? true : false ?>';
+                        let permisoEditarP = (permisoEditar && !row.id_rnv_renovacion)? 'edit' : 'disabled';
+
+                        let permisoRenovar_class = '';
+                        let permisoRenovar_title = '';
+                        let permisoRenovar_icon = '';
+                        if(row.id_rnv_renovacion){
+                            permisoRenovar_class = '';
+                            permisoRenovar_title = 'Nro. renov: '+row.id_rnv_renovacion;
+                            permisoRenovar_icon = 'fas fa-check-circle dp_blue';
+                        }else if(permisoEditar){
+                            permisoRenovar_class = 'renovar';
+                            permisoRenovar_title = 'Renovar vencimiento';
+                            permisoRenovar_icon = 'fas fa-share dp_blue';
+                        }else{
+                            permisoRenovar_class = 'disabled';
+                            permisoRenovar_title = 'aaaaaaaaaa';
+                            permisoRenovar_icon = 'fas fa-share dp_blue';
+                        }
+
+
+
 
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('PAR_DELETE', array(1)) )? true : false ?>';
                         let permisoEliminarP = ( !row.closed_date && ( (permisoEliminar && row.created_by == id_user) || (usr_abm) ))? 'delete' : 'disabled';
@@ -137,11 +158,14 @@
                         return '<a href="#" title="'+uploads_title+'">'+
                                     '<i class="'+uploads_class+'"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a class="view" title="Ver novedad" href="#">'+
+                                '<a class="view" title="Ver vencimiento" href="#">'+
                                     '<i class="far fa-sticky-note dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a class="'+permisoEditarP+'" href="#" title="Editar novedad">'+ //si tiene permiso para editar
+                                '<a class="'+permisoEditarP+'" href="#" title="Editar vencimiento">'+ //si tiene permiso para editar
                                     '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoRenovar_class+'" href="#" title="'+permisoRenovar_title+'">'+ //si tiene permiso para renovar
+                                    '<i class="'+permisoRenovar_icon+'"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEliminarP+'" href="#" title="Eliminar novedad">'+ //si tiene permiso para eliminar
                                     '<i class="far fa-trash-alt dp_red"></i>'+
