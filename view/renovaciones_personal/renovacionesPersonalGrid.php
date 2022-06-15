@@ -31,18 +31,19 @@
                     text: '<i class="fas fa-file-pdf fa-lg dp_blue"></i>',
                     titleAttr: 'Emitir RN01 Reporte de actividad de cuadrillas [pdf]',
                     action: function ( e, dt, node, config ) {
-                        let link = 'index.php?action=partes&operation=reporte'+
+                        /*let link = 'index.php?action=partes&operation=reporte'+
                             '&id_contrato='+$('#add_contrato').val()+
                             '&cuadrilla='+$('#cuadrilla').val()+
                             '&target=pdf'+
-                                //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
-                                //'&endDate='+drp.endDate.format('YYYY-MM-DD');
-                            '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+
-                            '&fecha_hasta='+$('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD');
-                        window.open(link, '_blank');
+                            '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+ //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
+                            '&fecha_hasta='+$('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //'&endDate='+drp.endDate.format('YYYY-MM-DD');
+                        window.open(link, '_blank');*/
+
+                        
+
                     }
-                },
-                {
+                }
+                /*{
                     text: '<i class="fas fa-file-excel fa-lg dp_blue"></i>',
                     titleAttr: 'Descargar RN02 Reporte de actividad de cuadrillas [xlsx]',
                     action: function ( e, dt, node, config ) {
@@ -50,14 +51,11 @@
                             '&id_contrato='+$('#add_contrato').val()+
                             '&cuadrilla='+$('#cuadrilla').val()+
                             '&target=excel'+
-                                //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
-                                //'&endDate='+drp.endDate.format('YYYY-MM-DD');
-                            '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+
-                            '&fecha_hasta='+$('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD');
-                        //window.open(link);
+                            '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+ //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
+                            '&fecha_hasta='+$('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //'&endDate='+drp.endDate.format('YYYY-MM-DD');
                         window.location.href = link;
                     }
-                }
+                }*/
             ],
             responsive: true,
             language: {
