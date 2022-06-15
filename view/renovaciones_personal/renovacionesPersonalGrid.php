@@ -182,7 +182,7 @@
                                 '<a class="'+permisoRenovar_class+'" href="#" title="'+permisoRenovar_title+'">'+ //si tiene permiso para renovar
                                     '<i class="'+permisoRenovar_icon+'"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a class="'+permisoEliminarP+'" href="#" title="Eliminar novedad">'+ //si tiene permiso para eliminar
+                                '<a class="'+permisoEliminarP+'" href="#" title="Eliminar vencimiento">'+ //si tiene permiso para eliminar
                                     '<i class="far fa-trash-alt dp_red"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a href="#" title="'+user_info+'" onclick="return false">'+
