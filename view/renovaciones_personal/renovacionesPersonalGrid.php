@@ -158,7 +158,7 @@
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('PAR_DELETE', array(1)) )? true : false ?>';
                         let permisoEliminarP = ( !row.closed_date && ( (permisoEliminar && row.created_by == id_user) || (usr_abm) ))? 'delete' : 'disabled';
 
-                        let user_info = ''; //row.user.split('@')[0]+' '+row.created_date;
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
 
                         let uploads_class = '';
                         let uploads_title = '';
