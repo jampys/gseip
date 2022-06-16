@@ -165,7 +165,7 @@
             $("#myElem").html('Vencimiento guardado con exito').addClass('alert alert-success').show();
             setTimeout(function() { $("#myElem").hide();
                                     $('#myModal').modal('hide');
-                                    $("#search").trigger("click");
+                                    $('#example').DataTable().ajax.reload(null, false); //$("#search").trigger("click");
                                 }, 2000);
             return false; //para finalizar la ejecucion
         }

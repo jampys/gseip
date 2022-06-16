@@ -16,27 +16,23 @@
 
 
             $(document).on('click', '#search', function(){ //ok
-                //alert('presiono en buscar');
-                //var id = $(this).attr('data-id');
-                //preparo los parametros
-                params={};
+
+                /*params={};
                 params.id_vehiculo = $('#search_vehiculo option:selected').attr('id_vehiculo');
                 params.id_grupo = $('#search_vehiculo option:selected').attr('id_grupo');
-                //params.id_vencimiento = $("#search_vencimiento").val();
                 params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                 params.id_contrato = $("#search_contrato").val();
                 params.id_subcontratista = $("#search_subcontratista").val();
                 params.renovado = $('#search_renovado').prop('checked')? 1:0;
                 params.action = "renovacionesVehiculos";
                 params.operation = "refreshGrid";
-                //alert(params.id_grupo);
-                //alert(params.renovado);
-                $('#content').load('index.php', params);
+                $('#content').load('index.php', params);*/
+                $('#example').DataTable().ajax.reload();
             });
 
 
 
-            $(document).on('click', '.edit', function(){ //ok
+            $('#content').on('click', '.edit', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -47,10 +43,12 @@
                     $('#myModal').modal();
                     $('#id_vehiculo').prop('disabled', true).selectpicker('refresh');
                     $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
-                })
+                });
+                return false;
             });
 
-            $(document).on('click', '.view', function(){ //ok
+
+            $('#content').on('click', '.view', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -62,12 +60,12 @@
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                })
-
+                });
+                return false;
             });
 
 
-            $(document).on('click', '.renovar', function(){ //ok
+            $('#content').on('click', '.renovar', function(){ //ok
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
                 params.id_renovacion = id;
@@ -78,7 +76,8 @@
                     $('#myModal').modal();
                     $('#id_vehiculo').prop('disabled', true).selectpicker('refresh');
                     $('#id_vencimiento').prop('disabled', true).selectpicker('refresh');
-                })
+                });
+                return false;
             });
 
 
@@ -89,7 +88,7 @@
                 params.operation="newRenovacion";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
             });
 
 
@@ -102,7 +101,7 @@
 
 
             var dialog;
-            $(document).on('click', '#example .delete', function(){
+            $('#content').on('click', '#example .delete', function(){
                 var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
                     message: "<p>¿Desea eliminar el vencimiento?</p>",
@@ -121,7 +120,7 @@
                         }
                     }
                 });
-
+                return false;
 
             });
 

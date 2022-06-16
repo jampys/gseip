@@ -22,8 +22,11 @@ switch ($operation)
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $id_subcontratista = ($_POST['id_subcontratista']!='')? $_POST['id_subcontratista'] : null;
         $renovado = ($_POST['renovado']== 0)? null : 1;
-        $view->renovaciones_vehiculos = RenovacionVehicular::getRenovacionesVehiculos($id_vehiculo, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
-        $view->contentTemplate="view/renovaciones_vehiculos/renovacionesVehiculosGrid.php";
+        $rta = $view->renovaciones_vehiculos = RenovacionVehicular::getRenovacionesVehiculos($id_vehiculo, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
+        //$view->contentTemplate="view/renovaciones_vehiculos/renovacionesVehiculosGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveRenovacion': //ok

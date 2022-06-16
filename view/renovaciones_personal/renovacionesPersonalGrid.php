@@ -29,7 +29,7 @@
             buttons: [
                 {
                     text: '<i class="fas fa-file-pdf fa-lg dp_blue"></i>',
-                    titleAttr: 'Emitir RN01 Reporte de actividad de cuadrillas [pdf]',
+                    titleAttr: 'Emitir RV01 Reporte de vencimientos de personal [pdf]',
                     action: function ( e, dt, node, config ) {
                         /*let link = 'index.php?action=partes&operation=reporte'+
                             '&id_contrato='+$('#add_contrato').val()+
@@ -83,9 +83,6 @@
                 "data": function ( d ) {
                     //d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
                     //d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
-                    //d.search_contrato = $("#add_contrato").val();
-                    //d.id_periodo = $("#id_periodo").val();
-                    //d.cuadrilla = $("#cuadrilla").val();
                     d.id_empleado = $('#search_empleado option:selected').attr('id_empleado');
                     d.id_grupo = $('#search_empleado option:selected').attr('id_grupo');
                     d.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
@@ -205,8 +202,6 @@
 <!--<div class="col-md-1"></div>-->
 
 <div class="col-md-12">
-
-
 
 
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
