@@ -23,7 +23,7 @@ switch ($operation)
         $id_subcontratista = ($_POST['id_subcontratista']!='')? $_POST['id_subcontratista'] : null;
         $renovado = ($_POST['renovado']== 0)? null : 1;
         $view->renovaciones_vehiculos = RenovacionVehicular::getRenovacionesVehiculos($id_vehiculo, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
-        $view->contentTemplate="view/renovacionesVehiculosGrid.php";
+        $view->contentTemplate="view/renovaciones_vehiculos/renovacionesVehiculosGrid.php";
         break;
 
     case 'saveRenovacion': //ok
@@ -54,7 +54,7 @@ switch ($operation)
         $view->vehiculo = $view->renovacion->getVehiculo()->getMatricula()." ".$view->renovacion->getVehiculo()->getNroMovil();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesVehiculosForm.php";
+        $view->contentTemplate="view/renovaciones_vehiculos/renovacionesVehiculosForm.php";
         break;
 
     case 'editRenovacion': //ok
@@ -68,7 +68,7 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/renovacionesVehiculosForm.php";
+        $view->contentTemplate="view/renovaciones_vehiculos/renovacionesVehiculosForm.php";
         break;
 
     case 'renovRenovacion': //Renueva una renovacion existente //ok
@@ -85,7 +85,7 @@ switch ($operation)
         $view->vehiculo = $view->renovacion->getVehiculo()->getMatricula()." ".$view->renovacion->getVehiculo()->getNroMovil();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesVehiculosForm.php";
+        $view->contentTemplate="view/renovaciones_vehiculos/renovacionesVehiculosForm.php";
         break;
 
 
@@ -133,7 +133,7 @@ switch ($operation)
         $view->vencimientos = VencimientoVehicular::getVencimientosVehiculos(); //carga el combo para filtrar vencimientos
         $view->contratos = Contrato::getContratosControlVencimientos(); //carga el combo para filtrar contratos
         $view->subcontratistas = Subcontratista::getSubcontratistas(); //carga el combo para filtrar subcontratistas
-        $view->contentTemplate="view/renovacionesVehiculosGrid.php";
+        $view->contentTemplate="view/renovaciones_vehiculos/renovacionesVehiculosGrid.php";
         break;
 }
 
@@ -142,7 +142,7 @@ if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {
-    include_once('view/renovacionesVehiculosLayout.php');
+    include_once('view/renovaciones_vehiculos/renovacionesVehiculosLayout.php');
 }
 
 
