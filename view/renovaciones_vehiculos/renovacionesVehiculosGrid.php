@@ -99,7 +99,7 @@
             'columns': [
                 {"data" : "id_renovacion"},
                 {"data" : "vencimiento"},
-                {"data" : null, defaultContent: ''}, //empleado/grupo
+                {"data" : null, defaultContent: ''}, //vehiculo/grupo
                 {"data" : "fecha_emision"},
                 {"data" : "fecha_vencimiento"},
                 {"data" : "priority", visible: false},
@@ -111,10 +111,10 @@
             },
             "columnDefs": [
                 {
-                    targets: 2,//empleado/grupo
+                    targets: 2,//vehiculo/grupo
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
-                        return (row.id_empleado)? row.empleado : row.grupo;
+                        return (row.id_vehiculo)? row.vehiculo : row.grupo;
                     }
                 },
                 {targets: 3, type: 'date-uk', orderData: [ 3, 5 ]}, //fecha_emision
@@ -209,8 +209,7 @@
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>Nro. rnv</th>
-                <th>Fecha</th>
+                <th>Nro. vto.</th>
                 <th>vencimiento</th>
                 <th>vehículo / flota</th>
                 <th>F. emisión</th>

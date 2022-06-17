@@ -140,7 +140,7 @@ concat(ifnull(matricula, ''), ' ', ifnull(nro_movil, ''), ' ', ifnull(modelo, ''
 null  as grupo,
 vrv.id_rnv_renovacion,
 (select count(*) from uploads_vencimiento_v where id_renovacion = vrv.id_renovacion) as cant_uploads,
-null as certificado
+null as certificado, us.user
 from v_sec_vto_renovacion_v vrv, vto_vencimiento_v vvv, vto_alerta_vencimiento_v vav,
 (
 select vex.*, vvcx.id_contrato
@@ -162,10 +162,11 @@ OR
  group by vex.id_vehiculo
  having vex.fecha_baja is null
 ) ve,
-vto_alerta va
+vto_alerta va, sec_users us
 where vrv.id_vencimiento = vvv.id_vencimiento
 and vav.id_vencimiento = vrv.id_vencimiento
 and vrv.id_vehiculo = ve.id_vehiculo
+and vrv.created_by = us.id_user
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta_vehicular(vrv.id_renovacion)
 and ve.id_vehiculo =  ifnull(:id_vehiculo, ve.id_vehiculo)
@@ -188,11 +189,13 @@ null as vehiculo,
 CONCAT(vgv.nombre, ' ', ifnull(vgv.nro_referencia, '')) as grupo,
 vrv.id_rnv_renovacion,
 (select count(*) from uploads_vencimiento_v where id_renovacion = vrv.id_renovacion) as cant_uploads,
-(select vgvx.certificado from vto_grupo_vehiculo vgvx where vgvx.id_grupo = vgv.id_grupo and vgvx.id_vehiculo = :id_vehiculo and (vgvx.fecha_hasta is null or vgvx.fecha_hasta >= sysdate())) as certificado
-from v_sec_vto_renovacion_v vrv, vto_vencimiento_v vvv, vto_alerta_vencimiento_v vav, vto_alerta va, vto_grupos_v vgv
+(select vgvx.certificado from vto_grupo_vehiculo vgvx where vgvx.id_grupo = vgv.id_grupo and vgvx.id_vehiculo = :id_vehiculo and (vgvx.fecha_hasta is null or vgvx.fecha_hasta >= sysdate())) as certificado,
+us.user
+from v_sec_vto_renovacion_v vrv, vto_vencimiento_v vvv, vto_alerta_vencimiento_v vav, vto_alerta va, vto_grupos_v vgv, sec_users us
 where vrv.id_grupo = vgv.id_grupo
 and vrv.id_vencimiento = vvv.id_vencimiento
 and vav.id_vencimiento = vrv.id_vencimiento
+and vrv.created_by = us.id_user
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta_vehicular(vrv.id_renovacion)
 and vrv.id_vencimiento in ($id_vencimiento) -- filtro por vencimiento
