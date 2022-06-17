@@ -129,7 +129,7 @@
                     render: function (data, type, row, meta) {
 
                         let id_user = '<?php echo $_SESSION['id_user'] ?>';
-                        let usr_abm = '<?php echo ( PrivilegedUser::dhasPrivilege('SUC_ABM', array(0)))? true : false ?>'; //solo el administrador
+                        let usr_abm = '<?php echo ( PrivilegedUser::dhasPrivilege('USR_ABM', array(0)))? true : false ?>'; //solo el administrador
 
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) )? true : false ?>';
                         let permisoEditarP = (permisoEditar && !row.id_rnv_renovacion)? 'edit' : 'disabled';
@@ -152,7 +152,7 @@
                         }
 
 
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('PAR_DELETE', array(1)) )? true : false ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) )? true : false ?>';
                         let permisoEliminarP = ( !row.closed_date && ( (permisoEliminar && row.created_by == id_user) || (usr_abm) ))? 'delete' : 'disabled';
 
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
