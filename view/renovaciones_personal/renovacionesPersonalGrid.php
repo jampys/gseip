@@ -153,7 +153,7 @@
 
 
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('RPE_DELETE', array(1)) )? true : false ?>';
-                        let permisoEliminarP = ( !row.closed_date && ( (permisoEliminar && row.created_by == id_user) || (usr_abm) ))? 'delete' : 'disabled';
+                        let permisoEliminarP = ((permisoEliminar && row.created_by == id_user) || (usr_abm))? 'delete' : 'disabled';
 
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
 

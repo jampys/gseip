@@ -139,7 +139,7 @@ va.color, va.priority,
 CONCAT(em.apellido, ' ', em.nombre) as empleado,
 null  as grupo,
 vrp.id_rnv_renovacion,
-(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads, us.user
+(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads, us.user, vrp.created_by
 from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav,
 (
 select emx.*, ecx.id_contrato
@@ -188,7 +188,7 @@ va.color, va.priority,
 null as empleado,
 CONCAT(vgp.nombre, ' ', ifnull(vgp.nro_referencia, '')) as grupo,
 vrp.id_rnv_renovacion,
-(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads, us.user
+(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads, us.user, vrp.created_by
 from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, vto_alerta va, vto_grupos_p vgp, sec_users us
 where vrp.id_grupo = vgp.id_grupo
 and vrp.id_vencimiento = vvp.id_vencimiento
