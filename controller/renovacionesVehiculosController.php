@@ -151,7 +151,7 @@ switch ($operation)
         $encabezado['grupo'] = ($encabezado['obj_grupo']->getIdGrupo() > 0)? $encabezado['obj_grupo']->getNombre().' '.$encabezado['obj_grupo']->getNroReferencia() : 'Todos';
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
         $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
-        $encabezado['vencimientos'] = ($_GET['id_vencimiento']!='')? ReporteNovedades::getVencimientosPersonalList($_GET['id_vencimiento'])[0]['vencimientos'] : 'Todos';
+        $encabezado['vencimientos'] = ($_GET['id_vencimiento']!='')? ReporteNovedades::getVencimientosVehiculoslList($_GET['id_vencimiento'])[0]['vencimientos'] : 'Todos';
         $encabezado['obj_subcontratista'] = new Subcontratista($_GET['id_subcontratista']);
         $encabezado['subcontratista'] = ($encabezado['obj_subcontratista']->getIdSubcontratista() > 0)? $encabezado['obj_subcontratista']->getRazonSocial() : 'Todos';
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
