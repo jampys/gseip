@@ -148,15 +148,12 @@ switch ($operation)
         $encabezado = array();
         $encabezado['obj_empleado'] = new Empleado($_GET['id_empleado']);
         $encabezado['empleado'] = ($encabezado['obj_empleado']->getIdEmpleado() > 0)? $encabezado['obj_empleado']->getApellido().' '.$encabezado['obj_empleado']->getNombre() : 'Todos';
-
         $encabezado['obj_grupo'] = new Grupo($_GET['id_grupo']);
         $encabezado['grupo'] = ($encabezado['obj_grupo']->getIdGrupo() > 0)? $encabezado['obj_grupo']->getNombre().' '.$encabezado['obj_grupo']->getNroReferencia() : 'Todos';
-
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
         $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
-        //$encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
-        //$encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
-        //$encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';
+        $encabezado['obj_subcontratista'] = new Subcontratista($_GET['id_subcontratista']);
+        $encabezado['subcontratista'] = ($encabezado['obj_subcontratista']->getIdSubcontratista() > 0)? $encabezado['obj_subcontratista']->getRazonSocial() : 'Todos';
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
 
         $view->contentTemplate="view/renovaciones_personal/generador_rv01.php";

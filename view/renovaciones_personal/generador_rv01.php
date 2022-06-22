@@ -17,15 +17,17 @@ $spreadsheet->getActiveSheet()->mergeCells('A3:F3');
 $spreadsheet->getActiveSheet()->mergeCells('A4:F4');
 $spreadsheet->getActiveSheet()->mergeCells('A5:F5');
 $spreadsheet->getActiveSheet()->mergeCells('A6:F6');
-$spreadsheet->getActiveSheet()->getStyle('A1:F6')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:F6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->mergeCells('A7:F7');
+$spreadsheet->getActiveSheet()->getStyle('A1:F7')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:F7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'RV01 Reporte de vencimientos de personal');
-$sheet->setCellValueByColumnAndRow(1, 2, 'Cliente: '.$encabezado['cliente']);
-$sheet->setCellValueByColumnAndRow(1, 3, 'Empleado: '.$encabezado['empleado']);
-$sheet->setCellValueByColumnAndRow(1, 4, 'Grupo: '.$encabezado['grupo']);
-$sheet->setCellValueByColumnAndRow(1, 5, 'Contrato: '.$encabezado['contrato']);
-$sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_emision']);
+$sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Vencimiento/s: '.$encabezado['cliente']);
+$sheet->setCellValueByColumnAndRow(1, 4, 'Empleado: '.$encabezado['empleado']);
+$sheet->setCellValueByColumnAndRow(1, 5, 'Grupo: '.$encabezado['grupo']);
+$sheet->setCellValueByColumnAndRow(1, 6, 'Subcontratista: '.$encabezado['subcontratista']);
+$sheet->setCellValueByColumnAndRow(1, 7, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 
 //encabezado ------------------------------------------------------------
@@ -39,12 +41,12 @@ $cabecera = [
     "Día semana",
     "Solicitante"
 ];
-$sheet->fromArray($cabecera, null, 'A8');
-$spreadsheet->getActiveSheet()->getStyle('A8:H8')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A8:H8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$sheet->fromArray($cabecera, null, 'A9');
+$spreadsheet->getActiveSheet()->getStyle('A9:H9')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A9:H9')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
-$fila = 9;
+$fila = 10;
 foreach ($view->vencimientos as $p):
 
     //$sMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('m');
@@ -77,7 +79,7 @@ foreach ($sheet->getColumnIterator() as $column) {
 
 
 //configuro el auto filter
-$spreadsheet->getActiveSheet()->setAutoFilter('A8:H8');
+$spreadsheet->getActiveSheet()->setAutoFilter('A9:H9');
 
 
 //genero el reporte
