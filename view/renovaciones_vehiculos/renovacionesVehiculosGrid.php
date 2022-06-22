@@ -50,7 +50,7 @@
 
 
                         let link = 'index.php?action=renovacionesVehiculos&operation=reporte'+
-                            '&id_vehiculo='+params.id_empleado+
+                            '&id_vehiculo='+params.id_vehiculo+
                             '&id_grupo='+params.id_grupo+
                             '&id_vencimiento='+params.id_vencimiento+
                             '&id_contrato='+params.id_contrato+
