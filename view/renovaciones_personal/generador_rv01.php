@@ -23,7 +23,7 @@ $spreadsheet->getActiveSheet()->getStyle('A1:F7')->getFill()->setFillType(\PhpOf
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'RV01 Reporte de vencimientos de personal');
 $sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
-$sheet->setCellValueByColumnAndRow(1, 3, 'Vencimiento/s: '.$encabezado['vencimientos']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Vencimiento: '.$encabezado['vencimientos']);
 $sheet->setCellValueByColumnAndRow(1, 4, 'Empleado: '.$encabezado['empleado']);
 $sheet->setCellValueByColumnAndRow(1, 5, 'Grupo: '.$encabezado['grupo']);
 $sheet->setCellValueByColumnAndRow(1, 6, 'Subcontratista: '.$encabezado['subcontratista']);
@@ -84,7 +84,7 @@ $spreadsheet->getActiveSheet()->setAutoFilter('A9:F9');
 
 
 /* ajuste fila de vencimientos del encabezado*/
-$spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(30);
+//$spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(30);
 $spreadsheet->getActiveSheet()->getStyle('A3')->getAlignment()->setWrapText(true);
 
 
