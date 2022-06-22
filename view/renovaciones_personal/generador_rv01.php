@@ -7,7 +7,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
-$sheet->setTitle('partes');
+$sheet->setTitle('vencimientos');
 
 //titulo ----------------------------------------------------------------
 
@@ -37,13 +37,11 @@ $cabecera = [
     "Empleado / grupo",
     "F. emisión",
     "F. vto.",
-    "Nro. renovación",
-    "Día semana",
-    "Solicitante"
+    "Nro. renovación"
 ];
 $sheet->fromArray($cabecera, null, 'A9');
-$spreadsheet->getActiveSheet()->getStyle('A9:H9')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A9:H9')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A9:F9')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A9:F9')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
 $fila = 10;
@@ -64,8 +62,11 @@ foreach ($view->vencimientos as $p):
     $sheet->setCellValueByColumnAndRow(4, $fila, $p['fecha_emision']);
     $sheet->setCellValueByColumnAndRow(5, $fila, $p['fecha_vencimiento']);
     $sheet->setCellValueByColumnAndRow(6, $fila, $p['id_rnv_renovacion']);
-    $sheet->setCellValueByColumnAndRow(7, $fila, $p['nro_contrato']);
-    $sheet->setCellValueByColumnAndRow(8, $fila, ''); //solicitante
+
+    $spreadsheet->getActiveSheet()->getStyle('A'.$fila.':F'.$fila)->getFill()
+        ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+        //->getStartColor()->setARGB('b3b300');
+        ->getStartColor()->setARGB(substr($p['color'], 1, 6));
 
     $fila++;
 endforeach;
@@ -79,13 +80,13 @@ foreach ($sheet->getColumnIterator() as $column) {
 
 
 //configuro el auto filter
-$spreadsheet->getActiveSheet()->setAutoFilter('A9:H9');
+$spreadsheet->getActiveSheet()->setAutoFilter('A9:F9');
 
 
 //genero el reporte
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'RV01_'.$_GET['fecha_desde'].'_'.$_GET['fecha_hasta'].'.xlsx';
+$filename = 'RV01_vencimientos_personal'.date("d-m-Y").'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');

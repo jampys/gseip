@@ -142,7 +142,7 @@ switch ($operation)
         $renovado = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
 
         $view->vencimientos = $rta = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento ,$id_contrato, $id_subcontratista, $renovado);
-        
+
         $encabezado = array();
         $encabezado['obj_empleado'] = new Empleado($_GET['id_empleado']);
         $encabezado['empleado'] = ($encabezado['obj_empleado']->getIdEmpleado() > 0)? $encabezado['obj_empleado']->getApellido().' '.$encabezado['obj_empleado']->getNombre() : 'Todos';
