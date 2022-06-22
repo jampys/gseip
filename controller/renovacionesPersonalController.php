@@ -134,7 +134,7 @@ switch ($operation)
         $view->disableLayout=true;
         $id_empleado = ($_GET['id_empleado'])? $_GET['id_empleado'] : null;
         $id_grupo = ($_GET['id_grupo'])? $_GET['id_grupo'] : null;
-        $id_vencimiento = ($_GET['id_vencimiento'])? $_GET['id_vencimiento'] : null;
+        $id_vencimiento = ($_GET['id_vencimiento']!='')? implode(",", $_GET['id_vencimiento'])  : 'vrp.id_vencimiento';
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $id_subcontratista = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
         $renovado = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
