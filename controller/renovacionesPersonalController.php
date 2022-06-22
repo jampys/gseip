@@ -139,7 +139,7 @@ switch ($operation)
         $id_vencimiento = ($_GET['id_vencimiento'])? $_GET['id_vencimiento'] : 'vrp.id_vencimiento';
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $id_subcontratista = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
-        $renovado = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
+        $renovado = ($_GET['renovado']== 0)? null : 1;
 
         $view->vencimientos = $rta = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento ,$id_contrato, $id_subcontratista, $renovado);
 

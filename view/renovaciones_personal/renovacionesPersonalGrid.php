@@ -40,7 +40,7 @@
                  params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                  params.id_contrato = $("#search_contrato").val();
                  params.id_subcontratista = $("#search_subcontratista").val();
-                 params.renovado = $('#search_renovado').prop('checked')? 1 : '';
+                 params.renovado = $('#search_renovado').prop('checked')? 1 : 0;
                  params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                  //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
                  //var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_vencimientos_p.rptdesign&p_id_empleado="+params.id_empleado+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_id_subcontratista="+params.id_subcontratista+"&p_renovado="+params.renovado+"&p_id_user="+params.id_user;
