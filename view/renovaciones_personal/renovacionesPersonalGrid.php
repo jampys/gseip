@@ -29,7 +29,7 @@
             buttons: [
                 {
                     text: '<i class="fas fa-file-excel fa-lg dp_blue"></i>',
-                    titleAttr: 'Descargar RN02 Reporte de actividad de cuadrillas [xlsx]',
+                    titleAttr: 'Descargar RV01 Reporte de vencimientos de personal [xlsx]',
                     action: function ( e, dt, node, config ) {
 
                  params={};

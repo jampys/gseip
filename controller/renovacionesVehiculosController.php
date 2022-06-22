@@ -4,6 +4,8 @@ include_once("model/vto_renovacionesVehiculosModel.php");
 include_once("model/vto_vencimientosVehiculosModel.php");
 include_once("model/contratosModel.php");
 include_once("model/subcontratistasModel.php");
+include_once("model/vto_gruposVehiculosModel.php");
+include_once("model/nov_reportesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -129,6 +131,34 @@ switch ($operation)
         print_r(json_encode($rta));
         exit;
         break;
+
+
+    case 'reporte': //RV02
+        $view->disableLayout=true;
+        $id_vehiculo = ($_GET['id_vehiculo'])? $_GET['id_vehiculo'] : null;
+        $id_grupo = ($_GET['id_grupo'])? $_GET['id_grupo'] : null;
+        $id_vencimiento = ($_GET['id_vencimiento'])? $_GET['id_vencimiento'] : 'vrp.id_vencimiento';
+        $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
+        $id_subcontratista = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
+        $renovado = ($_GET['renovado']== 0)? null : 1;
+
+        $view->vencimientos = $rta = RenovacionPersonal::getRenovacionesPersonal($id_vehiculo, $id_grupo, $id_vencimiento ,$id_contrato, $id_subcontratista, $renovado);
+
+        $encabezado = array();
+        $encabezado['obj_vehiculo'] = new Vehiculo($_GET['id_vehiculo']);
+        $encabezado['vehiculo'] = ($encabezado['obj_vehiculo']->getIdVehiculo() > 0)? $encabezado['obj_vehiculo']->getNroMovil().' '.$encabezado['obj_vehiculo']->getMatricula() : 'Todos';
+        $encabezado['obj_grupo'] = new Grupo($_GET['id_grupo']);
+        $encabezado['grupo'] = ($encabezado['obj_grupo']->getIdGrupo() > 0)? $encabezado['obj_grupo']->getNombre().' '.$encabezado['obj_grupo']->getNroReferencia() : 'Todos';
+        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
+        $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
+        $encabezado['vencimientos'] = ($_GET['id_vencimiento']!='')? ReporteNovedades::getVencimientosPersonalList($_GET['id_vencimiento'])[0]['vencimientos'] : 'Todos';
+        $encabezado['obj_subcontratista'] = new Subcontratista($_GET['id_subcontratista']);
+        $encabezado['subcontratista'] = ($encabezado['obj_subcontratista']->getIdSubcontratista() > 0)? $encabezado['obj_subcontratista']->getRazonSocial() : 'Todos';
+        $encabezado['fecha_emision'] = date('d/m/Y H:i');
+
+        $view->contentTemplate="view/renovaciones_vehiculos/generador_rv02.php";
+        break;
+
 
     default : //ok
         $view->renovacion = new RenovacionVehicular();

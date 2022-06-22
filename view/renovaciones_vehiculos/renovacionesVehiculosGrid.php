@@ -29,16 +29,9 @@
             "<'row'<'col-md-5'i><'col-md-7'p>>",
             buttons: [
                 {
-                    text: '<i class="fas fa-file-pdf fa-lg dp_blue"></i>',
-                    titleAttr: 'Emitir RV02 Reporte de vencimientos de vehículos [pdf]',
+                    text: '<i class="fas fa-file-excel fa-lg dp_blue"></i>',
+                    titleAttr: 'Descargar RV02 Reporte de vencimientos de vehículos [xlsx]',
                     action: function ( e, dt, node, config ) {
-                        /*let link = 'index.php?action=partes&operation=reporte'+
-                         '&id_contrato='+$('#add_contrato').val()+
-                         '&cuadrilla='+$('#cuadrilla').val()+
-                         '&target=pdf'+
-                         '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+ //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
-                         '&fecha_hasta='+$('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //'&endDate='+drp.endDate.format('YYYY-MM-DD');
-                         window.open(link, '_blank');*/
 
                         params={};
                         var attr = $('#search_vehiculo option:selected').attr('id_vehiculo'); // For some browsers, `attr` is undefined; for others,`attr` is false.  Check for both.
@@ -48,28 +41,26 @@
                         params.id_vencimiento = ($("#search_vencimiento").val()!= null)? $("#search_vencimiento").val() : '';
                         params.id_contrato = $("#search_contrato").val();
                         params.id_subcontratista = $("#search_subcontratista").val();
-                        params.renovado = $('#search_renovado').prop('checked')? 1 : '';
+                        params.renovado = $('#search_renovado').prop('checked')? 1 : 0;
                         params.id_user = "<?php echo $_SESSION['id_user']; ?>";
-                        var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                        var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_vencimientos_v.rptdesign&p_id_vehiculo="+params.id_vehiculo+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_id_subcontratista="+params.id_subcontratista+"&p_renovado="+params.renovado+"&p_id_user="+params.id_user;
-                        var win = window.open(URL, "_blank");
-                        return false;
+                        //var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
+                        //var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_vencimientos_p.rptdesign&p_id_empleado="+params.id_empleado+"&p_id_grupo="+params.id_grupo+"&p_id_vencimiento="+params.id_vencimiento+"&p_id_contrato="+params.id_contrato+"&p_id_subcontratista="+params.id_subcontratista+"&p_renovado="+params.renovado+"&p_id_user="+params.id_user;
+                        //var win = window.open(URL, "_blank");
+                        //return false;
 
+
+                        let link = 'index.php?action=renovacionesVehiculos&operation=reporte'+
+                            '&id_vehiculo='+params.id_empleado+
+                            '&id_grupo='+params.id_grupo+
+                            '&id_vencimiento='+params.id_vencimiento+
+                            '&id_contrato='+params.id_contrato+
+                            '&id_subcontratista='+params.id_subcontratista+
+                            '&renovado='+params.renovado+
+                            '&id_user='+params.id_user;
+
+                        window.location.href = link;
                     }
                 }
-                /*{
-                 text: '<i class="fas fa-file-excel fa-lg dp_blue"></i>',
-                 titleAttr: 'Descargar RN02 Reporte de actividad de cuadrillas [xlsx]',
-                 action: function ( e, dt, node, config ) {
-                 let link = 'index.php?action=partes&operation=reporte'+
-                 '&id_contrato='+$('#add_contrato').val()+
-                 '&cuadrilla='+$('#cuadrilla').val()+
-                 '&target=excel'+
-                 '&fecha_desde='+$('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD')+ //'&startDate='+drp.startDate.format('YYYY-MM-DD')+
-                 '&fecha_hasta='+$('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //'&endDate='+drp.endDate.format('YYYY-MM-DD');
-                 window.location.href = link;
-                 }
-                 }*/
             ],
             responsive: true,
             language: {

@@ -361,6 +361,21 @@ order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementa
     }
 
 
+    public static function getVencimientosVehiculoslList($id_vencimiento) { //ok
+        //listado de nombre de vencimientos de personal, concatenados. Para encabezado de reporte RV01
+        $stmt=new sQuery();
+        $query="select GROUP_CONCAT(cast(vv.nombre as CHAR) SEPARATOR ', ') AS vencimientos
+                from vto_vencimiento_v vv
+                where vv.id_vencimiento in ($id_vencimiento)
+                group by null";
+
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
 
 }
 
