@@ -4,6 +4,7 @@ include_once("model/vto_renovacionesPersonalModel.php");
 include_once("model/vto_vencimientosPersonalModel.php");
 include_once("model/contratosModel.php");
 include_once("model/subcontratistasModel.php");
+include_once("model/vto_gruposPersonalModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -147,6 +148,10 @@ switch ($operation)
         $encabezado = array();
         $encabezado['obj_empleado'] = new Empleado($_GET['id_empleado']);
         $encabezado['empleado'] = ($encabezado['obj_empleado']->getIdEmpleado() > 0)? $encabezado['obj_empleado']->getApellido().' '.$encabezado['obj_empleado']->getNombre() : 'Todos';
+
+        $encabezado['obj_grupo'] = new Grupo($_GET['id_grupo']);
+        $encabezado['grupo'] = ($encabezado['obj_grupo']->getIdGrupo() > 0)? $encabezado['obj_grupo']->getNombre().' '.$encabezado['obj_grupo']->getNroReferencia() : 'Todos';
+
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
         $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
         //$encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();

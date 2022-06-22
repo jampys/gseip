@@ -22,9 +22,9 @@ $spreadsheet->getActiveSheet()->getStyle('A1:F6')->getFill()->setFillType(\PhpOf
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'RV01 Reporte de vencimientos de personal');
 $sheet->setCellValueByColumnAndRow(1, 2, 'Cliente: '.$encabezado['cliente']);
-$sheet->setCellValueByColumnAndRow(1, 4, 'Empleado: '.$encabezado['empleado']);
-$sheet->setCellValueByColumnAndRow(1, 3, 'Contrato: '.$encabezado['contrato']);
-$sheet->setCellValueByColumnAndRow(1, 5, 'Fecha desde - hasta: '.$encabezado['fecha_desde'].' - '.$encabezado['fecha_hasta']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Empleado: '.$encabezado['empleado']);
+$sheet->setCellValueByColumnAndRow(1, 4, 'Grupo: '.$encabezado['grupo']);
+$sheet->setCellValueByColumnAndRow(1, 5, 'Contrato: '.$encabezado['contrato']);
 $sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 
