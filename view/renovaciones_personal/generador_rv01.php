@@ -20,7 +20,7 @@ $spreadsheet->getActiveSheet()->mergeCells('A6:F6');
 $spreadsheet->getActiveSheet()->getStyle('A1:F6')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A1:F6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
-$sheet->setCellValueByColumnAndRow(1, 1, 'RN02 Reporte de actividad de cuadrillas');
+$sheet->setCellValueByColumnAndRow(1, 1, 'RV01 Reporte de vencimientos de personal');
 $sheet->setCellValueByColumnAndRow(1, 2, 'Cliente: '.$encabezado['cliente']);
 $sheet->setCellValueByColumnAndRow(1, 3, 'Contrato: '.$encabezado['contrato']);
 $sheet->setCellValueByColumnAndRow(1, 4, 'Cuadrilla: '.$encabezado['cuadrilla']);
@@ -33,9 +33,9 @@ $cabecera = [
     "Nro. vto",
     "Vencimiento",
     "Empleado / grupo",
-    "Parte No.",
-    "Fecha inicio",
-    "Fecha fin",
+    "F. emisión",
+    "F. vto.",
+    "Nro. renovación",
     "Día semana",
     "Solicitante",
     "No. recurso",
@@ -91,9 +91,9 @@ foreach ($view->vencimientos as $p):
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['id_renovacion']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['vencimiento']);
     $sheet->setCellValueByColumnAndRow(3, $fila, $emp_gru);
-    $sheet->setCellValueByColumnAndRow(4, $fila, $p['nro_parte_diario']);
-    $sheet->setCellValueByColumnAndRow(5, $fila, $p['fecha_parte']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, ''); //fecha fin
+    $sheet->setCellValueByColumnAndRow(4, $fila, $p['fecha_emision']);
+    $sheet->setCellValueByColumnAndRow(5, $fila, $p['fecha_vencimiento']);
+    $sheet->setCellValueByColumnAndRow(6, $fila, $p['id_rnv_renovacion']);
     $sheet->setCellValueByColumnAndRow(7, $fila, $p['nro_contrato']);
     $sheet->setCellValueByColumnAndRow(8, $fila, ''); //solicitante
     $sheet->setCellValueByColumnAndRow(9, $fila, $p['nombre_corto_op']);
