@@ -1,136 +1,158 @@
 <?php
 
-    require_once('vendor/autoload.php');
-    $mpdf = new \Mpdf\Mpdf([
-        "format" => "A4",
-        "margin_top" => 14, //https://github.com/mpdf/mpdf/issues/615
-        'default_font' => 'dejavusans',
-        'default_font_size' => 8,
-        //'debug' => true, //debug errores
-        'allow_output_buffering' => true //capturar excepciones
-    ]);
+require 'vendor/autoload.php';
 
-    $mpdf->SetHTMLFooter('
-                <table style="width:100%">
-                    <tbody>
-                        <tr>
-                            <td><span style="font-size: 10px">'.$GLOBALS['ini']["unidad_negocio"]["un_direccion"].'  Tel. '.$GLOBALS['ini']["unidad_negocio"]["un_telefono"].'</span></td>
-                            <td>{PAGENO}/{nb}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            ');
-    //$mpdf->SetFooter('{PAGENO}');
-    $mpdf->SetTitle('RN01 Reporte de Actividad de cuadrillas');
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-    $css = file_get_contents('resources/css/dario_mpdf.css');
-    $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
-    $mpdf->WriteHTML('
+$spreadsheet = new Spreadsheet();
+$sheet = $spreadsheet->getActiveSheet();
+$sheet->setTitle('partes');
 
+//titulo ----------------------------------------------------------------
 
+$spreadsheet->getActiveSheet()->mergeCells('A1:F1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
+$spreadsheet->getActiveSheet()->mergeCells('A2:F2');
+$spreadsheet->getActiveSheet()->mergeCells('A3:F3');
+$spreadsheet->getActiveSheet()->mergeCells('A4:F4');
+$spreadsheet->getActiveSheet()->mergeCells('A5:F5');
+$spreadsheet->getActiveSheet()->mergeCells('A6:F6');
+$spreadsheet->getActiveSheet()->getStyle('A1:F6')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:F6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+
+$sheet->setCellValueByColumnAndRow(1, 1, 'RN02 Reporte de actividad de cuadrillas');
+$sheet->setCellValueByColumnAndRow(1, 2, 'Cliente: '.$encabezado['cliente']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Contrato: '.$encabezado['contrato']);
+$sheet->setCellValueByColumnAndRow(1, 4, 'Cuadrilla: '.$encabezado['cuadrilla']);
+$sheet->setCellValueByColumnAndRow(1, 5, 'Fecha desde - hasta: '.$encabezado['fecha_desde'].' - '.$encabezado['fecha_hasta']);
+$sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 
+//encabezado ------------------------------------------------------------
+$cabecera = [
+    "Nro. contrato",
+    "Mes",
+    "Semana",
+    "Parte No.",
+    "Fecha inicio",
+    "Fecha fin",
+    "Día semana",
+    "Solicitante",
+    "No. recurso",
+    "Denominación recurso",
+    "Personal",
+    "Interno",
+    "Zona",
+    "Lugar",
+    "Descripción",
+    "Avance %",
+    "OT",
+    "Cod",
+    "Hrs",
+    "Cantidad (coeficiente)",
+    "Item",
+    "Descripción item",
+    "VR unitario",
+    "VR total",
+    "Hs extras",
+    "Observaciones",
+    "Tiempo de viaje",
+    "Tiempo neto reparación",
+    "Tiempos varios",
+    "Tiempos restantes",
+    "Horario inicio",
+    "Horario fin",
+    "Parte objeto",
+    "Síntoma",
+    "Causa",
+    "Tiempo de parada",
+    "Observación de parada",
+    "Punto de medida",
+    "Observaciones generales"
 
-        <div style="width: 100%">
+];
+$sheet->fromArray($cabecera, null, 'A8');
+$spreadsheet->getActiveSheet()->getStyle('A8:AM8')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A8:AM8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+
+//cuerpo -----------------------------------------------------------------
+$fila = 9;
+foreach ($view->vencimientos as $p):
+
+    //$sMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('m');
+    $sMonth = substr($p['periodo'], -2);
+    //$sFirstDayOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('01/m/Y');
+    $horas_extra = ($p['id_evento'] == 1 or $p['id_evento'] == 15)? 'SI' : 'NO'; //horas extra: si tiene GU Guardia activada o JE Jornada extendida
+    $area = ($p['area1'])? $p['area1'] : $p['area'] ;
+    $orden_nro = ($p['orden_nro']==0 || $p['orden_nro']==1 || $p['orden_nro']=='')? 'Falta OT' : $p['orden_nro'];
+
+    $sheet->setCellValueByColumnAndRow(1, $fila, $p['nro_contrato']);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $sMonth);
+    $sheet->setCellValueByColumnAndRow(3, $fila, $p['nro_contrato']);
+    $sheet->setCellValueByColumnAndRow(4, $fila, $p['nro_parte_diario']);
+    $sheet->setCellValueByColumnAndRow(5, $fila, $p['fecha_parte']);
+    $sheet->setCellValueByColumnAndRow(6, $fila, ''); //fecha fin
+    $sheet->setCellValueByColumnAndRow(7, $fila, $p['nro_contrato']);
+    $sheet->setCellValueByColumnAndRow(8, $fila, ''); //solicitante
+    $sheet->setCellValueByColumnAndRow(9, $fila, $p['nombre_corto_op']);
+    $sheet->setCellValueByColumnAndRow(10, $fila, $p['denominacion_recurso']);
+    $sheet->setCellValueByColumnAndRow(11, $fila, $p['personal']);
+    $sheet->setCellValueByColumnAndRow(12, $fila, $p['nombre_corto']);
+    $sheet->setCellValueByColumnAndRow(13, $fila, $area);
+    $sheet->setCellValueByColumnAndRow(14, $fila, ''); //lugar
+    $sheet->setCellValueByColumnAndRow(15, $fila, ''); //descripcion
+    $sheet->setCellValueByColumnAndRow(16, $fila, ''); //avance
+    $sheet->setCellValueByColumnAndRow(17, $fila, $orden_nro);
+    $sheet->setCellValueByColumnAndRow(18, $fila, ''); //Cod
+    $sheet->setCellValueByColumnAndRow(19, $fila, $p['hrs']);
+    $sheet->setCellValueByColumnAndRow(20, $fila, ''); //cantidad(coeficiente)
+    $sheet->setCellValueByColumnAndRow(21, $fila, $p['item']);
+    $sheet->setCellValueByColumnAndRow(22, $fila, $p['denominacion_recurso']); //descripcion item
+    $sheet->setCellValueByColumnAndRow(23, $fila, ''); //VR unitario
+    $sheet->setCellValueByColumnAndRow(24, $fila, ''); //VR total
+    $sheet->setCellValueByColumnAndRow(25, $fila, $horas_extra); //Horas extras
+    $sheet->setCellValueByColumnAndRow(26, $fila, $p['evento']); //observaciones
+    $sheet->setCellValueByColumnAndRow(27, $fila, ''); //tiempo de viaje
+    $sheet->setCellValueByColumnAndRow(28, $fila, ''); //tiempo neto reparacion
+    $sheet->setCellValueByColumnAndRow(29, $fila, ''); //tiempos varios
+    $sheet->setCellValueByColumnAndRow(30, $fila, ''); //tiempos restantes
+    $sheet->setCellValueByColumnAndRow(31, $fila, $p['hora_inicio']);
+    $sheet->setCellValueByColumnAndRow(32, $fila, $p['hora_fin']);
+    $sheet->setCellValueByColumnAndRow(33, $fila, ''); //parte objeto
+    $sheet->setCellValueByColumnAndRow(34, $fila, ''); //sintoma
+    $sheet->setCellValueByColumnAndRow(35, $fila, ''); //causa
+    $sheet->setCellValueByColumnAndRow(36, $fila, ''); //tiempo de parada
+    $sheet->setCellValueByColumnAndRow(37, $fila, ''); //observacion de parada
+    $sheet->setCellValueByColumnAndRow(38, $fila, ''); //punto de medida
+    $sheet->setCellValueByColumnAndRow(39, $fila, ''); //observaciones generales
+
+    $fila++;
+endforeach;
+
+
+//Ajustar el ancho de todas las columnas: https://stackoverflow.com/questions/62203260/php-spreadsheet-cant-find-the-function-to-auto-size-column-width
+foreach ($sheet->getColumnIterator() as $column) {
+    $sheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
+}
 
 
 
-        <div style="float: left; width: 25%; height: 36px">
-            <img src="resources/img/seip.png" width="126px" height="36px">
-        </div>
-
-        <div style="float: left; width: 65%; height: 36px; text-align: left">
-            <span style="font-size: 16px; font-weight: bold">RN01 Reporte de actividad de cuadrillas</span><br/>
-            <span style="font-size: 13px">Gerencia operativa y de servicios</span>
-        </div>
-
-        <div style="float: right; width: 10%; height: 36px; font-size: 8px; text-align: right">
-            RO-VSE-0104<br/>
-            19/11/2021<br/>
-            rev 00
-        </div>
+//configuro el auto filter
+$spreadsheet->getActiveSheet()->setAutoFilter('A8:AM8');
 
 
-        </div>
-        <hr/>
+//genero el reporte
+$writer = new Xlsx($spreadsheet);
+//$writer->save('C:/temp/hello world.xlsx');
+$filename = 'RV01_'.$_GET['fecha_desde'].'_'.$_GET['fecha_hasta'].'.xlsx';
+header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+header('Content-Disposition: attachment;filename="'.$filename.'"');
+header('Cache-Control: max-age=0');
+
+ob_end_clean(); //https://github.com/PHPOffice/PhpSpreadsheet/issues/217
+$writer->save('php://output');
+exit();
 
 
-
-        <div style="float: left; width: 100%">
-
-
-            <div class="borde-circular" style="background-color: #f2f2f2">
-            <table style="width:100%">
-            <!--<thead>
-                <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Age</th>
-                </tr>
-            </thead>-->
-            <tbody>
-                <tr>
-                    <td style="width: 20%"><span class="subtitulo">Cliente</span></td>
-                    <td style="width: 30%">'.$encabezado['cliente'].'</td>
-                    <td style="width: 20%"><span class="subtitulo">Contrato</span></td>
-                    <td style="width: 30%">'.$encabezado['contrato'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Cuadrilla</span></td>
-                    <td>'.$encabezado['cuadrilla'].'</td>
-                    <td><span class="subtitulo">Fecha emisión</span></td>
-                    <td>'.$encabezado['fecha_emision'].'</td>
-                </tr>
-                <tr>
-                    <td><span class="subtitulo">Fecha desde - hasta</span></td>
-                    <td>'.$encabezado['fecha_desde']." - ".$encabezado['fecha_hasta'].'</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-
-
-        </div>
-
-        <br/>
-
-
-
-
-
-        <table id="example" style="width:100%">
-            <thead>
-            <tr>
-                <th>Fecha parte</th>
-                <th>Cuadrilla</th>
-                <th>Área</th>
-                <th>Evento</th>
-                <th>Nro. parte</th>
-                <th>Nro. OT</th>
-            </tr>
-            </thead>
-            <tbody>
-
-
-        ',
-        \Mpdf\HTMLParserMode::HTML_BODY);
-
-
-        foreach ($rta as $x) {
-            $mpdf->WriteHTML('<tr><td>'.$x["fecha_parte"].'</td><td>'.$x["cuadrilla"].'</td><td>'.$x["area"].'</td><td>'.$x["evento"].'</td><td>'.$x["nro_parte_diario"].'</td><td>'.$x["orden_nro"].'</td></tr>');
-        }
-
-        $mpdf->WriteHTML('</tbody></table>');
-
-
-        $namepdf = 'RN01-'.$encabezado['cliente'].'-'.date('dmYHi').'.pdf';
-        $mpdf->Output($namepdf, 'I'); //I visualizar, D descargar
-
-
-
-
-
-	?>
+?>
 
