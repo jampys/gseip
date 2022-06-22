@@ -30,9 +30,9 @@ $sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_e
 
 //encabezado ------------------------------------------------------------
 $cabecera = [
-    "Nro. contrato",
-    "Mes",
-    "Semana",
+    "Nro. vto",
+    "Vencimiento",
+    "Empleado / grupo",
     "Parte No.",
     "Fecha inicio",
     "Fecha fin",
@@ -80,15 +80,17 @@ $fila = 9;
 foreach ($view->vencimientos as $p):
 
     //$sMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('m');
-    $sMonth = substr($p['periodo'], -2);
+    //$sMonth = substr($p['periodo'], -2);
     //$sFirstDayOfMonth = DateTime::createFromFormat('d/m/Y', $p['fecha_parte'])->format('01/m/Y');
-    $horas_extra = ($p['id_evento'] == 1 or $p['id_evento'] == 15)? 'SI' : 'NO'; //horas extra: si tiene GU Guardia activada o JE Jornada extendida
-    $area = ($p['area1'])? $p['area1'] : $p['area'] ;
-    $orden_nro = ($p['orden_nro']==0 || $p['orden_nro']==1 || $p['orden_nro']=='')? 'Falta OT' : $p['orden_nro'];
+    //$horas_extra = ($p['id_evento'] == 1 or $p['id_evento'] == 15)? 'SI' : 'NO'; //horas extra: si tiene GU Guardia activada o JE Jornada extendida
+    //$area = ($p['area1'])? $p['area1'] : $p['area'] ;
+    //$orden_nro = ($p['orden_nro']==0 || $p['orden_nro']==1 || $p['orden_nro']=='')? 'Falta OT' : $p['orden_nro'];
 
-    $sheet->setCellValueByColumnAndRow(1, $fila, $p['nro_contrato']);
-    $sheet->setCellValueByColumnAndRow(2, $fila, $sMonth);
-    $sheet->setCellValueByColumnAndRow(3, $fila, $p['nro_contrato']);
+    $emp_gru = ($p['empleado'])? $p['empleado'] : $p['grupo'];
+
+    $sheet->setCellValueByColumnAndRow(1, $fila, $p['id_renovacion']);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $p['vencimiento']);
+    $sheet->setCellValueByColumnAndRow(3, $fila, $emp_gru);
     $sheet->setCellValueByColumnAndRow(4, $fila, $p['nro_parte_diario']);
     $sheet->setCellValueByColumnAndRow(5, $fila, $p['fecha_parte']);
     $sheet->setCellValueByColumnAndRow(6, $fila, ''); //fecha fin
@@ -98,11 +100,11 @@ foreach ($view->vencimientos as $p):
     $sheet->setCellValueByColumnAndRow(10, $fila, $p['denominacion_recurso']);
     $sheet->setCellValueByColumnAndRow(11, $fila, $p['personal']);
     $sheet->setCellValueByColumnAndRow(12, $fila, $p['nombre_corto']);
-    $sheet->setCellValueByColumnAndRow(13, $fila, $area);
+    $sheet->setCellValueByColumnAndRow(13, $fila, $p['nombre_corto']);
     $sheet->setCellValueByColumnAndRow(14, $fila, ''); //lugar
     $sheet->setCellValueByColumnAndRow(15, $fila, ''); //descripcion
     $sheet->setCellValueByColumnAndRow(16, $fila, ''); //avance
-    $sheet->setCellValueByColumnAndRow(17, $fila, $orden_nro);
+    $sheet->setCellValueByColumnAndRow(17, $fila, $p['nombre_corto']);
     $sheet->setCellValueByColumnAndRow(18, $fila, ''); //Cod
     $sheet->setCellValueByColumnAndRow(19, $fila, $p['hrs']);
     $sheet->setCellValueByColumnAndRow(20, $fila, ''); //cantidad(coeficiente)
@@ -110,7 +112,7 @@ foreach ($view->vencimientos as $p):
     $sheet->setCellValueByColumnAndRow(22, $fila, $p['denominacion_recurso']); //descripcion item
     $sheet->setCellValueByColumnAndRow(23, $fila, ''); //VR unitario
     $sheet->setCellValueByColumnAndRow(24, $fila, ''); //VR total
-    $sheet->setCellValueByColumnAndRow(25, $fila, $horas_extra); //Horas extras
+    $sheet->setCellValueByColumnAndRow(25, $fila, $p['nombre_corto']); //Horas extras
     $sheet->setCellValueByColumnAndRow(26, $fila, $p['evento']); //observaciones
     $sheet->setCellValueByColumnAndRow(27, $fila, ''); //tiempo de viaje
     $sheet->setCellValueByColumnAndRow(28, $fila, ''); //tiempo neto reparacion
