@@ -91,7 +91,7 @@ $spreadsheet->getActiveSheet()->getStyle('A3')->getAlignment()->setWrapText(true
 //genero el reporte
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'RV01_vencimientos_personal'.date("d-m-Y").'.xlsx';
+$filename = 'RV02_vencimientos_vehiculos'.date("d-m-Y").'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');

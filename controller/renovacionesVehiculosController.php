@@ -137,12 +137,12 @@ switch ($operation)
         $view->disableLayout=true;
         $id_vehiculo = ($_GET['id_vehiculo'])? $_GET['id_vehiculo'] : null;
         $id_grupo = ($_GET['id_grupo'])? $_GET['id_grupo'] : null;
-        $id_vencimiento = ($_GET['id_vencimiento'])? $_GET['id_vencimiento'] : 'vrp.id_vencimiento';
+        $id_vencimiento = ($_GET['id_vencimiento'])? $_GET['id_vencimiento'] : 'vrv.id_vencimiento';
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $id_subcontratista = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
         $renovado = ($_GET['renovado']== 0)? null : 1;
 
-        $view->vencimientos = $rta = RenovacionPersonal::getRenovacionesPersonal($id_vehiculo, $id_grupo, $id_vencimiento ,$id_contrato, $id_subcontratista, $renovado);
+        $view->vencimientos = $rta = RenovacionVehicular::getRenovacionesVehiculos($id_vehiculo, $id_grupo, $id_vencimiento ,$id_contrato, $id_subcontratista, $renovado);
 
         $encabezado = array();
         $encabezado['obj_vehiculo'] = new Vehiculo($_GET['id_vehiculo']);
