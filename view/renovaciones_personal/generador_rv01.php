@@ -83,6 +83,11 @@ foreach ($sheet->getColumnIterator() as $column) {
 $spreadsheet->getActiveSheet()->setAutoFilter('A9:F9');
 
 
+/* ajuste fila de vencimientos del encabezado*/
+$spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(30);
+$spreadsheet->getActiveSheet()->getStyle('A3')->getAlignment()->setWrapText(true);
+
+
 //genero el reporte
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
