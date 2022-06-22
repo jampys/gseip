@@ -201,8 +201,8 @@
             <thead>
             <tr>
                 <th>Nro. vto.</th>
-                <th>vencimiento</th>
-                <th>vehículo / flota</th>
+                <th>Vencimiento</th>
+                <th>Vehículo / flota</th>
                 <th>F. emisión</th>
                 <th>F. vto.</th>
                 <th style="display: none">Priority</th>
