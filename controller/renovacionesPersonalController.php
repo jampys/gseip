@@ -136,16 +136,13 @@ switch ($operation)
         $view->disableLayout=true;
         $id_empleado = ($_GET['id_empleado'])? $_GET['id_empleado'] : null;
         $id_grupo = ($_GET['id_grupo'])? $_GET['id_grupo'] : null;
-        $id_vencimiento = ($_GET['id_vencimiento']!='')? implode(",", $_GET['id_vencimiento'])  : 'vrp.id_vencimiento';
+        $id_vencimiento = ($_GET['id_vencimiento'])? $_GET['id_vencimiento'] : 'vrp.id_vencimiento';
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         $id_subcontratista = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
         $renovado = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
 
         $view->vencimientos = $rta = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento ,$id_contrato, $id_subcontratista, $renovado);
-        //$counts = array_count_values(array_column($rta, 'tipo_ensayo')); //https://stackoverflow.com/questions/11646054/php-count-specific-array-values
-        //$count_ppt = ($counts['P'])? $counts['P'] : 0;
-        //$count_cert = ($counts['N'])? $counts['N'] : 0;
-
+        
         $encabezado = array();
         $encabezado['obj_empleado'] = new Empleado($_GET['id_empleado']);
         $encabezado['empleado'] = ($encabezado['obj_empleado']->getIdEmpleado() > 0)? $encabezado['obj_empleado']->getApellido().' '.$encabezado['obj_empleado']->getNombre() : 'Todos';
@@ -153,10 +150,7 @@ switch ($operation)
         $encabezado['grupo'] = ($encabezado['obj_grupo']->getIdGrupo() > 0)? $encabezado['obj_grupo']->getNombre().' '.$encabezado['obj_grupo']->getNroReferencia() : 'Todos';
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
         $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
-
-
         $encabezado['vencimientos'] = ($_GET['id_vencimiento']!='')? ReporteNovedades::getVencimientosPersonalList($_GET['id_vencimiento'])[0]['vencimientos'] : 'Todos';
-
         $encabezado['obj_subcontratista'] = new Subcontratista($_GET['id_subcontratista']);
         $encabezado['subcontratista'] = ($encabezado['obj_subcontratista']->getIdSubcontratista() > 0)? $encabezado['obj_subcontratista']->getRazonSocial() : 'Todos';
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
