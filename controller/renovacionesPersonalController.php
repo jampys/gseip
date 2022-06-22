@@ -132,12 +132,14 @@ switch ($operation)
 
     case 'reporte': //RV01
         $view->disableLayout=true;
-        $fecha_desde = $_GET['fecha_desde'];
-        $fecha_hasta = $_GET['fecha_hasta'];
+        $id_empleado = ($_GET['id_empleado'])? $_GET['id_empleado'] : null;
+        $id_grupo = ($_GET['id_grupo'])? $_GET['id_grupo'] : null;
+        $id_vencimiento = ($_GET['id_vencimiento'])? $_GET['id_vencimiento'] : null;
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
-        $cuadrilla = ($_GET['cuadrilla'] && $_GET['cuadrilla'] != 'null')? $_GET['cuadrilla'] : null ;
+        $id_subcontratista = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
+        $renovado = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
 
-        $view->partes = $rta = Parte::getPdf($fecha_desde, $fecha_hasta, $id_contrato, $cuadrilla);
+        $view->vencimientos = $rta = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento ,$id_contrato, $id_subcontratista, $renovado);
         //$cliente = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
         //$contrato = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
         //$counts = array_count_values(array_column($rta, 'tipo_ensayo')); //https://stackoverflow.com/questions/11646054/php-count-specific-array-values
