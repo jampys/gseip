@@ -140,23 +140,18 @@ switch ($operation)
         $renovado = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
 
         $view->vencimientos = $rta = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento ,$id_contrato, $id_subcontratista, $renovado);
-        //$cliente = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
-        //$contrato = ((new Contrato($_GET['id_contrato']))->getNombre())? (new Contrato($_GET['id_contrato']))->getNombre() : 'Todos';
         //$counts = array_count_values(array_column($rta, 'tipo_ensayo')); //https://stackoverflow.com/questions/11646054/php-count-specific-array-values
         //$count_ppt = ($counts['P'])? $counts['P'] : 0;
         //$count_cert = ($counts['N'])? $counts['N'] : 0;
 
         $encabezado = array();
-        //$encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
-        //$encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
+        $encabezado['obj_empleado'] = new Empleado($_GET['id_empleado']);
+        $encabezado['empleado'] = ($encabezado['obj_empleado']->getIdEmpleado() > 0)? $encabezado['obj_empleado']->getApellido().' '.$encabezado['obj_empleado']->getNombre() : 'Todos';
+        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
+        $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
         //$encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
         //$encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
         //$encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';
-        $encabezado['cuadrilla'] = ($cuadrilla != null)? $cuadrilla : 'Todas';
-
-        //$encabezado['fecha_desde'] = date_format(date_create($_GET['fecha_desde']), 'd/m/Y');
-        //$encabezado['fecha_hasta'] = date_format(date_create($_GET['fecha_hasta']), 'd/m/Y');
-
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
 
         $view->contentTemplate="view/renovaciones_personal/generador_rv01.php";
