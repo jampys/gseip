@@ -5,6 +5,7 @@ include_once("model/vto_vencimientosPersonalModel.php");
 include_once("model/contratosModel.php");
 include_once("model/subcontratistasModel.php");
 include_once("model/vto_gruposPersonalModel.php");
+include_once("model/nov_reportesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -152,6 +153,10 @@ switch ($operation)
         $encabezado['grupo'] = ($encabezado['obj_grupo']->getIdGrupo() > 0)? $encabezado['obj_grupo']->getNombre().' '.$encabezado['obj_grupo']->getNroReferencia() : 'Todos';
         $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
         $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
+
+
+        $encabezado['vencimientos'] = ReporteNovedades::getVencimientosPersonalList($_GET['id_vencimiento'])[0]['vencimientos'];
+
         $encabezado['obj_subcontratista'] = new Subcontratista($_GET['id_subcontratista']);
         $encabezado['subcontratista'] = ($encabezado['obj_subcontratista']->getIdSubcontratista() > 0)? $encabezado['obj_subcontratista']->getRazonSocial() : 'Todos';
         $encabezado['fecha_emision'] = date('d/m/Y H:i');

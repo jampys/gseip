@@ -23,7 +23,7 @@ $spreadsheet->getActiveSheet()->getStyle('A1:F7')->getFill()->setFillType(\PhpOf
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'RV01 Reporte de vencimientos de personal');
 $sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
-$sheet->setCellValueByColumnAndRow(1, 3, 'Vencimiento/s: '.$encabezado['cliente']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Vencimiento/s: '.$encabezado['vencimientos']);
 $sheet->setCellValueByColumnAndRow(1, 4, 'Empleado: '.$encabezado['empleado']);
 $sheet->setCellValueByColumnAndRow(1, 5, 'Grupo: '.$encabezado['grupo']);
 $sheet->setCellValueByColumnAndRow(1, 6, 'Subcontratista: '.$encabezado['subcontratista']);

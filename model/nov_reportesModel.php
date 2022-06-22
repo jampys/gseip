@@ -267,7 +267,7 @@ order by em.id_convenio asc, em.legajo asc";
     }
 
 
-    public static function getContratosList($id_contrato) {
+    public static function getContratosList($id_contrato) { //ok
         //listado de nombre de contratos, concatenados. Para encabezado de reporte RN03
         $stmt=new sQuery();
         $query="select GROUP_CONCAT(cast(co.nombre as CHAR) SEPARATOR ', ') AS contrato
@@ -340,6 +340,22 @@ order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementa
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':periodo', $periodo);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
+    public static function getVencimientosPersonalList($id_vencimiento) { //ok
+        //listado de nombre de vencimientos de personal, concatenados. Para encabezado de reporte RV01
+        $stmt=new sQuery();
+        $query="select GROUP_CONCAT(cast(vp.nombre as CHAR) SEPARATOR ', ') AS vencimientos
+                from vto_vencimiento_p vp
+                where vp.id_vencimiento in ($id_vencimiento)
+                group by null";
+
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }
