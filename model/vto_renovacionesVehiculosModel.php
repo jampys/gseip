@@ -215,7 +215,7 @@ and vgv.id_grupo in (
                     )
 )
 
-order by priority, id_rnv_renovacion asc";
+order by priority asc, id_rnv_renovacion asc, STR_TO_DATE(fecha_vencimiento, '%d/%m/%Y') asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_vehiculo', $id_vehiculo);

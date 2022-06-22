@@ -206,7 +206,7 @@ and :id_contrato is null -- filtro contratos: no debe traer registros cuando se 
 and :id_subcontratista is null -- filtro subcontratistas: no debe traer registros cuando se filtra por subcontratista
 )
 
-order by priority, id_rnv_renovacion asc";
+order by priority asc, id_rnv_renovacion asc, STR_TO_DATE(fecha_vencimiento, '%d/%m/%Y') asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);
