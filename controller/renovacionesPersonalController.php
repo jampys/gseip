@@ -147,15 +147,15 @@ switch ($operation)
         //$count_cert = ($counts['N'])? $counts['N'] : 0;
 
         $encabezado = array();
-        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
-        $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
-        $encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
-        $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
-        $encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';
+        //$encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
+        //$encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
+        //$encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
+        //$encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
+        //$encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';
         $encabezado['cuadrilla'] = ($cuadrilla != null)? $cuadrilla : 'Todas';
 
-        $encabezado['fecha_desde'] = date_format(date_create($_GET['fecha_desde']), 'd/m/Y');
-        $encabezado['fecha_hasta'] = date_format(date_create($_GET['fecha_hasta']), 'd/m/Y');
+        //$encabezado['fecha_desde'] = date_format(date_create($_GET['fecha_desde']), 'd/m/Y');
+        //$encabezado['fecha_hasta'] = date_format(date_create($_GET['fecha_hasta']), 'd/m/Y');
 
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
 
