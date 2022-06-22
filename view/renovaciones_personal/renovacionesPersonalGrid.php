@@ -54,8 +54,8 @@
                             '&id_vencimiento='+params.id_vencimiento+
                             '&id_contrato='+params.id_contrato+
                             '&id_subcontratista='+params.id_subcontratista+
-                            '&p_renovado='+params.renovado+
-                            '&p_id_user='+params.id_user;
+                            '&renovado='+params.renovado+
+                            '&id_user='+params.id_user;
 
                         window.location.href = link;
                     }
