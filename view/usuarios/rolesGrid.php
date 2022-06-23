@@ -57,20 +57,20 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
-                    d.action = "cap_empleados";
+                    d.action = "sec_user-role";
                     d.operation = "refreshGrid";
-                    d.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
-                    d.id_edicion = $('#etapas_left_side').attr('id_edicion');
-                    d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
-                    d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
-                    d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                    //d.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
+                    //d.id_edicion = $('#etapas_left_side').attr('id_edicion');
+                    //d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
+                    //d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    //d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                 },
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "empleado"},
-                {"data" : "contrato"},
-                {"data" : "fecha_edicion"},
+                {"data" : "id_role"},
+                {"data" : "id_role"},
+                {"data" : "id_role"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
