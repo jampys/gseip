@@ -168,7 +168,7 @@
             $("#myElem").html('Usuario guardado con exito').addClass('alert alert-success').show();
             setTimeout(function() { $("#myElem").hide();
                                     $('#myModal').modal('hide');
-                                    $('#content').load('index.php',{action:"sec_users", operation:"refreshGrid"});
+                                    $('#example').DataTable().ajax.reload(null, false); //$('#content').load('index.php',{action:"sec_users", operation:"refreshGrid"});
                                 }, 2000);
             return false; //para finalizar la ejecucion
         }

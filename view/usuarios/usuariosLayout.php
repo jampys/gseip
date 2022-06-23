@@ -22,7 +22,8 @@
                 params.operation = "editUsuario";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
+                return false;
 
             });
 
@@ -39,7 +40,8 @@
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                })
+                });
+                return false;
 
             });
 
@@ -59,7 +61,8 @@
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
                     $('#etapas_left_side #add').attr('id_user', id);
-                })
+                });
+                return false;
 
             });
 
@@ -71,7 +74,9 @@
                 params.operation="newUsuario";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
+                return false;
+
             });
 
 
@@ -98,7 +103,7 @@
                         }
                     }
                 });
-
+                return false;
 
             });
 
