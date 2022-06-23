@@ -290,7 +290,7 @@
 
             if ($("#txt-form").valid()){
 
-                let link = 'index.php?action=nov_reportes&operation=reporte_rn06'+
+                let link = 'index.php?action=nov_reportes&operation=reporte_rn08'+
                     '&id_contrato='+$("#myModal #id_contrato").val()+
                     '&id_periodo='+$("#myModal #id_periodo").val()+
                     '&id_empleado='+$("#myModal #id_empleado").val();

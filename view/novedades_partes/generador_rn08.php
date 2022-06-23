@@ -7,7 +7,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
-$sheet->setTitle('partes');
+$sheet->setTitle('pendientes');
 
 //titulo ----------------------------------------------------------------
 
@@ -23,9 +23,8 @@ $spreadsheet->getActiveSheet()->getStyle('A1:D6')->getFill()->setFillType(\PhpOf
 $sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
 $sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
 $sheet->setCellValueByColumnAndRow(1, 3, 'Empleado: '.$encabezado['empleado']);
-$sheet->setCellValueByColumnAndRow(1, 4, 'Concepto: '.$encabezado['concepto']);
-$sheet->setCellValueByColumnAndRow(1, 5, 'Período: '.$encabezado['periodo']);
-$sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_emision']);
+$sheet->setCellValueByColumnAndRow(1, 4, 'Período: '.$encabezado['periodo']);
+$sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 
 //encabezado ------------------------------------------------------------

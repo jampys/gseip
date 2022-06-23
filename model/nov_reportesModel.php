@@ -377,6 +377,41 @@ order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementa
 
 
 
+    public static function getReporteRn8($id_contrato, $id_periodo, $id_empleado) {
+        $stmt=new sQuery();
+        $query = "select DATE_FORMAT(cal.fecha,  '%d/%m/%Y') as fecha,
+(ELT(WEEKDAY(cal.fecha) + 1, 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo')) AS dia_semana,
+em.legajo, concat(em.apellido, ' ', em.nombre) as empleado,
+cal.descripcion
+from empleados em
+join nov_periodos per on per.id_periodo = :id_periodo
+join v_tmp_calendar cal on cal.fecha between per.fecha_desde and per.fecha_hasta -- and cal.feriado is null
+join empleado_contrato ec on ec.id_empleado = em.id_empleado
+where ec.id_contrato = :id_contrato
+and ec.fecha_desde <= per.fecha_hasta
+and (ec.fecha_hasta is null or ec.fecha_hasta >= per.fecha_desde)
+and em.fecha_baja is null
+and dayofweek(cal.fecha) in(2, 3, 4, 5, 6)
+and not exists(select 1
+			    from nov_partes npx
+                join nov_parte_empleado npex on npex.id_parte = npx.id_parte
+                where npex.id_empleado = em.id_empleado
+                and npx.fecha_parte = cal.fecha)
+and not exists( select 1
+				from nov_sucesos ns
+                where ns.id_empleado = em.id_empleado
+                and cal.fecha between ns.fecha_desde and ns.fecha_hasta)";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_periodo', $id_periodo);
+        //$stmt->dpBind(':id_empleado', $id_empleado);
+        //$stmt->dpBind(':id_concepto', $id_concepto);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
 }
 
 
