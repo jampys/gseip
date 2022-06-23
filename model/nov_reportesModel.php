@@ -388,7 +388,7 @@ join nov_periodos per on per.id_periodo = :id_periodo
 join v_tmp_calendar cal on cal.fecha between per.fecha_desde and per.fecha_hasta -- and cal.feriado is null
 join empleado_contrato ec on ec.id_empleado = em.id_empleado
 where ec.id_contrato = :id_contrato
-and ec.id_empleado = :id_empleado
+and ec.id_empleado = ifnull(:id_empleado, ec.id_empleado)
 and ec.fecha_desde <= per.fecha_hasta
 and (ec.fecha_hasta is null or ec.fecha_hasta >= per.fecha_desde)
 and em.fecha_baja is null
