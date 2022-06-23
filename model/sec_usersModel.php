@@ -69,6 +69,7 @@ class Usuario{
 DATE_FORMAT(su.fecha_alta,  '%d/%m/%Y') as fecha_alta,
 DATE_FORMAT(su.fecha_baja,  '%d/%m/%Y') as fecha_baja,
 em.apellido, em.nombre,
+concat(em.apellido, ' ', em.nombre) as empleado,
 DATE_FORMAT(su.last_login, '%d/%m/%Y %H:%i') as last_login
 from sec_users su
 join empleados em on su.id_empleado = em.id_empleado";

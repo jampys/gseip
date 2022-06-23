@@ -31,21 +31,21 @@
                 "type"   : "POST",
                 "url"    : 'index.php',
                 "data": function ( d ) {
-                    d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
-                    d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
-                    d.search_responsable_ejecucion = $('#search_responsable_ejecucion').val();
+                    //d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    //d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                    //d.search_responsable_ejecucion = $('#search_responsable_ejecucion').val();
                     d.action = "sec_users";
                     d.operation = "refreshGrid";
                 },
                 "dataSrc": ""
             },
             'columns': [
+                {"data" : "user"},
                 {"data" : "id_user"},
-                {"data" : "id_user"},
-                {"data" : "id_user"},
-                {"data" : "id_user"},
-                {"data" : "id_user"},
-                {"data" : "id_user"},
+                {"data" : "fecha_alta"},
+                {"data" : "fecha_baja"},
+                {"data" : "empleado"},
+                {"data" : "last_login"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
@@ -53,7 +53,7 @@
             },
             "columnDefs": [
                 {
-                    targets: 7,//action buttons
+                    targets: 6,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
                         let permisoAcciones = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'acciones' : 'disabled' ?>';
