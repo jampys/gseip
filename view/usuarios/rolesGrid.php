@@ -16,7 +16,7 @@
             ]
         });*/
 
-        var t = $('#table-empleados').DataTable({
+        var t = $('#table-roles').DataTable({
             responsive: true,
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
@@ -128,8 +128,8 @@
 
 
 
-    <div id="empleados-table">
-            <table id="table-vehiculos" class="table table-condensed table-hover dt-responsive" width="100%">
+    <div>
+            <table id="table-roles" class="table table-condensed table-hover dt-responsive" width="100%">
                 <thead>
                 <tr>
                     <th>Rol</th>
