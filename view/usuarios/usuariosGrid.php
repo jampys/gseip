@@ -27,6 +27,7 @@
             "fnInitComplete": function () {
                 $(this).show();
             },
+            'order': [[3, "asc"], [0, "asc"]], //3=fecha_baja, 0=usuario
             'ajax': {
                 "type"   : "POST",
                 "url"    : 'index.php',
@@ -52,6 +53,15 @@
                 $(row).attr('data-id', data.id_user);
             },
             "columnDefs": [
+                {
+                    targets: 1,//habilitado
+                    className: "text-center",
+                    responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        let rta = (row.fecha_baja == null && row.enabled == 1)? '<i class="fas fa-check-circle fa-fw dp_green" title="Habilitado"></i>' : '<i class="fas fa-minus-circle fa-fw dp_red" title="Inhabilitado"></i>';
+                        return rta;
+                    }
+                },
                 {
                     targets: 6,//action buttons
                     responsivePriority: 3,
