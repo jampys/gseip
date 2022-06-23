@@ -16,8 +16,11 @@ $view->disableLayout=false;
 switch ($operation) {
     case 'refreshGrid': //ok
         $view->disableLayout = true;
-        $view->usuarios = Usuario::getUsuarios();
-        $view->contentTemplate = "view/usuarios/usuariosGrid.php";
+        $rta = $view->usuarios = Usuario::getUsuarios();
+        //$view->contentTemplate = "view/usuarios/usuariosGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveUsuario': //ok
