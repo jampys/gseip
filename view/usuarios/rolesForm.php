@@ -192,11 +192,11 @@
 
                         <div class="col-md-7" id="etapas_left_side">
 
-                            <div class="clearfix">
+                            <!--<div class="clearfix">
                                 <button <?php echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? '' : 'disabled' ?> class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar vehículo">
                                     <i class="fas fa-plus dp_green"></i>
                                 </button>
-                            </div>
+                            </div>-->
 
                             <div class="grid">
                                 <?php include_once('view/usuarios/rolesGrid.php');?>
