@@ -30,6 +30,7 @@ switch ($operation) {
         $usuario->setEnabled ( ($_POST['enabled'] == 1)? 1 : null);
         $usuario->setIdEmpleado($_POST['id_empleado']); //solo para insert
         $usuario->setProfilePicture('uploads/profile_pictures/default.png'); //solo para insert
+        $usuario->setCreatedBy($_SESSION['id_user']);
         //
         //$puesto->setIdArea($_POST['id_area']);
         //$puesto->setIdNivelCompetencia($_POST['id_nivel_competencia']);

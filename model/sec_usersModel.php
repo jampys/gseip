@@ -10,6 +10,8 @@ class Usuario{
     private $fecha_baja;
     private $id_empleado;
     private $profile_picture;
+    private $created_by;
+    private $created_date;
 
 
     // metodos que devuelven valores
@@ -37,6 +39,12 @@ class Usuario{
     function getProfilePicture()
     { return $this->profile_picture;}
 
+    function getCreatedBy()
+    { return $this->created_by;}
+
+    function getCreatedDate()
+    { return $this->created_date;}
+
     // metodos que setean los valores
     function setIdUser($val)
     { $this->id_user=$val;}
@@ -62,6 +70,12 @@ class Usuario{
     function setProfilePicture($val)
     {  $this->profile_picture=$val;}
 
+    function setCreatedBy($val)
+    {  $this->created_by=$val;}
+
+    function setCreatedDate($val)
+    {  $this->created_date=$val;}
+
 
     public static function getUsuarios() { //ok
         $stmt=new sQuery();
@@ -70,9 +84,12 @@ DATE_FORMAT(su.fecha_alta,  '%d/%m/%Y') as fecha_alta,
 DATE_FORMAT(su.fecha_baja,  '%d/%m/%Y') as fecha_baja,
 em.apellido, em.nombre,
 concat(em.apellido, ' ', em.nombre) as empleado,
-DATE_FORMAT(su.last_login, '%d/%m/%Y %H:%i') as last_login
+DATE_FORMAT(su.last_login, '%d/%m/%Y %H:%i') as last_login,
+DATE_FORMAT(su.created_date, '%d/%m/%Y %H:%i') as created_date,
+us.user userc
 from sec_users su
-join empleados em on su.id_empleado = em.id_empleado";
+join empleados em on su.id_empleado = em.id_empleado
+join sec_users us on us.id_user = su.created_by";
 
         $stmt->dpPrepare($query);
         $stmt->dpExecute();
@@ -88,7 +105,8 @@ join empleados em on su.id_empleado = em.id_empleado";
             $query="select us.id_user, us.user, us.password, us.enabled,
                     DATE_FORMAT(us.fecha_alta,  '%d/%m/%Y') as fecha_alta,
                     DATE_FORMAT(us.fecha_baja,  '%d/%m/%Y') as fecha_baja,
-                    us.id_empleado, us.profile_picture
+                    us.id_empleado, us.profile_picture, us.created_by,
+                    DATE_FORMAT(us.created_date,  '%d/%m/%Y') as created_date
                     from sec_users us where us.id_user = :nro";
             $stmt->dpPrepare($query);
             $stmt->dpBind(':nro', $nro);
@@ -103,6 +121,8 @@ join empleados em on su.id_empleado = em.id_empleado";
             $this->setFechaBaja($rows[0]['fecha_baja']);
             $this->setIdEmpleado($rows[0]['id_empleado']);
             $this->setProfilePicture($rows[0]['profile_picture']);
+            $this->setCreatedBy($rows[0]['created_by']);
+            $this->setCreatedDate($rows[0]['created_date']);
         }
     }
 
@@ -269,13 +289,14 @@ join empleados em on su.id_empleado = em.id_empleado";
     private function insertUsuario(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into sec_users(user, enabled, fecha_alta, id_empleado, profile_picture, profile_picture_date)
-                values(:user, :enabled, sysdate(), :id_empleado, :profile_picture, sysdate())";
+        $query="insert into sec_users(user, enabled, fecha_alta, id_empleado, profile_picture, profile_picture_date, created_by, created_date)
+                values(:user, :enabled, sysdate(), :id_empleado, :profile_picture, sysdate(), :created_by, sysdate())";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':user', $this->getUser());
         $stmt->dpBind(':enabled', $this->getEnabled());
         $stmt->dpBind(':id_empleado', $this->getIdEmpleado());
         $stmt->dpBind(':profile_picture', $this->getProfilePicture());
+        $stmt->dpBind(':created_by', $this->getCreatedBy());
         $stmt->dpExecute();
         return $stmt->dpGetAffect();
     }
