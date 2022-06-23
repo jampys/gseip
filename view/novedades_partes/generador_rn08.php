@@ -16,9 +16,8 @@ $spreadsheet->getActiveSheet()->mergeCells('A2:D2');
 $spreadsheet->getActiveSheet()->mergeCells('A3:D3');
 $spreadsheet->getActiveSheet()->mergeCells('A4:D4');
 $spreadsheet->getActiveSheet()->mergeCells('A5:D5');
-$spreadsheet->getActiveSheet()->mergeCells('A6:D6');
-$spreadsheet->getActiveSheet()->getStyle('A1:D6')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:D6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A1:D5')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:D5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'Cliente: '.$encabezado['cliente']);
 $sheet->setCellValueByColumnAndRow(1, 2, 'Contrato: '.$encabezado['contrato']);
@@ -28,26 +27,18 @@ $sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_e
 
 
 //encabezado ------------------------------------------------------------
-$cabecera = ["Fecha parte", "IN", "Cuadrilla", "Empleado", "Concepto", "Cantidad", "Código", "Variable", "Convenio", "Área", "Evento", "Motivo"];
-$sheet->fromArray($cabecera, null, 'A8');
-$spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A8:L8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$cabecera = ["Fecha", "Día semana", "Empleado", "Observaciones"];
+$sheet->fromArray($cabecera, null, 'A7');
+$spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
-$fila = 9;
+$fila = 8;
 foreach ($view->partes as $p):
-    $sheet->setCellValueByColumnAndRow(1, $fila, $p['fecha_parte']);
-    $sheet->setCellValueByColumnAndRow(2, $fila, $p['id_parte']);
-    $sheet->setCellValueByColumnAndRow(3, $fila, $p['cuadrilla']);
-    $sheet->setCellValueByColumnAndRow(4, $fila, $p['empleado']);
-    $sheet->setCellValueByColumnAndRow(5, $fila, $p['concepto']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['cantidad']);
-    $sheet->setCellValueByColumnAndRow(7, $fila, $p['codigo']);
-    $sheet->setCellValueByColumnAndRow(8, $fila, $p['variable']);
-    $sheet->setCellValueByColumnAndRow(9, $fila, $p['convenio']);
-    $sheet->setCellValueByColumnAndRow(10, $fila, $p['area']);
-    $sheet->setCellValueByColumnAndRow(11, $fila, $p['evento']);
-    $sheet->setCellValueByColumnAndRow(12, $fila, $p['motivo']);
+    $sheet->setCellValueByColumnAndRow(1, $fila, $p['fecha']);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $p['dia_semana']);
+    $sheet->setCellValueByColumnAndRow(3, $fila, $p['empleado']);
+    $sheet->setCellValueByColumnAndRow(5, $fila, $p['descripcion']);
 
     $fila++;
 endforeach;
@@ -60,7 +51,7 @@ foreach ($sheet->getColumnIterator() as $column) {
 
 
 //configuro el auto filter
-$spreadsheet->getActiveSheet()->setAutoFilter('A8:L8');
+$spreadsheet->getActiveSheet()->setAutoFilter('A7:D7');
 
 //genero repore
 $writer = new Xlsx($spreadsheet);

@@ -381,7 +381,7 @@ order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementa
         $stmt=new sQuery();
         $query = "select DATE_FORMAT(cal.fecha,  '%d/%m/%Y') as fecha,
 (ELT(WEEKDAY(cal.fecha) + 1, 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo')) AS dia_semana,
-em.legajo, concat(em.apellido, ' ', em.nombre) as empleado,
+em.legajo, concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
 cal.descripcion
 from empleados em
 join nov_periodos per on per.id_periodo = :id_periodo
