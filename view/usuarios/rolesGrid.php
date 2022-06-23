@@ -21,23 +21,23 @@
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 search: '',
-                searchPlaceholder: "Buscar empleado",
-                emptyTable: 'La edición no tiene empleados registrados',
-                "sInfo":           "Mostrando _TOTAL_ registros",
-                "sInfoEmpty":      "Mostrando 0 registros",
-                "sInfoFiltered":   ""
+                searchPlaceholder: "Buscar rol",
+                emptyTable: 'El usuario no tiene roles otorgados.'
+                //"sInfo":           "Mostrando _TOTAL_ registros",
+                //"sInfoEmpty":      "Mostrando 0 registros",
+                //"sInfoFiltered":   ""
             },
-            sDom:   "<'row'<'col-sm-2'B><'col-sm-4'i><'col-sm-6'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12'>>",
+            sDom:   "<'row'<'col-sm-2'B><'col-sm-4'><'col-sm-6'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12'>>",
             buttons: [
                 {
                     text: '<i class="fas fa-plus fa-fw dp_green"></i>',
-                    titleAttr: 'Agregar participante',
+                    titleAttr: 'Agregar rol',
                     attr:  {
                         id: 'add', //https://datatables.net/reference/option/buttons.buttons.attr
                         disabled: function(){
-                            let permisoNuevo = '<?php echo (PrivilegedUser::dhasPrivilege('PTN_ABM', array(1)) )? 'false' : 'true' ?>';
+                            let permisoNuevo = '<?php echo (PrivilegedUser::dhasPrivilege('USR_ABM', array(1)) )? 'false' : 'true' ?>';
                             return (permisoNuevo == 'false')? false : true;
                         }
                     },
@@ -68,9 +68,9 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "id_role"},
-                {"data" : "id_role"},
-                {"data" : "id_role"},
+                {"data" : "nombre"},
+                {"data" : "fecha_desde"},
+                {"data" : "fecha_hasta"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
@@ -78,15 +78,9 @@
             },
             "columnDefs": [
                 {
-                    targets: 0, //empleado
+                    targets: 0, //nombre
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(23)(data, type, row);
-                    }
-                },
-                {
-                    targets: 1, //contrato
-                    render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(23)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(40)(data, type, row);
                     }
                 },
                 {
@@ -94,8 +88,8 @@
                     width: '18%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
-                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('USR_ABM', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('USR_ABM', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = ''; //row.user.split('@')[0]+' '+row.created_date;
                         return '<a class="view" title="Ver" href="#">'+
                                     '<i class="far fa-sticky-note dp_blue"></i>'+
