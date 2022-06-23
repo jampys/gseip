@@ -59,7 +59,7 @@
                 "data": function ( d ) {
                     d.action = "sec_user-role";
                     d.operation = "refreshGrid";
-                    //d.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
+                    d.id_user = $('#etapas_left_side').attr('id_user');
                     //d.id_edicion = $('#etapas_left_side').attr('id_edicion');
                     //d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
                     //d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
@@ -74,7 +74,7 @@
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
-                $(row).attr('data-id', data.id_capacitacion_empleado);
+                $(row).attr('data-id', data.id_user_role);
             },
             "columnDefs": [
                 {
