@@ -38,7 +38,7 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['fecha']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['dia_semana']);
     $sheet->setCellValueByColumnAndRow(3, $fila, $p['empleado']);
-    $sheet->setCellValueByColumnAndRow(5, $fila, $p['descripcion']);
+    $sheet->setCellValueByColumnAndRow(4, $fila, $p['descripcion']);
 
     $fila++;
 endforeach;
