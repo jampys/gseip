@@ -27,7 +27,8 @@
                 //alert('cargo el contenido en right side');
                 $("#role-form #id_role").prop("disabled", true).selectpicker('refresh');
                 //$('#myModal').modal();
-            })
+            });
+            return false;
         });
 
 
@@ -44,6 +45,7 @@
                 //$("#role-form #footer-buttons button").css('display', 'none');
                 //$('.selectpicker').selectpicker('refresh');
             });
+            return false;
         });
 
 
@@ -59,7 +61,8 @@
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 $('#id_user').val(params.id_user);
-            })
+            });
+            return false;
         });
 
 
@@ -85,11 +88,10 @@
                     if(data >=0){
                         $("#role-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Rol guardado con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"sec_user-role", id_user:params.id_user, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
                                                 $('#role-form').hide();
+                                                $('#table-roles').DataTable().ajax.reload();
                                               }, 2000);
                     }
 
@@ -125,7 +127,7 @@
                     }
                 }
             });
-
+            return false;
 
         });
 
@@ -162,7 +164,7 @@
         //evento al salir o cerrar con la x el modal de etapas
         $("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
-            $("#search").trigger("click");
+            $('#example').DataTable().ajax.reload(null, false);
         });
 
 
