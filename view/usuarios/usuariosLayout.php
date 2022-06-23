@@ -60,7 +60,7 @@
                     //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
-                    $('#etapas_left_side #add').attr('id_user', id);
+                    $('#etapas_left_side').attr('id_user', id);
                 });
                 return false;
 
