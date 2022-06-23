@@ -135,9 +135,10 @@ switch ($operation)
         break;
 
 
-    case 'reporte_rn08':
+    case 'reporte_rn08': //ok
         $view->disableLayout=true;
         $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
+        $_SESSION['cal_id_contrato'] = $id_contrato;
         $id_periodo = ($_GET['id_periodo'])? $_GET['id_periodo'] : null;
         $id_empleado = ($_GET['id_empleado'])? $_GET['id_empleado'] : null;
         $id_concepto = ($_GET['id_concepto'])? $_GET['id_concepto'] : null; //viene el id_concepto_convenio_contrato
