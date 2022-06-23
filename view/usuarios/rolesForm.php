@@ -55,7 +55,7 @@
             params={};
             params.action = "sec_user-role";
             params.operation = "newRole";
-            params.id_user = $('#etapas_left_side #add').attr('id_user');
+            params.id_user = $('#etapas_left_side').attr('id_user');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -146,8 +146,9 @@
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Rol eliminado con exito</div>');
                     setTimeout(function() {
                         dialog.modal('hide');
-                        $('#etapas_left_side .grid').load('index.php',{action:"sec_user-role", id_user:params.id_user, operation:"refreshGrid"});
                         $('#role-form').hide();
+                        //$('#etapas_left_side .grid').load('index.php',{action:"sec_user-role", id_user:params.id_user, operation:"refreshGrid"});
+                        $('#table-roles').DataTable().ajax.reload();
                     }, 2000);
                 }
 
