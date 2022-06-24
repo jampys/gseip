@@ -413,6 +413,54 @@ and not exists( select 1
 
 
 
+
+    public static function getReporteRn9($id_contrato, $id_periodo) {
+        $stmt=new sQuery();
+        $query = "select np.id_parte, np.comentarios,
+DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+np.cuadrilla, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
+(select GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre) SEPARATOR '\n')
+ from nov_parte_empleado npex
+ join empleados em on em.id_empleado = npex.id_empleado
+ where npex.id_parte = np.id_parte
+ and npex.conductor = 1
+ group by npex.id_parte
+) as conductor,
+(select GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre) SEPARATOR '\n')
+ from nov_parte_empleado npex
+ join empleados em on em.id_empleado = npex.id_empleado
+ where npex.id_parte = np.id_parte
+ and (npex.conductor is null or npex.conductor = 0)
+ group by npex.id_parte
+) as acompañante,
+(
+select GROUP_CONCAT( CONCAT(h.habilita, ' - ', h.cantidad, ' - ', h.unitario, ' - ', h.importe) SEPARATOR '\n')
+from nov_habilitas h
+where h.ot = npo.orden_nro
+) as habilitas,
+(
+select count(*)
+from nov_parte_orden npox
+where npox.orden_nro = npo.orden_nro
+) as cant_ots
+from nov_partes np
+left join nov_parte_orden npo on npo.id_parte = np.id_parte
+left join nov_eventos_c nec on nec.id_evento = np.id_evento
+left join nov_areas na on na.id_area = np.id_area
+where np.id_periodo = :id_periodo
+and np.id_contrato = :id_contrato
+order by np.cuadrilla, np.fecha_parte";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_periodo', $id_periodo);
+        //$stmt->dpBind(':id_empleado', $id_empleado);
+        //$stmt->dpBind(':id_concepto', $id_concepto);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
 }
 
 

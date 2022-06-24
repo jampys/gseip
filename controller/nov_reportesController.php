@@ -141,7 +141,6 @@ switch ($operation)
         $_SESSION['cal_id_contrato'] = $id_contrato;
         $id_periodo = ($_GET['id_periodo'])? $_GET['id_periodo'] : null;
         $id_empleado = ($_GET['id_empleado'])? $_GET['id_empleado'] : null;
-        $id_concepto = ($_GET['id_concepto'])? $_GET['id_concepto'] : null; //viene el id_concepto_convenio_contrato
         $view->partes = $rta = ReporteNovedades::getReporteRn8($id_contrato, $id_periodo, $id_empleado);
 
         $encabezado = array();
@@ -164,6 +163,37 @@ switch ($operation)
         $encabezado['fecha_emision'] = date('d/m/Y H:i');
 
         $view->contentTemplate="view/novedades_partes/generador_rn08.php";
+        break;
+
+
+
+    case 'reporte_rn09':
+        $view->disableLayout=true;
+        $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
+        $_SESSION['cal_id_contrato'] = $id_contrato;
+        $id_periodo = ($_GET['id_periodo'])? $_GET['id_periodo'] : null;
+        $view->partes = $rta = ReporteNovedades::getReporteRn9($id_contrato, $id_periodo);
+
+        $encabezado = array();
+        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
+        $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
+        $encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
+        $encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
+        $encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';
+        $encabezado['obj_periodo'] = new NovPeriodo($_GET['id_periodo']);
+        $encabezado['periodo'] = substr($encabezado['obj_periodo']->getNombre(), 0, 8).' ('.$encabezado['obj_periodo']->getFechaDesde().' - '.$encabezado['obj_periodo']->getFechaHasta().')';
+
+        $encabezado['obj_empleado'] = new Empleado($_GET['id_empleado']);
+        $encabezado['empleado'] = ($encabezado['obj_empleado']->getIdEmpleado() > 0)? $encabezado['obj_empleado']->getLegajo().' '.$encabezado['obj_empleado']->getApellido().' '.$encabezado['obj_empleado']->getNombre() : 'Todos';
+
+        $encabezado['obj_concepto_convenio_contrato'] = new ConceptoConvenioContrato($_GET['id_concepto']);
+        $encabezado['obj_concepto'] = new Concepto($encabezado['obj_concepto_convenio_contrato']->getIdConcepto());
+        $encabezado['concepto'] = ($encabezado['obj_concepto_convenio_contrato']->getIdConceptoConvenioContrato() > 0)? $encabezado['obj_concepto']->getNombre().' ('.$encabezado['obj_concepto_convenio_contrato']->getCodigo().')' : 'Todos';
+
+
+        $encabezado['fecha_emision'] = date('d/m/Y H:i');
+
+        $view->contentTemplate="view/novedades_partes/generador_rn09.php";
         break;
 
 
