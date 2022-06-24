@@ -48,6 +48,12 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(11, $fila, $p['habilitas']);
     $sheet->setCellValueByColumnAndRow(12, $fila, $p['comentarios']);
 
+    if($p['orden_nro'] && !$p['habilitas']) {
+        $spreadsheet->getActiveSheet()->getStyle('A' . $fila . ':L' . $fila)->getFill()
+            ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('FFCCCC');
+    }
+
     $fila++;
 endforeach;
 
