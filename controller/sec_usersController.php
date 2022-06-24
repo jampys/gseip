@@ -68,9 +68,9 @@ switch ($operation) {
             sQuery::dpBeginTransaction();
             $usuario = new Usuario($_POST['id_user']);
             $usuario->deleteUsuario();
-            //if (file_exists($usuario->getProfilePicture())) {
-            unlink($usuario->getProfilePicture()); //elimina la foto del servidor
-            //}
+            if (file_exists($usuario->getProfilePicture()) && $usuario->getProfilePicture() != 'uploads/profile_pictures/default.png') {
+                unlink($usuario->getProfilePicture()); //elimina la foto del servidor
+            }
             sQuery::dpCommit();
             print_r(json_encode(1));
 

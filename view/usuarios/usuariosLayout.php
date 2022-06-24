@@ -121,7 +121,8 @@
                         dialog.find('.modal-footer').html('<div class="alert alert-success">Usuario eliminado con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
-                            $('#content').load('index.php',{action:"sec_users", operation: "refreshGrid"});
+                            //$('#content').load('index.php',{action:"sec_users", operation: "refreshGrid"});
+                            $('#example').DataTable().ajax.reload();
                         }, 2000);
                     }
 
