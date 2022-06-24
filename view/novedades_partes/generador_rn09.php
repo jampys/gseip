@@ -11,14 +11,14 @@ $sheet->setTitle('partes');
 
 //titulo ----------------------------------------------------------------
 
-$spreadsheet->getActiveSheet()->mergeCells('A1:D1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
-$spreadsheet->getActiveSheet()->mergeCells('A2:D2');
-$spreadsheet->getActiveSheet()->mergeCells('A3:D3');
-$spreadsheet->getActiveSheet()->mergeCells('A4:D4');
-$spreadsheet->getActiveSheet()->mergeCells('A5:D5');
-$spreadsheet->getActiveSheet()->mergeCells('A6:D6');
-$spreadsheet->getActiveSheet()->getStyle('A1:D6')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:D6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->mergeCells('A1:E1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
+$spreadsheet->getActiveSheet()->mergeCells('A2:E2');
+$spreadsheet->getActiveSheet()->mergeCells('A3:E3');
+$spreadsheet->getActiveSheet()->mergeCells('A4:E4');
+$spreadsheet->getActiveSheet()->mergeCells('A5:E5');
+$spreadsheet->getActiveSheet()->mergeCells('A6:E6');
+$spreadsheet->getActiveSheet()->getStyle('A1:E6')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:E6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'RN09 Control de partes y habilitas');
 $sheet->setCellValueByColumnAndRow(1, 2, 'Cliente: '.$encabezado['cliente']);
@@ -73,9 +73,11 @@ foreach ($sheet->getColumnIterator() as $column) {
     $sheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
 }
 
-
 //configuro el auto filter
 $spreadsheet->getActiveSheet()->setAutoFilter('A8:M8');
+
+/* comentarios en las celdas necesarias */
+$spreadsheet->getActiveSheet()->getComment('I8')->getText()->createTextRun('Cantidad de repeticiones que hay de la OT en partes. Debería ser siempre 1.');
 
 //genero repore
 $writer = new Xlsx($spreadsheet);
