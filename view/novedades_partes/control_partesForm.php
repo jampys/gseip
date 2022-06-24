@@ -430,7 +430,7 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <i class="fas fa-tags"></i>
-                                &nbsp;<strong>RN09 Partes diarios:</strong>
+                                &nbsp;<strong>RN09 Control de partes y habilitas:</strong>
                                 <strong class="dp_yellow">(Cuadrilla)</strong>
                                 <strong>:</strong>
                                 Partes diarios, órdenes y habilitas durante un período indicado.
