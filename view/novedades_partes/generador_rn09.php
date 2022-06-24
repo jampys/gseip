@@ -29,8 +29,8 @@ $sheet->setCellValueByColumnAndRow(1, 5, 'Fecha emisión: '.$encabezado['fecha_e
 //encabezado ------------------------------------------------------------
 $cabecera = ["IN", "Fecha", "Cuadrilla", "Área", "Evento", "Nro. parte diario", "Tipo Órden", "Nro. Órden", "Conductor", "Acompañante", "Habilitas", "Comentarios"];
 $sheet->fromArray($cabecera, null, 'A7');
-$spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A7:D7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A7:L7')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A7:L7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
 $fila = 8;
@@ -59,7 +59,7 @@ foreach ($sheet->getColumnIterator() as $column) {
 
 
 //configuro el auto filter
-$spreadsheet->getActiveSheet()->setAutoFilter('A7:D7');
+$spreadsheet->getActiveSheet()->setAutoFilter('A7:L7');
 
 //genero repore
 $writer = new Xlsx($spreadsheet);
