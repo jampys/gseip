@@ -90,7 +90,7 @@
                     render: function (data, type, row, meta) {
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('USR_ABM', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('USR_ABM', array(1)) )? 'delete' : 'disabled' ?>';
-                        let user_info = ''; //row.user.split('@')[0]+' '+row.created_date;
+                        let user_info = row.userc.split('@')[0]+' '+row.created_date;
                         return '<a class="view" title="Ver" href="#">'+
                                     '<i class="far fa-sticky-note dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+

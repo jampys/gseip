@@ -33,6 +33,7 @@ switch ($operation)
         $gv->setIdRole($_POST['id_role']);
         $gv->setFechaDesde($_POST['fecha_desde']);
         $gv->setFechaHasta( ($_POST['fecha_hasta']!='')? $_POST['fecha_hasta'] : null);
+        $gv->setCreatedBy($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $gv->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));
