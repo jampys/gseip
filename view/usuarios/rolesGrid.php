@@ -83,6 +83,8 @@
                         return $.fn.dataTable.render.ellipsis(40)(data, type, row);
                     }
                 },
+                {targets: 1, render: $.fn.dataTable.moment('DD/MM/YYYY')}, //fecha_desde
+                {targets: 2, render: $.fn.dataTable.moment('DD/MM/YYYY')}, //fecha_hasta
                 {
                     targets: 3,//action buttons
                     width: '18%',

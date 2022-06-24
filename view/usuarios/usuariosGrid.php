@@ -62,6 +62,8 @@
                         return rta;
                     }
                 },
+                {targets: 2, render: $.fn.dataTable.moment('DD/MM/YYYY')}, //fecha_alta
+                {targets: 5, render: $.fn.dataTable.moment('DD/MM/YYYY HH:mm')}, //ult_acceso
                 {
                     targets: 6,//action buttons
                     responsivePriority: 3,
