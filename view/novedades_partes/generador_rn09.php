@@ -35,6 +35,9 @@ $spreadsheet->getActiveSheet()->getStyle('A7:L7')->getFill()->setFillType(\PhpOf
 //cuerpo -----------------------------------------------------------------
 $fila = 8;
 foreach ($view->partes as $p):
+
+    $orden_nro = ($p['cant_ots'] > 1)? $p['orden_nro'].' ('.$p['cant_ots'].')' : $p['orden_nro'];
+
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['id_parte']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['fecha_parte']);
     $sheet->setCellValueByColumnAndRow(3, $fila, $p['cuadrilla']);
