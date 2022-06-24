@@ -41,12 +41,12 @@ foreach ($view->partes as $p):
     $sheet->setCellValueByColumnAndRow(4, $fila, $p['area']);
     $sheet->setCellValueByColumnAndRow(5, $fila, $p['evento']);
     $sheet->setCellValueByColumnAndRow(6, $fila, $p['nro_parte_diario']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['orden_tipo']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['orden_nro']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['conductor']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['acompañante']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['habilitas']);
-    $sheet->setCellValueByColumnAndRow(6, $fila, $p['comentarios']);
+    $sheet->setCellValueByColumnAndRow(7, $fila, $p['orden_tipo']);
+    $sheet->setCellValueByColumnAndRow(8, $fila, $p['orden_nro']);
+    $sheet->setCellValueByColumnAndRow(9, $fila, $p['conductor']);
+    $sheet->setCellValueByColumnAndRow(10, $fila, $p['acompañante']);
+    $sheet->setCellValueByColumnAndRow(11, $fila, $p['habilitas']);
+    $sheet->setCellValueByColumnAndRow(12, $fila, $p['comentarios']);
 
     $fila++;
 endforeach;

@@ -419,7 +419,7 @@ and not exists( select 1
         $query = "select np.id_parte, np.comentarios,
 DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
 np.cuadrilla, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
-(select GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre) SEPARATOR '\n')
+(select GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre) SEPARATOR '-')
  from nov_parte_empleado npex
  join empleados em on em.id_empleado = npex.id_empleado
  where npex.id_parte = np.id_parte
