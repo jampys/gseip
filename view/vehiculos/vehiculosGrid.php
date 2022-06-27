@@ -36,14 +36,15 @@
                 },
                 "dataSrc": ""
             },
+            "order": [[5, "asc"], [0, "asc"]], //5=fecha_baja, 0=nro_movil
             'columns': [
-                {"data" : "id_vehiculo"},
-                {"data" : "id_vehiculo"},
-                {"data" : "id_vehiculo"},
-                {"data" : "id_vehiculo"},
-                {"data" : "id_vehiculo"},
-                {"data" : "id_vehiculo"},
-                {"data" : "id_vehiculo"},
+                {"data" : "nro_movil"},
+                {"data" : "matricula"},
+                {"data" : "marca"},
+                {"data" : "modelo"},
+                {"data" : "modelo_ano"},
+                {"data" : "fecha_baja"},
+                {"data" : "propietario"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
@@ -54,8 +55,8 @@
                     targets: 7,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
-                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('VEH_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('VEH_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = ''; //row.user.split('@')[0]+' '+row.created_date;
                         return '<a class="contratos" href="#" title="Contratos">'+
                                     '<i class="fas fa-th-list dp_blue"></i>'+

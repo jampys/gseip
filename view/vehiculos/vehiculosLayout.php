@@ -13,8 +13,8 @@
         $(document).ready(function(){
 
 
-            $(document).on('click', '.edit', function(){ //ok
-                var id = $(this).attr('data-id');
+            $('#content').on('click', '.edit', function(){ //ok
+                var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
                 params.id_vehiculo = id;
@@ -22,12 +22,14 @@
                 params.operation = "editVehiculo";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
+                return false;
 
             });
 
-            $(document).on('click', '.view', function(){ //ok
-                var id = $(this).attr('data-id');
+
+            $('#content').on('click', '.view', function(){ //ok
+                var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
                 params.id_vehiculo = id;
@@ -39,12 +41,10 @@
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                })
+                });
+                return false;
 
             });
-
-
-
 
 
             $(document).on('click', '#new', function(){ //ok
@@ -57,7 +57,7 @@
             });
 
 
-            $(document).on('click', '#submit',function(){ //ok
+            $('#myModal').on('click', '#submit',function(){ //ok
                 if ($("#vehiculo-form").valid()){
                     var params={};
                     params.action = 'vehiculos';
@@ -82,9 +82,10 @@
                         if(data >=0){
                             $(".modal-footer button").prop("disabled", true); //deshabilito botones
                             $("#myElem").html('Vehículo guardado con exito').addClass('alert alert-success').show();
-                            $('#content').load('index.php',{action:"vehiculos", operation:"refreshGrid"});
+                            //$('#content').load('index.php',{action:"vehiculos", operation:"refreshGrid"});
                             setTimeout(function() { $("#myElem").hide();
                                                     $('#myModal').modal('hide');
+                                                    $('#example').DataTable().ajax.reload(null, false);
                                                   }, 2000);
                         }
 
@@ -107,9 +108,9 @@
 
 
             var dialog;
-            $(document).on('click', '.delete', function(){
+            $('#content').on('click', '.delete', function(){
 
-                var id = $(this).attr('data-id');
+                var id = $(this).closest('tr').attr('data-id');
                 dialog = bootbox.dialog({
                     message: "<p>¿Desea eliminar el vehículo?</p>",
                     size: 'small',
@@ -127,7 +128,7 @@
                         }
                     }
                 });
-
+                return false;
 
             });
 
