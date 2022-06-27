@@ -57,47 +57,7 @@
             });
 
 
-            $('#myModal').on('click', '#submit',function(){ //ok
-                if ($("#vehiculo-form").valid()){
-                    var params={};
-                    params.action = 'vehiculos';
-                    params.operation = 'saveVehiculo';
-                    params.id_vehiculo = $('#id_vehiculo').val();
-                    params.nro_movil = $('#nro_movil').val();
-                    params.matricula = $('#matricula').val();
-                    params.marca = $('#marca').val();
-                    params.modelo = $('#modelo').val();
-                    params.modelo_ano = $('#modelo_ano').val();
-                    params.tetra = $('#tetra').val();
-                    params.propietario = $('#propietario').val();
-                    params.leasing = $('#leasing').val();
-                    params.fecha_baja = $('#fecha_baja').val();
-                    params.responsable = $('#responsable').val();
-                    //alert(params.responsable);
-                    $.post('index.php',params,function(data, status, xhr){
 
-                        //alert(data);
-                        //var rta= parseInt(data.charAt(3));
-                        //alert(rta);
-                        if(data >=0){
-                            $(".modal-footer button").prop("disabled", true); //deshabilito botones
-                            $("#myElem").html('Vehículo guardado con exito').addClass('alert alert-success').show();
-                            //$('#content').load('index.php',{action:"vehiculos", operation:"refreshGrid"});
-                            setTimeout(function() { $("#myElem").hide();
-                                                    $('#myModal').modal('hide');
-                                                    $('#example').DataTable().ajax.reload(null, false);
-                                                  }, 2000);
-                        }
-
-                    }, "json").fail(function(jqXHR, textStatus, errorThrown ) {
-                        //alert('Entro a fail '+jqXHR.responseText);
-                        $("#myElem").html('Error al guardar el vehículo').addClass('alert alert-danger').show();
-                    });
-
-
-                }
-                return false;
-            });
 
 
             $(document).on('click', '#cancel',function(){
