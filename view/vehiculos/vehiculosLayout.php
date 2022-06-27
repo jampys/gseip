@@ -58,8 +58,6 @@
 
 
 
-
-
             $(document).on('click', '#cancel',function(){
                 $('#myModal').modal('hide');
             });
@@ -134,11 +132,7 @@
                 return false;
 
             });
-
-
-
-
-
+            
 
 
         });
