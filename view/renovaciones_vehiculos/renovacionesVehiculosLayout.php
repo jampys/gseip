@@ -138,7 +138,7 @@
                         dialog.find('.modal-footer').html('<div class="alert alert-success">Vencimiento eliminado con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
-                            $("#search").trigger("click");
+                            $('#example').DataTable().ajax.reload();
                         }, 2000);
                     }
 

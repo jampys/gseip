@@ -104,7 +104,7 @@
                         dialog.find('.modal-footer').html('<div class="alert alert-success">Vehículo eliminado con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
-                            $('#content').load('index.php',{action:"vehiculos", operation: "refreshGrid"});
+                            $('#example').DataTable().ajax.reload();
                         }, 2000);
                     }
 
@@ -132,7 +132,7 @@
                 return false;
 
             });
-            
+
 
 
         });
