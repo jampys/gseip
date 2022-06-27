@@ -18,8 +18,11 @@ switch ($operation)
 {
     case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $view->vehiculos = Vehiculo::getVehiculos();
-        $view->contentTemplate="view/vehiculos/vehiculosGrid.php";
+        $rta = $view->vehiculos = Vehiculo::getVehiculos();
+        //$view->contentTemplate="view/vehiculos/vehiculosGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveVehiculo': //ok

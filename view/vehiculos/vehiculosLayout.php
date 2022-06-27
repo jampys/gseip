@@ -159,9 +159,9 @@
 
 
             //Al presionar el boton contratos, para mostrar los contratos del empleado
-            $(document).on('click', '.contratos', function(){ //ok
+            $('#content').on('click', '.contratos', function(){ //ok
                 //alert('tocó en contratos');
-                var id = $(this).attr('data-id');
+                var id = $(this).closest('tr').attr('data-id');
                 //preparo los parametros
                 params={};
                 params.id_vehiculo = id;
@@ -169,7 +169,8 @@
                 params.operation = "loadContratos";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
+                return false;
 
             });
 
