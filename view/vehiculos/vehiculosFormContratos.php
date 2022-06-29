@@ -99,7 +99,7 @@
                         <tbody>
                         <?php foreach ($view->contratos as $con): ?>
                             <tr data-id="<?php echo $con['id_contrato'];?>">
-                                <td><?php echo $con['contrato'].' '.$con['nro_contrato'];?></td>
+                                <td><?php echo $con['contrato'];?></td>
                                 <td><?php echo $con['localidad'];?></td>
                                 <td><?php echo $con['fecha_desde'];?></td>
                                 <td><?php echo $con['fecha_hasta'];?></td>
