@@ -3,11 +3,8 @@
 
     $(document).ready(function(){
 
-        $('#example').DataTable({
+        /*$('#example').DataTable({
             responsive: true,
-            /*language: {
-                url: 'dataTables/Spanish.json'
-            }*/
             "stateSave": true,
             "order": [[5, "asc"], [0, "asc"]], //6=priority (oculta), 7=renovacion, 5=fecha_vencimiento
             "fnInitComplete": function () {
@@ -16,6 +13,68 @@
             columnDefs: [
                 { responsivePriority: 1, targets: 5 }
             ]
+        });*/
+
+
+        $('#example').DataTable({
+            responsive: true,
+            language: {
+                url: 'resources/libraries/dataTables/Spanish.json'
+            },
+            "fnInitComplete": function () {
+                $(this).show();
+            },
+            'ajax': {
+                "type"   : "POST",
+                "url"    : 'index.php',
+                "data": function ( d ) {
+                    //d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+                    //d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
+                    //d.search_responsable_ejecucion = $('#search_responsable_ejecucion').val();
+                    d.action = "vto_gruposVehiculos";
+                    d.operation = "refreshGrid";
+                },
+                "dataSrc": ""
+            },
+            "order": [[3, "asc"], [1, "asc"]], //5=fecha_baja, 1=nombre
+            'columns': [
+                {"data" : "nro_referencia"},
+                {"data" : "nombre"},
+                {"data" : "vencimiento"},
+                {"data" : "fecha_baja"},
+                {data: null, defaultContent: '', orderable: false}
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-id', data.id_grupo);
+            },
+            "columnDefs": [
+                {
+                    targets: 4,//action buttons
+                    responsivePriority: 3,
+                    render: function (data, type, row, meta) {
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('VEH_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('VEH_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
+                        let user_info = ''; //row.user.split('@')[0]+' '+row.created_date;
+                        return '<a class="contratos" href="#" title="Contratos">'+
+                                    '<i class="fas fa-th-list dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="view" title="Ver" href="#">'+
+                                    '<i class="far fa-sticky-note dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a href="#" title="'+user_info+'" onclick="return false;">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                                '</a>';
+                    }
+                }
+            ]
+
+
         });
 
 
@@ -43,47 +102,13 @@
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%" style="display: none">
             <thead>
             <tr>
-                <th>Nro.</th>
-                <th>Nombre</th>
                 <th>Nro. referencia</th>
+                <th>Nombre</th>
                 <th>Vencimiento</th>
                 <th>Fecha Baja</th>
                 <th></th>
             </tr>
             </thead>
-            <tbody>
-            <?php foreach ($view->grupos as $vehiculo):   ?>
-                <tr data-id="<?php echo $vehiculo['id_grupo']; ?>">
-                    <td><?php echo $vehiculo['id_grupo'];?></td>
-                    <td><?php echo $vehiculo['nombre'];?></td>
-                    <td><?php echo $vehiculo['nro_referencia'];?></td>
-                    <td><?php echo $vehiculo['vencimiento'];?></td>
-                    <td><?php echo $vehiculo['fecha_baja'];?></td>
-
-                    <!-- si tiene permiso para vehiculos del grupo -->
-                    <td class="text-center">
-                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'vehiculos' : 'disabled' ?>" href="javascript:void(0);">
-                            <i class="fas fa-th-list fa-fw dp_blue" title="vehículos"></i>
-                        </a>&nbsp;&nbsp;
-
-                        <!-- si tiene permiso para ver -->
-                        <a class="<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'view' : 'disabled' ?>" href="javascript:void(0);" title="ver">
-                            <i class="far fa-sticky-note dp_blue"></i>
-                        </a>&nbsp;&nbsp;
-
-                        <!-- si tiene permiso para editar -->
-                        <a class="<?php echo ( PrivilegedUser::dhasAction('GRV_UPDATE', array(1)) )? 'edit' : 'disabled' ?>" href="javascript:void(0);">
-                            <i class="far fa-edit dp_blue"></i>
-                        </a>&nbsp;&nbsp;
-
-                        <!-- si tiene permiso para eliminar -->
-                        <a class="<?php echo ( PrivilegedUser::dhasAction('GRV_DELETE', array(1)) )? 'delete' : 'disabled' ?>" title="borrar" href="javascript:void(0);">
-                            <i class="far fa-trash-alt dp_red"></i>
-                        </a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
         </table>
 
     </div>
