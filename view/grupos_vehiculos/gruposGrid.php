@@ -52,13 +52,15 @@
                     targets: 4,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
-                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('VEH_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('VEH_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
+                        let permisoVehiculos = '<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'vehiculos' : 'disabled' ?>';
+                        let permisoVer = '<?php echo ( PrivilegedUser::dhasPrivilege('GRV_VER', array(1)) )? 'view' : 'disabled' ?>';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('GRV_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('GRV_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = ''; //row.user.split('@')[0]+' '+row.created_date;
-                        return '<a class="contratos" href="#" title="Contratos">'+
+                        return '<a class="'+permisoVehiculos+'" href="#">'+ //si tiene permiso para ver vehiculos del grupo
                                     '<i class="fas fa-th-list dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a class="view" title="Ver" href="#">'+
+                                '<a class="'+permisoVer+'" href="#" title="Ver">'+ //si tiene permiso para ver
                                     '<i class="far fa-sticky-note dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar

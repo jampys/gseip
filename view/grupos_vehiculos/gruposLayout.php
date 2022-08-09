@@ -22,7 +22,8 @@
                 params.operation = "editGrupo";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
+                return false;
             });
 
 
@@ -39,7 +40,8 @@
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                })
+                });
+                return false;
             });
 
 
@@ -53,7 +55,8 @@
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
                     $('#etapas_left_side #add').attr('id_grupo', id);
-                })
+                });
+                return false;
 
             });
 
@@ -64,7 +67,7 @@
                 params.operation="newGrupo";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
             });
 
 
@@ -90,7 +93,7 @@
                         }
                     }
                 });
-
+                return false;
 
             });
 
@@ -108,7 +111,7 @@
                         dialog.find('.modal-footer').html('<div class="alert alert-success">Flota eliminada con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
-                            $('#content').load('index.php',{action:"vto_gruposVehiculos", operation: "refreshGrid"});
+                            $('#example').DataTable().ajax.reload();
                         }, 2000);
                     }
 
