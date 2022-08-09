@@ -47,7 +47,6 @@
                 params.marca = $('#marca').val();
                 params.modelo = $('#modelo').val();
                 params.modelo_ano = $('#modelo_ano').val();
-                params.tetra = $('#tetra').val();
                 params.propietario = $('#propietario').val();
                 params.leasing = $('#leasing').val();
                 params.fecha_baja = $('#fecha_baja').val();
@@ -219,10 +218,6 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="tetra">Tetra</label>
-                        <input class="form-control" type="text" name="tetra" id="tetra" value = "<?php print $view->vehiculo->getTetra() ?>" placeholder="Nro. de tetra">
-                    </div>
 
                     <div class="form-group">
                         <label class="control-label" for="responsable" >Responsable</label>

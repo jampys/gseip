@@ -9,7 +9,6 @@ class Vehiculo
     private $marca;
     private $modelo;
     private $modelo_ano;
-    private $tetra;
     private $fecha_baja;
     private $propietario;
     private $leasing;
@@ -34,9 +33,6 @@ class Vehiculo
 
     function getModeloAno()
     { return $this->modelo_ano;}
-
-    function getTetra()
-    { return $this->tetra;}
 
     function getFechaBaja()
     { return $this->fecha_baja;}
@@ -70,9 +66,6 @@ class Vehiculo
     function setModeloAno($val)
     {  $this->modelo_ano=$val;}
 
-    function setTetra($val)
-    {  $this->tetra=$val;}
-
     function setFechaBaja($val)
     {  $this->fecha_baja=$val;}
 
@@ -92,7 +85,7 @@ class Vehiculo
         if ($nro!=0){
 
             $stmt=new sQuery();
-            $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_ano, ve.tetra,
+            $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_ano,
                     ve.propietario, ve.leasing,
                     DATE_FORMAT(ve.fecha_baja,  '%d/%m/%Y') as fecha_baja,
                     ve.responsable, ve.id_object
@@ -109,7 +102,6 @@ class Vehiculo
             $this->setMarca($rows[0]['marca']);
             $this->setModelo($rows[0]['modelo']);
             $this->setModeloAno($rows[0]['modelo_ano']);
-            $this->setTetra($rows[0]['tetra']);
             $this->setFechaBaja($rows[0]['fecha_baja']);
             $this->setPropietario($rows[0]['propietario']);
             $this->setLeasing($rows[0]['leasing']);
@@ -120,7 +112,7 @@ class Vehiculo
 
     public static function getVehiculos() { //ok
         $stmt=new sQuery();
-        $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_ano, ve.tetra,
+        $query="select ve.id_vehiculo, ve.nro_movil, ve.matricula, ve.marca, ve.modelo, ve.modelo_ano,
                 DATE_FORMAT(ve.fecha_baja,  '%d/%m/%Y') as fecha_baja,
                 ve.responsable,
                 co.nombre as propietario
@@ -186,7 +178,6 @@ order by vvc.fecha_desde desc";
                 marca = :marca,
                 modelo = :modelo,
                 modelo_ano = :modelo_ano,
-                tetra = :tetra,
                 propietario = :propietario,
                 leasing = :leasing,
                 fecha_baja = STR_TO_DATE(:fecha_baja, '%d/%m/%Y'),
@@ -198,7 +189,6 @@ order by vvc.fecha_desde desc";
         $stmt->dpBind(':marca', $this->getMarca());
         $stmt->dpBind(':modelo', $this->getModelo());
         $stmt->dpBind(':modelo_ano', $this->getModeloAno());
-        $stmt->dpBind(':tetra', $this->getTetra());
         $stmt->dpBind(':propietario', $this->getPropietario());
         $stmt->dpBind(':leasing', $this->getLeasing());
         $stmt->dpBind(':fecha_baja', $this->getFechaBaja());
@@ -211,15 +201,14 @@ order by vvc.fecha_desde desc";
     private function insertVehiculo(){ //ok
 
         $stmt=new sQuery();
-        $query="insert into vto_vehiculos(nro_movil, matricula, marca, modelo, modelo_ano, tetra, propietario, leasing, fecha_baja, responsable)
-                values(:nro_movil, :matricula, :marca, :modelo, :modelo_ano, :tetra, :propietario, :leasing, STR_TO_DATE(:fecha_baja, '%d/%m/%Y'), :responsable)";
+        $query="insert into vto_vehiculos(nro_movil, matricula, marca, modelo, modelo_ano, propietario, leasing, fecha_baja, responsable)
+                values(:nro_movil, :matricula, :marca, :modelo, :modelo_ano, :propietario, :leasing, STR_TO_DATE(:fecha_baja, '%d/%m/%Y'), :responsable)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':nro_movil', $this->getNroMovil());
         $stmt->dpBind(':matricula', $this->getMatricula());
         $stmt->dpBind(':marca', $this->getMarca());
         $stmt->dpBind(':modelo', $this->getModelo());
         $stmt->dpBind(':modelo_ano', $this->getModeloAno());
-        $stmt->dpBind(':tetra', $this->getTetra());
         $stmt->dpBind(':propietario', $this->getPropietario());
         $stmt->dpBind(':leasing', $this->getLeasing());
         $stmt->dpBind(':fecha_baja', $this->getFechaBaja());

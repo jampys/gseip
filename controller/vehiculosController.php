@@ -32,7 +32,6 @@ switch ($operation)
         $vehiculo->setMarca($_POST['marca']);
         $vehiculo->setModelo($_POST['modelo']);
         $vehiculo->setModeloAno($_POST['modelo_ano']);
-        $vehiculo->setTetra($_POST['tetra']);
         $vehiculo->setPropietario(($_POST['propietario'])? $_POST['propietario'] : null);
         $vehiculo->setLeasing(($_POST['leasing'])? $_POST['leasing'] : null);
         $vehiculo->setFechaBaja(($_POST['fecha_baja'])? $_POST['fecha_baja'] : null);
