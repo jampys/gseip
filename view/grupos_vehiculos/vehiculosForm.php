@@ -190,7 +190,7 @@
                 
                 <div class="row">
 
-                        <div class="col-md-6" id="etapas_left_side">
+                        <div class="col-md-7" id="etapas_left_side">
 
                             <!--<div class="clearfix">
                                 <button <?php //echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? '' : 'disabled' ?> class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar vehículo">
@@ -204,7 +204,7 @@
 
                         </div>
 
-                        <div class="col-md-6" id="etapas_right_side">
+                        <div class="col-md-5" id="etapas_right_side">
 
                         </div>
 

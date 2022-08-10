@@ -69,6 +69,7 @@
             },
             'columns': [
                 {"data" : "matricula"},
+                {"data" : "nro_movil"},
                 {"data" : "certificado"},
                 {"data" : "fecha_desde"},
                 {"data" : "fecha_hasta"},
@@ -78,15 +79,16 @@
                 $(row).attr('data-id', data.id_grupo);
             },
             "columnDefs": [
-                {targets: 0, type: 'date-uk', orderData: [ 0, 1 ]}, //fecha_edicion
-                {
-                    targets: 1, //nombre
+                /*{
+                    targets: 1,
                     render: function(data, type, row) {
                         return $.fn.dataTable.render.ellipsis(40)(data, type, row);
                     }
-                },
+                },*/
+                {targets: 3, type: 'date-uk', orderData: [ 3, 4 ]}, //fecha_desde
+                {targets: 4, type: 'date-uk', orderData: [ 3, 4 ]}, //fecha_hasta
                 {
-                    targets: 4,//action buttons
+                    targets: 5,//action buttons
                     width: '23%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
@@ -127,7 +129,8 @@
             <table id="table-vehiculos" class="table table-condensed dpTable table-hover dt-responsive nowrap">
                 <thead>
                 <tr>
-                    <th>Vehículo</th>
+                    <th>Matrícula</th>
+                    <th>Móvil</th>
                     <th>Certif.</th>
                     <th>F. desde</th>
                     <th>F. hasta</th>
