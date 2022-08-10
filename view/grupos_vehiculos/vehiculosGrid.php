@@ -76,7 +76,7 @@
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
-                $(row).attr('data-id', data.id_grupo);
+                $(row).attr('data-id', data.id_grupo_vehiculo);
             },
             "columnDefs": [
                 /*{

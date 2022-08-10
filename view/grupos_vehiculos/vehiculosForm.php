@@ -138,7 +138,7 @@
             //alert(id);
             params={};
             params.id_grupo_vehiculo = id;
-            params.id_grupo = $('#etapas_left_side #add').attr('id_grupo');
+            params.id_grupo = $('#etapas_left_side').attr('id_grupo');
             params.action = "vto_grupo-vehiculo";
             params.operation = "deleteVehiculo";
 
