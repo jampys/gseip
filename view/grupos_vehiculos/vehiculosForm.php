@@ -12,7 +12,7 @@
         });
 
 
-        $('#etapas_left_side').on('click', '.edit', function(){ //ok
+        $('.grid-vehiculos').on('click', '.edit', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             //var id = $(this).attr('data-id');
             //alert('editar vehiculo: '+id);
@@ -25,11 +25,12 @@
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
-            })
+            });
+            return false;
         });
 
 
-        $('#etapas_left_side').on('click', '.view', function(){ //ok
+        $('.grid-vehiculos').on('click', '.view', function(){ //ok
             var id = $(this).closest('tr').attr('data-id');
             params={};
             params.id_grupo_vehiculo = id;
@@ -42,7 +43,8 @@
                 //$("#etapas_right_side fieldset").prop("disabled", true);
                 //$("#grupo-vehiculo-form #footer-buttons button").css('display', 'none');
                 //$('.selectpicker').selectpicker('refresh');
-            })
+            });
+            return false;
         });
 
 
@@ -58,7 +60,8 @@
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 $('#id_grupo').val(params.id_grupo);
-            })
+            });
+            return false;
         });
 
 
@@ -85,11 +88,11 @@
                     if(data >=0){
                         $("#grupo-vehiculo-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Vehículo guardado con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
                         //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
-                                                //$('#myModal').modal('hide');
                                                 $('#grupo-vehiculo-form').hide();
+                                                //$('#etapas_left_side .grid-vehiculos').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
+                                                $('#table-vehiculos').DataTable().ajax.reload();
                                               }, 2000);
                     }
 
@@ -145,7 +148,8 @@
                     setTimeout(function() {
                         dialog.modal('hide');
                         $('#grupo-vehiculo-form').hide();
-                        $('#etapas_left_side .grid').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
+                        //$('#etapas_left_side .grid-vehiculos').load('index.php',{action:"vto_grupo-vehiculo", id_grupo:params.id_grupo, operation:"refreshGrid"});
+                        $('#table-vehiculos').DataTable().ajax.reload();
                     }, 2000);
                 }
 
@@ -162,7 +166,7 @@
         //evento al salir o cerrar con la x el modal de etapas
         $("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
-            $("#search").trigger("click");
+            $('#example').DataTable().ajax.reload(null, false);
         });
 
 
@@ -198,7 +202,7 @@
                                 </button>
                             </div>-->
 
-                            <div class="grid">
+                            <div class="grid-vehiculos">
                                 <?php include_once('view/grupos_vehiculos/vehiculosGrid.php');?>
                             </div>
 
