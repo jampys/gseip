@@ -26,8 +26,8 @@
             language: {
                 //url: 'resources/libraries/dataTables/Spanish.json',
                 search: '',
-                searchPlaceholder: "Buscar edicion",
-                emptyTable: 'La capacitación no tiene ediciones registradas'
+                searchPlaceholder: "Buscar vehículo",
+                emptyTable: 'La flota no tiene vehículos registrados'
             },
             sDom:   "<'row'<'col-sm-2'B><'col-sm-4'><'col-sm-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -35,11 +35,11 @@
             buttons: [
                 {
                     text: '<i class="fas fa-plus fa-fw dp_green"></i>',
-                    titleAttr: 'Agregar edición',
+                    titleAttr: 'Agregar vehículo',
                     attr:  {
                         id: 'add', //https://datatables.net/reference/option/buttons.buttons.attr
                         disabled: function(){
-                            let permisoNuevo = '<?php echo (PrivilegedUser::dhasPrivilege('PTN_ABM', array(1)) )? 'false' : 'true' ?>';
+                            let permisoNuevo = '<?php echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? 'false' : 'true' ?>';
                             return (permisoNuevo == 'false')? false : true;
                         }
                     },
