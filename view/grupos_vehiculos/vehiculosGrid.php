@@ -54,7 +54,7 @@
             scrollY:        150,
             scrollCollapse: true,
             scroller:       true,
-            order: [[0, "asc"]], // 0=fecha_edicion
+            order: [[4, "asc"], [0, "asc"], [1, "asc"]], // 4=fecha_hasta, 0=certificado, 1=matricula
             'ajax': {
                 "type"   : "POST",
                 "url"    : 'index.php',
@@ -68,9 +68,9 @@
                 "dataSrc": ""
             },
             'columns': [
+                {"data" : "certificado"},
                 {"data" : "matricula"},
                 {"data" : "nro_movil"},
-                {"data" : "certificado"},
                 {"data" : "fecha_desde"},
                 {"data" : "fecha_hasta"},
                 {data: null, defaultContent: '', orderable: false}
@@ -85,8 +85,8 @@
                         return $.fn.dataTable.render.ellipsis(40)(data, type, row);
                     }
                 },*/
-                {targets: 3, type: 'date-uk', orderData: [ 3, 4 ]}, //fecha_desde
-                {targets: 4, type: 'date-uk', orderData: [ 3, 4 ]}, //fecha_hasta
+                {targets: 3, type: 'date-uk', orderData: [3]}, //fecha_desde
+                {targets: 4, type: 'date-uk', orderData: [4]}, //fecha_hasta
                 {
                     targets: 5,//action buttons
                     width: '23%',
@@ -129,9 +129,9 @@
             <table id="table-vehiculos" class="table table-condensed dpTable table-hover dt-responsive nowrap">
                 <thead>
                 <tr>
+                    <th>Certif.</th>
                     <th>Matrícula</th>
                     <th>Móvil</th>
-                    <th>Certif.</th>
                     <th>F. desde</th>
                     <th>F. hasta</th>
                     <th></th>
