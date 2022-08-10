@@ -311,7 +311,7 @@ order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementa
         $query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
         temp.nombre_corto_op, temp.contrato, temp.tipo, temp.pool, sum(temp.dht) as dht, temp.dh
 from
-(select concat('[', cu.nombre_corto_op, '] ', cu.nombre) as cuadrilla,
+(select concat('[', cu.nombre_corto_op, '] ', if(modulo_trabajo is not null, concat(modulo_trabajo, ' '), ''), cu.nombre) as cuadrilla,
 cu.nombre_corto_op,
 co.nombre as contrato,
 cu.tipo, cu.pool, cu.id_cuadrilla,
