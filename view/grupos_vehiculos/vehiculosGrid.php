@@ -68,10 +68,10 @@
                 "dataSrc": ""
             },
             'columns': [
-                {"data" : "id_vehiculo"},
-                {"data" : "id_vehiculo"},
-                {"data" : "id_vehiculo"},
-                {"data" : "id_vehiculo"},
+                {"data" : "matricula"},
+                {"data" : "certificado"},
+                {"data" : "fecha_desde"},
+                {"data" : "fecha_hasta"},
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
@@ -93,21 +93,18 @@
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasPrivilege('NC_ABM', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = ''; //row.user.split('@')[0]+' '+row.created_date;
-                        return '<a class="new" title="Participantes" href="#">'+
-                            '<i class="fas fa-users dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="view" title="Ver" href="#">'+
-                            '<i class="far fa-sticky-note dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
-                            '<i class="far fa-edit dp_blue"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
-                            '<i class="far fa-trash-alt dp_red"></i>'+
-                            '</a>&nbsp;&nbsp;'+
-                            '<a href="#" title="'+user_info+'" onclick="return false;">'+
-                            '<i class="fa fa-question-circle dp_light_gray"></i>'+
-                            '</a>';
+                        return '<a class="view" title="Ver" href="#">'+
+                                    '<i class="far fa-sticky-note dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                    '<i class="far fa-edit dp_blue"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                    '<i class="far fa-trash-alt dp_red"></i>'+
+                                '</a>&nbsp;&nbsp;'+
+                                '<a href="#" title="'+user_info+'" onclick="return false;">'+
+                                    '<i class="fa fa-question-circle dp_light_gray"></i>'+
+                                '</a>';
                     }
                 }
             ]
