@@ -20,6 +20,7 @@
             params.id_grupo_vehiculo = id;
             params.action = "vto_grupo-vehiculo";
             params.operation = "editVehiculo";
+            params.id_grupo = $('#etapas_left_side').attr('id_grupo');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -34,6 +35,7 @@
             params.id_grupo_vehiculo = id;
             params.action = "vto_grupo-vehiculo";
             params.operation = "editVehiculo";
+            params.id_grupo = $('#etapas_left_side').attr('id_grupo');
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
@@ -50,7 +52,7 @@
             params={};
             params.action = "vto_grupo-vehiculo";
             params.operation = "newVehiculo";
-            params.id_grupo = $('#etapas_left_side #add').attr('id_grupo');
+            params.id_grupo = $('#etapas_left_side').attr('id_grupo');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -190,11 +192,11 @@
 
                         <div class="col-md-6" id="etapas_left_side">
 
-                            <div class="clearfix">
-                                <button <?php echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? '' : 'disabled' ?> class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar vehículo">
+                            <!--<div class="clearfix">
+                                <button <?php //echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? '' : 'disabled' ?> class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar vehículo">
                                     <i class="fas fa-plus dp_green"></i>
                                 </button>
-                            </div>
+                            </div>-->
 
                             <div class="grid">
                                 <?php include_once('view/grupos_vehiculos/vehiculosGrid.php');?>

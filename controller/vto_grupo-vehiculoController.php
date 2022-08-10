@@ -19,9 +19,11 @@ switch ($operation)
         //$id_localidad = ($_POST['search_localidad']!='')? $_POST['search_localidad'] : null;
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
-        //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->vehiculos = GrupoVehiculo::getVehiculos($_POST['id_grupo']);
-        $view->contentTemplate="view/grupos_vehiculos/vehiculosGrid.php";
+        $rta = $view->vehiculos = GrupoVehiculo::getVehiculos($_POST['id_grupo']);
+        //$view->contentTemplate="view/grupos_vehiculos/vehiculosGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveVehiculo': //ok
