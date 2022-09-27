@@ -73,7 +73,7 @@
                 nombre: {required: true},
                 nombre_corto:{
                     required: true,
-                    maxlength: 5
+                    maxlength: 7
                 }
                 //id_contrato: {required: true}
                 //default_id_vehiculo: {required: true},
@@ -121,7 +121,7 @@
                 nombre: "Ingrese el nombre",
                 nombre_corto:{
                     required: "Ingrese el identificador",
-                    maxlength: "Máximo 5 caracteres"
+                    maxlength: "Máximo 7 caracteres"
                 }
                 //id_contrato: "Seleccione el contrato"
                 //default_id_vehiculo: "Seleccione el vehículo",
