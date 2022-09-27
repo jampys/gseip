@@ -3,6 +3,7 @@
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
 ini_set('memory_limit', '512M'); //necesario para reportes en excel y pdf de novedades, con un rango de fechas amplio
+ini_set('max_execution_time', '120'); //necesari para reporte en excel RN03. Para evitar error: Maximum execution time of 30 seconds exceeded
 
 //$GLOBALS['ini'] = parse_ini_file('app.ini');
 $GLOBALS['ini'] = parse_ini_file('app.ini', true);
