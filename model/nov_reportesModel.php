@@ -267,7 +267,7 @@ order by em.id_convenio asc, em.legajo asc";
     }
 
 
-    public static function getContratosList($id_contrato) {
+    public static function getContratosList($id_contrato) { //ok
         //listado de nombre de contratos, concatenados. Para encabezado de reporte RN03
         $stmt=new sQuery();
         $query="select GROUP_CONCAT(cast(co.nombre as CHAR) SEPARATOR ', ') AS contrato
@@ -311,7 +311,7 @@ order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementa
         $query = "select group_concat(temp.cuadrilla separator ' + ') as cuadrilla,
         temp.nombre_corto_op, temp.contrato, temp.tipo, temp.pool, sum(temp.dht) as dht, temp.dh
 from
-(select concat('[', cu.nombre_corto_op, '] ', cu.nombre) as cuadrilla,
+(select concat('[', cu.nombre_corto_op, '] ', if(modulo_trabajo is not null, concat(modulo_trabajo, ' '), ''), cu.nombre) as cuadrilla,
 cu.nombre_corto_op,
 co.nombre as contrato,
 cu.tipo, cu.pool, cu.id_cuadrilla,
@@ -340,6 +340,121 @@ order by temp.contrato asc, field(temp.tipo, 'Diaria', 'Itemizada', 'Complementa
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_contrato', $id_contrato);
         $stmt->dpBind(':periodo', $periodo);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
+    public static function getVencimientosPersonalList($id_vencimiento) { //ok
+        //listado de nombre de vencimientos de personal, concatenados. Para encabezado de reporte RV01
+        $stmt=new sQuery();
+        $query="select GROUP_CONCAT(cast(vp.nombre as CHAR) SEPARATOR ', ') AS vencimientos
+                from vto_vencimiento_p vp
+                where vp.id_vencimiento in ($id_vencimiento)
+                group by null";
+
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+    public static function getVencimientosVehiculoslList($id_vencimiento) { //ok
+        //listado de nombre de vencimientos de personal, concatenados. Para encabezado de reporte RV01
+        $stmt=new sQuery();
+        $query="select GROUP_CONCAT(cast(vv.nombre as CHAR) SEPARATOR ', ') AS vencimientos
+                from vto_vencimiento_v vv
+                where vv.id_vencimiento in ($id_vencimiento)
+                group by null";
+
+        $stmt->dpPrepare($query);
+        //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
+    public static function getReporteRn8($id_contrato, $id_periodo, $id_empleado) {
+        $stmt=new sQuery();
+        $query = "select DATE_FORMAT(cal.fecha,  '%d/%m/%Y') as fecha,
+(ELT(WEEKDAY(cal.fecha) + 1, 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo')) AS dia_semana,
+em.legajo, concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
+cal.descripcion
+from empleados em
+join nov_periodos per on per.id_periodo = :id_periodo
+join v_tmp_calendar cal on cal.fecha between per.fecha_desde and per.fecha_hasta -- and cal.feriado is null
+join empleado_contrato ec on ec.id_empleado = em.id_empleado
+where ec.id_contrato = :id_contrato
+and ec.id_empleado = ifnull(:id_empleado, ec.id_empleado)
+and ec.fecha_desde <= per.fecha_hasta
+and (ec.fecha_hasta is null or ec.fecha_hasta >= per.fecha_desde)
+and em.fecha_baja is null
+and dayofweek(cal.fecha) in(2, 3, 4, 5, 6)
+and not exists(select 1
+			    from nov_partes npx
+                join nov_parte_empleado npex on npex.id_parte = npx.id_parte
+                where npex.id_empleado = em.id_empleado
+                and npx.fecha_parte = cal.fecha)
+and not exists( select 1
+				from nov_sucesos ns
+                where ns.id_empleado = em.id_empleado
+                and cal.fecha between ns.fecha_desde and ns.fecha_hasta)";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_periodo', $id_periodo);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        //$stmt->dpBind(':id_concepto', $id_concepto);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
+    }
+
+
+
+
+    public static function getReporteRn9($id_contrato, $id_periodo) {
+        $stmt=new sQuery();
+        $query = "select np.id_parte, np.comentarios,
+DATE_FORMAT(np.fecha_parte,  '%d/%m/%Y') as fecha_parte,
+np.cuadrilla, na.nombre as area, nec.nombre as evento, npo.nro_parte_diario, npo.orden_tipo, npo.orden_nro,
+(select GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre) SEPARATOR '-')
+ from nov_parte_empleado npex
+ join empleados em on em.id_empleado = npex.id_empleado
+ where npex.id_parte = np.id_parte
+ and npex.conductor = 1
+ group by npex.id_parte
+) as conductor,
+(select GROUP_CONCAT( CONCAT(em.apellido, ' ', em.nombre) SEPARATOR '\n')
+ from nov_parte_empleado npex
+ join empleados em on em.id_empleado = npex.id_empleado
+ where npex.id_parte = np.id_parte
+ and (npex.conductor is null or npex.conductor = 0)
+ group by npex.id_parte
+) as acompañante,
+(
+select GROUP_CONCAT( CONCAT(h.habilita, ' - ', h.cantidad, ' - ', h.unitario, ' - ', h.importe) SEPARATOR '\n')
+from nov_habilitas h
+where h.ot = npo.orden_nro
+) as habilitas,
+(
+select count(*)
+from nov_parte_orden npox
+where npox.orden_nro = npo.orden_nro
+) as cant_ots
+from nov_partes np
+left join nov_parte_orden npo on npo.id_parte = np.id_parte
+left join nov_eventos_c nec on nec.id_evento = np.id_evento
+left join nov_areas na on na.id_area = np.id_area
+where np.id_periodo = :id_periodo
+and np.id_contrato = :id_contrato
+order by np.cuadrilla, np.fecha_parte";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_periodo', $id_periodo);
+        //$stmt->dpBind(':id_empleado', $id_empleado);
+        //$stmt->dpBind(':id_concepto', $id_concepto);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

@@ -132,14 +132,14 @@ class RenovacionPersonal
         select vrp.id_renovacion, vrp.id_vencimiento, vrp.id_empleado,
 DATE_FORMAT(vrp.fecha_emision,  '%d/%m/%Y') as fecha_emision,
 DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-DATE_FORMAT(vrp.created_date,  '%d/%m/%Y') as created_date,
+DATE_FORMAT(vrp.created_date,  '%d/%m/%Y %H:%i') as created_date,
 vvp.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
 CONCAT(em.apellido, ' ', em.nombre) as empleado,
 null  as grupo,
 vrp.id_rnv_renovacion,
-(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads
+(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads, us.user, vrp.created_by
 from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav,
 (
 select emx.*, ecx.id_contrato
@@ -162,10 +162,11 @@ OR
  group by emx.id_empleado
  having emx.fecha_baja is null
 ) em,
-vto_alerta va
+vto_alerta va, sec_users us
 where vrp.id_vencimiento = vvp.id_vencimiento
 and vav.id_vencimiento = vrp.id_vencimiento
 and vrp.id_empleado = em.id_empleado
+and vrp.created_by = us.id_user
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta(vrp.id_renovacion)
 and em.id_empleado =  ifnull(:id_empleado, em.id_empleado)
@@ -180,18 +181,19 @@ UNION
 select vrp.id_renovacion, vrp.id_vencimiento, vrp.id_empleado,
 DATE_FORMAT(vrp.fecha_emision,  '%d/%m/%Y') as fecha_emision,
 DATE_FORMAT(vrp.fecha_vencimiento,  '%d/%m/%Y') as fecha_vencimiento,
-DATE_FORMAT(vrp.created_date,  '%d/%m/%Y') as created_date,
+DATE_FORMAT(vrp.created_date,  '%d/%m/%Y %H:%i') as created_date,
 vvp.nombre as vencimiento,
 vav.id_alerta, vav.days,
 va.color, va.priority,
 null as empleado,
 CONCAT(vgp.nombre, ' ', ifnull(vgp.nro_referencia, '')) as grupo,
 vrp.id_rnv_renovacion,
-(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads
-from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, vto_alerta va, vto_grupos_p vgp
+(select count(*) from uploads_vencimiento_p where id_renovacion = vrp.id_renovacion) as cant_uploads, us.user, vrp.created_by
+from v_sec_vto_renovacion_p vrp, vto_vencimiento_p vvp, vto_alerta_vencimiento_p vav, vto_alerta va, vto_grupos_p vgp, sec_users us
 where vrp.id_grupo = vgp.id_grupo
 and vrp.id_vencimiento = vvp.id_vencimiento
 and vav.id_vencimiento = vrp.id_vencimiento
+and vrp.created_by = us.id_user
 and vav.id_alerta = va.id_alerta
 and vav.id_alerta = func_alerta(vrp.id_renovacion)
 and vrp.id_vencimiento in ($id_vencimiento) -- filtro por vencimiento
@@ -204,7 +206,7 @@ and :id_contrato is null -- filtro contratos: no debe traer registros cuando se 
 and :id_subcontratista is null -- filtro subcontratistas: no debe traer registros cuando se filtra por subcontratista
 )
 
-order by priority, id_rnv_renovacion asc";
+order by priority asc, id_rnv_renovacion asc, STR_TO_DATE(fecha_vencimiento, '%d/%m/%Y') asc";
 
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_empleado', $id_empleado);

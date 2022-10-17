@@ -345,7 +345,8 @@
             showMeridian: false,
             snapToStep: true,
             //defaultTime: false
-            defaultTime: '00:00 AM'
+            defaultTime: '00:00 AM',
+            maxHours: 99 // se amplía para carga de hs nocturna serenos
         });
 
 

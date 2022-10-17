@@ -16,8 +16,11 @@ $view->disableLayout=false;
 switch ($operation) {
     case 'refreshGrid': //ok
         $view->disableLayout = true;
-        $view->usuarios = Usuario::getUsuarios();
-        $view->contentTemplate = "view/usuarios/usuariosGrid.php";
+        $rta = $view->usuarios = Usuario::getUsuarios();
+        //$view->contentTemplate = "view/usuarios/usuariosGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveUsuario': //ok
@@ -27,6 +30,7 @@ switch ($operation) {
         $usuario->setEnabled ( ($_POST['enabled'] == 1)? 1 : null);
         $usuario->setIdEmpleado($_POST['id_empleado']); //solo para insert
         $usuario->setProfilePicture('uploads/profile_pictures/default.png'); //solo para insert
+        $usuario->setCreatedBy($_SESSION['id_user']);
         //
         //$puesto->setIdArea($_POST['id_area']);
         //$puesto->setIdNivelCompetencia($_POST['id_nivel_competencia']);
@@ -64,9 +68,9 @@ switch ($operation) {
             sQuery::dpBeginTransaction();
             $usuario = new Usuario($_POST['id_user']);
             $usuario->deleteUsuario();
-            //if (file_exists($usuario->getProfilePicture())) {
-            unlink($usuario->getProfilePicture()); //elimina la foto del servidor
-            //}
+            if (file_exists($usuario->getProfilePicture()) && $usuario->getProfilePicture() != 'uploads/profile_pictures/default.png') {
+                unlink($usuario->getProfilePicture()); //elimina la foto del servidor
+            }
             sQuery::dpCommit();
             print_r(json_encode(1));
 

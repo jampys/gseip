@@ -27,7 +27,8 @@
                 //alert('cargo el contenido en right side');
                 $("#role-form #id_role").prop("disabled", true).selectpicker('refresh');
                 //$('#myModal').modal();
-            })
+            });
+            return false;
         });
 
 
@@ -44,6 +45,7 @@
                 //$("#role-form #footer-buttons button").css('display', 'none');
                 //$('.selectpicker').selectpicker('refresh');
             });
+            return false;
         });
 
 
@@ -53,13 +55,14 @@
             params={};
             params.action = "sec_user-role";
             params.operation = "newRole";
-            params.id_user = $('#etapas_left_side #add').attr('id_user');
+            params.id_user = $('#etapas_left_side').attr('id_user');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
                 //$('#myModal').modal();
                 $('#id_user').val(params.id_user);
-            })
+            });
+            return false;
         });
 
 
@@ -85,11 +88,10 @@
                     if(data >=0){
                         $("#role-form #footer-buttons button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Rol guardado con exito').addClass('alert alert-success').show();
-                        $('#etapas_left_side .grid').load('index.php',{action:"sec_user-role", id_user:params.id_user, operation:"refreshGrid"});
-                        //$("#search").trigger("click");
                         setTimeout(function() { $("#myElem").hide();
                                                 //$('#myModal').modal('hide');
                                                 $('#role-form').hide();
+                                                $('#table-roles').DataTable().ajax.reload();
                                               }, 2000);
                     }
 
@@ -125,7 +127,7 @@
                     }
                 }
             });
-
+            return false;
 
         });
 
@@ -144,8 +146,9 @@
                     dialog.find('.modal-footer').html('<div class="alert alert-success">Rol eliminado con exito</div>');
                     setTimeout(function() {
                         dialog.modal('hide');
-                        $('#etapas_left_side .grid').load('index.php',{action:"sec_user-role", id_user:params.id_user, operation:"refreshGrid"});
                         $('#role-form').hide();
+                        //$('#etapas_left_side .grid').load('index.php',{action:"sec_user-role", id_user:params.id_user, operation:"refreshGrid"});
+                        $('#table-roles').DataTable().ajax.reload();
                     }, 2000);
                 }
 
@@ -162,7 +165,7 @@
         //evento al salir o cerrar con la x el modal de etapas
         $("#myModal").on("hidden.bs.modal", function () {
             //alert('salir de etapas');
-            $("#search").trigger("click");
+            $('#example').DataTable().ajax.reload(null, false);
         });
 
 
@@ -192,11 +195,11 @@
 
                         <div class="col-md-7" id="etapas_left_side">
 
-                            <div class="clearfix">
+                            <!--<div class="clearfix">
                                 <button <?php echo (PrivilegedUser::dhasPrivilege('GRV_ABM', array(1)) )? '' : 'disabled' ?> class="btn btn-default pull-right" id="add" name="add" type="submit" title="Agregar vehículo">
                                     <i class="fas fa-plus dp_green"></i>
                                 </button>
-                            </div>
+                            </div>-->
 
                             <div class="grid">
                                 <?php include_once('view/usuarios/rolesGrid.php');?>

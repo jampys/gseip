@@ -213,7 +213,7 @@
 
 
         //reporte OTs
-        $('#myModal').on("click", "#submit2", function(){
+        /*$('#myModal').on("click", "#submit2", function(){
             //alert('Crosstab sucesos');
             //$('#txt-form').validate().resetForm(); //limpiar error input validate
             $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
@@ -226,32 +226,24 @@
 
             params={};
             //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
-            //params.fecha_desde = $("#myModal #fecha_desde").val();
-            //params.fecha_hasta = $("#myModal #fecha_hasta").val();
             params.id_contrato = $("#myModal #id_contrato").val();
             params.id_periodo = $("#myModal #id_periodo").val();
             params.id_user = "<?php echo $_SESSION['id_user']; ?>";
             var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
             var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_ots.rptdesign"+
-                    //"&p_fecha_desde="+params.fecha_desde+
-                    //"&p_fecha_hasta="+params.fecha_hasta+
                 "&p_id_contrato="+params.id_contrato+
                 "&p_id_periodo="+params.id_periodo+
-                //"&p_id_empleado="+params.id_empleado+
-                //"&p_id_concepto_convenio_contrato="+params.id_concepto_convenio_contrato+
                 "&p_id_user="+params.id_user;
             var win = window.open(URL, "_blank");
 
             }
 
-
             return false;
-        });
+        });*/
 
 
-
-        //reporte de pendientes
-        $('#myModal').on("click", "#submit3", function(){
+        //RN09 control de OTs
+        $('#myModal').on("click", "#submit9", function(){ //ok
             //alert('Crosstab sucesos');
             //$('#txt-form').validate().resetForm(); //limpiar error input validate
             $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
@@ -259,30 +251,36 @@
             $('#id_empleado').attr('validar', 0);
             $('#id_concepto').attr('validar', 0);
 
+            if ($("#txt-form").valid()){
+
+                let link = 'index.php?action=nov_reportes&operation=reporte_rn09'+
+                    '&id_contrato='+$("#myModal #id_contrato").val()+
+                    '&id_periodo='+$("#myModal #id_periodo").val();
+                window.location.href = link;
+            }
+            return false;
+        });
+
+
+
+
+        //RN08 control de pendientes
+        $('#myModal').on("click", "#submit8", function(){ //ok
+            //alert('Crosstab sucesos');
+            //$('#txt-form').validate().resetForm(); //limpiar error input validate
+            $('#txt-form').find('input').closest('.form-group').removeClass('has-error');
+            $('#txt-form .tooltip').remove(); //limpiar error tooltip validate
+            $('#id_empleado').attr('validar', 0);
+            $('#id_concepto').attr('validar', 0);
 
             if ($("#txt-form").valid()){
 
-                params={};
-                //params.eventos = ($("#myModal #id_evento").val()!= null)? $("#myModal #id_evento").val() : '';
-                //params.fecha_desde = $("#myModal #fecha_desde").val();
-                //params.fecha_hasta = $("#myModal #fecha_hasta").val();
-                params.id_contrato = $("#myModal #id_contrato").val();
-                params.id_periodo = $("#myModal #id_periodo").val();
-                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
-                var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__format=html&__report=gseip_nov_control_faltantes.rptdesign"+
-                        //"&p_fecha_desde="+params.fecha_desde+
-                        //"&p_fecha_hasta="+params.fecha_hasta+
-                    "&p_id_contrato="+params.id_contrato+
-                    "&p_id_periodo="+params.id_periodo+
-                        //"&p_id_empleado="+params.id_empleado+
-                        //"&p_id_concepto_convenio_contrato="+params.id_concepto_convenio_contrato+
-                    "&p_id_user="+params.id_user;
-                var win = window.open(URL, "_blank");
-
+                let link = 'index.php?action=nov_reportes&operation=reporte_rn08'+
+                    '&id_contrato='+$("#myModal #id_contrato").val()+
+                    '&id_periodo='+$("#myModal #id_periodo").val()+
+                    '&id_empleado='+$("#myModal #id_empleado").val();
+                window.location.href = link;
             }
-
-
             return false;
         });
 
@@ -394,37 +392,6 @@
 
 
                     <br/>
-                    
-                    <!--<div class="alert alert-info" role="alert">
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Detalle de concepto:</strong>
-                                <strong class="dp_yellow">(Empleado)</strong>
-                                <strong>:</strong>
-                                Novedades involucradas para un concepto, empleado y período indicados.
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit1" name="submit1" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
-                            </div>
-                        </div>
-                    </div>-->
-
-
-                    <!--<div class="alert alert-info" role="alert">
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <span class="glyphicon glyphicon-tags"></span>
-                                &nbsp;<strong>Conceptos del período:</strong>
-                                <strong class="dp_yellow">(Empleado)</strong>
-                                <strong>:</strong>
-                                Conceptos involucrados día por día para un empleado y período indicados.
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit5" name="submit5" type="submit" title="Emitir reporte">&nbsp;<i class="far fa-file-pdf fa-lg"></i>&nbsp;</button>
-                            </div>
-                        </div>
-                    </div>-->
 
 
                     <div class="alert alert-info" role="alert">
@@ -447,13 +414,13 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <i class="fas fa-tags"></i>
-                                &nbsp;<strong>Pendientes:</strong>
+                                &nbsp;<strong>RN08 Control de pendientes:</strong>
                                 <strong class="dp_yellow">(Empleado)</strong>
                                 <strong>:</strong>
                                 Empleados con días sin novedad ni suceso durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit" title="Emitir reporte [pdf]">&nbsp;<i class="fas fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit8" name="submit8" type="submit" title="Descargar reporte [xlsx]">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
@@ -463,13 +430,13 @@
                         <div class="row">
                             <div class="col-sm-10">
                                 <i class="fas fa-tags"></i>
-                                &nbsp;<strong>Partes diarios:</strong>
+                                &nbsp;<strong>RN09 Control de partes y habilitas:</strong>
                                 <strong class="dp_yellow">(Cuadrilla)</strong>
                                 <strong>:</strong>
                                 Partes diarios, órdenes y habilitas durante un período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit" title="Emitir reporte [pdf]">&nbsp;<i class="fas fa-file-pdf fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit9" name="submit9" type="submit" title="Descargar reporte [xlsx]">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>

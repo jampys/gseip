@@ -124,7 +124,7 @@ $spreadsheet->setActiveSheetIndex(0); //
 //-----------------generacion de excel ------------------------------------------------
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'RN4_control_insp_'.$encabezado["contrato"].'.xlsx';
+$filename = 'RN04_control_insp_'.date("d-m-Y").'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');

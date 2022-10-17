@@ -49,9 +49,10 @@
                     if(data >=0){
                         $(".modal-footer button").prop("disabled", true); //deshabilito botones
                         $("#myElem").html('Flota guardada con exito').addClass('alert alert-success').show();
-                        $('#content').load('index.php',{action:"vto_gruposVehiculos", operation:"refreshGrid"});
+                        //$('#content').load('index.php',{action:"vto_gruposVehiculos", operation:"refreshGrid"});
                         setTimeout(function() { $("#myElem").hide();
                                                 $('#myModal').modal('hide');
+                                                $('#example').DataTable().ajax.reload(null, false);
                                               }, 2000);
                     }
 

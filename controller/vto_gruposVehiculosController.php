@@ -13,8 +13,11 @@ switch ($operation)
 {
     case 'refreshGrid': //ok
         $view->disableLayout=true;
-        $view->grupos = Grupo::getGrupos();
-        $view->contentTemplate="view/grupos_vehiculos/gruposGrid.php";
+        $rta = $view->grupos = Grupo::getGrupos();
+        //$view->contentTemplate="view/grupos_vehiculos/gruposGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveGrupo': //ok

@@ -4,6 +4,8 @@ include_once("model/vto_renovacionesPersonalModel.php");
 include_once("model/vto_vencimientosPersonalModel.php");
 include_once("model/contratosModel.php");
 include_once("model/subcontratistasModel.php");
+include_once("model/vto_gruposPersonalModel.php");
+include_once("model/nov_reportesModel.php");
 
 $operation = "";
 if(isset($_REQUEST['operation'])) $operation=$_REQUEST['operation'];
@@ -22,8 +24,11 @@ switch ($operation)
         $id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         $id_subcontratista = ($_POST['id_subcontratista']!='')? $_POST['id_subcontratista'] : null;
         $renovado = ($_POST['renovado']== 0)? null : 1;
-        $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
-        $view->contentTemplate="view/renovacionesPersonalGrid.php";
+        $rta = $view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento, $id_contrato, $id_subcontratista, $renovado);
+        //$view->contentTemplate="view/renovaciones_personal/renovacionesPersonalGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveRenovacion': //ok
@@ -68,7 +73,7 @@ switch ($operation)
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/renovaciones_personal/renovacionesPersonalForm.php";
         break;
 
     case 'renovRenovacion': //Renueva una renovacion existente
@@ -85,7 +90,7 @@ switch ($operation)
         $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/renovaciones_personal/renovacionesPersonalForm.php";
         break;
 
     case 'deleteRenovacion': //ok
@@ -126,6 +131,34 @@ switch ($operation)
         exit;
         break;
 
+
+    case 'reporte': //RV01
+        $view->disableLayout=true;
+        $id_empleado = ($_GET['id_empleado'])? $_GET['id_empleado'] : null;
+        $id_grupo = ($_GET['id_grupo'])? $_GET['id_grupo'] : null;
+        $id_vencimiento = ($_GET['id_vencimiento'])? $_GET['id_vencimiento'] : 'vrp.id_vencimiento';
+        $id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
+        $id_subcontratista = ($_GET['id_subcontratista'])? $_GET['id_subcontratista'] : null;
+        $renovado = ($_GET['renovado']== 0)? null : 1;
+
+        $view->vencimientos = $rta = RenovacionPersonal::getRenovacionesPersonal($id_empleado, $id_grupo, $id_vencimiento ,$id_contrato, $id_subcontratista, $renovado);
+
+        $encabezado = array();
+        $encabezado['obj_empleado'] = new Empleado($_GET['id_empleado']);
+        $encabezado['empleado'] = ($encabezado['obj_empleado']->getIdEmpleado() > 0)? $encabezado['obj_empleado']->getApellido().' '.$encabezado['obj_empleado']->getNombre() : 'Todos';
+        $encabezado['obj_grupo'] = new Grupo($_GET['id_grupo']);
+        $encabezado['grupo'] = ($encabezado['obj_grupo']->getIdGrupo() > 0)? $encabezado['obj_grupo']->getNombre().' '.$encabezado['obj_grupo']->getNroReferencia() : 'Todos';
+        $encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
+        $encabezado['contrato'] = ($encabezado['obj_contrato']->getIdContrato() > 0)? $encabezado['obj_contrato']->getNroContrato().' '.$encabezado['obj_contrato']->getNombre() : 'Todos';
+        $encabezado['vencimientos'] = ($_GET['id_vencimiento']!='')? ReporteNovedades::getVencimientosPersonalList($_GET['id_vencimiento'])[0]['vencimientos'] : 'Todos';
+        $encabezado['obj_subcontratista'] = new Subcontratista($_GET['id_subcontratista']);
+        $encabezado['subcontratista'] = ($encabezado['obj_subcontratista']->getIdSubcontratista() > 0)? $encabezado['obj_subcontratista']->getRazonSocial() : 'Todos';
+        $encabezado['fecha_emision'] = date('d/m/Y H:i');
+
+        $view->contentTemplate="view/renovaciones_personal/generador_rv01.php";
+        break;
+
+
     default : //ok
         $view->renovacion = new RenovacionPersonal();
         $view->empleadosGrupos = $view->renovacion->empleadosGrupos(); //carga el combo para filtrar empleados-grupos
@@ -133,7 +166,7 @@ switch ($operation)
         $view->contratos = Contrato::getContratosControlVencimientos(); //carga el combo para filtrar contratos
         $view->subcontratistas = Subcontratista::getSubcontratistas(); //carga el combo para filtrar subcontratistas
         //$view->renovaciones_personal = RenovacionPersonal::getRenovacionesPersonal(null, null, null, null, null);
-        $view->contentTemplate="view/renovacionesPersonalGrid.php";
+        $view->contentTemplate="view/renovaciones_personal/renovacionesPersonalGrid.php";
         break;
 }
 
@@ -142,7 +175,7 @@ if ($view->disableLayout==true) { //ok
     include_once ($view->contentTemplate);
 }
 else {
-    include_once('view/renovacionesPersonalLayout.php');
+    include_once('view/renovaciones_personal/renovacionesPersonalLayout.php');
 }
 
 

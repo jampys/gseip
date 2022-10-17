@@ -20,8 +20,11 @@ switch ($operation)
         //$id_contrato = ($_POST['id_contrato']!='')? $_POST['id_contrato'] : null;
         //$todas = ($_POST['renovado']== 0)? null : 1;
         //$view->busquedas = Busqueda::getBusquedas($id_puesto, $id_localidad, $id_contrato, $todas);
-        $view->roles = UsuarioRol::getRoles($_POST['id_user']);
-        $view->contentTemplate="view/usuarios/rolesGrid.php";
+        $rta = $view->roles = UsuarioRol::getRoles($_POST['id_user']);
+        //$view->contentTemplate="view/usuarios/rolesGrid.php";
+        //break;
+        print_r(json_encode($rta));
+        exit;
         break;
 
     case 'saveRole': //ok
@@ -30,6 +33,7 @@ switch ($operation)
         $gv->setIdRole($_POST['id_role']);
         $gv->setFechaDesde($_POST['fecha_desde']);
         $gv->setFechaHasta( ($_POST['fecha_hasta']!='')? $_POST['fecha_hasta'] : null);
+        $gv->setCreatedBy($_SESSION['id_user']);
         //$busqueda->setDisabled ( ($_POST['disabled'] == 1)? date('d/m/Y') : null);
         $rta = $gv->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));

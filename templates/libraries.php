@@ -100,10 +100,6 @@
     <script type="text/javascript" src="resources/libraries/tippyjs/tippy-bundle.umd.min.js"></script>
     <link rel="stylesheet" href="resources/libraries/tippyjs/themes/light-border.css"/>
 
-
-    <!-- icomoon -->
-    <link rel="stylesheet" type="text/css" href="resources/libraries/icomoon/style.css">
-
     <!-- librerias css propias -->
     <link rel="stylesheet" href="resources/css/dario.css">
 

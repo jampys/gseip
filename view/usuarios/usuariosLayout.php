@@ -22,7 +22,8 @@
                 params.operation = "editUsuario";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
+                return false;
 
             });
 
@@ -39,7 +40,8 @@
                     //$('.selectpicker').selectpicker('refresh');
                     //$('.modal-footer').css('display', 'none');
                     $('#myModal').modal();
-                })
+                });
+                return false;
 
             });
 
@@ -58,8 +60,9 @@
                     //$('.modal-footer').css('display', 'none');
                     //$('#myModalLabel').html('');
                     $('#myModal').modal();
-                    $('#etapas_left_side #add').attr('id_user', id);
-                })
+                    $('#etapas_left_side').attr('id_user', id);
+                });
+                return false;
 
             });
 
@@ -71,7 +74,9 @@
                 params.operation="newUsuario";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
-                })
+                });
+                return false;
+
             });
 
 
@@ -98,7 +103,7 @@
                         }
                     }
                 });
-
+                return false;
 
             });
 
@@ -116,7 +121,8 @@
                         dialog.find('.modal-footer').html('<div class="alert alert-success">Usuario eliminado con exito</div>');
                         setTimeout(function() {
                             dialog.modal('hide');
-                            $('#content').load('index.php',{action:"sec_users", operation: "refreshGrid"});
+                            //$('#content').load('index.php',{action:"sec_users", operation: "refreshGrid"});
+                            $('#example').DataTable().ajax.reload();
                         }, 2000);
                     }
 

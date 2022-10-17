@@ -115,7 +115,7 @@
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
                         let id_user = '<?php echo $_SESSION['id_user'] ?>';
-                        let usr_abm = '<?php echo ( PrivilegedUser::dhasPrivilege('SUC_ABM', array(0)))? true : false ?>'; //solo el administrador
+                        let usr_abm = '<?php echo ( PrivilegedUser::dhasPrivilege('USR_ABM', array(0)))? true : false ?>'; //solo el administrador
 
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('PAR_UPDATE', array(1)) )? true : false ?>';
                         let permisoEditarP = (permisoEditar && !row.closed_date)? 'edit' : 'disabled';

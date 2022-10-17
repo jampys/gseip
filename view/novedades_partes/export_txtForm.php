@@ -175,6 +175,7 @@
                 params.operation = 'checkExportTxt';
                 params.id_contrato = $("#myModal #id_contrato").val();
                 params.first_contrato = params.id_contrato[0];
+                params.count_contrato = params.id_contrato.length;
                 params.periodo = $("#myModal #periodo").val();
                 params.id_user = "<?php echo $_SESSION['id_user']; ?>";
                 //alert(params.first_contrato);
@@ -209,6 +210,7 @@
                             return false;*/
                             let link = 'index.php?action=nov_reportes&operation=reporte_rn03'+
                                 '&id_contrato='+$("#myModal #id_contrato").val()+
+                                '&count_contrato='+params.count_contrato+
                                 '&periodo='+$("#myModal #periodo").val();
                             window.location.href = link;
                         }, 3000);

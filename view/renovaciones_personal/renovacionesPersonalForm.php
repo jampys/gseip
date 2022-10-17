@@ -14,7 +14,7 @@
 
         moment.locale('es');
         $('#fecha').daterangepicker({
-            parentEl: '#myModal #renovacion_vehicular',
+            parentEl: '#myModal #renovacion_personal',
             showDropdowns: true,
             autoApply: true,
             autoUpdateInput: false,
@@ -35,7 +35,7 @@
 
 
         var uploadObj = $("#fileuploader").uploadFile({
-            url: "index.php?action=uploadsVehiculos&operation=upload",
+            url: "index.php?action=uploads&operation=upload",
             dragDrop: <?php echo ( PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) && $view->target!='view' )? 'true' : 'false' ?>,
             autoSubmit: false,
             fileName: "myfile",
@@ -51,7 +51,7 @@
                 var data ={ "id": ($('#id_renovacion').val())? $('#id_renovacion').val() : objeto.id };
                 return data;},
 
-            maxFileSize:5242880, // 5MB tamaño expresado en bytes
+            maxFileSize:5242880, //5MB tamaño expresado en bytes
             showPreview:true,
             previewHeight: "75px",
             previewWidth: "auto",
@@ -71,7 +71,7 @@
                 $.ajax({
                     cache: false,
                     url: "index.php",
-                    data:{"action": "uploadsVehiculos", "operation": "load", "id": $('#id_renovacion').val() },
+                    data:{"action": "uploads", "operation": "load", "id": $('#id_renovacion').val() },
                     type:"post",
                     dataType: "json",
                     success: function(data) {
@@ -100,7 +100,7 @@
             },
             deleteCallback: function (data, pd) {
                 for (var i = 0; i < data.length; i++) {
-                    $.post("index.php", {action: "uploadsVehiculos", operation: "delete", name: data[i]},
+                    $.post("index.php", {action: "uploads", operation: "delete", name: data[i]},
                         function (resp,textStatus, jqXHR) {
                             //Show Message
                             //alert("File Deleted");
@@ -110,7 +110,7 @@
 
             },
             downloadCallback:function(filename,pd) {
-                location.href="index.php?action=uploadsVehiculos&operation=download&filename="+filename;
+                location.href="index.php?action=uploads&operation=download&filename="+filename;
             },
             afterUploadAll:function(obj) {
                 //You can get data of the plugin using obj
@@ -123,14 +123,14 @@
 
         $('#myModal').on('click', '#submit',function(){ //ok
 
-            if ($("#renovacion_vehicular").valid()){
+            if ($("#renovacion_personal").valid()){
 
                 var params={};
-                params.action = 'renovacionesVehiculos';
+                params.action = 'renovacionesPersonal';
                 params.operation = 'saveRenovacion';
                 params.id_renovacion = $('#id_renovacion').val();
-                params.id_vehiculo = $('#id_vehiculo option:selected').attr('id_vehiculo');
-                params.id_grupo = $('#id_vehiculo option:selected').attr('id_grupo');
+                params.id_empleado = $('#id_empleado option:selected').attr('id_empleado');
+                params.id_grupo = $('#id_empleado option:selected').attr('id_grupo');
                 params.id_vencimiento = $('#id_vencimiento').val();
                 //params.fecha_emision = $('#fecha_emision').val();
                 //params.fecha_vencimiento = $('#fecha_vencimiento').val();
@@ -152,7 +152,7 @@
                         if(uploadObj.dpCounter() >= 1) { uploadObj.startUpload(); } //se realiza el upload solo si el formulario se guardo exitosamente
                         else closeFormSuccess();
                     }else{
-                        $("#myElem").html('Error al guardar el vencimiento').addClass('alert alert-danger').show();
+                        $("#myElem").html('No es posible guardar el vencimiento').addClass('alert alert-danger').show();
                     }
 
                 }, 'json');
@@ -165,14 +165,14 @@
             $("#myElem").html('Vencimiento guardado con exito').addClass('alert alert-success').show();
             setTimeout(function() { $("#myElem").hide();
                                     $('#myModal').modal('hide');
-                                    $("#search").trigger("click");
+                                    $('#example').DataTable().ajax.reload(null, false); //$("#search").trigger("click");
                                 }, 2000);
             return false; //para finalizar la ejecucion
         }
 
 
 
-        $('#myModal #cancel').on('click', function(){ //ok
+        $('#myModal #cancel').on('click', function(){
            //alert('cancelar');
             //uploadObj.stopUpload();
         });
@@ -184,9 +184,9 @@
         });
 
 
-        $('#renovacion_vehicular').validate({ //ok
+        $('#renovacion_personal').validate({ //ok
             rules: {
-                id_vehiculo: {required: true},
+                id_empleado: {required: true},
                 id_vencimiento: {required: true},
                 fecha: {
                     required: true,
@@ -196,12 +196,13 @@
                         dataType: "json",
                         //async: false,
                         data: {
-                            action: "renovacionesVehiculos",
+                            action: "renovacionesPersonal",
                             operation: "checkRangoFechas",
                             fecha_emision: function(){ return drp.startDate.format('DD/MM/YYYY');},
                             fecha_vencimiento: function(){ return drp.endDate.format('DD/MM/YYYY');},
-                            id_vehiculo: function(){ return $('#id_vehiculo option:selected').attr('id_vehiculo');},
-                            id_grupo: function(){ return $('#id_vehiculo option:selected').attr('id_grupo');},
+                            //id_empleado: function(){ return $('#id_empleado').val();},
+                            id_empleado: function(){ return $('#id_empleado option:selected').attr('id_empleado');},
+                            id_grupo: function(){ return $('#id_empleado option:selected').attr('id_grupo');},
                             id_vencimiento: function(){ return $('#id_vencimiento').val();},
                             id_renovacion: function(){ return $('#id_renovacion').val();}
                         }
@@ -210,7 +211,7 @@
 
             },
             messages:{
-                id_vehiculo: "Seleccione un vehículo o grupo",
+                id_empleado: "Seleccione un empleado o grupo",
                 id_vencimiento: "Seleccione un vencimiento",
                 fecha: {
                     required: "Selecione el rango de fechas",
@@ -221,11 +222,11 @@
         });
 
 
-        $("#myModal #id_vehiculo").on('changed.bs.select', function (e) { //ok
+        $("#myModal #id_empleado").on('changed.bs.select', function (e) { //ok
             //Al seleccionar un grupo, completa automaticamente el campo vencimiento y lo deshabilita.
-            if ($('#id_vehiculo option:selected').attr('id_grupo') !='') {
-                //$('#id_vencimiento').selectpicker('val', $('#id_vehiculo option:selected').attr('id_vencimiento')).prop('disabled', true).selectpicker('refresh');
-                $('#id_vencimiento').selectpicker('val', $('#id_vehiculo option:selected').attr('id_vencimiento')).selectpicker('refresh');
+            if ($('#id_empleado option:selected').attr('id_grupo') !='') {
+                //$('#id_vencimiento').selectpicker('val', $('#id_empleado option:selected').attr('id_vencimiento')).prop('disabled', true).selectpicker('refresh');
+                $('#id_vencimiento').selectpicker('val', $('#id_empleado option:selected').attr('id_vencimiento')).selectpicker('refresh');
             }
             else{
                 $('#id_vencimiento').selectpicker('val', '').prop('disabled', false).selectpicker('refresh');
@@ -243,7 +244,7 @@
 
 
 <!-- Modal -->
-<fieldset  <?php //echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RVE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
+<fieldset  <?php //echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1))   )? 'disabled' : '';  ?>  >
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -254,25 +255,25 @@
             <div class="modal-body">
 
 
-                <form name ="renovacion_vehicular" id="renovacion_vehicular" method="POST" action="index.php">
+                <form name ="renovacion_personal" id="renovacion_personal" method="POST" action="index.php">
                     <input type="hidden" name="id_renovacion" id="id_renovacion" value="<?php print $view->renovacion->getIdRenovacion() ?>">
 
 
                     <div class="form-group required">
-                        <label for="id_vehiculo" class="control-label">Vehículo / flota</label>
-                        <select class="form-control selectpicker show-tick" id="id_vehiculo" name="id_vehiculo" title="Seleccione un vehículo o flota" data-live-search="true" data-size="5">
-                            <?php foreach ($view->vehiculosGrupos as $eg){
+                        <label for="id_empleado" class="control-label">Empleado / Grupo</label>
+                        <select class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado o grupo" data-live-search="true" data-size="5">
+                            <?php foreach ($view->empleadosGrupos as $eg){
                                 ?>
                                 <option
-                                    value="<?php echo ($eg['id_vehiculo'])? $eg['id_vehiculo'] : $eg['id_grupo']; ?>"
-                                    id_vehiculo="<?php echo $eg['id_vehiculo']; ?>"
+                                    value="<?php echo ($eg['id_empleado'])? $eg['id_empleado'] : $eg['id_grupo']; ?>"
+                                    id_empleado="<?php echo $eg['id_empleado']; ?>"
                                     id_grupo="<?php echo $eg['id_grupo']; ?>"
                                     id_vencimiento="<?php echo $eg['id_vencimiento']; ?>"
                                     <?php
-                                            if($eg['id_vehiculo'] && $view->renovacion->getIdVehiculo() == $eg['id_vehiculo']) echo 'selected';
+                                            if($eg['id_empleado'] && $view->renovacion->getIdEmpleado() == $eg['id_empleado']) echo 'selected';
                                             elseif($eg['id_grupo'] && $view->renovacion->getIdGrupo() == $eg['id_grupo']) echo 'selected';
                                     ?>
-                                    data-icon="<?php echo ($eg['id_vehiculo'])? "fad fa-car fa-sm fa-fw" : "fas fa-cars fa-sm fa-fw"; ?>"
+                                    data-icon="<?php echo ($eg['id_empleado'])? "fad fa-male fa-sm fa-fw" : "fad fa-users fa-sm fa-fw"; ?>"
                                     >
                                     <?php echo $eg['descripcion'] ;?>
                                 </option>
@@ -298,7 +299,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="referencia">Referencia</label>
-                        <input class="form-control" type="text" name="referencia" id="referencia" value = "<?php print $view->renovacion->getReferencia() ?>" placeholder="Nro de referencia">
+                        <input class="form-control" type="text" name="referencia" id="referencia" value = "<?php print $view->renovacion->getReferencia() ?>" placeholder="Nro. de referencia">
                     </div>
 
 
@@ -325,13 +326,12 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="disabled" name="disabled" <?php echo (!$view->renovacion->getDisabled())? '' :'checked' ?> <?php echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para desactivar el alerta del vencimiento">Desactivar</a>
-                                </label>
-                            </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="disabled" name="disabled" <?php echo (!$view->renovacion->getDisabled())? '' :'checked' ?> <?php echo (!$view->renovacion->getIdRenovacion())? 'disabled' :'' ?> > <a href="#" title="Seleccione para desactivar el alerta del vencimiento">Desactivar</a>
+                            </label>
+                        </div>
                     </div>
 
 
@@ -353,7 +353,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" id="submit" name="submit" type="submit" <?php echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RVE_UPDATE', array(1)) || $view->target=='view'  )? 'disabled' : '';  ?>  >Guardar</button>
+                <button class="btn btn-primary" id="submit" name="submit" type="submit"  <?php echo ($view->renovacion->getIdRnvRenovacion() || !PrivilegedUser::dhasAction('RPE_UPDATE', array(1)) || $view->target=='view' )? 'disabled' : '';  ?> >Guardar</button>
                 <button class="btn btn-default" id="cancel" name="cancel" type="button" data-dismiss="modal">Cancelar</button>
             </div>
 
