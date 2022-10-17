@@ -298,13 +298,16 @@ class Capacitacion
 
         $query="select c.id_capacitacion, c.tema,
 DATE_FORMAT(e.fecha_edicion,  '%d/%m/%Y') as fecha_edicion,
+e.duracion, e.capacitador,
 concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
-cat.nombre as categoria
+cat.nombre as categoria,
+mo.nombre as modalidad
 from cap_capacitaciones c
 join cap_capacitacion_empleado ce on c.id_capacitacion = ce.id_capacitacion
 join cap_ediciones e on ce.id_edicion = e.id_edicion
 join cap_categorias cat on cat.id_categoria = c.id_categoria
 join empleados em on em.id_empleado = ce.id_empleado
+join cap_modalidades mo on mo.id_modalidad = e.id_modalidad
 where date(e.fecha_edicion) between :startDate and :endDate";
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':periodo', $periodo);

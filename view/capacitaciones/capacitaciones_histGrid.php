@@ -42,19 +42,19 @@
                 {"data" : "empleado"},
                 {"data" : "categoria"},
                 {"data" : "tema"},
-                {"data" : "id_capacitacion"},
-                {"data" : "id_capacitacion"},
+                {"data" : "modalidad"},
+                {"data" : "capacitador"},
+                {"data" : "duracion"},
                 {"data" : null, orderable: false}
             ],
-            //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
+            "order": [[ 0, 'desc' ], [ 1, 'desc' ]], //fecha, empleado
             createdRow: function (row, data, dataIndex) {
                 $(row).attr('data-id', data.id_capacitacion);
-                //$(row).attr('id_objetivo', data.id_objetivo);
-                //$(row).attr('cerrado', data.cerrado);
             },
             "columnDefs": [
+                {targets: 0, type: 'date-uk', orderData: [ 0, 1]}, //fecha
                 {
-                    targets: 6,//action buttons
+                    targets: 7,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
                         let permisoEdiciones = '<?php echo ( PrivilegedUser::dhasPrivilege('CAP_ABM', array(1)) )? 'ediciones' : 'disabled' ?>';
@@ -100,7 +100,7 @@
 
                 // Total participantes over all pages
                 totalP = api
-                    .column( 4 )
+                    .column( 6 )
                     .data()
                     .reduce( function (a, b) {
                         return intVal(a) + intVal(b);
@@ -108,31 +108,14 @@
 
                 // Total participantes over this page
                 pageTotalP = api
-                    .column( 4, { page: 'current'} )
-                    .data()
-                    .reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0 );
-
-                // Total Hs over all pages
-                totalH = api
-                    .column( 5 )
-                    .data()
-                    .reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0 );
-
-                // Total Hs over this page
-                pageTotalH = api
-                    .column( 5, { page: 'current'} )
+                    .column( 6, { page: 'current'} )
                     .data()
                     .reduce( function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0 );
 
                 // Update footer
-                $( api.column( 4 ).footer() ).html(pageTotalP +' ('+ totalP +' total)');
-                $( api.column( 5 ).footer() ).html(pageTotalH +' ('+ totalH +' total)');
+                $( api.column( 6 ).footer() ).html(pageTotalP +' ('+ totalP +' total)');
             }
 
         });
@@ -158,13 +141,15 @@
                 <th>Empleado</th>
                 <th>Tipo cap.</th>
                 <th>Tema</th>
-                <th title="Cantidad de participantes para el/los contratos seleccionados">Cant. part.</th>
-                <th title="Sumatoria total de horas de asistencia">Sum. hs.</th>
+                <th>Modalidad</th>
+                <th>Capacitador</th>
+                <th>Duración [hs]</th>
                 <th></th>
             </tr>
             </thead>
             <tfoot>
             <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
