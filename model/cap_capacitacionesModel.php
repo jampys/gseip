@@ -296,7 +296,7 @@ class Capacitacion
                                               where ce.id_capacitacion = c.id_capacitacion
                                               and ce.id_contrato in ($id_contrato)), 1)";*/
 
-        $query="select c.id_capacitacion,
+        $query="select c.id_capacitacion, c.tema,
 DATE_FORMAT(e.fecha_edicion,  '%d/%m/%Y') as fecha_edicion,
 concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
 cat.nombre as categoria
@@ -304,14 +304,15 @@ from cap_capacitaciones c
 join cap_capacitacion_empleado ce on c.id_capacitacion = ce.id_capacitacion
 join cap_ediciones e on ce.id_edicion = e.id_edicion
 join cap_categorias cat on cat.id_categoria = c.id_categoria
-join empleados em on em.id_empleado = ce.id_empleado";
+join empleados em on em.id_empleado = ce.id_empleado
+where date(e.fecha_edicion) between :startDate and :endDate";
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':periodo', $periodo);
         //$stmt->dpBind(':id_categoria', $id_categoria);
         //$stmt->dpBind(':mes_programada', $mes_programada);
         //$stmt->dpBind(':id_contrato', $id_contrato);
-        //$stmt->dpBind(':startDate', $startDate);
-        //$stmt->dpBind(':endDate', $endDate);
+        $stmt->dpBind(':startDate', $startDate);
+        $stmt->dpBind(':endDate', $endDate);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();
     }

@@ -41,7 +41,7 @@
                 {"data" : "fecha_edicion"},
                 {"data" : "empleado"},
                 {"data" : "categoria"},
-                {"data" : "id_capacitacion"},
+                {"data" : "tema"},
                 {"data" : "id_capacitacion"},
                 {"data" : "id_capacitacion"},
                 {"data" : null, orderable: false}
