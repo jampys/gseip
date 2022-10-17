@@ -19,10 +19,9 @@
                 "url"    : 'index.php',
                 //data: {action: "ajax_certificados", operation:"refreshGrid"},
                 "data": function ( d ) { //https://datatables.net/reference/option/ajax.data
-                    d.periodo = $("#periodo").val();
                     d.id_categoria = $("#id_categoria").val();
                     d.mes_programada = $("#mes_programada").val();
-                    d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
+                    d.id_empleado = $("#id_empleado").val();
                     d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
                     d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                     d.action = "cap_capacitaciones_hist";

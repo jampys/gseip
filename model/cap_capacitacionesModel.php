@@ -263,7 +263,7 @@ class Capacitacion
 
 
 
-    public static function getCapacitacionesHist($periodo, $id_categoria, $mes_programada, $id_contrato, $startDate, $endDate){
+    public static function getCapacitacionesHist($id_categoria, $mes_programada, $id_empleado, $startDate, $endDate){
         $stmt=new sQuery();
         /*$query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.mes_programada,
                 DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
@@ -308,12 +308,15 @@ join cap_ediciones e on ce.id_edicion = e.id_edicion
 join cap_categorias cat on cat.id_categoria = c.id_categoria
 join empleados em on em.id_empleado = ce.id_empleado
 join cap_modalidades mo on mo.id_modalidad = e.id_modalidad
-where date(e.fecha_edicion) between :startDate and :endDate";
+where date(e.fecha_edicion) between :startDate and :endDate
+and c.id_categoria = ifnull(:id_categoria, c.id_categoria)
+and if(:mes_programada = 1, mes_programada is not null, 1)
+and if(:mes_programada = 0, mes_programada is null, 1)
+and ce.id_empleado = ifnull(:id_empleado, ce.id_empleado)";
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':periodo', $periodo);
-        //$stmt->dpBind(':id_categoria', $id_categoria);
-        //$stmt->dpBind(':mes_programada', $mes_programada);
-        //$stmt->dpBind(':id_contrato', $id_contrato);
+        $stmt->dpBind(':id_categoria', $id_categoria);
+        $stmt->dpBind(':mes_programada', $mes_programada);
+        $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpBind(':startDate', $startDate);
         $stmt->dpBind(':endDate', $endDate);
         $stmt->dpExecute();
