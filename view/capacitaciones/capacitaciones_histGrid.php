@@ -25,7 +25,7 @@
                     d.id_contrato = ($("#id_contrato").val()!= null)? $("#id_contrato").val() : '';
                     d.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
                     d.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
-                    d.action = "cap_capacitaciones";
+                    d.action = "cap_capacitaciones_hist";
                     d.operation = "refreshGrid";
                 },
                 "dataSrc": ""
@@ -38,12 +38,12 @@
                  className: 'control',
                  orderable: false
                  },*/
+                {"data" : "fecha_edicion"},
                 {"data" : "categoria"},
-                {"data" : "tema"},
-                {"data" : "descripcion"},
-                {"data" : "mes_programada"},
-                {"data" : "cant_participantes"},
-                {"data" : "sum_hs"},
+                {"data" : "id_capacitacion"},
+                {"data" : "id_capacitacion"},
+                {"data" : "id_capacitacion"},
+                {"data" : "id_capacitacion"},
                 {"data" : null, orderable: false}
             ],
             //"order": [[ 3, 'desc' ], [ 10, 'desc' ]], //fecha_calibracion, id_calibracion
@@ -53,13 +53,6 @@
                 //$(row).attr('cerrado', data.cerrado);
             },
             "columnDefs": [
-                {
-                    targets: 2,//descripcion
-                    responsivePriority: 2,
-                    render: function (data, type, row, meta) {
-                        return $.fn.dataTable.render.ellipsis(60)(row.descripcion, type, row);
-                    }
-                },
                 {
                     targets: 6,//action buttons
                     responsivePriority: 3,
@@ -75,7 +68,7 @@
                         let startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
                         let endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                         let link = 'index.php?action=cap_capacitaciones&operation=pdf&id_capacitacion='+row.id_capacitacion+'&id_contrato='+id_contrato+'&startDate='+startDate+'&endDate='+endDate;
-                        let user_info = row.user.split('@')[0]+' '+row.created_date;
+                        let user_info = ''; //row.user.split('@')[0]+' '+row.created_date;
                         return  '<a class="'+permisoVer+'" href="#" title="Ver">'+ //si tiene permiso para ver
                                     '<i class="far fa-sticky-note dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
@@ -161,9 +154,9 @@
         <table id="example" class="table table-striped table-bordered table-condensed dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
             <tr>
+                <th>Fecha</th>
                 <th>Tipo cap.</th>
                 <th>Tema</th>
-                <th>Descripcion</th>
                 <th>Mes programada</th>
                 <th title="Cantidad de participantes para el/los contratos seleccionados">Cant. part.</th>
                 <th title="Sumatoria total de horas de asistencia">Sum. hs.</th>
