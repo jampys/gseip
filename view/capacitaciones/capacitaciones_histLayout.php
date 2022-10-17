@@ -40,18 +40,6 @@
 
 
 
-            //Al seleccionar el periodo restringe el rango de fechas del datepicker
-            $(document).on('change', '#periodo', function(e){
-                //alert('seleccionó un periodo');
-                let sd = $('#periodo').val()+'-01-01';
-                let ed = $('#periodo').val()+'-12-31';
-                //moment(date).endOf('year'); //Where date is a Date somewhere in that year.
-                drp.setStartDate(moment(sd).startOf('year'));
-                drp.setEndDate(moment(ed).endOf('year'));
-            });
-
-
-
             $(document).on('click', '#search', function(){
                 /*params={};
                 params.search_periodo = $("#search_periodo").val();
@@ -69,159 +57,6 @@
             });
 
 
-            $('#content').on('click', '.edit', function(){
-                //alert('presionó en editar');
-                var id = $(this).closest('tr').attr('data-id');
-                params={};
-                params.id_capacitacion = id;
-                params.action = "cap_capacitaciones";
-                params.operation = "editCapacitacion";
-                params.target = "edit";
-                //params.cerrado = $(this).closest('tr').attr('cerrado');
-                //alert(params.id_renovacion);
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                });
-                return false;
-            });
-
-
-            $('#content').on('click', '.view', function(){
-                var id = $(this).closest('tr').attr('data-id');
-                params={};
-                params.id_capacitacion = id;
-                params.action = "cap_capacitaciones";
-                params.operation = "editCapacitacion";
-                params.target = "view";
-                //params.cerrado = $(this).closest('tr').attr('cerrado');
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                });
-                return false;
-            });
-
-
-            $('#content').on('click', '.clone', function(){
-                //alert('presionó en editar');
-                var id = $(this).closest('tr').attr('data-id');
-                params={};
-                params.id_capacitacion = id;
-                params.action = "cap_capacitaciones";
-                params.operation = "editCapacitacion";
-                params.target = "clone";
-                //params.cerrado = $(this).closest('tr').attr('cerrado');
-                //alert(params.id_renovacion);
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                });
-                return false;
-            });
-
-
-            $('#content').on('click', '.empleados', function(){
-                //alert('presiono sobre empleados');
-                var id = $(this).closest('tr').attr('data-id');
-                params={};
-                params.id_capacitacion = id;
-                params.action = "cap_empleados";
-                //params.operation = "etapas"; //entra en default
-                $('#popupbox').load('index.php', params,function(){
-                    //$("fieldset").prop("disabled", true);
-                    //$('.selectpicker').selectpicker('refresh');
-                    //$('.modal-footer').css('display', 'none');
-                    //$('#myModalLabel').html('');
-                    $('#myModal').modal();
-                    $('#etapas_left_side').attr('id_capacitacion', id);
-                });
-                return false;
-            });
-
-
-
-            $('#content').on('click', '.ediciones', function(){
-                //alert('presiono sobre ediciones');
-                var id = $(this).closest('tr').attr('data-id');
-                params={};
-                params.id_capacitacion = id;
-                params.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
-                params.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
-                params.action = "cap_ediciones";
-                //params.operation = "etapas"; //entra en default
-                $('#popupbox').load('index.php', params,function(){
-                    //$("fieldset").prop("disabled", true);
-                    //$('.selectpicker').selectpicker('refresh');
-                    //$('.modal-footer').css('display', 'none');
-                    //$('#myModalLabel').html('');
-                    $('#myModal').modal();
-                    $('#etapas_left_side').attr('id_capacitacion', id);
-                });
-                return false;
-            });
-
-
-
-            $(document).on('click', '#new', function(){
-                params={};
-                params.action = "cap_capacitaciones";
-                params.operation="newCapacitacion";
-                $('#popupbox').load('index.php', params,function(){
-                    $('#myModal').modal();
-                });
-            });
-
-
-
-            var dialog;
-            $('#content').on('click', '#example .delete', function(){
-
-                var id = $(this).closest('tr').attr('data-id');
-                dialog = bootbox.dialog({
-                    message: "<p>¿Desea eliminar la capacitación?</p>",
-                    size: 'small',
-                    centerVertical: true,
-                    buttons: {
-                        cancel: {
-                            label: "No"
-                        },
-                        ok: {
-                            label: "Si",
-                            className: 'btn-danger',
-                            callback: function(){
-                                $.fn.borrar(id);
-                                return false; //evita que se cierre automaticamente
-                            }
-                        }
-                    }
-                });
-                return false;
-
-            });
-
-
-
-            $.fn.borrar = function(id) {
-                //alert(id);
-                params={};
-                params.id_capacitacion = id;
-                params.action = "cap_capacitaciones";
-                params.operation = "deleteCapacitacion";
-
-                $.post('index.php',params,function(data, status, xhr){
-                    if(data >=0){
-                        dialog.find('.modal-footer').html('<div class="alert alert-success">Capacitación eliminada con exito</div>');
-                        setTimeout(function() {
-                                                dialog.modal('hide');
-                                                $('#example').DataTable().ajax.reload();
-                                            }, 2000);
-                    }
-
-                }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
-                    //alert('Entro a fail '+jqXHR.responseText);
-                    dialog.find('.modal-footer').html('<div class="alert alert-danger">No es posible eliminar la capacitación</div>');
-
-                });
-
-            };
 
 
 
@@ -263,18 +98,10 @@
                     <div class="row">
 
                         <div class="form-group col-md-3">
-                            <!--<label for="periodo" class="control-label">Periodo</label>-->
-                            <select class="form-control" id="periodo" name="periodo">
-                                <!--<option value="">Todos</option>-->
-                                <?php foreach ($view->periodos as $pe){
-                                    ?>
-                                    <option value="<?php echo $pe['periodo']; ?>"
-                                        <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
-                                        >
-                                        <?php echo $pe['periodo']; ?>
-                                    </option>
-                                <?php  } ?>
-                            </select>
+                            <div class="inner-addon right-addon">
+                                <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
+                                <i class="fad fa-calendar-alt"></i>
+                            </div>
                         </div>
 
 
@@ -326,10 +153,7 @@
 
 
                         <div class="form-group col-md-3">
-                            <div class="inner-addon right-addon">
-                                <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
-                                <i class="fad fa-calendar-alt"></i>
-                            </div>
+
                         </div>
 
 
