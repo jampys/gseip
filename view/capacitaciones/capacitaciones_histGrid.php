@@ -76,13 +76,7 @@
                         let endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
                         let link = 'index.php?action=cap_capacitaciones&operation=pdf&id_capacitacion='+row.id_capacitacion+'&id_contrato='+id_contrato+'&startDate='+startDate+'&endDate='+endDate;
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
-                        return  '<a class="'+permisoEdiciones+'" href="#">'+ //si tiene permiso para ver ediciones
-                                    '<i class="fas fa-th-list dp_blue" title="Ediciones"></i>'+
-                                '</a>&nbsp;&nbsp;'+
-                                '<a class="'+permisoClonar+'" href="#" title="Clonar">'+ //si tiene permiso para clonar
-                                    '<i class="fad fa-clone dp_blue"></i>'+
-                                '</a>&nbsp;&nbsp;'+
-                                '<a class="'+permisoVer+'" href="#" title="Ver">'+ //si tiene permiso para ver
+                        return  '<a class="'+permisoVer+'" href="#" title="Ver">'+ //si tiene permiso para ver
                                     '<i class="far fa-sticky-note dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a class="'+permisoEditarO+'" href="#" title="Editar">'+ //si tiene permiso para editar
