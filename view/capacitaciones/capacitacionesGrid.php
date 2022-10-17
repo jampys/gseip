@@ -42,6 +42,7 @@
                 {"data" : "tema"},
                 {"data" : "descripcion"},
                 {"data" : "mes_programada"},
+                {"data" : "cant_ediciones"},
                 {"data" : "cant_participantes"},
                 {"data" : "sum_hs"},
                 {"data" : null, orderable: false}
@@ -61,7 +62,7 @@
                     }
                 },
                 {
-                    targets: 6,//action buttons
+                    targets: 7,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
                         let permisoEdiciones = '<?php echo ( PrivilegedUser::dhasPrivilege('CAP_ABM', array(1)) )? 'ediciones' : 'disabled' ?>';
@@ -111,9 +112,25 @@
                             i : 0;
                 };
 
+                // Total ediciones over all pages
+                totalE = api
+                    .column( 4 )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                // Total ediciones over this page
+                pageTotalE = api
+                    .column( 4, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
                 // Total participantes over all pages
                 totalP = api
-                    .column( 4 )
+                    .column( 5 )
                     .data()
                     .reduce( function (a, b) {
                         return intVal(a) + intVal(b);
@@ -121,7 +138,7 @@
 
                 // Total participantes over this page
                 pageTotalP = api
-                    .column( 4, { page: 'current'} )
+                    .column( 5, { page: 'current'} )
                     .data()
                     .reduce( function (a, b) {
                         return intVal(a) + intVal(b);
@@ -129,7 +146,7 @@
 
                 // Total Hs over all pages
                 totalH = api
-                    .column( 5 )
+                    .column( 6 )
                     .data()
                     .reduce( function (a, b) {
                         return intVal(a) + intVal(b);
@@ -137,15 +154,16 @@
 
                 // Total Hs over this page
                 pageTotalH = api
-                    .column( 5, { page: 'current'} )
+                    .column( 6, { page: 'current'} )
                     .data()
                     .reduce( function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0 );
 
                 // Update footer
-                $( api.column( 4 ).footer() ).html(pageTotalP +' ('+ totalP +' total)');
-                $( api.column( 5 ).footer() ).html(pageTotalH +' ('+ totalH +' total)');
+                $( api.column( 4 ).footer() ).html(pageTotalE +' ('+ totalE +' total)');
+                $( api.column( 5 ).footer() ).html(pageTotalP +' ('+ totalP +' total)');
+                $( api.column( 6 ).footer() ).html(pageTotalH +' ('+ totalH +' total)');
             }
 
         });
@@ -171,6 +189,7 @@
                 <th>Tema</th>
                 <th>Descripcion</th>
                 <th>Mes programada</th>
+                <th title="Cantidad de ediciones para el/los contratos seleccionados">Cant. ed.</th>
                 <th title="Cantidad de participantes para el/los contratos seleccionados">Cant. part.</th>
                 <th title="Sumatoria total de horas de asistencia">Sum. hs.</th>
                 <th></th>
@@ -178,6 +197,7 @@
             </thead>
             <tfoot>
             <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
