@@ -39,8 +39,8 @@
                  orderable: false
                  },*/
                 {"data" : "fecha_edicion"},
+                {"data" : "empleado"},
                 {"data" : "categoria"},
-                {"data" : "id_capacitacion"},
                 {"data" : "id_capacitacion"},
                 {"data" : "id_capacitacion"},
                 {"data" : "id_capacitacion"},
@@ -155,9 +155,9 @@
             <thead>
             <tr>
                 <th>Fecha</th>
+                <th>Empleado</th>
                 <th>Tipo cap.</th>
                 <th>Tema</th>
-                <th>Mes programada</th>
                 <th title="Cantidad de participantes para el/los contratos seleccionados">Cant. part.</th>
                 <th title="Sumatoria total de horas de asistencia">Sum. hs.</th>
                 <th></th>
