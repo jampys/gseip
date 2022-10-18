@@ -179,8 +179,8 @@
 
                         <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
-                            <button  id="new" type="button" class="form-control btn btn-default" title="Agregar capacitación" <?php //echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?> >
-                                <i class="fas fa-plus fa-lg dp_green"></i>
+                            <button id="txt" class="form-control btn btn-default" href="#" title="Descargar reportes">
+                                <i class="fas fa-file-download fa-fw fa-lg dp_blue"></i>
                             </button>
                         </div>
 

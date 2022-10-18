@@ -56,31 +56,8 @@
                     targets: 7,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
-                        let permisoEdiciones = '<?php echo ( PrivilegedUser::dhasPrivilege('CAP_ABM', array(1)) )? 'ediciones' : 'disabled' ?>';
-                        let permisoClonar = '<?php echo ( PrivilegedUser::dhasPrivilege('CAP_ABM', array(1)) )? 'clone' : 'disabled' ?>';
-                        let permisoVer = '<?php echo ( PrivilegedUser::dhasPrivilege('CAP_VER', array(1)) )? 'view' : 'disabled' ?>';
-                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('CAP_UPDATE', array(1)) )? true : false ?>';
-                        let permisoEditarO = (permisoEditar && !row.cerrado)? 'edit' : 'disabled';
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('CAP_DELETE', array(1)) )? true : false ?>';
-                        let permisoEliminarO = (permisoEliminar && !row.cerrado)? 'delete' : 'disabled';
-                        let id_contrato = $("#id_contrato").val();
-                        let startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
-                        let endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
-                        let link = 'index.php?action=cap_capacitaciones&operation=pdf&id_capacitacion='+row.id_capacitacion+'&id_contrato='+id_contrato+'&startDate='+startDate+'&endDate='+endDate;
-                        let user_info = ''; //row.user.split('@')[0]+' '+row.created_date;
-                        return  '<a class="'+permisoVer+'" href="#" title="Ver">'+ //si tiene permiso para ver
-                                    '<i class="far fa-sticky-note dp_blue"></i>'+
-                                '</a>&nbsp;&nbsp;'+
-                                '<a class="'+permisoEditarO+'" href="#" title="Editar">'+ //si tiene permiso para editar
-                                    '<i class="far fa-edit dp_blue"></i>'+
-                                '</a>&nbsp;&nbsp;'+
-                                '<a class="'+permisoEliminarO+'" href="#" title="Borrar">'+ //si tiene permiso para eliminar
-                                    '<i class="far fa-trash-alt dp_red"></i>'+
-                                '</a>&nbsp;&nbsp;'+
-                                '<a target="_blank" href="'+link+'" title="Descargar reporte">'+
-                                    '<i class="fas fa-download dp_blue"></i>'+
-                                '</a>&nbsp;&nbsp;'+
-                                '<a href="#" title="'+user_info+'" onclick="return false;">'+
+                        let user_info = row.user.split('@')[0]+' '+row.created_date;
+                        return  '<a href="#" title="'+user_info+'" onclick="return false;">'+
                                     '<i class="fa fa-question-circle dp_light_gray"></i>'+
                                 '</a>';
                     }
