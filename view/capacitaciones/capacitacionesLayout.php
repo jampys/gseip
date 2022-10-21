@@ -69,6 +69,23 @@
             });
 
 
+            $(document).on('click', '#txt', function(){
+
+                //alert('toco en txt');
+                //preparo los parametros
+                params={};
+                params.action = "partes";
+                params.operation = "loadExportTxt";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+
+                    $('#myModal #id_contrato').val($('#search_contrato').val());
+                    $('.selectpicker').selectpicker('refresh');
+                });
+                return false;
+            });
+
+
             $('#content').on('click', '.edit', function(){ //ok
                 //alert('presionó en editar');
                 var id = $(this).closest('tr').attr('data-id');
@@ -118,7 +135,7 @@
             });
 
 
-            $('#content').on('click', '.empleados', function(){
+            /*$('#content').on('click', '.empleados', function(){
                 //alert('presiono sobre empleados');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -134,7 +151,7 @@
                     $('#etapas_left_side').attr('id_capacitacion', id);
                 });
                 return false;
-            });
+            });*/
 
 
 
