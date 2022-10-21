@@ -100,68 +100,11 @@
 
             }
 
-
-
             return false;
         });
 
 
 
-
-        //Exportar novedades para control administracion. Obsoleto 14/06/2022
-        /*$('#myModal').on("click", "#submit2", function(){
-
-            if ($("#txt-form").valid()){
-
-                var params={};
-                params.action = 'partes';
-                params.operation = 'checkExportTxt';
-                params.id_contrato = $("#myModal #id_contrato").val();
-                params.first_contrato = params.id_contrato[0];
-                params.periodo = $("#myModal #periodo").val();
-                params.id_user = "<?php echo $_SESSION['id_user']; ?>";
-                //alert(params.first_contrato);
-
-
-                $.ajax({
-                    url:"index.php",
-                    type:"post",
-                    data: params,
-                    dataType:"json",//xml,html,script,json
-                    success: function(data, textStatus, jqXHR) {
-
-                        $("#myElem").removeClass('alert-info').removeClass('alert-warning').removeClass('alert-danger');
-
-                        if(data[0]['flag'] >=0){
-                            $("#myElem").html(data[0]['msg']).addClass('alert alert-warning').addClass('pre-scrollable').show();
-                        }
-                        else{
-                            $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').addClass('pre-scrollable').show();
-                        }
-
-                        setTimeout(function() {
-                            var strWindowFeatures = "location=yes,height=500,width=800,scrollbars=yes,status=yes";
-                            var URL="<?php echo $GLOBALS['ini']['application']['report_url']; ?>frameset?__report=gseip_nov_control_administracion_"+params.first_contrato+".rptdesign&p_id_contrato="+params.id_contrato+
-                                "&p_id_periodo="+params.periodo+
-                                "&p_id_user="+params.id_user;
-                            var win = window.open(URL, "_blank");
-                            return false;
-                        }, 3000);
-
-
-                    },
-                    beforeSend: function() {
-                        $("#myElem").removeClass('alert-warning').removeClass('alert-danger');
-                        $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Verificando novedades y sucesos. Aguarde un instante...').addClass('alert alert-info').show();
-                    }
-
-                });
-
-
-            }
-
-            return false;
-        });*/
 
 
 
