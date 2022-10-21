@@ -105,10 +105,11 @@
                         </div>
 
 
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <!--<label for="periodo" class="control-label">Periodo</label>-->
                             <select class="form-control selectpicker show-tick" id="id_categoria" name="id_categoria" data-live-search="true" data-size="5">
-                                <option value="">Seleccione tipo de capacitación</option>
+                                <!--<option value="">Seleccione tipo de capacitación</option>-->
+                                <option value="">Tipo de capacitación</option>
                                 <?php foreach ($view->categorias as $cat){
                                     ?>
                                     <option value="<?php echo $cat['id_categoria']; ?>"
@@ -143,6 +144,14 @@
                         </div>
 
 
+                        <div class="form-group col-md-1">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
+                                <i class="fas fa-search fa-lg dp_blue"></i>
+                            </button>
+                        </div>
+
+
                     </div>
 
                     <!-- FILA DE ABAJO -->
@@ -169,20 +178,8 @@
                         </div>
 
 
-                        <div class="form-group col-md-1">
-                            <!--<label for="search">&nbsp;</label>-->
-                            <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
-                                <i class="fas fa-search fa-lg dp_blue"></i>
-                            </button>
-                        </div>
 
 
-                        <div class="form-group col-md-1">
-                            <!--<label for="search">&nbsp;</label>-->
-                            <button id="txt" class="form-control btn btn-default" href="#" title="Descargar reportes">
-                                <i class="fas fa-file-download fa-fw fa-lg dp_blue"></i>
-                            </button>
-                        </div>
 
 
                     </div>

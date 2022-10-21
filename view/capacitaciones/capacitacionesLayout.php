@@ -252,7 +252,7 @@
 
         <div class="col-md-12">
 
-            <h4>Capacitaciones</h4>
+            <h4>Capacitaciones por período</h4>
             <hr class="hr-primary"/>
 
             <div class="clearfix">
@@ -344,11 +344,6 @@
 
 
                         <div class="form-group col-md-1">
-
-                        </div>
-
-
-                        <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                                 <i class="fas fa-search fa-lg dp_blue"></i>
@@ -360,6 +355,13 @@
                             <!--<label for="search">&nbsp;</label>-->
                             <button  id="new" type="button" class="form-control btn btn-default" title="Agregar capacitación" <?php //echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?> >
                                 <i class="fas fa-plus fa-lg dp_green"></i>
+                            </button>
+                        </div>
+
+                        <div class="form-group col-md-1">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button id="txt" class="form-control btn btn-default" href="#" title="Descargar reportes">
+                                <i class="fas fa-file-download fa-fw fa-lg dp_blue"></i>
                             </button>
                         </div>
 
