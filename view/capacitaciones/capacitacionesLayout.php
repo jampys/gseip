@@ -69,17 +69,15 @@
             });
 
 
-            $(document).on('click', '#txt', function(){
-
-                //alert('toco en txt');
-                //preparo los parametros
+            $(document).on('click', '#reportes', function(){ //ok
+                //alert('toco en reportes');
                 params={};
-                params.action = "partes";
-                params.operation = "loadExportTxt";
+                params.action = "cap_reportes";
+                params.operation = "loadReportes";
                 $('#popupbox').load('index.php', params,function(){
                     $('#myModal').modal();
 
-                    $('#myModal #id_contrato').val($('#search_contrato').val());
+                    //$('#myModal #id_contrato').val($('#search_contrato').val());
                     $('.selectpicker').selectpicker('refresh');
                 });
                 return false;
@@ -377,7 +375,7 @@
 
                         <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
-                            <button id="txt" class="form-control btn btn-default" href="#" title="Descargar reportes">
+                            <button id="reportes" class="form-control btn btn-default" href="#" title="Descargar reportes">
                                 <i class="fas fa-file-download fa-fw fa-lg dp_blue"></i>
                             </button>
                         </div>

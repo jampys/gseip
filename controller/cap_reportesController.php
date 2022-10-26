@@ -1,12 +1,5 @@
 ﻿<?php
-include_once("model/nov_reportesModel.php");
-include_once("model/contratosModel.php");
-include_once("model/companiasModel.php");
-include_once("model/nov_periodosModel.php");
-include_once("model/empleadosModel.php");
-
-include_once("model/nov_conceptosModel.php");
-include_once("model/nov_concepto-convenio-contratoModel.php");
+include_once("model/cap_capacitacionesModel.php");
 
 
 $operation = "";
@@ -17,6 +10,14 @@ $view->disableLayout=false;
 
 switch ($operation)
 {
+
+    case 'loadReportes': //ok //abre ventana modal para reportes
+        $view->disableLayout=true;
+        $view->label = 'Reportes capacitaciones';
+        $view->periodos = Capacitacion::getPeriodos();
+
+        $view->contentTemplate="view/capacitaciones/reportesForm.php";
+        break;
 
     case 'reporte_rn06': //ok
         $view->disableLayout=true;

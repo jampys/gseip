@@ -49,65 +49,6 @@
 
 
 
-        //RN05 al presionar boton de exportar en txt
-        $('#myModal').on("click", "#submit", function(){ //ok
-            //alert('presiono en exportar');
-
-            if ($("#txt-form").valid()){
-
-                var params={};
-                params.action = 'partes';
-                params.operation = 'checkExportTxt';
-                params.id_contrato = $("#myModal #id_contrato").val();
-                params.periodo = $("#myModal #periodo").val();
-                //alert(params.id_contrato);
-
-                $.ajax({
-                    url:"index.php",
-                    type:"post",
-                    data: params,
-                    dataType:"json",//xml,html,script,json
-                    success: function(data, textStatus, jqXHR) {
-
-                        $("#myElem").removeClass('alert-info').removeClass('alert-warning').removeClass('alert-danger');
-
-                        if(data[0]['flag'] >=0){
-                            $("#myElem").html(data[0]['msg']).addClass('alert alert-warning').addClass('pre-scrollable').show();
-                        }
-                        else{
-                            $("#myElem").html(data[0]['msg']).addClass('alert alert-danger').addClass('pre-scrollable').show();
-                        }
-
-                        location.href="index.php?action=partes&operation=exportTxt&id_contrato="+params.id_contrato+
-                        "&periodo="+params.periodo;
-                        return false;
-
-                    },
-                    /*error: function(data, textStatus, errorThrown) {
-                     //alert(data.responseText);
-                     $("#myElem").html('Error de conexión con la base de datos').addClass('alert alert-danger').show();
-                     setTimeout(function() { $("#myElem").hide();
-                     }, 2000);
-                     },*/
-                    beforeSend: function() {
-                        $("#myElem").removeClass('alert-warning').removeClass('alert-danger');
-                        $("#myElem").html('<i class="fas fa-spinner fa-spin"></i>&nbsp; Verificando novedades y sucesos. Aguarde un instante...').addClass('alert alert-info').show();
-                    }
-
-                });
-
-
-
-            }
-
-            return false;
-        });
-
-
-
-
-
-
         //RN03 Exportar novedades para control administracion
         $('#myModal').on("click", "#submit3", function(){
 
@@ -182,8 +123,8 @@
 
 
 
-        //RN07 Resumen de actividad
-        $('#myModal').on("click", "#submit7", function(){ //ok
+        //RC01 Control de personal sin capacitacion
+        $('#myModal').on("click", "#submit1", function(){ //ok
 
             if ($("#txt-form").valid()){
 
@@ -222,53 +163,21 @@
                     <input type="hidden" name="id" id="id" value="<?php //print $view->client->getId() ?>">
 
                     <div class="form-group required">
-                        <label class="control-label" for="id_empleado">Contrato</label>
+                        <label class="control-label" for="id_empleado">Período</label>
                         <!--<select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5">-->
-                        <select multiple class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5" title="Seleccione un contrato">
-                            <!--<option value="">Seleccione un contrato</option>-->
-                            <?php foreach ($view->contratos as $con){
+                        <select class="form-control" id="periodo" name="periodo">
+                            <!--<option value="">Todos</option>-->
+                            <?php foreach ($view->periodos as $pe){
                                 ?>
-                                <option value="<?php echo $con['id_contrato']; ?>" >
-                                    <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                <option value="<?php echo $pe['periodo']; ?>"
+                                    <?php echo ($pe['periodo'] == $view->periodo_actual   )? 'selected' :'' ?>
+                                    >
+                                    <?php echo $pe['periodo']; ?>
                                 </option>
                             <?php  } ?>
                         </select>
                     </div>
 
-                    <!--<div class="form-group required">
-                        <label for="id_periodo" class="control-label">Período de liquidación</label>
-                        <select class="form-control selectpicker show-tick" id="id_periodo" name="id_periodo" title="Seleccione un periodo" data-live-search="true" data-size="5">
-                            <!-- se completa dinamicamente desde javascript
-                        </select>
-                    </div>-->
-
-                    <div class="form-group required">
-                        <label class="control-label" for="periodo">Período de liquidación</label>
-                        <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5">
-                            <option value="">Seleccione un período</option>
-                            <?php foreach ($view->periodos_sup as $ps){
-                                ?>
-                                <option value="<?php echo $ps['periodo']; ?>" >
-                                    <?php echo $ps['nombre'];?>
-                                </option>
-                            <?php  } ?>
-                        </select>
-                    </div>
-
-
-                    <!--<div class="alert alert-info" role="alert">
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <i class="fas fa-tags"></i>
-                                &nbsp;<span class="label label-danger">Obsoleto</span>
-                                &nbsp;<strong>Control de Novedades Administración:</strong>
-                                Novedades en formato de tabla cruzada (empleados/conceptos).
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit2" name="submit2" type="submit" title="Emitir reporte [web]">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
-                            </div>
-                        </div>
-                    </div>-->
 
 
                     <div class="alert alert-info" role="alert">
@@ -276,33 +185,18 @@
                             <div class="col-sm-10">
                                 <i class="fas fa-tags"></i>
                                 &nbsp;<span class="label label-success">Nuevo</span>
-                                &nbsp;<strong>RN03 Control de Novedades Administración:</strong>
-                                Novedades en formato .xlsx (empleados/conceptos).
+                                &nbsp;<strong>RC01 Control de personal sin capacitación:</strong>
+                                Personal que no recibió capacitacion durante el período indicado.
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit3" name="submit3" type="submit" title="Descargar reporte [xlsx]">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
+                                <button class="btn btn-primary" id="submit1" name="submit1" type="submit" title="Descargar reporte [xlsx]">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="alert alert-info" role="alert">
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <i class="fas fa-tags"></i>
-                                &nbsp;<strong>RN05 Archivo de texto</strong>
-                                <strong class="dp_orange">(Administración)</strong>
-                                <strong>:</strong>
-                                Novedades en formato .txt (admisible para BAS).
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary" id="submit" name="submit" type="submit" title="Descargar reporte [txt]">&nbsp;<i class="fas fa-file-alt fa-lg"></i>&nbsp;</button>
-                            </div>
-                        </div>
-                    </div>
 
-
-                    <div class="alert alert-info" role="alert">
+                    <!--<div class="alert alert-info" role="alert">
                         <div class="row">
                             <div class="col-sm-10">
                                 <i class="fas fa-tags"></i>
@@ -316,10 +210,11 @@
                                 <button class="btn btn-primary" id="submit7" name="submit7" type="submit" title="Descargar reporte [xlsx]">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
 
                 </form>
+
 
                 <div id="myElem" style="display:none">
                     <ul class="alert alert-danger" style="list-style-type: none"><p></p></ul>
