@@ -159,6 +159,8 @@
             params.action = "cap_empleados";
             params.operation = "editEmpleado";
             params.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
+            params.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+            params.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
                 //alert('cargo el contenido en right side');
@@ -179,6 +181,8 @@
             params.action = "cap_empleados";
             params.operation = "editEmpleado";
             params.id_capacitacion = $('#etapas_left_side').attr('id_capacitacion');
+            params.startDate = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD'); //drp.startDate.format('YYYY-MM-DD');
+            params.endDate = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD'); //drp.endDate.format('YYYY-MM-DD');
             params.target = "view";
             //alert(params.id_renovacion);
             $('#etapas_right_side').load('index.php', params,function(){
