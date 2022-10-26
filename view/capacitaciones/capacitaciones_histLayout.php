@@ -97,7 +97,7 @@
                     <!-- FILA DE ARRIBA -->
                     <div class="row">
 
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
                                 <i class="fad fa-calendar-alt"></i>
@@ -122,12 +122,21 @@
                         </div>
 
 
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
-                            <select class="form-control selectpicker show-tick" id="mes_programada" name="mes_programada" data-live-search="true" data-size="5">
-                                <option value="">Todas las capacitaciones</option>
+                            <select class="form-control selectpicker show-tick" id="mes_programada" name="mes_programada">
+                                <option value="">Programa</option>
                                 <option value="1">Programadas</option>
                                 <option value="0">No Programadas</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
+                            <select class="form-control selectpicker show-tick" id="asistio" name="asistio">
+                                <option value="">Asistió</option>
+                                <option value="1">SI</option>
+                                <option value="0">NO</option>
                             </select>
                         </div>
 
