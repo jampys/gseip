@@ -134,7 +134,7 @@
                         <div class="form-group col-md-2">
                             <!--<label for="search_vencimiento" class="control-label">Vencimiento</label>-->
                             <select class="form-control selectpicker show-tick" id="asistio" name="asistio">
-                                <option value="">Asistió</option>
+                                <option value="">Asistencia</option>
                                 <option value="1">SI</option>
                                 <option value="0">NO</option>
                             </select>

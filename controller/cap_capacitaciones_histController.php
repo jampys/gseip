@@ -20,11 +20,12 @@ switch ($operation)
         $view->disableLayout=true;
         $id_categoria = ($_POST['id_categoria']!='')? $_POST['id_categoria'] : null;
         $mes_programada = ($_POST['mes_programada']!='')? $_POST['mes_programada'] : null;
+        $asistio = ($_POST['asistio']!='')? $_POST['asistio'] : null;
         $id_empleado = ($_POST['id_empleado']!='')? $_POST['id_empleado'] : null;
         $startDate = $_POST['startDate'];
         $endDate = $_POST['endDate'];
 
-        $rta = $view->capacitaciones = Capacitacion::getCapacitacionesHist($id_categoria, $mes_programada, $id_empleado, $startDate, $endDate);
+        $rta = $view->capacitaciones = Capacitacion::getCapacitacionesHist($id_categoria, $mes_programada, $asistio, $id_empleado, $startDate, $endDate);
         //$view->contentTemplate="view/objetivos/objetivosGrid.php";
         //break;
         print_r(json_encode($rta));

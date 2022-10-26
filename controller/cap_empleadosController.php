@@ -38,7 +38,7 @@ switch ($operation)
         $empleado->setIdContrato($_POST['id_contrato']);
         $empleado->setIdEdicion($_POST['id_edicion']);
         $empleado->setObservaciones($_POST['id_responsable_ejecucion']);
-        $empleado->setAsistio(($_POST['asistio'] == 1)? 1 : null);
+        $empleado->setAsistio(($_POST['asistio'] == 1)? 1 : 0);
         $empleado->setIdUser($_SESSION['id_user']);
         $rta = $empleado->save();
         //print_r(json_encode(sQuery::dpLastInsertId()));

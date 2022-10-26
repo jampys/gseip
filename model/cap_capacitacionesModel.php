@@ -269,7 +269,7 @@ class Capacitacion
 
 
 
-    public static function getCapacitacionesHist($id_categoria, $mes_programada, $id_empleado, $startDate, $endDate){
+    public static function getCapacitacionesHist($id_categoria, $mes_programada, $asistio, $id_empleado, $startDate, $endDate){
         $stmt=new sQuery();
         /*$query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.mes_programada,
                 DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
@@ -323,10 +323,12 @@ where date(e.fecha_edicion) between :startDate and :endDate
 and c.id_categoria = ifnull(:id_categoria, c.id_categoria)
 and if(:mes_programada = 1, mes_programada is not null, 1)
 and if(:mes_programada = 0, mes_programada is null, 1)
+and ce.asistio = ifnull(:asistio, ce.asistio)
 and ce.id_empleado = ifnull(:id_empleado, ce.id_empleado)";
         $stmt->dpPrepare($query);
         $stmt->dpBind(':id_categoria', $id_categoria);
         $stmt->dpBind(':mes_programada', $mes_programada);
+        $stmt->dpBind(':asistio', $asistio);
         $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpBind(':startDate', $startDate);
         $stmt->dpBind(':endDate', $endDate);
