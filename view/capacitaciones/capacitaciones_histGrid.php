@@ -43,6 +43,7 @@
                 {"data" : "tema"},
                 {"data" : "modalidad"},
                 {"data" : "capacitador"},
+                {"data" : ""}, //asistió
                 {"data" : "duracion"},
                 {"data" : null, orderable: false}
             ],
@@ -53,7 +54,14 @@
             "columnDefs": [
                 {targets: 0, type: 'date-uk', orderData: [ 0, 1]}, //fecha
                 {
-                    targets: 7,//action buttons
+                    targets: 6,//asistió
+                    responsivePriority: 3,
+                    render: function (data, type, row, meta) {
+                        return (row.asistio == 1)? '<span class="dp_green">SI</span>' : '<span class="dp_red">NO</span>';
+                    }
+                },
+                {
+                    targets: 8,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
                         let user_info = row.user.split('@')[0]+' '+row.created_date;
@@ -76,7 +84,7 @@
 
                 // Total participantes over all pages
                 totalP = api
-                    .column( 6 )
+                    .column( 7 )
                     .data()
                     .reduce( function (a, b) {
                         return intVal(a) + intVal(b);
@@ -84,14 +92,14 @@
 
                 // Total participantes over this page
                 pageTotalP = api
-                    .column( 6, { page: 'current'} )
+                    .column( 7, { page: 'current'} )
                     .data()
                     .reduce( function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0 );
 
                 // Update footer
-                $( api.column( 6 ).footer() ).html(pageTotalP +' ('+ totalP +' total)');
+                $( api.column( 7 ).footer() ).html(pageTotalP +' ('+ totalP +' total)');
             }
 
         });
@@ -119,12 +127,14 @@
                 <th>Tema</th>
                 <th>Modalidad</th>
                 <th>Capacitador</th>
+                <th>Asistió</th>
                 <th>Duración [hs]</th>
                 <th></th>
             </tr>
             </thead>
             <tfoot>
             <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

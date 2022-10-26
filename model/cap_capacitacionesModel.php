@@ -306,6 +306,7 @@ class Capacitacion
 DATE_FORMAT(e.fecha_edicion,  '%d/%m/%Y') as fecha_edicion,
 DATE_FORMAT(ce.created_date,  '%d/%m/%Y %H:%i') as created_date,
 if(ce.asistio = 1, e.duracion, 0) as duracion,
+ce.asistio,
 e.capacitador,
 concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
 cat.nombre as categoria,
