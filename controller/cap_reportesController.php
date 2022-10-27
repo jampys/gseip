@@ -26,9 +26,9 @@ switch ($operation)
         $view->disableLayout=true;
         //$id_contrato = ($_GET['id_contrato'])? $_GET['id_contrato'] : null;
         //$_SESSION['cal_id_contrato'] = $id_contrato;
-        $id_periodo = ($_GET['id_periodo'])? $_GET['id_periodo'] : null;
+        $periodo = ($_GET['periodo'])? $_GET['periodo'] : null;
         //$id_empleado = ($_GET['id_empleado'])? $_GET['id_empleado'] : null;
-        $view->empleados = $rta = ReporteCapacitacion::getReporteRc01($id_periodo);
+        $view->empleados = $rta = ReporteCapacitacion::getReporteRc01($periodo);
 
         $encabezado = array();
         //$encabezado['obj_contrato'] = new Contrato($_GET['id_contrato']);
@@ -36,8 +36,8 @@ switch ($operation)
         //$encabezado['id_compania'] = $encabezado['obj_contrato']->getIdCompania();
         //$encabezado['obj_cliente'] = new Compania($encabezado['id_compania']);
         //$encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';
-        $encabezado['obj_periodo'] = new NovPeriodo($_GET['id_periodo']);
-        $encabezado['periodo'] = substr($encabezado['obj_periodo']->getNombre(), 0, 8).' ('.$encabezado['obj_periodo']->getFechaDesde().' - '.$encabezado['obj_periodo']->getFechaHasta().')';
+        //$encabezado['obj_periodo'] = new NovPeriodo($_GET['id_periodo']);
+        //$encabezado['periodo'] = substr($encabezado['obj_periodo']->getNombre(), 0, 8).' ('.$encabezado['obj_periodo']->getFechaDesde().' - '.$encabezado['obj_periodo']->getFechaHasta().')';
 
         //$encabezado['obj_empleado'] = new Empleado($_GET['id_empleado']);
         //$encabezado['empleado'] = ($encabezado['obj_empleado']->getIdEmpleado() > 0)? $encabezado['obj_empleado']->getLegajo().' '.$encabezado['obj_empleado']->getApellido().' '.$encabezado['obj_empleado']->getNombre() : 'Todos';

@@ -6,7 +6,7 @@ class ReporteCapacitacion
 
 
 
-    public static function getReporteRc01($id_periodo) {
+    public static function getReporteRc01($periodo) {
         $stmt=new sQuery();
         $query = "select *
 from empleados em
@@ -21,11 +21,11 @@ and not exists
 from cap_capacitacion_empleado cex
 join cap_capacitaciones cx on cx.id_capacitacion = cex.id_capacitacion
 where cex.id_empleado = em.id_empleado
-and cx.periodo = :id_periodo
+and cx.periodo = :periodo
 )";
         $stmt->dpPrepare($query);
         //$stmt->dpBind(':id_contrato', $id_contrato);
-        $stmt->dpBind(':id_periodo', $id_periodo);
+        $stmt->dpBind(':periodo', $periodo);
         //$stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpExecute();
         return $stmt->dpFetchAll();

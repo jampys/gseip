@@ -20,7 +20,7 @@ $spreadsheet->getActiveSheet()->mergeCells('A6:D6');
 $spreadsheet->getActiveSheet()->getStyle('A1:D6')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A1:D6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
-$sheet->setCellValueByColumnAndRow(1, 1, 'RN08 Control de pendientes');
+$sheet->setCellValueByColumnAndRow(1, 1, 'RC01 Control de personal sin capacitación');
 $sheet->setCellValueByColumnAndRow(1, 2, 'Cliente: '.$encabezado['cliente']);
 $sheet->setCellValueByColumnAndRow(1, 3, 'Contrato: '.$encabezado['contrato']);
 $sheet->setCellValueByColumnAndRow(1, 4, 'Empleado: '.$encabezado['empleado']);
@@ -36,8 +36,8 @@ $spreadsheet->getActiveSheet()->getStyle('A8:D8')->getFill()->setFillType(\PhpOf
 
 //cuerpo -----------------------------------------------------------------
 $fila = 9;
-foreach ($view->partes as $p):
-    $sheet->setCellValueByColumnAndRow(1, $fila, $p['fecha']);
+foreach ($view->empleados as $p):
+    $sheet->setCellValueByColumnAndRow(1, $fila, $p['legajo']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['dia_semana']);
     $sheet->setCellValueByColumnAndRow(3, $fila, $p['empleado']);
     $sheet->setCellValueByColumnAndRow(4, $fila, $p['descripcion']);
@@ -58,7 +58,7 @@ $spreadsheet->getActiveSheet()->setAutoFilter('A8:D8');
 //genero repore
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'RN08_pendientes_'.date("d-m-Y").'.xlsx';
+$filename = 'RC01_pendientes_'.date("d-m-Y").'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');
