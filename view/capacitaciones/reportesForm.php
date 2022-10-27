@@ -128,8 +128,8 @@
 
             if ($("#txt-form").valid()){
 
-                let link = 'index.php?action=nov_reportes&operation=reporte_rn07'+
-                    '&id_contrato='+$("#myModal #id_contrato").val()+
+                let link = 'index.php?action=cap_reportes&operation=reporte_rc01'+
+                    //'&id_contrato='+$("#myModal #id_contrato").val()+
                     '&periodo='+$("#myModal #periodo").val();
                 window.location.href = link;
             }
