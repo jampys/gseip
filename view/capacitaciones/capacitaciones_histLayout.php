@@ -97,7 +97,7 @@
                     <!-- FILA DE ARRIBA -->
                     <div class="row">
 
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-3">
                             <div class="inner-addon right-addon">
                                 <input class="form-control" type="text" name="daterange" id="daterange" placeholder="DD/MM/AAAA - DD/MM/AAAA" readonly>
                                 <i class="fad fa-calendar-alt"></i>
@@ -153,12 +153,7 @@
                         </div>
 
 
-                        <div class="form-group col-md-1">
-                            <!--<label for="search">&nbsp;</label>-->
-                            <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
-                                <i class="fas fa-search fa-lg dp_blue"></i>
-                            </button>
-                        </div>
+
 
 
                     </div>
@@ -168,6 +163,17 @@
 
 
                         <div class="form-group col-md-3">
+                            <select multiple class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5" title="Seleccione el contrato">
+                                <!--<option value="">Seleccione un contrato</option>-->
+                                <?php foreach ($view->contratos as $con){
+                                    ?>
+                                    <option value="<?php echo $con['id_contrato']; ?>"
+                                        <?php //echo ($con['id_contrato'] == $view->objetivo->getIdContrato() )? 'selected' :'' ?>
+                                        >
+                                        <?php echo $con['nombre'].' '.$con['nro_contrato'];?>
+                                    </option>
+                                <?php  } ?>
+                            </select>
 
                         </div>
 
@@ -177,13 +183,16 @@
                         </div>
 
 
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-5">
 
                         </div>
 
 
                         <div class="form-group col-md-1">
-
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
+                                <i class="fas fa-search fa-lg dp_blue"></i>
+                            </button>
                         </div>
 
 

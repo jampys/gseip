@@ -222,12 +222,12 @@ if ($encabezado['template'] == 'POZOS' ||
 ) $spreadsheet->getActiveSheet()->getColumnDimension('B')->setVisible(false);
 
 //hs_extras_50 C
-if ($encabezado['template'] == 'PAE'
-) $spreadsheet->getActiveSheet()->getColumnDimension('C')->setVisible(false);
+//if ($encabezado['template'] == 'PAE'
+//) $spreadsheet->getActiveSheet()->getColumnDimension('C')->setVisible(false);
 
 //hs_extras_50_manejo D
-if ($encabezado['template'] == 'PAE'
-) $spreadsheet->getActiveSheet()->getColumnDimension('D')->setVisible(false);
+//if ($encabezado['template'] == 'PAE'
+//) $spreadsheet->getActiveSheet()->getColumnDimension('D')->setVisible(false);
 
 //hs_extras_50_truncado E
 if ($encabezado['template'] == 'PAE' ||
