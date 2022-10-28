@@ -11,9 +11,9 @@ $sheet->setTitle('pendientes');
 
 //titulo ----------------------------------------------------------------
 
-$spreadsheet->getActiveSheet()->mergeCells('A1:D1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
-$spreadsheet->getActiveSheet()->mergeCells('A2:D2');
-$spreadsheet->getActiveSheet()->mergeCells('A3:D3');
+$spreadsheet->getActiveSheet()->mergeCells('A1:B1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
+$spreadsheet->getActiveSheet()->mergeCells('A2:B2');
+$spreadsheet->getActiveSheet()->mergeCells('A3:B3');
 $spreadsheet->getActiveSheet()->getStyle('A1:B3')->getFont()->setBold(true);
 $spreadsheet->getActiveSheet()->getStyle('A1:B3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
