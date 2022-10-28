@@ -14,33 +14,25 @@ $sheet->setTitle('pendientes');
 $spreadsheet->getActiveSheet()->mergeCells('A1:D1'); //$spreadsheet->getActiveSheet()->mergeCells("$range1:$range2");
 $spreadsheet->getActiveSheet()->mergeCells('A2:D2');
 $spreadsheet->getActiveSheet()->mergeCells('A3:D3');
-$spreadsheet->getActiveSheet()->mergeCells('A4:D4');
-$spreadsheet->getActiveSheet()->mergeCells('A5:D5');
-$spreadsheet->getActiveSheet()->mergeCells('A6:D6');
-$spreadsheet->getActiveSheet()->getStyle('A1:D6')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A1:D6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$spreadsheet->getActiveSheet()->getStyle('A1:B3')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A1:B3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 $sheet->setCellValueByColumnAndRow(1, 1, 'RC01 Control de personal sin capacitación');
-$sheet->setCellValueByColumnAndRow(1, 2, 'Cliente: '.$encabezado['cliente']);
-$sheet->setCellValueByColumnAndRow(1, 3, 'Contrato: '.$encabezado['contrato']);
-$sheet->setCellValueByColumnAndRow(1, 4, 'Empleado: '.$encabezado['empleado']);
-$sheet->setCellValueByColumnAndRow(1, 5, 'Período: '.$encabezado['periodo']);
-$sheet->setCellValueByColumnAndRow(1, 6, 'Fecha emisión: '.$encabezado['fecha_emision']);
+$sheet->setCellValueByColumnAndRow(1, 2, 'Período: '.$encabezado['periodo']);
+$sheet->setCellValueByColumnAndRow(1, 3, 'Fecha emisión: '.$encabezado['fecha_emision']);
 
 
 //encabezado ------------------------------------------------------------
-$cabecera = ["Fecha", "Día semana", "Empleado", "Observaciones"];
-$sheet->fromArray($cabecera, null, 'A8');
-$spreadsheet->getActiveSheet()->getStyle('A8:D8')->getFont()->setBold(true);
-$spreadsheet->getActiveSheet()->getStyle('A8:D8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
+$cabecera = ["Empleado", "Contratos"];
+$sheet->fromArray($cabecera, null, 'A5');
+$spreadsheet->getActiveSheet()->getStyle('A5:B5')->getFont()->setBold(true);
+$spreadsheet->getActiveSheet()->getStyle('A5:B5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('E6E6E6');
 
 //cuerpo -----------------------------------------------------------------
-$fila = 9;
+$fila = 6;
 foreach ($view->empleados as $p):
     $sheet->setCellValueByColumnAndRow(1, $fila, $p['empleado']);
-    $sheet->setCellValueByColumnAndRow(2, $fila, $p['dia_semana']);
-    $sheet->setCellValueByColumnAndRow(3, $fila, $p['empleado']);
-    $sheet->setCellValueByColumnAndRow(4, $fila, $p['descripcion']);
+    $sheet->setCellValueByColumnAndRow(2, $fila, $p['contratos']);
 
     $fila++;
 endforeach;
@@ -53,12 +45,12 @@ foreach ($sheet->getColumnIterator() as $column) {
 
 
 //configuro el auto filter
-$spreadsheet->getActiveSheet()->setAutoFilter('A8:D8');
+$spreadsheet->getActiveSheet()->setAutoFilter('A5:B5');
 
 //genero repore
 $writer = new Xlsx($spreadsheet);
 //$writer->save('C:/temp/hello world.xlsx');
-$filename = 'RC01_pendientes_'.date("d-m-Y").'.xlsx';
+$filename = 'RC01_Personal_sin_capacitacion_'.date("d-m-Y").'.xlsx';
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');
