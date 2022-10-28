@@ -186,7 +186,7 @@
                                 <i class="fas fa-tags"></i>
                                 &nbsp;<span class="label label-success">Nuevo</span>
                                 &nbsp;<strong>RC01 Control de personal sin capacitación:</strong>
-                                Personal que no recibió capacitacion durante el período indicado.
+                                Personal que no recibió capacitación durante el período indicado.
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" id="submit1" name="submit1" type="submit" title="Descargar reporte [xlsx]">&nbsp;<i class="fas fa-file-excel fa-lg"></i>&nbsp;</button>
