@@ -27,7 +27,7 @@ and cx.periodo = :periodo
 concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
 group_concat(co.nombre order by co.nombre SEPARATOR ', ') as contratos
 from empleados em
-join empleado_contrato ec on ec.id_empleado = em.id_empleado
+join empleado_contrato ec on (ec.id_empleado = em.id_empleado and (ec.fecha_hasta is null or ec.fecha_hasta >= sysdate()))
 join contratos co on co.id_contrato = ec.id_contrato
 where em.fecha_baja is null
 and not exists
