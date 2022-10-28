@@ -68,13 +68,13 @@
                 {
                     targets: 0, //empleado
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(23)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(19)(data, type, row);
                     }
                 },
                 {
                     targets: 1, //contrato
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(20)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(19)(data, type, row);
                     }
                 },
                 {
