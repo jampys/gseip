@@ -8,7 +8,7 @@ class ReporteCapacitacion
 
     public static function getReporteRc01($periodo) {
         $stmt=new sQuery();
-        $query = "select *
+        $query = "select concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado
 from empleados em
 where em.fecha_baja is null
 and exists ( -- que el empleado esté en algun contrato

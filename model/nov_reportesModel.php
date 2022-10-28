@@ -173,6 +173,7 @@ order by field(temp.tipo, 'Diaria', 'Itemizada', 'Complementaria'), temp.cuadril
 
 
     public static function getReporteRn3($id_contrato, $periodo) {
+        $id_contrato = '33,35,25,30,36,28,26,20,38,32,12,13,14,31,17,10,19,34,29,21';
         $stmt=new sQuery();
         $query = "select em.legajo, em.apellido, em.nombre,
 -- guardias

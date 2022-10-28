@@ -37,7 +37,7 @@ $spreadsheet->getActiveSheet()->getStyle('A8:D8')->getFill()->setFillType(\PhpOf
 //cuerpo -----------------------------------------------------------------
 $fila = 9;
 foreach ($view->empleados as $p):
-    $sheet->setCellValueByColumnAndRow(1, $fila, $p['legajo']);
+    $sheet->setCellValueByColumnAndRow(1, $fila, $p['empleado']);
     $sheet->setCellValueByColumnAndRow(2, $fila, $p['dia_semana']);
     $sheet->setCellValueByColumnAndRow(3, $fila, $p['empleado']);
     $sheet->setCellValueByColumnAndRow(4, $fila, $p['descripcion']);

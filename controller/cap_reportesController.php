@@ -38,7 +38,7 @@ switch ($operation)
         //$encabezado['cliente'] = ($encabezado['obj_cliente']->getIdCompania() > 0)? $encabezado['obj_cliente']->getRazonSocial() : 'Todos';
         //$encabezado['obj_periodo'] = new NovPeriodo($_GET['id_periodo']);
         //$encabezado['periodo'] = substr($encabezado['obj_periodo']->getNombre(), 0, 8).' ('.$encabezado['obj_periodo']->getFechaDesde().' - '.$encabezado['obj_periodo']->getFechaHasta().')';
-
+        $encabezado['periodo'] = $periodo;
         //$encabezado['obj_empleado'] = new Empleado($_GET['id_empleado']);
         //$encabezado['empleado'] = ($encabezado['obj_empleado']->getIdEmpleado() > 0)? $encabezado['obj_empleado']->getLegajo().' '.$encabezado['obj_empleado']->getApellido().' '.$encabezado['obj_empleado']->getNombre() : 'Todos';
 
