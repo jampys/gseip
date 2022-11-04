@@ -210,6 +210,17 @@
         });
 
 
+        function getData(url, params){
+            var jqxhr = $.ajax({
+                url:"index.php",
+                type:"post",
+                data: params,
+                dataType:"json"//xml,html,script,json
+            });
+            return jqxhr ;
+        }
+
+
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
         // solo se usa cuando es un insert
@@ -223,18 +234,10 @@
             params.id_empleado = $('#myModal #id_empleado').val();
             params.activos = 1;
 
-            $('#id_periodo1, #id_periodo2').empty();
+            getData('index.php', params)
+                .then(function(data){ //completo select de periodos
 
-
-            $.ajax({
-                url:"index.php",
-                type:"post",
-                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
-                data: params,
-                dataType:"json",//xml,html,script,json
-                success: function(data, textStatus, jqXHR) {
-
-                    $("#id_periodo1, #id_periodo2").html('<option value="">Seleccione un período</option>');
+                    $('#id_periodo1, #id_periodo2').empty();
 
                     if(Object.keys(data).length > 0){
 
@@ -244,22 +247,23 @@
                             +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
                             +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
-
                         });
 
                         //si es una edicion o view, selecciona el concepto.
                         //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
                         $('#id_periodo1, #id_periodo2').selectpicker('refresh');
-
                     }
 
-                },
-                error: function(data, textStatus, errorThrown) {
-                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                    alert(data.responseText);
-                }
+                    params.operation = "getCuadrillas";
+                    //return getData('index.php', params);
 
-            });
+
+                }).catch(function(data, textStatus, errorThrown){
+
+                    alert(data.responseText);
+                });
+
+
 
 
         });
@@ -492,6 +496,7 @@
                         <div class="form-group col-md-3">
                             <label class="control-label" for="periodo" >Período</label>
                             <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5" title="Período">
+                                <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <?php foreach ($view->años as $per){
                                     ?>
                                     <option value="<?php echo $per; ?>"
