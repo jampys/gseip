@@ -73,7 +73,7 @@ switch ($operation)
         $view->empleados = Empleado::getEmpleadosControl(null, 1);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         $view->años = Suceso::getPeriodosVacaciones($view->suceso->getIdEmpleado()); //Soporte::getPeriodos(2015, date("Y"));
-        array_push($view->años, array('periodo' => $view->suceso->getPeriodo())); //agrego al array de periodos, el periodo del suceso
+        if($view->suceso->getPeriodo())array_push($view->años, array('periodo' => $view->suceso->getPeriodo())); //agrego al array de periodos, el periodo del suceso
         $view->año_actual = Soporte::getPeriodoActual();
         // Trae todos los periodos, luego en el formulario quedan habilitados solo los activos
         $view->periodos = NovPeriodo::getPeriodos1($view->suceso->getIdEmpleado()); ;
