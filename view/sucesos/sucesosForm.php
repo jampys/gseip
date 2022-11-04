@@ -267,7 +267,8 @@
                         $.each(data, function(indice, val){
                             var label = data[indice]["periodo"];
                             let subtext = data[indice]["cantidad"]+' días. Disp. '+data[indice]["acumulados"]+' días';
-                            $("#periodo").append('<option value="'+data[indice]["periodo"]+'" data-subtext="'+subtext+'">'+label+'</option>');
+                            let disabled = (indice > 0)? 'disabled' : '';
+                            $("#periodo").append('<option value="'+data[indice]["periodo"]+'" data-subtext="'+subtext+'" '+disabled+'>'+label+'</option>');
 
                         });
                         $('#periodo').selectpicker('refresh');
