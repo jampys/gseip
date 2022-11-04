@@ -96,7 +96,13 @@ class Capacitacion
                   where ce.id_capacitacion = c.id_capacitacion
                   and date(ed.fecha_edicion) between :startDate and :endDate
                   and ce.asistio = 1
-                  and ce.id_contrato in ($id_contrato)) as sum_hs
+                  and ce.id_contrato in ($id_contrato)) as sum_hs,
+                (select count(distinct ed.id_edicion)
+                  from cap_capacitacion_empleado ce
+                  join cap_ediciones ed on ed.id_edicion = ce.id_edicion
+                  where ce.id_capacitacion = c.id_capacitacion
+                  and date(ed.fecha_edicion) between :startDate and :endDate
+                  and ce.id_contrato in ($id_contrato)) as cant_ediciones
                 from cap_capacitaciones c
                 join cap_planes_capacitacion pc on pc.id_plan_capacitacion = c.id_plan_capacitacion
                 join sec_users u on u.id_user = c.id_user
@@ -259,6 +265,76 @@ class Capacitacion
         $stmt->dpExecute();
         return $stmt ->dpFetchAll();
 
+    }
+
+
+
+    public static function getCapacitacionesHist($id_categoria, $mes_programada, $asistio, $id_empleado, $id_contrato, $startDate, $endDate){
+        $stmt=new sQuery();
+        /*$query="select c.id_capacitacion, c.id_plan_capacitacion, c.id_categoria, c.tema, c.descripcion, c.mes_programada,
+                DATE_FORMAT(c.created_date,  '%d/%m/%Y %H:%i') as created_date,
+                c.id_user,
+                cg.nombre as categoria,
+                u.user,
+                (select count(*)
+                  from cap_capacitacion_empleado ce
+                  join cap_ediciones ed on ed.id_edicion = ce.id_edicion
+                  where ce.id_capacitacion = c.id_capacitacion
+                  and date(ed.fecha_edicion) between :startDate and :endDate
+                  and ce.id_contrato in ($id_contrato)) as cant_participantes,
+                (select ifnull(sum(ed.duracion), 0)
+                  from cap_capacitacion_empleado ce
+                  join cap_ediciones ed on ed.id_edicion = ce.id_edicion
+                  where ce.id_capacitacion = c.id_capacitacion
+                  and date(ed.fecha_edicion) between :startDate and :endDate
+                  and ce.asistio = 1
+                  and ce.id_contrato in ($id_contrato)) as sum_hs
+                from cap_capacitaciones c
+                join cap_planes_capacitacion pc on pc.id_plan_capacitacion = c.id_plan_capacitacion
+                join sec_users u on u.id_user = c.id_user
+                join cap_categorias cg on cg.id_categoria = c.id_categoria
+                where c.periodo = ifnull(:periodo, c.periodo)
+                and c.id_categoria = ifnull(:id_categoria, c.id_categoria)
+                and if(:mes_programada = 1, mes_programada is not null, 1)
+                and if(:mes_programada = 0, mes_programada is null, 1)
+                and if('$id_contrato' != 'ce.id_contrato' , exists (select 1
+			                                  from cap_capacitacion_empleado ce
+                                              where ce.id_capacitacion = c.id_capacitacion
+                                              and ce.id_contrato in ($id_contrato)), 1)";*/
+
+        $query="select c.id_capacitacion, c.tema,
+DATE_FORMAT(e.fecha_edicion,  '%d/%m/%Y') as fecha_edicion,
+DATE_FORMAT(ce.created_date,  '%d/%m/%Y %H:%i') as created_date,
+if(ce.asistio = 1, e.duracion, 0) as duracion,
+ce.asistio,
+e.capacitador,
+concat(em.legajo, ' ', em.apellido, ' ', em.nombre) as empleado,
+cat.nombre as categoria,
+mo.nombre as modalidad,
+u.user
+from cap_capacitaciones c
+join cap_capacitacion_empleado ce on c.id_capacitacion = ce.id_capacitacion
+join cap_ediciones e on ce.id_edicion = e.id_edicion
+join cap_categorias cat on cat.id_categoria = c.id_categoria
+join empleados em on em.id_empleado = ce.id_empleado
+join cap_modalidades mo on mo.id_modalidad = e.id_modalidad
+join sec_users u on u.id_user = ce.id_user
+where date(e.fecha_edicion) between :startDate and :endDate
+and c.id_categoria = ifnull(:id_categoria, c.id_categoria)
+and if(:mes_programada = 1, mes_programada is not null, 1)
+and if(:mes_programada = 0, mes_programada is null, 1)
+and ce.asistio = ifnull(:asistio, ce.asistio)
+and ce.id_empleado = ifnull(:id_empleado, ce.id_empleado)
+and ce.id_contrato in ($id_contrato)";
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_categoria', $id_categoria);
+        $stmt->dpBind(':mes_programada', $mes_programada);
+        $stmt->dpBind(':asistio', $asistio);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':startDate', $startDate);
+        $stmt->dpBind(':endDate', $endDate);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll();
     }
 
 

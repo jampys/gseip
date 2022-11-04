@@ -84,9 +84,14 @@
                     width: '25%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
+                        let id_user = '<?php echo $_SESSION['id_user'] ?>';
+                        let usr_abm = '<?php echo ( PrivilegedUser::dhasPrivilege('USR_ABM', array(0)))? true : false ?>'; //solo el administrador
                         let permisoNuevo = '<?php echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? 'new' : 'disabled' ?>';
-                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
-                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
+                        let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('PTN_UPDATE', array(1)) )? true : false ?>';
+                        let permisoEditarS = ((permisoEditar && row.id_user == id_user)|| usr_abm)? 'edit' : 'disabled';
+                        let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('PTN_DELETE', array(1)) )? true : false ?>';
+                        let permisoEliminarS = ((permisoEliminar && row.id_user == id_user)|| usr_abm)? 'delete' : 'disabled';
+
                         let user_info = row.user.split('@')[0]+' '+row.fecha;
                         let cv = (row.cv)? 'target="_blank" title="'+row.cv.split('/')[2]+'" href="'+row.cv+'"' : 'class="disabled"';
                         return  '<a class="'+permisoNuevo+'" title="Agregar etapa" href="#">'+
@@ -98,10 +103,10 @@
                                 '<a class="view" title="Ver" href="#">'+
                                     '<i class="far fa-sticky-note dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a class="'+permisoEditar+'" href="#" title="Editar">'+ //si tiene permiso para editar
+                                '<a class="'+permisoEditarS+'" href="#" title="Editar">'+ //si tiene permiso para editar
                                     '<i class="far fa-edit dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
-                                '<a class="'+permisoEliminar+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
+                                '<a class="'+permisoEliminarS+'" href="#" title="Eliminar">'+ //si tiene permiso para eliminar
                                     '<i class="far fa-trash-alt dp_red"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 '<a href="#" title="'+user_info+'" onclick="return false;">'+

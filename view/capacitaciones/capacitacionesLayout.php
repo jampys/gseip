@@ -69,6 +69,21 @@
             });
 
 
+            $(document).on('click', '#reportes', function(){ //ok
+                //alert('toco en reportes');
+                params={};
+                params.action = "cap_reportes";
+                params.operation = "loadReportes";
+                $('#popupbox').load('index.php', params,function(){
+                    $('#myModal').modal();
+
+                    //$('#myModal #id_contrato').val($('#search_contrato').val());
+                    $('.selectpicker').selectpicker('refresh');
+                });
+                return false;
+            });
+
+
             $('#content').on('click', '.edit', function(){ //ok
                 //alert('presionó en editar');
                 var id = $(this).closest('tr').attr('data-id');
@@ -118,7 +133,7 @@
             });
 
 
-            $('#content').on('click', '.empleados', function(){
+            /*$('#content').on('click', '.empleados', function(){
                 //alert('presiono sobre empleados');
                 var id = $(this).closest('tr').attr('data-id');
                 params={};
@@ -134,7 +149,7 @@
                     $('#etapas_left_side').attr('id_capacitacion', id);
                 });
                 return false;
-            });
+            });*/
 
 
 
@@ -252,7 +267,7 @@
 
         <div class="col-md-12">
 
-            <h4>Capacitaciones</h4>
+            <h4>Capacitaciones por período</h4>
             <hr class="hr-primary"/>
 
             <div class="clearfix">
@@ -344,11 +359,6 @@
 
 
                         <div class="form-group col-md-1">
-
-                        </div>
-
-
-                        <div class="form-group col-md-1">
                             <!--<label for="search">&nbsp;</label>-->
                             <button type="button" class="form-control btn btn-default" title="Buscar" id="search">
                                 <i class="fas fa-search fa-lg dp_blue"></i>
@@ -360,6 +370,13 @@
                             <!--<label for="search">&nbsp;</label>-->
                             <button  id="new" type="button" class="form-control btn btn-default" title="Agregar capacitación" <?php //echo ( PrivilegedUser::dhasAction('PTN_INSERT', array(1)) )? '' : 'disabled' ?> >
                                 <i class="fas fa-plus fa-lg dp_green"></i>
+                            </button>
+                        </div>
+
+                        <div class="form-group col-md-1">
+                            <!--<label for="search">&nbsp;</label>-->
+                            <button id="reportes" class="form-control btn btn-default" href="#" title="Descargar reportes">
+                                <i class="fas fa-file-download fa-fw fa-lg dp_blue"></i>
                             </button>
                         </div>
 

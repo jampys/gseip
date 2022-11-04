@@ -11,11 +11,11 @@
             "fnInitComplete": function () {
                 $(this).show(); },
             "stateSave": true,
-            "order": [[5, "desc"], [4, "desc"]], //5=fecha_hasta, 0=fecha_hasta
+            "order": [[6, "desc"], [5, "desc"]], //6=fecha_hasta, 5=fecha_desde
             columnDefs: [
                 { responsivePriority: 1, targets: 6 },
-                {targets: [ 4 ], type: 'date-uk', orderData: [ 4, 0 ]}, //fecha_desde
-                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 0 ]} //fecha_hasta
+                {targets: [ 5 ], type: 'date-uk', orderData: [ 5, 0 ]}, //fecha_desde
+                {targets: [ 6 ], type: 'date-uk', orderData: [ 6, 0 ]} //fecha_hasta
             ]
         });
 
@@ -48,6 +48,7 @@
                 <th>Nombre</th>
                 <th>Compañía</th>
                 <th>Responsable</th>
+                <th>Estado</th>
                 <th>Fecha desde</th>
                 <th>Fecha hasta</th>
                 <th></th>
@@ -60,6 +61,7 @@
                     <td><?php echo $contrato['nombre'];?></td>
                     <td><?php echo $contrato['compania'];?></td>
                     <td><?php echo $contrato['responsable'];?></td>
+                    <td><?php echo ($contrato['estado'] == 'ACTIVO')? '<span class="dp_green">ACTIVO</span>' : '<span class="dp_red">INACTIVO</span>' ;?></td>
                     <td><?php echo $contrato['fecha_desde'];?></td>
                     <td><?php echo $contrato['fecha_hasta'];?></td>
                     <td class="text-center">

@@ -62,12 +62,12 @@
                     targets: 7,//action buttons
                     responsivePriority: 3,
                     render: function (data, type, row, meta) {
-                        let permisoPostulantes = '<?php echo ( PrivilegedUser::dhasPrivilege('BUS_ABM', array(1)) )? 'detalles' : 'disabled' ?>';
+                        let permisoPostulaciones = '<?php echo ( PrivilegedUser::dhasPrivilege('PTN_ABM', array(1)) )? 'detalles' : 'disabled' ?>';
                         let adjuntos = (row.cant_uploads > 0)? '<a href="#" title="'+row.cant_uploads+' adjuntos" ><i class="fas fa-paperclip dp_gray"></i></a>&nbsp;&nbsp;' : '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
                         let permisoEditar = '<?php echo ( PrivilegedUser::dhasAction('BUS_UPDATE', array(1)) )? 'edit' : 'disabled' ?>';
                         let permisoEliminar = '<?php echo ( PrivilegedUser::dhasAction('BUS_DELETE', array(1)) )? 'delete' : 'disabled' ?>';
                         let user_info = row.user.split('@')[0]+' '+row.fecha;
-                        return '<a class="'+permisoPostulantes+'" href="#" title="Postulantes">'+ //si tiene permiso para editar Postulantes
+                        return '<a class="'+permisoPostulaciones+'" href="#" title="Postulaciones">'+ //si tiene permiso para editar Postulaciones
                                     '<i class="fas fa-th-list dp_blue"></i>'+
                                 '</a>&nbsp;&nbsp;'+
                                 adjuntos+

@@ -58,6 +58,7 @@
                 {"data" : "empleado"},
                 {"data" : "contrato"},
                 {"data" : "fecha_edicion"},
+                {"data" : null}, //Asistió
                 {data: null, defaultContent: '', orderable: false}
             ],
             createdRow: function (row, data, dataIndex) {
@@ -67,17 +68,23 @@
                 {
                     targets: 0, //empleado
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(23)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(19)(data, type, row);
                     }
                 },
                 {
                     targets: 1, //contrato
                     render: function(data, type, row) {
-                        return $.fn.dataTable.render.ellipsis(23)(data, type, row);
+                        return $.fn.dataTable.render.ellipsis(19)(data, type, row);
                     }
                 },
                 {
-                    targets: 3,//action buttons
+                    targets: 3, //Asistió
+                    render: function(data, type, row) {
+                        return (row.asistio == 1)? '<span class="dp_green">SI</span>' : '<span class="dp_red">NO</span>';
+                    }
+                },
+                {
+                    targets: 4,//action buttons
                     width: '18%',
                     responsivePriority: 1,
                     render: function (data, type, row, meta) {
@@ -122,6 +129,7 @@
                     <th>Empleado</th>
                     <th>Contrato</th>
                     <th>Edición</th>
+                    <th title="Asistió">As.</th>
                     <th></th>
                 </tr>
                 </thead>

@@ -135,7 +135,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Capacitación<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class="disabled"><a href="#">Plan de capacitación <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
-                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('CAP_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=cap_capacitaciones">Capacitaciones</a></li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('CAP_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=cap_capacitaciones">Capacitaciones por período</a></li>
+                                <li class="<?php echo (PrivilegedUser::dhasPrivilege('CAP_VER', array(1)) )? '': 'disabled' ?>"><a href="index.php?action=cap_capacitaciones_hist">Capacitaciones históricas</a></li>
                                 <li class="disabled"><a href="#">Estadísticas <span class="text-muted text-danger"><small> [En construcción]</small></span></a></li>
 
                                 <li role="separator" class="divider"></li>

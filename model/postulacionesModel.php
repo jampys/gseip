@@ -98,7 +98,7 @@ class Postulacion
                   CONCAT(po.apellido, ' ', po.nombre) as postulante,
                   bu.nombre as busqueda,
                   loc.ciudad,
-                  us.user
+                  us.user, us.id_user
                   from sel_postulaciones pos
                   join sel_postulantes po on pos.id_postulante = po.id_postulante
                   join sel_busquedas bu on pos.id_busqueda = bu.id_busqueda
