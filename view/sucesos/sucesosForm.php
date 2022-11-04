@@ -514,9 +514,9 @@
                                 <?php foreach ($view->años as $per){
                                     ?>
                                     <option value="<?php echo $per; ?>"
-                                        <?php echo ($per == $view->suceso->getPeriodo())? 'selected' :'' ?>
+                                        <?php echo ($per['periodo'] == $view->suceso->getPeriodo())? 'selected' :'' ?>
                                         >
-                                        <?php echo $per; ?>
+                                        <?php echo $per['periodo']; ?>
                                     </option>
                                 <?php  } ?>
                             </select>
