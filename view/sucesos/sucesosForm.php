@@ -265,8 +265,9 @@
                     $('#periodo').empty();
                     if(Object.keys(data).length > 0){
                         $.each(data, function(indice, val){
-                            var label = data[indice]["periodo"]+' ('+data[indice]["periodo"]+') '+data[indice]["periodo"];
-                            $("#periodo").append('<option value="'+data[indice]["periodo"]+'">'+label+'</option>');
+                            var label = data[indice]["periodo"];
+                            let subtext = data[indice]["cantidad"]+' días. Disp. '+data[indice]["acumulados"]+' días';
+                            $("#periodo").append('<option value="'+data[indice]["periodo"]+'" data-subtext="'+subtext+'">'+label+'</option>');
 
                         });
                         $('#periodo').selectpicker('refresh');

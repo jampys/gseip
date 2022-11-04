@@ -517,45 +517,26 @@ class Suceso
         //Trae los periodos de todos los contratos donde esta el empleado
         $stmt=new sQuery();
         $query="select nsp.*,
-
 (select sum(nspx.cantidad)
  from nov_sucesos_pool nspx
- where nspx.id_empleado = 87
- and nspx.periodo <=nsp.periodo) - (select sum(nsx.cantidad1 + nsx.cantidad2) as b
+ where nspx.id_empleado = :id_empleado
+ and nspx.periodo <=nsp.periodo) - (select sum(nsx.cantidad1 + nsx.cantidad2)
 									 from nov_sucesos nsx
-									 where nsx.id_empleado = 87
-									 and nsx.id_evento = 21)
-
-
-
-
-
-                                        as resta
-
-
-
-
-
-
-
-
+									 where nsx.id_empleado = :id_empleado
+									 and nsx.id_evento = 21) as acumulados
 from nov_sucesos_pool nsp
-where nsp.id_empleado = 87
-and
-
-(select sum(nspx.cantidad)
- from nov_sucesos_pool nspx
- where nspx.id_empleado = 87
- and nspx.periodo <= nsp.periodo) > (select sum(nsx.cantidad1 + nsx.cantidad2) as b
-									 from nov_sucesos nsx
-									 where nsx.id_empleado = 87
-									 and nsx.id_evento = 21)
-
-
+where nsp.id_empleado = :id_empleado
+and (select sum(nspx.cantidad)
+	from nov_sucesos_pool nspx
+	where nspx.id_empleado = :id_empleado
+	and nspx.periodo <= nsp.periodo) > (select sum(nsx.cantidad1 + nsx.cantidad2)
+										from nov_sucesos nsx
+										where nsx.id_empleado = :id_empleado
+										and nsx.id_evento = 21)
 order by nsp.periodo asc";
 
         $stmt->dpPrepare($query);
-        //$stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpBind(':id_empleado', $id_empleado);
         $stmt->dpExecute();
         return $stmt->dpFetchAll(); // retorna todos los periodos
     }
