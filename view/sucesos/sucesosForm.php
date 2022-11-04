@@ -254,9 +254,23 @@
                         $('#id_periodo1, #id_periodo2').selectpicker('refresh');
                     }
 
-                    params.operation = "getCuadrillas";
-                    //return getData('index.php', params);
+                    params.action = "sucesos";
+                    params.operation = "getPeriodosVacaciones";
+                    return getData('index.php', params);
 
+
+                }).then(function(data){ //completo select de periodos de vacaciones
+
+
+                    $('#periodo').empty();
+                    if(Object.keys(data).length > 0){
+                        $.each(data, function(indice, val){
+                            var label = data[indice]["periodo"]+' ('+data[indice]["periodo"]+') '+data[indice]["periodo"];
+                            $("#periodo").append('<option value="'+data[indice]["periodo"]+'">'+label+'</option>');
+
+                        });
+                        $('#periodo').selectpicker('refresh');
+                    }
 
                 }).catch(function(data, textStatus, errorThrown){
 
