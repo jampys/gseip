@@ -386,7 +386,14 @@
                 id_periodo2: { required: false,
                                notEqual: ["#id_periodo1", "Seleccione un período de liquidación diferente al primero"]
                 },
-                f1: {required: true}
+                f1: {required: true},
+                periodo: {
+                    required: {
+                        depends: function(element) {
+                            return $("#id_evento").val() == 21;
+                        }
+                    }
+                }
 
             },
             messages:{
@@ -397,7 +404,10 @@
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
                 },
                 id_periodo1: "Seleccione un período para el evento",
-                f1: "Seleccione un rango de fechas para el primer período"
+                f1: "Seleccione un rango de fechas para el primer período",
+                periodo: {
+                    required: "Seleccione el año para las vacaciones"
+                }
             }
 
         });
