@@ -520,7 +520,7 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label class="control-label" for="periodo" >Período</label>
+                            <label class="control-label" for="periodo" title="Requerido solo para Licencia por vacaciones">Período <i class="fa fa-info-circle dp_light_gray"></i></label>
                             <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5" title="Período">
                                 <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <?php foreach ($view->años as $per){
