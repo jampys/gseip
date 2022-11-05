@@ -520,7 +520,7 @@ class Suceso
 (select sum(nspx.cantidad)
  from nov_sucesos_pool nspx
  where nspx.id_empleado = :id_empleado
- and nspx.periodo <=nsp.periodo) - (select sum(nsx.cantidad1 + nsx.cantidad2)
+ and nspx.periodo <=nsp.periodo) - (select ifnull(sum(nsx.cantidad1 + nsx.cantidad2), 0)
 									 from nov_sucesos nsx
 									 where nsx.id_empleado = :id_empleado
 									 and nsx.id_evento = 21) as acumulados
@@ -529,7 +529,7 @@ where nsp.id_empleado = :id_empleado
 and (select sum(nspx.cantidad)
 	from nov_sucesos_pool nspx
 	where nspx.id_empleado = :id_empleado
-	and nspx.periodo <= nsp.periodo) > (select sum(nsx.cantidad1 + nsx.cantidad2)
+	and nspx.periodo <= nsp.periodo) > (select ifnull(sum(nsx.cantidad1 + nsx.cantidad2), 0)
 										from nov_sucesos nsx
 										where nsx.id_empleado = :id_empleado
 										and nsx.id_evento = 21)
