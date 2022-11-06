@@ -93,6 +93,7 @@
                     $('#myModal').modal();
                     $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
                     $('#myModal #id_evento').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #periodo').prop('disabled', true).selectpicker('refresh');
                 });
                 return false;
             });
@@ -131,6 +132,7 @@
                     $('#myModal').modal();
                     $('#myModal #id_empleado').prop('disabled', true).selectpicker('refresh');
                     $('#myModal #id_evento').prop('disabled', true).selectpicker('refresh');
+                    $('#myModal #periodo').prop('disabled', true).selectpicker('refresh');
                 });
                 return false;
 
