@@ -414,6 +414,9 @@
                 f1: "Seleccione un rango de fechas para el primer período",
                 periodo: {
                     required: "Seleccione el año para las vacaciones"
+                },
+                dias: {
+                    max: "aaaaaaaaaaaaaaaaaaaaaaa"
                 }
             }
 
