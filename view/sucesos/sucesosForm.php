@@ -394,7 +394,13 @@
                             return $("#id_evento").val() == 21;
                         }
                     }
+                },
+                dias: {
+                    max: function() {
+                        return 6; //parseInt($('#field1').val());
+                    }
                 }
+
 
             },
             messages:{

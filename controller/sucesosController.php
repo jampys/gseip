@@ -32,7 +32,7 @@ switch ($operation)
 
         $suceso = new Suceso($_POST['id_suceso']);
         $suceso->setIdEvento($_POST['id_evento']);
-        $suceso->setPeriodo($_POST['periodo']);
+        $suceso->setPeriodo( ($_POST['periodo'])? $_POST['periodo'] : null );
         $suceso->setIdEmpleado($_POST['id_empleado']);
         $suceso->setFechaDesde($_POST['fecha_desde']);
         $suceso->setFechaHasta($_POST['fecha_hasta']);
