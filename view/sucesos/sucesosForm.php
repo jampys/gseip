@@ -449,8 +449,11 @@
         jQuery.validator.addMethod(
             "max",
             function (value, element, params) {
-                let dias_sel = ( $('#myModal #dias').val() )? $('#myModal #dias').val() : 0;
-                let dias_per = ( params )? params : 0;
+                let dias_sel = $('#myModal #dias').val();
+                let dias_per = params;
+                dias_sel = dias_sel || 0; //si el campo es NaN (not a number) lo convierte en 0.
+                dias_per = dias_per || 0; //si el campo es NaN (not a number) lo convierte en 0.
+
 
                 if ($('#myModal #id_evento').val() != 21) return true; //si no es un evento de vacaciones
                 else if ($('#myModal #id_suceso').val()) return true; //si es una edicion
