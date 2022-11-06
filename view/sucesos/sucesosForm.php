@@ -452,7 +452,8 @@
                 let dias_sel = ( $('#myModal #dias').val() )? $('#myModal #dias').val() : 0;
                 let dias_per = ( params )? params : 0;
 
-                if ($('#myModal #id_suceso').val()) return true; //si es una edicion
+                if ($('#myModal #id_evento').val() != 21) return true; //si no es un evento de vacaciones
+                else if ($('#myModal #id_suceso').val()) return true; //si es una edicion
                 else if(dias_per >= dias_sel ) return true;
                 else return false;
             },
