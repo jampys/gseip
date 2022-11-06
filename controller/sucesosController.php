@@ -205,8 +205,9 @@ switch ($operation)
 
     case 'getPeriodosVacaciones': //select dependiente //ok
         $id_empleado = (($_POST['id_empleado']!='')? $_POST['id_empleado'] : null );
+        $id_suceso = (($_POST['id_suceso']!='')? $_POST['id_suceso'] : -1 );
         //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
-        $rta = Suceso::getPeriodosVacaciones($id_empleado);
+        $rta = Suceso::getPeriodosVacaciones($id_suceso, $id_empleado);
         print_r(json_encode($rta));
         exit;
         break;
