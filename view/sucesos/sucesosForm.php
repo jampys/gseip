@@ -460,7 +460,7 @@
                 else if(dias_per >= dias_sel ) return true;
                 else return false;
             },
-            jQuery.validator.format("La cantidad de días de vacaciones seleccionados debe ser menor o igual a {0}")
+            jQuery.validator.format("El periodo de vacaciones seleccionado no tiene suficientes días.")
         );
 
         $("#dias1").rules('add', {max: function(){ return parseInt($('#myModal #periodo option:selected').attr('dias_per'));} });
