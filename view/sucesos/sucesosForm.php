@@ -269,7 +269,7 @@
                             var label = data[indice]["periodo"];
                             let subtext = data[indice]["cantidad"]+' días. Disp. '+data[indice]["acumulados"]+' días';
                             let disabled = (indice > 0)? 'disabled' : '';
-                            $("#periodo").append('<option value="'+data[indice]["periodo"]+'" data-subtext="'+subtext+'" '+disabled+'>'+label+'</option>');
+                            $("#periodo").append('<option value="'+data[indice]["periodo"]+'" dias_per="'+data[indice]["cantidad"]+'" data-subtext="'+subtext+'" '+disabled+'>'+label+'</option>');
 
                         });
                         $('#periodo').selectpicker('refresh');
@@ -443,11 +443,24 @@
         );
 
         $("#dias1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
-        /*jQuery.validator.addClassRules({
-            cfh: {
-                sum: 50
-            }
-        });*/
+
+
+
+        jQuery.validator.addMethod(
+            "max",
+            function (value, element, params) {
+                let dias_sel = ( $('#myModal #dias').val() )? $('#myModal #dias').val() : 0;
+                let dias_per = ( params )? params : 0;
+
+                if ($('#myModal #id_suceso').val()) return true; //si es una edicion
+                else if(dias_per >= dias_sel ) return true;
+                else return false;
+            },
+            jQuery.validator.format("La cantidad de días de vacaciones seleccionados debe ser menor o igual a {0}")
+        );
+
+        $("#dias1").rules('add', {max: function(){ return parseInt($('#myModal #periodo option:selected').attr('dias_per'));} });
+
 
 
 
