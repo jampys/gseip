@@ -239,6 +239,7 @@
                 .then(function(data){ //completo select de periodos
 
                     $('#id_periodo1, #id_periodo2').empty();
+                    $("#id_periodo1, #id_periodo2").html('<option value="">Seleccione un período</option>');
 
                     if(Object.keys(data).length > 0){
 
