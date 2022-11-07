@@ -86,9 +86,9 @@
                     if(Object.keys(data).length > 0){
                         $.each(data, function(indice, val){
                             var label = data[indice]["periodo"];
-                            let subtext = data[indice]["cantidad"]+' días. Disp. '+data[indice]["acumulados"]+' días';
+                            let subtext = data[indice]["cantidad"]+' días. Disp. '+data[indice]["pendientes"]+' días';
                             let disabled = (indice > 0)? 'disabled' : '';
-                            $("#periodo").append('<option value="'+data[indice]["periodo"]+'" dias_per="'+data[indice]["cantidad"]+'" data-subtext="'+subtext+'" '+disabled+'>'+label+'</option>');
+                            $("#periodo").append('<option value="'+data[indice]["periodo"]+'" dias_disp="'+data[indice]["pendientes"]+'" data-subtext="'+subtext+'" '+disabled+'>'+label+'</option>');
 
                         });
                         $('#periodo').selectpicker('refresh');
@@ -219,20 +219,20 @@
             "max",
             function (value, element, params) {
                 let dias_sel = $('#myModal #dias').val();
-                let dias_per = params;
+                let dias_disp = params;
                 dias_sel = dias_sel || 0; //si el campo es NaN (not a number) lo convierte en 0.
-                dias_per = dias_per || 0; //si el campo es NaN (not a number) lo convierte en 0.
+                dias_disp = dias_disp || 0; //si el campo es NaN (not a number) lo convierte en 0.
 
 
                 if ($('#myModal #id_evento').val() != 21) return true; //si no es un evento de vacaciones
                 else if ($('#myModal #id_suceso').val()) return true; //si es una edicion
-                else if(dias_per >= dias_sel ) return true;
+                else if(dias_disp >= dias_sel ) return true;
                 else return false;
             },
             jQuery.validator.format("El período de vacaciones seleccionado no tiene suficientes días.")
         );
 
-        $("#dias1").rules('add', {max: function(){ return parseInt($('#myModal #periodo option:selected').attr('dias_per'));} });
+        $("#dias1").rules('add', {max: function(){ return parseInt($('#myModal #periodo option:selected').attr('dias_disp'));} });
 
 
 

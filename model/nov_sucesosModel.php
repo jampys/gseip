@@ -524,7 +524,7 @@ class Suceso
 									 from nov_sucesos nsx
 									 where nsx.id_empleado = :id_empleado
 									 and nsx.id_evento = 21
-									 and nsx.id_suceso != :id_suceso) as acumulados
+									 and nsx.id_suceso != :id_suceso) as pendientes
 from nov_sucesos_pool nsp
 where nsp.id_empleado = :id_empleado
 and (select sum(nspx.cantidad)
