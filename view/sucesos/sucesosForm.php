@@ -452,7 +452,7 @@
                 else if(dias_disp >= dias_sel ) return true;
                 else return false;
             },
-            jQuery.validator.format("El período de vacaciones seleccionado no tiene suficientes días.")
+            jQuery.validator.format("El período de vacaciones seleccionado no tiene suficientes días disponibles.")
         );
 
         $("#dias1").rules('add', {max: function(){ return parseInt($('#myModal #periodo option:selected').attr('dias_disp'));} });
