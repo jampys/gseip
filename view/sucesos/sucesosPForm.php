@@ -32,6 +32,18 @@
         var drp = $('#fecha').data('daterangepicker');
 
 
+
+        function getData(url, params){
+            var jqxhr = $.ajax({
+                url:"index.php",
+                type:"post",
+                data: params,
+                dataType:"json"//xml,html,script,json
+            });
+            return jqxhr ;
+        }
+
+
         //Select dependiente: al seleccionar contrato carga periodos vigentes
         // solo se usa cuando es un insert
         $('#suceso-form').on('change', '#id_empleado', function(e){
@@ -41,20 +53,14 @@
             params.action = "sucesosP";
             params.operation = "getContratos";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
+            params.id_suceso = $('#myModal #id_suceso').val();
             params.id_empleado = $('#myModal #id_empleado').val();
             params.activos = 1;
 
-            $('#myModal #id_contrato').empty();
+            getData('index.php', params)
+                .then(function(data){ //completo select de contratos
 
-
-            $.ajax({
-                url:"index.php",
-                type:"post",
-                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
-                data: params,
-                dataType:"json",//xml,html,script,json
-                success: function(data, textStatus, jqXHR) {
-
+                    $('#myModal #id_contrato').empty();
                     $("#myModal #id_contrato").html('<option value="">Seleccione un contrato</option>');
 
                     if(Object.keys(data).length > 0){
@@ -64,16 +70,37 @@
                             $("#myModal #id_contrato").append('<option value="'+data[indice]["id_contrato"]+'"'
                             +'>'+label+'</option>');
                         });
+
+                        $('#myModal #id_contrato').selectpicker('refresh');
                     }
-                    $('#myModal #id_contrato').selectpicker('refresh');
 
-                },
-                error: function(data, textStatus, errorThrown) {
-                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                    params.action = "sucesos";
+                    params.operation = "getPeriodosVacaciones";
+                    return getData('index.php', params);
+
+
+                }).then(function(data){ //completo select de periodos de vacaciones
+
+
+                    $('#periodo').empty();
+                    if(Object.keys(data).length > 0){
+                        $.each(data, function(indice, val){
+                            var label = data[indice]["periodo"];
+                            let subtext = data[indice]["cantidad"]+' días. Disp. '+data[indice]["acumulados"]+' días';
+                            let disabled = (indice > 0)? 'disabled' : '';
+                            $("#periodo").append('<option value="'+data[indice]["periodo"]+'" dias_per="'+data[indice]["cantidad"]+'" data-subtext="'+subtext+'" '+disabled+'>'+label+'</option>');
+
+                        });
+                        $('#periodo').selectpicker('refresh');
+                    }
+
+                }).catch(function(data, textStatus, errorThrown){
+
                     alert(data.responseText);
-                }
+                });
 
-            });
+
+
 
 
         });
@@ -239,8 +266,9 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label class="control-label" for="periodo" >Período</label>
+                            <label class="control-label" for="periodo" title="Requerido solo para Licencia por vacaciones">Período <i class="fa fa-info-circle dp_light_gray"></i></label>
                             <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5" title="Período">
+                                <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <?php foreach ($view->años as $per){
                                     ?>
                                     <option value="<?php echo $per; ?>"

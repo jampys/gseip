@@ -79,7 +79,7 @@ switch ($operation)
         }
 
         //$view->año_actual = Soporte::getPeriodoActual();
-        // Trae todos los periodos, luego en el formulario quedan habilitados solo los activos
+        // Trae todos los periodos de liquidacion, luego en el formulario quedan habilitados solo los activos
         $view->periodos = NovPeriodo::getPeriodos1($view->suceso->getIdEmpleado()); ;
 
         $view->disableLayout=true;
