@@ -91,8 +91,8 @@
                             $("#periodo").append('<option value="'+data[indice]["periodo"]+'" dias_disp="'+data[indice]["pendientes"]+'" data-subtext="'+subtext+'" '+disabled+'>'+label+'</option>');
 
                         });
-                        $('#periodo').selectpicker('refresh');
                     }
+                    $('#periodo').selectpicker('refresh');
 
                 }).catch(function(data, textStatus, errorThrown){
 
