@@ -187,6 +187,13 @@
                             id_suceso: function(){ return $('#id_suceso').val();}
                         }
                     }
+                },
+                periodo: {
+                    required: {
+                        depends: function(element) {
+                            return $("#id_evento").val() == 21;
+                        }
+                    }
                 }
 
             },
@@ -198,10 +205,35 @@
                 fecha: {
                     required: "Seleccione la fecha de fin",
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
+                },
+                periodo: {
+                    required: "Seleccione el año para las vacaciones"
                 }
             }
 
         });
+
+
+
+        jQuery.validator.addMethod(
+            "max",
+            function (value, element, params) {
+                let dias_sel = $('#myModal #dias').val();
+                let dias_per = params;
+                dias_sel = dias_sel || 0; //si el campo es NaN (not a number) lo convierte en 0.
+                dias_per = dias_per || 0; //si el campo es NaN (not a number) lo convierte en 0.
+
+
+                if ($('#myModal #id_evento').val() != 21) return true; //si no es un evento de vacaciones
+                else if ($('#myModal #id_suceso').val()) return true; //si es una edicion
+                else if(dias_per >= dias_sel ) return true;
+                else return false;
+            },
+            jQuery.validator.format("El período de vacaciones seleccionado no tiene suficientes días.")
+        );
+
+        $("#dias1").rules('add', {max: function(){ return parseInt($('#myModal #periodo option:selected').attr('dias_per'));} });
+
 
 
 

@@ -395,13 +395,7 @@
                             return $("#id_evento").val() == 21;
                         }
                     }
-                },
-                dias: {
-                    max: function() {
-                        return 6; //parseInt($('#field1').val());
-                    }
                 }
-
 
             },
             messages:{
@@ -415,9 +409,6 @@
                 f1: "Seleccione un rango de fechas para el primer período",
                 periodo: {
                     required: "Seleccione el año para las vacaciones"
-                },
-                dias: {
-                    max: "aaaaaaaaaaaaaaaaaaaaaaa"
                 }
             }
 
