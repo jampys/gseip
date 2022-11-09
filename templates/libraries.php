@@ -80,17 +80,17 @@
     <link href='resources/libraries/fullcalendar/packages/core/main.css' rel='stylesheet' />
     <link href='resources/libraries/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
 
-    <link href='https://unpkg.com/@fullcalendar/timeline@4.4.0/main.min.css' rel='stylesheet' />
-    <link href='https://unpkg.com/@fullcalendar/resource-timeline@4.4.0/main.min.css' rel='stylesheet' />
+    <link href='resources/libraries/fullcalendar/packages/timeline/main.min.css' rel='stylesheet' />
+    <link href='resources/libraries/fullcalendar/packages/resource-timeline/main.min.css' rel='stylesheet' />
 
     <script src='resources/libraries/fullcalendar/packages/core/main.js'></script>
     <script src='resources/libraries/fullcalendar/packages/core/locales-all.js'></script>
     <script src='resources/libraries/fullcalendar/packages/interaction/main.js'></script>
     <script src='resources/libraries/fullcalendar/packages/daygrid/main.js'></script>
 
-    <script src='https://unpkg.com/@fullcalendar/resource-common@4.4.0/main.min.js'></script>
-    <script src='https://unpkg.com/@fullcalendar/timeline@4.4.0/main.min.js'></script>
-    <script src='https://unpkg.com/@fullcalendar/resource-timeline@4.4.0/main.min.js'></script>
+    <script src='resources/libraries/fullcalendar/packages/resource-common/main.min.js'></script>
+    <script src='resources/libraries/fullcalendar/packages/timeline/main.min.js'></script>
+    <script src='resources/libraries/fullcalendar/packages/resource-timeline/main.min.js'></script>
 
 
     <!-- daterangepicker -->
