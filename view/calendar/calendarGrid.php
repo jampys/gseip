@@ -27,6 +27,10 @@
                     duration: {month:6},
                     slotDuration: {day:1}
                     //slotWidth: 5
+                    /*slotLabelFormat: [
+                        { month: 'long', year: 'numeric' }, // top level of text
+                        { weekday: 'short' } // lower level of text
+                    ]*/
                 }
             },
             //defaultDate: '2020-02-12',
