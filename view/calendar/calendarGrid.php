@@ -26,6 +26,7 @@
                     buttonText: 'Semestre',
                     duration: {month:6},
                     slotDuration: {day:1}
+                    //slotWidth: 5
                 }
             },
             //defaultDate: '2020-02-12',
