@@ -23,7 +23,7 @@
             views: {
                 timelineCustom: {
                     type: 'timeline',
-                    buttonText: 'Year View',
+                    buttonText: 'Semestre',
                     duration: {month:6},
                     slotDuration: {day:1}
                 }
