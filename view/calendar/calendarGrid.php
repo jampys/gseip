@@ -13,13 +13,21 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             locale: 'es',//lang: 'es'
-            plugins: [ 'interaction', 'dayGrid' ],
+            plugins: [ 'interaction', 'dayGrid', 'resourceTimeline'],
             header: {
                 left: 'prevYear,prev,next,nextYear today',
                 center: 'title',
-                right: 'dayGridMonth,dayGridWeek,dayGridDay'
+                right: 'dayGridMonth,dayGridWeek,dayGridDay,timelineCustom'
             },
             defaultView: 'dayGridMonth',
+            views: {
+                timelineCustom: {
+                    type: 'timeline',
+                    buttonText: 'Year View',
+                    duration: {month:6},
+                    slotDuration: {day:1}
+                }
+            },
             //defaultDate: '2020-02-12',
             displayEventTime: false,
             businessHours: true, // sabado y domingo con background gris
