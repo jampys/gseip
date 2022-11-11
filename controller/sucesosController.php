@@ -32,7 +32,7 @@ switch ($operation)
 
         $suceso = new Suceso($_POST['id_suceso']);
         $suceso->setIdEvento($_POST['id_evento']);
-        $suceso->setPeriodo($_POST['periodo']);
+        $suceso->setPeriodo( ($_POST['periodo'])? $_POST['periodo'] : null );
         $suceso->setIdEmpleado($_POST['id_empleado']);
         $suceso->setFechaDesde($_POST['fecha_desde']);
         $suceso->setFechaHasta($_POST['fecha_hasta']);
@@ -58,9 +58,8 @@ switch ($operation)
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
-        $view->años = Soporte::getPeriodos(2015, date("Y"));
-        $view->año_actual = Soporte::getPeriodoActual();
-        //$view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
+        //$view->años = Soporte::getPeriodos(2015, date("Y"));
+        //$view->año_actual = Soporte::getPeriodoActual();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/sucesos/sucesosForm.php";
@@ -72,9 +71,15 @@ switch ($operation)
 
         $view->empleados = Empleado::getEmpleadosControl(null, 1);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
-        $view->años = Soporte::getPeriodos(2015, date("Y"));
-        $view->año_actual = Soporte::getPeriodoActual();
-        // Trae todos los periodos, luego en el formulario quedan habilitados solo los activos
+        $view->años = Suceso::getPeriodosVacaciones($_POST['id_suceso'], $view->suceso->getIdEmpleado()); //Soporte::getPeriodos(2015, date("Y"));
+
+        //agrego al array de periodos, el periodo del suceso
+        if($view->suceso->getPeriodo() && !in_array($view->suceso->getPeriodo(), array_column($view->años, 'periodo')) ){
+            array_push($view->años, array('periodo' => $view->suceso->getPeriodo()));
+        }
+
+        //$view->año_actual = Soporte::getPeriodoActual();
+        // Trae todos los periodos de liquidacion, luego en el formulario quedan habilitados solo los activos
         $view->periodos = NovPeriodo::getPeriodos1($view->suceso->getIdEmpleado()); ;
 
         $view->disableLayout=true;
@@ -198,6 +203,16 @@ switch ($operation)
 
         unlink ($filepath); //borra el archivo una vez descargado
 
+        exit;
+        break;
+
+
+    case 'getPeriodosVacaciones': //select dependiente //ok
+        $id_empleado = (($_POST['id_empleado']!='')? $_POST['id_empleado'] : null );
+        $id_suceso = (($_POST['id_suceso']!='')? $_POST['id_suceso'] : -1 );
+        //$activos = (($_POST['activos']!='')? $_POST['activos'] : null );
+        $rta = Suceso::getPeriodosVacaciones($id_suceso, $id_empleado);
+        print_r(json_encode($rta));
         exit;
         break;
 

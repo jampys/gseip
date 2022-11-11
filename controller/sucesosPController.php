@@ -19,7 +19,7 @@ switch ($operation)
     case 'saveSuceso': //ok
         $suceso = new SucesoP($_POST['id_suceso']);
         $suceso->setIdEvento($_POST['id_evento']);
-        $suceso->setPeriodo($_POST['periodo']);
+        $suceso->setPeriodo( ($_POST['periodo'])? $_POST['periodo'] : null );
         $suceso->setIdEmpleado($_POST['id_empleado']);
         $suceso->setFechaDesde($_POST['fecha_desde']);
         $suceso->setFechaHasta($_POST['fecha_hasta']);
@@ -40,9 +40,9 @@ switch ($operation)
 
         $view->empleados = Empleado::getEmpleadosControl(null);
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
-        $view->periodos = NovPeriodo::getProximosPeriodos();
-        $view->años = Soporte::getPeriodos(2015, date("Y"));
-        $view->año_actual = Soporte::getPeriodoActual();
+        //$view->periodos = NovPeriodo::getProximosPeriodos();
+        //$view->años = Soporte::getPeriodos(2015, date("Y"));
+        //$view->año_actual = Soporte::getPeriodoActual();
 
         $view->disableLayout=true;
         $view->contentTemplate="view/sucesos/sucesosPForm.php";
@@ -56,8 +56,14 @@ switch ($operation)
         $view->eventos = EventosLiquidacion::getEventosLiquidacion();
         $view->periodos = NovPeriodo::getProximosPeriodos();
         $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->suceso->getIdEmpleado(), 1);
-        $view->años = Soporte::getPeriodos(2015, date("Y"));
-        $view->año_actual = Soporte::getPeriodoActual();
+        $view->años = Suceso::getPeriodosVacaciones($_POST['id_suceso'], $view->suceso->getIdEmpleado()); //Soporte::getPeriodos(2015, date("Y"));
+
+        //agrego al array de periodos, el periodo del suceso
+        if($view->suceso->getPeriodo() && !in_array($view->suceso->getPeriodo(), array_column($view->años, 'periodo')) ){
+            array_push($view->años, array('periodo' => $view->suceso->getPeriodo()));
+        }
+
+        //$view->año_actual = Soporte::getPeriodoActual();
 
         $view->disableLayout=true;
         $view->target = $_POST['target'];

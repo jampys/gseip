@@ -59,7 +59,7 @@ switch ($operation)
         $view->empleado = $view->renovacion->getEmpleado()->getApellido()." ".$view->renovacion->getEmpleado()->getNombre();
 
         $view->disableLayout=true;
-        $view->contentTemplate="view/renovacionesPersonalForm.php";
+        $view->contentTemplate="view/renovaciones_personal/renovacionesPersonalForm.php";
         break;
 
     case 'editRenovacion': //ok

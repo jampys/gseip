@@ -210,6 +210,17 @@
         });
 
 
+        function getData(url, params){
+            var jqxhr = $.ajax({
+                url:"index.php",
+                type:"post",
+                data: params,
+                dataType:"json"//xml,html,script,json
+            });
+            return jqxhr ;
+        }
+
+
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
         // solo se usa cuando es un insert
@@ -220,20 +231,14 @@
             params.action = "nov_periodos";
             params.operation = "getPeriodos1";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
+            params.id_suceso = $('#myModal #id_suceso').val();
             params.id_empleado = $('#myModal #id_empleado').val();
             params.activos = 1;
 
-            $('#id_periodo1, #id_periodo2').empty();
+            getData('index.php', params)
+                .then(function(data){ //completo select de periodos
 
-
-            $.ajax({
-                url:"index.php",
-                type:"post",
-                //data:{"action": "parte-empleado-concepto", "operation": "getConceptos", "id_objetivo": <?php //print $view->objetivo->getIdObjetivo() ?>},
-                data: params,
-                dataType:"json",//xml,html,script,json
-                success: function(data, textStatus, jqXHR) {
-
+                    $('#id_periodo1, #id_periodo2').empty();
                     $("#id_periodo1, #id_periodo2").html('<option value="">Seleccione un período</option>');
 
                     if(Object.keys(data).length > 0){
@@ -244,22 +249,39 @@
                             +' fecha_desde="'+data[indice]["fecha_desde"]+'"'
                             +' fecha_hasta="'+data[indice]["fecha_hasta"]+'"'
                             +'>'+label+'</option>');
-
                         });
 
                         //si es una edicion o view, selecciona el concepto.
                         //$("#id_concepto").val(<?php //print $view->concepto->getIdConceptoConvenioContrato(); ?>);
                         $('#id_periodo1, #id_periodo2').selectpicker('refresh');
-
                     }
 
-                },
-                error: function(data, textStatus, errorThrown) {
-                    //console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
-                    alert(data.responseText);
-                }
+                    params.action = "sucesos";
+                    params.operation = "getPeriodosVacaciones";
+                    return getData('index.php', params);
 
-            });
+
+                }).then(function(data){ //completo select de periodos de vacaciones
+
+
+                    $('#periodo').empty();
+                    if(Object.keys(data).length > 0){
+                        $.each(data, function(indice, val){
+                            var label = data[indice]["periodo"];
+                            let subtext = data[indice]["cantidad"]+' días. Disp. '+data[indice]["pendientes"]+' días';
+                            let disabled = (indice > 0)? 'disabled' : '';
+                            $("#periodo").append('<option value="'+data[indice]["periodo"]+'" dias_disp="'+data[indice]["pendientes"]+'" data-subtext="'+subtext+'" '+disabled+'>'+label+'</option>');
+
+                        });
+                    }
+                    $('#periodo').selectpicker('refresh');
+
+                }).catch(function(data, textStatus, errorThrown){
+
+                    alert(data.responseText);
+                });
+
+
 
 
         });
@@ -366,7 +388,14 @@
                 id_periodo2: { required: false,
                                notEqual: ["#id_periodo1", "Seleccione un período de liquidación diferente al primero"]
                 },
-                f1: {required: true}
+                f1: {required: true},
+                periodo: {
+                    required: {
+                        depends: function(element) {
+                            return $("#id_evento").val() == 21;
+                        }
+                    }
+                }
 
             },
             messages:{
@@ -377,7 +406,10 @@
                     remote: "Ya existe un suceso para el empleado y evento en la fecha seleccionada"
                 },
                 id_periodo1: "Seleccione un período para el evento",
-                f1: "Seleccione un rango de fechas para el primer período"
+                f1: "Seleccione un rango de fechas para el primer período",
+                periodo: {
+                    required: "Seleccione el año para las vacaciones"
+                }
             }
 
         });
@@ -403,11 +435,28 @@
         );
 
         $("#dias1").rules('add', {sum: function(){ return parseInt($('#dias').val());} });
-        /*jQuery.validator.addClassRules({
-            cfh: {
-                sum: 50
-            }
-        });*/
+
+
+
+        jQuery.validator.addMethod(
+            "max",
+            function (value, element, params) {
+                let dias_sel = $('#myModal #dias').val();
+                let dias_disp = params;
+                dias_sel = dias_sel || 0; //si el campo es NaN (not a number) lo convierte en 0.
+                dias_disp = dias_disp || 0; //si el campo es NaN (not a number) lo convierte en 0.
+
+
+                if ($('#myModal #id_evento').val() != 21) return true; //si no es un evento de vacaciones
+                else if ($('#myModal #id_suceso').val()) return true; //si es una edicion
+                else if(dias_disp >= dias_sel ) return true;
+                else return false;
+            },
+            jQuery.validator.format("El período de vacaciones seleccionado no tiene suficientes días disponibles.")
+        );
+
+        $("#dias1").rules('add', {max: function(){ return parseInt($('#myModal #periodo option:selected').attr('dias_disp'));} });
+
 
 
 
@@ -490,14 +539,15 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label class="control-label" for="periodo" >Período</label>
+                            <label class="control-label" for="periodo" title="Requerido solo para Licencia por vacaciones">Período <i class="fa fa-info-circle dp_light_gray"></i></label>
                             <select class="form-control selectpicker show-tick" id="periodo" name="periodo" data-live-search="true" data-size="5" title="Período">
+                                <!-- se completa dinamicamente desde javascript cuando es un insert  -->
                                 <?php foreach ($view->años as $per){
                                     ?>
                                     <option value="<?php echo $per; ?>"
-                                        <?php echo ($per == $view->suceso->getPeriodo())? 'selected' :'' ?>
+                                        <?php echo ($per['periodo'] == $view->suceso->getPeriodo())? 'selected' :'' ?>
                                         >
-                                        <?php echo $per; ?>
+                                        <?php echo $per['periodo']; ?>
                                     </option>
                                 <?php  } ?>
                             </select>

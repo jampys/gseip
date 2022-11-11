@@ -513,6 +513,39 @@ class Suceso
 
 
 
+    public static function getPeriodosVacaciones($id_suceso, $id_empleado) {
+        //Trae los periodos de todos los contratos donde esta el empleado
+        $stmt=new sQuery();
+        $query="select nsp.*,
+(select sum(nspx.cantidad)
+ from nov_sucesos_pool nspx
+ where nspx.id_empleado = :id_empleado
+ and nspx.periodo <=nsp.periodo) - (select ifnull(sum(nsx.cantidad1 + nsx.cantidad2), 0)
+									 from nov_sucesos nsx
+									 where nsx.id_empleado = :id_empleado
+									 and nsx.id_evento = 21
+									 and nsx.id_suceso != :id_suceso) as pendientes
+from nov_sucesos_pool nsp
+where nsp.id_empleado = :id_empleado
+and (select sum(nspx.cantidad)
+	from nov_sucesos_pool nspx
+	where nspx.id_empleado = :id_empleado
+	and nspx.periodo <= nsp.periodo) > (select ifnull(sum(nsx.cantidad1 + nsx.cantidad2), 0)
+										from nov_sucesos nsx
+										where nsx.id_empleado = :id_empleado
+										and nsx.id_evento = 21
+										and nsx.id_suceso != :id_suceso)
+order by nsp.periodo asc";
+
+        $stmt->dpPrepare($query);
+        $stmt->dpBind(':id_suceso', $id_suceso);
+        $stmt->dpBind(':id_empleado', $id_empleado);
+        $stmt->dpExecute();
+        return $stmt->dpFetchAll(); // retorna todos los periodos
+    }
+
+
+
 
 
 
