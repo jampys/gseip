@@ -121,7 +121,7 @@
             rules: {
                 id_empleado: {required: true},
                 id_contrato: {required: true},
-                id_edicion: {required: true},
+                //id_edicion: {required: true},
                 observaciones: {
                     maxlength: 200
                 }
@@ -129,7 +129,7 @@
             messages:{
                 id_empleado: "Seleccione un empleado",
                 id_contrato: "Seleccione un contrato",
-                id_edicion: "Seleccione una edición",
+                //id_edicion: "Seleccione una edición",
                 accion: {
                     maxlength: "Máximo 200 caracteres"
                 }
@@ -187,7 +187,7 @@
         </div>
 
 
-        <div class="form-group required">
+        <div class="form-group">
             <label for="id_contrato" class="control-label">Edicion</label>
             <select class="form-control selectpicker show-tick" id="id_edicion" name="id_edicion" data-live-search="true" data-size="5" title="seleccione una edición">
                 <?php foreach ($view->ediciones as $ed){
