@@ -86,9 +86,10 @@ class Capacitacion
                 u.user,
                 (select count(*)
                   from cap_capacitacion_empleado ce
-                  join cap_ediciones ed on ed.id_edicion = ce.id_edicion
+                  left join cap_ediciones ed on ed.id_edicion = ce.id_edicion
                   where ce.id_capacitacion = c.id_capacitacion
-                  and date(ed.fecha_edicion) between :startDate and :endDate
+                  -- and date(ed.fecha_edicion) between :startDate and :endDate
+                  and if(ce.id_edicion is not null, date(ed.fecha_edicion) between :startDate and :endDate, 1)
                   and ce.id_contrato in ($id_contrato)) as cant_participantes,
                 (select ifnull(sum(ed.duracion), 0)
                   from cap_capacitacion_empleado ce
