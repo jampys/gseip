@@ -166,6 +166,7 @@ class ContratoEmpleado
 DATE_FORMAT(ec.fecha_desde,  '%d/%m/%Y') as fecha_desde,
 DATE_FORMAT(ec.fecha_hasta,  '%d/%m/%Y') as fecha_hasta,
 co.nro_contrato,
+co.nombre,
 co.nombre as contrato,
 pu.nombre as puesto,
 concat(loc.ciudad, ' ', loc.provincia) as localidad,

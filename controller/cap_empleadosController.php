@@ -41,7 +41,7 @@ switch ($operation)
                 $empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
                 $empleado->setIdEmpleado($e);
                 $empleado->setIdCapacitacion($_POST['id_capacitacion']);
-                $empleado->setIdContrato($_POST['id_contrato']);
+                $empleado->setIdContrato(($_POST['id_contrato'])? $_POST['id_contrato'] : null);
                 $empleado->setIdEdicion(($_POST['id_edicion'])? $_POST['id_edicion'] : null);
                 $empleado->setObservaciones($_POST['id_responsable_ejecucion']);
                 $empleado->setAsistio(($_POST['asistio'] == 1)? 1 : 0);
@@ -59,7 +59,7 @@ switch ($operation)
             print_r(json_encode(-1));
         }
 
-        
+
         exit;
         break;
 
@@ -81,8 +81,7 @@ switch ($operation)
         $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
-        //$view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
-        $view->contratos = Contrato::getContratosControl();
+        $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
         $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion'], $_POST['startDate'], $_POST['endDate']);
 
         $view->disableLayout=true;
