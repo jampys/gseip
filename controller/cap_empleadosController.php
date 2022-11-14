@@ -82,7 +82,7 @@ switch ($operation)
         break;
 
     case 'getEmpleados': //select dependiente //ok
-        $id_contrato = ($_POST['id_contrato'])? $_POST['id_empleado'] : null;
+        $id_contrato = ($_POST['id_contrato'])? $_POST['id_contrato'] : null;
         $rta = Empleado::getEmpleadosActivos($id_contrato);
         print_r(json_encode($rta));
         exit;
