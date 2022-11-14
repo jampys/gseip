@@ -83,7 +83,7 @@
             params.action = "cap_empleados";
             params.operation = "getEmpleados";
             //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
-            params.id_contrato = $('#id_contrato').val();
+            params.id_contrato = $('#empleado-form #id_contrato').val();
 
             getData('index.php', params)
                 .then(function(data){
