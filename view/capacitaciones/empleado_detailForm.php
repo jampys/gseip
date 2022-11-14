@@ -101,8 +101,8 @@
                         $('#id_empleado').selectpicker('refresh');
                     }
 
-                    params.operation = "getCuadrillas";
-                    return getData('index.php', params);
+                    //params.operation = "getCuadrillas";
+                    //return getData('index.php', params);
 
 
                 }).catch(function(data, textStatus, errorThrown){
