@@ -52,7 +52,8 @@ switch ($operation)
         $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
-        $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
+        //$view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
+        $view->contratos = Contrato::getContratosControl();
         $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion'], $_POST['startDate'], $_POST['endDate']);
 
         $view->disableLayout=true;
@@ -64,7 +65,8 @@ switch ($operation)
         $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
-        $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
+        //$view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
+        $view->contratos = Contrato::getContratosControl();
         $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion'], $_POST['startDate'], $_POST['endDate']);
 
         $view->disableLayout=true;
@@ -80,8 +82,8 @@ switch ($operation)
         break;
 
     case 'getEmpleados': //select dependiente //ok
-        $id_empleado = $_POST['id_empleado'];
-        $rta = ContratoEmpleado::getContratosByEmpleado($id_empleado, 1);
+        $id_contrato = ($_POST['id_contrato'])? $_POST['id_empleado'] : null;
+        $rta = Empleado::getEmpleadosActivos($id_contrato);
         print_r(json_encode($rta));
         exit;
         break;

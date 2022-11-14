@@ -14,7 +14,7 @@
 
 
         //Select dependiente: al seleccionar contrato carga periodos vigentes
-        $('#empleado-form').on('change', '#id_empleado', function(e){
+        /*$('#empleado-form').on('change', '#id_empleado', function(e){
             //alert('seleccionó un contrato');
             //throw new Error();
             params={};
@@ -59,6 +59,56 @@
                 }
 
             });
+
+
+        });*/
+
+
+
+        function getData(url, params){
+            var jqxhr = $.ajax({
+                url:"index.php",
+                type:"post",
+                data: params,
+                dataType:"json"//xml,html,script,json
+            });
+            return jqxhr ;
+        }
+
+
+        $('#empleado-form').on('change', '#id_contrato', function(e){
+            //alert('seleccionó un contrato');
+            //throw new Error();
+            params={};
+            params.action = "cap_empleados";
+            params.operation = "getEmpleados";
+            //params.id_convenio = $('#id_parte_empleado option:selected').attr('id_convenio');
+            params.id_contrato = $('#id_contrato').val();
+
+            getData('index.php', params)
+                .then(function(data){
+
+                    //completo select de empleados
+                    $('#id_empleado').empty();
+                    if(Object.keys(data).length > 0){
+                        //$('#id_empleado').html('<option value="">Todos los empleados</option>');
+                        $.each(data, function(index, val){
+                            var label = data[index]["legajo"]+' '+data[index]["apellido"]+' '+data[index]["nombre"];
+                            $("#id_empleado").append('<option value="'+data[index]["id_empleado"]+'"'
+                            +' id_convenio="'+data[index]["id_convenio"]+'"'
+                            +'>'+label+'</option>');
+                        });
+                        $('#id_empleado').selectpicker('refresh');
+                    }
+
+                    params.operation = "getCuadrillas";
+                    return getData('index.php', params);
+
+
+                }).catch(function(data, textStatus, errorThrown){
+
+                    alert(data.responseText);
+                })
 
 
         });
@@ -157,6 +207,22 @@
 
 
         <div class="form-group required">
+            <label for="id_contrato" class="control-label">Contrato</label>
+            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5" title="seleccione un contrato">
+                <!-- se completa dinamicamente desde javascript  -->
+                <?php foreach ($view->contratos as $co){
+                    ?>
+                    <option value="<?php echo $co['id_contrato']; ?>"
+                        <?php //echo ($co['id_contrato'] == $view->empleado->getIdContrato())? 'selected' :'' ?>
+                        >
+                        <?php echo $co['nombre'].' '.$co['nro_contrato']; ?>
+                    </option>
+                <?php  } ?>
+            </select>
+        </div>
+
+
+        <div class="form-group required">
             <label for="id_empleado" class="control-label">Empleado</label>
             <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
                 <?php foreach ($view->empleados as $em){
@@ -170,21 +236,6 @@
             </select>
         </div>
 
-
-        <div class="form-group required">
-            <label for="id_contrato" class="control-label">Contrato</label>
-            <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5" title="seleccione un contrato">
-                <!-- se completa dinamicamente desde javascript  -->
-                <?php foreach ($view->contratos as $co){
-                    ?>
-                    <option value="<?php echo $co['id_contrato']; ?>"
-                        <?php echo ($co['id_contrato'] == $view->empleado->getIdContrato())? 'selected' :'' ?>
-                        >
-                        <?php echo $co['contrato']; ?>
-                    </option>
-                <?php  } ?>
-            </select>
-        </div>
 
 
         <div class="form-group">
