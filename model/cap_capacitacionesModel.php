@@ -86,9 +86,10 @@ class Capacitacion
                 u.user,
                 (select count(*)
                   from cap_capacitacion_empleado ce
-                  join cap_ediciones ed on ed.id_edicion = ce.id_edicion
+                  left join cap_ediciones ed on ed.id_edicion = ce.id_edicion
                   where ce.id_capacitacion = c.id_capacitacion
-                  and date(ed.fecha_edicion) between :startDate and :endDate
+                  -- and date(ed.fecha_edicion) between :startDate and :endDate
+                  and if(ce.id_edicion is not null, date(ed.fecha_edicion) between :startDate and :endDate, 1)
                   and ce.id_contrato in ($id_contrato)) as cant_participantes,
                 (select ifnull(sum(ed.duracion), 0)
                   from cap_capacitacion_empleado ce
@@ -314,12 +315,12 @@ mo.nombre as modalidad,
 u.user
 from cap_capacitaciones c
 join cap_capacitacion_empleado ce on c.id_capacitacion = ce.id_capacitacion
-join cap_ediciones e on ce.id_edicion = e.id_edicion
+left join cap_ediciones e on ce.id_edicion = e.id_edicion
+left join cap_modalidades mo on mo.id_modalidad = e.id_modalidad
 join cap_categorias cat on cat.id_categoria = c.id_categoria
 join empleados em on em.id_empleado = ce.id_empleado
-join cap_modalidades mo on mo.id_modalidad = e.id_modalidad
 join sec_users u on u.id_user = ce.id_user
-where date(e.fecha_edicion) between :startDate and :endDate
+where if(e.id_edicion is not null, date(e.fecha_edicion) between :startDate and :endDate, 1)
 and c.id_categoria = ifnull(:id_categoria, c.id_categoria)
 and if(:mes_programada = 1, mes_programada is not null, 1)
 and if(:mes_programada = 0, mes_programada is null, 1)
