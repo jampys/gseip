@@ -32,16 +32,37 @@ switch ($operation)
         break;
 
     case 'saveEmpleado': //ok
-        $empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
-        $empleado->setIdEmpleado($_POST['id_empleado']);
-        $empleado->setIdCapacitacion($_POST['id_capacitacion']);
-        $empleado->setIdContrato($_POST['id_contrato']);
-        $empleado->setIdEdicion(($_POST['id_edicion'])? $_POST['id_edicion'] : null);
-        $empleado->setObservaciones($_POST['id_responsable_ejecucion']);
-        $empleado->setAsistio(($_POST['asistio'] == 1)? 1 : 0);
-        $empleado->setIdUser($_SESSION['id_user']);
-        $rta = $empleado->save();
-        print_r(json_encode($rta));
+
+        try{
+            sQuery::dpBeginTransaction();
+
+            foreach($_POST['id_empleado'] as $e){
+                //echo $p." ";
+                $empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
+                $empleado->setIdEmpleado($e);
+                $empleado->setIdCapacitacion($_POST['id_capacitacion']);
+                $empleado->setIdContrato($_POST['id_contrato']);
+                $empleado->setIdEdicion(($_POST['id_edicion'])? $_POST['id_edicion'] : null);
+                $empleado->setObservaciones($_POST['id_responsable_ejecucion']);
+                $empleado->setAsistio(($_POST['asistio'] == 1)? 1 : 0);
+                $empleado->setIdUser($_SESSION['id_user']);
+                $rta = $empleado->save();
+            }
+
+            //Devuelve el resultado a la vista
+            sQuery::dpCommit();
+            print_r(json_encode(1));
+        }
+        catch(Exception $e){
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
+            sQuery::dpRollback();
+            print_r(json_encode(-1));
+        }
+
+
+
+
+
         exit;
         break;
 
