@@ -62,7 +62,8 @@ switch ($operation)
         catch(Exception $e){
             //echo $e->getMessage(); //habilitar para ver el mensaje de error
             sQuery::dpRollback();
-            print_r(json_encode(-1));
+            //print_r(json_encode(-1));
+            throw new Exception('Error en el query.'); //para que entre en el .fail de la peticion ajax
         }
 
 
@@ -70,7 +71,7 @@ switch ($operation)
         break;
 
     case 'newEmpleado': //ok
-        $view->label='Agregar empleado';
+        $view->label='Agregar empleados';
         $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados

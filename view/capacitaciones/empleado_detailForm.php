@@ -147,7 +147,7 @@
 
                 }, 'json').fail(function(jqXHR, textStatus, errorThrown ) {
                     //alert('Entro a fail '+jqXHR.responseText);
-                    $("#myElem").html('No es posible guardar el empleado').addClass('alert alert-danger').show();
+                    $("#myElem").html('No es posible guardar los empleados').addClass('alert alert-danger').show();
                 });
 
             }
