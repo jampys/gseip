@@ -224,7 +224,8 @@
 
         <div class="form-group required">
             <label for="id_empleado" class="control-label">Empleado</label>
-            <select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">
+            <!--<select id="id_empleado" name="id_empleado" class="form-control selectpicker show-tick" data-live-search="true" data-size="5" title="Seleccione un empleado">-->
+            <select multiple class="form-control selectpicker show-tick" id="id_empleado" name="id_empleado" title="Seleccione un empleado" data-selected-text-format="count" data-actions-box="true" data-live-search="true" data-size="5">
                 <?php foreach ($view->empleados as $em){
                     ?>
                     <option value="<?php echo $em['id_empleado']; ?>"
