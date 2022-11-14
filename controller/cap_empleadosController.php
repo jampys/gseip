@@ -41,7 +41,15 @@ switch ($operation)
                 $empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
                 $empleado->setIdEmpleado($e);
                 $empleado->setIdCapacitacion($_POST['id_capacitacion']);
-                $empleado->setIdContrato(($_POST['id_contrato'])? $_POST['id_contrato'] : null);
+                //$empleado->setIdContrato(($_POST['id_contrato'])? $_POST['id_contrato'] : null);
+
+                if($_POST['id_contrato']){ $empleado->setIdContrato($_POST['id_contrato']); }
+                else{
+                    $temp = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
+                    $empleado->setIdContrato($temp[0]['id_contrato']);
+                }
+
+
                 $empleado->setIdEdicion(($_POST['id_edicion'])? $_POST['id_edicion'] : null);
                 $empleado->setObservaciones($_POST['id_responsable_ejecucion']);
                 $empleado->setAsistio(($_POST['asistio'] == 1)? 1 : 0);
