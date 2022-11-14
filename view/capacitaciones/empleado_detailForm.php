@@ -170,7 +170,7 @@
         $('#empleado-form').validate({ //ok
             rules: {
                 id_empleado: {required: true},
-                id_contrato: {required: true},
+                //id_contrato: {required: true},
                 //id_edicion: {required: true},
                 observaciones: {
                     maxlength: 200
@@ -178,7 +178,7 @@
             },
             messages:{
                 id_empleado: "Seleccione un empleado",
-                id_contrato: "Seleccione un contrato",
+                //id_contrato: "Seleccione un contrato",
                 //id_edicion: "Seleccione una edición",
                 accion: {
                     maxlength: "Máximo 200 caracteres"
@@ -206,7 +206,7 @@
     <input type="hidden" name="id_capacitacion" id="id_capacitacion" value="<?php print $view->empleado->getIdCapacitacion() ?>">
 
 
-        <div class="form-group required">
+        <div class="form-group">
             <label for="id_contrato" class="control-label">Contrato</label>
             <select class="form-control selectpicker show-tick" id="id_contrato" name="id_contrato" data-live-search="true" data-size="5" title="seleccione un contrato">
                 <!-- se completa dinamicamente desde javascript  -->

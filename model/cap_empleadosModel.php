@@ -110,14 +110,14 @@ class CapacitacionEmpleado
                   concat(DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y'), ' ', ed.nombre) as edicion
                   from cap_capacitacion_empleado ce
                   join cap_capacitaciones c on c.id_capacitacion = ce.id_capacitacion
-                  join contratos co on co.id_contrato = ce.id_contrato
+                  left join contratos co on co.id_contrato = ce.id_contrato
                   join sec_users us on ce.id_user = us.id_user
                   join empleados em on em.id_empleado = ce.id_empleado
                   left join cap_ediciones ed on ed.id_edicion = ce.id_edicion
                   where ce.id_capacitacion = :id_capacitacion
                   -- and ce.id_edicion = ifnull(:id_edicion, ce.id_edicion)
                   and if(:id_edicion, ce.id_edicion = :id_edicion, 1)
-                  and ce.id_contrato in ($id_contrato)
+                  and if(ce.id_contrato, ce.id_contrato in ($id_contrato), 1)
                   -- and date(ed.fecha_edicion) between :startDate and :endDate
                   and if(:id_edicion, date(ed.fecha_edicion) between :startDate and :endDate, 1)
                   order by ed.fecha_edicion, co.nombre, em.apellido";
