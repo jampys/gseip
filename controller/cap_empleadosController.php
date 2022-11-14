@@ -59,10 +59,7 @@ switch ($operation)
             print_r(json_encode(-1));
         }
 
-
-
-
-
+        
         exit;
         break;
 

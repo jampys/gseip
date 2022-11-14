@@ -213,7 +213,7 @@
                 <?php foreach ($view->contratos as $co){
                     ?>
                     <option value="<?php echo $co['id_contrato']; ?>"
-                        <?php //echo ($co['id_contrato'] == $view->empleado->getIdContrato())? 'selected' :'' ?>
+                        <?php echo ($co['id_contrato'] == $view->empleado->getIdContrato())? 'selected' :'' ?>
                         >
                         <?php echo $co['nombre'].' '.$co['nro_contrato']; ?>
                     </option>
