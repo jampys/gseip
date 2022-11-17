@@ -21,6 +21,7 @@ $fila4['tema'] = $fila1['tema'];
 $fila4['categoria'] = $fila1['categoria'];
 $fila4['descripcion'] = $fila1['descripcion'];
 $fila4['cant_participantes'] = $fila1['cant_participantes'];
+$fila4['cant_participantes_asistio'] = $fila1['cant_participantes_asistio'];
 $fila4['sum_hs'] = $fila1['sum_hs'];
 $fila4['contratos'] = $fila2['contratos'];
 
@@ -141,7 +142,7 @@ $fila4['analisis_causa_desc'] = nl2br($nc->getAnalisisCausaDesc());
                 </tr>
                 <tr>
                     <td><span class="subtitulo">Cant. participantes</span></td>
-                    <td>'.$fila4['cant_participantes'].'</td>
+                    <td>'.$fila4['cant_participantes_asistio'].' / '.$fila4['cant_participantes'].'</td>
                     <td><span class="subtitulo">Sumatoria horas</span></td>
                     <td>'.$fila4['sum_hs'].'</td>
                 </tr>

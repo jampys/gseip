@@ -110,7 +110,7 @@ class CapacitacionEmpleado
                   concat(DATE_FORMAT(ed.fecha_edicion, '%d/%m/%Y'), ' ', ed.nombre) as edicion
                   from cap_capacitacion_empleado ce
                   join cap_capacitaciones c on c.id_capacitacion = ce.id_capacitacion
-                  join contratos co on co.id_contrato = ce.id_contrato
+                  left join contratos co on co.id_contrato = ce.id_contrato
                   join sec_users us on ce.id_user = us.id_user
                   join empleados em on em.id_empleado = ce.id_empleado
                   left join cap_ediciones ed on ed.id_edicion = ce.id_edicion

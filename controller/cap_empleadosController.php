@@ -32,27 +32,51 @@ switch ($operation)
         break;
 
     case 'saveEmpleado': //ok
-        $empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
-        $empleado->setIdEmpleado($_POST['id_empleado']);
-        $empleado->setIdCapacitacion($_POST['id_capacitacion']);
-        $empleado->setIdContrato($_POST['id_contrato']);
-        //$empleado->setIdEdicion($_POST['id_edicion']);
-        $empleado->setIdEdicion(($_POST['id_edicion'])? $_POST['id_edicion'] : null);
-        $empleado->setObservaciones($_POST['id_responsable_ejecucion']);
-        $empleado->setAsistio(($_POST['asistio'] == 1)? 1 : 0);
-        $empleado->setIdUser($_SESSION['id_user']);
-        $rta = $empleado->save();
-        //print_r(json_encode(sQuery::dpLastInsertId()));
-        print_r(json_encode($rta));
+
+        try{
+            sQuery::dpBeginTransaction();
+
+            foreach($_POST['id_empleado'] as $e){
+                //echo $p." ";
+                $empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
+                $empleado->setIdEmpleado($e);
+                $empleado->setIdCapacitacion($_POST['id_capacitacion']);
+                //$empleado->setIdContrato(($_POST['id_contrato'])? $_POST['id_contrato'] : null);
+
+                if($_POST['id_contrato']){ $empleado->setIdContrato($_POST['id_contrato']); } //si se seleccionó contrato
+                else{ //sino se le asigna el 1er contrato de los que tiene el empleado
+                    $temp = ContratoEmpleado::getContratosByEmpleado($e, 1);
+                    $empleado->setIdContrato($temp[0]['id_contrato']); }
+
+                $empleado->setIdEdicion(($_POST['id_edicion'])? $_POST['id_edicion'] : null);
+                $empleado->setObservaciones($_POST['id_responsable_ejecucion']);
+                $empleado->setAsistio(($_POST['asistio'] == 1)? 1 : 0);
+                $empleado->setIdUser($_SESSION['id_user']);
+                $rta = $empleado->save();
+            }
+
+            //Devuelve el resultado a la vista
+            sQuery::dpCommit();
+            print_r(json_encode(1));
+        }
+        catch(Exception $e){
+            //echo $e->getMessage(); //habilitar para ver el mensaje de error
+            sQuery::dpRollback();
+            //print_r(json_encode(-1));
+            throw new Exception('Error en el query.'); //para que entre en el .fail de la peticion ajax
+        }
+
+
         exit;
         break;
 
     case 'newEmpleado': //ok
-        $view->label='Agregar empleado';
+        $view->label='Agregar empleados';
         $view->empleado = new CapacitacionEmpleado($_POST['id_capacitacion_empleado']);
 
         $view->empleados = (!$_POST['id_empleado'])? Empleado::getEmpleadosActivos(null) : Empleado::getEmpleados(); //carga el combo de empleados
-        $view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
+        //$view->contratos = ContratoEmpleado::getContratosByEmpleado($view->empleado->getIdEmpleado(), 1);
+        $view->contratos = Contrato::getContratosControl();
         $view->ediciones = Edicion::getEdiciones($_POST['id_capacitacion'], $_POST['startDate'], $_POST['endDate']);
 
         $view->disableLayout=true;
@@ -80,8 +104,8 @@ switch ($operation)
         break;
 
     case 'getEmpleados': //select dependiente //ok
-        $id_empleado = $_POST['id_empleado'];
-        $rta = ContratoEmpleado::getContratosByEmpleado($id_empleado, 1);
+        $id_contrato = ($_POST['id_contrato'])? $_POST['id_contrato'] : null;
+        $rta = Empleado::getEmpleadosActivos($id_contrato);
         print_r(json_encode($rta));
         exit;
         break;
